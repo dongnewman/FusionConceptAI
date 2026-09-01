@@ -29,6 +29,11 @@ Base.iterate(x::MutableText, state=1) = iterate(x.data, state)
 Base.isvalid(x::MutableText, i::Int) = isvalid(x.data, i)
 struct UnknownRule <: OperatorTypeRuleV1
 end
+struct AlwaysRule <: OperatorTypeRuleV1
+end
+struct FunctionRule <: OperatorTypeRuleV1
+    executable::Function
+end
 
 function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n-b"))
     ns = [node(:state, T0; id=ids[1], label=labels[1]), node(:state, T0; id=ids[2], label=labels[2])]
@@ -124,9 +129,12 @@ end
 
     control = PhysicalType(:control_signal, 0, 3, :differential, U0)
     event = PhysicalType(:event_signal, 0, 3, TemporalTypeV1(event_time, 0, clock), U0)
+    event_state = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(discrete_time, 0, clock), U0)
     @test validate_operator_signature(registry, OperatorRefV1("THRESHOLD_SWITCH", "v1"), (control, scalar), (scalar,))
-    @test validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (event, scalar), (scalar,))
-    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (scalar, scalar), (scalar,))
+    @test validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (event, event_state), (event_state,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (event, scalar), (scalar,))
+    other_event_state = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(discrete_time, 0, QualifiedRefV1("other-clock", "v1")), U0)
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (event, other_event_state), (other_event_state,))
 
     add = operator_manifest(registry, "ADD")
     @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
@@ -139,7 +147,17 @@ end
         pure=false)
     @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
         max_derivative_contribution=1)
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 3, 2, AlwaysRule(), AlwaysRule())
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, FunctionRule(identity), FunctionRule(identity))
+    @test_throws ArgumentError OperatorManifestV1(OperatorRefV1("DELAY", "v1"), 1, 1, DelayRuleV1(), DelayRuleV1())
+    @test_throws ArgumentError OperatorManifestV1(OperatorRefV1("SAMPLE", "v1"), 1, 1, SamplingRuleV1(false), SamplingRuleV1(false))
     @test canonical_hash(registry) == canonical_hash(OperatorRegistryV1(reverse(registry.operators)))
+    dt_ok = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, 1), UnitSignature((0, 0, -1, 0, 0, 0, 0)))
+    @test TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:dt, (1,), dt_ok)), 2, (1,)).root == 2
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar),
+        TypedASTNode(:dt, (1,), PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, 1), UnitSignature((0, 0, 1, 0, 0, 0, 0))))), 2, (1,))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar),
+        TypedASTNode(:dt, (1,), PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, 2), UnitSignature((0, 0, -1, 0, 0, 0, 0))))), 2, (1,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,);
         parameters=(delay_seconds=true,))

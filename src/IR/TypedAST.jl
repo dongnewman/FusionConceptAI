@@ -8,7 +8,8 @@ struct TypedASTNode
     function TypedASTNode(opcode::Symbol, inputs, output_type::PhysicalType, parameters::NamedTuple=(;))
         opcode in (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
                    :gradient, :divergence, :curl, :dt) || throw(ArgumentError("unsupported or unproven typed AST opcode"))
-        all(i -> i >= 1, inputs) || throw(ArgumentError("AST input indexes are one-based"))
+        all(i -> i isa Integer && !isa(i, Bool) && typemin(Int) <= i <= typemax(Int) && i >= 1, inputs) ||
+            throw(ArgumentError("AST input indexes must be in-range one-based integers"))
         is_canonical_value(parameters) || throw(ArgumentError("AST parameters are not canonicalizable"))
         new(opcode, Tuple(Int(i) for i in inputs), output_type, parameters)
     end
@@ -21,8 +22,11 @@ struct TypedAST
     function TypedAST(nodes, root::Integer, input_ports=(); registry::OperatorRegistryV1=default_operator_registry())
         ns = Tuple(nodes)
         isempty(ns) && throw(ArgumentError("typed AST cannot be empty"))
+        root isa Bool && throw(ArgumentError("AST root must be an integer"))
+        typemin(Int) <= root <= typemax(Int) || throw(ArgumentError("AST root is out of range"))
         1 <= root <= length(ns) || throw(ArgumentError("AST root out of range"))
-        all(i -> 1 <= i <= length(ns), input_ports) || throw(ArgumentError("AST input port out of range"))
+        all(i -> i isa Integer && !isa(i, Bool) && typemin(Int) <= i <= typemax(Int) && 1 <= i <= length(ns), input_ports) ||
+            throw(ArgumentError("AST input port out of range"))
         length(unique(input_ports)) == length(input_ports) || throw(ArgumentError("AST input ports must be unique"))
         all(ns[i].opcode == :state && isempty(ns[i].inputs) for i in input_ports) ||
             throw(ArgumentError("AST input ports must identify external state leaves"))

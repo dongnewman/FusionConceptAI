@@ -112,8 +112,12 @@ struct PhysicalType
     temporal_type::TemporalTypeV1
     units::UnitSignature
     function PhysicalType(kind::Symbol, rank::Integer, dim::Integer, temporal::TemporalTypeV1, units::UnitSignature=UnitSignature())
-        rank >= 0 || throw(ArgumentError("tensor_rank must be non-negative"))
-        dim in 0:3 || throw(ArgumentError("spatial_dimension must be in 0:3"))
+        rank isa Bool && throw(ArgumentError("tensor_rank must be an integer"))
+        dim isa Bool && throw(ArgumentError("spatial_dimension must be an integer"))
+        typemin(Int) <= rank <= typemax(Int) || throw(ArgumentError("tensor_rank is out of range"))
+        typemin(Int) <= dim <= typemax(Int) || throw(ArgumentError("spatial_dimension is out of range"))
+        Int(rank) >= 0 || throw(ArgumentError("tensor_rank must be non-negative"))
+        Int(dim) in 0:3 || throw(ArgumentError("spatial_dimension must be in 0:3"))
         new(kind, Int(rank), Int(dim), temporal, units)
     end
 end
