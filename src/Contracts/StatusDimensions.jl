@@ -7,6 +7,8 @@ struct StatusVectorV4
     lifecycle::LifecycleStatus
     stage_outcome::StageOutcome
 end
+semantic_view(x::StatusVectorV4) = (applicability=x.applicability, match_status=x.match_status, resolution=x.resolution,
+                                    lifecycle=x.lifecycle, stage_outcome=x.stage_outcome)
 
 function StatusVectorV4(; applicability=required, match_status=unique_match, resolution=resolved,
                         lifecycle=proposed, stage_outcome=unknown)

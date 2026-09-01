@@ -27,12 +27,16 @@ struct PhysicalType
     end
 end
 
+Base.:(==)(a::PhysicalType, b::PhysicalType) = a.value_kind == b.value_kind && a.tensor_rank == b.tensor_rank &&
+    a.spatial_dimension == b.spatial_dimension && a.time_kind == b.time_kind && a.units == b.units
+
 @enum ApplicabilityStatus required not_applicable
 @enum MatchStatus unique_match no_match ambiguous out_of_domain invalid_signature
 @enum ResolutionStatus resolved terminal_deferred
 @enum LifecycleStatus proposed compiled proof_pruned dormant materialized low_fidelity_evaluated frontier_admitted high_fidelity_pending integrated_executed terminal_classified
 @enum StageOutcome pass physical_fail numerical_fail unknown not_applicable_stage terminal_deferred_stage
 @enum TerminalDisposition credible_within_scope terminal_physical_fail terminal_numerical_fail terminal_unknown terminal_unsupported
+@enum ClaimCeiling none screen_only candidate_bound integrated whole_device_vvuq validation_vvuq
 
 struct ApplicabilityRecord
     obligation::String
@@ -51,3 +55,23 @@ struct EvidenceRef
         new(String(id))
     end
 end
+
+struct MetricWithUnit
+    name::Symbol
+    value::Float64
+    unit::UnitSignature
+    uncertainty::Union{Nothing,Float64}
+    function MetricWithUnit(name::Symbol, value::Real, unit::UnitSignature=UnitSignature(); uncertainty=nothing)
+        isfinite(value) || throw(ArgumentError("metric value must be finite"))
+        uncertainty === nothing || (isfinite(uncertainty) && uncertainty >= 0) || throw(ArgumentError("invalid metric uncertainty"))
+        new(name, Float64(value), unit, uncertainty === nothing ? nothing : Float64(uncertainty))
+    end
+end
+
+"""Every canonicalizable strong type provides its own semantic projection."""
+semantic_view(x::UnitSignature) = (exponents=x.exponents,)
+semantic_view(x::PhysicalType) = (value_kind=x.value_kind, tensor_rank=x.tensor_rank,
+                                  spatial_dimension=x.spatial_dimension, time_kind=x.time_kind, units=x.units)
+semantic_view(x::ApplicabilityRecord) = (obligation=x.obligation, status=x.status, proof_ref=x.proof_ref)
+semantic_view(x::EvidenceRef) = (evidence_id=x.evidence_id,)
+semantic_view(x::MetricWithUnit) = (name=x.name, value=x.value, unit=x.unit, uncertainty=x.uncertainty)

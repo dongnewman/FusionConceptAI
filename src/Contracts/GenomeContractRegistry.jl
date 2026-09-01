@@ -13,6 +13,9 @@ struct GenomeContractRef
         new(String(uri), String(version), String(schema_hash), String(canonicalization_hash), String(compatibility_profile))
     end
 end
+Base.:(==)(a::GenomeContractRef, b::GenomeContractRef) = semantic_view(a) == semantic_view(b)
+semantic_view(x::GenomeContractRef) = (uri=x.uri, version=x.version, schema_hash=x.schema_hash,
+                                        canonicalization_hash=x.canonicalization_hash, compatibility_profile=x.compatibility_profile)
 
 struct GenomeContractRegistryV4
     mechanism::GenomeContractRef
@@ -21,4 +24,11 @@ struct GenomeContractRegistryV4
     function GenomeContractRegistryV4(m::GenomeContractRef, f::GenomeContractRef, r::GenomeContractRef)
         new(m, f, r)
     end
+end
+semantic_view(x::GenomeContractRegistryV4) = (mechanism=x.mechanism, field_geometry=x.field_geometry, realization_control=x.realization_control)
+
+function resolve_contract(registry::GenomeContractRegistryV4, ref::GenomeContractRef, role::Symbol)
+    expected = role === :mechanism ? registry.mechanism : role === :field_geometry ? registry.field_geometry :
+               role === :realization_control ? registry.realization_control : throw(ArgumentError("unknown contract role"))
+    ref == expected
 end

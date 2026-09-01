@@ -6,6 +6,7 @@ struct TypedNode
     physical_type::PhysicalType
     label::String
 end
+semantic_view(x::TypedNode) = (node_kind=x.node_kind, physical_type=x.physical_type)
 
 struct TypedHyperedge
     edge_id::String
@@ -19,6 +20,7 @@ struct TypedHyperedge
         new(String(id), Tuple(Int(i) for i in inputs), Tuple(Int(i) for i in outputs), ast, role)
     end
 end
+semantic_view(x::TypedHyperedge) = (inputs=x.inputs, outputs=x.outputs, ast=x.ast, role=x.role)
 
 struct TypedOperatorHypergraphV1
     nodes::Tuple{Vararg{TypedNode}}
@@ -33,5 +35,6 @@ struct TypedOperatorHypergraphV1
         new(ns, es)
     end
 end
+semantic_view(x::TypedOperatorHypergraphV1) = (nodes=x.nodes, hyperedges=x.hyperedges)
 
 node(kind::Symbol, ty::PhysicalType; id="", label="") = TypedNode(String(id), kind, ty, String(label))
