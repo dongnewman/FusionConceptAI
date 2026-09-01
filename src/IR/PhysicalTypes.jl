@@ -19,6 +19,11 @@ Base.hash(a::Digest256, h::UInt) = hash(a.value, h)
 Base.string(a::Digest256) = a.value
 Base.show(io::IO, a::Digest256) = print(io, a.value)
 digest256_text(s::AbstractString) = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(s))))))
+function _validated_string(s::AbstractString, field::AbstractString)
+    text = String(s)
+    isvalid(text) || throw(ArgumentError("$field must be valid UTF-8"))
+    text
+end
 
 const _P0_SAFE_INTEGER_TYPES = (Int8, Int16, Int32, Int64, Int128, UInt8, UInt16, UInt32, UInt64, UInt128)
 const _P0_SAFE_FLOAT_TYPES = (Float16, Float32, Float64)
@@ -90,7 +95,7 @@ struct ApplicabilityRecord
         status == not_applicable && proof_ref === nothing && throw(ArgumentError("not_applicable requires proof_ref"))
         normalized = proof_ref === nothing ? nothing : proof_ref isa Digest256 ? proof_ref :
                      proof_ref isa AbstractString ? Digest256(proof_ref) : throw(ArgumentError("proof_ref must be Digest256"))
-        new(String(obligation), status, normalized)
+        new(_validated_string(obligation, "applicability obligation"), status, normalized)
     end
 end
 

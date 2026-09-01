@@ -5,6 +5,9 @@ struct TypedNode
     node_kind::Symbol
     physical_type::PhysicalType
     label::String
+    function TypedNode(node_id::AbstractString, node_kind::Symbol, physical_type::PhysicalType, label::AbstractString)
+        new(_validated_string(node_id, "node_id"), node_kind, physical_type, _validated_string(label, "node label"))
+    end
 end
 semantic_view(x::TypedNode) = (node_kind=x.node_kind, physical_type=x.physical_type)
 
@@ -18,7 +21,7 @@ struct TypedHyperedge
         isempty(inputs) && isempty(outputs) && throw(ArgumentError("hyperedge needs an input or output"))
         length(outputs) == 1 || throw(ArgumentError("P0 supports one AST root output per hyperedge; split multi-output operators"))
         role in (:governing, :additive, :constraint, :interface) || throw(ArgumentError("invalid hyperedge role"))
-        new(String(id), Tuple(Int(i) for i in inputs), Tuple(Int(i) for i in outputs), ast, role)
+        new(_validated_string(id, "edge_id"), Tuple(Int(i) for i in inputs), Tuple(Int(i) for i in outputs), ast, role)
     end
 end
 semantic_view(x::TypedHyperedge) = (inputs=x.inputs, outputs=x.outputs, ast=x.ast, role=x.role)

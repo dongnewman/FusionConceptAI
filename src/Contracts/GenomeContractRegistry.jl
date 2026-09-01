@@ -10,7 +10,8 @@ struct GenomeContractRef
                                canonicalization_hash::Digest256, compatibility_profile::AbstractString)
         all(!isempty, (uri, version, compatibility_profile)) ||
             throw(ArgumentError("GenomeContractRef requires all fields and a non-empty compatibility_profile"))
-        new(String(uri), String(version), schema_hash, canonicalization_hash, String(compatibility_profile))
+        new(_validated_string(uri, "contract uri"), _validated_string(version, "contract version"), schema_hash, canonicalization_hash,
+            _validated_string(compatibility_profile, "compatibility profile"))
     end
 end
 GenomeContractRef(uri::AbstractString, version::AbstractString, schema_hash::AbstractString,

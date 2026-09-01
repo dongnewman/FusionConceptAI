@@ -7,7 +7,7 @@ struct MissionContractRef
     canonicalization_hash::Digest256
     function MissionContractRef(uri::AbstractString, version::AbstractString, schema_hash::Digest256, canonicalization_hash::Digest256)
         all(!isempty, (uri, version)) || throw(ArgumentError("incomplete MissionContractRef"))
-        new(String(uri), String(version), schema_hash, canonicalization_hash)
+        new(_validated_string(uri, "mission uri"), _validated_string(version, "mission version"), schema_hash, canonicalization_hash)
     end
 end
 MissionContractRef(uri::AbstractString, version::AbstractString, schema::AbstractString, canon::AbstractString) =
@@ -40,7 +40,8 @@ struct ProposalEnvelopeV4
         vals = (Tuple(String(p) for p in parents), Tuple(edits), predicted, uncertainty)
         all(_deep_immutable, vals) || throw(ArgumentError("ProposalEnvelopeV4 must be deeply immutable"))
         is_canonical_value(vals) || throw(ArgumentError("ProposalEnvelopeV4 payload is not canonicalizable"))
-        new(String(id), String(candidate), vals[1], channel, vals[2], String(cell), predicted, uncertainty,
+        new(_validated_string(id, "proposal id"), _validated_string(candidate, "proposal candidate ref"), vals[1], channel, vals[2],
+            _validated_string(cell, "proposal behavior cell"), predicted, uncertainty,
             cost64, model_hash, next_stage)
     end
 end
@@ -88,8 +89,9 @@ struct EvidenceContentV4
                                     applicability_record=applicability_record, require_applicability_proof=true)
         ceiling in (none, screen_only) || throw(ArgumentError("P0 evidence ceiling is at most screen_only"))
         all(m -> m isa MetricWithUnit, metrics) && deep_immutable((metrics, uncertainty, artifacts)) || throw(ArgumentError("EvidenceContentV4 payload must be typed and immutable"))
-        new(physical, scenario, solver, provider, String(backend), numerical, applicability, applicability_record, match, resolution,
-            outcome, metrics, uncertainty, artifacts, String(group), ceiling)
+        new(physical, scenario, solver, provider, _validated_string(backend, "evidence backend revision"), numerical, applicability,
+            applicability_record, match, resolution, outcome, metrics, uncertainty, artifacts,
+            _validated_string(group, "evidence independence group"), ceiling)
     end
 end
 EvidenceContentV4(physical::AbstractString, scenario::AbstractString, solver::AbstractString, provider::AbstractString,
@@ -164,7 +166,8 @@ struct CandidateStatePackageV4
                             applicability=applicability, compilation=compilation, proposals=proposals, evidence=evidence, archives=archives)) ||
             throw(ArgumentError("candidate payload is not canonicalizable"))
         hashes = CanonicalHashesV4(mechanism_hash(mechanism), field_geometry_hash(field), realization_control_hash(realization), genome_bundle_hash(mechanism, field, realization; mission_contract=mission), nothing, ())
-        new(identity, mission, mechanism, field, realization, hashes, matched ? resolved : terminal_deferred, lifecycle, applicability, compilation, proposals, evidence, archives, nothing, ceiling)
+        new(_validated_string(identity, "candidate identity"), mission, mechanism, field, realization, hashes,
+            matched ? resolved : terminal_deferred, lifecycle, applicability, compilation, proposals, evidence, archives, nothing, ceiling)
     end
 end
 function CandidateStatePackageV4(identity::AbstractString, mission::MissionContractRef, mechanism::MechanismGenomeV4,
@@ -173,7 +176,7 @@ function CandidateStatePackageV4(identity::AbstractString, mission::MissionContr
                                  stage_evidence_refs=(), archive_memberships=(), claim_ceiling::ClaimCeiling=none)
     CandidateStatePackageV4(String(identity), mission, mechanism, field, realization, registry, lifecycle,
                             Tuple(applicability_records), Tuple(compilation_records), Tuple(proposal_lineage), Tuple(stage_evidence_refs),
-                            Tuple(String(a) for a in archive_memberships), claim_ceiling)
+                            Tuple(_validated_string(a, "archive membership") for a in archive_memberships), claim_ceiling)
 end
 semantic_view(x::CandidateStatePackageV4) = (mission_contract_ref=x.mission_contract_ref, mechanism_genome_ref=x.mechanism_genome_ref,
     field_geometry_genome_ref=x.field_geometry_genome_ref, realization_control_genome_ref=x.realization_control_genome_ref,
@@ -188,7 +191,7 @@ struct LegacyMigrationResultV4
     function LegacyMigrationResultV4(resolution::ResolutionStatus, package::Union{Nothing,CandidateStatePackageV4}, reason::AbstractString)
         resolution == terminal_deferred && package === nothing && !isempty(reason) ||
             throw(ArgumentError("P0 legacy migration can only produce terminal_deferred without a package"))
-        new(resolution, package, String(reason))
+        new(resolution, package, _validated_string(reason, "legacy migration reason"))
     end
 end
 semantic_view(x::LegacyMigrationResultV4) = (resolution=x.resolution, package=x.package, reason=x.reason)

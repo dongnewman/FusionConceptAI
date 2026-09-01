@@ -4,6 +4,7 @@ using JSON3
 
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+const BAD_TEXT = string(Char(0xd800))
 mutable struct MutablePayload
     values::Vector{Int}
 end
@@ -46,6 +47,8 @@ end
     @test mechanism_hash(m) == mechanism_hash(MechanismGenomeV4(999, refs[1], fixture_graph(labels=("other-a", "other-b"), ids=("z", "y"))))
     @test_throws ArgumentError GenomeContractRef("urn:x", "v4", "hash", "canon", "")
     @test_throws ArgumentError ApplicabilityRecord("obligation", required, "not-a-digest")
+    @test_throws ArgumentError GenomeContractRef(BAD_TEXT, "v4", repeat("a", 64), repeat("b", 64), "profile")
+    @test_throws ArgumentError ApplicabilityRecord(BAD_TEXT, required)
 end
 
 @testset "canonical identity/label and permutation invariance" begin
@@ -233,10 +236,16 @@ end
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; lifecycle=proof_pruned)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; compilation_records=(; compiled=true,))
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; claim_ceiling=screen_only)
+    @test_throws ArgumentError TypedNode(BAD_TEXT, :state, T0, "")
+    @test_throws ArgumentError TypedHyperedge(BAD_TEXT, (1,), (2,), ast_leaf(:state, T0), :governing)
+    @test_throws ArgumentError ProposalEnvelopeV4(BAD_TEXT, "c", (), :search, (), "cell", (;), (;), 0.0, digest256_text("model"), :compile)
+    @test_throws ArgumentError CandidateStatePackageV4(BAD_TEXT, mission, m, f, r1, registry)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; archive_memberships=(BAD_TEXT,))
     @test_throws ArgumentError LegacyMigrationResultV4(resolved, nothing, "forged")
     @test_throws ArgumentError FusionConceptAI.LegacyMigrationResultV4(resolved, nothing, "forged")
     h = digest256_text("evidence-negative")
     metric = (MetricWithUnit(:x, 1.0, U0),)
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, BAD_TEXT, h, required, nothing, unique_match, resolved, unknown, metric, nothing, (), "", screen_only)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, no_match, terminal_deferred, unknown, metric, nothing, (), "", screen_only)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, terminal_deferred, pass, metric, nothing, (), "", screen_only)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, nothing, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only)
