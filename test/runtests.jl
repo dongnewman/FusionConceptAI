@@ -3,6 +3,9 @@ using FusionConceptAI
 
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+mutable struct MutablePayload
+    values::Vector{Int}
+end
 
 function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n-b"))
     ns = [node(:state, T0; id=ids[1], label=labels[1]), node(:state, T0; id=ids[2], label=labels[2])]
@@ -14,14 +17,15 @@ end
 @testset "P0 contract refs and independent genome hashes" begin
     refs = [GenomeContractRef("urn:test:" * string(i), "v4.0.0", repeat(string(i), 64), repeat(string(i+1), 64), "profile-v4") for i in 1:3]
     registry = GenomeContractRegistryV4(refs...)
-    @test all(!isempty, (registry.mechanism.schema_hash, registry.field_geometry.schema_hash, registry.realization_control.schema_hash))
+    @test all(x -> x isa Digest256, (registry.mechanism.schema_hash, registry.field_geometry.schema_hash, registry.realization_control.schema_hash))
     g = fixture_graph()
     m = MechanismGenomeV4(1, refs[1], g)
     f = FieldGeometryGenomeV4(2, refs[2], g)
     r = RealizationControlGenomeV4(3, 4, refs[3], g, g)
-    @test length.( (mechanism_hash(m), field_geometry_hash(f), realization_control_hash(r)) ) == (64, 64, 64)
+    @test all(x -> length(string(x)) == 64, (mechanism_hash(m), field_geometry_hash(f), realization_control_hash(r)))
     @test mechanism_hash(m) == mechanism_hash(MechanismGenomeV4(999, refs[1], fixture_graph(labels=("other-a", "other-b"), ids=("z", "y"))))
     @test_throws ArgumentError GenomeContractRef("urn:x", "v4", "hash", "canon", "")
+    @test_throws ArgumentError ApplicabilityRecord("obligation", required, "not-a-digest")
 end
 
 @testset "canonical identity/label and permutation invariance" begin
@@ -36,8 +40,8 @@ end
 end
 
 @testset "independent status dimensions and authority" begin
-    @test StatusVectorV4(applicability=required, match_status=no_match).match_status == no_match
-    @test StatusVectorV4(applicability=required, match_status=no_match).applicability == required
+    @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).match_status == no_match
+    @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).applicability == required
     @test_throws ArgumentError ApplicabilityRecord("obligation", not_applicable)
     @test IntermediateAuthorityProtocolV4(:compiler) isa AuthorityProtocolV4
     @test !(:FinalWholeDeviceAuthorityV4 in names(FusionConceptAI, all=false))
@@ -46,13 +50,14 @@ end
 end
 
 @testset "typed Proposal/Evidence isolation and six hashes" begin
-    refs = [GenomeContractRef("urn:test:" * string(i), "v4.0.0", "s" * string(i), "c" * string(i), "profile") for i in 1:3]
+    refs = [GenomeContractRef("urn:test:" * string(i), "v4.0.0", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
     registry = GenomeContractRegistryV4(refs...)
     g = fixture_graph()
     m = MechanismGenomeV4(1, refs[1], g); f = FieldGeometryGenomeV4(2, refs[2], g); r = RealizationControlGenomeV4(3, 4, refs[3], g, g)
-    p = ProposalEnvelopeV4("p", "candidate", (), :mcts, (), "cell", (;), (;), 1.0, "model", :compile)
-    e = evidence_envelope(physical_subject_hash="physical", scenario_hash="scenario", solver_input_hash="solver", provider_manifest_hash="provider", backend_revision="backend", numerical_configuration_hash="numeric", applicability=required, match_status=unique_match, resolution_status=resolved, stage_outcome=unknown, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
-    mission = MissionContractRef("urn:mission", "v4", "schema", "canon")
+    p = ProposalEnvelopeV4("p", "candidate", (), :mcts, (), "cell", (;), (;), 1.0, digest256_text("model"), :compile)
+    econtent = EvidenceContentV4(digest256_text("physical"), digest256_text("scenario"), digest256_text("solver"), digest256_text("provider"), "backend", digest256_text("numeric"), required, nothing, unique_match, resolved, unknown, (MetricWithUnit(:x, 1.0, U0),), nothing, (), "", screen_only)
+    e = evidence_envelope(econtent)
+    mission = MissionContractRef("urn:mission", "v4", digest256_text("schema"), digest256_text("canon"))
     pkg = CandidateStatePackageV4("display", mission, m, f, r, registry; proposal_lineage=(p,), stage_evidence_refs=(EvidenceRef(e.evidence_id),))
     @test length(pkg.canonical_hashes.solver_input_hashes) == 0
     @test pkg.proposal_lineage[1] isa ProposalEnvelopeV4
@@ -78,7 +83,23 @@ end
     @test occursin("shape", matrix_json) && occursin("values", matrix_json)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), T0), TypedASTNode(:add, (1, 1), PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((1, 0, 0, 0, 0, 0, 0))))), 2)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), T0), TypedASTNode(:identity, (1,), PhysicalType(:vector_field, 1, 3, :differential, U0))), 2)
-    refs = [GenomeContractRef("urn:test:" * string(i), "v4", "s" * string(i), "c" * string(i), "profile") for i in 1:3]
+    @test ast_leaf(:parameter, T0).input_ports == ()
+    @test_throws ArgumentError TypedASTNode(:operator_hole, (), T0)
+    state1 = TypedASTNode(:state, (), T0)
+    state2 = TypedASTNode(:state, (), T0)
+    @test_throws ArgumentError TypedAST((state1,), 1, (1, 1))
+    @test_throws ArgumentError TypedAST((state1, state2), 1, (1,))
+    @test_throws ArgumentError TypedAST((state1, state2), 1, (1, 2))
+    @test_throws ArgumentError TypedAST((state1, state2, TypedASTNode(:identity, (1,), T0)), 3, (1, 2))
+    t1 = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    @test_throws ArgumentError TypedOperatorHypergraphV1((node(:state, t1), node(:state, T0)),
+        (TypedHyperedge("bad-port", (1,), (2,), ast_leaf(:state, T0), :governing),))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), T0), TypedASTNode(:dt, (1,), T0)), 2, (1,))
+    t2 = PhysicalType(:scalar_field, 0, 2, :differential, U0)
+    t3 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), t2), TypedASTNode(:state, (), t3),
+        TypedASTNode(:mul, (1, 2), t2)), 3, (1, 2))
+    refs = [GenomeContractRef("urn:test:" * string(i), "v4", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
     g = fixture_graph(); r1 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:a), control=(;))
     r2 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:b), control=(;))
     @test realization_hash(r1) != realization_hash(r2)
@@ -86,17 +107,19 @@ end
     @test coupled_realization_control_hash(r1) != coupled_realization_control_hash(r2)
     registry = GenomeContractRegistryV4(refs...)
     m = MechanismGenomeV4(1, refs[1], g); f = FieldGeometryGenomeV4(2, refs[2], g)
-    foreign = GenomeContractRef("urn:foreign", "v4", "foreign", "foreign", "profile")
+    foreign = GenomeContractRef("urn:foreign", "v4", digest256_text("foreign"), digest256_text("foreign-canon"), "profile")
     rf = RealizationControlGenomeV4(3, 4, foreign, g, g)
-    mission = MissionContractRef("urn:mission", "v4", "ms", "mc")
+    mission = MissionContractRef("urn:mission", "v4", digest256_text("ms"), digest256_text("mc"))
     deferred = CandidateStatePackageV4("id", mission, m, f, rf, registry)
     @test deferred.resolution == terminal_deferred
     @test migrate_legacy((; old_status=:pass)).resolution == terminal_deferred
     @test migrate_legacy((; mission_contract_ref=:m, mechanism_genome_ref=:a, field_geometry_genome_ref=:b, realization_control_genome_ref=:c, status=:pass)).resolution == terminal_deferred
-    p = ProposalEnvelopeV4("p", "c", (), :search, (), "cell", (;), (;), 0.0, "model", :compile)
-    @test_throws ArgumentError ProposalEnvelopeV4("p", "c", (), :search, (Any[1],), "cell", (;), (;), 0.0, "model", :compile)
+    p = ProposalEnvelopeV4("p", "c", (), :search, (), "cell", (;), (;), 0.0, digest256_text("model"), :compile)
+    @test_throws ArgumentError ProposalEnvelopeV4("p", "c", (), :search, (Any[1],), "cell", (;), (;), 0.0, digest256_text("model"), :compile)
     @test_throws ArgumentError MechanismGenomeV4(1, refs[1], g; invariants=(Any[1],))
     @test_throws ArgumentError FieldGeometryGenomeV4(2, refs[2], g; fields=(Dict(:mutable => true),))
+    @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutablePayload([1]),), ())
+    @test_throws ArgumentError RealizationControlGenomeV4(8, 8, refs[3], g, g)
     @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=unique_match, resolution_status=resolved, stage_outcome=unknown, metrics_with_units=(p,))
     nodes9 = [node(Symbol("kind_", i), T0; id=string(i)) for i in 1:9]
     nodes16 = [node(Symbol("kind_", i), T0; id=string(i)) for i in 1:16]
@@ -115,9 +138,20 @@ end
     @test elapsed < 2.0
     @test_throws ArgumentError EvidenceRef("not-a-hash")
     @test_throws ArgumentError EvidenceRef(repeat("a", 64) * "0")
-    @test_throws ArgumentError evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=pass, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
-    @test_throws ArgumentError evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=unknown, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
-    @test_throws ArgumentError evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=unique_match, resolution_status=resolved, stage_outcome=unknown, claim_ceiling=validation_vvuq, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
-    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, CanonicalHashesV4("a", "b", "c", "d", nothing, ()), resolved, terminal_classified, (), (), (), (), (), "authority", none)
-    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, CanonicalHashesV4("a", "b", "c", "d", nothing, ()), resolved, proposed, (), (), (), (), (), nothing, validation_vvuq)
+    @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=pass, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
+    @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=unknown, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
+    @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=unique_match, resolution_status=resolved, stage_outcome=unknown, claim_ceiling=validation_vvuq, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
+    @test_throws Exception CandidateStatePackageV4("id", mission, m, f, r1, CanonicalHashesV4("a", "b", "c", "d", nothing, ()), resolved, terminal_classified, (), (), (), (), (), "authority", none)
+    @test_throws Exception CandidateStatePackageV4("id", mission, m, f, r1, CanonicalHashesV4("a", "b", "c", "d", nothing, ()), resolved, proposed, (), (), (), (), (), nothing, validation_vvuq)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, terminal_classified, (), (), (), (), (), none)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, proposed, (), (), (), (), (), validation_vvuq)
+    h = digest256_text("evidence-negative")
+    metric = (MetricWithUnit(:x, 1.0, U0),)
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, no_match, terminal_deferred, unknown, metric, nothing, (), "", screen_only)
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, terminal_deferred, pass, metric, nothing, (), "", screen_only)
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, nothing, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only)
+    @test_throws Exception EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, resolved, unknown, (Any[1],), nothing, (), "", screen_only)
+    @test_throws ArgumentError StatusVectorV4(required, no_match, resolved, proposed, unknown)
+    @test_throws MethodError StatusVectorV4()
+    @test_throws MethodError DerivedEGraphViewV4(digest256_text("fake-source"), g)
 end

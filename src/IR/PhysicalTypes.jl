@@ -7,6 +7,18 @@ struct UnitSignature
         new(vals)
     end
 end
+struct Digest256
+    value::String
+    function Digest256(value::AbstractString)
+        occursin(r"^[0-9a-f]{64}$", value) || throw(ArgumentError("Digest256 requires exactly 64 lowercase hex characters"))
+        new(String(value))
+    end
+end
+Base.:(==)(a::Digest256, b::Digest256) = a.value == b.value
+Base.hash(a::Digest256, h::UInt) = hash(a.value, h)
+Base.string(a::Digest256) = a.value
+Base.show(io::IO, a::Digest256) = print(io, a.value)
+digest256_text(s::AbstractString) = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(s))))))
 UnitSignature(xs::AbstractVector{<:Real}) = UnitSignature(Tuple(xs))
 UnitSignature() = UnitSignature(ntuple(_ -> 0, 7))
 
@@ -41,20 +53,22 @@ Base.:(==)(a::PhysicalType, b::PhysicalType) = a.value_kind == b.value_kind && a
 struct ApplicabilityRecord
     obligation::String
     status::ApplicabilityStatus
-    proof_ref::Union{Nothing,String}
+    proof_ref::Union{Nothing,Digest256}
     function ApplicabilityRecord(obligation::AbstractString, status::ApplicabilityStatus, proof_ref=nothing)
-        status == not_applicable && (proof_ref isa AbstractString && !isempty(proof_ref) || throw(ArgumentError("not_applicable requires proof_ref")))
-        new(String(obligation), status, proof_ref === nothing ? nothing : String(proof_ref))
+        status == not_applicable && proof_ref === nothing && throw(ArgumentError("not_applicable requires proof_ref"))
+        normalized = proof_ref === nothing ? nothing : proof_ref isa Digest256 ? proof_ref :
+                     proof_ref isa AbstractString ? Digest256(proof_ref) : throw(ArgumentError("proof_ref must be Digest256"))
+        new(String(obligation), status, normalized)
     end
 end
 
 struct EvidenceRef
-    evidence_id::String
+    evidence_id::Digest256
     function EvidenceRef(id::AbstractString)
-        occursin(r"^[0-9a-f]{64}$", id) || throw(ArgumentError("evidence_id must be a 64-character lowercase SHA-256 hex string"))
-        new(String(id))
+        new(Digest256(id))
     end
 end
+EvidenceRef(id::Digest256) = EvidenceRef(id.value)
 
 struct MetricWithUnit
     name::Symbol
@@ -71,6 +85,7 @@ end
 """Reject mutable containers recursively; all P0 payloads are value objects."""
 function deep_immutable(x)
     (x === nothing || x isa Bool || x isa Number || x isa Symbol || x isa AbstractString) && return true
+    Base.ismutabletype(typeof(x)) && return false
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
     x isa NamedTuple && return all(deep_immutable, values(x))
@@ -81,6 +96,7 @@ end
 
 """Every canonicalizable strong type provides its own semantic projection."""
 semantic_view(x::UnitSignature) = (exponents=x.exponents,)
+semantic_view(x::Digest256) = (value=x.value,)
 semantic_view(x::PhysicalType) = (value_kind=x.value_kind, tensor_rank=x.tensor_rank,
                                   spatial_dimension=x.spatial_dimension, time_kind=x.time_kind, units=x.units)
 semantic_view(x::ApplicabilityRecord) = (obligation=x.obligation, status=x.status, proof_ref=x.proof_ref)

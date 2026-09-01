@@ -1,7 +1,7 @@
 """SHA-256 content hashes over canonical semantic representations."""
 
 function canonical_hash(x)
-    bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical_json(x)))))
+    Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical_json(x))))))
 end
 
 mechanism_hash(x::MechanismGenomeV4) = canonical_hash(x)

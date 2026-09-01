@@ -7,7 +7,7 @@ struct TypedASTNode
     parameters::NamedTuple
     function TypedASTNode(opcode::Symbol, inputs, output_type::PhysicalType, parameters::NamedTuple=(;))
         opcode in (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
-                   :gradient, :divergence, :curl, :dt, :operator_hole) || throw(ArgumentError("unsupported typed AST opcode"))
+                   :gradient, :divergence, :curl, :dt) || throw(ArgumentError("unsupported or unproven typed AST opcode"))
         all(i -> i >= 1, inputs) || throw(ArgumentError("AST input indexes are one-based"))
         new(opcode, Tuple(Int(i) for i in inputs), output_type, parameters)
     end
@@ -22,8 +22,19 @@ struct TypedAST
         isempty(ns) && throw(ArgumentError("typed AST cannot be empty"))
         1 <= root <= length(ns) || throw(ArgumentError("AST root out of range"))
         all(i -> 1 <= i <= length(ns), input_ports) || throw(ArgumentError("AST input port out of range"))
-        all(ns[i].opcode in (:state, :parameter, :constant) && isempty(ns[i].inputs) for i in input_ports) ||
-            throw(ArgumentError("AST input ports must identify leaf nodes"))
+        length(unique(input_ports)) == length(input_ports) || throw(ArgumentError("AST input ports must be unique"))
+        all(ns[i].opcode == :state && isempty(ns[i].inputs) for i in input_ports) ||
+            throw(ArgumentError("AST input ports must identify external state leaves"))
+        state_leaves = [i for i in eachindex(ns) if ns[i].opcode == :state]
+        Set(state_leaves) == Set(input_ports) || throw(ArgumentError("every state leaf must be externally bound exactly once"))
+        reachable = falses(length(ns))
+        function mark(i)
+            reachable[i] && return
+            reachable[i] = true
+            foreach(mark, ns[i].inputs)
+        end
+        mark(Int(root))
+        all(reachable[i] for i in state_leaves) || throw(ArgumentError("every bound state leaf must be reachable from AST root"))
         deep_immutable(ns) || throw(ArgumentError("typed AST payload must be deeply immutable"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
@@ -35,7 +46,7 @@ end
 
 function _validate_opcode(n::TypedASTNode, ns, j::Int)
     known = (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
-             :gradient, :divergence, :curl, :dt, :operator_hole)
+             :gradient, :divergence, :curl, :dt)
     n.opcode in known || throw(ArgumentError("unknown typed AST opcode $(n.opcode)"))
     ins = [ns[i].output_type for i in n.inputs]
     if n.opcode in (:state, :parameter, :constant)
@@ -77,7 +88,10 @@ function _validate_opcode(n::TypedASTNode, ns, j::Int)
     nothing
 end
 
-ast_leaf(opcode::Symbol, ty::PhysicalType; parameters=(;), input_port=1) = TypedAST((TypedASTNode(opcode, (), ty, parameters),), 1, (input_port,))
+function ast_leaf(opcode::Symbol, ty::PhysicalType; parameters=(;), input_port=nothing)
+    port_tuple = opcode == :state ? (input_port === nothing ? (1,) : (Int(input_port),)) : ()
+    TypedAST((TypedASTNode(opcode, (), ty, parameters),), 1, port_tuple)
+end
 
 semantic_view(x::TypedASTNode) = (opcode=x.opcode, inputs=x.inputs, output_type=x.output_type, parameters=x.parameters)
 semantic_view(x::TypedAST) = (nodes=x.nodes, root=x.root, input_ports=x.input_ports)

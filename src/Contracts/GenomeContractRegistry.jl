@@ -3,16 +3,19 @@
 struct GenomeContractRef
     uri::String
     version::String
-    schema_hash::String
-    canonicalization_hash::String
+    schema_hash::Digest256
+    canonicalization_hash::Digest256
     compatibility_profile::String
-    function GenomeContractRef(uri::AbstractString, version::AbstractString, schema_hash::AbstractString,
-                               canonicalization_hash::AbstractString, compatibility_profile::AbstractString)
-        all(!isempty, (uri, version, schema_hash, canonicalization_hash, compatibility_profile)) ||
+    function GenomeContractRef(uri::AbstractString, version::AbstractString, schema_hash::Digest256,
+                               canonicalization_hash::Digest256, compatibility_profile::AbstractString)
+        all(!isempty, (uri, version, compatibility_profile)) ||
             throw(ArgumentError("GenomeContractRef requires all fields and a non-empty compatibility_profile"))
-        new(String(uri), String(version), String(schema_hash), String(canonicalization_hash), String(compatibility_profile))
+        new(String(uri), String(version), schema_hash, canonicalization_hash, String(compatibility_profile))
     end
 end
+GenomeContractRef(uri::AbstractString, version::AbstractString, schema_hash::AbstractString,
+                  canonicalization_hash::AbstractString, profile::AbstractString) =
+    GenomeContractRef(uri, version, Digest256(schema_hash), Digest256(canonicalization_hash), profile)
 Base.:(==)(a::GenomeContractRef, b::GenomeContractRef) = semantic_view(a) == semantic_view(b)
 semantic_view(x::GenomeContractRef) = (uri=x.uri, version=x.version, schema_hash=x.schema_hash,
                                         canonicalization_hash=x.canonicalization_hash, compatibility_profile=x.compatibility_profile)
