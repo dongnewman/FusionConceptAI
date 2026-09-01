@@ -19,6 +19,11 @@ Base.hash(a::Digest256, h::UInt) = hash(a.value, h)
 Base.string(a::Digest256) = a.value
 Base.show(io::IO, a::Digest256) = print(io, a.value)
 digest256_text(s::AbstractString) = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(s))))))
+
+const _P0_SAFE_INTEGER_TYPES = (Int8, Int16, Int32, Int64, Int128, UInt8, UInt16, UInt32, UInt64, UInt128)
+const _P0_SAFE_FLOAT_TYPES = (Float16, Float32, Float64)
+_p0_safe_rational(x) = x isa Rational && typeof(numerator(x)) in _P0_SAFE_INTEGER_TYPES && typeof(denominator(x)) in _P0_SAFE_INTEGER_TYPES
+_p0_safe_number(x) = typeof(x) in _P0_SAFE_INTEGER_TYPES || typeof(x) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(x)
 UnitSignature(xs::AbstractVector{<:Real}) = UnitSignature(Tuple(xs))
 UnitSignature() = UnitSignature(ntuple(_ -> 0, 7))
 
@@ -76,16 +81,23 @@ struct MetricWithUnit
     unit::UnitSignature
     uncertainty::Union{Nothing,Float64}
     function MetricWithUnit(name::Symbol, value::Real, unit::UnitSignature=UnitSignature(); uncertainty=nothing)
-        isfinite(value) || throw(ArgumentError("metric value must be finite"))
-        uncertainty === nothing || (isfinite(uncertainty) && uncertainty >= 0) || throw(ArgumentError("invalid metric uncertainty"))
-        new(name, Float64(value), unit, uncertainty === nothing ? nothing : Float64(uncertainty))
+        value64 = Float64(value)
+        isfinite(value64) || throw(ArgumentError("metric value must be finite after Float64 conversion"))
+        uncertainty64 = uncertainty === nothing ? nothing : Float64(uncertainty)
+        uncertainty64 === nothing || (isfinite(uncertainty64) && uncertainty64 >= 0) || throw(ArgumentError("invalid metric uncertainty"))
+        new(name, value64, unit, uncertainty64)
     end
 end
 
 """Reject mutable containers recursively; all P0 payloads are value objects."""
 function deep_immutable(x)
-    (x === nothing || x isa Bool || x isa Number || x isa Symbol || x isa AbstractString) && return true
-    Base.ismutabletype(typeof(x)) && return false
+    x === nothing && return true
+    # Julia represents String and Symbol as mutable types internally, but they
+    # are atomic semantic values here. Every other mutable value is rejected
+    # before any Number/container whitelist can inspect it.
+    Base.ismutabletype(typeof(x)) && !(x isa AbstractString || x isa Symbol) && return false
+    (x isa Bool || x isa Symbol || x isa AbstractString) && return true
+    x isa Number && return _p0_safe_number(x)
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
     x isa NamedTuple && return all(deep_immutable, values(x))

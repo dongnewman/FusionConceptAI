@@ -35,11 +35,12 @@ struct ProposalEnvelopeV4
                                 edits, cell::AbstractString, predicted::NamedTuple, uncertainty::NamedTuple,
                                 cost::Real, model_hash::Digest256, next_stage::Symbol)
         all(!isempty, (id, candidate)) || throw(ArgumentError("proposal references cannot be empty"))
-        isfinite(cost) && cost >= 0 || throw(ArgumentError("estimated_cost must be finite and non-negative"))
+        cost64 = Float64(cost)
+        isfinite(cost64) && cost64 >= 0 || throw(ArgumentError("estimated_cost must be finite and non-negative after Float64 conversion"))
         vals = (Tuple(String(p) for p in parents), Tuple(edits), predicted, uncertainty)
         all(_deep_immutable, vals) || throw(ArgumentError("ProposalEnvelopeV4 must be deeply immutable"))
         new(String(id), String(candidate), vals[1], channel, vals[2], String(cell), predicted, uncertainty,
-            Float64(cost), model_hash, next_stage)
+            cost64, model_hash, next_stage)
     end
 end
 ProposalEnvelopeV4(id::AbstractString, candidate::AbstractString, parents, channel::Symbol, edits, cell::AbstractString,
@@ -84,9 +85,17 @@ struct EvidenceContentV4
         artifacts::Tuple{Vararg{Digest256}}, group::AbstractString, ceiling::ClaimCeiling)
         match in (no_match, ambiguous, out_of_domain, invalid_signature) &&
             (resolution == terminal_deferred && outcome == terminal_deferred_stage && outcome != pass || throw(ArgumentError("non-unique match must be terminal_deferred")))
+        (resolution == terminal_deferred) == (outcome == terminal_deferred_stage) ||
+            throw(ArgumentError("terminal_deferred resolution requires terminal_deferred_stage"))
         resolution == resolved && match == unique_match || resolution == terminal_deferred || throw(ArgumentError("resolved evidence requires unique_match"))
         outcome == pass && (applicability == required && match == unique_match && resolution == resolved) || outcome != pass || throw(ArgumentError("pass status combination is invalid"))
         outcome == not_applicable_stage && (applicability == not_applicable && applicability_record !== nothing && applicability_record.status == not_applicable) || outcome != not_applicable_stage || throw(ArgumentError("not_applicable_stage requires applicability proof"))
+        if applicability == not_applicable
+            applicability_record !== nothing && applicability_record.status == not_applicable && !isempty(applicability_record.obligation) ||
+                throw(ArgumentError("not_applicable evidence requires an applicability proof"))
+        elseif applicability_record !== nothing && applicability_record.status == not_applicable
+            throw(ArgumentError("required evidence cannot carry a not_applicable proof"))
+        end
         ceiling in (none, screen_only) || throw(ArgumentError("P0 evidence ceiling is at most screen_only"))
         all(m -> m isa MetricWithUnit, metrics) && deep_immutable((metrics, uncertainty, artifacts)) || throw(ArgumentError("EvidenceContentV4 payload must be typed and immutable"))
         new(physical, scenario, solver, provider, String(backend), numerical, applicability, applicability_record, match, resolution,

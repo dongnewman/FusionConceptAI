@@ -6,6 +6,12 @@ const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
 mutable struct MutablePayload
     values::Vector{Int}
 end
+mutable struct MutableNumber <: Number
+    value::Int
+end
+struct InjectInteger <: Integer
+end
+Base.string(::InjectInteger) = "0,\"injected\":true"
 
 function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n-b"))
     ns = [node(:state, T0; id=ids[1], label=labels[1]), node(:state, T0; id=ids[2], label=labels[2])]
@@ -78,6 +84,7 @@ end
 
 @testset "P0 negative controls and bounded large-graph canonicalization" begin
     @test occursin("\\u0001", canonical_json((control="\u0001",)))
+    @test_throws ArgumentError canonical_json(InjectInteger())
     @test_throws ArgumentError canonical_json(Dict{Any,Any}(1 => :a, "1" => :b))
     matrix_json = canonical_json(reshape([1, 2, 3, 4], 2, 2))
     @test occursin("shape", matrix_json) && occursin("values", matrix_json)
@@ -99,6 +106,18 @@ end
     t3 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), t2), TypedASTNode(:state, (), t3),
         TypedASTNode(:mul, (1, 2), t2)), 3, (1, 2))
+    inv_length = UnitSignature((0, -1, 0, 0, 0, 0, 0))
+    scalar3d = PhysicalType(:open_value, 0, 3, :differential, U0)
+    vector3d = PhysicalType(:open_value, 1, 3, :differential, U0)
+    gradient_bad = PhysicalType(:open_value, 1, 2, :static, inv_length)
+    divergence_bad = PhysicalType(:open_value, 0, 2, :static, inv_length)
+    curl_bad = PhysicalType(:open_value, 1, 2, :static, inv_length)
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar3d), TypedASTNode(:gradient, (1,), gradient_bad)), 2, (1,))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector3d), TypedASTNode(:divergence, (1,), divergence_bad)), 2, (1,))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector3d), TypedASTNode(:curl, (1,), curl_bad)), 2, (1,))
+    vector0d = PhysicalType(:open_value, 1, 0, :differential, U0)
+    curl0d = PhysicalType(:open_value, 1, 0, :differential, inv_length)
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector0d), TypedASTNode(:curl, (1,), curl0d)), 2, (1,))
     refs = [GenomeContractRef("urn:test:" * string(i), "v4", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
     g = fixture_graph(); r1 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:a), control=(;))
     r2 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:b), control=(;))
@@ -119,7 +138,10 @@ end
     @test_throws ArgumentError MechanismGenomeV4(1, refs[1], g; invariants=(Any[1],))
     @test_throws ArgumentError FieldGeometryGenomeV4(2, refs[2], g; fields=(Dict(:mutable => true),))
     @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutablePayload([1]),), ())
+    @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutableNumber(1),), ())
     @test_throws ArgumentError RealizationControlGenomeV4(8, 8, refs[3], g, g)
+    @test_throws ArgumentError MetricWithUnit(:huge, big(10)^10000, U0)
+    @test_throws ArgumentError ProposalEnvelopeV4("huge", "c", (), :search, (), "cell", (;), (;), big(10)^10000, digest256_text("model"), :compile)
     @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=unique_match, resolution_status=resolved, stage_outcome=unknown, metrics_with_units=(p,))
     nodes9 = [node(Symbol("kind_", i), T0; id=string(i)) for i in 1:9]
     nodes16 = [node(Symbol("kind_", i), T0; id=string(i)) for i in 1:16]
@@ -152,6 +174,13 @@ end
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, nothing, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only)
     @test_throws Exception EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, resolved, unknown, (Any[1],), nothing, (), "", screen_only)
     @test_throws ArgumentError StatusVectorV4(required, no_match, resolved, proposed, unknown)
+    @test_throws ArgumentError StatusVectorV4(required, no_match, terminal_deferred, proposed, unknown)
+    @test_throws ArgumentError StatusVectorV4(required, no_match, terminal_deferred, proposed, physical_fail)
+    @test_throws ArgumentError StatusVectorV4(required, unique_match, resolved, proposed, terminal_deferred_stage)
+    @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).resolution == terminal_deferred
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, nothing, unique_match, resolved, unknown, metric, nothing, (), "", screen_only)
+    na_record = ApplicabilityRecord("not-applicable-obligation", not_applicable, h)
+    @test EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, na_record, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only).applicability == not_applicable
     @test_throws MethodError StatusVectorV4()
     @test_throws MethodError DerivedEGraphViewV4(digest256_text("fake-source"), g)
 end

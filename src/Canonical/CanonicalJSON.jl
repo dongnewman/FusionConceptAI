@@ -29,9 +29,13 @@ function _canonical(x)
     x isa Bool && return x ? "true" : "false"
     x isa Symbol && return _jsonquote(String(x))
     x isa AbstractString && return _jsonquote(x)
-    x isa Integer && return string(x)
-    x isa AbstractFloat && (isfinite(x) || throw(ArgumentError("non-finite values are not canonical")); return repr(x))
-    x isa Rational && return "{\"denominator\":" * string(denominator(x)) * ",\"numerator\":" * string(numerator(x)) * "}"
+    typeof(x) in _P0_SAFE_INTEGER_TYPES && return string(x)
+    typeof(x) in _P0_SAFE_FLOAT_TYPES && (isfinite(x) || throw(ArgumentError("non-finite values are not canonical")); return repr(x))
+    _p0_safe_rational(x) && return "{\"denominator\":" * string(denominator(x)) * ",\"numerator\":" * string(numerator(x)) * "}"
+    if x isa Integer || x isa AbstractFloat || x isa Number
+        hasmethod(semantic_view, Tuple{typeof(x)}) || throw(ArgumentError("untrusted numeric type requires explicit semantic_view"))
+        return _canonical(semantic_view(x))
+    end
     x isa Enum && return _jsonquote(String(Symbol(x)))
     x isa TypedOperatorHypergraphV1 && return _canonical_graph(x)
     x isa NamedTuple && return _canonical_pairs([(k, getfield(x, k)) for k in keys(x)])

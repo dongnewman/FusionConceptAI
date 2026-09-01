@@ -71,14 +71,20 @@ function _validate_opcode(n::TypedASTNode, ns, j::Int)
             throw(ArgumentError("DIV signature/unit mismatch"))
     elseif n.opcode == :gradient
         length(ins) == 1 && ins[1].tensor_rank == 0 && n.output_type.tensor_rank == 1 &&
+            n.output_type.value_kind == ins[1].value_kind &&
+            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("GRADIENT signature/unit mismatch"))
     elseif n.opcode == :divergence
         length(ins) == 1 && ins[1].tensor_rank >= 1 && n.output_type.tensor_rank == ins[1].tensor_rank - 1 &&
+            n.output_type.value_kind == ins[1].value_kind &&
+            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("DIVERGENCE signature/unit mismatch"))
     elseif n.opcode == :curl
         length(ins) == 1 && ins[1].tensor_rank == 1 && n.output_type.tensor_rank == 1 &&
+            n.output_type.value_kind == ins[1].value_kind &&
+            ins[1].spatial_dimension == 3 && n.output_type.spatial_dimension == 3 && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("CURL signature/unit mismatch"))
     elseif n.opcode == :dt
