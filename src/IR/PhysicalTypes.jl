@@ -78,12 +78,12 @@ _legacy_time_symbol(k::TimeKindV1) = k == static_time ? :static : k == algebraic
 function is_canonical_value(x)
     x === nothing && return true
     if Base.ismutabletype(typeof(x))
-        (typeof(x) === String || x isa Symbol) && return true
+        (typeof(x) === String || (x isa Symbol && isvalid(String(x)))) && return true
         return false
     end
     x isa AbstractString && return typeof(x) === String && isvalid(x)
     x isa Bool && return true
-    x isa Symbol && return true
+    x isa Symbol && return isvalid(String(x))
     x isa Number && return _p0_safe_number(x)
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
@@ -112,6 +112,7 @@ struct PhysicalType
     temporal_type::TemporalTypeV1
     units::UnitSignature
     function PhysicalType(kind::Symbol, rank::Integer, dim::Integer, temporal::TemporalTypeV1, units::UnitSignature=UnitSignature())
+        isvalid(String(kind)) || throw(ArgumentError("value_kind must be valid UTF-8"))
         rank isa Bool && throw(ArgumentError("tensor_rank must be an integer"))
         dim isa Bool && throw(ArgumentError("spatial_dimension must be an integer"))
         typemin(Int) <= rank <= typemax(Int) || throw(ArgumentError("tensor_rank is out of range"))
@@ -185,11 +186,11 @@ function deep_immutable(x)
     # every other mutable value is rejected before any whitelist is consulted.
     if Base.ismutabletype(typeof(x))
         typeof(x) === String && return true
-        x isa Symbol && return true
+        x isa Symbol && return isvalid(String(x))
         return false
     end
     x isa AbstractString && return false
-    (x isa Bool || x isa Symbol) && return true
+    (x isa Bool || (x isa Symbol && isvalid(String(x)))) && return true
     x isa Number && return _p0_safe_number(x)
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false

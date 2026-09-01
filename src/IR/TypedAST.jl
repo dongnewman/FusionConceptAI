@@ -64,7 +64,8 @@ function _validate_ast_node(registry::OperatorRegistryV1, n::TypedASTNode, ns, j
     id = _ast_operator_id(n.opcode)
     id === nothing && throw(ArgumentError("unknown typed AST operator $(n.opcode)"))
     ref = OperatorRefV1(id, "v1")
-    inferred = _infer_rule_output(operator_manifest(registry, id, "v1").input_type_rule, ins, n.parameters)
+    rule = operator_manifest(registry, id, "v1").input_type_rule
+    inferred = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any}, rule, ins, n.parameters)
     inferred == (n.output_type,) || throw(ArgumentError("typed AST output does not match registry-derived output"))
     validate_operator_signature(registry, ref, ins, (n.output_type,); parameters=n.parameters)
     nothing

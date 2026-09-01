@@ -165,6 +165,13 @@ end
         parameters=(delay_seconds=big(10)^10000,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,);
         parameters=(delay_seconds=1.0, unknown=:x))
+    bad_symbol = Symbol(String(UInt8[0xff]))
+    @test !is_canonical_value(bad_symbol)
+    @test_throws ArgumentError PhysicalType(bad_symbol, 0, 3, :differential, U0)
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("HOLD", "v1"), (discrete,),
+        (scalar,); parameters=(target_kind=bad_symbol,))
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        commutative_input_groups=((true, 2),))
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,);
         registry=OperatorRegistryV1())
 end

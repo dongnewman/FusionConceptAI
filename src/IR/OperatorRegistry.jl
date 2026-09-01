@@ -129,7 +129,7 @@ function _normalize_groups(groups, input_arity)
     used = Set{Int}()
     for group in raw
         g = _tuple_or_argument(group, "commutative input group")
-        all(i -> i isa Integer && 1 <= i <= input_arity, g) ||
+        all(i -> i isa Integer && !(i isa Bool) && 1 <= i <= input_arity, g) ||
             throw(ArgumentError("commutative input index is out of range"))
         length(g) >= 2 || throw(ArgumentError("commutative groups require at least two inputs"))
         length(unique(g)) == length(g) || throw(ArgumentError("commutative group contains duplicates"))
@@ -140,14 +140,14 @@ function _normalize_groups(groups, input_arity)
     Tuple(sort(normalized, by=repr))
 end
 
-function _rule_derivative_contribution(rule)
-    rule isa SpatialDerivativeRuleV1 && return rule.opcode == :laplace ? 2 : 1
-    rule isa TimeDerivativeRuleV1 && return 1
+function _rule_derivative_contribution(rule::OperatorTypeRuleV1)
+    typeof(rule) === SpatialDerivativeRuleV1 && return rule.opcode == :laplace ? 2 : 1
+    typeof(rule) === TimeDerivativeRuleV1 && return 1
     0
 end
 
-function _rule_event(rule)
-    rule isa EventTransitionRuleV1
+function _rule_event(rule::OperatorTypeRuleV1)
+    typeof(rule) === EventTransitionRuleV1
 end
 
 function _rule_parameter_names(schema)
@@ -158,7 +158,7 @@ function _rule_parameter_names(schema)
     names
 end
 
-function _sealed_rule_arity(rule, input_arity::Int, output_arity::Int)
+function _sealed_rule_arity(rule::OperatorTypeRuleV1, input_arity::Int, output_arity::Int)
     if typeof(rule) === ExactTypeRuleV1
         return input_arity == length(rule.input_types) && output_arity == length(rule.output_types)
     elseif typeof(rule) === SameTypeVariadicRuleV1
@@ -172,7 +172,7 @@ function _sealed_rule_arity(rule, input_arity::Int, output_arity::Int)
     false
 end
 
-function _sealed_rule_schema(rule)
+function _sealed_rule_schema(rule::OperatorTypeRuleV1)
     if typeof(rule) === DelayRuleV1
         (OperatorParameterSpecV1(:delay_seconds, :finite_nonnegative_real, true),)
     elseif typeof(rule) === SamplingRuleV1
@@ -238,24 +238,29 @@ struct OperatorManifestV1
         locality in _OPERATOR_LOCALITIES || throw(ArgumentError("operator locality is not in the closed vocabulary"))
         input_arity == _checked_int(input_arity, "input arity") && output_arity == _checked_int(output_arity, "output arity") ||
             throw(ArgumentError("operator arity is out of range"))
-        _sealed_rule_arity(input_type_rule, input_arity, output_arity) &&
-            _sealed_rule_arity(output_type_rule, input_arity, output_arity) ||
+        invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, input_type_rule, input_arity, output_arity) &&
+            invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, output_type_rule, input_arity, output_arity) ||
             throw(ArgumentError("manifest arity does not match its sealed type rule"))
-        params == _sealed_rule_schema(input_type_rule) && params == _sealed_rule_schema(output_type_rule) ||
+        params == invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, input_type_rule) &&
+            params == invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
             throw(ArgumentError("manifest parameter schema is not rule-derived"))
-        max_derivative_contribution == _rule_derivative_contribution(input_type_rule) ==
-            _rule_derivative_contribution(output_type_rule) ||
+        max_derivative_contribution == invoke(_rule_derivative_contribution, Tuple{OperatorTypeRuleV1}, input_type_rule) ==
+            invoke(_rule_derivative_contribution, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
             throw(ArgumentError("max derivative contribution is not rule-derived"))
-        event == _rule_event(input_type_rule) && event == _rule_event(output_type_rule) ||
+        event == invoke(_rule_event, Tuple{OperatorTypeRuleV1}, input_type_rule) &&
+            event == invoke(_rule_event, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
             throw(ArgumentError("event metadata is inconsistent with type rule"))
         pure == !(stateful || stochastic || event) ||
             throw(ArgumentError("pure metadata is inconsistent with operator effects"))
         cse_allowed == !(stateful || stochastic || event) ||
             throw(ArgumentError("CSE permission is inconsistent with stateful/event metadata"))
-        all(_is_canonical_registry_value, (operator_ref, input_type_rule, output_type_rule, roles, params,
-                                            groups, allowed, forbidden)) ||
+        all(x -> x isa Symbol && isvalid(String(x)), roles) &&
+            all(x -> x isa Symbol && isvalid(String(x)), allowed) &&
+            all(x -> x isa Symbol && isvalid(String(x)), forbidden) &&
+            all(x -> x isa OperatorParameterSpecV1, params) &&
+            all(g -> g isa Tuple && all(i -> i isa Int && !(i isa Bool), g), groups) ||
             throw(ArgumentError("operator manifest contains a non-canonical value"))
-        expected = _operator_manifest_digest(operator_ref, input_arity, output_arity, input_type_rule, output_type_rule,
+        expected = invoke(_operator_manifest_digest, Tuple{OperatorRefV1,Int,Int,OperatorTypeRuleV1,OperatorTypeRuleV1,Tuple,Tuple,Symbol,UInt8,Bool,Bool,Bool,Bool,Tuple,Bool,Tuple,Tuple}, operator_ref, input_arity, output_arity, input_type_rule, output_type_rule,
             roles, params, locality, max_derivative_contribution, pure, stateful, stochastic, event,
             groups, cse_allowed, allowed, forbidden)
         manifest_hash == expected || throw(ArgumentError("operator manifest hash mismatch"))
@@ -265,12 +270,8 @@ struct OperatorManifestV1
     end
 end
 
-function _is_canonical_registry_value(x)
-    x isa OperatorManifestV1 && return false
-    is_canonical_value(x)
-end
-
-function _operator_manifest_digest(operator_ref, input_arity, output_arity, input_type_rule, output_type_rule,
+function _operator_manifest_digest(operator_ref::OperatorRefV1, input_arity::Int, output_arity::Int,
+                                   input_type_rule::OperatorTypeRuleV1, output_type_rule::OperatorTypeRuleV1,
                                    allowed_roles, parameter_schema, locality, max_derivative_contribution, pure,
                                    stateful, stochastic, event, commutative_input_groups, cse_allowed,
                                    allowed_conservation_effects, forbidden_conservation_effects)
@@ -282,7 +283,7 @@ function _operator_manifest_digest(operator_ref, input_arity, output_arity, inpu
         commutative_input_groups=commutative_input_groups, cse_allowed=cse_allowed,
         allowed_conservation_effects=allowed_conservation_effects,
         forbidden_conservation_effects=forbidden_conservation_effects)
-    digest256_text(canonical_json(payload))
+    digest256_text(invoke(canonical_json, Tuple{Any}, payload))
 end
 
 function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, output_arity::Integer,
@@ -315,7 +316,7 @@ function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, o
     max_derivative_contribution isa Integer && 0 <= max_derivative_contribution <= 255 ||
         throw(ArgumentError("derivative contribution must fit UInt8"))
     cse = cse_allowed === nothing ? !(stateful || stochastic || event) : cse_allowed
-    mh = _operator_manifest_digest(operator_ref, ia, oa, input_type_rule, output_type_rule,
+    mh = invoke(_operator_manifest_digest, Tuple{OperatorRefV1,Int,Int,OperatorTypeRuleV1,OperatorTypeRuleV1,Tuple,Tuple,Symbol,UInt8,Bool,Bool,Bool,Bool,Tuple,Bool,Tuple,Tuple}, operator_ref, ia, oa, input_type_rule, output_type_rule,
         roles, params, locality, UInt8(max_derivative_contribution), pure, stateful, stochastic, event, groups,
         cse, allowed, forbidden)
     manifest_hash === nothing || (manifest_hash isa Digest256 && manifest_hash == mh) ||
@@ -454,44 +455,69 @@ function _derived_spatial_type(rule::SpatialDerivativeRuleV1, input::PhysicalTyp
                  UnitSignature(ntuple(i -> input.units.exponents[i] - (i == 2 ? delta : 0), 7)))
 end
 
-function _infer_rule_output(rule::ExactTypeRuleV1, inputs, parameters)
-    Tuple(inputs) == rule.input_types || throw(ArgumentError("exact operator rule rejected inputs"))
-    rule.output_types
-end
-function _infer_rule_output(rule::SameTypeVariadicRuleV1, inputs, parameters)
-    ins = Tuple(inputs)
-    length(ins) >= rule.minimum_arity && length(ins) <= rule.maximum_arity ||
-        throw(ArgumentError("variadic operator arity rejected"))
-    all(t -> t == ins[1], ins) || throw(ArgumentError("variadic operator requires equal types"))
-    (ins[1],)
-end
-function _infer_rule_output(rule::ScalarProductRuleV1, inputs, parameters)
-    ins = Tuple(inputs)
-    length(ins) == 2 || throw(ArgumentError("scalar product requires two inputs"))
-    all(t -> t.tensor_rank == 0, ins) || throw(ArgumentError("scalar product requires scalar inputs"))
-    _temporal_compatible(ins[1].temporal_type, ins[2].temporal_type) ||
-        throw(ArgumentError("scalar product crosses incompatible temporal types"))
-    temporal = ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type
-    value_kind = ins[1].value_kind == ins[2].value_kind ? ins[1].value_kind :
-        throw(ArgumentError("scalar product requires matching value kinds"))
-    (PhysicalType(value_kind, 0, ins[1].spatial_dimension, temporal,
-                  UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] :
-                                                    ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))),)
-end
-function _infer_rule_output(rule::SpatialDerivativeRuleV1, inputs, parameters)
-    ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("spatial derivative requires one input"))
-    ins[1].spatial_dimension >= 1 || throw(ArgumentError("spatial derivative requires spatial dimension"))
-    rule.opcode == :curl && ins[1].spatial_dimension == 3 || rule.opcode != :curl ||
-        throw(ArgumentError("curl is defined only in three dimensions"))
-    (_derived_spatial_type(rule, ins[1]),)
-end
-function _infer_rule_output(::TimeDerivativeRuleV1, inputs, parameters)
-    ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("time derivative requires one input"))
-    input = ins[1]
-    input.temporal_type.kind == differential_time || throw(ArgumentError("DT requires differential time"))
-    order = Int(input.temporal_type.derivative_order) + 1
-    order <= typemax(UInt8) || throw(ArgumentError("DT derivative order overflow"))
-    (_physical_with_temporal(input, TemporalTypeV1(differential_time, order), -1),)
+function _sealed_infer_outputs(rule::OperatorTypeRuleV1, inputs, parameters)
+    if typeof(rule) === ExactTypeRuleV1
+        Tuple(inputs) == rule.input_types || throw(ArgumentError("exact operator rule rejected inputs"))
+        return rule.output_types
+    elseif typeof(rule) === SameTypeVariadicRuleV1
+        ins = Tuple(inputs)
+        length(ins) >= rule.minimum_arity && length(ins) <= rule.maximum_arity ||
+            throw(ArgumentError("variadic operator arity rejected"))
+        all(t -> t == ins[1], ins) || throw(ArgumentError("variadic operator requires equal types"))
+        return (ins[1],)
+    elseif typeof(rule) === ScalarProductRuleV1
+        ins = Tuple(inputs)
+        length(ins) == 2 || throw(ArgumentError("scalar product requires two inputs"))
+        all(t -> t.tensor_rank == 0, ins) || throw(ArgumentError("scalar product requires scalar inputs"))
+        _temporal_compatible(ins[1].temporal_type, ins[2].temporal_type) ||
+            throw(ArgumentError("scalar product crosses incompatible temporal types"))
+        temporal = ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type
+        value_kind = ins[1].value_kind == ins[2].value_kind ? ins[1].value_kind :
+            throw(ArgumentError("scalar product requires matching value kinds"))
+        return (PhysicalType(value_kind, 0, ins[1].spatial_dimension, temporal,
+            UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] :
+                                              ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))),)
+    elseif typeof(rule) === SpatialDerivativeRuleV1
+        ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("spatial derivative requires one input"))
+        ins[1].spatial_dimension >= 1 || throw(ArgumentError("spatial derivative requires spatial dimension"))
+        rule.opcode == :curl && ins[1].spatial_dimension == 3 || rule.opcode != :curl ||
+            throw(ArgumentError("curl is defined only in three dimensions"))
+        return (_derived_spatial_type(rule, ins[1]),)
+    elseif typeof(rule) === TimeDerivativeRuleV1
+        ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("time derivative requires one input"))
+        input = ins[1]
+        input.temporal_type.kind == differential_time || throw(ArgumentError("DT requires differential time"))
+        order = Int(input.temporal_type.derivative_order) + 1
+        order <= typemax(UInt8) || throw(ArgumentError("DT derivative order overflow"))
+        return (_physical_with_temporal(input, TemporalTypeV1(differential_time, order), -1),)
+    elseif typeof(rule) === SamplingRuleV1
+        ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("sampling requires one input"))
+        target_kind = hasproperty(parameters, :target_kind) ? getproperty(parameters, :target_kind) : nothing
+        target_clock = hasproperty(parameters, :target_clock) ? getproperty(parameters, :target_clock) : nothing
+        if rule.hold
+            ins[1].temporal_type.kind == discrete_time || throw(ArgumentError("HOLD requires discrete input"))
+            target_kind isa Symbol || throw(ArgumentError("HOLD requires explicit target_kind"))
+            kind = target_kind == :static_time ? static_time : target_kind == :algebraic_time ? algebraic_time :
+                   target_kind == :differential_time ? differential_time : target_kind == :event_time ? event_time :
+                   throw(ArgumentError("HOLD target_kind is unsupported"))
+            clock = kind == event_time ? ins[1].temporal_type.clock_ref : nothing
+            return (PhysicalType(ins[1].value_kind, ins[1].tensor_rank, ins[1].spatial_dimension,
+                                 TemporalTypeV1(kind, 0, clock), ins[1].units),)
+        end
+        ins[1].temporal_type.kind in (static_time, algebraic_time, differential_time, event_time) ||
+            throw(ArgumentError("SAMPLE source temporal kind is unsupported"))
+        target_clock isa QualifiedRefV1 || throw(ArgumentError("SAMPLE requires explicit target_clock"))
+        return (PhysicalType(ins[1].value_kind, ins[1].tensor_rank, ins[1].spatial_dimension,
+                             TemporalTypeV1(discrete_time, 0, target_clock), ins[1].units),)
+    elseif typeof(rule) === DelayRuleV1
+        ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("DELAY requires one input"))
+        ins[1].temporal_type.kind != static_time || throw(ArgumentError("DELAY cannot operate on static time"))
+        return (ins[1],)
+    elseif typeof(rule) === EventTransitionRuleV1
+        ins = Tuple(inputs); length(ins) == 2 || throw(ArgumentError("event transition requires two inputs"))
+        return (ins[2],)
+    end
+    throw(ArgumentError("operator rule is not sealed"))
 end
 function _physical_with_temporal(input::PhysicalType, temporal::TemporalTypeV1, seconds_delta::Integer)
     PhysicalType(input.value_kind, input.tensor_rank, input.spatial_dimension, temporal,
@@ -545,7 +571,7 @@ function _validate_parameter_value(tag::Symbol, value)
         return isfinite(v)
     end
     tag == :qualified_ref && return value isa QualifiedRefV1
-    tag == :symbol && return value isa Symbol
+    tag == :symbol && return value isa Symbol && isvalid(String(value))
     tag == :nonnegative_integer && begin
         value isa Bool && return false
         return typeof(value) in _P0_SAFE_INTEGER_TYPES && value >= 0
@@ -576,7 +602,7 @@ function validate_operator_signature(registry::OperatorRegistryV1, ref::Operator
     all(t -> t isa PhysicalType, ins) && all(t -> t isa PhysicalType, outs) ||
         throw(ArgumentError("operator signature requires PhysicalType values"))
     _validate_parameters(manifest, parameters)
-    expected_outputs = _infer_rule_output(manifest.input_type_rule, ins, parameters)
+    expected_outputs = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any}, manifest.input_type_rule, ins, parameters)
     expected_outputs == outs || throw(ArgumentError("operator output does not match sealed rule inference"))
     _validate_rule(manifest.input_type_rule, ins, outs, parameters) || throw(ArgumentError("operator input type rule rejected signature"))
     manifest.output_type_rule === manifest.input_type_rule || _validate_rule(manifest.output_type_rule, ins, outs, parameters) || throw(ArgumentError("operator output type rule rejected signature"))
