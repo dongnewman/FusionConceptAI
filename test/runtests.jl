@@ -1,5 +1,6 @@
 using Test
 using FusionConceptAI
+using JSON3
 
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
@@ -96,6 +97,25 @@ end
 @testset "P0 negative controls and bounded large-graph canonicalization" begin
     @test occursin("\\u0001", canonical_json((control="\u0001",)))
     @test_throws ArgumentError canonical_json(InjectInteger())
+    for value in (Float16(1.5), Float32(1.5), Float64(1.5), Float32(1.0e-6), Float64(1.0e20))
+        encoded = canonical_json((value=value,))
+        parsed = JSON3.read(encoded)
+        @test parsed.value == Float64(value)
+    end
+    @test canonical_json((value=-0.0,)) == canonical_json((value=0.0,))
+    @test JSON3.read(canonical_json((value=-0.0,))).value == 0
+    @test_throws ArgumentError canonical_json((value=NaN,))
+    @test_throws ArgumentError canonical_json((value=Inf,))
+    malformed_utf8 = String(UInt8[0xff])
+    lone_surrogate = string(Char(0xd800))
+    @test_throws ArgumentError canonical_json((value=malformed_utf8,))
+    @test_throws ArgumentError canonical_json((value=lone_surrogate,))
+    unicode_json = canonical_json((汉字="磁约束", emoji="🚀", separator=string(Char(0x2028)), control="\u0001"))
+    unicode_value = JSON3.read(unicode_json, Dict{String,Any})
+    @test unicode_value["汉字"] == "磁约束"
+    @test unicode_value["emoji"] == "🚀"
+    @test unicode_value["separator"] == string(Char(0x2028))
+    @test unicode_value["control"] == "\u0001"
     @test_throws ArgumentError canonical_json(Dict{Any,Any}(1 => :a, "1" => :b))
     matrix_json = canonical_json(reshape([1, 2, 3, 4], 2, 2))
     @test occursin("shape", matrix_json) && occursin("values", matrix_json)
@@ -188,6 +208,8 @@ end
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, terminal_classified, (), (), (), (), (), none)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, proposed, (), (), (), (), (), validation_vvuq)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; applicability_records=(ApplicabilityRecord("", required),))
+    @test_throws ArgumentError LegacyMigrationResultV4(resolved, nothing, "forged")
+    @test_throws ArgumentError FusionConceptAI.LegacyMigrationResultV4(resolved, nothing, "forged")
     h = digest256_text("evidence-negative")
     metric = (MetricWithUnit(:x, 1.0, U0),)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, no_match, terminal_deferred, unknown, metric, nothing, (), "", screen_only)

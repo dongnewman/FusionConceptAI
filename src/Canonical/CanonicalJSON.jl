@@ -6,9 +6,11 @@ end
 Base.showerror(io::IO, e::CanonicalizationDeferred) = print(io, e.message)
 
 _jsonquote(s::AbstractString) = begin
+    text = String(s)
+    isvalid(text) || throw(ArgumentError("invalid UTF-8 or surrogate string is not canonical"))
     io = IOBuffer()
     print(io, '"')
-    for c in String(s)
+    for c in text
         if c == '"'; print(io, "\\\"")
         elseif c == '\\'; print(io, "\\\\")
         elseif c == '\b'; print(io, "\\b")
@@ -24,13 +26,20 @@ _jsonquote(s::AbstractString) = begin
 end
 _key(s) = _jsonquote(String(s))
 
+function _canonical_float(x::AbstractFloat)
+    value = Float64(x)
+    isfinite(value) || throw(ArgumentError("non-finite values are not canonical"))
+    value == 0.0 && return "0.0"
+    repr(value)
+end
+
 function _canonical(x)
     x === nothing && return "null"
     x isa Bool && return x ? "true" : "false"
     x isa Symbol && return _jsonquote(String(x))
     x isa AbstractString && return _jsonquote(x)
     typeof(x) in _P0_SAFE_INTEGER_TYPES && return string(x)
-    typeof(x) in _P0_SAFE_FLOAT_TYPES && (isfinite(x) || throw(ArgumentError("non-finite values are not canonical")); return repr(x))
+    typeof(x) in _P0_SAFE_FLOAT_TYPES && return _canonical_float(x)
     _p0_safe_rational(x) && return "{\"denominator\":" * string(denominator(x)) * ",\"numerator\":" * string(numerator(x)) * "}"
     if x isa Integer || x isa AbstractFloat || x isa Number
         hasmethod(semantic_view, Tuple{typeof(x)}) || throw(ArgumentError("untrusted numeric type requires explicit semantic_view"))

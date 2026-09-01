@@ -187,6 +187,11 @@ struct LegacyMigrationResultV4
     resolution::ResolutionStatus
     package::Union{Nothing,CandidateStatePackageV4}
     reason::String
+    function LegacyMigrationResultV4(resolution::ResolutionStatus, package::Union{Nothing,CandidateStatePackageV4}, reason::AbstractString)
+        resolution == terminal_deferred && package === nothing && !isempty(reason) ||
+            throw(ArgumentError("P0 legacy migration can only produce terminal_deferred without a package"))
+        new(resolution, package, String(reason))
+    end
 end
 semantic_view(x::LegacyMigrationResultV4) = (resolution=x.resolution, package=x.package, reason=x.reason)
 migrate_legacy(record) = LegacyMigrationResultV4(terminal_deferred, nothing, "legacy mapping is not proven lossless")
