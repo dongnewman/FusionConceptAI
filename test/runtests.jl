@@ -268,6 +268,58 @@ println(\"constructor-dispatch-subprocess-ok\")
     @test success(`$(Base.julia_cmd()) --project=$project -e $script`)
 end
 
+@testset "P0 registry-validated multi-root typed AST programs" begin
+    registry = default_operator_registry()
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    vector = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    add_node = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
+    program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_node), (3,), (1, 2); registry=registry)
+    @test program.roots == (3,)
+    @test length(program.used_manifest_bindings) == 1
+    add_left = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
+    add_right = ASTApplyV1(OperatorRefV1("ADD", "v1"), (4, 3), (;); registry=registry, input_types=(scalar, scalar))
+    three_to_five = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), add_left, add_right), (5,), (1, 2, 3); registry=registry)
+    @test three_to_five.nodes[5].output_type == scalar
+    program_dispatch_script = """
+    using FusionConceptAI
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((0,0,0,0,0,0,0)))
+    registry = default_operator_registry()
+    apply = ASTApplyV1(OperatorRefV1(\"ADD\", \"v1\"), (1,2), (;); registry=registry, input_types=(scalar,scalar))
+    program = TypedASTProgramV1((ASTInputV1(1,scalar), ASTInputV1(2,scalar), apply), (3,), (1,2); registry=registry)
+    before = canonical_hash(program)
+    FusionConceptAI._canonical(::NamedTuple) = \"{}\"
+    @assert canonical_hash(program) == before
+    """
+    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $program_dispatch_script`)
+    @test canonical_hash(program) == canonical_hash(TypedASTProgramV1((ASTInputV1(2, scalar), ASTInputV1(1, scalar),
+        ASTApplyV1(OperatorRefV1("ADD", "v1"), (2, 1), (;); registry=registry, input_types=(scalar, scalar))), (3,), (2, 1); registry=registry))
+    mixed = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, vector)), (1, 2), (1, 2); registry=registry)
+    @test mixed.roots == (1, 2)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar),), (), (1,); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar),), (1, 1), (1,); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar),), (2,), (1,); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(1, scalar)), (1,), (1, 2); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_node), (3,), (1,); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_node, ASTParameterV1(:dead, scalar)), (3,), (1, 2); registry=registry)
+    cycle = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 1), (;); registry=registry, input_types=(scalar, scalar))
+    @test_throws ArgumentError TypedASTProgramV1((cycle,), (1,), (); registry=registry)
+    @test_throws ArgumentError ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, vector))
+
+    roots_a = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, vector)), (1, 2), (1, 2); registry=registry)
+    roots_b = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, vector)), (2, 1), (1, 2); registry=registry)
+    @test canonical_hash(roots_a) != canonical_hash(roots_b)
+    old = TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,); registry=registry)
+    bridged = TypedASTProgramV1(old; registry=registry)
+    @test bridged.roots == (2,) && bridged.input_ports == (1,)
+    @test length(bridged.used_manifest_bindings) == 1
+
+    delay1 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
+    delay2 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
+    two_delays = TypedASTProgramV1((ASTInputV1(1, scalar), delay1, delay2), (2, 3), (1,); registry=registry)
+    one_delay = TypedASTProgramV1((ASTInputV1(1, scalar), delay1), (2,), (1,); registry=registry)
+    @test canonical_hash(two_delays) != canonical_hash(one_delay)
+end
+
 @testset "canonical identity/label and permutation invariance" begin
     a = fixture_graph(labels=("visible-a", "visible-b"), ids=("first", "second"))
     b = fixture_graph(labels=("redacted-a", "redacted-b"), ids=("other-1", "other-2"))
