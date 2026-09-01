@@ -60,6 +60,7 @@ struct ApplicabilityRecord
     status::ApplicabilityStatus
     proof_ref::Union{Nothing,Digest256}
     function ApplicabilityRecord(obligation::AbstractString, status::ApplicabilityStatus, proof_ref=nothing)
+        !isempty(obligation) || throw(ArgumentError("applicability obligation cannot be empty"))
         status == not_applicable && proof_ref === nothing && throw(ArgumentError("not_applicable requires proof_ref"))
         normalized = proof_ref === nothing ? nothing : proof_ref isa Digest256 ? proof_ref :
                      proof_ref isa AbstractString ? Digest256(proof_ref) : throw(ArgumentError("proof_ref must be Digest256"))
@@ -92,11 +93,15 @@ end
 """Reject mutable containers recursively; all P0 payloads are value objects."""
 function deep_immutable(x)
     x === nothing && return true
-    # Julia represents String and Symbol as mutable types internally, but they
-    # are atomic semantic values here. Every other mutable value is rejected
-    # before any Number/container whitelist can inspect it.
-    Base.ismutabletype(typeof(x)) && !(x isa AbstractString || x isa Symbol) && return false
-    (x isa Bool || x isa Symbol || x isa AbstractString) && return true
+    # String and Symbol are the only mutable-reported atomic values admitted;
+    # every other mutable value is rejected before any whitelist is consulted.
+    if Base.ismutabletype(typeof(x))
+        typeof(x) === String && return true
+        x isa Symbol && return true
+        return false
+    end
+    x isa AbstractString && return false
+    (x isa Bool || x isa Symbol) && return true
     x isa Number && return _p0_safe_number(x)
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false

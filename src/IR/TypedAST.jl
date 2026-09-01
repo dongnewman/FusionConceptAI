@@ -44,6 +44,14 @@ struct TypedAST
     end
 end
 
+# P0 proves these value-kind transformations as operator grammar, rather than
+# routing by device family. Unknown kind transformations remain rejected.
+const _P0_DERIVATIVE_KIND_RULES = ((:gradient, :scalar_field, :vector_field),
+                                   (:divergence, :vector_field, :scalar_field),
+                                   (:curl, :vector_field, :vector_field))
+_derivative_kind_ok(opcode, input_kind, output_kind) =
+    any(r -> r[1] == opcode && r[2] == input_kind && r[3] == output_kind, _P0_DERIVATIVE_KIND_RULES)
+
 function _validate_opcode(n::TypedASTNode, ns, j::Int)
     known = (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
              :gradient, :divergence, :curl, :dt)
@@ -71,19 +79,19 @@ function _validate_opcode(n::TypedASTNode, ns, j::Int)
             throw(ArgumentError("DIV signature/unit mismatch"))
     elseif n.opcode == :gradient
         length(ins) == 1 && ins[1].tensor_rank == 0 && n.output_type.tensor_rank == 1 &&
-            n.output_type.value_kind == ins[1].value_kind &&
+            _derivative_kind_ok(:gradient, ins[1].value_kind, n.output_type.value_kind) &&
             n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("GRADIENT signature/unit mismatch"))
     elseif n.opcode == :divergence
         length(ins) == 1 && ins[1].tensor_rank >= 1 && n.output_type.tensor_rank == ins[1].tensor_rank - 1 &&
-            n.output_type.value_kind == ins[1].value_kind &&
+            _derivative_kind_ok(:divergence, ins[1].value_kind, n.output_type.value_kind) &&
             n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("DIVERGENCE signature/unit mismatch"))
     elseif n.opcode == :curl
         length(ins) == 1 && ins[1].tensor_rank == 1 && n.output_type.tensor_rank == 1 &&
-            n.output_type.value_kind == ins[1].value_kind &&
+            _derivative_kind_ok(:curl, ins[1].value_kind, n.output_type.value_kind) &&
             ins[1].spatial_dimension == 3 && n.output_type.spatial_dimension == 3 && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("CURL signature/unit mismatch"))

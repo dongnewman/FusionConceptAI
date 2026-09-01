@@ -12,6 +12,16 @@ end
 struct InjectInteger <: Integer
 end
 Base.string(::InjectInteger) = "0,\"injected\":true"
+mutable struct MutableText <: AbstractString
+    data::String
+end
+Base.ncodeunits(x::MutableText) = ncodeunits(x.data)
+Base.codeunit(::Type{MutableText}) = UInt8
+Base.codeunit(x::MutableText, i::Integer) = codeunit(x.data, i)
+Base.codeunits(x::MutableText) = codeunits(x.data)
+Base.getindex(x::MutableText, i::Int) = getindex(x.data, i)
+Base.iterate(x::MutableText, state=1) = iterate(x.data, state)
+Base.isvalid(x::MutableText, i::Int) = isvalid(x.data, i)
 
 function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n-b"))
     ns = [node(:state, T0; id=ids[1], label=labels[1]), node(:state, T0; id=ids[2], label=labels[2])]
@@ -49,6 +59,7 @@ end
     @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).match_status == no_match
     @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).applicability == required
     @test_throws ArgumentError ApplicabilityRecord("obligation", not_applicable)
+    @test_throws ArgumentError ApplicabilityRecord("", required)
     @test IntermediateAuthorityProtocolV4(:compiler) isa AuthorityProtocolV4
     @test !(:FinalWholeDeviceAuthorityV4 in names(FusionConceptAI, all=false))
     @test !(:AuthorityToken in names(FusionConceptAI, all=false))
@@ -118,6 +129,14 @@ end
     vector0d = PhysicalType(:open_value, 1, 0, :differential, U0)
     curl0d = PhysicalType(:open_value, 1, 0, :differential, inv_length)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector0d), TypedASTNode(:curl, (1,), curl0d)), 2, (1,))
+    scalar3d_field = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    vector3d_field = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    gradient_ok = PhysicalType(:vector_field, 1, 3, :differential, inv_length)
+    divergence_ok = PhysicalType(:scalar_field, 0, 3, :differential, inv_length)
+    curl_ok = PhysicalType(:vector_field, 1, 3, :differential, inv_length)
+    @test TypedAST((TypedASTNode(:state, (), scalar3d_field), TypedASTNode(:gradient, (1,), gradient_ok)), 2, (1,)).root == 2
+    @test TypedAST((TypedASTNode(:state, (), vector3d_field), TypedASTNode(:divergence, (1,), divergence_ok)), 2, (1,)).root == 2
+    @test TypedAST((TypedASTNode(:state, (), vector3d_field), TypedASTNode(:curl, (1,), curl_ok)), 2, (1,)).root == 2
     refs = [GenomeContractRef("urn:test:" * string(i), "v4", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
     g = fixture_graph(); r1 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:a), control=(;))
     r2 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:b), control=(;))
@@ -139,6 +158,7 @@ end
     @test_throws ArgumentError FieldGeometryGenomeV4(2, refs[2], g; fields=(Dict(:mutable => true),))
     @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutablePayload([1]),), ())
     @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutableNumber(1),), ())
+    @test_throws ArgumentError MechanismGenomeV4(UInt64(1), refs[1], g, (MutableText("mutable"),), ())
     @test_throws ArgumentError RealizationControlGenomeV4(8, 8, refs[3], g, g)
     @test_throws ArgumentError MetricWithUnit(:huge, big(10)^10000, U0)
     @test_throws ArgumentError ProposalEnvelopeV4("huge", "c", (), :search, (), "cell", (;), (;), big(10)^10000, digest256_text("model"), :compile)
@@ -167,6 +187,7 @@ end
     @test_throws Exception CandidateStatePackageV4("id", mission, m, f, r1, CanonicalHashesV4("a", "b", "c", "d", nothing, ()), resolved, proposed, (), (), (), (), (), nothing, validation_vvuq)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, terminal_classified, (), (), (), (), (), none)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, proposed, (), (), (), (), (), validation_vvuq)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; applicability_records=(ApplicabilityRecord("", required),))
     h = digest256_text("evidence-negative")
     metric = (MetricWithUnit(:x, 1.0, U0),)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, no_match, terminal_deferred, unknown, metric, nothing, (), "", screen_only)
