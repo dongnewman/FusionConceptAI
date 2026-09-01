@@ -13,6 +13,7 @@ function RealizationControlGenomeV4(realization_seed::Integer, control_seed::Int
                                     realization_graph::TypedOperatorHypergraphV1,
                                     control_graph::TypedOperatorHypergraphV1; realization=(), control=())
     realization_seed == control_seed && throw(ArgumentError("realization and control require independent seeds"))
+    deep_immutable((realization=Tuple(realization), control=Tuple(control))) || throw(ArgumentError("G3 payload must be deeply immutable"))
     RealizationControlGenomeV4(UInt64(realization_seed), UInt64(control_seed), contract_ref, realization_graph, control_graph,
                                Tuple(realization), Tuple(control))
 end

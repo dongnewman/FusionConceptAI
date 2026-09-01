@@ -51,7 +51,7 @@ end
 struct EvidenceRef
     evidence_id::String
     function EvidenceRef(id::AbstractString)
-        isempty(id) && throw(ArgumentError("evidence_id cannot be empty"))
+        occursin(r"^[0-9a-f]{64}$", id) || throw(ArgumentError("evidence_id must be a 64-character lowercase SHA-256 hex string"))
         new(String(id))
     end
 end
@@ -66,6 +66,17 @@ struct MetricWithUnit
         uncertainty === nothing || (isfinite(uncertainty) && uncertainty >= 0) || throw(ArgumentError("invalid metric uncertainty"))
         new(name, Float64(value), unit, uncertainty === nothing ? nothing : Float64(uncertainty))
     end
+end
+
+"""Reject mutable containers recursively; all P0 payloads are value objects."""
+function deep_immutable(x)
+    (x === nothing || x isa Bool || x isa Number || x isa Symbol || x isa AbstractString) && return true
+    x isa Enum && return true
+    (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
+    x isa NamedTuple && return all(deep_immutable, values(x))
+    x isa Tuple && return all(deep_immutable, x)
+    isstructtype(typeof(x)) && return all(deep_immutable, (getfield(x, f) for f in fieldnames(typeof(x))))
+    false
 end
 
 """Every canonicalizable strong type provides its own semantic projection."""

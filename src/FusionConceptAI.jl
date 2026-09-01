@@ -25,16 +25,16 @@ export UnitSignature, PhysicalType, ApplicabilityStatus, MatchStatus, Resolution
        terminal_deferred_stage, credible_within_scope, terminal_physical_fail, terminal_numerical_fail,
        terminal_unknown, terminal_unsupported, none, screen_only, candidate_bound, integrated, whole_device_vvuq, validation_vvuq,
        semantic_view,
+       CanonicalizationDeferred,
        TypedASTNode, TypedAST, ast_leaf, TypedNode, TypedHyperedge, TypedOperatorHypergraphV1, node,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,
        MissionContractRef, ProposalEnvelopeV4, EvidenceEnvelopeV4, evidence_envelope, evidence_id_for, CanonicalHashesV4, CandidateStatePackageV4,
        LegacyMigrationResultV4, migrate_legacy,
-       with_physical_subject, SideConditionCheck, SideConditionProof, EquivalenceCertificateV1, ConditionalEGraph,
+       with_physical_subject,
        derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash,
        field_geometry_hash, realization_control_hash, realization_hash, control_hash, coupled_realization_control_hash, genome_bundle_hash,
-       IntermediateAuthorityV4, FinalWholeDeviceAuthorityV4, AuthorityToken, TerminalDecisionV4,
-       FinalClosureInputV4, final_closure
+       AuthorityProtocolV4, IntermediateAuthorityProtocolV4
 
 end

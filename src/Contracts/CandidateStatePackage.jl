@@ -15,6 +15,7 @@ Base.:(==)(a::MissionContractRef, b::MissionContractRef) = semantic_view(a) == s
 
 function _deep_immutable(x)
     (x === nothing || x isa Bool || x isa Number || x isa Symbol || x isa AbstractString) && return true
+    x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
     x isa NamedTuple && return all(_deep_immutable, values(x))
     x isa Tuple && return all(_deep_immutable, x)
@@ -69,7 +70,13 @@ evidence_id_for(content::NamedTuple) = canonical_hash(content)
 struct EvidenceEnvelopeV4
     evidence_id::String
     content::NamedTuple
-    function EvidenceEnvelopeV4(seal::Val{:trusted_evidence}, id::String, content::NamedTuple)
+    function EvidenceEnvelopeV4(id::String, content::NamedTuple)
+        all(v -> v isa MetricWithUnit, content.metrics_with_units) || throw(ArgumentError("metrics must be MetricWithUnit values"))
+        deep_immutable(content) || throw(ArgumentError("EvidenceEnvelopeV4 must be deeply immutable"))
+        content.match_status == no_match && content.resolution_status != terminal_deferred && throw(ArgumentError("no_match evidence must be terminal_deferred"))
+        content.match_status == no_match && content.stage_outcome == pass && throw(ArgumentError("no_match evidence cannot pass"))
+        content.resolution_status == terminal_deferred && content.stage_outcome == pass && throw(ArgumentError("deferred evidence cannot pass"))
+        content.claim_ceiling == validation_vvuq && throw(ArgumentError("validation VVUQ evidence is outside P0"))
         id == evidence_id_for(content) || throw(ArgumentError("evidence_id must content-address the evidence"))
         new(id, content)
     end
@@ -89,7 +96,7 @@ function evidence_envelope(; physical_subject_hash, scenario_hash, solver_input_
                                  backend_revision, numerical_configuration_hash, applicability, match_status,
                                  resolution_status, stage_outcome, metrics_with_units, uncertainty_or_null,
                                  artifact_refs, independence_group, claim_ceiling)
-    EvidenceEnvelopeV4(Val(:trusted_evidence), evidence_id_for(content), content)
+    EvidenceEnvelopeV4(evidence_id_for(content), content)
 end
 
 struct CanonicalHashesV4
@@ -120,6 +127,25 @@ struct CandidateStatePackageV4
     archive_memberships::Tuple{Vararg{String}}
     terminal_authority_ref::Union{Nothing,String}
     claim_ceiling::ClaimCeiling
+    function CandidateStatePackageV4(identity_ref::String, mission_contract_ref::MissionContractRef,
+        mechanism_genome_ref::MechanismGenomeV4, field_geometry_genome_ref::FieldGeometryGenomeV4,
+        realization_control_genome_ref::RealizationControlGenomeV4, canonical_hashes::CanonicalHashesV4,
+        resolution::ResolutionStatus, lifecycle::LifecycleStatus, applicability_records::Tuple{Vararg{ApplicabilityRecord}},
+        compilation_records::Tuple, proposal_lineage::Tuple{Vararg{ProposalEnvelopeV4}}, stage_evidence_refs::Tuple{Vararg{EvidenceRef}},
+        archive_memberships::Tuple{Vararg{String}}, terminal_authority_ref::Union{Nothing,String}, claim_ceiling::ClaimCeiling)
+        terminal_authority_ref === nothing || throw(ArgumentError("P0 cannot attach terminal authority"))
+        lifecycle == terminal_classified && throw(ArgumentError("P0 cannot construct terminal_classified package"))
+        claim_ceiling == validation_vvuq && throw(ArgumentError("P0 cannot claim validation VVUQ"))
+        deep_immutable((mission_contract_ref=mission_contract_ref, mechanism_genome_ref=mechanism_genome_ref,
+                        field_geometry_genome_ref=field_geometry_genome_ref, realization_control_genome_ref=realization_control_genome_ref,
+                        canonical_hashes=canonical_hashes, applicability_records=applicability_records,
+                        compilation_records=compilation_records, proposal_lineage=proposal_lineage,
+                        stage_evidence_refs=stage_evidence_refs, archive_memberships=archive_memberships)) ||
+            throw(ArgumentError("CandidateStatePackageV4 payload must be deeply immutable"))
+        new(identity_ref, mission_contract_ref, mechanism_genome_ref, field_geometry_genome_ref, realization_control_genome_ref,
+            canonical_hashes, resolution, lifecycle, applicability_records, compilation_records, proposal_lineage,
+            stage_evidence_refs, archive_memberships, terminal_authority_ref, claim_ceiling)
+    end
 end
 
 function CandidateStatePackageV4(identity::AbstractString, mission::MissionContractRef,
@@ -153,9 +179,7 @@ semantic_view(x::LegacyMigrationResultV4) = (resolution=x.resolution, package=x.
 
 """Legacy records are never guessed into v4; incomplete mappings remain deferred."""
 function migrate_legacy(record)
-    required = (:mission_contract_ref, :mechanism_genome_ref, :field_geometry_genome_ref, :realization_control_genome_ref)
-    all(hasproperty(record, k) for k in required) || return LegacyMigrationResultV4(terminal_deferred, nothing, "legacy record lacks lossless v4 fields")
-    throw(ArgumentError("legacy migration requires an explicit v4 registry and identity mapping"))
+    LegacyMigrationResultV4(terminal_deferred, nothing, "legacy migration is deferred until an explicit lossless registry/profile mapping exists")
 end
 
 function with_physical_subject(pkg::CandidateStatePackageV4, physical_hash::AbstractString, solver_hashes=())

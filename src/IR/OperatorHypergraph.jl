@@ -16,6 +16,7 @@ struct TypedHyperedge
     role::Symbol
     function TypedHyperedge(id::AbstractString, inputs, outputs, ast::TypedAST, role::Symbol=:additive)
         isempty(inputs) && isempty(outputs) && throw(ArgumentError("hyperedge needs an input or output"))
+        length(outputs) == 1 || throw(ArgumentError("P0 supports one AST root output per hyperedge; split multi-output operators"))
         role in (:governing, :additive, :constraint, :interface) || throw(ArgumentError("invalid hyperedge role"))
         new(String(id), Tuple(Int(i) for i in inputs), Tuple(Int(i) for i in outputs), ast, role)
     end
@@ -31,6 +32,10 @@ struct TypedOperatorHypergraphV1
         n = length(ns)
         for e in es
             all(i -> 1 <= i <= n, e.inputs) && all(i -> 1 <= i <= n, e.outputs) || throw(ArgumentError("hyperedge node reference out of range"))
+            length(e.ast.input_ports) == length(e.inputs) || throw(ArgumentError("hyperedge inputs must bind ordered AST input ports"))
+            all(e.ast.nodes[p].output_type == ns[node_ref].physical_type for (p, node_ref) in zip(e.ast.input_ports, e.inputs)) ||
+                throw(ArgumentError("hyperedge AST input port type mismatch"))
+            e.ast.nodes[e.ast.root].output_type == ns[e.outputs[1]].physical_type || throw(ArgumentError("hyperedge AST root/output type mismatch"))
         end
         new(ns, es)
     end

@@ -33,6 +33,7 @@ function _canonical(x)
     x isa AbstractFloat && (isfinite(x) || throw(ArgumentError("non-finite values are not canonical")); return repr(x))
     x isa Rational && return "{\"denominator\":" * string(denominator(x)) * ",\"numerator\":" * string(numerator(x)) * "}"
     x isa Enum && return _jsonquote(String(Symbol(x)))
+    x isa TypedOperatorHypergraphV1 && return _canonical_graph(x)
     x isa NamedTuple && return _canonical_pairs([(k, getfield(x, k)) for k in keys(x)])
     x isa AbstractDict && return _canonical_dict(x)
     x isa AbstractSet && return "[" * join(sort(_canonical(v) for v in x), ",") * "]"
@@ -86,24 +87,25 @@ function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
 end
 
 function _refined_colors(g)
-    colors = [_canonical(semantic_view(n)) for n in g.nodes]
+    colors = [_color_digest(_canonical(semantic_view(n))) for n in g.nodes]
     for _ in 1:12
         nxt = String[]
         for i in eachindex(g.nodes)
             inc = String[]
             for e in g.hyperedges
                 if i in e.inputs || i in e.outputs
-                    push!(inc, _canonical_pairs([(:role, e.role), (:inputs, [colors[j] for j in e.inputs]),
-                                                 (:outputs, [colors[j] for j in e.outputs])]))
+                    push!(inc, _color_digest(string(e.role, '|', join((colors[j] for j in e.inputs), ','), '|', join((colors[j] for j in e.outputs), ','))))
                 end
             end
-            sort!(inc); push!(nxt, _canonical_pairs([(:self, colors[i]), (:incident, inc)]))
+            sort!(inc); push!(nxt, _color_digest(string(colors[i], '|', join(inc, ','))))
         end
         nxt == colors && break
         colors = nxt
     end
     colors
 end
+
+_color_digest(s) = bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(s)))))
 
 function _canonical_graph(g::TypedOperatorHypergraphV1)
     perms = _all_permutations(length(g.nodes))

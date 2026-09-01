@@ -43,9 +43,5 @@ struct ConditionalEGraph
 end
 semantic_view(x::ConditionalEGraph) = (source_hash=x.source_hash, expressions=x.expressions, certificates=x.certificates)
 
-function derive_conditional_egraph(graph::TypedOperatorHypergraphV1, certificates=())
-    source = canonical_hash(graph); certs = Tuple(certificates)
-    all(c -> c isa EquivalenceCertificateV1 && c.source_hash == source && c.side_condition_proof.check.result, certs) ||
-        throw(ArgumentError("certificate source/proof does not bind to authoritative graph"))
-    ConditionalEGraph(source, (graph,), certs)
-end
+derive_conditional_egraph(graph::TypedOperatorHypergraphV1) = ConditionalEGraph(canonical_hash(graph), (graph,), ())
+derive_conditional_egraph(::TypedOperatorHypergraphV1, ::Any) = throw(ArgumentError("P1 conditional certificates are unavailable in P0"))
