@@ -30,6 +30,33 @@ const _P0_SAFE_FLOAT_TYPES = (Float16, Float32, Float64)
 _p0_safe_rational(x) = x isa Rational && typeof(numerator(x)) in _P0_SAFE_INTEGER_TYPES && typeof(denominator(x)) in _P0_SAFE_INTEGER_TYPES
 _p0_safe_number(x) = typeof(x) in _P0_SAFE_INTEGER_TYPES || typeof(x) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(x)
 
+@enum TimeKindV1 static_time algebraic_time differential_time discrete_time event_time
+
+struct QualifiedRefV1
+    id::String
+    version::String
+    function QualifiedRefV1(id::AbstractString, version::AbstractString)
+        !isempty(id) && !isempty(version) || throw(ArgumentError("qualified reference id/version cannot be empty"))
+        new(_validated_string(id, "qualified reference id"), _validated_string(version, "qualified reference version"))
+    end
+end
+
+struct TemporalTypeV1
+    kind::TimeKindV1
+    derivative_order::UInt8
+    clock_ref::Union{Nothing,QualifiedRefV1}
+    function TemporalTypeV1(kind::TimeKindV1, derivative_order::UInt8=UInt8(0), clock_ref::Union{Nothing,QualifiedRefV1}=nothing)
+        new(kind, derivative_order, clock_ref)
+    end
+end
+TemporalTypeV1(kind::TimeKindV1, derivative_order::Integer, clock_ref=nothing) =
+    TemporalTypeV1(kind, UInt8(derivative_order), clock_ref)
+
+_legacy_time_kind(s::Symbol) = s === :static ? static_time : s === :algebraic ? algebraic_time :
+                               s === :differential ? differential_time : throw(ArgumentError("unknown legacy time_kind $s"))
+_legacy_time_symbol(k::TimeKindV1) = k == static_time ? :static : k == algebraic_time ? :algebraic :
+                                      k == differential_time ? :differential : Symbol(k)
+
 """Recursive admission trait for values that can be represented canonically."""
 function is_canonical_value(x)
     x === nothing && return true
@@ -65,18 +92,25 @@ struct PhysicalType
     value_kind::Symbol
     tensor_rank::Int
     spatial_dimension::Int
-    time_kind::Symbol
+    temporal_type::TemporalTypeV1
     units::UnitSignature
-    function PhysicalType(kind::Symbol, rank::Integer, dim::Integer, time::Symbol, units::UnitSignature=UnitSignature())
+    function PhysicalType(kind::Symbol, rank::Integer, dim::Integer, temporal::TemporalTypeV1, units::UnitSignature=UnitSignature())
         rank >= 0 || throw(ArgumentError("tensor_rank must be non-negative"))
         dim in 0:3 || throw(ArgumentError("spatial_dimension must be in 0:3"))
-        time in (:static, :algebraic, :differential) || throw(ArgumentError("invalid time_kind"))
-        new(kind, Int(rank), Int(dim), time, units)
+        new(kind, Int(rank), Int(dim), temporal, units)
     end
+end
+PhysicalType(kind::Symbol, rank::Integer, dim::Integer, time::Symbol, units::UnitSignature=UnitSignature()) =
+    PhysicalType(kind, rank, dim, TemporalTypeV1(_legacy_time_kind(time)), units)
+function Base.getproperty(x::PhysicalType, name::Symbol)
+    name === :time_kind && return _legacy_time_symbol(getfield(x, :temporal_type).kind)
+    getfield(x, name)
 end
 
 Base.:(==)(a::PhysicalType, b::PhysicalType) = a.value_kind == b.value_kind && a.tensor_rank == b.tensor_rank &&
-    a.spatial_dimension == b.spatial_dimension && a.time_kind == b.time_kind && a.units == b.units
+    a.spatial_dimension == b.spatial_dimension && a.temporal_type == b.temporal_type && a.units == b.units
+Base.:(==)(a::TemporalTypeV1, b::TemporalTypeV1) = a.kind == b.kind && a.derivative_order == b.derivative_order && a.clock_ref == b.clock_ref
+Base.:(==)(a::QualifiedRefV1, b::QualifiedRefV1) = a.id == b.id && a.version == b.version
 
 @enum ApplicabilityStatus required not_applicable
 @enum MatchStatus unique_match no_match ambiguous out_of_domain invalid_signature
@@ -146,7 +180,9 @@ end
 semantic_view(x::UnitSignature) = (exponents=x.exponents,)
 semantic_view(x::Digest256) = (value=x.value,)
 semantic_view(x::PhysicalType) = (value_kind=x.value_kind, tensor_rank=x.tensor_rank,
-                                  spatial_dimension=x.spatial_dimension, time_kind=x.time_kind, units=x.units)
+                                  spatial_dimension=x.spatial_dimension, temporal_type=x.temporal_type, units=x.units)
+semantic_view(x::QualifiedRefV1) = (id=x.id, version=x.version)
+semantic_view(x::TemporalTypeV1) = (kind=x.kind, derivative_order=x.derivative_order, clock_ref=x.clock_ref)
 semantic_view(x::ApplicabilityRecord) = (obligation=x.obligation, status=x.status, proof_ref=x.proof_ref)
 semantic_view(x::EvidenceRef) = (evidence_id=x.evidence_id,)
 semantic_view(x::MetricWithUnit) = (name=x.name, value=x.value, unit=x.unit, uncertainty=x.uncertainty)

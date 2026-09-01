@@ -3,6 +3,7 @@ module FusionConceptAI
 using SHA
 
 include("IR/PhysicalTypes.jl")
+include("IR/OperatorRegistry.jl")
 include("IR/TypedAST.jl")
 include("IR/OperatorHypergraph.jl")
 include("Contracts/StatusDimensions.jl")
@@ -16,7 +17,8 @@ include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
 include("Contracts/Authority.jl")
 
-export UnitSignature, Digest256, digest256_text, PhysicalType, ApplicabilityStatus, MatchStatus, ResolutionStatus,
+export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebraic_time, differential_time, discrete_time, event_time,
+       TemporalTypeV1, QualifiedRefV1, PhysicalType, ApplicabilityStatus, MatchStatus, ResolutionStatus,
        LifecycleStatus, StageOutcome, TerminalDisposition, ClaimCeiling, ApplicabilityRecord, EvidenceRef, MetricWithUnit,
        required, not_applicable, unique_match, no_match, ambiguous, out_of_domain, invalid_signature,
        resolved, terminal_deferred, proposed, compiled, proof_pruned, dormant, materialized,
@@ -27,6 +29,10 @@ export UnitSignature, Digest256, digest256_text, PhysicalType, ApplicabilityStat
        semantic_view, is_canonical_value,
        CanonicalizationDeferred,
        TypedASTNode, TypedAST, ast_leaf, TypedNode, TypedHyperedge, TypedOperatorHypergraphV1, node,
+       OperatorRefV1, OperatorParameterSpecV1, OperatorTypeRuleV1, ExactTypeRuleV1, SameTypeVariadicRuleV1,
+       ScalarProductRuleV1, SpatialDerivativeRuleV1, TimeDerivativeRuleV1, SamplingRuleV1, DelayRuleV1,
+       OperatorManifestV1, OperatorRegistryV1, register_operator, operator_manifest, validate_operator_signature,
+       default_operator_registry,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,

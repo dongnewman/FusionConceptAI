@@ -27,6 +27,8 @@ Base.codeunits(x::MutableText) = codeunits(x.data)
 Base.getindex(x::MutableText, i::Int) = getindex(x.data, i)
 Base.iterate(x::MutableText, state=1) = iterate(x.data, state)
 Base.isvalid(x::MutableText, i::Int) = isvalid(x.data, i)
+struct UnknownRule <: OperatorTypeRuleV1
+end
 
 function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n-b"))
     ns = [node(:state, T0; id=ids[1], label=labels[1]), node(:state, T0; id=ids[2], label=labels[2])]
@@ -49,6 +51,43 @@ end
     @test_throws ArgumentError ApplicabilityRecord("obligation", required, "not-a-digest")
     @test_throws ArgumentError GenomeContractRef(BAD_TEXT, "v4", repeat("a", 64), repeat("b", 64), "profile")
     @test_throws ArgumentError ApplicabilityRecord(BAD_TEXT, required)
+end
+
+@testset "P0 temporal algebra and immutable operator registry" begin
+    clock = QualifiedRefV1("clock", "v1")
+    differential = TemporalTypeV1(differential_time, UInt8(0), clock)
+    @test PhysicalType(:scalar_field, 0, 3, differential, U0).temporal_type == differential
+    @test PhysicalType(:scalar_field, 0, 3, :differential, U0).temporal_type.kind == differential_time
+    @test_throws ArgumentError PhysicalType(:scalar_field, 0, 3, :unknown_time, U0)
+    registry = default_operator_registry()
+    @test length(registry.operators) == 21
+    t = PhysicalType(:scalar_field, 0, 3, differential, U0)
+    static = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(static_time), U0)
+    @test validate_operator_signature(registry, OperatorRefV1("ADD", "v1"), (t, t), (t,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("ADD", "v1"),
+        (t, PhysicalType(:scalar_field, 0, 3, differential, UnitSignature((1, 0, 0, 0, 0, 0, 0)))), (t,))
+    @test validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"), (static, t), (t,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"),
+        (PhysicalType(:scalar_field, 0, 2, TemporalTypeV1(static_time), U0), t), (t,))
+    dt_out = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1), clock), UnitSignature((0, 0, -1, 0, 0, 0, 0)))
+    @test validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (t,), (dt_out,))
+    other_clock = QualifiedRefV1("other-clock", "v1")
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (t,),
+        (PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1), other_clock), UnitSignature((0, 0, -1, 0, 0, 0, 0))),))
+    discrete = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(discrete_time, UInt8(0), clock), U0)
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (discrete,), (discrete,))
+    @test validate_operator_signature(registry, OperatorRefV1("SAMPLE", "v1"), (t,), (discrete,))
+    @test validate_operator_signature(registry, OperatorRefV1("HOLD", "v1"), (discrete,), (t,))
+    @test validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (t,), (t,); parameters=(delay_seconds=0.25,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (t,), (t,); parameters=(delay_seconds=-1.0,))
+    add_manifest = operator_manifest(registry, "ADD")
+    @test_throws ArgumentError register_operator(registry, add_manifest)
+    empty_registry = OperatorRegistryV1()
+    extended = register_operator(empty_registry, add_manifest)
+    @test isempty(empty_registry.operators) && length(extended.operators) == 1
+    @test_throws ArgumentError OperatorManifestV1(add_manifest.operator_ref, add_manifest.input_arity, add_manifest.output_arity,
+        add_manifest.input_type_rule, add_manifest.output_type_rule; manifest_hash=digest256_text("tampered"))
+    @test_throws ArgumentError OperatorManifestV1(OperatorRefV1("UNKNOWN", "v1"), 1, 1, UnknownRule(), UnknownRule())
 end
 
 @testset "canonical identity/label and permutation invariance" begin
