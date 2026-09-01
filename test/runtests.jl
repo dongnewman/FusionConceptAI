@@ -200,6 +200,10 @@ end
     @test validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (vector, vector), (scalar,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (scalar, vector), (scalar,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (vector, vector), (vector,))
+    rank2 = PhysicalType(:vector_field, 2, 3, :differential, U0)
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (vector, rank2), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (rank2, vector), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (rank2, rank2), (scalar,))
     @test validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector), (tensor,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector), (vector,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector),
@@ -208,6 +212,11 @@ end
         parameters=(contraction_order=1,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,);
         parameters=(contraction_order=0,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,);
+        parameters=(contraction_order=true,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,);
+        parameters=(contraction_order=big(1),))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (vector,);
         parameters=(contraction_order=1,))
 
@@ -234,6 +243,14 @@ end
     @test canonical_hash(add_ast) != canonical_hash(add_ast_alt)
     @test canonical_hash(add_ast) == canonical_hash(TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:add, (1, 1), scalar)), 2, (1,); registry=registry))
     @test_throws ArgumentError operator_manifest(registry, "INTEGRAL_KERNEL")
+    @test_throws ArgumentError ContractRuleV1(1)
+    contract_k1 = TypedAST((TypedASTNode(:state, (), rank2), TypedASTNode(:state, (), rank2),
+        TypedASTNode(:contract, (1, 2), rank2, (contraction_order=1,))), 3, (1, 2); registry=registry)
+    contract_k2 = TypedAST((TypedASTNode(:state, (), rank2), TypedASTNode(:state, (), rank2),
+        TypedASTNode(:contract, (1, 2), scalar, (contraction_order=2,))), 3, (1, 2); registry=registry)
+    @test contract_k1.nodes[end].output_type.tensor_rank == 2
+    @test contract_k2.nodes[end].output_type.tensor_rank == 0
+    @test canonical_hash(contract_k1) != canonical_hash(contract_k2)
 end
 
 @testset "P0 constructor dispatch closure subprocess" begin
