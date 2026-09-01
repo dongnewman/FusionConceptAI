@@ -45,12 +45,29 @@ struct TemporalTypeV1
     kind::TimeKindV1
     derivative_order::UInt8
     clock_ref::Union{Nothing,QualifiedRefV1}
-    function TemporalTypeV1(kind::TimeKindV1, derivative_order::UInt8=UInt8(0), clock_ref::Union{Nothing,QualifiedRefV1}=nothing)
+    function TemporalTypeV1(kind::TimeKindV1, derivative_order::UInt8=UInt8(0), clock_ref=nothing)
+        clock_ref === nothing || clock_ref isa QualifiedRefV1 ||
+            throw(ArgumentError("clock_ref must be QualifiedRefV1 or nothing"))
+        if kind in (static_time, algebraic_time)
+            derivative_order == 0 && clock_ref === nothing ||
+                throw(ArgumentError("static/algebraic time requires order 0 and no clock"))
+        elseif kind == differential_time
+            clock_ref === nothing || throw(ArgumentError("differential time is continuous and has no clock"))
+        elseif kind in (discrete_time, event_time)
+            derivative_order == 0 && clock_ref !== nothing ||
+                throw(ArgumentError("discrete/event time requires order 0 and a clock"))
+        else
+            throw(ArgumentError("unknown temporal kind"))
+        end
         new(kind, derivative_order, clock_ref)
     end
 end
-TemporalTypeV1(kind::TimeKindV1, derivative_order::Integer, clock_ref=nothing) =
-    TemporalTypeV1(kind, UInt8(derivative_order), clock_ref)
+function TemporalTypeV1(kind::TimeKindV1, derivative_order::Integer, clock_ref=nothing)
+    0 <= derivative_order <= typemax(UInt8) || throw(ArgumentError("derivative order must fit UInt8"))
+    clock = clock_ref === nothing ? nothing :
+        clock_ref isa QualifiedRefV1 ? clock_ref : throw(ArgumentError("clock_ref must be QualifiedRefV1"))
+    TemporalTypeV1(kind, UInt8(derivative_order), clock)
+end
 
 _legacy_time_kind(s::Symbol) = s === :static ? static_time : s === :algebraic ? algebraic_time :
                                s === :differential ? differential_time : throw(ArgumentError("unknown legacy time_kind $s"))
@@ -106,6 +123,8 @@ function Base.getproperty(x::PhysicalType, name::Symbol)
     name === :time_kind && return _legacy_time_symbol(getfield(x, :temporal_type).kind)
     getfield(x, name)
 end
+Base.propertynames(::PhysicalType, private::Bool=false) =
+    (:value_kind, :tensor_rank, :spatial_dimension, :temporal_type, :time_kind, :units)
 
 Base.:(==)(a::PhysicalType, b::PhysicalType) = a.value_kind == b.value_kind && a.tensor_rank == b.tensor_rank &&
     a.spatial_dimension == b.spatial_dimension && a.temporal_type == b.temporal_type && a.units == b.units

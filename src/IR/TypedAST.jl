@@ -18,7 +18,7 @@ struct TypedAST
     nodes::Tuple{Vararg{TypedASTNode}}
     root::Int
     input_ports::Tuple{Vararg{Int}}
-    function TypedAST(nodes, root::Integer, input_ports=())
+    function TypedAST(nodes, root::Integer, input_ports=(); registry::OperatorRegistryV1=default_operator_registry())
         ns = Tuple(nodes)
         isempty(ns) && throw(ArgumentError("typed AST cannot be empty"))
         1 <= root <= length(ns) || throw(ArgumentError("AST root out of range"))
@@ -40,67 +40,29 @@ struct TypedAST
         is_canonical_value(ns) || throw(ArgumentError("typed AST payload is not canonicalizable"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
-            _validate_opcode(n, ns, j)
+            _validate_ast_node(registry, n, ns, j)
         end
         new(ns, Int(root), Tuple(Int(i) for i in input_ports))
     end
 end
 
-# P0 proves these value-kind transformations as operator grammar, rather than
-# routing by device family. Unknown kind transformations remain rejected.
-const _P0_DERIVATIVE_KIND_RULES = ((:gradient, :scalar_field, :vector_field),
-                                   (:divergence, :vector_field, :scalar_field),
-                                   (:curl, :vector_field, :vector_field))
-_derivative_kind_ok(opcode, input_kind, output_kind) =
-    any(r -> r[1] == opcode && r[2] == input_kind && r[3] == output_kind, _P0_DERIVATIVE_KIND_RULES)
+_ast_operator_id(opcode::Symbol) = opcode == :identity ? "IDENTITY" : opcode == :add ? "ADD" :
+    opcode == :sub ? "SUB" : opcode == :neg ? "NEG" : opcode == :mul ? "SCALAR_MUL" :
+    opcode == :div ? "SCALAR_DIV" : opcode == :dt ? "DT" : opcode == :gradient ? "GRAD" :
+    opcode == :divergence ? "DIV_OP" : opcode == :curl ? "CURL" : nothing
 
-function _validate_opcode(n::TypedASTNode, ns, j::Int)
-    known = (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
-             :gradient, :divergence, :curl, :dt)
-    n.opcode in known || throw(ArgumentError("unknown typed AST opcode $(n.opcode)"))
-    ins = [ns[i].output_type for i in n.inputs]
+function _validate_ast_node(registry::OperatorRegistryV1, n::TypedASTNode, ns, j::Int)
+    ins = Tuple(ns[i].output_type for i in n.inputs)
     if n.opcode in (:state, :parameter, :constant)
         isempty(ins) || throw(ArgumentError("$(n.opcode) is a leaf opcode"))
-    elseif n.opcode == :identity
-        length(ins) == 1 && n.output_type == ins[1] || throw(ArgumentError("identity requires one input and unchanged type"))
-    elseif n.opcode in (:add, :sub)
-        length(ins) >= 2 && all(t -> t == n.output_type, ins) || throw(ArgumentError("ADD/SUB requires same typed inputs and output"))
-    elseif n.opcode == :neg
-        length(ins) == 1 && n.output_type == ins[1] || throw(ArgumentError("NEG requires one unchanged typed input"))
-    elseif n.opcode == :mul
-        length(ins) == 2 && all(t -> t.tensor_rank == 0, ins) && n.output_type.tensor_rank == 0 &&
-            ins[1].spatial_dimension == ins[2].spatial_dimension && ins[1].time_kind == ins[2].time_kind &&
-            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
-            n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] + ins[2].units.exponents[k], 7)) ||
-            throw(ArgumentError("MUL signature/unit mismatch"))
-    elseif n.opcode == :div
-        length(ins) == 2 && all(t -> t.tensor_rank == 0, ins) && n.output_type.tensor_rank == 0 &&
-            ins[1].spatial_dimension == ins[2].spatial_dimension && ins[1].time_kind == ins[2].time_kind &&
-            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
-            n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - ins[2].units.exponents[k], 7)) ||
-            throw(ArgumentError("DIV signature/unit mismatch"))
-    elseif n.opcode == :gradient
-        length(ins) == 1 && ins[1].tensor_rank == 0 && ins[1].spatial_dimension >= 1 && n.output_type.tensor_rank == 1 &&
-            _derivative_kind_ok(:gradient, ins[1].value_kind, n.output_type.value_kind) &&
-            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
-            n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
-            throw(ArgumentError("GRADIENT signature/unit mismatch"))
-    elseif n.opcode == :divergence
-        length(ins) == 1 && ins[1].tensor_rank >= 1 && ins[1].spatial_dimension >= 1 && n.output_type.tensor_rank == ins[1].tensor_rank - 1 &&
-            _derivative_kind_ok(:divergence, ins[1].value_kind, n.output_type.value_kind) &&
-            n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
-            n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
-            throw(ArgumentError("DIVERGENCE signature/unit mismatch"))
-    elseif n.opcode == :curl
-        length(ins) == 1 && ins[1].tensor_rank == 1 && n.output_type.tensor_rank == 1 &&
-            _derivative_kind_ok(:curl, ins[1].value_kind, n.output_type.value_kind) &&
-            ins[1].spatial_dimension == 3 && n.output_type.spatial_dimension == 3 && n.output_type.time_kind == ins[1].time_kind &&
-            n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
-            throw(ArgumentError("CURL signature/unit mismatch"))
-    elseif n.opcode == :dt
-        length(ins) == 1 && ins[1].time_kind != :static && n.output_type == PhysicalType(ins[1].value_kind, ins[1].tensor_rank, ins[1].spatial_dimension, ins[1].time_kind,
-            UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 3 ? 1 : 0), 7))) || throw(ArgumentError("DT signature/unit mismatch"))
+        return nothing
     end
+    id = _ast_operator_id(n.opcode)
+    id === nothing && throw(ArgumentError("unknown typed AST operator $(n.opcode)"))
+    ref = OperatorRefV1(id, "v1")
+    inferred = _infer_rule_output(operator_manifest(registry, id, "v1").input_type_rule, ins, n.parameters)
+    inferred == (n.output_type,) || throw(ArgumentError("typed AST output does not match registry-derived output"))
+    validate_operator_signature(registry, ref, ins, (n.output_type,); parameters=n.parameters)
     nothing
 end
 

@@ -31,6 +31,7 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        TypedASTNode, TypedAST, ast_leaf, TypedNode, TypedHyperedge, TypedOperatorHypergraphV1, node,
        OperatorRefV1, OperatorParameterSpecV1, OperatorTypeRuleV1, ExactTypeRuleV1, SameTypeVariadicRuleV1,
        ScalarProductRuleV1, SpatialDerivativeRuleV1, TimeDerivativeRuleV1, SamplingRuleV1, DelayRuleV1,
+       EventTransitionRuleV1,
        OperatorManifestV1, OperatorRegistryV1, register_operator, operator_manifest, validate_operator_signature,
        default_operator_registry,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,

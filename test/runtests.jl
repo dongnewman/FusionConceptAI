@@ -55,7 +55,7 @@ end
 
 @testset "P0 temporal algebra and immutable operator registry" begin
     clock = QualifiedRefV1("clock", "v1")
-    differential = TemporalTypeV1(differential_time, UInt8(0), clock)
+    differential = TemporalTypeV1(differential_time)
     @test PhysicalType(:scalar_field, 0, 3, differential, U0).temporal_type == differential
     @test PhysicalType(:scalar_field, 0, 3, :differential, U0).temporal_type.kind == differential_time
     @test_throws ArgumentError PhysicalType(:scalar_field, 0, 3, :unknown_time, U0)
@@ -69,15 +69,14 @@ end
     @test validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"), (static, t), (t,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"),
         (PhysicalType(:scalar_field, 0, 2, TemporalTypeV1(static_time), U0), t), (t,))
-    dt_out = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1), clock), UnitSignature((0, 0, -1, 0, 0, 0, 0)))
+    dt_out = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1)), UnitSignature((0, 0, -1, 0, 0, 0, 0)))
     @test validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (t,), (dt_out,))
     other_clock = QualifiedRefV1("other-clock", "v1")
-    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (t,),
-        (PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1), other_clock), UnitSignature((0, 0, -1, 0, 0, 0, 0))),))
+    @test_throws ArgumentError TemporalTypeV1(differential_time, UInt8(1), other_clock)
     discrete = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(discrete_time, UInt8(0), clock), U0)
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (discrete,), (discrete,))
-    @test validate_operator_signature(registry, OperatorRefV1("SAMPLE", "v1"), (t,), (discrete,))
-    @test validate_operator_signature(registry, OperatorRefV1("HOLD", "v1"), (discrete,), (t,))
+    @test validate_operator_signature(registry, OperatorRefV1("SAMPLE", "v1"), (t,), (discrete,); parameters=(target_clock=clock,))
+    @test validate_operator_signature(registry, OperatorRefV1("HOLD", "v1"), (discrete,), (t,); parameters=(target_kind=:differential_time,))
     @test validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (t,), (t,); parameters=(delay_seconds=0.25,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (t,), (t,); parameters=(delay_seconds=-1.0,))
     add_manifest = operator_manifest(registry, "ADD")
@@ -88,6 +87,68 @@ end
     @test_throws ArgumentError OperatorManifestV1(add_manifest.operator_ref, add_manifest.input_arity, add_manifest.output_arity,
         add_manifest.input_type_rule, add_manifest.output_type_rule; manifest_hash=digest256_text("tampered"))
     @test_throws ArgumentError OperatorManifestV1(OperatorRefV1("UNKNOWN", "v1"), 1, 1, UnknownRule(), UnknownRule())
+end
+
+@testset "P0 temporal registry remediation adversarial controls" begin
+    clock = QualifiedRefV1("clock", "v1")
+    @test :time_kind in propertynames(T0)
+    @test_throws ArgumentError TemporalTypeV1(static_time, 1)
+    @test_throws ArgumentError TemporalTypeV1(static_time, 0, clock)
+    @test_throws ArgumentError TemporalTypeV1(algebraic_time, 1)
+    @test_throws ArgumentError TemporalTypeV1(differential_time, 0, clock)
+    @test_throws ArgumentError TemporalTypeV1(discrete_time, 0)
+    @test_throws ArgumentError TemporalTypeV1(discrete_time, 1, clock)
+    @test_throws ArgumentError TemporalTypeV1(event_time, 0)
+    @test_throws ArgumentError TemporalTypeV1(event_time, 1, clock)
+    @test_throws ArgumentError TemporalTypeV1(differential_time, 256)
+
+    registry = default_operator_registry()
+    differential = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    discrete = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(discrete_time, 0, clock), U0)
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("ADD", "v1"),
+        (differential, discrete), (differential,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (differential,), (differential,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("SAMPLE", "v1"), (differential,), (discrete,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("HOLD", "v1"), (discrete,), (differential,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"),
+        (PhysicalType(:scalar_field, 0, 3, :static, U0),), (PhysicalType(:scalar_field, 0, 3, :static, U0),);
+        parameters=(delay_seconds=1.0,))
+
+    length_unit = UnitSignature((0, -1, 0, 0, 0, 0, 0))
+    laplace_unit = UnitSignature((0, -2, 0, 0, 0, 0, 0))
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    @test validate_operator_signature(registry, OperatorRefV1("LAPLACE", "v1"), (scalar,),
+        (PhysicalType(:scalar_field, 0, 3, :differential, laplace_unit),))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("LAPLACE", "v1"), (scalar,),
+        (PhysicalType(:scalar_field, 0, 3, :differential, length_unit),))
+
+    control = PhysicalType(:control_signal, 0, 3, :differential, U0)
+    event = PhysicalType(:event_signal, 0, 3, TemporalTypeV1(event_time, 0, clock), U0)
+    @test validate_operator_signature(registry, OperatorRefV1("THRESHOLD_SWITCH", "v1"), (control, scalar), (scalar,))
+    @test validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (event, scalar), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("EVENT_RESET", "v1"), (scalar, scalar), (scalar,))
+
+    add = operator_manifest(registry, "ADD")
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        commutative_input_groups=((1, 1),))
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        commutative_input_groups=((1, 2), (2,)))
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        allowed_conservation_effects=(:energy,), forbidden_conservation_effects=(:energy,))
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        pure=false)
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        max_derivative_contribution=1)
+    @test canonical_hash(registry) == canonical_hash(OperatorRegistryV1(reverse(registry.operators)))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,);
+        parameters=(delay_seconds=true,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,);
+        parameters=(delay_seconds=big(10)^10000,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"), (scalar,), (scalar,);
+        parameters=(delay_seconds=1.0, unknown=:x))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,);
+        registry=OperatorRegistryV1())
 end
 
 @testset "canonical identity/label and permutation invariance" begin
