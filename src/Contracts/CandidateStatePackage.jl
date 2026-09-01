@@ -39,6 +39,7 @@ struct ProposalEnvelopeV4
         isfinite(cost64) && cost64 >= 0 || throw(ArgumentError("estimated_cost must be finite and non-negative after Float64 conversion"))
         vals = (Tuple(String(p) for p in parents), Tuple(edits), predicted, uncertainty)
         all(_deep_immutable, vals) || throw(ArgumentError("ProposalEnvelopeV4 must be deeply immutable"))
+        is_canonical_value(vals) || throw(ArgumentError("ProposalEnvelopeV4 payload is not canonicalizable"))
         new(String(id), String(candidate), vals[1], channel, vals[2], String(cell), predicted, uncertainty,
             cost64, model_hash, next_stage)
     end
@@ -83,19 +84,8 @@ struct EvidenceContentV4
         applicability_record::Union{Nothing,ApplicabilityRecord}, match::MatchStatus, resolution::ResolutionStatus,
         outcome::StageOutcome, metrics::Tuple{Vararg{MetricWithUnit}}, uncertainty::Union{Nothing,UncertaintyV4},
         artifacts::Tuple{Vararg{Digest256}}, group::AbstractString, ceiling::ClaimCeiling)
-        match in (no_match, ambiguous, out_of_domain, invalid_signature) &&
-            (resolution == terminal_deferred && outcome == terminal_deferred_stage && outcome != pass || throw(ArgumentError("non-unique match must be terminal_deferred")))
-        (resolution == terminal_deferred) == (outcome == terminal_deferred_stage) ||
-            throw(ArgumentError("terminal_deferred resolution requires terminal_deferred_stage"))
-        resolution == resolved && match == unique_match || resolution == terminal_deferred || throw(ArgumentError("resolved evidence requires unique_match"))
-        outcome == pass && (applicability == required && match == unique_match && resolution == resolved) || outcome != pass || throw(ArgumentError("pass status combination is invalid"))
-        outcome == not_applicable_stage && (applicability == not_applicable && applicability_record !== nothing && applicability_record.status == not_applicable) || outcome != not_applicable_stage || throw(ArgumentError("not_applicable_stage requires applicability proof"))
-        if applicability == not_applicable
-            applicability_record !== nothing && applicability_record.status == not_applicable && !isempty(applicability_record.obligation) ||
-                throw(ArgumentError("not_applicable evidence requires an applicability proof"))
-        elseif applicability_record !== nothing && applicability_record.status == not_applicable
-            throw(ArgumentError("required evidence cannot carry a not_applicable proof"))
-        end
+        _validate_status_dimensions(applicability, match, resolution, outcome;
+                                    applicability_record=applicability_record, require_applicability_proof=true)
         ceiling in (none, screen_only) || throw(ArgumentError("P0 evidence ceiling is at most screen_only"))
         all(m -> m isa MetricWithUnit, metrics) && deep_immutable((metrics, uncertainty, artifacts)) || throw(ArgumentError("EvidenceContentV4 payload must be typed and immutable"))
         new(physical, scenario, solver, provider, String(backend), numerical, applicability, applicability_record, match, resolution,
@@ -160,11 +150,19 @@ struct CandidateStatePackageV4
         field::FieldGeometryGenomeV4, realization::RealizationControlGenomeV4, registry::GenomeContractRegistryV4,
         lifecycle::LifecycleStatus, applicability::Tuple{Vararg{ApplicabilityRecord}}, compilation::Tuple,
         proposals::Tuple{Vararg{ProposalEnvelopeV4}}, evidence::Tuple{Vararg{EvidenceRef}}, archives::Tuple{Vararg{String}}, ceiling::ClaimCeiling)
-        lifecycle in (proposed, compiled, dormant, proof_pruned) || throw(ArgumentError("lifecycle is outside P0"))
-        ceiling in (none, screen_only) || throw(ArgumentError("claim ceiling is outside P0"))
+        lifecycle == proposed || throw(ArgumentError("P0 candidate lifecycle is proposed only"))
+        isempty(compilation) || throw(ArgumentError("P0 candidate cannot carry compilation records"))
+        isempty(evidence) || throw(ArgumentError("P0 candidate cannot carry evidence references"))
+        ceiling == none || throw(ArgumentError("P0 candidate claim ceiling is none"))
+        matched = resolve_contract(registry, mechanism.contract_ref, :mechanism) &&
+                  resolve_contract(registry, field.contract_ref, :field_geometry) &&
+                  resolve_contract(registry, realization.contract_ref, :realization_control)
+        matched || isempty(applicability) || throw(ArgumentError("deferred contract mismatch cannot carry applicability records"))
         deep_immutable((mission=mission, mechanism=mechanism, field=field, realization=realization,
                         applicability=applicability, compilation=compilation, proposals=proposals, evidence=evidence, archives=archives)) || throw(ArgumentError("candidate payload must be deeply immutable"))
-        matched = resolve_contract(registry, mechanism.contract_ref, :mechanism) && resolve_contract(registry, field.contract_ref, :field_geometry) && resolve_contract(registry, realization.contract_ref, :realization_control)
+        is_canonical_value((mission=mission, mechanism=mechanism, field=field, realization=realization,
+                            applicability=applicability, compilation=compilation, proposals=proposals, evidence=evidence, archives=archives)) ||
+            throw(ArgumentError("candidate payload is not canonicalizable"))
         hashes = CanonicalHashesV4(mechanism_hash(mechanism), field_geometry_hash(field), realization_control_hash(realization), genome_bundle_hash(mechanism, field, realization; mission_contract=mission), nothing, ())
         new(identity, mission, mechanism, field, realization, hashes, matched ? resolved : terminal_deferred, lifecycle, applicability, compilation, proposals, evidence, archives, nothing, ceiling)
     end

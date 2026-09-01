@@ -13,6 +13,9 @@ end
 struct InjectInteger <: Integer
 end
 Base.string(::InjectInteger) = "0,\"injected\":true"
+struct OpaqueValue
+    value::Int
+end
 mutable struct MutableText <: AbstractString
     data::String
 end
@@ -76,11 +79,11 @@ end
     econtent = EvidenceContentV4(digest256_text("physical"), digest256_text("scenario"), digest256_text("solver"), digest256_text("provider"), "backend", digest256_text("numeric"), required, nothing, unique_match, resolved, unknown, (MetricWithUnit(:x, 1.0, U0),), nothing, (), "", screen_only)
     e = evidence_envelope(econtent)
     mission = MissionContractRef("urn:mission", "v4", digest256_text("schema"), digest256_text("canon"))
-    pkg = CandidateStatePackageV4("display", mission, m, f, r, registry; proposal_lineage=(p,), stage_evidence_refs=(EvidenceRef(e.evidence_id),))
+    pkg = CandidateStatePackageV4("display", mission, m, f, r, registry; proposal_lineage=(p,))
     @test length(pkg.canonical_hashes.solver_input_hashes) == 0
     @test pkg.proposal_lineage[1] isa ProposalEnvelopeV4
-    @test pkg.stage_evidence_refs[1] isa EvidenceRef
-    @test canonical_hash(pkg) == canonical_hash(CandidateStatePackageV4("different-display", mission, m, f, r, registry; proposal_lineage=(p,), stage_evidence_refs=(EvidenceRef(e.evidence_id),)))
+    @test isempty(pkg.stage_evidence_refs)
+    @test canonical_hash(pkg) == canonical_hash(CandidateStatePackageV4("different-display", mission, m, f, r, registry; proposal_lineage=(p,)))
     @test_throws MethodError CandidateStatePackageV4("display", refs[1], m, f, r, registry; stage_evidence_refs=(p,))
     @test e isa EvidenceEnvelopeV4
     @test e.evidence_id == evidence_id_for(e.content)
@@ -135,6 +138,9 @@ end
     @test_throws ArgumentError TypedOperatorHypergraphV1((node(:state, t1), node(:state, T0)),
         (TypedHyperedge("bad-port", (1,), (2,), ast_leaf(:state, T0), :governing),))
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), T0), TypedASTNode(:dt, (1,), T0)), 2, (1,))
+    static3d = PhysicalType(:scalar_field, 0, 3, :static, U0)
+    static_dt = PhysicalType(:scalar_field, 0, 3, :static, UnitSignature((0, 0, -1, 0, 0, 0, 0)))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), static3d), TypedASTNode(:dt, (1,), static_dt)), 2, (1,))
     t2 = PhysicalType(:scalar_field, 0, 2, :differential, U0)
     t3 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), t2), TypedASTNode(:state, (), t3),
@@ -151,6 +157,11 @@ end
     vector0d = PhysicalType(:open_value, 1, 0, :differential, U0)
     curl0d = PhysicalType(:open_value, 1, 0, :differential, inv_length)
     @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector0d), TypedASTNode(:curl, (1,), curl0d)), 2, (1,))
+    scalar0d = PhysicalType(:scalar_field, 0, 0, :differential, U0)
+    gradient0d = PhysicalType(:vector_field, 1, 0, :differential, inv_length)
+    divergence0d = PhysicalType(:scalar_field, 0, 0, :differential, inv_length)
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), scalar0d), TypedASTNode(:gradient, (1,), gradient0d)), 2, (1,))
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector0d), TypedASTNode(:divergence, (1,), divergence0d)), 2, (1,))
     scalar3d_field = PhysicalType(:scalar_field, 0, 3, :differential, U0)
     vector3d_field = PhysicalType(:vector_field, 1, 3, :differential, U0)
     gradient_ok = PhysicalType(:vector_field, 1, 3, :differential, inv_length)
@@ -172,6 +183,9 @@ end
     mission = MissionContractRef("urn:mission", "v4", digest256_text("ms"), digest256_text("mc"))
     deferred = CandidateStatePackageV4("id", mission, m, f, rf, registry)
     @test deferred.resolution == terminal_deferred
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, rf, registry; lifecycle=compiled)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, rf, registry; applicability_records=(ApplicabilityRecord("obligation", required),))
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, rf, registry; claim_ceiling=screen_only)
     @test migrate_legacy((; old_status=:pass)).resolution == terminal_deferred
     @test migrate_legacy((; mission_contract_ref=:m, mechanism_genome_ref=:a, field_geometry_genome_ref=:b, realization_control_genome_ref=:c, status=:pass)).resolution == terminal_deferred
     p = ProposalEnvelopeV4("p", "c", (), :search, (), "cell", (;), (;), 0.0, digest256_text("model"), :compile)
@@ -210,6 +224,15 @@ end
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, terminal_classified, (), (), (), (), (), none)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry, proposed, (), (), (), (), (), validation_vvuq)
     @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; applicability_records=(ApplicabilityRecord("", required),))
+    opaque = OpaqueValue(1)
+    @test_throws ArgumentError MechanismGenomeV4(1, refs[1], g; invariants=(opaque,))
+    @test_throws ArgumentError ProposalEnvelopeV4("opaque", "c", (), :search, (opaque,), "cell", (;), (;), 0.0, digest256_text("model"), :compile)
+    @test_throws ArgumentError TypedASTNode(:state, (), T0, (opaque=opaque,))
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; lifecycle=compiled)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; lifecycle=dormant)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; lifecycle=proof_pruned)
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; compilation_records=(; compiled=true,))
+    @test_throws ArgumentError CandidateStatePackageV4("id", mission, m, f, r1, registry; claim_ceiling=screen_only)
     @test_throws ArgumentError LegacyMigrationResultV4(resolved, nothing, "forged")
     @test_throws ArgumentError FusionConceptAI.LegacyMigrationResultV4(resolved, nothing, "forged")
     h = digest256_text("evidence-negative")
@@ -223,9 +246,17 @@ end
     @test_throws ArgumentError StatusVectorV4(required, no_match, terminal_deferred, proposed, physical_fail)
     @test_throws ArgumentError StatusVectorV4(required, unique_match, resolved, proposed, terminal_deferred_stage)
     @test StatusVectorV4(required, no_match, terminal_deferred, proposed, terminal_deferred_stage).resolution == terminal_deferred
+    for outcome in (unknown, physical_fail, numerical_fail, pass)
+        @test_throws ArgumentError StatusVectorV4(not_applicable, unique_match, resolved, proposed, outcome)
+    end
+    @test_throws ArgumentError StatusVectorV4(required, unique_match, resolved, proposed, not_applicable_stage)
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, nothing, unique_match, resolved, unknown, metric, nothing, (), "", screen_only)
     na_record = ApplicabilityRecord("not-applicable-obligation", not_applicable, h)
     @test EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, na_record, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only).applicability == not_applicable
+    for outcome in (unknown, physical_fail, numerical_fail, pass)
+        @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, not_applicable, na_record, unique_match, resolved, outcome, metric, nothing, (), "", screen_only)
+    end
+    @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only)
     @test_throws MethodError StatusVectorV4()
     @test_throws MethodError DerivedEGraphViewV4(digest256_text("fake-source"), g)
 end

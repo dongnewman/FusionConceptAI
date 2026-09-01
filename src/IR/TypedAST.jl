@@ -9,6 +9,7 @@ struct TypedASTNode
         opcode in (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
                    :gradient, :divergence, :curl, :dt) || throw(ArgumentError("unsupported or unproven typed AST opcode"))
         all(i -> i >= 1, inputs) || throw(ArgumentError("AST input indexes are one-based"))
+        is_canonical_value(parameters) || throw(ArgumentError("AST parameters are not canonicalizable"))
         new(opcode, Tuple(Int(i) for i in inputs), output_type, parameters)
     end
 end
@@ -36,6 +37,7 @@ struct TypedAST
         mark(Int(root))
         all(reachable) || throw(ArgumentError("every AST node must be reachable from AST root"))
         deep_immutable(ns) || throw(ArgumentError("typed AST payload must be deeply immutable"))
+        is_canonical_value(ns) || throw(ArgumentError("typed AST payload is not canonicalizable"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
             _validate_opcode(n, ns, j)
@@ -78,13 +80,13 @@ function _validate_opcode(n::TypedASTNode, ns, j::Int)
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - ins[2].units.exponents[k], 7)) ||
             throw(ArgumentError("DIV signature/unit mismatch"))
     elseif n.opcode == :gradient
-        length(ins) == 1 && ins[1].tensor_rank == 0 && n.output_type.tensor_rank == 1 &&
+        length(ins) == 1 && ins[1].tensor_rank == 0 && ins[1].spatial_dimension >= 1 && n.output_type.tensor_rank == 1 &&
             _derivative_kind_ok(:gradient, ins[1].value_kind, n.output_type.value_kind) &&
             n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("GRADIENT signature/unit mismatch"))
     elseif n.opcode == :divergence
-        length(ins) == 1 && ins[1].tensor_rank >= 1 && n.output_type.tensor_rank == ins[1].tensor_rank - 1 &&
+        length(ins) == 1 && ins[1].tensor_rank >= 1 && ins[1].spatial_dimension >= 1 && n.output_type.tensor_rank == ins[1].tensor_rank - 1 &&
             _derivative_kind_ok(:divergence, ins[1].value_kind, n.output_type.value_kind) &&
             n.output_type.spatial_dimension == ins[1].spatial_dimension && n.output_type.time_kind == ins[1].time_kind &&
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
@@ -96,7 +98,7 @@ function _validate_opcode(n::TypedASTNode, ns, j::Int)
             n.output_type.units == UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 2 ? 1 : 0), 7)) ||
             throw(ArgumentError("CURL signature/unit mismatch"))
     elseif n.opcode == :dt
-        length(ins) == 1 && n.output_type == PhysicalType(ins[1].value_kind, ins[1].tensor_rank, ins[1].spatial_dimension, ins[1].time_kind,
+        length(ins) == 1 && ins[1].time_kind != :static && n.output_type == PhysicalType(ins[1].value_kind, ins[1].tensor_rank, ins[1].spatial_dimension, ins[1].time_kind,
             UnitSignature(ntuple(k -> ins[1].units.exponents[k] - (k == 3 ? 1 : 0), 7))) || throw(ArgumentError("DT signature/unit mismatch"))
     end
     nothing

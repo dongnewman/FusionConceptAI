@@ -24,6 +24,32 @@ const _P0_SAFE_INTEGER_TYPES = (Int8, Int16, Int32, Int64, Int128, UInt8, UInt16
 const _P0_SAFE_FLOAT_TYPES = (Float16, Float32, Float64)
 _p0_safe_rational(x) = x isa Rational && typeof(numerator(x)) in _P0_SAFE_INTEGER_TYPES && typeof(denominator(x)) in _P0_SAFE_INTEGER_TYPES
 _p0_safe_number(x) = typeof(x) in _P0_SAFE_INTEGER_TYPES || typeof(x) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(x)
+
+"""Recursive admission trait for values that can be represented canonically."""
+function is_canonical_value(x)
+    x === nothing && return true
+    if Base.ismutabletype(typeof(x))
+        (typeof(x) === String || x isa Symbol) && return true
+        return false
+    end
+    x isa AbstractString && return typeof(x) === String && isvalid(x)
+    x isa Bool && return true
+    x isa Symbol && return true
+    x isa Number && return _p0_safe_number(x)
+    x isa Enum && return true
+    (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
+    x isa NamedTuple && return all(is_canonical_value, values(x))
+    x isa Tuple && return all(is_canonical_value, x)
+    isstructtype(typeof(x)) || return false
+    hasmethod(semantic_view, Tuple{typeof(x)}) || return false
+    projected = try
+        semantic_view(x)
+    catch
+        return false
+    end
+    projected === x && return false
+    is_canonical_value(projected)
+end
 UnitSignature(xs::AbstractVector{<:Real}) = UnitSignature(Tuple(xs))
 UnitSignature() = UnitSignature(ntuple(_ -> 0, 7))
 

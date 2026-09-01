@@ -12,6 +12,8 @@ struct RealizationControlGenomeV4
         realization_seed == control_seed && throw(ArgumentError("realization and control require independent seeds"))
         deep_immutable((contract_ref=contract_ref, realization_graph=realization_graph, control_graph=control_graph,
                         realization=realization, control=control)) || throw(ArgumentError("G3 payload must be deeply immutable"))
+        is_canonical_value((contract_ref=contract_ref, realization_graph=realization_graph, control_graph=control_graph,
+                           realization=realization, control=control)) || throw(ArgumentError("G3 payload is not canonicalizable"))
         new(realization_seed, control_seed, contract_ref, realization_graph, control_graph, realization, control)
     end
 end

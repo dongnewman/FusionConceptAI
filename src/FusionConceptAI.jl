@@ -24,7 +24,7 @@ export UnitSignature, Digest256, digest256_text, PhysicalType, ApplicabilityStat
        terminal_classified, pass, physical_fail, numerical_fail, unknown, not_applicable_stage,
        terminal_deferred_stage, credible_within_scope, terminal_physical_fail, terminal_numerical_fail,
        terminal_unknown, terminal_unsupported, none, screen_only, candidate_bound, integrated, whole_device_vvuq, validation_vvuq,
-       semantic_view,
+       semantic_view, is_canonical_value,
        CanonicalizationDeferred,
        TypedASTNode, TypedAST, ast_leaf, TypedNode, TypedHyperedge, TypedOperatorHypergraphV1, node,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,

@@ -6,6 +6,8 @@ struct FieldGeometryGenomeV4
     function FieldGeometryGenomeV4(seed::UInt64, contract_ref::GenomeContractRef, graph::TypedOperatorHypergraphV1, fields::Tuple)
         deep_immutable((contract_ref=contract_ref, graph=graph, fields=fields)) ||
             throw(ArgumentError("FieldGeometryGenome payload must be deeply immutable"))
+        is_canonical_value((contract_ref=contract_ref, graph=graph, fields=fields)) ||
+            throw(ArgumentError("FieldGeometryGenome payload is not canonicalizable"))
         new(seed, contract_ref, graph, fields)
     end
 end

@@ -8,6 +8,8 @@ struct MechanismGenomeV4
                                invariants::Tuple, observables::Tuple)
         deep_immutable((contract_ref=contract_ref, graph=graph, invariants=invariants, observables=observables)) ||
             throw(ArgumentError("MechanismGenome payload must be deeply immutable"))
+        is_canonical_value((contract_ref=contract_ref, graph=graph, invariants=invariants, observables=observables)) ||
+            throw(ArgumentError("MechanismGenome payload is not canonicalizable"))
         new(seed, contract_ref, graph, invariants, observables)
     end
 end
