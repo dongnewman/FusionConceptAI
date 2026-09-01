@@ -183,6 +183,54 @@ function _sealed_rule_schema(rule::OperatorTypeRuleV1)
     end
 end
 
+"""Fixed normalization used by both manifest constructors; never dispatches on user types."""
+function _sealed_normalize_manifest(allowed_roles::Tuple, parameter_schema::Tuple,
+                                    commutative_input_groups::Tuple,
+                                    allowed_conservation_effects::Tuple,
+                                    forbidden_conservation_effects::Tuple, input_arity::Int)
+    roles_raw = allowed_roles
+    all(x -> typeof(x) === Symbol && isvalid(String(x)) && x in _OPERATOR_ROLE_SET, roles_raw) && !isempty(roles_raw) ||
+        throw(ArgumentError("allowed roles must be a non-empty closed symbol set"))
+    length(unique(roles_raw)) == length(roles_raw) || throw(ArgumentError("allowed roles contain duplicates"))
+    roles = Tuple(sort(collect(roles_raw), by=String))
+
+    params_raw = parameter_schema
+    all(p -> typeof(p) === OperatorParameterSpecV1, params_raw) ||
+        throw(ArgumentError("parameter schema elements must be typed"))
+    names = Tuple(p.name for p in params_raw)
+    length(unique(names)) == length(names) || throw(ArgumentError("parameter schema has duplicate names"))
+    params = Tuple(sort(collect(params_raw), by=p -> String(p.name)))
+
+    groups = Tuple[]
+    used = Set{Int}()
+    for raw_group in commutative_input_groups
+        raw_group isa Tuple || throw(ArgumentError("commutative groups must be tuples"))
+        length(raw_group) >= 2 || throw(ArgumentError("commutative groups require at least two inputs"))
+        all(i -> typeof(i) <: Integer && !(i isa Bool) && 1 <= i <= input_arity, raw_group) ||
+            throw(ArgumentError("commutative input index is out of range"))
+        length(unique(raw_group)) == length(raw_group) || throw(ArgumentError("commutative group contains duplicates"))
+        any(i -> i in used, raw_group) && throw(ArgumentError("commutative groups overlap"))
+        ints = Tuple(Int(i) for i in raw_group)
+        union!(used, ints)
+        push!(groups, Tuple(sort(collect(ints))))
+    end
+    normalized_groups = Tuple(sort(groups, by=repr))
+
+    all(x -> typeof(x) === Symbol && isvalid(String(x)), allowed_conservation_effects) ||
+        throw(ArgumentError("allowed conservation effects must be valid symbols"))
+    all(x -> typeof(x) === Symbol && isvalid(String(x)), forbidden_conservation_effects) ||
+        throw(ArgumentError("forbidden conservation effects must be valid symbols"))
+    length(unique(allowed_conservation_effects)) == length(allowed_conservation_effects) ||
+        throw(ArgumentError("allowed conservation effects contain duplicates"))
+    length(unique(forbidden_conservation_effects)) == length(forbidden_conservation_effects) ||
+        throw(ArgumentError("forbidden conservation effects contain duplicates"))
+    isempty(intersect(Set(allowed_conservation_effects), Set(forbidden_conservation_effects))) ||
+        throw(ArgumentError("allowed and forbidden conservation effects overlap"))
+    allowed = Tuple(sort(collect(allowed_conservation_effects), by=String))
+    forbidden = Tuple(sort(collect(forbidden_conservation_effects), by=String))
+    (roles, params, normalized_groups, allowed, forbidden)
+end
+
 struct OperatorManifestV1
     operator_ref::OperatorRefV1
     manifest_hash::Digest256
@@ -225,19 +273,13 @@ struct OperatorManifestV1
          typeof(output_type_rule) === TimeDerivativeRuleV1 || typeof(output_type_rule) === SamplingRuleV1 ||
          typeof(output_type_rule) === DelayRuleV1 || typeof(output_type_rule) === EventTransitionRuleV1) ||
             throw(ArgumentError("operator manifest accepts core declarative rules only"))
-        roles = _normalize_symbol_set(allowed_roles, "allowed roles"; whitelist=_OPERATOR_ROLE_SET, nonempty=true)
-        allowed = _normalize_symbol_set(allowed_conservation_effects, "allowed conservation effects")
-        forbidden = _normalize_symbol_set(forbidden_conservation_effects, "forbidden conservation effects")
-        isempty(intersect(Set(allowed), Set(forbidden))) ||
-            throw(ArgumentError("allowed and forbidden conservation effects overlap"))
-        params = _tuple_or_argument(parameter_schema, "parameter schema")
-        all(p -> p isa OperatorParameterSpecV1, params) || throw(ArgumentError("parameter schema elements must be typed"))
-        params = Tuple(sort(collect(params), by=p -> String(p.name)))
-        _rule_parameter_names(params)
-        groups = _normalize_groups(commutative_input_groups, input_arity)
+        allowed_roles isa Tuple && parameter_schema isa Tuple && commutative_input_groups isa Tuple &&
+            allowed_conservation_effects isa Tuple && forbidden_conservation_effects isa Tuple ||
+            throw(ArgumentError("operator manifest collection fields must be tuples"))
+        roles, params, groups, allowed, forbidden = invoke(_sealed_normalize_manifest,
+            Tuple{Tuple,Tuple,Tuple,Tuple,Tuple,Int}, allowed_roles, parameter_schema,
+            commutative_input_groups, allowed_conservation_effects, forbidden_conservation_effects, input_arity)
         locality in _OPERATOR_LOCALITIES || throw(ArgumentError("operator locality is not in the closed vocabulary"))
-        input_arity == _checked_int(input_arity, "input arity") && output_arity == _checked_int(output_arity, "output arity") ||
-            throw(ArgumentError("operator arity is out of range"))
         invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, input_type_rule, input_arity, output_arity) &&
             invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, output_type_rule, input_arity, output_arity) ||
             throw(ArgumentError("manifest arity does not match its sealed type rule"))
@@ -254,7 +296,7 @@ struct OperatorManifestV1
             throw(ArgumentError("pure metadata is inconsistent with operator effects"))
         cse_allowed == !(stateful || stochastic || event) ||
             throw(ArgumentError("CSE permission is inconsistent with stateful/event metadata"))
-        all(x -> x isa Symbol && isvalid(String(x)), roles) &&
+        all(x -> typeof(x) === Symbol && isvalid(String(x)), roles) &&
             all(x -> x isa Symbol && isvalid(String(x)), allowed) &&
             all(x -> x isa Symbol && isvalid(String(x)), forbidden) &&
             all(x -> x isa OperatorParameterSpecV1, params) &&
@@ -275,15 +317,68 @@ function _operator_manifest_digest(operator_ref::OperatorRefV1, input_arity::Int
                                    allowed_roles, parameter_schema, locality, max_derivative_contribution, pure,
                                    stateful, stochastic, event, commutative_input_groups, cse_allowed,
                                    allowed_conservation_effects, forbidden_conservation_effects)
-    payload = (domain="FusionConceptAI.OperatorManifestV1", version="1", operator_ref=operator_ref,
-        input_arity=input_arity, output_arity=output_arity, input_type_rule=input_type_rule,
-        output_type_rule=output_type_rule, allowed_roles=allowed_roles, parameter_schema=parameter_schema,
-        locality=locality, max_derivative_contribution=max_derivative_contribution, pure=pure,
-        stateful=stateful, stochastic=stochastic, event=event,
-        commutative_input_groups=commutative_input_groups, cse_allowed=cse_allowed,
-        allowed_conservation_effects=allowed_conservation_effects,
-        forbidden_conservation_effects=forbidden_conservation_effects)
-    digest256_text(invoke(canonical_json, Tuple{Any}, payload))
+    io = IOBuffer()
+    function quote_string(s::String)
+        isvalid(s) || throw(ArgumentError("manifest text must be valid UTF-8"))
+        b = IOBuffer(); print(b, '"')
+        for c in s
+            if c == '"'; print(b, "\\\"")
+            elseif c == '\\'; print(b, "\\\\")
+            elseif c == '\b'; print(b, "\\b")
+            elseif c == '\f'; print(b, "\\f")
+            elseif c == '\n'; print(b, "\\n")
+            elseif c == '\r'; print(b, "\\r")
+            elseif c == '\t'; print(b, "\\t")
+            elseif UInt32(c) < 0x20; print(b, "\\u", lpad(string(UInt32(c), base=16), 4, '0'))
+            else; print(b, c)
+            end
+        end
+        print(b, '"'); String(take!(b))
+    end
+    function enc(x)
+        x === nothing && return "null"
+        x isa Bool && return x ? "true" : "false"
+        x isa String && return quote_string(x)
+        x isa Symbol && return quote_string(String(x))
+        x isa Enum && return quote_string(String(Symbol(x)))
+        typeof(x) in _P0_SAFE_INTEGER_TYPES && return string(x)
+        typeof(x) === UInt8 && return string(x)
+        x isa Rational && return object(("denominator", enc(denominator(x))), ("numerator", enc(numerator(x))))
+        x isa QualifiedRefV1 && return object(("id", enc(x.id)), ("version", enc(x.version)))
+        x isa OperatorRefV1 && return object(("qualified", enc(x.qualified)))
+        x isa UnitSignature && return object(("exponents", enc(x.exponents)))
+        x isa TemporalTypeV1 && return object(("clock_ref", enc(x.clock_ref)), ("derivative_order", enc(x.derivative_order)), ("kind", enc(x.kind)))
+        x isa PhysicalType && return object(("spatial_dimension", enc(x.spatial_dimension)), ("tensor_rank", enc(x.tensor_rank)),
+                                            ("temporal_type", enc(x.temporal_type)), ("units", enc(x.units)), ("value_kind", enc(x.value_kind)))
+        x isa OperatorParameterSpecV1 && return object(("name", enc(x.name)), ("required", enc(x.required)), ("type_tag", enc(x.type_tag)))
+        typeof(x) === ExactTypeRuleV1 && return object(("input_types", enc(x.input_types)), ("output_types", enc(x.output_types)), ("rule", "\"exact\""))
+        typeof(x) === SameTypeVariadicRuleV1 && return object(("maximum_arity", enc(x.maximum_arity)), ("minimum_arity", enc(x.minimum_arity)), ("rule", "\"same_type_variadic\""))
+        typeof(x) === ScalarProductRuleV1 && return object(("division", enc(x.division)), ("rule", "\"scalar_product\""))
+        typeof(x) === SpatialDerivativeRuleV1 && return object(("opcode", enc(x.opcode)), ("rule", "\"spatial_derivative\""))
+        typeof(x) === TimeDerivativeRuleV1 && return "{\"rule\":\"time_derivative\"}"
+        typeof(x) === SamplingRuleV1 && return object(("hold", enc(x.hold)), ("rule", "\"sampling\""))
+        typeof(x) === DelayRuleV1 && return "{\"rule\":\"delay\"}"
+        typeof(x) === EventTransitionRuleV1 && return object(("opcode", enc(x.opcode)), ("rule", "\"event_transition\""))
+        x isa Tuple && return "[" * join((enc(v) for v in x), ",") * "]"
+        throw(ArgumentError("manifest encoder encountered an unsealed value"))
+    end
+    function object(pairs::Vararg{Tuple{String,String}})
+        ordered = sort(collect(pairs), by=first)
+        names = first.(ordered)
+        length(unique(names)) == length(names) || throw(ArgumentError("manifest object has duplicate keys"))
+        "{" * join((quote_string(k) * ":" * v for (k, v) in ordered), ",") * "}"
+    end
+    payload = object(("allowed_conservation_effects", enc(allowed_conservation_effects)),
+        ("allowed_roles", enc(allowed_roles)), ("commutative_input_groups", enc(commutative_input_groups)),
+        ("cse_allowed", enc(cse_allowed)), ("domain", quote_string("FusionConceptAI.OperatorManifestV1")),
+        ("event", enc(event)), ("forbidden_conservation_effects", enc(forbidden_conservation_effects)),
+        ("input_arity", enc(input_arity)), ("input_type_rule", enc(input_type_rule)),
+        ("locality", enc(locality)), ("manifest_version", quote_string("1")),
+        ("max_derivative_contribution", enc(max_derivative_contribution)), ("operator_ref", enc(operator_ref)),
+        ("output_arity", enc(output_arity)), ("output_type_rule", enc(output_type_rule)),
+        ("parameter_schema", enc(parameter_schema)), ("pure", enc(pure)), ("stateful", enc(stateful)),
+        ("stochastic", enc(stochastic)))
+    Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(payload))))))
 end
 
 function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, output_arity::Integer,
@@ -293,16 +388,18 @@ function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, o
                             stateful::Bool=false, stochastic::Bool=false, event::Bool=false,
                             commutative_input_groups=(), cse_allowed::Union{Nothing,Bool}=nothing,
                             allowed_conservation_effects=(), forbidden_conservation_effects=(), manifest_hash=nothing)
-    ia, oa = _checked_int(input_arity, "input arity"), _checked_int(output_arity, "output arity")
+    typeof(input_arity) in _P0_SAFE_INTEGER_TYPES && typeof(output_arity) in _P0_SAFE_INTEGER_TYPES ||
+        throw(ArgumentError("operator arity must use a safe integer type"))
+    typemin(Int) <= input_arity <= typemax(Int) && typemin(Int) <= output_arity <= typemax(Int) ||
+        throw(ArgumentError("operator arity is out of range"))
+    ia, oa = Int(input_arity), Int(output_arity)
     ia >= 0 && oa >= 0 || throw(ArgumentError("operator arity cannot be negative"))
-    roles = _normalize_symbol_set(allowed_roles, "allowed roles"; whitelist=_OPERATOR_ROLE_SET, nonempty=true)
-    params = _tuple_or_argument(parameter_schema, "parameter schema")
-    all(p -> p isa OperatorParameterSpecV1, params) || throw(ArgumentError("parameter schema elements must be typed"))
-    params = Tuple(sort(collect(params), by=p -> String(p.name)))
-    groups = _normalize_groups(commutative_input_groups, ia)
-    allowed = _normalize_symbol_set(allowed_conservation_effects, "allowed conservation effects")
-    forbidden = _normalize_symbol_set(forbidden_conservation_effects, "forbidden conservation effects")
-    _rule_parameter_names(params)
+    allowed_roles isa Tuple && parameter_schema isa Tuple && commutative_input_groups isa Tuple &&
+        allowed_conservation_effects isa Tuple && forbidden_conservation_effects isa Tuple ||
+        throw(ArgumentError("operator manifest collection fields must be tuples"))
+    roles, params, groups, allowed, forbidden = invoke(_sealed_normalize_manifest,
+        Tuple{Tuple,Tuple,Tuple,Tuple,Tuple,Int}, allowed_roles, parameter_schema,
+        commutative_input_groups, allowed_conservation_effects, forbidden_conservation_effects, ia)
     (typeof(input_type_rule) === ExactTypeRuleV1 || typeof(input_type_rule) === SameTypeVariadicRuleV1 ||
      typeof(input_type_rule) === ScalarProductRuleV1 || typeof(input_type_rule) === SpatialDerivativeRuleV1 ||
      typeof(input_type_rule) === TimeDerivativeRuleV1 || typeof(input_type_rule) === SamplingRuleV1 ||
@@ -312,8 +409,7 @@ function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, o
      typeof(output_type_rule) === TimeDerivativeRuleV1 || typeof(output_type_rule) === SamplingRuleV1 ||
      typeof(output_type_rule) === DelayRuleV1 || typeof(output_type_rule) === EventTransitionRuleV1) ||
         throw(ArgumentError("operator manifest accepts core declarative rules only"))
-    max_derivative_contribution isa Bool && throw(ArgumentError("derivative contribution must be an integer"))
-    max_derivative_contribution isa Integer && 0 <= max_derivative_contribution <= 255 ||
+    typeof(max_derivative_contribution) in _P0_SAFE_INTEGER_TYPES && 0 <= max_derivative_contribution <= 255 ||
         throw(ArgumentError("derivative contribution must fit UInt8"))
     cse = cse_allowed === nothing ? !(stateful || stochastic || event) : cse_allowed
     mh = invoke(_operator_manifest_digest, Tuple{OperatorRefV1,Int,Int,OperatorTypeRuleV1,OperatorTypeRuleV1,Tuple,Tuple,Symbol,UInt8,Bool,Bool,Bool,Bool,Tuple,Bool,Tuple,Tuple}, operator_ref, ia, oa, input_type_rule, output_type_rule,
@@ -354,7 +450,7 @@ function register_operator(registry::OperatorRegistryV1, manifest::OperatorManif
 end
 
 function operator_manifest(registry::OperatorRegistryV1, ref::QualifiedRefV1)
-    operator_manifest(registry, ref.id, ref.version)
+    invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}}, registry, ref.id, ref.version)
 end
 function operator_manifest(registry::OperatorRegistryV1, id::String, version::Union{Nothing,String}=nothing)
     isvalid(id) && (version === nothing || isvalid(version)) || throw(ArgumentError("operator lookup reference is invalid UTF-8"))
@@ -441,6 +537,68 @@ function _validate_rule(rule::EventTransitionRuleV1, inputs, outputs, parameters
           ins[1].temporal_type.kind == event_time))
 end
 
+"""Sealed rule validator.  The broad signature is always reached with invoke."""
+function _sealed_validate_rule(rule::OperatorTypeRuleV1, inputs, outputs, parameters::NamedTuple)
+    ins, outs = Tuple(inputs), Tuple(outputs)
+    if typeof(rule) === ExactTypeRuleV1
+        return ins == rule.input_types && outs == rule.output_types
+    elseif typeof(rule) === SameTypeVariadicRuleV1
+        return length(outs) == 1 && length(ins) >= rule.minimum_arity && length(ins) <= rule.maximum_arity &&
+            !isempty(ins) && all(t -> t == ins[1], ins) && outs[1] == ins[1]
+    elseif typeof(rule) === ScalarProductRuleV1
+        return length(ins) == 2 && length(outs) == 1 && all(t -> t.tensor_rank == 0, ins) && outs[1].tensor_rank == 0 &&
+            outs[1].value_kind == ins[1].value_kind && outs[1].value_kind == ins[2].value_kind &&
+            ins[1].spatial_dimension == ins[2].spatial_dimension && outs[1].spatial_dimension == ins[1].spatial_dimension &&
+            (ins[1].temporal_type == ins[2].temporal_type ||
+             (ins[1].temporal_type.kind == static_time && ins[1].temporal_type.derivative_order == 0) ||
+             (ins[2].temporal_type.kind == static_time && ins[2].temporal_type.derivative_order == 0)) &&
+            outs[1].temporal_type == (ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type) &&
+            outs[1].units == UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] :
+                                                               ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))
+    elseif typeof(rule) === SpatialDerivativeRuleV1
+        return length(ins) == 1 && length(outs) == 1 && ins[1].spatial_dimension >= 1 &&
+            outs[1].spatial_dimension == ins[1].spatial_dimension && outs[1].temporal_type == ins[1].temporal_type &&
+            ((rule.opcode == :gradient && ins[1].tensor_rank == 0 && outs[1].tensor_rank == 1 && ins[1].value_kind == :scalar_field && outs[1].value_kind == :vector_field) ||
+             (rule.opcode == :divergence && ins[1].tensor_rank >= 1 && outs[1].tensor_rank == ins[1].tensor_rank - 1 && ins[1].value_kind == :vector_field && outs[1].value_kind == :scalar_field) ||
+             (rule.opcode == :curl && ins[1].tensor_rank == 1 && outs[1].tensor_rank == 1 && ins[1].spatial_dimension == 3 && ins[1].value_kind == :vector_field && outs[1].value_kind == :vector_field) ||
+             (rule.opcode == :laplace && ins[1].tensor_rank == 0 && outs[1].tensor_rank == 0 && ins[1].value_kind == outs[1].value_kind)) &&
+            outs[1].units == UnitSignature(ntuple(i -> ins[1].units.exponents[i] -
+                (i == 2 ? (rule.opcode == :laplace ? 2 : 1) : 0), 7))
+    elseif typeof(rule) === TimeDerivativeRuleV1
+        return length(ins) == 1 && length(outs) == 1 && ins[1].temporal_type.kind == differential_time &&
+            outs[1].value_kind == ins[1].value_kind && outs[1].tensor_rank == ins[1].tensor_rank &&
+            outs[1].spatial_dimension == ins[1].spatial_dimension && outs[1].temporal_type.kind == differential_time &&
+            Int(outs[1].temporal_type.derivative_order) == Int(ins[1].temporal_type.derivative_order) + 1 &&
+            outs[1].temporal_type.clock_ref == ins[1].temporal_type.clock_ref &&
+            outs[1].units == UnitSignature(ntuple(i -> ins[1].units.exponents[i] - (i == 3 ? 1 : 0), 7))
+    elseif typeof(rule) === SamplingRuleV1
+        target_kind = hasproperty(parameters, :target_kind) ? getproperty(parameters, :target_kind) : nothing
+        target_clock = hasproperty(parameters, :target_clock) ? getproperty(parameters, :target_clock) : nothing
+        return length(ins) == 1 && length(outs) == 1 && ins[1].value_kind == outs[1].value_kind &&
+            ins[1].tensor_rank == outs[1].tensor_rank && ins[1].spatial_dimension == outs[1].spatial_dimension &&
+            ins[1].units == outs[1].units &&
+            ((rule.hold ? ins[1].temporal_type.kind == discrete_time && outs[1].temporal_type.kind in (static_time, algebraic_time, differential_time, event_time) :
+                         ins[1].temporal_type.kind in (static_time, algebraic_time, differential_time, event_time) && outs[1].temporal_type.kind == discrete_time) &&
+             (rule.hold ? (target_kind isa Symbol && isvalid(String(target_kind)) && target_kind == Symbol(outs[1].temporal_type.kind) && target_clock === nothing) :
+                         (target_clock isa QualifiedRefV1 && target_clock == outs[1].temporal_type.clock_ref && target_kind === nothing)))
+    elseif typeof(rule) === DelayRuleV1
+        delay = hasproperty(parameters, :delay_seconds) ? getproperty(parameters, :delay_seconds) : nothing
+        valid_delay = typeof(delay) in _P0_SAFE_INTEGER_TYPES || typeof(delay) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(delay)
+        value64 = try Float64(delay) catch; NaN end
+        valid_delay = valid_delay && !(delay isa Bool) && isfinite(value64) && value64 >= 0
+        return length(ins) == 1 && length(outs) == 1 && ins[1] == outs[1] && ins[1].temporal_type.kind != static_time && valid_delay
+    elseif typeof(rule) === EventTransitionRuleV1
+        clocks = Tuple(t.temporal_type.clock_ref for t in (ins..., outs...))
+        clocked = Tuple(c for c in clocks if c !== nothing)
+        same_clock = isempty(clocked) || (length(clocked) == length(clocks) && all(c -> c == clocked[1], clocked))
+        return length(ins) == 2 && length(outs) == 1 && ins[1].tensor_rank == 0 &&
+            ins[1].spatial_dimension == ins[2].spatial_dimension && ins[2] == outs[1] && same_clock &&
+            ((rule.opcode == :threshold_switch && ins[1].value_kind == :control_signal && ins[1].temporal_type.kind in (static_time, differential_time, discrete_time)) ||
+             (rule.opcode == :event_reset && ins[1].value_kind == :event_signal && ins[1].temporal_type.kind == event_time))
+    end
+    throw(ArgumentError("operator rule is not sealed"))
+end
+
 function _derived_spatial_type(rule::SpatialDerivativeRuleV1, input::PhysicalType)
     delta = rule.opcode == :laplace ? 2 : 1
     kind, rank = input.value_kind, input.tensor_rank
@@ -469,7 +627,9 @@ function _sealed_infer_outputs(rule::OperatorTypeRuleV1, inputs, parameters)
         ins = Tuple(inputs)
         length(ins) == 2 || throw(ArgumentError("scalar product requires two inputs"))
         all(t -> t.tensor_rank == 0, ins) || throw(ArgumentError("scalar product requires scalar inputs"))
-        _temporal_compatible(ins[1].temporal_type, ins[2].temporal_type) ||
+        (ins[1].temporal_type == ins[2].temporal_type ||
+         (ins[1].temporal_type.kind == static_time && ins[1].temporal_type.derivative_order == 0) ||
+         (ins[2].temporal_type.kind == static_time && ins[2].temporal_type.derivative_order == 0)) ||
             throw(ArgumentError("scalar product crosses incompatible temporal types"))
         temporal = ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type
         value_kind = ins[1].value_kind == ins[2].value_kind ? ins[1].value_kind :
@@ -482,14 +642,27 @@ function _sealed_infer_outputs(rule::OperatorTypeRuleV1, inputs, parameters)
         ins[1].spatial_dimension >= 1 || throw(ArgumentError("spatial derivative requires spatial dimension"))
         rule.opcode == :curl && ins[1].spatial_dimension == 3 || rule.opcode != :curl ||
             throw(ArgumentError("curl is defined only in three dimensions"))
-        return (_derived_spatial_type(rule, ins[1]),)
+        input = ins[1]
+        delta = rule.opcode == :laplace ? 2 : 1
+        kind, rank = input.value_kind, input.tensor_rank
+        if rule.opcode == :gradient
+            kind, rank = :vector_field, 1
+        elseif rule.opcode == :divergence
+            kind, rank = :scalar_field, rank - 1
+        elseif rule.opcode == :curl
+            kind, rank = :vector_field, 1
+        end
+        return (PhysicalType(kind, rank, input.spatial_dimension, input.temporal_type,
+            UnitSignature(ntuple(i -> input.units.exponents[i] - (i == 2 ? delta : 0), 7))),)
     elseif typeof(rule) === TimeDerivativeRuleV1
         ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("time derivative requires one input"))
         input = ins[1]
         input.temporal_type.kind == differential_time || throw(ArgumentError("DT requires differential time"))
         order = Int(input.temporal_type.derivative_order) + 1
         order <= typemax(UInt8) || throw(ArgumentError("DT derivative order overflow"))
-        return (_physical_with_temporal(input, TemporalTypeV1(differential_time, order), -1),)
+        return (PhysicalType(input.value_kind, input.tensor_rank, input.spatial_dimension,
+            TemporalTypeV1(differential_time, order),
+            UnitSignature(ntuple(i -> input.units.exponents[i] - (i == 3 ? 1 : 0), 7))),)
     elseif typeof(rule) === SamplingRuleV1
         ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("sampling requires one input"))
         target_kind = hasproperty(parameters, :target_kind) ? getproperty(parameters, :target_kind) : nothing
@@ -595,17 +768,54 @@ function _validate_parameters(manifest::OperatorManifestV1, parameters)
     true
 end
 
+function _sealed_validate_parameters(manifest::OperatorManifestV1, parameters::NamedTuple)
+    names = keys(parameters)
+    schema = manifest.parameter_schema
+    schema_names = Tuple(p.name for p in schema)
+    all(n -> n in schema_names, names) || throw(ArgumentError("unknown operator parameter"))
+    for spec in schema
+        present = spec.name in names
+        spec.required && !present && throw(ArgumentError("required operator parameter is missing"))
+        present || continue
+        value = getproperty(parameters, spec.name)
+        if spec.type_tag == :finite_nonnegative_real || spec.type_tag == :finite_real
+            typeof(value) in _P0_SAFE_INTEGER_TYPES || typeof(value) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(value) ||
+                throw(ArgumentError("operator parameter numeric type is not sealed"))
+            value isa Bool && throw(ArgumentError("Bool is not a numeric parameter"))
+            finite_value = try Float64(value) catch; throw(ArgumentError("operator parameter cannot convert to Float64")) end
+            isfinite(finite_value) || throw(ArgumentError("operator parameter must be finite"))
+            spec.type_tag == :finite_nonnegative_real && finite_value >= 0 ||
+                spec.type_tag == :finite_real || throw(ArgumentError("operator parameter must be non-negative"))
+        elseif spec.type_tag == :qualified_ref
+            value isa QualifiedRefV1 || throw(ArgumentError("operator parameter requires QualifiedRefV1"))
+        elseif spec.type_tag == :symbol
+            value isa Symbol && isvalid(String(value)) || throw(ArgumentError("operator parameter requires a valid Symbol"))
+        elseif spec.type_tag == :nonnegative_integer
+            typeof(value) in _P0_SAFE_INTEGER_TYPES && !(value isa Bool) && value >= 0 ||
+                throw(ArgumentError("operator parameter requires a non-negative safe integer"))
+        else
+            throw(ArgumentError("operator parameter type tag is not sealed"))
+        end
+    end
+    true
+end
+
 function validate_operator_signature(registry::OperatorRegistryV1, ref::OperatorRefV1, inputs, outputs; parameters=(;))
-    manifest = operator_manifest(registry, ref.qualified.id, ref.qualified.version)
+    manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}}, registry,
+        ref.qualified.id, ref.qualified.version)
     ins, outs = Tuple(inputs), Tuple(outputs)
     length(ins) == manifest.input_arity && length(outs) == manifest.output_arity || throw(ArgumentError("operator arity mismatch"))
     all(t -> t isa PhysicalType, ins) && all(t -> t isa PhysicalType, outs) ||
         throw(ArgumentError("operator signature requires PhysicalType values"))
-    _validate_parameters(manifest, parameters)
+    parameters isa NamedTuple || throw(ArgumentError("operator parameters must be a NamedTuple"))
+    invoke(_sealed_validate_parameters, Tuple{OperatorManifestV1,NamedTuple}, manifest, parameters)
     expected_outputs = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any}, manifest.input_type_rule, ins, parameters)
     expected_outputs == outs || throw(ArgumentError("operator output does not match sealed rule inference"))
-    _validate_rule(manifest.input_type_rule, ins, outs, parameters) || throw(ArgumentError("operator input type rule rejected signature"))
-    manifest.output_type_rule === manifest.input_type_rule || _validate_rule(manifest.output_type_rule, ins, outs, parameters) || throw(ArgumentError("operator output type rule rejected signature"))
+    invoke(_sealed_validate_rule, Tuple{OperatorTypeRuleV1,Any,Any,NamedTuple}, manifest.input_type_rule, ins, outs, parameters) ||
+        throw(ArgumentError("operator input type rule rejected signature"))
+    manifest.output_type_rule === manifest.input_type_rule ||
+        invoke(_sealed_validate_rule, Tuple{OperatorTypeRuleV1,Any,Any,NamedTuple}, manifest.output_type_rule, ins, outs, parameters) ||
+        throw(ArgumentError("operator output type rule rejected signature"))
     true
 end
 

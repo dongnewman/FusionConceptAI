@@ -19,7 +19,9 @@ struct TypedAST
     nodes::Tuple{Vararg{TypedASTNode}}
     root::Int
     input_ports::Tuple{Vararg{Int}}
-    function TypedAST(nodes, root::Integer, input_ports=(); registry::OperatorRegistryV1=default_operator_registry())
+    function TypedAST(nodes, root::Integer, input_ports=(); registry=nothing)
+        registry_obj = registry === nothing ? invoke(default_operator_registry, Tuple{}) : registry
+        registry_obj isa OperatorRegistryV1 || throw(ArgumentError("AST registry must be OperatorRegistryV1"))
         ns = Tuple(nodes)
         isempty(ns) && throw(ArgumentError("typed AST cannot be empty"))
         root isa Bool && throw(ArgumentError("AST root must be an integer"))
@@ -44,7 +46,7 @@ struct TypedAST
         is_canonical_value(ns) || throw(ArgumentError("typed AST payload is not canonicalizable"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
-            _validate_ast_node(registry, n, ns, j)
+            _validate_ast_node(registry_obj, n, ns, j)
         end
         new(ns, Int(root), Tuple(Int(i) for i in input_ports))
     end
@@ -64,10 +66,11 @@ function _validate_ast_node(registry::OperatorRegistryV1, n::TypedASTNode, ns, j
     id = _ast_operator_id(n.opcode)
     id === nothing && throw(ArgumentError("unknown typed AST operator $(n.opcode)"))
     ref = OperatorRefV1(id, "v1")
-    rule = operator_manifest(registry, id, "v1").input_type_rule
+    rule = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}}, registry, id, "v1").input_type_rule
     inferred = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any}, rule, ins, n.parameters)
     inferred == (n.output_type,) || throw(ArgumentError("typed AST output does not match registry-derived output"))
-    validate_operator_signature(registry, ref, ins, (n.output_type,); parameters=n.parameters)
+    invoke(validate_operator_signature, Tuple{OperatorRegistryV1,OperatorRefV1,Any,Any}, registry, ref,
+        ins, (n.output_type,); parameters=n.parameters)
     nothing
 end
 
