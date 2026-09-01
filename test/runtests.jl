@@ -65,7 +65,7 @@ end
     @test PhysicalType(:scalar_field, 0, 3, :differential, U0).temporal_type.kind == differential_time
     @test_throws ArgumentError PhysicalType(:scalar_field, 0, 3, :unknown_time, U0)
     registry = default_operator_registry()
-    @test length(registry.operators) == 21
+    @test length(registry.operators) == 20
     t = PhysicalType(:scalar_field, 0, 3, differential, U0)
     static = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(static_time), U0)
     @test validate_operator_signature(registry, OperatorRefV1("ADD", "v1"), (t, t), (t,))
@@ -190,6 +190,65 @@ end
         TimeDerivativeRuleV1(), TimeDerivativeRuleV1(); max_derivative_contribution=0)
     @test validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"),
         (T0,), (T0,); parameters=(delay_seconds=1//2,))
+end
+
+@testset "P0 typed tensor operators and AST manifest bindings" begin
+    registry = default_operator_registry()
+    vector = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    tensor = PhysicalType(:vector_field, 2, 3, :differential, U0)
+    @test validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (vector, vector), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (scalar, vector), (scalar,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("DOT", "v1"), (vector, vector), (vector,))
+    @test validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector), (tensor,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector), (vector,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("TENSOR_PRODUCT", "v1"), (vector, vector),
+        (PhysicalType(:vector_field, 2, 3, :differential, UnitSignature((1, 0, 0, 0, 0, 0, 0))),))
+    @test validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,);
+        parameters=(contraction_order=1,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (scalar,);
+        parameters=(contraction_order=0,))
+    @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("CONTRACT", "v1"), (vector, vector), (vector,);
+        parameters=(contraction_order=1,))
+
+    dot_ast = TypedAST((TypedASTNode(:state, (), vector), TypedASTNode(:dot, (1, 1), scalar)), 2, (1,); registry=registry)
+    extra = OperatorManifestV1(OperatorRefV1("UNUSED", "v1"), 1, 1, SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1))
+    registry_extra = register_operator(registry, extra)
+    dot_ast_extra = TypedAST((TypedASTNode(:state, (), vector), TypedASTNode(:dot, (1, 1), scalar)), 2, (1,); registry=registry_extra)
+    @test canonical_hash(dot_ast) == canonical_hash(dot_ast_extra)
+    dot = operator_manifest(registry, "DOT")
+    dot_alt = OperatorManifestV1(dot.operator_ref, 2, 1, DotProductRuleV1(), DotProductRuleV1(); allowed_roles=(:boundary,))
+    registry_alt = OperatorRegistryV1(tuple((o for o in registry.operators if o.operator_ref != dot.operator_ref)..., dot_alt))
+    dot_ast_alt = TypedAST((TypedASTNode(:state, (), vector), TypedASTNode(:dot, (1, 1), scalar)), 2, (1,); registry=registry_alt)
+    @test canonical_hash(dot_ast) != canonical_hash(dot_ast_alt)
+    @test length(dot_ast.manifest_bindings) == 1
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), vector), TypedASTNode(:dot, (1, 1), scalar)), 2, (1,);
+        registry=registry, manifest_bindings=())
+
+    add_ast = TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:add, (1, 1), scalar)), 2, (1,); registry=registry)
+    add = operator_manifest(registry, "ADD")
+    add_alt = OperatorManifestV1(add.operator_ref, 2, 1, SameTypeVariadicRuleV1(2, 2), SameTypeVariadicRuleV1(2, 2);
+        allowed_roles=(:boundary,), commutative_input_groups=((1, 2),))
+    registry_add_alt = OperatorRegistryV1(tuple((o for o in registry.operators if o.operator_ref != add.operator_ref)..., add_alt))
+    add_ast_alt = TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:add, (1, 1), scalar)), 2, (1,); registry=registry_add_alt)
+    @test canonical_hash(add_ast) != canonical_hash(add_ast_alt)
+    @test canonical_hash(add_ast) == canonical_hash(TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:add, (1, 1), scalar)), 2, (1,); registry=registry))
+    @test_throws ArgumentError operator_manifest(registry, "INTEGRAL_KERNEL")
+end
+
+@testset "P0 constructor dispatch closure subprocess" begin
+    project = Base.active_project()
+    script = """
+using FusionConceptAI
+FusionConceptAI._checked_int(::Int, ::String) = typemax(Int)
+FusionConceptAI._validated_string(::String, ::String) = \"polluted\"
+FusionConceptAI._default_manifest(::String, ::Int, ::SameTypeVariadicRuleV1; kwargs...) = error(\"polluted\")
+@assert SameTypeVariadicRuleV1(2, 2).minimum_arity == 2
+@assert QualifiedRefV1(\"clock\", \"v1\").id == \"clock\"
+@assert length(default_operator_registry().operators) == 20
+println(\"constructor-dispatch-subprocess-ok\")
+"""
+    @test success(`$(Base.julia_cmd()) --project=$project -e $script`)
 end
 
 @testset "canonical identity/label and permutation invariance" begin

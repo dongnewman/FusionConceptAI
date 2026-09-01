@@ -6,7 +6,7 @@ struct TypedASTNode
     output_type::PhysicalType
     parameters::NamedTuple
     function TypedASTNode(opcode::Symbol, inputs, output_type::PhysicalType, parameters::NamedTuple=(;))
-        opcode in (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div,
+        opcode in (:state, :parameter, :constant, :identity, :add, :sub, :neg, :mul, :div, :dot, :tensor_product, :contract,
                    :gradient, :divergence, :curl, :dt) || throw(ArgumentError("unsupported or unproven typed AST opcode"))
         all(i -> i isa Integer && !isa(i, Bool) && typemin(Int) <= i <= typemax(Int) && i >= 1, inputs) ||
             throw(ArgumentError("AST input indexes must be in-range one-based integers"))
@@ -20,7 +20,9 @@ struct TypedAST
     nodes::Tuple{Vararg{TypedASTNode}}
     root::Int
     input_ports::Tuple{Vararg{Int}}
-    function TypedAST(nodes, root::Integer, input_ports=(); registry=nothing)
+    manifest_bindings::Tuple{Vararg{Tuple{OperatorRefV1,Digest256}}}
+    function TypedAST(nodes, root::Integer, input_ports=(); registry=nothing, manifest_bindings=nothing)
+        manifest_bindings === nothing || throw(ArgumentError("AST manifest bindings are derived and cannot be caller-supplied"))
         registry_obj = registry === nothing ? invoke(default_operator_registry, Tuple{}) : registry
         registry_obj isa OperatorRegistryV1 || throw(ArgumentError("AST registry must be OperatorRegistryV1"))
         ns = Tuple(nodes)
@@ -45,11 +47,20 @@ struct TypedAST
         all(reachable) || throw(ArgumentError("every AST node must be reachable from AST root"))
         invoke(_ast_closed_value_valid, Tuple{Any}, ns) ||
             throw(ArgumentError("typed AST payload is not a closed immutable value"))
+        bindings = Tuple{OperatorRefV1,Digest256}[]
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
             invoke(_validate_ast_node, Tuple{OperatorRegistryV1,TypedASTNode,Any,Int}, registry_obj, n, ns, j)
+            if !(n.opcode in (:state, :parameter, :constant))
+                id = invoke(_ast_operator_id, Tuple{Symbol}, n.opcode)
+                manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}}, registry_obj, id, "v1")
+                duplicate = any(b -> b[1].qualified.id === manifest.operator_ref.qualified.id &&
+                    b[1].qualified.version === manifest.operator_ref.qualified.version, bindings)
+                duplicate || push!(bindings, (manifest.operator_ref, manifest.manifest_hash))
+            end
         end
-        new(ns, Int(root), Tuple(Int(i) for i in input_ports))
+        sort!(bindings, by=b -> (b[1].qualified.id, b[1].qualified.version))
+        new(ns, Int(root), Tuple(Int(i) for i in input_ports), Tuple(bindings))
     end
 end
 
@@ -86,7 +97,8 @@ end
 
 _ast_operator_id(opcode::Symbol) = opcode == :identity ? "IDENTITY" : opcode == :add ? "ADD" :
     opcode == :sub ? "SUB" : opcode == :neg ? "NEG" : opcode == :mul ? "SCALAR_MUL" :
-    opcode == :div ? "SCALAR_DIV" : opcode == :dt ? "DT" : opcode == :gradient ? "GRAD" :
+    opcode == :div ? "SCALAR_DIV" : opcode == :dot ? "DOT" : opcode == :tensor_product ? "TENSOR_PRODUCT" :
+    opcode == :contract ? "CONTRACT" : opcode == :dt ? "DT" : opcode == :gradient ? "GRAD" :
     opcode == :divergence ? "DIV_OP" : opcode == :curl ? "CURL" : nothing
 
 function _validate_ast_node(registry::OperatorRegistryV1, n::TypedASTNode, ns, j::Int)
@@ -112,4 +124,5 @@ function ast_leaf(opcode::Symbol, ty::PhysicalType; parameters=(;), input_port=n
 end
 
 semantic_view(x::TypedASTNode) = (opcode=x.opcode, inputs=x.inputs, output_type=x.output_type, parameters=x.parameters)
-semantic_view(x::TypedAST) = (nodes=x.nodes, root=x.root, input_ports=x.input_ports)
+semantic_view(x::TypedAST) = (nodes=x.nodes, root=x.root, input_ports=x.input_ports,
+    manifest_bindings=x.manifest_bindings)

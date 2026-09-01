@@ -37,7 +37,8 @@ struct QualifiedRefV1
     version::String
     function QualifiedRefV1(id::AbstractString, version::AbstractString)
         !isempty(id) && !isempty(version) || throw(ArgumentError("qualified reference id/version cannot be empty"))
-        new(_validated_string(id, "qualified reference id"), _validated_string(version, "qualified reference version"))
+        new(invoke(_validated_string, Tuple{AbstractString,AbstractString}, id, "qualified reference id"),
+            invoke(_validated_string, Tuple{AbstractString,AbstractString}, version, "qualified reference version"))
     end
 end
 
@@ -153,7 +154,7 @@ struct ApplicabilityRecord
         status == not_applicable && proof_ref === nothing && throw(ArgumentError("not_applicable requires proof_ref"))
         normalized = proof_ref === nothing ? nothing : proof_ref isa Digest256 ? proof_ref :
                      proof_ref isa AbstractString ? Digest256(proof_ref) : throw(ArgumentError("proof_ref must be Digest256"))
-        new(_validated_string(obligation, "applicability obligation"), status, normalized)
+        new(invoke(_validated_string, Tuple{AbstractString,AbstractString}, obligation, "applicability obligation"), status, normalized)
     end
 end
 

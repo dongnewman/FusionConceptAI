@@ -35,8 +35,9 @@ struct SameTypeVariadicRuleV1 <: OperatorTypeRuleV1
     minimum_arity::Int
     maximum_arity::Int
     function SameTypeVariadicRuleV1(minimum_arity::Integer=1, maximum_arity::Integer=typemax(Int))
-        _checked_int(minimum_arity, "minimum arity") >= 0 || throw(ArgumentError("invalid variadic rule arity"))
-        lo, hi = _checked_int(minimum_arity, "minimum arity"), _checked_int(maximum_arity, "maximum arity")
+        invoke(_checked_int, Tuple{Any,Any}, minimum_arity, "minimum arity") >= 0 || throw(ArgumentError("invalid variadic rule arity"))
+        lo, hi = invoke(_checked_int, Tuple{Any,Any}, minimum_arity, "minimum arity"),
+            invoke(_checked_int, Tuple{Any,Any}, maximum_arity, "maximum arity")
         lo <= hi || throw(ArgumentError("invalid variadic rule arity"))
         new(lo, hi)
     end
@@ -45,6 +46,26 @@ struct ScalarProductRuleV1 <: OperatorTypeRuleV1
     division::Bool
     function ScalarProductRuleV1(division::Bool=false)
         new(division)
+    end
+end
+struct DotProductRuleV1 <: OperatorTypeRuleV1
+    function DotProductRuleV1()
+        new()
+    end
+end
+struct TensorProductRuleV1 <: OperatorTypeRuleV1
+    function TensorProductRuleV1()
+        new()
+    end
+end
+struct ContractRuleV1 <: OperatorTypeRuleV1
+    contraction_order::Int
+    function ContractRuleV1(contraction_order::Integer=1)
+        contraction_order isa Bool && throw(ArgumentError("contraction_order must be an integer"))
+        typeof(contraction_order) in _P0_SAFE_INTEGER_TYPES ||
+            throw(ArgumentError("contraction_order must use a safe integer type"))
+        1 <= contraction_order <= typemax(Int) || throw(ArgumentError("contraction_order is out of range"))
+        new(Int(contraction_order))
     end
 end
 struct SpatialDerivativeRuleV1 <: OperatorTypeRuleV1
@@ -84,6 +105,9 @@ semantic_view(x::OperatorParameterSpecV1) = (name=x.name, type_tag=x.type_tag, r
 semantic_view(x::ExactTypeRuleV1) = (input_types=x.input_types, output_types=x.output_types)
 semantic_view(x::SameTypeVariadicRuleV1) = (minimum_arity=x.minimum_arity, maximum_arity=x.maximum_arity)
 semantic_view(x::ScalarProductRuleV1) = (division=x.division,)
+semantic_view(::DotProductRuleV1) = (rule=:dot_product,)
+semantic_view(::TensorProductRuleV1) = (rule=:tensor_product,)
+semantic_view(x::ContractRuleV1) = (contraction_order=x.contraction_order,)
 semantic_view(x::SpatialDerivativeRuleV1) = (opcode=x.opcode,)
 semantic_view(::TimeDerivativeRuleV1) = (rule=:time_derivative,)
 semantic_view(x::SamplingRuleV1) = (hold=x.hold,)
@@ -163,7 +187,9 @@ function _sealed_rule_arity(rule::OperatorTypeRuleV1, input_arity::Int, output_a
         return input_arity == length(rule.input_types) && output_arity == length(rule.output_types)
     elseif typeof(rule) === SameTypeVariadicRuleV1
         return rule.minimum_arity <= input_arity <= rule.maximum_arity && output_arity == 1
-    elseif typeof(rule) === ScalarProductRuleV1 || typeof(rule) === EventTransitionRuleV1
+    elseif typeof(rule) === ScalarProductRuleV1 || typeof(rule) === DotProductRuleV1 ||
+           typeof(rule) === TensorProductRuleV1 || typeof(rule) === ContractRuleV1 ||
+           typeof(rule) === EventTransitionRuleV1
         return input_arity == 2 && output_arity == 1
     elseif typeof(rule) === SpatialDerivativeRuleV1 || typeof(rule) === TimeDerivativeRuleV1 ||
            typeof(rule) === SamplingRuleV1 || typeof(rule) === DelayRuleV1
@@ -173,7 +199,9 @@ function _sealed_rule_arity(rule::OperatorTypeRuleV1, input_arity::Int, output_a
 end
 
 function _sealed_rule_schema(rule::OperatorTypeRuleV1)
-    if typeof(rule) === DelayRuleV1
+    if typeof(rule) === ContractRuleV1
+        (OperatorParameterSpecV1(:contraction_order, :nonnegative_integer, true),)
+    elseif typeof(rule) === DelayRuleV1
         (OperatorParameterSpecV1(:delay_seconds, :finite_nonnegative_real, true),)
     elseif typeof(rule) === SamplingRuleV1
         rule.hold ? (OperatorParameterSpecV1(:target_kind, :symbol, true),) :
@@ -275,11 +303,15 @@ struct OperatorManifestV1
             throw(ArgumentError("operator manifest collection fields must be tuples"))
         input_arity >= 0 && output_arity >= 0 || throw(ArgumentError("operator arity cannot be negative"))
         (typeof(input_type_rule) === ExactTypeRuleV1 || typeof(input_type_rule) === SameTypeVariadicRuleV1 ||
-         typeof(input_type_rule) === ScalarProductRuleV1 || typeof(input_type_rule) === SpatialDerivativeRuleV1 ||
+         typeof(input_type_rule) === ScalarProductRuleV1 || typeof(input_type_rule) === DotProductRuleV1 ||
+         typeof(input_type_rule) === TensorProductRuleV1 || typeof(input_type_rule) === ContractRuleV1 ||
+         typeof(input_type_rule) === SpatialDerivativeRuleV1 ||
          typeof(input_type_rule) === TimeDerivativeRuleV1 || typeof(input_type_rule) === SamplingRuleV1 ||
          typeof(input_type_rule) === DelayRuleV1 || typeof(input_type_rule) === EventTransitionRuleV1) &&
         (typeof(output_type_rule) === ExactTypeRuleV1 || typeof(output_type_rule) === SameTypeVariadicRuleV1 ||
-         typeof(output_type_rule) === ScalarProductRuleV1 || typeof(output_type_rule) === SpatialDerivativeRuleV1 ||
+         typeof(output_type_rule) === ScalarProductRuleV1 || typeof(output_type_rule) === DotProductRuleV1 ||
+         typeof(output_type_rule) === TensorProductRuleV1 || typeof(output_type_rule) === ContractRuleV1 ||
+         typeof(output_type_rule) === SpatialDerivativeRuleV1 ||
          typeof(output_type_rule) === TimeDerivativeRuleV1 || typeof(output_type_rule) === SamplingRuleV1 ||
          typeof(output_type_rule) === DelayRuleV1 || typeof(output_type_rule) === EventTransitionRuleV1) ||
             throw(ArgumentError("operator manifest accepts core declarative rules only"))
@@ -379,6 +411,9 @@ function _operator_manifest_digest(operator_ref::OperatorRefV1, input_arity::Int
         typeof(x) === ExactTypeRuleV1 && return object(("input_types", enc(x.input_types)), ("output_types", enc(x.output_types)), ("rule", "\"exact\""))
         typeof(x) === SameTypeVariadicRuleV1 && return object(("maximum_arity", enc(x.maximum_arity)), ("minimum_arity", enc(x.minimum_arity)), ("rule", "\"same_type_variadic\""))
         typeof(x) === ScalarProductRuleV1 && return object(("division", enc(x.division)), ("rule", "\"scalar_product\""))
+        typeof(x) === DotProductRuleV1 && return "{\"rule\":\"dot_product\"}"
+        typeof(x) === TensorProductRuleV1 && return "{\"rule\":\"tensor_product\"}"
+        typeof(x) === ContractRuleV1 && return object(("contraction_order", enc(x.contraction_order)), ("rule", "\"contract\""))
         typeof(x) === SpatialDerivativeRuleV1 && return object(("opcode", enc(x.opcode)), ("rule", "\"spatial_derivative\""))
         typeof(x) === TimeDerivativeRuleV1 && return "{\"rule\":\"time_derivative\"}"
         typeof(x) === SamplingRuleV1 && return object(("hold", enc(x.hold)), ("rule", "\"sampling\""))
@@ -426,11 +461,15 @@ function OperatorManifestV1(operator_ref::OperatorRefV1, input_arity::Integer, o
         Tuple{Tuple,Tuple,Tuple,Tuple,Tuple,Int}, allowed_roles, parameter_schema,
         commutative_input_groups, allowed_conservation_effects, forbidden_conservation_effects, ia)
     (typeof(input_type_rule) === ExactTypeRuleV1 || typeof(input_type_rule) === SameTypeVariadicRuleV1 ||
-     typeof(input_type_rule) === ScalarProductRuleV1 || typeof(input_type_rule) === SpatialDerivativeRuleV1 ||
+     typeof(input_type_rule) === ScalarProductRuleV1 || typeof(input_type_rule) === DotProductRuleV1 ||
+     typeof(input_type_rule) === TensorProductRuleV1 || typeof(input_type_rule) === ContractRuleV1 ||
+     typeof(input_type_rule) === SpatialDerivativeRuleV1 ||
      typeof(input_type_rule) === TimeDerivativeRuleV1 || typeof(input_type_rule) === SamplingRuleV1 ||
      typeof(input_type_rule) === DelayRuleV1 || typeof(input_type_rule) === EventTransitionRuleV1) &&
     (typeof(output_type_rule) === ExactTypeRuleV1 || typeof(output_type_rule) === SameTypeVariadicRuleV1 ||
-     typeof(output_type_rule) === ScalarProductRuleV1 || typeof(output_type_rule) === SpatialDerivativeRuleV1 ||
+     typeof(output_type_rule) === ScalarProductRuleV1 || typeof(output_type_rule) === DotProductRuleV1 ||
+     typeof(output_type_rule) === TensorProductRuleV1 || typeof(output_type_rule) === ContractRuleV1 ||
+     typeof(output_type_rule) === SpatialDerivativeRuleV1 ||
      typeof(output_type_rule) === TimeDerivativeRuleV1 || typeof(output_type_rule) === SamplingRuleV1 ||
      typeof(output_type_rule) === DelayRuleV1 || typeof(output_type_rule) === EventTransitionRuleV1) ||
         throw(ArgumentError("operator manifest accepts core declarative rules only"))
@@ -463,7 +502,8 @@ struct OperatorRegistryV1
         refs = [o.operator_ref.qualified for o in ops]
         length(unique(refs)) == length(refs) || throw(ArgumentError("duplicate operator reference"))
         normalized = Tuple(sort(collect(ops), by=o -> (o.operator_ref.qualified.id, o.operator_ref.qualified.version)))
-        deep_immutable(normalized) && is_canonical_value(normalized) || throw(ArgumentError("operator registry must be immutable/canonical"))
+        # Every element is already a sealed immutable OperatorManifestV1; do not route
+        # authority through package-wide extensible value traits here.
         new(normalized)
     end
 end
@@ -580,6 +620,35 @@ function _sealed_validate_rule(rule::OperatorTypeRuleV1, inputs, outputs, parame
             outs[1].temporal_type == (ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type) &&
             outs[1].units == UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] :
                                                                ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))
+    elseif typeof(rule) === DotProductRuleV1 || typeof(rule) === TensorProductRuleV1 || typeof(rule) === ContractRuleV1
+        length(ins) == 2 && length(outs) == 1 || return false
+        a, b, out = ins[1], ins[2], outs[1]
+        temporal_ok = a.temporal_type == b.temporal_type ||
+            (a.temporal_type.kind == static_time && a.temporal_type.derivative_order == 0) ||
+            (b.temporal_type.kind == static_time && b.temporal_type.derivative_order == 0)
+        temporal = a.temporal_type.kind == static_time ? b.temporal_type : a.temporal_type
+        rank_ok = if typeof(rule) === DotProductRuleV1
+            a.tensor_rank >= 1 && b.tensor_rank >= 1 && out.tensor_rank == 0
+        elseif typeof(rule) === TensorProductRuleV1
+            a.tensor_rank <= typemax(Int) - b.tensor_rank && out.tensor_rank == a.tensor_rank + b.tensor_rank
+        else
+            k = hasproperty(parameters, :contraction_order) ? getproperty(parameters, :contraction_order) : nothing
+            k isa Integer && !(k isa Bool) && typeof(k) in _P0_SAFE_INTEGER_TYPES &&
+                1 <= k <= min(a.tensor_rank, b.tensor_rank) &&
+                (a.tensor_rank - Int(k)) <= typemax(Int) - (b.tensor_rank - Int(k)) &&
+                out.tensor_rank == (a.tensor_rank - Int(k)) + (b.tensor_rank - Int(k))
+        end
+        expected_kind_ok = if typeof(rule) === DotProductRuleV1
+            out.value_kind === :scalar_field
+        elseif typeof(rule) === ContractRuleV1 && out.tensor_rank == 0
+            out.value_kind === :scalar_field
+        else
+            out.value_kind == a.value_kind
+        end
+        return a.value_kind == b.value_kind && expected_kind_ok &&
+            a.spatial_dimension == b.spatial_dimension && out.spatial_dimension == a.spatial_dimension &&
+            temporal_ok && out.temporal_type == temporal && rank_ok &&
+            out.units == UnitSignature(ntuple(i -> a.units.exponents[i] + b.units.exponents[i], 7))
     elseif typeof(rule) === SpatialDerivativeRuleV1
         return length(ins) == 1 && length(outs) == 1 && ins[1].spatial_dimension >= 1 &&
             outs[1].spatial_dimension == ins[1].spatial_dimension && outs[1].temporal_type == ins[1].temporal_type &&
@@ -664,6 +733,35 @@ function _sealed_infer_outputs(rule::OperatorTypeRuleV1, inputs, parameters)
         return (PhysicalType(value_kind, 0, ins[1].spatial_dimension, temporal,
             UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] :
                                               ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))),)
+    elseif typeof(rule) === DotProductRuleV1 || typeof(rule) === TensorProductRuleV1 || typeof(rule) === ContractRuleV1
+        ins = Tuple(inputs)
+        length(ins) == 2 || throw(ArgumentError("binary tensor operator requires two inputs"))
+        a, b = ins[1], ins[2]
+        a.value_kind == b.value_kind || throw(ArgumentError("tensor operator requires matching value kinds"))
+        a.spatial_dimension == b.spatial_dimension || throw(ArgumentError("tensor operator requires matching spatial dimensions"))
+        temporal_ok = a.temporal_type == b.temporal_type ||
+            (a.temporal_type.kind == static_time && a.temporal_type.derivative_order == 0) ||
+            (b.temporal_type.kind == static_time && b.temporal_type.derivative_order == 0)
+        temporal_ok || throw(ArgumentError("tensor operator crosses incompatible temporal types"))
+        temporal = a.temporal_type.kind == static_time ? b.temporal_type : a.temporal_type
+        rank = if typeof(rule) === DotProductRuleV1
+            a.tensor_rank >= 1 && b.tensor_rank >= 1 || throw(ArgumentError("DOT requires nonzero-rank operands"))
+            0
+        elseif typeof(rule) === TensorProductRuleV1
+            a.tensor_rank <= typemax(Int) - b.tensor_rank || throw(ArgumentError("TENSOR_PRODUCT rank overflow"))
+            a.tensor_rank + b.tensor_rank
+        else
+            k = hasproperty(parameters, :contraction_order) ? getproperty(parameters, :contraction_order) : nothing
+            k isa Integer && !(k isa Bool) && typeof(k) in _P0_SAFE_INTEGER_TYPES ||
+                throw(ArgumentError("CONTRACT requires a safe contraction_order"))
+            1 <= k <= min(a.tensor_rank, b.tensor_rank) || throw(ArgumentError("CONTRACT order is out of rank bounds"))
+            left_rank, right_rank = a.tensor_rank - Int(k), b.tensor_rank - Int(k)
+            left_rank <= typemax(Int) - right_rank || throw(ArgumentError("CONTRACT output rank overflow"))
+            left_rank + right_rank
+        end
+        result_kind = (typeof(rule) === DotProductRuleV1 || rank == 0) ? :scalar_field : a.value_kind
+        return (PhysicalType(result_kind, rank, a.spatial_dimension, temporal,
+            UnitSignature(ntuple(i -> a.units.exponents[i] + b.units.exponents[i], 7))),)
     elseif typeof(rule) === SpatialDerivativeRuleV1
         ins = Tuple(inputs); length(ins) == 1 || throw(ArgumentError("spatial derivative requires one input"))
         ins[1].spatial_dimension >= 1 || throw(ArgumentError("spatial derivative requires spatial dimension"))
@@ -855,28 +953,31 @@ end
 
 function default_operator_registry()
     manifests = OperatorManifestV1[]
-    push!(manifests, _default_manifest("IDENTITY", 1, SameTypeVariadicRuleV1(1, 1)))
-    push!(manifests, _default_manifest("ADD", 2, SameTypeVariadicRuleV1(2, 2), commutative_input_groups=((1, 2),)))
-    push!(manifests, _default_manifest("SUB", 2, SameTypeVariadicRuleV1(2, 2)))
-    push!(manifests, _default_manifest("NEG", 1, SameTypeVariadicRuleV1(1, 1)))
-    push!(manifests, _default_manifest("SCALAR_MUL", 2, ScalarProductRuleV1()))
-    push!(manifests, _default_manifest("SCALAR_DIV", 2, ScalarProductRuleV1(true)))
-    push!(manifests, _default_manifest("CONTRACT", 2, SameTypeVariadicRuleV1(2, 2)))
-    push!(manifests, _default_manifest("DOT", 2, SameTypeVariadicRuleV1(2, 2)))
-    push!(manifests, _default_manifest("TENSOR_PRODUCT", 2, SameTypeVariadicRuleV1(2, 2)))
-    push!(manifests, _default_manifest("DT", 1, TimeDerivativeRuleV1(), max_derivative_contribution=1))
-    push!(manifests, _default_manifest("GRAD", 1, SpatialDerivativeRuleV1(:gradient), max_derivative_contribution=1))
-    push!(manifests, _default_manifest("DIV_OP", 1, SpatialDerivativeRuleV1(:divergence), max_derivative_contribution=1))
-    push!(manifests, _default_manifest("CURL", 1, SpatialDerivativeRuleV1(:curl), max_derivative_contribution=1))
-    push!(manifests, _default_manifest("LAPLACE", 1, SpatialDerivativeRuleV1(:laplace), max_derivative_contribution=2))
-    push!(manifests, _default_manifest("INTEGRAL_KERNEL", 1, SameTypeVariadicRuleV1(1, 1), pure=false, stateful=true))
-    push!(manifests, _default_manifest("DELAY", 1, DelayRuleV1(), pure=false, stateful=true, parameter_schema=(OperatorParameterSpecV1(:delay_seconds, :finite_nonnegative_real, true),)))
-    push!(manifests, _default_manifest("SAMPLE", 1, SamplingRuleV1(false), pure=false, stateful=true,
+    make_default = (id, arity, rule; kwargs...) ->
+        invoke(_default_manifest, Tuple{Any,Any,OperatorTypeRuleV1}, id, arity, rule; kwargs...)
+    push!(manifests, make_default("IDENTITY", 1, SameTypeVariadicRuleV1(1, 1)))
+    push!(manifests, make_default("ADD", 2, SameTypeVariadicRuleV1(2, 2), commutative_input_groups=((1, 2),)))
+    push!(manifests, make_default("SUB", 2, SameTypeVariadicRuleV1(2, 2)))
+    push!(manifests, make_default("NEG", 1, SameTypeVariadicRuleV1(1, 1)))
+    push!(manifests, make_default("SCALAR_MUL", 2, ScalarProductRuleV1()))
+    push!(manifests, make_default("SCALAR_DIV", 2, ScalarProductRuleV1(true)))
+    push!(manifests, make_default("CONTRACT", 2, ContractRuleV1(1),
+        parameter_schema=(OperatorParameterSpecV1(:contraction_order, :nonnegative_integer, true),)))
+    push!(manifests, make_default("DOT", 2, DotProductRuleV1()))
+    push!(manifests, make_default("TENSOR_PRODUCT", 2, TensorProductRuleV1()))
+    push!(manifests, make_default("DT", 1, TimeDerivativeRuleV1(), max_derivative_contribution=1))
+    push!(manifests, make_default("GRAD", 1, SpatialDerivativeRuleV1(:gradient), max_derivative_contribution=1))
+    push!(manifests, make_default("DIV_OP", 1, SpatialDerivativeRuleV1(:divergence), max_derivative_contribution=1))
+    push!(manifests, make_default("CURL", 1, SpatialDerivativeRuleV1(:curl), max_derivative_contribution=1))
+    push!(manifests, make_default("LAPLACE", 1, SpatialDerivativeRuleV1(:laplace), max_derivative_contribution=2))
+    # INTEGRAL_KERNEL is intentionally not registered until a typed kernel contract exists.
+    push!(manifests, make_default("DELAY", 1, DelayRuleV1(), pure=false, stateful=true, parameter_schema=(OperatorParameterSpecV1(:delay_seconds, :finite_nonnegative_real, true),)))
+    push!(manifests, make_default("SAMPLE", 1, SamplingRuleV1(false), pure=false, stateful=true,
         parameter_schema=(OperatorParameterSpecV1(:target_clock, :qualified_ref, true),)))
-    push!(manifests, _default_manifest("HOLD", 1, SamplingRuleV1(true), pure=false, stateful=true,
+    push!(manifests, make_default("HOLD", 1, SamplingRuleV1(true), pure=false, stateful=true,
         parameter_schema=(OperatorParameterSpecV1(:target_kind, :symbol, true),)))
-    push!(manifests, _default_manifest("THRESHOLD_SWITCH", 2, EventTransitionRuleV1(:threshold_switch), pure=false, event=true))
-    push!(manifests, _default_manifest("EVENT_RESET", 2, EventTransitionRuleV1(:event_reset), pure=false, event=true))
-    push!(manifests, _default_manifest("ALGEBRAIC_CONSTRAINT", 1, SameTypeVariadicRuleV1(1, 1)))
+    push!(manifests, make_default("THRESHOLD_SWITCH", 2, EventTransitionRuleV1(:threshold_switch), pure=false, event=true))
+    push!(manifests, make_default("EVENT_RESET", 2, EventTransitionRuleV1(:event_reset), pure=false, event=true))
+    push!(manifests, make_default("ALGEBRAIC_CONSTRAINT", 1, SameTypeVariadicRuleV1(1, 1)))
     OperatorRegistryV1(tuple(manifests...))
 end
