@@ -276,10 +276,24 @@ end
     program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_node), (3,), (1, 2); registry=registry)
     @test program.roots == (3,)
     @test length(program.used_manifest_bindings) == 1
+    @test_throws MethodError ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;), scalar, ((1, 2),), true, true, nothing)
+    @test_throws MethodError TypedASTProgramV1((ASTInputV1(1, scalar),), (1,), (1,), ())
     add_left = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
     add_right = ASTApplyV1(OperatorRefV1("ADD", "v1"), (4, 3), (;); registry=registry, input_types=(scalar, scalar))
     three_to_five = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), add_left, add_right), (5,), (1, 2, 3); registry=registry)
     @test three_to_five.nodes[5].output_type == scalar
+    duplicate_add = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
+    duplicate_add_2 = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
+    combine_duplicate = ASTApplyV1(OperatorRefV1("ADD", "v1"), (3, 4), (;); registry=registry, input_types=(scalar, scalar))
+    cse_copy = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), duplicate_add, duplicate_add_2, combine_duplicate), (5,), (1, 2); registry=registry)
+    cse_shared_final = ASTApplyV1(OperatorRefV1("ADD", "v1"), (3, 3), (;); registry=registry, input_types=(scalar, scalar))
+    cse_shared = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), duplicate_add, cse_shared_final), (4,), (1, 2); registry=registry)
+    @test length(cse_copy.nodes) == length(cse_shared.nodes)
+    @test canonical_hash(cse_copy) == canonical_hash(cse_shared)
+    stateful_copy_a = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
+    stateful_copy_b = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
+    stateful_program = TypedASTProgramV1((ASTInputV1(1, scalar), stateful_copy_a, stateful_copy_b), (2, 3), (1,); registry=registry)
+    @test length(stateful_program.nodes) == 3
     program_dispatch_script = """
     using FusionConceptAI
     scalar = PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((0,0,0,0,0,0,0)))
@@ -312,6 +326,30 @@ end
     bridged = TypedASTProgramV1(old; registry=registry)
     @test bridged.roots == (2,) && bridged.input_ports == (1,)
     @test length(bridged.used_manifest_bindings) == 1
+    old_with_metadata = TypedAST((TypedASTNode(:state, (), scalar, (state_name=:x,)),
+        TypedASTNode(:parameter, (), scalar, (name=:gain, scale=2,)),
+        TypedASTNode(:add, (1, 2), scalar)), 3, (1,); registry=registry)
+    metadata_bridge = TypedASTProgramV1(old_with_metadata; registry=registry)
+    @test metadata_bridge.nodes[1].parameters == (state_name=:x,)
+    @test metadata_bridge.nodes[2].parameters == (name=:gain, scale=2)
+    old_constant_without_value = TypedAST((TypedASTNode(:constant, (), scalar, (scale=2,)),), 1, (); registry=registry)
+    @test_throws ArgumentError TypedASTProgramV1(old_constant_without_value; registry=registry)
+    custom_identity = OperatorManifestV1(OperatorRefV1("IDENTITY", "v1"), 1, 1,
+        SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1); allowed_roles=(:governing,))
+    custom_registry = OperatorRegistryV1(filter(m -> m.operator_ref.qualified.id != "IDENTITY", registry.operators))
+    custom_registry = register_operator(custom_registry, custom_identity)
+    old_custom = TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,); registry=custom_registry)
+    @test_throws ArgumentError TypedASTProgramV1(old_custom; registry=registry)
+    grouped_manifest = OperatorManifestV1(OperatorRefV1("ADD_NONCONTIG", "v1"), 3, 1,
+        SameTypeVariadicRuleV1(3, 3), SameTypeVariadicRuleV1(3, 3); commutative_input_groups=((2, 3),))
+    grouped_registry = register_operator(registry, grouped_manifest)
+    grouped_a = ASTApplyV1(OperatorRefV1("ADD_NONCONTIG", "v1"), (1, 2, 3), (;);
+        registry=grouped_registry, input_types=(scalar, scalar, scalar))
+    grouped_b = ASTApplyV1(OperatorRefV1("ADD_NONCONTIG", "v1"), (1, 3, 2), (;);
+        registry=grouped_registry, input_types=(scalar, scalar, scalar))
+    grouped_program_a = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), grouped_a), (4,), (1, 2, 3); registry=grouped_registry)
+    grouped_program_b = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), grouped_b), (4,), (1, 2, 3); registry=grouped_registry)
+    @test canonical_hash(grouped_program_a) == canonical_hash(grouped_program_b)
 
     delay1 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
     delay2 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))

@@ -133,21 +133,27 @@ abstract type AbstractTypedASTNodeV1 end
 struct ASTInputV1 <: AbstractTypedASTNodeV1
     port::Int
     output_type::PhysicalType
-    function ASTInputV1(port::Integer, output_type::PhysicalType)
+    parameters::NamedTuple
+    function ASTInputV1(port::Integer, output_type::PhysicalType, parameters::NamedTuple=(;))
         typeof(port) in _P0_SAFE_INTEGER_TYPES && !(port isa Bool) ||
             throw(ArgumentError("AST input port must use a safe integer type"))
         typemin(Int) <= port <= typemax(Int) && port >= 1 ||
             throw(ArgumentError("AST input port is out of range"))
-        new(Int(port), output_type)
+        invoke(_ast_closed_value_valid, Tuple{Any}, parameters) ||
+            throw(ArgumentError("AST input parameters are not a closed immutable value"))
+        new(Int(port), output_type, parameters)
     end
 end
 
 struct ASTParameterV1 <: AbstractTypedASTNodeV1
     name::Symbol
     output_type::PhysicalType
-    function ASTParameterV1(name::Symbol, output_type::PhysicalType)
+    parameters::NamedTuple
+    function ASTParameterV1(name::Symbol, output_type::PhysicalType, parameters::NamedTuple=(;))
         !isempty(String(name)) && isvalid(String(name)) || throw(ArgumentError("AST parameter name is invalid"))
-        new(name, output_type)
+        invoke(_ast_closed_value_valid, Tuple{Any}, parameters) ||
+            throw(ArgumentError("AST parameter metadata is not a closed immutable value"))
+        new(name, output_type, parameters)
     end
 end
 
@@ -155,16 +161,17 @@ struct ASTConstantV1 <: AbstractTypedASTNodeV1
     name::Symbol
     value::Any
     output_type::PhysicalType
-    function ASTConstantV1(name::Symbol, value, output_type::PhysicalType)
+    parameters::NamedTuple
+    function ASTConstantV1(name::Symbol, value, output_type::PhysicalType, parameters::NamedTuple=(;))
         !isempty(String(name)) && isvalid(String(name)) || throw(ArgumentError("AST constant name is invalid"))
         invoke(_ast_closed_value_valid, Tuple{Any}, value) ||
             throw(ArgumentError("AST constant value is not a closed immutable value"))
-        new(name, value, output_type)
+        invoke(_ast_closed_value_valid, Tuple{Any}, parameters) ||
+            throw(ArgumentError("AST constant metadata is not a closed immutable value"))
+        new(name, value, output_type, parameters)
     end
 end
 ASTConstantV1(value, output_type::PhysicalType) = ASTConstantV1(:constant, value, output_type)
-
-struct _ASTApplySeal end
 
 struct ASTApplyV1 <: AbstractTypedASTNodeV1
     operator_ref::OperatorRefV1
@@ -174,42 +181,40 @@ struct ASTApplyV1 <: AbstractTypedASTNodeV1
     commutative_input_groups::Tuple
     pure::Bool
     cse_allowed::Bool
-    function ASTApplyV1(operator_ref::OperatorRefV1, inputs::Tuple, parameters::NamedTuple,
-                         output_type::PhysicalType, groups::Tuple, pure::Bool, cse_allowed::Bool,
-                         ::_ASTApplySeal)
-        new(operator_ref, inputs, parameters, output_type, groups, pure, cse_allowed)
+    function ASTApplyV1(operator_ref::OperatorRefV1, inputs, parameters::NamedTuple,
+                         registry::OperatorRegistryV1, input_types)
+        ins = try Tuple(inputs) catch; throw(ArgumentError("AST apply input indexes must be tuple-like")) end
+        all(i -> typeof(i) in _P0_SAFE_INTEGER_TYPES && !(i isa Bool) && typemin(Int) <= i <= typemax(Int) && i >= 1, ins) ||
+            throw(ArgumentError("AST apply input indexes must be safe positive integers"))
+        types = try Tuple(input_types) catch; throw(ArgumentError("AST apply input types must be tuple-like")) end
+        length(types) == length(ins) && all(t -> typeof(t) === PhysicalType, types) ||
+            throw(ArgumentError("AST apply input types must match input indexes"))
+        manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}},
+            registry, operator_ref.qualified.id, operator_ref.qualified.version)
+        invoke(_sealed_validate_parameters, Tuple{OperatorManifestV1,NamedTuple}, manifest, parameters)
+        inferred = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any},
+            manifest.input_type_rule, types, parameters)
+        invoke(validate_operator_signature, Tuple{OperatorRegistryV1,OperatorRefV1,Any,Any},
+            registry, operator_ref, types, inferred; parameters=parameters)
+        new(operator_ref, Tuple(Int(i) for i in ins), parameters, inferred[1],
+            manifest.commutative_input_groups, manifest.pure, manifest.cse_allowed)
     end
 end
 
 function ASTApplyV1(operator_ref::OperatorRefV1, inputs, parameters::NamedTuple=(;);
                     registry::OperatorRegistryV1, input_types)
-    ins = Tuple(inputs)
-    all(i -> typeof(i) in _P0_SAFE_INTEGER_TYPES && !(i isa Bool) && typemin(Int) <= i <= typemax(Int) && i >= 1, ins) ||
-        throw(ArgumentError("AST apply input indexes must be safe positive integers"))
-    types = Tuple(input_types)
-    length(types) == length(ins) && all(t -> typeof(t) === PhysicalType, types) ||
-        throw(ArgumentError("AST apply input types must match input indexes"))
-    manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}},
-        registry, operator_ref.qualified.id, operator_ref.qualified.version)
-    invoke(_sealed_validate_parameters, Tuple{OperatorManifestV1,NamedTuple}, manifest, parameters)
-    inferred = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any},
-        manifest.input_type_rule, types, parameters)
-    invoke(validate_operator_signature, Tuple{OperatorRegistryV1,OperatorRefV1,Any,Any},
-        registry, operator_ref, types, inferred; parameters=parameters)
-    ASTApplyV1(operator_ref, Tuple(Int(i) for i in ins), parameters, inferred[1],
-        manifest.commutative_input_groups, manifest.pure, manifest.cse_allowed, _ASTApplySeal())
+    ASTApplyV1(operator_ref, inputs, parameters, registry, input_types)
 end
-
-struct _ASTProgramSeal end
 
 struct TypedASTProgramV1
     nodes::Tuple{Vararg{AbstractTypedASTNodeV1}}
     roots::Tuple{Vararg{Int}}
     input_ports::Tuple{Vararg{Int}}
     used_manifest_bindings::Tuple{Vararg{Tuple{OperatorRefV1,Digest256}}}
-    function TypedASTProgramV1(nodes::Tuple, roots::Tuple, input_ports::Tuple,
-                               used_manifest_bindings::Tuple, ::_ASTProgramSeal)
-        new(nodes, roots, input_ports, used_manifest_bindings)
+    function TypedASTProgramV1(nodes, roots, input_ports, registry::OperatorRegistryV1)
+        ns, rs, ps, bindings = invoke(_ast_program_components, Tuple{Any,Any,Any,OperatorRegistryV1},
+            nodes, roots, input_ports, registry)
+        new(ns, rs, ps, bindings)
     end
 end
 
@@ -226,11 +231,55 @@ function _ast_program_binding_index(bindings, ref::OperatorRefV1)
     nothing
 end
 
-function TypedASTProgramV1(nodes, roots, input_ports=(); registry=nothing, used_manifest_bindings=nothing)
-    used_manifest_bindings === nothing ||
-        throw(ArgumentError("AST program manifest bindings are derived and cannot be caller-supplied"))
-    registry_obj = registry === nothing ? invoke(default_operator_registry, Tuple{}) : registry
-    registry_obj isa OperatorRegistryV1 || throw(ArgumentError("AST program registry must be OperatorRegistryV1"))
+function _ast_program_cse_key(n::ASTApplyV1, inputs::Tuple, nodes::Vector{AbstractTypedASTNodeV1}, manifest_hash::Digest256)
+    children = [invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[i], Tuple(nodes)) for i in inputs]
+    for group in n.commutative_input_groups
+        positions = Tuple(Int(i) for i in group)
+        values = sort([children[p] for p in positions])
+        for (p, value) in zip(positions, values)
+            children[p] = value
+        end
+    end
+    _ast_program_canonical((operator_ref=n.operator_ref, manifest_hash=manifest_hash,
+        inputs=Tuple(children), parameters=n.parameters, output_type=n.output_type))
+end
+
+"""Normalize only proven pure/CSE-safe subexpressions; stateful nodes retain identity."""
+function _ast_program_cse_normalize(ns::Tuple, rs::Tuple, registry_obj::OperatorRegistryV1)
+    kept = AbstractTypedASTNodeV1[]
+    remap = zeros(Int, length(ns))
+    seen = Dict{String,Int}()
+    root_set = Set(rs)
+    for i in eachindex(ns)
+        n = ns[i]
+        if typeof(n) === ASTApplyV1
+            mapped_inputs = Tuple(remap[j] for j in n.inputs)
+            candidate = invoke(ASTApplyV1, Tuple{OperatorRefV1,Any,NamedTuple,OperatorRegistryV1,Any},
+                n.operator_ref, mapped_inputs, n.parameters, registry_obj,
+                Tuple(invoke(_ast_program_output_type, Tuple{AbstractTypedASTNodeV1}, kept[j]) for j in mapped_inputs))
+            if n.pure && n.cse_allowed
+                manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}},
+                    registry_obj, n.operator_ref.qualified.id, n.operator_ref.qualified.version)
+                key = invoke(_ast_program_cse_key, Tuple{ASTApplyV1,Tuple,Vector{AbstractTypedASTNodeV1},Digest256},
+                    candidate, mapped_inputs, kept, manifest.manifest_hash)
+                existing = get(seen, key, 0)
+                if existing != 0 && !(i in root_set && existing in root_set)
+                    remap[i] = existing
+                    continue
+                end
+                seen[key] = length(kept) + 1
+            end
+            push!(kept, candidate)
+            remap[i] = length(kept)
+        else
+            push!(kept, n)
+            remap[i] = length(kept)
+        end
+    end
+    Tuple(kept), Tuple(remap[r] for r in rs)
+end
+
+function _ast_program_components(nodes, roots, input_ports, registry_obj::OperatorRegistryV1)
     ns = Tuple(nodes)
     isempty(ns) && throw(ArgumentError("AST program must contain at least one node"))
     all(n -> typeof(n) === ASTInputV1 || typeof(n) === ASTParameterV1 ||
@@ -296,25 +345,36 @@ function TypedASTProgramV1(nodes, roots, input_ports=(); registry=nothing, used_
     all(reachable) || throw(ArgumentError("every AST program node must be reachable from a root"))
     all(i -> consumed_inputs[i], input_nodes) || throw(ArgumentError("every ASTInput must be consumed by an apply node"))
     sort!(bindings, by=b -> (b[1].qualified.id, b[1].qualified.version))
-    TypedASTProgramV1(ns, Tuple(Int(i) for i in rs), Tuple(Int(i) for i in ps), Tuple(bindings), _ASTProgramSeal())
+    normalized_nodes, normalized_roots = invoke(_ast_program_cse_normalize,
+        Tuple{Tuple,Tuple,OperatorRegistryV1}, ns, Tuple(Int(i) for i in rs), registry_obj)
+    (normalized_nodes, normalized_roots, Tuple(Int(i) for i in ps), Tuple(bindings))
+end
+
+function TypedASTProgramV1(nodes, roots, input_ports=(); registry=nothing, used_manifest_bindings=nothing)
+    used_manifest_bindings === nothing ||
+        throw(ArgumentError("AST program manifest bindings are derived and cannot be caller-supplied"))
+    registry_obj = registry === nothing ? invoke(default_operator_registry, Tuple{}) : registry
+    registry_obj isa OperatorRegistryV1 || throw(ArgumentError("AST program registry must be OperatorRegistryV1"))
+    TypedASTProgramV1(nodes, roots, input_ports, registry_obj)
 end
 
 function _ast_program_node_payload(n, refs, nodes)
     if typeof(n) === ASTInputV1
-        return (kind=:input, port=n.port, output_type=n.output_type)
+        return (kind=:input, port=n.port, parameters=n.parameters, output_type=n.output_type)
     elseif typeof(n) === ASTParameterV1
-        return (kind=:parameter, output_type=n.output_type)
+        return (kind=:parameter, parameters=n.parameters, output_type=n.output_type)
     elseif typeof(n) === ASTConstantV1
-        return (kind=:constant, value=n.value, output_type=n.output_type)
+        return (kind=:constant, value=n.value, parameters=n.parameters, output_type=n.output_type)
     elseif typeof(n) === ASTApplyV1
         input_refs = [refs[i] for i in n.inputs]
         if n.pure && n.cse_allowed
             for group in n.commutative_input_groups
                 positions = Tuple(Int(i) for i in group)
-                sorted_positions = sortperm(collect(positions), by=p ->
-                    invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[n.inputs[p]], nodes))
-                for (position, source) in zip(positions, sorted_positions)
-                    input_refs[position] = refs[n.inputs[source]]
+                permutation = sortperm(collect(eachindex(positions)), by=k ->
+                    invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[n.inputs[positions[k]]], nodes))
+                for (k, position) in enumerate(positions)
+                    source_position = positions[permutation[k]]
+                    input_refs[position] = refs[n.inputs[source_position]]
                 end
             end
         end
@@ -326,11 +386,11 @@ end
 
 function _ast_program_node_key(n, nodes)
     if typeof(n) === ASTInputV1
-        return "input|" * string(n.port) * "|" * _ast_program_canonical(n.output_type)
+        return "input|" * string(n.port) * "|" * _ast_program_canonical(n.parameters) * "|" * _ast_program_canonical(n.output_type)
     elseif typeof(n) === ASTParameterV1
-        return "parameter|" * _ast_program_canonical(n.output_type)
+        return "parameter|" * _ast_program_canonical(n.parameters) * "|" * _ast_program_canonical(n.output_type)
     elseif typeof(n) === ASTConstantV1
-        return "constant|" * _ast_program_canonical((value=n.value, output_type=n.output_type))
+        return "constant|" * _ast_program_canonical((value=n.value, parameters=n.parameters, output_type=n.output_type))
     elseif typeof(n) === ASTApplyV1
         children = [invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[i], nodes) for i in n.inputs]
         if n.pure && n.cse_allowed
@@ -414,32 +474,45 @@ function _ast_program_semantic_payload(program::TypedASTProgramV1)
     best
 end
 
-semantic_view(x::ASTInputV1) = (port=x.port, output_type=x.output_type)
-semantic_view(x::ASTParameterV1) = (output_type=x.output_type,)
-semantic_view(x::ASTConstantV1) = (value=x.value, output_type=x.output_type)
+semantic_view(x::ASTInputV1) = (port=x.port, parameters=x.parameters, output_type=x.output_type)
+semantic_view(x::ASTParameterV1) = (parameters=x.parameters, output_type=x.output_type)
+semantic_view(x::ASTConstantV1) = (value=x.value, parameters=x.parameters, output_type=x.output_type)
 semantic_view(x::ASTApplyV1) = (operator_ref=x.operator_ref, inputs=x.inputs, parameters=x.parameters, output_type=x.output_type)
 semantic_view(x::TypedASTProgramV1) = _ast_program_semantic_payload(x)
 
 """Lossless compatibility bridge from the validated single-root TypedAST."""
 function TypedASTProgramV1(ast::TypedAST; registry=nothing)
     registry_obj = registry === nothing ? invoke(default_operator_registry, Tuple{}) : registry
+    registry_obj isa OperatorRegistryV1 || throw(ArgumentError("AST registry must be OperatorRegistryV1"))
     old = ast.nodes
     converted = AbstractTypedASTNodeV1[]
     for (i, n) in enumerate(old)
         if n.opcode === :state
-            push!(converted, ASTInputV1(i, n.output_type))
+            push!(converted, ASTInputV1(i, n.output_type, n.parameters))
         elseif n.opcode === :parameter
-            push!(converted, ASTParameterV1(Symbol("parameter_", i), n.output_type))
+            parameter_name = hasproperty(n.parameters, :name) ? getproperty(n.parameters, :name) : Symbol("parameter_", i)
+            parameter_name isa Symbol || throw(ArgumentError("legacy parameter name is not representable"))
+            push!(converted, ASTParameterV1(parameter_name, n.output_type, n.parameters))
         elseif n.opcode === :constant
-            value = hasproperty(n.parameters, :value) ? getproperty(n.parameters, :value) : nothing
-            push!(converted, ASTConstantV1(Symbol("constant_", i), value, n.output_type))
+            hasproperty(n.parameters, :value) || throw(ArgumentError("legacy constant has no losslessly representable value"))
+            value = getproperty(n.parameters, :value)
+            push!(converted, ASTConstantV1(Symbol("constant_", i), value, n.output_type, n.parameters))
         else
             ins = Tuple(invoke(_ast_program_output_type, Tuple{AbstractTypedASTNodeV1}, converted[j]) for j in n.inputs)
             ref = OperatorRefV1(invoke(_ast_operator_id, Tuple{Symbol}, n.opcode), "v1")
             push!(converted, ASTApplyV1(ref, n.inputs, n.parameters; registry=registry_obj, input_types=ins))
         end
     end
-    TypedASTProgramV1(Tuple(converted), (ast.root,), ast.input_ports; registry=registry_obj)
+    program = TypedASTProgramV1(Tuple(converted), (ast.root,), ast.input_ports; registry=registry_obj)
+    old_bindings, new_bindings = ast.manifest_bindings, program.used_manifest_bindings
+    length(old_bindings) == length(new_bindings) || throw(ArgumentError("legacy AST manifest binding cannot be losslessly mapped"))
+    for (old_binding, new_binding) in zip(old_bindings, new_bindings)
+        old_binding[1].qualified.id == new_binding[1].qualified.id &&
+            old_binding[1].qualified.version == new_binding[1].qualified.version &&
+            old_binding[2].value == new_binding[2].value ||
+            throw(ArgumentError("legacy AST manifest binding differs from target registry"))
+    end
+    program
 end
 
 typed_ast_program(ast::TypedAST; registry=nothing) = TypedASTProgramV1(ast; registry=registry)
