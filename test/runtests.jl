@@ -129,6 +129,8 @@ end
     @test_throws ArgumentError TypedAST((state1, state2), 1, (1,))
     @test_throws ArgumentError TypedAST((state1, state2), 1, (1, 2))
     @test_throws ArgumentError TypedAST((state1, state2, TypedASTNode(:identity, (1,), T0)), 3, (1, 2))
+    @test_throws ArgumentError TypedAST((state1, TypedASTNode(:parameter, (), T0)), 1, (1,))
+    @test_throws ArgumentError TypedAST((state1, TypedASTNode(:identity, (1,), T0)), 1, (1,))
     t1 = PhysicalType(:vector_field, 1, 3, :differential, U0)
     @test_throws ArgumentError TypedOperatorHypergraphV1((node(:state, t1), node(:state, T0)),
         (TypedHyperedge("bad-port", (1,), (2,), ast_leaf(:state, T0), :governing),))

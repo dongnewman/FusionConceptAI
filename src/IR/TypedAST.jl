@@ -34,7 +34,7 @@ struct TypedAST
             foreach(mark, ns[i].inputs)
         end
         mark(Int(root))
-        all(reachable[i] for i in state_leaves) || throw(ArgumentError("every bound state leaf must be reachable from AST root"))
+        all(reachable) || throw(ArgumentError("every AST node must be reachable from AST root"))
         deep_immutable(ns) || throw(ArgumentError("typed AST payload must be deeply immutable"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
