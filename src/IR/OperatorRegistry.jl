@@ -183,6 +183,16 @@ function _sealed_rule_schema(rule::OperatorTypeRuleV1)
     end
 end
 
+"""Compare sealed parameter schemas field-by-field, never through overloaded equality."""
+function _sealed_schema_equal(a::Tuple, b::Tuple)
+    length(a) == length(b) || return false
+    for (left, right) in zip(a, b)
+        typeof(left) === OperatorParameterSpecV1 && typeof(right) === OperatorParameterSpecV1 || return false
+        left.name === right.name && left.type_tag === right.type_tag && left.required === right.required || return false
+    end
+    true
+end
+
 """Fixed normalization used by both manifest constructors; never dispatches on user types."""
 function _sealed_normalize_manifest(allowed_roles::Tuple, parameter_schema::Tuple,
                                     commutative_input_groups::Tuple,
@@ -283,11 +293,26 @@ struct OperatorManifestV1
         invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, input_type_rule, input_arity, output_arity) &&
             invoke(_sealed_rule_arity, Tuple{OperatorTypeRuleV1,Int,Int}, output_type_rule, input_arity, output_arity) ||
             throw(ArgumentError("manifest arity does not match its sealed type rule"))
-        params == invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, input_type_rule) &&
-            params == invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
+        invoke(_sealed_schema_equal, Tuple{Tuple,Tuple}, params,
+            invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, input_type_rule)) &&
+            invoke(_sealed_schema_equal, Tuple{Tuple,Tuple}, params,
+                invoke(_sealed_rule_schema, Tuple{OperatorTypeRuleV1}, output_type_rule)) ||
             throw(ArgumentError("manifest parameter schema is not rule-derived"))
-        max_derivative_contribution == invoke(_rule_derivative_contribution, Tuple{OperatorTypeRuleV1}, input_type_rule) ==
-            invoke(_rule_derivative_contribution, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
+        input_derivative = if typeof(input_type_rule) === SpatialDerivativeRuleV1
+            UInt8(input_type_rule.opcode === :laplace ? 2 : 1)
+        elseif typeof(input_type_rule) === TimeDerivativeRuleV1
+            UInt8(1)
+        else
+            UInt8(0)
+        end
+        output_derivative = if typeof(output_type_rule) === SpatialDerivativeRuleV1
+            UInt8(output_type_rule.opcode === :laplace ? 2 : 1)
+        elseif typeof(output_type_rule) === TimeDerivativeRuleV1
+            UInt8(1)
+        else
+            UInt8(0)
+        end
+        max_derivative_contribution === input_derivative && input_derivative === output_derivative ||
             throw(ArgumentError("max derivative contribution is not rule-derived"))
         event == invoke(_rule_event, Tuple{OperatorTypeRuleV1}, input_type_rule) &&
             event == invoke(_rule_event, Tuple{OperatorTypeRuleV1}, output_type_rule) ||
@@ -583,7 +608,9 @@ function _sealed_validate_rule(rule::OperatorTypeRuleV1, inputs, outputs, parame
                          (target_clock isa QualifiedRefV1 && target_clock == outs[1].temporal_type.clock_ref && target_kind === nothing)))
     elseif typeof(rule) === DelayRuleV1
         delay = hasproperty(parameters, :delay_seconds) ? getproperty(parameters, :delay_seconds) : nothing
-        valid_delay = typeof(delay) in _P0_SAFE_INTEGER_TYPES || typeof(delay) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(delay)
+        valid_delay = typeof(delay) in _P0_SAFE_INTEGER_TYPES || typeof(delay) in _P0_SAFE_FLOAT_TYPES ||
+            (delay isa Rational && typeof(numerator(delay)) in _P0_SAFE_INTEGER_TYPES &&
+             typeof(denominator(delay)) in _P0_SAFE_INTEGER_TYPES)
         value64 = try Float64(delay) catch; NaN end
         valid_delay = valid_delay && !(delay isa Bool) && isfinite(value64) && value64 >= 0
         return length(ins) == 1 && length(outs) == 1 && ins[1] == outs[1] && ins[1].temporal_type.kind != static_time && valid_delay
@@ -779,7 +806,9 @@ function _sealed_validate_parameters(manifest::OperatorManifestV1, parameters::N
         present || continue
         value = getproperty(parameters, spec.name)
         if spec.type_tag == :finite_nonnegative_real || spec.type_tag == :finite_real
-            typeof(value) in _P0_SAFE_INTEGER_TYPES || typeof(value) in _P0_SAFE_FLOAT_TYPES || _p0_safe_rational(value) ||
+            typeof(value) in _P0_SAFE_INTEGER_TYPES || typeof(value) in _P0_SAFE_FLOAT_TYPES ||
+                (value isa Rational && typeof(numerator(value)) in _P0_SAFE_INTEGER_TYPES &&
+                 typeof(denominator(value)) in _P0_SAFE_INTEGER_TYPES) ||
                 throw(ArgumentError("operator parameter numeric type is not sealed"))
             value isa Bool && throw(ArgumentError("Bool is not a numeric parameter"))
             finite_value = try Float64(value) catch; throw(ArgumentError("operator parameter cannot convert to Float64")) end

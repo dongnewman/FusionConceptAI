@@ -10,7 +10,8 @@ struct TypedASTNode
                    :gradient, :divergence, :curl, :dt) || throw(ArgumentError("unsupported or unproven typed AST opcode"))
         all(i -> i isa Integer && !isa(i, Bool) && typemin(Int) <= i <= typemax(Int) && i >= 1, inputs) ||
             throw(ArgumentError("AST input indexes must be in-range one-based integers"))
-        is_canonical_value(parameters) || throw(ArgumentError("AST parameters are not canonicalizable"))
+        invoke(_ast_closed_value_valid, Tuple{Any}, parameters) ||
+            throw(ArgumentError("AST parameters are not a closed immutable value"))
         new(opcode, Tuple(Int(i) for i in inputs), output_type, parameters)
     end
 end
@@ -42,14 +43,45 @@ struct TypedAST
         end
         mark(Int(root))
         all(reachable) || throw(ArgumentError("every AST node must be reachable from AST root"))
-        deep_immutable(ns) || throw(ArgumentError("typed AST payload must be deeply immutable"))
-        is_canonical_value(ns) || throw(ArgumentError("typed AST payload is not canonicalizable"))
+        invoke(_ast_closed_value_valid, Tuple{Any}, ns) ||
+            throw(ArgumentError("typed AST payload is not a closed immutable value"))
         for (j, n) in enumerate(ns)
             all(i -> i < j, n.inputs) || throw(ArgumentError("AST must be topologically ordered"))
-            _validate_ast_node(registry_obj, n, ns, j)
+            invoke(_validate_ast_node, Tuple{OperatorRegistryV1,TypedASTNode,Any,Int}, registry_obj, n, ns, j)
         end
         new(ns, Int(root), Tuple(Int(i) for i in input_ports))
     end
+end
+
+"""AST-owned closed value checker; no package-wide trait or semantic dispatch is used."""
+function _ast_closed_value_valid(x::Any)
+    function visit(x)
+        x === nothing && return true
+        typeof(x) === String && return isvalid(x)
+        Base.ismutabletype(typeof(x)) && !(typeof(x) === String || x isa Symbol) && return false
+        x isa AbstractString && return false
+        x isa Bool && return true
+        x isa Symbol && return isvalid(String(x))
+        typeof(x) in _P0_SAFE_INTEGER_TYPES && return true
+        typeof(x) in _P0_SAFE_FLOAT_TYPES && return isfinite(Float64(x))
+        if x isa Rational
+            return typeof(numerator(x)) in _P0_SAFE_INTEGER_TYPES && typeof(denominator(x)) in _P0_SAFE_INTEGER_TYPES
+        end
+        x isa Enum && return true
+        x isa Tuple && return all(visit, x)
+        x isa NamedTuple && return all(visit, values(x))
+        x isa QualifiedRefV1 && return visit(x.id) && visit(x.version)
+        x isa OperatorRefV1 && return visit(x.qualified)
+        x isa OperatorParameterSpecV1 && return visit(x.name) && visit(x.type_tag) && visit(x.required)
+        x isa Digest256 && return visit(x.value)
+        x isa UnitSignature && return visit(x.exponents)
+        x isa TemporalTypeV1 && return visit(x.kind) && visit(x.derivative_order) && visit(x.clock_ref)
+        x isa PhysicalType && return visit(x.value_kind) && visit(x.tensor_rank) && visit(x.spatial_dimension) &&
+            visit(x.temporal_type) && visit(x.units)
+        x isa TypedASTNode && return visit(x.opcode) && visit(x.inputs) && visit(x.output_type) && visit(x.parameters)
+        false
+    end
+    visit(x)
 end
 
 _ast_operator_id(opcode::Symbol) = opcode == :identity ? "IDENTITY" : opcode == :add ? "ADD" :

@@ -176,6 +176,22 @@ end
         registry=OperatorRegistryV1())
 end
 
+@testset "P0 sealed AST value and manifest checks" begin
+    registry = default_operator_registry()
+    @test_throws ArgumentError TypedASTNode(:state, (), T0, (mutable_value=Any[1],))
+    @test TypedASTNode(:state, (), T0, (exact_rational=1//2,)).parameters.exact_rational == 1//2
+    vector = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    @test_throws ArgumentError TypedAST((TypedASTNode(:state, (), T0),
+        TypedASTNode(:add, (1, 1), vector)), 2, (1,); registry=registry)
+    add = operator_manifest(registry, "ADD")
+    @test_throws ArgumentError OperatorManifestV1(add.operator_ref, 2, 1, add.input_type_rule, add.output_type_rule;
+        parameter_schema=(OperatorParameterSpecV1(:evil, :symbol, true),))
+    @test_throws ArgumentError OperatorManifestV1(OperatorRefV1("DT_EVIL", "v1"), 1, 1,
+        TimeDerivativeRuleV1(), TimeDerivativeRuleV1(); max_derivative_contribution=0)
+    @test validate_operator_signature(registry, OperatorRefV1("DELAY", "v1"),
+        (T0,), (T0,); parameters=(delay_seconds=1//2,))
+end
+
 @testset "canonical identity/label and permutation invariance" begin
     a = fixture_graph(labels=("visible-a", "visible-b"), ids=("first", "second"))
     b = fixture_graph(labels=("redacted-a", "redacted-b"), ids=("other-1", "other-2"))
