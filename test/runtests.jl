@@ -350,6 +350,14 @@ end
     grouped_program_a = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), grouped_a), (4,), (1, 2, 3); registry=grouped_registry)
     grouped_program_b = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar), grouped_b), (4,), (1, 2, 3); registry=grouped_registry)
     @test canonical_hash(grouped_program_a) == canonical_hash(grouped_program_b)
+    interleaved_add_a = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 1), (;); registry=registry, input_types=(scalar, scalar))
+    interleaved_add_b = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 1), (;); registry=registry, input_types=(scalar, scalar))
+    interleaved_outer = ASTApplyV1(OperatorRefV1("ADD", "v1"), (2, 4), (;); registry=registry, input_types=(scalar, scalar))
+    interleaved_roots = TypedASTProgramV1((ASTInputV1(1, scalar), interleaved_add_a, interleaved_add_b,
+        ASTInputV1(4, scalar), interleaved_outer), (3, 5), (1, 4); registry=registry)
+    @test length(interleaved_roots.roots) == 2 && length(unique(interleaved_roots.roots)) == 2
+    @test interleaved_roots.input_ports == (1, 3)
+    @test canonical_hash(interleaved_roots) isa Digest256
 
     delay1 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
     delay2 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))

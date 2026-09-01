@@ -247,6 +247,7 @@ end
 """Normalize only proven pure/CSE-safe subexpressions; stateful nodes retain identity."""
 function _ast_program_cse_normalize(ns::Tuple, rs::Tuple, registry_obj::OperatorRegistryV1)
     kept = AbstractTypedASTNodeV1[]
+    kept_original = Int[]
     remap = zeros(Int, length(ns))
     seen = Dict{String,Int}()
     root_set = Set(rs)
@@ -263,20 +264,74 @@ function _ast_program_cse_normalize(ns::Tuple, rs::Tuple, registry_obj::Operator
                 key = invoke(_ast_program_cse_key, Tuple{ASTApplyV1,Tuple,Vector{AbstractTypedASTNodeV1},Digest256},
                     candidate, mapped_inputs, kept, manifest.manifest_hash)
                 existing = get(seen, key, 0)
-                if existing != 0 && !(i in root_set && existing in root_set)
+                existing_original = existing == 0 ? 0 : kept_original[existing]
+                if existing != 0 && !(i in root_set && existing_original in root_set)
                     remap[i] = existing
                     continue
                 end
                 seen[key] = length(kept) + 1
             end
             push!(kept, candidate)
+            push!(kept_original, i)
             remap[i] = length(kept)
         else
             push!(kept, n)
+            push!(kept_original, i)
             remap[i] = length(kept)
         end
     end
-    Tuple(kept), Tuple(remap[r] for r in rs)
+    Tuple(kept), Tuple(remap[r] for r in rs), Tuple(remap), Tuple(kept_original)
+end
+
+function _ast_program_validate_normalized(ns::Tuple, rs::Tuple, ps::Tuple, registry_obj::OperatorRegistryV1)
+    isempty(ns) && throw(ArgumentError("normalized AST program cannot be empty"))
+    all(n -> typeof(n) === ASTInputV1 || typeof(n) === ASTParameterV1 ||
+        typeof(n) === ASTConstantV1 || typeof(n) === ASTApplyV1, ns) ||
+        throw(ArgumentError("normalized AST contains an unsealed node"))
+    isempty(rs) || all(i -> typeof(i) in _P0_SAFE_INTEGER_TYPES && !(i isa Bool) && 1 <= i <= length(ns), rs) ||
+        throw(ArgumentError("normalized AST root is invalid"))
+    length(unique(rs)) == length(rs) || throw(ArgumentError("normalized AST roots are not unique"))
+    all(i -> typeof(i) in _P0_SAFE_INTEGER_TYPES && !(i isa Bool) && 1 <= i <= length(ns), ps) ||
+        throw(ArgumentError("normalized AST input port is invalid"))
+    length(unique(ps)) == length(ps) || throw(ArgumentError("normalized AST input declarations are not unique"))
+    input_nodes = Tuple(i for i in eachindex(ns) if typeof(ns[i]) === ASTInputV1)
+    Tuple(sort(collect(input_nodes))) == Tuple(sort(collect(ps))) ||
+        throw(ArgumentError("normalized AST input declarations do not bind all inputs"))
+    input_numbers = Tuple(ns[i].port for i in input_nodes)
+    length(unique(input_numbers)) == length(input_numbers) ||
+        throw(ArgumentError("normalized AST input port numbers are not unique"))
+    reachable = falses(length(ns)); consumed = falses(length(ns)); visiting = falses(length(ns))
+    function visit(i)
+        1 <= i <= length(ns) || throw(ArgumentError("normalized AST dependency is out of range"))
+        visiting[i] && throw(ArgumentError("normalized AST contains a cycle"))
+        reachable[i] && return
+        visiting[i] = true
+        n = ns[i]
+        if typeof(n) === ASTApplyV1
+            all(j -> 1 <= j < i, n.inputs) || throw(ArgumentError("normalized AST is not topologically ordered"))
+            foreach(visit, n.inputs)
+            ins = Tuple(invoke(_ast_program_output_type, Tuple{AbstractTypedASTNodeV1}, ns[j]) for j in n.inputs)
+            manifest = invoke(operator_manifest, Tuple{OperatorRegistryV1,String,Union{Nothing,String}},
+                registry_obj, n.operator_ref.qualified.id, n.operator_ref.qualified.version)
+            invoke(_sealed_validate_parameters, Tuple{OperatorManifestV1,NamedTuple}, manifest, n.parameters)
+            inferred = invoke(_sealed_infer_outputs, Tuple{OperatorTypeRuleV1,Any,Any}, manifest.input_type_rule, ins, n.parameters)
+            inferred[1] == n.output_type || throw(ArgumentError("normalized AST output is not registry-derived"))
+            n.commutative_input_groups === manifest.commutative_input_groups && n.pure === manifest.pure &&
+                n.cse_allowed === manifest.cse_allowed || throw(ArgumentError("normalized AST metadata is not manifest-derived"))
+            invoke(validate_operator_signature, Tuple{OperatorRegistryV1,OperatorRefV1,Any,Any},
+                registry_obj, n.operator_ref, ins, (n.output_type,); parameters=n.parameters)
+            for j in n.inputs
+                typeof(ns[j]) === ASTInputV1 && (consumed[j] = true)
+            end
+        elseif typeof(n) === ASTInputV1 && any(r -> r == i, rs)
+            consumed[i] = true
+        end
+        visiting[i] = false; reachable[i] = true
+    end
+    foreach(visit, rs)
+    all(reachable) || throw(ArgumentError("normalized AST contains an unreachable node"))
+    all(i -> consumed[i], input_nodes) || throw(ArgumentError("normalized AST contains an unconsumed input"))
+    nothing
 end
 
 function _ast_program_components(nodes, roots, input_ports, registry_obj::OperatorRegistryV1)
@@ -345,9 +400,12 @@ function _ast_program_components(nodes, roots, input_ports, registry_obj::Operat
     all(reachable) || throw(ArgumentError("every AST program node must be reachable from a root"))
     all(i -> consumed_inputs[i], input_nodes) || throw(ArgumentError("every ASTInput must be consumed by an apply node"))
     sort!(bindings, by=b -> (b[1].qualified.id, b[1].qualified.version))
-    normalized_nodes, normalized_roots = invoke(_ast_program_cse_normalize,
+    normalized_nodes, normalized_roots, remap, _ = invoke(_ast_program_cse_normalize,
         Tuple{Tuple,Tuple,OperatorRegistryV1}, ns, Tuple(Int(i) for i in rs), registry_obj)
-    (normalized_nodes, normalized_roots, Tuple(Int(i) for i in ps), Tuple(bindings))
+    normalized_ports = Tuple(remap[i] for i in ps)
+    invoke(_ast_program_validate_normalized, Tuple{Tuple,Tuple,Tuple,OperatorRegistryV1},
+        normalized_nodes, normalized_roots, normalized_ports, registry_obj)
+    (normalized_nodes, normalized_roots, normalized_ports, Tuple(bindings))
 end
 
 function TypedASTProgramV1(nodes, roots, input_ports=(); registry=nothing, used_manifest_bindings=nothing)
