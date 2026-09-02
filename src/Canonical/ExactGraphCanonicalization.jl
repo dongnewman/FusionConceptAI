@@ -200,6 +200,117 @@ function _incidence_leaf_bytes(ig::_IncidenceGraphV1, colors::Vector{Int}, profi
         ",\"vertices\":" * vertices * ",\"arcs\":" * arc_text * "}}"
 end
 
+function _incidence_leaf_witness(ig::_IncidenceGraphV1, colors::Vector{Int},
+                                 profile::CanonicalizationProfileV1)
+    bytes = invoke(_incidence_leaf_bytes, Tuple{_IncidenceGraphV1,Vector{Int},CanonicalizationProfileV1},
+        ig, colors, profile)
+    bytes, Tuple(sortperm(colors))
+end
+
+function _incidence_search_witness(ig::_IncidenceGraphV1, colors::Vector{Int},
+                                   profile::CanonicalizationProfileV1,
+                                   search_nodes::Base.RefValue{Int}, rounds::Base.RefValue{Int};
+                                   initial_partition_pending::Bool=false)
+    search_nodes[] += 1
+    search_nodes[] <= profile.budget.max_search_nodes ||
+        throw(CanonicalizationDeferred("canonicalization search budget exhausted"))
+    if initial_partition_pending
+        initial_cells = [cell for cell in _incidence_partition(colors) if length(cell) > 1]
+        if !isempty(initial_cells)
+            target = first(sort(initial_cells, by=cell ->
+                (length(cell), sort(colors[v] for v in cell))))
+            best = nothing
+            for vertex in target
+                candidate = _incidence_search_witness(ig, _incidence_split_color(colors, vertex), profile,
+                    search_nodes, rounds; initial_partition_pending=false)
+                best === nothing || candidate[1] < best[1] || continue
+                best = candidate
+            end
+            return best
+        end
+    end
+    refined = _incidence_refine(ig, colors, profile.budget, rounds)
+    classes = [class for class in _incidence_partition(refined) if length(class) > 1]
+    isempty(classes) && return _incidence_leaf_witness(ig, refined, profile)
+    class = first(sort(classes, by=x -> (length(x), sort(refined[v] for v in x))))
+    best = nothing
+    for vertex in class
+        candidate = _incidence_search_witness(ig, _incidence_split_color(refined, vertex), profile,
+            search_nodes, rounds; initial_partition_pending=false)
+        best === nothing || candidate[1] < best[1] || continue
+        best = candidate
+    end
+    best
+end
+
+function _exact_incidence_graph_witness(ig::_IncidenceGraphV1,
+                                        profile::CanonicalizationProfileV1)
+    length(ig.kinds) <= profile.budget.max_vertices ||
+        throw(CanonicalizationDeferred("incidence graph vertex budget exhausted"))
+    search_nodes = Ref(0); rounds = Ref(0)
+    components = _incidence_components(ig)
+    results = Tuple{String,Tuple}[]
+    for component in components
+        induced = _incidence_induced(ig, component)
+        initial = invoke(_incidence_initial_colors_for_graph, Tuple{_IncidenceGraphV1}, induced)
+        result = _incidence_search_witness(induced, initial, profile, search_nodes, rounds;
+            initial_partition_pending=true)
+        push!(results, (result[1], Tuple(component[i] for i in result[2])))
+    end
+    sort!(results, by=first)
+    bytes = length(results) == 1 ? first(results)[1] :
+        "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:typed-incidence-graph:v1\",\"profile\":{" *
+        "\"profile_id\":" * invoke(_jsonquote, Tuple{AbstractString}, profile.profile_id) *
+        ",\"version\":" * invoke(_jsonquote, Tuple{AbstractString}, profile.version) *
+        ",\"components\":[" * join((r[1] for r in results), ",") * "]}}"
+    ncodeunits(bytes) <= profile.budget.max_bytes ||
+        throw(CanonicalizationDeferred("canonicalization byte budget exhausted"))
+    bytes, Tuple(vcat((collect(r[2]) for r in results)...))
+end
+
+"""Return exact decorated canonical bytes and the original vertex witness.
+
+`vertex_decorations` is a closed tuple of `(kind, original_index, String)` and
+is only used by the transport layer.  The old graph canonicalizer remains
+bit-for-bit unchanged.
+"""
+function _exact_incidence_canonical_witness(g::TypedOperatorHypergraphV1,
+                                            profile::CanonicalizationProfileV1,
+                                            vertex_decorations::Tuple)
+    ig = _incidence_graph(g)
+    decorated = collect(ig.local_colors)
+    for item in vertex_decorations
+        item isa Tuple && length(item) == 3 || throw(ArgumentError("invalid incidence decoration"))
+        kind, index, decoration = item
+        kind isa Symbol && index isa Int && decoration isa String || throw(ArgumentError("invalid incidence decoration"))
+        1 <= index <= length(decorated) || throw(ArgumentError("incidence decoration index is out of range"))
+        decorated[index] = decorated[index] * "|decoration=" * decoration
+    end
+    decorated_ig = invoke(_IncidenceGraphV1, Tuple{Any,Any,Any}, ig.kinds, Tuple(decorated), ig.arcs)
+    length(decorated_ig.kinds) <= profile.budget.max_vertices ||
+        throw(CanonicalizationDeferred("incidence graph vertex budget exhausted"))
+    search_nodes = Ref(0); rounds = Ref(0)
+    components = _incidence_components(decorated_ig)
+    results = Tuple{String,Tuple}[]
+    for component in components
+        induced = _incidence_induced(decorated_ig, component)
+        initial = invoke(_incidence_initial_colors_for_graph, Tuple{_IncidenceGraphV1}, induced)
+        result = _incidence_search_witness(induced, initial, profile, search_nodes, rounds;
+            initial_partition_pending=true)
+        original_order = Tuple(component[i] for i in result[2])
+        push!(results, (result[1], original_order))
+    end
+    sort!(results, by=first)
+    bytes = length(results) == 1 ? first(results)[1] :
+        "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:typed-incidence-graph:v1\",\"profile\":{" *
+        "\"profile_id\":" * invoke(_jsonquote, Tuple{AbstractString}, profile.profile_id) *
+        ",\"version\":" * invoke(_jsonquote, Tuple{AbstractString}, profile.version) *
+        ",\"components\":[" * join((r[1] for r in results), ",") * "]}}"
+    ncodeunits(bytes) <= profile.budget.max_bytes ||
+        throw(CanonicalizationDeferred("canonicalization byte budget exhausted"))
+    bytes, Tuple(vcat((collect(r[2]) for r in results)...))
+end
+
 function _incidence_components(ig::_IncidenceGraphV1)
     adjacency = [Int[] for _ in eachindex(ig.kinds)]
     for (source, target, _) in ig.arcs
