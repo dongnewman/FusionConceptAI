@@ -19,6 +19,7 @@ include("Canonical/ExactGraphCanonicalization.jl")
 include("Canonical/Hashes.jl")
 include("Genomes/MechanismGeneCanonical.jl")
 include("Genomes/MechanismObservablesHoles.jl")
+include("Genomes/MechanismGenomePayload.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
 include("Contracts/Authority.jl")
@@ -58,7 +59,7 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
        StateSymmetryActionV1, SymmetryGeneV1, derive_parameter_value, parameter_value,
        ProgramRootRefV1, ObservableGeneV1, HoleComplexityBudgetV1, IdentifiabilityConditionV1,
-       TypedOperatorHoleV1,
+       TypedOperatorHoleV1, MechanismGenomePayloadV1,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,

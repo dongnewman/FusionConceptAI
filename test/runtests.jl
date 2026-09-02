@@ -1227,6 +1227,69 @@ end
         (observable_ref,), (oos_a, oos_b))
     @test before == (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
 end
+
+@testset "G1 mechanism payload typed hypergraph closure" begin
+    unit = UnitSignature()
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
+    registry = default_operator_registry()
+    function identity_program()
+        apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+            registry=registry, input_types=(scalar,))
+        TypedASTProgramV1((ASTInputV1(1, scalar), apply), (2,), (1,); registry=registry)
+    end
+    program_a, program_b = identity_program(), identity_program()
+    edge_a = AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
+        (MIMOOutputBindingV1(1, 1),), program_a, governing; registry=registry)
+    edge_b = AtomicMIMOHyperedgeV1("site-b", (MIMOInputBindingV1(1, 2),),
+        (MIMOOutputBindingV1(1, 2),), program_b, governing; registry=registry)
+    graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),
+        node(:state, scalar; id="state-b")), (edge_a, edge_b); registry=registry)
+    bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
+    state_a = StateGeneV1(StateGeneRefV1("state-a"), scalar, bounds, (), (), (), state_derived)
+    state_b = StateGeneV1(StateGeneRefV1("state-b"), scalar, bounds, (), (), (), state_derived)
+    sample = identity_program()
+    observable = ObservableGeneV1(ObservableRefV1("obs"),
+        ProgramRootRefV1(OperatorSiteRefV1("site-a"), 1, scalar),
+        QualifiedRefV1("intervention", "v1"), sample, bounds,
+        QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
+        NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
+        (QualifiedRefV1("prediction", "v1"),))
+    invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("account", "v1"),
+        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        entropy_conserved)
+    symmetry_matrix = ExactRationalMatrixV1(((1,),))
+    symmetry = SymmetryGeneV1(SymmetryRefV1("symmetry"), symmetry_continuous, symmetry_matrix,
+        (StateSymmetryActionV1(StateGeneRefV1("state-a"), symmetry_matrix),), nothing,
+        symmetry_invariant, 0)
+    payload = MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,),
+        (observable,), ())
+    @test payload.operator_graph === graph
+    @test length(payload.states) == 2
+    @test JSON3.read(canonical_json(payload)).kind == "mechanism_genome_payload"
+    @test canonical_hash(payload) isa Digest256
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a,), (invariant,), graph, (), (symmetry,), (observable,), ())
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (), graph, (), (symmetry,), (observable,), ())
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, StateGeneV1(StateGeneRefV1("wrong"), scalar, bounds, (), (), (), state_derived)),
+        (invariant,), graph, (), (symmetry,), (observable,), ())
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,),
+        TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"), node(:state, scalar; id="state-b")),
+            (AtomicMIMOHyperedgeV1("", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 1),),
+                program_a, governing; registry=registry), edge_b); registry=registry),
+        (), (symmetry,), (observable,), ())
+    bad_root = ObservableGeneV1(ObservableRefV1("bad"),
+        ProgramRootRefV1(OperatorSiteRefV1("missing-site"), 1, scalar),
+        QualifiedRefV1("intervention", "v1"), sample, bounds,
+        QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
+        NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
+        (QualifiedRefV1("prediction", "v1"),))
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,), (bad_root,), ())
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph,
+        (ParameterGeneV1(ParameterRefV1("dangling"), unit, ParameterTransformSpecV1(transform_linear), bounds, 0),),
+        (symmetry,), (observable,), ())
+    @test MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ()).symmetries == ()
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,), (), ())
+    @test MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,), (observable,), ()).symmetries == (symmetry,)
+end
     unit = UnitSignature()
     interval = ExactFiniteIntervalV1(-7 // 3, 11 // 5, false)
     quantity_bounds = QuantityIntervalV1(interval, unit)
