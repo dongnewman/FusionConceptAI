@@ -91,9 +91,19 @@ function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
     nodes = [_canonical(semantic_view(g.nodes[i])) for i in order]
     edges = String[]
     for e in g.hyperedges
-        # Port order is retained: only node enumeration is renamed.
-        ins = [rank[i] for i in e.inputs]; outs = [rank[i] for i in e.outputs]
-        push!(edges, _canonical_pairs([(:inputs, ins), (:outputs, outs), (:ast, e.ast), (:role, e.role)]))
+        if typeof(e) === TypedHyperedge
+            # Port order is retained: only node enumeration is renamed.
+            ins = [rank[i] for i in e.inputs]; outs = [rank[i] for i in e.outputs]
+            push!(edges, _canonical_pairs([(:inputs, ins), (:outputs, outs), (:ast, e.ast), (:role, e.role)]))
+        elseif typeof(e) === AtomicMIMOHyperedgeV1
+            ins = [(program_port=b.program_port, node=rank[b.node_index]) for b in e.input_bindings]
+            outs = [(root_position=b.root_position, node=rank[b.node_index]) for b in e.output_bindings]
+            push!(edges, _canonical_pairs([(:input_bindings, ins), (:output_bindings, outs),
+                (:program_hash, e.program_hash), (:role, e.role),
+                (:account_effects, e.account_effects), (:interface_flux_pairs, e.interface_flux_pairs)]))
+        else
+            throw(ArgumentError("canonical graph contains an unsealed edge"))
+        end
     end
     sort!(edges)
     _canonical_pairs([(:nodes, nodes), (:hyperedges, edges)])

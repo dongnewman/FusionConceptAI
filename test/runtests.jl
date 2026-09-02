@@ -379,6 +379,66 @@ end
     @test canonical_hash(two_delays) != canonical_hash(one_delay)
 end
 
+@testset "P0 atomic MIMO hyperedges and conservation contracts" begin
+    registry = default_operator_registry()
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    vector = PhysicalType(:vector_field, 1, 3, :differential, U0)
+    identity_ref = OperatorRefV1("IDENTITY", "v1")
+    p1 = TypedASTProgramV1((ASTInputV1(1, scalar), ASTApplyV1(identity_ref, (1,), (;); registry=registry, input_types=(scalar,))), (2,), (1,); registry=registry)
+    e1 = AtomicMIMOHyperedgeV1("one", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive; registry=registry)
+    g1 = TypedOperatorHypergraphV1((node(:input, scalar; id="n1", label="visible"), node(:output, scalar; id="n2", label="visible")), (e1,))
+    @test length(g1.hyperedges) == 1 && g1.hyperedges[1].program_hash isa Digest256
+    @test canonical_hash(g1) == canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar; id="x", label="hidden"), node(:output, scalar; id="y", label="hidden")),
+        (AtomicMIMOHyperedgeV1("renamed", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive; registry=registry),)))
+
+    add_ref = OperatorRefV1("ADD", "v1")
+    p2 = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTApplyV1(add_ref, (1, 2), (;); registry=registry, input_types=(scalar, scalar))), (3,), (1, 2); registry=registry)
+    e2 = AtomicMIMOHyperedgeV1("two", (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(2, 2)), (MIMOOutputBindingV1(1, 3),), p2, additive; registry=registry)
+    g2 = TypedOperatorHypergraphV1((node(:input, scalar), node(:input, scalar), node(:output, scalar)), (e2,))
+    @test length(g2.hyperedges) == 1
+    p35_nodes = AbstractTypedASTNodeV1[ASTInputV1(1, scalar), ASTInputV1(2, scalar), ASTInputV1(3, scalar)]
+    for i in 1:5
+        push!(p35_nodes, ASTApplyV1(identity_ref, ((i - 1) % 3 + 1,), (;); registry=registry, input_types=(scalar,)))
+    end
+    p35 = TypedASTProgramV1(Tuple(p35_nodes), (4, 5, 6, 7, 8), (1, 2, 3); registry=registry)
+    e35 = AtomicMIMOHyperedgeV1("five", Tuple(MIMOInputBindingV1(i, i) for i in 1:3),
+        Tuple(MIMOOutputBindingV1(i, i + 3) for i in 1:5), p35, additive; registry=registry)
+    g35 = TypedOperatorHypergraphV1(tuple((node(:port, scalar) for _ in 1:8)...), (e35,))
+    @test length(g35.hyperedges) == 1 && canonical_hash(g35) isa Digest256
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad", (MIMOInputBindingV1(1, 1),), (), p1, additive; registry=registry)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad", (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(1, 1)), (MIMOOutputBindingV1(1, 2),), p1, additive; registry=registry)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(2, 2),), p1, additive; registry=registry)
+    @test_throws ArgumentError TypedOperatorHypergraphV1((node(:input, vector), node(:output, scalar)), (e1,))
+    sub = ASTApplyV1(OperatorRefV1("SUB", "v1"), (1, 2), (;); registry=registry, input_types=(scalar, scalar))
+    sub_rev = ASTApplyV1(OperatorRefV1("SUB", "v1"), (2, 1), (;); registry=registry, input_types=(scalar, scalar))
+    psub = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), sub), (3,), (1, 2); registry=registry)
+    psub_rev = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), sub_rev), (3,), (1, 2); registry=registry)
+    @test canonical_hash(psub) != canonical_hash(psub_rev)
+    esub = AtomicMIMOHyperedgeV1("sub", (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(2, 2)), (MIMOOutputBindingV1(1, 3),), psub, additive; registry=registry)
+    esub_rev = AtomicMIMOHyperedgeV1("sub-rev", (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(2, 2)), (MIMOOutputBindingV1(1, 3),), psub_rev, additive; registry=registry)
+    @test canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:input, scalar), node(:output, scalar)), (esub,))) !=
+        canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:input, scalar), node(:output, scalar)), (esub_rev,)))
+    add_rev = ASTApplyV1(add_ref, (2, 1), (;); registry=registry, input_types=(scalar, scalar))
+    @test canonical_hash(p2) == canonical_hash(TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_rev), (3,), (1, 2); registry=registry))
+
+    account_a = ConservationAccountRefV1("energy", U0, :output, 1, :minus)
+    account_b = ConservationAccountRefV1("energy", U0, :output, 2, :plus)
+    pair = InterfaceFluxPairV1(PortAccountEffectV1(account_a, 1//1), PortAccountEffectV1(account_b, -1//1))
+    iface_nodes = (ASTInputV1(1, scalar), ASTApplyV1(identity_ref, (1,), (;); registry=registry, input_types=(scalar,)), ASTApplyV1(OperatorRefV1("NEG", "v1"), (1,), (;); registry=registry, input_types=(scalar,)))
+    iface_program = TypedASTProgramV1(iface_nodes, (2, 3), (1,); registry=registry)
+    iface_edge = AtomicMIMOHyperedgeV1("iface", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
+    @test TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,)).hyperedges[1] isa AtomicMIMOHyperedgeV1
+    iface_edge_reordered = AtomicMIMOHyperedgeV1("iface-reordered", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(2, 3), MIMOOutputBindingV1(1, 2)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
+    @test canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,))) !=
+        canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge_reordered,)))
+    @test_throws ArgumentError InterfaceFluxPairV1(PortAccountEffectV1(account_a, 1//1), PortAccountEffectV1(account_b, 1//1))
+    @test_throws ArgumentError PortAccountEffectV1(account_a, 1.0)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("source", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, source; registry=registry)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("iface", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 2)), iface_program, interface; registry=registry)
+    legacy = TypedHyperedge("legacy", (1,), (2,), TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,); registry=registry), :additive)
+    @test AtomicMIMOHyperedgeV1(legacy; registry=registry).program isa TypedASTProgramV1
+end
+
 @testset "canonical identity/label and permutation invariance" begin
     a = fixture_graph(labels=("visible-a", "visible-b"), ids=("first", "second"))
     b = fixture_graph(labels=("redacted-a", "redacted-b"), ids=("other-1", "other-2"))
