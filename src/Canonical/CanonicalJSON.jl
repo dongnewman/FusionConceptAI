@@ -177,5 +177,8 @@ function _canonical_graph(g::TypedOperatorHypergraphV1)
     _graph_encoding(g, Tuple(sortperm(colors)))
 end
 
-canonical_json(x::TypedOperatorHypergraphV1) = _canonical_graph(x)
+function canonical_json(g::TypedOperatorHypergraphV1; profile=nothing)
+    selected = profile === nothing ? default_canonicalization_profile() : profile
+    _exact_incidence_canonical_json(g, selected)
+end
 canonical_json(x) = _canonical(x)

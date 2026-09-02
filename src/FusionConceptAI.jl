@@ -13,6 +13,7 @@ include("Genomes/FieldGeometryGenome.jl")
 include("Genomes/RealizationControlGenome.jl")
 include("Canonical/CanonicalJSON.jl")
 canonical_json(x::TypedASTProgramV1) = _ast_program_canonical(_ast_program_semantic_payload(x))
+include("Canonical/ExactGraphCanonicalization.jl")
 include("Canonical/Hashes.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
@@ -28,7 +29,7 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        terminal_deferred_stage, credible_within_scope, terminal_physical_fail, terminal_numerical_fail,
        terminal_unknown, terminal_unsupported, none, screen_only, candidate_bound, integrated, whole_device_vvuq, validation_vvuq,
        semantic_view, is_canonical_value,
-       CanonicalizationDeferred,
+       CanonicalizationDeferred, CanonicalizationBudgetV1, CanonicalizationProfileV1, default_canonicalization_profile,
        TypedASTNode, TypedAST, ast_leaf, AbstractTypedASTNodeV1, ASTInputV1, ASTParameterV1, ASTConstantV1,
        ASTApplyV1, TypedASTProgramV1, typed_ast_program, TypedNode, TypedHyperedge, HyperedgeRoleV1,
        MIMOInputBindingV1, MIMOOutputBindingV1, ConservationAccountRefV1, PortAccountEffectV1,

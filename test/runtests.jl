@@ -436,8 +436,11 @@ end
     iface_edge = AtomicMIMOHyperedgeV1("iface", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
     @test TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,)).hyperedges[1] isa AtomicMIMOHyperedgeV1
     iface_edge_reordered = AtomicMIMOHyperedgeV1("iface-reordered", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(2, 3), MIMOOutputBindingV1(1, 2)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
-    @test canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,))) !=
+    @test canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,))) ==
         canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge_reordered,)))
+    iface_program_swapped = TypedASTProgramV1(iface_nodes, (3, 2), (1,); registry=registry)
+    iface_edge_swapped = AtomicMIMOHyperedgeV1("iface-swapped", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program_swapped, interface; interface_flux_pairs=(pair,), registry=registry)
+    @test canonical_hash(iface_edge) != canonical_hash(iface_edge_swapped)
     @test_throws ArgumentError InterfaceFluxPairV1(PortAccountEffectV1(account_a, -1//1), PortAccountEffectV1(account_b, -1//1))
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("duplicate-pair", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program, interface; interface_flux_pairs=(pair, pair), registry=registry)
     @test_throws ArgumentError PortAccountEffectV1(account_a, 1.0)
@@ -672,8 +675,43 @@ end
     cyc_ast = ast_leaf(:state, T0)
     cyc_edges = [TypedHyperedge("cycle-" * string(i), (i,), (mod1(i + 1, 9),), cyc_ast, :additive) for i in 1:9]
     cyc = TypedOperatorHypergraphV1(cyc_nodes, cyc_edges)
-    elapsed = @elapsed @test_throws CanonicalizationDeferred canonical_hash(cyc)
+    elapsed = @elapsed begin
+        cyc_hash = canonical_hash(cyc)
+        @test cyc_hash isa Digest256
+        perm = collect(9:-1:1)
+        inverse = Dict(old => new for (new, old) in enumerate(perm))
+        perm_edges = [TypedHyperedge("renamed-" * string(i),
+            (inverse[i],), (inverse[mod1(i + 1, 9)],), cyc_ast, :additive) for i in 1:9]
+        @test cyc_hash == canonical_hash(TypedOperatorHypergraphV1(reverse(cyc_nodes), perm_edges))
+    end
     @test elapsed < 2.0
+    cycle32_nodes = [node(:same, T0; id=string(i)) for i in 1:32]
+    cycle32_edges = [TypedHyperedge("cycle32-" * string(i), (i,), (mod1(i + 1, 32),), cyc_ast, :additive) for i in 1:32]
+    cycle32 = TypedOperatorHypergraphV1(cycle32_nodes, cycle32_edges)
+    cycle32_hash = nothing
+    cycle32_elapsed = @elapsed (cycle32_hash = canonical_hash(cycle32))
+    @test cycle32_hash isa Digest256
+    @test cycle32_elapsed < 30.0
+    cycle6 = TypedOperatorHypergraphV1(
+        [node(:same, T0; id=string(i)) for i in 1:6],
+        [TypedHyperedge("c6-" * string(i), (i,), (mod1(i + 1, 6),), cyc_ast, :additive) for i in 1:6])
+    triangles = TypedOperatorHypergraphV1(
+        [node(:same, T0; id=string(i)) for i in 1:6],
+        vcat([TypedHyperedge("tri-" * string(i), (i,), (mod1(i + 1, 3),), cyc_ast, :additive) for i in 1:3],
+             [TypedHyperedge("tri-" * string(i), (i,), (3 + mod1(i - 3 + 1, 3),), cyc_ast, :additive) for i in 4:6]))
+    @test canonical_hash(cycle6) != canonical_hash(triangles)
+    tiny_budget = CanonicalizationBudgetV1(1, 100, 512, 8_000_000)
+    @test_throws CanonicalizationDeferred canonical_hash(cycle6, CanonicalizationProfileV1("tiny", "1", tiny_budget))
+    @test_throws ArgumentError CanonicalizationBudgetV1(0, 100, 512, 8_000_000)
+    @test_throws ArgumentError CanonicalizationBudgetV1(true, 100, 512, 8_000_000)
+    profile_alt = CanonicalizationProfileV1("exact-incidence-alt", "1", default_canonicalization_profile().budget)
+    @test canonical_hash(cycle6, profile_alt) != canonical_hash(cycle6)
+    @test occursin("typed-incidence-graph", canonical_json(cycle6))
+    @test JSON3.read(canonical_json(cycle6)) !== nothing
+    golden_graph = TypedOperatorHypergraphV1([node(:same, T0; id="display")], ())
+    golden = JSON3.read(read(joinpath(@__DIR__, "fixtures", "exact_incidence_golden.json"), String))
+    @test canonical_json(golden_graph) == String(golden.canonical_json)
+    @test canonical_hash(golden_graph).value == String(golden.sha256)
     @test_throws ArgumentError EvidenceRef("not-a-hash")
     @test_throws ArgumentError EvidenceRef(repeat("a", 64) * "0")
     @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=pass, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
