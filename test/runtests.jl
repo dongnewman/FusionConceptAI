@@ -141,6 +141,8 @@ end
         MechanismCanonicalizationContextV1(contract, profile_budget_only)).candidate_subject_hash
 end
 
+include("field_geometry_primitives_tests.jl")
+
 # Keep the independent 4.5b matrices in separate files so their fixture
 # helpers cannot accidentally become part of the package's public surface.
 include(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"))

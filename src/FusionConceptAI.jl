@@ -11,6 +11,7 @@ include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
 include("Genomes/MechanismGenome.jl")
 include("Genomes/MechanismGenesV1.jl")
+include("Genomes/FieldGeometryPrimitives.jl")
 include("Genomes/FieldGeometryGenome.jl")
 include("Genomes/RealizationControlGenome.jl")
 include("Canonical/CanonicalJSON.jl")
@@ -18,6 +19,7 @@ canonical_json(x::TypedASTProgramV1) = _ast_program_canonical(_ast_program_seman
 include("Canonical/ExactGraphCanonicalization.jl")
 include("Canonical/Hashes.jl")
 include("Genomes/MechanismGeneCanonical.jl")
+include("Canonical/FieldGeometryPrimitiveCanonical.jl")
 include("Genomes/MechanismObservablesHoles.jl")
 include("Genomes/MechanismGenomePayload.jl")
 include("Canonical/MechanismCanonicalTransport.jl")
@@ -61,6 +63,12 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
        StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
        StateSymmetryActionV1, SymmetryGeneV1, derive_parameter_value, parameter_value,
+       SpatialSupportRefV1, ChartRefV1, CoordinateFrameRefV1, PhaseFieldRefV1,
+       ImplicitFieldTermRefV1, PotentialFieldRefV1, SourceFieldRefV1,
+       InterfaceOperatorRefV1, GeometryEvolutionRefV1, FieldParameterRefV1,
+       SourceBudgetRefV1, TopologyEventRefV1, SpatialMultiIndex3V1,
+       ExactSpatialVector3V1, FieldParameterGeneV1, derive_field_parameter_value,
+       field_parameter_value,
        ProgramRootRefV1, ObservableGeneV1, HoleComplexityBudgetV1, IdentifiabilityConditionV1,
        TypedOperatorHoleV1, MechanismGenomePayloadV1,
        MechanismCanonicalizationContextV1, CanonicalMechanismTransportV1,
