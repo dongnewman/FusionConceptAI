@@ -423,7 +423,7 @@ end
 
     account_a = ConservationAccountRefV1("energy", U0, :output, 1, :minus)
     account_b = ConservationAccountRefV1("energy", U0, :output, 2, :plus)
-    pair = InterfaceFluxPairV1(PortAccountEffectV1(account_a, 1//1), PortAccountEffectV1(account_b, -1//1))
+    pair = InterfaceFluxPairV1(PortAccountEffectV1(account_a, -1//1), PortAccountEffectV1(account_b, 1//1))
     iface_nodes = (ASTInputV1(1, scalar), ASTApplyV1(identity_ref, (1,), (;); registry=registry, input_types=(scalar,)), ASTApplyV1(OperatorRefV1("NEG", "v1"), (1,), (;); registry=registry, input_types=(scalar,)))
     iface_program = TypedASTProgramV1(iface_nodes, (2, 3), (1,); registry=registry)
     iface_edge = AtomicMIMOHyperedgeV1("iface", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
@@ -431,12 +431,59 @@ end
     iface_edge_reordered = AtomicMIMOHyperedgeV1("iface-reordered", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(2, 3), MIMOOutputBindingV1(1, 2)), iface_program, interface; interface_flux_pairs=(pair,), registry=registry)
     @test canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge,))) !=
         canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar), node(:out, scalar), node(:out, scalar)), (iface_edge_reordered,)))
-    @test_throws ArgumentError InterfaceFluxPairV1(PortAccountEffectV1(account_a, 1//1), PortAccountEffectV1(account_b, 1//1))
+    @test_throws ArgumentError InterfaceFluxPairV1(PortAccountEffectV1(account_a, -1//1), PortAccountEffectV1(account_b, -1//1))
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("duplicate-pair", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 3)), iface_program, interface; interface_flux_pairs=(pair, pair), registry=registry)
     @test_throws ArgumentError PortAccountEffectV1(account_a, 1.0)
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("source", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, source; registry=registry)
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("iface", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 2)), iface_program, interface; registry=registry)
     legacy = TypedHyperedge("legacy", (1,), (2,), TypedAST((TypedASTNode(:state, (), scalar), TypedASTNode(:identity, (1,), scalar)), 2, (1,); registry=registry), :additive)
     @test AtomicMIMOHyperedgeV1(legacy; registry=registry).program isa TypedASTProgramV1
+    legacy_renumbered = TypedHyperedge("legacy-renumbered", (2,), (1,), legacy.ast, :additive)
+    @test TypedOperatorHypergraphV1((node(:output, scalar), node(:input, scalar)),
+        (AtomicMIMOHyperedgeV1(legacy_renumbered; registry=registry),)).hyperedges[1] isa AtomicMIMOHyperedgeV1
+    renumbered = AtomicMIMOHyperedgeV1("renumbered", (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 1),), p1, additive; registry=registry)
+    renumbered_graph = TypedOperatorHypergraphV1((node(:output, scalar), node(:input, scalar)), (renumbered,))
+    @test canonical_hash(renumbered_graph) == canonical_hash(g1)
+    tampered_manifest = OperatorManifestV1(identity_ref, 1, 1, SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1);
+        allowed_roles=(:additive,), allowed_conservation_effects=(:net_creation,))
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("mismatch", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive;
+        registry=OperatorRegistryV1((tampered_manifest,)))
+    source_ref = OperatorRefV1("IDENTITY", "v1")
+    source_manifest = OperatorManifestV1(source_ref, 1, 1, SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1);
+        allowed_roles=(:source,), allowed_conservation_effects=(:net_creation,))
+    source_registry = OperatorRegistryV1((source_manifest,))
+    source_program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTApplyV1(source_ref, (1,), (;); registry=source_registry, input_types=(scalar,))), (2,), (1,); registry=source_registry)
+    source_account = ConservationAccountRefV1("energy", U0, :output, 1, :plus)
+    source_effect = PortAccountEffectV1(source_account, 1//1)
+    source_edge = AtomicMIMOHyperedgeV1("source-ok", (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 1),), source_program, source; account_effects=(source_effect,), registry=source_registry)
+    @test TypedOperatorHypergraphV1((node(:output, scalar), node(:input, scalar)), (source_edge,); registry=source_registry).hyperedges[1] isa AtomicMIMOHyperedgeV1
+    bad_units = PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((1, 0, 0, 0, 0, 0, 0)))
+    @test_throws ArgumentError TypedOperatorHypergraphV1((node(:output, bad_units), node(:input, scalar)), (source_edge,); registry=source_registry)
+    bad_endpoint = ConservationAccountRefV1("energy", U0, :output, 99, :plus)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad-endpoint", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), source_program, source; account_effects=(PortAccountEffectV1(bad_endpoint, 1//1),), registry=source_registry)
+    policy_manifest = OperatorManifestV1(source_ref, 1, 1, SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1);
+        allowed_roles=(:source,), allowed_conservation_effects=(:redistribution,), forbidden_conservation_effects=(:net_creation,))
+    policy_registry = OperatorRegistryV1((policy_manifest,))
+    policy_program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTApplyV1(source_ref, (1,), (;); registry=policy_registry, input_types=(scalar,))), (2,), (1,); registry=policy_registry)
+    @test_throws ArgumentError AtomicMIMOHyperedgeV1("policy", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), policy_program, source; account_effects=(source_effect,), registry=policy_registry)
+end
+
+@testset "P0 MIMO authority dispatch and closed identity" begin
+    project = Base.active_project()
+    script = """
+using FusionConceptAI
+FusionConceptAI._canonical(::FusionConceptAI.PortAccountEffectV1) = "{}"
+registry = default_operator_registry()
+u = UnitSignature()
+t = PhysicalType(:scalar_field, 0, 3, :differential, u)
+r = OperatorRefV1("IDENTITY", "v1")
+p = TypedASTProgramV1((ASTInputV1(1, t), ASTApplyV1(r, (1,), (;); registry=registry, input_types=(t,))), (2,), (1,); registry=registry)
+e = AtomicMIMOHyperedgeV1("e", (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 1),), p, additive; registry=registry)
+g = TypedOperatorHypergraphV1((node(:output, t), node(:input, t)), (e,))
+@assert canonical_hash(g) isa Digest256
+println("mimo-closed-identity-ok")
+"""
+    @test success(`$(Base.julia_cmd()) --project=$project -e $script`)
 end
 
 @testset "canonical identity/label and permutation invariance" begin

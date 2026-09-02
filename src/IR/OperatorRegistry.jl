@@ -949,8 +949,11 @@ end
 
 function default_operator_registry()
     manifests = OperatorManifestV1[]
-    make_default = (id, arity, rule; kwargs...) ->
-        invoke(_default_manifest, Tuple{Any,Any,OperatorTypeRuleV1}, id, arity, rule; kwargs...)
+    default_effect_policy = (allowed_conservation_effects=(:net_creation, :net_destruction, :redistribution, :interface_flux),)
+    make_default = (id, arity, rule; kwargs...) -> begin
+        options = merge(default_effect_policy, kwargs)
+        invoke(_default_manifest, Tuple{Any,Any,OperatorTypeRuleV1}, id, arity, rule; options...)
+    end
     push!(manifests, make_default("IDENTITY", 1, SameTypeVariadicRuleV1(1, 1)))
     push!(manifests, make_default("ADD", 2, SameTypeVariadicRuleV1(2, 2), commutative_input_groups=((1, 2),)))
     push!(manifests, make_default("SUB", 2, SameTypeVariadicRuleV1(2, 2)))

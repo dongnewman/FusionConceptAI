@@ -85,6 +85,29 @@ function _all_permutations(n::Int)
     visit(1); out
 end
 
+function _mimo_closed_unit(unit::UnitSignature)
+    "{\"exponents\":[" * join(("{\"denominator\":" * string(denominator(v)) * ",\"numerator\":" * string(numerator(v)) * "}" for v in unit.exponents), ",") * "]}"
+end
+_mimo_closed_account(ref::ConservationAccountRefV1) =
+    "{\"account\":" * invoke(_jsonquote, Tuple{AbstractString}, ref.account) * ",\"direction\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.direction)) *
+    ",\"port_index\":" * string(ref.port_index) * ",\"port_side\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.port_side)) *
+    ",\"unit\":" * _mimo_closed_unit(ref.unit) * "}"
+_mimo_closed_effect(effect::PortAccountEffectV1) =
+    "{\"account_ref\":" * _mimo_closed_account(effect.account_ref) * ",\"coefficient\":{\"denominator\":" *
+    string(denominator(effect.coefficient)) * ",\"numerator\":" * string(numerator(effect.coefficient)) * "}}"
+_mimo_closed_pair(pair::InterfaceFluxPairV1) =
+    "{\"minus\":" * _mimo_closed_effect(pair.minus) * ",\"plus\":" * _mimo_closed_effect(pair.plus) * "}"
+
+function _mimo_edge_encoding(e::AtomicMIMOHyperedgeV1, rank::Vector{Int})
+    ins = "[" * join(("{\"graph_node\":" * string(rank[b.graph_node_index]) * ",\"program_position\":" * string(b.program_position) * "}" for b in e.input_bindings), ",") * "]"
+    outs = "[" * join(("{\"graph_node\":" * string(rank[b.graph_node_index]) * ",\"program_position\":" * string(b.program_position) * "}" for b in e.output_bindings), ",") * "]"
+    effects = "[" * join((_mimo_closed_effect(x) for x in e.account_effects), ",") * "]"
+    pairs = "[" * join((_mimo_closed_pair(x) for x in e.interface_flux_pairs), ",") * "]"
+    "{\"account_effects\":" * effects * ",\"input_bindings\":" * ins * ",\"interface_flux_pairs\":" * pairs *
+        ",\"output_bindings\":" * outs * ",\"program_hash\":" * invoke(_jsonquote, Tuple{AbstractString}, e.program_hash.value) *
+        ",\"role\":" * invoke(_jsonquote, Tuple{AbstractString}, String(Symbol(e.role))) * "}"
+end
+
 function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
     rank = zeros(Int, length(g.nodes))
     for (j, old) in enumerate(order); rank[old] = j; end
@@ -96,11 +119,7 @@ function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
             ins = [rank[i] for i in e.inputs]; outs = [rank[i] for i in e.outputs]
             push!(edges, _canonical_pairs([(:inputs, ins), (:outputs, outs), (:ast, e.ast), (:role, e.role)]))
         elseif typeof(e) === AtomicMIMOHyperedgeV1
-            ins = [(program_port=b.program_port, node=rank[b.node_index]) for b in e.input_bindings]
-            outs = [(root_position=b.root_position, node=rank[b.node_index]) for b in e.output_bindings]
-            push!(edges, _canonical_pairs([(:input_bindings, ins), (:output_bindings, outs),
-                (:program_hash, e.program_hash), (:role, e.role),
-                (:account_effects, e.account_effects), (:interface_flux_pairs, e.interface_flux_pairs)]))
+            push!(edges, _mimo_edge_encoding(e, rank))
         else
             throw(ArgumentError("canonical graph contains an unsealed edge"))
         end
