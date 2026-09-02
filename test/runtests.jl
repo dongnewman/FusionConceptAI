@@ -730,19 +730,46 @@ end
     small_graph = TypedOperatorHypergraphV1([node(:same, T0; id="a"), node(:same, T0; id="b")],
         (TypedHyperedge("small", (1,), (2,), cyc_ast, :additive),))
     small_incidence = FusionConceptAI._incidence_graph(small_graph)
+    @test length(small_incidence.kinds) == 5
+    @test Set(small_incidence.kinds) == Set((:graph_node, :legacy_edge, :input_port, :output_port))
     @test JSON3.read(canonical_json(small_graph)) !== nothing
-    tiny_incidence = FusionConceptAI._IncidenceGraphV1((:graph_node, :graph_node), ("same", "same"),
-        ((1, 2, "link"), (2, 1, "link")))
-    tiny_profile = default_canonicalization_profile()
-    tiny_oracle = minimum(begin
-        colors = zeros(Int, 2)
-        for (rank, vertex) in enumerate(permutation)
-            colors[vertex] = rank
+    # Independent test-only oracle: all 2! labelings and a closed encoder;
+    # it intentionally does not call any production permutation/leaf helpers.
+    tiny_kinds = (:graph_node, :graph_node)
+    tiny_colors = ("same", "same")
+    tiny_arcs = ((1, 2, "link"), (2, 1, "link"))
+    independent_quote(s) = "\"" * s * "\""
+    function independent_bytes(order)
+        rank = zeros(Int, length(order))
+        for (new, old) in enumerate(order)
+            rank[old] = new
         end
-        FusionConceptAI._incidence_leaf_bytes(tiny_incidence, colors, tiny_profile)
-    end for permutation in FusionConceptAI._all_permutations(2))
-    tiny_exact = FusionConceptAI._incidence_search(tiny_incidence,
-        FusionConceptAI._incidence_initial_colors(tiny_incidence.local_colors), tiny_profile, Ref(0), Ref(0))
+        vertices = "[" * join(("{\"kind\":" * independent_quote(String(tiny_kinds[old])) *
+            ",\"local_color\":" * independent_quote(tiny_colors[old]) * "}" for old in order), ",") * "]"
+        arcs = sort([(rank[source], rank[target], label) for (source, target, label) in tiny_arcs])
+        arc_text = "[" * join(("{\"label\":" * independent_quote(a[3]) * ",\"source\":" *
+            string(a[1]) * ",\"target\":" * string(a[2]) * "}" for a in arcs), ",") * "]"
+        "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:typed-incidence-graph:v1\",\"profile\":{\"profile_id\":\"exact-incidence\",\"version\":\"1\",\"vertices\":" * vertices * ",\"arcs\":" * arc_text * "}}"
+    end
+    independent_permutations(n) = begin
+        result = Vector{Vector{Int}}()
+        values = collect(1:n)
+        function visit(position)
+            position > n && (push!(result, copy(values)); return nothing)
+            for j in position:n
+                values[position], values[j] = values[j], values[position]
+                visit(position + 1)
+                values[position], values[j] = values[j], values[position]
+            end
+            nothing
+        end
+        visit(1); result
+    end
+    tiny_oracle = minimum(independent_bytes(order) for order in independent_permutations(2))
+    tiny_initial_colors = invoke(FusionConceptAI._incidence_initial_colors, Tuple{Tuple}, tiny_colors)
+    tiny_incidence = FusionConceptAI._IncidenceGraphV1(tiny_kinds, tiny_colors, tiny_arcs)
+    tiny_exact = FusionConceptAI._incidence_search(tiny_incidence, tiny_initial_colors,
+        default_canonicalization_profile(), Ref(0), Ref(0))
     @test tiny_exact == tiny_oracle
     random_state = Ref(UInt(0x5eed))
     draw_small = () -> begin

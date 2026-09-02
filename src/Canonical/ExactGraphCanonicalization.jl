@@ -105,7 +105,9 @@ function _incidence_graph(g::TypedOperatorHypergraphV1)
             throw(ArgumentError("incidence graph contains an unsealed edge"))
         end
     end
-    _IncidenceGraphV1(Tuple(kinds), Tuple(colors), Tuple(arcs))
+    invoke(_IncidenceGraphV1,
+        Tuple{Tuple{Vararg{Symbol}},Tuple{Vararg{String}},Tuple{Vararg{Tuple{Int,Int,String}}}},
+        Tuple(kinds), Tuple(colors), Tuple(arcs))
 end
 
 function _incidence_initial_colors(local_colors::Tuple)
@@ -202,9 +204,28 @@ function _incidence_induced(ig::_IncidenceGraphV1, vertices::Vector{Int})
 end
 
 function _incidence_search(ig::_IncidenceGraphV1, colors::Vector{Int}, profile::CanonicalizationProfileV1,
-                           search_nodes::Base.RefValue{Int}, rounds::Base.RefValue{Int})
+                           search_nodes::Base.RefValue{Int}, rounds::Base.RefValue{Int};
+                           initial_colors::Union{Nothing,Vector{Int}}=nothing, initial_anchor_done::Bool=false)
     search_nodes[] += 1
     search_nodes[] <= profile.budget.max_search_nodes || throw(CanonicalizationDeferred("canonicalization search budget exhausted"))
+    if !initial_anchor_done && initial_colors !== nothing
+        initial_cells = [cell for cell in _incidence_partition(initial_colors) if length(cell) > 1]
+        if !isempty(initial_cells)
+            target = first(sort(initial_cells, by=cell ->
+                (length(cell), minimum(initial_colors[v] for v in cell))))
+            next_color = isempty(colors) ? 1 : maximum(colors) + 1
+            best = nothing
+            for vertex in target
+                individualized = copy(colors)
+                individualized[vertex] = next_color
+                candidate = _incidence_search(ig, individualized, profile, search_nodes, rounds;
+                    initial_colors=initial_colors, initial_anchor_done=true)
+                best === nothing || candidate < best || continue
+                best = candidate
+            end
+            return best
+        end
+    end
     refined = _incidence_refine(ig, colors, profile.budget, rounds)
     classes = [class for class in _incidence_partition(refined) if length(class) > 1]
     isempty(classes) && return _incidence_leaf_bytes(ig, refined, profile)
@@ -218,7 +239,8 @@ function _incidence_search(ig::_IncidenceGraphV1, colors::Vector{Int}, profile::
     for vertex in class
         individualized = copy(refined)
         individualized[vertex] = next_color
-        candidate = _incidence_search(ig, individualized, profile, search_nodes, rounds)
+        candidate = _incidence_search(ig, individualized, profile, search_nodes, rounds;
+            initial_colors=initial_colors, initial_anchor_done=true)
         best === nothing || candidate < best || continue
         best = candidate
     end
@@ -233,7 +255,9 @@ function _exact_incidence_canonical_json(g::TypedOperatorHypergraphV1, profile::
     component_bytes = String[]
     for component in components
         induced = _incidence_induced(ig, component)
-        push!(component_bytes, _incidence_search(induced, _incidence_initial_colors(induced.local_colors), profile, search_nodes, rounds))
+        initial_colors = invoke(_incidence_initial_colors, Tuple{Tuple}, induced.local_colors)
+        push!(component_bytes, _incidence_search(induced, initial_colors, profile, search_nodes, rounds;
+            initial_colors=initial_colors, initial_anchor_done=false))
     end
     sort!(component_bytes)
     bytes = length(component_bytes) == 1 ? only(component_bytes) :
