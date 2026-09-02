@@ -62,7 +62,11 @@ function _g1_observable_program_type(program::TypedASTProgramV1)
     typeof(input_node) === ASTInputV1 || throw(ArgumentError("sampling_program input port must bind an ASTInput"))
     typeof(root_node) in (ASTInputV1, ASTParameterV1, ASTConstantV1, ASTApplyV1) ||
         throw(ArgumentError("sampling_program root is not a typed AST node"))
-    input_node.output_type, _ast_program_output_type(root_node)
+    input_node.output_type, invoke(_ast_program_output_type, Tuple{AbstractTypedASTNodeV1}, root_node)
+end
+
+function _g1_big_rational(value::Rational{Int64})
+    BigInt(numerator(value)) // BigInt(denominator(value))
 end
 
 struct ObservableGeneV1
@@ -91,15 +95,20 @@ struct ObservableGeneV1
         minimum_effect_size isa NonnegativeQuantityV1 || throw(ArgumentError("minimum_effect_size must be NonnegativeQuantityV1"))
         competitors = invoke(_g1_qualified_ref_tuple, Tuple{Any,String}, competing_prediction_refs, "competing_prediction_refs")
         isempty(competitors) && throw(ArgumentError("competing_prediction_refs cannot be empty"))
-        _g1_unique_keys(competitors, "competing_prediction_refs", ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, competitors, "competing_prediction_refs",
+            ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
         input_type, root_type = invoke(_g1_observable_program_type, Tuple{TypedASTProgramV1}, sampling_program)
         input_type == expression_root.declared_type || throw(ArgumentError("sampling input type must match expression root type"))
         root_type.units == expected_effect_interval.unit || throw(ArgumentError("expression root units must match expected effect units"))
         all(floor.unit == expected_effect_interval.unit for floor in (noise_floor, numerical_floor, minimum_effect_size)) ||
             throw(ArgumentError("observable effect and noise units must match"))
-        max_effect = max(abs(expected_effect_interval.interval.lower), abs(expected_effect_interval.interval.upper))
-        max_effect >= minimum_effect_size.value || throw(ArgumentError("minimum effect exceeds expected effect support"))
-        minimum_effect_size.value > noise_floor.value + numerical_floor.value ||
+        max_effect = max(abs(invoke(_g1_big_rational, Tuple{Rational{Int64}}, expected_effect_interval.interval.lower)),
+            abs(invoke(_g1_big_rational, Tuple{Rational{Int64}}, expected_effect_interval.interval.upper)))
+        max_effect >= invoke(_g1_big_rational, Tuple{Rational{Int64}}, minimum_effect_size.value) ||
+            throw(ArgumentError("minimum effect exceeds expected effect support"))
+        invoke(_g1_big_rational, Tuple{Rational{Int64}}, minimum_effect_size.value) >
+            invoke(_g1_big_rational, Tuple{Rational{Int64}}, noise_floor.value) +
+            invoke(_g1_big_rational, Tuple{Rational{Int64}}, numerical_floor.value) ||
             throw(ArgumentError("minimum effect must exceed noise and numerical floors"))
         new(observable_ref, expression_root, intervention_ref, sampling_program, expected_effect_interval,
             noise_model_ref, noise_floor, numerical_floor, minimum_effect_size, competitors)
@@ -148,7 +157,12 @@ struct IdentifiabilityConditionV1
 end
 
 function _g1_unique_local_refs(values::Tuple, field::String)
-    _g1_unique_keys(values, field, value -> invoke(_g1_local_ref_key, Tuple{Any}, value))
+    invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, values, field,
+        value -> invoke(_g1_local_ref_key, Tuple{Any}, value))
+end
+
+function _g1_condition_key(value::IdentifiabilityConditionV1)
+    ((value.intervention_ref.id, value.intervention_ref.version), value.observable_ref.value)
 end
 
 struct TypedOperatorHoleV1
@@ -178,15 +192,16 @@ struct TypedOperatorHoleV1
         causal_direction_ref isa QualifiedRefV1 || throw(ArgumentError("causal_direction_ref must be QualifiedRefV1"))
         allowed = invoke(_g1_effect_tuple, Tuple{Any,String}, allowed_effects, "allowed_effects")
         forbidden = invoke(_g1_effect_tuple, Tuple{Any,String}, forbidden_effects, "forbidden_effects")
-        _g1_unique_keys(allowed, "allowed_effects", value -> String(Symbol(value)))
-        _g1_unique_keys(forbidden, "forbidden_effects", value -> String(Symbol(value)))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, allowed, "allowed_effects", value -> String(Symbol(value)))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, forbidden, "forbidden_effects", value -> String(Symbol(value)))
         isempty(intersect(Set(String(Symbol(value)) for value in allowed), Set(String(Symbol(value)) for value in forbidden))) ||
             throw(ArgumentError("allowed and forbidden effects must not overlap"))
         complexity_budget isa HoleComplexityBudgetV1 || throw(ArgumentError("complexity_budget must be HoleComplexityBudgetV1"))
         null_model_ref isa QualifiedRefV1 || throw(ArgumentError("null_model_ref must be QualifiedRefV1"))
         alternatives = invoke(_g1_qualified_ref_tuple, Tuple{Any,String}, alternative_model_refs, "alternative_model_refs")
         isempty(alternatives) && throw(ArgumentError("alternative_model_refs cannot be empty"))
-        _g1_unique_keys(alternatives, "alternative_model_refs", ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, alternatives, "alternative_model_refs",
+            ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
         any(ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref) == invoke(_g1_ref_key, Tuple{QualifiedRefV1}, null_model_ref), alternatives) &&
             throw(ArgumentError("null model cannot also be an alternative"))
         conditions = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, identifiability_conditions, IdentifiabilityConditionV1, "identifiability_conditions")
@@ -195,9 +210,12 @@ struct TypedOperatorHoleV1
         isempty(conditions) && throw(ArgumentError("identifiability_conditions cannot be empty"))
         isempty(observables) && throw(ArgumentError("observable_refs cannot be empty"))
         isempty(predictions) && throw(ArgumentError("out_of_sample_prediction_refs cannot be empty"))
-        _g1_unique_keys(conditions, "identifiability_conditions", condition -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, condition.intervention_ref))
-        _g1_unique_keys(observables, "observable_refs", ref -> invoke(_g1_local_ref_key, Tuple{Any}, ref))
-        _g1_unique_keys(predictions, "out_of_sample_prediction_refs", ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, conditions, "identifiability_conditions",
+            condition -> invoke(_g1_condition_key, Tuple{IdentifiabilityConditionV1}, condition))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, observables, "observable_refs",
+            ref -> invoke(_g1_local_ref_key, Tuple{Any}, ref))
+        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, predictions, "out_of_sample_prediction_refs",
+            ref -> invoke(_g1_ref_key, Tuple{QualifiedRefV1}, ref))
         observable_keys = Set(ref.value for ref in observables)
         all(condition.observable_ref.value in observable_keys for condition in conditions) ||
             throw(ArgumentError("identifiability condition references an undeclared observable"))
@@ -216,7 +234,7 @@ function _g1_qualified_payload(value::QualifiedRefV1)
 end
 
 _g1_root_payload(value::ProgramRootRefV1) = "{\"declared_type\":" * invoke(_g1_gene_physical_type_payload, Tuple{PhysicalType}, value.declared_type) *
-    ",\"operator_site_ref\":" * _g1_gene_ref_payload(value.operator_site_ref.value) * ",\"root_position\":" * string(value.root_position) * "}"
+    ",\"operator_site_ref\":" * invoke(_g1_gene_ref_payload, Tuple{String}, value.operator_site_ref.value) * ",\"root_position\":" * string(value.root_position) * "}"
 _g1_budget_payload(value::HoleComplexityBudgetV1) = "{\"max_ast_nodes\":" * string(value.max_ast_nodes) * ",\"max_derivative_order\":" * string(value.max_derivative_order) *
     ",\"max_free_functions\":" * string(value.max_free_functions) * ",\"max_free_parameters\":" * string(value.max_free_parameters) *
     ",\"max_memory_length\":" * string(value.max_memory_length) * ",\"max_suboperators\":" * string(value.max_suboperators) * "}"
@@ -229,22 +247,22 @@ function _g1_observable_wire(value::ObservableGeneV1)
         ",\"minimum_effect_size\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.minimum_effect_size.unit) *
         ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.minimum_effect_size.value) * "},\"noise_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.noise_floor.unit) *
         ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.noise_floor.value) * "},\"noise_model_ref\":" * invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, value.noise_model_ref) * ",\"numerical_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.numerical_floor.unit) *
-        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.numerical_floor.value) * "},\"observable_ref\":" * _g1_gene_ref_payload(value.observable_ref.value) *
+        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.numerical_floor.value) * "},\"observable_ref\":" * invoke(_g1_gene_ref_payload, Tuple{String}, value.observable_ref.value) *
         ",\"sampling_program\":" * invoke(canonical_json, Tuple{TypedASTProgramV1}, value.sampling_program) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "observable_gene", payload)
 end
 
 function _g1_hole_wire(value::TypedOperatorHoleV1)
-    refs = ref -> _g1_gene_ref_payload(ref.value)
+    refs = ref -> invoke(_g1_gene_ref_payload, Tuple{String}, ref.value)
     qualified = ref -> invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, ref)
     condition = item -> "{\"intervention_ref\":" * qualified(item.intervention_ref) * ",\"minimum_effect\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, item.minimum_effect.unit) *
         ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, item.minimum_effect.value) * "},\"noise_and_numerical_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, item.noise_and_numerical_floor.unit) *
-        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, item.noise_and_numerical_floor.value) * "},\"observable_ref\":" * _g1_gene_ref_payload(item.observable_ref.value) * "}"
+        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, item.noise_and_numerical_floor.value) * "},\"observable_ref\":" * invoke(_g1_gene_ref_payload, Tuple{String}, item.observable_ref.value) * "}"
     payload = "{\"allowed_effects\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.allowed_effects, x -> invoke(_g1_quote, Tuple{String}, String(Symbol(x)))) *
         ",\"alternative_model_refs\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.alternative_model_refs, qualified) * ",\"causal_direction_ref\":" * qualified(value.causal_direction_ref) *
         ",\"complexity_budget\":" * invoke(_g1_budget_payload, Tuple{HoleComplexityBudgetV1}, value.complexity_budget) * ",\"forbidden_effects\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.forbidden_effects, x -> invoke(_g1_quote, Tuple{String}, String(Symbol(x)))) *
         ",\"hole_ref\":" * refs(value.hole_ref) * ",\"identifiability_conditions\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.identifiability_conditions, condition) *
-        ",\"null_model_ref\":" * qualified(value.null_model_ref) * ",\"ordered_input_state_refs\":[" * join((_g1_gene_ref_payload(ref.value) for ref in value.ordered_input_state_refs), ",") *
+        ",\"null_model_ref\":" * qualified(value.null_model_ref) * ",\"ordered_input_state_refs\":[" * join((invoke(_g1_gene_ref_payload, Tuple{String}, ref.value) for ref in value.ordered_input_state_refs), ",") *
         "],\"ordered_output_types\":[" * join((invoke(_g1_gene_physical_type_payload, Tuple{PhysicalType}, typ) for typ in value.ordered_output_types), ",") *
         "],\"observable_refs\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.observable_refs, refs) * ",\"out_of_sample_prediction_refs\":" * invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.out_of_sample_prediction_refs, qualified) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "typed_operator_hole", payload)
@@ -255,7 +273,7 @@ canonical_json(value::ObservableGeneV1) = _g1_observable_wire(value)
 canonical_json(value::HoleComplexityBudgetV1) = invoke(_g1_wrap, Tuple{String,String}, "hole_complexity_budget", _g1_budget_payload(value))
 canonical_json(value::IdentifiabilityConditionV1) = invoke(_g1_wrap, Tuple{String,String}, "identifiability_condition", "{\"intervention_ref\":" * invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, value.intervention_ref) * ",\"minimum_effect\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.minimum_effect.unit) *
     ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.minimum_effect.value) * "},\"noise_and_numerical_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.noise_and_numerical_floor.unit) *
-    ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.noise_and_numerical_floor.value) * "},\"observable_ref\":" * _g1_gene_ref_payload(value.observable_ref.value) * "}")
+    ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.noise_and_numerical_floor.value) * "},\"observable_ref\":" * invoke(_g1_gene_ref_payload, Tuple{String}, value.observable_ref.value) * "}")
 canonical_json(value::TypedOperatorHoleV1) = _g1_hole_wire(value)
 
 canonical_hash(value::ProgramRootRefV1) = invoke(_g1_hash_bytes, Tuple{String}, canonical_json(value))

@@ -1199,8 +1199,27 @@ end
         (observable_ref,), (oos_a, oos_b))
     @test canonical_hash(two_input_hole) != canonical_hash(swapped_io)
 
+    other_observable = ObservableRefV1("other-observable")
+    other_condition = IdentifiabilityConditionV1(intervention, other_observable, minimum,
+        NonnegativeQuantityV1(1 // 5, unit))
+    mixed_conditions = TypedOperatorHoleV1(HoleRefV1("mixed-conditions"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (condition, other_condition),
+        (observable_ref, other_observable), (oos_a,))
+    @test length(mixed_conditions.identifiability_conditions) == 2
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("duplicate-condition"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (condition, condition),
+        (observable_ref,), (oos_a,))
+    extreme_interval = QuantityIntervalV1(ExactFiniteIntervalV1(typemin(Int64), 0, false), unit)
+    extreme_observable = ObservableGeneV1(ObservableRefV1("extreme"), root, intervention, sampling,
+        extreme_interval, noise_model, NonnegativeQuantityV1(0, unit),
+        NonnegativeQuantityV1(0, unit), NonnegativeQuantityV1(1, unit), (competitor,))
+    @test extreme_observable.minimum_effect_size.value == 1
+
     before = (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
     FusionConceptAI._g1_hole_sorted(::Tuple{QualifiedRefV1}, ::Function) = "polluted"
+    FusionConceptAI._g1_unique_keys(::Tuple{QualifiedRefV1}, ::String, ::Function) = throw(ArgumentError("polluted"))
     @test before == (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
 end
     unit = UnitSignature()
