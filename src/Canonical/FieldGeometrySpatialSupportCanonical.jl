@@ -1,101 +1,31 @@
 """Closed canonical bytes and hashes for the G2 5.2 spatial-support grammar."""
 
 function _g25_write_byte(io::Base.GenericIOBuffer, value::UInt8)
-    invoke(write, Tuple{Base.GenericIOBuffer,UInt8}, io, value)
-    nothing
+    invoke(_ccbw_byte!, Tuple{Base.GenericIOBuffer,UInt8}, io, value)
 end
 
 function _g25_write_ascii(io::Base.GenericIOBuffer, value::String)
-    count = Core.sizeof(value)
-    GC.@preserve value begin
-        pointer = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), value)
-        index = 0
-        while index < count
-            byte = invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, pointer, index + 1)
-            invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, byte)
-            index += 1
-        end
-    end
-    nothing
-end
-
-function _g25_hex_digit(value::UInt8)::UInt8
-    value < UInt8(10) ? UInt8(0x30) + value : UInt8(0x61) + (value - UInt8(10))
+    invoke(_ccbw_ascii!, Tuple{Base.GenericIOBuffer,String}, io, value)
 end
 
 function _g25_write_hex2(io::Base.GenericIOBuffer, value::UInt8)
-    invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io,
-           invoke(_g25_hex_digit, Tuple{UInt8}, value >>> 4))
-    invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io,
-           invoke(_g25_hex_digit, Tuple{UInt8}, value & UInt8(0x0f)))
-    nothing
+    invoke(_ccbw_hex2!, Tuple{Base.GenericIOBuffer,UInt8}, io, value)
 end
 
 function _g25_write_quoted(io::Base.GenericIOBuffer, value::String)
-    invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x22))
-    count = Core.sizeof(value)
-    GC.@preserve value begin
-        pointer = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), value)
-        index = 0
-        while index < count
-            byte = invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, pointer, index + 1)
-            if byte == UInt8(0x22)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\\"")
-            elseif byte == UInt8(0x5c)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\\\")
-            elseif byte == UInt8(0x08)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\b")
-            elseif byte == UInt8(0x0c)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\f")
-            elseif byte == UInt8(0x0a)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\n")
-            elseif byte == UInt8(0x0d)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\r")
-            elseif byte == UInt8(0x09)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\t")
-            elseif byte < UInt8(0x20)
-                invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "\\u00")
-                invoke(_g25_write_hex2, Tuple{Base.GenericIOBuffer,UInt8}, io, byte)
-            else
-                invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, byte)
-            end
-            index += 1
-        end
-    end
-    invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x22))
-    nothing
+    invoke(_ccbw_quote!, Tuple{Base.GenericIOBuffer,AbstractString}, io, value)
 end
 
 function _g25_write_uint64(io::Base.GenericIOBuffer, value::UInt64)
-    divisor = UInt64(1)
-    while divisor <= value ÷ UInt64(10)
-        divisor *= UInt64(10)
-    end
-    while true
-        digit = value ÷ divisor
-        invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io,
-               UInt8(0x30) + UInt8(digit))
-        value -= digit * divisor
-        divisor == UInt64(1) && break
-        divisor ÷= UInt64(10)
-    end
-    nothing
+    invoke(_ccbw_uint64!, Tuple{Base.GenericIOBuffer,UInt64}, io, value)
 end
 
 function _g25_write_int64(io::Base.GenericIOBuffer, value::Int64)
-    if value < 0
-        invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2d))
-        magnitude = UInt64(-(value + Int64(1))) + UInt64(1)
-    else
-        magnitude = UInt64(value)
-    end
-    invoke(_g25_write_uint64, Tuple{Base.GenericIOBuffer,UInt64}, io, magnitude)
-    nothing
+    invoke(_ccbw_int64!, Tuple{Base.GenericIOBuffer,Int64}, io, value)
 end
 
 function _g25_finish(io::Base.GenericIOBuffer)::String
-    bytes = invoke(take!, Tuple{Base.GenericIOBuffer}, io)
-    invoke(String, Tuple{Vector{UInt8}}, bytes)
+    invoke(_ccbw_finish, Tuple{Base.GenericIOBuffer}, io)
 end
 
 function _g25_quote(value::String)
@@ -398,27 +328,7 @@ canonical_json(value::ChartTransitionMapGeneV1) = invoke(_g25_transition_json, T
 canonical_json(value::SpatialSupportGeneV1) = invoke(_g25_support_json, Tuple{SpatialSupportGeneV1}, value)
 
 function _g25_hash_bytes(value::String)::Digest256
-    count = Core.sizeof(value)
-    bytes = Vector{UInt8}(undef, count)
-    GC.@preserve value begin
-        pointer = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), value)
-        i = 1
-        while i <= count
-            byte = invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, pointer, i)
-            Core.arrayset(true, bytes, byte, i)
-            i += 1
-        end
-    end
-    digest = invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)
-    io = IOBuffer()
-    i = 1
-    while i <= 32
-        byte = Core.arrayref(true, digest, i)
-        invoke(_g25_write_hex2, Tuple{Base.GenericIOBuffer,UInt8}, io, byte)
-        i += 1
-    end
-    hex = invoke(_g25_finish, Tuple{Base.GenericIOBuffer}, io)
-    invoke(Digest256, Tuple{AbstractString}, hex)
+    invoke(_ccbw_hash_bytes, Tuple{String}, value)
 end
 
 canonical_hash(value::FieldOperatorSiteRefV1) = invoke(_g25_hash_bytes, Tuple{String}, invoke(_g25_ref_json, Tuple{FieldOperatorSiteRefV1}, value))

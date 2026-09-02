@@ -31,7 +31,6 @@ end
 
 function _ccbw_utf8!(io::Base.GenericIOBuffer, value::AbstractString)
     text = typeof(value) === String ? value : invoke(String, Tuple{AbstractString}, value)
-    invoke(isvalid, Tuple{String}, text) || throw(ArgumentError("invalid UTF-8 string is not canonical"))
     n = Core.sizeof(text)
     GC.@preserve text begin
         ptr = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), text)
@@ -46,7 +45,6 @@ end
 
 function _ccbw_quote!(io::Base.GenericIOBuffer, value::AbstractString)
     text = typeof(value) === String ? value : invoke(String, Tuple{AbstractString}, value)
-    invoke(isvalid, Tuple{String}, text) || throw(ArgumentError("invalid UTF-8 string is not canonical"))
     _ccbw_byte!(io, UInt8('"'))
     n = Core.sizeof(text)
     GC.@preserve text begin
@@ -159,6 +157,38 @@ function _ccbw_integer!(io::Base.GenericIOBuffer, value::Integer)
     end
 end
 
+function _ccbw_float!(io::Base.GenericIOBuffer, value::AbstractFloat)
+    number = Float64(value)
+    isfinite(number) || throw(ArgumentError("non-finite float is not canonical"))
+    number == 0.0 && return _ccbw_ascii!(io, "0.0")
+    text = invoke(Base.Ryu.writeshortest, Tuple{Float64}, number)
+    text isa String || throw(ArgumentError("closed float formatter returned an unsealed value"))
+    _ccbw_ascii!(io, text)
+end
+
 function _ccbw_finish(io::Base.GenericIOBuffer)
     invoke(String, Tuple{Vector{UInt8}}, invoke(take!, Tuple{Base.GenericIOBuffer}, io))
+end
+
+function _ccbw_hash_bytes(value::String)::Digest256
+    count = Core.sizeof(value)
+    bytes = Vector{UInt8}(undef, count)
+    GC.@preserve value begin
+        pointer = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), value)
+        index = 1
+        while index <= count
+            Core.arrayset(true, bytes,
+                invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, pointer, index), index)
+            index += 1
+        end
+    end
+    digest = invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)
+    io = _ccbw_new()
+    index = 1
+    while index <= 32
+        _ccbw_hex2!(io, Core.arrayref(true, digest, index))
+        index += 1
+    end
+    hex = _ccbw_finish(io)
+    invoke(Digest256, Tuple{AbstractString}, hex)
 end
