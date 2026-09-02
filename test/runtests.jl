@@ -9,6 +9,7 @@ const BAD_TEXT = string(Char(0xd800))
 mutable struct MutablePayload
     values::Vector{Int}
 end
+include("typed_ast_program_canonical_adversarial.jl")
 
 @testset "G1 exact decorated canonical transport" begin
     unit = UnitSignature()

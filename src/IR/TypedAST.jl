@@ -232,16 +232,8 @@ function _ast_program_binding_index(bindings, ref::OperatorRefV1)
 end
 
 function _ast_program_cse_key(n::ASTApplyV1, inputs::Tuple, nodes::Vector{AbstractTypedASTNodeV1}, manifest_hash::Digest256)
-    children = [invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[i], Tuple(nodes)) for i in inputs]
-    for group in n.commutative_input_groups
-        positions = Tuple(Int(i) for i in group)
-        values = sort([children[p] for p in positions])
-        for (p, value) in zip(positions, values)
-            children[p] = value
-        end
-    end
-    _ast_program_canonical((operator_ref=n.operator_ref, manifest_hash=manifest_hash,
-        inputs=Tuple(children), parameters=n.parameters, output_type=n.output_type))
+    invoke(_typed_ast_cse_key, Tuple{ASTApplyV1,Tuple,Vector{AbstractTypedASTNodeV1},Digest256},
+        n, inputs, nodes, manifest_hash)
 end
 
 """Normalize only proven pure/CSE-safe subexpressions; stateful nodes retain identity."""
@@ -413,119 +405,20 @@ function TypedASTProgramV1(nodes, roots, input_ports=(); registry=nothing, used_
 end
 
 function _ast_program_node_payload(n, refs, nodes)
-    if typeof(n) === ASTInputV1
-        return (kind=:input, port=n.port, parameters=n.parameters, output_type=n.output_type)
-    elseif typeof(n) === ASTParameterV1
-        return (kind=:parameter, parameters=n.parameters, output_type=n.output_type)
-    elseif typeof(n) === ASTConstantV1
-        return (kind=:constant, value=n.value, parameters=n.parameters, output_type=n.output_type)
-    elseif typeof(n) === ASTApplyV1
-        input_refs = [refs[i] for i in n.inputs]
-        if n.pure && n.cse_allowed
-            for group in n.commutative_input_groups
-                positions = Tuple(Int(i) for i in group)
-                permutation = sortperm(collect(eachindex(positions)), by=k ->
-                    invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[n.inputs[positions[k]]], nodes))
-                for (k, position) in enumerate(positions)
-                    source_position = positions[permutation[k]]
-                    input_refs[position] = refs[n.inputs[source_position]]
-                end
-            end
-        end
-        return (kind=:apply, operator_ref=n.operator_ref, inputs=Tuple(input_refs),
-            output_type=n.output_type, parameters=n.parameters)
-    end
-    throw(CanonicalizationDeferred("AST program node canonicalization is outside the P0 proof boundary"))
+    invoke(_typed_ast_node_payload, Tuple{AbstractTypedASTNodeV1,Vector{Int},Tuple}, n, refs, nodes)
 end
 
 function _ast_program_node_key(n, nodes)
-    if typeof(n) === ASTInputV1
-        return "input|" * string(n.port) * "|" * _ast_program_canonical(n.parameters) * "|" * _ast_program_canonical(n.output_type)
-    elseif typeof(n) === ASTParameterV1
-        return "parameter|" * _ast_program_canonical(n.parameters) * "|" * _ast_program_canonical(n.output_type)
-    elseif typeof(n) === ASTConstantV1
-        return "constant|" * _ast_program_canonical((value=n.value, parameters=n.parameters, output_type=n.output_type))
-    elseif typeof(n) === ASTApplyV1
-        children = [invoke(_ast_program_node_key, Tuple{Any,Any}, nodes[i], nodes) for i in n.inputs]
-        if n.pure && n.cse_allowed
-            for group in n.commutative_input_groups
-                positions = Tuple(Int(i) for i in group)
-                vals = sort([children[p] for p in positions])
-                for (p, v) in zip(positions, vals); children[p] = v; end
-            end
-        end
-        return "apply|" * _ast_program_canonical(n.operator_ref) * "|" * join(children, ",") * "|" * _ast_program_canonical(n.output_type) * "|" * _ast_program_canonical(n.parameters)
-    end
-    throw(CanonicalizationDeferred("AST program node key is outside the P0 proof boundary"))
+    invoke(_typed_ast_node_key, Tuple{AbstractTypedASTNodeV1,Any}, n, nodes)
 end
 
 """Closed encoder for program identity; it does not dispatch through package extensible canonical helpers."""
 function _ast_program_canonical(x)
-    function encode(value)
-        value === nothing && return "null"
-        typeof(value) === String && return invoke(_jsonquote, Tuple{AbstractString}, value)
-        value isa Bool && return value ? "true" : "false"
-        value isa Symbol && (isvalid(String(value)) || throw(ArgumentError("invalid AST symbol")); return invoke(_jsonquote, Tuple{AbstractString}, String(value)))
-        typeof(value) in _P0_SAFE_INTEGER_TYPES && return string(value)
-        if typeof(value) in _P0_SAFE_FLOAT_TYPES
-            return invoke(_canonical_float, Tuple{AbstractFloat}, value)
-        end
-        if value isa Rational
-            num, den = getfield(value, :num), getfield(value, :den)
-            typeof(num) in _P0_SAFE_INTEGER_TYPES && typeof(den) in _P0_SAFE_INTEGER_TYPES ||
-                throw(ArgumentError("AST rational is not a closed value"))
-            return "{\"denominator\":" * encode(den) * ",\"numerator\":" * encode(num) * "}"
-        end
-        value isa Enum && return invoke(_jsonquote, Tuple{AbstractString}, String(Symbol(value)))
-        if value isa NamedTuple
-            names = [String(k) for k in keys(value)]
-            length(unique(names)) == length(names) || throw(ArgumentError("AST object has duplicate keys"))
-            order = sortperm(names)
-            return "{" * join((invoke(_jsonquote, Tuple{AbstractString}, names[i]) * ":" * encode(getfield(value, keys(value)[i])) for i in order), ",") * "}"
-        end
-        value isa Tuple && return "[" * join((encode(v) for v in value), ",") * "]"
-        if typeof(value) === QualifiedRefV1
-            return encode((id=getfield(value, :id), version=getfield(value, :version)))
-        elseif typeof(value) === OperatorRefV1
-            return encode((qualified=getfield(value, :qualified),))
-        elseif typeof(value) === Digest256
-            return encode((value=getfield(value, :value),))
-        elseif typeof(value) === UnitSignature
-            return encode((exponents=getfield(value, :exponents),))
-        elseif typeof(value) === TemporalTypeV1
-            return encode((kind=getfield(value, :kind), derivative_order=getfield(value, :derivative_order), clock_ref=getfield(value, :clock_ref)))
-        elseif typeof(value) === PhysicalType
-            return encode((value_kind=getfield(value, :value_kind), tensor_rank=getfield(value, :tensor_rank),
-                spatial_dimension=getfield(value, :spatial_dimension), temporal_type=getfield(value, :temporal_type),
-                units=getfield(value, :units)))
-        elseif typeof(value) === OperatorParameterSpecV1
-            return encode((name=getfield(value, :name), type_tag=getfield(value, :type_tag), required=getfield(value, :required)))
-        end
-        throw(ArgumentError("AST canonical payload contains an unsealed value"))
-    end
-    encode(x)
+    invoke(_tac_value_string, Tuple{Any}, x)
 end
 
 function _ast_program_semantic_payload(program::TypedASTProgramV1)
-    n = length(program.nodes)
-    perms = _all_permutations(n)
-    perms === nothing && throw(CanonicalizationDeferred("AST program exact canonicalization exceeds the P0 proof boundary"))
-    best = nothing
-    best_text = nothing
-    for order in perms
-        refs = zeros(Int, n)
-        for (new, old) in enumerate(order); refs[old] = new; end
-        records = Tuple(invoke(_ast_program_node_payload, Tuple{Any,Any,Any}, program.nodes[old], refs, program.nodes) for old in order)
-        roots = Tuple(refs[r] for r in program.roots)
-        declarations = Tuple(sort([(port=program.nodes[i].port, node=refs[i]) for i in program.input_ports], by=x -> x.port))
-        candidate = (nodes=records, roots=roots, input_ports=declarations,
-            used_manifest_bindings=program.used_manifest_bindings)
-        text = _ast_program_canonical(candidate)
-        if best_text === nothing || text < best_text
-            best, best_text = candidate, text
-        end
-    end
-    best
+    invoke(_tac_program_payload, Tuple{TypedASTProgramV1}, program)
 end
 
 semantic_view(x::ASTInputV1) = (port=x.port, parameters=x.parameters, output_type=x.output_type)
