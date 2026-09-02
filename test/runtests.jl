@@ -1,6 +1,7 @@
 using Test
 using FusionConceptAI
 using JSON3
+using SHA
 
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
@@ -1088,4 +1089,52 @@ end
     println(\"g1-gene-dispatch-closed-ok\")
     """
     @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $gene_dispatch_script`)
+end
+
+@testset "G1 sealed gene hash and endpoint remediation" begin
+    unit = UnitSignature()
+    interval = ExactFiniteIntervalV1(-7 // 3, 11 // 5, false)
+    quantity_bounds = QuantityIntervalV1(interval, unit)
+    transform = ParameterTransformSpecV1(transform_linear)
+    parameter = ParameterGeneV1(ParameterRefV1("endpoint"), unit, transform, quantity_bounds, 0)
+    expected_hash = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical_json(transform))))))
+    @test canonical_hash(transform) == expected_hash
+    matrix = ExactRationalMatrixV1(((0, 1), (1, 0)))
+    action = StateSymmetryActionV1(StateGeneRefV1("s"), matrix)
+    expected_action_hash = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical_json(action))))))
+    @test canonical_hash(action) == expected_action_hash
+    @test parameter_value(parameter, -1) == Float64(-7 // 3)
+    @test parameter_value(parameter, 1) == Float64(11 // 5)
+    log_bounds = QuantityIntervalV1(ExactFiniteIntervalV1(7 // 5, 11 // 5, false), unit)
+    log_parameter = ParameterGeneV1(ParameterRefV1("log-endpoint"), unit, ParameterTransformSpecV1(transform_log), log_bounds, 0)
+    @test parameter_value(log_parameter, -1) == Float64(7 // 5)
+    @test parameter_value(log_parameter, 1) == Float64(11 // 5)
+    signed_parameter = ParameterGeneV1(ParameterRefV1("signed-endpoint"), unit,
+        ParameterTransformSpecV1(transform_signed_log, NonnegativeQuantityV1(1, unit)), quantity_bounds, 0)
+    @test parameter_value(signed_parameter, -1) == Float64(-7 // 3)
+    @test parameter_value(signed_parameter, 1) == Float64(11 // 5)
+    p1 = ParityActionV1(QualifiedRefV1("a\0b", "c"), even)
+    p2 = ParityActionV1(QualifiedRefV1("a", "b\0c"), odd)
+    @test StateGeneV1(StateGeneRefV1("nul"), T0, QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit), (p1, p2), (), (), state_derived).state_ref.value == "nul"
+    @test_throws ArgumentError StateGeneV1(StateGeneRefV1("nul"), T0, QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit), (p1, p1), (), (), state_derived)
+    gauge_a, gauge_b = SymmetryRefV1("a"), SymmetryRefV1("b")
+    state_a = StateGeneV1(StateGeneRefV1("set"), T0, QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit), (), (gauge_a, gauge_b), (), state_derived)
+    state_b = StateGeneV1(StateGeneRefV1("set"), T0, QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit), (), (gauge_b, gauge_a), (), state_derived)
+    @test canonical_hash(state_a) == canonical_hash(state_b)
+    term_a, term_b = InvariantTermV1(StateGeneRefV1("a"), 1), InvariantTermV1(StateGeneRefV1("b"), 2)
+    inv_a = InvariantV1(InvariantRefV1("i"), QualifiedRefV1("account", "v1"), scope_global, nothing, (term_a, term_b), (), (), (), 0, entropy_conserved)
+    inv_b = InvariantV1(InvariantRefV1("i"), QualifiedRefV1("account", "v1"), scope_global, nothing, (term_b, term_a), (), (), (), 0, entropy_conserved)
+    @test canonical_hash(inv_a) == canonical_hash(inv_b)
+    parameter_dispatch_script = """
+    using FusionConceptAI
+    u = UnitSignature(); bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-7//3, 11//5, false), u)
+    gene = ParameterGeneV1(ParameterRefV1(\"p\"), u, ParameterTransformSpecV1(transform_linear), bounds, 0)
+    before = parameter_value(gene, -1.0)
+    FusionConceptAI.derive_parameter_value(::ParameterGeneV1, ::Float64) = 999.0
+    FusionConceptAI._g1_gene_sorted_payload(::Tuple, ::Function) = \"polluted\"
+    @assert parameter_value(gene, -1.0) == before
+    @assert parameter_value(gene, 1.0) == Float64(11//5)
+    println(\"g1-parameter-dispatch-closed-ok\")
+    """
+    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $parameter_dispatch_script`)
 end

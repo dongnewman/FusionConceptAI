@@ -8,9 +8,7 @@ end
 _g1_gene_rational(value::Any, field::String) =
     invoke(_gene_rational, Tuple{Any,Any}, value, field)
 
-function _g1_ref_key(value::QualifiedRefV1)
-    value.id * "\u0000" * value.version
-end
+_g1_ref_key(value::QualifiedRefV1) = (value.id, value.version)
 
 function _g1_local_ref_key(value::Any)
     value isa StateGeneRefV1 && return value.value
@@ -31,7 +29,7 @@ function _g1_require_tuple_type(value::Any, T::Type, field::String)
 end
 
 function _g1_unique_keys(values::Tuple, field::String, key::Function=_g1_local_ref_key)
-    keys = String[key(value) for value in values]
+    keys = Any[key(value) for value in values]
     length(unique(keys)) == length(keys) || throw(ArgumentError("$field contains duplicate references"))
     values
 end
@@ -273,10 +271,13 @@ struct SymmetryGeneV1
     end
 end
 
-function derive_parameter_value(gene::ParameterGeneV1, normalized_gene::Any=gene.normalized_gene)
+function _g1_derive_parameter_value_sealed(gene::ParameterGeneV1, normalized_gene::Any)
     z = invoke(_g1_finite_float, Tuple{Any,String}, normalized_gene, "normalized_gene")
     -1.0 <= z <= 1.0 || throw(ArgumentError("normalized_gene must lie in [-1,1]"))
-    lower = Float64(gene.bounds.interval.lower); upper = Float64(gene.bounds.interval.upper); t = (z + 1.0) / 2.0
+    lower = Float64(gene.bounds.interval.lower); upper = Float64(gene.bounds.interval.upper)
+    z == -1.0 && return lower
+    z == 1.0 && return upper
+    t = (z + 1.0) / 2.0
     gene.transform.kind == transform_linear && return lower + t * (upper - lower)
     gene.transform.kind == transform_log && return exp(log(lower) + t * (log(upper) - log(lower)))
     gene.transform.kind == transform_signed_log || throw(ArgumentError("unknown parameter transform kind"))
@@ -285,7 +286,14 @@ function derive_parameter_value(gene::ParameterGeneV1, normalized_gene::Any=gene
     inverse(x) = sign(x) * scale * expm1(abs(x))
     inverse(forward(lower) + t * (forward(upper) - forward(lower)))
 end
-parameter_value(gene::ParameterGeneV1, normalized_gene::Any=gene.normalized_gene) = derive_parameter_value(gene, normalized_gene)
+derive_parameter_value(gene::ParameterGeneV1) =
+    invoke(_g1_derive_parameter_value_sealed, Tuple{ParameterGeneV1,Any}, gene, gene.normalized_gene)
+derive_parameter_value(gene::ParameterGeneV1, normalized_gene::Any) =
+    invoke(_g1_derive_parameter_value_sealed, Tuple{ParameterGeneV1,Any}, gene, normalized_gene)
+parameter_value(gene::ParameterGeneV1) =
+    invoke(_g1_derive_parameter_value_sealed, Tuple{ParameterGeneV1,Any}, gene, gene.normalized_gene)
+parameter_value(gene::ParameterGeneV1, normalized_gene::Any) =
+    invoke(_g1_derive_parameter_value_sealed, Tuple{ParameterGeneV1,Any}, gene, normalized_gene)
 
 _g1_gene_ref_payload(value::String) = "{\"value\":" * invoke(_g1_quote, Tuple{String}, value) * "}"
 _g1_gene_sorted_payload(values, encoder::Function) = "[" * join(sort(String[encoder(value) for value in values]), ",") * "]"
@@ -316,10 +324,10 @@ function _g1_state_gene_wire(value::StateGeneV1)
         ",\"version\":" * invoke(_g1_quote, Tuple{String}, action.generator_ref.version) * "},\"sign\":" *
         invoke(_g1_quote, Tuple{String}, action.sign == even ? "even" : "odd") * "}"
     ref_payload(ref) = _g1_gene_ref_payload(ref.value)
-    payload = "{\"constraint_refs\":" * _g1_gene_sorted_payload(value.constraint_refs, ref_payload) *
+    payload = "{\"constraint_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.constraint_refs, ref_payload) *
         ",\"epistemic_state\":" * invoke(_g1_gene_state_label, Tuple{StateEpistemicV1}, value.epistemic_state) *
-        ",\"gauge_refs\":" * _g1_gene_sorted_payload(value.gauge_refs, ref_payload) *
-        ",\"parity_actions\":" * _g1_gene_sorted_payload(value.parity_actions, action_payload) *
+        ",\"gauge_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.gauge_refs, ref_payload) *
+        ",\"parity_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.parity_actions, action_payload) *
         ",\"physical_bounds\":" * invoke(_g1_gene_quantity_payload, Tuple{QuantityIntervalV1}, value.physical_bounds) *
         ",\"physical_type\":" * invoke(_g1_gene_physical_type_payload, Tuple{PhysicalType}, value.physical_type) *
         ",\"state_ref\":" * _g1_gene_ref_payload(value.state_ref.value) * "}"
@@ -334,17 +342,16 @@ _g1_invariant_term_wire(value::InvariantTermV1) =
 
 function _g1_invariant_wire(value::InvariantV1)
     ref_payload(ref) = _g1_gene_ref_payload(ref.value)
-    site(refs) = _g1_gene_sorted_payload(refs, ref_payload)
     scope_ref = value.scope_ref === nothing ? "null" : "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.id) *
         ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.version) * "}"
     account = "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.account_kind_ref.id) * ",\"version\":" *
         invoke(_g1_quote, Tuple{String}, value.account_kind_ref.version) * "}"
-    payload = "{\"account_kind_ref\":" * account * ",\"allowed_sink_refs\":" * site(value.allowed_sink_refs) *
-        ",\"allowed_source_refs\":" * site(value.allowed_source_refs) * ",\"boundary_flux_refs\":" * site(value.boundary_flux_refs) *
+    payload = "{\"account_kind_ref\":" * account * ",\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.allowed_sink_refs, ref_payload) *
+        ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.boundary_flux_refs, ref_payload) *
         ",\"entropy_direction\":" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, value.entropy_direction) *
         ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"scope\":" *
         invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, value.scope) * ",\"scope_ref\":" * scope_ref *
-        ",\"terms\":" * _g1_gene_sorted_payload(value.terms, _g1_invariant_term_payload) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
+        ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "invariant", payload)
 end
 
@@ -353,6 +360,9 @@ function _g1_parameter_transform_payload(value::ParameterTransformSpecV1)
         ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.scale.value) * "}"
     "{\"kind\":" * invoke(_g1_gene_transform_label, Tuple{ParameterTransformKindV1}, value.kind) * ",\"scale\":" * scale * "}"
 end
+
+_g1_parameter_transform_wire(value::ParameterTransformSpecV1) =
+    invoke(_g1_wrap, Tuple{String,String}, "parameter_transform", _g1_parameter_transform_payload(value))
 
 function _g1_parameter_gene_wire(value::ParameterGeneV1)
     payload = "{\"bounds\":" * invoke(_g1_gene_quantity_payload, Tuple{QuantityIntervalV1}, value.bounds) *
@@ -375,13 +385,16 @@ function _g1_state_action_payload(value::StateSymmetryActionV1)
         ",\"state_ref\":" * _g1_gene_ref_payload(value.state_ref.value) * "}"
 end
 
+_g1_state_action_wire(value::StateSymmetryActionV1) =
+    invoke(_g1_wrap, Tuple{String,String}, "state_symmetry_action", _g1_state_action_payload(value))
+
 function _g1_symmetry_gene_wire(value::SymmetryGeneV1)
     order = value.group_order === nothing ? "null" : string(value.group_order)
     payload = "{\"behavior\":" * invoke(_g1_gene_behavior_label, Tuple{SymmetryBehaviorV1}, value.behavior) *
         ",\"coordinate_generator_matrix\":" * invoke(_g1_matrix_payload, Tuple{ExactRationalMatrixV1}, value.coordinate_generator_matrix) *
         ",\"group_kind\":" * invoke(_g1_gene_group_label, Tuple{SymmetryGroupKindV1}, value.group_kind) *
         ",\"group_order\":" * order * ",\"ref\":" * _g1_gene_ref_payload(value.ref.value) *
-        ",\"state_actions\":" * _g1_gene_sorted_payload(value.state_actions, _g1_state_action_payload) *
+        ",\"state_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.state_actions, action -> invoke(_g1_state_action_payload, Tuple{StateSymmetryActionV1}, action)) *
         ",\"tolerance\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.tolerance) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "symmetry_gene", payload)
 end
@@ -402,17 +415,17 @@ _g1_gene_behavior_label(value::SymmetryBehaviorV1) = invoke(_g1_gene_enum_label,
 canonical_json(value::StateGeneV1) = _g1_state_gene_wire(value)
 canonical_json(value::InvariantTermV1) = _g1_invariant_term_wire(value)
 canonical_json(value::InvariantV1) = _g1_invariant_wire(value)
-canonical_json(value::ParameterTransformSpecV1) = invoke(_g1_wrap, Tuple{String,String}, "parameter_transform", _g1_parameter_transform_payload(value))
+canonical_json(value::ParameterTransformSpecV1) = _g1_parameter_transform_wire(value)
 canonical_json(value::ParameterGeneV1) = _g1_parameter_gene_wire(value)
-canonical_json(value::StateSymmetryActionV1) = invoke(_g1_wrap, Tuple{String,String}, "state_symmetry_action", _g1_state_action_payload(value))
+canonical_json(value::StateSymmetryActionV1) = _g1_state_action_wire(value)
 canonical_json(value::SymmetryGeneV1) = _g1_symmetry_gene_wire(value)
 
 canonical_hash(value::StateGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_state_gene_wire(value))
 canonical_hash(value::InvariantTermV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_invariant_term_wire(value))
 canonical_hash(value::InvariantV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_invariant_wire(value))
-canonical_hash(value::ParameterTransformSpecV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_parameter_transform_payload(value))
+canonical_hash(value::ParameterTransformSpecV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_parameter_transform_wire(value))
 canonical_hash(value::ParameterGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_parameter_gene_wire(value))
-canonical_hash(value::StateSymmetryActionV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_state_action_payload(value))
+canonical_hash(value::StateSymmetryActionV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_state_action_wire(value))
 canonical_hash(value::SymmetryGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_symmetry_gene_wire(value))
 
 semantic_view(x::StateGeneV1) = (state_ref=x.state_ref, physical_type=x.physical_type, physical_bounds=x.physical_bounds,
