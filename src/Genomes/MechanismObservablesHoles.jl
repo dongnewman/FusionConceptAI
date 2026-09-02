@@ -188,7 +188,7 @@ struct TypedOperatorHoleV1
         outputs = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, ordered_output_types, PhysicalType, "ordered_output_types")
         isempty(inputs) && throw(ArgumentError("ordered_input_state_refs cannot be empty"))
         isempty(outputs) && throw(ArgumentError("ordered_output_types cannot be empty"))
-        _g1_unique_local_refs(inputs, "ordered_input_state_refs")
+        invoke(_g1_unique_local_refs, Tuple{Tuple,String}, inputs, "ordered_input_state_refs")
         causal_direction_ref isa QualifiedRefV1 || throw(ArgumentError("causal_direction_ref must be QualifiedRefV1"))
         allowed = invoke(_g1_effect_tuple, Tuple{Any,String}, allowed_effects, "allowed_effects")
         forbidden = invoke(_g1_effect_tuple, Tuple{Any,String}, forbidden_effects, "forbidden_effects")

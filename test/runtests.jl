@@ -1220,6 +1220,11 @@ end
     before = (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
     FusionConceptAI._g1_hole_sorted(::Tuple{QualifiedRefV1}, ::Function) = "polluted"
     FusionConceptAI._g1_unique_keys(::Tuple{QualifiedRefV1}, ::String, ::Function) = throw(ArgumentError("polluted"))
+    FusionConceptAI._g1_unique_local_refs(::Tuple{StateGeneRefV1,StateGeneRefV1}, ::String) = nothing
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("polluted-inputs"), (state_a, state_a), (scalar, scalar),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a, alt_b), (condition,),
+        (observable_ref,), (oos_a, oos_b))
     @test before == (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
 end
     unit = UnitSignature()
