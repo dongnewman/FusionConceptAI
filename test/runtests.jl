@@ -1127,13 +1127,22 @@ end
     @test canonical_hash(inv_a) == canonical_hash(inv_b)
     parameter_dispatch_script = """
     using FusionConceptAI
-    u = UnitSignature(); bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-7//3, 11//5, false), u)
+    u = UnitSignature(); t = PhysicalType(:scalar_field, 0, 3, :differential, u)
+    bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-7//3, 11//5, false), u)
     gene = ParameterGeneV1(ParameterRefV1(\"p\"), u, ParameterTransformSpecV1(transform_linear), bounds, 0)
+    parity = ParityActionV1(QualifiedRefV1(\"parity\", \"v1\"), odd)
+    state = StateGeneV1(StateGeneRefV1(\"state\"), t, bounds, (parity,), (SymmetryRefV1(\"g2\"), SymmetryRefV1(\"g1\")), (), state_derived)
+    term = InvariantTermV1(StateGeneRefV1(\"state\"), 1)
+    invariant = InvariantV1(InvariantRefV1(\"inv\"), QualifiedRefV1(\"account\", \"v1\"), scope_global, nothing, (term,), (), (), (), 0, entropy_conserved)
+    matrix = ExactRationalMatrixV1(((1,),))
+    symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
     before = parameter_value(gene, -1.0)
+    before_objects = (map(canonical_json, (state, invariant, symmetry)), map(canonical_hash, (state, invariant, symmetry)))
     FusionConceptAI.derive_parameter_value(::ParameterGeneV1, ::Float64) = 999.0
     FusionConceptAI._g1_gene_sorted_payload(::Tuple, ::Function) = \"polluted\"
     @assert parameter_value(gene, -1.0) == before
     @assert parameter_value(gene, 1.0) == Float64(11//5)
+    @assert before_objects == (map(canonical_json, (state, invariant, symmetry)), map(canonical_hash, (state, invariant, symmetry)))
     println(\"g1-parameter-dispatch-closed-ok\")
     """
     @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $parameter_dispatch_script`)

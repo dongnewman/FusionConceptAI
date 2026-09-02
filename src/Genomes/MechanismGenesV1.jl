@@ -324,10 +324,10 @@ function _g1_state_gene_wire(value::StateGeneV1)
         ",\"version\":" * invoke(_g1_quote, Tuple{String}, action.generator_ref.version) * "},\"sign\":" *
         invoke(_g1_quote, Tuple{String}, action.sign == even ? "even" : "odd") * "}"
     ref_payload(ref) = _g1_gene_ref_payload(ref.value)
-    payload = "{\"constraint_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.constraint_refs, ref_payload) *
+    payload = "{\"constraint_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.constraint_refs, ref_payload) *
         ",\"epistemic_state\":" * invoke(_g1_gene_state_label, Tuple{StateEpistemicV1}, value.epistemic_state) *
-        ",\"gauge_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.gauge_refs, ref_payload) *
-        ",\"parity_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.parity_actions, action_payload) *
+        ",\"gauge_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.gauge_refs, ref_payload) *
+        ",\"parity_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.parity_actions, action_payload) *
         ",\"physical_bounds\":" * invoke(_g1_gene_quantity_payload, Tuple{QuantityIntervalV1}, value.physical_bounds) *
         ",\"physical_type\":" * invoke(_g1_gene_physical_type_payload, Tuple{PhysicalType}, value.physical_type) *
         ",\"state_ref\":" * _g1_gene_ref_payload(value.state_ref.value) * "}"
@@ -346,12 +346,12 @@ function _g1_invariant_wire(value::InvariantV1)
         ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.version) * "}"
     account = "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.account_kind_ref.id) * ",\"version\":" *
         invoke(_g1_quote, Tuple{String}, value.account_kind_ref.version) * "}"
-    payload = "{\"account_kind_ref\":" * account * ",\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.allowed_sink_refs, ref_payload) *
-        ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.boundary_flux_refs, ref_payload) *
+    payload = "{\"account_kind_ref\":" * account * ",\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_sink_refs, ref_payload) *
+        ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.boundary_flux_refs, ref_payload) *
         ",\"entropy_direction\":" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, value.entropy_direction) *
         ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"scope\":" *
         invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, value.scope) * ",\"scope_ref\":" * scope_ref *
-        ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
+        ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "invariant", payload)
 end
 
@@ -394,7 +394,7 @@ function _g1_symmetry_gene_wire(value::SymmetryGeneV1)
         ",\"coordinate_generator_matrix\":" * invoke(_g1_matrix_payload, Tuple{ExactRationalMatrixV1}, value.coordinate_generator_matrix) *
         ",\"group_kind\":" * invoke(_g1_gene_group_label, Tuple{SymmetryGroupKindV1}, value.group_kind) *
         ",\"group_order\":" * order * ",\"ref\":" * _g1_gene_ref_payload(value.ref.value) *
-        ",\"state_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Tuple,Function}, value.state_actions, action -> invoke(_g1_state_action_payload, Tuple{StateSymmetryActionV1}, action)) *
+        ",\"state_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.state_actions, action -> invoke(_g1_state_action_payload, Tuple{StateSymmetryActionV1}, action)) *
         ",\"tolerance\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.tolerance) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "symmetry_gene", payload)
 end
