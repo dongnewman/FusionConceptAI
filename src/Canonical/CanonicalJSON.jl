@@ -108,6 +108,18 @@ function _mimo_edge_encoding(e::AtomicMIMOHyperedgeV1, rank::Vector{Int})
         ",\"role\":" * invoke(_jsonquote, Tuple{AbstractString}, String(Symbol(e.role))) * "}"
 end
 
+const _MIMO_EDGE_CANONICAL_DOMAIN = "fusionconceptai:v4:atomic-mimo-hyperedge:v1"
+const _MIMO_GRAPH_CANONICAL_DOMAIN = "fusionconceptai:v4:typed-operator-hypergraph:v1"
+
+function _mimo_edge_canonical_bytes(e::AtomicMIMOHyperedgeV1)
+    max_index = maximum((b.graph_node_index for b in (e.input_bindings..., e.output_bindings...)))
+    body = _mimo_edge_encoding(e, collect(1:max_index))
+    "{\"canonicalization_version\":\"1\",\"domain\":" * invoke(_jsonquote, Tuple{AbstractString}, _MIMO_EDGE_CANONICAL_DOMAIN) *
+        ",\"edge\":" * body * "}"
+end
+
+canonical_json(e::AtomicMIMOHyperedgeV1) = _mimo_edge_canonical_bytes(e)
+
 function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
     rank = zeros(Int, length(g.nodes))
     for (j, old) in enumerate(order); rank[old] = j; end
@@ -125,7 +137,8 @@ function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
         end
     end
     sort!(edges)
-    _canonical_pairs([(:nodes, nodes), (:hyperedges, edges)])
+    _canonical_pairs([(:canonicalization_version, "1"), (:domain, _MIMO_GRAPH_CANONICAL_DOMAIN),
+        (:nodes, nodes), (:hyperedges, edges)])
 end
 
 function _refined_colors(g)

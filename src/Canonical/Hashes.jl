@@ -4,6 +4,12 @@ function canonical_hash(x)
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical_json(x))))))
 end
 
+function canonical_hash(x::AtomicMIMOHyperedgeV1)
+    # Atomic MIMO identity is domain-separated and does not dispatch through
+    # semantic_view/canonical_json's open generic path.
+    Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(_mimo_edge_canonical_bytes(x))))))
+end
+
 mechanism_hash(x::MechanismGenomeV4) = canonical_hash(x)
 field_geometry_hash(x::FieldGeometryGenomeV4) = canonical_hash(x)
 realization_control_hash(x::RealizationControlGenomeV4) = canonical_hash(x)

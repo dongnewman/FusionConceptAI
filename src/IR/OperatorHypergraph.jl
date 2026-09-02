@@ -174,7 +174,9 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
     end
     role === interface && isempty(pairs) && throw(ArgumentError("interface MIMO edge requires a flux pair"))
     role !== interface && !isempty(pairs) && throw(ArgumentError("interface flux pairs require interface role"))
+    role === interface && !isempty(effects) && throw(ArgumentError("interface ledger must be represented by flux pairs"))
     pair_seen = Set{Tuple{String,Int}}()
+    pair_ledgers = Dict{Tuple{String,UnitSignature},Rational{Int64}}()
     for pair in pairs
         for effect in (pair.minus, pair.plus)
             ref = effect.account_ref
@@ -186,6 +188,8 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
             endpoint_key in pair_seen && throw(ArgumentError("interface pair endpoint is duplicated"))
             (:output, ref.port_index, ref.account) in seen && throw(ArgumentError("interface endpoint duplicates an account effect"))
             push!(pair_seen, endpoint_key)
+            ledger_key = (ref.account, ref.unit)
+            pair_ledgers[ledger_key] = get(pair_ledgers, ledger_key, 0//1) + effect.coefficient
         end
         pair.minus.account_ref.direction === :minus && pair.minus.coefficient < 0 ||
             throw(ArgumentError("interface minus endpoint must be negative"))
@@ -193,19 +197,42 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
             throw(ArgumentError("interface plus endpoint must be positive"))
     end
     role in (source, sink) && isempty(effects) && throw(ArgumentError("source/sink MIMO edge requires account effects"))
-    category = invoke(_mimo_effect_category, Tuple{Any,Any}, effects, pairs)
-    category in _MIMO_EFFECT_CATEGORIES || throw(ArgumentError("unknown conservation effect category"))
-    affected = Set{Int}(e.account_ref.port_index for e in effects if e.account_ref.port_side === :output)
-    union!(affected, (p.minus.account_ref.port_index for p in pairs))
-    union!(affected, (p.plus.account_ref.port_index for p in pairs))
-    if category !== :none
-        isempty(affected) && throw(ArgumentError("conservation effect has no output endpoint"))
-        for position in sort!(collect(affected))
+    ledgers = Dict{Tuple{String,UnitSignature},Rational{Int64}}()
+    ledger_positions = Dict{Tuple{String,UnitSignature},Set{Int} }()
+    for effect in effects
+        ref = effect.account_ref
+        key = (ref.account, ref.unit)
+        ledgers[key] = get(ledgers, key, 0//1) + effect.coefficient
+        positions = get!(ledger_positions, key, Set{Int}())
+        ref.port_side === :output && push!(positions, ref.port_index)
+    end
+    for (key, total) in pair_ledgers
+        total == 0 || throw(ArgumentError("interface ledger must close exactly to zero"))
+        ledgers[key] = total
+        ledger_positions[key] = Set{Int}(p.minus.account_ref.port_index for p in pairs if p.minus.account_ref.account == key[1] && p.minus.account_ref.unit == key[2])
+        union!(ledger_positions[key], (p.plus.account_ref.port_index for p in pairs if p.plus.account_ref.account == key[1] && p.plus.account_ref.unit == key[2]))
+    end
+    pair_keys = Set(keys(pair_ledgers))
+    categories = Tuple{Symbol,Tuple{String,UnitSignature}}[]
+    for (key, total) in ledgers
+        category = key in pair_keys ? :interface_flux : total == 0 ? :redistribution : total > 0 ? :net_creation : :net_destruction
+        push!(categories, (category, key))
+        if category === :net_creation && role !== source
+            throw(ArgumentError("net creation requires an explicit source role"))
+        elseif category === :net_destruction && role !== sink
+            throw(ArgumentError("net destruction requires an explicit sink role"))
+        end
+        role === source && category === :net_destruction && throw(ArgumentError("source cannot contain a net destruction ledger"))
+        role === sink && category === :net_creation && throw(ArgumentError("sink cannot contain a net creation ledger"))
+        positions = ledger_positions[key]
+        isempty(positions) && throw(ArgumentError("conservation ledger has no output endpoint"))
+        for position in sort!(collect(positions))
             manifest = invoke(_mimo_root_manifest, Tuple{TypedASTProgramV1,Int,OperatorRegistryV1}, program, position, registry)
+            manifest === nothing && throw(ArgumentError("conservation policy requires an operator root"))
             category in manifest.allowed_conservation_effects ||
-                throw(ArgumentError("root manifest does not explicitly allow conservation effect category"))
+                throw(ArgumentError("root manifest does not explicitly allow ledger category"))
             category in manifest.forbidden_conservation_effects &&
-                throw(ArgumentError("root manifest forbids conservation effect category"))
+                throw(ArgumentError("root manifest forbids ledger category"))
         end
     end
     nothing

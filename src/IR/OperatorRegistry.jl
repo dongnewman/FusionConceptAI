@@ -116,7 +116,7 @@ Base.hash(a::OperatorRefV1, h::UInt) = hash(a.qualified, h)
 const _OPERATOR_PARAMETER_TAGS = (:finite_nonnegative_real, :finite_real, :qualified_ref, :symbol,
                                   :nonnegative_integer)
 const _OPERATOR_ROLE_SET = (:governing, :additive, :constraint, :interface, :boundary, :source,
-                            :control, :state, :event)
+                            :sink, :control, :state, :event)
 const _OPERATOR_LOCALITIES = (:local, :neighbor, :global, :boundary)
 
 function _checked_int(x, field)
@@ -949,7 +949,7 @@ end
 
 function default_operator_registry()
     manifests = OperatorManifestV1[]
-    default_effect_policy = (allowed_conservation_effects=(:net_creation, :net_destruction, :redistribution, :interface_flux),)
+    default_effect_policy = (allowed_conservation_effects=(:redistribution, :interface_flux),)
     make_default = (id, arity, rule; kwargs...) -> begin
         options = merge(default_effect_policy, kwargs)
         invoke(_default_manifest, Tuple{Any,Any,OperatorTypeRuleV1}, id, arity, rule; options...)
