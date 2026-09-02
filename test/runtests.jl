@@ -15,7 +15,7 @@ end
     scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
     registry = default_operator_registry()
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
-    function make_payload(prefix::String)
+    function make_payload(prefix::String; intervention::String="intervention")
         identity_program() = begin
             apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
                 registry=registry, input_types=(scalar,))
@@ -35,7 +35,7 @@ end
         state_b = StateGeneV1(StateGeneRefV1(prefix * "state-b"), scalar, bounds, (), (), (), state_derived)
         observable = ObservableGeneV1(ObservableRefV1(prefix * "obs"),
             ProgramRootRefV1(OperatorSiteRefV1(prefix * "site-a"), 1, scalar),
-            QualifiedRefV1("intervention", "v1"), identity_program(), bounds,
+            QualifiedRefV1(intervention, "v1"), identity_program(), bounds,
             QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
@@ -50,6 +50,9 @@ end
     first = canonicalize_mechanism_transport(make_payload("a-"), context)
     renamed = canonicalize_mechanism_transport(make_payload("renamed-"), context)
     @test first isa CanonicalMechanismTransportV1
+    @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes, context)
+    @test_throws ArgumentError FusionConceptAI.CanonicalMechanismTransportV1(first.canonical_bytes, context,
+        FusionConceptAI._CanonicalMechanismTransportSealV1(0xA5))
     @test JSON3.read(canonical_mechanism_transport_json(first)).domain == "fusionconceptai:v4:g1-canonical-transport:v1"
     @test JSON3.read(canonical_mechanism_transport_json(first)).canonicalization_version == "1"
     @test canonical_mechanism_transport_json(first) == canonical_mechanism_transport_json(renamed)
@@ -57,6 +60,12 @@ end
         CanonicalizationBudgetV1(200_000, 20_000, 512, 8_000_000))
     @test canonical_mechanism_transport_json(first) == canonical_mechanism_transport_json(
         canonicalize_mechanism_transport(make_payload("a-"), MechanismCanonicalizationContextV1(contract, same_identity_profile)))
+    changed_profile = CanonicalizationProfileV1("decorated-test-v2", "1",
+        CanonicalizationBudgetV1(200_000, 20_000, 512, 8_000_000))
+    @test canonical_mechanism_transport_json(first) != canonical_mechanism_transport_json(
+        canonicalize_mechanism_transport(make_payload("a-"), MechanismCanonicalizationContextV1(contract, changed_profile)))
+    @test canonical_mechanism_transport_json(first) != canonical_mechanism_transport_json(
+        canonicalize_mechanism_transport(make_payload("a-"; intervention="other-intervention"), context))
     @test !occursin("a-state-a", canonical_mechanism_transport_json(first))
     @test !occursin("a-site-a", canonical_mechanism_transport_json(first))
     @test occursin("intervention", canonical_mechanism_transport_json(first))
@@ -68,6 +77,56 @@ end
     low_budget = CanonicalizationProfileV1("decorated-test", "1", CanonicalizationBudgetV1(1, 10_000, 512, 8_000_000))
     @test_throws CanonicalizationDeferred canonicalize_mechanism_transport(make_payload("a-"),
         MechanismCanonicalizationContextV1(contract, low_budget))
+end
+
+@testset "G1 transport binds MIMO positions to incidence ports" begin
+    unit = UnitSignature()
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
+    registry = default_operator_registry()
+    bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
+    function make_mimo_payload(; reverse_tuple=false, remap_nodes=false)
+        apply1 = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+            registry=registry, input_types=(scalar,))
+        apply2 = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (2,), (;);
+            registry=registry, input_types=(scalar,))
+        program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), apply1, apply2),
+            (3, 4), (1, 2); registry=registry)
+        sample_apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+            registry=registry, input_types=(scalar,))
+        sample_program = TypedASTProgramV1((ASTInputV1(1, scalar), sample_apply), (2,), (1,); registry=registry)
+        input_bindings = reverse_tuple ?
+            (MIMOInputBindingV1(2, remap_nodes ? 1 : 2), MIMOInputBindingV1(1, remap_nodes ? 2 : 1)) :
+            (MIMOInputBindingV1(1, remap_nodes ? 2 : 1), MIMOInputBindingV1(2, remap_nodes ? 1 : 2))
+        output_bindings = reverse_tuple ?
+            (MIMOOutputBindingV1(2, remap_nodes ? 1 : 2), MIMOOutputBindingV1(1, remap_nodes ? 2 : 1)) :
+            (MIMOOutputBindingV1(1, remap_nodes ? 2 : 1), MIMOOutputBindingV1(2, remap_nodes ? 1 : 2))
+        account_in = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
+        account_out = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
+        edge = AtomicMIMOHyperedgeV1("mimo-edge", input_bindings, output_bindings, program, governing;
+            account_effects=(account_in, account_out), registry=registry)
+        graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"), node(:state, scalar; id="state-b")),
+            (edge,); registry=registry)
+        state_a = StateGeneV1(StateGeneRefV1("state-a"), scalar, bounds, (), (), (), state_derived)
+        state_b = StateGeneV1(StateGeneRefV1("state-b"), scalar, bounds, (), (), (), state_derived)
+        observable = ObservableGeneV1(ObservableRefV1("obs"), ProgramRootRefV1(OperatorSiteRefV1("mimo-edge"), 1, scalar),
+            QualifiedRefV1("intervention", "v1"), sample_program, bounds, QualifiedRefV1("noise", "v1"),
+            NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
+            (QualifiedRefV1("prediction", "v1"),))
+        invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("account", "v1"), scope_global, nothing,
+            (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
+        MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
+    end
+    contract = GenomeContractRef("urn:fusion:mimo-transport-test", "v1", repeat("c", 64), repeat("d", 64), "g1")
+    profile = CanonicalizationProfileV1("mimo-transport-test", "1", CanonicalizationBudgetV1(100_000, 10_000, 512, 8_000_000))
+    normal = make_mimo_payload()
+    reordered = make_mimo_payload(reverse_tuple=true)
+    remapped = make_mimo_payload(remap_nodes=true)
+    normal_json = canonical_mechanism_transport_json(canonicalize_mechanism_transport(normal, MechanismCanonicalizationContextV1(contract, profile)))
+    reordered_json = canonical_mechanism_transport_json(canonicalize_mechanism_transport(reordered, MechanismCanonicalizationContextV1(contract, profile)))
+    remapped_json = canonical_mechanism_transport_json(canonicalize_mechanism_transport(remapped, MechanismCanonicalizationContextV1(contract, profile)))
+    @test normal_json == reordered_json
+    @test normal_json != remapped_json
+    @test count(==(:atomic_edge), FusionConceptAI._g1_transport_extended_incidence(normal).kinds) == 1
 end
 
 mutable struct MutableNumber <: Number

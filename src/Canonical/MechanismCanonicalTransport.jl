@@ -17,17 +17,31 @@ struct MechanismCanonicalizationContextV1
     end
 end
 
+mutable struct _CanonicalMechanismTransportSealV1
+    nonce::UInt8
+end
+const _CANONICAL_TRANSPORT_SEAL = _CanonicalMechanismTransportSealV1(0xA5)
+
 struct CanonicalMechanismTransportV1
     canonical_bytes::String
     context::MechanismCanonicalizationContextV1
-    function CanonicalMechanismTransportV1(canonical_bytes::AbstractString,
-                                           context::MechanismCanonicalizationContextV1)
-        bytes = String(canonical_bytes)
+    function CanonicalMechanismTransportV1(canonical_bytes::String,
+                                           context::MechanismCanonicalizationContextV1,
+                                           seal::_CanonicalMechanismTransportSealV1)
+        seal === _CANONICAL_TRANSPORT_SEAL || throw(ArgumentError("canonical mechanism transport seal is invalid"))
+        bytes = canonical_bytes
         isvalid(bytes) && !isempty(bytes) || throw(ArgumentError("canonical mechanism transport bytes are invalid"))
-        startswith(bytes, "{\"canonicalization_version\":\"1\",\"domain\":\"$_G1_TRANSPORT_DOMAIN\"") ||
-            throw(ArgumentError("canonical mechanism transport has an invalid domain or version"))
+        prefix = "{\"canonicalization_version\":\"1\",\"domain\":\"$_G1_TRANSPORT_DOMAIN\",\"contract\":"
+        startswith(bytes, prefix) && endswith(bytes, "}") || throw(ArgumentError("canonical mechanism transport has an invalid domain or version"))
+        occursin(_g1_transport_contract(context.contract_ref), bytes) || throw(ArgumentError("transport contract context does not match bytes"))
+        occursin(_g1_transport_profile(context.profile), bytes) || throw(ArgumentError("transport profile context does not match bytes"))
+        occursin(",\"vertices\":[", bytes) && occursin(",\"arcs\":[", bytes) || throw(ArgumentError("transport graph fields are missing"))
         new(bytes, context)
     end
+end
+
+function CanonicalMechanismTransportV1(::AbstractString, ::MechanismCanonicalizationContextV1)
+    throw(ArgumentError("canonical mechanism transport is sealed; use canonicalize_mechanism_transport"))
 end
 
 _g1_transport_quote(x::String) = invoke(_g1_quote, Tuple{String}, x)
@@ -53,7 +67,7 @@ end
 function _g1_transport_state_color(x::StateGeneV1)
     "state_gene|type=" * _g1_transport_type(x.physical_type) * "|bounds=" * _g1_transport_quantity(x.physical_bounds) *
         "|epistemic=" * invoke(_g1_gene_state_label, Tuple{StateEpistemicV1}, x.epistemic_state) *
-        "|parity=" * join(sort(String[canonical_json(p) for p in x.parity_actions]), ",")
+        "|parity=" * join(sort(String[invoke(canonical_json, Tuple{ParityActionV1}, p) for p in x.parity_actions]), ",")
 end
 
 function _g1_transport_invariant_color(x::InvariantV1)
@@ -112,9 +126,10 @@ function _g1_transport_apply_binding(program::TypedASTProgramV1, n::ASTApplyV1)
     matches[1][2].value
 end
 
-function _g1_transport_ast_vertices!(kinds, colors, arcs, program::TypedASTProgramV1,
+function _g1_transport_ast_vertices!(kinds::Vector{Symbol}, colors::Vector{String},
+                                     arcs::Vector{Tuple{Int,Int,String}}, program::TypedASTProgramV1,
                                      owner::Int, parameter_vertices::Vector{Int}, parameter_names::Vector{String},
-                                     input_port_vertices=(), output_port_vertices=())
+                                     input_port_vertices::Vector{Int}=Int[], output_port_vertices::Vector{Int}=Int[])
     # The AST is expanded into the same incidence subject.  Node names are
     # never colors; parameter identity is supplied by the typed gene arc.
     vertices = Int[]
@@ -126,14 +141,14 @@ function _g1_transport_ast_vertices!(kinds, colors, arcs, program::TypedASTProgr
         elseif typeof(n) === ASTConstantV1
             (:ast_constant, "ast_constant|type=" * _g1_transport_type(n.output_type) * "|value=" * invoke(_ast_program_canonical, Tuple{Any}, n.value) * "|metadata=" * invoke(_ast_program_canonical, Tuple{Any}, n.parameters))
         elseif typeof(n) === ASTApplyV1
-            (:ast_apply, "ast_apply|operator=" * invoke(_ast_program_canonical, Tuple{Any}, n.operator_ref) * "|manifest=" * _g1_transport_apply_binding(program, n) * "|type=" * _g1_transport_type(n.output_type) * "|parameters=" * invoke(_ast_program_canonical, Tuple{Any}, n.parameters) * "|groups=" * invoke(_ast_program_canonical, Tuple{Any}, n.commutative_input_groups) * "|pure=" * string(n.pure) * "|cse=" * string(n.cse_allowed))
+            (:ast_apply, "ast_apply|operator=" * invoke(_ast_program_canonical, Tuple{Any}, n.operator_ref) * "|manifest=" * invoke(_g1_transport_apply_binding, Tuple{TypedASTProgramV1,ASTApplyV1}, program, n) * "|type=" * _g1_transport_type(n.output_type) * "|parameters=" * invoke(_ast_program_canonical, Tuple{Any}, n.parameters) * "|groups=" * invoke(_ast_program_canonical, Tuple{Any}, n.commutative_input_groups) * "|pure=" * string(n.pure) * "|cse=" * string(n.cse_allowed))
         else
             throw(ArgumentError("transport contains an unsealed AST node"))
         end
-        push!(vertices, _g1_transport_add_gene!(kinds, colors, kind, color))
+        push!(vertices, invoke(_g1_transport_add_gene!, Tuple{Vector{Symbol},Vector{String},Symbol,String}, kinds, colors, kind, color))
     end
     for (i, n) in enumerate(program.nodes)
-        _g1_transport_add_arc!(arcs, owner, vertices[i], "program_node")
+        invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, owner, vertices[i], "program_node")
         if typeof(n) === ASTApplyV1
             for (p, child) in enumerate(n.inputs)
                 1 <= child <= length(vertices) || throw(ArgumentError("AST dependency is out of range"))
@@ -142,28 +157,28 @@ function _g1_transport_ast_vertices!(kinds, colors, arcs, program::TypedASTProgr
                     p in g && (group = invoke(_ast_program_canonical, Tuple{Any}, g); break)
                 end
                 label = group === nothing ? "ast_input|$(p)" : "ast_input_commutative_group|" * group
-                _g1_transport_add_arc!(arcs, vertices[i], vertices[child], label)
+                invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, vertices[i], vertices[child], label)
             end
         elseif typeof(n) === ASTInputV1
-            _g1_transport_add_arc!(arcs, owner, vertices[i], "ast_input_port|$(n.port)")
+            invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, owner, vertices[i], "ast_input_port|$(n.port)")
         elseif typeof(n) === ASTParameterV1
             push!(parameter_vertices, vertices[i]); push!(parameter_names, String(n.name))
         end
     end
     for (p, root) in enumerate(program.roots)
         1 <= root <= length(vertices) || throw(ArgumentError("AST root is out of range"))
-        _g1_transport_add_arc!(arcs, vertices[root], owner, "ast_root|$(p)")
+        invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, vertices[root], owner, "ast_root|$(p)")
     end
     if !isempty(input_port_vertices)
         length(input_port_vertices) == length(program.input_ports) || throw(ArgumentError("AST input binding arity is inconsistent"))
         for (p, node_index) in enumerate(program.input_ports)
-            _g1_transport_add_arc!(arcs, vertices[node_index], input_port_vertices[p], "ast_to_input_port|$(p)")
+            invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, vertices[node_index], input_port_vertices[p], "ast_to_input_port|$(p)")
         end
     end
     if !isempty(output_port_vertices)
         length(output_port_vertices) == length(program.roots) || throw(ArgumentError("AST output binding arity is inconsistent"))
         for (p, root) in enumerate(program.roots)
-            _g1_transport_add_arc!(arcs, output_port_vertices[p], vertices[root], "output_port_to_ast|$(p)")
+            invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, output_port_vertices[p], vertices[root], "output_port_to_ast|$(p)")
         end
     end
 end
@@ -182,29 +197,55 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
     edge_index(id) = begin
         q = findall(==(id), edge_ids); length(q) == 1 ? only(q) : throw(ArgumentError("graph edge reference is not exact"))
     end
-    add(kind, color) = _g1_transport_add_gene!(kinds, colors, kind, color)
-    add_arc(s, t, label) = _g1_transport_add_arc!(arcs, s, t, label)
+    add(kind, color) = invoke(_g1_transport_add_gene!, Tuple{Vector{Symbol},Vector{String},Symbol,String}, kinds, colors, kind, color)
+    add_arc(s, t, label) = invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, s, t, label)
     n_nodes = length(graph.nodes)
-    edge_vertices = Int[]; edge_input_ports = Vector{Vector{Int}}(); edge_output_ports = Vector{Vector{Int}}(); edge_cursor = n_nodes + 1
+    edge_vertices = Int[]; edge_input_ports = Vector{Dict{Int,Int}}(); edge_output_ports = Vector{Dict{Int,Int}}(); edge_cursor = n_nodes + 1
     for edge in graph.hyperedges
         push!(edge_vertices, edge_cursor)
-        push!(edge_input_ports, collect(edge_cursor + 1:edge_cursor + length(edge.input_bindings)))
-        push!(edge_output_ports, collect(edge_cursor + 1 + length(edge.input_bindings):edge_cursor + length(edge.input_bindings) + length(edge.output_bindings)))
-        edge_cursor += 1 + length(edge.input_bindings) + length(edge.output_bindings)
+        input_map = Dict{Int,Int}(); output_map = Dict{Int,Int}()
+        for binding in edge.input_bindings
+            input_map[binding.program_position] = edge_cursor + 1
+            edge_cursor += 1
+        end
+        for binding in edge.output_bindings
+            output_map[binding.program_position] = edge_cursor + 1
+            edge_cursor += 1
+        end
+        push!(edge_input_ports, input_map); push!(edge_output_ports, output_map)
+        edge_cursor += 1
     end
     # The old graph color contains a derived program hash.  The decorated
     # subject carries the full AST below, so its edge vertex is a semantic
     # role/effect shell rather than an opaque hash or local name.
     for (i, e) in enumerate(graph.hyperedges)
-        effects = join(sort(String[_mimo_closed_effect(v) for v in e.account_effects]), ",")
-        pairs = join(sort(String[_mimo_closed_pair(v) for v in e.interface_flux_pairs]), ",")
+        effects = join(sort(String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, v) for v in e.account_effects]), ",")
+        pairs = join(sort(String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, v) for v in e.interface_flux_pairs]), ",")
         colors[edge_vertices[i]] = "edge|atomic|role=" * String(Symbol(e.role)) * "|effects=[" * effects * "]|pairs=[" * pairs * "]"
     end
     gene_vertices = Dict{Symbol,Vector{Int}}()
-    for (kind, vals, fn) in ((:state_gene, payload.states, _g1_transport_state_color), (:invariant_gene, payload.invariants, _g1_transport_invariant_color),
-                             (:parameter_gene, payload.parameters, _g1_transport_parameter_color), (:symmetry_gene, payload.symmetries, _g1_transport_symmetry_color),
-                             (:observable_gene, payload.observables, _g1_transport_observable_color), (:hole_gene, payload.operator_holes, _g1_transport_hole_color))
-        gene_vertices[kind] = Int[add(kind, fn(v)) for v in vals]
+    for (kind, vals) in ((:state_gene, payload.states), (:invariant_gene, payload.invariants),
+                         (:parameter_gene, payload.parameters), (:symmetry_gene, payload.symmetries),
+                         (:observable_gene, payload.observables), (:hole_gene, payload.operator_holes))
+        gene_vertices[kind] = Int[]
+        for value in vals
+            color = if kind === :state_gene
+                invoke(_g1_transport_state_color, Tuple{StateGeneV1}, value)
+            elseif kind === :invariant_gene
+                invoke(_g1_transport_invariant_color, Tuple{InvariantV1}, value)
+            elseif kind === :parameter_gene
+                invoke(_g1_transport_parameter_color, Tuple{ParameterGeneV1}, value)
+            elseif kind === :symmetry_gene
+                invoke(_g1_transport_symmetry_color, Tuple{SymmetryGeneV1}, value)
+            elseif kind === :observable_gene
+                invoke(_g1_transport_observable_color, Tuple{ObservableGeneV1}, value)
+            elseif kind === :hole_gene
+                invoke(_g1_transport_hole_color, Tuple{TypedOperatorHoleV1}, value)
+            else
+                throw(ArgumentError("unknown transport gene kind"))
+            end
+            push!(gene_vertices[kind], add(kind, color))
+        end
     end
     state_v = Dict(x.state_ref.value => gene_vertices[:state_gene][i] for (i, x) in enumerate(payload.states))
     invariant_v = Dict(x.invariant_ref.value => gene_vertices[:invariant_gene][i] for (i, x) in enumerate(payload.invariants))
@@ -247,15 +288,23 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
         for (p, r) in enumerate(x.ordered_input_state_refs); add_arc(v, state_v[r.value], "hole_input_state|$(p)"); end
         for r in x.observable_refs; add_arc(v, observable_v[r.value], "hole_observable"); end
         for c in x.identifiability_conditions
-            cv = add(:identifiability_condition, _g1_transport_condition_color(c))
+            cv = add(:identifiability_condition, invoke(_g1_transport_condition_color, Tuple{IdentifiabilityConditionV1}, c))
             add_arc(v, cv, "hole_condition"); add_arc(cv, observable_v[c.observable_ref.value], "condition_observable")
         end
     end
     parameter_vertices = Int[]; parameter_names = String[]
     for (i, e) in enumerate(graph.hyperedges)
-        _g1_transport_ast_vertices!(kinds, colors, arcs, e.program, edge_vertices[i], parameter_vertices, parameter_names, edge_input_ports[i], edge_output_ports[i])
+        input_positions = 1:length(e.program.input_ports)
+        output_positions = 1:length(e.program.roots)
+        all(haskey(edge_input_ports[i], p) for p in input_positions) || throw(ArgumentError("AST input binding position is not present in the edge"))
+        all(haskey(edge_output_ports[i], p) for p in output_positions) || throw(ArgumentError("AST output binding position is not present in the edge"))
+        input_ports = Int[edge_input_ports[i][p] for p in input_positions]
+        output_ports = Int[edge_output_ports[i][p] for p in output_positions]
+        invoke(_g1_transport_ast_vertices!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},TypedASTProgramV1,Int,Vector{Int},Vector{String},Vector{Int},Vector{Int}}, kinds, colors, arcs, e.program, edge_vertices[i], parameter_vertices, parameter_names, input_ports, output_ports)
     end
-    for (i, x) in enumerate(payload.observables); _g1_transport_ast_vertices!(kinds, colors, arcs, x.sampling_program, gene_vertices[:observable_gene][i], parameter_vertices, parameter_names); end
+    for (i, x) in enumerate(payload.observables)
+        invoke(_g1_transport_ast_vertices!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},TypedASTProgramV1,Int,Vector{Int},Vector{String},Vector{Int},Vector{Int}}, kinds, colors, arcs, x.sampling_program, gene_vertices[:observable_gene][i], parameter_vertices, parameter_names, Int[], Int[])
+    end
     for (v, name) in zip(parameter_vertices, parameter_names)
         haskey(parameter_v, name) || throw(ArgumentError("AST parameter has no matching ParameterGene"))
         add_arc(parameter_v[name], v, "parameter_gene_to_ast_parameter")
@@ -327,7 +376,7 @@ end
 
 function canonicalize_mechanism_transport(payload::MechanismGenomePayloadV1, context::MechanismCanonicalizationContextV1)
     bytes = invoke(_g1_transport_wire, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
-    CanonicalMechanismTransportV1(bytes, context)
+    invoke(CanonicalMechanismTransportV1, Tuple{String,MechanismCanonicalizationContextV1,_CanonicalMechanismTransportSealV1}, bytes, context, _CANONICAL_TRANSPORT_SEAL)
 end
 
 function canonicalize_mechanism_transport(payload::MechanismGenomePayloadV1, contract_ref::GenomeContractRef;
