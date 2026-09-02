@@ -735,18 +735,27 @@ end
     @test JSON3.read(canonical_json(small_graph)) !== nothing
     # Independent test-only oracle: all 2! labelings and a closed encoder;
     # it intentionally does not call any production permutation/leaf helpers.
-    tiny_kinds = (:graph_node, :graph_node)
-    tiny_colors = ("same", "same")
-    tiny_arcs = ((1, 2, "link"), (2, 1, "link"))
-    independent_quote(s) = "\"" * s * "\""
-    function independent_bytes(order)
+    function independent_quote(s)
+        io = IOBuffer(); print(io, '"')
+        for c in s
+            c == '"' && (print(io, "\\\""); continue)
+            c == '\\' && (print(io, "\\\\"); continue)
+            c == '\n' && (print(io, "\\n"); continue)
+            c == '\r' && (print(io, "\\r"); continue)
+            c == '\t' && (print(io, "\\t"); continue)
+            UInt32(c) < 0x20 && (print(io, "\\u", lpad(string(UInt32(c), base=16), 4, '0')); continue)
+            print(io, c)
+        end
+        print(io, '"'); String(take!(io))
+    end
+    function independent_incidence_bytes(incidence, order)
         rank = zeros(Int, length(order))
         for (new, old) in enumerate(order)
             rank[old] = new
         end
-        vertices = "[" * join(("{\"kind\":" * independent_quote(String(tiny_kinds[old])) *
-            ",\"local_color\":" * independent_quote(tiny_colors[old]) * "}" for old in order), ",") * "]"
-        arcs = sort([(rank[source], rank[target], label) for (source, target, label) in tiny_arcs])
+        vertices = "[" * join(("{\"kind\":" * independent_quote(String(incidence.kinds[old])) *
+            ",\"local_color\":" * independent_quote(incidence.local_colors[old]) * "}" for old in order), ",") * "]"
+        arcs = sort([(rank[source], rank[target], label) for (source, target, label) in incidence.arcs])
         arc_text = "[" * join(("{\"label\":" * independent_quote(a[3]) * ",\"source\":" *
             string(a[1]) * ",\"target\":" * string(a[2]) * "}" for a in arcs), ",") * "]"
         "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:typed-incidence-graph:v1\",\"profile\":{\"profile_id\":\"exact-incidence\",\"version\":\"1\",\"vertices\":" * vertices * ",\"arcs\":" * arc_text * "}}"
@@ -765,12 +774,38 @@ end
         end
         visit(1); result
     end
-    tiny_oracle = minimum(independent_bytes(order) for order in independent_permutations(2))
-    tiny_initial_colors = invoke(FusionConceptAI._incidence_initial_colors, Tuple{Tuple}, tiny_colors)
+    independent_oracle(incidence) = minimum(independent_incidence_bytes(incidence, order) for order in independent_permutations(length(incidence.kinds)))
+    tiny_kinds = (:graph_node, :graph_node)
+    tiny_colors = ("same", "same")
+    tiny_arcs = ((1, 2, "link"), (2, 1, "link"))
     tiny_incidence = FusionConceptAI._IncidenceGraphV1(tiny_kinds, tiny_colors, tiny_arcs)
+    tiny_initial_colors = invoke(FusionConceptAI._incidence_initial_colors, Tuple{Tuple}, tiny_colors)
     tiny_exact = FusionConceptAI._incidence_search(tiny_incidence, tiny_initial_colors,
         default_canonicalization_profile(), Ref(0), Ref(0))
-    @test tiny_exact == tiny_oracle
+    @test tiny_exact == independent_oracle(tiny_incidence)
+    @test canonical_json(small_graph) == independent_oracle(small_incidence)
+    scalar_incidence_type = PhysicalType(:scalar_field, 0, 3, :differential, U0)
+    atomic_registry = default_operator_registry()
+    identity = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+        registry=atomic_registry, input_types=(scalar_incidence_type,))
+    one_program = TypedASTProgramV1((ASTInputV1(1, scalar_incidence_type), identity), (2,), (1,); registry=atomic_registry)
+    one_edge = AtomicMIMOHyperedgeV1("golden-one", (MIMOInputBindingV1(1, 1),),
+        (MIMOOutputBindingV1(1, 2),), one_program, governing; registry=atomic_registry)
+    one_graph = TypedOperatorHypergraphV1((node(:input, scalar_incidence_type), node(:output, scalar_incidence_type)), (one_edge,))
+    one_incidence = FusionConceptAI._incidence_graph(one_graph)
+    @test length(one_incidence.kinds) == 5
+    @test canonical_json(one_graph) == independent_oracle(one_incidence)
+    add_one = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;);
+        registry=atomic_registry, input_types=(scalar_incidence_type, scalar_incidence_type))
+    ordered_program = TypedASTProgramV1((ASTInputV1(1, scalar_incidence_type), ASTInputV1(2, scalar_incidence_type), add_one),
+        (3,), (1, 2); registry=atomic_registry)
+    ordered_edge = AtomicMIMOHyperedgeV1("golden-ordered", (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(2, 2)),
+        (MIMOOutputBindingV1(1, 3),), ordered_program, governing; registry=atomic_registry)
+    ordered_graph = TypedOperatorHypergraphV1((node(:input, scalar_incidence_type), node(:input, scalar_incidence_type),
+        node(:output, scalar_incidence_type)), (ordered_edge,))
+    ordered_incidence = FusionConceptAI._incidence_graph(ordered_graph)
+    @test length(ordered_incidence.kinds) == 7
+    @test canonical_json(ordered_graph) == independent_oracle(ordered_incidence)
     random_state = Ref(UInt(0x5eed))
     draw_small = () -> begin
         random_state[] = random_state[] * UInt(1664525) + UInt(1013904223)
@@ -807,6 +842,8 @@ end
     g = TypedOperatorHypergraphV1(ns, es)
     before = canonical_json(g)
     FusionConceptAI._incidence_add_arc!(::Vector{Tuple{Int,Int,String}}, ::Int, ::Int, ::String) = error("polluted arc")
+    FusionConceptAI._IncidenceGraphV1(::NTuple{N,Symbol}, ::NTuple{M,String}, ::NTuple{K,Tuple{Int,Int,String}}) where {N,M,K} = error("polluted incidence constructor")
+    FusionConceptAI._incidence_initial_colors(::NTuple{N,String}) where {N} = [99]
     FusionConceptAI._ast_program_canonical(::NamedTuple) = "{}"
     FusionConceptAI._incidence_signature_key(::Int, ::Tuple, ::Tuple) = "polluted-signature"
     FusionConceptAI._canonical(::NamedTuple) = "{}"
