@@ -17,19 +17,12 @@ struct MechanismCanonicalizationContextV1
     end
 end
 
-mutable struct _CanonicalMechanismTransportSealV1
-    nonce::UInt8
-end
-const _CANONICAL_TRANSPORT_SEAL = _CanonicalMechanismTransportSealV1(0xA5)
-
 struct CanonicalMechanismTransportV1
     canonical_bytes::String
     context::MechanismCanonicalizationContextV1
-    function CanonicalMechanismTransportV1(canonical_bytes::String,
-                                           context::MechanismCanonicalizationContextV1,
-                                           seal::_CanonicalMechanismTransportSealV1)
-        seal === _CANONICAL_TRANSPORT_SEAL || throw(ArgumentError("canonical mechanism transport seal is invalid"))
-        bytes = canonical_bytes
+    function CanonicalMechanismTransportV1(payload::MechanismGenomePayloadV1,
+                                           context::MechanismCanonicalizationContextV1)
+        bytes = invoke(_g1_transport_wire, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
         isvalid(bytes) && !isempty(bytes) || throw(ArgumentError("canonical mechanism transport bytes are invalid"))
         prefix = "{\"canonicalization_version\":\"1\",\"domain\":\"$_G1_TRANSPORT_DOMAIN\",\"contract\":"
         startswith(bytes, prefix) && endswith(bytes, "}") || throw(ArgumentError("canonical mechanism transport has an invalid domain or version"))
@@ -41,7 +34,7 @@ struct CanonicalMechanismTransportV1
 end
 
 function CanonicalMechanismTransportV1(::AbstractString, ::MechanismCanonicalizationContextV1)
-    throw(ArgumentError("canonical mechanism transport is sealed; use canonicalize_mechanism_transport"))
+    throw(ArgumentError("canonical mechanism transport cannot be constructed from raw bytes"))
 end
 
 _g1_transport_quote(x::String) = invoke(_g1_quote, Tuple{String}, x)
@@ -375,8 +368,7 @@ function _g1_transport_wire(payload::MechanismGenomePayloadV1, context::Mechanis
 end
 
 function canonicalize_mechanism_transport(payload::MechanismGenomePayloadV1, context::MechanismCanonicalizationContextV1)
-    bytes = invoke(_g1_transport_wire, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
-    invoke(CanonicalMechanismTransportV1, Tuple{String,MechanismCanonicalizationContextV1,_CanonicalMechanismTransportSealV1}, bytes, context, _CANONICAL_TRANSPORT_SEAL)
+    invoke(CanonicalMechanismTransportV1, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
 end
 
 function canonicalize_mechanism_transport(payload::MechanismGenomePayloadV1, contract_ref::GenomeContractRef;

@@ -51,8 +51,12 @@ end
     renamed = canonicalize_mechanism_transport(make_payload("renamed-"), context)
     @test first isa CanonicalMechanismTransportV1
     @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes, context)
-    @test_throws ArgumentError FusionConceptAI.CanonicalMechanismTransportV1(first.canonical_bytes, context,
-        FusionConceptAI._CanonicalMechanismTransportSealV1(0xA5))
+    @test_throws ArgumentError CanonicalMechanismTransportV1("{}", context)
+    @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes[1:end-1], context)
+    other_context = MechanismCanonicalizationContextV1(
+        GenomeContractRef("urn:fusion:other", "v1", repeat("e", 64), repeat("f", 64), "g1"), profile)
+    @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes, other_context)
+    @test_throws MethodError CanonicalMechanismTransportV1(first.canonical_bytes, context, nothing)
     @test JSON3.read(canonical_mechanism_transport_json(first)).domain == "fusionconceptai:v4:g1-canonical-transport:v1"
     @test JSON3.read(canonical_mechanism_transport_json(first)).canonicalization_version == "1"
     @test canonical_mechanism_transport_json(first) == canonical_mechanism_transport_json(renamed)
