@@ -22,6 +22,7 @@ include("Genomes/MechanismObservablesHoles.jl")
 include("Genomes/MechanismGenomePayload.jl")
 include("Canonical/MechanismCanonicalTransport.jl")
 include("Canonical/MechanismHashLayers.jl")
+include("Genomes/MechanismLegacyMigration.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
 include("Contracts/Authority.jl")
@@ -65,6 +66,10 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        MechanismCanonicalizationContextV1, CanonicalMechanismTransportV1,
        canonicalize_mechanism_transport, canonical_mechanism_transport_json,
        MechanismHashLayersV1, CanonicalMechanismV1, mechanism_hash_layers, canonicalize_mechanism,
+       G1LegacyEdgeCompletionV1, G1LegacyMigrationDeclarationV1, G1LegacyMigrationReasonV1,
+       migration_lossless, missing_mapping_resource, mapping_not_applicable, contract_incompatible,
+       legacy_ast_unrepresentable, legacy_gene_semantics_unrepresentable, legacy_edge_completion_missing,
+       canonicalization_budget_exhausted, G1LegacyMigrationResultV1, migrate_legacy_g1,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,

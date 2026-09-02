@@ -145,6 +145,7 @@ end
 # helpers cannot accidentally become part of the package's public surface.
 include(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"))
 include(joinpath(@__DIR__, "mechanism_hash_layers_adversarial.jl"))
+include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
 
 @testset "G1 transport binds MIMO positions to incidence ports" begin
     unit = UnitSignature()
