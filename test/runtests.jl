@@ -959,3 +959,44 @@ end
     @test canonical_json(matrix) isa String
     @test canonical_json(parity) isa String
 end
+
+@testset "G1 primitive domain-separated canonical identity" begin
+    same_word_refs = (StateGeneRefV1("same"), InvariantRefV1("same"), ParameterRefV1("same"),
+                      SymmetryRefV1("same"), ObservableRefV1("same"), OperatorSiteRefV1("same"),
+                      ConstraintRefV1("same"), HoleRefV1("same"))
+    @test length(unique(canonical_hash(x) for x in same_word_refs)) == 8
+    @test all(occursin("fusionconceptai:v4:g1-primitive:v1", canonical_json(x)) for x in same_word_refs)
+    interval_a = ExactFiniteIntervalV1(1 // 2, 2 // 1)
+    interval_b = ExactFiniteIntervalV1(2 // 4, 4 // 2)
+    @test canonical_hash(interval_a) == canonical_hash(interval_b)
+    primitives = Any[same_word_refs..., interval_a, QuantityIntervalV1(interval_a, U0),
+        NonnegativeQuantityV1(1 // 2, U0), ExactRationalMatrixV1(((1 // 2, 0), (0, 1))),
+        ParityActionV1(QualifiedRefV1("generator", "v1"), odd), state_derived,
+        state_not_applicable, entropy_not_applicable, scope_global, transform_linear,
+        symmetry_discrete, symmetry_invariant, redistribution]
+    @test all(begin
+        text = canonical_json(value)
+        parsed = JSON3.read(text)
+        haskey(parsed, :domain) && haskey(parsed, :canonicalization_version) && haskey(parsed, :kind) && haskey(parsed, :payload)
+    end for value in primitives)
+    @test canonical_json(state_not_applicable) != canonical_json(entropy_not_applicable)
+    @test canonical_hash(state_not_applicable) != canonical_hash(entropy_not_applicable)
+    dispatch_script = """
+    using FusionConceptAI
+    values = Any[StateGeneRefV1(\"same\"), ExactFiniteIntervalV1(1//2, 2),
+        QuantityIntervalV1(ExactFiniteIntervalV1(1//2, 2), UnitSignature()),
+        NonnegativeQuantityV1(1//2, UnitSignature()),
+        ExactRationalMatrixV1(((1//2, 0), (0, 1))),
+        ParityActionV1(QualifiedRefV1(\"g\", \"v1\"), odd), state_not_applicable,
+        entropy_not_applicable, scope_global, transform_linear, symmetry_discrete,
+        symmetry_invariant, redistribution]
+    before = (map(canonical_json, values), map(canonical_hash, values))
+    FusionConceptAI._canonical(::NamedTuple) = \"{}\"
+    FusionConceptAI._jsonquote(::String) = \"\\\"polluted\\\"\"
+    FusionConceptAI._gene_text(::String, ::String) = error(\"polluted text helper\")
+    FusionConceptAI._gene_rational(::Rational{Int64}, ::String) = error(\"polluted rational helper\")
+    @assert before == (map(canonical_json, values), map(canonical_hash, values))
+    println(\"g1-primitive-dispatch-closed-ok\")
+    """
+    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $dispatch_script`)
+end
