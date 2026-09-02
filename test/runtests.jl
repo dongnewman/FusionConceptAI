@@ -712,6 +712,81 @@ end
     golden = JSON3.read(read(joinpath(@__DIR__, "fixtures", "exact_incidence_golden.json"), String))
     @test canonical_json(golden_graph) == String(golden.canonical_json)
     @test canonical_hash(golden_graph).value == String(golden.sha256)
+    fixed_pairs = ((3, 4), (4, 2), (3, 1), (4, 3))
+    fixed_edges = [TypedHyperedge("fixed-" * string(i), (pair[1],), (pair[2],), cyc_ast, :additive)
+                   for (i, pair) in enumerate(fixed_pairs)]
+    fixed_graph = TypedOperatorHypergraphV1([node(:same, T0; id=string(i)) for i in 1:4], fixed_edges)
+    node_permutation = (4, 3, 1, 2)
+    inverse_node_permutation = Dict(old => new for (new, old) in enumerate(node_permutation))
+    edge_permutation = (3, 2, 4, 1)
+    fixed_permuted_edges = [begin
+        pair = fixed_pairs[i]
+        TypedHyperedge("permuted-" * string(i), (inverse_node_permutation[pair[1]],),
+            (inverse_node_permutation[pair[2]],), cyc_ast, :additive)
+    end for i in edge_permutation]
+    fixed_permuted = TypedOperatorHypergraphV1(
+        [node(:same, T0; id="permuted-" * string(i)) for i in node_permutation], fixed_permuted_edges)
+    @test canonical_hash(fixed_graph) == canonical_hash(fixed_permuted)
+    small_graph = TypedOperatorHypergraphV1([node(:same, T0; id="a"), node(:same, T0; id="b")],
+        (TypedHyperedge("small", (1,), (2,), cyc_ast, :additive),))
+    small_incidence = FusionConceptAI._incidence_graph(small_graph)
+    @test JSON3.read(canonical_json(small_graph)) !== nothing
+    tiny_incidence = FusionConceptAI._IncidenceGraphV1((:graph_node, :graph_node), ("same", "same"),
+        ((1, 2, "link"), (2, 1, "link")))
+    tiny_profile = default_canonicalization_profile()
+    tiny_oracle = minimum(begin
+        colors = zeros(Int, 2)
+        for (rank, vertex) in enumerate(permutation)
+            colors[vertex] = rank
+        end
+        FusionConceptAI._incidence_leaf_bytes(tiny_incidence, colors, tiny_profile)
+    end for permutation in FusionConceptAI._all_permutations(2))
+    tiny_exact = FusionConceptAI._incidence_search(tiny_incidence,
+        FusionConceptAI._incidence_initial_colors(tiny_incidence.local_colors), tiny_profile, Ref(0), Ref(0))
+    @test tiny_exact == tiny_oracle
+    random_state = Ref(UInt(0x5eed))
+    draw_small = () -> begin
+        random_state[] = random_state[] * UInt(1664525) + UInt(1013904223)
+        Int(mod(random_state[], UInt(4))) + 1
+    end
+    for trial in 1:3
+        random_pairs = vcat([(i, mod1(i + 1, 4)) for i in 1:4],
+            [(draw_small(), draw_small()) for _ in 1:trial])
+        random_edges = [TypedHyperedge("random-" * string(i), (pair[1],), (pair[2],), cyc_ast, :additive)
+                        for (i, pair) in enumerate(random_pairs)]
+        random_graph = TypedOperatorHypergraphV1([node(:same, T0; id=string(i)) for i in 1:4], random_edges)
+        random_permutation = collect(1:4)
+        for k in 4:-1:2
+            j = mod1(draw_small(), k)
+            random_permutation[k], random_permutation[j] = random_permutation[j], random_permutation[k]
+        end
+        random_inverse = Dict(old => new for (new, old) in enumerate(random_permutation))
+        random_edges_permuted = [TypedHyperedge("random-permuted-" * string(i),
+            (random_inverse[pair[1]],), (random_inverse[pair[2]],), cyc_ast, :additive)
+            for (i, pair) in enumerate(random_pairs)]
+        random_graph_permuted = TypedOperatorHypergraphV1(
+            [node(:same, T0; id="random-permuted-" * string(i)) for i in random_permutation], random_edges_permuted)
+        @test canonical_hash(random_graph) == canonical_hash(random_graph_permuted)
+    end
+    round_budget = CanonicalizationBudgetV1(100_000, 1, 512, 8_000_000)
+    @test_throws CanonicalizationDeferred canonical_hash(cycle6, CanonicalizationProfileV1("round-limited", "1", round_budget))
+    incidence_dispatch_script = """
+    using FusionConceptAI
+    t = PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((0,0,0,0,0,0,0)))
+    ast = ast_leaf(:state, t)
+    ns = [node(:same, t; id=string(i)) for i in 1:4]
+    es = [TypedHyperedge(string(i), (src,), (dst,), ast, :additive)
+          for (i, src, dst) in ((1,3,4),(2,4,2),(3,3,1),(4,4,3))]
+    g = TypedOperatorHypergraphV1(ns, es)
+    before = canonical_json(g)
+    FusionConceptAI._incidence_add_arc!(::Vector{Tuple{Int,Int,String}}, ::Int, ::Int, ::String) = error("polluted arc")
+    FusionConceptAI._ast_program_canonical(::NamedTuple) = "{}"
+    FusionConceptAI._incidence_signature_key(::Int, ::Tuple, ::Tuple) = "polluted-signature"
+    FusionConceptAI._canonical(::NamedTuple) = "{}"
+    @assert canonical_json(g) == before
+    println("incidence-dispatch-closed-ok")
+    """
+    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $incidence_dispatch_script`)
     @test_throws ArgumentError EvidenceRef("not-a-hash")
     @test_throws ArgumentError EvidenceRef(repeat("a", 64) * "0")
     @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=pass, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))

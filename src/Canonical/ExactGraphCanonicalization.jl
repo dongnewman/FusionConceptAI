@@ -46,14 +46,21 @@ function _incidence_add_arc!(arcs, source::Int, target::Int, label::String)
 end
 
 function _incidence_node_color(n::TypedNode)
-    "node|" * _ast_program_canonical((kind=n.node_kind, physical_type=n.physical_type))
+    "node|" * invoke(_ast_program_canonical, Tuple{Any}, (kind=n.node_kind, physical_type=n.physical_type))
 end
 
 function _incidence_atomic_edge_color(e::AtomicMIMOHyperedgeV1)
-    effects = join((_mimo_closed_effect(x) for x in e.account_effects), ",")
-    pairs = join((_mimo_closed_pair(x) for x in e.interface_flux_pairs), ",")
+    effects = join((invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, x) for x in e.account_effects), ",")
+    pairs = join((invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, x) for x in e.interface_flux_pairs), ",")
     "edge|atomic|program=" * e.program_hash.value * "|role=" * String(Symbol(e.role)) *
         "|effects=[" * effects * "]|pairs=[" * pairs * "]"
+end
+
+function _incidence_legacy_ast_color(ast::TypedAST)
+    nodes = Tuple((opcode=n.opcode, inputs=n.inputs, output_type=n.output_type, parameters=n.parameters) for n in ast.nodes)
+    bindings = Tuple((operator_ref=b[1], manifest_hash=b[2]) for b in ast.manifest_bindings)
+    invoke(_ast_program_canonical, Tuple{Any},
+        (nodes=nodes, root=ast.root, input_ports=ast.input_ports, manifest_bindings=bindings))
 end
 
 function _incidence_graph(g::TypedOperatorHypergraphV1)
@@ -71,28 +78,28 @@ function _incidence_graph(g::TypedOperatorHypergraphV1)
             for binding in e.input_bindings
                 port_vertex = length(kinds) + 1
                 push!(kinds, :input_port); push!(colors, "input_port|position=" * string(binding.program_position))
-                _incidence_add_arc!(arcs, edge_vertex, port_vertex, "edge_to_input")
-                _incidence_add_arc!(arcs, port_vertex, binding.graph_node_index, "input_to_node")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, edge_vertex, port_vertex, "edge_to_input")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, port_vertex, binding.graph_node_index, "input_to_node")
             end
             for binding in e.output_bindings
                 port_vertex = length(kinds) + 1
                 push!(kinds, :output_port); push!(colors, "output_port|position=" * string(binding.program_position))
-                _incidence_add_arc!(arcs, binding.graph_node_index, port_vertex, "node_to_output")
-                _incidence_add_arc!(arcs, port_vertex, edge_vertex, "output_to_edge")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, binding.graph_node_index, port_vertex, "node_to_output")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, port_vertex, edge_vertex, "output_to_edge")
             end
         elseif typeof(e) === TypedHyperedge
-            push!(kinds, :legacy_edge); push!(colors, "edge|legacy|role=" * String(e.role) * "|ast=" * canonical_json(e.ast))
+            push!(kinds, :legacy_edge); push!(colors, "edge|legacy|role=" * String(e.role) * "|ast=" * _incidence_legacy_ast_color(e.ast))
             for (position, graph_node) in enumerate(e.inputs)
                 port_vertex = length(kinds) + 1
                 push!(kinds, :input_port); push!(colors, "input_port|position=" * string(position))
-                _incidence_add_arc!(arcs, edge_vertex, port_vertex, "edge_to_input")
-                _incidence_add_arc!(arcs, port_vertex, graph_node, "input_to_node")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, edge_vertex, port_vertex, "edge_to_input")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, port_vertex, graph_node, "input_to_node")
             end
             for (position, graph_node) in enumerate(e.outputs)
                 port_vertex = length(kinds) + 1
                 push!(kinds, :output_port); push!(colors, "output_port|position=" * string(position))
-                _incidence_add_arc!(arcs, graph_node, port_vertex, "node_to_output")
-                _incidence_add_arc!(arcs, port_vertex, edge_vertex, "output_to_edge")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, graph_node, port_vertex, "node_to_output")
+                invoke(_incidence_add_arc!, Tuple{Any,Int,Int,String}, arcs, port_vertex, edge_vertex, "output_to_edge")
             end
         else
             throw(ArgumentError("incidence graph contains an unsealed edge"))
@@ -124,7 +131,7 @@ function _incidence_refine(ig::_IncidenceGraphV1, colors::Vector{Int}, budget::C
         for vertex in eachindex(current)
             outgoing = ((label, current[target]) for (source, target, label) in ig.arcs if source == vertex)
             incoming = ((label, current[source]) for (source, target, label) in ig.arcs if target == vertex)
-            push!(signatures, _incidence_signature_key(current[vertex], outgoing, incoming))
+            push!(signatures, invoke(_incidence_signature_key, Tuple{Int,Any,Any}, current[vertex], outgoing, incoming))
         end
         ordered = sort!(collect(unique(signatures)))
         ids = Dict{String,Int}(key => i for (i, key) in enumerate(ordered))
@@ -198,14 +205,17 @@ function _incidence_search(ig::_IncidenceGraphV1, colors::Vector{Int}, profile::
                            search_nodes::Base.RefValue{Int}, rounds::Base.RefValue{Int})
     search_nodes[] += 1
     search_nodes[] <= profile.budget.max_search_nodes || throw(CanonicalizationDeferred("canonicalization search budget exhausted"))
-    local_rounds = Ref(0)
-    refined = _incidence_refine(ig, colors, profile.budget, local_rounds)
+    refined = _incidence_refine(ig, colors, profile.budget, rounds)
     classes = [class for class in _incidence_partition(refined) if length(class) > 1]
     isempty(classes) && return _incidence_leaf_bytes(ig, refined, profile)
-    class = first(sort(classes, by=x -> (length(x), first(x))))
+    # Refined color ids are assigned from complete sorted signatures.  Select
+    # a target cell by its invariant color, never by input enumeration.
+    class = first(sort(classes, by=x -> (length(x), minimum(refined[v] for v in x))))
     best = nothing
     next_color = isempty(refined) ? 1 : maximum(refined) + 1
-    for vertex in sort(class)
+    # Every member is explored.  Traversal order is not part of the result;
+    # the result is the lexicographic minimum of all complete leaves.
+    for vertex in class
         individualized = copy(refined)
         individualized[vertex] = next_color
         candidate = _incidence_search(ig, individualized, profile, search_nodes, rounds)
