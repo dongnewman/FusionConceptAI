@@ -1000,3 +1000,92 @@ end
     """
     @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $dispatch_script`)
 end
+
+@testset "G1 state invariant parameter and symmetry genes" begin
+    unit = UnitSignature()
+    bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
+    state_ref = StateGeneRefV1("state-a")
+    state = StateGeneV1(state_ref, T0, bounds, (), (), (), state_derived)
+    @test state.state_ref == state_ref && state.physical_bounds.unit == T0.units
+    @test_throws ArgumentError StateGeneV1(state_ref, T0,
+        QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), UnitSignature((1, 0, 0, 0, 0, 0, 0))), (), (), (), state_derived)
+    action = ParityActionV1(QualifiedRefV1("parity", "v1"), odd)
+    @test StateGeneV1(state_ref, T0, bounds, (action,), (SymmetryRefV1("g"),), (ConstraintRefV1("c"),), state_measured).epistemic_state == state_measured
+    @test_throws ArgumentError StateGeneV1(state_ref, T0, bounds, (action, action), (), (), state_derived)
+    @test_throws ArgumentError StateGeneV1(state_ref, T0, bounds, (), (SymmetryRefV1("same"),), (ConstraintRefV1("same"),), state_derived)
+    @test_throws ArgumentError StateGeneV1(state_ref, T0, bounds, [action], (), (), state_derived)
+
+    term = InvariantTermV1(state_ref, 2 // 3)
+    @test term.coefficient == 2 // 3
+    @test_throws ArgumentError InvariantTermV1(state_ref, 0)
+    @test_throws ArgumentError InvariantTermV1(state_ref, 1.0)
+    invariant_ref = InvariantRefV1("energy-invariant")
+    account = QualifiedRefV1("account", "v1")
+    invariant = InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved)
+    @test invariant.scope_ref === nothing && invariant.tolerance_log10 == -3
+    @test InvariantV1(invariant_ref, account, scope_domain, QualifiedRefV1("domain", "v1"), (term,), (), (), (), 0, entropy_nondecreasing).scope == scope_domain
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, QualifiedRefV1("bad", "v1"), (term,), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_interface, nothing, (term,), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term, term), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (OperatorSiteRefV1("x"),), (OperatorSiteRefV1("x"),), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 1, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -32769, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 0.0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 0, :conserved)
+
+    linear = ParameterTransformSpecV1(transform_linear)
+    logarithmic = ParameterTransformSpecV1(transform_log)
+    scale = NonnegativeQuantityV1(1, unit)
+    signed = ParameterTransformSpecV1(transform_signed_log, scale)
+    @test linear.scale === nothing && logarithmic.scale === nothing && signed.scale == scale
+    @test_throws ArgumentError ParameterTransformSpecV1(transform_linear, scale)
+    @test_throws ArgumentError ParameterTransformSpecV1(transform_log, scale)
+    @test_throws ArgumentError ParameterTransformSpecV1(transform_signed_log, NonnegativeQuantityV1(0, unit))
+    parameter_bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-2, 2, false), unit)
+    parameter = ParameterGeneV1(ParameterRefV1("linear"), unit, linear, parameter_bounds, -0.0)
+    @test parameter.normalized_gene == 0.0
+    @test isapprox(derive_parameter_value(parameter, -1), -2.0) && isapprox(derive_parameter_value(parameter, 0), 0.0) && isapprox(derive_parameter_value(parameter, 1), 2.0)
+    positive_bounds = QuantityIntervalV1(ExactFiniteIntervalV1(1, 100, false), unit)
+    log_parameter = ParameterGeneV1(ParameterRefV1("log"), unit, logarithmic, positive_bounds, 0)
+    @test isapprox(derive_parameter_value(log_parameter, -1), 1.0) && isapprox(derive_parameter_value(log_parameter, 1), 100.0)
+    signed_parameter = ParameterGeneV1(ParameterRefV1("signed"), unit, signed, parameter_bounds, 0)
+    @test isapprox(derive_parameter_value(signed_parameter, -1), -2.0) && isapprox(derive_parameter_value(signed_parameter, 0), 0.0) && isapprox(derive_parameter_value(signed_parameter, 1), 2.0)
+    @test_throws ArgumentError ParameterGeneV1(ParameterRefV1("bad-log"), unit, logarithmic, parameter_bounds, 0)
+    @test_throws ArgumentError ParameterGeneV1(ParameterRefV1("bad-bounds"), unit, linear, QuantityIntervalV1(ExactFiniteIntervalV1(1, 1, true), unit), 0)
+    @test_throws ArgumentError ParameterGeneV1(ParameterRefV1("bad-unit"), UnitSignature((1, 0, 0, 0, 0, 0, 0)), linear, parameter_bounds, 0)
+    @test_throws ArgumentError ParameterGeneV1(ParameterRefV1("bad-n"), unit, linear, parameter_bounds, NaN)
+    @test_throws ArgumentError ParameterGeneV1(ParameterRefV1("bad-n"), unit, linear, parameter_bounds, 2)
+    @test_throws ArgumentError derive_parameter_value(parameter, 2)
+
+    identity_matrix = ExactRationalMatrixV1(((1, 0), (0, 1)))
+    swap_matrix = ExactRationalMatrixV1(((0, 1), (1, 0)))
+    state_action = StateSymmetryActionV1(state_ref, swap_matrix)
+    discrete_symmetry = SymmetryGeneV1(SymmetryRefV1("swap"), symmetry_discrete, swap_matrix, (state_action,), 2, symmetry_invariant, 0)
+    continuous_symmetry = SymmetryGeneV1(SymmetryRefV1("continuous"), symmetry_continuous, identity_matrix, (), nothing, symmetry_equivariant, 1 // 10)
+    @test discrete_symmetry.group_order == UInt32(2) && continuous_symmetry.group_order === nothing
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (), 1, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (), true, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, ExactRationalMatrixV1(((1, 0, 0), (0, 1, 0))), (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (StateSymmetryActionV1(state_ref, ExactRationalMatrixV1(((1,),))),), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, ExactRationalMatrixV1(((2, 0), (0, 2))), (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (state_action, state_action), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_continuous, identity_matrix, (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_continuous, identity_matrix, (), nothing, symmetry_invariant, -1 // 2)
+    @test canonical_json(discrete_symmetry) != canonical_json(continuous_symmetry)
+    @test occursin("fusionconceptai:v4:g1-primitive:v1", canonical_json(invariant))
+    @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved))
+    gene_dispatch_script = """
+    using FusionConceptAI
+    u = UnitSignature(); sr = StateGeneRefV1(\"s\")
+    before = InvariantTermV1(sr, 1//1)
+    FusionConceptAI._g1_gene_rational(::Rational{Int64}, ::String) = error(\"polluted rational\")
+    FusionConceptAI._g1_require_tuple_type(::Tuple, ::Type, ::String) = error(\"polluted tuple\")
+    FusionConceptAI._g1_square_matrix(::ExactRationalMatrixV1, ::String) = error(\"polluted matrix\")
+    @assert InvariantTermV1(sr, 1//1) == before
+    @assert StateGeneV1(sr, PhysicalType(:scalar_field, 0, 3, :differential, u), QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), u), (), (), (), state_derived).state_ref == sr
+    @assert SymmetryGeneV1(SymmetryRefV1(\"s\"), symmetry_continuous, ExactRationalMatrixV1(((1,),)), (), nothing, symmetry_invariant, 0).ref.value == \"s\"
+    println(\"g1-gene-dispatch-closed-ok\")
+    """
+    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $gene_dispatch_script`)
+end

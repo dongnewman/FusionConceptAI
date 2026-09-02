@@ -10,6 +10,7 @@ include("Genomes/MechanismGenes.jl")
 include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
 include("Genomes/MechanismGenome.jl")
+include("Genomes/MechanismGenesV1.jl")
 include("Genomes/FieldGeometryGenome.jl")
 include("Genomes/RealizationControlGenome.jl")
 include("Canonical/CanonicalJSON.jl")
@@ -53,6 +54,8 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        entropy_nonincreasing, entropy_conserved, transform_linear, transform_log, transform_signed_log,
        symmetry_discrete, symmetry_continuous, symmetry_invariant, symmetry_equivariant,
        redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
+       StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
+       StateSymmetryActionV1, SymmetryGeneV1, derive_parameter_value, parameter_value,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,
