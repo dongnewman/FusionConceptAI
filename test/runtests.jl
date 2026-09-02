@@ -356,8 +356,21 @@ end
     interleaved_roots = TypedASTProgramV1((ASTInputV1(1, scalar), interleaved_add_a, interleaved_add_b,
         ASTInputV1(4, scalar), interleaved_outer), (3, 5), (1, 4); registry=registry)
     @test length(interleaved_roots.roots) == 2 && length(unique(interleaved_roots.roots)) == 2
-    @test interleaved_roots.input_ports == (1, 3)
+    @test interleaved_roots.input_ports == (1, 4)
     @test canonical_hash(interleaved_roots) isa Digest256
+    root_add = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 1), (;); registry=registry, input_types=(scalar, scalar))
+    root_neg = ASTApplyV1(OperatorRefV1("NEG", "v1"), (1,), (;); registry=registry, input_types=(scalar,))
+    root_outer = ASTApplyV1(OperatorRefV1("ADD", "v1"), (2, 4), (;); registry=registry, input_types=(scalar, scalar))
+    three_roots = TypedASTProgramV1((ASTInputV1(1, scalar), interleaved_add_a, root_add, root_neg, root_outer), (3, 4, 5), (1,); registry=registry)
+    @test three_roots.roots == (3, 4, 5) && three_roots.input_ports == (1,)
+    @test canonical_hash(three_roots) isa Digest256
+    @test canonical_hash(three_roots) != canonical_hash(TypedASTProgramV1(three_roots.nodes, (4, 3, 5), three_roots.input_ports; registry=registry))
+    shift_outer = ASTApplyV1(OperatorRefV1("ADD", "v1"), (3, 4), (;); registry=registry, input_types=(scalar, scalar))
+    shift_root = ASTApplyV1(OperatorRefV1("NEG", "v1"), (2,), (;); registry=registry, input_types=(scalar,))
+    shifted_two_roots = TypedASTProgramV1((ASTInputV1(1, scalar), interleaved_add_a, interleaved_add_b,
+        ASTInputV1(4, scalar), shift_outer, shift_root), (5, 6), (1, 4); registry=registry)
+    @test shifted_two_roots.input_ports == (1, 3) && shifted_two_roots.roots == (4, 5)
+    @test canonical_hash(shifted_two_roots) isa Digest256
 
     delay1 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))
     delay2 = ASTApplyV1(OperatorRefV1("DELAY", "v1"), (1,), (delay_seconds=1.0,); registry=registry, input_types=(scalar,))

@@ -247,7 +247,6 @@ end
 """Normalize only proven pure/CSE-safe subexpressions; stateful nodes retain identity."""
 function _ast_program_cse_normalize(ns::Tuple, rs::Tuple, registry_obj::OperatorRegistryV1)
     kept = AbstractTypedASTNodeV1[]
-    kept_original = Int[]
     remap = zeros(Int, length(ns))
     seen = Dict{String,Int}()
     root_set = Set(rs)
@@ -264,23 +263,20 @@ function _ast_program_cse_normalize(ns::Tuple, rs::Tuple, registry_obj::Operator
                 key = invoke(_ast_program_cse_key, Tuple{ASTApplyV1,Tuple,Vector{AbstractTypedASTNodeV1},Digest256},
                     candidate, mapped_inputs, kept, manifest.manifest_hash)
                 existing = get(seen, key, 0)
-                existing_original = existing == 0 ? 0 : kept_original[existing]
-                if existing != 0 && !(i in root_set && existing_original in root_set)
+                if !(i in root_set) && existing != 0
                     remap[i] = existing
                     continue
                 end
-                seen[key] = length(kept) + 1
+                i in root_set || (seen[key] = length(kept) + 1)
             end
             push!(kept, candidate)
-            push!(kept_original, i)
             remap[i] = length(kept)
         else
             push!(kept, n)
-            push!(kept_original, i)
             remap[i] = length(kept)
         end
     end
-    Tuple(kept), Tuple(remap[r] for r in rs), Tuple(remap), Tuple(kept_original)
+    Tuple(kept), Tuple(remap[r] for r in rs), Tuple(remap)
 end
 
 function _ast_program_validate_normalized(ns::Tuple, rs::Tuple, ps::Tuple, registry_obj::OperatorRegistryV1)
@@ -400,7 +396,7 @@ function _ast_program_components(nodes, roots, input_ports, registry_obj::Operat
     all(reachable) || throw(ArgumentError("every AST program node must be reachable from a root"))
     all(i -> consumed_inputs[i], input_nodes) || throw(ArgumentError("every ASTInput must be consumed by an apply node"))
     sort!(bindings, by=b -> (b[1].qualified.id, b[1].qualified.version))
-    normalized_nodes, normalized_roots, remap, _ = invoke(_ast_program_cse_normalize,
+    normalized_nodes, normalized_roots, remap = invoke(_ast_program_cse_normalize,
         Tuple{Tuple,Tuple,OperatorRegistryV1}, ns, Tuple(Int(i) for i in rs), registry_obj)
     normalized_ports = Tuple(remap[i] for i in ps)
     invoke(_ast_program_validate_normalized, Tuple{Tuple,Tuple,Tuple,OperatorRegistryV1},
