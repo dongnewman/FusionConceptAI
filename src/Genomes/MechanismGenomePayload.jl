@@ -52,16 +52,43 @@ end
 
 function _g1_payload_registry(graph::TypedOperatorHypergraphV1)
     isempty(graph.hyperedges) && throw(ArgumentError("strong mechanism payload requires atomic graph edges"))
+    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in graph.hyperedges) ||
+        throw(ArgumentError("strong mechanism payload requires only atomic MIMO edges; legacy migration is a 4.6 boundary"))
+    first_registry = first(graph.hyperedges).registry
+    first_key = Tuple(sort(collect((manifest.operator_ref.qualified.id,
+        manifest.operator_ref.qualified.version, manifest.manifest_hash.value)
+        for manifest in first_registry.operators), by=x -> (x[1], x[2], x[3])))
     for edge in graph.hyperedges
-        typeof(edge) === AtomicMIMOHyperedgeV1 && return edge.registry
+        registry_key = Tuple(sort(collect((manifest.operator_ref.qualified.id,
+            manifest.operator_ref.qualified.version, manifest.manifest_hash.value)
+            for manifest in edge.registry.operators), by=x -> (x[1], x[2], x[3])))
+        registry_key == first_key || throw(ArgumentError("all atomic graph edges must use one exact operator registry"))
     end
-    throw(ArgumentError("legacy TypedHyperedge requires the 4.6 migration boundary"))
+    first_registry
+end
+
+function _g1_payload_validate_registry(graph::TypedOperatorHypergraphV1, observables::Tuple,
+                                       registry::OperatorRegistryV1)
+    for edge in graph.hyperedges
+        typeof(edge) === AtomicMIMOHyperedgeV1 || throw(ArgumentError("legacy edge cannot enter a strong payload"))
+        for (ref, manifest_hash) in edge.program.used_manifest_bindings
+            invoke(_mimo_exact_manifest, Tuple{OperatorRegistryV1,OperatorRefV1,Digest256},
+                registry, ref, manifest_hash)
+        end
+    end
+    for observable in observables
+        for (ref, manifest_hash) in observable.sampling_program.used_manifest_bindings
+            invoke(_mimo_exact_manifest, Tuple{OperatorRegistryV1,OperatorRefV1,Digest256},
+                registry, ref, manifest_hash)
+        end
+    end
+    nothing
 end
 
 function _g1_payload_find_edge(graph::TypedOperatorHypergraphV1, id::String, field::String)
     found = nothing
     for edge in graph.hyperedges
-        if _g1_payload_edge_id(edge) == id
+        if invoke(_g1_payload_edge_id, Tuple{Any}, edge) == id
             found === nothing || throw(ArgumentError("graph edge ids must be unique"))
             found = edge
         end
@@ -78,13 +105,14 @@ function _g1_payload_assert_edge_ref(graph::TypedOperatorHypergraphV1, ref::Any,
     else
         throw(ArgumentError("$field contains an invalid graph reference"))
     end
-    edge = _g1_payload_find_edge(graph, id, field)
-    _g1_payload_edge_role(edge) in roles || throw(ArgumentError("$field binds an edge with the wrong role"))
+    edge = invoke(_g1_payload_find_edge, Tuple{TypedOperatorHypergraphV1,String,String}, graph, id, field)
+    invoke(_g1_payload_edge_role, Tuple{Any}, edge) in roles || throw(ArgumentError("$field binds an edge with the wrong role"))
     edge
 end
 
 function _g1_payload_root_type(graph::TypedOperatorHypergraphV1, ref::ProgramRootRefV1)
-    edge = _g1_payload_find_edge(graph, ref.operator_site_ref.value, "expression_root")
+    edge = invoke(_g1_payload_find_edge, Tuple{TypedOperatorHypergraphV1,String,String}, graph,
+        ref.operator_site_ref.value, "expression_root")
     if typeof(edge) === AtomicMIMOHyperedgeV1
         position = ref.root_position
         position <= length(edge.program.roots) || throw(ArgumentError("program root position is out of range"))
@@ -129,7 +157,7 @@ function _g1_payload_program_metrics(program::TypedASTProgramV1, registry::Opera
             nonlocal[index] = (isempty(children) ? 0 : maximum(nonlocal[child] for child in children)) +
                 (manifest.locality == :local ? 0 : 1)
             memory[index] = (isempty(children) ? 0 : maximum(memory[child] for child in children)) +
-                ((manifest.stateful || node_value.operator_ref.qualified.id in ("DELAY", "HOLD")) ? 1 : 0)
+                (manifest.stateful ? 1 : 0)
             events[index] = (isempty(children) ? 0 : maximum(events[child] for child in children)) +
                 (manifest.event ? 1 : 0)
         else
@@ -150,7 +178,7 @@ end
 function _g1_payload_all_programs(graph::TypedOperatorHypergraphV1, observables::Tuple)
     programs = TypedASTProgramV1[]
     for edge in graph.hyperedges
-        program = _g1_payload_edge_program(edge)
+        program = invoke(_g1_payload_edge_program, Tuple{Any}, edge)
         program === nothing || push!(programs, program)
     end
     append!(programs, TypedASTProgramV1[value.sampling_program for value in observables])
@@ -165,11 +193,14 @@ function _g1_payload_validate_parameters(parameters::Tuple, programs::Vector{Typ
     end
     consumed = Dict{String,Bool}(key => false for key in keys(genes))
     for program in programs
-        for node_value in _g1_payload_parameter_nodes(program)
+        for node_value in invoke(_g1_payload_parameter_nodes, Tuple{TypedASTProgramV1}, program)
             name = String(node_value.name)
             haskey(genes, name) || throw(ArgumentError("AST parameter has no matching ParameterGene"))
-            genes[name].unit == node_value.output_type.units ||
-                throw(ArgumentError("AST parameter type does not match ParameterGene unit"))
+            gene = genes[name]
+            expected_type = PhysicalType(:scalar_parameter, 0, 0,
+                TemporalTypeV1(static_time), gene.unit)
+            node_value.output_type == expected_type ||
+                throw(ArgumentError("AST parameter type must be the exact scalar static parameter type"))
             consumed[name] = true
         end
     end
@@ -185,8 +216,8 @@ function _g1_payload_validate_governing(graph::TypedOperatorHypergraphV1)
         governing_outputs = Int[]
         constraint_outputs = Int[]
         for edge in graph.hyperedges
-            outputs = _g1_payload_edge_outputs(edge)
-            role = _g1_payload_edge_role(edge)
+            outputs = invoke(_g1_payload_edge_outputs, Tuple{Any}, edge)
+            role = invoke(_g1_payload_edge_role, Tuple{Any}, edge)
             index in outputs && role == governing && push!(governing_outputs, index)
             index in outputs && role == constraint && push!(constraint_outputs, index)
         end
@@ -198,7 +229,7 @@ end
 
 function _g1_payload_validate_refs(states, invariants, graph, parameters, symmetries, observables, holes)
     node_ids = String[node.node_id for node in graph.nodes]
-    isempty(node_ids) || all(!isempty(id) for id in node_ids) || throw(ArgumentError("graph node ids must be non-empty"))
+    isempty(node_ids) || all(!isempty(id) && isvalid(id) for id in node_ids) || throw(ArgumentError("graph node ids must be non-empty valid UTF-8"))
     length(unique(node_ids)) == length(node_ids) || throw(ArgumentError("graph node ids must be unique"))
     state_nodes = Tuple((index, node) for (index, node) in enumerate(graph.nodes) if node.node_kind === :state)
     length(state_nodes) == length(states) || throw(ArgumentError("each graph state node needs exactly one StateGene"))
@@ -209,34 +240,66 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
         state_map[node_value.node_id].physical_type == node_value.physical_type ||
             throw(ArgumentError("StateGene physical type differs from graph state node"))
     end
-    edge_ids = String[_g1_payload_edge_id(edge) for edge in graph.hyperedges]
+    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges]
     length(unique(edge_ids)) == length(edge_ids) || throw(ArgumentError("graph edge ids must be unique"))
+    edge_id_set = Set(edge_ids)
+    account_ids = Set{String}()
+    for edge in graph.hyperedges
+        typeof(edge) === AtomicMIMOHyperedgeV1 || throw(ArgumentError("legacy edge cannot enter a strong payload"))
+        for effect in edge.account_effects
+            push!(account_ids, effect.account_ref.account)
+        end
+    end
+    symmetry_ids = String[symmetry.ref.value for symmetry in symmetries]
+    length(unique(symmetry_ids)) == length(symmetry_ids) || throw(ArgumentError("symmetry references must be unique"))
+    symmetry_map = Dict(symmetry.ref.value => symmetry for symmetry in symmetries)
     for gene in states
+        for gauge_ref in gene.gauge_refs
+            haskey(symmetry_map, gauge_ref.value) || throw(ArgumentError("StateGene gauge reference does not bind a SymmetryGene"))
+        end
         for ref in gene.constraint_refs
-            edge = _g1_payload_assert_edge_ref(graph, ref, (constraint,), "state constraint reference")
+            edge = invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
+                graph, ref, (constraint,), "state constraint reference")
             state_index = only(Tuple(index for (index, node_value) in enumerate(graph.nodes)
                 if node_value.node_kind === :state && node_value.node_id == gene.state_ref.value))
-            state_index in _g1_payload_edge_inputs(edge) || state_index in _g1_payload_edge_outputs(edge) ||
+            state_index in invoke(_g1_payload_edge_outputs, Tuple{Any}, edge) ||
                 throw(ArgumentError("state constraint reference is not structurally tied to its state"))
         end
+    end
+    for (state_index, node_value) in state_nodes
+        node_value.physical_type.temporal_type.kind == algebraic_time || continue
+        constraint_outputs = Tuple(invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges
+            if invoke(_g1_payload_edge_role, Tuple{Any}, edge) == constraint &&
+                state_index in invoke(_g1_payload_edge_outputs, Tuple{Any}, edge))
+        length(constraint_outputs) == 1 || throw(ArgumentError("algebraic state constraint ownership is not unique"))
+        gene = state_map[node_value.node_id]
+        length(gene.constraint_refs) == 1 && gene.constraint_refs[1].value == constraint_outputs[1] ||
+            throw(ArgumentError("algebraic state must own its unique constraint output row"))
     end
     invariant_ids = String[invariant.invariant_ref.value for invariant in invariants]
     length(unique(invariant_ids)) == length(invariants) || throw(ArgumentError("invariant references must be unique"))
     for invariant in invariants
+        invariant.account_kind_ref.id in account_ids ||
+            throw(ArgumentError("invariant account_kind_ref does not bind a graph conservation ledger"))
+        if invariant.scope !== scope_global
+            invariant.scope_ref === nothing || invariant.scope_ref.id in union(node_ids, edge_id_set) ||
+                throw(ArgumentError("invariant scope_ref does not bind a graph/incidence identity"))
+        end
         all(haskey(state_map, term.state_ref.value) for term in invariant.terms) ||
             throw(ArgumentError("invariant term references an unknown state"))
         for ref in invariant.allowed_source_refs
-            _g1_payload_assert_edge_ref(graph, ref, (source,), "invariant source reference")
+            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
+                graph, ref, (source,), "invariant source reference")
         end
         for ref in invariant.allowed_sink_refs
-            _g1_payload_assert_edge_ref(graph, ref, (sink,), "invariant sink reference")
+            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
+                graph, ref, (sink,), "invariant sink reference")
         end
         for ref in invariant.boundary_flux_refs
-            _g1_payload_assert_edge_ref(graph, ref, (boundary, interface), "invariant boundary reference")
+            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
+                graph, ref, (boundary, interface), "invariant boundary reference")
         end
     end
-    symmetry_ids = String[symmetry.ref.value for symmetry in symmetries]
-    length(unique(symmetry_ids)) == length(symmetries) || throw(ArgumentError("symmetry references must be unique"))
     for symmetry in symmetries
         isempty(symmetry.state_actions) && throw(ArgumentError("symmetry must have at least one state action"))
         all(haskey(state_map, action.state_ref.value) for action in symmetry.state_actions) ||
@@ -246,7 +309,7 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     length(unique(observable_ids)) == length(observables) || throw(ArgumentError("observable references must be unique"))
     observable_map = Set(observable_ids)
     for observable in observables
-        _g1_payload_root_type(graph, observable.expression_root)
+        invoke(_g1_payload_root_type, Tuple{TypedOperatorHypergraphV1,ProgramRootRefV1}, graph, observable.expression_root)
         all(invoke(_g1_payload_root_type, Tuple{TypedOperatorHypergraphV1,ProgramRootRefV1}, graph,
             observable.expression_root) == observable.expression_root.declared_type for _ in (1,)) ||
             throw(ArgumentError("observable expression root is not bound to the graph"))
@@ -269,12 +332,14 @@ function _g1_payload_validate_limits(states, invariants, graph, parameters, symm
     0 <= length(parameters) <= 16 || throw(ArgumentError("parameter count is outside v1 bounds"))
     1 <= length(observables) <= 8 || throw(ArgumentError("observable count is outside v1 bounds"))
     0 <= length(holes) <= 1 || throw(ArgumentError("operator-hole count is outside v1 bounds"))
-    additive_count = count(edge -> _g1_payload_edge_role(edge) == additive, graph.hyperedges)
+    additive_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == additive, graph.hyperedges)
+    event_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == event, graph.hyperedges)
+    event_count <= 2 || throw(ArgumentError("event edge count is outside v1 bound"))
     additive_count <= 16 || throw(ArgumentError("additive edge count is outside v1 bounds"))
-    programs = _g1_payload_all_programs(graph, observables)
+    programs = invoke(_g1_payload_all_programs, Tuple{TypedOperatorHypergraphV1,Tuple}, graph, observables)
     ast_nodes = sum(length(program.nodes) for program in programs)
     4 <= ast_nodes <= _G1_PAYLOAD_MAX_AST_NODES || throw(ArgumentError("total AST node count is outside v1 bounds"))
-    metrics = [_g1_payload_validate_program(program, registry) for program in programs]
+    metrics = [invoke(_g1_payload_validate_program, Tuple{TypedASTProgramV1,OperatorRegistryV1}, program, registry) for program in programs]
     isempty(metrics) || begin
         maximum(first(metric) for metric in metrics) <= 6 || throw(ArgumentError("AST depth exceeds v1 bound"))
         maximum(metric[2] for metric in metrics) <= 2 || throw(ArgumentError("derivative order exceeds v1 bound"))
@@ -293,14 +358,18 @@ struct MechanismGenomePayloadV1
     observables::Tuple{Vararg{ObservableGeneV1}}
     operator_holes::Tuple{Vararg{TypedOperatorHoleV1}}
     function MechanismGenomePayloadV1(states, invariants, operator_graph, parameters, symmetries, observables, operator_holes)
-        state_tuple = _g1_payload_tuple(states, StateGeneV1, "states")
-        invariant_tuple = _g1_payload_tuple(invariants, InvariantV1, "invariants")
         operator_graph isa TypedOperatorHypergraphV1 || throw(ArgumentError("operator_graph must be TypedOperatorHypergraphV1"))
-        parameter_tuple = _g1_payload_tuple(parameters, ParameterGeneV1, "parameters")
-        symmetry_tuple = _g1_payload_tuple(symmetries, SymmetryGeneV1, "symmetries")
-        observable_tuple = _g1_payload_tuple(observables, ObservableGeneV1, "observables")
-        hole_tuple = _g1_payload_tuple(operator_holes, TypedOperatorHoleV1, "operator_holes")
+        all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in operator_graph.hyperedges) ||
+            throw(ArgumentError("strong mechanism payload admits only AtomicMIMOHyperedgeV1 edges"))
+        state_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, states, StateGeneV1, "states")
+        invariant_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, invariants, InvariantV1, "invariants")
+        parameter_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, parameters, ParameterGeneV1, "parameters")
+        symmetry_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, symmetries, SymmetryGeneV1, "symmetries")
+        observable_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, observables, ObservableGeneV1, "observables")
+        hole_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, operator_holes, TypedOperatorHoleV1, "operator_holes")
         registry = invoke(_g1_payload_registry, Tuple{TypedOperatorHypergraphV1}, operator_graph)
+        invoke(_g1_payload_validate_registry, Tuple{TypedOperatorHypergraphV1,Tuple,OperatorRegistryV1},
+            operator_graph, observable_tuple, registry)
         invoke(_g1_payload_validate_limits, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1,Tuple,Tuple,Tuple,Tuple,OperatorRegistryV1},
             state_tuple, invariant_tuple, operator_graph, parameter_tuple, symmetry_tuple, observable_tuple, hole_tuple, registry)
         invoke(_g1_payload_validate_refs, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1,Tuple,Tuple,Tuple,Tuple},

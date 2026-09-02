@@ -1238,8 +1238,11 @@ end
         TypedASTProgramV1((ASTInputV1(1, scalar), apply), (2,), (1,); registry=registry)
     end
     program_a, program_b = identity_program(), identity_program()
+    account_in = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
+    account_out = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
     edge_a = AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
-        (MIMOOutputBindingV1(1, 1),), program_a, governing; registry=registry)
+        (MIMOOutputBindingV1(1, 1),), program_a, governing;
+        account_effects=(account_in, account_out), registry=registry)
     edge_b = AtomicMIMOHyperedgeV1("site-b", (MIMOInputBindingV1(1, 2),),
         (MIMOOutputBindingV1(1, 2),), program_b, governing; registry=registry)
     graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),
@@ -1267,6 +1270,25 @@ end
     @test length(payload.states) == 2
     @test JSON3.read(canonical_json(payload)).kind == "mechanism_genome_payload"
     @test canonical_hash(payload) isa Digest256
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,),
+        TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),),
+            (TypedHyperedge("legacy", (), (1,),
+                TypedAST((TypedASTNode(:state, (), scalar),), 1; registry=registry), :governing),)),
+        (), (symmetry,), (observable,), ())
+    bad_gauge = StateGeneV1(StateGeneRefV1("state-a"), scalar, bounds, (),
+        (SymmetryRefV1("missing-gauge"),), (), state_derived)
+    @test_throws ArgumentError MechanismGenomePayloadV1((bad_gauge, state_b), (invariant,), graph,
+        (), (symmetry,), (observable,), ())
+    bad_account = InvariantV1(InvariantRefV1("bad-account"), QualifiedRefV1("missing-account", "v1"),
+        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        entropy_conserved)
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_account,), graph,
+        (), (symmetry,), (observable,), ())
+    bad_scope = InvariantV1(InvariantRefV1("bad-scope"), QualifiedRefV1("account", "v1"),
+        scope_domain, QualifiedRefV1("missing-scope", "v1"),
+        (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_scope,), graph,
+        (), (symmetry,), (observable,), ())
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a,), (invariant,), graph, (), (symmetry,), (observable,), ())
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (), graph, (), (symmetry,), (observable,), ())
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, StateGeneV1(StateGeneRefV1("wrong"), scalar, bounds, (), (), (), state_derived)),
@@ -1289,6 +1311,95 @@ end
     @test MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ()).symmetries == ()
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,), (), ())
     @test MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,), (observable,), ()).symmetries == (symmetry,)
+    extra_rule = SameTypeVariadicRuleV1(1, 1)
+    extra_manifest = OperatorManifestV1(OperatorRefV1("EXTRA", "v1"), 1, 1,
+        extra_rule, extra_rule; allowed_roles=(:governing,), allowed_conservation_effects=(:redistribution,))
+    extra_registry = register_operator(registry, extra_manifest)
+    extra_program = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+        registry=extra_registry, input_types=(scalar,))
+    extra_program = TypedASTProgramV1((ASTInputV1(1, scalar), extra_program), (2,), (1,);
+        registry=extra_registry)
+    extra_edge = AtomicMIMOHyperedgeV1("site-b-extra", (MIMOInputBindingV1(1, 2),),
+        (MIMOOutputBindingV1(1, 2),), extra_program, governing; registry=extra_registry)
+    mixed_registry_graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),
+        node(:state, scalar; id="state-b")), (edge_a, extra_edge))
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,),
+        mixed_registry_graph, (), (symmetry,), (observable,), ())
+    bad_constraint = AtomicMIMOHyperedgeV1("constraint-wrong-owner",
+        (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), program_a, constraint;
+        registry=registry)
+    wrong_owner_graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),
+        node(:state, scalar; id="state-b")), (edge_a, edge_b, bad_constraint))
+    state_with_wrong_constraint = StateGeneV1(StateGeneRefV1("state-a"), scalar, bounds, (), (),
+        (ConstraintRefV1("constraint-wrong-owner"),), state_derived)
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_with_wrong_constraint, state_b),
+        (invariant,), wrong_owner_graph, (), (symmetry,), (observable,), ())
+    parameter_unit = UnitSignature()
+    parameter_gene = ParameterGeneV1(ParameterRefV1("p"), parameter_unit,
+        ParameterTransformSpecV1(transform_linear), bounds, 0)
+    parameter_type = PhysicalType(:scalar_parameter, 0, 0, TemporalTypeV1(static_time), parameter_unit)
+    parameter_program = TypedASTProgramV1((ASTParameterV1(:p, parameter_type),), (1,), (); registry=registry)
+    @test FusionConceptAI._g1_payload_validate_parameters((parameter_gene,), [parameter_program]) === nothing
+    wrong_parameter_types = (PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(static_time), parameter_unit),
+        PhysicalType(:scalar_parameter, 1, 0, TemporalTypeV1(static_time), parameter_unit),
+        PhysicalType(:scalar_parameter, 0, 1, TemporalTypeV1(static_time), parameter_unit),
+        PhysicalType(:scalar_parameter, 0, 0, TemporalTypeV1(differential_time), parameter_unit),
+        PhysicalType(:scalar_parameter, 0, 0, TemporalTypeV1(static_time), UnitSignature((1,0,0,0,0,0,0))))
+    for wrong_type in wrong_parameter_types
+        wrong_program = TypedASTProgramV1((ASTParameterV1(:p, wrong_type),), (1,), (); registry=registry)
+        @test_throws ArgumentError FusionConceptAI._g1_payload_validate_parameters((parameter_gene,), [wrong_program])
+    end
+    control_type = PhysicalType(:control_signal, 0, 3, TemporalTypeV1(static_time), unit)
+    event_manifest = OperatorManifestV1(OperatorRefV1("CUSTOM_EVENT", "v1"), 2, 1,
+        EventTransitionRuleV1(:threshold_switch), EventTransitionRuleV1(:threshold_switch);
+        allowed_roles=(:event,), pure=false, event=true)
+    event_registry = register_operator(registry, event_manifest)
+    event_program() = begin
+        event_apply = ASTApplyV1(OperatorRefV1("CUSTOM_EVENT", "v1"), (1, 2), (;);
+            registry=event_registry, input_types=(control_type, scalar))
+        TypedASTProgramV1((ASTInputV1(1, control_type), ASTInputV1(2, scalar), event_apply),
+            (3,), (1, 2); registry=event_registry)
+    end
+    event_edges = Tuple(AtomicMIMOHyperedgeV1("event-$(i)",
+        (MIMOInputBindingV1(1, 2 + i), MIMOInputBindingV1(2, 1)),
+        (MIMOOutputBindingV1(1, 1),), event_program(), event; registry=event_registry) for i in 1:3)
+    event_governing_a = AtomicMIMOHyperedgeV1("event-governing-a",
+        (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 1),), program_a, governing;
+        account_effects=(account_in, account_out), registry=event_registry)
+    event_governing_b = AtomicMIMOHyperedgeV1("event-governing-b",
+        (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 2),), program_b, governing;
+        registry=event_registry)
+    event_graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"),
+        node(:state, scalar; id="state-b"), node(:control, control_type; id="control-1"),
+        node(:control, control_type; id="control-2"), node(:control, control_type; id="control-3")),
+        (event_governing_a, event_governing_b, event_edges...))
+    @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (invariant,), event_graph,
+        (), (symmetry,), (observable,), ())
+    hold_rule = SamplingRuleV1(true)
+    hold_manifest = OperatorManifestV1(OperatorRefV1("CUSTOM_HOLD", "v1"), 1, 1,
+        hold_rule, hold_rule; allowed_roles=(:governing,),
+        parameter_schema=(OperatorParameterSpecV1(:target_kind, :symbol, true),),
+        pure=true, stateful=false)
+    hold_registry = register_operator(registry, hold_manifest)
+    discrete_type = PhysicalType(:scalar_field, 0, 3,
+        TemporalTypeV1(discrete_time, 0, QualifiedRefV1("clock", "v1")), unit)
+    hold_apply = ASTApplyV1(OperatorRefV1("CUSTOM_HOLD", "v1"), (1,),
+        (target_kind=:static_time,); registry=hold_registry, input_types=(discrete_type,))
+    hold_program = TypedASTProgramV1((ASTInputV1(1, discrete_type), hold_apply), (2,), (1,);
+        registry=hold_registry)
+    @test FusionConceptAI._g1_payload_program_metrics(hold_program, hold_registry)[4] == 0
+    authority_script = """
+    using FusionConceptAI
+    u = UnitSignature(); t = PhysicalType(:scalar_field, 0, 3, :differential, u)
+    r = default_operator_registry()
+    a = ASTApplyV1(OperatorRefV1(\"IDENTITY\", \"v1\"), (1,), (;); registry=r, input_types=(t,))
+    p = TypedASTProgramV1((ASTInputV1(1, t), a), (2,), (1,); registry=r)
+    e = AtomicMIMOHyperedgeV1(\"e\", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 1),), p, governing; registry=r)
+    g = TypedOperatorHypergraphV1((node(:state, t; id=\"s\"),), (e,))
+    @eval FusionConceptAI _g1_payload_edge_role(::AtomicMIMOHyperedgeV1) = event
+    FusionConceptAI._g1_payload_validate_governing(g)
+    """
+    @test success(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $authority_script`)
 end
     unit = UnitSignature()
     interval = ExactFiniteIntervalV1(-7 // 3, 11 // 5, false)
