@@ -8,6 +8,7 @@ const BAD_TEXT = string(Char(0xd800))
 mutable struct MutablePayload
     values::Vector{Int}
 end
+
 mutable struct MutableNumber <: Number
     value::Int
 end
@@ -902,4 +903,59 @@ end
     @test_throws ArgumentError EvidenceContentV4(h, h, h, h, "backend", h, required, nothing, unique_match, resolved, not_applicable_stage, metric, nothing, (), "", screen_only)
     @test_throws MethodError StatusVectorV4()
     @test_throws MethodError DerivedEGraphViewV4(digest256_text("fake-source"), g)
+end
+
+@testset "G1 sealed mechanism gene primitives" begin
+    refs = (
+        StateGeneRefV1("state"), InvariantRefV1("invariant"), ParameterRefV1("parameter"),
+        SymmetryRefV1("symmetry"), ObservableRefV1("observable"), OperatorSiteRefV1("operator"),
+        ConstraintRefV1("constraint"), HoleRefV1("hole"))
+    @test length(unique(string(getfield(x, :value)) for x in refs)) == 8
+    @test all(x -> x.value isa String && isvalid(x.value), refs)
+    @test_throws ArgumentError StateGeneRefV1("")
+    @test_throws ArgumentError StateGeneRefV1(BAD_TEXT)
+    @test_throws ArgumentError StateGeneRefV1(MutableText("mutable"))
+    @test_throws ArgumentError InvariantRefV1(StateGeneRefV1("state"))
+    @test_throws ArgumentError ParameterRefV1(1)
+
+    closed = ExactFiniteIntervalV1(1 // 2, 3 // 2; allow_equal=true)
+    strict = ExactFiniteIntervalV1(1, 2, false)
+    @test closed.lower == 1 // 2 && closed.upper == 3 // 2 && closed.allow_equal
+    @test strict.lower == 1 // 1 && !strict.allow_equal
+    @test ExactFiniteIntervalV1(2, 2, true).lower == ExactFiniteIntervalV1(2, 2).upper
+    @test_throws ArgumentError ExactFiniteIntervalV1(2, 2, false)
+    @test_throws ArgumentError ExactFiniteIntervalV1(3, 2, true)
+    @test_throws ArgumentError ExactFiniteIntervalV1(1.0, 2)
+    @test_throws ArgumentError ExactFiniteIntervalV1(big(1) // big(2), 2)
+    @test_throws ArgumentError ExactFiniteIntervalV1(true, 2)
+    unit = UnitSignature()
+    @test QuantityIntervalV1(closed, unit).interval == closed
+    @test NonnegativeQuantityV1(0, unit).value == 0 // 1
+    @test NonnegativeQuantityV1(3 // 2, unit).value == 3 // 2
+    @test_throws ArgumentError NonnegativeQuantityV1(-1 // 2, unit)
+    @test_throws ArgumentError NonnegativeQuantityV1(1.0, unit)
+    @test_throws ArgumentError QuantityIntervalV1((closed,), unit)
+
+    matrix = ExactRationalMatrixV1(((1 // 2, 0), (0, 1)))
+    @test matrix.rows == ((1 // 2, 0 // 1), (0 // 1, 1 // 1))
+    @test_throws ArgumentError ExactRationalMatrixV1(())
+    @test_throws ArgumentError ExactRationalMatrixV1(((),))
+    @test_throws ArgumentError ExactRationalMatrixV1(((1,), (1, 2)))
+    @test_throws ArgumentError ExactRationalMatrixV1(((1.0,),))
+    @test_throws ArgumentError ExactRationalMatrixV1(((MutablePayload([1]),),))
+    @test_throws ArgumentError ExactRationalMatrixV1([[1]])
+
+    @test state_derived isa StateEpistemicV1
+    @test StateEpistemicV1(0) == state_derived
+    @test state_not_applicable isa StateEpistemicV1
+    @test scope_global isa InvariantScopeV1
+    @test entropy_conserved isa EntropyDirectionV1
+    @test transform_log isa ParameterTransformKindV1
+    @test symmetry_equivariant isa SymmetryBehaviorV1
+    @test net_creation isa ConservationEffectKindV1
+    parity = ParityActionV1(QualifiedRefV1("generator", "v1"), odd)
+    @test parity.sign == odd
+    @test_throws ArgumentError ParityActionV1(QualifiedRefV1("generator", "v1"), :odd)
+    @test canonical_json(matrix) isa String
+    @test canonical_json(parity) isa String
 end

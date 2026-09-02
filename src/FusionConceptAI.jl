@@ -6,6 +6,7 @@ include("IR/PhysicalTypes.jl")
 include("IR/OperatorRegistry.jl")
 include("IR/TypedAST.jl")
 include("IR/OperatorHypergraph.jl")
+include("Genomes/MechanismGenes.jl")
 include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
 include("Genomes/MechanismGenome.jl")
@@ -41,6 +42,16 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        EventTransitionRuleV1,
        OperatorManifestV1, OperatorRegistryV1, register_operator, operator_manifest, validate_operator_signature,
        default_operator_registry,
+       StateGeneRefV1, InvariantRefV1, ParameterRefV1, SymmetryRefV1, ObservableRefV1, OperatorSiteRefV1,
+       ConstraintRefV1, HoleRefV1, ExactFiniteIntervalV1, QuantityIntervalV1, NonnegativeQuantityV1,
+       ExactRationalMatrixV1, StateEpistemicV1, ParitySignV1, InvariantScopeV1, EntropyDirectionV1,
+       ParameterTransformKindV1, SymmetryGroupKindV1, SymmetryBehaviorV1, ConservationEffectKindV1,
+       state_derived, state_measured, state_declared_known, state_hypothesized, state_learned,
+       state_empirical_prior, state_unknown_placeholder, state_not_applicable, even, odd,
+       scope_global, scope_domain, scope_interface, entropy_not_applicable, entropy_nondecreasing,
+       entropy_nonincreasing, entropy_conserved, transform_linear, transform_log, transform_signed_log,
+       symmetry_discrete, symmetry_continuous, symmetry_invariant, symmetry_equivariant,
+       redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,
