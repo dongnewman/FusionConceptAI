@@ -112,8 +112,15 @@ const _MIMO_EDGE_CANONICAL_DOMAIN = "fusionconceptai:v4:atomic-mimo-hyperedge:v1
 const _MIMO_GRAPH_CANONICAL_DOMAIN = "fusionconceptai:v4:typed-operator-hypergraph:v1"
 
 function _mimo_edge_canonical_bytes(e::AtomicMIMOHyperedgeV1)
-    max_index = maximum((b.graph_node_index for b in (e.input_bindings..., e.output_bindings...)))
-    body = _mimo_edge_encoding(e, collect(1:max_index))
+    # Standalone edges have no graph node table.  Encode their validated raw
+    # positive indices directly; never allocate a dense 1:max(index) map.
+    ins = "[" * join(("{\"graph_node\":" * string(b.graph_node_index) * ",\"program_position\":" * string(b.program_position) * "}" for b in e.input_bindings), ",") * "]"
+    outs = "[" * join(("{\"graph_node\":" * string(b.graph_node_index) * ",\"program_position\":" * string(b.program_position) * "}" for b in e.output_bindings), ",") * "]"
+    effects = "[" * join((_mimo_closed_effect(x) for x in e.account_effects), ",") * "]"
+    pairs = "[" * join((_mimo_closed_pair(x) for x in e.interface_flux_pairs), ",") * "]"
+    body = "{\"account_effects\":" * effects * ",\"input_bindings\":" * ins * ",\"interface_flux_pairs\":" * pairs *
+        ",\"output_bindings\":" * outs * ",\"program_hash\":" * invoke(_jsonquote, Tuple{AbstractString}, e.program_hash.value) *
+        ",\"role\":" * invoke(_jsonquote, Tuple{AbstractString}, String(Symbol(e.role))) * "}"
     "{\"canonicalization_version\":\"1\",\"domain\":" * invoke(_jsonquote, Tuple{AbstractString}, _MIMO_EDGE_CANONICAL_DOMAIN) *
         ",\"edge\":" * body * "}"
 end

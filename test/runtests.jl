@@ -391,6 +391,10 @@ end
     @test canonical_hash(e1) == canonical_hash(AtomicMIMOHyperedgeV1("different-id", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive; registry=registry))
     @test occursin("fusionconceptai:v4:atomic-mimo-hyperedge:v1", canonical_json(e1))
     @test canonical_hash(e1) != canonical_hash(g1)
+    sparse_edge = AtomicMIMOHyperedgeV1("sparse", (MIMOInputBindingV1(1, 1_000_000),), (MIMOOutputBindingV1(1, 2_000_000),), p1, additive; registry=registry)
+    @test occursin("\"graph_node\":1000000", canonical_json(sparse_edge))
+    @test canonical_hash(sparse_edge) == canonical_hash(sparse_edge)
+    @test @allocated(canonical_json(sparse_edge)) < 1_000_000
     @test canonical_hash(g1) == canonical_hash(TypedOperatorHypergraphV1((node(:input, scalar; id="x", label="hidden"), node(:output, scalar; id="y", label="hidden")),
         (AtomicMIMOHyperedgeV1("renamed", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive; registry=registry),)))
 
