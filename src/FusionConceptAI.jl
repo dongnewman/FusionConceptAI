@@ -18,6 +18,7 @@ canonical_json(x::TypedASTProgramV1) = _ast_program_canonical(_ast_program_seman
 include("Canonical/ExactGraphCanonicalization.jl")
 include("Canonical/Hashes.jl")
 include("Genomes/MechanismGeneCanonical.jl")
+include("Genomes/MechanismObservablesHoles.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
 include("Contracts/Authority.jl")
@@ -56,6 +57,8 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
        StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
        StateSymmetryActionV1, SymmetryGeneV1, derive_parameter_value, parameter_value,
+       ProgramRootRefV1, ObservableGeneV1, HoleComplexityBudgetV1, IdentifiabilityConditionV1,
+       TypedOperatorHoleV1,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,

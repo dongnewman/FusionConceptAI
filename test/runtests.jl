@@ -1092,6 +1092,117 @@ end
 end
 
 @testset "G1 sealed gene hash and endpoint remediation" begin
+
+@testset "G1 observables and typed operator holes" begin
+    unit = UnitSignature()
+    scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
+    vector = PhysicalType(:vector_field, 1, 3, :differential, unit)
+    registry = default_operator_registry()
+    identity = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+        registry=registry, input_types=(scalar,))
+    sampling = TypedASTProgramV1((ASTInputV1(1, scalar), identity), (2,), (1,); registry=registry)
+    root = ProgramRootRefV1(OperatorSiteRefV1("site"), 1, scalar)
+    interval = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
+    floor = NonnegativeQuantityV1(1 // 10, unit)
+    minimum = NonnegativeQuantityV1(1 // 2, unit)
+    intervention = QualifiedRefV1("intervention", "v1")
+    noise_model = QualifiedRefV1("noise", "v1")
+    competitor = QualifiedRefV1("prediction", "v1")
+    observable_ref = ObservableRefV1("observable")
+    observable = ObservableGeneV1(observable_ref, root, intervention, sampling, interval,
+        noise_model, floor, floor, minimum, (competitor,))
+    @test observable.expression_root.declared_type == scalar
+    @test length(observable.competing_prediction_refs) == 1
+    @test JSON3.read(canonical_json(observable)).kind == "observable_gene"
+    @test length(canonical_hash(observable).value) == 64
+    @test_throws ArgumentError ProgramRootRefV1(OperatorSiteRefV1("site"), 0, scalar)
+    @test_throws ArgumentError ProgramRootRefV1(OperatorSiteRefV1("site"), true, scalar)
+    @test_throws ArgumentError ProgramRootRefV1("site", 1, scalar)
+    bad_input = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+        registry=registry, input_types=(vector,))
+    bad_sampling = TypedASTProgramV1((ASTInputV1(1, vector), bad_input), (2,), (1,); registry=registry)
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, bad_sampling,
+        interval, noise_model, floor, floor, minimum, (competitor,))
+    wrong_interval = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false),
+        UnitSignature((1, 0, 0, 0, 0, 0, 0)))
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, sampling,
+        wrong_interval, noise_model, floor, floor, minimum, (competitor,))
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, sampling,
+        interval, noise_model, floor, floor, NonnegativeQuantityV1(1 // 5, unit), (competitor,))
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, sampling,
+        interval, noise_model, floor, floor, minimum, ())
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, sampling,
+        interval, noise_model, floor, floor, minimum, (competitor, competitor))
+    @test_throws ArgumentError ObservableGeneV1(observable_ref, root, intervention, sampling,
+        interval, noise_model, floor, floor, NonnegativeQuantityV1(1 // 10, unit), (competitor,))
+
+    budget = HoleComplexityBudgetV1(12, 2, 1, 0, 0, 1)
+    @test JSON3.read(canonical_json(budget)).kind == "hole_complexity_budget"
+    @test_throws ArgumentError HoleComplexityBudgetV1(13, 2, 1, 0, 0, 1)
+    @test_throws ArgumentError HoleComplexityBudgetV1(12, 3, 1, 0, 0, 1)
+    @test_throws ArgumentError HoleComplexityBudgetV1(12, 2, 2, 0, 0, 1)
+    @test_throws ArgumentError HoleComplexityBudgetV1(true, 2, 1, 0, 0, 1)
+    @test_throws ArgumentError HoleComplexityBudgetV1(big(1), 2, 1, 0, 0, 1)
+    @test_throws ArgumentError HoleComplexityBudgetV1(12, 2, 1, 0, 0, 0)
+
+    condition = IdentifiabilityConditionV1(intervention, observable_ref, minimum,
+        NonnegativeQuantityV1(1 // 5, unit))
+    @test JSON3.read(canonical_json(condition)).kind == "identifiability_condition"
+    @test_throws ArgumentError IdentifiabilityConditionV1(intervention, observable_ref, minimum,
+        NonnegativeQuantityV1(1, unit))
+    @test_throws ArgumentError IdentifiabilityConditionV1(intervention, observable_ref, minimum,
+        NonnegativeQuantityV1(1 // 5, UnitSignature((1, 0, 0, 0, 0, 0, 0))))
+
+    state_a = StateGeneRefV1("state-a")
+    state_b = StateGeneRefV1("state-b")
+    alt_a = QualifiedRefV1("alternative-a", "v1")
+    alt_b = QualifiedRefV1("alternative-b", "v1")
+    oos_a = QualifiedRefV1("oos-a", "v1")
+    oos_b = QualifiedRefV1("oos-b", "v1")
+    hole = TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a, alt_b), (condition,),
+        (observable_ref,), (oos_a, oos_b))
+    @test JSON3.read(canonical_json(hole)).kind == "typed_operator_hole"
+    @test canonical_hash(hole) == canonical_hash(TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,),
+        (scalar,), QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_b, alt_a), (condition,),
+        (observable_ref,), (oos_b, oos_a)))
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (redistribution,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (condition,), (observable_ref,), (oos_a,))
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (QualifiedRefV1("null", "v1"),), (condition,),
+        (observable_ref,), (oos_a,))
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (), (observable_ref,), (oos_a,))
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (condition,),
+        (ObservableRefV1("other"),), (oos_a,))
+    @test_throws ArgumentError TypedOperatorHoleV1(HoleRefV1("hole"), (state_a,), (scalar,),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a,), (condition,), (observable_ref,), ())
+    @test_throws Exception ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+        registry=registry, input_types=(hole,))
+    @test_throws Exception OperatorManifestV1(OperatorRefV1("ALIEN", "v1"), 1, 1, hole, hole)
+
+    two_input_hole = TypedOperatorHoleV1(HoleRefV1("hole-2"), (state_a, state_b), (scalar, vector),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a, alt_b), (condition,),
+        (observable_ref,), (oos_a, oos_b))
+    swapped_io = TypedOperatorHoleV1(HoleRefV1("hole-2"), (state_b, state_a), (vector, scalar),
+        QualifiedRefV1("causal", "v1"), (redistribution,), (net_creation,), budget,
+        QualifiedRefV1("null", "v1"), (alt_a, alt_b), (condition,),
+        (observable_ref,), (oos_a, oos_b))
+    @test canonical_hash(two_input_hole) != canonical_hash(swapped_io)
+
+    before = (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
+    FusionConceptAI._g1_hole_sorted(::Tuple{QualifiedRefV1}, ::Function) = "polluted"
+    @test before == (canonical_json(observable), canonical_hash(observable), canonical_json(hole), canonical_hash(hole))
+end
     unit = UnitSignature()
     interval = ExactFiniteIntervalV1(-7 // 3, 11 // 5, false)
     quantity_bounds = QuantityIntervalV1(interval, unit)
