@@ -21,6 +21,7 @@ include("Genomes/MechanismGeneCanonical.jl")
 include("Genomes/MechanismObservablesHoles.jl")
 include("Genomes/MechanismGenomePayload.jl")
 include("Canonical/MechanismCanonicalTransport.jl")
+include("Canonical/MechanismHashLayers.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
 include("Contracts/Authority.jl")
@@ -63,6 +64,7 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        TypedOperatorHoleV1, MechanismGenomePayloadV1,
        MechanismCanonicalizationContextV1, CanonicalMechanismTransportV1,
        canonicalize_mechanism_transport, canonical_mechanism_transport_json,
+       MechanismHashLayersV1, CanonicalMechanismV1, mechanism_hash_layers, canonicalize_mechanism,
        MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,

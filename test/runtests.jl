@@ -15,15 +15,15 @@ end
     scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
     registry = default_operator_registry()
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
-    function make_payload(prefix::String; intervention::String="intervention")
+    function make_payload(prefix::String; intervention::String="intervention", account::String="account")
         identity_program() = begin
             apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
                 registry=registry, input_types=(scalar,))
             TypedASTProgramV1((ASTInputV1(1, scalar), apply), (2,), (1,); registry=registry)
         end
         p = identity_program()
-        ein = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
-        eout = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
+        ein = PortAccountEffectV1(ConservationAccountRefV1(account, unit, :input, 1, :inflow), 1 // 1)
+        eout = PortAccountEffectV1(ConservationAccountRefV1(account, unit, :output, 1, :outflow), -1 // 1)
         edge_a = AtomicMIMOHyperedgeV1(prefix * "site-a", (MIMOInputBindingV1(1, 1),),
             (MIMOOutputBindingV1(1, 1),), p, governing;
             account_effects=(ein, eout), registry=registry)
@@ -39,7 +39,7 @@ end
             QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), QualifiedRefV1("account", "v1"),
+        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), QualifiedRefV1(account, "v1"),
             scope_global, nothing, (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), (), (), (), 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
@@ -81,7 +81,70 @@ end
     low_budget = CanonicalizationProfileV1("decorated-test", "1", CanonicalizationBudgetV1(1, 10_000, 512, 8_000_000))
     @test_throws CanonicalizationDeferred canonicalize_mechanism_transport(make_payload("a-"),
         MechanismCanonicalizationContextV1(contract, low_budget))
+
+    layers = mechanism_hash_layers(make_payload("a-"), context)
+    @test layers isa MechanismHashLayersV1
+    @test fieldcount(typeof(layers)) == 8
+    @test all(getfield(layers, i) isa Digest256 for i in 1:8)
+    @test mechanism_hash(layers) == layers.decorated_mechanism_hash
+    @test_throws ArgumentError CanonicalMechanismV1(first, layers)
+    wires = FusionConceptAI._g1_layer_wires(make_payload("a-"), context)
+    @test length(wires) == 8
+    @test JSON3.read(wires[1]).domain == "fusionconceptai:v4:g1-hash:contract:v1"
+    @test JSON3.read(wires[4]).domain == "fusionconceptai:v4:g1-hash:topology:v1"
+    @test JSON3.read(wires[8]).domain == "fusionconceptai:v4:g1-hash:candidate-subject:v1"
+    @test all(Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(wires[i]))))) == getfield(layers, i) for i in 1:8)
+    @test_throws MethodError MechanismHashLayersV1(ntuple(_ -> Digest256(repeat("a", 64)), 8)...)
+    renamed_layers = mechanism_hash_layers(make_payload("renamed-"), context)
+    @test layers.topology_hash == renamed_layers.topology_hash
+    @test layers.operator_program_hash == renamed_layers.operator_program_hash
+    @test layers.mechanism_structure_hash == renamed_layers.mechanism_structure_hash
+    @test layers.decorated_mechanism_hash == renamed_layers.decorated_mechanism_hash
+    @test layers.candidate_subject_hash == renamed_layers.candidate_subject_hash
+    domains = ("contract", "canonicalization-profile", "operator-registry", "topology",
+        "operator-program", "mechanism-structure", "decorated-mechanism", "candidate-subject")
+    @test all(JSON3.read(wires[i]).domain == "fusionconceptai:v4:g1-hash:" * domains[i] * ":v1" for i in 1:8)
+    @test JSON3.read(wires[4]).dependencies.contract_hash == layers.contract_hash.value
+    @test JSON3.read(wires[4]).dependencies.canonicalization_profile_hash == layers.canonicalization_profile_hash.value
+    @test JSON3.read(wires[5]).dependencies.topology_hash == layers.topology_hash.value
+    @test JSON3.read(wires[5]).dependencies.operator_registry_hash == layers.operator_registry_hash.value
+    @test JSON3.read(wires[6]).dependencies.operator_program_hash == layers.operator_program_hash.value
+    @test JSON3.read(wires[7]).dependencies.mechanism_structure_hash == layers.mechanism_structure_hash.value
+    @test JSON3.read(wires[8]).dependencies.decorated_mechanism_hash == layers.decorated_mechanism_hash.value
+    @test_throws CanonicalizationDeferred FusionConceptAI._g1_layer_canonical(make_payload("a-"), :topology, "{}",
+        CanonicalizationProfileV1("layer-low", "1", CanonicalizationBudgetV1(1, 100, 512, 8_000_000)))
+    for layer in (:operator_program, :structure, :decorated)
+        @test_throws CanonicalizationDeferred FusionConceptAI._g1_layer_canonical(make_payload("a-"), layer, "{}",
+            CanonicalizationProfileV1("layer-low-" * String(layer), "1", CanonicalizationBudgetV1(1, 100, 512, 8_000_000)))
+    end
+    @test mechanism_hash_layers(make_payload("a-"), MechanismCanonicalizationContextV1(contract,
+        CanonicalizationProfileV1("decorated-test", "1", CanonicalizationBudgetV1(200_000, 20_000, 512, 8_000_000)))).contract_hash == layers.contract_hash
+    split_account_layers = mechanism_hash_layers(make_payload("a-"; account="other-account"), context)
+    @test layers.topology_hash == split_account_layers.topology_hash
+    @test layers.operator_program_hash == split_account_layers.operator_program_hash
+    @test layers.mechanism_structure_hash == split_account_layers.mechanism_structure_hash
+    @test layers.decorated_mechanism_hash != split_account_layers.decorated_mechanism_hash
+    @test layers.candidate_subject_hash != split_account_layers.candidate_subject_hash
+    changed_contract = GenomeContractRef("urn:fusion:changed", "v1", repeat("a", 64), repeat("b", 64), "g1")
+    changed_contract_layers = mechanism_hash_layers(make_payload("a-"), MechanismCanonicalizationContextV1(changed_contract, profile))
+    @test layers.contract_hash != changed_contract_layers.contract_hash
+    @test layers.topology_hash != changed_contract_layers.topology_hash
+    @test layers.operator_program_hash != changed_contract_layers.operator_program_hash
+    @test layers.mechanism_structure_hash != changed_contract_layers.mechanism_structure_hash
+    @test layers.decorated_mechanism_hash != changed_contract_layers.decorated_mechanism_hash
+    @test layers.candidate_subject_hash != changed_contract_layers.candidate_subject_hash
+    profile_budget_only = CanonicalizationProfileV1("decorated-test", "1",
+        CanonicalizationBudgetV1(300_000, 30_000, 512, 8_000_000))
+    @test layers.canonicalization_profile_hash == mechanism_hash_layers(make_payload("a-"),
+        MechanismCanonicalizationContextV1(contract, profile_budget_only)).canonicalization_profile_hash
+    @test layers.candidate_subject_hash == mechanism_hash_layers(make_payload("a-"),
+        MechanismCanonicalizationContextV1(contract, profile_budget_only)).candidate_subject_hash
 end
+
+# Keep the independent 4.5b matrices in separate files so their fixture
+# helpers cannot accidentally become part of the package's public surface.
+include(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"))
+include(joinpath(@__DIR__, "mechanism_hash_layers_adversarial.jl"))
 
 @testset "G1 transport binds MIMO positions to incidence ports" begin
     unit = UnitSignature()
