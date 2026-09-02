@@ -12,6 +12,7 @@ include("Contracts/GenomeContractRegistry.jl")
 include("Genomes/MechanismGenome.jl")
 include("Genomes/MechanismGenesV1.jl")
 include("Genomes/FieldGeometryPrimitives.jl")
+include("Genomes/FieldGeometrySpatialSupport.jl")
 include("Genomes/FieldGeometryGenome.jl")
 include("Genomes/RealizationControlGenome.jl")
 include("Canonical/CanonicalJSON.jl")
@@ -20,6 +21,7 @@ include("Canonical/ExactGraphCanonicalization.jl")
 include("Canonical/Hashes.jl")
 include("Genomes/MechanismGeneCanonical.jl")
 include("Canonical/FieldGeometryPrimitiveCanonical.jl")
+include("Canonical/FieldGeometrySpatialSupportCanonical.jl")
 include("Genomes/MechanismObservablesHoles.jl")
 include("Genomes/MechanismGenomePayload.jl")
 include("Canonical/MechanismCanonicalTransport.jl")
@@ -69,6 +71,10 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        SourceBudgetRefV1, TopologyEventRefV1, SpatialMultiIndex3V1,
        ExactSpatialVector3V1, FieldParameterGeneV1, derive_field_parameter_value,
        field_parameter_value,
+       FieldOperatorSiteRefV1, SpatialProgramRootRefV1, PeriodicAxisV1,
+       CoordinateChartGeneV1, ChartTransitionMapGeneV1, SpatialSupportGeneV1,
+       chart_coordinate_type_v1, normalized_ambient_coordinate_type_v1,
+       normalized_covariant_metric_type_v1, chart_count,
        ProgramRootRefV1, ObservableGeneV1, HoleComplexityBudgetV1, IdentifiabilityConditionV1,
        TypedOperatorHoleV1, MechanismGenomePayloadV1,
        MechanismCanonicalizationContextV1, CanonicalMechanismTransportV1,

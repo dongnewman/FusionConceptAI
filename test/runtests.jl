@@ -142,6 +142,8 @@ end
 end
 
 include("field_geometry_primitives_tests.jl")
+include("field_geometry_spatial_support_tests.jl")
+include("field_geometry_spatial_support_dispatch_adversarial.jl")
 
 # Keep the independent 4.5b matrices in separate files so their fixture
 # helpers cannot accidentally become part of the package's public surface.

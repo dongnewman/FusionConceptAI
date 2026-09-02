@@ -10,8 +10,20 @@ end
 struct Digest256
     value::String
     function Digest256(value::AbstractString)
-        occursin(r"^[0-9a-f]{64}$", value) || throw(ArgumentError("Digest256 requires exactly 64 lowercase hex characters"))
-        new(String(value))
+        text = typeof(value) === String ? value : invoke(String, Tuple{AbstractString}, value)
+        Core.sizeof(text) == 64 || throw(ArgumentError("Digest256 requires exactly 64 lowercase hex characters"))
+        GC.@preserve text begin
+            pointer = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), text)
+            i = 1
+            while i <= 64
+                byte = invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, pointer, i)
+                valid = (byte >= UInt8(0x30) && byte <= UInt8(0x39)) ||
+                        (byte >= UInt8(0x61) && byte <= UInt8(0x66))
+                valid || throw(ArgumentError("Digest256 requires exactly 64 lowercase hex characters"))
+                i += 1
+            end
+        end
+        new(text)
     end
 end
 Base.:(==)(a::Digest256, b::Digest256) = a.value == b.value
