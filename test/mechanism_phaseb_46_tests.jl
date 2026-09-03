@@ -150,7 +150,7 @@ function _nine_node_budget_fixture()
         (TypedHyperedge("nine-edge-a", (1,), (1,), ast, :governing),
          TypedHyperedge("nine-edge-b", (2,), (2,), ast, :governing)); registry=registry)
     source = MechanismGenomeV4(7, PB_CONTRACT, graph)
-    budget = CanonicalizationBudgetV1(500_000, 1, 512, 8_000_000)
+    budget = CanonicalizationBudgetV1(1, 1, 512, 8_000_000)
     context = MechanismCanonicalizationContextV1(PB_CONTRACT,
         CanonicalizationProfileV1("phaseb-9-node-budget", "1", budget))
     source, context, registry
@@ -427,15 +427,15 @@ else
 
     @testset "4.6 helper injection and cross-process stability" begin
         julia = Base.julia_cmd()
-        script = "using FusionConceptAI; FusionConceptAI._g1_layer_rule(::FusionConceptAI.SameTypeVariadicRuleV1)=\"injected\"; FusionConceptAI._canonical(::FusionConceptAI.TypedNode)=\"injected-node\"; FusionConceptAI._g1_migration_closed_value(::FusionConceptAI.GenomeContractRef)=\"poison\"; FusionConceptAI._g1_migration_deferred(::Nothing,::Nothing,::FusionConceptAI.G1LegacyMigrationReasonV1)=(resolution=FusionConceptAI.resolved,payload=nothing,canonical=nothing,source_mechanism_hash=nothing,mapping_ref=nothing,mapping_hash=nothing,declaration_content_hash=nothing,reason=FusionConceptAI.migration_lossless); Base.isequal(::FusionConceptAI.SameTypeVariadicRuleV1,::FusionConceptAI.SameTypeVariadicRuleV1)=false; Base.hash(::FusionConceptAI.SameTypeVariadicRuleV1,h::UInt)=xor(h,UInt(0x1234))"
+        script = "using FusionConceptAI; const HIT=Ref{UInt8}(0); FusionConceptAI._g1_layer_rule(r::FusionConceptAI.SameTypeVariadicRuleV1)=(HIT[]=HIT[]|UInt8(0x01);\"injected\"); FusionConceptAI._canonical(n::FusionConceptAI.TypedNode)=(HIT[]=HIT[]|UInt8(0x02);\"injected-node\"); FusionConceptAI._g1_migration_closed_value(c::FusionConceptAI.GenomeContractRef)=(HIT[]=HIT[]|UInt8(0x04);\"poison\"); FusionConceptAI._g1_migration_deferred(::Nothing,::Nothing,::FusionConceptAI.G1LegacyMigrationReasonV1)=(HIT[]=HIT[]|UInt8(0x08);(resolution=FusionConceptAI.resolved,payload=nothing,canonical=nothing,source_mechanism_hash=nothing,mapping_ref=nothing,mapping_hash=nothing,declaration_content_hash=nothing,reason=FusionConceptAI.migration_lossless)); Base.isequal(a::FusionConceptAI.SameTypeVariadicRuleV1,b::FusionConceptAI.SameTypeVariadicRuleV1)=(HIT[]=HIT[]|UInt8(0x10);false); Base.hash(a::FusionConceptAI.SameTypeVariadicRuleV1,h::UInt)=(HIT[]=HIT[]|UInt8(0x20);xor(h,UInt(0x1234)))"
         # Pkg.test executes from a temporary test environment, so `.` is not
         # the package root for these fresh-process authority checks.
         package_root = Base.pkgdir(FusionConceptAI)
         test_file = joinpath(package_root, "test", "mechanism_phaseb_46_tests.jl")
-        injected_script = "ENV[\"FUSION_PHASEB_CHILD\"] = \"1\"; " * script * "; include(" * repr(test_file) * ")"
+        injected_script = "ENV[\"FUSION_PHASEB_CHILD\"] = \"1\"; " * script * "; include(" * repr(test_file) * "); rule = FusionConceptAI.SameTypeVariadicRuleV1(1, 1); FusionConceptAI._g1_layer_rule(rule); typed_node = FusionConceptAI.TypedNode(\"hit\", :state, FusionConceptAI.PhysicalType(:scalar_field, 0, 3, FusionConceptAI.TemporalTypeV1(FusionConceptAI.static_time), FusionConceptAI.UnitSignature()), \"\"); FusionConceptAI._canonical(typed_node); contract = FusionConceptAI.GenomeContractRef(\"urn:fusion:hit\", \"v1\", repeat(\"a\", 64), repeat(\"b\", 64), \"g1\"); FusionConceptAI._g1_migration_closed_value(contract); FusionConceptAI._g1_migration_deferred(nothing, nothing, FusionConceptAI.migration_lossless); isequal(rule, rule); hash(rule, UInt(0)); @assert HIT[] == 0x3f"
         normal_script = "ENV[\"FUSION_PHASEB_CHILD\"] = \"1\"; include(" * repr(test_file) * ")"
-        injected = read(setenv(`$julia --project=$package_root -e $injected_script`, "FUSION_PHASEB_CHILD" => "1"), String)
-        normal = read(setenv(`$julia --project=$package_root -e $normal_script`, "FUSION_PHASEB_CHILD" => "1"), String)
+        injected = read(setenv(`$julia --startup-file=no --project=$package_root -e $injected_script`, "FUSION_PHASEB_CHILD" => "1"), String)
+        normal = read(setenv(`$julia --startup-file=no --project=$package_root -e $normal_script`, "FUSION_PHASEB_CHILD" => "1"), String)
         @test injected == normal
         @test occursin("|", normal)
         hash_prefix = first(split(normal, '|'))
