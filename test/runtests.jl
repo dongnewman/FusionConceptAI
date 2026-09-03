@@ -9,6 +9,9 @@ const BAD_TEXT = string(Char(0xd800))
 mutable struct MutablePayload
     values::Vector{Int}
 end
+
+include("control_observation_requirement_tests.jl")
+include("control_observation_requirement_dispatch_adversarial.jl")
 include("typed_ast_program_canonical_adversarial.jl")
 include("mechanism_observable_closed_canonical_tests.jl")
 include("mechanism_observable_closed_canonical_adversarial.jl")
