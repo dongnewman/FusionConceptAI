@@ -147,6 +147,8 @@ end
 include("field_geometry_primitives_tests.jl")
 include("field_geometry_spatial_support_tests.jl")
 include("field_geometry_spatial_support_dispatch_adversarial.jl")
+include("field_geometry_spatial_support_closed_canonical_tests.jl")
+include("field_geometry_spatial_support_closed_canonical_adversarial.jl")
 include("field_geometry_5_3_tests.jl")
 include("field_geometry_canonical_migration_adversarial.jl")
 

@@ -46,11 +46,12 @@ end
 function _g25_write_unit(io::Base.GenericIOBuffer, value::UnitSignature)
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"exponents\":[")
     i = 1
-    count = fieldcount(typeof(value.exponents))
+    exponents = getfield(value, :exponents)
+    count = fieldcount(typeof(exponents))
     while i <= count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io,
-               getfield(value.exponents, i))
+               getfield(exponents, i))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "]}")
@@ -65,24 +66,24 @@ end
 
 function _g25_write_quantity(io::Base.GenericIOBuffer, value::NonnegativeQuantityV1)
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"unit\":")
-    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, value.unit)
+    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, getfield(value, :unit))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"value\":")
-    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, value.value)
+    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, getfield(value, :value))
     invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     nothing
 end
 
 function _g25_write_interval(io::Base.GenericIOBuffer, value::QuantityIntervalV1)
-    interval = value.interval
+    interval = getfield(value, :interval)
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"allow_equal\":")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io,
-           interval.allow_equal ? "true" : "false")
+           getfield(interval, :allow_equal) ? "true" : "false")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"lower\":")
-    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, interval.lower)
+    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, getfield(interval, :lower))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"upper\":")
-    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, interval.upper)
+    invoke(_g25_write_rational, Tuple{Base.GenericIOBuffer,Rational{Int64}}, io, getfield(interval, :upper))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"unit\":")
-    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, value.unit)
+    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, getfield(value, :unit))
     invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     nothing
 end
@@ -107,19 +108,20 @@ end
 
 function _g25_write_temporal(io::Base.GenericIOBuffer, value::TemporalTypeV1)
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"clock_ref\":")
-    if value.clock_ref === nothing
+    clock = getfield(value, :clock_ref)
+    if clock === nothing
         invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "null")
     else
         invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"id\":")
-        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.clock_ref.id)
+        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, getfield(clock, :id))
         invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"version\":")
-        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.clock_ref.version)
+        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, getfield(clock, :version))
         invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"derivative_order\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(value.derivative_order))
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(getfield(value, :derivative_order)))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"kind\":")
-    invoke(_g25_write_time_kind, Tuple{Base.GenericIOBuffer,TimeKindV1}, io, value.kind)
+    invoke(_g25_write_time_kind, Tuple{Base.GenericIOBuffer,TimeKindV1}, io, getfield(value, :kind))
     invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     nothing
 end
@@ -132,15 +134,15 @@ end
 
 function _g25_write_physical_type(io::Base.GenericIOBuffer, value::PhysicalType)
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"spatial_dimension\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(value.spatial_dimension))
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(getfield(value, :spatial_dimension)))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"tensor_rank\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(value.tensor_rank))
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, Int64(getfield(value, :tensor_rank)))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"temporal_type\":")
-    invoke(_g25_write_temporal, Tuple{Base.GenericIOBuffer,TemporalTypeV1}, io, value.temporal_type)
+    invoke(_g25_write_temporal, Tuple{Base.GenericIOBuffer,TemporalTypeV1}, io, getfield(value, :temporal_type))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"units\":")
-    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, value.units)
+    invoke(_g25_write_unit, Tuple{Base.GenericIOBuffer,UnitSignature}, io, getfield(value, :units))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"value_kind\":")
-    invoke(_g25_write_symbol, Tuple{Base.GenericIOBuffer,Symbol}, io, value.value_kind)
+    invoke(_g25_write_symbol, Tuple{Base.GenericIOBuffer,Symbol}, io, getfield(value, :value_kind))
     invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     nothing
 end
@@ -172,13 +174,14 @@ function _g25_write_root_wire(io::Base.GenericIOBuffer, value::SpatialProgramRoo
     invoke(_g25_write_wrap_start, Tuple{Base.GenericIOBuffer,String,String}, io,
            "fusionconceptai:v4:g2:spatial_program_root_ref:v1", "spatial_program_root_ref")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"declared_input_type\":")
-    invoke(_g25_write_physical_type, Tuple{Base.GenericIOBuffer,PhysicalType}, io, value.declared_input_type)
+    invoke(_g25_write_physical_type, Tuple{Base.GenericIOBuffer,PhysicalType}, io, getfield(value, :declared_input_type))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"declared_type\":")
-    invoke(_g25_write_physical_type, Tuple{Base.GenericIOBuffer,PhysicalType}, io, value.declared_type)
+    invoke(_g25_write_physical_type, Tuple{Base.GenericIOBuffer,PhysicalType}, io, getfield(value, :declared_type))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"operator_site_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.operator_site_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :operator_site_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "},\"root_position\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, value.root_position)
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, getfield(value, :root_position))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "}")
     invoke(_g25_write_wrap_end, Tuple{Base.GenericIOBuffer}, io)
     nothing
@@ -188,9 +191,9 @@ function _g25_write_axis_wire(io::Base.GenericIOBuffer, value::PeriodicAxisV1)
     invoke(_g25_write_wrap_start, Tuple{Base.GenericIOBuffer,String,String}, io,
            "fusionconceptai:v4:g2:periodic_axis:v1", "periodic_axis")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"axis_position\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, value.axis_position)
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, getfield(value, :axis_position))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"period\":")
-    invoke(_g25_write_quantity, Tuple{Base.GenericIOBuffer,NonnegativeQuantityV1}, io, value.period)
+    invoke(_g25_write_quantity, Tuple{Base.GenericIOBuffer,NonnegativeQuantityV1}, io, getfield(value, :period))
     invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
     invoke(_g25_write_wrap_end, Tuple{Base.GenericIOBuffer}, io)
     nothing
@@ -201,28 +204,32 @@ function _g25_write_chart_wire(io::Base.GenericIOBuffer, value::CoordinateChartG
            "fusionconceptai:v4:g2:coordinate_chart_gene:v1", "coordinate_chart_gene")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"chart_bounds\":[")
     i = 1
-    bound_count = fieldcount(typeof(value.chart_bounds))
+    chart_bounds = getfield(value, :chart_bounds)
+    bound_count = fieldcount(typeof(chart_bounds))
     while i <= bound_count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_interval, Tuple{Base.GenericIOBuffer,QuantityIntervalV1}, io,
-               getfield(value.chart_bounds, i))
+               getfield(chart_bounds, i))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "],\"chart_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.chart_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :chart_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "},\"coordinate_map_root\":")
-    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, value.coordinate_map_root)
+    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, getfield(value, :coordinate_map_root))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"frame_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.frame_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :frame_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "},\"metric_program_root\":")
-    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, value.metric_program_root)
+    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, getfield(value, :metric_program_root))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"periodic_axes\":[")
     i = 1
-    axis_count = fieldcount(typeof(value.periodic_axes))
+    periodic_axes = getfield(value, :periodic_axes)
+    axis_count = fieldcount(typeof(periodic_axes))
     while i <= axis_count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_axis_wire, Tuple{Base.GenericIOBuffer,PeriodicAxisV1}, io,
-               getfield(value.periodic_axes, i))
+               getfield(periodic_axes, i))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "]}")
@@ -234,11 +241,13 @@ function _g25_write_transition_wire(io::Base.GenericIOBuffer, value::ChartTransi
     invoke(_g25_write_wrap_start, Tuple{Base.GenericIOBuffer,String,String}, io,
            "fusionconceptai:v4:g2:chart_transition_map_gene:v1", "chart_transition_map_gene")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"source_chart_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.source_chart_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :source_chart_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "},\"target_chart_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.target_chart_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :target_chart_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "},\"transition_map_root\":")
-    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, value.transition_map_root)
+    invoke(_g25_write_root_wire, Tuple{Base.GenericIOBuffer,SpatialProgramRootRefV1}, io, getfield(value, :transition_map_root))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "}")
     invoke(_g25_write_wrap_end, Tuple{Base.GenericIOBuffer}, io)
     nothing
@@ -248,41 +257,45 @@ function _g25_write_support_wire(io::Base.GenericIOBuffer, value::SpatialSupport
     invoke(_g25_write_wrap_start, Tuple{Base.GenericIOBuffer,String,String}, io,
            "fusionconceptai:v4:g2:spatial_support_gene:v1", "spatial_support_gene")
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"ambient_dimension\":")
-    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, value.ambient_dimension)
+    invoke(_g25_write_int64, Tuple{Base.GenericIOBuffer,Int64}, io, getfield(value, :ambient_dimension))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"chart_transition_maps\":[")
     i = 1
-    transition_count = fieldcount(typeof(value.chart_transition_maps))
+    chart_transition_maps = getfield(value, :chart_transition_maps)
+    transition_count = fieldcount(typeof(chart_transition_maps))
     while i <= transition_count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_transition_wire, Tuple{Base.GenericIOBuffer,ChartTransitionMapGeneV1}, io,
-               getfield(value.chart_transition_maps, i))
+               getfield(chart_transition_maps, i))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "],\"charts\":[")
     i = 1
-    chart_count = fieldcount(typeof(value.charts))
+    charts = getfield(value, :charts)
+    chart_count = fieldcount(typeof(charts))
     while i <= chart_count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_chart_wire, Tuple{Base.GenericIOBuffer,CoordinateChartGeneV1}, io,
-               getfield(value.charts, i))
+               getfield(charts, i))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "],\"coordinate_frame_refs\":[")
     i = 1
-    frame_count = fieldcount(typeof(value.coordinate_frame_refs))
+    coordinate_frame_refs = getfield(value, :coordinate_frame_refs)
+    frame_count = fieldcount(typeof(coordinate_frame_refs))
     while i <= frame_count
         i > 1 && invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x2c))
         invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "{\"value\":")
-        frame = getfield(value.coordinate_frame_refs, i)
-        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, frame.value)
+        frame = getfield(coordinate_frame_refs, i)
+        invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, getfield(frame, :value))
         invoke(_g25_write_byte, Tuple{Base.GenericIOBuffer,UInt8}, io, UInt8(0x7d))
         i += 1
     end
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "],\"resolution_independent_scale\":")
     invoke(_g25_write_quantity, Tuple{Base.GenericIOBuffer,NonnegativeQuantityV1}, io,
-           value.resolution_independent_scale)
+           getfield(value, :resolution_independent_scale))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, ",\"support_ref\":{\"value\":")
-    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io, value.support_ref.value)
+    invoke(_g25_write_quoted, Tuple{Base.GenericIOBuffer,String}, io,
+           getfield(getfield(value, :support_ref), :value))
     invoke(_g25_write_ascii, Tuple{Base.GenericIOBuffer,String}, io, "}}")
     invoke(_g25_write_wrap_end, Tuple{Base.GenericIOBuffer}, io)
     nothing
@@ -291,7 +304,8 @@ end
 function _g25_ref_json(value::FieldOperatorSiteRefV1)
     io = IOBuffer()
     invoke(_g25_write_ref_wire, Tuple{Base.GenericIOBuffer,String,String,String}, io,
-           "fusionconceptai:v4:g2:field_operator_site_ref:v1", "field_operator_site_ref", value.value)
+           "fusionconceptai:v4:g2:field_operator_site_ref:v1", "field_operator_site_ref",
+           getfield(value, :value))
     invoke(_g25_finish, Tuple{Base.GenericIOBuffer}, io)
 end
 function _g25_root_json(value::SpatialProgramRootRefV1)
@@ -315,9 +329,14 @@ function _g25_transition_json(value::ChartTransitionMapGeneV1)
     invoke(_g25_finish, Tuple{Base.GenericIOBuffer}, io)
 end
 function _g25_support_json(value::SpatialSupportGeneV1)
-    io = IOBuffer()
+    io = invoke(_ccbw_new, Tuple{})
     invoke(_g25_write_support_wire, Tuple{Base.GenericIOBuffer,SpatialSupportGeneV1}, io, value)
-    invoke(_g25_finish, Tuple{Base.GenericIOBuffer}, io)
+    invoke(_ccbw_finish, Tuple{Base.GenericIOBuffer}, io)
+end
+
+function _g25_support_canonical_hash(value::SpatialSupportGeneV1)::Digest256
+    invoke(_ccbw_hash_bytes, Tuple{String},
+           invoke(_g25_support_json, Tuple{SpatialSupportGeneV1}, value))
 end
 
 canonical_json(value::FieldOperatorSiteRefV1) = invoke(_g25_ref_json, Tuple{FieldOperatorSiteRefV1}, value)
@@ -336,4 +355,5 @@ canonical_hash(value::SpatialProgramRootRefV1) = invoke(_g25_hash_bytes, Tuple{S
 canonical_hash(value::PeriodicAxisV1) = invoke(_g25_hash_bytes, Tuple{String}, invoke(_g25_axis_json, Tuple{PeriodicAxisV1}, value))
 canonical_hash(value::CoordinateChartGeneV1) = invoke(_g25_hash_bytes, Tuple{String}, invoke(_g25_chart_json, Tuple{CoordinateChartGeneV1}, value))
 canonical_hash(value::ChartTransitionMapGeneV1) = invoke(_g25_hash_bytes, Tuple{String}, invoke(_g25_transition_json, Tuple{ChartTransitionMapGeneV1}, value))
-canonical_hash(value::SpatialSupportGeneV1) = invoke(_g25_hash_bytes, Tuple{String}, invoke(_g25_support_json, Tuple{SpatialSupportGeneV1}, value))
+canonical_hash(value::SpatialSupportGeneV1) =
+    invoke(_g25_support_canonical_hash, Tuple{SpatialSupportGeneV1}, value)
