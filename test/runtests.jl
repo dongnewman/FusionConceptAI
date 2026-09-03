@@ -10,6 +10,8 @@ mutable struct MutablePayload
     values::Vector{Int}
 end
 include("typed_ast_program_canonical_adversarial.jl")
+include("mechanism_observable_closed_canonical_tests.jl")
+include("mechanism_observable_closed_canonical_adversarial.jl")
 
 @testset "G1 exact decorated canonical transport" begin
     unit = UnitSignature()

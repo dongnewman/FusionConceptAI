@@ -62,7 +62,7 @@ function _g1_migration_gene_wire(x::Any)
     typeof(x) === InvariantV1 && return invoke(canonical_json, Tuple{InvariantV1}, x)
     typeof(x) === ParameterGeneV1 && return invoke(canonical_json, Tuple{ParameterGeneV1}, x)
     typeof(x) === SymmetryGeneV1 && return invoke(canonical_json, Tuple{SymmetryGeneV1}, x)
-    typeof(x) === ObservableGeneV1 && return invoke(canonical_json, Tuple{ObservableGeneV1}, x)
+    typeof(x) === ObservableGeneV1 && return invoke(_g1_observable_canonical_bytes, Tuple{ObservableGeneV1}, x)
     typeof(x) === TypedOperatorHoleV1 && return invoke(canonical_json, Tuple{TypedOperatorHoleV1}, x)
     throw(ArgumentError("legacy mapping contains an unsealed gene"))
 end

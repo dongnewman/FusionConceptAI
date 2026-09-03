@@ -239,19 +239,6 @@ _g1_budget_payload(value::HoleComplexityBudgetV1) = "{\"max_ast_nodes\":" * stri
     ",\"max_free_functions\":" * string(value.max_free_functions) * ",\"max_free_parameters\":" * string(value.max_free_parameters) *
     ",\"max_memory_length\":" * string(value.max_memory_length) * ",\"max_suboperators\":" * string(value.max_suboperators) * "}"
 
-function _g1_observable_wire(value::ObservableGeneV1)
-    competitors = invoke(_g1_hole_sorted, Tuple{Tuple,Function}, value.competing_prediction_refs,
-        ref -> invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, ref))
-    payload = "{\"competing_prediction_refs\":" * competitors * ",\"expected_effect_interval\":" * invoke(_g1_gene_quantity_payload, Tuple{QuantityIntervalV1}, value.expected_effect_interval) *
-        ",\"expression_root\":" * invoke(_g1_root_payload, Tuple{ProgramRootRefV1}, value.expression_root) * ",\"intervention_ref\":" * invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, value.intervention_ref) *
-        ",\"minimum_effect_size\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.minimum_effect_size.unit) *
-        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.minimum_effect_size.value) * "},\"noise_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.noise_floor.unit) *
-        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.noise_floor.value) * "},\"noise_model_ref\":" * invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, value.noise_model_ref) * ",\"numerical_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.numerical_floor.unit) *
-        ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.numerical_floor.value) * "},\"observable_ref\":" * invoke(_g1_gene_ref_payload, Tuple{String}, value.observable_ref.value) *
-        ",\"sampling_program\":" * invoke(canonical_json, Tuple{TypedASTProgramV1}, value.sampling_program) * "}"
-    invoke(_g1_wrap, Tuple{String,String}, "observable_gene", payload)
-end
-
 function _g1_hole_wire(value::TypedOperatorHoleV1)
     refs = ref -> invoke(_g1_gene_ref_payload, Tuple{String}, ref.value)
     qualified = ref -> invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, ref)
@@ -269,7 +256,6 @@ function _g1_hole_wire(value::TypedOperatorHoleV1)
 end
 
 canonical_json(value::ProgramRootRefV1) = invoke(_g1_wrap, Tuple{String,String}, "program_root_ref", _g1_root_payload(value))
-canonical_json(value::ObservableGeneV1) = _g1_observable_wire(value)
 canonical_json(value::HoleComplexityBudgetV1) = invoke(_g1_wrap, Tuple{String,String}, "hole_complexity_budget", _g1_budget_payload(value))
 canonical_json(value::IdentifiabilityConditionV1) = invoke(_g1_wrap, Tuple{String,String}, "identifiability_condition", "{\"intervention_ref\":" * invoke(_g1_qualified_payload, Tuple{QualifiedRefV1}, value.intervention_ref) * ",\"minimum_effect\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.minimum_effect.unit) *
     ",\"value\":" * invoke(_g1_rational, Tuple{Rational{Int64}}, value.minimum_effect.value) * "},\"noise_and_numerical_floor\":{\"unit\":" * invoke(_g1_unit, Tuple{UnitSignature}, value.noise_and_numerical_floor.unit) *
@@ -277,7 +263,6 @@ canonical_json(value::IdentifiabilityConditionV1) = invoke(_g1_wrap, Tuple{Strin
 canonical_json(value::TypedOperatorHoleV1) = _g1_hole_wire(value)
 
 canonical_hash(value::ProgramRootRefV1) = invoke(_g1_hash_bytes, Tuple{String}, canonical_json(value))
-canonical_hash(value::ObservableGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_observable_wire(value))
 canonical_hash(value::HoleComplexityBudgetV1) = invoke(_g1_hash_bytes, Tuple{String}, canonical_json(value))
 canonical_hash(value::IdentifiabilityConditionV1) = invoke(_g1_hash_bytes, Tuple{String}, canonical_json(value))
 canonical_hash(value::TypedOperatorHoleV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_hole_wire(value))

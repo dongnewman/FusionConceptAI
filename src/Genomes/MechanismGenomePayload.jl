@@ -386,7 +386,7 @@ function _g1_payload_hash_text(value)
     value isa InvariantV1 && return String(invoke(canonical_hash, Tuple{InvariantV1}, value).value)
     value isa ParameterGeneV1 && return String(invoke(canonical_hash, Tuple{ParameterGeneV1}, value).value)
     value isa SymmetryGeneV1 && return String(invoke(canonical_hash, Tuple{SymmetryGeneV1}, value).value)
-    value isa ObservableGeneV1 && return String(invoke(canonical_hash, Tuple{ObservableGeneV1}, value).value)
+    value isa ObservableGeneV1 && return getfield(invoke(_g1_observable_canonical_hash, Tuple{ObservableGeneV1}, value), :value)
     value isa TypedOperatorHoleV1 && return String(invoke(canonical_hash, Tuple{TypedOperatorHoleV1}, value).value)
     throw(ArgumentError("unsupported payload component"))
 end
