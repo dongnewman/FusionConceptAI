@@ -76,27 +76,22 @@ end
 struct InvariantV1
     invariant_ref::InvariantRefV1
     ledger_identity::ConservationLedgerIdentityV1
-    scope::InvariantScopeV1
-    scope_ref::Union{Nothing,QualifiedRefV1}
+    scope::ConservationInvariantScopeV1
     terms::Tuple
     allowed_source_refs::Tuple
     allowed_sink_refs::Tuple
     boundary_flux_refs::Tuple
     tolerance_log10::Int16
     entropy_direction::EntropyDirectionV1
-    function InvariantV1(invariant_ref::Any, ledger_identity::Any, scope::Any, scope_ref::Any,
+    function InvariantV1(invariant_ref::Any, ledger_identity::Any, scope::Any,
                         terms::Any, allowed_source_refs::Any, allowed_sink_refs::Any,
                         boundary_flux_refs::Any, tolerance_log10::Any, entropy_direction::Any)
         invariant_ref isa InvariantRefV1 || throw(ArgumentError("invariant_ref must be InvariantRefV1"))
         typeof(ledger_identity) === ConservationLedgerIdentityV1 ||
             throw(ArgumentError("ledger_identity must be exactly ConservationLedgerIdentityV1"))
-        scope isa InvariantScopeV1 || throw(ArgumentError("scope must be InvariantScopeV1"))
-        scope_ref === nothing || scope_ref isa QualifiedRefV1 || throw(ArgumentError("scope_ref must be QualifiedRefV1 or nothing"))
-        if scope == scope_global
-            scope_ref === nothing || throw(ArgumentError("global invariant cannot have scope_ref"))
-        else
-            scope_ref !== nothing || throw(ArgumentError("domain/interface invariant requires scope_ref"))
-        end
+        scope_type = typeof(scope)
+        scope_type in (GlobalConservationScopeV1, DomainConservationScopeV1, InterfaceConservationScopeV1) ||
+            throw(ArgumentError("scope must be exactly one sealed conservation scope type"))
         term_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, terms, InvariantTermV1, "terms")
         isempty(term_tuple) && throw(ArgumentError("invariant terms cannot be empty"))
         invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, term_tuple, "terms", term -> term.state_ref.value)
@@ -119,7 +114,7 @@ struct InvariantV1
         tolerance = Int16(tolerance_log10)
         tolerance <= 0 || throw(ArgumentError("tolerance_log10 must be non-positive"))
         entropy_direction isa EntropyDirectionV1 || throw(ArgumentError("invalid entropy_direction"))
-        new(invariant_ref, ledger_identity, scope, scope_ref, term_tuple, source_tuple, sink_tuple, flux_tuple, tolerance, entropy_direction)
+        new(invariant_ref, ledger_identity, scope, term_tuple, source_tuple, sink_tuple, flux_tuple, tolerance, entropy_direction)
     end
 end
 struct ParameterTransformSpecV1
@@ -348,13 +343,16 @@ _g1_invariant_term_wire(value::InvariantTermV1) =
 
 function _g1_invariant_wire(value::InvariantV1)
     ref_payload(ref) = _g1_gene_ref_payload(ref.value)
-    scope_ref = value.scope_ref === nothing ? "null" : "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.id) *
-        ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.version) * "}"
+    scope = getfield(value, :scope)
+    scope_wire = typeof(scope) === GlobalConservationScopeV1 ? invoke(_g1_scope_wire, Tuple{GlobalConservationScopeV1}, scope) :
+        typeof(scope) === DomainConservationScopeV1 ? invoke(_g1_scope_wire, Tuple{DomainConservationScopeV1}, scope) :
+        typeof(scope) === InterfaceConservationScopeV1 ? invoke(_g1_scope_wire, Tuple{InterfaceConservationScopeV1}, scope) :
+        throw(ArgumentError("unsealed conservation invariant scope"))
     payload = "{\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_sink_refs, ref_payload) *
         ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.boundary_flux_refs, ref_payload) *
         ",\"entropy_direction\":" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, value.entropy_direction) *
         ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"ledger_identity\":" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, value.ledger_identity) * ",\"scope\":" *
-        invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, value.scope) * ",\"scope_ref\":" * scope_ref *
+        scope_wire *
         ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "invariant", payload)
 end
@@ -411,7 +409,6 @@ function _g1_gene_enum_label(value::Enum, labels::Tuple{Vararg{String}})
 end
 _g1_gene_state_label(value::StateEpistemicV1) = invoke(_g1_gene_enum_label, Tuple{Enum,Tuple{Vararg{String}}}, value,
     ("derived", "measured", "declared_known", "hypothesized", "learned", "empirical_prior", "unknown_placeholder", "not_applicable"))
-_g1_gene_scope_label(value::InvariantScopeV1) = invoke(_g1_gene_enum_label, Tuple{Enum,Tuple{Vararg{String}}}, value, ("global", "domain", "interface"))
 _g1_gene_entropy_label(value::EntropyDirectionV1) = invoke(_g1_gene_enum_label, Tuple{Enum,Tuple{Vararg{String}}}, value, ("not_applicable", "nondecreasing", "nonincreasing", "conserved"))
 _g1_gene_transform_label(value::ParameterTransformKindV1) = invoke(_g1_gene_enum_label, Tuple{Enum,Tuple{Vararg{String}}}, value, ("linear", "log", "signed_log"))
 _g1_gene_group_label(value::SymmetryGroupKindV1) = invoke(_g1_gene_enum_label, Tuple{Enum,Tuple{Vararg{String}}}, value, ("discrete", "continuous"))
@@ -436,8 +433,8 @@ canonical_hash(value::SymmetryGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g
 semantic_view(x::StateGeneV1) = (state_ref=x.state_ref, physical_type=x.physical_type, physical_bounds=x.physical_bounds,
     parity_actions=x.parity_actions, gauge_refs=x.gauge_refs, constraint_refs=x.constraint_refs, epistemic_state=x.epistemic_state)
 semantic_view(x::InvariantTermV1) = (state_ref=x.state_ref, coefficient=x.coefficient)
-semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity, scope=x.scope,
-    scope_ref=x.scope_ref, terms=x.terms, allowed_source_refs=x.allowed_source_refs, allowed_sink_refs=x.allowed_sink_refs,
+semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity, scope=getfield(x, :scope),
+    terms=x.terms, allowed_source_refs=x.allowed_source_refs, allowed_sink_refs=x.allowed_sink_refs,
     boundary_flux_refs=x.boundary_flux_refs, tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction)
 semantic_view(x::ParameterTransformSpecV1) = (kind=x.kind, scale=x.scale)
 semantic_view(x::ParameterGeneV1) = (ref=x.ref, unit=x.unit, transform=x.transform, bounds=x.bounds, normalized_gene=x.normalized_gene)

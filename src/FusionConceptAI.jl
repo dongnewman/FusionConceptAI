@@ -9,6 +9,7 @@ include("IR/OperatorRegistry.jl")
 include("IR/TypedAST.jl")
 include("IR/OperatorHypergraph.jl")
 include("Genomes/MechanismGenes.jl")
+include("Genomes/MechanismConservationScopes.jl")
 include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
 include("Genomes/MechanismGenesV1.jl")
@@ -69,12 +70,13 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        default_operator_registry,
        StateGeneRefV1, InvariantRefV1, ParameterRefV1, SymmetryRefV1, ObservableRefV1, OperatorSiteRefV1,
        ConstraintRefV1, HoleRefV1, ExactFiniteIntervalV1, QuantityIntervalV1, NonnegativeQuantityV1,
-       ExactRationalMatrixV1, StateEpistemicV1, ParitySignV1, InvariantScopeV1, EntropyDirectionV1,
+       ExactRationalMatrixV1, StateEpistemicV1, ParitySignV1, ConservationInvariantScopeV1,
+       GlobalConservationScopeV1, DomainConservationScopeV1, InterfaceConservationScopeV1, EntropyDirectionV1,
        ParameterTransformKindV1, SymmetryGroupKindV1, SymmetryBehaviorV1, ConservationEffectKindV1,
        state_derived, state_measured, state_declared_known, state_hypothesized, state_learned,
        state_empirical_prior, state_unknown_placeholder, state_not_applicable, even, odd,
-       scope_global, scope_domain, scope_interface, entropy_not_applicable, entropy_nondecreasing,
-       entropy_nonincreasing, entropy_conserved, transform_linear, transform_log, transform_signed_log,
+       entropy_not_applicable, entropy_nondecreasing, entropy_nonincreasing, entropy_conserved,
+       transform_linear, transform_log, transform_signed_log,
        symmetry_discrete, symmetry_continuous, symmetry_invariant, symmetry_equivariant,
        redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
        StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,

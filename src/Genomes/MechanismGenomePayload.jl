@@ -55,12 +55,12 @@ function _g1_payload_registry(graph::TypedOperatorHypergraphV1)
     all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in graph.hyperedges) ||
         throw(ArgumentError("strong mechanism payload requires only atomic MIMO edges; legacy migration is a 4.6 boundary"))
     first_registry = first(graph.hyperedges).registry
-    first_key = Tuple(sort(collect((manifest.operator_ref.qualified.id,
-        manifest.operator_ref.qualified.version, manifest.manifest_hash.value)
+    first_key = Tuple(sort(collect((getfield(getfield(getfield(manifest, :operator_ref), :qualified), :id),
+        getfield(getfield(getfield(manifest, :operator_ref), :qualified), :version), getfield(getfield(manifest, :manifest_hash), :value))
         for manifest in first_registry.operators), by=x -> (x[1], x[2], x[3])))
     for edge in graph.hyperedges
-        registry_key = Tuple(sort(collect((manifest.operator_ref.qualified.id,
-            manifest.operator_ref.qualified.version, manifest.manifest_hash.value)
+        registry_key = Tuple(sort(collect((getfield(getfield(getfield(manifest, :operator_ref), :qualified), :id),
+            getfield(getfield(getfield(manifest, :operator_ref), :qualified), :version), getfield(getfield(manifest, :manifest_hash), :value))
             for manifest in edge.registry.operators), by=x -> (x[1], x[2], x[3])))
         registry_key == first_key || throw(ArgumentError("all atomic graph edges must use one exact operator registry"))
     end
@@ -264,6 +264,36 @@ function _g1_payload_ledger_closure(invariants::Tuple, graph::TypedOperatorHyper
         _ledger_identity_full_key(invariant.ledger_identity) in keys for invariant in invariants)
 end
 
+function _g1_payload_scope_closure(invariants::Tuple, states::Tuple, graph::TypedOperatorHypergraphV1)::Bool
+    state_ids = Set{String}(getfield(getfield(gene, :state_ref), :value) for gene in states)
+    state_nodes = Set{String}(getfield(node_value, :node_id) for node_value in graph.nodes if getfield(node_value, :node_kind) === :state)
+    state_ids == state_nodes || return false
+    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges]
+    for invariant in invariants
+        typeof(invariant) === InvariantV1 || return false
+        scope = getfield(invariant, :scope)
+        if typeof(scope) === GlobalConservationScopeV1
+            continue
+        elseif typeof(scope) === DomainConservationScopeV1
+            domain_ids = Set{String}(getfield(ref, :value) for ref in getfield(scope, :state_refs))
+            domain_ids <= state_ids || return false
+            all(getfield(getfield(term, :state_ref), :value) in domain_ids for term in getfield(invariant, :terms)) || return false
+        elseif typeof(scope) === InterfaceConservationScopeV1
+            id = getfield(getfield(scope, :operator_site_ref), :value)
+            matches = findall(==(id), edge_ids)
+            length(matches) == 1 || return false
+            edge = graph.hyperedges[matches[1]]
+            getfield(edge, :role) === interface || return false
+            ledger_key = _ledger_identity_full_key(getfield(invariant, :ledger_identity))
+            any(_ledger_identity_full_key(getfield(getfield(effect, :account_ref), :ledger_identity)) == ledger_key
+                for pair in getfield(edge, :interface_flux_pairs) for effect in (getfield(pair, :minus), getfield(pair, :plus))) || return false
+        else
+            return false
+        end
+    end
+    true
+end
+
 function _g1_payload_validate_governing(graph::TypedOperatorHypergraphV1)
     for (index, node_value) in enumerate(graph.nodes)
         node_value.node_kind === :state || continue
@@ -332,13 +362,11 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     end
     invariant_ids = String[invariant.invariant_ref.value for invariant in invariants]
     length(unique(invariant_ids)) == length(invariants) || throw(ArgumentError("invariant references must be unique"))
+    _g1_payload_scope_closure(invariants, states, graph) ||
+        throw(ArgumentError("invariant conservation scope is not an exact graph closure"))
     for invariant in invariants
         invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, (invariant,), graph) ||
             throw(ArgumentError("invariant ledger_identity does not bind an exact graph conservation ledger"))
-        if invariant.scope !== scope_global
-            invariant.scope_ref === nothing || invariant.scope_ref.id in union(node_ids, edge_id_set) ||
-                throw(ArgumentError("invariant scope_ref does not bind a graph/incidence identity"))
-        end
         all(haskey(state_map, term.state_ref.value) for term in invariant.terms) ||
             throw(ArgumentError("invariant term references an unknown state"))
         for ref in invariant.allowed_source_refs

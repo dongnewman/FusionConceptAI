@@ -53,7 +53,7 @@ function CanonicalMechanismV1(::CanonicalMechanismTransportV1, ::MechanismHashLa
 end
 
 _g1_layer_quote(x::String) = invoke(_g1_quote, Tuple{String}, x)
-_g1_layer_digest(x::Digest256) = _g1_layer_quote(x.value)
+_g1_layer_digest(x::Digest256) = _g1_layer_quote(getfield(x, :value))
 _g1_layer_hash(x::String) = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(x)))))
 
 function _g1_layer_dep(pairs::Vector{Tuple{String,Digest256}})
@@ -136,13 +136,13 @@ function _g1_layer_used_manifests(payload::MechanismGenomePayloadV1)
     # Deduplicate by explicit wire fields.  Do not use generic tuple hashing or
     # equality: a conflicting manifest digest for one qualified operator is a
     # hard closure error, not a second candidate.
-    sort!(refs, by=x -> (x[1].qualified.id, x[1].qualified.version, x[2].value))
+    sort!(refs, by=x -> (getfield(getfield(x[1], :qualified), :id), getfield(getfield(x[1], :qualified), :version), getfield(x[2], :value)))
     unique_refs = Tuple{OperatorRefV1,Digest256}[]
     for item in refs
         if !isempty(unique_refs)
             previous = unique_refs[end]
-            same_ref = previous[1].qualified.id == item[1].qualified.id && previous[1].qualified.version == item[1].qualified.version
-            same_ref && previous[2].value != item[2].value && throw(ArgumentError("one operator reference has conflicting manifest hashes"))
+            same_ref = getfield(getfield(previous[1], :qualified), :id) == getfield(getfield(item[1], :qualified), :id) && getfield(getfield(previous[1], :qualified), :version) == getfield(getfield(item[1], :qualified), :version)
+            same_ref && getfield(previous[2], :value) != getfield(item[2], :value) && throw(ArgumentError("one operator reference has conflicting manifest hashes"))
             same_ref && continue
         end
         push!(unique_refs, item)
@@ -160,6 +160,10 @@ function _g1_layer_registry_wire(payload::MechanismGenomePayloadV1)
     _, manifests = invoke(_g1_layer_used_manifests, Tuple{MechanismGenomePayloadV1}, payload)
     invoke(_g1_layer_wrap, Tuple{String,String,String}, _G1_LAYER_DOMAINS.registry, "{}", "{\"manifests\":[" * join((invoke(_g1_layer_manifest, Tuple{OperatorManifestV1}, m) for m in manifests), ",") * "]}")
 end
+
+_g1_layer_scope_kind_global(::GlobalConservationScopeV1) = "global"
+_g1_layer_scope_kind_domain(::DomainConservationScopeV1) = "domain"
+_g1_layer_scope_kind_interface(::InterfaceConservationScopeV1) = "interface"
 
 function _g1_layer_add!(kinds::Vector{Symbol}, colors::Vector{String}, arcs::Vector{Tuple{Int,Int,String}}, kind::Symbol, color::String)
     push!(kinds, kind); push!(colors, color); length(kinds)
@@ -222,9 +226,21 @@ function _g1_layer_gene_color(layer::Symbol, kind::Symbol, value)
     if layer === :structure
         kind === :state_gene && return "state_gene|parity_actions=" * string(length(value.parity_actions)) *
             "|gauge_refs=" * string(length(value.gauge_refs)) * "|constraint_refs=" * string(length(value.constraint_refs))
-        kind === :invariant_gene && return "invariant_gene|scope=" * String(Symbol(value.scope)) * "|terms=" * string(length(value.terms)) *
-            "|source_refs=" * string(length(value.allowed_source_refs)) * "|sink_refs=" * string(length(value.allowed_sink_refs)) *
-            "|boundary_refs=" * string(length(value.boundary_flux_refs))
+        kind === :invariant_gene && begin
+            scope = getfield(value, :scope)
+            scope_kind = if typeof(scope) === GlobalConservationScopeV1
+                invoke(_g1_layer_scope_kind_global, Tuple{GlobalConservationScopeV1}, scope)
+            elseif typeof(scope) === DomainConservationScopeV1
+                invoke(_g1_layer_scope_kind_domain, Tuple{DomainConservationScopeV1}, scope)
+            elseif typeof(scope) === InterfaceConservationScopeV1
+                invoke(_g1_layer_scope_kind_interface, Tuple{InterfaceConservationScopeV1}, scope)
+            else
+                throw(ArgumentError("unsealed conservation invariant scope"))
+            end
+            return "invariant_gene|scope=" * scope_kind * "|terms=" * string(length(value.terms)) *
+                "|source_refs=" * string(length(value.allowed_source_refs)) * "|sink_refs=" * string(length(value.allowed_sink_refs)) *
+                "|boundary_refs=" * string(length(value.boundary_flux_refs))
+        end
         kind === :parameter_gene && return "parameter_gene"
         kind === :symmetry_gene && return "symmetry_gene|group=" * String(Symbol(value.group_kind)) *
             "|behavior=" * String(Symbol(value.behavior)) * "|shape=" * string(invoke(_g1_matrix_shape, Tuple{ExactRationalMatrixV1}, value.coordinate_generator_matrix)[1]) * "x" * string(invoke(_g1_matrix_shape, Tuple{ExactRationalMatrixV1}, value.coordinate_generator_matrix)[2]) *
@@ -400,14 +416,19 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             for (i, x) in enumerate(payload.invariants)
                 v = gene_vertices[:invariant_gene][i]
                 addref(v, ledger_for_identity(x.ledger_identity), "invariant_to_ledger")
-                if x.scope_ref !== nothing
-                    scope_id = x.scope_ref.id
-                    node_hits = findall(y -> y.node_id == scope_id, graph.nodes)
-                    edge_hits = findall(y -> invoke(_g1_payload_edge_id, Tuple{Any}, y) == scope_id, graph.hyperedges)
-                    length(node_hits) + length(edge_hits) == 1 || throw(ArgumentError("invariant scope target is ambiguous or dangling"))
-                    target = !isempty(node_hits) ? node_hits[1] : edge_vertices[edge_hits[1]]
-                    scope_label = layer === :structure ? "invariant_scope" : "invariant_scope|version=" * _g1_layer_quote(x.scope_ref.version)
-                    addref(v, target, scope_label)
+                scope = getfield(x, :scope)
+                if typeof(scope) === DomainConservationScopeV1
+                    for scope_ref in getfield(scope, :state_refs)
+                        scope_id = getfield(scope_ref, :value)
+                        node_hits = findall(y -> y.node_id == scope_id && y.node_kind === :state, graph.nodes)
+                        length(node_hits) == 1 || throw(ArgumentError("domain invariant scope target is ambiguous or dangling"))
+                        addref(v, node_ref[scope_id], "invariant_scope|domain")
+                    end
+                elseif typeof(scope) === InterfaceConservationScopeV1
+                    scope_id = getfield(getfield(scope, :operator_site_ref), :value)
+                    edge_hits = findall(y -> invoke(_g1_payload_edge_id, Tuple{Any}, y) == scope_id && getfield(y, :role) === interface, graph.hyperedges)
+                    length(edge_hits) == 1 || throw(ArgumentError("interface invariant scope target is ambiguous, wrong-role, or dangling"))
+                    addref(v, edge_vertices[edge_hits[1]], "invariant_scope|interface")
                 end
                 for term in x.terms; tv = invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :invariant_term, layer === :structure ? "invariant_term|cardinality" : "invariant_term|coefficient=" * _g1_transport_rational(term.coefficient)); addref(v, tv, "invariant_term"); addref(tv, state_ref[term.state_ref.value], "term_state"); end
                 for r in x.allowed_source_refs; addref(v, edge_vertices[edge_ref[r.value]], "invariant_source"); end

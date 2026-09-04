@@ -165,7 +165,6 @@ semantic_view(x::ExactRationalMatrixV1) = (rows=x.rows,)
 
 @enum StateEpistemicV1 state_derived state_measured state_declared_known state_hypothesized state_learned state_empirical_prior state_unknown_placeholder state_not_applicable
 @enum ParitySignV1 even odd
-@enum InvariantScopeV1 scope_global scope_domain scope_interface
 @enum EntropyDirectionV1 entropy_not_applicable entropy_nondecreasing entropy_nonincreasing entropy_conserved
 @enum ParameterTransformKindV1 transform_linear transform_log transform_signed_log
 @enum SymmetryGroupKindV1 symmetry_discrete symmetry_continuous

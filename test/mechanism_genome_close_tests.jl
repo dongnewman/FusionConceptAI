@@ -31,7 +31,7 @@ function _wrapper_payload(; account::String="wrapper-account")
     state_b = StateGeneV1(StateGeneRefV1("wrapper-state-b"), WRAPPER_TYPE,
         WRAPPER_BOUNDS, (), (), (), state_derived)
     invariant = InvariantV1(InvariantRefV1("wrapper-invariant"),
-        ledger, scope_global, nothing,
+        ledger, GlobalConservationScopeV1(),
         (InvariantTermV1(StateGeneRefV1("wrapper-state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("wrapper-observable"),

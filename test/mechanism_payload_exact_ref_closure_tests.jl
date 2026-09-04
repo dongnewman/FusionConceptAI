@@ -48,7 +48,7 @@ function _exact_ref_payload(; parity_ref=QualifiedRefV1("parity-generator", "v1"
             symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),),
             nothing, symmetry_invariant, 0))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1("site-a"), 1, scalar),

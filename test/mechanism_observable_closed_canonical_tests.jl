@@ -51,7 +51,7 @@ function _g1oc_payload(observable=_g1oc_observable())
     graph = TypedOperatorHypergraphV1((node(:state, G1OC_TYPE; id="state\0🚀"),
         node(:state, G1OC_TYPE; id="state-b")), (edge,))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
-        scope_global, nothing, (InvariantTermV1(state.state_ref, 1),), (), (), (), 0, entropy_conserved)
+        GlobalConservationScopeV1(), (InvariantTermV1(state.state_ref, 1),), (), (), (), 0, entropy_conserved)
     MechanismGenomePayloadV1((state, state_b), (invariant,), graph, (), (), (observable,), ())
 end
 

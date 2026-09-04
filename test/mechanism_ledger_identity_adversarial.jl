@@ -13,7 +13,7 @@ import FusionConceptAI
     wrong_unit = ConservationLedgerIdentityV1(identity.account_kind_ref, identity.ontology_hash,
         UnitSignature((1, 0, 0, 0, 0, 0, 0)))
     for bad in (wrong_id, same_id_wrong_version, wrong_hash, wrong_unit)
-        invariant = InvariantV1(InvariantRefV1("bad"), bad, scope_global, nothing,
+        invariant = InvariantV1(InvariantRefV1("bad"), bad, GlobalConservationScopeV1(),
             terms, (), (), (), 0, entropy_conserved)
         @test_throws ArgumentError MechanismGenomePayloadV1(payload.states, (invariant,),
             payload.operator_graph, payload.parameters, payload.symmetries, payload.observables,
@@ -23,7 +23,7 @@ import FusionConceptAI
     @test FusionConceptAI._g1_payload_ledger_closure(
         (InvariantV1(InvariantRefV1("interface-only"),
             ConservationLedgerIdentityV1(QualifiedRefV1("flux", "v1"), Digest256(repeat("0", 64)), UnitSignature()),
-            scope_global, nothing, terms, (), (), (), 0, entropy_conserved),), interface_payload.operator_graph)
+            GlobalConservationScopeV1(), terms, (), (), (), 0, entropy_conserved),), interface_payload.operator_graph)
     @test any(arc -> arc[3] == "invariant_to_ledger",
         FusionConceptAI._g1_layer_extended_incidence(payload, :decorated).arcs)
     @test !any(arc -> arc[3] == "invariant_to_ledger",
@@ -136,7 +136,7 @@ end
         ConservationLedgerIdentityV1(base.ledger_identity.account_kind_ref, base.ledger_identity.ontology_hash,
             UnitSignature((1, 0, 0, 0, 0, 0, 0))))
     for changed_identity in identities
-        changed = InvariantV1(base.invariant_ref, changed_identity, base.scope, base.scope_ref, base.terms,
+        changed = InvariantV1(base.invariant_ref, changed_identity, base.scope, base.terms,
             base.allowed_source_refs, base.allowed_sink_refs, base.boundary_flux_refs,
             base.tolerance_log10, base.entropy_direction)
         changed_source = LegacyMechanismGenomeV4(source.seed, source.contract_ref, source.graph,

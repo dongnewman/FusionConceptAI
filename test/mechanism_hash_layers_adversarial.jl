@@ -50,7 +50,7 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger_for(ledger_account),
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("obs"),
         ProgramRootRefV1(OperatorSiteRefV1("interface-a"), 1, ptype),

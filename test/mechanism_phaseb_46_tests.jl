@@ -29,7 +29,7 @@ function _phaseb_fixture(; contract=PB_CONTRACT, profile=PB_PROFILE,
     states = (StateGeneV1(StateGeneRefV1("state-a"), PB_TYPE, bounds, (), (), (), state_derived),
         StateGeneV1(StateGeneRefV1("state-b"), PB_TYPE, bounds, (), (), (), state_derived))
     invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1("site-a"), 1, PB_TYPE),
@@ -115,7 +115,7 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
         StateGeneV1(StateGeneRefV1(state_ids[2]), PB_TYPE, bounds, (), (), (), state_derived))
     ledger = ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), PB_UNIT)
     invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1(state_ids[1]), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(state_ids[1]), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1(edge_ids[1]), 1, PB_TYPE),

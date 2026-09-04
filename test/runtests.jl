@@ -56,7 +56,7 @@ include("mechanism_ledger_identity_tests.jl")
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
         invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger,
-            scope_global, nothing, (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), (), (), (), 0, entropy_conserved)
+            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), (), (), (), 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
     contract = GenomeContractRef("urn:fusion:test", "v1", repeat("a", 64), repeat("b", 64), "g1")
@@ -171,6 +171,8 @@ include(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"))
 include(joinpath(@__DIR__, "mechanism_hash_layers_adversarial.jl"))
 include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
 include(joinpath(@__DIR__, "mechanism_ledger_identity_adversarial.jl"))
+include("mechanism_conservation_scope_tests.jl")
+include(joinpath(@__DIR__, "mechanism_conservation_scope_adversarial.jl"))
 
 @testset "G1 transport binds MIMO positions to incidence ports" begin
     unit = UnitSignature()
@@ -206,7 +208,7 @@ include(joinpath(@__DIR__, "mechanism_ledger_identity_adversarial.jl"))
             QualifiedRefV1("intervention", "v1"), sample_program, bounds, QualifiedRefV1("noise", "v1"),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1("invariant"), ledger, scope_global, nothing,
+        invariant = InvariantV1(InvariantRefV1("invariant"), ledger, GlobalConservationScopeV1(),
             (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
@@ -1163,7 +1165,7 @@ end
     @test state_derived isa StateEpistemicV1
     @test StateEpistemicV1(0) == state_derived
     @test state_not_applicable isa StateEpistemicV1
-    @test scope_global isa InvariantScopeV1
+    @test GlobalConservationScopeV1() isa ConservationInvariantScopeV1
     @test entropy_conserved isa EntropyDirectionV1
     @test transform_log isa ParameterTransformKindV1
     @test symmetry_equivariant isa SymmetryBehaviorV1
@@ -1187,7 +1189,7 @@ end
     primitives = Any[same_word_refs..., interval_a, QuantityIntervalV1(interval_a, U0),
         NonnegativeQuantityV1(1 // 2, U0), ExactRationalMatrixV1(((1 // 2, 0), (0, 1))),
         ParityActionV1(QualifiedRefV1("generator", "v1"), odd), state_derived,
-        state_not_applicable, entropy_not_applicable, scope_global, transform_linear,
+        state_not_applicable, entropy_not_applicable, GlobalConservationScopeV1(), transform_linear,
         symmetry_discrete, symmetry_invariant, redistribution]
     @test all(begin
         text = canonical_json(value)
@@ -1203,7 +1205,7 @@ end
         NonnegativeQuantityV1(1//2, UnitSignature()),
         ExactRationalMatrixV1(((1//2, 0), (0, 1))),
         ParityActionV1(QualifiedRefV1(\"g\", \"v1\"), odd), state_not_applicable,
-        entropy_not_applicable, scope_global, transform_linear, symmetry_discrete,
+        entropy_not_applicable, GlobalConservationScopeV1(), transform_linear, symmetry_discrete,
         symmetry_invariant, redistribution]
     before = (map(canonical_json, values), map(canonical_hash, values))
     FusionConceptAI._canonical(::NamedTuple) = \"{}\"
@@ -1236,18 +1238,19 @@ end
     @test_throws ArgumentError InvariantTermV1(state_ref, 1.0)
     invariant_ref = InvariantRefV1("energy-invariant")
     account = _test_ledger_identity("account", unit)
-    invariant = InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved)
-    @test invariant.scope_ref === nothing && invariant.tolerance_log10 == -3
-    @test InvariantV1(invariant_ref, account, scope_domain, QualifiedRefV1("domain", "v1"), (term,), (), (), (), 0, entropy_nondecreasing).scope == scope_domain
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, QualifiedRefV1("bad", "v1"), (term,), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_interface, nothing, (term,), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term, term), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (OperatorSiteRefV1("x"),), (OperatorSiteRefV1("x"),), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 1, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -32769, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 0.0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), 0, :conserved)
+    global_scope = GlobalConservationScopeV1()
+    domain_scope = DomainConservationScopeV1((state_ref,))
+    invariant = InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -3, entropy_conserved)
+    @test invariant.scope isa GlobalConservationScopeV1 && invariant.tolerance_log10 == -3
+    @test InvariantV1(invariant_ref, account, domain_scope, (term,), (), (), (), 0, entropy_nondecreasing).scope == domain_scope
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, :global, (term,), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term, term), (), (), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (OperatorSiteRefV1("x"),), (OperatorSiteRefV1("x"),), (), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 1, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -32769, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 0.0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 0, :conserved)
 
     linear = ParameterTransformSpecV1(transform_linear)
     logarithmic = ParameterTransformSpecV1(transform_log)
@@ -1289,7 +1292,7 @@ end
     @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_continuous, identity_matrix, (), nothing, symmetry_invariant, -1 // 2)
     @test canonical_json(discrete_symmetry) != canonical_json(continuous_symmetry)
     @test occursin("fusionconceptai:v4:g1-primitive:v1", canonical_json(invariant))
-    @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved))
+    @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -3, entropy_conserved))
     gene_dispatch_script = """
     using FusionConceptAI
     u = UnitSignature(); sr = StateGeneRefV1(\"s\")
@@ -1473,7 +1476,7 @@ end
         NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
         (QualifiedRefV1("prediction", "v1"),))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     symmetry_matrix = ExactRationalMatrixV1(((1,),))
     symmetry = SymmetryGeneV1(SymmetryRefV1("symmetry"), QualifiedRefV1("symmetry-generator", "v1"), symmetry_continuous, symmetry_matrix,
@@ -1495,12 +1498,12 @@ end
     @test_throws ArgumentError MechanismGenomePayloadV1((bad_gauge, state_b), (invariant,), graph,
         (), (symmetry,), (observable,), ())
     bad_account = InvariantV1(InvariantRefV1("bad-account"), _test_ledger_identity("missing-account", unit),
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_account,), graph,
         (), (symmetry,), (observable,), ())
     bad_scope = InvariantV1(InvariantRefV1("bad-scope"), ledger,
-        scope_domain, QualifiedRefV1("missing-scope", "v1"),
+        DomainConservationScopeV1((StateGeneRefV1("missing-scope"),)),
         (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_scope,), graph,
         (), (symmetry,), (observable,), ())
@@ -1647,8 +1650,8 @@ end
     @test canonical_hash(state_a) == canonical_hash(state_b)
     term_a, term_b = InvariantTermV1(StateGeneRefV1("a"), 1), InvariantTermV1(StateGeneRefV1("b"), 2)
     ledger = _test_ledger_identity("account", U0)
-    inv_a = InvariantV1(InvariantRefV1("i"), ledger, scope_global, nothing, (term_a, term_b), (), (), (), 0, entropy_conserved)
-    inv_b = InvariantV1(InvariantRefV1("i"), ledger, scope_global, nothing, (term_b, term_a), (), (), (), 0, entropy_conserved)
+    inv_a = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_a, term_b), (), (), (), 0, entropy_conserved)
+    inv_b = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_b, term_a), (), (), (), 0, entropy_conserved)
     @test canonical_hash(inv_a) == canonical_hash(inv_b)
     parameter_dispatch_script = """
     using FusionConceptAI
@@ -1659,7 +1662,7 @@ end
     state = StateGeneV1(StateGeneRefV1(\"state\"), t, bounds, (parity,), (SymmetryRefV1(\"g2\"), SymmetryRefV1(\"g1\")), (), state_derived)
     term = InvariantTermV1(StateGeneRefV1(\"state\"), 1)
     ledger = ConservationLedgerIdentityV1(QualifiedRefV1(\"account\", \"v1\"), Digest256(repeat(\"0\", 64)), u)
-    invariant = InvariantV1(InvariantRefV1(\"inv\"), ledger, scope_global, nothing, (term,), (), (), (), 0, entropy_conserved)
+    invariant = InvariantV1(InvariantRefV1(\"inv\"), ledger, GlobalConservationScopeV1(), (term,), (), (), (), 0, entropy_conserved)
     matrix = ExactRationalMatrixV1(((1,),))
     symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), QualifiedRefV1(\"sym-generator\", \"v1\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
     before = parameter_value(gene, -1.0)

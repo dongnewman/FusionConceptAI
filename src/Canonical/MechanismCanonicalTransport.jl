@@ -8,6 +8,10 @@ resolved by the same exact labeling search as the operator graph.
 
 const _G1_TRANSPORT_DOMAIN = "fusionconceptai:v4:g1-canonical-transport:v1"
 
+_g1_transport_scope_label(::GlobalConservationScopeV1) = "global"
+_g1_transport_scope_label(::DomainConservationScopeV1) = "domain"
+_g1_transport_scope_label(::InterfaceConservationScopeV1) = "interface"
+
 struct MechanismCanonicalizationContextV1
     contract_ref::GenomeContractRef
     profile::CanonicalizationProfileV1
@@ -46,10 +50,12 @@ _g1_transport_quantity(x::QuantityIntervalV1) = invoke(_g1_gene_quantity_payload
 _g1_transport_matrix(x::ExactRationalMatrixV1) = invoke(_g1_matrix_payload, Tuple{ExactRationalMatrixV1}, x)
 
 function _g1_transport_contract(c::GenomeContractRef)
-    "{\"canonicalization_hash\":" * _g1_transport_quote(c.canonicalization_hash.value) *
-        ",\"compatibility_profile\":" * _g1_transport_quote(c.compatibility_profile) *
-        ",\"schema_hash\":" * _g1_transport_quote(c.schema_hash.value) *
-        ",\"uri\":" * _g1_transport_quote(c.uri) * ",\"version\":" * _g1_transport_quote(c.version) * "}"
+    canonicalization_hash = getfield(getfield(c, :canonicalization_hash), :value)
+    schema_hash = getfield(getfield(c, :schema_hash), :value)
+    "{\"canonicalization_hash\":" * _g1_transport_quote(canonicalization_hash) *
+        ",\"compatibility_profile\":" * _g1_transport_quote(getfield(c, :compatibility_profile)) *
+        ",\"schema_hash\":" * _g1_transport_quote(schema_hash) *
+        ",\"uri\":" * _g1_transport_quote(getfield(c, :uri)) * ",\"version\":" * _g1_transport_quote(getfield(c, :version)) * "}"
 end
 
 function _g1_transport_profile(p::CanonicalizationProfileV1)
@@ -64,7 +70,12 @@ function _g1_transport_state_color(x::StateGeneV1)
 end
 
 function _g1_transport_invariant_color(x::InvariantV1)
-    "invariant_gene|ledger=" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, x.ledger_identity) * "|scope=" * invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, x.scope) *
+    scope = getfield(x, :scope)
+    scope_label = typeof(scope) === GlobalConservationScopeV1 ? invoke(_g1_transport_scope_label, Tuple{GlobalConservationScopeV1}, scope) :
+        typeof(scope) === DomainConservationScopeV1 ? invoke(_g1_transport_scope_label, Tuple{DomainConservationScopeV1}, scope) :
+        typeof(scope) === InterfaceConservationScopeV1 ? invoke(_g1_transport_scope_label, Tuple{InterfaceConservationScopeV1}, scope) :
+        throw(ArgumentError("unsealed conservation invariant scope"))
+    "invariant_gene|ledger=" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, x.ledger_identity) * "|scope=" * scope_label *
         "|tolerance=" * string(x.tolerance_log10) * "|entropy=" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, x.entropy_direction)
 end
 
@@ -270,10 +281,21 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
         for r in x.allowed_source_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_source"); end
         for r in x.allowed_sink_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_sink"); end
         for r in x.boundary_flux_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_boundary"); end
-        if x.scope_ref !== nothing
-            id = x.scope_ref.id; ns = findall(==(id), node_ids); es = findall(==(id), edge_ids)
-            length(ns) + length(es) == 1 || throw(ArgumentError("invariant scope reference is not exact"))
-            add_arc(v, isempty(ns) ? edge_vertices[edge_index(id)] : only(ns), "invariant_scope|version=" * _g1_transport_quote(x.scope_ref.version))
+        scope = getfield(x, :scope)
+        if typeof(scope) === DomainConservationScopeV1
+            for ref in getfield(scope, :state_refs)
+                ref_id = getfield(ref, :value)
+                index = findfirst(==(ref_id), node_ids)
+                index === nothing && throw(ArgumentError("domain invariant scope state is dangling"))
+                getfield(graph.nodes[index], :node_kind) === :state || throw(ArgumentError("domain invariant scope target is not a state node"))
+                add_arc(v, node_index(ref_id), "invariant_scope|domain")
+            end
+        elseif typeof(scope) === InterfaceConservationScopeV1
+            id = getfield(getfield(scope, :operator_site_ref), :value)
+            index = findfirst(==(id), edge_ids)
+            index === nothing && throw(ArgumentError("interface invariant scope edge is dangling"))
+            getfield(graph.hyperedges[index], :role) === interface || throw(ArgumentError("interface invariant scope edge has wrong role"))
+            add_arc(v, edge_vertices[index], "invariant_scope|interface")
         end
     end
     for (i, x) in enumerate(payload.symmetries)

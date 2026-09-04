@@ -333,12 +333,6 @@ function _g1_migration_gene_closure(payload::MechanismGenomePayloadV1, source::L
         throw(ArgumentError("legacy parity action does not bind an exact symmetry generator and state action"))
     for invariant in decl.invariants
         all(t -> t.state_ref.value in state_ids, invariant.terms) || throw(ArgumentError("legacy invariant state reference is dangling"))
-        if invariant.scope !== scope_global
-            invariant.scope_ref === nothing && throw(ArgumentError("legacy scoped invariant is missing scope_ref"))
-            node_matches = count(==(invariant.scope_ref.id), node_ids)
-            edge_matches = count(==(invariant.scope_ref.id), edge_ids)
-            node_matches + edge_matches == 1 || throw(ArgumentError("legacy invariant scope_ref is ambiguous or dangling"))
-        end
     end
     for observable in decl.observables
         root_edge_id = observable.expression_root.operator_site_ref.value
@@ -440,11 +434,17 @@ function _g1_migration_closed_value(x::Any)::String
             gauge_refs=x.gauge_refs, constraint_refs=x.constraint_refs, epistemic_state=x.epistemic_state))
     elseif typeof(x) === InvariantTermV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (state_ref=x.state_ref, coefficient=x.coefficient))
+    elseif typeof(x) === GlobalConservationScopeV1
+        return invoke(_g1_migration_closed_value, Tuple{Any}, NamedTuple())
+    elseif typeof(x) === DomainConservationScopeV1
+        return invoke(_g1_migration_closed_value, Tuple{Any}, (state_refs=getfield(x, :state_refs),))
+    elseif typeof(x) === InterfaceConservationScopeV1
+        return invoke(_g1_migration_closed_value, Tuple{Any}, (operator_site_ref=getfield(x, :operator_site_ref),))
     elseif typeof(x) === InvariantV1
-        return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity,
-            scope=x.scope, scope_ref=x.scope_ref, terms=x.terms, allowed_source_refs=x.allowed_source_refs,
-            allowed_sink_refs=x.allowed_sink_refs, boundary_flux_refs=x.boundary_flux_refs,
-            tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction))
+        return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=getfield(x, :invariant_ref), ledger_identity=getfield(x, :ledger_identity),
+            scope=getfield(x, :scope), terms=getfield(x, :terms), allowed_source_refs=getfield(x, :allowed_source_refs),
+            allowed_sink_refs=getfield(x, :allowed_sink_refs), boundary_flux_refs=getfield(x, :boundary_flux_refs),
+            tolerance_log10=getfield(x, :tolerance_log10), entropy_direction=getfield(x, :entropy_direction)))
     elseif typeof(x) === ParameterTransformSpecV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (kind=x.kind, scale=x.scale))
     elseif typeof(x) === ParameterGeneV1
@@ -728,6 +728,11 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
     converted_graph === nothing && return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
+    invoke(_g1_payload_scope_closure, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1}, declaration.invariants,
+        declaration.states, converted_graph) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
     invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, declaration.invariants, converted_graph) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},

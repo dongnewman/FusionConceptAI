@@ -78,7 +78,7 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
         (StateSymmetryActionV1(StateGeneRefV1(prefix * "state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
     invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger_for(ledger_account),
-        scope_global, nothing, (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),),
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     sample = sample_program()
     observable = ObservableGeneV1(ObservableRefV1(prefix * "obs"),
