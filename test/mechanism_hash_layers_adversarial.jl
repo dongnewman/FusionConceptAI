@@ -26,15 +26,16 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
             registry=registry, input_types=(ptype,))
         TypedASTProgramV1((input, apply), (2,), (1,); registry=registry)
     end
+    ledger_for(account) = ConservationLedgerIdentityV1(QualifiedRefV1(account, "v1"), Digest256(repeat("0", 64)), ptype.units)
     flux_pair(account) = InterfaceFluxPairV1(
-        PortAccountEffectV1(ConservationAccountRefV1(account, ptype.units, :output, 1, :minus), -1 // 1),
-        PortAccountEffectV1(ConservationAccountRefV1(account, ptype.units, :output, 2, :plus), 1 // 1))
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(account), :output, 1, :minus), -1 // 1),
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(account), :output, 2, :plus), 1 // 1))
     edge(id, account; role=interface) = AtomicMIMOHyperedgeV1(id, (),
         (MIMOOutputBindingV1(1, 1), MIMOOutputBindingV1(2, 2)), program, role;
         interface_flux_pairs=(flux_pair(account),), registry=registry)
     additive_effects = (
-        PortAccountEffectV1(ConservationAccountRefV1(ledger_account, ptype.units, :output, 1, :inflow), 1 // 1),
-        PortAccountEffectV1(ConservationAccountRefV1(ledger_account, ptype.units, :output, 2, :outflow), -1 // 1))
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(ledger_account), :output, 1, :inflow), 1 // 1),
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(ledger_account), :output, 2, :outflow), -1 // 1))
     additive = AtomicMIMOHyperedgeV1("additive", (),
         (MIMOOutputBindingV1(1, 1), MIMOOutputBindingV1(2, 2)), program, additive_role;
         account_effects=additive_effects, registry=registry)
@@ -48,7 +49,7 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
     symmetry = SymmetryGeneV1(SymmetryRefV1("sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
-    invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1(ledger_account, "v1"),
+    invariant = InvariantV1(InvariantRefV1("invariant"), ledger_for(ledger_account),
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("obs"),

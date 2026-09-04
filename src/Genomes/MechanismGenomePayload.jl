@@ -240,6 +240,30 @@ function _g1_payload_parity_generator_closure(states::Tuple, symmetries::Tuple)
     true
 end
 
+"""Exact ledger closure shared by payload admission and legacy migration."""
+function _g1_payload_ledger_closure(invariants::Tuple, graph::TypedOperatorHypergraphV1)
+    keys = Set{ConservationLedgerKeyV1}()
+    for edge in graph.hyperedges
+        typeof(edge) === AtomicMIMOHyperedgeV1 || return false
+        for effect in edge.account_effects
+            typeof(effect) === PortAccountEffectV1 || return false
+            ref = effect.account_ref
+            typeof(ref) === ConservationAccountRefV1 || return false
+            push!(keys, _ledger_identity_full_key(ref.ledger_identity))
+        end
+        for pair in edge.interface_flux_pairs
+            typeof(pair) === InterfaceFluxPairV1 || return false
+            for effect in (pair.minus, pair.plus)
+                ref = effect.account_ref
+                typeof(ref) === ConservationAccountRefV1 || return false
+                push!(keys, _ledger_identity_full_key(ref.ledger_identity))
+            end
+        end
+    end
+    all(typeof(invariant) === InvariantV1 &&
+        _ledger_identity_full_key(invariant.ledger_identity) in keys for invariant in invariants)
+end
+
 function _g1_payload_validate_governing(graph::TypedOperatorHypergraphV1)
     for (index, node_value) in enumerate(graph.nodes)
         node_value.node_kind === :state || continue
@@ -275,13 +299,9 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges]
     length(unique(edge_ids)) == length(edge_ids) || throw(ArgumentError("graph edge ids must be unique"))
     edge_id_set = Set(edge_ids)
-    account_ids = Set{String}()
-    for edge in graph.hyperedges
-        typeof(edge) === AtomicMIMOHyperedgeV1 || throw(ArgumentError("legacy edge cannot enter a strong payload"))
-        for effect in edge.account_effects
-            push!(account_ids, effect.account_ref.account)
-        end
-    end
+    typeof(graph) === TypedOperatorHypergraphV1 || throw(ArgumentError("operator graph must be typed"))
+    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in graph.hyperedges) ||
+        throw(ArgumentError("legacy edge cannot enter a strong payload"))
     symmetry_ids = String[symmetry.ref.value for symmetry in symmetries]
     length(unique(symmetry_ids)) == length(symmetry_ids) || throw(ArgumentError("symmetry references must be unique"))
     symmetry_map = Dict(symmetry.ref.value => symmetry for symmetry in symmetries)
@@ -313,8 +333,8 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     invariant_ids = String[invariant.invariant_ref.value for invariant in invariants]
     length(unique(invariant_ids)) == length(invariants) || throw(ArgumentError("invariant references must be unique"))
     for invariant in invariants
-        invariant.account_kind_ref.id in account_ids ||
-            throw(ArgumentError("invariant account_kind_ref does not bind a graph conservation ledger"))
+        invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, (invariant,), graph) ||
+            throw(ArgumentError("invariant ledger_identity does not bind an exact graph conservation ledger"))
         if invariant.scope !== scope_global
             invariant.scope_ref === nothing || invariant.scope_ref.id in union(node_ids, edge_id_set) ||
                 throw(ArgumentError("invariant scope_ref does not bind a graph/incidence identity"))

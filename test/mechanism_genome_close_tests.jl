@@ -16,10 +16,9 @@ function _wrapper_payload(; account::String="wrapper-account")
         TypedASTProgramV1((ASTInputV1(1, WRAPPER_TYPE), apply), (2,), (1,);
             registry=registry)
     end
-    inflow = PortAccountEffectV1(ConservationAccountRefV1(account, WRAPPER_UNIT,
-        :input, 1, :inflow), 1 // 1)
-    outflow = PortAccountEffectV1(ConservationAccountRefV1(account, WRAPPER_UNIT,
-        :output, 1, :outflow), -1 // 1)
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1(account, "v1"), Digest256(repeat("0", 64)), WRAPPER_UNIT)
+    inflow = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
+    outflow = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
     edge = AtomicMIMOHyperedgeV1("wrapper-site-a", (MIMOInputBindingV1(1, 1),),
         (MIMOOutputBindingV1(1, 1),), identity(), governing;
         account_effects=(inflow, outflow), registry=registry)
@@ -32,7 +31,7 @@ function _wrapper_payload(; account::String="wrapper-account")
     state_b = StateGeneV1(StateGeneRefV1("wrapper-state-b"), WRAPPER_TYPE,
         WRAPPER_BOUNDS, (), (), (), state_derived)
     invariant = InvariantV1(InvariantRefV1("wrapper-invariant"),
-        QualifiedRefV1(account, "v1"), scope_global, nothing,
+        ledger, scope_global, nothing,
         (InvariantTermV1(StateGeneRefV1("wrapper-state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("wrapper-observable"),

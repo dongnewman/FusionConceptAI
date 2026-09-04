@@ -304,30 +304,43 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             # Conservation is part of the local relation graph.  The structure
             # projection deliberately retains only endpoint shape/direction;
             # account identity, units and coefficients enter at decorated.
-            ledger_keys = Tuple{String,String}[]
+            ledger_keys = ConservationLedgerKeyV1[]
+            ledger_identities = Dict{ConservationLedgerKeyV1,ConservationLedgerIdentityV1}()
             for edge in graph.hyperedges
                 for effect in edge.account_effects
-                    key = (effect.account_ref.account, invoke(_g1_transport_unit, Tuple{UnitSignature}, effect.account_ref.unit))
-                    any(existing -> existing[1] == key[1] && existing[2] == key[2], ledger_keys) || push!(ledger_keys, key)
+                    key = _ledger_identity_full_key(effect.account_ref.ledger_identity)
+                    if !(key in ledger_keys)
+                        push!(ledger_keys, key)
+                        ledger_identities[key] = effect.account_ref.ledger_identity
+                    end
                 end
                 for pair in edge.interface_flux_pairs
                     for effect in (pair.minus, pair.plus)
-                        key = (effect.account_ref.account, invoke(_g1_transport_unit, Tuple{UnitSignature}, effect.account_ref.unit))
-                        any(existing -> existing[1] == key[1] && existing[2] == key[2], ledger_keys) || push!(ledger_keys, key)
+                        key = _ledger_identity_full_key(effect.account_ref.ledger_identity)
+                        if !(key in ledger_keys)
+                            push!(ledger_keys, key)
+                            ledger_identities[key] = effect.account_ref.ledger_identity
+                        end
                     end
                 end
             end
-            sort!(ledger_keys, by=x -> (x[1], x[2]))
+            sort!(ledger_keys, by=x -> (x[1], x[2], x[3], x[4]))
             ledger_vertices = Int[]
             for key in ledger_keys
                 ledger_color = layer === :structure ? "ledger_account" :
-                    "ledger_account|account=" * _g1_layer_quote(key[1]) * "|unit=" * key[2]
+                    "ledger_account|identity=" * _g1_layer_quote(_ledger_identity_wire(ledger_identities[key]))
                 push!(ledger_vertices, invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :ledger_account, ledger_color))
             end
             ledger_for(ref) = begin
-                key = (ref.account, invoke(_g1_transport_unit, Tuple{UnitSignature}, ref.unit))
-                found = findfirst(existing -> existing[1] == key[1] && existing[2] == key[2], ledger_keys)
+                key = _ledger_identity_full_key(ref.ledger_identity)
+                found = findfirst(==(key), ledger_keys)
                 found === nothing && throw(ArgumentError("conservation ledger key is missing"))
+                ledger_vertices[found]
+            end
+            ledger_for_identity(identity) = begin
+                key = _ledger_identity_full_key(identity)
+                found = findfirst(==(key), ledger_keys)
+                found === nothing && throw(ArgumentError("invariant conservation ledger key is missing"))
                 ledger_vertices[found]
             end
             for (i, edge) in enumerate(graph.hyperedges)
@@ -386,6 +399,7 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             end
             for (i, x) in enumerate(payload.invariants)
                 v = gene_vertices[:invariant_gene][i]
+                addref(v, ledger_for_identity(x.ledger_identity), "invariant_to_ledger")
                 if x.scope_ref !== nothing
                     scope_id = x.scope_ref.id
                     node_hits = findall(y -> y.node_id == scope_id, graph.nodes)

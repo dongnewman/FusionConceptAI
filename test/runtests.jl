@@ -6,6 +6,8 @@ using SHA
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
 const BAD_TEXT = string(Char(0xd800))
+_test_ledger_identity(account, unit; version="v1", ontology=repeat("0", 64)) =
+    ConservationLedgerIdentityV1(QualifiedRefV1(account, version), Digest256(ontology), unit)
 mutable struct MutablePayload
     values::Vector{Int}
 end
@@ -21,6 +23,7 @@ include("conditional_egraph_p1_length_adversarial.jl")
 include("mechanism_genome_close_tests.jl")
 include("mechanism_genome_close_adversarial.jl")
 include("mechanism_payload_exact_ref_closure_tests.jl")
+include("mechanism_ledger_identity_tests.jl")
 
 @testset "G1 exact decorated canonical transport" begin
     unit = UnitSignature()
@@ -34,8 +37,9 @@ include("mechanism_payload_exact_ref_closure_tests.jl")
             TypedASTProgramV1((ASTInputV1(1, scalar), apply), (2,), (1,); registry=registry)
         end
         p = identity_program()
-        ein = PortAccountEffectV1(ConservationAccountRefV1(account, unit, :input, 1, :inflow), 1 // 1)
-        eout = PortAccountEffectV1(ConservationAccountRefV1(account, unit, :output, 1, :outflow), -1 // 1)
+        ledger = _test_ledger_identity(account, unit)
+        ein = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
+        eout = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
         edge_a = AtomicMIMOHyperedgeV1(prefix * "site-a", (MIMOInputBindingV1(1, 1),),
             (MIMOOutputBindingV1(1, 1),), p, governing;
             account_effects=(ein, eout), registry=registry)
@@ -51,7 +55,7 @@ include("mechanism_payload_exact_ref_closure_tests.jl")
             QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), QualifiedRefV1(account, "v1"),
+        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger,
             scope_global, nothing, (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), (), (), (), 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
@@ -166,6 +170,7 @@ include("field_geometry_canonical_migration_adversarial.jl")
 include(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"))
 include(joinpath(@__DIR__, "mechanism_hash_layers_adversarial.jl"))
 include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
+include(joinpath(@__DIR__, "mechanism_ledger_identity_adversarial.jl"))
 
 @testset "G1 transport binds MIMO positions to incidence ports" begin
     unit = UnitSignature()
@@ -188,8 +193,9 @@ include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
         output_bindings = reverse_tuple ?
             (MIMOOutputBindingV1(2, remap_nodes ? 1 : 2), MIMOOutputBindingV1(1, remap_nodes ? 2 : 1)) :
             (MIMOOutputBindingV1(1, remap_nodes ? 2 : 1), MIMOOutputBindingV1(2, remap_nodes ? 1 : 2))
-        account_in = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
-        account_out = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
+        ledger = _test_ledger_identity("account", unit)
+        account_in = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
+        account_out = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
         edge = AtomicMIMOHyperedgeV1("mimo-edge", input_bindings, output_bindings, program, governing;
             account_effects=(account_in, account_out), registry=registry)
         graph = TypedOperatorHypergraphV1((node(:state, scalar; id="state-a"), node(:state, scalar; id="state-b")),
@@ -200,7 +206,7 @@ include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
             QualifiedRefV1("intervention", "v1"), sample_program, bounds, QualifiedRefV1("noise", "v1"),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("account", "v1"), scope_global, nothing,
+        invariant = InvariantV1(InvariantRefV1("invariant"), ledger, scope_global, nothing,
             (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
@@ -637,8 +643,9 @@ end
     add_rev = ASTApplyV1(add_ref, (2, 1), (;); registry=registry, input_types=(scalar, scalar))
     @test canonical_hash(p2) == canonical_hash(TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, scalar), add_rev), (3,), (1, 2); registry=registry))
 
-    account_a = ConservationAccountRefV1("energy", U0, :output, 1, :minus)
-    account_b = ConservationAccountRefV1("energy", U0, :output, 2, :plus)
+    energy_ledger = _test_ledger_identity("energy", U0)
+    account_a = ConservationAccountRefV1(energy_ledger, :output, 1, :minus)
+    account_b = ConservationAccountRefV1(energy_ledger, :output, 2, :plus)
     pair = InterfaceFluxPairV1(PortAccountEffectV1(account_a, -1//1), PortAccountEffectV1(account_b, 1//1))
     iface_nodes = (ASTInputV1(1, scalar), ASTApplyV1(identity_ref, (1,), (;); registry=registry, input_types=(scalar,)), ASTApplyV1(OperatorRefV1("NEG", "v1"), (1,), (;); registry=registry, input_types=(scalar,)))
     iface_program = TypedASTProgramV1(iface_nodes, (2, 3), (1,); registry=registry)
@@ -672,18 +679,18 @@ end
         allowed_roles=(:source,), allowed_conservation_effects=(:net_creation,))
     source_registry = OperatorRegistryV1((source_manifest,))
     source_program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTApplyV1(source_ref, (1,), (;); registry=source_registry, input_types=(scalar,))), (2,), (1,); registry=source_registry)
-    source_account = ConservationAccountRefV1("energy", U0, :output, 1, :plus)
+    source_account = ConservationAccountRefV1(energy_ledger, :output, 1, :plus)
     source_effect = PortAccountEffectV1(source_account, 1//1)
     source_edge = AtomicMIMOHyperedgeV1("source-ok", (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 1),), source_program, source; account_effects=(source_effect,), registry=source_registry)
     @test TypedOperatorHypergraphV1((node(:output, scalar), node(:input, scalar)), (source_edge,); registry=source_registry).hyperedges[1] isa AtomicMIMOHyperedgeV1
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("nonsource", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive; account_effects=(source_effect,), registry=registry)
-    particle_account = ConservationAccountRefV1("particles", U0, :output, 1, :minus)
+    particle_account = ConservationAccountRefV1(_test_ledger_identity("particles", U0), :output, 1, :minus)
     particle_effect = PortAccountEffectV1(particle_account, -1//1)
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("cross-ledger", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), p1, additive;
         account_effects=(source_effect, particle_effect), registry=registry)
     bad_units = PhysicalType(:scalar_field, 0, 3, :differential, UnitSignature((1, 0, 0, 0, 0, 0, 0)))
     @test_throws ArgumentError TypedOperatorHypergraphV1((node(:output, bad_units), node(:input, scalar)), (source_edge,); registry=source_registry)
-    bad_endpoint = ConservationAccountRefV1("energy", U0, :output, 99, :plus)
+    bad_endpoint = ConservationAccountRefV1(energy_ledger, :output, 99, :plus)
     @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad-endpoint", (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 2),), source_program, source; account_effects=(PortAccountEffectV1(bad_endpoint, 1//1),), registry=source_registry)
     policy_manifest = OperatorManifestV1(source_ref, 1, 1, SameTypeVariadicRuleV1(1, 1), SameTypeVariadicRuleV1(1, 1);
         allowed_roles=(:source,), allowed_conservation_effects=(:redistribution,), forbidden_conservation_effects=(:net_creation,))
@@ -694,7 +701,7 @@ end
         allowed_roles=(:sink,), allowed_conservation_effects=(:net_destruction,))
     sink_registry = OperatorRegistryV1((sink_manifest,))
     sink_program = TypedASTProgramV1((ASTInputV1(1, scalar), ASTApplyV1(source_ref, (1,), (;); registry=sink_registry, input_types=(scalar,))), (2,), (1,); registry=sink_registry)
-    sink_account = ConservationAccountRefV1("energy", U0, :output, 1, :minus)
+    sink_account = ConservationAccountRefV1(energy_ledger, :output, 1, :minus)
     sink_effect = PortAccountEffectV1(sink_account, -1//1)
     sink_edge = AtomicMIMOHyperedgeV1("sink-ok", (MIMOInputBindingV1(1, 2),), (MIMOOutputBindingV1(1, 1),), sink_program, sink; account_effects=(sink_effect,), registry=sink_registry)
     @test TypedOperatorHypergraphV1((node(:output, scalar), node(:input, scalar)), (sink_edge,); registry=sink_registry).hyperedges[1] isa AtomicMIMOHyperedgeV1
@@ -1228,7 +1235,7 @@ end
     @test_throws ArgumentError InvariantTermV1(state_ref, 0)
     @test_throws ArgumentError InvariantTermV1(state_ref, 1.0)
     invariant_ref = InvariantRefV1("energy-invariant")
-    account = QualifiedRefV1("account", "v1")
+    account = _test_ledger_identity("account", unit)
     invariant = InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved)
     @test invariant.scope_ref === nothing && invariant.tolerance_log10 == -3
     @test InvariantV1(invariant_ref, account, scope_domain, QualifiedRefV1("domain", "v1"), (term,), (), (), (), 0, entropy_nondecreasing).scope == scope_domain
@@ -1445,8 +1452,9 @@ end
         TypedASTProgramV1((ASTInputV1(1, scalar), apply), (2,), (1,); registry=registry)
     end
     program_a, program_b = identity_program(), identity_program()
-    account_in = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
-    account_out = PortAccountEffectV1(ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
+    ledger = _test_ledger_identity("account", unit)
+    account_in = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
+    account_out = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
     edge_a = AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
         (MIMOOutputBindingV1(1, 1),), program_a, governing;
         account_effects=(account_in, account_out), registry=registry)
@@ -1464,7 +1472,7 @@ end
         QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
         NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
         (QualifiedRefV1("prediction", "v1"),))
-    invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("account", "v1"),
+    invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     symmetry_matrix = ExactRationalMatrixV1(((1,),))
@@ -1486,12 +1494,12 @@ end
         (SymmetryRefV1("missing-gauge"),), (), state_derived)
     @test_throws ArgumentError MechanismGenomePayloadV1((bad_gauge, state_b), (invariant,), graph,
         (), (symmetry,), (observable,), ())
-    bad_account = InvariantV1(InvariantRefV1("bad-account"), QualifiedRefV1("missing-account", "v1"),
+    bad_account = InvariantV1(InvariantRefV1("bad-account"), _test_ledger_identity("missing-account", unit),
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_account,), graph,
         (), (symmetry,), (observable,), ())
-    bad_scope = InvariantV1(InvariantRefV1("bad-scope"), QualifiedRefV1("account", "v1"),
+    bad_scope = InvariantV1(InvariantRefV1("bad-scope"), ledger,
         scope_domain, QualifiedRefV1("missing-scope", "v1"),
         (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_scope,), graph,
@@ -1638,8 +1646,9 @@ end
     state_b = StateGeneV1(StateGeneRefV1("set"), T0, QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit), (), (gauge_b, gauge_a), (), state_derived)
     @test canonical_hash(state_a) == canonical_hash(state_b)
     term_a, term_b = InvariantTermV1(StateGeneRefV1("a"), 1), InvariantTermV1(StateGeneRefV1("b"), 2)
-    inv_a = InvariantV1(InvariantRefV1("i"), QualifiedRefV1("account", "v1"), scope_global, nothing, (term_a, term_b), (), (), (), 0, entropy_conserved)
-    inv_b = InvariantV1(InvariantRefV1("i"), QualifiedRefV1("account", "v1"), scope_global, nothing, (term_b, term_a), (), (), (), 0, entropy_conserved)
+    ledger = _test_ledger_identity("account", U0)
+    inv_a = InvariantV1(InvariantRefV1("i"), ledger, scope_global, nothing, (term_a, term_b), (), (), (), 0, entropy_conserved)
+    inv_b = InvariantV1(InvariantRefV1("i"), ledger, scope_global, nothing, (term_b, term_a), (), (), (), 0, entropy_conserved)
     @test canonical_hash(inv_a) == canonical_hash(inv_b)
     parameter_dispatch_script = """
     using FusionConceptAI
@@ -1649,7 +1658,8 @@ end
     parity = ParityActionV1(QualifiedRefV1(\"parity\", \"v1\"), odd)
     state = StateGeneV1(StateGeneRefV1(\"state\"), t, bounds, (parity,), (SymmetryRefV1(\"g2\"), SymmetryRefV1(\"g1\")), (), state_derived)
     term = InvariantTermV1(StateGeneRefV1(\"state\"), 1)
-    invariant = InvariantV1(InvariantRefV1(\"inv\"), QualifiedRefV1(\"account\", \"v1\"), scope_global, nothing, (term,), (), (), (), 0, entropy_conserved)
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1(\"account\", \"v1\"), Digest256(repeat(\"0\", 64)), u)
+    invariant = InvariantV1(InvariantRefV1(\"inv\"), ledger, scope_global, nothing, (term,), (), (), (), 0, entropy_conserved)
     matrix = ExactRationalMatrixV1(((1,),))
     symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), QualifiedRefV1(\"sym-generator\", \"v1\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
     before = parameter_value(gene, -1.0)

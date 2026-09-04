@@ -59,21 +59,21 @@ struct MIMOOutputBindingV1
 end
 
 struct ConservationAccountRefV1
-    account::String
-    unit::UnitSignature
+    ledger_identity::ConservationLedgerIdentityV1
     port_side::Symbol
     port_index::Int
     direction::Symbol
-    function ConservationAccountRefV1(account::AbstractString, unit::UnitSignature,
-                                      port_side::Symbol, port_index::Integer, direction::Symbol)
-        !isempty(account) && isvalid(String(account)) || throw(ArgumentError("conservation account is invalid"))
+    function ConservationAccountRefV1(ledger_identity::Any, port_side::Any, port_index::Any, direction::Any)
+        typeof(ledger_identity) === ConservationLedgerIdentityV1 ||
+            throw(ArgumentError("ledger_identity must be exactly ConservationLedgerIdentityV1"))
+        typeof(port_side) === Symbol || throw(ArgumentError("account port side must be Symbol"))
+        typeof(direction) === Symbol || throw(ArgumentError("account direction must be Symbol"))
         port_side in (:input, :output) || throw(ArgumentError("account port side must be input or output"))
         direction in (:inflow, :outflow, :minus, :plus) || throw(ArgumentError("account direction is invalid"))
         port_index isa Bool || port_index isa Integer || throw(ArgumentError("account port index must be an integer"))
         port_index isa Bool && throw(ArgumentError("account port index must not be Bool"))
         typemin(Int) <= port_index <= typemax(Int) && port_index >= 1 || throw(ArgumentError("account port index is out of range"))
-        new(invoke(_validated_string, Tuple{AbstractString,AbstractString}, account, "conservation account"),
-            unit, port_side, Int(port_index), direction)
+        new(ledger_identity, port_side, Int(port_index), direction)
     end
 end
 
@@ -99,7 +99,8 @@ struct InterfaceFluxPairV1
     plus::PortAccountEffectV1
     function InterfaceFluxPairV1(minus::PortAccountEffectV1, plus::PortAccountEffectV1)
         a, b = minus.account_ref, plus.account_ref
-        a.account == b.account && a.unit == b.unit || throw(ArgumentError("interface pair account/unit mismatch"))
+        _ledger_identity_full_key(a.ledger_identity) == _ledger_identity_full_key(b.ledger_identity) ||
+            throw(ArgumentError("interface pair ledger identity mismatch"))
         a.port_side == :output && b.port_side == :output || throw(ArgumentError("interface pair must bind output ports"))
         a.port_index != b.port_index && a.direction != b.direction || throw(ArgumentError("interface pair ports/directions must differ"))
         a.direction === :minus && b.direction === :plus || throw(ArgumentError("interface pair directions must be minus and plus"))
@@ -111,7 +112,7 @@ end
 
 semantic_view(x::MIMOInputBindingV1) = (program_position=x.program_position, graph_node_index=x.graph_node_index)
 semantic_view(x::MIMOOutputBindingV1) = (program_position=x.program_position, graph_node_index=x.graph_node_index)
-semantic_view(x::ConservationAccountRefV1) = (account=x.account, unit=x.unit, port_side=x.port_side,
+semantic_view(x::ConservationAccountRefV1) = (ledger_identity=x.ledger_identity, port_side=x.port_side,
     port_index=x.port_index, direction=x.direction)
 semantic_view(x::PortAccountEffectV1) = (account_ref=x.account_ref, coefficient=x.coefficient)
 semantic_view(x::InterfaceFluxPairV1) = (minus=x.minus, plus=x.plus)
@@ -147,7 +148,7 @@ end
 
 function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
                                 effects, pairs, registry::OperatorRegistryV1)
-    seen = Set{Tuple{Symbol,Int,String}}()
+    seen = Set{Tuple{Symbol,Int,ConservationLedgerKeyV1}}()
     for effect in effects
         ref = effect.account_ref
         limit = ref.port_side === :input ? length(ins) : ref.port_side === :output ? length(outs) : 0
@@ -155,8 +156,8 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
         expected_unit = ref.port_side === :input ?
             program.nodes[program.input_ports[ref.port_index]].output_type.units :
             program.nodes[program.roots[ref.port_index]].output_type.units
-        expected_unit == ref.unit || throw(ArgumentError("account effect unit does not match program endpoint units"))
-        key = (ref.port_side, ref.port_index, ref.account)
+        expected_unit == ref.ledger_identity.unit || throw(ArgumentError("account effect unit does not match program endpoint units"))
+        key = (ref.port_side, ref.port_index, _ledger_identity_full_key(ref.ledger_identity))
         key in seen && throw(ArgumentError("duplicate account effect endpoint"))
         push!(seen, key)
         if ref.direction === :plus || ref.direction === :inflow
@@ -175,20 +176,20 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
     role === interface && isempty(pairs) && throw(ArgumentError("interface MIMO edge requires a flux pair"))
     role !== interface && !isempty(pairs) && throw(ArgumentError("interface flux pairs require interface role"))
     role === interface && !isempty(effects) && throw(ArgumentError("interface ledger must be represented by flux pairs"))
-    pair_seen = Set{Tuple{String,Int}}()
-    pair_ledgers = Dict{Tuple{String,UnitSignature},Rational{Int64}}()
+    pair_seen = Set{Tuple{ConservationLedgerKeyV1,Int}}()
+    pair_ledgers = Dict{ConservationLedgerKeyV1,Rational{Int64}}()
     for pair in pairs
         for effect in (pair.minus, pair.plus)
             ref = effect.account_ref
             ref.port_side === :output && 1 <= ref.port_index <= length(outs) ||
                 throw(ArgumentError("interface pair endpoint is not an output port"))
-            program.nodes[program.roots[ref.port_index]].output_type.units == ref.unit ||
+            program.nodes[program.roots[ref.port_index]].output_type.units == ref.ledger_identity.unit ||
                 throw(ArgumentError("interface endpoint unit does not match program output units"))
-            endpoint_key = (ref.account, ref.port_index)
+            ledger_key = _ledger_identity_full_key(ref.ledger_identity)
+            endpoint_key = (ledger_key, ref.port_index)
             endpoint_key in pair_seen && throw(ArgumentError("interface pair endpoint is duplicated"))
-            (:output, ref.port_index, ref.account) in seen && throw(ArgumentError("interface endpoint duplicates an account effect"))
+            (:output, ref.port_index, ledger_key) in seen && throw(ArgumentError("interface endpoint duplicates an account effect"))
             push!(pair_seen, endpoint_key)
-            ledger_key = (ref.account, ref.unit)
             pair_ledgers[ledger_key] = get(pair_ledgers, ledger_key, 0//1) + effect.coefficient
         end
         pair.minus.account_ref.direction === :minus && pair.minus.coefficient < 0 ||
@@ -197,11 +198,11 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
             throw(ArgumentError("interface plus endpoint must be positive"))
     end
     role in (source, sink) && isempty(effects) && throw(ArgumentError("source/sink MIMO edge requires account effects"))
-    ledgers = Dict{Tuple{String,UnitSignature},Rational{Int64}}()
-    ledger_positions = Dict{Tuple{String,UnitSignature},Set{Int} }()
+    ledgers = Dict{ConservationLedgerKeyV1,Rational{Int64}}()
+    ledger_positions = Dict{ConservationLedgerKeyV1,Set{Int}}()
     for effect in effects
         ref = effect.account_ref
-        key = (ref.account, ref.unit)
+        key = _ledger_identity_full_key(ref.ledger_identity)
         ledgers[key] = get(ledgers, key, 0//1) + effect.coefficient
         positions = get!(ledger_positions, key, Set{Int}())
         ref.port_side === :output && push!(positions, ref.port_index)
@@ -209,11 +210,11 @@ function _mimo_validate_effects(program::TypedASTProgramV1, ins, outs, role,
     for (key, total) in pair_ledgers
         total == 0 || throw(ArgumentError("interface ledger must close exactly to zero"))
         ledgers[key] = total
-        ledger_positions[key] = Set{Int}(p.minus.account_ref.port_index for p in pairs if p.minus.account_ref.account == key[1] && p.minus.account_ref.unit == key[2])
-        union!(ledger_positions[key], (p.plus.account_ref.port_index for p in pairs if p.plus.account_ref.account == key[1] && p.plus.account_ref.unit == key[2]))
+        ledger_positions[key] = Set{Int}(p.minus.account_ref.port_index for p in pairs if _ledger_identity_full_key(p.minus.account_ref.ledger_identity) == key)
+        union!(ledger_positions[key], (p.plus.account_ref.port_index for p in pairs if _ledger_identity_full_key(p.plus.account_ref.ledger_identity) == key))
     end
     pair_keys = Set(keys(pair_ledgers))
-    categories = Tuple{Symbol,Tuple{String,UnitSignature}}[]
+    categories = Tuple{Symbol,ConservationLedgerKeyV1}[]
     for (key, total) in ledgers
         category = key in pair_keys ? :interface_flux : total == 0 ? :redistribution : total > 0 ? :net_creation : :net_destruction
         push!(categories, (category, key))
@@ -332,14 +333,14 @@ function _mimo_validate_graph_contract(e::AtomicMIMOHyperedgeV1, ns, registry::O
         node_index = ref.port_side === :input ?
             invoke(_mimo_graph_binding_node, Tuple{Any,Int,Any,String}, e.input_bindings, ref.port_index, ns, "input") :
             invoke(_mimo_graph_binding_node, Tuple{Any,Int,Any,String}, e.output_bindings, ref.port_index, ns, "output")
-        ns[node_index].physical_type.units == ref.unit ||
+        ns[node_index].physical_type.units == ref.ledger_identity.unit ||
             throw(ArgumentError("account effect unit does not match endpoint physical units"))
     end
     for pair in e.interface_flux_pairs
         for effect in (pair.minus, pair.plus)
             ref = effect.account_ref
             node_index = invoke(_mimo_graph_binding_node, Tuple{Any,Int,Any,String}, e.output_bindings, ref.port_index, ns, "interface output")
-            ns[node_index].physical_type.units == ref.unit ||
+            ns[node_index].physical_type.units == ref.ledger_identity.unit ||
                 throw(ArgumentError("interface endpoint unit does not match output physical units"))
         end
     end

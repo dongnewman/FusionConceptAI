@@ -15,10 +15,9 @@ function _phaseb_fixture(; contract=PB_CONTRACT, profile=PB_PROFILE,
             registry=registry, input_types=(PB_TYPE,))
         TypedASTProgramV1((input, apply), (2,), (1,); registry=registry)
     end
-    account_in = PortAccountEffectV1(
-        ConservationAccountRefV1("energy", PB_UNIT, :input, 1, :inflow), 1 // 1)
-    account_out = PortAccountEffectV1(
-        ConservationAccountRefV1("energy", PB_UNIT, :output, 1, :outflow), -1 // 1)
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), PB_UNIT)
+    account_in = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
+    account_out = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
     edge_a = AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
         (MIMOOutputBindingV1(1, 1),), program, governing;
         account_effects=(account_in, account_out), registry=registry)
@@ -29,7 +28,7 @@ function _phaseb_fixture(; contract=PB_CONTRACT, profile=PB_PROFILE,
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), PB_UNIT)
     states = (StateGeneV1(StateGeneRefV1("state-a"), PB_TYPE, bounds, (), (), (), state_derived),
         StateGeneV1(StateGeneRefV1("state-b"), PB_TYPE, bounds, (), (), (), state_derived))
-    invariant = InvariantV1(InvariantRefV1("energy-invariant"), QualifiedRefV1("energy", "v1"),
+    invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
@@ -114,7 +113,8 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), PB_UNIT)
     states = (StateGeneV1(StateGeneRefV1(state_ids[1]), PB_TYPE, bounds, (), (), (), state_derived),
         StateGeneV1(StateGeneRefV1(state_ids[2]), PB_TYPE, bounds, (), (), (), state_derived))
-    invariant = InvariantV1(InvariantRefV1("energy-invariant"), QualifiedRefV1("energy", "v1"),
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), PB_UNIT)
+    invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1(state_ids[1]), 1),), (), (), (), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
@@ -133,8 +133,8 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
     source = LegacyMechanismGenomeV4(7, PB_CONTRACT, graph;
         invariants=(invariant,), observables=(observable,))
     completion = (G1LegacyEdgeCompletionV1(edge_ids[1],
-            (PortAccountEffectV1(ConservationAccountRefV1("energy", PB_UNIT, :input, 1, :inflow), 1 // 1),
-             PortAccountEffectV1(ConservationAccountRefV1("energy", PB_UNIT, :output, 1, :outflow), -1 // 1)), ()),
+            (PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1),
+             PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)), ()),
         G1LegacyEdgeCompletionV1(edge_ids[2], (), ()))
     declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
         canonical_hash(source), PB_CONTRACT, states, (invariant,), (), (), (observable,), (hole,), completion)
@@ -354,11 +354,11 @@ else
             @test_throws ArgumentError MechanismGenomePayloadV1((payload.states[1], payload.states[1]),
                 payload.invariants, payload.operator_graph, payload.parameters, payload.symmetries,
                 payload.observables, payload.operator_holes)
-            bad_unit = ConservationAccountRefV1("energy", UnitSignature((1, 0, 0, 0, 0, 0, 0)), :input, 1, :inflow)
+            bad_unit = ConservationAccountRefV1(ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), UnitSignature((1, 0, 0, 0, 0, 0, 0))), :input, 1, :inflow)
             @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad-unit", (MIMOInputBindingV1(1, 1),),
                 (MIMOOutputBindingV1(1, 1),), aux.program, governing;
                 account_effects=(PortAccountEffectV1(bad_unit, 1 // 1),), registry=aux.registry)
-            bad_sign = ConservationAccountRefV1("energy", PB_UNIT, :output, 1, :outflow)
+            bad_sign = ConservationAccountRefV1(payload.invariants[1].ledger_identity, :output, 1, :outflow)
             @test_throws ArgumentError AtomicMIMOHyperedgeV1("bad-sign", (MIMOInputBindingV1(1, 1),),
                 (MIMOOutputBindingV1(1, 1),), aux.program, governing;
                 account_effects=(PortAccountEffectV1(bad_sign, 1 // 1),), registry=aux.registry)

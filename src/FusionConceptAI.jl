@@ -4,6 +4,7 @@ using SHA
 
 include("IR/PhysicalTypes.jl")
 include("Canonical/ClosedCanonicalByteWriter.jl")
+include("IR/ConservationLedger.jl")
 include("IR/OperatorRegistry.jl")
 include("IR/TypedAST.jl")
 include("IR/OperatorHypergraph.jl")
@@ -57,7 +58,7 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        CanonicalizationDeferred, CanonicalizationBudgetV1, CanonicalizationProfileV1, default_canonicalization_profile,
        TypedASTNode, TypedAST, ast_leaf, AbstractTypedASTNodeV1, ASTInputV1, ASTParameterV1, ASTConstantV1,
        ASTApplyV1, TypedASTProgramV1, typed_ast_program, TypedNode, TypedHyperedge, HyperedgeRoleV1,
-       MIMOInputBindingV1, MIMOOutputBindingV1, ConservationAccountRefV1, PortAccountEffectV1,
+       MIMOInputBindingV1, MIMOOutputBindingV1, ConservationLedgerIdentityV1, ConservationAccountRefV1, PortAccountEffectV1,
        InterfaceFluxPairV1, AtomicMIMOHyperedgeV1, TypedOperatorHypergraphV1, node,
        governing, additive, constraint, interface, boundary, source, sink, control, event,
        OperatorRefV1, OperatorParameterSpecV1, OperatorTypeRuleV1, ExactTypeRuleV1, SameTypeVariadicRuleV1,

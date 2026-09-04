@@ -41,15 +41,16 @@ function _g1oc_payload(observable=_g1oc_observable())
     interval = QuantityIntervalV1(ExactFiniteIntervalV1(-10, 10, false), G1OC_UNIT)
     state = StateGeneV1(StateGeneRefV1("state\0🚀"), G1OC_TYPE, interval, (), (), (), state_derived)
     state_b = StateGeneV1(StateGeneRefV1("state-b"), G1OC_TYPE, interval, (), (), (), state_derived)
-    account = ConservationAccountRefV1("账本\0", G1OC_UNIT, :input, 1, :inflow)
-    account_out = ConservationAccountRefV1("账本\0", G1OC_UNIT, :output, 1, :outflow)
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("账本\0", "v1"), Digest256(repeat("0", 64)), G1OC_UNIT)
+    account = ConservationAccountRefV1(ledger, :input, 1, :inflow)
+    account_out = ConservationAccountRefV1(ledger, :output, 1, :outflow)
     effects = (PortAccountEffectV1(account, 1 // 1), PortAccountEffectV1(account_out, -1 // 1))
     edge = AtomicMIMOHyperedgeV1("g1oc-site" * (isempty(observable.observable_ref.value) ? "" : ""),
         (MIMOInputBindingV1(1, 1),), (MIMOOutputBindingV1(1, 1),), observable.sampling_program,
         governing; account_effects=effects, registry=_g1oc_registry())
     graph = TypedOperatorHypergraphV1((node(:state, G1OC_TYPE; id="state\0🚀"),
         node(:state, G1OC_TYPE; id="state-b")), (edge,))
-    invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("账本\0", "v1"),
+    invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
         scope_global, nothing, (InvariantTermV1(state.state_ref, 1),), (), (), (), 0, entropy_conserved)
     MechanismGenomePayloadV1((state, state_b), (invariant,), graph, (), (), (observable,), ())
 end

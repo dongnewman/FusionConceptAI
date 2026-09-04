@@ -10,6 +10,7 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
                        swap_additive_attachment=false,
                        reverse_interface_pair=false, observable_root=1,
                        symmetry_sign=(1 // 1), additive_role=additive,
+                       ledger_version="v1", ledger_hash=repeat("0", 64),
                        parameter_type=nothing, contract=nothing, profile=nothing)
     unit = UnitSignature()
     ptype = parameter_type === nothing ?
@@ -35,12 +36,13 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
     end
 
     program = two_output_program()
+    ledger_for(account) = ConservationLedgerIdentityV1(QualifiedRefV1(account, ledger_version), Digest256(ledger_hash), ptype.units)
     function flux_pair(account; reverse=false)
         minus_position, plus_position = reverse ? (2, 1) : (1, 2)
         minus = PortAccountEffectV1(ConservationAccountRefV1(
-            account, ptype.units, :output, minus_position, :minus), -1 // 1)
+            ledger_for(account), :output, minus_position, :minus), -1 // 1)
         plus = PortAccountEffectV1(ConservationAccountRefV1(
-            account, ptype.units, :output, plus_position, :plus), 1 // 1)
+            ledger_for(account), :output, plus_position, :plus), 1 // 1)
         InterfaceFluxPairV1(minus, plus)
     end
     function interface_edge(name, account; reverse=false)
@@ -51,8 +53,8 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
     end
     # One additive edge supplies the account used by the invariant and closes it.
     additive_effects = (
-        PortAccountEffectV1(ConservationAccountRefV1(ledger_account, ptype.units, :output, 1, :inflow), 1 // 1),
-        PortAccountEffectV1(ConservationAccountRefV1(ledger_account, ptype.units, :output, 2, :outflow), -1 // 1),
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(ledger_account), :output, 1, :inflow), 1 // 1),
+        PortAccountEffectV1(ConservationAccountRefV1(ledger_for(ledger_account), :output, 2, :outflow), -1 // 1),
     )
     additive_bindings = swap_additive_attachment ?
         (MIMOOutputBindingV1(1, 2), MIMOOutputBindingV1(2, 1)) : reverse_mimo ?
@@ -75,7 +77,7 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
     symmetry = SymmetryGeneV1(SymmetryRefV1(prefix * "sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1(prefix * "state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
-    invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), QualifiedRefV1(ledger_account, "v1"),
+    invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger_for(ledger_account),
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     sample = sample_program()

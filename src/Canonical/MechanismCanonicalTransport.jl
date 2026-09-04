@@ -64,7 +64,7 @@ function _g1_transport_state_color(x::StateGeneV1)
 end
 
 function _g1_transport_invariant_color(x::InvariantV1)
-    "invariant_gene|account=" * _g1_transport_qref(x.account_kind_ref) * "|scope=" * invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, x.scope) *
+    "invariant_gene|ledger=" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, x.ledger_identity) * "|scope=" * invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, x.scope) *
         "|tolerance=" * string(x.tolerance_log10) * "|entropy=" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, x.entropy_direction)
 end
 

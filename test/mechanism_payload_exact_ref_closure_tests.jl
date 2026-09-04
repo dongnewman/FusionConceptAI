@@ -17,10 +17,11 @@ function _exact_ref_payload(; parity_ref=QualifiedRefV1("parity-generator", "v1"
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
     registry = default_operator_registry()
     program = _exact_ref_identity_program(scalar, registry)
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("account", "v1"), Digest256(repeat("0", 64)), unit)
     account_in = PortAccountEffectV1(
-        ConservationAccountRefV1("account", unit, :input, 1, :inflow), 1 // 1)
+        ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
     account_out = PortAccountEffectV1(
-        ConservationAccountRefV1("account", unit, :output, 1, :outflow), -1 // 1)
+        ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
     edge_a = AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
         (MIMOOutputBindingV1(1, 1),), program, governing;
         account_effects=(account_in, account_out), registry=registry)
@@ -46,7 +47,7 @@ function _exact_ref_payload(; parity_ref=QualifiedRefV1("parity-generator", "v1"
         (symmetry, SymmetryGeneV1(SymmetryRefV1("symmetry-2"), second_generator,
             symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),),
             nothing, symmetry_invariant, 0))
-    invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1("account", "v1"),
+    invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
         (), (), (), 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),

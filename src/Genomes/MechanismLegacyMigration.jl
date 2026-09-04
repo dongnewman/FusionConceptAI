@@ -394,6 +394,9 @@ function _g1_migration_closed_value(x::Any)::String
         return invoke(_g1_migration_closed_value, Tuple{Any}, (exponents=x.exponents,))
     elseif typeof(x) === QualifiedRefV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (id=x.id, version=x.version))
+    elseif typeof(x) === ConservationLedgerIdentityV1
+        return invoke(_g1_migration_closed_value, Tuple{Any},
+            (account_kind_ref=x.account_kind_ref, ontology_hash=x.ontology_hash, unit=x.unit))
     elseif typeof(x) === GenomeContractRef
         return invoke(_g1_migration_closed_value, Tuple{Any}, (uri=x.uri, version=x.version, schema_hash=x.schema_hash,
             canonicalization_hash=x.canonicalization_hash, compatibility_profile=x.compatibility_profile))
@@ -438,7 +441,7 @@ function _g1_migration_closed_value(x::Any)::String
     elseif typeof(x) === InvariantTermV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (state_ref=x.state_ref, coefficient=x.coefficient))
     elseif typeof(x) === InvariantV1
-        return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=x.invariant_ref, account_kind_ref=x.account_kind_ref,
+        return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity,
             scope=x.scope, scope_ref=x.scope_ref, terms=x.terms, allowed_source_refs=x.allowed_source_refs,
             allowed_sink_refs=x.allowed_sink_refs, boundary_flux_refs=x.boundary_flux_refs,
             tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction))
@@ -725,6 +728,10 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
     converted_graph === nothing && return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
+    invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, declaration.invariants, converted_graph) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
     payload = invoke(MechanismGenomePayloadV1,
         Tuple{Any,Any,Any,Any,Any,Any,Any}, declaration.states, declaration.invariants,
         converted_graph, declaration.parameters, declaration.symmetries, declaration.observables,

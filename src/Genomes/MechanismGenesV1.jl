@@ -75,7 +75,7 @@ end
 
 struct InvariantV1
     invariant_ref::InvariantRefV1
-    account_kind_ref::QualifiedRefV1
+    ledger_identity::ConservationLedgerIdentityV1
     scope::InvariantScopeV1
     scope_ref::Union{Nothing,QualifiedRefV1}
     terms::Tuple
@@ -84,11 +84,12 @@ struct InvariantV1
     boundary_flux_refs::Tuple
     tolerance_log10::Int16
     entropy_direction::EntropyDirectionV1
-    function InvariantV1(invariant_ref::Any, account_kind_ref::Any, scope::Any, scope_ref::Any,
+    function InvariantV1(invariant_ref::Any, ledger_identity::Any, scope::Any, scope_ref::Any,
                         terms::Any, allowed_source_refs::Any, allowed_sink_refs::Any,
                         boundary_flux_refs::Any, tolerance_log10::Any, entropy_direction::Any)
         invariant_ref isa InvariantRefV1 || throw(ArgumentError("invariant_ref must be InvariantRefV1"))
-        account_kind_ref isa QualifiedRefV1 || throw(ArgumentError("account_kind_ref must be QualifiedRefV1"))
+        typeof(ledger_identity) === ConservationLedgerIdentityV1 ||
+            throw(ArgumentError("ledger_identity must be exactly ConservationLedgerIdentityV1"))
         scope isa InvariantScopeV1 || throw(ArgumentError("scope must be InvariantScopeV1"))
         scope_ref === nothing || scope_ref isa QualifiedRefV1 || throw(ArgumentError("scope_ref must be QualifiedRefV1 or nothing"))
         if scope == scope_global
@@ -118,7 +119,7 @@ struct InvariantV1
         tolerance = Int16(tolerance_log10)
         tolerance <= 0 || throw(ArgumentError("tolerance_log10 must be non-positive"))
         entropy_direction isa EntropyDirectionV1 || throw(ArgumentError("invalid entropy_direction"))
-        new(invariant_ref, account_kind_ref, scope, scope_ref, term_tuple, source_tuple, sink_tuple, flux_tuple, tolerance, entropy_direction)
+        new(invariant_ref, ledger_identity, scope, scope_ref, term_tuple, source_tuple, sink_tuple, flux_tuple, tolerance, entropy_direction)
     end
 end
 struct ParameterTransformSpecV1
@@ -349,12 +350,10 @@ function _g1_invariant_wire(value::InvariantV1)
     ref_payload(ref) = _g1_gene_ref_payload(ref.value)
     scope_ref = value.scope_ref === nothing ? "null" : "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.id) *
         ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.scope_ref.version) * "}"
-    account = "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.account_kind_ref.id) * ",\"version\":" *
-        invoke(_g1_quote, Tuple{String}, value.account_kind_ref.version) * "}"
-    payload = "{\"account_kind_ref\":" * account * ",\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_sink_refs, ref_payload) *
+    payload = "{\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_sink_refs, ref_payload) *
         ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.boundary_flux_refs, ref_payload) *
         ",\"entropy_direction\":" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, value.entropy_direction) *
-        ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"scope\":" *
+        ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"ledger_identity\":" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, value.ledger_identity) * ",\"scope\":" *
         invoke(_g1_gene_scope_label, Tuple{InvariantScopeV1}, value.scope) * ",\"scope_ref\":" * scope_ref *
         ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
     invoke(_g1_wrap, Tuple{String,String}, "invariant", payload)
@@ -437,7 +436,7 @@ canonical_hash(value::SymmetryGeneV1) = invoke(_g1_hash_bytes, Tuple{String}, _g
 semantic_view(x::StateGeneV1) = (state_ref=x.state_ref, physical_type=x.physical_type, physical_bounds=x.physical_bounds,
     parity_actions=x.parity_actions, gauge_refs=x.gauge_refs, constraint_refs=x.constraint_refs, epistemic_state=x.epistemic_state)
 semantic_view(x::InvariantTermV1) = (state_ref=x.state_ref, coefficient=x.coefficient)
-semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, account_kind_ref=x.account_kind_ref, scope=x.scope,
+semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity, scope=x.scope,
     scope_ref=x.scope_ref, terms=x.terms, allowed_source_refs=x.allowed_source_refs, allowed_sink_refs=x.allowed_sink_refs,
     boundary_flux_refs=x.boundary_flux_refs, tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction)
 semantic_view(x::ParameterTransformSpecV1) = (kind=x.kind, scale=x.scale)

@@ -89,9 +89,9 @@ function _mimo_closed_unit(unit::UnitSignature)
     "{\"exponents\":[" * join(("{\"denominator\":" * string(denominator(v)) * ",\"numerator\":" * string(numerator(v)) * "}" for v in unit.exponents), ",") * "]}"
 end
 _mimo_closed_account(ref::ConservationAccountRefV1) =
-    "{\"account\":" * invoke(_jsonquote, Tuple{AbstractString}, ref.account) * ",\"direction\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.direction)) *
-    ",\"port_index\":" * string(ref.port_index) * ",\"port_side\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.port_side)) *
-    ",\"unit\":" * _mimo_closed_unit(ref.unit) * "}"
+    "{\"direction\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.direction)) *
+    ",\"ledger_identity\":" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, ref.ledger_identity) *
+    ",\"port_index\":" * string(ref.port_index) * ",\"port_side\":" * invoke(_jsonquote, Tuple{AbstractString}, String(ref.port_side)) * "}"
 _mimo_closed_effect(effect::PortAccountEffectV1) =
     "{\"account_ref\":" * _mimo_closed_account(effect.account_ref) * ",\"coefficient\":{\"denominator\":" *
     string(denominator(effect.coefficient)) * ",\"numerator\":" * string(numerator(effect.coefficient)) * "}}"
@@ -126,6 +126,10 @@ function _mimo_edge_canonical_bytes(e::AtomicMIMOHyperedgeV1)
 end
 
 canonical_json(e::AtomicMIMOHyperedgeV1) = _mimo_edge_canonical_bytes(e)
+canonical_json(x::ConservationLedgerIdentityV1) =
+    invoke(_ledger_identity_canonical_bytes, Tuple{ConservationLedgerIdentityV1}, x)
+canonical_hash(x::ConservationLedgerIdentityV1) =
+    invoke(_ledger_identity_hash, Tuple{ConservationLedgerIdentityV1}, x)
 
 function _graph_encoding(g::TypedOperatorHypergraphV1, order::Tuple)
     rank = zeros(Int, length(g.nodes))
