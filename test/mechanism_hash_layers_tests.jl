@@ -72,7 +72,7 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
     state_b = StateGeneV1(StateGeneRefV1(prefix * "state-b"), ptype, bounds, (), (), (), state_derived)
     states = reverse_collections ? (state_b, state_a) : (state_a, state_b)
     matrix = ExactRationalMatrixV1(((symmetry_sign,),))
-    symmetry = SymmetryGeneV1(SymmetryRefV1(prefix * "sym"), symmetry_continuous, matrix,
+    symmetry = SymmetryGeneV1(SymmetryRefV1(prefix * "sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1(prefix * "state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
     invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), QualifiedRefV1(ledger_account, "v1"),

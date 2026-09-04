@@ -60,7 +60,7 @@ end
 function _g1_transport_state_color(x::StateGeneV1)
     "state_gene|type=" * _g1_transport_type(x.physical_type) * "|bounds=" * _g1_transport_quantity(x.physical_bounds) *
         "|epistemic=" * invoke(_g1_gene_state_label, Tuple{StateEpistemicV1}, x.epistemic_state) *
-        "|parity=" * join(sort(String[invoke(canonical_json, Tuple{ParityActionV1}, p) for p in x.parity_actions]), ",")
+        "|parity=" * join(sort(String[p.sign == even ? "even" : "odd" for p in x.parity_actions]), ",")
 end
 
 function _g1_transport_invariant_color(x::InvariantV1)
@@ -75,7 +75,7 @@ end
 
 function _g1_transport_symmetry_color(x::SymmetryGeneV1)
     order = x.group_order === nothing ? "null" : string(x.group_order)
-    "symmetry_gene|group=" * invoke(_g1_gene_group_label, Tuple{SymmetryGroupKindV1}, x.group_kind) * "|coordinate=" * _g1_transport_matrix(x.coordinate_generator_matrix) *
+    "symmetry_gene|generator=" * _g1_transport_qref(x.generator_ref) * "|group=" * invoke(_g1_gene_group_label, Tuple{SymmetryGroupKindV1}, x.group_kind) * "|coordinate=" * _g1_transport_matrix(x.coordinate_generator_matrix) *
         "|order=" * order * "|behavior=" * invoke(_g1_gene_behavior_label, Tuple{SymmetryBehaviorV1}, x.behavior) *
         "|tolerance=" * _g1_transport_rational(x.tolerance)
 end
@@ -244,10 +244,21 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
     invariant_v = Dict(x.invariant_ref.value => gene_vertices[:invariant_gene][i] for (i, x) in enumerate(payload.invariants))
     parameter_v = Dict(x.ref.value => gene_vertices[:parameter_gene][i] for (i, x) in enumerate(payload.parameters))
     symmetry_v = Dict(x.ref.value => gene_vertices[:symmetry_gene][i] for (i, x) in enumerate(payload.symmetries))
+    symmetry_generator_v = Dict{Tuple{String,String},Int}()
+    for (i, x) in enumerate(payload.symmetries)
+        key = (x.generator_ref.id, x.generator_ref.version)
+        haskey(symmetry_generator_v, key) && throw(ArgumentError("symmetry generator reference is not exact"))
+        symmetry_generator_v[key] = gene_vertices[:symmetry_gene][i]
+    end
     observable_v = Dict(x.observable_ref.value => gene_vertices[:observable_gene][i] for (i, x) in enumerate(payload.observables))
     for (i, x) in enumerate(payload.states)
         v = gene_vertices[:state_gene][i]; add_arc(v, node_index(x.state_ref.value), "state_gene_to_state_node")
         for r in x.gauge_refs; add_arc(v, symmetry_v[r.value], "state_gene_to_symmetry"); end
+        for p in x.parity_actions
+            key = (p.generator_ref.id, p.generator_ref.version)
+            haskey(symmetry_generator_v, key) || throw(ArgumentError("state parity action has no exact symmetry generator"))
+            add_arc(v, symmetry_generator_v[key], "state_gene_to_symmetry_parity|sign=" * (p.sign == even ? "even" : "odd"))
+        end
         for r in x.constraint_refs; add_arc(v, edge_vertices[edge_index(r.value)], "state_gene_to_constraint_edge"); end
     end
     for (i, x) in enumerate(payload.invariants)

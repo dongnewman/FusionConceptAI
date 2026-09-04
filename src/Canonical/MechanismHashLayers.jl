@@ -360,6 +360,12 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             end
             node_ref = Dict(x.node_id => i for (i, x) in enumerate(graph.nodes)); edge_ref = Dict(invoke(_g1_payload_edge_id, Tuple{Any}, x) => i for (i, x) in enumerate(graph.hyperedges))
             state_ref = Dict(x.state_ref.value => gene_vertices[:state_gene][i] for (i, x) in enumerate(payload.states)); obs_ref = Dict(x.observable_ref.value => gene_vertices[:observable_gene][i] for (i, x) in enumerate(payload.observables))
+            symmetry_generator_ref = Dict{Tuple{String,String},Int}()
+            for (i, x) in enumerate(payload.symmetries)
+                key = (x.generator_ref.id, x.generator_ref.version)
+                haskey(symmetry_generator_ref, key) && throw(ArgumentError("symmetry generator reference is not exact"))
+                symmetry_generator_ref[key] = gene_vertices[:symmetry_gene][i]
+            end
             addref(v, target, label) = invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, v, target, label)
             parameter_ref = Dict(x.ref.value => gene_vertices[:parameter_gene][i] for (i, x) in enumerate(payload.parameters))
             for (ast_vertex, name) in zip(params, names)
@@ -369,6 +375,13 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             for (i, x) in enumerate(payload.states)
                 v = gene_vertices[:state_gene][i]; addref(v, node_ref[x.state_ref.value], "state_gene_to_state_node")
                 for r in x.gauge_refs; addref(v, gene_vertices[:symmetry_gene][findfirst(y -> y.ref.value == r.value, payload.symmetries)], "state_gene_to_symmetry"); end
+                for p in x.parity_actions
+                    key = (p.generator_ref.id, p.generator_ref.version)
+                    haskey(symmetry_generator_ref, key) || throw(ArgumentError("state parity action has no exact symmetry generator"))
+                    label = layer === :structure ? "state_gene_to_symmetry_parity|cardinality" :
+                        "state_gene_to_symmetry_parity|sign=" * (p.sign == even ? "even" : "odd")
+                    addref(v, symmetry_generator_ref[key], label)
+                end
                 for r in x.constraint_refs; addref(v, edge_vertices[edge_ref[r.value]], "state_gene_to_constraint_edge"); end
             end
             for (i, x) in enumerate(payload.invariants)

@@ -329,6 +329,8 @@ function _g1_migration_gene_closure(payload::MechanismGenomePayloadV1, source::L
         all(r -> any(y -> y.ref.value == r.value, decl.symmetries), state.gauge_refs) || throw(ArgumentError("legacy gauge reference is dangling"))
         all(r -> r.value in edge_ids, state.constraint_refs) || throw(ArgumentError("legacy constraint reference is dangling"))
     end
+    invoke(_g1_payload_parity_generator_closure, Tuple{Tuple,Tuple}, decl.states, decl.symmetries) ||
+        throw(ArgumentError("legacy parity action does not bind an exact symmetry generator and state action"))
     for invariant in decl.invariants
         all(t -> t.state_ref.value in state_ids, invariant.terms) || throw(ArgumentError("legacy invariant state reference is dangling"))
         if invariant.scope !== scope_global
@@ -449,7 +451,7 @@ function _g1_migration_closed_value(x::Any)::String
         return invoke(_g1_migration_closed_value, Tuple{Any}, (state_ref=x.state_ref, matrix=x.matrix))
     elseif typeof(x) === SymmetryGeneV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (ref=x.ref, group_kind=x.group_kind,
-            coordinate_generator_matrix=x.coordinate_generator_matrix, state_actions=x.state_actions,
+            generator_ref=x.generator_ref, coordinate_generator_matrix=x.coordinate_generator_matrix, state_actions=x.state_actions,
             group_order=x.group_order, behavior=x.behavior, tolerance=x.tolerance))
     elseif typeof(x) === ProgramRootRefV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (operator_site_ref=x.operator_site_ref,
@@ -703,6 +705,10 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_gene_semantics_unrepresentable)
     invoke(_g1_migration_gene_set_equal, Tuple{Tuple,Tuple,Type}, source.observables, declaration.observables, ObservableGeneV1) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
+    invoke(_g1_payload_parity_generator_closure, Tuple{Tuple,Tuple}, declaration.states, declaration.symmetries) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_gene_semantics_unrepresentable)

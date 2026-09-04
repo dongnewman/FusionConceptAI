@@ -20,6 +20,7 @@ include("conditional_egraph_p1_adversarial.jl")
 include("conditional_egraph_p1_length_adversarial.jl")
 include("mechanism_genome_close_tests.jl")
 include("mechanism_genome_close_adversarial.jl")
+include("mechanism_payload_exact_ref_closure_tests.jl")
 
 @testset "G1 exact decorated canonical transport" begin
     unit = UnitSignature()
@@ -1268,17 +1269,17 @@ end
     identity_matrix = ExactRationalMatrixV1(((1, 0), (0, 1)))
     swap_matrix = ExactRationalMatrixV1(((0, 1), (1, 0)))
     state_action = StateSymmetryActionV1(state_ref, swap_matrix)
-    discrete_symmetry = SymmetryGeneV1(SymmetryRefV1("swap"), symmetry_discrete, swap_matrix, (state_action,), 2, symmetry_invariant, 0)
-    continuous_symmetry = SymmetryGeneV1(SymmetryRefV1("continuous"), symmetry_continuous, identity_matrix, (), nothing, symmetry_equivariant, 1 // 10)
+    discrete_symmetry = SymmetryGeneV1(SymmetryRefV1("swap"), QualifiedRefV1("swap-generator", "v1"), symmetry_discrete, swap_matrix, (state_action,), 2, symmetry_invariant, 0)
+    continuous_symmetry = SymmetryGeneV1(SymmetryRefV1("continuous"), QualifiedRefV1("continuous-generator", "v1"), symmetry_continuous, identity_matrix, (), nothing, symmetry_equivariant, 1 // 10)
     @test discrete_symmetry.group_order == UInt32(2) && continuous_symmetry.group_order === nothing
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (), 1, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (), true, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, ExactRationalMatrixV1(((1, 0, 0), (0, 1, 0))), (), 2, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (StateSymmetryActionV1(state_ref, ExactRationalMatrixV1(((1,),))),), 2, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, ExactRationalMatrixV1(((2, 0), (0, 2))), (), 2, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_discrete, identity_matrix, (state_action, state_action), 2, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_continuous, identity_matrix, (), 2, symmetry_invariant, 0)
-    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), symmetry_continuous, identity_matrix, (), nothing, symmetry_invariant, -1 // 2)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, identity_matrix, (), 1, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, identity_matrix, (), true, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, ExactRationalMatrixV1(((1, 0, 0), (0, 1, 0))), (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, identity_matrix, (StateSymmetryActionV1(state_ref, ExactRationalMatrixV1(((1,),))),), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, ExactRationalMatrixV1(((2, 0), (0, 2))), (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_discrete, identity_matrix, (state_action, state_action), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_continuous, identity_matrix, (), 2, symmetry_invariant, 0)
+    @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_continuous, identity_matrix, (), nothing, symmetry_invariant, -1 // 2)
     @test canonical_json(discrete_symmetry) != canonical_json(continuous_symmetry)
     @test occursin("fusionconceptai:v4:g1-primitive:v1", canonical_json(invariant))
     @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, scope_global, nothing, (term,), (), (), (), -3, entropy_conserved))
@@ -1291,7 +1292,7 @@ end
     FusionConceptAI._g1_square_matrix(::ExactRationalMatrixV1, ::String) = error(\"polluted matrix\")
     @assert InvariantTermV1(sr, 1//1) == before
     @assert StateGeneV1(sr, PhysicalType(:scalar_field, 0, 3, :differential, u), QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), u), (), (), (), state_derived).state_ref == sr
-    @assert SymmetryGeneV1(SymmetryRefV1(\"s\"), symmetry_continuous, ExactRationalMatrixV1(((1,),)), (), nothing, symmetry_invariant, 0).ref.value == \"s\"
+    @assert SymmetryGeneV1(SymmetryRefV1(\"s\"), QualifiedRefV1(\"g\", \"v1\"), symmetry_continuous, ExactRationalMatrixV1(((1,),)), (), nothing, symmetry_invariant, 0).ref.value == \"s\"
     println(\"g1-gene-dispatch-closed-ok\")
     """
     @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $gene_dispatch_script`)
@@ -1467,7 +1468,7 @@ end
         scope_global, nothing, (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
         entropy_conserved)
     symmetry_matrix = ExactRationalMatrixV1(((1,),))
-    symmetry = SymmetryGeneV1(SymmetryRefV1("symmetry"), symmetry_continuous, symmetry_matrix,
+    symmetry = SymmetryGeneV1(SymmetryRefV1("symmetry"), QualifiedRefV1("symmetry-generator", "v1"), symmetry_continuous, symmetry_matrix,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), symmetry_matrix),), nothing,
         symmetry_invariant, 0)
     payload = MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (symmetry,),
@@ -1650,7 +1651,7 @@ end
     term = InvariantTermV1(StateGeneRefV1(\"state\"), 1)
     invariant = InvariantV1(InvariantRefV1(\"inv\"), QualifiedRefV1(\"account\", \"v1\"), scope_global, nothing, (term,), (), (), (), 0, entropy_conserved)
     matrix = ExactRationalMatrixV1(((1,),))
-    symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
+    symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), QualifiedRefV1(\"sym-generator\", \"v1\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
     before = parameter_value(gene, -1.0)
     before_objects = (map(canonical_json, (state, invariant, symmetry)), map(canonical_hash, (state, invariant, symmetry)))
     FusionConceptAI.derive_parameter_value(::ParameterGeneV1, ::Float64) = 999.0

@@ -234,15 +234,17 @@ end
 
 struct SymmetryGeneV1
     ref::SymmetryRefV1
+    generator_ref::QualifiedRefV1
     group_kind::SymmetryGroupKindV1
     coordinate_generator_matrix::ExactRationalMatrixV1
     state_actions::Tuple
     group_order::Union{Nothing,UInt32}
     behavior::SymmetryBehaviorV1
     tolerance::Rational{Int64}
-    function SymmetryGeneV1(ref::Any, group_kind::Any, coordinate_generator_matrix::Any,
+    function SymmetryGeneV1(ref::Any, generator_ref::Any, group_kind::Any, coordinate_generator_matrix::Any,
                             state_actions::Any, group_order::Any, behavior::Any, tolerance::Any)
         ref isa SymmetryRefV1 || throw(ArgumentError("ref must be SymmetryRefV1"))
+        generator_ref isa QualifiedRefV1 || throw(ArgumentError("generator_ref must be QualifiedRefV1"))
         group_kind isa SymmetryGroupKindV1 || throw(ArgumentError("group_kind must be SymmetryGroupKindV1"))
         coordinate = invoke(_g1_square_matrix, Tuple{Any,String}, coordinate_generator_matrix, "coordinate_generator_matrix")
         n, _ = _g1_matrix_shape(coordinate)
@@ -267,7 +269,7 @@ struct SymmetryGeneV1
         tolerance_value = invoke(_g1_gene_rational, Tuple{Any,String}, tolerance, "symmetry tolerance")
         tolerance_value >= 0 || throw(ArgumentError("symmetry tolerance must be non-negative"))
         behavior isa SymmetryBehaviorV1 || throw(ArgumentError("invalid symmetry behavior"))
-        new(ref, group_kind, coordinate, actions, order, behavior, tolerance_value)
+        new(ref, generator_ref, group_kind, coordinate, actions, order, behavior, tolerance_value)
     end
 end
 
@@ -296,6 +298,9 @@ parameter_value(gene::ParameterGeneV1, normalized_gene::Any) =
     invoke(_g1_derive_parameter_value_sealed, Tuple{ParameterGeneV1,Any}, gene, normalized_gene)
 
 _g1_gene_ref_payload(value::String) = "{\"value\":" * invoke(_g1_quote, Tuple{String}, value) * "}"
+_g1_gene_qualified_ref_payload(value::QualifiedRefV1) =
+    "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.id) *
+    ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.version) * "}"
 _g1_gene_sorted_payload(values, encoder::Function) = "[" * join(sort(String[encoder(value) for value in values]), ",") * "]"
 
 function _g1_gene_physical_type_payload(value::PhysicalType)
@@ -392,6 +397,7 @@ function _g1_symmetry_gene_wire(value::SymmetryGeneV1)
     order = value.group_order === nothing ? "null" : string(value.group_order)
     payload = "{\"behavior\":" * invoke(_g1_gene_behavior_label, Tuple{SymmetryBehaviorV1}, value.behavior) *
         ",\"coordinate_generator_matrix\":" * invoke(_g1_matrix_payload, Tuple{ExactRationalMatrixV1}, value.coordinate_generator_matrix) *
+        ",\"generator_ref\":" * invoke(_g1_gene_qualified_ref_payload, Tuple{QualifiedRefV1}, value.generator_ref) *
         ",\"group_kind\":" * invoke(_g1_gene_group_label, Tuple{SymmetryGroupKindV1}, value.group_kind) *
         ",\"group_order\":" * order * ",\"ref\":" * _g1_gene_ref_payload(value.ref.value) *
         ",\"state_actions\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.state_actions, action -> invoke(_g1_state_action_payload, Tuple{StateSymmetryActionV1}, action)) *
@@ -437,5 +443,5 @@ semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, account_kind_ref
 semantic_view(x::ParameterTransformSpecV1) = (kind=x.kind, scale=x.scale)
 semantic_view(x::ParameterGeneV1) = (ref=x.ref, unit=x.unit, transform=x.transform, bounds=x.bounds, normalized_gene=x.normalized_gene)
 semantic_view(x::StateSymmetryActionV1) = (state_ref=x.state_ref, matrix=x.matrix)
-semantic_view(x::SymmetryGeneV1) = (ref=x.ref, group_kind=x.group_kind, coordinate_generator_matrix=x.coordinate_generator_matrix,
+semantic_view(x::SymmetryGeneV1) = (ref=x.ref, generator_ref=x.generator_ref, group_kind=x.group_kind, coordinate_generator_matrix=x.coordinate_generator_matrix,
     state_actions=x.state_actions, group_order=x.group_order, behavior=x.behavior, tolerance=x.tolerance)

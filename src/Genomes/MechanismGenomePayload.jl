@@ -208,6 +208,38 @@ function _g1_payload_validate_parameters(parameters::Tuple, programs::Vector{Typ
     nothing
 end
 
+"""Closed parity-to-symmetry binding predicate shared by admission and migration."""
+function _g1_payload_parity_generator_closure(states::Tuple, symmetries::Tuple)
+    generator_keys = Tuple{String,String}[]
+    for symmetry in symmetries
+        key = (symmetry.generator_ref.id, symmetry.generator_ref.version)
+        for existing in generator_keys
+            existing[1] == key[1] && existing[2] == key[2] && return false
+        end
+        push!(generator_keys, key)
+    end
+    for state in states
+        for parity in state.parity_actions
+            key = (parity.generator_ref.id, parity.generator_ref.version)
+            generator_index = 0
+            for (index, existing) in enumerate(generator_keys)
+                if existing[1] == key[1] && existing[2] == key[2]
+                    generator_index = index
+                    break
+                end
+            end
+            generator_index == 0 && return false
+            symmetry = symmetries[generator_index]
+            found_state_action = false
+            for action in symmetry.state_actions
+                action.state_ref.value == state.state_ref.value && (found_state_action = true; break)
+            end
+            found_state_action || return false
+        end
+    end
+    true
+end
+
 function _g1_payload_validate_governing(graph::TypedOperatorHypergraphV1)
     for (index, node_value) in enumerate(graph.nodes)
         node_value.node_kind === :state || continue
@@ -253,6 +285,8 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     symmetry_ids = String[symmetry.ref.value for symmetry in symmetries]
     length(unique(symmetry_ids)) == length(symmetry_ids) || throw(ArgumentError("symmetry references must be unique"))
     symmetry_map = Dict(symmetry.ref.value => symmetry for symmetry in symmetries)
+    invoke(_g1_payload_parity_generator_closure, Tuple{Tuple,Tuple}, states, symmetries) ||
+        throw(ArgumentError("symmetry generator/parity state-action references are not exact and unique"))
     for gene in states
         for gauge_ref in gene.gauge_refs
             haskey(symmetry_map, gauge_ref.value) || throw(ArgumentError("StateGene gauge reference does not bind a SymmetryGene"))

@@ -45,7 +45,7 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
     state_a = StateGeneV1(StateGeneRefV1("state-a"), ptype, bounds, (), (), (), state_derived)
     state_b = StateGeneV1(StateGeneRefV1("state-b"), ptype, bounds, (), (), (), state_derived)
     matrix = ExactRationalMatrixV1(((1 // 1,),))
-    symmetry = SymmetryGeneV1(SymmetryRefV1("sym"), symmetry_continuous, matrix,
+    symmetry = SymmetryGeneV1(SymmetryRefV1("sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
     invariant = InvariantV1(InvariantRefV1("invariant"), QualifiedRefV1(ledger_account, "v1"),
