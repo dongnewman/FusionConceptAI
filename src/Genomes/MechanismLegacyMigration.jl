@@ -129,19 +129,18 @@ end
 
 struct G1LegacyMigrationResultV1
     resolution::ResolutionStatus
-    payload::Union{Nothing,MechanismGenomePayloadV1}
-    canonical::Union{Nothing,CanonicalMechanismV1}
+    genome::Union{Nothing,MechanismGenomeV4}
     source_mechanism_hash::Union{Nothing,Digest256}
     mapping_ref::Union{Nothing,QualifiedRefV1}
     mapping_hash::Union{Nothing,Digest256}
     declaration_content_hash::Union{Nothing,Digest256}
     reason::G1LegacyMigrationReasonV1
-    function G1LegacyMigrationResultV1(source::MechanismGenomeV4,
+    function G1LegacyMigrationResultV1(source::LegacyMechanismGenomeV4,
                                        declaration::Union{Nothing,G1LegacyMigrationDeclarationV1},
                                        context::MechanismCanonicalizationContextV1,
                                        registry::OperatorRegistryV1)
         outcome = invoke(_g1_migration_evaluate,
-            Tuple{MechanismGenomeV4,Union{Nothing,G1LegacyMigrationDeclarationV1},MechanismCanonicalizationContextV1,OperatorRegistryV1},
+            Tuple{LegacyMechanismGenomeV4,Union{Nothing,G1LegacyMigrationDeclarationV1},MechanismCanonicalizationContextV1,OperatorRegistryV1},
             source, declaration, context, registry)
         resolution = outcome.resolution
         payload = outcome.payload
@@ -157,7 +156,11 @@ struct G1LegacyMigrationResultV1
             throw(ArgumentError("resolved legacy result is incomplete or not lossless")))
         resolution === terminal_deferred && (reason !== migration_lossless && payload === nothing && canonical === nothing && mapping_hash === nothing ||
             throw(ArgumentError("deferred legacy result is not a proven gap")))
-        new(resolution, payload, canonical, source_hash, mapping_ref, mapping_hash, declaration_content_hash, reason)
+        genome = resolution === resolved ? MechanismGenomeV4(source.seed, context.contract_ref, payload;
+            profile=context.profile) : nothing
+        resolution === resolved && (genome.canonical.hashes == canonical.hashes ||
+            throw(ArgumentError("resolved legacy genome hashes do not match migration outcome")))
+        new(resolution, genome, source_hash, mapping_ref, mapping_hash, declaration_content_hash, reason)
     end
     function G1LegacyMigrationResultV1(args...)
         throw(ArgumentError("legacy migration result is sealed; use migrate_legacy_g1"))
@@ -188,7 +191,7 @@ function _g1_migration_edge_completion(decl::G1LegacyMigrationDeclarationV1, id:
     length(matches) == 1 ? matches[1] : nothing
 end
 
-function _g1_migration_validate_completion_closure(source::MechanismGenomeV4,
+function _g1_migration_validate_completion_closure(source::LegacyMechanismGenomeV4,
                                                    decl::G1LegacyMigrationDeclarationV1)::Union{Nothing,Bool}
     source_ids = String[]
     for edge in source.graph.hyperedges
@@ -203,7 +206,7 @@ function _g1_migration_validate_completion_closure(source::MechanismGenomeV4,
     all(id -> id in declared_ids, source_ids)
 end
 
-function _g1_migration_legacy_ast_supported(source::MechanismGenomeV4)::Bool
+function _g1_migration_legacy_ast_supported(source::LegacyMechanismGenomeV4)::Bool
     for edge in source.graph.hyperedges
         typeof(edge) === TypedHyperedge || continue
         invoke(_g1_migration_check_legacy_ast, Tuple{TypedAST}, edge.ast) || return false
@@ -266,7 +269,7 @@ function _g1_migration_convert_edge(edge::TypedHyperedge,
         account_effects=completion.account_effects, interface_flux_pairs=completion.interface_flux_pairs, registry=registry)
 end
 
-function _g1_migration_convert_graph(source::MechanismGenomeV4,
+function _g1_migration_convert_graph(source::LegacyMechanismGenomeV4,
                                      decl::G1LegacyMigrationDeclarationV1,
                                      registry::OperatorRegistryV1)
     edges = AtomicMIMOHyperedgeV1[]
@@ -316,7 +319,7 @@ function _g1_migration_parameter_closure(programs::Vector{TypedASTProgramV1}, pa
     all(used) || throw(ArgumentError("legacy parameter gene is dangling"))
 end
 
-function _g1_migration_gene_closure(payload::MechanismGenomePayloadV1, source::MechanismGenomeV4,
+function _g1_migration_gene_closure(payload::MechanismGenomePayloadV1, source::LegacyMechanismGenomeV4,
                                     decl::G1LegacyMigrationDeclarationV1)
     node_ids = String[n.node_id for n in payload.operator_graph.nodes]
     edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, e) for e in payload.operator_graph.hyperedges]
@@ -614,7 +617,7 @@ function _g1_migration_graph_wire(graph::TypedOperatorHypergraphV1,
     result
 end
 
-function _g1_migration_source_wire(source::MechanismGenomeV4,
+function _g1_migration_source_wire(source::LegacyMechanismGenomeV4,
                                    profile::Union{Nothing,CanonicalizationProfileV1})::String
     graph_wire = invoke(_g1_migration_graph_wire, Tuple{TypedOperatorHypergraphV1,Union{Nothing,CanonicalizationProfileV1}}, source.graph, profile)
     result = invoke(_g1_migration_closed_pairs, Tuple{Vector{Tuple{String,String}}}, [
@@ -627,30 +630,30 @@ function _g1_migration_source_wire(source::MechanismGenomeV4,
     result
 end
 
-function _g1_migration_source_hash(source::MechanismGenomeV4)::Digest256
+function _g1_migration_source_hash(source::LegacyMechanismGenomeV4)::Digest256
     # Compatibility/provenance helper only.  migrate_legacy_g1 always uses
     # the context-bound overload below so its budgets are authoritative.
-    wire = invoke(_g1_migration_source_wire, Tuple{MechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, nothing)
+    wire = invoke(_g1_migration_source_wire, Tuple{LegacyMechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, nothing)
     Digest256(invoke(_g1_migration_digest, Tuple{String}, wire))
 end
 
-function _g1_migration_source_hash(source::MechanismGenomeV4,
+function _g1_migration_source_hash(source::LegacyMechanismGenomeV4,
                                    profile::CanonicalizationProfileV1)::Digest256
-    wire = invoke(_g1_migration_source_wire, Tuple{MechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, profile)
+    wire = invoke(_g1_migration_source_wire, Tuple{LegacyMechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, profile)
     Digest256(invoke(_g1_migration_digest, Tuple{String}, wire))
 end
 
-function _g1_migration_source_graph_hash(source::MechanismGenomeV4,
+function _g1_migration_source_graph_hash(source::LegacyMechanismGenomeV4,
                                           profile::Union{Nothing,CanonicalizationProfileV1})::Digest256
     wire = invoke(_g1_migration_graph_wire, Tuple{TypedOperatorHypergraphV1,Union{Nothing,CanonicalizationProfileV1}}, source.graph, profile)
     Digest256(invoke(_g1_migration_digest, Tuple{String}, "fusionconceptai:v4:g1-legacy-source-graph:v1|" * wire))
 end
 
-function _g1_migration_final_mapping_hash(source::MechanismGenomeV4,
+function _g1_migration_final_mapping_hash(source::LegacyMechanismGenomeV4,
                                           canonical::CanonicalMechanismV1)::Digest256
     profile = canonical.transport.context.profile
     graph_hash = invoke(_g1_migration_source_graph_hash,
-        Tuple{MechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, profile)
+        Tuple{LegacyMechanismGenomeV4,Union{Nothing,CanonicalizationProfileV1}}, source, profile)
     layers = canonical.hashes
     body = "{\"source_graph_identity\":" * _g1_layer_digest(graph_hash) *
         ",\"contract_hash\":" * _g1_layer_digest(layers.contract_hash) *
@@ -660,12 +663,12 @@ function _g1_migration_final_mapping_hash(source::MechanismGenomeV4,
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits("fusionconceptai:v4:g1-legacy-bound-mapping:v1|" * body)))))
 end
 
-function _g1_migration_evaluate(source::MechanismGenomeV4,
+function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
                                 declaration::Union{Nothing,G1LegacyMigrationDeclarationV1},
                                 context::MechanismCanonicalizationContextV1,
                                 registry::OperatorRegistryV1)
     source_hash = try
-        invoke(_g1_migration_source_hash, Tuple{MechanismGenomeV4,CanonicalizationProfileV1}, source, context.profile)
+        invoke(_g1_migration_source_hash, Tuple{LegacyMechanismGenomeV4,CanonicalizationProfileV1}, source, context.profile)
     catch e
         e isa CanonicalizationDeferred || rethrow()
         return invoke(_g1_migration_deferred,
@@ -684,14 +687,14 @@ function _g1_migration_evaluate(source::MechanismGenomeV4,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, contract_incompatible)
     completion_closure = invoke(_g1_migration_validate_completion_closure,
-        Tuple{MechanismGenomeV4,G1LegacyMigrationDeclarationV1}, source, declaration)
+        Tuple{LegacyMechanismGenomeV4,G1LegacyMigrationDeclarationV1}, source, declaration)
     completion_closure === nothing && return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
     completion_closure || return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
-    invoke(_g1_migration_legacy_ast_supported, Tuple{MechanismGenomeV4}, source) ||
+    invoke(_g1_migration_legacy_ast_supported, Tuple{LegacyMechanismGenomeV4}, source) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_ast_unrepresentable)
@@ -705,7 +708,7 @@ function _g1_migration_evaluate(source::MechanismGenomeV4,
             source_hash, declaration, legacy_gene_semantics_unrepresentable)
     converted_graph = try
         invoke(_g1_migration_convert_graph,
-            Tuple{MechanismGenomeV4,G1LegacyMigrationDeclarationV1,OperatorRegistryV1}, source, declaration, registry)
+            Tuple{LegacyMechanismGenomeV4,G1LegacyMigrationDeclarationV1,OperatorRegistryV1}, source, declaration, registry)
     catch e
         e isa _G1LegacyASTUnrepresentable &&
             return invoke(_g1_migration_deferred,
@@ -724,7 +727,7 @@ function _g1_migration_evaluate(source::MechanismGenomeV4,
     append!(programs, (e.program for e in converted_graph.hyperedges))
     append!(programs, (o.sampling_program for o in declaration.observables))
     invoke(_g1_migration_parameter_closure, Tuple{Vector{TypedASTProgramV1},Tuple}, programs, declaration.parameters)
-    invoke(_g1_migration_gene_closure, Tuple{MechanismGenomePayloadV1,MechanismGenomeV4,G1LegacyMigrationDeclarationV1}, payload, source, declaration)
+    invoke(_g1_migration_gene_closure, Tuple{MechanismGenomePayloadV1,LegacyMechanismGenomeV4,G1LegacyMigrationDeclarationV1}, payload, source, declaration)
     canonical = try invoke(canonicalize_mechanism, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context) catch e
         e isa CanonicalizationDeferred && return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
@@ -733,7 +736,7 @@ function _g1_migration_evaluate(source::MechanismGenomeV4,
     end
     mapping_hash = try
         invoke(_g1_migration_final_mapping_hash,
-            Tuple{MechanismGenomeV4,CanonicalMechanismV1}, source, canonical)
+            Tuple{LegacyMechanismGenomeV4,CanonicalMechanismV1}, source, canonical)
     catch e
         e isa CanonicalizationDeferred && return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
@@ -746,12 +749,12 @@ function _g1_migration_evaluate(source::MechanismGenomeV4,
         declaration.declaration_content_hash, migration_lossless)
 end
 
-function migrate_legacy_g1(source::MechanismGenomeV4,
+function migrate_legacy_g1(source::LegacyMechanismGenomeV4,
                            declaration::Union{Nothing,G1LegacyMigrationDeclarationV1},
                            context::MechanismCanonicalizationContextV1,
                            registry::OperatorRegistryV1)::G1LegacyMigrationResultV1
     invoke(G1LegacyMigrationResultV1,
-        Tuple{MechanismGenomeV4,Union{Nothing,G1LegacyMigrationDeclarationV1},MechanismCanonicalizationContextV1,OperatorRegistryV1},
+        Tuple{LegacyMechanismGenomeV4,Union{Nothing,G1LegacyMigrationDeclarationV1},MechanismCanonicalizationContextV1,OperatorRegistryV1},
         source, declaration, context, registry)
 end
 
@@ -759,5 +762,7 @@ semantic_view(x::G1LegacyEdgeCompletionV1) = (source_edge_id=x.source_edge_id, a
 semantic_view(x::G1LegacyMigrationDeclarationV1) = (mapping_ref=x.mapping_ref, source_mechanism_hash=x.source_mechanism_hash, target_contract_ref=x.target_contract_ref,
     states=x.states, invariants=x.invariants, parameters=x.parameters, symmetries=x.symmetries, observables=x.observables, operator_holes=x.operator_holes,
     edge_completions=x.edge_completions, declaration_content_hash=x.declaration_content_hash)
-semantic_view(x::G1LegacyMigrationResultV1) = (resolution=x.resolution, payload=x.payload, canonical=x.canonical, source_mechanism_hash=x.source_mechanism_hash,
-    mapping_ref=x.mapping_ref, mapping_hash=x.mapping_hash, declaration_content_hash=x.declaration_content_hash, reason=x.reason)
+semantic_view(x::G1LegacyMigrationResultV1) = (resolution=x.resolution,
+    mechanism_subject_hash=x.genome === nothing ? nothing : mechanism_subject_hash(x.genome),
+    source_mechanism_hash=x.source_mechanism_hash, mapping_ref=x.mapping_ref,
+    mapping_hash=x.mapping_hash, declaration_content_hash=x.declaration_content_hash, reason=x.reason)

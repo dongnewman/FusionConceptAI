@@ -74,7 +74,7 @@ function _legacy_migration_fixture(; ast=nothing, registry=default_operator_regi
         (TypedHyperedge("site-a", (1,), (1,), old_ast, :governing),
          TypedHyperedge("site-b", (2,), (2,), old_ast, :governing)))
     strong_payload, _, aux = _phaseb_fixture(; contract=contract, registry=registry)
-    source = MechanismGenomeV4(7, contract, legacy_graph;
+    source = LegacyMechanismGenomeV4(7, contract, legacy_graph;
         invariants=source_invariants === nothing ? strong_payload.invariants : source_invariants,
         observables=strong_payload.observables)
     invs = declaration_invariants === nothing ? strong_payload.invariants : declaration_invariants
@@ -130,7 +130,7 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
             ObservableRefV1("observable"), NonnegativeQuantityV1(1 // 2, PB_UNIT),
             NonnegativeQuantityV1(1 // 10, PB_UNIT)),), (ObservableRefV1("observable"),),
         (QualifiedRefV1("prediction", "v1"),))
-    source = MechanismGenomeV4(7, PB_CONTRACT, graph;
+    source = LegacyMechanismGenomeV4(7, PB_CONTRACT, graph;
         invariants=(invariant,), observables=(observable,))
     completion = (G1LegacyEdgeCompletionV1(edge_ids[1],
             (PortAccountEffectV1(ConservationAccountRefV1("energy", PB_UNIT, :input, 1, :inflow), 1 // 1),
@@ -149,7 +149,7 @@ function _nine_node_budget_fixture()
     graph = TypedOperatorHypergraphV1(nodes,
         (TypedHyperedge("nine-edge-a", (1,), (1,), ast, :governing),
          TypedHyperedge("nine-edge-b", (2,), (2,), ast, :governing)); registry=registry)
-    source = MechanismGenomeV4(7, PB_CONTRACT, graph)
+    source = LegacyMechanismGenomeV4(7, PB_CONTRACT, graph)
     budget = CanonicalizationBudgetV1(1, 1, 512, 8_000_000)
     context = MechanismCanonicalizationContextV1(PB_CONTRACT,
         CanonicalizationProfileV1("phaseb-9-node-budget", "1", budget))
@@ -187,15 +187,20 @@ else
             source, declaration, migration_context, migration_registry = _legacy_migration_fixture()
             migrated = migrate_legacy_g1(source, declaration, migration_context, migration_registry)
             @test migrated.resolution == resolved
-            @test migrated.payload isa MechanismGenomePayloadV1
-            @test migrated.canonical isa CanonicalMechanismV1
+            @test migrated.genome isa MechanismGenomeV4
+            @test migrated.genome.payload isa MechanismGenomePayloadV1
+            @test migrated.genome.canonical isa CanonicalMechanismV1
+            direct_genome = MechanismGenomeV4(source.seed, migration_context.contract_ref,
+                migrated.genome.payload; profile=migration_context.profile)
+            @test mechanism_hash(direct_genome) == mechanism_hash(migrated.genome)
+            @test mechanism_subject_hash(direct_genome) == mechanism_subject_hash(migrated.genome)
             @test migrated.source_mechanism_hash == canonical_hash(source)
             @test migrated.mapping_ref == declaration.mapping_ref
             @test migrated.reason == migration_lossless
             @test migrated.declaration_content_hash == declaration.declaration_content_hash
             same_migration = migrate_legacy_g1(source, declaration, migration_context, migration_registry)
-            @test (migrated.mapping_hash, migrated.canonical.hashes.candidate_subject_hash) ==
-                (same_migration.mapping_hash, same_migration.canonical.hashes.candidate_subject_hash)
+            @test (migrated.mapping_hash, mechanism_subject_hash(migrated.genome)) ==
+                (same_migration.mapping_hash, mechanism_subject_hash(same_migration.genome))
             if isdefined(FusionConceptAI, :_G1LegacyMappingSeal)
                 @test_throws ArgumentError FusionConceptAI.G1LegacyMigrationResultV1(
                     FusionConceptAI._G1LegacyMappingSeal(), terminal_deferred, nothing, nothing,
@@ -210,8 +215,7 @@ else
             alternate = migrate_legacy_g1(source, declaration,
                 MechanismCanonicalizationContextV1(PB_CONTRACT, alternate_profile), migration_registry)
             @test alternate.mapping_hash != migrated.mapping_hash
-            @test alternate.canonical.hashes.candidate_subject_hash !=
-                migrated.canonical.hashes.candidate_subject_hash
+            @test mechanism_subject_hash(alternate.genome) != mechanism_subject_hash(migrated.genome)
             identity = operator_manifest(migration_registry, QualifiedRefV1("IDENTITY", "v1"))
             altered_identity = OperatorManifestV1(identity.operator_ref, identity.input_arity,
                 identity.output_arity, identity.input_type_rule, identity.output_type_rule;
@@ -232,8 +236,8 @@ else
                 variant_context, registry_variant)
             @test registry_changed.resolution == resolved
             @test registry_changed.mapping_hash != migrated.mapping_hash
-            @test registry_changed.canonical.hashes.operator_registry_hash !=
-                migrated.canonical.hashes.operator_registry_hash
+            @test registry_changed.genome.canonical.hashes.operator_registry_hash !=
+                migrated.genome.canonical.hashes.operator_registry_hash
             candidate_state = StateGeneV1(payload.states[1].state_ref, PB_TYPE,
                 QuantityIntervalV1(ExactFiniteIntervalV1(-2, 2, false), PB_UNIT), (), (), (), state_derived)
             candidate_declaration = _redeclare(declaration;
@@ -241,8 +245,7 @@ else
             candidate_changed = migrate_legacy_g1(source, candidate_declaration,
                 migration_context, migration_registry)
             @test candidate_changed.mapping_hash != migrated.mapping_hash
-            @test candidate_changed.canonical.hashes.candidate_subject_hash !=
-                migrated.canonical.hashes.candidate_subject_hash
+            @test mechanism_subject_hash(candidate_changed.genome) != mechanism_subject_hash(migrated.genome)
         end
 
         @testset "mixed and legacy admission" begin
@@ -282,7 +285,7 @@ else
                 graph = TypedOperatorHypergraphV1((node(:state, PB_TYPE; id="x"),
                     node(:state, PB_TYPE; id="y")),
                     (TypedHyperedge("legacy-edge", (1,), (2,), ast, :additive),))
-                source = MechanismGenomeV4(1, PB_CONTRACT, graph)
+                source = LegacyMechanismGenomeV4(1, PB_CONTRACT, graph)
                 declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
                     canonical_hash(source), PB_CONTRACT, (), (), (), (), (), (),
                     (G1LegacyEdgeCompletionV1("legacy-edge", (), ()),))
@@ -296,15 +299,27 @@ else
 
         @testset "migration reason matrix and declaration closure" begin
             source, declaration, migration_context, migration_registry = _legacy_migration_fixture()
-            @test migrate_legacy_g1(source, nothing, migration_context, migration_registry).reason == missing_mapping_resource
+            missing_mapping = migrate_legacy_g1(source, nothing, migration_context, migration_registry)
+            @test missing_mapping.reason == missing_mapping_resource
+            @test missing_mapping.genome === nothing
+            @test missing_mapping.mapping_hash === nothing
             wrong_hash = _redeclare(declaration; source_hash=digest256_text("wrong-source"))
-            @test migrate_legacy_g1(source, wrong_hash, migration_context, migration_registry).reason == mapping_not_applicable
+            wrong_hash_result = migrate_legacy_g1(source, wrong_hash, migration_context, migration_registry)
+            @test wrong_hash_result.reason == mapping_not_applicable
+            @test wrong_hash_result.genome === nothing
+            @test wrong_hash_result.mapping_hash === nothing
             foreign = GenomeContractRef("urn:foreign", "v1", repeat("c", 64), repeat("d", 64), "g1")
             wrong_contract = _redeclare(declaration; target_contract=foreign)
-            @test migrate_legacy_g1(source, wrong_contract, migration_context, migration_registry).reason == contract_incompatible
+            wrong_contract_result = migrate_legacy_g1(source, wrong_contract, migration_context, migration_registry)
+            @test wrong_contract_result.reason == contract_incompatible
+            @test wrong_contract_result.genome === nothing
+            @test wrong_contract_result.mapping_hash === nothing
             missing_completion = _redeclare(declaration; edge_completions=())
-            @test migrate_legacy_g1(source, missing_completion, migration_context, migration_registry).reason == legacy_edge_completion_missing
-            opaque_source = MechanismGenomeV4(7, PB_CONTRACT, source.graph;
+            missing_completion_result = migrate_legacy_g1(source, missing_completion, migration_context, migration_registry)
+            @test missing_completion_result.reason == legacy_edge_completion_missing
+            @test missing_completion_result.genome === nothing
+            @test missing_completion_result.mapping_hash === nothing
+            opaque_source = LegacyMechanismGenomeV4(7, PB_CONTRACT, source.graph;
                 invariants=((; opaque=true),), observables=source.observables)
             opaque_declaration = _redeclare(declaration;
                 source_hash=canonical_hash(opaque_source), invariants=())
@@ -321,12 +336,11 @@ else
             @test result_a.resolution == resolved
             @test result_b.resolution == resolved
             @test result_a.mapping_hash == result_b.mapping_hash
-            @test result_a.canonical.hashes.candidate_subject_hash ==
-                result_b.canonical.hashes.candidate_subject_hash
+            @test mechanism_subject_hash(result_a.genome) == mechanism_subject_hash(result_b.genome)
             @test result_a.source_mechanism_hash == canonical_hash(source_a)
             source_seed, declaration_seed, context_seed, registry_seed =
                 _legacy_bijective_fixture()
-            source_seed = MechanismGenomeV4(999, source_seed.contract_ref, source_seed.graph;
+            source_seed = LegacyMechanismGenomeV4(999, source_seed.contract_ref, source_seed.graph;
                 invariants=source_seed.invariants, observables=source_seed.observables)
             declaration_seed = _redeclare(declaration_seed;
                 source_hash=canonical_hash(source_seed))
@@ -336,7 +350,7 @@ else
         end
 
         @testset "constructor contradiction and dangling references" begin
-            @test_throws ArgumentError MechanismGenomeV4(1, PB_CONTRACT, _legacy_graph(); invariants=(Any[1],))
+            @test_throws ArgumentError LegacyMechanismGenomeV4(1, PB_CONTRACT, _legacy_graph(); invariants=(Any[1],))
             @test_throws ArgumentError MechanismGenomePayloadV1((payload.states[1], payload.states[1]),
                 payload.invariants, payload.operator_graph, payload.parameters, payload.symmetries,
                 payload.observables, payload.operator_holes)
@@ -375,8 +389,9 @@ else
         @testset "seed, label, family, unicode, and graph permutation" begin
             g = _legacy_graph(labels=("磁场🚀", "状態"), ids=("节点一", "node-two"))
             same_semantics = _legacy_graph(labels=("changed", "labels"), ids=("other-a", "other-b"))
-            @test mechanism_hash(MechanismGenomeV4(1, PB_CONTRACT, g)) ==
-                mechanism_hash(MechanismGenomeV4(999, PB_CONTRACT, same_semantics))
+            @test_throws MethodError mechanism_hash(LegacyMechanismGenomeV4(1, PB_CONTRACT, g))
+            @test canonical_hash(LegacyMechanismGenomeV4(1, PB_CONTRACT, g)) ==
+                canonical_hash(LegacyMechanismGenomeV4(999, PB_CONTRACT, same_semantics))
             @test canonical_hash(g) == canonical_hash(_legacy_graph(permuted=true))
             family = _legacy_graph(kinds=(:input, :input))
             @test canonical_hash(g) != canonical_hash(family)
@@ -418,8 +433,7 @@ else
             result9 = migrate_legacy_g1(source9, nothing, context9, registry9)
             @test result9.resolution == terminal_deferred
             @test result9.reason == canonicalization_budget_exhausted
-            @test result9.payload === nothing
-            @test result9.canonical === nothing
+            @test result9.genome === nothing
             @test result9.mapping_hash === nothing
             @test result9.source_mechanism_hash === nothing
         end

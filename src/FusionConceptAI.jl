@@ -10,7 +10,6 @@ include("IR/OperatorHypergraph.jl")
 include("Genomes/MechanismGenes.jl")
 include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
-include("Genomes/MechanismGenome.jl")
 include("Genomes/MechanismGenesV1.jl")
 include("Genomes/FieldGeometryPrimitives.jl")
 include("Genomes/FieldGeometrySpatialSupport.jl")
@@ -21,7 +20,6 @@ include("Genomes/RealizationControlGenome.jl")
 include("Canonical/CanonicalJSON.jl")
 canonical_json(x::TypedASTProgramV1) = invoke(_typed_ast_program_json, Tuple{TypedASTProgramV1}, x)
 include("Canonical/ExactGraphCanonicalization.jl")
-include("Canonical/Hashes.jl")
 include("Canonical/TypedASTProgramCanonical.jl")
 include("Genomes/MechanismGeneCanonical.jl")
 include("Canonical/FieldGeometryPrimitiveCanonical.jl")
@@ -36,6 +34,8 @@ include("Canonical/ControlObservationRequirementCanonical.jl")
 include("Genomes/MechanismGenomePayload.jl")
 include("Canonical/MechanismCanonicalTransport.jl")
 include("Canonical/MechanismHashLayers.jl")
+include("Genomes/MechanismGenome.jl")
+include("Canonical/Hashes.jl")
 include("Genomes/MechanismLegacyMigration.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
@@ -100,12 +100,12 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        migration_lossless, missing_mapping_resource, mapping_not_applicable, contract_incompatible,
        legacy_ast_unrepresentable, legacy_gene_semantics_unrepresentable, legacy_edge_completion_missing,
        canonicalization_budget_exhausted, G1LegacyMigrationResultV1, migrate_legacy_g1,
-       MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
+       LegacyMechanismGenomeV4, MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
        resolve_contract,
        MissionContractRef, ProposalEnvelopeV4, UncertaintyV4, EvidenceContentV4, EvidenceEnvelopeV4, evidence_envelope, evidence_id_for, CanonicalHashesV4, CandidateStatePackageV4,
        LegacyMigrationResultV4, migrate_legacy,
-       derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash,
+       derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash, mechanism_subject_hash,
        field_geometry_hash, realization_control_hash, realization_hash, control_hash, coupled_realization_control_hash, genome_bundle_hash,
        AuthorityProtocolV4, IntermediateAuthorityProtocolV4, DerivedEGraphViewV4,
        EqualityConditionRequirementV1, WholeProgramConditionalRewriteV1, ConditionalRewriteSetV1,

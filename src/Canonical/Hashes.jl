@@ -10,7 +10,9 @@ function canonical_hash(x::AtomicMIMOHyperedgeV1)
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(_mimo_edge_canonical_bytes(x))))))
 end
 
-mechanism_hash(x::MechanismGenomeV4) = canonical_hash(x)
+mechanism_hash_layers(x::MechanismGenomeV4) = x.canonical.hashes
+mechanism_hash(x::MechanismGenomeV4) = x.canonical.hashes.decorated_mechanism_hash
+mechanism_subject_hash(x::MechanismGenomeV4) = x.canonical.hashes.candidate_subject_hash
 field_geometry_hash(x::FieldGeometryGenomeV4) = canonical_hash(x)
 realization_control_hash(x::RealizationControlGenomeV4) = canonical_hash(x)
 realization_hash(x::RealizationControlGenomeV4) = canonical_hash((contract_ref=x.contract_ref, graph=x.realization_graph, payload=x.realization))

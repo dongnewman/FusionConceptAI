@@ -203,7 +203,7 @@ if get(ENV, "FUSION_G1OC_CHILD", "0") == "1"
         record = only(JSON3.read(line, Dict{String,Any}) for line in eachline(joinpath(@__DIR__, "fixtures", "g1_observable_closed_baseline_e3c1093.jsonl")) if !isempty(strip(line)) && JSON3.read(line, Dict{String,Any})["name"] == "mechanism_layers_legacy")
         expected_layers = Tuple(String.(record["layer_hashes"]))
         @assert Tuple(getfield(layers, i).value for i in 1:8) == expected_layers
-        source = MechanismGenomeV4(UInt64(1), context.contract_ref, payload.operator_graph, payload.invariants, payload.observables)
+        source = LegacyMechanismGenomeV4(UInt64(1), context.contract_ref, payload.operator_graph, payload.invariants, payload.observables)
         edge = payload.operator_graph.hyperedges[1]
         completion = G1LegacyEdgeCompletionV1(edge.edge_id, edge.account_effects, edge.interface_flux_pairs)
         declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), canonical_hash(source), context.contract_ref, payload.states, payload.invariants, (), (), payload.observables, (), (completion,))
