@@ -15,6 +15,9 @@ include("control_observation_requirement_dispatch_adversarial.jl")
 include("typed_ast_program_canonical_adversarial.jl")
 include("mechanism_observable_closed_canonical_tests.jl")
 include("mechanism_observable_closed_canonical_adversarial.jl")
+include("conditional_egraph_p1_core_tests.jl")
+include("conditional_egraph_p1_adversarial.jl")
+include("conditional_egraph_p1_length_adversarial.jl")
 
 @testset "G1 exact decorated canonical transport" begin
     unit = UnitSignature()

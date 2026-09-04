@@ -39,6 +39,9 @@ include("Canonical/MechanismHashLayers.jl")
 include("Genomes/MechanismLegacyMigration.jl")
 include("Contracts/CandidateStatePackage.jl")
 include("IR/ConditionalEGraph.jl")
+include("IR/ConditionalEGraphTypes.jl")
+include("Canonical/ConditionalEGraphCanonical.jl")
+include("IR/ConditionalEGraphSaturation.jl")
 include("Contracts/Authority.jl")
 
 export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebraic_time, differential_time, discrete_time, event_time,
@@ -104,6 +107,19 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        LegacyMigrationResultV4, migrate_legacy,
        derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash,
        field_geometry_hash, realization_control_hash, realization_hash, control_hash, coupled_realization_control_hash, genome_bundle_hash,
-       AuthorityProtocolV4, IntermediateAuthorityProtocolV4, DerivedEGraphViewV4
+       AuthorityProtocolV4, IntermediateAuthorityProtocolV4, DerivedEGraphViewV4,
+       EqualityConditionRequirementV1, WholeProgramConditionalRewriteV1, ConditionalRewriteSetV1,
+       ConditionalEGraphBudgetV1, RewriteOrientationV1, rewrite_forward, rewrite_reverse,
+       ConditionalEGraphStopReasonV1, conditional_fixed_point, conditional_budget_programs,
+       conditional_budget_rewrite_attempts, conditional_budget_rounds, conditional_budget_trace_steps,
+       ConditionalRewriteTraceStepV1, ConditionalProgramENodeV1, ConditionalEClassV1,
+       ConditionalEGraphUsageV1, ConditionalEqualityProvenanceV1, ConditionalEqualityStatusV1,
+       reflexive_equal, conditional_equal, equality_unknown, ConditionalEqualityQueryResultV1,
+       DerivedConditionalEGraphV1, ConditionalEGraphDerivationResultV1,
+       ConditionalEGraphSaturationStateV1, saturation_complete, saturation_incomplete,
+       ConditionalEGraphDerivationReasonV1, conditional_egraph_derived, saturation_budget_exhausted,
+       manifest_or_contract_incompatible, source_out_of_profile, exact_canonicalization_deferred,
+       derive_conditional_program_egraph, query_conditional_equality, replay_conditional_rewrite_trace,
+       conditional_equivalence_hash, saturation_attempt_hash
 
 end
