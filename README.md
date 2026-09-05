@@ -20,8 +20,8 @@ capability obligations; it does not manufacture missing physical components
 or upgrade screen evidence.
 
 Run the RuntimeV4 checks through the independent-process wrapper from the
-repository root.  With no names it runs core, vertical, archive, and spine in
-that order; names may be selected during development:
+repository root. With no names it runs core, vertical, archive, spine,
+algebraic, and algebraic_slice in that order; names may be selected during development:
 
 ```powershell
 julia --project=. scripts\test_runtime_v4.jl
@@ -37,12 +37,21 @@ Its default S0-S10 ladder records missing physical declarations explicitly.
 Traversing this ladder does not mean its physics stages have executed:
 the current fixture reports withheld authority and no whole-device readiness.
 
+The bounded numerical example is available with
+`julia --project=. scripts/run_v4_algebraic_slice.jl`. It extracts the declared
+parameter-free, zero-dimensional scalar constraint AST and runs a bounded
+Newton solve. The two-equation regression system reaches `(2, 1)` with zero
+reported residual; its evidence is `screen_only` and covers the selected
+constraint subgraph. The remaining candidate obligations are retained.
+
 The current acceptance record is in
 [`docs/implementation/runtime_acceptance.md`](docs/implementation/runtime_acceptance.md).
 It records the verified standalone checks and their evidence boundary.  Core
 and archive checks have clean-project results; the published vertical slice
 also passed 25/25 in a fresh checkout. The accepted stage spine passed 54/54;
-the combined runtime checks passed 127 assertions with all five entrypoints
-exiting successfully. The clean published package baseline at `310db3b`
+the numerical core passed 77/77 and its integration passed 22/22. The combined
+runtime release check passed 226 assertions and all eight test/CLI entrypoints
+exited successfully, with the updated Project and Manifest loaded together.
+The clean published package baseline at `310db3b`
 also passed its full `Pkg.test` run. Integrated physics, L4 validation evidence,
 and the user's overall fusion objective remain incomplete.

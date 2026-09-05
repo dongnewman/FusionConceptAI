@@ -6,6 +6,7 @@ include("Contracts.jl")
 include("Compiler.jl")
 include("Capability.jl")
 include("Execution.jl")
+include("AlgebraicResidual.jl")
 include("DeterministicScreenProvider.jl")
 include("RuntimePipeline.jl")
 include("Frontier.jl")
@@ -18,6 +19,12 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        ExecutablePhysicalSubjectV4, SolverInputV4, RuntimeEvidenceV4,
        compile_candidate, derive_capability_obligations, match_provider,
        materialize, compile_solver_input, execute_once!,
+       StateValueV4, AlgebraicScenarioV4,
+       AlgebraicResidualCompilationV4, AlgebraicResidualPlanV4,
+       AlgebraicResidualResultV4, AlgebraicSliceReportV4,
+       compile_algebraic_residual_plan, evaluate_algebraic_residual,
+       solve_algebraic_residual, algebraic_residual_manifest,
+       execute_algebraic_once!,
        deterministic_screen_execute, deterministic_screen_manifest,
        deterministic_screen_provider, screen_capability, screen_execution_count,
        reset_screen_execution_count!, VerticalSliceReportV4,

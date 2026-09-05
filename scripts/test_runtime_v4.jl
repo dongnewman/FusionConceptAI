@@ -5,8 +5,9 @@ Usage:
     julia --project=. scripts/test_runtime_v4.jl
     julia --project=. scripts/test_runtime_v4.jl core archive
 
-The selected names are: core, vertical, archive, and spine.  `spine_cli` is
-also available when the command-line report is wanted.  The child processes
+The selected names are: core, vertical, archive, spine, algebraic, and
+algebraic_slice.  The
+`spine_cli` and `algebraic_cli` names run command-line reports.  The child processes
 inherit the active project and write their own test output.  This entrypoint
 does not discover or alter worktrees.
 """
@@ -17,13 +18,16 @@ const _RUNTIME_TESTS = (
     archive=("test/runtime_v4_archive_tests.jl", "queue/archive tests"),
     spine=("test/runtime_v4_spine_tests.jl", "spine tests"),
     spine_cli=("scripts/run_v4_spine.jl", "spine CLI"),
+    algebraic=("test/runtime_v4_algebraic_residual_tests.jl", "algebraic residual focused tests"),
+    algebraic_slice=("test/runtime_v4_algebraic_slice_tests.jl", "algebraic vertical slice integration tests"),
+    algebraic_cli=("scripts/run_v4_algebraic_slice.jl", "algebraic residual CLI"),
 )
-const _RUNTIME_NAMES = (:core, :vertical, :archive, :spine, :spine_cli)
-const _RUNTIME_DEFAULT_NAMES = (:core, :vertical, :archive, :spine)
+const _RUNTIME_NAMES = (:core, :vertical, :archive, :spine, :spine_cli, :algebraic, :algebraic_slice, :algebraic_cli)
+const _RUNTIME_DEFAULT_NAMES = (:core, :vertical, :archive, :spine, :algebraic, :algebraic_slice)
 
 function _usage_error(message::AbstractString)
     println(stderr, "error: ", message)
-    println(stderr, "usage: julia --project=. scripts/test_runtime_v4.jl [core|vertical|archive|spine|spine_cli ...]")
+    println(stderr, "usage: julia --project=. scripts/test_runtime_v4.jl [core|vertical|archive|spine|spine_cli|algebraic|algebraic_slice|algebraic_cli ...]")
     exit(2)
 end
 

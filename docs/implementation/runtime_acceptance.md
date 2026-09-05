@@ -47,6 +47,25 @@ the RuntimeV4 additive path and the boundaries that remain active.
   followed by `Testing FusionConceptAI tests passed`. This run excludes the
   pre-existing uncommitted G1 migration and is separate from the additive
   RuntimeV4 checks above.
+- Bounded algebraic residual core: **77/77**; module/CLI integration:
+  **22/22**. Sol signed off the parameter-free 0D scalar constraint slice.
+  The root independently placed the nine frozen implementation/dependency
+  files into a fresh `d2b6d69` worktree, including both `Project.toml` and
+  `Manifest.toml`, then ran all six RuntimeV4 suites and both CLIs. All eight
+  entrypoints exited zero, reporting **226 passing assertions** in total.
+  The algebraic CLI started from `(0.5, -0.25)` and returned `(2.0, 1.0)`,
+  residuals `(0.0, 0.0)`, and normalized residual norm `0.0`.
+
+The numerical capability is restricted to declared G1 constraint roots using
+`IDENTITY`, `ADD`, `SUB`, `NEG`, `SCALAR_MUL`, and `SCALAR_DIV` at revision v1.
+The solver uses finite differences and bounded Newton steps under a frozen
+protocol. Tests check actual residuals, failed convergence, singularity,
+division by zero, bounds, registry/prefix binding, provider identity, and
+cache corruption. Evidence binds the provider source SHA and stays
+`screen_only`. The CLI retains three ignored edge hashes and the unresolved
+whole-candidate physical obligations; it reports withheld authority and
+zero credible physical candidates. This is an artificial regression system,
+not an independently validated fusion device.
 
 The checks above are contract, canonicalization, routing, queue/archive, and
 software-screen checks.  They do not constitute integrated multiphysics,
@@ -76,7 +95,8 @@ ceiling.
 Search/archive code has standalone coverage. The stage spine now provides
 the declared campaign, exact provider admission, evidence closure checks,
 and withheld authority path. It does not execute the missing physical
-stages. The published executor performs only structural screening; no integrated numerical
+stages. The executors perform structural screening and a bounded algebraic
+constraint-subgraph solve; no integrated multiphysics
 solver or numerical VVUQ provider has been accepted. Integrated physics
 evidence is **0**, L4 evidence count is **0**, and no zero-unsupported result
 is treated as proof that the overall goal has been achieved.  No claim of
@@ -86,6 +106,8 @@ from the tests listed above.
 The full clean `Pkg.test` run at `ca6a9be` passed the earlier JSONL boundary
 but stopped at a pre-existing `pwd()/test` helper-path error in conservation
 scope tests. The narrow fix is published in `310db3b`; both the 55 focused
-assertions and the subsequent full-package run passed. The separate
-zero-dimensional algebraic solver remains under development and is outside
-this checkpoint. The accepted stage spine is published in `d2b6d69`.
+assertions and the subsequent full-package run passed. The accepted stage
+spine is published in `d2b6d69`. The algebraic numerical qualification above
+extends the software-screen checkpoint without raising its physical evidence
+ceiling. General ODE/DAE/PDE, whole-device execution, numerical VVUQ,
+independent validation, and final minimality certification remain unfinished.
