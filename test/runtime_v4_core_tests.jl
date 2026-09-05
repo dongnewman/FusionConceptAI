@@ -14,6 +14,14 @@ const H = digest256_text("runtime-v4-test")
 
 @testset "RuntimeV4 contracts and exact capability closure" begin
     @test R.MinimalityScopeV4(H, H, H, screen_only, ("same-grammar",), ("startup", "hold")).scenario_scope == ("startup", "hold")
+    normalized = R.MinimalityScopeV4(H, H, H, screen_only, ("  same-grammar  ",), (" STARTUP ", "hold"))
+    canonical = R.MinimalityScopeV4(H, H, H, screen_only, ("same-grammar",), ("STARTUP", "hold"))
+    @test normalized.comparison_scope == canonical.comparison_scope
+    @test normalized.scenario_scope == canonical.scenario_scope
+    @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("  ALL  ",), ("startup",))
+    @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("  WiLdCaRd  ",), ("startup",))
+    @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, (" a ", "a"), ("startup",))
+    @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("   ",), ("startup",))
     @test_throws ArgumentError R.CapabilitySignatureV4("s", "v", :operator, "op", ("state",), "scalar", "scalar", 0,
         (), "none", "none", "static", ("out",), screen_only, H; coordinate_system="*")
     @test_throws ArgumentError R.CapabilitySignatureV4("s", "v", :operator, "op", ("*",), "scalar", "scalar", 0,

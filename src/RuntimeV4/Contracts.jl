@@ -23,7 +23,7 @@ function _runtime_nonempty_text(x, field::AbstractString)
 end
 
 function _runtime_axis_tuple(xs, field::AbstractString; allow_empty::Bool=false)
-    ys = Tuple(_runtime_nonempty_text(x, field) for x in xs)
+    ys = Tuple(_runtime_nonwild_text(x, field) for x in xs)
     (allow_empty || !isempty(ys)) || throw(ArgumentError("$field cannot be empty"))
     any(x -> lowercase(x) in ("*", "any", "wildcard", "all"), ys) &&
         throw(ArgumentError("$field cannot contain wildcard axes"))
@@ -33,6 +33,7 @@ end
 
 function _runtime_nonwild_text(x, field::AbstractString)
     s = strip(_runtime_nonempty_text(x, field))
+    isempty(s) && throw(ArgumentError("$field cannot be empty or whitespace"))
     lowercase(s) in ("*", "any", "wildcard", "all") && throw(ArgumentError("$field cannot be wildcard"))
     s
 end
