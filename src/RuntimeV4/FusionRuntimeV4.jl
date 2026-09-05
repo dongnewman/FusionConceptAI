@@ -8,6 +8,10 @@ include("Capability.jl")
 include("Execution.jl")
 include("DeterministicScreenProvider.jl")
 include("RuntimePipeline.jl")
+include("Frontier.jl")
+include("WholeDevice.jl")
+include("Authority.jl")
+include("Campaign.jl")
 
 export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        CompiledCandidatePrefixV4, ProviderMatchResultV4,
@@ -17,6 +21,13 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        deterministic_screen_execute, deterministic_screen_manifest,
        deterministic_screen_provider, screen_capability, screen_execution_count,
        reset_screen_execution_count!, VerticalSliceReportV4,
-       run_v4_vertical_slice, vertical_slice_manifest
+       run_v4_vertical_slice, vertical_slice_manifest,
+       AbstractStageRequirementV4, ExactCapabilityRequirementV4,
+       UnresolvedStageDeclarationV4, StageSpecV4, StageDecisionV4,
+       derive_stage_gaps, derive_provider_gaps,
+       StageEvidenceBindingV4, admit_frontier,
+       close_frontier, WholeDeviceClosureV4, admit_whole_device,
+       audit_whole_device, AuthorityClassificationV4, classify_authority,
+       FrozenCampaignV4, SpineReportV4, freeze_campaign, default_stage_specs, run_v4_spine
 
 end

@@ -84,13 +84,16 @@ function run_v4_vertical_slice(candidate::CandidateStatePackageV4,
                                store=nothing,
                                backend=nothing,
                                comparison_scope=("runtime-v4-structural",),
-                               scenario_scope=("declared_scenarios",))
+                               scenario_scope=("declared_scenarios",),
+                               compiled_prefix=nothing)
     scenarios = _runtime_ordered_scenarios(scenarios)
-    compiled = compile_candidate(candidate, registry;
+    compiled = compiled_prefix === nothing ? compile_candidate(candidate, registry;
                                  mission_payload=mission_payload,
                                  bounds_payload=bounds_payload,
                                  comparison_scope=comparison_scope,
-                                 scenario_scope=scenario_scope)
+                                 scenario_scope=scenario_scope) :
+        _runtime_validate_compiled_prefix(compiled_prefix, candidate, registry,
+            mission_payload, bounds_payload, comparison_scope, scenario_scope)
     obligations = derive_capability_obligations(compiled)
     local_store = store === nothing ? Dict{Digest256,RuntimeEvidenceV4}() : store
     if !isempty(compiled.unresolved_nonterminals)

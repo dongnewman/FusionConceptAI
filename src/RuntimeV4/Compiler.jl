@@ -157,3 +157,67 @@ function compile_candidate(candidate::CandidateStatePackageV4, registry::GenomeC
 end
 
 derive_capability_obligations(compiled::CompiledCandidatePrefixV4) = compiled.capability_obligations
+
+function _runtime_validate_compiled_prefix(compiled::CompiledCandidatePrefixV4,
+                                           candidate::CandidateStatePackageV4,
+                                           registry::GenomeContractRegistryV4,
+                                           mission_payload, bounds_payload,
+                                           comparison_scope, scenario_scope)
+    compiled.candidate.canonical_hashes == candidate.canonical_hashes ||
+        throw(ArgumentError("compiled prefix candidate identity mismatch"))
+    compiled.mission_payload == mission_payload || throw(ArgumentError("compiled prefix mission mismatch"))
+    compiled.bounds_payload == bounds_payload || throw(ArgumentError("compiled prefix bounds mismatch"))
+    scope = compiled.minimality_scope
+    scope.evidence_level == screen_only || throw(ArgumentError("compiled prefix evidence level mismatch"))
+    scope.mission_hash == _runtime_decl_hash(mission_payload) || throw(ArgumentError("compiled prefix mission hash mismatch"))
+    scope.bounds_hash == _runtime_decl_hash(bounds_payload) || throw(ArgumentError("compiled prefix bounds hash mismatch"))
+    expected_grammar = canonical_hash((registry=registry, contracts=(candidate.mechanism_genome_ref.contract_ref,
+        candidate.field_geometry_genome_ref.contract_ref, candidate.realization_control_genome_ref.contract_ref)))
+    scope.grammar_hash == expected_grammar || throw(ArgumentError("compiled prefix grammar hash mismatch"))
+    scope.comparison_scope == Tuple(String(x) for x in comparison_scope) ||
+        throw(ArgumentError("compiled prefix comparison scope mismatch"))
+    scope.scenario_scope == Tuple(String(x) for x in scenario_scope) ||
+        throw(ArgumentError("compiled prefix scenario scope mismatch"))
+    graphs = (candidate.mechanism_genome_ref.payload.operator_graph,
+              candidate.field_geometry_genome_ref.graph,
+              candidate.realization_control_genome_ref.realization_graph,
+              candidate.realization_control_genome_ref.control_graph)
+    (compiled.mechanism_graph, compiled.field_geometry_graph,
+     compiled.realization_graph, compiled.control_graph) == graphs ||
+        throw(ArgumentError("compiled prefix graph identity mismatch"))
+    expected_regions, expected_interfaces, expected_boundaries = _runtime_collect_declarations(graphs)
+    compiled.normalized_regions == expected_regions && compiled.normalized_interfaces == expected_interfaces &&
+        compiled.normalized_boundaries == expected_boundaries ||
+        throw(ArgumentError("compiled prefix normalized declarations mismatch"))
+    expected_unresolved = String[]
+    resolve_contract(registry, candidate.mechanism_genome_ref.contract_ref, :mechanism) || push!(expected_unresolved, "contract_incompatible:mechanism")
+    resolve_contract(registry, candidate.field_geometry_genome_ref.contract_ref, :field_geometry) || push!(expected_unresolved, "contract_incompatible:field_geometry")
+    resolve_contract(registry, candidate.realization_control_genome_ref.contract_ref, :realization_control) || push!(expected_unresolved, "contract_incompatible:realization_control")
+    all(!isempty(g.nodes) for g in graphs) || push!(expected_unresolved, "required_genome_graph")
+    isempty(expected_regions) && push!(expected_unresolved, "required_region_declaration")
+    isempty(expected_boundaries) && push!(expected_unresolved, "required_boundary_declaration")
+    expected_obligations = CapabilitySignatureV4[]
+    for graph in graphs
+        push!(expected_obligations, _runtime_structural_obligation(graph, scope.bounds_hash))
+        for edge in graph.hyperedges
+            result, gap = _runtime_edge_obligation(graph, edge, scope.bounds_hash)
+            result === nothing ? push!(expected_unresolved, gap) : push!(expected_obligations, result)
+        end
+    end
+    expected_unresolved = unique(expected_unresolved)
+    expected_byhash = Dict{Digest256,CapabilitySignatureV4}(canonical_hash(o) => o for o in expected_obligations)
+    expected_obligations = Tuple(expected_byhash[h] for h in sort!(collect(keys(expected_byhash)), by=string))
+    compiled.unresolved_nonterminals == Tuple(expected_unresolved) ||
+        throw(ArgumentError("compiled prefix unresolved declarations mismatch"))
+    compiled.capability_obligations == expected_obligations ||
+        throw(ArgumentError("compiled prefix capability obligations mismatch"))
+    compiled.compilation_status == (isempty(expected_unresolved) ? :prefix_consistent : :prefix_incomplete) ||
+        throw(ArgumentError("compiled prefix status mismatch"))
+    expected = CompiledCandidatePrefixV4(candidate, mission_payload, bounds_payload, scope,
+        compiled.mechanism_graph, compiled.field_geometry_graph, compiled.realization_graph,
+        compiled.control_graph, compiled.normalized_regions, compiled.normalized_interfaces,
+        compiled.normalized_boundaries, compiled.unresolved_nonterminals,
+        compiled.capability_obligations, compiled.compilation_status)
+    expected.prefix_hash == compiled.prefix_hash || throw(ArgumentError("compiled prefix content hash mismatch"))
+    compiled
+end
