@@ -72,7 +72,25 @@ the RuntimeV4 additive path and the boundaries that remain active.
   stage-, and scenario-bound screen bookkeeping; it does not close physical
   gaps, revive the whole candidate, or satisfy S1-S10/P5.
 
-The numerical capability is restricted to declared G1 constraint roots using
+- Typed G2 field evaluation: **50/50** focused assertions and CLI exit **0**
+  against the published G1 contract. Sol independently audited and reran the
+  final source, including the isolated fixture module that removes constant
+  redefinition. The root then tested the final G2 snapshot together with the
+  pending G1 r2 migration and the canonical String-axis correction. All **11
+  entrypoints** exited zero; **30 test-summary rows / 348 assertions** passed
+  with no warning or error. All **35 reviewed source-file SHA-256 values**
+  remained unchanged throughout this combined run. The G1 full-package test
+  is still a separate migration-release requirement.
+  The field CLI computed `2x - y + 1` on 27 chart-coordinate nodes, with
+  minimum `-2`, maximum `4`, and a typed scalar result. Evidence remains
+  `screen_only`, with zero credible physical candidates and withheld authority.
+  Tests cover exact operator manifests, provider/code/plan/scenario binding,
+  grid bounds, sealed results, cache replay, and unknown-operator execution
+  returning no subject, input, or evidence. A genuine `DT@v1` program is
+  rejected by the upstream static-only phase-root contract; this does not
+  claim coverage of an unreachable selected-DT compiler path.
+
+The algebraic numerical capability is restricted to declared G1 constraint roots using
 `IDENTITY`, `ADD`, `SUB`, `NEG`, `SCALAR_MUL`, and `SCALAR_DIV` at revision v1.
 The solver uses finite differences and bounded Newton steps under a frozen
 protocol. Tests check actual residuals, failed convergence, singularity,
@@ -112,7 +130,8 @@ Search/archive code has standalone coverage. The stage spine now provides
 the declared campaign, exact provider admission, evidence closure checks,
 and withheld authority path. It does not execute the missing physical
 stages. The executors perform structural screening, candidate-local scoped
-queue/archive bookkeeping, and a bounded algebraic constraint-subgraph solve;
+queue/archive bookkeeping, a bounded algebraic constraint-subgraph solve, and
+typed G2 static field-program evaluation;
 no integrated multiphysics
 solver or numerical VVUQ provider has been accepted. Integrated physics
 evidence is **0**, L4 evidence count is **0**, and no zero-unsupported result

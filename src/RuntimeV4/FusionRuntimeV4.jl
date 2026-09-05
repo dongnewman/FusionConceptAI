@@ -10,6 +10,7 @@ include("Search.jl")
 include("Archives.jl")
 include("AlgebraicResidual.jl")
 include("AlgebraicScopedSearch.jl")
+include("FieldProgramEvaluation.jl")
 include("DeterministicScreenProvider.jl")
 include("RuntimePipeline.jl")
 include("Frontier.jl")
@@ -28,6 +29,10 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        compile_algebraic_residual_plan, evaluate_algebraic_residual,
        solve_algebraic_residual, algebraic_residual_manifest,
        execute_algebraic_once!,
+       FieldGridSpecV4, FieldEvaluationPlanV4, FieldEvaluationResultV4,
+       FieldEvaluationReportV4, compile_field_evaluation_plan,
+       evaluate_field_program, field_evaluation_manifest,
+       field_evaluation_provider, execute_field_evaluation,
        CandidateQueueEntryV4, CandidateQueueV4, enqueue_candidate!, submit_proposal!,
        mark_failed!, mark_deferred!, mark_dormant!, release_candidate!, revive_candidate!,
        next_compilable!, DeferredObligationV4, CapabilityGapRecordV4, CapabilityArchiveV4,

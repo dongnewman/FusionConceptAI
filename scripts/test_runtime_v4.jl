@@ -22,13 +22,15 @@ const _RUNTIME_TESTS = (
     algebraic_slice=("test/runtime_v4_algebraic_slice_tests.jl", "algebraic vertical slice integration tests"),
     algebraic_scoped=("test/runtime_v4_algebraic_scoped_search_tests.jl", "candidate-local algebraic search tests"),
     algebraic_cli=("scripts/run_v4_algebraic_slice.jl", "algebraic residual CLI"),
+    g2_field=("test/runtime_v4_g2_field_evaluation_tests.jl", "G2 typed field evaluation tests"),
+    g2_field_cli=("scripts/run_v4_g2_field_evaluation.jl", "G2 typed field evaluation CLI"),
 )
-const _RUNTIME_NAMES = (:core, :vertical, :archive, :spine, :spine_cli, :algebraic, :algebraic_slice, :algebraic_scoped, :algebraic_cli)
-const _RUNTIME_DEFAULT_NAMES = (:core, :vertical, :archive, :spine, :algebraic, :algebraic_slice, :algebraic_scoped)
+const _RUNTIME_NAMES = (:core, :vertical, :archive, :spine, :spine_cli, :algebraic, :algebraic_slice, :algebraic_scoped, :algebraic_cli, :g2_field, :g2_field_cli)
+const _RUNTIME_DEFAULT_NAMES = (:core, :vertical, :archive, :spine, :algebraic, :algebraic_slice, :algebraic_scoped, :g2_field)
 
 function _usage_error(message::AbstractString)
     println(stderr, "error: ", message)
-    println(stderr, "usage: julia --project=. scripts/test_runtime_v4.jl [core|vertical|archive|spine|spine_cli|algebraic|algebraic_slice|algebraic_scoped|algebraic_cli ...]")
+    println(stderr, "usage: julia --project=. scripts/test_runtime_v4.jl [core|vertical|archive|spine|spine_cli|algebraic|algebraic_slice|algebraic_scoped|algebraic_cli|g2_field|g2_field_cli ...]")
     exit(2)
 end
 
