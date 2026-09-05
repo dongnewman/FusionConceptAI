@@ -40,6 +40,52 @@ compatibility_profile = "g1-exact-occurrence-ownership-v2"
 
 未改变的 G1 primitive leaf 保持 `fusionconceptai:v4:g1-primitive:v1`。新增 occurrence kind/ref 是各自类型的首个 wire revision，使用 `g1-occurrence-kind:v1` 和 `g1-occurrence-ref:v1`。发生破坏性变化的 invariant、payload、canonical transport 和八个 hash-layer domain 使用 `:v2`，其 `canonicalization_version` 为 `"2"`。`CanonicalizationProfileV1` 仍表示算法预算/profile，不因 payload schema 升级而全局改动，避免影响 G2/G3。
 
+### 2.2 冻结的 migration machine contract
+
+迁移模式使用 sealed enum `G1LegacyMigrationModeV1`，只允许 `legacy9_to_exact7` 与 `exact7_recanonicalize`。模式必须是 `G1LegacyMigrationDeclarationV1` 的显式字段，不得根据 invariant tuple 是否为空或元素类型临时推断。声明的机器字段按以下顺序冻结：
+
+```text
+G1LegacyMigrationDeclarationV1(
+  mapping_ref,
+  mode,
+  source_contract_ref,
+  source_mechanism_hash,
+  target_contract_ref,
+  states,
+  invariants,
+  parameters,
+  symmetries,
+  observables,
+  operator_holes,
+  edge_completions,
+  declaration_content_hash)
+```
+
+`declaration_content_hash` 必须覆盖除自身外的全部字段，包括 mode、两个完整 contract ref 和 mapping ref。`legacy9_to_exact7` 要求全部 invariant 精确为 `LegacyInvariantV1`，source contract 与声明完全相等且不得是 r2 authority，target/context 必须与声明的 exact-r2 target 完全相等。`exact7_recanonicalize` 要求全部 invariant 精确为 `InvariantV1`，source、target、context 三个 contract ref 完全相等并且都是 exact-r2。空 invariant tuple 的模式仍由显式字段决定；只有转换后的 graph 也没有 ledger occurrence 时它才能通过 closure。混合两种 invariant、错误 source contract、错误 target contract 或把旧 contract 改写成 r2 标签均返回 typed deferred `contract_incompatible` 或 `legacy_gene_semantics_unrepresentable`。
+
+旧 invariant 的 expected projection 固定为：先用完整 ledger identity 过滤 normalized graph occurrences；global scope 取全部匹配项；domain scope 仅取其精确 MIMO endpoint 是 typed state node 且 node id 属于 scope state refs 的匹配项；interface scope 仅取精确 site 上的 interface-minus/interface-plus。非 state endpoint 在 domain projection 中是不匹配项，不能索引失败或被猜测成 state。随后分别投影 source、sink、boundary site set，其中旧 boundary set 对应 boundary-effect 与 interface-minus/interface-plus 的并集。三个投影必须分别与旧声明双向相等，之后才能把完整 expected occurrence tuple 交给正常 r2 payload closure。
+
+迁移 receipt 使用 sealed constructor，并至少冻结：
+
+```text
+G1LegacyMigrationReceiptV1(
+  source_contract_ref,
+  target_contract_ref,
+  source_canonical_hash,
+  target_canonical_transport_hash,
+  target_subject_hash,
+  mapping_ref,
+  mapping_hash,
+  mode_or_null,
+  mapping_algorithm_revision,
+  declaration_content_hash_or_null,
+  disposition,
+  reason,
+  receipt_hash)
+```
+
+`target_canonical_transport_hash` 是 canonical transport bytes 的 SHA-256，不能重复填入 subject hash。resolved receipt 的 source/target/mapping/declaration/mode 字段必须全部存在，并且 reason 只能是 lossless；deferred receipt 保留当时已经取得的 source hash、声明、mapping ref 和 mode，未知字段显式为 `nothing`。`receipt_hash` 覆盖上述全部字段。迁移结果和 `semantic_view` 必须携带同一个 receipt；调用方不能公开构造一份 resolved receipt 或替换其中的 mapping identity。
+
 ## 3. occurrence identity 与闭包
 
 公开 owner key 是：
