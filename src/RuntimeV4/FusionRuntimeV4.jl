@@ -6,7 +6,10 @@ include("Contracts.jl")
 include("Compiler.jl")
 include("Capability.jl")
 include("Execution.jl")
+include("Search.jl")
+include("Archives.jl")
 include("AlgebraicResidual.jl")
+include("AlgebraicScopedSearch.jl")
 include("DeterministicScreenProvider.jl")
 include("RuntimePipeline.jl")
 include("Frontier.jl")
@@ -25,6 +28,16 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        compile_algebraic_residual_plan, evaluate_algebraic_residual,
        solve_algebraic_residual, algebraic_residual_manifest,
        execute_algebraic_once!,
+       CandidateQueueEntryV4, CandidateQueueV4, enqueue_candidate!, submit_proposal!,
+       mark_failed!, mark_deferred!, mark_dormant!, release_candidate!, revive_candidate!,
+       next_compilable!, DeferredObligationV4, CapabilityGapRecordV4, CapabilityArchiveV4,
+       defer!, requeue_resolved!, gap_report, checkpoint_runtime, resume_runtime,
+       checkpoint!, resume_checkpoint,
+       AlgebraicScopedWorkV4, make_algebraic_scoped_work, algebraic_scoped_work,
+       defer_algebraic_scoped!, requeue_scoped_resolved!, next_algebraic_scoped_work,
+       AlgebraicScopedResolutionV4, make_algebraic_scoped_resolution,
+       algebraic_scoped_resolution, AlgebraicScopedAttemptV4,
+       make_algebraic_scoped_attempt, algebraic_scoped_attempt,
        deterministic_screen_execute, deterministic_screen_manifest,
        deterministic_screen_provider, screen_capability, screen_execution_count,
        reset_screen_execution_count!, VerticalSliceReportV4,

@@ -49,12 +49,28 @@ the RuntimeV4 additive path and the boundaries that remain active.
   RuntimeV4 checks above.
 - Bounded algebraic residual core: **77/77**; module/CLI integration:
   **22/22**. Sol signed off the parameter-free 0D scalar constraint slice.
-  The root independently placed the nine frozen implementation/dependency
-  files into a fresh `d2b6d69` worktree, including both `Project.toml` and
-  `Manifest.toml`, then ran all six RuntimeV4 suites and both CLIs. All eight
-  entrypoints exited zero, reporting **226 passing assertions** in total.
+  The root independently placed the frozen implementation/dependency
+  snapshot into a fresh `d2b6d69` worktree, including both `Project.toml` and
+  `Manifest.toml`, then ran all six pre-scoped RuntimeV4 suites and both CLIs.
+  All eight entrypoints exited zero, reporting **226 passing assertions** in
+  total.
   The algebraic CLI started from `(0.5, -0.25)` and returned `(2.0, 1.0)`,
   residuals `(0.0, 0.0)`, and normalized residual norm `0.0`.
+- Candidate-local algebraic scoped search: **59/59** in
+  `test/runtime_v4_algebraic_scoped_search_tests.jl`, first run in a
+  clean `d2b6d69`-based smoke project and independently confirmed by the root
+  in a fresh `89a85dd` worktree. The root then ran the expanded seven suites
+  and both CLIs with the six frozen implementation/dependency files copied
+  together. All nine entrypoints exited zero on 2026-09-05; the 27 test-summary
+  rows reported **285 passing assertions**. The tested files matched the main
+  release snapshot by SHA-256. The suite checks exact local-provider
+  provenance before archive mutation, deterministic queue selection without
+  global candidate revival, typed `AlgebraicScopedResolutionV4` versus
+  `AlgebraicScopedAttemptV4`, full status/provenance/threshold binding,
+  preservation of compiled unresolved and capability obligations, and
+  checkpoint identity.  The scoped result is candidate-, prefix-, plan-,
+  stage-, and scenario-bound screen bookkeeping; it does not close physical
+  gaps, revive the whole candidate, or satisfy S1-S10/P5.
 
 The numerical capability is restricted to declared G1 constraint roots using
 `IDENTITY`, `ADD`, `SUB`, `NEG`, `SCALAR_MUL`, and `SCALAR_DIV` at revision v1.
@@ -95,8 +111,9 @@ ceiling.
 Search/archive code has standalone coverage. The stage spine now provides
 the declared campaign, exact provider admission, evidence closure checks,
 and withheld authority path. It does not execute the missing physical
-stages. The executors perform structural screening and a bounded algebraic
-constraint-subgraph solve; no integrated multiphysics
+stages. The executors perform structural screening, candidate-local scoped
+queue/archive bookkeeping, and a bounded algebraic constraint-subgraph solve;
+no integrated multiphysics
 solver or numerical VVUQ provider has been accepted. Integrated physics
 evidence is **0**, L4 evidence count is **0**, and no zero-unsupported result
 is treated as proof that the overall goal has been achieved.  No claim of
