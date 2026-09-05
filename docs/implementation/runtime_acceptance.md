@@ -41,6 +41,12 @@ the RuntimeV4 additive path and the boundaries that remain active.
 - Conservation-scope test portability: **55/55** (44 ordinary and 11
   adversarial assertions), independently run from the clean checkout's
   `test` directory after resolving helper paths relative to source files.
+- Full published-package baseline: `julia --startup-file=no --project=. -e
+  'using Pkg; Pkg.test()'` at clean commit **310db3b** exited **0** on
+  2026-09-05. Its 101 test-summary rows reported **2,576 passing assertions**,
+  followed by `Testing FusionConceptAI tests passed`. This run excludes the
+  pre-existing uncommitted G1 migration and is separate from the additive
+  RuntimeV4 checks above.
 
 The checks above are contract, canonicalization, routing, queue/archive, and
 software-screen checks.  They do not constitute integrated multiphysics,
@@ -79,7 +85,7 @@ from the tests listed above.
 
 The full clean `Pkg.test` run at `ca6a9be` passed the earlier JSONL boundary
 but stopped at a pre-existing `pwd()/test` helper-path error in conservation
-scope tests. The narrow fix is published in `310db3b` and passed the 55
-focused assertions above. A new full run at `310db3b` is in progress; this
-record does not yet claim a full-package pass. The separate zero-dimensional
-algebraic solver remains under development and is outside this checkpoint.
+scope tests. The narrow fix is published in `310db3b`; both the 55 focused
+assertions and the subsequent full-package run passed. The separate
+zero-dimensional algebraic solver remains under development and is outside
+this checkpoint. The accepted stage spine is published in `d2b6d69`.

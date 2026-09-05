@@ -43,5 +43,6 @@ It records the verified standalone checks and their evidence boundary.  Core
 and archive checks have clean-project results; the published vertical slice
 also passed 25/25 in a fresh checkout. The accepted stage spine passed 54/54;
 the combined runtime checks passed 127 assertions with all five entrypoints
-exiting successfully. Integrated physics, L4 validation evidence,
+exiting successfully. The clean published package baseline at `310db3b`
+also passed its full `Pkg.test` run. Integrated physics, L4 validation evidence,
 and the user's overall fusion objective remain incomplete.
