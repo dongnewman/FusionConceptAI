@@ -1,7 +1,7 @@
 using Test
 using FusionConceptAI
 
-helper_source = read(joinpath(pwd(), "test", "mechanism_hash_layers_tests.jl"), String)
+helper_source = read(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"), String)
 include_string(Main, first(split(helper_source, "@testset")), "mechanism_hash_layers_tests.jl")
 
 _scope_hash_tuple(h) = ntuple(i -> getfield(h, i), fieldcount(typeof(h)))

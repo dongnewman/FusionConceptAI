@@ -2,12 +2,12 @@ using Test
 using FusionConceptAI
 
 if !isdefined(Main, :_legacy_migration_fixture)
-    phaseb_source = read(joinpath(pwd(), "test", "mechanism_phaseb_46_tests.jl"), String)
+    phaseb_source = read(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"), String)
     include_string(Main, first(split(phaseb_source, "if get(ENV, \"FUSION_PHASEB_CHILD\"")), "mechanism_phaseb_46_tests.jl")
 end
 
 @testset "scope canonical and fresh-process authority" begin
-    helper_source = read(joinpath(pwd(), "test", "mechanism_hash_layers_tests.jl"), String)
+    helper_source = read(joinpath(@__DIR__, "mechanism_hash_layers_tests.jl"), String)
     include_string(Main, first(split(helper_source, "@testset")), "mechanism_hash_layers_tests.jl")
     domain = DomainConservationScopeV1((StateGeneRefV1("z"), StateGeneRefV1("a")))
     permuted = DomainConservationScopeV1((StateGeneRefV1("a"), StateGeneRefV1("z")))
@@ -36,7 +36,7 @@ end
     script = raw"""
 using FusionConceptAI
 import FusionConceptAI
-helper_source = read(joinpath(pwd(), "test", "mechanism_hash_layers_tests.jl"), String)
+helper_source = read(only(ARGS), String)
 include_string(Main, first(split(helper_source, "@testset")), "mechanism_hash_layers_tests.jl")
 hash_payload, hash_context = _hash_fixture()
 base_invariant = hash_payload.invariants[1]
@@ -83,7 +83,8 @@ end
     @assert Tuple(getfield(before_interface, i).value for i in 1:8) == Tuple(getfield(after_interface, i).value for i in 1:8)
 println("SCOPE_CLOSED_PASS")
 """
-    command = setenv(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`, "FUSION_SCOPE_CHILD" => "1")
+    helper_path = joinpath(@__DIR__, "mechanism_hash_layers_tests.jl")
+    command = setenv(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script $helper_path`, "FUSION_SCOPE_CHILD" => "1")
     output = read(pipeline(command, stderr=stdout), String)
     @test occursin("SCOPE_CLOSED_PASS", output)
 end
