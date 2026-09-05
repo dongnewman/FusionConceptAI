@@ -14,60 +14,15 @@ end
 const R = RuntimeV4ArchiveTestModule
 const H = digest256_text("runtime-v4-archive-test")
 
-"""A small closed G1 fixture used only to exercise non-empty queue paths."""
+module RuntimeV4ArchivePublishedFixture
+using FusionConceptAI
+include(joinpath(@__DIR__, "..", "examples", "runtime_v4_declared_fixture.jl"))
+end
+
 function _archive_candidate_fixture()
-    unit = UnitSignature()
-    ptype = PhysicalType(:scalar_field, 0, 0, TemporalTypeV1(static_time), unit)
-    bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
-    ops = default_operator_registry()
-    left = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
-        registry=ops, input_types=(ptype,))
-    right = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (2,), (;);
-        registry=ops, input_types=(ptype,))
-    program = TypedASTProgramV1((ASTInputV1(1, ptype), ASTInputV1(2, ptype), left, right),
-        (3, 4), (1, 2); registry=ops)
-    sample_apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
-        registry=ops, input_types=(ptype,))
-    sample = TypedASTProgramV1((ASTInputV1(1, ptype), sample_apply), (2,), (1,);
-        registry=ops)
-    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("archive-ledger", "v1"),
-        digest256_text("archive-ontology"), unit)
-    effects = (PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :inflow), 1 // 1),
-               PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 2, :outflow), -1 // 1))
-    edge = AtomicMIMOHyperedgeV1("archive-additive",
-        (MIMOInputBindingV1(1, 1), MIMOInputBindingV1(2, 2)),
-        (MIMOOutputBindingV1(1, 1), MIMOOutputBindingV1(2, 2)), program, additive;
-        account_effects=effects, registry=ops)
-    graph = TypedOperatorHypergraphV1((node(:state, ptype; id="archive-state-a"),
-        node(:state, ptype; id="archive-state-b")), (edge,); registry=ops)
-    state_a = StateGeneV1(StateGeneRefV1("archive-state-a"), ptype, bounds, (), (), (), state_derived)
-    state_b = StateGeneV1(StateGeneRefV1("archive-state-b"), ptype, bounds, (), (), (), state_derived)
-    occ_a = ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("archive-additive"), :output, 1,
-        :inflow, occurrence_internal_effect, ledger)
-    occ_b = ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("archive-additive"), :output, 2,
-        :outflow, occurrence_internal_effect, ledger)
-    invariant = InvariantV1(InvariantRefV1("archive-invariant"), ledger, GlobalConservationScopeV1(),
-        (InvariantTermV1(StateGeneRefV1("archive-state-a"), 1),), (occ_a, occ_b), 0, entropy_conserved)
-    observable = ObservableGeneV1(ObservableRefV1("archive-observable"),
-        ProgramRootRefV1(OperatorSiteRefV1("archive-additive"), 1, ptype),
-        QualifiedRefV1("archive-intervention", "v1"), sample, bounds,
-        QualifiedRefV1("archive-noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
-        NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
-        (QualifiedRefV1("archive-prediction", "v1"),))
-    payload = MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
-    refs = (GenomeContractRef("urn:archive:mechanism", "v1", digest256_text("archive-ms"),
-                digest256_text("archive-mc"), "archive"),
-            GenomeContractRef("urn:archive:field", "v1", digest256_text("archive-fs"),
-                digest256_text("archive-fc"), "archive"),
-            GenomeContractRef("urn:archive:realization", "v1", digest256_text("archive-rs"),
-                digest256_text("archive-rc"), "archive"))
-    registry = GenomeContractRegistryV4(refs...)
-    mechanism = MechanismGenomeV4(1, refs[1], payload)
-    field = FieldGeometryGenomeV4(2, refs[2], graph)
-    realization = RealizationControlGenomeV4(3, 4, refs[3], graph, graph)
-    mission = MissionContractRef("urn:archive:mission", "v1", digest256_text("archive-mission-schema"),
-        digest256_text("archive-mission-canon"))
-    CandidateStatePackageV4("archive-candidate", mission, mechanism, field, realization, registry), registry, graph
+    candidate = RuntimeV4ArchivePublishedFixture.candidate
+    registry = RuntimeV4ArchivePublishedFixture.registry
+    candidate, registry, candidate.mechanism_genome_ref.payload.operator_graph
 end
 
 function _archive_compiled(candidate, graph; grammar_hash=H, bounds_hash=H, mission_hash=H)
