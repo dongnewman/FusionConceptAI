@@ -35,7 +35,7 @@ function _runtime_nonwild_text(x, field::AbstractString)
     s = strip(_runtime_nonempty_text(x, field))
     isempty(s) && throw(ArgumentError("$field cannot be empty or whitespace"))
     lowercase(s) in ("*", "any", "wildcard", "all") && throw(ArgumentError("$field cannot be wildcard"))
-    s
+    String(s)
 end
 
 function _runtime_required_ceiling(x::ClaimCeiling, field::AbstractString="claim ceiling")

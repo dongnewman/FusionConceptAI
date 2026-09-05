@@ -10,6 +10,10 @@ include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "Execution.jl"))
 end
 
 const R = RuntimeV4CoreTestModule
+module RuntimeV4DeclaredFixture
+using FusionConceptAI
+include(joinpath(@__DIR__, "..", "examples", "runtime_v4_declared_fixture.jl"))
+end
 const H = digest256_text("runtime-v4-test")
 
 @testset "RuntimeV4 contracts and exact capability closure" begin
@@ -18,10 +22,21 @@ const H = digest256_text("runtime-v4-test")
     canonical = R.MinimalityScopeV4(H, H, H, screen_only, ("same-grammar",), ("STARTUP", "hold"))
     @test normalized.comparison_scope == canonical.comparison_scope
     @test normalized.scenario_scope == canonical.scenario_scope
+    @test all(x -> x isa String, normalized.comparison_scope)
+    @test all(x -> x isa String, normalized.scenario_scope)
     @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("  ALL  ",), ("startup",))
     @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("  WiLdCaRd  ",), ("startup",))
     @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, (" a ", "a"), ("startup",))
     @test_throws ArgumentError R.MinimalityScopeV4(H, H, H, screen_only, ("   ",), ("startup",))
+    compiled_fixture = R.compile_candidate(RuntimeV4DeclaredFixture.candidate,
+        RuntimeV4DeclaredFixture.registry;
+        mission_payload=(mission="  declared  ",), bounds_payload=(bounds="  finite  ",),
+        comparison_scope=("  declared-grammar  ",), scenario_scope=("  startup  ",))
+    @test compiled_fixture.minimality_scope.comparison_scope == ("declared-grammar",)
+    @test compiled_fixture.minimality_scope.scenario_scope == ("startup",)
+    @test !isempty(compiled_fixture.unresolved_nonterminals)
+    @test all(x -> x isa String, compiled_fixture.unresolved_nonterminals)
+    @test canonical_hash(compiled_fixture) isa Digest256
     @test_throws ArgumentError R.CapabilitySignatureV4("s", "v", :operator, "op", ("state",), "scalar", "scalar", 0,
         (), "none", "none", "static", ("out",), screen_only, H; coordinate_system="*")
     @test_throws ArgumentError R.CapabilitySignatureV4("s", "v", :operator, "op", ("*",), "scalar", "scalar", 0,
