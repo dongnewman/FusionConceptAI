@@ -94,9 +94,10 @@ the RuntimeV4 additive path and the boundaries that remain active.
   **104 test-summary rows**, complete `Pkg.test`, exit **0** on 2026-09-05.
   The root ran Julia 1.10.5 with startup files disabled in the independent
   `e848e53`-based `fusion-v4-g1-acceptance` worktree, containing the frozen
-  27-file migration. The final source/test/document hashes and Project/Manifest
-  hashes were checked after the run and again after copying the migration to
-  main. The default runner includes both long fresh-process poison suites and
+  27-file migration. All 27 source/test/document raw hashes remained unchanged
+  through the run and after copying the migration to main. Project/Manifest
+  parsed contents and the Julia executable also match, as detailed below.
+  The default runner includes both long fresh-process poison suites and
   the occurrence-ownership suite without diagnostic skip switches.
   The final tests distinguish external ledger identity changes from balanced
   coefficient changes, and constructor rejection from migration rejection.
@@ -108,6 +109,24 @@ the RuntimeV4 additive path and the boundaries that remain active.
   After integration, the main-worktree smoke run passed **26 core assertions**
   and the G2 field CLI exited **0**, retaining its unresolved physical obligations.
   This acceptance covers software contracts and interoperability only.
+
+For the G1 migration protocol's environment comparison, the 27 reviewed files
+use exact raw SHA-256 identity. Project/Manifest raw hashes are recorded as
+checkout provenance; their parsed TOML values must be exactly equal. The fresh
+checkout uses CRLF and main uses LF, so their raw environment-file hashes differ:
+
+| File | Fresh acceptance SHA-256 | Main SHA-256 |
+|---|---|---|
+| Project.toml | `2375FAEBADAB2D223EA693D171110BB2E6F9B37D941BEA29E7F9B16DF39B4629` | `97435481303DE9F543DACBB7B5C9AAB0F35493420BAC8310E99FB5A217169624` |
+| Manifest.toml | `5072F85F611B59513FC61E716DC4CB64449DEF592BCA44543943F6564B1EC53E` | `C616BAAD478290530456E0D692D62A13A309DA9235529A3B94A437B2AB2D2203` |
+
+Julia `TOML.parsefile` deep equality passed for both files, including locked
+dependency versions and tree identities. The Julia executable SHA-256 matched
+`8E86E2D48C574393C37BBFB6E922EA4176BA8E1A83F956826F3DA24948E389AD`.
+Sol accepted this as unchanged dependencies and execution environment; a
+change to reviewed source bytes, parsed dependency content, or the Julia
+executable requires renewed relevant verification. This TOML comparison does
+not normalize executable provider sources or permit cache identity reuse.
 
 The algebraic numerical capability is restricted to declared G1 constraint roots using
 `IDENTITY`, `ADD`, `SUB`, `NEG`, `SCALAR_MUL`, and `SCALAR_DIV` at revision v1.
