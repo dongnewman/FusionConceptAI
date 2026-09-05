@@ -24,6 +24,44 @@ The initial provider accepts one non-periodic three-dimensional chart and a fini
 
 This result is a real evaluation of a declared field program. It is still `screen_only`; it does not establish a physical equation, PDE solution, field accuracy, or validation.
 
+#### 2.1.1 Frozen producer authority
+
+The first producer evaluates values in declared **chart-coordinate space**. A `CoordinateChartGeneV1` root reference is a declaration, not an implementation of its coordinate map or metric. Until a typed coordinate-map program and metric program are present and executed by qualified providers, the result must retain `g2_coordinate_map_unexecuted` and `g2_metric_unexecuted`. Those gaps do not prevent evaluation of an otherwise closed field program whose sole input is the declared chart coordinate, but the provider must not advertise ambient-coordinate, metric, gradient, divergence, Laplacian, PDE, or geometry-closure outputs. A site string such as `affine`, `cartesian`, or `euclidean` never proves one of those properties.
+
+The callable factory interfaces are frozen as:
+
+```text
+compile_field_evaluation_plan(
+  candidate::CandidateStatePackageV4,
+  compiled::CompiledCandidatePrefixV4,
+  genome_registry::GenomeContractRegistryV4,
+  operator_registry::OperatorRegistryV1;
+  scenario,
+  grid,
+  program_site_ref,
+  root_position)
+
+execute_field_evaluation(
+  store::AbstractDict,
+  candidate::CandidateStatePackageV4,
+  compiled::CompiledCandidatePrefixV4,
+  genome_registry::GenomeContractRegistryV4,
+  operator_registry::OperatorRegistryV1,
+  plan::FieldEvaluationPlanV4,
+  scenario;
+  provider)
+```
+
+Compilation first rederives and verifies the compiled prefix from the candidate, its frozen mission and bounds, and its comparison/scenario scopes. Execution repeats that verification and reconstructs the expected plan from the candidate, compiled object, registries, scenario, grid, program site, and root position. It compares the complete derived plan, rather than trusting a caller-supplied `status` or `plan_hash`. Plan and result types expose no public constructor that can independently assert ready, pass, or a result hash.
+
+`FieldEvaluationPlanV4` binds the semantic Genome bundle hash and excludes candidate display ID, proposal lineage, archive metadata, and evidence history. It also binds the exact G2 hash, support and phase-set hashes, chart declaration and bounds, selected program/site/root position and hashes, exact bound parameter values/units/bounds, grid order, scenario hash, source-file hash, and the program's sorted `used_manifest_bindings`. Every used binding is re-resolved in the supplied `OperatorRegistryV1`; execution dispatches through a sealed kernel table keyed by the complete `(operator id, version, manifest hash)`. Dispatch by ID alone is forbidden.
+
+The initial executable output is one static scalar root. The sealed operator subset is `IDENTITY@v1`, `ADD@v1`, `SUB@v1`, `NEG@v1`, `SCALAR_MUL@v1`, `SCALAR_DIV@v1`, and `DOT@v1`, each with the exact registered manifest hash. Vector/tensor output roots, derivatives, time-dependent roots, periodic or multichart execution, and unknown bindings remain typed gaps. Additional unselected programs, roots, phase declarations, or parameters remain explicit scope gaps and are never silently counted as evaluated.
+
+The provider manifest is a pure, idempotent function of the plan and uses one module-level executor whose code hash is derived from the real source bytes. It uses no mutable global plan registry. The immutable solver payload contains the complete execution plan data needed by that executor, and the executor recomputes its body hash before evaluation. Repeated manifest construction therefore returns the same manifest/executor binding and cannot be redirected by registering a forged object under an existing hash.
+
+Successful evidence requires the exact local manifest, code hash, backend and revision, executor binding, input schema, physical subject, scenario, numerical configuration, and recomputed result artifact. Its status vector is `required / unique_match / resolved / low_fidelity_evaluated / pass`, its ceiling is exactly `screen_only`, and its artifacts contain the recomputed field result hash. Cache replay rechecks every one of those bindings. Field evidence preserves all compiler and whole-candidate gaps and closes no physical, VVUQ, engineering, validation, or P5 obligation.
+
 ### 2.2 Residual materialization declaration
 
 The next boundary introduces a sealed `FieldResidualDeclarationV4`. It is runtime materialization data and does not pretend that missing G2 gene types already exist. It binds:
