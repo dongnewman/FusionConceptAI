@@ -3,8 +3,7 @@
 const WRAPPER_UNIT = UnitSignature()
 const WRAPPER_TYPE = PhysicalType(:scalar_field, 0, 3, :differential, WRAPPER_UNIT)
 const WRAPPER_BOUNDS = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), WRAPPER_UNIT)
-const WRAPPER_CONTRACT = GenomeContractRef("urn:fusion:wrapper", "v1",
-    repeat("a", 64), repeat("b", 64), "g1")
+const WRAPPER_CONTRACT = g1_occurrence_ownership_contract_ref("urn:fusion:wrapper")
 const WRAPPER_PROFILE = CanonicalizationProfileV1("wrapper-tests", "1",
     CanonicalizationBudgetV1(100_000, 10_000, 512, 8_000_000))
 
@@ -30,9 +29,14 @@ function _wrapper_payload(; account::String="wrapper-account")
         WRAPPER_BOUNDS, (), (), (), state_derived)
     state_b = StateGeneV1(StateGeneRefV1("wrapper-state-b"), WRAPPER_TYPE,
         WRAPPER_BOUNDS, (), (), (), state_derived)
+    owned_occurrences = (
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("wrapper-site-a"), :input, 1,
+            :inflow, occurrence_internal_effect, ledger),
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("wrapper-site-a"), :output, 1,
+            :outflow, occurrence_internal_effect, ledger))
     invariant = InvariantV1(InvariantRefV1("wrapper-invariant"),
         ledger, GlobalConservationScopeV1(),
-        (InvariantTermV1(StateGeneRefV1("wrapper-state-a"), 1),), (), (), (), 0,
+        (InvariantTermV1(StateGeneRefV1("wrapper-state-a"), 1),), owned_occurrences, 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("wrapper-observable"),
         ProgramRootRefV1(OperatorSiteRefV1("wrapper-site-a"), 1, WRAPPER_TYPE),

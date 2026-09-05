@@ -160,6 +160,39 @@ function _g1_scope_wire(value::InterfaceConservationScopeV1)
     _ccbw_ascii!(io, "}}")
     invoke(_g1_scope_wrap, Tuple{String}, _ccbw_finish(io))
 end
+
+function _g1_occurrence_kind_wire(value::ConservationOccurrenceKindV1)
+    label = value === occurrence_internal_effect ? "occurrence_internal_effect" :
+        value === occurrence_source_effect ? "occurrence_source_effect" :
+        value === occurrence_sink_effect ? "occurrence_sink_effect" :
+        value === occurrence_boundary_effect ? "occurrence_boundary_effect" :
+        value === occurrence_interface_minus ? "occurrence_interface_minus" :
+        value === occurrence_interface_plus ? "occurrence_interface_plus" :
+        throw(ArgumentError("unsealed conservation occurrence kind"))
+    io = _ccbw_new()
+    _ccbw_ascii!(io, "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:g1-occurrence-kind:v1\",\"kind\":")
+    _ccbw_quote!(io, label); _ccbw_ascii!(io, "}"); _ccbw_finish(io)
+end
+
+function _g1_occurrence_ref_wire(value::ConservationLedgerOccurrenceRefV1)
+    site = getfield(value, :operator_site_ref)
+    ledger = getfield(value, :ledger_identity)
+    io = _ccbw_new()
+    _ccbw_ascii!(io, "{\"canonicalization_version\":\"1\",\"domain\":\"fusionconceptai:v4:g1-occurrence-ref:v1\",\"occurrence\":{\"direction\":")
+    _ccbw_quote!(io, String(getfield(value, :direction)))
+    _ccbw_ascii!(io, ",\"ledger_identity\":")
+    _ccbw_ascii!(io, invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, ledger))
+    _ccbw_ascii!(io, ",\"occurrence_kind\":")
+    _ccbw_ascii!(io, invoke(_g1_occurrence_kind_wire, Tuple{ConservationOccurrenceKindV1}, getfield(value, :occurrence_kind)))
+    _ccbw_ascii!(io, ",\"operator_site_ref\":{\"value\":")
+    _ccbw_quote!(io, getfield(site, :value))
+    _ccbw_ascii!(io, "},\"port_index\":")
+    _ccbw_integer!(io, getfield(value, :port_index))
+    _ccbw_ascii!(io, ",\"port_side\":")
+    _ccbw_quote!(io, String(getfield(value, :port_side)))
+    _ccbw_ascii!(io, "}}}")
+    _ccbw_finish(io)
+end
 function _g1_entropy_wire(value::EntropyDirectionV1)
     labels = ("not_applicable", "nondecreasing", "nonincreasing", "conserved")
     invoke(_g1_enum_wire, Tuple{String,Int,Tuple{Vararg{String}}}, "entropy_direction", Int(value), labels)
@@ -204,6 +237,8 @@ canonical_json(value::ParameterTransformKindV1) = _g1_transform_wire(value)
 canonical_json(value::SymmetryGroupKindV1) = _g1_group_wire(value)
 canonical_json(value::SymmetryBehaviorV1) = _g1_behavior_wire(value)
 canonical_json(value::ConservationEffectKindV1) = _g1_conservation_wire(value)
+canonical_json(value::ConservationOccurrenceKindV1) = invoke(_g1_occurrence_kind_wire, Tuple{ConservationOccurrenceKindV1}, value)
+canonical_json(value::ConservationLedgerOccurrenceRefV1) = invoke(_g1_occurrence_ref_wire, Tuple{ConservationLedgerOccurrenceRefV1}, value)
 
 _g1_hash_bytes(value::String) = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(value)))))
 
@@ -230,3 +265,5 @@ canonical_hash(value::ParameterTransformKindV1) = invoke(_g1_hash_bytes, Tuple{S
 canonical_hash(value::SymmetryGroupKindV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_group_wire(value))
 canonical_hash(value::SymmetryBehaviorV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_behavior_wire(value))
 canonical_hash(value::ConservationEffectKindV1) = invoke(_g1_hash_bytes, Tuple{String}, _g1_conservation_wire(value))
+canonical_hash(value::ConservationOccurrenceKindV1) = invoke(_g1_hash_bytes, Tuple{String}, invoke(_g1_occurrence_kind_wire, Tuple{ConservationOccurrenceKindV1}, value))
+canonical_hash(value::ConservationLedgerOccurrenceRefV1) = invoke(_g1_hash_bytes, Tuple{String}, invoke(_g1_occurrence_ref_wire, Tuple{ConservationLedgerOccurrenceRefV1}, value))

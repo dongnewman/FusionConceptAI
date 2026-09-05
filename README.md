@@ -9,6 +9,12 @@ Genome documents are under
 the implementation plan in
 [`docs/implementation/sol_runtime_plan.md`](docs/implementation/sol_runtime_plan.md).
 
+G1 revision 2 binds each conservation occurrence to its exact invariant owner.
+The seven-argument `InvariantV1` constructor requires explicit occurrence refs;
+legacy nine-argument inputs use the declared migration path and a sealed receipt.
+The migration, hash domains, fixtures, and runtime call sites are upgraded
+together. See [`g1_occurrence_ownership_migration.md`](docs/implementation/g1_occurrence_ownership_migration.md).
+
 The additive RuntimeV4 module is assembled by
 [`src/RuntimeV4/FusionRuntimeV4.jl`](src/RuntimeV4/FusionRuntimeV4.jl).  Its
 implemented contracts cover typed candidate-prefix compilation, exact
@@ -77,11 +83,14 @@ CLI checks also exited successfully. The root ran all nine entrypoints in a
 fresh `89a85dd` worktree with the frozen implementation snapshot and updated
 Project and Manifest loaded together.
 The G2 producer passed 50 focused assertions and its CLI against the published
-G1 contract. A subsequent independent combined snapshot containing the pending
+G1 contract. A subsequent independent combined snapshot containing the
 G1 r2 migration, final G2 producer, and canonical String-axis fix passed
-348 assertions across eight suites and all three CLIs. This is RuntimeV4
-interoperability evidence; the G1 migration's full package test remains a
-separate release requirement.
+348 assertions across eight suites and all three CLIs. The final G1 migration
+then passed the complete package test in an independent frozen checkout:
+**2,616 assertions across 104 test summaries, exit 0**. The main release matches
+all 27 reviewed migration-file hashes and the 32 unchanged files used by the
+combined RuntimeV4 check; the final differences are two package tests and the
+migration implementation document.
 The clean published package baseline at `310db3b`
 also passed its full `Pkg.test` run. Integrated physics, L4 validation evidence,
 and the user's overall fusion objective remain incomplete.

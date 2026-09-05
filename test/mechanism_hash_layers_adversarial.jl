@@ -49,9 +49,28 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
     symmetry = SymmetryGeneV1(SymmetryRefV1("sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
+    adv_occ(site, account, port, direction, kind) = ConservationLedgerOccurrenceRefV1(
+        OperatorSiteRefV1(site), :output, port, direction, kind, ledger_for(account))
+    additive_kind = additive_role === source ? occurrence_source_effect :
+        additive_role === sink ? occurrence_sink_effect :
+        additive_role === boundary ? occurrence_boundary_effect : occurrence_internal_effect
+    additive_refs = tuple((adv_occ("additive", ledger_account, e.account_ref.port_index,
+        e.account_ref.direction, additive_kind) for e in additive_effects)...)
+    flux_a_refs = (adv_occ("interface-a", interface_accounts[1], 1, :minus, occurrence_interface_minus),
+        adv_occ("interface-a", interface_accounts[1], 2, :plus, occurrence_interface_plus))
+    flux_b_refs = (adv_occ("interface-b", interface_accounts[2], 1, :minus, occurrence_interface_minus),
+        adv_occ("interface-b", interface_accounts[2], 2, :plus, occurrence_interface_plus))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger_for(ledger_account),
         GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
-        (), (), (), 0, entropy_conserved)
+        additive_refs, 0, entropy_conserved)
+    interface_invariants = interface_accounts[1] == interface_accounts[2] ?
+        (InvariantV1(InvariantRefV1("interface-invariant"), ledger_for(interface_accounts[1]),
+            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
+            (flux_a_refs..., flux_b_refs...), 0, entropy_conserved),) :
+        (InvariantV1(InvariantRefV1("interface-invariant-a"), ledger_for(interface_accounts[1]),
+            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), flux_a_refs, 0, entropy_conserved),
+         InvariantV1(InvariantRefV1("interface-invariant-b"), ledger_for(interface_accounts[2]),
+            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), flux_b_refs, 0, entropy_conserved))
     observable = ObservableGeneV1(ObservableRefV1("obs"),
         ProgramRootRefV1(OperatorSiteRefV1("interface-a"), 1, ptype),
         QualifiedRefV1("intervention", "v1"), sample, bounds, QualifiedRefV1("noise", "v1"),
@@ -68,9 +87,9 @@ function _adversarial_fixture(; parameter_type=nothing, additive_role=additive,
         (QualifiedRefV1("oos", "v1"),))
     parameter = ParameterGeneV1(ParameterRefV1("gain"), ptype.units,
         ParameterTransformSpecV1(transform_linear), bounds, parameter_value)
-    payload = MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (parameter,),
+    payload = MechanismGenomePayloadV1((state_a, state_b), (invariant, interface_invariants...), graph, (parameter,),
         (symmetry,), (observable,), (hole,))
-    contract = GenomeContractRef("urn:fusion:adversarial", "v1", repeat("a", 64), repeat("b", 64), "g1")
+    contract = g1_occurrence_ownership_contract_ref("urn:fusion:adversarial")
     profile = CanonicalizationProfileV1("adversarial", "1",
         CanonicalizationBudgetV1(500_000, 50_000, 512, 8_000_000))
     payload, MechanismCanonicalizationContextV1(contract, profile)
@@ -133,7 +152,7 @@ else
             renamed = _adversarial_hashes(_adversarial_fixture(ledger_account="renamed-ledger"))
             @test base.topology_hash == renamed.topology_hash
             @test base.operator_program_hash == renamed.operator_program_hash
-            @test base.mechanism_structure_hash == renamed.mechanism_structure_hash
+            @test base.mechanism_structure_hash != renamed.mechanism_structure_hash
             @test base.decorated_mechanism_hash != renamed.decorated_mechanism_hash
         end
 

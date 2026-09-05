@@ -6,17 +6,30 @@ names are represented only by typed attachment arcs, so automorphisms are
 resolved by the same exact labeling search as the operator graph.
 """
 
-const _G1_TRANSPORT_DOMAIN = "fusionconceptai:v4:g1-canonical-transport:v1"
+const _G1_TRANSPORT_DOMAIN = "fusionconceptai:v4:g1-canonical-transport:v2"
+const _G1_TRANSPORT_VERSION = "2"
 
 _g1_transport_scope_label(::GlobalConservationScopeV1) = "global"
 _g1_transport_scope_label(::DomainConservationScopeV1) = "domain"
 _g1_transport_scope_label(::InterfaceConservationScopeV1) = "interface"
+
+function _g1_transport_occurrence_label(value::ConservationLedgerOccurrenceRefV1)
+    kind = getfield(value, :occurrence_kind)
+    label = kind === occurrence_source_effect ? "occurrence_source_effect" : kind === occurrence_sink_effect ? "occurrence_sink_effect" :
+        kind === occurrence_boundary_effect ? "occurrence_boundary_effect" : kind === occurrence_internal_effect ? "occurrence_internal_effect" :
+        kind === occurrence_interface_minus ? "occurrence_interface_minus" : kind === occurrence_interface_plus ? "occurrence_interface_plus" :
+        throw(ArgumentError("unsealed occurrence kind"))
+    "ownership|kind=" * label * "|side=" * String(getfield(value, :port_side)) *
+        "|direction=" * String(getfield(value, :direction)) * "|port_index=" * string(getfield(value, :port_index))
+end
 
 struct MechanismCanonicalizationContextV1
     contract_ref::GenomeContractRef
     profile::CanonicalizationProfileV1
     function MechanismCanonicalizationContextV1(contract_ref::GenomeContractRef,
                                                 profile::CanonicalizationProfileV1=default_canonicalization_profile())
+        _g1_is_occurrence_ownership_contract(contract_ref) ||
+            throw(ArgumentError("mechanism canonicalization context requires the G1 occurrence-ownership v2 contract"))
         new(contract_ref, profile)
     end
 end
@@ -28,7 +41,7 @@ struct CanonicalMechanismTransportV1
                                            context::MechanismCanonicalizationContextV1)
         bytes = invoke(_g1_transport_wire, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
         isvalid(bytes) && !isempty(bytes) || throw(ArgumentError("canonical mechanism transport bytes are invalid"))
-        prefix = "{\"canonicalization_version\":\"1\",\"domain\":\"$_G1_TRANSPORT_DOMAIN\",\"contract\":"
+        prefix = "{\"canonicalization_version\":\"$_G1_TRANSPORT_VERSION\",\"domain\":\"$_G1_TRANSPORT_DOMAIN\",\"contract\":"
         startswith(bytes, prefix) && endswith(bytes, "}") || throw(ArgumentError("canonical mechanism transport has an invalid domain or version"))
         occursin(_g1_transport_contract(context.contract_ref), bytes) || throw(ArgumentError("transport contract context does not match bytes"))
         occursin(_g1_transport_profile(context.profile), bytes) || throw(ArgumentError("transport profile context does not match bytes"))
@@ -190,10 +203,10 @@ end
 """Construct the one decorated incidence graph for the complete payload."""
 function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
     graph = payload.operator_graph
-    all(typeof(e) === AtomicMIMOHyperedgeV1 for e in graph.hyperedges) || throw(ArgumentError("decorated transport requires only atomic MIMO edges"))
+    all(typeof(e) === AtomicMIMOHyperedgeV1 for e in getfield(graph, :hyperedges)) || throw(ArgumentError("decorated transport requires only atomic MIMO edges"))
     base = invoke(_incidence_graph, Tuple{TypedOperatorHypergraphV1}, graph)
     kinds = Symbol[base.kinds...]; colors = String[base.local_colors...]; arcs = Tuple{Int,Int,String}[base.arcs...]
-    node_ids = String[n.node_id for n in graph.nodes]; edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, e) for e in graph.hyperedges]
+    node_ids = String[n.node_id for n in getfield(graph, :nodes)]; edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, e) for e in getfield(graph, :hyperedges)]
     length(unique(node_ids)) == length(node_ids) && length(unique(edge_ids)) == length(edge_ids) || throw(ArgumentError("graph identities are not unique"))
     node_index(id) = begin
         q = findall(==(id), node_ids); length(q) == 1 ? only(q) : throw(ArgumentError("graph node reference is not exact"))
@@ -205,15 +218,15 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
     add_arc(s, t, label) = invoke(_g1_transport_add_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, s, t, label)
     n_nodes = length(graph.nodes)
     edge_vertices = Int[]; edge_input_ports = Vector{Dict{Int,Int}}(); edge_output_ports = Vector{Dict{Int,Int}}(); edge_cursor = n_nodes + 1
-    for edge in graph.hyperedges
+    for edge in getfield(graph, :hyperedges)
         push!(edge_vertices, edge_cursor)
         input_map = Dict{Int,Int}(); output_map = Dict{Int,Int}()
-        for binding in edge.input_bindings
-            input_map[binding.program_position] = edge_cursor + 1
+        for binding in getfield(edge, :input_bindings)
+            input_map[getfield(binding, :program_position)] = edge_cursor + 1
             edge_cursor += 1
         end
-        for binding in edge.output_bindings
-            output_map[binding.program_position] = edge_cursor + 1
+        for binding in getfield(edge, :output_bindings)
+            output_map[getfield(binding, :program_position)] = edge_cursor + 1
             edge_cursor += 1
         end
         push!(edge_input_ports, input_map); push!(edge_output_ports, output_map)
@@ -222,10 +235,10 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
     # The old graph color contains a derived program hash.  The decorated
     # subject carries the full AST below, so its edge vertex is a semantic
     # role/effect shell rather than an opaque hash or local name.
-    for (i, e) in enumerate(graph.hyperedges)
+    for (i, e) in enumerate(getfield(graph, :hyperedges))
         effects = join(sort(String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, v) for v in e.account_effects]), ",")
         pairs = join(sort(String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, v) for v in e.interface_flux_pairs]), ",")
-        colors[edge_vertices[i]] = "edge|atomic|role=" * String(Symbol(e.role)) * "|effects=[" * effects * "]|pairs=[" * pairs * "]"
+        colors[edge_vertices[i]] = "edge|atomic|role=" * String(Symbol(getfield(e, :role))) * "|effects=[" * effects * "]|pairs=[" * pairs * "]"
     end
     gene_vertices = Dict{Symbol,Vector{Int}}()
     for (kind, vals) in ((:state_gene, payload.states), (:invariant_gene, payload.invariants),
@@ -262,6 +275,26 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
         symmetry_generator_v[key] = gene_vertices[:symmetry_gene][i]
     end
     observable_v = Dict(x.observable_ref.value => gene_vertices[:observable_gene][i] for (i, x) in enumerate(payload.observables))
+    normalized_occurrences = _g1_payload_graph_occurrences(graph)
+    normalized_occurrences === nothing && throw(ArgumentError("graph conservation occurrences are not normalized"))
+    occurrence_v = Dict{Tuple,Int}()
+    for normalized in normalized_occurrences
+        occurrence = getfield(normalized, :ref)
+        occurrence_key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occurrence)
+        haskey(occurrence_v, occurrence_key) && throw(ArgumentError("graph conservation occurrence key is not unique"))
+        edge_id = getfield(getfield(occurrence, :operator_site_ref), :value)
+        edge_i = edge_index(edge_id)
+        port_index = getfield(occurrence, :port_index)
+        port_map = getfield(occurrence, :port_side) === :input ? edge_input_ports[edge_i] : edge_output_ports[edge_i]
+        haskey(port_map, port_index) || throw(ArgumentError("occurrence endpoint is not present in transport incidence"))
+        color = _g1_transport_occurrence_label(occurrence) * "|coefficient=" *
+            _g1_transport_rational(getfield(normalized, :coefficient)) * "|identity=" *
+            invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, getfield(occurrence, :ledger_identity))
+        occurrence_vertex = add(:ledger_occurrence, color)
+        occurrence_v[occurrence_key] = occurrence_vertex
+        add_arc(occurrence_vertex, edge_vertices[edge_i], "occurrence_to_edge")
+        add_arc(occurrence_vertex, port_map[port_index], "occurrence_to_" * String(getfield(occurrence, :port_side)))
+    end
     for (i, x) in enumerate(payload.states)
         v = gene_vertices[:state_gene][i]; add_arc(v, node_index(x.state_ref.value), "state_gene_to_state_node")
         for r in x.gauge_refs; add_arc(v, symmetry_v[r.value], "state_gene_to_symmetry"); end
@@ -278,9 +311,11 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
             tv = add(:invariant_term, "invariant_term|coefficient=" * _g1_transport_rational(t.coefficient))
             add_arc(v, tv, "invariant_term"); add_arc(tv, state_v[t.state_ref.value], "term_state")
         end
-        for r in x.allowed_source_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_source"); end
-        for r in x.allowed_sink_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_sink"); end
-        for r in x.boundary_flux_refs; add_arc(v, edge_vertices[edge_index(r.value)], "invariant_boundary"); end
+        for occurrence in getfield(x, :owned_ledger_occurrence_refs)
+            key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occurrence)
+            haskey(occurrence_v, key) || throw(ArgumentError("invariant ownership occurrence is not in graph"))
+            add_arc(v, occurrence_v[key], "invariant_owns_occurrence")
+        end
         scope = getfield(x, :scope)
         if typeof(scope) === DomainConservationScopeV1
             for ref in getfield(scope, :state_refs)
@@ -294,7 +329,7 @@ function _g1_transport_extended_incidence(payload::MechanismGenomePayloadV1)
             id = getfield(getfield(scope, :operator_site_ref), :value)
             index = findfirst(==(id), edge_ids)
             index === nothing && throw(ArgumentError("interface invariant scope edge is dangling"))
-            getfield(graph.hyperedges[index], :role) === interface || throw(ArgumentError("interface invariant scope edge has wrong role"))
+            getfield(getfield(graph, :hyperedges)[index], :role) === interface || throw(ArgumentError("interface invariant scope edge has wrong role"))
             add_arc(v, edge_vertices[index], "invariant_scope|interface")
         end
     end
@@ -349,7 +384,7 @@ function _g1_transport_leaf_wire(payload::MechanismGenomePayloadV1,
     vertices = "[" * join(String["{\"kind\":" * _g1_transport_quote(String(ig.kinds[old])) * ",\"local_color\":" * _g1_transport_quote(ig.local_colors[old]) * "}" for old in witness], ",") * "]"
     arcs = sort!([(rank[s], rank[t], l) for (s, t, l) in ig.arcs])
     arc_wire = "[" * join(String["{\"label\":" * _g1_transport_quote(a[3]) * ",\"source\":" * string(a[1]) * ",\"target\":" * string(a[2]) * "}" for a in arcs], ",") * "]"
-    "{\"canonicalization_version\":\"1\",\"domain\":" * _g1_transport_quote(_G1_TRANSPORT_DOMAIN) * ",\"contract\":" * _g1_transport_contract(context.contract_ref) *
+    "{\"canonicalization_version\":\"$_G1_TRANSPORT_VERSION\",\"domain\":" * _g1_transport_quote(_G1_TRANSPORT_DOMAIN) * ",\"contract\":" * _g1_transport_contract(context.contract_ref) *
         ",\"profile\":" * _g1_transport_profile(context.profile) * ",\"vertices\":" * vertices * ",\"arcs\":" * arc_wire * "}"
 end
 

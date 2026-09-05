@@ -64,9 +64,11 @@ function _alg_payload()
         (ConstraintRefV1("constraint-sum"),), state_derived)
     state_y = StateGeneV1(StateGeneRefV1("y"), _alg_type, _alg_bounds, (), (),
         (ConstraintRefV1("constraint-difference"),), state_derived)
-    invariant = InvariantV1(InvariantRefV1("algebraic-invariant"), ledger,
-        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("x"), 1),),
-        (), (), (), 0, entropy_conserved)
+    owned = (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("ignored-governing-identity"), :input, 1, :inflow,
+            occurrence_internal_effect, ledger),
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("ignored-governing-identity"), :output, 1, :outflow,
+            occurrence_internal_effect, ledger))
+    invariant = InvariantV1(InvariantRefV1("algebraic-invariant"), ledger, GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("x"), 1),), owned, 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("algebraic-observable"),
         ProgramRootRefV1(OperatorSiteRefV1("ignored-governing-identity"), 1, _alg_type),
         QualifiedRefV1("algebraic-intervention", "v1"), _alg_identity_program, _alg_bounds,
@@ -77,7 +79,7 @@ function _alg_payload()
 end
 
 const _alg_refs = (
-    GenomeContractRef("urn:fusion:algebraic:mechanism", "v1", digest256_text("alg-mechanism-schema"), digest256_text("alg-mechanism-canon"), "algebraic"),
+    g1_occurrence_ownership_contract_ref("urn:fusion:algebraic:mechanism"),
     GenomeContractRef("urn:fusion:algebraic:field", "v1", digest256_text("alg-field-schema"), digest256_text("alg-field-canon"), "algebraic"),
     GenomeContractRef("urn:fusion:algebraic:realization", "v1", digest256_text("alg-realization-schema"), digest256_text("alg-realization-canon"), "algebraic"))
 const registry = GenomeContractRegistryV4(_alg_refs...)

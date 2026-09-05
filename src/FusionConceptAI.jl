@@ -10,8 +10,10 @@ include("IR/TypedAST.jl")
 include("IR/OperatorHypergraph.jl")
 include("Genomes/MechanismGenes.jl")
 include("Genomes/MechanismConservationScopes.jl")
+include("Genomes/MechanismConservationOwnership.jl")
 include("Contracts/StatusDimensions.jl")
 include("Contracts/GenomeContractRegistry.jl")
+include("Contracts/MechanismOccurrenceOwnershipContract.jl")
 include("Genomes/MechanismGenesV1.jl")
 include("Genomes/FieldGeometryPrimitives.jl")
 include("Genomes/FieldGeometrySpatialSupport.jl")
@@ -79,7 +81,8 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        transform_linear, transform_log, transform_signed_log,
        symmetry_discrete, symmetry_continuous, symmetry_invariant, symmetry_equivariant,
        redistribution, interface_flux, net_creation, net_destruction, ParityActionV1,
-       StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
+       ConservationOccurrenceKindV1, occurrence_internal_effect, occurrence_source_effect, occurrence_sink_effect, occurrence_boundary_effect, occurrence_interface_minus, occurrence_interface_plus,
+       ConservationLedgerOccurrenceRefV1, StateGeneV1, InvariantTermV1, InvariantV1, ParameterTransformSpecV1, ParameterGeneV1,
        StateSymmetryActionV1, SymmetryGeneV1, derive_parameter_value, parameter_value,
        SpatialSupportRefV1, ChartRefV1, CoordinateFrameRefV1, PhaseFieldRefV1,
        ImplicitFieldTermRefV1, PotentialFieldRefV1, SourceFieldRefV1,
@@ -99,12 +102,16 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        MechanismCanonicalizationContextV1, CanonicalMechanismTransportV1,
        canonicalize_mechanism_transport, canonical_mechanism_transport_json,
        MechanismHashLayersV1, CanonicalMechanismV1, mechanism_hash_layers, canonicalize_mechanism,
-       G1LegacyEdgeCompletionV1, G1LegacyMigrationDeclarationV1, G1LegacyMigrationReasonV1,
+       G1LegacyEdgeCompletionV1, LegacyInvariantV1, G1LegacyMigrationModeV1, legacy9_to_exact7, exact7_recanonicalize,
+       G1LegacyMigrationDeclarationV1, G1LegacyMigrationReceiptV1,
+       G1LegacyMigrationReasonV1,
        migration_lossless, missing_mapping_resource, mapping_not_applicable, contract_incompatible,
        legacy_ast_unrepresentable, legacy_gene_semantics_unrepresentable, legacy_edge_completion_missing,
        canonicalization_budget_exhausted, G1LegacyMigrationResultV1, migrate_legacy_g1,
        LegacyMechanismGenomeV4, MechanismGenomeV4, FieldGeometryGenomeV4, RealizationControlGenomeV4,
        GenomeContractRef, GenomeContractRegistryV4, StatusVectorV4,
+       G1_OCCURRENCE_OWNERSHIP_SCHEMA_HASH, G1_OCCURRENCE_OWNERSHIP_CANONICALIZATION_HASH,
+       g1_occurrence_ownership_contract_ref,
        resolve_contract,
        MissionContractRef, ProposalEnvelopeV4, UncertaintyV4, EvidenceContentV4, EvidenceEnvelopeV4, evidence_envelope, evidence_id_for, CanonicalHashesV4, CandidateStatePackageV4,
        LegacyMigrationResultV4, migrate_legacy,

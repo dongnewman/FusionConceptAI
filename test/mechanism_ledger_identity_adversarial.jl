@@ -13,17 +13,14 @@ import FusionConceptAI
     wrong_unit = ConservationLedgerIdentityV1(identity.account_kind_ref, identity.ontology_hash,
         UnitSignature((1, 0, 0, 0, 0, 0, 0)))
     for bad in (wrong_id, same_id_wrong_version, wrong_hash, wrong_unit)
-        invariant = InvariantV1(InvariantRefV1("bad"), bad, GlobalConservationScopeV1(),
-            terms, (), (), (), 0, entropy_conserved)
+        invariant = InvariantV1(InvariantRefV1("bad"), bad, GlobalConservationScopeV1(), terms, tuple(()..., ()..., ()...), 0, entropy_conserved)
         @test_throws ArgumentError MechanismGenomePayloadV1(payload.states, (invariant,),
             payload.operator_graph, payload.parameters, payload.symmetries, payload.observables,
             payload.operator_holes)
     end
     interface_payload, _ = _hash_fixture()
-    @test FusionConceptAI._g1_payload_ledger_closure(
-        (InvariantV1(InvariantRefV1("interface-only"),
-            ConservationLedgerIdentityV1(QualifiedRefV1("flux", "v1"), Digest256(repeat("0", 64)), UnitSignature()),
-            GlobalConservationScopeV1(), terms, (), (), (), 0, entropy_conserved),), interface_payload.operator_graph)
+    @test FusionConceptAI._g1_payload_ledger_ownership_closure(
+        interface_payload.invariants, interface_payload.states, interface_payload.operator_graph)
     @test any(arc -> arc[3] == "invariant_to_ledger",
         FusionConceptAI._g1_layer_extended_incidence(payload, :decorated).arcs)
     @test !any(arc -> arc[3] == "invariant_to_ledger",
@@ -106,7 +103,7 @@ end
     @test length(distinct_keys) == 2
 end
 
-@testset "consistent identity rebinding stays outside structure" begin
+@testset "consistent full ledger identity rebinding changes structure" begin
     base_payload, base_context = _hash_fixture(ledger_account="ledger", ledger_version="v1", ledger_hash=repeat("0", 64))
     base_hashes = mechanism_hash_layers(base_payload, base_context)
     for kwargs in ((ledger_account="other-ledger", ledger_version="v1", ledger_hash=repeat("0", 64)),
@@ -116,7 +113,7 @@ end
         changed_hashes = mechanism_hash_layers(changed_payload, changed_context)
         @test changed_hashes.topology_hash == base_hashes.topology_hash
         @test changed_hashes.operator_program_hash == base_hashes.operator_program_hash
-        @test changed_hashes.mechanism_structure_hash == base_hashes.mechanism_structure_hash
+        @test changed_hashes.mechanism_structure_hash != base_hashes.mechanism_structure_hash
         @test changed_hashes.decorated_mechanism_hash != base_hashes.decorated_mechanism_hash
         @test changed_hashes.candidate_subject_hash != base_hashes.candidate_subject_hash
     end
@@ -136,14 +133,21 @@ end
         ConservationLedgerIdentityV1(base.ledger_identity.account_kind_ref, base.ledger_identity.ontology_hash,
             UnitSignature((1, 0, 0, 0, 0, 0, 0))))
     for changed_identity in identities
-        changed = InvariantV1(base.invariant_ref, changed_identity, base.scope, base.terms,
-            base.allowed_source_refs, base.allowed_sink_refs, base.boundary_flux_refs,
+        @test_throws ArgumentError InvariantV1(base.invariant_ref, changed_identity,
+            base.scope, base.terms, base.owned_ledger_occurrence_refs,
             base.tolerance_log10, base.entropy_direction)
+        changed_occurrences = Tuple(ConservationLedgerOccurrenceRefV1(
+            occurrence.operator_site_ref, occurrence.port_side, occurrence.port_index,
+            occurrence.direction, occurrence.occurrence_kind, changed_identity)
+            for occurrence in base.owned_ledger_occurrence_refs)
+        changed = InvariantV1(base.invariant_ref, changed_identity, base.scope,
+            base.terms, changed_occurrences, base.tolerance_log10,
+            base.entropy_direction)
         changed_source = LegacyMechanismGenomeV4(source.seed, source.contract_ref, source.graph,
             (changed,), source.observables)
         changed_source_hash = canonical_hash(changed_source)
-        changed_declaration = G1LegacyMigrationDeclarationV1(declaration.mapping_ref,
-            changed_source_hash, declaration.target_contract_ref, declaration.states,
+        changed_declaration = G1LegacyMigrationDeclarationV1(declaration.mapping_ref, declaration.mode,
+            declaration.source_contract_ref, changed_source_hash, declaration.target_contract_ref, declaration.states,
             (changed,), declaration.parameters, declaration.symmetries, declaration.observables,
             declaration.operator_holes, declaration.edge_completions)
         result = migrate_legacy_g1(changed_source, changed_declaration, context, registry)

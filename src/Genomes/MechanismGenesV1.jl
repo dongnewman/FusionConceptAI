@@ -78,14 +78,12 @@ struct InvariantV1
     ledger_identity::ConservationLedgerIdentityV1
     scope::ConservationInvariantScopeV1
     terms::Tuple
-    allowed_source_refs::Tuple
-    allowed_sink_refs::Tuple
-    boundary_flux_refs::Tuple
+    owned_ledger_occurrence_refs::Tuple{Vararg{ConservationLedgerOccurrenceRefV1}}
     tolerance_log10::Int16
     entropy_direction::EntropyDirectionV1
     function InvariantV1(invariant_ref::Any, ledger_identity::Any, scope::Any,
-                        terms::Any, allowed_source_refs::Any, allowed_sink_refs::Any,
-                        boundary_flux_refs::Any, tolerance_log10::Any, entropy_direction::Any)
+                        terms::Any, owned_ledger_occurrence_refs::Any,
+                        tolerance_log10::Any, entropy_direction::Any)
         invariant_ref isa InvariantRefV1 || throw(ArgumentError("invariant_ref must be InvariantRefV1"))
         typeof(ledger_identity) === ConservationLedgerIdentityV1 ||
             throw(ArgumentError("ledger_identity must be exactly ConservationLedgerIdentityV1"))
@@ -95,14 +93,12 @@ struct InvariantV1
         term_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, terms, InvariantTermV1, "terms")
         isempty(term_tuple) && throw(ArgumentError("invariant terms cannot be empty"))
         invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, term_tuple, "terms", term -> term.state_ref.value)
-        source_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, allowed_source_refs, OperatorSiteRefV1, "allowed_source_refs")
-        sink_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, allowed_sink_refs, OperatorSiteRefV1, "allowed_sink_refs")
-        flux_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, boundary_flux_refs, OperatorSiteRefV1, "boundary_flux_refs")
-        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, source_tuple, "allowed_source_refs", value -> invoke(_g1_local_ref_key, Tuple{Any}, value))
-        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, sink_tuple, "allowed_sink_refs", value -> invoke(_g1_local_ref_key, Tuple{Any}, value))
-        invoke(_g1_unique_keys, Tuple{Tuple,String,Function}, flux_tuple, "boundary_flux_refs", value -> invoke(_g1_local_ref_key, Tuple{Any}, value))
-        all_keys = vcat(String[x.value for x in source_tuple], String[x.value for x in sink_tuple], String[x.value for x in flux_tuple])
-        length(unique(all_keys)) == length(all_keys) || throw(ArgumentError("invariant site references must not overlap"))
+        occurrence_tuple = invoke(_g1_require_tuple_type, Tuple{Any,Type,String}, owned_ledger_occurrence_refs,
+            ConservationLedgerOccurrenceRefV1, "owned_ledger_occurrence_refs")
+        keys = Tuple[invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, value) for value in occurrence_tuple]
+        length(unique(keys)) == length(keys) || throw(ArgumentError("owned ledger occurrence references must be unique"))
+        all(_ledger_identity_full_key(getfield(value, :ledger_identity)) == _ledger_identity_full_key(ledger_identity)
+            for value in occurrence_tuple) || throw(ArgumentError("owned occurrence ledger identity differs from invariant ledger identity"))
         tolerance_type = typeof(tolerance_log10)
         tolerance_type in (Int8, Int16, Int32, Int64, UInt8, UInt16, UInt32, UInt64) || throw(ArgumentError("tolerance_log10 must be a fixed-width integer"))
         if tolerance_type <: Signed
@@ -114,7 +110,7 @@ struct InvariantV1
         tolerance = Int16(tolerance_log10)
         tolerance <= 0 || throw(ArgumentError("tolerance_log10 must be non-positive"))
         entropy_direction isa EntropyDirectionV1 || throw(ArgumentError("invalid entropy_direction"))
-        new(invariant_ref, ledger_identity, scope, term_tuple, source_tuple, sink_tuple, flux_tuple, tolerance, entropy_direction)
+        new(invariant_ref, ledger_identity, scope, term_tuple, occurrence_tuple, tolerance, entropy_direction)
     end
 end
 struct ParameterTransformSpecV1
@@ -298,6 +294,19 @@ _g1_gene_qualified_ref_payload(value::QualifiedRefV1) =
     "{\"id\":" * invoke(_g1_quote, Tuple{String}, value.id) *
     ",\"version\":" * invoke(_g1_quote, Tuple{String}, value.version) * "}"
 _g1_gene_sorted_payload(values, encoder::Function) = "[" * join(sort(String[encoder(value) for value in values]), ",") * "]"
+function _g1_occurrence_payload(value::ConservationLedgerOccurrenceRefV1)
+    kind = getfield(value, :occurrence_kind)
+    label = kind === occurrence_source_effect ? "occurrence_source_effect" : kind === occurrence_sink_effect ? "occurrence_sink_effect" :
+        kind === occurrence_boundary_effect ? "occurrence_boundary_effect" : kind === occurrence_internal_effect ? "occurrence_internal_effect" : kind === occurrence_interface_minus ? "occurrence_interface_minus" : kind === occurrence_interface_plus ? "occurrence_interface_plus" :
+        throw(ArgumentError("unsealed occurrence kind"))
+    ref = getfield(value, :operator_site_ref)
+    "{\"direction\":" * invoke(_g1_quote, Tuple{String}, String(getfield(value, :direction))) *
+        ",\"kind\":" * invoke(_g1_quote, Tuple{String}, label) *
+        ",\"ledger_identity\":" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, getfield(value, :ledger_identity)) *
+        ",\"operator_site_ref\":" * _g1_gene_ref_payload(getfield(ref, :value)) *
+        ",\"port_index\":" * string(getfield(value, :port_index)) *
+        ",\"port_side\":" * invoke(_g1_quote, Tuple{String}, String(getfield(value, :port_side))) * "}"
+end
 
 function _g1_gene_physical_type_payload(value::PhysicalType)
     temporal = value.temporal_type
@@ -348,13 +357,19 @@ function _g1_invariant_wire(value::InvariantV1)
         typeof(scope) === DomainConservationScopeV1 ? invoke(_g1_scope_wire, Tuple{DomainConservationScopeV1}, scope) :
         typeof(scope) === InterfaceConservationScopeV1 ? invoke(_g1_scope_wire, Tuple{InterfaceConservationScopeV1}, scope) :
         throw(ArgumentError("unsealed conservation invariant scope"))
-    payload = "{\"allowed_sink_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_sink_refs, ref_payload) *
-        ",\"allowed_source_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.allowed_source_refs, ref_payload) * ",\"boundary_flux_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.boundary_flux_refs, ref_payload) *
+    occurrence_refs = getfield(value, :owned_ledger_occurrence_refs)
+    payload = "{\"owned_ledger_occurrence_refs\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, occurrence_refs,
+        value -> invoke(_g1_occurrence_payload, Tuple{ConservationLedgerOccurrenceRefV1}, value)) *
         ",\"entropy_direction\":" * invoke(_g1_gene_entropy_label, Tuple{EntropyDirectionV1}, value.entropy_direction) *
         ",\"invariant_ref\":" * _g1_gene_ref_payload(value.invariant_ref.value) * ",\"ledger_identity\":" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, value.ledger_identity) * ",\"scope\":" *
         scope_wire *
         ",\"terms\":" * invoke(_g1_gene_sorted_payload, Tuple{Any,Function}, value.terms, term -> invoke(_g1_invariant_term_payload, Tuple{InvariantTermV1}, term)) * ",\"tolerance_log10\":" * string(value.tolerance_log10) * "}"
-    invoke(_g1_wrap, Tuple{String,String}, "invariant", payload)
+    _g1_v2_wrap("invariant", payload, "fusionconceptai:v4:g1-invariant:v2")
+end
+
+function _g1_v2_wrap(kind::String, payload::String, domain::String)
+    "{\"canonicalization_version\":\"2\",\"domain\":" * invoke(_g1_quote, Tuple{String}, domain) *
+        ",\"kind\":" * invoke(_g1_quote, Tuple{String}, kind) * ",\"payload\":" * payload * "}"
 end
 
 function _g1_parameter_transform_payload(value::ParameterTransformSpecV1)
@@ -434,8 +449,12 @@ semantic_view(x::StateGeneV1) = (state_ref=x.state_ref, physical_type=x.physical
     parity_actions=x.parity_actions, gauge_refs=x.gauge_refs, constraint_refs=x.constraint_refs, epistemic_state=x.epistemic_state)
 semantic_view(x::InvariantTermV1) = (state_ref=x.state_ref, coefficient=x.coefficient)
 semantic_view(x::InvariantV1) = (invariant_ref=x.invariant_ref, ledger_identity=x.ledger_identity, scope=getfield(x, :scope),
-    terms=x.terms, allowed_source_refs=x.allowed_source_refs, allowed_sink_refs=x.allowed_sink_refs,
-    boundary_flux_refs=x.boundary_flux_refs, tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction)
+    terms=x.terms, owned_ledger_occurrence_refs=getfield(x, :owned_ledger_occurrence_refs),
+    tolerance_log10=x.tolerance_log10, entropy_direction=x.entropy_direction)
+semantic_view(x::ConservationLedgerOccurrenceRefV1) =
+    (operator_site_ref=getfield(x, :operator_site_ref), port_side=getfield(x, :port_side),
+     port_index=getfield(x, :port_index), direction=getfield(x, :direction),
+     occurrence_kind=getfield(x, :occurrence_kind), ledger_identity=getfield(x, :ledger_identity))
 semantic_view(x::ParameterTransformSpecV1) = (kind=x.kind, scale=x.scale)
 semantic_view(x::ParameterGeneV1) = (ref=x.ref, unit=x.unit, transform=x.transform, bounds=x.bounds, normalized_gene=x.normalized_gene)
 semantic_view(x::StateSymmetryActionV1) = (state_ref=x.state_ref, matrix=x.matrix)

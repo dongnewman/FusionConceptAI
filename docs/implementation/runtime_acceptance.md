@@ -79,8 +79,8 @@ the RuntimeV4 additive path and the boundaries that remain active.
   pending G1 r2 migration and the canonical String-axis correction. All **11
   entrypoints** exited zero; **30 test-summary rows / 348 assertions** passed
   with no warning or error. All **35 reviewed source-file SHA-256 values**
-  remained unchanged throughout this combined run. The G1 full-package test
-  is still a separate migration-release requirement.
+  remained unchanged throughout this combined run. The separate final G1
+  full-package acceptance is recorded below.
   The field CLI computed `2x - y + 1` on 27 chart-coordinate nodes, with
   minimum `-2`, maximum `4`, and a typed scalar result. Evidence remains
   `screen_only`, with zero credible physical candidates and withheld authority.
@@ -89,6 +89,25 @@ the RuntimeV4 additive path and the boundaries that remain active.
   returning no subject, input, or evidence. A genuine `DT@v1` program is
   rejected by the upstream static-only phase-root contract; this does not
   claim coverage of an unreachable selected-DT compiler path.
+
+- Final G1 r2 occurrence-ownership migration: **2,616/2,616 assertions** in
+  **104 test-summary rows**, complete `Pkg.test`, exit **0** on 2026-09-05.
+  The root ran Julia 1.10.5 with startup files disabled in the independent
+  `e848e53`-based `fusion-v4-g1-acceptance` worktree, containing the frozen
+  27-file migration. The final source/test/document hashes and Project/Manifest
+  hashes were checked after the run and again after copying the migration to
+  main. The default runner includes both long fresh-process poison suites and
+  the occurrence-ownership suite without diagnostic skip switches.
+  The final tests distinguish external ledger identity changes from balanced
+  coefficient changes, and constructor rejection from migration rejection.
+  Main also matches the **32 unchanged raw-byte files** of the prior 348-assertion
+  RuntimeV4 snapshot. The remaining three files are the two final package-test
+  corrections and the migration implementation document. A fresh Git checkout
+  may expand Julia sources to CRLF; its provider source hashes must be recorded
+  separately from the LF snapshot and cannot borrow the latter's cache identity.
+  After integration, the main-worktree smoke run passed **26 core assertions**
+  and the G2 field CLI exited **0**, retaining its unresolved physical obligations.
+  This acceptance covers software contracts and interoperability only.
 
 The algebraic numerical capability is restricted to declared G1 constraint roots using
 `IDENTITY`, `ADD`, `SUB`, `NEG`, `SCALAR_MUL`, and `SCALAR_DIV` at revision v1.
@@ -105,14 +124,17 @@ The checks above are contract, canonicalization, routing, queue/archive, and
 software-screen checks.  They do not constitute integrated multiphysics,
 engineering qualification, independent validation, or VVUQ evidence.
 
-## Known worktree boundary
+## Migration and compatibility history
 
-The main worktree contains uncommitted G1 ownership work.  Its current
-7-argument ownership form is incompatible with the committed clean fixture
-that uses the 9-argument ownership form.  The archive 35/35 result above uses
-the clean project and published fixture; the earlier dirty 35/35 result must
-not be used as clean-release evidence.  The clean c0e0d85 acceptance baseline
-also exposed nine JSONL line-ending failures; the narrow root
+The initial worktree contained a partial G1 ownership change with a
+seven-argument constructor and incompatible nine-argument fixtures. The final
+r2 migration replaces that mixed state coherently: type, admission, canonical
+transport, hash layers, migration receipts, fixtures, and runtime call sites.
+The original 16 dirty files were preserved byte-for-byte until the reviewed
+migration was integrated. The historical archive 35/35 result above uses the
+earlier clean project and fixture; it remains distinct from the final r2
+package and RuntimeV4 results. The clean c0e0d85 acceptance baseline also
+exposed nine JSONL line-ending failures; the narrow root
 `.gitattributes` rule `test/fixtures/*.jsonl text eol=lf` fixes that boundary,
 and the fresh acceptance check confirmed the fixture bytes and hashes.
 

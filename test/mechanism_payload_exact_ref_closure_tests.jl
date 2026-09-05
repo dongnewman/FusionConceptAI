@@ -49,7 +49,10 @@ function _exact_ref_payload(; parity_ref=QualifiedRefV1("parity-generator", "v1"
             nothing, symmetry_invariant, 0))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
         GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
-        (), (), (), 0, entropy_conserved)
+        (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :input, 1, :inflow,
+             occurrence_internal_effect, ledger),
+         ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :output, 1, :outflow,
+             occurrence_internal_effect, ledger)), 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1("site-a"), 1, scalar),
         QualifiedRefV1("intervention", "v1"), program, bounds,
@@ -84,8 +87,7 @@ end
     @test any(arc -> arc[3] == "state_gene_to_symmetry_parity|cardinality", structure.arcs)
     @test !any(arc -> occursin("|sign=", arc[3]), structure.arcs)
 
-    contract = GenomeContractRef("urn:fusion:exact-ref-hash-test", "v1",
-        repeat("a", 64), repeat("b", 64), "g1")
+    contract = g1_occurrence_ownership_contract_ref("urn:fusion:exact-ref-hash-test")
     context = MechanismCanonicalizationContextV1(contract)
     symmetry = payload.symmetries[1]
     renamed_symmetry = SymmetryGeneV1(SymmetryRefV1("renamed-local-symmetry"),
@@ -135,7 +137,7 @@ end
     graph = TypedOperatorHypergraphV1(
         (node(:state, scalar; id="state-a"), node(:state, scalar; id="state-b")),
         (); registry=registry)
-    contract = GenomeContractRef("urn:fusion:exact-ref-test", "v1", repeat("a", 64), repeat("b", 64), "g1")
+    contract = g1_occurrence_ownership_contract_ref("urn:fusion:exact-ref-test")
     source = LegacyMechanismGenomeV4(1, contract, graph)
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
     matrix = ExactRationalMatrixV1(((1,),))
@@ -147,7 +149,7 @@ end
             symmetry_continuous, matrix,
             (StateSymmetryActionV1(StateGeneRefV1("state-a"), matrix),), nothing,
             symmetry_invariant, 0)
-        declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
+        declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), exact7_recanonicalize, contract,
             FusionConceptAI._g1_migration_source_hash(source, context.profile), contract,
             (state,), (), (), (symmetry,), (), (), ())
         migrate_legacy_g1(source, declaration, context, registry)

@@ -30,7 +30,8 @@ include("mechanism_ledger_identity_tests.jl")
     scalar = PhysicalType(:scalar_field, 0, 3, :differential, unit)
     registry = default_operator_registry()
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), unit)
-    function make_payload(prefix::String; intervention::String="intervention", account::String="account")
+    function make_payload(prefix::String; intervention::String="intervention",
+                          account::String="account", effect_magnitude=1 // 1)
         identity_program() = begin
             apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
                 registry=registry, input_types=(scalar,))
@@ -38,8 +39,8 @@ include("mechanism_ledger_identity_tests.jl")
         end
         p = identity_program()
         ledger = _test_ledger_identity(account, unit)
-        ein = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1)
-        eout = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)
+        ein = PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), effect_magnitude)
+        eout = PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -effect_magnitude)
         edge_a = AtomicMIMOHyperedgeV1(prefix * "site-a", (MIMOInputBindingV1(1, 1),),
             (MIMOOutputBindingV1(1, 1),), p, governing;
             account_effects=(ein, eout), registry=registry)
@@ -55,11 +56,15 @@ include("mechanism_ledger_identity_tests.jl")
             QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger,
-            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), (), (), (), 0, entropy_conserved)
+        owned_occurrences = (
+            ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1(prefix * "site-a"), :input, 1,
+                :inflow, occurrence_internal_effect, ledger),
+            ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1(prefix * "site-a"), :output, 1,
+                :outflow, occurrence_internal_effect, ledger))
+        invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger, GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), owned_occurrences, 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
-    contract = GenomeContractRef("urn:fusion:test", "v1", repeat("a", 64), repeat("b", 64), "g1")
+    contract = g1_occurrence_ownership_contract_ref("urn:fusion:test")
     profile = CanonicalizationProfileV1("decorated-test", "1",
         CanonicalizationBudgetV1(100_000, 10_000, 512, 8_000_000))
     context = MechanismCanonicalizationContextV1(contract, profile)
@@ -70,11 +75,11 @@ include("mechanism_ledger_identity_tests.jl")
     @test_throws ArgumentError CanonicalMechanismTransportV1("{}", context)
     @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes[1:end-1], context)
     other_context = MechanismCanonicalizationContextV1(
-        GenomeContractRef("urn:fusion:other", "v1", repeat("e", 64), repeat("f", 64), "g1"), profile)
+        g1_occurrence_ownership_contract_ref("urn:fusion:other"), profile)
     @test_throws ArgumentError CanonicalMechanismTransportV1(first.canonical_bytes, other_context)
     @test_throws MethodError CanonicalMechanismTransportV1(first.canonical_bytes, context, nothing)
-    @test JSON3.read(canonical_mechanism_transport_json(first)).domain == "fusionconceptai:v4:g1-canonical-transport:v1"
-    @test JSON3.read(canonical_mechanism_transport_json(first)).canonicalization_version == "1"
+    @test JSON3.read(canonical_mechanism_transport_json(first)).domain == "fusionconceptai:v4:g1-canonical-transport:v2"
+    @test JSON3.read(canonical_mechanism_transport_json(first)).canonicalization_version == "2"
     @test canonical_mechanism_transport_json(first) == canonical_mechanism_transport_json(renamed)
     same_identity_profile = CanonicalizationProfileV1("decorated-test", "1",
         CanonicalizationBudgetV1(200_000, 20_000, 512, 8_000_000))
@@ -106,9 +111,9 @@ include("mechanism_ledger_identity_tests.jl")
     @test_throws ArgumentError CanonicalMechanismV1(first, layers)
     wires = FusionConceptAI._g1_layer_wires(make_payload("a-"), context)
     @test length(wires) == 8
-    @test JSON3.read(wires[1]).domain == "fusionconceptai:v4:g1-hash:contract:v1"
-    @test JSON3.read(wires[4]).domain == "fusionconceptai:v4:g1-hash:topology:v1"
-    @test JSON3.read(wires[8]).domain == "fusionconceptai:v4:g1-hash:candidate-subject:v1"
+    @test JSON3.read(wires[1]).domain == "fusionconceptai:v4:g1-hash:contract:v2"
+    @test JSON3.read(wires[4]).domain == "fusionconceptai:v4:g1-hash:topology:v2"
+    @test JSON3.read(wires[8]).domain == "fusionconceptai:v4:g1-hash:candidate-subject:v2"
     @test all(Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(wires[i]))))) == getfield(layers, i) for i in 1:8)
     @test_throws MethodError MechanismHashLayersV1(ntuple(_ -> Digest256(repeat("a", 64)), 8)...)
     renamed_layers = mechanism_hash_layers(make_payload("renamed-"), context)
@@ -119,7 +124,7 @@ include("mechanism_ledger_identity_tests.jl")
     @test layers.candidate_subject_hash == renamed_layers.candidate_subject_hash
     domains = ("contract", "canonicalization-profile", "operator-registry", "topology",
         "operator-program", "mechanism-structure", "decorated-mechanism", "candidate-subject")
-    @test all(JSON3.read(wires[i]).domain == "fusionconceptai:v4:g1-hash:" * domains[i] * ":v1" for i in 1:8)
+    @test all(JSON3.read(wires[i]).domain == "fusionconceptai:v4:g1-hash:" * domains[i] * ":v2" for i in 1:8)
     @test JSON3.read(wires[4]).dependencies.contract_hash == layers.contract_hash.value
     @test JSON3.read(wires[4]).dependencies.canonicalization_profile_hash == layers.canonicalization_profile_hash.value
     @test JSON3.read(wires[5]).dependencies.topology_hash == layers.topology_hash.value
@@ -138,10 +143,16 @@ include("mechanism_ledger_identity_tests.jl")
     split_account_layers = mechanism_hash_layers(make_payload("a-"; account="other-account"), context)
     @test layers.topology_hash == split_account_layers.topology_hash
     @test layers.operator_program_hash == split_account_layers.operator_program_hash
-    @test layers.mechanism_structure_hash == split_account_layers.mechanism_structure_hash
+    @test layers.mechanism_structure_hash != split_account_layers.mechanism_structure_hash
     @test layers.decorated_mechanism_hash != split_account_layers.decorated_mechanism_hash
     @test layers.candidate_subject_hash != split_account_layers.candidate_subject_hash
-    changed_contract = GenomeContractRef("urn:fusion:changed", "v1", repeat("a", 64), repeat("b", 64), "g1")
+    magnitude_layers = mechanism_hash_layers(make_payload("a-"; effect_magnitude=2 // 1), context)
+    @test layers.topology_hash == magnitude_layers.topology_hash
+    @test layers.operator_program_hash == magnitude_layers.operator_program_hash
+    @test layers.mechanism_structure_hash == magnitude_layers.mechanism_structure_hash
+    @test layers.decorated_mechanism_hash != magnitude_layers.decorated_mechanism_hash
+    @test layers.candidate_subject_hash != magnitude_layers.candidate_subject_hash
+    changed_contract = g1_occurrence_ownership_contract_ref("urn:fusion:changed")
     changed_contract_layers = mechanism_hash_layers(make_payload("a-"), MechanismCanonicalizationContextV1(changed_contract, profile))
     @test layers.contract_hash != changed_contract_layers.contract_hash
     @test layers.topology_hash != changed_contract_layers.topology_hash
@@ -173,6 +184,7 @@ include(joinpath(@__DIR__, "mechanism_phaseb_46_tests.jl"))
 include(joinpath(@__DIR__, "mechanism_ledger_identity_adversarial.jl"))
 include("mechanism_conservation_scope_tests.jl")
 include(joinpath(@__DIR__, "mechanism_conservation_scope_adversarial.jl"))
+include("mechanism_ledger_occurrence_ownership_tests.jl")
 
 @testset "G1 transport binds MIMO positions to incidence ports" begin
     unit = UnitSignature()
@@ -208,11 +220,15 @@ include(joinpath(@__DIR__, "mechanism_conservation_scope_adversarial.jl"))
             QualifiedRefV1("intervention", "v1"), sample_program, bounds, QualifiedRefV1("noise", "v1"),
             NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
             (QualifiedRefV1("prediction", "v1"),))
-        invariant = InvariantV1(InvariantRefV1("invariant"), ledger, GlobalConservationScopeV1(),
-            (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
+        owned_occurrences = (
+            ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("mimo-edge"), :input, 1,
+                :inflow, occurrence_internal_effect, ledger),
+            ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("mimo-edge"), :output, 1,
+                :outflow, occurrence_internal_effect, ledger))
+        invariant = InvariantV1(InvariantRefV1("invariant"), ledger, GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), owned_occurrences, 0, entropy_conserved)
         MechanismGenomePayloadV1((state_a, state_b), (invariant,), graph, (), (), (observable,), ())
     end
-    contract = GenomeContractRef("urn:fusion:mimo-transport-test", "v1", repeat("c", 64), repeat("d", 64), "g1")
+    contract = g1_occurrence_ownership_contract_ref("urn:fusion:mimo-transport-test")
     profile = CanonicalizationProfileV1("mimo-transport-test", "1", CanonicalizationBudgetV1(100_000, 10_000, 512, 8_000_000))
     normal = make_mimo_payload()
     reordered = make_mimo_payload(reverse_tuple=true)
@@ -260,7 +276,9 @@ function fixture_graph(; reverse=false, labels=("alpha", "beta"), ids=("n-a", "n
 end
 
 @testset "P0 contract refs and independent genome hashes" begin
-    refs = [GenomeContractRef("urn:test:" * string(i), "v4.0.0", repeat(string(i), 64), repeat(string(i+1), 64), "profile-v4") for i in 1:3]
+    refs = [g1_occurrence_ownership_contract_ref("urn:test:1"),
+        GenomeContractRef("urn:test:2", "v4.0.0", repeat("2", 64), repeat("3", 64), "profile-v4"),
+        GenomeContractRef("urn:test:3", "v4.0.0", repeat("3", 64), repeat("4", 64), "profile-v4")]
     registry = GenomeContractRegistryV4(refs...)
     @test all(x -> x isa Digest256, (registry.mechanism.schema_hash, registry.field_geometry.schema_hash, registry.realization_control.schema_hash))
     g = fixture_graph()
@@ -752,7 +770,9 @@ end
 end
 
 @testset "typed Proposal/Evidence isolation and six hashes" begin
-    refs = [GenomeContractRef("urn:test:" * string(i), "v4.0.0", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
+    refs = [g1_occurrence_ownership_contract_ref("urn:test:1"),
+        GenomeContractRef("urn:test:2", "v4.0.0", digest256_text("s2"), digest256_text("c2"), "profile"),
+        GenomeContractRef("urn:test:3", "v4.0.0", digest256_text("s3"), digest256_text("c3"), "profile")]
     registry = GenomeContractRegistryV4(refs...)
     g = fixture_graph()
     m = MechanismGenomeV4(1, refs[1], _wrapper_payload()); f = FieldGeometryGenomeV4(2, refs[2], g); r = RealizationControlGenomeV4(3, 4, refs[3], g, g)
@@ -851,7 +871,9 @@ end
     @test TypedAST((TypedASTNode(:state, (), scalar3d_field), TypedASTNode(:gradient, (1,), gradient_ok)), 2, (1,)).root == 2
     @test TypedAST((TypedASTNode(:state, (), vector3d_field), TypedASTNode(:divergence, (1,), divergence_ok)), 2, (1,)).root == 2
     @test TypedAST((TypedASTNode(:state, (), vector3d_field), TypedASTNode(:curl, (1,), curl_ok)), 2, (1,)).root == 2
-    refs = [GenomeContractRef("urn:test:" * string(i), "v4", digest256_text("s" * string(i)), digest256_text("c" * string(i)), "profile") for i in 1:3]
+    refs = [g1_occurrence_ownership_contract_ref("urn:test:1"),
+        GenomeContractRef("urn:test:2", "v4", digest256_text("s2"), digest256_text("c2"), "profile"),
+        GenomeContractRef("urn:test:3", "v4", digest256_text("s3"), digest256_text("c3"), "profile")]
     g = fixture_graph(); r1 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:a), control=(;))
     r2 = RealizationControlGenomeV4(11, 12, refs[3], g, g; realization=(; basis=:b), control=(;))
     @test realization_hash(r1) != realization_hash(r2)
@@ -1240,17 +1262,17 @@ end
     account = _test_ledger_identity("account", unit)
     global_scope = GlobalConservationScopeV1()
     domain_scope = DomainConservationScopeV1((state_ref,))
-    invariant = InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -3, entropy_conserved)
+    invariant = InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), -3, entropy_conserved)
     @test invariant.scope isa GlobalConservationScopeV1 && invariant.tolerance_log10 == -3
-    @test InvariantV1(invariant_ref, account, domain_scope, (term,), (), (), (), 0, entropy_nondecreasing).scope == domain_scope
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, :global, (term,), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term, term), (), (), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (OperatorSiteRefV1("x"),), (OperatorSiteRefV1("x"),), (), 0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 1, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -32769, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 0.0, entropy_conserved)
-    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), 0, :conserved)
+    @test InvariantV1(invariant_ref, account, domain_scope, (term,), tuple(()..., ()..., ()...), 0, entropy_nondecreasing).scope == domain_scope
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, :global, (term,), tuple(()..., ()..., ()...), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (), tuple(()..., ()..., ()...), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term, term), tuple(()..., ()..., ()...), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), tuple((OperatorSiteRefV1("x"),)..., (OperatorSiteRefV1("x"),)..., ()...), 0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), 1, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), -32769, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), 0.0, entropy_conserved)
+    @test_throws ArgumentError InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), 0, :conserved)
 
     linear = ParameterTransformSpecV1(transform_linear)
     logarithmic = ParameterTransformSpecV1(transform_log)
@@ -1291,8 +1313,8 @@ end
     @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_continuous, identity_matrix, (), 2, symmetry_invariant, 0)
     @test_throws ArgumentError SymmetryGeneV1(SymmetryRefV1("bad"), QualifiedRefV1("bad-generator", "v1"), symmetry_continuous, identity_matrix, (), nothing, symmetry_invariant, -1 // 2)
     @test canonical_json(discrete_symmetry) != canonical_json(continuous_symmetry)
-    @test occursin("fusionconceptai:v4:g1-primitive:v1", canonical_json(invariant))
-    @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, global_scope, (term,), (), (), (), -3, entropy_conserved))
+    @test occursin("fusionconceptai:v4:g1-invariant:v2", canonical_json(invariant))
+    @test canonical_hash(invariant) == canonical_hash(InvariantV1(invariant_ref, account, global_scope, (term,), tuple(()..., ()..., ()...), -3, entropy_conserved))
     gene_dispatch_script = """
     using FusionConceptAI
     u = UnitSignature(); sr = StateGeneRefV1(\"s\")
@@ -1475,9 +1497,12 @@ end
         QualifiedRefV1("noise", "v1"), NonnegativeQuantityV1(1 // 10, unit),
         NonnegativeQuantityV1(1 // 10, unit), NonnegativeQuantityV1(1 // 2, unit),
         (QualifiedRefV1("prediction", "v1"),))
-    invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
-        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
-        entropy_conserved)
+    owned_occurrences = (
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :input, 1,
+            :inflow, occurrence_internal_effect, ledger),
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :output, 1,
+            :outflow, occurrence_internal_effect, ledger))
+    invariant = InvariantV1(InvariantRefV1("invariant"), ledger, GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), owned_occurrences, 0, entropy_conserved)
     symmetry_matrix = ExactRationalMatrixV1(((1,),))
     symmetry = SymmetryGeneV1(SymmetryRefV1("symmetry"), QualifiedRefV1("symmetry-generator", "v1"), symmetry_continuous, symmetry_matrix,
         (StateSymmetryActionV1(StateGeneRefV1("state-a"), symmetry_matrix),), nothing,
@@ -1497,14 +1522,10 @@ end
         (SymmetryRefV1("missing-gauge"),), (), state_derived)
     @test_throws ArgumentError MechanismGenomePayloadV1((bad_gauge, state_b), (invariant,), graph,
         (), (symmetry,), (observable,), ())
-    bad_account = InvariantV1(InvariantRefV1("bad-account"), _test_ledger_identity("missing-account", unit),
-        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
-        entropy_conserved)
+    bad_account = InvariantV1(InvariantRefV1("bad-account"), _test_ledger_identity("missing-account", unit), GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), tuple(()..., ()..., ()...), 0, entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_account,), graph,
         (), (symmetry,), (observable,), ())
-    bad_scope = InvariantV1(InvariantRefV1("bad-scope"), ledger,
-        DomainConservationScopeV1((StateGeneRefV1("missing-scope"),)),
-        (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0, entropy_conserved)
+    bad_scope = InvariantV1(InvariantRefV1("bad-scope"), ledger, DomainConservationScopeV1((StateGeneRefV1("missing-scope"),)), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), tuple(()..., ()..., ()...), 0, entropy_conserved)
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a, state_b), (bad_scope,), graph,
         (), (symmetry,), (observable,), ())
     @test_throws ArgumentError MechanismGenomePayloadV1((state_a,), (invariant,), graph, (), (symmetry,), (observable,), ())
@@ -1650,8 +1671,8 @@ end
     @test canonical_hash(state_a) == canonical_hash(state_b)
     term_a, term_b = InvariantTermV1(StateGeneRefV1("a"), 1), InvariantTermV1(StateGeneRefV1("b"), 2)
     ledger = _test_ledger_identity("account", U0)
-    inv_a = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_a, term_b), (), (), (), 0, entropy_conserved)
-    inv_b = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_b, term_a), (), (), (), 0, entropy_conserved)
+    inv_a = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_a, term_b), tuple(()..., ()..., ()...), 0, entropy_conserved)
+    inv_b = InvariantV1(InvariantRefV1("i"), ledger, GlobalConservationScopeV1(), (term_b, term_a), tuple(()..., ()..., ()...), 0, entropy_conserved)
     @test canonical_hash(inv_a) == canonical_hash(inv_b)
     parameter_dispatch_script = """
     using FusionConceptAI
@@ -1662,7 +1683,7 @@ end
     state = StateGeneV1(StateGeneRefV1(\"state\"), t, bounds, (parity,), (SymmetryRefV1(\"g2\"), SymmetryRefV1(\"g1\")), (), state_derived)
     term = InvariantTermV1(StateGeneRefV1(\"state\"), 1)
     ledger = ConservationLedgerIdentityV1(QualifiedRefV1(\"account\", \"v1\"), Digest256(repeat(\"0\", 64)), u)
-    invariant = InvariantV1(InvariantRefV1(\"inv\"), ledger, GlobalConservationScopeV1(), (term,), (), (), (), 0, entropy_conserved)
+    invariant = InvariantV1(InvariantRefV1(\"inv\"), ledger, GlobalConservationScopeV1(), (term,), (), 0, entropy_conserved)
     matrix = ExactRationalMatrixV1(((1,),))
     symmetry = SymmetryGeneV1(SymmetryRefV1(\"sym\"), QualifiedRefV1(\"sym-generator\", \"v1\"), symmetry_continuous, matrix, (StateSymmetryActionV1(StateGeneRefV1(\"state\"), matrix),), nothing, symmetry_invariant, 0)
     before = parameter_value(gene, -1.0)

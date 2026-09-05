@@ -51,14 +51,14 @@ function _g1_payload_edge_inputs(edge::Any)
 end
 
 function _g1_payload_registry(graph::TypedOperatorHypergraphV1)
-    isempty(graph.hyperedges) && throw(ArgumentError("strong mechanism payload requires atomic graph edges"))
-    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in graph.hyperedges) ||
+    isempty(getfield(graph, :hyperedges)) && throw(ArgumentError("strong mechanism payload requires atomic graph edges"))
+    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in getfield(graph, :hyperedges)) ||
         throw(ArgumentError("strong mechanism payload requires only atomic MIMO edges; legacy migration is a 4.6 boundary"))
-    first_registry = first(graph.hyperedges).registry
+    first_registry = getfield(first(getfield(graph, :hyperedges)), :registry)
     first_key = Tuple(sort(collect((getfield(getfield(getfield(manifest, :operator_ref), :qualified), :id),
         getfield(getfield(getfield(manifest, :operator_ref), :qualified), :version), getfield(getfield(manifest, :manifest_hash), :value))
         for manifest in first_registry.operators), by=x -> (x[1], x[2], x[3])))
-    for edge in graph.hyperedges
+    for edge in getfield(graph, :hyperedges)
         registry_key = Tuple(sort(collect((getfield(getfield(getfield(manifest, :operator_ref), :qualified), :id),
             getfield(getfield(getfield(manifest, :operator_ref), :qualified), :version), getfield(getfield(manifest, :manifest_hash), :value))
             for manifest in edge.registry.operators), by=x -> (x[1], x[2], x[3])))
@@ -69,7 +69,7 @@ end
 
 function _g1_payload_validate_registry(graph::TypedOperatorHypergraphV1, observables::Tuple,
                                        registry::OperatorRegistryV1)
-    for edge in graph.hyperedges
+    for edge in getfield(graph, :hyperedges)
         typeof(edge) === AtomicMIMOHyperedgeV1 || throw(ArgumentError("legacy edge cannot enter a strong payload"))
         for (ref, manifest_hash) in edge.program.used_manifest_bindings
             invoke(_mimo_exact_manifest, Tuple{OperatorRegistryV1,OperatorRefV1,Digest256},
@@ -87,7 +87,7 @@ end
 
 function _g1_payload_find_edge(graph::TypedOperatorHypergraphV1, id::String, field::String)
     found = nothing
-    for edge in graph.hyperedges
+    for edge in getfield(graph, :hyperedges)
         if invoke(_g1_payload_edge_id, Tuple{Any}, edge) == id
             found === nothing || throw(ArgumentError("graph edge ids must be unique"))
             found = edge
@@ -177,7 +177,7 @@ end
 
 function _g1_payload_all_programs(graph::TypedOperatorHypergraphV1, observables::Tuple)
     programs = TypedASTProgramV1[]
-    for edge in graph.hyperedges
+    for edge in getfield(graph, :hyperedges)
         program = invoke(_g1_payload_edge_program, Tuple{Any}, edge)
         program === nothing || push!(programs, program)
     end
@@ -240,35 +240,142 @@ function _g1_payload_parity_generator_closure(states::Tuple, symmetries::Tuple)
     true
 end
 
-"""Exact ledger closure shared by payload admission and legacy migration."""
-function _g1_payload_ledger_closure(invariants::Tuple, graph::TypedOperatorHypergraphV1)
-    keys = Set{ConservationLedgerKeyV1}()
-    for edge in graph.hyperedges
-        typeof(edge) === AtomicMIMOHyperedgeV1 || return false
-        for effect in edge.account_effects
-            typeof(effect) === PortAccountEffectV1 || return false
-            ref = effect.account_ref
-            typeof(ref) === ConservationAccountRefV1 || return false
-            push!(keys, _ledger_identity_full_key(ref.ledger_identity))
+function _g1_payload_occurrence_kind(role::HyperedgeRoleV1)
+    typeof(role) === HyperedgeRoleV1 || throw(ArgumentError("occurrence role is not sealed"))
+    role === source && return occurrence_source_effect
+    role === sink && return occurrence_sink_effect
+    role === boundary && return occurrence_boundary_effect
+    role in (governing, additive, constraint, control, event) && return occurrence_internal_effect
+    role === interface && throw(ArgumentError("interface direct account effects are not representable; use interface pairs"))
+    throw(ArgumentError("occurrence role is not representable"))
+end
+
+struct _NormalizedLedgerOccurrenceV1
+    ref::ConservationLedgerOccurrenceRefV1
+    coefficient::Rational{Int64}
+    graph_node_index::Int
+    edge_id::String
+end
+
+function _g1_payload_occurrence_binding(edge::AtomicMIMOHyperedgeV1, ref::ConservationAccountRefV1)
+    port_side = getfield(ref, :port_side)
+    bindings = port_side === :input ? getfield(edge, :input_bindings) : getfield(edge, :output_bindings)
+    port_index = getfield(ref, :port_index)
+    matches = Tuple(binding for binding in bindings if getfield(binding, :program_position) == port_index)
+    length(matches) == 1 || return nothing
+    matches[1]
+end
+
+function _g1_payload_graph_occurrences(graph::TypedOperatorHypergraphV1)
+    occurrences = _NormalizedLedgerOccurrenceV1[]
+    seen = Set{Tuple}()
+    for edge in getfield(graph, :hyperedges)
+        typeof(edge) === AtomicMIMOHyperedgeV1 || return nothing
+        getfield(edge, :role) === interface && !isempty(getfield(edge, :account_effects)) && return nothing
+        getfield(edge, :role) !== interface && !isempty(getfield(edge, :interface_flux_pairs)) && return nothing
+        site = OperatorSiteRefV1(getfield(edge, :edge_id))
+        for effect in getfield(edge, :account_effects)
+            typeof(effect) === PortAccountEffectV1 || return nothing
+            account = getfield(effect, :account_ref)
+            binding = _g1_payload_occurrence_binding(edge, account)
+            binding === nothing && return nothing
+            occ = ConservationLedgerOccurrenceRefV1(site, getfield(account, :port_side),
+                getfield(account, :port_index), getfield(account, :direction),
+                _g1_payload_occurrence_kind(getfield(edge, :role)), getfield(account, :ledger_identity))
+            key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occ)
+            key in seen && return nothing
+            push!(seen, key)
+            push!(occurrences, _NormalizedLedgerOccurrenceV1(occ, getfield(effect, :coefficient),
+                getfield(binding, :graph_node_index), getfield(edge, :edge_id)))
         end
-        for pair in edge.interface_flux_pairs
-            typeof(pair) === InterfaceFluxPairV1 || return false
-            for effect in (pair.minus, pair.plus)
-                ref = effect.account_ref
-                typeof(ref) === ConservationAccountRefV1 || return false
-                push!(keys, _ledger_identity_full_key(ref.ledger_identity))
+        for pair in getfield(edge, :interface_flux_pairs)
+            typeof(pair) === InterfaceFluxPairV1 || return nothing
+            for (effect, kind) in ((getfield(pair, :minus), occurrence_interface_minus),
+                                   (getfield(pair, :plus), occurrence_interface_plus))
+                account = getfield(effect, :account_ref)
+                binding = _g1_payload_occurrence_binding(edge, account)
+                binding === nothing && return nothing
+                occ = ConservationLedgerOccurrenceRefV1(site, getfield(account, :port_side),
+                    getfield(account, :port_index), getfield(account, :direction), kind, getfield(account, :ledger_identity))
+                key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occ)
+                key in seen && return nothing
+                push!(seen, key)
+                push!(occurrences, _NormalizedLedgerOccurrenceV1(occ, getfield(effect, :coefficient),
+                    getfield(binding, :graph_node_index), getfield(edge, :edge_id)))
             end
         end
     end
-    all(typeof(invariant) === InvariantV1 &&
-        _ledger_identity_full_key(invariant.ledger_identity) in keys for invariant in invariants)
+    occurrences
+end
+
+_g1_payload_scope_key_global(::GlobalConservationScopeV1) = (:global,)
+_g1_payload_scope_key_domain(scope::DomainConservationScopeV1) =
+    (:domain, Tuple(sort(collect(getfield(ref, :value) for ref in getfield(scope, :state_refs)))))
+_g1_payload_scope_key_interface(scope::InterfaceConservationScopeV1) =
+    (:interface, getfield(getfield(scope, :operator_site_ref), :value))
+
+"""Exact occurrence ownership closure shared by payload admission and migration."""
+function _g1_payload_ledger_ownership_closure(invariants::Tuple, states::Tuple, graph::TypedOperatorHypergraphV1)
+    graph_occurrences = _g1_payload_graph_occurrences(graph)
+    graph_occurrences === nothing && return false
+    all_keys = Set{Tuple}(invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, getfield(x, :ref)) for x in graph_occurrences)
+    declared_union = Set{Tuple}()
+    owner_keys = Set{Tuple}()
+    declared_ledger_keys = Set{ConservationLedgerKeyV1}()
+    state_ids = Dict{Int,String}(index => getfield(node, :node_id) for (index, node) in enumerate(getfield(graph, :nodes))
+        if getfield(node, :node_kind) === :state)
+    graph_ledger_keys = Set{ConservationLedgerKeyV1}(_ledger_identity_full_key(getfield(getfield(normalized, :ref), :ledger_identity))
+        for normalized in graph_occurrences)
+    for invariant in invariants
+        typeof(invariant) === InvariantV1 || return false
+        ledger_key = _ledger_identity_full_key(getfield(invariant, :ledger_identity))
+        push!(declared_ledger_keys, ledger_key)
+        scope = getfield(invariant, :scope)
+        scope_key = if typeof(scope) === GlobalConservationScopeV1
+            invoke(_g1_payload_scope_key_global, Tuple{GlobalConservationScopeV1}, scope)
+        elseif typeof(scope) === DomainConservationScopeV1
+            invoke(_g1_payload_scope_key_domain, Tuple{DomainConservationScopeV1}, scope)
+        elseif typeof(scope) === InterfaceConservationScopeV1
+            invoke(_g1_payload_scope_key_interface, Tuple{InterfaceConservationScopeV1}, scope)
+        else
+            return false
+        end
+        ledger_key in graph_ledger_keys || return false
+        owner_key = (ledger_key, scope_key)
+        owner_key in owner_keys && return false
+        push!(owner_keys, owner_key)
+        expected = Set{Tuple}()
+        for normalized in graph_occurrences
+            occ = getfield(normalized, :ref)
+            node_index = getfield(normalized, :graph_node_index)
+            edge_id = getfield(normalized, :edge_id)
+            _ledger_identity_full_key(getfield(occ, :ledger_identity)) == ledger_key || continue
+            include_occurrence = if typeof(scope) === GlobalConservationScopeV1
+                true
+            elseif typeof(scope) === DomainConservationScopeV1
+                domain_ids = Set(getfield(ref, :value) for ref in getfield(scope, :state_refs))
+                get(state_ids, node_index, nothing) in domain_ids
+            elseif typeof(scope) === InterfaceConservationScopeV1
+                getfield(getfield(scope, :operator_site_ref), :value) == edge_id &&
+                    getfield(occ, :occurrence_kind) in (occurrence_interface_minus, occurrence_interface_plus)
+            else
+                return false
+            end
+            include_occurrence && push!(expected, invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occ))
+        end
+        declared = Set{Tuple}(invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, x)
+            for x in getfield(invariant, :owned_ledger_occurrence_refs))
+        declared == expected || return false
+        union!(declared_union, declared)
+    end
+    declared_ledger_keys == graph_ledger_keys && declared_union == all_keys
 end
 
 function _g1_payload_scope_closure(invariants::Tuple, states::Tuple, graph::TypedOperatorHypergraphV1)::Bool
     state_ids = Set{String}(getfield(getfield(gene, :state_ref), :value) for gene in states)
     state_nodes = Set{String}(getfield(node_value, :node_id) for node_value in graph.nodes if getfield(node_value, :node_kind) === :state)
     state_ids == state_nodes || return false
-    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges]
+    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in getfield(graph, :hyperedges)]
     for invariant in invariants
         typeof(invariant) === InvariantV1 || return false
         scope = getfield(invariant, :scope)
@@ -282,7 +389,7 @@ function _g1_payload_scope_closure(invariants::Tuple, states::Tuple, graph::Type
             id = getfield(getfield(scope, :operator_site_ref), :value)
             matches = findall(==(id), edge_ids)
             length(matches) == 1 || return false
-            edge = graph.hyperedges[matches[1]]
+            edge = getfield(graph, :hyperedges)[matches[1]]
             getfield(edge, :role) === interface || return false
             ledger_key = _ledger_identity_full_key(getfield(invariant, :ledger_identity))
             any(_ledger_identity_full_key(getfield(getfield(effect, :account_ref), :ledger_identity)) == ledger_key
@@ -301,7 +408,7 @@ function _g1_payload_validate_governing(graph::TypedOperatorHypergraphV1)
         kind in (differential_time, algebraic_time) || continue
         governing_outputs = Int[]
         constraint_outputs = Int[]
-        for edge in graph.hyperedges
+        for edge in getfield(graph, :hyperedges)
             outputs = invoke(_g1_payload_edge_outputs, Tuple{Any}, edge)
             role = invoke(_g1_payload_edge_role, Tuple{Any}, edge)
             index in outputs && role == governing && push!(governing_outputs, index)
@@ -326,11 +433,11 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
         state_map[node_value.node_id].physical_type == node_value.physical_type ||
             throw(ArgumentError("StateGene physical type differs from graph state node"))
     end
-    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges]
+    edge_ids = String[invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in getfield(graph, :hyperedges)]
     length(unique(edge_ids)) == length(edge_ids) || throw(ArgumentError("graph edge ids must be unique"))
     edge_id_set = Set(edge_ids)
     typeof(graph) === TypedOperatorHypergraphV1 || throw(ArgumentError("operator graph must be typed"))
-    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in graph.hyperedges) ||
+    all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in getfield(graph, :hyperedges)) ||
         throw(ArgumentError("legacy edge cannot enter a strong payload"))
     symmetry_ids = String[symmetry.ref.value for symmetry in symmetries]
     length(unique(symmetry_ids)) == length(symmetry_ids) || throw(ArgumentError("symmetry references must be unique"))
@@ -352,7 +459,7 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     end
     for (state_index, node_value) in state_nodes
         node_value.physical_type.temporal_type.kind == algebraic_time || continue
-        constraint_outputs = Tuple(invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in graph.hyperedges
+        constraint_outputs = Tuple(invoke(_g1_payload_edge_id, Tuple{Any}, edge) for edge in getfield(graph, :hyperedges)
             if invoke(_g1_payload_edge_role, Tuple{Any}, edge) == constraint &&
                 state_index in invoke(_g1_payload_edge_outputs, Tuple{Any}, edge))
         length(constraint_outputs) == 1 || throw(ArgumentError("algebraic state constraint ownership is not unique"))
@@ -364,23 +471,11 @@ function _g1_payload_validate_refs(states, invariants, graph, parameters, symmet
     length(unique(invariant_ids)) == length(invariants) || throw(ArgumentError("invariant references must be unique"))
     _g1_payload_scope_closure(invariants, states, graph) ||
         throw(ArgumentError("invariant conservation scope is not an exact graph closure"))
+    invoke(_g1_payload_ledger_ownership_closure, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1}, invariants, states, graph) ||
+        throw(ArgumentError("invariant ledger occurrence ownership is not an exact graph closure"))
     for invariant in invariants
-        invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, (invariant,), graph) ||
-            throw(ArgumentError("invariant ledger_identity does not bind an exact graph conservation ledger"))
         all(haskey(state_map, term.state_ref.value) for term in invariant.terms) ||
             throw(ArgumentError("invariant term references an unknown state"))
-        for ref in invariant.allowed_source_refs
-            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
-                graph, ref, (source,), "invariant source reference")
-        end
-        for ref in invariant.allowed_sink_refs
-            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
-                graph, ref, (sink,), "invariant sink reference")
-        end
-        for ref in invariant.boundary_flux_refs
-            invoke(_g1_payload_assert_edge_ref, Tuple{TypedOperatorHypergraphV1,Any,Any,String},
-                graph, ref, (boundary, interface), "invariant boundary reference")
-        end
     end
     for symmetry in symmetries
         isempty(symmetry.state_actions) && throw(ArgumentError("symmetry must have at least one state action"))
@@ -414,8 +509,8 @@ function _g1_payload_validate_limits(states, invariants, graph, parameters, symm
     0 <= length(parameters) <= 16 || throw(ArgumentError("parameter count is outside v1 bounds"))
     1 <= length(observables) <= 8 || throw(ArgumentError("observable count is outside v1 bounds"))
     0 <= length(holes) <= 1 || throw(ArgumentError("operator-hole count is outside v1 bounds"))
-    additive_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == additive, graph.hyperedges)
-    event_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == event, graph.hyperedges)
+    additive_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == additive, getfield(graph, :hyperedges))
+    event_count = count(edge -> invoke(_g1_payload_edge_role, Tuple{Any}, edge) == event, getfield(graph, :hyperedges))
     event_count <= 2 || throw(ArgumentError("event edge count is outside v1 bound"))
     additive_count <= 16 || throw(ArgumentError("additive edge count is outside v1 bounds"))
     programs = invoke(_g1_payload_all_programs, Tuple{TypedOperatorHypergraphV1,Tuple}, graph, observables)
@@ -441,7 +536,7 @@ struct MechanismGenomePayloadV1
     operator_holes::Tuple{Vararg{TypedOperatorHoleV1}}
     function MechanismGenomePayloadV1(states, invariants, operator_graph, parameters, symmetries, observables, operator_holes)
         operator_graph isa TypedOperatorHypergraphV1 || throw(ArgumentError("operator_graph must be TypedOperatorHypergraphV1"))
-        all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in operator_graph.hyperedges) ||
+        all(typeof(edge) === AtomicMIMOHyperedgeV1 for edge in getfield(operator_graph, :hyperedges)) ||
             throw(ArgumentError("strong mechanism payload admits only AtomicMIMOHyperedgeV1 edges"))
         state_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, states, StateGeneV1, "states")
         invariant_tuple = invoke(_g1_payload_tuple, Tuple{Any,Type,String}, invariants, InvariantV1, "invariants")
@@ -487,7 +582,7 @@ function _g1_payload_wire(value::MechanismGenomePayloadV1)
         ",\"parameters\":" * invoke(_g1_payload_hash_list, Tuple{Tuple}, value.parameters) *
         ",\"states\":" * invoke(_g1_payload_hash_list, Tuple{Tuple}, value.states) *
         ",\"symmetries\":" * invoke(_g1_payload_hash_list, Tuple{Tuple}, value.symmetries) * "}"
-    invoke(_g1_wrap, Tuple{String,String}, "mechanism_genome_payload", payload)
+    _g1_v2_wrap("mechanism_genome_payload", payload, "fusionconceptai:v4:g1-mechanism-payload:v2")
 end
 
 canonical_json(value::MechanismGenomePayloadV1) = invoke(_g1_payload_wire, Tuple{MechanismGenomePayloadV1}, value)

@@ -27,6 +27,8 @@ struct MechanismGenomeV4
     function MechanismGenomeV4(seed::UInt64, contract_ref::GenomeContractRef,
                                 payload::MechanismGenomePayloadV1,
                                 canonical::CanonicalMechanismV1, ::Val{:sealed})
+        _g1_is_occurrence_ownership_contract(contract_ref) ||
+            throw(ArgumentError("MechanismGenomeV4 requires the G1 occurrence-ownership v2 contract"))
         canonical.transport.context.contract_ref == contract_ref ||
             throw(ArgumentError("canonical mechanism contract does not match genome contract"))
         expected = canonicalize_mechanism(payload, canonical.transport.context)
@@ -40,6 +42,8 @@ end
 function MechanismGenomeV4(seed::Integer, contract_ref::GenomeContractRef,
                            payload::MechanismGenomePayloadV1;
                            profile::CanonicalizationProfileV1=default_canonicalization_profile())
+    _g1_is_occurrence_ownership_contract(contract_ref) ||
+        throw(ArgumentError("MechanismGenomeV4 requires the G1 occurrence-ownership v2 contract"))
     canonical = canonicalize_mechanism(payload, contract_ref; profile=profile)
     MechanismGenomeV4(UInt64(seed), contract_ref, payload, canonical, Val(:sealed))
 end

@@ -86,6 +86,8 @@ G1LegacyMigrationReceiptV1(
 
 `target_canonical_transport_hash` 是 canonical transport bytes 的 SHA-256，不能重复填入 subject hash。resolved receipt 的 source/target/mapping/declaration/mode 字段必须全部存在，并且 reason 只能是 lossless；deferred receipt 保留当时已经取得的 source hash、声明、mapping ref 和 mode，未知字段显式为 `nothing`。`receipt_hash` 覆盖上述全部字段。迁移结果和 `semantic_view` 必须携带同一个 receipt；调用方不能公开构造一份 resolved receipt 或替换其中的 mapping identity。
 
+`exact7_recanonicalize` 只证明给定的 `(LegacyMechanismGenomeV4 source, sealed Declaration)` 复合 authority 的无损重编码；它不宣称与未提供的完整历史 `MechanismGenomeV4` 等价。持有完整历史对象的调用方继续使用普通 canonicalization。receipt 同时绑定 exact source canonical hash 与 declaration content hash。
+
 ## 3. occurrence identity 与闭包
 
 公开 owner key 是：
@@ -145,7 +147,7 @@ payload admission 必须同时满足：
 - **B：canonical 与迁移**：gene wire、transport、hash layers、legacy migration receipt。
 - **C：fixtures 与验收**：全部调用点、ownership/scope/hash/observable/adversarial tests、JSONL golden、Runtime 默认 fixture 和 algebraic fixture。
 
-`test/mechanism_ledger_occurrence_ownership_tests.jl` 当前仍含旧九参数构造和旧字段访问，不能直接提交。它必须改为七参数 exact refs，并覆盖 internal/source/sink/boundary/interface-minus/interface-plus。
+迁移前盘点发现 `test/mechanism_ledger_occurrence_ownership_tests.jl` 曾含旧九参数构造和旧字段访问；完成态必须改为七参数 exact refs，并覆盖 internal/source/sink/boundary/interface-minus/interface-plus。
 
 生产 Runtime fixture 最终使用新 schema。旧 fixture 只保留在 migration tests 中，不允许默认 campaign 继续以 legacy payload 运行。
 
@@ -162,8 +164,8 @@ payload admission 必须同时满足：
 执行顺序：
 
 1. targeted ownership、scope、observable、hash、legacy migration tests；
-2. 当前主工作区完整 `Pkg.test`；
-3. Runtime core、vertical、archive、spine、algebraic 和两个 CLI；
-4. 提交后的 fresh worktree 重复完整测试。
+2. 在独立 fresh acceptance worktree 对最终 27-file byte snapshot 执行一次完整 `Pkg.test`；
+3. Runtime core、vertical、archive、spine、algebraic、G2 suites 和三个 CLI；Residual 数值链未完成时不列为已验收 suite；
+4. 提交后核对 27 个 SHA、Project/Manifest、Julia 环境与已测 snapshot 一致；只有 bytes、依赖或环境变化时才重跑完整测试，否则做 targeted load/smoke 即可。
 
 实现期间保留初始 dirty 文件。提交前逐文件核对其 SHA 和语义意图，只显式 stage 本迁移白名单。中间 ABI 破损状态不得推送；类型、canonical、fixtures 和 goldens 必须作为一个完整契约升级一起发布。

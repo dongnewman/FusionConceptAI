@@ -1,15 +1,15 @@
 """Layer-aware exact canonical identities for a sealed mechanism payload."""
 
-const _G1_LAYER_VERSION = "1"
+const _G1_LAYER_VERSION = "2"
 const _G1_LAYER_DOMAINS = (
-    contract="fusionconceptai:v4:g1-hash:contract:v1",
-    profile="fusionconceptai:v4:g1-hash:canonicalization-profile:v1",
-    registry="fusionconceptai:v4:g1-hash:operator-registry:v1",
-    topology="fusionconceptai:v4:g1-hash:topology:v1",
-    operator_program="fusionconceptai:v4:g1-hash:operator-program:v1",
-    mechanism_structure="fusionconceptai:v4:g1-hash:mechanism-structure:v1",
-    decorated="fusionconceptai:v4:g1-hash:decorated-mechanism:v1",
-    candidate="fusionconceptai:v4:g1-hash:candidate-subject:v1")
+    contract="fusionconceptai:v4:g1-hash:contract:v2",
+    profile="fusionconceptai:v4:g1-hash:canonicalization-profile:v2",
+    registry="fusionconceptai:v4:g1-hash:operator-registry:v2",
+    topology="fusionconceptai:v4:g1-hash:topology:v2",
+    operator_program="fusionconceptai:v4:g1-hash:operator-program:v2",
+    mechanism_structure="fusionconceptai:v4:g1-hash:mechanism-structure:v2",
+    decorated="fusionconceptai:v4:g1-hash:decorated-mechanism:v2",
+    candidate="fusionconceptai:v4:g1-hash:candidate-subject:v2")
 
 function _g1_layer_domain(layer::Symbol)
     layer === :topology && return _G1_LAYER_DOMAINS.topology
@@ -30,6 +30,8 @@ struct MechanismHashLayersV1
     decorated_mechanism_hash::Digest256
     candidate_subject_hash::Digest256
     function MechanismHashLayersV1(payload::MechanismGenomePayloadV1, context::MechanismCanonicalizationContextV1)
+        _g1_is_occurrence_ownership_contract(context.contract_ref) ||
+            throw(ArgumentError("mechanism hash layers require the G1 occurrence-ownership v2 contract"))
         wires = invoke(_g1_layer_wires, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
         hashes = ntuple(i -> invoke(_g1_layer_hash, Tuple{String}, wires[i]), 8)
         new(hashes...)
@@ -63,7 +65,7 @@ function _g1_layer_dep(pairs::Vector{Tuple{String,Digest256}})
     "{" * join((_g1_layer_quote(x[1]) * ":" * _g1_layer_digest(x[2]) for x in pairs), ",") * "}"
 end
 function _g1_layer_wrap(domain::String, dependencies::String, payload::String)
-    "{\"canonicalization_version\":\"1\",\"dependencies\":" * dependencies *
+    "{\"canonicalization_version\":\"$_G1_LAYER_VERSION\",\"dependencies\":" * dependencies *
         ",\"domain\":" * _g1_layer_quote(domain) * ",\"payload\":" * payload * "}"
 end
 
@@ -105,6 +107,21 @@ function _g1_layer_rule(r::OperatorTypeRuleV1)
         return "{\"kind\":\"event_transition\",\"opcode\":" * _g1_layer_quote(String(r.opcode)) * "}"
     end
     throw(ArgumentError("layer registry contains an unsealed operator rule"))
+end
+
+function _g1_layer_account_color(effect::PortAccountEffectV1; decorated::Bool)
+    ref = effect.account_ref
+    body = "side=" * String(ref.port_side) * "|port_index=" * string(ref.port_index) *
+        "|direction=" * String(ref.direction) * "|ledger=" *
+        _g1_layer_quote(_ledger_identity_wire(ref.ledger_identity))
+    decorated ? "account_effect|" * body * "|coefficient=" * _g1_transport_rational(effect.coefficient) :
+        "account_effect|" * body
+end
+
+function _g1_layer_pair_color(pair::InterfaceFluxPairV1; decorated::Bool)
+    minus = _g1_layer_account_color(pair.minus; decorated)
+    plus = _g1_layer_account_color(pair.plus; decorated)
+    "interface_pair|minus=" * minus * "|plus=" * plus
 end
 
 function _g1_layer_manifest(m::OperatorManifestV1)
@@ -238,8 +255,7 @@ function _g1_layer_gene_color(layer::Symbol, kind::Symbol, value)
                 throw(ArgumentError("unsealed conservation invariant scope"))
             end
             return "invariant_gene|scope=" * scope_kind * "|terms=" * string(length(value.terms)) *
-                "|source_refs=" * string(length(value.allowed_source_refs)) * "|sink_refs=" * string(length(value.allowed_sink_refs)) *
-                "|boundary_refs=" * string(length(value.boundary_flux_refs))
+                "|owned_occurrences=" * string(length(getfield(value, :owned_ledger_occurrence_refs)))
         end
         kind === :parameter_gene && return "parameter_gene"
         kind === :symmetry_gene && return "symmetry_gene|group=" * String(Symbol(value.group_kind)) *
@@ -317,9 +333,9 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             append!(params, result[2]); append!(names, result[3])
         end
         if layer in (:structure, :decorated)
-            # Conservation is part of the local relation graph.  The structure
-            # projection deliberately retains only endpoint shape/direction;
-            # account identity, units and coefficients enter at decorated.
+            # Conservation is part of the local relation graph.  Structure
+            # retains endpoint shape, direction, occurrence kind, and full
+            # ledger identity; normalized coefficients enter only at decorated.
             ledger_keys = ConservationLedgerKeyV1[]
             ledger_identities = Dict{ConservationLedgerKeyV1,ConservationLedgerIdentityV1}()
             for edge in graph.hyperedges
@@ -343,12 +359,22 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
             sort!(ledger_keys, by=x -> (x[1], x[2], x[3], x[4]))
             ledger_vertices = Int[]
             for key in ledger_keys
-                ledger_color = layer === :structure ? "ledger_account" :
-                    "ledger_account|identity=" * _g1_layer_quote(_ledger_identity_wire(ledger_identities[key]))
+                ledger_color = "ledger_account|identity=" * _g1_layer_quote(_ledger_identity_wire(ledger_identities[key]))
                 push!(ledger_vertices, invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :ledger_account, ledger_color))
             end
+            normalized_occurrences = _g1_payload_graph_occurrences(graph)
+            normalized_occurrences === nothing && throw(ArgumentError("graph conservation occurrences are not normalized"))
+            occurrence_vertices = Dict{Tuple,Int}()
+            occurrence_item(edge_id, account, kind) = only(Tuple(item for item in normalized_occurrences
+                if getfield(getfield(getfield(item, :ref), :operator_site_ref), :value) == edge_id &&
+                   getfield(getfield(item, :ref), :port_side) == getfield(account, :port_side) &&
+                   getfield(getfield(item, :ref), :port_index) == getfield(account, :port_index) &&
+                   getfield(getfield(item, :ref), :direction) == getfield(account, :direction) &&
+                   getfield(getfield(item, :ref), :occurrence_kind) === kind &&
+                   _ledger_identity_full_key(getfield(getfield(item, :ref), :ledger_identity)) ==
+                       _ledger_identity_full_key(getfield(account, :ledger_identity))))
             ledger_for(ref) = begin
-                key = _ledger_identity_full_key(ref.ledger_identity)
+                key = _ledger_identity_full_key(getfield(ref, :ledger_identity))
                 found = findfirst(==(key), ledger_keys)
                 found === nothing && throw(ArgumentError("conservation ledger key is missing"))
                 ledger_vertices[found]
@@ -359,32 +385,46 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
                 found === nothing && throw(ArgumentError("invariant conservation ledger key is missing"))
                 ledger_vertices[found]
             end
-            for (i, edge) in enumerate(graph.hyperedges)
+            for (i, edge) in enumerate(getfield(graph, :hyperedges))
                 ev = edge_vertices[i]
-                for effect in edge.account_effects
-                    ref = effect.account_ref
-                    port_map = ref.port_side === :input ? input_maps[i] : output_maps[i]
-                    haskey(port_map, ref.port_index) || throw(ArgumentError("effect endpoint is not present in layer incidence"))
-                    ecolor = layer === :structure ?
-                        "account_effect|side=" * String(ref.port_side) * "|direction=" * String(ref.direction) :
-                        "account_effect|" * invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, effect)
+                for effect in getfield(edge, :account_effects)
+                    ref = getfield(effect, :account_ref)
+                    port_map = getfield(ref, :port_side) === :input ? input_maps[i] : output_maps[i]
+                    haskey(port_map, getfield(ref, :port_index)) || throw(ArgumentError("effect endpoint is not present in layer incidence"))
+                    normalized = occurrence_item(getfield(edge, :edge_id), ref, _g1_payload_occurrence_kind(getfield(edge, :role)))
+                    occurrence = getfield(normalized, :ref)
+                    occurrence_key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occurrence)
+                    ecolor = _g1_layer_account_color(effect; decorated=layer === :decorated)
                     av = invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :account_effect, ecolor)
+                    occurrence_vertices[occurrence_key] = av
                     invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, ev, av, "edge_to_account_effect")
-                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, av, port_map[ref.port_index], "account_effect_to_" * String(ref.port_side))
+                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, av, port_map[getfield(ref, :port_index)], "account_effect_to_" * String(getfield(ref, :port_side)))
                     invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, av, ledger_for(ref), "account_effect_to_ledger")
                 end
-                for pair in edge.interface_flux_pairs
-                    minus = pair.minus.account_ref; plus = pair.plus.account_ref
-                    haskey(output_maps[i], minus.port_index) && haskey(output_maps[i], plus.port_index) ||
+                for pair in getfield(edge, :interface_flux_pairs)
+                    minus = getfield(getfield(pair, :minus), :account_ref); plus = getfield(getfield(pair, :plus), :account_ref)
+                    haskey(output_maps[i], getfield(minus, :port_index)) && haskey(output_maps[i], getfield(plus, :port_index)) ||
                         throw(ArgumentError("interface endpoint is not present in layer incidence"))
-                    pcolor = layer === :structure ? "interface_pair" :
-                        "interface_pair|" * invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, pair)
+                    pcolor = _g1_layer_pair_color(pair; decorated=layer === :decorated)
                     pv = invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :interface_pair, pcolor)
                     invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, ev, pv, "edge_to_interface_pair")
-                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, output_maps[i][minus.port_index], "interface_minus")
-                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, output_maps[i][plus.port_index], "interface_plus")
+                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, output_maps[i][getfield(minus, :port_index)], "interface_minus")
+                    invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, output_maps[i][getfield(plus, :port_index)], "interface_plus")
                     invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, ledger_for(minus), "interface_minus_to_ledger")
                     invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, ledger_for(plus), "interface_plus_to_ledger")
+                    for (account, kind, side) in ((minus, occurrence_interface_minus, "minus"), (plus, occurrence_interface_plus, "plus"))
+                        normalized = occurrence_item(getfield(edge, :edge_id), account, kind)
+                        occurrence = getfield(normalized, :ref)
+                        occurrence_key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occurrence)
+                        color = "interface_occurrence|side=" * side * "|port_index=" * string(getfield(occurrence, :port_index))
+                        layer === :decorated && (color *= "|coefficient=" * _g1_transport_rational(getfield(normalized, :coefficient)) *
+                            "|identity=" * invoke(_ledger_identity_wire, Tuple{ConservationLedgerIdentityV1}, getfield(occurrence, :ledger_identity)))
+                        av = invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :interface_occurrence, color)
+                        occurrence_vertices[occurrence_key] = av
+                        invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, pv, av, "interface_occurrence")
+                        invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, av, output_maps[i][getfield(occurrence, :port_index)], "interface_occurrence_to_output")
+                        invoke(_g1_layer_arc!, Tuple{Vector{Tuple{Int,Int,String}},Int,Int,String}, arcs, av, ledger_for(occurrence), "interface_occurrence_to_ledger")
+                    end
                 end
             end
             node_ref = Dict(x.node_id => i for (i, x) in enumerate(graph.nodes)); edge_ref = Dict(invoke(_g1_payload_edge_id, Tuple{Any}, x) => i for (i, x) in enumerate(graph.hyperedges))
@@ -431,9 +471,11 @@ function _g1_layer_extended_incidence(payload::MechanismGenomePayloadV1, layer::
                     addref(v, edge_vertices[edge_hits[1]], "invariant_scope|interface")
                 end
                 for term in x.terms; tv = invoke(_g1_layer_add!, Tuple{Vector{Symbol},Vector{String},Vector{Tuple{Int,Int,String}},Symbol,String}, kinds, colors, arcs, :invariant_term, layer === :structure ? "invariant_term|cardinality" : "invariant_term|coefficient=" * _g1_transport_rational(term.coefficient)); addref(v, tv, "invariant_term"); addref(tv, state_ref[term.state_ref.value], "term_state"); end
-                for r in x.allowed_source_refs; addref(v, edge_vertices[edge_ref[r.value]], "invariant_source"); end
-                for r in x.allowed_sink_refs; addref(v, edge_vertices[edge_ref[r.value]], "invariant_sink"); end
-                for r in x.boundary_flux_refs; addref(v, edge_vertices[edge_ref[r.value]], "invariant_boundary"); end
+                for occurrence in getfield(x, :owned_ledger_occurrence_refs)
+                    key = invoke(_g1_occurrence_key, Tuple{ConservationLedgerOccurrenceRefV1}, occurrence)
+                    haskey(occurrence_vertices, key) || throw(ArgumentError("invariant ownership occurrence is not in graph"))
+                    addref(v, occurrence_vertices[key], "invariant_owns_occurrence")
+                end
             end
             for (i, x) in enumerate(payload.symmetries)
                 v = gene_vertices[:symmetry_gene][i]
@@ -522,9 +564,13 @@ function _g1_layer_wires(payload::MechanismGenomePayloadV1, context::MechanismCa
 end
 
 function mechanism_hash_layers(payload::MechanismGenomePayloadV1, context::MechanismCanonicalizationContextV1)
+    _g1_is_occurrence_ownership_contract(context.contract_ref) ||
+        throw(ArgumentError("mechanism hash layers require the G1 occurrence-ownership v2 contract"))
     invoke(MechanismHashLayersV1, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
 end
 function canonicalize_mechanism(payload::MechanismGenomePayloadV1, context::MechanismCanonicalizationContextV1)
+    _g1_is_occurrence_ownership_contract(context.contract_ref) ||
+        throw(ArgumentError("mechanism canonicalization requires the G1 occurrence-ownership v2 contract"))
     invoke(CanonicalMechanismV1, Tuple{MechanismGenomePayloadV1,MechanismCanonicalizationContextV1}, payload, context)
 end
 canonicalize_mechanism(payload::MechanismGenomePayloadV1, contract_ref::GenomeContractRef; profile::CanonicalizationProfileV1=default_canonicalization_profile()) =

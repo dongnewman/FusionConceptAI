@@ -45,10 +45,11 @@ function _fixture_mechanism_payload()
         _fixture_bounds, (), (), (), state_derived)
     state_b = StateGeneV1(StateGeneRefV1("runtime-state-b"), _fixture_type,
         _fixture_bounds, (), (), (), state_derived)
-    invariant = InvariantV1(InvariantRefV1("runtime-invariant"), contract_account,
-        GlobalConservationScopeV1(),
-        (InvariantTermV1(StateGeneRefV1("runtime-state-a"), 1),), (), (), (), 0,
-        entropy_conserved)
+    owned = (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("runtime-site-a"), :input, 1, :inflow,
+            occurrence_internal_effect, contract_account),
+        ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("runtime-site-a"), :output, 1, :outflow,
+            occurrence_internal_effect, contract_account))
+    invariant = InvariantV1(InvariantRefV1("runtime-invariant"), contract_account, GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("runtime-state-a"), 1),), owned, 0, entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("runtime-observable"),
         ProgramRootRefV1(OperatorSiteRefV1("runtime-site-a"), 1, _fixture_type),
         QualifiedRefV1("runtime-intervention", "v1"), program, _fixture_bounds,
@@ -68,7 +69,7 @@ function _fixture_graph()
 end
 
 const _fixture_refs = (
-    GenomeContractRef("urn:fusion:runtime:mechanism", "v4", digest256_text("runtime-g1-schema"), digest256_text("runtime-g1-canon"), "runtime"),
+    g1_occurrence_ownership_contract_ref("urn:fusion:runtime:mechanism"),
     GenomeContractRef("urn:fusion:runtime:field", "v4", digest256_text("runtime-g2-schema"), digest256_text("runtime-g2-canon"), "runtime"),
     GenomeContractRef("urn:fusion:runtime:control", "v4", digest256_text("runtime-g3-schema"), digest256_text("runtime-g3-canon"), "runtime"))
 const registry = GenomeContractRegistryV4(_fixture_refs...)

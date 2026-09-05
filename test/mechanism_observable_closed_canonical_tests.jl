@@ -51,12 +51,16 @@ function _g1oc_payload(observable=_g1oc_observable())
     graph = TypedOperatorHypergraphV1((node(:state, G1OC_TYPE; id="state\0🚀"),
         node(:state, G1OC_TYPE; id="state-b")), (edge,))
     invariant = InvariantV1(InvariantRefV1("invariant"), ledger,
-        GlobalConservationScopeV1(), (InvariantTermV1(state.state_ref, 1),), (), (), (), 0, entropy_conserved)
+        GlobalConservationScopeV1(), (InvariantTermV1(state.state_ref, 1),),
+        (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("g1oc-site"), :input, 1, :inflow,
+             occurrence_internal_effect, ledger),
+         ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("g1oc-site"), :output, 1, :outflow,
+             occurrence_internal_effect, ledger)), 0, entropy_conserved)
     MechanismGenomePayloadV1((state, state_b), (invariant,), graph, (), (), (observable,), ())
 end
 
-function _g1oc_fixture_records()
-    path = joinpath(@__DIR__, "fixtures", "g1_observable_closed_baseline_e3c1093.jsonl")
+function _g1oc_fixture_records(path="g1_observable_closed_baseline_e3c1093.jsonl")
+    path = joinpath(@__DIR__, "fixtures", path)
     [JSON3.read(line, Dict{String,Any}) for line in eachline(path) if !isempty(strip(line))]
 end
 
@@ -80,7 +84,8 @@ end
     @test canonical_hash(_g1oc_observable(competitors=reverse(observable.competing_prediction_refs))) == canonical_hash(observable)
     payload = _g1oc_payload(observable)
     payload_text = canonical_json(payload)
-    payload_record = only(filter(r -> r["name"] == "payload_complex", records))
+    payload_records = _g1oc_fixture_records("g1_observable_closed_r2.jsonl")
+    payload_record = only(filter(r -> r["name"] == "payload_complex_r2", payload_records))
     @test payload_text == payload_record["json"]
     @test ncodeunits(payload_text) == payload_record["ncodeunits"]
     @test canonical_hash(payload).value == payload_record["sha256"]

@@ -2,6 +2,8 @@
 
 @enum G1LegacyMigrationReasonV1 migration_lossless missing_mapping_resource mapping_not_applicable contract_incompatible legacy_ast_unrepresentable legacy_gene_semantics_unrepresentable legacy_edge_completion_missing canonicalization_budget_exhausted
 
+@enum G1LegacyMigrationModeV1 legacy9_to_exact7 exact7_recanonicalize
+
 struct G1LegacyEdgeCompletionV1
     source_edge_id::String
     account_effects::Tuple{Vararg{PortAccountEffectV1}}
@@ -16,6 +18,53 @@ struct G1LegacyEdgeCompletionV1
         all(typeof(x) === PortAccountEffectV1 for x in effects) || throw(ArgumentError("legacy account effects must be typed"))
         all(typeof(x) === InterfaceFluxPairV1 for x in pairs) || throw(ArgumentError("legacy interface pairs must be typed"))
         new(id, effects, pairs)
+    end
+end
+
+"""Explicit nine-to-seven-field migration input for the pre-r2 invariant.
+
+This type is intentionally separate from `InvariantV1`: the public r2
+constructor has no legacy nine-argument overload.  The three site sets are
+only migration declarations; the target ownership tuple is projected from
+the typed graph and checked by the normal exact-closure admission path.
+"""
+struct LegacyInvariantV1
+    invariant_ref::InvariantRefV1
+    ledger_identity::ConservationLedgerIdentityV1
+    scope::ConservationInvariantScopeV1
+    terms::Tuple{Vararg{InvariantTermV1}}
+    allowed_source_refs::Tuple{Vararg{OperatorSiteRefV1}}
+    allowed_sink_refs::Tuple{Vararg{OperatorSiteRefV1}}
+    boundary_flux_refs::Tuple{Vararg{OperatorSiteRefV1}}
+    tolerance_log10::Int16
+    entropy_direction::EntropyDirectionV1
+    function LegacyInvariantV1(invariant_ref, ledger_identity, scope, terms,
+                               allowed_source_refs, allowed_sink_refs,
+                               boundary_flux_refs, tolerance_log10,
+                               entropy_direction)
+        invariant_ref isa InvariantRefV1 || throw(ArgumentError("legacy invariant_ref must be InvariantRefV1"))
+        ledger_identity isa ConservationLedgerIdentityV1 || throw(ArgumentError("legacy ledger identity is not typed"))
+        typeof(scope) in (GlobalConservationScopeV1, DomainConservationScopeV1, InterfaceConservationScopeV1) ||
+            throw(ArgumentError("legacy invariant scope is not sealed"))
+        ts = _g1_migration_tuple(terms, InvariantTermV1, "legacy invariant terms")
+        isempty(ts) && throw(ArgumentError("legacy invariant terms cannot be empty"))
+        length(unique(t.state_ref.value for t in ts)) == length(ts) || throw(ArgumentError("legacy invariant terms are not unique"))
+        sr = _g1_migration_tuple(allowed_source_refs, OperatorSiteRefV1, "legacy source refs")
+        sk = _g1_migration_tuple(allowed_sink_refs, OperatorSiteRefV1, "legacy sink refs")
+        bf = _g1_migration_tuple(boundary_flux_refs, OperatorSiteRefV1, "legacy boundary refs")
+        length(unique(r.value for r in sr)) == length(sr) || throw(ArgumentError("legacy source refs are not unique"))
+        length(unique(r.value for r in sk)) == length(sk) || throw(ArgumentError("legacy sink refs are not unique"))
+        length(unique(r.value for r in bf)) == length(bf) || throw(ArgumentError("legacy boundary refs are not unique"))
+        isempty(intersect(Set(r.value for r in sr), Set(r.value for r in sk))) || throw(ArgumentError("legacy source/sink refs overlap"))
+        isempty(intersect(Set(r.value for r in sr), Set(r.value for r in bf))) || throw(ArgumentError("legacy source/boundary refs overlap"))
+        isempty(intersect(Set(r.value for r in sk), Set(r.value for r in bf))) || throw(ArgumentError("legacy sink/boundary refs overlap"))
+        typeof(tolerance_log10) in (Int8, Int16, Int32, Int64, UInt8, UInt16, UInt32, UInt64) ||
+            throw(ArgumentError("legacy tolerance must be a fixed-width integer"))
+        typemin(Int16) <= tolerance_log10 <= typemax(Int16) || throw(ArgumentError("legacy tolerance outside Int16 range"))
+        tolerance_log10 <= 0 || throw(ArgumentError("legacy tolerance must be non-positive"))
+        tol = Int16(tolerance_log10)
+        entropy_direction isa EntropyDirectionV1 || throw(ArgumentError("legacy entropy direction is not sealed"))
+        new(invariant_ref, ledger_identity, scope, ts, sr, sk, bf, tol, entropy_direction)
     end
 end
 
@@ -60,6 +109,14 @@ end
 function _g1_migration_gene_wire(x::Any)
     typeof(x) === StateGeneV1 && return invoke(canonical_json, Tuple{StateGeneV1}, x)
     typeof(x) === InvariantV1 && return invoke(canonical_json, Tuple{InvariantV1}, x)
+    typeof(x) === LegacyInvariantV1 && return "{\"legacy_invariant\":true,\"invariant_ref\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.invariant_ref) *
+        ",\"ledger_identity\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.ledger_identity) *
+        ",\"scope\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.scope) *
+        ",\"terms\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.terms) *
+        ",\"source\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.allowed_source_refs) *
+        ",\"sink\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.allowed_sink_refs) *
+        ",\"boundary\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.boundary_flux_refs) *
+        ",\"tolerance_log10\":" * string(x.tolerance_log10) * ",\"entropy_direction\":" * invoke(_g1_migration_closed_value, Tuple{Any}, x.entropy_direction) * "}"
     typeof(x) === ParameterGeneV1 && return invoke(canonical_json, Tuple{ParameterGeneV1}, x)
     typeof(x) === SymmetryGeneV1 && return invoke(canonical_json, Tuple{SymmetryGeneV1}, x)
     typeof(x) === ObservableGeneV1 && return invoke(_g1_observable_canonical_bytes, Tuple{ObservableGeneV1}, x)
@@ -67,10 +124,11 @@ function _g1_migration_gene_wire(x::Any)
     throw(ArgumentError("legacy mapping contains an unsealed gene"))
 end
 
-function _g1_migration_declaration_content_hash(source_hash::Digest256, target::GenomeContractRef,
+function _g1_migration_declaration_content_hash(source_hash::Digest256, source_contract::GenomeContractRef,
+                                    target::GenomeContractRef, mapping_ref::QualifiedRefV1,
                                     states::Tuple, invariants::Tuple, parameters::Tuple,
                                     symmetries::Tuple, observables::Tuple, holes::Tuple,
-                                    completions::Tuple)
+                                    completions::Tuple, mode::G1LegacyMigrationModeV1)
     genes = String[]
     for values in (states, invariants, parameters, symmetries, observables, holes)
         append!(genes, String[invoke(_g1_migration_gene_wire, Tuple{Any}, x) for x in values])
@@ -83,7 +141,7 @@ function _g1_migration_declaration_content_hash(source_hash::Digest256, target::
         invoke(_g1_migration_completion_wire, Tuple{G1LegacyEdgeCompletionV1}, x)) for x in completions]
     sort!(completion_records, by=x -> x[1])
     edge_wires = String["{\"slot\":" * string(i) * ",\"completion\":" * x[2] * "}" for (i, x) in enumerate(completion_records)]
-    payload = "{\"source_mechanism_hash\":" * _g1_layer_digest(source_hash) * ",\"target_contract\":" *
+    payload = "{\"mode\":" * invoke(_g1_migration_quote, Tuple{String}, string(mode)) * ",\"mapping_ref\":" * invoke(_g1_migration_closed_value, Tuple{Any}, mapping_ref) * ",\"source_contract\":" * invoke(_g1_transport_contract, Tuple{GenomeContractRef}, source_contract) * ",\"source_mechanism_hash\":" * _g1_layer_digest(source_hash) * ",\"target_contract\":" *
         invoke(_g1_transport_contract, Tuple{GenomeContractRef}, target) * ",\"genes\":[" * join(genes, ",") *
         "],\"edge_completions\":[" * join(edge_wires, ",") * "]}"
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits("fusionconceptai:v4:g1-legacy-declaration-content:v1|" * payload)))))
@@ -91,24 +149,36 @@ end
 
 struct G1LegacyMigrationDeclarationV1
     mapping_ref::QualifiedRefV1
+    mode::G1LegacyMigrationModeV1
+    source_contract_ref::GenomeContractRef
     source_mechanism_hash::Digest256
     target_contract_ref::GenomeContractRef
     states::Tuple{Vararg{StateGeneV1}}
-    invariants::Tuple{Vararg{InvariantV1}}
+    invariants::Tuple
     parameters::Tuple{Vararg{ParameterGeneV1}}
     symmetries::Tuple{Vararg{SymmetryGeneV1}}
     observables::Tuple{Vararg{ObservableGeneV1}}
     operator_holes::Tuple{Vararg{TypedOperatorHoleV1}}
     edge_completions::Tuple{Vararg{G1LegacyEdgeCompletionV1}}
     declaration_content_hash::Digest256
-    function G1LegacyMigrationDeclarationV1(mapping_ref::QualifiedRefV1, source_mechanism_hash::Digest256,
+    function G1LegacyMigrationDeclarationV1(mapping_ref::QualifiedRefV1,
+            mode::G1LegacyMigrationModeV1,
+            source_contract_ref::GenomeContractRef,
+            source_mechanism_hash::Digest256,
             target_contract_ref::GenomeContractRef, states, invariants, parameters, symmetries, observables,
             operator_holes, edge_completions)
         mapping_ref isa QualifiedRefV1 || throw(ArgumentError("mapping_ref must be QualifiedRefV1"))
         source_mechanism_hash isa Digest256 || throw(ArgumentError("source_mechanism_hash must be Digest256"))
         target_contract_ref isa GenomeContractRef || throw(ArgumentError("target_contract_ref must be GenomeContractRef"))
         st = invoke(_g1_migration_tuple, Tuple{Any,Type,String}, states, StateGeneV1, "legacy states")
-        iv = invoke(_g1_migration_tuple, Tuple{Any,Type,String}, invariants, InvariantV1, "legacy invariants")
+        invariants isa Tuple || throw(ArgumentError("legacy invariants must be an immutable tuple"))
+        all(typeof(x) in (InvariantV1, LegacyInvariantV1) for x in invariants) ||
+            throw(ArgumentError("legacy invariants contain an unsealed value"))
+        source_contract_ref isa GenomeContractRef || throw(ArgumentError("legacy source contract must be typed"))
+        mode === legacy9_to_exact7 && all(typeof(x) === LegacyInvariantV1 for x in invariants) ||
+            mode === exact7_recanonicalize && all(typeof(x) === InvariantV1 for x in invariants) ||
+            throw(ArgumentError("legacy migration mode does not match invariant schema"))
+        iv = invariants
         pa = invoke(_g1_migration_tuple, Tuple{Any,Type,String}, parameters, ParameterGeneV1, "legacy parameters")
         sy = invoke(_g1_migration_tuple, Tuple{Any,Type,String}, symmetries, SymmetryGeneV1, "legacy symmetries")
         ob = invoke(_g1_migration_tuple, Tuple{Any,Type,String}, observables, ObservableGeneV1, "legacy observables")
@@ -121,9 +191,59 @@ struct G1LegacyMigrationDeclarationV1
         invoke(_g1_migration_unique, Tuple{Tuple,Function,String}, ob, x -> x.observable_ref.value, "legacy observables")
         invoke(_g1_migration_unique, Tuple{Tuple,Function,String}, ho, x -> x.hole_ref.value, "legacy operator holes")
         invoke(_g1_migration_unique, Tuple{Tuple,Function,String}, ec, x -> x.source_edge_id, "legacy edge completions")
-        hash = invoke(_g1_migration_declaration_content_hash, Tuple{Digest256,GenomeContractRef,Tuple,Tuple,Tuple,Tuple,Tuple,Tuple,Tuple},
-            source_mechanism_hash, target_contract_ref, st, iv, pa, sy, ob, ho, ec)
-        new(mapping_ref, source_mechanism_hash, target_contract_ref, st, iv, pa, sy, ob, ho, ec, hash)
+        hash = invoke(_g1_migration_declaration_content_hash, Tuple{Digest256,GenomeContractRef,GenomeContractRef,QualifiedRefV1,Tuple,Tuple,Tuple,Tuple,Tuple,Tuple,Tuple,G1LegacyMigrationModeV1},
+            source_mechanism_hash, source_contract_ref, target_contract_ref, mapping_ref, st, iv, pa, sy, ob, ho, ec, mode)
+        new(mapping_ref, mode, source_contract_ref, source_mechanism_hash, target_contract_ref, st, iv, pa, sy, ob, ho, ec, hash)
+    end
+end
+
+struct _G1MigrationReceiptToken end
+const _G1_RECEIPT_TOKEN = _G1MigrationReceiptToken()
+
+struct G1LegacyMigrationReceiptV1
+    source_contract_ref::GenomeContractRef
+    target_contract_ref::GenomeContractRef
+    source_canonical_hash::Union{Nothing,Digest256}
+    target_canonical_transport_hash::Union{Nothing,Digest256}
+    target_subject_hash::Union{Nothing,Digest256}
+    mapping_ref::Union{Nothing,QualifiedRefV1}
+    mapping_hash::Union{Nothing,Digest256}
+    mode_or_null::Union{Nothing,G1LegacyMigrationModeV1}
+    mapping_algorithm_revision::String
+    declaration_content_hash::Union{Nothing,Digest256}
+    disposition::ResolutionStatus
+    reason::G1LegacyMigrationReasonV1
+    receipt_hash::Digest256
+    function G1LegacyMigrationReceiptV1(::_G1MigrationReceiptToken, source_contract_ref, target_contract_ref,
+            source_canonical_hash, target_canonical_transport_hash, target_subject_hash,
+            declaration_content_hash, mapping_ref, mapping_hash,
+            mode::Union{Nothing,G1LegacyMigrationModeV1}, disposition, reason)
+        source_contract_ref isa GenomeContractRef || throw(ArgumentError("receipt source contract is not typed"))
+        _g1_is_occurrence_ownership_contract(target_contract_ref) || throw(ArgumentError("receipt target contract is not exact r2"))
+        disposition in (resolved, terminal_deferred) || throw(ArgumentError("receipt disposition is not sealed"))
+        source_canonical_hash === nothing || source_canonical_hash isa Digest256 || throw(ArgumentError("receipt source hash is invalid"))
+        target_canonical_transport_hash === nothing || target_canonical_transport_hash isa Digest256 || throw(ArgumentError("receipt target canonical hash is invalid"))
+        target_subject_hash === nothing || target_subject_hash isa Digest256 || throw(ArgumentError("receipt target subject hash is invalid"))
+        mapping_ref === nothing || mapping_ref isa QualifiedRefV1 || throw(ArgumentError("receipt mapping ref is invalid"))
+        mapping_hash === nothing || mapping_hash isa Digest256 || throw(ArgumentError("receipt mapping hash is invalid"))
+        mode_or_null = mode
+        disposition === resolved && (mode !== nothing && target_subject_hash !== nothing && target_canonical_transport_hash !== nothing) ||
+            disposition === terminal_deferred || throw(ArgumentError("resolved receipt is missing target hashes"))
+        disposition === resolved && (mapping_ref !== nothing && mapping_hash !== nothing) ||
+            disposition === terminal_deferred || throw(ArgumentError("resolved receipt is missing mapping identity"))
+        algorithm = "g1-occurrence-ownership-migration-v2"
+        body = (source_contract_ref=source_contract_ref, target_contract_ref=target_contract_ref,
+            source_canonical_hash=source_canonical_hash, target_canonical_transport_hash=target_canonical_transport_hash,
+            target_subject_hash=target_subject_hash, mapping_algorithm_revision=algorithm,
+            mapping_ref=mapping_ref, mapping_hash=mapping_hash, mode_or_null=mode_or_null,
+            declaration_content_hash=declaration_content_hash, disposition=disposition, reason=reason)
+        digest = Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(_g1_migration_closed_value(body))))))
+        new(source_contract_ref, target_contract_ref, source_canonical_hash, target_canonical_transport_hash,
+            target_subject_hash, mapping_ref, mapping_hash, mode_or_null, algorithm,
+            declaration_content_hash, disposition, reason, digest)
+    end
+    function G1LegacyMigrationReceiptV1(args...)
+        throw(ArgumentError("migration receipt is sealed; use migrate_legacy_g1"))
     end
 end
 
@@ -135,6 +255,7 @@ struct G1LegacyMigrationResultV1
     mapping_hash::Union{Nothing,Digest256}
     declaration_content_hash::Union{Nothing,Digest256}
     reason::G1LegacyMigrationReasonV1
+    receipt::G1LegacyMigrationReceiptV1
     function G1LegacyMigrationResultV1(source::LegacyMechanismGenomeV4,
                                        declaration::Union{Nothing,G1LegacyMigrationDeclarationV1},
                                        context::MechanismCanonicalizationContextV1,
@@ -160,7 +281,14 @@ struct G1LegacyMigrationResultV1
             profile=context.profile) : nothing
         resolution === resolved && (genome.canonical.hashes == canonical.hashes ||
             throw(ArgumentError("resolved legacy genome hashes do not match migration outcome")))
-        new(resolution, genome, source_hash, mapping_ref, mapping_hash, declaration_content_hash, reason)
+        target_subject_hash = genome === nothing ? nothing : mechanism_subject_hash(genome)
+        target_canonical_hash = canonical === nothing ? nothing :
+            Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(canonical.transport.canonical_bytes)))))
+        mode = declaration === nothing ? nothing : declaration.mode
+        receipt = G1LegacyMigrationReceiptV1(_G1_RECEIPT_TOKEN, source.contract_ref, context.contract_ref,
+            source_hash, target_canonical_hash, target_subject_hash,
+            declaration_content_hash, mapping_ref, mapping_hash, mode, resolution, reason)
+        new(resolution, genome, source_hash, mapping_ref, mapping_hash, declaration_content_hash, reason, receipt)
     end
     function G1LegacyMigrationResultV1(args...)
         throw(ArgumentError("legacy migration result is sealed; use migrate_legacy_g1"))
@@ -216,12 +344,53 @@ end
 
 function _g1_migration_gene_set_equal(source_values::Tuple, target_values::Tuple,
                                       T::Type)::Bool
-    isempty(source_values) && return true
-    all(typeof(x) === T for x in source_values) || return false
+    T === Any || all(typeof(x) === T for x in source_values) || return false
     length(source_values) == length(target_values) || return false
+    T === Any || all(typeof(x) === T for x in target_values) || return false
+    isempty(source_values) && return true
     source_wire = sort(String[invoke(_g1_migration_gene_wire, Tuple{Any}, x) for x in source_values])
     target_wire = sort(String[invoke(_g1_migration_gene_wire, Tuple{Any}, x) for x in target_values])
     source_wire == target_wire
+end
+
+function _g1_migration_project_invariant(x::InvariantV1, graph::TypedOperatorHypergraphV1)
+    x
+end
+
+function _g1_migration_project_invariant(x::LegacyInvariantV1, graph::TypedOperatorHypergraphV1)
+    normalized = _g1_payload_graph_occurrences(graph)
+    normalized === nothing && return nothing
+    ledger_key = _ledger_identity_full_key(x.ledger_identity)
+    scope = x.scope
+    state_ids = Dict{Int,String}(i => node.node_id for (i, node) in enumerate(graph.nodes) if node.node_kind === :state)
+    domain_ids = typeof(scope) === DomainConservationScopeV1 ? Set(r.value for r in scope.state_refs) : Set{String}()
+    expected = ConservationLedgerOccurrenceRefV1[]
+    for item in normalized
+        occ = item.ref
+        _ledger_identity_full_key(occ.ledger_identity) == ledger_key || continue
+        include = if typeof(scope) === GlobalConservationScopeV1
+            true
+        elseif typeof(scope) === DomainConservationScopeV1
+            get(state_ids, item.graph_node_index, nothing) in domain_ids
+        elseif typeof(scope) === InterfaceConservationScopeV1
+            occ.operator_site_ref.value == scope.operator_site_ref.value &&
+                occ.occurrence_kind in (occurrence_interface_minus, occurrence_interface_plus)
+        else
+            false
+        end
+        include && push!(expected, occ)
+    end
+    source_expected = Set(o.operator_site_ref.value for o in expected if o.occurrence_kind === occurrence_source_effect)
+    sink_expected = Set(o.operator_site_ref.value for o in expected if o.occurrence_kind === occurrence_sink_effect)
+    boundary_expected = Set(o.operator_site_ref.value for o in expected if o.occurrence_kind in
+        (occurrence_boundary_effect, occurrence_interface_minus, occurrence_interface_plus))
+    Set(r.value for r in x.allowed_source_refs) == source_expected || return nothing
+    Set(r.value for r in x.allowed_sink_refs) == sink_expected || return nothing
+    Set(r.value for r in x.boundary_flux_refs) == boundary_expected || return nothing
+    isempty(expected) && return nothing
+    refs = Tuple(sort(expected, by=_g1_occurrence_key))
+    InvariantV1(x.invariant_ref, x.ledger_identity, x.scope, x.terms, refs,
+        x.tolerance_log10, x.entropy_direction)
 end
 
 function _g1_migration_check_legacy_ast(ast::TypedAST)
@@ -275,6 +444,7 @@ function _g1_migration_convert_graph(source::LegacyMechanismGenomeV4,
     edges = AtomicMIMOHyperedgeV1[]
     for edge in source.graph.hyperedges
         if typeof(edge) === TypedHyperedge
+            decl.mode === exact7_recanonicalize && return nothing
             converted = invoke(_g1_migration_convert_edge, Tuple{TypedHyperedge,G1LegacyMigrationDeclarationV1,OperatorRegistryV1}, edge, decl, registry)
             converted === nothing && return nothing
             push!(edges, converted)
@@ -287,12 +457,12 @@ function _g1_migration_convert_graph(source::LegacyMechanismGenomeV4,
             existing_effects = String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, x) for x in edge.account_effects]
             declared_effects = String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, x) for x in completion.account_effects]
             sort!(existing_effects); sort!(declared_effects)
-            existing_effects == declared_effects || isempty(existing_effects) ||
+            existing_effects == declared_effects || (decl.mode !== exact7_recanonicalize && isempty(existing_effects)) ||
                 throw(ArgumentError("legacy completion changes an existing atomic ledger"))
             existing_pairs = String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, x) for x in edge.interface_flux_pairs]
             declared_pairs = String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, x) for x in completion.interface_flux_pairs]
             sort!(existing_pairs); sort!(declared_pairs)
-            existing_pairs == declared_pairs || isempty(existing_pairs) ||
+            existing_pairs == declared_pairs || (decl.mode !== exact7_recanonicalize && isempty(existing_pairs)) ||
                 throw(ArgumentError("legacy completion changes an existing interface pair"))
             push!(edges, AtomicMIMOHyperedgeV1(edge.edge_id, edge.input_bindings, edge.output_bindings, edge.program, edge.role;
                 account_effects=completion.account_effects, interface_flux_pairs=completion.interface_flux_pairs, registry=registry))
@@ -440,11 +610,21 @@ function _g1_migration_closed_value(x::Any)::String
         return invoke(_g1_migration_closed_value, Tuple{Any}, (state_refs=getfield(x, :state_refs),))
     elseif typeof(x) === InterfaceConservationScopeV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (operator_site_ref=getfield(x, :operator_site_ref),))
+    elseif typeof(x) === ConservationLedgerOccurrenceRefV1
+        return invoke(_g1_migration_closed_value, Tuple{Any},
+            (operator_site_ref=getfield(x, :operator_site_ref), port_side=getfield(x, :port_side),
+             port_index=getfield(x, :port_index), direction=getfield(x, :direction),
+             occurrence_kind=getfield(x, :occurrence_kind), ledger_identity=getfield(x, :ledger_identity)))
     elseif typeof(x) === InvariantV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=getfield(x, :invariant_ref), ledger_identity=getfield(x, :ledger_identity),
-            scope=getfield(x, :scope), terms=getfield(x, :terms), allowed_source_refs=getfield(x, :allowed_source_refs),
-            allowed_sink_refs=getfield(x, :allowed_sink_refs), boundary_flux_refs=getfield(x, :boundary_flux_refs),
+            scope=getfield(x, :scope), terms=getfield(x, :terms), owned_ledger_occurrence_refs=getfield(x, :owned_ledger_occurrence_refs),
             tolerance_log10=getfield(x, :tolerance_log10), entropy_direction=getfield(x, :entropy_direction)))
+    elseif typeof(x) === LegacyInvariantV1
+        return invoke(_g1_migration_closed_value, Tuple{Any}, (invariant_ref=x.invariant_ref,
+            ledger_identity=x.ledger_identity, scope=x.scope, terms=x.terms,
+            allowed_source_refs=x.allowed_source_refs, allowed_sink_refs=x.allowed_sink_refs,
+            boundary_flux_refs=x.boundary_flux_refs, tolerance_log10=x.tolerance_log10,
+            entropy_direction=x.entropy_direction))
     elseif typeof(x) === ParameterTransformSpecV1
         return invoke(_g1_migration_closed_value, Tuple{Any}, (kind=x.kind, scale=x.scale))
     elseif typeof(x) === ParameterGeneV1
@@ -668,6 +848,23 @@ function _g1_migration_final_mapping_hash(source::LegacyMechanismGenomeV4,
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits("fusionconceptai:v4:g1-legacy-bound-mapping:v1|" * body)))))
 end
 
+function _g1_migration_exact7_edge_closure(source::LegacyMechanismGenomeV4,
+                                           decl::G1LegacyMigrationDeclarationV1)::Bool
+    decl.mode === exact7_recanonicalize || return true
+    for edge in source.graph.hyperedges
+        typeof(edge) === AtomicMIMOHyperedgeV1 || return false
+        completion = invoke(_g1_migration_edge_completion,
+            Tuple{G1LegacyMigrationDeclarationV1,String}, decl, edge.edge_id)
+        completion === nothing && return false
+        existing_effects = sort(String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, x) for x in edge.account_effects])
+        declared_effects = sort(String[invoke(_mimo_closed_effect, Tuple{PortAccountEffectV1}, x) for x in completion.account_effects])
+        existing_pairs = sort(String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, x) for x in edge.interface_flux_pairs])
+        declared_pairs = sort(String[invoke(_mimo_closed_pair, Tuple{InterfaceFluxPairV1}, x) for x in completion.interface_flux_pairs])
+        existing_effects == declared_effects && existing_pairs == declared_pairs || return false
+    end
+    true
+end
+
 function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
                                 declaration::Union{Nothing,G1LegacyMigrationDeclarationV1},
                                 context::MechanismCanonicalizationContextV1,
@@ -686,8 +883,22 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
     source_hash.value == declaration.source_mechanism_hash.value || return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, mapping_not_applicable)
-    invoke(_g1_migration_contract_equal, Tuple{GenomeContractRef,GenomeContractRef}, source.contract_ref, context.contract_ref) &&
-        invoke(_g1_migration_contract_equal, Tuple{GenomeContractRef,GenomeContractRef}, source.contract_ref, declaration.target_contract_ref) ||
+    legacy_mode = declaration.mode === legacy9_to_exact7
+    mode_ok = legacy_mode ? !_g1_is_occurrence_ownership_contract(source.contract_ref) :
+        _g1_is_occurrence_ownership_contract(source.contract_ref)
+    mode_ok || return invoke(_g1_migration_deferred,
+        Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+        source_hash, declaration, contract_incompatible)
+    invoke(_g1_migration_contract_equal, Tuple{GenomeContractRef,GenomeContractRef}, source.contract_ref, declaration.source_contract_ref) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, contract_incompatible)
+    !legacy_mode && invoke(_g1_migration_contract_equal, Tuple{GenomeContractRef,GenomeContractRef}, source.contract_ref, declaration.target_contract_ref) == false &&
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, contract_incompatible)
+    _g1_is_occurrence_ownership_contract(context.contract_ref) &&
+        invoke(_g1_migration_contract_equal, Tuple{GenomeContractRef,GenomeContractRef}, context.contract_ref, declaration.target_contract_ref) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, contract_incompatible)
@@ -699,11 +910,16 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
     completion_closure || return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
+    invoke(_g1_migration_exact7_edge_closure,
+        Tuple{LegacyMechanismGenomeV4,G1LegacyMigrationDeclarationV1}, source, declaration) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
     invoke(_g1_migration_legacy_ast_supported, Tuple{LegacyMechanismGenomeV4}, source) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_ast_unrepresentable)
-    invoke(_g1_migration_gene_set_equal, Tuple{Tuple,Tuple,Type}, source.invariants, declaration.invariants, InvariantV1) ||
+    invoke(_g1_migration_gene_set_equal, Tuple{Tuple,Tuple,Type}, source.invariants, declaration.invariants, Any) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_gene_semantics_unrepresentable)
@@ -723,22 +939,39 @@ function _g1_migration_evaluate(source::LegacyMechanismGenomeV4,
             return invoke(_g1_migration_deferred,
                 Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
                 source_hash, declaration, legacy_ast_unrepresentable)
+        e isa ArgumentError &&
+            return invoke(_g1_migration_deferred,
+                Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+                source_hash, declaration, legacy_gene_semantics_unrepresentable)
         rethrow()
     end
     converted_graph === nothing && return invoke(_g1_migration_deferred,
         Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
         source_hash, declaration, legacy_edge_completion_missing)
-    invoke(_g1_payload_scope_closure, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1}, declaration.invariants,
+    projected_invariants = try
+        Tuple(filter(x -> x !== nothing, collect(_g1_migration_project_invariant(x, converted_graph) for x in declaration.invariants)))
+    catch e
+        e isa ArgumentError && return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
+        rethrow()
+    end
+    length(projected_invariants) == length(declaration.invariants) ||
+        return invoke(_g1_migration_deferred,
+            Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
+            source_hash, declaration, legacy_gene_semantics_unrepresentable)
+    invoke(_g1_payload_scope_closure, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1}, projected_invariants,
         declaration.states, converted_graph) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_gene_semantics_unrepresentable)
-    invoke(_g1_payload_ledger_closure, Tuple{Tuple,TypedOperatorHypergraphV1}, declaration.invariants, converted_graph) ||
+    invoke(_g1_payload_ledger_ownership_closure, Tuple{Tuple,Tuple,TypedOperatorHypergraphV1},
+        projected_invariants, getfield(declaration, :states), converted_graph) ||
         return invoke(_g1_migration_deferred,
             Tuple{Union{Nothing,Digest256},Union{Nothing,G1LegacyMigrationDeclarationV1},G1LegacyMigrationReasonV1},
             source_hash, declaration, legacy_gene_semantics_unrepresentable)
     payload = invoke(MechanismGenomePayloadV1,
-        Tuple{Any,Any,Any,Any,Any,Any,Any}, declaration.states, declaration.invariants,
+        Tuple{Any,Any,Any,Any,Any,Any,Any}, declaration.states, projected_invariants,
         converted_graph, declaration.parameters, declaration.symmetries, declaration.observables,
         declaration.operator_holes)
     programs = TypedASTProgramV1[]
@@ -777,10 +1010,18 @@ function migrate_legacy_g1(source::LegacyMechanismGenomeV4,
 end
 
 semantic_view(x::G1LegacyEdgeCompletionV1) = (source_edge_id=x.source_edge_id, account_effects=x.account_effects, interface_flux_pairs=x.interface_flux_pairs)
-semantic_view(x::G1LegacyMigrationDeclarationV1) = (mapping_ref=x.mapping_ref, source_mechanism_hash=x.source_mechanism_hash, target_contract_ref=x.target_contract_ref,
+semantic_view(x::G1LegacyMigrationDeclarationV1) = (mapping_ref=x.mapping_ref, mode=x.mode, source_contract_ref=x.source_contract_ref, source_mechanism_hash=x.source_mechanism_hash, target_contract_ref=x.target_contract_ref,
     states=x.states, invariants=x.invariants, parameters=x.parameters, symmetries=x.symmetries, observables=x.observables, operator_holes=x.operator_holes,
     edge_completions=x.edge_completions, declaration_content_hash=x.declaration_content_hash)
 semantic_view(x::G1LegacyMigrationResultV1) = (resolution=x.resolution,
     mechanism_subject_hash=x.genome === nothing ? nothing : mechanism_subject_hash(x.genome),
     source_mechanism_hash=x.source_mechanism_hash, mapping_ref=x.mapping_ref,
-    mapping_hash=x.mapping_hash, declaration_content_hash=x.declaration_content_hash, reason=x.reason)
+    mapping_hash=x.mapping_hash, declaration_content_hash=x.declaration_content_hash, reason=x.reason,
+    receipt=x.receipt)
+semantic_view(x::G1LegacyMigrationReceiptV1) = (source_contract_ref=x.source_contract_ref,
+    target_contract_ref=x.target_contract_ref, source_canonical_hash=x.source_canonical_hash,
+    target_canonical_transport_hash=x.target_canonical_transport_hash, target_subject_hash=x.target_subject_hash,
+    mapping_ref=x.mapping_ref, mapping_hash=x.mapping_hash, mode_or_null=x.mode_or_null,
+    mapping_algorithm_revision=x.mapping_algorithm_revision,
+    declaration_content_hash=x.declaration_content_hash, disposition=x.disposition,
+    reason=x.reason, receipt_hash=x.receipt_hash)

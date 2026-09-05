@@ -198,18 +198,18 @@ if get(ENV, "FUSION_G1OC_CHILD", "0") == "1"
         @assert wire === FusionConceptAI._g1_migration_gene_wire(observable)
         Base.write(stdout, UInt8[0x47,0x31,0x4f,0x43,0x5f,0x43,0x5f,0x50,0x41,0x53,0x53,0x0a])
     elseif mode == "D"
-        context = MechanismCanonicalizationContextV1(GenomeContractRef("urn:fusion:g1oc", "v1", "a"^64, "b"^64, "g1"), CanonicalizationProfileV1("g1oc", "1", CanonicalizationBudgetV1(500_000, 50_000, 512, 8_000_000)))
+        context = MechanismCanonicalizationContextV1(g1_occurrence_ownership_contract_ref("urn:fusion:g1oc"), CanonicalizationProfileV1("g1oc", "1", CanonicalizationBudgetV1(500_000, 50_000, 512, 8_000_000)))
         layers = mechanism_hash_layers(payload, context)
-        record = only(JSON3.read(line, Dict{String,Any}) for line in eachline(joinpath(@__DIR__, "fixtures", "g1_observable_closed_baseline_e3c1093.jsonl")) if !isempty(strip(line)) && JSON3.read(line, Dict{String,Any})["name"] == "mechanism_layers_legacy")
+        record = only(JSON3.read(line, Dict{String,Any}) for line in eachline(joinpath(@__DIR__, "fixtures", "g1_observable_closed_r2.jsonl")) if !isempty(strip(line)) && JSON3.read(line, Dict{String,Any})["name"] == "mechanism_layers_r2")
         expected_layers = Tuple(String.(record["layer_hashes"]))
         @assert Tuple(getfield(layers, i).value for i in 1:8) == expected_layers
         source = LegacyMechanismGenomeV4(UInt64(1), context.contract_ref, payload.operator_graph, payload.invariants, payload.observables)
         edge = payload.operator_graph.hyperedges[1]
         completion = G1LegacyEdgeCompletionV1(edge.edge_id, edge.account_effects, edge.interface_flux_pairs)
-        declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), canonical_hash(source), context.contract_ref, payload.states, payload.invariants, (), (), payload.observables, (), (completion,))
+        declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), exact7_recanonicalize, context.contract_ref, canonical_hash(source), context.contract_ref, payload.states, payload.invariants, (), (), payload.observables, (), (completion,))
         result = migrate_legacy_g1(source, declaration, context, edge.registry)
         @assert result.resolution === resolved && result.reason === migration_lossless
-        @assert getfield(result.source_mechanism_hash, :value) == String(record["source_mechanism_hash"])
+        @assert getfield(result.source_mechanism_hash, :value) == String(record["source_canonical_hash"])
         @assert getfield(result.declaration_content_hash, :value) == String(record["declaration_content_hash"])
         @assert getfield(result.mapping_hash, :value) == String(record["mapping_hash"])
         @eval FusionConceptAI begin

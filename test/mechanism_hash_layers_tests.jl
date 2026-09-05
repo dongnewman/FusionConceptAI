@@ -77,9 +77,30 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
     symmetry = SymmetryGeneV1(SymmetryRefV1(prefix * "sym"), QualifiedRefV1("generator", "v1"), symmetry_continuous, matrix,
         (StateSymmetryActionV1(StateGeneRefV1(prefix * "state-a"), matrix),), nothing,
         symmetry_invariant, 0 // 1)
+    occurrence_ref(edge, account, kind) = ConservationLedgerOccurrenceRefV1(
+        OperatorSiteRefV1(edge.edge_id), account.port_side, account.port_index,
+        account.direction, kind, account.ledger_identity)
+    additive_owned = tuple((occurrence_ref(edge_c, effect.account_ref, occurrence_internal_effect)
+        for effect in edge_c.account_effects)...)
+    interface_owned(edge) = (
+        occurrence_ref(edge, edge.interface_flux_pairs[1].minus.account_ref, occurrence_interface_minus),
+        occurrence_ref(edge, edge.interface_flux_pairs[1].plus.account_ref, occurrence_interface_plus))
     invariant = InvariantV1(InvariantRefV1(prefix * "invariant"), ledger_for(ledger_account),
         GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),),
-        (), (), (), 0, entropy_conserved)
+        additive_owned, 0, entropy_conserved)
+    interface_invariants = if interface_accounts[1] == interface_accounts[2]
+        (InvariantV1(InvariantRefV1(prefix * "interface-invariant"), ledger_for(interface_accounts[1]),
+            GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),),
+            (interface_owned(edge_a)..., interface_owned(edge_b)...), 0, entropy_conserved),)
+    else
+        (InvariantV1(InvariantRefV1(prefix * "interface-invariant-a"), ledger_for(interface_accounts[1]),
+            InterfaceConservationScopeV1(OperatorSiteRefV1(prefix * "interface-a")),
+            (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), interface_owned(edge_a), 0, entropy_conserved),
+         InvariantV1(InvariantRefV1(prefix * "interface-invariant-b"), ledger_for(interface_accounts[2]),
+            InterfaceConservationScopeV1(OperatorSiteRefV1(prefix * "interface-b")),
+            (InvariantTermV1(StateGeneRefV1(prefix * "state-a"), 1),), interface_owned(edge_b), 0, entropy_conserved))
+    end
+    invariants = (invariant, interface_invariants...)
     sample = sample_program()
     observable = ObservableGeneV1(ObservableRefV1(prefix * "obs"),
         ProgramRootRefV1(OperatorSiteRefV1(prefix * "interface-a"), observable_root, ptype),
@@ -100,9 +121,9 @@ function _hash_fixture(; prefix="", constant_value=1, parameter_value=0.25,
         ParameterTransformSpecV1(transform_linear), bounds, parameter_value)
     observables = (observable,)
     symmetries = (symmetry,)
-    payload = MechanismGenomePayloadV1(states, (invariant,), graph, (parameter,), symmetries,
+    payload = MechanismGenomePayloadV1(states, invariants, graph, (parameter,), symmetries,
         observables, (hole,))
-    c = contract === nothing ? GenomeContractRef("urn:fusion:hash-test", "v1", repeat("a", 64), repeat("b", 64), "g1") : contract
+    c = contract === nothing ? g1_occurrence_ownership_contract_ref("urn:fusion:hash-test") : contract
     p = profile === nothing ? CanonicalizationProfileV1("hash-test", "1",
         CanonicalizationBudgetV1(500_000, 50_000, 512, 8_000_000)) : profile
     payload, MechanismCanonicalizationContextV1(c, p)
@@ -125,7 +146,7 @@ _hashes_as_tuple(h) = ntuple(i -> getfield(h, i), fieldcount(typeof(h)))
     @test all(getfield(base, i) == digest256_text(wires[i]) for i in 1:8)
     domains = ("contract", "canonicalization-profile", "operator-registry", "topology",
         "operator-program", "mechanism-structure", "decorated-mechanism", "candidate-subject")
-    @test all(JSON3.read(wires[i]).domain == "fusionconceptai:v4:g1-hash:" * domains[i] * ":v1" for i in 1:8)
+    @test all(JSON3.read(wires[i]).domain == "fusionconceptai:v4:g1-hash:" * domains[i] * ":v2" for i in 1:8)
     @test JSON3.read(wires[4]).dependencies.contract_hash == base.contract_hash.value
     @test JSON3.read(wires[5]).dependencies.topology_hash == base.topology_hash.value
     @test JSON3.read(wires[6]).dependencies.operator_program_hash == base.operator_program_hash.value
@@ -142,7 +163,7 @@ end
         ("MIMO attachment", _hash_fixture(swap_additive_attachment=true), (true, true, true, true, true)),
         ("observable root", _hash_fixture(observable_root=2), (false, false, true, true, true)),
         ("symmetry matrix", _hash_fixture(symmetry_sign=(-1 // 1)), (false, false, false, true, true)),
-        ("ledger account rename", _hash_fixture(ledger_account="renamed-ledger"), (false, false, false, true, true)),
+        ("ledger account rename", _hash_fixture(ledger_account="renamed-ledger"), (false, false, true, true, true)),
         ("split interface ledgers", _hash_fixture(interface_accounts=("flux-a", "flux-b")), (false, false, true, true, true)),
         ("parameter type", _hash_fixture(parameter_type=PhysicalType(:scalar_parameter, 0, 0,
             TemporalTypeV1(static_time), UnitSignature((1, 0, 0, 0, 0, 0, 0)))), (false, true, true, true, true)),
@@ -183,7 +204,7 @@ end
 
 @testset "G1 contract/profile/budget and sealing" begin
     p, c = _hash_fixture(); b = mechanism_hash_layers(p, c)
-    changed_contract = GenomeContractRef("urn:fusion:other", "v1", repeat("c", 64), repeat("d", 64), "g1")
+    changed_contract = g1_occurrence_ownership_contract_ref("urn:fusion:other")
     x = mechanism_hash_layers(p, MechanismCanonicalizationContextV1(changed_contract, c.profile))
     @test b.contract_hash != x.contract_hash
     @test b.topology_hash != x.topology_hash

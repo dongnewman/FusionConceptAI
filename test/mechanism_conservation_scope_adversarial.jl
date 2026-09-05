@@ -15,17 +15,15 @@ end
     @test canonical_hash(domain) == canonical_hash(permuted)
     hash_payload, hash_context = _hash_fixture()
     base_invariant = hash_payload.invariants[1]
-    domain_invariant = InvariantV1(base_invariant.invariant_ref, base_invariant.ledger_identity,
-        DomainConservationScopeV1((StateGeneRefV1("state-a"),)), base_invariant.terms,
-        (), (), (), 0, entropy_conserved)
-    domain_payload = MechanismGenomePayloadV1(hash_payload.states, (domain_invariant,), hash_payload.operator_graph,
+    domain_invariant = InvariantV1(base_invariant.invariant_ref, base_invariant.ledger_identity, DomainConservationScopeV1((StateGeneRefV1("state-a"),)), base_invariant.terms, (base_invariant.owned_ledger_occurrence_refs[1],), 0, entropy_conserved)
+    domain_invariant_b = InvariantV1(InvariantRefV1("domain-scope-b"), base_invariant.ledger_identity, DomainConservationScopeV1((StateGeneRefV1("state-b"),)), (InvariantTermV1(StateGeneRefV1("state-b"), 1),), (base_invariant.owned_ledger_occurrence_refs[2],), 0, entropy_conserved)
+    domain_payload = MechanismGenomePayloadV1(hash_payload.states, (domain_invariant, domain_invariant_b, hash_payload.invariants[2:end]...), hash_payload.operator_graph,
         hash_payload.parameters, hash_payload.symmetries, hash_payload.observables, hash_payload.operator_holes)
     interface_edge = hash_payload.operator_graph.hyperedges[1]
-    interface_invariant = InvariantV1(InvariantRefV1("interface-scope"),
-        interface_edge.interface_flux_pairs[1].minus.account_ref.ledger_identity,
-        InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge.edge_id)), base_invariant.terms,
-        (), (), (), 0, entropy_conserved)
-    interface_payload = MechanismGenomePayloadV1(hash_payload.states, (interface_invariant,), hash_payload.operator_graph,
+    interface_edge_b = hash_payload.operator_graph.hyperedges[2]
+    interface_invariant = InvariantV1(InvariantRefV1("interface-scope"), interface_edge.interface_flux_pairs[1].minus.account_ref.ledger_identity, InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge.edge_id)), base_invariant.terms, hash_payload.invariants[2].owned_ledger_occurrence_refs[1:2], 0, entropy_conserved)
+    interface_invariant_b = InvariantV1(InvariantRefV1("interface-scope-b"), interface_edge_b.interface_flux_pairs[1].minus.account_ref.ledger_identity, InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge_b.edge_id)), base_invariant.terms, hash_payload.invariants[2].owned_ledger_occurrence_refs[3:4], 0, entropy_conserved)
+    interface_payload = MechanismGenomePayloadV1(hash_payload.states, (hash_payload.invariants[1], interface_invariant, interface_invariant_b), hash_payload.operator_graph,
         hash_payload.parameters, hash_payload.symmetries, hash_payload.observables, hash_payload.operator_holes)
     before_global = mechanism_hash_layers(hash_payload, hash_context)
     before_domain = mechanism_hash_layers(domain_payload, hash_context)
@@ -40,15 +38,15 @@ helper_source = read(only(ARGS), String)
 include_string(Main, first(split(helper_source, "@testset")), "mechanism_hash_layers_tests.jl")
 hash_payload, hash_context = _hash_fixture()
 base_invariant = hash_payload.invariants[1]
-domain_invariant = InvariantV1(base_invariant.invariant_ref, base_invariant.ledger_identity,
-    DomainConservationScopeV1((StateGeneRefV1("state-a"),)), base_invariant.terms, (), (), (), 0, entropy_conserved)
-domain_payload = MechanismGenomePayloadV1(hash_payload.states, (domain_invariant,), hash_payload.operator_graph,
+domain_invariant = InvariantV1(base_invariant.invariant_ref, base_invariant.ledger_identity, DomainConservationScopeV1((StateGeneRefV1("state-a"),)), base_invariant.terms, (base_invariant.owned_ledger_occurrence_refs[1],), 0, entropy_conserved)
+domain_invariant_b = InvariantV1(InvariantRefV1("domain-scope-b"), base_invariant.ledger_identity, DomainConservationScopeV1((StateGeneRefV1("state-b"),)), (InvariantTermV1(StateGeneRefV1("state-b"), 1),), (base_invariant.owned_ledger_occurrence_refs[2],), 0, entropy_conserved)
+domain_payload = MechanismGenomePayloadV1(hash_payload.states, (domain_invariant, domain_invariant_b, hash_payload.invariants[2:end]...), hash_payload.operator_graph,
     hash_payload.parameters, hash_payload.symmetries, hash_payload.observables, hash_payload.operator_holes)
 interface_edge = hash_payload.operator_graph.hyperedges[1]
-interface_invariant = InvariantV1(InvariantRefV1("interface-scope"),
-    interface_edge.interface_flux_pairs[1].minus.account_ref.ledger_identity,
-    InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge.edge_id)), base_invariant.terms, (), (), (), 0, entropy_conserved)
-interface_payload = MechanismGenomePayloadV1(hash_payload.states, (interface_invariant,), hash_payload.operator_graph,
+interface_edge_b = hash_payload.operator_graph.hyperedges[2]
+interface_invariant = InvariantV1(InvariantRefV1("interface-scope"), interface_edge.interface_flux_pairs[1].minus.account_ref.ledger_identity, InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge.edge_id)), base_invariant.terms, hash_payload.invariants[2].owned_ledger_occurrence_refs[1:2], 0, entropy_conserved)
+interface_invariant_b = InvariantV1(InvariantRefV1("interface-scope-b"), interface_edge_b.interface_flux_pairs[1].minus.account_ref.ledger_identity, InterfaceConservationScopeV1(OperatorSiteRefV1(interface_edge_b.edge_id)), base_invariant.terms, hash_payload.invariants[2].owned_ledger_occurrence_refs[3:4], 0, entropy_conserved)
+interface_payload = MechanismGenomePayloadV1(hash_payload.states, (hash_payload.invariants[1], interface_invariant, interface_invariant_b), hash_payload.operator_graph,
     hash_payload.parameters, hash_payload.symmetries, hash_payload.observables, hash_payload.operator_holes)
 before_global = mechanism_hash_layers(hash_payload, hash_context)
 before_domain = mechanism_hash_layers(domain_payload, hash_context)
@@ -95,13 +93,11 @@ end
     @test resolved_result.resolution == FusionConceptAI.resolved
     base = declaration.invariants[1]
     bad_scope = InterfaceConservationScopeV1(OperatorSiteRefV1("site-a"))
-    changed = InvariantV1(base.invariant_ref, base.ledger_identity, bad_scope, base.terms,
-        base.allowed_source_refs, base.allowed_sink_refs, base.boundary_flux_refs,
-        base.tolerance_log10, base.entropy_direction)
+    changed = InvariantV1(base.invariant_ref, base.ledger_identity, bad_scope, base.terms, tuple(base.owned_ledger_occurrence_refs..., ()..., ()...), base.tolerance_log10, base.entropy_direction)
     changed_source = LegacyMechanismGenomeV4(source.seed, source.contract_ref, source.graph,
         (changed,), source.observables)
-    changed_declaration = G1LegacyMigrationDeclarationV1(declaration.mapping_ref,
-        canonical_hash(changed_source), declaration.target_contract_ref, declaration.states,
+    changed_declaration = G1LegacyMigrationDeclarationV1(declaration.mapping_ref, declaration.mode,
+        declaration.source_contract_ref, canonical_hash(changed_source), declaration.target_contract_ref, declaration.states,
         (changed,), declaration.parameters, declaration.symmetries, declaration.observables,
         declaration.operator_holes, declaration.edge_completions)
     result = migrate_legacy_g1(changed_source, changed_declaration, context, registry)

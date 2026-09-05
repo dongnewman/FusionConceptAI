@@ -1,9 +1,10 @@
 using Test
+using SHA
 using FusionConceptAI
 
 const PB_UNIT = UnitSignature()
 const PB_TYPE = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time), PB_UNIT)
-const PB_CONTRACT = GenomeContractRef("urn:fusion:phaseb", "v1", repeat("a", 64), repeat("b", 64), "g1")
+const PB_CONTRACT = g1_occurrence_ownership_contract_ref("urn:fusion:phaseb")
 const PB_PROFILE = CanonicalizationProfileV1("phaseb", "1", CanonicalizationBudgetV1(500_000, 50_000, 512, 8_000_000))
 
 """Small valid strong payload: two states, two governing MIMO edges, one closed ledger."""
@@ -29,7 +30,11 @@ function _phaseb_fixture(; contract=PB_CONTRACT, profile=PB_PROFILE,
     states = (StateGeneV1(StateGeneRefV1("state-a"), PB_TYPE, bounds, (), (), (), state_derived),
         StateGeneV1(StateGeneRefV1("state-b"), PB_TYPE, bounds, (), (), (), state_derived))
     invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
-        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1("state-a"), 1),),
+        (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :input, 1, :inflow,
+             occurrence_internal_effect, ledger),
+         ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("site-a"), :output, 1, :outflow,
+             occurrence_internal_effect, ledger)), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1("site-a"), 1, PB_TYPE),
@@ -68,16 +73,21 @@ function _legacy_migration_fixture(; ast=nothing, registry=default_operator_regi
                                    extra_nodes=())
     old_ast = ast === nothing ? TypedAST((TypedASTNode(:state, (), PB_TYPE),
         TypedASTNode(:identity, (1,), PB_TYPE)), 2, (1,); registry=registry) : ast
+    strong_payload, _, aux = _phaseb_fixture(; contract=contract, registry=registry)
+    old_program = TypedASTProgramV1(old_ast; registry=registry)
     legacy_graph = TypedOperatorHypergraphV1((node(:state, PB_TYPE; id="state-a"),
         node(:state, PB_TYPE; id="state-b"), extra_nodes...),
-        (TypedHyperedge("site-a", (1,), (1,), old_ast, :governing),
-         TypedHyperedge("site-b", (2,), (2,), old_ast, :governing)))
-    strong_payload, _, aux = _phaseb_fixture(; contract=contract, registry=registry)
+        (AtomicMIMOHyperedgeV1("site-a", (MIMOInputBindingV1(1, 1),),
+            (MIMOOutputBindingV1(1, 1),), old_program, governing;
+            account_effects=aux.edge_a.account_effects, registry=registry),
+         AtomicMIMOHyperedgeV1("site-b", (MIMOInputBindingV1(1, 2),),
+            (MIMOOutputBindingV1(1, 2),), old_program, governing;
+            registry=registry)))
     source = LegacyMechanismGenomeV4(7, contract, legacy_graph;
         invariants=source_invariants === nothing ? strong_payload.invariants : source_invariants,
         observables=strong_payload.observables)
     invs = declaration_invariants === nothing ? strong_payload.invariants : declaration_invariants
-    declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
+    declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), exact7_recanonicalize, declaration_contract,
         canonical_hash(source), declaration_contract, strong_payload.states, invs,
         strong_payload.parameters, strong_payload.symmetries, strong_payload.observables,
         strong_payload.operator_holes,
@@ -91,19 +101,26 @@ function _redeclare(d::G1LegacyMigrationDeclarationV1;
                     target_contract=d.target_contract_ref,
                     states=d.states, invariants=d.invariants,
                     edge_completions=d.edge_completions)
-    G1LegacyMigrationDeclarationV1(d.mapping_ref, source_hash, target_contract, states,
+    G1LegacyMigrationDeclarationV1(d.mapping_ref, d.mode, d.source_contract_ref, source_hash, target_contract, states,
         invariants, d.parameters, d.symmetries, d.observables, d.operator_holes, edge_completions)
 end
 
 function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
                                     state_ids=("state-a", "state-b"), hole_id="hole-a")
     registry = default_operator_registry()
+    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), PB_UNIT)
     old_ast = TypedAST((TypedASTNode(:state, (), PB_TYPE),
         TypedASTNode(:identity, (1,), PB_TYPE)), 2, (1,); registry=registry)
+    old_program = TypedASTProgramV1(old_ast; registry=registry)
+    effects = (PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1),
+        PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1))
     graph = TypedOperatorHypergraphV1(
         (node(:state, PB_TYPE; id=state_ids[1]), node(:state, PB_TYPE; id=state_ids[2])),
-        (TypedHyperedge(edge_ids[1], (1,), (1,), old_ast, :governing),
-         TypedHyperedge(edge_ids[2], (2,), (2,), old_ast, :governing)); registry=registry)
+        (AtomicMIMOHyperedgeV1(edge_ids[1], (MIMOInputBindingV1(1, 1),),
+            (MIMOOutputBindingV1(1, 1),), old_program, governing;
+            account_effects=effects, registry=registry),
+         AtomicMIMOHyperedgeV1(edge_ids[2], (MIMOInputBindingV1(1, 2),),
+            (MIMOOutputBindingV1(1, 2),), old_program, governing; registry=registry)); registry=registry)
     program = begin
         input = ASTInputV1(1, PB_TYPE)
         apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
@@ -113,9 +130,12 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
     bounds = QuantityIntervalV1(ExactFiniteIntervalV1(-1, 1, false), PB_UNIT)
     states = (StateGeneV1(StateGeneRefV1(state_ids[1]), PB_TYPE, bounds, (), (), (), state_derived),
         StateGeneV1(StateGeneRefV1(state_ids[2]), PB_TYPE, bounds, (), (), (), state_derived))
-    ledger = ConservationLedgerIdentityV1(QualifiedRefV1("energy", "v1"), Digest256(repeat("0", 64)), PB_UNIT)
     invariant = InvariantV1(InvariantRefV1("energy-invariant"), ledger,
-        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(state_ids[1]), 1),), (), (), (), 0,
+        GlobalConservationScopeV1(), (InvariantTermV1(StateGeneRefV1(state_ids[1]), 1),),
+        (ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1(edge_ids[1]), :input, 1, :inflow,
+             occurrence_internal_effect, ledger),
+         ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1(edge_ids[1]), :output, 1, :outflow,
+             occurrence_internal_effect, ledger)), 0,
         entropy_conserved)
     observable = ObservableGeneV1(ObservableRefV1("observable"),
         ProgramRootRefV1(OperatorSiteRefV1(edge_ids[1]), 1, PB_TYPE),
@@ -136,7 +156,7 @@ function _legacy_bijective_fixture(; edge_ids=("edge-a", "edge-b"),
             (PortAccountEffectV1(ConservationAccountRefV1(ledger, :input, 1, :inflow), 1 // 1),
              PortAccountEffectV1(ConservationAccountRefV1(ledger, :output, 1, :outflow), -1 // 1)), ()),
         G1LegacyEdgeCompletionV1(edge_ids[2], (), ()))
-    declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
+    declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), exact7_recanonicalize, PB_CONTRACT,
         canonical_hash(source), PB_CONTRACT, states, (invariant,), (), (), (observable,), (hole,), completion)
     source, declaration, MechanismCanonicalizationContextV1(PB_CONTRACT, PB_PROFILE), registry
 end
@@ -285,8 +305,9 @@ else
                 graph = TypedOperatorHypergraphV1((node(:state, PB_TYPE; id="x"),
                     node(:state, PB_TYPE; id="y")),
                     (TypedHyperedge("legacy-edge", (1,), (2,), ast, :additive),))
-                source = LegacyMechanismGenomeV4(1, PB_CONTRACT, graph)
-                declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"),
+                legacy_contract = GenomeContractRef("urn:fusion:legacy", "v1", repeat("a", 64), repeat("b", 64), "legacy")
+                source = LegacyMechanismGenomeV4(1, legacy_contract, graph)
+                declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), legacy9_to_exact7, legacy_contract,
                     canonical_hash(source), PB_CONTRACT, (), (), (), (), (), (),
                     (G1LegacyEdgeCompletionV1("legacy-edge", (), ()),))
                 migrate_legacy_g1(source, declaration,
@@ -295,6 +316,16 @@ else
             end
             @test ast_migration_result(old_missing_name).reason == legacy_ast_unrepresentable
             @test ast_migration_result(old_constant_missing).reason == legacy_ast_unrepresentable
+            exact_typed = begin
+                graph = TypedOperatorHypergraphV1((node(:state, PB_TYPE; id="x"), node(:state, PB_TYPE; id="y")),
+                    (TypedHyperedge("legacy-edge", (1,), (2,), old_missing_name, :additive),))
+                source = LegacyMechanismGenomeV4(1, PB_CONTRACT, graph)
+                declaration = G1LegacyMigrationDeclarationV1(QualifiedRefV1("mapping", "v1"), exact7_recanonicalize, PB_CONTRACT,
+                    canonical_hash(source), PB_CONTRACT, (), (), (), (), (), (),
+                    (G1LegacyEdgeCompletionV1("legacy-edge", (), ()),))
+                migrate_legacy_g1(source, declaration, MechanismCanonicalizationContextV1(PB_CONTRACT, PB_PROFILE), default_operator_registry())
+            end
+            @test exact_typed.reason == legacy_gene_semantics_unrepresentable
         end
 
         @testset "migration reason matrix and declaration closure" begin
@@ -338,6 +369,13 @@ else
             @test result_a.mapping_hash == result_b.mapping_hash
             @test mechanism_subject_hash(result_a.genome) == mechanism_subject_hash(result_b.genome)
             @test result_a.source_mechanism_hash == canonical_hash(source_a)
+            @test result_a.receipt.source_canonical_hash == result_a.source_mechanism_hash
+            @test result_a.receipt.declaration_content_hash == result_a.declaration_content_hash
+            @test result_a.receipt.target_subject_hash == mechanism_subject_hash(result_a.genome)
+            @test result_a.receipt.target_canonical_transport_hash ==
+                Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(
+                    canonicalize_mechanism(result_a.genome.payload,
+                        MechanismCanonicalizationContextV1(PB_CONTRACT, PB_PROFILE)).transport.canonical_bytes)))))
             source_seed, declaration_seed, context_seed, registry_seed =
                 _legacy_bijective_fixture()
             source_seed = LegacyMechanismGenomeV4(999, source_seed.contract_ref, source_seed.graph;
@@ -437,6 +475,12 @@ else
             @test result9.mapping_hash === nothing
             @test result9.source_mechanism_hash === nothing
         end
+    end
+
+    @testset "sealed migration receipt authority" begin
+        @test_throws ArgumentError G1LegacyMigrationReceiptV1(
+            PB_CONTRACT, PB_CONTRACT, nothing, nothing, nothing, nothing, nothing,
+            nothing, terminal_deferred, missing_mapping_resource)
     end
 
     @testset "4.6 helper injection and cross-process stability" begin
