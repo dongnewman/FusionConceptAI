@@ -20,6 +20,26 @@
 - mapping algorithm revision；
 - resolved 或 typed deferred disposition。
 
+### 2.1 机器可验证的 r2 authority
+
+r2 不能使用测试中的重复字符 digest 作为 schema authority。实现应提供两段固定顺序的 closed ASCII JSON manifest：
+
+- schema manifest：逐项列出 invariant 的七个字段、occurrence 的六个字段、六个 sealed occurrence kinds、owner key 字段和 scope closure 规则；
+- canonicalization manifest：列出本文规定的 domain/version、排序规则、系数位置和 layer dependency 规则。
+
+两个 authority hash 直接取相应 manifest bytes 的 SHA-256。标准 mechanism contract ref factory 接收非空 URI，并固定：
+
+```text
+version = "v2"
+schema_hash = SHA256(closed schema manifest bytes)
+canonicalization_hash = SHA256(closed canonicalization manifest bytes)
+compatibility_profile = "g1-exact-occurrence-ownership-v2"
+```
+
+`MechanismGenomeV4` 和 mechanism canonicalization 入口必须核对这四项；registry 继续执行完整 contract ref exact equality。错误 version/hash/profile 必须拒绝。
+
+未改变的 G1 primitive leaf 保持 `fusionconceptai:v4:g1-primitive:v1`。新增 occurrence kind/ref 是各自类型的首个 wire revision，使用 `g1-occurrence-kind:v1` 和 `g1-occurrence-ref:v1`。发生破坏性变化的 invariant、payload、canonical transport 和八个 hash-layer domain 使用 `:v2`，其 `canonicalization_version` 为 `"2"`。`CanonicalizationProfileV1` 仍表示算法预算/profile，不因 payload schema 升级而全局改动，避免影响 G2/G3。
+
 ## 3. occurrence identity 与闭包
 
 公开 owner key 是：
