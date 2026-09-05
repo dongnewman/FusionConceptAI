@@ -22,6 +22,8 @@ Any minimality claim must carry a `MinimalityScopeV4` containing the grammar has
 
 The repository currently provides immutable P0 contracts, independent status dimensions, versioned references for the three Genome owners, layered hashes, typed AST programs, typed operator hypergraphs with conservation-account bindings, exact canonicalization, and a bounded conditional whole-program e-graph implementation. The G1/G2/G3 implementation is still being completed and is authoritative only to the extent covered by its current constructors and tests.
 
+The current package accepts only complete `CandidateStatePackageV4` objects; it does not yet expose a normative partial-Genome wrapper. In addition, `FieldGeometryGenomeV4.fields` and the `RealizationControlGenomeV4.realization/control` payloads are still generic tuples. A first compiler can prove the closure already represented by typed graphs and closed genes, but it cannot infer complete spatial, boundary, component, control, or engineering capabilities from those open payloads. Every axis that is not derivable from a typed, contract-owned field remains an unresolved nonterminal and causes intermediate deferral. A later partial-Genome contract must be additive and must not pretend that the P0 full-package constructor represents an incomplete Genome.
+
 `EvidenceContentV4` deliberately accepts only `none` and `screen_only`. Runtime work must not edit or bypass that constructor to claim stronger evidence. Higher-level runtime evidence must be a separate additive contract whose constructor validates the evidence source, provider manifest, solver input, scenario, independence group, artifacts, and stage-specific claim ceiling. A deterministic or reduced provider may exercise the full software path, but its manifest remains `screen_only`.
 
 Historical implementations under `D:/006-Programing/LMC/outputs/fusion_concept_ai` are reference material only. In particular, a reduced multi-region runtime, role-string fallback, open-role fallback, or same-model LU/QR comparison cannot be promoted to a general high-fidelity provider, an independent dual-code result, or validation evidence. Historical artifacts do not upgrade current candidates.
@@ -61,12 +63,13 @@ MinimalityScopeV4
   evidence_level, scenario_scope, comparison_scope
 
 CapabilitySignatureV4
-  operator_ref, physical_states,
+  capability_kind, operator_ref, physical_states,
   source_space, target_space,
   dimension, coordinates,
   boundary_relation, interface_relation,
   time_semantics, required_output,
-  evidence_level, applicability_bounds_hash
+  evidence_level, input_schema_hash,
+  applicability_bounds_hash
 
 ProviderManifestV4
   provider_id, backend_revision, manifest_hash,
@@ -132,9 +135,11 @@ materialize(compiled, bindings, scenarios)::ExecutablePhysicalSubjectV4
 compile_solver_input(subject, scenario, provider)::SolverInputV4
 execute_once!(store, input, provider, backend)::RuntimeEvidenceV4
 advance_frontier!(frontier, evidence, policy)::StageDecisionV4
+admit_whole_device(frontier, subject, scenario_manifest, provider_registry, protocol)::WholeDeviceAdmissionV4
 run_integrated_whole_device(subject, scenario_manifest, providers)::WholeDeviceEvidencePackageV4
 run_numerical_vvuq(subject, protocol, providers)::NumericalVVUQSummaryV4
 run_validation_vvuq(subject, protocol, validation_sources)::ValidationVVUQSummaryV4
+audit_whole_device_closure(admission, package, protocol)::ClosureAuditV4
 final_classify(package, authority, minimality_scope)::FinalDecisionV4
 ```
 
@@ -142,13 +147,15 @@ final_classify(package, authority, minimality_scope)::FinalDecisionV4
 
 Provider matching returns an explicit unique, no-match, ambiguous, out-of-domain, or invalid-signature result. Every non-unique result produces a capability-gap record and `terminal_deferred` at intermediate stages. It does not execute a backend.
 
+Whole-device admission and whole-device closure are separate. Admission is a pre-execution readiness decision. It checks prior hard-gate evidence, required provider and protocol availability, the frozen scenario manifest, input materialization, and resource readiness; it cannot require the integrated result that it authorizes. Closure is post-execution. It checks integrated residual evidence, scenario results, numerical VVUQ, cross-code evidence, engineering evidence, validation VVUQ, and remaining obligations. Failed admission returns a complete gap record without invoking an integrated backend. Passed admission does not imply that closure or any physical gate will pass.
+
 ## 5. Chain-first implementation order
 
 The normative documents retain their V4-P0 through V4-P6 meanings. Implementation proceeds in vertical waves so that missing physical capability becomes visible early.
 
 ### Wave A: bounded end-to-end spine
 
-Implement runtime contracts, candidate compilation, capability matching, materialization, solver-input hashing, execute-once behavior, a deterministic screen-only provider, stage decisions, an empty whole-device evidence package with explicit unresolved obligations, and a final authority that refuses credible or unsupported intermediate claims. The command-line run must finish with separate counts and L4 credible count zero.
+Implement runtime contracts, candidate compilation, capability matching, materialization, solver-input hashing, execute-once behavior, a deterministic screen-only provider, stage decisions, a whole-device admission refusal with explicit readiness gaps, a post-execution closure audit that reports missing evidence without fabricating a package, and a final authority that refuses credible or unsupported intermediate claims. The command-line run must finish with separate counts and L4 credible count zero.
 
 This wave proves software wiring, not physical performance. It must complete before Deep-QD, MCTS, surrogate training, or large candidate generation.
 
