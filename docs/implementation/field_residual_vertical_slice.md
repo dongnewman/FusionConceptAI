@@ -56,7 +56,7 @@ Compilation first rederives and verifies the compiled prefix from the candidate,
 
 `FieldEvaluationPlanV4` binds the semantic Genome bundle hash and excludes candidate display ID, proposal lineage, archive metadata, and evidence history. It also binds the exact G2 hash, support and phase-set hashes, chart declaration and bounds, selected program/site/root position and hashes, exact bound parameter values/units/bounds, grid order, scenario hash, source-file hash, and the program's sorted `used_manifest_bindings`. Every used binding is re-resolved in the supplied `OperatorRegistryV1`; execution dispatches through a sealed kernel table keyed by the complete `(operator id, version, manifest hash)`. Dispatch by ID alone is forbidden.
 
-The initial executable output is one static scalar root. The sealed operator subset is `IDENTITY@v1`, `ADD@v1`, `SUB@v1`, `NEG@v1`, `SCALAR_MUL@v1`, `SCALAR_DIV@v1`, and `DOT@v1`, each with the exact registered manifest hash. Vector/tensor output roots, derivatives, time-dependent roots, periodic or multichart execution, and unknown bindings remain typed gaps. Additional unselected programs, roots, phase declarations, or parameters remain explicit scope gaps and are never silently counted as evaluated.
+The initial executable output is one static scalar root. The sealed operator subset is `IDENTITY@v1`, `ADD@v1`, `SUB@v1`, `NEG@v1`, `SCALAR_MUL@v1`, `SCALAR_DIV@v1`, and `DOT@v1`, each with the exact registered manifest hash. Vector/tensor output roots, derivatives, time-dependent roots, periodic execution, and unknown bindings remain typed gaps. The frozen callable has no `chart_ref` selector, so a multichart support is rejected before plan construction; the whole-candidate compiler and stage spine retain the corresponding unresolved capability. Additional unselected programs, roots, phase declarations, or parameters remain explicit scope gaps and are never silently counted as evaluated.
 
 The provider manifest is a pure, idempotent function of the plan and uses one module-level executor whose code hash is derived from the real source bytes. It uses no mutable global plan registry. The immutable solver payload contains the complete execution plan data needed by that executor, and the executor recomputes its body hash before evaluation. Repeated manifest construction therefore returns the same manifest/executor binding and cannot be redirected by registering a forged object under an existing hash.
 
@@ -99,7 +99,59 @@ The affine Cartesian applicability proof is structural over the coordinate-map a
 
 Assembly produces `ResidualAssemblyV4` with a deterministic sparse matrix or nonlinear residual callback, row-to-state/grid ownership, coefficient/source result hashes, boundary substitutions, unit checks, and an assembly hash. Every discrete row belongs to exactly one declared G1 residual row and grid location. Every input field value and boundary row has one exact producer. Duplicate, missing, or unconsumed rows fail closed.
 
-For the linear initial subset, solve `A u = b` using a source-bound Julia implementation and report rank/conditioning diagnostics. A later nonlinear subset may reuse the bounded Newton kernel only after its residual and Jacobian bindings are exact. `DT` is deferred until a mass-matrix, clock, initial-condition, time-grid, event, and DAE-index contract exists.
+For the linear initial subset, solve `A u = b` using a source-bound Julia implementation and report sparse-factorization and backward-error diagnostics. A later nonlinear subset may reuse the bounded Newton kernel only after its residual and Jacobian bindings are exact. `DT` is deferred until a mass-matrix, clock, initial-condition, time-grid, event, and DAE-index contract exists.
+
+#### 2.3.1 Frozen first residual-solve interface
+
+The first executable residual provider supports one static scalar unknown on one three-dimensional rectilinear grid under an explicitly declared diagonal affine map. This is a complete numerical path for that declared subject, not evidence for an omitted geometry or a different equation.
+
+`DiagonalAffineChartGeometryV4` is derived by `compile_diagonal_affine_geometry` from the candidate, compiled prefix, exact support/chart references, three nonzero rational dimensionless diagonal factors, three rational normalized offsets, the grid, and the support's strictly positive `resolution_independent_scale`. It verifies the chart input/output and normalized-metric declaration types and checks every chart-coordinate grid node against the declared chart bounds. For normalized coordinates it derives `J_hat = diag(a1,a2,a3)` and `g_hat = transpose(J_hat) * J_hat`; the physical Jacobian is `J = L * J_hat`, where `L` is the declared SI length scale. The discrete physical Laplacian therefore uses `1 / (L^2 * ai^2)` on axis `i`. `geometry_hash`, capability bounds, assembly, and physical subject bind the scale's value and unit as well as `J_hat`, `g_hat`, and the grid. Doubling `L` with the same normalized field and grid must divide the Laplacian contribution by four. No caller-supplied metric or geometry label can override these relations. The runtime completion still retains `g2_coordinate_map_program_unavailable` and `g2_metric_program_unavailable`: the current G2 chart carries typed root declarations rather than executable map/metric programs, and this completion must not be reported as Genome-program execution or geometry closure.
+
+The residual declaration is constructed only through:
+
+```text
+compile_field_residual_plan(
+  candidate::CandidateStatePackageV4,
+  compiled::CompiledCandidatePrefixV4,
+  genome_registry::GenomeContractRegistryV4,
+  operator_registry::OperatorRegistryV1,
+  geometry::DiagonalAffineChartGeometryV4,
+  source_reports::Tuple{Vararg{FieldEvaluationReportV4}},
+  boundary_report::FieldEvaluationReportV4;
+  scenario,
+  grid::FieldGridSpecV4,
+  constraint_edge_hash::Digest256,
+  unknown_state_ref::StateGeneRefV1,
+  source_state_refs::Tuple{Vararg{StateGeneRefV1}},
+  residual_state_ref::StateGeneRefV1,
+  protocol::StructuredGridProtocolV4)
+```
+
+`constraint_edge_hash` must select exactly one `AtomicMIMOHyperedgeV1` with role `constraint`; the edge display ID is never a routing input. Its exact input/output bindings must map the declared unknown, sources, and residual state to typed graph state nodes. Every source ref has exactly one evaluated field report in the same candidate, prefix, grid, and scenario. The boundary report has the unknown type and covers the same ordered coordinates. Each report is rederived from its plan, its values and result hash are recomputed, and its provider, physical subject, solver input, evidence, artifact, code hash, and `screen_only` ceiling are checked. A self-consistent result hash without this chain is insufficient.
+
+The executable AST subset is a linear expression over the exact unknown and declared source inputs using `IDENTITY@v1`, `ADD@v1`, `SUB@v1`, `NEG@v1`, `SCALAR_MUL@v1`, `SCALAR_DIV@v1`, and `LAPLACE@v1`, each keyed by its literal audited manifest hash. Multiplication or division requires one finite scalar constant and cannot divide by zero. `LAPLACE` may apply only to the selected unknown. Compilation symbolically derives one affine stencil expression and rejects nonlinear products, a source under `LAPLACE`, multiple unknowns, unused or unconsumed inputs, unit mismatch, and any operator outside this set. `GRAD`, `DIV_OP`, `CURL`, and `DT` remain deferred.
+
+`StructuredGridProtocolV4` initially fixes `second_order_centered`, `dirichlet_elimination`, and Julia `SparseArrays`/`LinearAlgebra` sparse solve. Every axis has 3 to 33 uniformly spaced nodes and the total unknown count is at most 35,937. Dirichlet values cover all six external faces; duplicate corner/edge values must agree exactly after normalization. Missing faces and implicit zero/default values are rejected.
+
+The executable calls are:
+
+```text
+assemble_field_residual(plan::FieldResidualPlanV4)::ResidualAssemblyV4
+
+execute_field_residual(
+  store::AbstractDict,
+  candidate::CandidateStatePackageV4,
+  compiled::CompiledCandidatePrefixV4,
+  genome_registry::GenomeContractRegistryV4,
+  operator_registry::OperatorRegistryV1,
+  plan::FieldResidualPlanV4,
+  scenario;
+  provider)::FieldResidualReportV4
+```
+
+`ResidualAssemblyV4` seals the sparse matrix, right-hand side, row ownership `(residual_state_ref, grid_index)`, source/boundary artifact hashes, geometry, units, substitutions, and assembly hash. `FieldSolveResultV4` is token-constructed only after solving and recomputes the assembled residual norm, boundary mismatch, finite-value checks, sparse-factorization and backward-error diagnostics, termination reason, and result hash. The provider code hash is the SHA-256 of its actual source file and its executor is a stable module function. Deferred plans have no provider manifest, subject, solver input, callback, result, or evidence.
+
+A successful execution emits ordinary `RuntimeEvidenceV4` at exactly `screen_only`. It resolves only a work item whose key contains candidate Genome hash, compiled-prefix hash, stage, scenario, `constraint_edge_hash`, unknown/source/residual refs, grid, geometry, protocol, and capability signature. It never removes a generic `required_physical_capability` gap and never calls global candidate release. A singular or ill-conditioned system, nonfinite evaluation, or tolerance failure records a replayable failed attempt and is not a permanent-prune certificate.
 
 ### 2.4 Result and evidence
 
