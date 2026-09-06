@@ -1,0 +1,41 @@
+using FusionConceptAI
+using .FusionRuntimeV4
+isdefined(FusionRuntimeV4,:TimeResidualRowBindingV4) || Base.include(FusionRuntimeV4,joinpath(@__DIR__,"..","src","RuntimeV4","TypedTimeResidual.jl"))
+isdefined(FusionRuntimeV4,:DAEAlgebraicRowBindingV4) || Base.include(FusionRuntimeV4,joinpath(@__DIR__,"..","src","RuntimeV4","TypedDAEInitializationContracts.jl"))
+if !isdefined(@__MODULE__, :StateValueV4); const StateValueV4=FusionRuntimeV4.StateValueV4; end
+if !isdefined(@__MODULE__, :TimeResidualRowBindingV4); const TimeResidualRowBindingV4=FusionRuntimeV4.TimeResidualRowBindingV4; end
+if !isdefined(@__MODULE__, :DAEAlgebraicRowBindingV4); const DAEAlgebraicRowBindingV4=FusionRuntimeV4.DAEAlgebraicRowBindingV4; end
+if !isdefined(FusionRuntimeV4,:ConsistentInitializationScenarioV4); Base.include(FusionRuntimeV4,joinpath(@__DIR__,"..","src","RuntimeV4","TypedDAEInitializationContracts.jl")); end
+if !isdefined(@__MODULE__, :ConsistentInitializationScenarioV4); const ConsistentInitializationScenarioV4=FusionRuntimeV4.ConsistentInitializationScenarioV4; end
+const tdae_ops=default_operator_registry(); const tdae_unit=UnitSignature()
+const tdae_diff=PhysicalType(:scalar_field,0,0,TemporalTypeV1(differential_time),tdae_unit)
+const tdae_diff1=PhysicalType(:scalar_field,0,0,TemporalTypeV1(differential_time,1),UnitSignature((0,0,-1,0,0,0,0)))
+const tdae_alg=PhysicalType(:scalar_field,0,0,TemporalTypeV1(algebraic_time),tdae_unit)
+const tdae_static=PhysicalType(:scalar_field,0,0,TemporalTypeV1(static_time),tdae_unit)
+const tdae_drefs=(StateGeneRefV1("x"),); const tdae_arefs=(StateGeneRefV1("z1"),StateGeneRefV1("z2"))
+const tdae_rate=PhysicalType(:scalar_field,0,0,TemporalTypeV1(static_time),UnitSignature((0,0,-1,0,0,0,0)))
+const tdae_xmass=let i=ASTInputV1(1,tdae_diff); d=ASTApplyV1(OperatorRefV1("DT","v1"),(1,);registry=tdae_ops,input_types=(tdae_diff,)); id=ASTApplyV1(OperatorRefV1("IDENTITY","v1"),(1,);registry=tdae_ops,input_types=(tdae_diff,));TypedASTProgramV1((i,d,id),(2,3),(1,),tdae_ops) end
+const tdae_xrhs=let i=ASTInputV1(1,tdae_diff); r=ASTConstantV1(:rate,-1.0,tdae_rate); n=ASTApplyV1(OperatorRefV1("SCALAR_MUL","v1"),(1,2);registry=tdae_ops,input_types=(tdae_diff,tdae_rate));TypedASTProgramV1((i,r,n),(3,),(1,),tdae_ops) end
+const tdae_zgov=let i=ASTInputV1(1,tdae_alg); n=ASTApplyV1(OperatorRefV1("IDENTITY","v1"),(1,);registry=tdae_ops,input_types=(tdae_alg,));TypedASTProgramV1((i,n),(2,),(1,),tdae_ops) end
+const tdae_sum=let a=ASTInputV1(1,tdae_alg);b=ASTInputV1(2,tdae_alg);c=ASTConstantV1(:three,3.0,tdae_alg);s=ASTApplyV1(OperatorRefV1("ADD","v1"),(1,2);registry=tdae_ops,input_types=(tdae_alg,tdae_alg));r=ASTApplyV1(OperatorRefV1("SUB","v1"),(4,3);registry=tdae_ops,input_types=(s.output_type,tdae_alg));TypedASTProgramV1((a,b,c,s,r),(5,),(1,2),tdae_ops) end
+const tdae_sub=let a=ASTInputV1(1,tdae_alg);b=ASTInputV1(2,tdae_alg);c=ASTConstantV1(:one,1.0,tdae_alg);s=ASTApplyV1(OperatorRefV1("SUB","v1"),(1,2);registry=tdae_ops,input_types=(tdae_alg,tdae_alg));r=ASTApplyV1(OperatorRefV1("SUB","v1"),(4,3);registry=tdae_ops,input_types=(s.output_type,tdae_alg));TypedASTProgramV1((a,b,c,s,r),(5,),(1,2),tdae_ops) end
+const tdae_ledger=ConservationLedgerIdentityV1(QualifiedRefV1("tdae-ledger","v1"),digest256_text("tdae-ontology"),tdae_unit)
+const tdae_in=PortAccountEffectV1(ConservationAccountRefV1(tdae_ledger,:input,1,:inflow),1//1); const tdae_out=PortAccountEffectV1(ConservationAccountRefV1(tdae_ledger,:output,2,:outflow),-1//1)
+const tdae_gx=AtomicMIMOHyperedgeV1("g-x",(MIMOInputBindingV1(1,1),),(MIMOOutputBindingV1(1,4),MIMOOutputBindingV1(2,1)),tdae_xmass,governing;account_effects=(tdae_in,tdae_out),registry=tdae_ops)
+const tdae_rx=AtomicMIMOHyperedgeV1("rhs-x",(MIMOInputBindingV1(1,1),),(MIMOOutputBindingV1(1,5),),tdae_xrhs,additive;registry=tdae_ops)
+const tdae_gz1=AtomicMIMOHyperedgeV1("g-z1",(MIMOInputBindingV1(1,2),),(MIMOOutputBindingV1(1,2),),tdae_zgov,governing;registry=tdae_ops)
+const tdae_gz2=AtomicMIMOHyperedgeV1("g-z2",(MIMOInputBindingV1(1,3),),(MIMOOutputBindingV1(1,3),),tdae_zgov,governing;registry=tdae_ops)
+const tdae_c1=AtomicMIMOHyperedgeV1("c-z1",(MIMOInputBindingV1(1,2),MIMOInputBindingV1(2,3)),(MIMOOutputBindingV1(1,2),),tdae_sum,constraint;registry=tdae_ops)
+const tdae_c2=AtomicMIMOHyperedgeV1("c-z2",(MIMOInputBindingV1(1,2),MIMOInputBindingV1(2,3)),(MIMOOutputBindingV1(1,3),),tdae_sub,constraint;registry=tdae_ops)
+const tdae_graph=TypedOperatorHypergraphV1((node(:state,tdae_diff;id="x"),node(:state,tdae_alg;id="z1"),node(:state,tdae_alg;id="z2"),node(:non_state,tdae_xmass.nodes[tdae_xmass.roots[1]].output_type;id="m-x"),node(:non_state,tdae_xrhs.nodes[tdae_xrhs.roots[1]].output_type;id="rhs-x"),node(:non_state,tdae_zgov.nodes[tdae_zgov.roots[1]].output_type;id="m-z1"),node(:non_state,tdae_zgov.nodes[tdae_zgov.roots[1]].output_type;id="m-z2")),(tdae_gx,tdae_rx,tdae_gz1,tdae_gz2,tdae_c1,tdae_c2);registry=tdae_ops)
+const tdae_bounds=QuantityIntervalV1(ExactFiniteIntervalV1(-10,10,false),tdae_unit)
+const tdae_x=StateGeneV1(tdae_drefs[1],tdae_diff,tdae_bounds,(),(),(),state_derived); const tdae_z1=StateGeneV1(tdae_arefs[1],tdae_alg,tdae_bounds,(),(),(ConstraintRefV1("c-z1"),),state_derived); const tdae_z2=StateGeneV1(tdae_arefs[2],tdae_alg,tdae_bounds,(),(),(ConstraintRefV1("c-z2"),),state_derived)
+const tdae_inv=InvariantV1(InvariantRefV1("tdae-invariant"),tdae_ledger,GlobalConservationScopeV1(),(InvariantTermV1(tdae_drefs[1],1),),(ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("g-x"),:input,1,:inflow,occurrence_internal_effect,tdae_ledger),ConservationLedgerOccurrenceRefV1(OperatorSiteRefV1("g-x"),:output,2,:outflow,occurrence_internal_effect,tdae_ledger)),0,entropy_conserved)
+const tdae_obsprog=let i=ASTInputV1(1,tdae_diff);q=ASTApplyV1(OperatorRefV1("IDENTITY","v1"),(1,);registry=tdae_ops,input_types=(tdae_diff,));TypedASTProgramV1((i,q),(2,),(1,),tdae_ops) end
+const tdae_obs=ObservableGeneV1(ObservableRefV1("tdae-observable"),ProgramRootRefV1(OperatorSiteRefV1("g-x"),2,tdae_diff),QualifiedRefV1("tdae-intervention","v1"),tdae_obsprog,tdae_bounds,QualifiedRefV1("tdae-noise","v1"),NonnegativeQuantityV1(1//10,tdae_unit),NonnegativeQuantityV1(1//10,tdae_unit),NonnegativeQuantityV1(1//2,tdae_unit),(QualifiedRefV1("tdae-prediction","v1"),))
+const tdae_payload=MechanismGenomePayloadV1((tdae_x,tdae_z1,tdae_z2),(tdae_inv,),tdae_graph,(),(),(tdae_obs,),())
+const tdae_mech_ref=g1_occurrence_ownership_contract_ref("urn:fusion:tdae:mechanism"); const tdae_field_ref=GenomeContractRef("urn:fusion:tdae:field","v1",digest256_text("tdae-field"),digest256_text("tdae-field-canon"),"tdae"); const tdae_real_ref=GenomeContractRef("urn:fusion:tdae:real","v1",digest256_text("tdae-real"),digest256_text("tdae-real-canon"),"tdae"); const tdae_registry=GenomeContractRegistryV4(tdae_mech_ref,tdae_field_ref,tdae_real_ref); const tdae_mechanism=MechanismGenomeV4(1,tdae_mech_ref,tdae_payload)
+const tdae_aux=TypedOperatorHypergraphV1((node(:region,tdae_static;id="region"),node(:boundary,tdae_static;id="boundary")),();registry=tdae_ops); const tdae_field=FieldGeometryGenomeV4(2,tdae_field_ref,tdae_aux); const tdae_real=RealizationControlGenomeV4(3,4,tdae_real_ref,tdae_aux,tdae_aux); const tdae_mission=MissionContractRef("urn:fusion:tdae:mission","v1",digest256_text("tdae-mission"),digest256_text("tdae-mission-canon")); const tdae_candidate=CandidateStatePackageV4("tdae-fixture",tdae_mission,tdae_mechanism,tdae_field,tdae_real,tdae_registry)
+const tdae_compiled=compile_candidate(tdae_candidate,tdae_registry;mission_payload=tdae_mission,bounds_payload=tdae_bounds,comparison_scope=("typed-dae",),scenario_scope=("mixed-state",))
+const tdae_rows=(TimeResidualRowBindingV4(tdae_drefs[1],canonical_hash(tdae_gx),1,canonical_hash(tdae_rx),1),DAEAlgebraicRowBindingV4(tdae_arefs[1],canonical_hash(tdae_gz1),canonical_hash(tdae_c1),1,tdae_c1.program.used_manifest_bindings),DAEAlgebraicRowBindingV4(tdae_arefs[2],canonical_hash(tdae_gz2),canonical_hash(tdae_c2),1,tdae_c2.program.used_manifest_bindings))
+const dae_scenario=ConsistentInitializationScenarioV4("mixed-state-t0",(StateValueV4(tdae_drefs[1],1.0,tdae_unit),StateValueV4(tdae_arefs[1],0.0,tdae_unit),StateValueV4(tdae_arefs[2],0.0,tdae_unit)))
