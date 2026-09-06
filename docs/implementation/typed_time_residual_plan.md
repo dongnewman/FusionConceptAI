@@ -265,6 +265,16 @@ expression must match that state's exact physical type. This defines the D1
 runtime semantics; the operator's type rule alone does not claim numerical
 event semantics.
 
+The additive event carrier is compiled by an independent D1.2b entry point.
+Its guard input must be a declared differential `control_signal` state;
+the runtime never casts or renames either kind. The carrier is a single-root
+literal `THRESHOLD_SWITCH@v1`; reset is a separate, exact-target typed AST.
+`EVENT_RESET`, parameterized or stateful resets, nested events, stochastic
+operators, and unresolved simultaneous/conflicting event groups remain
+deferred. Event-aware replay validates each continuous segment and the reset
+remainder independently and never reuses a continuous-only replay across a
+jump.
+
 Detect a crossing over an RK4 step, locate it by deterministic bisection using
 RK4 substeps until both event tolerances or the iteration limit is reached,
 advance exactly to the event, evaluate and apply the typed reset, and integrate
@@ -344,6 +354,15 @@ Run three halved steps and record real errors and observed orders. Then run a
 case whose threshold lies strictly inside a nominal step; show the located
 event time, pre/post states, reset, and final remainder state. Include a
 wrong-direction or no-split control that distinguishes the accepted result.
+
+### D1.2b scope boundary
+
+D1.2b executes one candidate-bound threshold split. Multiple same-step event
+brackets remain structured deferred artifacts; earliest-event selection and
+priority resolution are D1.2c obligations. The current numerical kernel uses
+a mutable matrix internally; immutable matrix storage and its sealed identity
+checker are subsequent hardening work. Every result is `screen_only` and is
+not a high-fidelity, whole-device, or VVUQ claim.
 
 ### D1.3: binding and adversarial controls
 
