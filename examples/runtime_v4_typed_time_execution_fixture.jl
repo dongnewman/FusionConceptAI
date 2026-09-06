@@ -1,0 +1,19 @@
+using FusionConceptAI
+using .FusionRuntimeV4
+include(joinpath(@__DIR__,"runtime_v4_typed_time_fixture.jl"))
+const tref_protocol=FusionRuntimeV4.TimeRefinementProtocolV4(0.2,(40,80,160))
+include(joinpath(@__DIR__,"runtime_v4_typed_time_event_fixture.jl"))
+const compile_typed_time_execution_plan=FusionRuntimeV4.compile_typed_time_execution_plan
+const TypedTimeExecutionStoreV4=FusionRuntimeV4.TypedTimeExecutionStoreV4
+const execute_once! = FusionRuntimeV4.execute_once!
+const cache_typed_time_execution=FusionRuntimeV4.cache_typed_time_execution
+const replay_typed_time_execution=FusionRuntimeV4.replay_typed_time_execution
+const validate_typed_time_report=FusionRuntimeV4.validate_typed_time_report
+const typed_time_execution_manifest=FusionRuntimeV4.typed_time_execution_manifest
+const texec_plan_continuous=compile_typed_time_execution_plan(ttr_compiled,ttr_registry,ttr_scenario;operation=:continuous,residual_plan=ttr_plan)
+const texec_plan_refinement=compile_typed_time_execution_plan(ttr_compiled,ttr_registry,ttr_scenario;operation=:three_level_refinement,residual_plan=ttr_plan,refinement_protocol=tref_protocol)
+const texec_plan_event=compile_typed_time_execution_plan(tte_compiled,tte_registry,tte_scenario;operation=:single_threshold_event,event_plan=tte_plan)
+const texec_store=TypedTimeExecutionStoreV4()
+const texec_continuous_report=execute_once!(texec_store,texec_plan_continuous.input,texec_plan_continuous.provider,texec_plan_continuous)
+const texec_refinement_report=execute_once!(texec_store,texec_plan_refinement.input,texec_plan_refinement.provider,texec_plan_refinement)
+const texec_event_report=execute_once!(texec_store,texec_plan_event.input,texec_plan_event.provider,texec_plan_event)
