@@ -89,3 +89,10 @@ sealed evidence/cache/replay controls pass, the six-file allowlist is respected,
 and D1/D2.1 regressions remain green. New temporal casts, cross-partition
 coupling, events, refinement, spatial execution, and higher evidence levels are
 separate later milestones.
+
+## D2.3 composition compatibility
+
+The composition fixture shares the candidate/prefix with static G2/D3 while
+carrying candidate-owned static 3-D `u`, `f`, and `r` payload states. They are
+provenance-only for D2.2: trajectory state order and artifacts contain only the
+three executed mixed-DAE states. Static reads through D2 rows are rejected.

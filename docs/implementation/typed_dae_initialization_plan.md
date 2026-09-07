@@ -81,3 +81,10 @@ The milestone is complete when the real mixed fixture, negative gates,
 execute-once/replay behavior, sealed evidence chain, runner, and prior RuntimeV4
 regressions pass. Further DAE capability belongs to a later milestone; D2.1 is
 not expanded after this acceptance boundary.
+
+## D2.3 composition compatibility
+
+D2.3 permits additional candidate-payload `static_time` states, including
+unitless scalar 3-D fields. The authority records all payload states for
+provenance but executes exactly one differential and two algebraic order-zero
+scalar states. D2 rows consume only that partition; static reads are rejected.

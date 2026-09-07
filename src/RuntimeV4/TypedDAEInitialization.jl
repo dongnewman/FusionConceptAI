@@ -177,17 +177,27 @@ end
 function _tdae_compile_authority(compiled, differential_refs, algebraic_refs, row_bindings)
     payload = compiled.candidate.mechanism_genome_ref.payload
     graph = payload.operator_graph
-    states = Tuple(sort(collect(payload.states), by=s -> s.state_ref.value))
-    differential_states = Tuple(s for s in states
+    payload_states = Tuple(sort(collect(payload.states), by=s -> s.state_ref.value))
+    differential_states = Tuple(s for s in payload_states
         if s.physical_type.temporal_type.kind === differential_time)
-    algebraic_states = Tuple(s for s in states
+    algebraic_states = Tuple(s for s in payload_states
         if s.physical_type.temporal_type.kind === algebraic_time)
     length(differential_states) == 1 && length(algebraic_states) == 2 ||
         throw(ArgumentError("D2.1 requires exactly one differential and two algebraic states"))
+    executed_states = (differential_states..., algebraic_states...)
     all(s -> s.physical_type.value_kind === :scalar_field &&
         s.physical_type.tensor_rank == 0 && s.physical_type.spatial_dimension == 0 &&
-        s.physical_type.temporal_type.derivative_order == 0, states) ||
+        s.physical_type.temporal_type.derivative_order == 0, executed_states) ||
         throw(ArgumentError("D2.1 accepts only order-zero lumped scalar states"))
+    # Static states are part of the candidate payload but are outside the D2
+    # execution authority.  They may remain 3-D fields; no D2 edge may read
+    # them (partition checks below enforce this at every consumed row).
+    all(s -> s.physical_type.temporal_type.kind === differential_time ||
+        s.physical_type.temporal_type.kind === algebraic_time ||
+        (s.physical_type.temporal_type.kind === static_time &&
+         s.physical_type.temporal_type.derivative_order == 0), payload_states) ||
+        throw(ArgumentError("D2.1 payload contains unsupported temporal state"))
+    states = executed_states
     expected_d = Tuple(s.state_ref for s in differential_states)
     expected_a = Tuple(s.state_ref for s in algebraic_states)
     Tuple(differential_refs) == expected_d && Tuple(algebraic_refs) == expected_a ||
@@ -287,7 +297,8 @@ function _tdae_compile_authority(compiled, differential_refs, algebraic_refs, ro
         rhs_ports=Tuple((port=pair.first, state_ref=pair.second) for pair in
             sort(collect(rhs_ports), by=first))),
         algebraic=Tuple(algebraic_programs), scaling=scaling)
-    (states=states, differential_states=differential_states,
+    (payload_states=payload_states, executed_states=executed_states,
+     states=executed_states, differential_states=differential_states,
      algebraic_states=algebraic_states, differential_row=differential_row,
      algebraic_rows=algebraic_rows, mass=reshape(copy(mass), 1, 1),
      rhs_edge=rhs_edge, rhs_ports=rhs_ports,
