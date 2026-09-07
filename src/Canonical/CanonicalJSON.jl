@@ -176,6 +176,11 @@ _color_digest(s) = bytes2hex(SHA.sha256(Vector{UInt8}(codeunits(String(s)))))
 function _canonical_graph(g::TypedOperatorHypergraphV1)
     perms = _all_permutations(length(g.nodes))
     perms !== nothing && return minimum(_graph_encoding(g, p) for p in perms)
+    # Atomic MIMO graphs already have a closed, incidence-based canonical
+    # encoding.  Use it for large graphs instead of the legacy color refiner,
+    # whose edge adapter only understands TypedHyperedge's inputs/outputs.
+    any(e -> e isa AtomicMIMOHyperedgeV1, g.hyperedges) &&
+        return _exact_incidence_canonical_json(g, default_canonicalization_profile())
     colors = _refined_colors(g)
     length(unique(colors)) == length(colors) || throw(CanonicalizationDeferred("terminal_deferred: exact canonical labeling exceeds P0 proof boundary"))
     _graph_encoding(g, Tuple(sortperm(colors)))
