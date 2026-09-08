@@ -6,6 +6,7 @@ using SHA
 const U0 = UnitSignature((0, 0, 0, 0, 0, 0, 0))
 const T0 = PhysicalType(:scalar_field, 0, 3, :differential, U0)
 const BAD_TEXT = string(Char(0xd800))
+include("canonical_generic_nospecialize_tests.jl")
 _test_ledger_identity(account, unit; version="v1", ontology=repeat("0", 64)) =
     ConservationLedgerIdentityV1(QualifiedRefV1(account, version), Digest256(ontology), unit)
 mutable struct MutablePayload

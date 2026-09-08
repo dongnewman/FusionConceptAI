@@ -34,6 +34,7 @@ function _canonical_float(x::AbstractFloat)
 end
 
 function _canonical(x)
+    Base.@nospecialize x
     x === nothing && return "null"
     x isa Bool && return x ? "true" : "false"
     x isa Symbol && return _jsonquote(String(x))
@@ -190,4 +191,7 @@ function canonical_json(g::TypedOperatorHypergraphV1; profile=nothing)
     selected = profile === nothing ? default_canonicalization_profile() : profile
     _exact_incidence_canonical_json(g, selected)
 end
-canonical_json(x) = _canonical(x)
+function canonical_json(x)
+    Base.@nospecialize x
+    _canonical(x)
+end
