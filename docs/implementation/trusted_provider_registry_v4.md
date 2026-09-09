@@ -15,27 +15,33 @@ then detects source, method-table, descriptor, registry, manifest, context, and
 receipt drift. OS process isolation, signatures, and deployment-time policy
 remain future outer controls.
 
-Private constructors and `Val(:trusted_repository_bootstrap)` communicate API
-intent; neither is treated as security authority. Authority comes from the
-fixed repository descriptor and identities recomputed from the validated
-bootstrap root.
+Private constructors and the two explicit bootstrap `Val`s communicate API
+intent; none is treated as security authority. Authority comes from fixed
+repository descriptors and identities recomputed from the validated bootstrap
+root.
 
 ## Trust construction
 
-The bootstrap has no caller descriptor parameter. It resolves the built-in
-descriptor from the fixed repository-relative source path and entrypoint, then
-recomputes:
+Neither bootstrap has a caller descriptor parameter. The base
+`Val(:trusted_repository_bootstrap)` remains independently loadable and creates
+only the harmless test fixture. The opt-in
+`Val(:trusted_repository_with_freegs_bootstrap)` creates that base descriptor
+plus the fixed FreeGS adapter descriptor. Neither bootstrap runs FreeGS.
 
-- source-file SHA-256;
+Each selected descriptor is resolved from fixed repository-relative source
+paths and an entrypoint, then the registry recomputes:
+
+- every attested source-file SHA-256;
 - loaded executor method module, signature, repository-relative source path,
   and source line;
 - `Project.toml` and package-entry source hashes;
 - descriptor, repository, registration, and registry content hashes.
 
-The current built-in executor is deliberately harmless and `test_only`; it
-exists to exercise the trust mechanism without claiming a physics provider.
-Adding a production provider requires an independently reviewed built-in
-descriptor and is not authorized by caller input.
+The base executor remains deliberately harmless and `test_only`. The first
+non-test descriptor is the FreeGS axisymmetric adapter; it attests the adapter,
+the accepted Julia bridge, and the controlled Python runner. It is still only a
+physical-model screen. Adding any other provider requires another reviewed
+built-in descriptor and is not authorized by caller input.
 
 ## ProviderManifest separation
 
@@ -60,10 +66,14 @@ the stub is never substituted into a trusted registration.
 
 ## Context and readiness
 
-Registration requires a capability that occurs exactly once in a fully
-revalidated `ForwardChainContextV4`; its applicability bounds must equal the
-compiled context bounds. The manifest domain seals the exact context,
-materialized subject, selected scenario, descriptor, and model class.
+The test-only registration still requires a capability that occurs exactly
+once in a fully revalidated `ForwardChainContextV4`. The FreeGS registration
+does not reuse generic `context.obligations`: it deterministically derives and
+externally revalidates one capability from the exact
+`AxisymmetricEquilibriumBindingV4`, G2 Genome and graph identities, mission,
+bounds, selected scenario, and physical subject. Its typed dispatch input binds
+that capability plus the canonical FreeGS solver-input hash. The manifest
+domain additionally seals the binding and declaration hashes.
 
 `TrustedProviderDispatchRequestV4` accepts no manifest or executor. It becomes
 `ready_for_dispatch` only when the validated registry contains one exact
@@ -79,12 +89,20 @@ sealed `TrustedProviderExecutionReceiptV4` binds:
 - registry and request hashes;
 - provider registration and manifest hashes;
 - input and output content hashes;
-- operational exit code and `completed`/`executor_error` status.
+- operational exit code and closed operational status.
 
 These statuses describe process execution only. The receipt is not scientific
 evidence and carries no physical-validation credit, closure, promotion, P5, or
 terminal authority. External request and receipt validators require the
 original registry/context inputs; one-argument validation fails closed.
+
+For FreeGS, the descriptor dispatches `_trusted_freegs_axisymmetric_executor`
+with the registry-supplied context and typed canonical input. The wrapper calls
+the accepted `execute_freegs_axisymmetric_screen`, externally validates its
+existing receipt, and returns that receipt plus the exact solver-output JSON.
+The outer trusted receipt binds both the existing FreeGS receipt hash and
+output hash. Its successful status remains `physical_model_screen`; dependency
+or execution gaps remain `recoverable_gap_unknown`.
 
 ## Legacy disposition
 
@@ -94,6 +112,7 @@ original registry/context inputs; one-argument validation fails closed.
 | Extract | ForwardChainContext candidate/subject/scenario reconstruction | Make it mandatory at registration, request, and dispatch boundaries. |
 | Wrap | repository source hashing and deterministic canonical hashes used by current providers | Wrap in a fixed descriptor and immutable registry chain. |
 | Test-only | the built-in identity executor and declared structural-screen fixture | Exercises success and receipt binding; it confers no physical or scientific credit. |
+| Wrap | committed candidate-bound FreeGS axisymmetric bridge and controlled runner | Bind exact G2 context, source hashes, existing receipt, and output hash; retain `screen_only`. |
 | Reject | arbitrary caller descriptors, caller executors, or caller code hashes | They cannot enter the bootstrap descriptor set or trusted registration. |
 | Reject | `ProviderManifestV4.manifest_hash` as executor attestation | It excludes the executor and is insufficient as a trust root. |
 | Reject | legacy result/pass/unsupported decisions | Registry receipts contain operational status only. |

@@ -45,6 +45,9 @@ end
     @test R.validate_trusted_provider_registry(R.trusted_registry) ==
         R.trusted_registry.registry_hash
     @test length(R.empty_trusted_registry.registrations) == 0
+    @test length(R.empty_trusted_registry.descriptors) == 1
+    @test !isdefined(R, :AxisymmetricEquilibriumBindingV4)
+    @test !isdefined(R, :TrustedFreeGSAxisymmetricInputV4)
     @test length(R.trusted_registry.registrations) == 1
     descriptor = only(R.trusted_registry.descriptors)
     registration = only(R.trusted_registry.registrations)
@@ -109,7 +112,8 @@ end
     forged_source = R.RepositoryProviderDescriptorV4(R._TPR_TOKEN,
         descriptor.provider_id, descriptor.source_relative_path,
         descriptor.entrypoint, descriptor.allowed_capability_kinds,
-        descriptor.allowed_model_classes, TH, descriptor.runtime_hash,
+        descriptor.allowed_model_classes, TH, descriptor.attested_source_paths,
+        descriptor.attested_source_hashes, descriptor.runtime_hash,
         descriptor.executor, descriptor.descriptor_hash)
     @test_throws ArgumentError R.validate_repository_provider_descriptor(
         forged_source, R.trusted_repository_root)
@@ -117,7 +121,8 @@ end
     forged_runtime = R.RepositoryProviderDescriptorV4(R._TPR_TOKEN,
         descriptor.provider_id, descriptor.source_relative_path,
         descriptor.entrypoint, descriptor.allowed_capability_kinds,
-        descriptor.allowed_model_classes, descriptor.source_hash, TH,
+        descriptor.allowed_model_classes, descriptor.source_hash,
+        descriptor.attested_source_paths, descriptor.attested_source_hashes, TH,
         descriptor.executor, descriptor.descriptor_hash)
     @test_throws ArgumentError R.validate_repository_provider_descriptor(
         forged_runtime, R.trusted_repository_root)
@@ -126,6 +131,7 @@ end
         descriptor.provider_id, descriptor.source_relative_path,
         descriptor.entrypoint, descriptor.allowed_capability_kinds,
         descriptor.allowed_model_classes, descriptor.source_hash,
+        descriptor.attested_source_paths, descriptor.attested_source_hashes,
         descriptor.runtime_hash, _CALLER_STUB, descriptor.descriptor_hash)
     @test_throws ArgumentError R.validate_repository_provider_descriptor(
         forged_executor, R.trusted_repository_root)
