@@ -52,9 +52,11 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                     physical_model_screen only                      |
                     (not validation or 3-D coupling)                 |
                               |                                     |
-                              +--> typed 3-D provider-input compiler|
-                                   (G2 geometry/profile ownership;  |
-                                    four exact input gaps remain)   |
+                              +--> typed 3-D provider-input compiler |
+                                   + G2 geometry/profile ownership   |
+                                   + typed region laws               |
+                                   + distinct region/interface spaces|
+                                   (residual/Jacobian + controls gap)|
                                                                   vv  v
              typed multi-region ownership + one global non-diagonal residual
              (accepted lumped manufactured control; not a physical provider)
@@ -73,6 +75,8 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                     v                 v                  v
              numerical V&V     physical validation     parameter/UQ
              and cross-code    with held-out data      propagation
+             \________________ trusted receipt request ______________/
+                        (seven recoverable gaps; zero credit)
                     +-----------------+------------------+
                                       v
                          post-run closure authority
@@ -134,11 +138,12 @@ count.
 3. Preserve the accepted opt-in FreeGS registry adapter. Its fixed source and
    runtime attestation plus candidate-bound operational receipt still confer no
    scientific-evidence authority.
-4. Close the typed 3-D input compiler's region-law, oriented-interface/space,
-   residual/Jacobian-ownership, and discretization-control gaps before adding a
-   fixed DESC or VMEC registry adapter.
-5. Rebuild engineering/control/fault and validation/UQ dispatch on that trusted
-   registry; keep caller-created manifests and functions outside readiness.
+4. Close the typed 3-D input compiler's remaining residual/Jacobian-ownership
+   and discretization-control gaps, then compose all accepted declarations
+   before adding a fixed DESC or VMEC registry adapter.
+5. Rebuild engineering/control/fault dispatch on the trusted registry. Preserve
+   the accepted zero-credit Validation/UQ request boundary; caller-created
+   manifests and functions remain outside readiness.
 6. Connect one candidate-derived 3-D physical provider through the accepted
    multi-region execution contract. The lumped diagonal/interface coefficients
    remain manufactured inputs and have no physical credit.
