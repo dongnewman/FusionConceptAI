@@ -39,6 +39,14 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
              |          |                                         ||  |
              |          +--> Batch C coordinate-bijective         ||  |
              |               manufactured comparison -------------++  |
+             |                                                       |
+             +--> typed G2 axisymmetric declaration                 |
+                        + candidate/mission/bounds/scenario binding  |
+                        + pinned FreeGS execution                    |
+                              |                                     |
+                              v                                     |
+                    physical_model_screen only                      |
+                    (not validation or 3-D coupling)                 |
                                                                   vv  v
              typed multi-region ownership + one global non-diagonal residual
              (accepted lumped manufactured control; not a physical provider)
@@ -111,17 +119,22 @@ count.
 1. Preserve the accepted isolated Gridap B1/B2/B3 and Batch C
    manufactured-control boundaries plus the sealed forward context; do not
    promote them to physical evidence or aggregate them prematurely.
-2. Connect one real, declared physical provider through the accepted
+2. Preserve the accepted candidate-bound FreeGS axisymmetric bridge as a
+   separate `physical_model_screen`. Its typed G2 ownership and real pinned
+   execution do not supply the 3-D constitutive/interface operators required by
+   the accepted multi-region contract.
+3. Land a trusted provider registry/attestation boundary. Exact public
+   manifests and caller-bound functions are dispatch declarations, not trusted
+   provider identity, execution evidence, or readiness authority.
+4. Connect one candidate-derived 3-D physical provider through the accepted
    multi-region execution contract. The lumped diagonal/interface coefficients
    remain manufactured inputs and have no physical credit.
-3. Land the minimum engineering/control/fault evidence-obligation contract on
-   the same sealed forward context; reject caller-supplied evidence or graph
-   identity.
-4. Add numerical-V&V and physical-validation/UQ contracts before integrated
-   closure so missing evidence stays visible during early whole-device runs.
-5. Replace the present closure firewall with a candidate-bound high-fidelity
+5. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
+   obligations on the sealed forward context and trusted provider boundary so
+   missing evidence stays visible during early whole-device runs.
+6. Replace the present closure firewall with a candidate-bound high-fidelity
    package only after all prerequisite contracts and real provider paths exist.
-6. Scale QD/MCTS/campaign search only after the execution and evidence path can
+7. Scale QD/MCTS/campaign search only after the execution and evidence path can
    distinguish closed, failed, unknown, deferred, and unsupported outcomes.
 
 ## Legacy reuse rule
