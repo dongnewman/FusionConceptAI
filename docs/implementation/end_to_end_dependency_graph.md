@@ -28,13 +28,17 @@ G1 mechanism + G2 field/geometry + G3 realization/control
 candidate generation / partial compilation / proof-preserving gaps
              |
              v
-candidate-bound physical subject and exact capability obligations
+sealed forward-chain context: three Genome roles + typed graphs +
+mission/bounds + candidate-bound subject/scenarios + exact obligations
              |
              +--> typed time/event/DAE execution -------------------+
              |                                                       |
              +--> native static field residual ------------------+  |
              |                                                    |  |
              +--> independent Gridap field residual ------------+|  |
+             |          |                                         ||  |
+             |          +--> Batch C coordinate-bijective         ||  |
+             |               manufactured comparison -------------++  |
                                                                   vv  v
              multi-region block/interface coupling + conservation ledger
                                       |
@@ -103,21 +107,19 @@ minimum fields.  Implementations may add fields, but may not weaken them.
 The queue is ordered by the dependency edges it unlocks, not by local test
 count.
 
-1. Preserve the accepted isolated Gridap B1/B2/B3 manufactured-control
-   boundary and build the Batch C native/Gridap comparison with an explicit
-   candidate-bound transfer record.
-2. Freeze one validated forward context over the three Genome contracts, typed
-   graphs, mission, bounds, subject, scenarios, and capability obligations.
-3. Repair and land the minimum typed multi-region interface/conservation contract and the
+1. Preserve the accepted isolated Gridap B1/B2/B3 and Batch C
+   manufactured-control boundaries plus the sealed forward context; do not
+   promote them to physical evidence or aggregate them prematurely.
+2. Repair and land the minimum typed multi-region interface/conservation contract and the
    minimum engineering/control/fault evidence-obligation contract.
-4. Connect one real, declared physical provider through the multi-region
+3. Connect one real, declared physical provider through the multi-region
    contract.  Test doubles remain unit-test-only and cannot satisfy integration
    acceptance.
-5. Add numerical-V&V and physical-validation/UQ contracts before integrated
+4. Add numerical-V&V and physical-validation/UQ contracts before integrated
    closure so missing evidence stays visible during early whole-device runs.
-6. Replace the present closure firewall with a candidate-bound high-fidelity
+5. Replace the present closure firewall with a candidate-bound high-fidelity
    package only after all prerequisite contracts and real provider paths exist.
-7. Scale QD/MCTS/campaign search only after the execution and evidence path can
+6. Scale QD/MCTS/campaign search only after the execution and evidence path can
    distinguish closed, failed, unknown, deferred, and unsupported outcomes.
 
 ## Legacy reuse rule
