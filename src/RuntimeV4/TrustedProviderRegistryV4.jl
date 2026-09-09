@@ -17,6 +17,15 @@ const _TPR_FREEGS_ATTESTED_SOURCES = (
     "src/RuntimeV4/FreeGSAxisymmetricExecution.jl",
     "scripts/runtime_v4_freegs_axisymmetric_runner.py")
 const _TPR_FREEGS_MODEL_CLASS = "physical_model_screen"
+const _TPR_ENGINEERING_CONTROL_FAULT_PROVIDER =
+    "runtime-v4-engineering-control-fault-manufactured"
+const _TPR_ENGINEERING_CONTROL_FAULT_SOURCE =
+    "src/RuntimeV4/TrustedEngineeringControlFaultProviderV4.jl"
+const _TPR_ENGINEERING_CONTROL_FAULT_ATTESTED_SOURCES = (
+    _TPR_ENGINEERING_CONTROL_FAULT_SOURCE,
+    "src/RuntimeV4/EngineeringControlFaultGraphObligationV4.jl")
+const _TPR_ENGINEERING_CONTROL_FAULT_MODEL_CLASS =
+    "manufactured_control_fault_operational_screen"
 
 struct _TrustedProviderRegistryToken end
 const _TPR_TOKEN = _TrustedProviderRegistryToken()
@@ -167,6 +176,32 @@ function _tpr_freegs_descriptor(repository_root::String)
         canonical_hash(body))
 end
 
+function _tpr_engineering_control_fault_descriptor(repository_root::String)
+    source = _tpr_inside_root(repository_root,
+        _TPR_ENGINEERING_CONTROL_FAULT_SOURCE)
+    executor_method_files = Tuple(replace(normpath(abspath(String(method.file))),
+        '\\' => '/') for method in methods(_trusted_engineering_control_fault_executor))
+    replace(normpath(source), '\\' => '/') in executor_method_files ||
+        throw(ArgumentError("trusted engineering control/fault entrypoint is not loaded from its fixed repository source"))
+    kinds = (:engineering_control_fault_operational_screen,)
+    model_classes = (_TPR_ENGINEERING_CONTROL_FAULT_MODEL_CLASS,)
+    source_hash = _tpr_file_hash(source)
+    attested_paths, attested_hashes = _tpr_attested_source_hashes(repository_root,
+        _TPR_ENGINEERING_CONTROL_FAULT_ATTESTED_SOURCES)
+    runtime_hash = _tpr_runtime_hash(_trusted_engineering_control_fault_executor,
+        repository_root)
+    body = _tpr_descriptor_body(_TPR_ENGINEERING_CONTROL_FAULT_PROVIDER,
+        _TPR_ENGINEERING_CONTROL_FAULT_SOURCE,
+        :_trusted_engineering_control_fault_executor, kinds, model_classes,
+        source_hash, attested_paths, attested_hashes, runtime_hash)
+    RepositoryProviderDescriptorV4(_TPR_TOKEN,
+        _TPR_ENGINEERING_CONTROL_FAULT_PROVIDER,
+        _TPR_ENGINEERING_CONTROL_FAULT_SOURCE,
+        :_trusted_engineering_control_fault_executor, kinds, model_classes,
+        source_hash, attested_paths, attested_hashes, runtime_hash,
+        _trusted_engineering_control_fault_executor, canonical_hash(body))
+end
+
 _tpr_builtin_descriptors(repository_root::String) =
     (_tpr_builtin_descriptor(repository_root),
      _tpr_freegs_descriptor(repository_root))
@@ -176,6 +211,8 @@ function _tpr_expected_descriptor(provider_id::String, repository_root::String)
         return _tpr_builtin_descriptor(repository_root)
     provider_id == _TPR_FREEGS_PROVIDER &&
         return _tpr_freegs_descriptor(repository_root)
+    provider_id == _TPR_ENGINEERING_CONTROL_FAULT_PROVIDER &&
+        return _tpr_engineering_control_fault_descriptor(repository_root)
     throw(ArgumentError("untrusted provider id"))
 end
 
@@ -304,6 +341,19 @@ function bootstrap_trusted_provider_registry(
         canonical_hash(body))
 end
 
+"""Bootstrap the base catalog plus the fixed engineering control/fault adapter."""
+function bootstrap_trusted_provider_registry(
+        ::Val{:trusted_repository_with_engineering_control_fault_bootstrap},
+        repository_root::AbstractString)
+    root = _tpr_normalize_root(repository_root)
+    descriptors = (_tpr_builtin_descriptor(root),
+        _tpr_engineering_control_fault_descriptor(root))
+    identity = _tpr_repository_identity(root, descriptors)
+    body = _tpr_registry_body(identity, descriptors, ())
+    TrustedProviderRegistryV4(_TPR_TOKEN, root, identity, descriptors, (),
+        canonical_hash(body))
+end
+
 function _tpr_domain(context::ForwardChainContextV4,
         descriptor::RepositoryProviderDescriptorV4, capability::CapabilitySignatureV4,
         model_class::String)
@@ -423,7 +473,9 @@ function validate_trusted_provider_registry(registry::TrustedProviderRegistryV4)
     registry.repository_root == root || throw(ArgumentError("registry repository root is not normalized"))
     provider_ids = Tuple(item.provider_id for item in registry.descriptors)
     provider_ids in ((_TPR_BUILTIN_PROVIDER,),
-                     (_TPR_BUILTIN_PROVIDER, _TPR_FREEGS_PROVIDER)) ||
+                     (_TPR_BUILTIN_PROVIDER, _TPR_FREEGS_PROVIDER),
+                     (_TPR_BUILTIN_PROVIDER,
+                      _TPR_ENGINEERING_CONTROL_FAULT_PROVIDER)) ||
         throw(ArgumentError("registry descriptor set mismatch"))
     expected_descriptors = Tuple(_tpr_expected_descriptor(item.provider_id, root)
         for item in registry.descriptors)
