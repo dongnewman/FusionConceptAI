@@ -22,6 +22,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | native/Gridap Batch C comparison | committed at `f5fa6a2` | focused 62/62 and pinned runner passed, exit 0 | explicit coordinate-bijective transfer; manufactured control only, not physical validation |
 | typed multi-region ownership and conservative execution | committed at `8359886` | focused 117/117, example, core 26/26, and spine 54/54 passed, exit 0 | lumped manufactured control; discrete paired-term cancellation only |
 | candidate-bound FreeGS axisymmetric execution | committed at `3f1e968` | focused 42/42 and real pinned FreeGS 0.8.2 runner passed, Julia/backend exit 0; output byte hash matched | one manufactured typed G2 fixture and `physical_model_screen` only; not validation, engineering evidence, or a 3-D multi-region provider |
+| trusted repository provider registry and operational receipts | committed at `6b3bafd` | focused 62/62, example, core 26/26, and spine 54/54 passed, exit 0 | fixed test-only descriptor proves provenance/dispatch integrity; no production provider or scientific evidence |
 | real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
 | engineering/control/fault | untracked prototypes rejected | local contract/request tests do not satisfy integration | graph site is not derived from an executed control edge and caller manifests can self-authorize dispatch |
 | physical validation and UQ | untracked prototypes rejected | execution-request focused tests passed 68/68, exit 0, but the boundary is not admissible | a caller-created callable manifest can self-authorize readiness; trusted provider attestation and real evidence are absent |
@@ -36,15 +37,17 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    separate physical-model screen. It does not implement the accepted
    multi-region contract's 3-D constitutive or interface operators and must not
    be presented as that missing provider.
-3. Add a trusted provider registry/attestation boundary before rebuilding
-   engineering/control/fault and validation/UQ dispatch. Public caller-created
-   manifests with callable stubs cannot authorize integrated readiness.
-4. Attach a candidate-derived 3-D physical provider to the accepted
+3. Extend the accepted trusted registry only through reviewed built-in
+   production descriptors. The current descriptor is deliberately test-only;
+   public caller-created manifests and callable stubs remain inadmissible.
+4. Rebuild engineering/control/fault and validation/UQ dispatch against the
+   trusted registry. Their present untracked prototypes remain rejected.
+5. Attach a candidate-derived 3-D physical provider to the accepted
    multi-region execution boundary; the current positive diagonal and interface
    coefficient remain manufactured inputs, not physics evidence.
-5. Run focused tests first, then relevant Runtime V4 regressions and package
+6. Run focused tests first, then relevant Runtime V4 regressions and package
    tests with separate exit codes.
-6. Commit and push each accepted milestone with only its owned files staged.
+7. Commit and push each accepted milestone with only its owned files staged.
 
 ## Protected working state
 

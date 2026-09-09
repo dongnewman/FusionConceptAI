@@ -31,6 +31,10 @@ candidate generation / partial compilation / proof-preserving gaps
 sealed forward-chain context: three Genome roles + typed graphs +
 mission/bounds + candidate-bound subject/scenarios + exact obligations
              |
+             +--> trusted repository provider registry
+             |    (source/runtime/context attestation + operational receipts;
+             |     current built-in descriptor is test-only)
+             |
              +--> typed time/event/DAE execution -------------------+
              |                                                       |
              +--> native static field residual ------------------+  |
@@ -123,18 +127,20 @@ count.
    separate `physical_model_screen`. Its typed G2 ownership and real pinned
    execution do not supply the 3-D constitutive/interface operators required by
    the accepted multi-region contract.
-3. Land a trusted provider registry/attestation boundary. Exact public
-   manifests and caller-bound functions are dispatch declarations, not trusted
-   provider identity, execution evidence, or readiness authority.
-4. Connect one candidate-derived 3-D physical provider through the accepted
+3. Extend the accepted trusted registry with independently reviewed built-in
+   production descriptors. The current repository descriptor is test-only and
+   its completed receipt is operational status, not scientific evidence.
+4. Rebuild engineering/control/fault and validation/UQ dispatch on that trusted
+   registry; keep caller-created manifests and functions outside readiness.
+5. Connect one candidate-derived 3-D physical provider through the accepted
    multi-region execution contract. The lumped diagonal/interface coefficients
    remain manufactured inputs and have no physical credit.
-5. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
+6. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
    obligations on the sealed forward context and trusted provider boundary so
    missing evidence stays visible during early whole-device runs.
-6. Replace the present closure firewall with a candidate-bound high-fidelity
+7. Replace the present closure firewall with a candidate-bound high-fidelity
    package only after all prerequisite contracts and real provider paths exist.
-7. Scale QD/MCTS/campaign search only after the execution and evidence path can
+8. Scale QD/MCTS/campaign search only after the execution and evidence path can
    distinguish closed, failed, unknown, deferred, and unsupported outcomes.
 
 ## Legacy reuse rule
