@@ -33,7 +33,7 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
              |
              +--> trusted repository provider registry
              |    (source/runtime/context attestation + operational receipts;
-             |     current built-in descriptor is test-only)
+             |     test fixture plus opt-in fixed FreeGS adapter)
              |
              +--> typed time/event/DAE execution -------------------+
              |                                                       |
@@ -51,6 +51,10 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                               v                                     |
                     physical_model_screen only                      |
                     (not validation or 3-D coupling)                 |
+                              |                                     |
+                              +--> typed 3-D provider-input compiler|
+                                   (G2 geometry/profile ownership;  |
+                                    four exact input gaps remain)   |
                                                                   vv  v
              typed multi-region ownership + one global non-diagonal residual
              (accepted lumped manufactured control; not a physical provider)
@@ -127,20 +131,23 @@ count.
    separate `physical_model_screen`. Its typed G2 ownership and real pinned
    execution do not supply the 3-D constitutive/interface operators required by
    the accepted multi-region contract.
-3. Extend the accepted trusted registry with independently reviewed built-in
-   production descriptors. The current repository descriptor is test-only and
-   its completed receipt is operational status, not scientific evidence.
-4. Rebuild engineering/control/fault and validation/UQ dispatch on that trusted
+3. Preserve the accepted opt-in FreeGS registry adapter. Its fixed source and
+   runtime attestation plus candidate-bound operational receipt still confer no
+   scientific-evidence authority.
+4. Close the typed 3-D input compiler's region-law, oriented-interface/space,
+   residual/Jacobian-ownership, and discretization-control gaps before adding a
+   fixed DESC or VMEC registry adapter.
+5. Rebuild engineering/control/fault and validation/UQ dispatch on that trusted
    registry; keep caller-created manifests and functions outside readiness.
-5. Connect one candidate-derived 3-D physical provider through the accepted
+6. Connect one candidate-derived 3-D physical provider through the accepted
    multi-region execution contract. The lumped diagonal/interface coefficients
    remain manufactured inputs and have no physical credit.
-6. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
+7. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
    obligations on the sealed forward context and trusted provider boundary so
    missing evidence stays visible during early whole-device runs.
-7. Replace the present closure firewall with a candidate-bound high-fidelity
+8. Replace the present closure firewall with a candidate-bound high-fidelity
    package only after all prerequisite contracts and real provider paths exist.
-8. Scale QD/MCTS/campaign search only after the execution and evidence path can
+9. Scale QD/MCTS/campaign search only after the execution and evidence path can
    distinguish closed, failed, unknown, deferred, and unsupported outcomes.
 
 ## Legacy reuse rule
