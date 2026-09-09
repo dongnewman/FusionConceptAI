@@ -49,7 +49,7 @@ check, not an adapter qualification.
 | Decision | Source | Permitted use | Prohibited use |
 |---|---|---|---|
 | extract | legacy analytic/refinement and V&V runtimes | minimum refinement levels, unique input/result hashes, deterministic replay, negative controls, separate numerical/model/measurement/transfer records | copying legacy `Dict` schemas, status strings, candidate identity, or authority |
-| wrap | v87/v94/v96 record and gate logic | new typed, candidate-bound report validation after rederiving subject, scenario, protocol, provider, input, result, and evidence identities | wrapping an old result as new Runtime V4 evidence or inheriting an old claim ceiling |
+| extract | v87/v94/v96 formulas and gate invariants | minimum-level and unique-hash formulas, normalized change, refinement-order/GCI formulas, and fail-closed invariants rewritten over new typed records | wrapping or including any old runtime, `Dict` stage chain, result, status, candidate identity, or authority |
 | extract | `FieldResidualNumerics.jl` and `FieldResidualPipeline.jl` | frozen typed form, signed geometry, G2 source/boundary reports, scenario, subject, solver-input, and canonical identity conventions | calling or inspecting the native assembler, matrix, receipt, or solution inside the Gridap provider |
 | test-only | legacy numerical tests and Gridap smoke | sentinel design, malformed/missing input cases, convergence and replay test intent, dependency-load preflight | evidence of a candidate-bound 3D solve, independent assembly, or numerical V&V |
 | reject | legacy adapters, reduced proxies, and historical artifacts | counterexample and interface-design reference only | FE provider implementation, independent-code credit, physical/experimental validation, engineering closure, or promotion |
@@ -105,10 +105,11 @@ Batch B is split into independently reviewable commits:
    dependency and source identities, replay, foreign-binding and false-status
    controls, while preserving all Batch A file hashes.
 
-The later Batch C may wrap the legacy refinement/gate ideas only after both
-native and Gridap reports independently replay.  It must use an explicit
-transfer operator and keep native Linf, Gridap L2/H1, transfer, solver, and
-discretization errors distinct.
+The later Batch C may reimplement the audited legacy refinement formulas and
+negative-test intent only after both native and Gridap reports independently
+replay.  It must not include or wrap a legacy VVUQ runtime.  It must use an
+explicit transfer operator and keep native Linf, Gridap L2/H1, transfer,
+solver, and discretization errors distinct.
 
 ## Acceptance gate
 

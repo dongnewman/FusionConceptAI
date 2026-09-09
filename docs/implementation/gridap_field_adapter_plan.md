@@ -3,7 +3,8 @@
 ## Scope and evidence boundary
 
 Batch B adds a real three-dimensional finite-element solve for the existing
-static scalar residual subject. It consumes the frozen `FieldResidualPlanV4`,
+static scalar residual subject. It rederives the frozen
+`FieldResidualPipelinePlanV4`,
 its candidate-bound G2 source and boundary reports, its
 `LinearFieldResidualFormV4`, and its `DiagonalAffineChartGeometryV4`.
 
@@ -98,17 +99,28 @@ compile_gridap_field_residual_plan(
     compiled::CompiledCandidatePrefixV4,
     genome_registry::GenomeContractRegistryV4,
     operator_registry::OperatorRegistryV1,
-    native_plan::FieldResidualPlanV4,
-    scenario::NamedTuple;
+    u_report::FieldEvaluationReportV4,
+    f_report::FieldEvaluationReportV4;
+    scenario::NamedTuple,
+    grid::FieldGridSpecV4,
+    constraint_edge_hash::Digest256,
+    unknown_state_ref::StateGeneRefV1,
+    source_state_ref::StateGeneRefV1,
+    residual_state_ref::StateGeneRefV1,
+    affine_factors,
+    affine_offsets,
+    native_protocol::StructuredGridProtocolV4 = StructuredGridProtocolV4(),
     protocol::GridapFieldProtocolV4 = GridapFieldProtocolV4(),
 )::GridapFieldResidualCompilationV4
 ```
 
-Compilation rederives `native_plan` through the public residual-plan compiler.
-It verifies candidate, prefix, edge, form, geometry, ordered state refs, every
-G2 plan/result/provider binding, scenario, and audited operator-manifest
-triple. It may reuse typed compilation and materialization. It may not invoke
-or inspect the native numerical assembly.
+Compilation rederives a `FieldResidualPipelinePlanV4` by calling the public
+`compile_field_residual_plan` with both typed G2 reports and all explicit
+keywords above. It verifies candidate, prefix, edge, form, geometry, ordered
+state refs, every G2 plan/result/provider binding, scenario, and audited
+operator-manifest triple. It may reuse typed compilation and materialization.
+It may not accept a caller-supplied native plan, invoke or inspect the native
+numerical assembly, or accept caller-supplied reference values or errors.
 
 `GridapFieldResidualPlanV4` binds candidate and Genome hashes, prefix, mission,
 bounds, edge, form, state refs and types, signed geometry, grid, source and
