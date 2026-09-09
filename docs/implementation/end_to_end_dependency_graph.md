@@ -103,12 +103,12 @@ minimum fields.  Implementations may add fields, but may not weaken them.
 The queue is ordered by the dependency edges it unlocks, not by local test
 count.
 
-1. Accept or reject the committed Gridap B1 kernel with a definitive focused
-   run, runner output, regression evidence, and independent source/binding
-   audit.
-2. Implement B2 convergence and B3 sealed provider/evidence bindings, then
-   build the Batch C native/Gridap comparison with an explicit transfer record.
-3. Land the minimum typed multi-region interface/conservation contract and the
+1. Preserve the accepted isolated Gridap B1/B2/B3 manufactured-control
+   boundary and build the Batch C native/Gridap comparison with an explicit
+   candidate-bound transfer record.
+2. Freeze one validated forward context over the three Genome contracts, typed
+   graphs, mission, bounds, subject, scenarios, and capability obligations.
+3. Repair and land the minimum typed multi-region interface/conservation contract and the
    minimum engineering/control/fault evidence-obligation contract.
 4. Connect one real, declared physical provider through the multi-region
    contract.  Test doubles remain unit-test-only and cannot satisfy integration
