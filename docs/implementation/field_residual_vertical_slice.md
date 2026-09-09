@@ -243,3 +243,22 @@ Project-specific inputs that require the user or another authoritative project s
 Open solver executables and public datasets do not require another permission request within this task. Their evidence still must pass the same provenance and qualification gates.
 
 Without these resources, the software chain can execute and report exact gaps, but cannot truthfully produce high-fidelity whole-device, engineering, independent-code, or validation evidence.
+## D4.1 field-residual pipeline
+
+D4.1 is limited to one candidate-bound manufactured control. The accepted G1
+constraint is exactly `r = LAPLACE(u) - kappa*f`, where `u` and `f` are
+unitless static scalar fields, `kappa` is the exact constant `2 m^-2`, and the
+`m^-2` residual state owns that constraint. The two G2 roots share one typed
+program and evaluate exactly `u = rho2^2` and `f = 10*rho2` with a zero-valued
+declared offset.
+
+The plan seals the candidate, compiled prefix, registry, both G2 plan hashes,
+both G2 result hashes, both G2 evidence identities, the source and boundary
+content hashes, geometry, 5/9/17 grids, and the native sparse-LU protocol.
+Execution rejects any substituted field snapshot even when its local content
+hash is internally consistent. Cache hits are revalidated before reuse.
+
+The machine-readable evidence class is `manufactured_control` and the claim
+ceiling is `screen_only`. A completed D4.1 receipt has zero credible physical
+candidates, is not P5-ready, and never emits `unsupported`. It neither executes
+the declared G2 coordinate/metric programs nor promotes a physical device.

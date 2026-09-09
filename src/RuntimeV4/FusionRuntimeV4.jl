@@ -11,6 +11,8 @@ include("Archives.jl")
 include("AlgebraicResidual.jl")
 include("AlgebraicScopedSearch.jl")
 include("FieldProgramEvaluation.jl")
+include("FieldResidualNumerics.jl")
+include("FieldResidualPipeline.jl")
 include("DeterministicScreenProvider.jl")
 include("RuntimePipeline.jl")
 include("Frontier.jl")
@@ -33,6 +35,21 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        FieldEvaluationReportV4, compile_field_evaluation_plan,
        evaluate_field_program, field_evaluation_manifest,
        field_evaluation_provider, execute_field_evaluation,
+       StructuredGridProtocolV4, DiagonalAffineChartGeometryV4,
+       LinearFieldResidualFormV4, FieldResidualPayloadV4,
+       ResidualAssemblyV4, FieldSolveResultV4,
+       compile_diagonal_affine_geometry, compile_linear_field_residual_form,
+       assemble_field_residual_kernel, solve_field_residual_kernel,
+       StaticFieldResidualMissionV4, TypedFieldSourceScaleBindingV4,
+       FieldResidualPipelinePlanV4, FieldResidualPipelineStoreV4,
+       FieldResidualPipelineReceiptV4, FieldResidualPipelineReportV4,
+       ManufacturedFieldConvergenceReceiptV4,
+       compile_field_residual_pipeline_plan, compile_field_residual_plan,
+       field_residual_pipeline_provider, field_residual_provider,
+       validate_field_residual_pipeline_report, validate_field_residual_report,
+       replay_field_residual_pipeline,
+       build_manufactured_field_convergence_receipt,
+       validate_manufactured_field_convergence_receipt,
        CandidateQueueEntryV4, CandidateQueueV4, enqueue_candidate!, submit_proposal!,
        mark_failed!, mark_deferred!, mark_dormant!, release_candidate!, revive_candidate!,
        next_compilable!, DeferredObligationV4, CapabilityGapRecordV4, CapabilityArchiveV4,

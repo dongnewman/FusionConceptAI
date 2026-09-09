@@ -206,3 +206,15 @@ bounded subject. Later batches become executable incrementally as typed
 physical producers, public or project-specific validation data, and qualified
 engineering resources become available. Until then, their gaps are real output
 of the campaign rather than placeholders to suppress.
+## D4.1 boundary
+
+The integrated field residual path consumes exact unit-preserving typed ASTs
+and G2 artifacts whose plan, result, evidence, and payload hashes are frozen in
+the D4.1 plan. Missing providers return `terminal_deferred` without store
+mutation. A completed factorization that misses numerical tolerances is
+`numerical_fail`; a failed or unclassified backend factorization is
+conservatively `unknown`. These statuses are never rewritten as `unsupported`.
+
+D4.1 is only a `manufactured_control` at `screen_only`. Independent-code
+comparison, uncertainty propagation, experimental validation, engineering
+closure, and high-fidelity whole-device promotion remain later evidence gates.
