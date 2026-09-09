@@ -40,7 +40,8 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
              |          +--> Batch C coordinate-bijective         ||  |
              |               manufactured comparison -------------++  |
                                                                   vv  v
-             multi-region block/interface coupling + conservation ledger
+             typed multi-region ownership + one global non-diagonal residual
+             (accepted lumped manufactured control; not a physical provider)
                                       |
                                       v
               real physics providers: equilibrium/stability/transport/
@@ -110,11 +111,12 @@ count.
 1. Preserve the accepted isolated Gridap B1/B2/B3 and Batch C
    manufactured-control boundaries plus the sealed forward context; do not
    promote them to physical evidence or aggregate them prematurely.
-2. Repair and land the minimum typed multi-region interface/conservation contract and the
-   minimum engineering/control/fault evidence-obligation contract.
-3. Connect one real, declared physical provider through the multi-region
-   contract.  Test doubles remain unit-test-only and cannot satisfy integration
-   acceptance.
+2. Connect one real, declared physical provider through the accepted
+   multi-region execution contract. The lumped diagonal/interface coefficients
+   remain manufactured inputs and have no physical credit.
+3. Land the minimum engineering/control/fault evidence-obligation contract on
+   the same sealed forward context; reject caller-supplied evidence or graph
+   identity.
 4. Add numerical-V&V and physical-validation/UQ contracts before integrated
    closure so missing evidence stays visible during early whole-device runs.
 5. Replace the present closure firewall with a candidate-bound high-fidelity

@@ -20,7 +20,8 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | Gridap B2 convergence | committed at `85f72f8` | 17/17 and pinned runner passed, exit 0 | isolated `screen_only` qualification; not physical V&V |
 | Gridap B3 evidence/replay | committed at `c90e0ad` | 18/18 and pinned runner passed, exit 0 | isolated `screen_only`; same-process replay is not independent code |
 | native/Gridap Batch C comparison | committed at `f5fa6a2` | focused 62/62 and pinned runner passed, exit 0 | explicit coordinate-bijective transfer; manufactured control only, not physical validation |
-| multi-region coupled physics | untracked prototype rejected | 7/7 local tests do not satisfy integration | empty regions/channels can be `ready`; no real coupled provider |
+| typed multi-region ownership and conservative execution | committed at `8359886` | focused 117/117, example, core 26/26, and spine 54/54 passed, exit 0 | lumped manufactured control; discrete paired-term cancellation only |
+| real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
 | engineering/control/fault | untracked prototype rejected | 12/12 local tests do not satisfy integration | optional context and self-declared evidence |
 | physical validation and UQ | untracked prototype rejected | 6/6 constructor negatives do not satisfy integration | forgeable binding/false physical-credit path; real evidence absent |
 | high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
@@ -30,12 +31,15 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 
 1. Preserve the accepted isolated B1/B2/B3 and Batch C boundaries and the
    sealed forward-chain context; do not fold them into an aggregator yet.
-2. Repair multi-region ownership/conservation before attaching a real physical
-   provider; then rebuild engineering/control/fault and validation/UQ on the
-   same context and admitted Runtime evidence.
-3. Run focused tests first, then relevant Runtime V4 regressions and package
+2. Attach a candidate-derived real physical provider to the accepted
+   multi-region execution boundary; the current positive diagonal and interface
+   coefficient are manufactured inputs, not physics evidence.
+3. Rebuild engineering/control/fault and validation/UQ on the same forward
+   context and admitted Runtime evidence. The present untracked prototypes are
+   rejected and remain outside the integration queue.
+4. Run focused tests first, then relevant Runtime V4 regressions and package
    tests with separate exit codes.
-4. Commit and push each accepted milestone with only its owned files staged.
+5. Commit and push each accepted milestone with only its owned files staged.
 
 ## Protected working state
 
@@ -48,7 +52,7 @@ review.
 ## Current authority statement
 
 `p5_ready=false`.  The current count of credible physical device candidates is
-zero.  Gridap B1/B2/B3, Batch C, native manufactured controls, local time/DAE
-tests, the sealed forward context, and contract fixtures may advance software
-readiness only.  They do not establish physical validation, engineering
-feasibility, whole-device closure, or a simplest feasible device.
+zero.  Gridap B1/B2/B3, Batch C, native and multi-region manufactured controls,
+local time/DAE tests, the sealed forward context, and contract fixtures may
+advance software readiness only.  They do not establish physical validation,
+engineering feasibility, whole-device closure, or a simplest feasible device.
