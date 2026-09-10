@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@86dc03f`
+Current accepted and pushed implementation head: `main@56c7af8`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -27,6 +27,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | typed 3-D physical-provider input chain | committed through `ebc80af`; discretization `1337230`, full-state residual/Jacobian `6e2e7d5`, exact-cover multi-region laws `d527866` | final composition 157/157, runner, example, core 26/26, and spine 54/54 passed, exit 0 | all five typed declarations plus the physical-to-region support map and keyed exact covers compose as `input_complete`; structural manufactured input only, with no provider selection, solve, or evidence |
 | candidate-bound DESC fixed-boundary request compiler | committed at `5363cd9` | focused runner 223/223, standalone example, core 26/26, spine 54/54, trusted registry 65/65, and the existing pinned FreeGS regression passed, exit 0; fixtures report exact closed gaps | accepted gap-only compiler: the current composition fixture lacks the three DESC declaration/binding inputs, while the fully declared manufactured fixture lacks only `required_verified_desc_geometric_compatibility_proof`; `can_emit_request=false`, with no provider selection/execution, solver attempt, evidence, or authority |
 | candidate-bound DESC geometry-program preflight | committed at `86dc03f` | focused 118/118, standalone runner, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, and pinned FreeGS 0.8.2 execution passed, exit 0; independent hard review found no remaining P1/P2 defect | accepted gap-only prerequisite: exact G2 chart-root/graph-root ABI and program-shape audit exposes eleven current gaps, including the absent normalized-to-SI root bridge and absent geometry interpreter; `program_ready=false`, no proof/certificate/request/provider/solver/evidence authority |
+| normalized-to-SI 3-D coordinate/metric root bridge | committed at `56c7af8` | focused and standalone runner 90/90, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, pinned FreeGS execution 42/42, and DESC preflight 118/118 passed, exit 0 | candidate-owned `AtomicMIMO` roots bind `x_SI=L*x_normalized` and `g_SI=L^2*g_normalized`; `bridge_ready` is structural `screen_only`, not program interpretation, geometry proof, request, provider execution, or evidence |
 | real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
@@ -56,8 +57,9 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    set, chart/graph ABI closure for coordinate and metric roots, a typed
    normalized-to-SI root bridge, input-dependent programs, pinned manifests,
    and a dedicated geometry interpreter.
-6. Close the next edge by implementing the paired normalized/SI root bridge,
-   executable candidate-owned coordinate/metric program, and interpreter;
+6. Preserve the accepted paired normalized/SI root bridge as a separate
+   structural contract. Close the next edge with executable candidate-owned
+   Fourier coordinate/metric programs and their dedicated interpreter;
    only then add the separately reviewed continuous-domain geometry proof for
    Fourier phase/sign/NFP, seam/equivariance, metric, axis regularity, and
    orientation/nondegeneracy. Request emission may be reconsidered only after

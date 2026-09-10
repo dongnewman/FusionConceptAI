@@ -102,6 +102,14 @@ the accepted contract. Current source confirms the separation:
   pinned FreeGS 0.8.2 regression all exited zero. Independent final review
   found no remaining P1/P2 defect. The slice is gap-only and emits no proof,
   certificate, request, provider result, or evidence.
+- `src/RuntimeV4/ThreeDNormalizedPhysicalRootBridgeV4.jl` now recognizes the
+  additive multi-root representation already admitted by the accepted G2
+  graph: normalized coordinate and metric roots remain chart-owned, while
+  distinct SI roots are joined by exact typed `L` and `L^2` scale operators.
+  Focused and standalone runs passed 90/90; the core, spine, trusted registry,
+  trusted FreeGS, pinned FreeGS execution, and DESC preflight regressions all
+  exited zero. `bridge_ready` is a structural `screen_only` result only; it
+  performs no geometry-program interpretation and emits no proof or evidence.
 
 These slices and their composition remain manufactured compiler/input fixtures
 with a `screen_only` ceiling, no provider selection or execution, and no
@@ -145,10 +153,11 @@ the following backend edges must still be typed and validated:
 1. **Geometry program, proof, and request emission:** the accepted gap-only compiler
    already pins the Fourier phase/sign/NFP convention, normalized radial-profile
    basis, DESC-specific resolution and solver controls, and unsupported-domain
-   checks. The accepted preflight shows that the current chart needs distinct
-   normalized and SI roots joined through the support scale, real
-   input-dependent coordinate/metric programs, pinned operator semantics, and
-   an interpreter. Only after those prerequisites exist may a separate
+   checks. The accepted bridge now closes the structural representation for
+   distinct normalized and SI roots joined through the exact support scale.
+   Real input-dependent coordinate/metric programs, pinned executable
+   operator semantics, and a dedicated interpreter are still missing. Only
+   after those prerequisites exist may a separate
    candidate-bound verifier prove the geometric semantics against the physical
    chart. Until it does,
    `can_emit_request=false` and `request=nothing`.
