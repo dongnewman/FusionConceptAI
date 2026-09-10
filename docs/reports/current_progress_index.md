@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-11
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@cb6d6d5`
+Current accepted and pushed implementation head: `main@b95d974`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -30,6 +30,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | normalized-to-SI 3-D coordinate/metric root bridge | committed at `56c7af8` | focused and standalone runner 90/90, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, pinned FreeGS execution 42/42, and DESC preflight 118/118 passed, exit 0 | candidate-owned `AtomicMIMO` roots bind `x_SI=L*x_normalized` and `g_SI=L^2*g_normalized`; `bridge_ready` is structural `screen_only`, not program interpretation, geometry proof, request, provider execution, or evidence |
 | candidate-bound DESC Fourier geometry interpreter | committed at `46e5d26` | focused 81/81, standalone runner, bridge 90/90, DESC preflight 118/118, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, and pinned FreeGS execution 42/42 passed, exit 0 | explicit per-mode radial laws drive analytic normalized/SI coordinate, Jacobian, and metric programs through exact multi-root `AtomicMIMO` bindings; sealed result is `interpreted`/`screen_only`, not continuous-domain geometry proof, request, provider execution, or evidence |
 | candidate-bound DESC continuous-domain geometry compatibility proof | committed at `cb6d6d5` | focused 89/89, standalone runner, interpreter 81/81, preflight 118/118, request compiler 223/223, bridge 90/90, forward context 72/72, core 26/26, spine 54/54, trusted registry 65/65, and FreeGS execution 42/42 passed, exit 0; independent review found no P1/P2 blocker | analytic 256-bit directed bounds prove the declared narrow Fourier program only; `screen_only`, no request/provider/solver execution, no physical or engineering validation, and zero credible devices |
+| candidate-bound real DESC request/provider execution | committed at `b95d974` | focused 70/70, standalone runner, and full `test/runtests.jl` passed with explicit exit 0; actual DESC 0.17.3 provider and fresh-process HDF5 inspector both exited 0; final independent review found no P1/P2 blocker | typed request is rebuilt from the current candidate and compatibility proof before execution; receipt seals request/output, adapter, inspector, Python, and DESC identities and rejects replay tampering; structural result validation only, `screen_only`, with no solver-convergence, physical/engineering validation, evidence, pass, promotion, P5, terminal, or credible-device authority |
 | real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
@@ -60,15 +61,15 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    a typed normalized-to-SI root bridge, input-dependent programs, pinned
    manifests, and a dedicated geometry interpreter.
 6. Preserve the accepted paired normalized/SI root bridge, executable
-   candidate-owned Fourier interpreter, and narrow continuous-domain
-   compatibility proof as separate software/geometry edges. Do not expand the
-   proof contract further. The next DESC milestone must emit a candidate-bound
-   request and actually execute the DESC provider, or record a reproducible
-   external-environment blocker. Provider result, process receipt, and evidence
-   authority remain separately validated edges.
-7. Connect the candidate-derived 3-D result through the accepted multi-region
-   execution boundary. Preserve the current-G3 trusted manufactured
-   control/fault screen separately; its deterministic trace does not close real
+   candidate-owned Fourier interpreter, narrow continuous-domain compatibility
+   proof, and real candidate-bound DESC request/provider execution as separate
+   edges. Do not expand the proof contract further. The DESC execution receipt
+   proves an actual provider/solver process and a structurally reloadable saved
+   result, not solver convergence, physical validation, or evidence authority.
+7. Connect the candidate-derived 3-D result through a real provider at the
+   accepted multi-region execution boundary. Preserve the current-G3 trusted
+   manufactured control/fault screen separately; its deterministic trace does
+   not close real
    engineering, control, or fault evidence. The present lumped diagonal and
    interface coefficients remain manufactured inputs.
 8. Run focused tests first, then relevant Runtime V4 regressions and package
@@ -83,7 +84,8 @@ and validation/UQ prototypes are preserved. They are not acceptance evidence
 for this cycle and will not be committed, rewritten, archived, or removed
 without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
-   `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, and `cb6d6d5`.
+   `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`, and
+   `b95d974`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -100,7 +102,8 @@ control/fault compiler and trusted
   manufactured operational screen, local time/DAE tests, the sealed forward
   context, and contract fixtures may advance software readiness only. The DESC
   geometry slice now has a candidate-bound analytic compatibility certificate,
-  but emits no request, selects or executes no provider, attempts no solver,
-  and emits no evidence. These results do
+  emits a typed request, and executes the actual DESC 0.17.3 provider/solver
+  process with a fresh-process structural HDF5 check. It still proves no solver
+  convergence and emits no validation evidence. These results do
 not establish physical validation, engineering feasibility, whole-device
 closure, or a simplest feasible device.
