@@ -37,6 +37,14 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
              |
              +--> typed time/event/DAE execution -------------------+
              |                                                       |
+             +--> current-G3 observation/controller/actuator graph   |
+             |          + fixed repository trust root                |
+             |          + deterministic manufactured execution       |
+             |                 |                                     |
+             |                 v                                     |
+             |        operational_screen only                        |
+             |        (not engineering evidence)                     |
+             |                                                       |
              +--> native static field residual ------------------+  |
              |                                                    |  |
              +--> independent Gridap field residual ------------+|  |
@@ -54,9 +62,16 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                               |                                     |
                               +--> typed 3-D provider-input compiler |
                                    + G2 geometry/profile ownership   |
-                                   + typed region laws               |
-                                   + distinct region/interface spaces|
-                                   (residual/Jacobian + controls gap)|
+                                   + physical-to-region support map   |
+                                   + exact-cover multi-region laws    |
+                                   + oriented interface + spaces      |
+                                   + full-state residual/Jacobian     |
+                                   + discretization controls          |
+                                   = input_complete (structural only) |
+                                   |                                 |
+                                   +--> fixed DESC request/result/    |
+                                        process contracts: missing   |
+                                   +--> pinned real execution: missing|
                                                                   vv  v
              typed multi-region ownership + one global non-diagonal residual
              (accepted lumped manufactured control; not a physical provider)
@@ -138,15 +153,17 @@ count.
 3. Preserve the accepted opt-in FreeGS registry adapter. Its fixed source and
    runtime attestation plus candidate-bound operational receipt still confer no
    scientific-evidence authority.
-4. Close the typed 3-D input compiler's remaining residual/Jacobian-ownership
-   and discretization-control gaps, then compose all accepted declarations
-   before adding a fixed DESC or VMEC registry adapter.
-5. Rebuild engineering/control/fault dispatch on the trusted registry. Preserve
-   the accepted zero-credit Validation/UQ request boundary; caller-created
-   manifests and functions remain outside readiness.
-6. Connect one candidate-derived 3-D physical provider through the accepted
-   multi-region execution contract. The lumped diagonal/interface coefficients
-   remain manufactured inputs and have no physical credit.
+4. Add fixed repository-owned DESC request, result, and process contracts over
+   the accepted complete 3-D input composition. Caller-created descriptors,
+   manifests, process identities, and functions remain outside readiness.
+5. Add the reviewed pinned DESC registry adapter and execute the real provider
+   with exact input/result/process and operational-receipt binding. Keep that
+   execution `screen_only` until the separate evidence obligations are met.
+6. Connect the candidate-derived 3-D provider result through the accepted
+   multi-region execution contract. Preserve the accepted current-G3 trusted
+   manufactured control/fault execution as a separate operational screen; the
+   lumped diagonal/interface coefficients remain manufactured inputs and have
+   no physical credit.
 7. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
    obligations on the sealed forward context and trusted provider boundary so
    missing evidence stays visible during early whole-device runs.

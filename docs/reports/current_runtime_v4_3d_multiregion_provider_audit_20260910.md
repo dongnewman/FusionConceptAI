@@ -2,16 +2,23 @@
 
 ## Decision
 
-Do not implement or admit a DESC/VMEC provider from the current candidate.
-The solver installations are callable, but Runtime V4 does not yet own enough
-candidate-bound physical input to construct a legitimate three-dimensional
-equilibrium problem, much less the region constitutive and interface operators
-required by the accepted multi-region contract.
+Do not yet admit a complete DESC/VMEC multi-region provider from the current
+candidate. Runtime V4 now owns a committed, structurally accepted composition
+of its candidate-bound typed 3-D inputs. It includes the multi-region
+exact-cover region-law set, a candidate-owned physical-to-region support map,
+and a keyed full-state residual/Jacobian cover. The support map deliberately
+does not prove geometric compatibility, and there is still no accepted
+provider-specific request/result/process contract for either backend.
+
+For the next narrow, conditional backend slice, prefer a repository-pinned
+DESC fixed-boundary equilibrium adapter. That choice is limited to one
+three-dimensional equilibrium capability; it does not make DESC a provider of
+the complete multi-region composition.
 
 This is a recoverable capability gap, not terminal `unsupported`. No solver job
-was submitted because there is no valid current typed solver input. This audit
-adds no provider, example, test, aggregator entry, result artifact, or evidence
-claim, and it does not modify the accepted FreeGS slice.
+was submitted because there is no accepted current provider-specific solver
+input. This audit adds no provider, example, test, aggregator entry, result
+artifact, or evidence claim, and it does not modify the accepted FreeGS slice.
 
 ## Current contract evidence
 
@@ -41,12 +48,40 @@ the accepted contract. Current source confirms the separation:
   `physical_model_screen` using a manufactured G2 fixture. It is neither a
   three-dimensional equilibrium provider nor a provider of real region
   constitutive/interface closure and must remain isolated.
+- `src/RuntimeV4/ThreeDPhysicalProviderInputV4.jl` now binds a typed Fourier
+  boundary, coordinate/metric AST identities, pressure plus iota/current
+  profiles, and toroidal flux to the current candidate, compiled G2 graph,
+  mission, bounds, and scenario.
+- `src/RuntimeV4/ThreeDRegionLawCompilerV4.jl` now binds one typed region's
+  constitutive, source, and boundary operators. It is deliberately not a
+  multi-region exact-cover declaration.
+- `src/RuntimeV4/ThreeDRegionLawSetCompilerV4.jl` now extends that primitive
+  with exactly one constitutive/source/boundary law triple for every oriented
+  region, canonical region order, and globally unique law, AST-root, and
+  output-node identities. This is structural typed ownership only.
+- `src/RuntimeV4/ThreeDOrientedInterfaceInputV4.jl` now owns typed regions,
+  oriented interface endpoints, conservation identity, and
+  volume/trace/multiplier spaces.
+- `src/RuntimeV4/ThreeDGoverningResidualJacobianV4.jl` now requires one
+  distinct typed residual/Jacobian pair for every current G2 state. Composition
+  compares this cover to oriented states by keyed state-node identity, so tuple
+  order is not treated as physical identity.
+- `src/RuntimeV4/ThreeDDiscretizationControlsV4.jl` now binds mesh, exact
+  discrete-space, nonlinear, linear, and refinement controls to the same
+  subject.
+- `src/RuntimeV4/ThreeDPhysicalInputCompositionV4.jl` now reconstructs the
+  accepted component declarations and bindings from one candidate, compiled
+  prefix, mission, bounds, and scenario. Its candidate-owned support map covers
+  every oriented region ID and exact support ref, but explicitly retains
+  `geometric_compatibility_proved=false`: it proves co-owned structural
+  association, not a coordinate transform, containment, overlap, or interface
+  geometry.
 
-The current G2 examples contain no typed Fourier surface, real spatial mesh,
-pressure/iota/current profiles, toroidal flux, region material laws, physical
-sources and boundaries, or typed 3-D provider result binding. A process can be
-available while the candidate-to-input translation remains undefined; solver
-availability therefore does not close this edge.
+These slices and their composition remain manufactured compiler/input fixtures
+with a `screen_only` ceiling, no provider selection or execution, and no
+evidence or terminal authority. Composition `input_complete` means structural
+input completeness only. No accepted typed external provider request or result
+binding exists, so a callable process still does not close the provider edge.
 
 ## Solver availability is not provider admissibility
 
@@ -57,48 +92,51 @@ checkout `D:\006-Programing\LMC\outputs\fusion_concept_ai`:
 |---|---|
 | `.venv-desc\Scripts\python.exe` | Python `3.13.5`, DESC `0.17.3`, `jax_finufft=False`, exit `0` |
 | DESC interpreter SHA-256 | `cec2fab4b3258900cc330346de8c664e57fa04227406920a6edb06f0efeeebb1` |
+| `.venv-desc\Scripts\desc.exe --help` | fixed-boundary DESC CLI starts successfully, exit `0` |
+| Legacy tracked DESC runner SHA-256 | `scripts/desc_fourier_runner.py`: `9e0130c1968ba0a99c6a4c0e956b1dd453d3b690787ab4d5b1a71a9a9b79f252` |
 | `.conda-vmex\Scripts\vmec.exe --version` | executable identifies itself as `vmex 0.7.0`, exit `0` |
 | `.conda-vmex\Scripts\vmec.exe --help` | accepts an INDATA/structured input, restart and solver options, exit `0` |
 | VMEX executable SHA-256 | `547ae0e1d75664e5a415c07329e7b06f6738261e32b49fddd0f86f87bf95cd35` |
-| `.conda-vmex\python.exe` import probe | `vmec`, `vmecpp`, `simsopt`, and `xvmec` modules all absent; exit `0` |
+| `.conda-vmex\python.exe` import probe | `vmex` and deprecated `vmec_jax` shim present; `vmec`, `vmecpp`, `simsopt`, and `xvmec` absent; exit `0` |
+| VMEX package origin | `direct_url.json` names `runs/v87_vvuq_preflight_20260826/sources/vmex`, but that source directory is absent |
 
-These observations prove dependency presence only. In particular, the local
-`vmec.exe` reports VMEX, not a currently integrated VMEC++ Python provider.
-Neither probe proves that a Runtime V4 candidate can produce a solver input,
-that a solve converges, or that the result supplies the accepted multi-region
-physics contract.
+These observations prove dependency presence only. The installed DESC
+environment can import and start its fixed-boundary path without network
+access, but the old repository has no wheelhouse or hash-locked distribution
+set, so that environment cannot be reconstructed offline from repository
+contents alone. The local `vmec.exe` is an alias for VMEX, not a currently
+integrated VMEC++/SIMSOPT provider; its recorded local package source has also
+disappeared, so VMEX is callable but not repository-reproducible. Neither probe
+proves that a Runtime V4 candidate can produce an accepted solver request, that
+a solve converges, or that the result supplies the multi-region contract.
 
-## Exact missing current typed ownership
+## Remaining provider-specific request, result, and process gaps
 
-Before a provider can be implemented, one exact `ForwardChainContextV4` subject
-must seal all of the following to the G2 graph, mission, bounds, and scenario:
+The structural composition is now accepted. Before a provider can be admitted,
+the following backend edges must still be typed and validated:
 
-1. A physical 3-D coordinate map and metric, or a complete Fourier boundary
-   with mode indices, coefficients, `nfp`, symmetry convention, orientation,
-   units, and validity domain.
-2. Pressure and either iota or current profiles, toroidal flux, their units,
-   admissible ranges, provenance, and profile convention.
-3. Region partitions and material constitutive tensors or coefficient laws,
-   plus physical sources and boundary conditions attached to exact regions.
-4. Typed, oriented interfaces with exact endpoint regions, transfer/flux law,
-   units, ledger conservation identity, and the required mortar, multiplier,
-   or other discrete trace spaces.
-5. One governing residual for each owned state/equation, its additive terms,
-   state ordering, and residual/Jacobian ownership.
-6. Mesh or spectral levels, discretization choices, initialization/restart
-   state, convergence tolerances, and a backend capability manifest derived
-   from the current context rather than caller self-assertion.
-7. A typed external result schema binding solver outputs back to the same
-   candidate, regions, interfaces, coordinates, units, and requested physical
-   capabilities.
-8. A controlled process boundary that hashes code, interpreter/executable,
-   dependencies, exact input and output bytes, stdout, stderr, and exit status;
-   revalidates cache hits; and performs deterministic fresh replay before any
-   `screen_only` receipt is considered.
+1. **Request:** prove the geometric compatibility that the structural support
+   map intentionally leaves open, then make the Fourier phase/sign/NFP
+   convention and normalized radial-profile basis explicit. Reject unsupported
+   current-profile, asymmetry, mode-range, profile-shape, and flux cases rather
+   than silently translating them. DESC spectral/grid resolution,
+   `lsq-exact` tolerances, pressure/boundary continuation steps, shaping order,
+   and output-audit thresholds also need typed semantics; the generic
+   mesh/Newton/linear/refinement controls are not interchangeable with them.
+2. **Result:** bind a typed external result schema to the exact composition,
+   candidate, regions, interfaces, coordinates, units, request, and requested
+   capability. A fixed-boundary equilibrium result cannot claim that the
+   composition's multi-region operators were executed.
+3. **Process:** hash repository code, interpreter, dependency inventory, exact
+   input/output bytes, stdout, stderr, and exit status; validate the structured
+   success status and result hash; revalidate cache hits; and perform
+   deterministic fresh replay before even a `screen_only` receipt is
+   considered.
 
-DESC equilibrium output alone would still not satisfy items 3–5. The accepted
-multi-region layer needs candidate-derived constitutive, source, boundary,
-interface, and discrete-space ownership in addition to a 3-D field solve.
+DESC output can close only a fixed-boundary ideal-MHD equilibrium subcapability.
+It does not consume the composition's per-region constitutive/source/boundary
+operators, oriented interfaces, full-state residual/Jacobian pairs, or finite-
+element spaces, so it cannot by itself close the complete multi-region edge.
 
 ## Legacy reuse classification
 
@@ -107,7 +145,8 @@ current Runtime V4 authority. Their permitted reuse is narrow:
 
 | Legacy source | Classification | Reason |
 |---|---|---|
-| `scripts/desc_fourier_runner.py` | extract | Reimplement its strict fixed-boundary DESC algorithm and input checks only after current typed inputs exist. It demonstrates that explicit R/Z Fourier modes, field periods/symmetry, pressure and iota power series, toroidal flux, resolution, continuation, and tolerances are required. |
+| `scripts/desc_fourier_runner.py` | extract; preferred next conditional backend | Reimplement its strict fixed-boundary DESC algorithm and input checks inside the current repository from the accepted composition after the provider-specific request contract lands. It demonstrates that explicit R/Z Fourier modes, field periods/symmetry, pressure and iota power series, toroidal flux, resolution, continuation, and tolerances are required. |
+| `scripts/vmex_candidate_equilibrium_runner_v1.py` | extract mapping ideas only; do not select | It records the DESC-to-VMEC phase, mode, `rho=sqrt(s)`, profile, `NS_ARRAY`, and `PHIEDGE` translations, but the runner is ignored/untracked and the installed VMEX source recorded by `direct_url.json` is gone. |
 | `scripts/desc_w7x_runner.py` and packaged W7-X data/docs | test-only | Useful as a known-device regression. The packaged W7-X state is not derived from the current candidate and cannot fill missing candidate fields. |
 | `scripts/desc_candidate_equilibrium_convergence_runner_v1.py` | test-only | Retain convergence-test intent, not its old input/result authority. |
 | `scripts/run_desc_candidate_equilibrium_convergence_v1.jl` | reject from current core | Uses the old Genome boundary, mutable dictionaries, and historical source/result artifacts. |
@@ -122,19 +161,26 @@ old/test evidence, not current-candidate evidence. Historical raw runner success
 also cannot override a failed physics gate or be promoted into a current
 receipt.
 
+Both old fixed-boundary runners serialize an error object but return process
+exit code `0` from `main`. A future controlled wrapper must therefore require
+and validate the typed output status and result hash; process exit status alone
+is not a success condition.
+
 ## Admission sequence
 
-A future implementation should proceed only after the current typed ownership
-above lands and validates independently:
+A future implementation should proceed from the accepted structural
+composition without widening its authority:
 
-1. compile the exact candidate/context into a canonical, inspectable 3-D
-   provider request and stop with a typed recoverable gap on any omission;
-2. add the isolated controlled-process adapter without importing legacy
-   Genome, dictionary, router, result, or authority objects;
+1. compile the exact composition and context into a canonical, inspectable DESC
+   fixed-boundary request, and stop with a typed recoverable gap when geometric
+   compatibility or any backend-specific semantic is absent;
+2. add a repository-pinned DESC fixed-boundary adapter, dependency lock, and
+   controlled process wrapper without importing legacy Genome, dictionary,
+   router, result, or authority objects;
 3. bind and independently validate solver outputs against the exact request;
-4. translate the physical fields into typed per-region governing,
-   constitutive, source, boundary, and oriented interface terms accepted by
-   `ConservativeMultiRegionExecutionV4`;
+4. keep the equilibrium subcapability separate from the still-unavailable
+   provider that would execute the per-region governing, constitutive, source,
+   boundary, interface, and discrete-space composition;
 5. qualify with malformed/foreign/cross-candidate adversaries, cache
    revalidation, fresh replay, resolution/convergence studies, and a genuinely
    independent reference before considering any claim beyond `screen_only`.

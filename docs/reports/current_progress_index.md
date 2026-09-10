@@ -2,6 +2,7 @@
 
 Last updated: 2026-09-10
 Tracked baseline at start of this integration cycle: `main@31260e2`
+Current accepted and pushed head: `main@ebc80af`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -23,9 +24,9 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | typed multi-region ownership and conservative execution | committed at `8359886` | focused 117/117, example, core 26/26, and spine 54/54 passed, exit 0 | lumped manufactured control; discrete paired-term cancellation only |
 | candidate-bound FreeGS axisymmetric execution | committed at `3f1e968` | focused 42/42 and real pinned FreeGS 0.8.2 runner passed, Julia/backend exit 0; output byte hash matched | one manufactured typed G2 fixture and `physical_model_screen` only; not validation, engineering evidence, or a 3-D multi-region provider |
 | trusted repository provider registry and operational receipts | committed through `b4e8b10` | base focused 65/65, trusted FreeGS focused 43/43, real pinned FreeGS dispatch, core 26/26, and spine 54/54 passed, exit 0 | opt-in fixed FreeGS descriptor binds source/runtime/context/input/output identities; receipt remains `physical_model_screen`, not scientific evidence |
-| typed 3-D physical-provider input boundary | committed through `5a847bc` | base 56/56, region laws 71/71, oriented interface/spaces 91/91, examples, core 26/26, and spine 54/54 passed, exit 0 | geometry/profiles, typed region laws, and distinct region/interface spaces compile only in manufactured fixtures; residual/Jacobian ownership and discretization controls remain |
+| typed 3-D physical-provider input chain | committed through `ebc80af`; discretization `1337230`, full-state residual/Jacobian `6e2e7d5`, exact-cover multi-region laws `d527866` | final composition 157/157, runner, example, core 26/26, and spine 54/54 passed, exit 0 | all five typed declarations plus the physical-to-region support map and keyed exact covers compose as `input_complete`; structural manufactured input only, with no provider selection, solve, or evidence |
 | real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
-| engineering/control/fault | untracked prototypes rejected | local contract/request tests do not satisfy integration | graph site is not derived from an executed control edge and caller manifests can self-authorize dispatch |
+| current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
 | scoped simplest feasible-device search | search infrastructure exists | not admissible at physical-device level | zero L4 credible candidates; closure path incomplete |
@@ -41,16 +42,19 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 3. Preserve the opt-in repository-owned FreeGS descriptor and its exact
    capability/input/receipt binding. Public caller-created descriptors,
    manifests, callable stubs, and source hashes remain inadmissible.
-4. Close the two remaining 3-D input edges: governing residual/Jacobian
-   ownership and discretization controls. Then compose all four declarations
-   before connecting a reviewed built-in DESC or VMEC adapter. Current positive
-   paths remain manufactured compiler fixtures and cannot authorize execution.
-5. Rebuild engineering/control/fault dispatch against the trusted registry.
-   Preserve the accepted Validation/UQ request boundary, whose seven evidence
-   gaps remain open; all older untracked prototypes stay rejected.
-6. Attach a candidate-derived 3-D physical provider to the accepted
-   multi-region execution boundary; the current positive diagonal and interface
-   coefficient remain manufactured inputs, not physics evidence.
+4. Close the next provider-specific gaps with fixed repository-owned DESC
+   request, result, and process contracts that consume the accepted composed
+   3-D input package. Do not reintroduce caller-authored descriptors, manifests,
+   process identities, or executable functions.
+5. After those contracts are accepted, add a reviewed pinned DESC registry
+   adapter and real provider execution with exact input/result/process and
+   operational-receipt binding. Execution alone remains `screen_only` and
+   supplies no scientific or device evidence.
+6. Connect the candidate-derived 3-D result through the accepted multi-region
+   execution boundary. Preserve the current-G3 trusted manufactured
+   control/fault screen separately; its deterministic trace does not close real
+   engineering, control, or fault evidence. The present lumped diagonal and
+   interface coefficients remain manufactured inputs.
 7. Run focused tests first, then relevant Runtime V4 regressions and package
    tests with separate exit codes.
 8. Commit and push each accepted milestone with only its owned files staged.
@@ -58,20 +62,24 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 ## Protected working state
 
 The pre-existing untracked `docs/implementation/v3_reuse_audit.md`, stage-report
-files, and rejected multi-region, engineering/control/fault, provider-admission,
+files, and older multi-region, engineering/control/fault, provider-admission,
 and validation/UQ prototypes are preserved. They are not acceptance evidence
 for this cycle and will not be committed, rewritten, archived, or removed
-without a separate content and provenance review. Generated FreeGS run
-artifacts remain local and uncommitted; their exact hashes and the reproducible
-runner command are recorded in the accepted execution report.
+without a separate content and provenance review. This does not apply to the
+tracked replacements accepted and pushed through `ac00ab6`, `d527866`, and
+`ebc80af`.
+Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
+and the reproducible runner command are recorded in the accepted execution
+report.
 
 ## Current authority statement
 
 `p5_ready=false`.  The current count of credible physical device candidates is
 zero.  Gridap B1/B2/B3, Batch C, native and multi-region manufactured controls,
 the candidate-bound FreeGS physical-model screen, its trusted operational
-receipt and zero-credit V&V/UQ request, the typed 3-D geometry/profile,
-region-law, and oriented-interface compilers, local time/DAE tests, the sealed
-forward context, and contract fixtures may advance software readiness only.
-They do not establish physical validation, engineering feasibility,
-whole-device closure, or a simplest feasible device.
+receipt and zero-credit V&V/UQ request, the structurally complete typed 3-D
+input composition, the current-G3 control/fault compiler and trusted
+manufactured operational screen, local time/DAE tests, the sealed forward
+context, and contract fixtures may advance software readiness only. They do
+not establish physical validation, engineering feasibility, whole-device
+closure, or a simplest feasible device.
