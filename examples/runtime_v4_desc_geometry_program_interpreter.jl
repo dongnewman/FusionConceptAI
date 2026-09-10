@@ -9,8 +9,15 @@ Base.include(DGPI, joinpath(@__DIR__, "..", "src", "RuntimeV4",
     "DESCGeometryProgramInterpreterV4.jl"))
 
 const dgpi_scale = NonnegativeQuantityV1(11 // 2, tdpi_length_unit)
+const dgpi_boundary = DGPI.ThreeDFourierBoundaryV4(
+    "dgpi-desc-eligible-boundary", 5, true,
+    (DGPI.ThreeDFourierCoefficientV4(0, 0, 5.5),
+     DGPI.ThreeDFourierCoefficientV4(1, 0, 0.4),
+     DGPI.ThreeDFourierCoefficientV4(1, 1, 0.05)),
+    (DGPI.ThreeDFourierCoefficientV4(-1, 0, -0.4),
+     DGPI.ThreeDFourierCoefficientV4(-1, 1, -0.05)))
 const dgpi_program = DGPI.DESCFourierGeometryProgramV4(
-    tdpi_fourier_boundary, dgpi_scale, (0, 1, 1), (1, 1))
+    dgpi_boundary, dgpi_scale, (0, 1, 1), (1, 1))
 const dgpi_coordinate_site = FieldOperatorSiteRefV1("dgpi-coordinate")
 const dgpi_metric_site = FieldOperatorSiteRefV1("dgpi-metric")
 const dgpi_program_binding = DGPI.desc_geometry_typed_binding(
@@ -54,7 +61,7 @@ const dgpi_coordinate_metric = DGPI.ThreeDCoordinateMetricV4(
     dgpi_prebinding.ast_root_identity_hashes[4], tdpi_coordinate_type,
     tdpi_metric_type, dgpi_chart_bounds)
 const dgpi_declaration = DGPI.ThreeDPhysicalProviderInputV4(
-    "dgpi-declaration", tdpi_fourier_boundary, dgpi_coordinate_metric,
+    "dgpi-declaration", dgpi_boundary, dgpi_coordinate_metric,
     tdpi_profiles_flux)
 
 const dgpi_base = GenericThreeDG2Fixture.DeclaredFixtureDependency

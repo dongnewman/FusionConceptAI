@@ -39,13 +39,13 @@ end
     @test length(default_operator_registry().operators) == 20
 
     @test_throws ArgumentError DGPI.DESCFourierGeometryProgramV4(
-        tdpi_fourier_boundary, dgpi_scale, (0, 1), (1, 1))
+        dgpi_boundary, dgpi_scale, (0, 1), (1, 1))
     @test_throws ArgumentError DGPI.DESCFourierGeometryProgramV4(
-        tdpi_fourier_boundary, dgpi_scale, (1, 1, 1), (1, 1))
+        dgpi_boundary, dgpi_scale, (1, 1, 1), (1, 1))
     @test_throws ArgumentError DGPI.DESCFourierGeometryProgramV4(
-        tdpi_fourier_boundary, dgpi_scale, (0, 0, 1), (1, 1))
+        dgpi_boundary, dgpi_scale, (0, 0, 1), (1, 1))
     @test_throws ArgumentError DGPI.DESCFourierGeometryProgramV4(
-        tdpi_fourier_boundary, dgpi_scale, (0, 1, 1), (0, 1))
+        dgpi_boundary, dgpi_scale, (0, 1, 1), (0, 1))
 end
 
 @testset "analytic coordinate, Jacobian, metric, and SI scaling" begin
