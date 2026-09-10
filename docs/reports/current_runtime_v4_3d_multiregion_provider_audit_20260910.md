@@ -110,6 +110,19 @@ the accepted contract. Current source confirms the separation:
   trusted FreeGS, pinned FreeGS execution, and DESC preflight regressions all
   exited zero. `bridge_ready` is a structural `screen_only` result only; it
   performs no geometry-program interpretation and emits no proof or evidence.
+- `src/RuntimeV4/DESCGeometryProgramInterpreterV4.jl` now executes an explicit
+  candidate-owned Fourier program in exact unit-turn coordinates. The fixed
+  boundary remains only the `rho=1` constraint; per-mode radial powers are
+  carried in the closed AST payload instead of inferred silently. Paired
+  multi-root `AtomicMIMO` programs produce normalized and SI coordinates and
+  metrics, including the analytic Jacobian, with exact `L`, `L^2`, and `L^3`
+  scaling obligations. The sealed evaluation binds the candidate, context,
+  subject, declaration, graph roots, bridge, programs, and payload. Focused
+  tests passed 81/81; the standalone runner, bridge 90/90, DESC preflight
+  118/118, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS
+  43/43, and pinned FreeGS execution 42/42 all exited zero. The result is
+  `interpreted`/`screen_only`: it emits no geometry proof, request, provider
+  result, physical evidence, engineering evidence, or authority.
 
 These slices and their composition remain manufactured compiler/input fixtures
 with a `screen_only` ceiling, no provider selection or execution, and no
@@ -150,16 +163,15 @@ a solve converges, or that the result supplies the multi-region contract.
 The structural composition is now accepted. Before a provider can be admitted,
 the following backend edges must still be typed and validated:
 
-1. **Geometry program, proof, and request emission:** the accepted gap-only compiler
+1. **Geometry proof and request emission:** the accepted gap-only compiler
    already pins the Fourier phase/sign/NFP convention, normalized radial-profile
    basis, DESC-specific resolution and solver controls, and unsupported-domain
-   checks. The accepted bridge now closes the structural representation for
-   distinct normalized and SI roots joined through the exact support scale.
-   Real input-dependent coordinate/metric programs, pinned executable
-   operator semantics, and a dedicated interpreter are still missing. Only
-   after those prerequisites exist may a separate
-   candidate-bound verifier prove the geometric semantics against the physical
-   chart. Until it does,
+   checks. The accepted bridge and candidate-owned interpreter now close the
+   distinct normalized/SI root representation and executable analytic
+   coordinate/metric program. A separate candidate-bound verifier must still
+   prove the continuous-domain geometric semantics against the physical chart,
+   including phase/sign/NFP, seam/equivariance, metric, axis regularity,
+   orientation, and nondegeneracy. Until it does,
    `can_emit_request=false` and `request=nothing`.
 2. **Result:** bind a typed external result schema to the exact composition,
    candidate, regions, interfaces, coordinates, units, request, and requested
