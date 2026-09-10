@@ -3,22 +3,26 @@
 ## Decision
 
 Do not yet admit a complete DESC/VMEC multi-region provider from the current
-candidate. Runtime V4 now owns a committed, structurally accepted composition
-of its candidate-bound typed 3-D inputs. It includes the multi-region
-exact-cover region-law set, a candidate-owned physical-to-region support map,
-and a keyed full-state residual/Jacobian cover. The support map deliberately
-does not prove geometric compatibility, and there is still no accepted
-provider-specific request/result/process contract for either backend.
+candidate. Runtime V4 owns a committed, structurally accepted composition of
+its candidate-bound typed 3-D inputs and, at `main@5363cd9`, an isolated
+candidate-bound DESC fixed-boundary request compiler.
 
-For the next narrow, conditional backend slice, prefer a repository-pinned
-DESC fixed-boundary equilibrium adapter. That choice is limited to one
-three-dimensional equilibrium capability; it does not make DESC a provider of
-the complete multi-region composition.
+The compiler is accepted only as a gap-only boundary. Its public status set is
+`(:recoverable_gap,)` and `can_emit_request=false`. The current composition
+fixture returns exactly the three missing DESC convention, control, and
+subject-binding gaps. The fully declared manufactured fixture returns only
+`required_verified_desc_geometric_compatibility_proof`. Both resolutions carry
+`request=nothing`.
 
-This is a recoverable capability gap, not terminal `unsupported`. No solver job
-was submitted because there is no accepted current provider-specific solver
-input. This audit adds no provider, example, test, aggregator entry, result
-artifact, or evidence claim, and it does not modify the accepted FreeGS slice.
+The next admissible edge is a separately reviewed, candidate-bound, executable
+proof of the Runtime chart-to-DESC coordinate, Fourier phase/sign/NFP,
+periodicity, and orientation mapping. Until that proof exists, the compiler
+must not emit a request and no provider may be selected or executed.
+
+This remains a recoverable capability gap, not terminal `unsupported`. No DESC
+process or solver was started, no request or result artifact was emitted, and
+no receipt or evidence was created. The accepted compiler does not modify or
+extend the FreeGS slice and does not close the multi-region provider edge.
 
 ## Current contract evidence
 
@@ -76,12 +80,19 @@ the accepted contract. Current source confirms the separation:
   `geometric_compatibility_proved=false`: it proves co-owned structural
   association, not a coordinate transform, containment, overlap, or interface
   geometry.
+- `src/RuntimeV4/DESCFixedBoundaryRequestCompilerV4.jl` now validates the exact
+  candidate, prefix, composition, convention, DESC controls, and subject
+  bindings against a closed, canonically ordered gap vocabulary. It
+  deliberately fixes `geometric_compatibility_proved=false`, admits only
+  `recoverable_gap`, and cannot emit an execution request. Its focused runner
+  passed 223/223 assertions at `5363cd9`.
 
 These slices and their composition remain manufactured compiler/input fixtures
 with a `screen_only` ceiling, no provider selection or execution, and no
 evidence or terminal authority. Composition `input_complete` means structural
-input completeness only. No accepted typed external provider request or result
-binding exists, so a callable process still does not close the provider edge.
+input completeness only. The accepted DESC compiler does not convert that
+structural package into a provider request: its declared fixture stops at the
+verified geometry-proof gap and its resolution contains no request.
 
 ## Solver availability is not provider admissibility
 
@@ -110,19 +121,17 @@ disappeared, so VMEX is callable but not repository-reproducible. Neither probe
 proves that a Runtime V4 candidate can produce an accepted solver request, that
 a solve converges, or that the result supplies the multi-region contract.
 
-## Remaining provider-specific request, result, and process gaps
+## Remaining geometry-proof, request-emission, result, and process gaps
 
 The structural composition is now accepted. Before a provider can be admitted,
 the following backend edges must still be typed and validated:
 
-1. **Request:** prove the geometric compatibility that the structural support
-   map intentionally leaves open, then make the Fourier phase/sign/NFP
-   convention and normalized radial-profile basis explicit. Reject unsupported
-   current-profile, asymmetry, mode-range, profile-shape, and flux cases rather
-   than silently translating them. DESC spectral/grid resolution,
-   `lsq-exact` tolerances, pressure/boundary continuation steps, shaping order,
-   and output-audit thresholds also need typed semantics; the generic
-   mesh/Newton/linear/refinement controls are not interchangeable with them.
+1. **Geometry proof and request emission:** the accepted gap-only compiler
+   already pins the Fourier phase/sign/NFP convention, normalized radial-profile
+   basis, DESC-specific resolution and solver controls, and unsupported-domain
+   checks. A separate executable candidate-bound contract must now prove those
+   geometric semantics against the physical chart. Until it does,
+   `can_emit_request=false` and `request=nothing`.
 2. **Result:** bind a typed external result schema to the exact composition,
    candidate, regions, interfaces, coordinates, units, request, and requested
    capability. A fixed-boundary equilibrium result cannot claim that the
@@ -171,9 +180,10 @@ is not a success condition.
 A future implementation should proceed from the accepted structural
 composition without widening its authority:
 
-1. compile the exact composition and context into a canonical, inspectable DESC
-   fixed-boundary request, and stop with a typed recoverable gap when geometric
-   compatibility or any backend-specific semantic is absent;
+1. preserve the accepted request-boundary compiler and close its exact
+   `required_verified_desc_geometric_compatibility_proof` gap with a separately
+   reviewed candidate-bound proof contract; only then may request emission be
+   reconsidered;
 2. add a repository-pinned DESC fixed-boundary adapter, dependency lock, and
    controlled process wrapper without importing legacy Genome, dictionary,
    router, result, or authority objects;
@@ -188,8 +198,17 @@ composition without widening its authority:
 Until then the correct status is:
 
 ```text
+request_status = recoverable_gap
+request_emitted = false
+geometric_compatibility_proved = false
 provider_status = recoverable_gap
+provider_selected = false
+provider_executed = false
 solver_execution_attempted = false
+solver_executed = false
+physical_validation = false
+engineering_validation = false
+emits_evidence = false
 p5_ready = false
 credible_physical_device_count = 0
 ```

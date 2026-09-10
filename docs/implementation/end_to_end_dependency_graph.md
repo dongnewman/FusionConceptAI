@@ -69,10 +69,15 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                                    + discretization controls          |
                                    = input_complete (structural only) |
                                    |                                 |
-                                   +--> fixed DESC request/result/    |
-                                        process contracts: missing   |
-                                   +--> pinned real execution: missing|
-                                                                  vv  v
+                                   +--> DESC fixed-boundary request compiler
+                                   |    + exact convention/control/binding checks
+                                   |    = recoverable_gap only; no request emitted
+                                   |    + next: verified candidate-bound
+                                   |      geometry-proof contract
+                                   |    +--> request/result/process: missing
+                                   |    +--> pinned real execution: missing
+                                   |
+                                   v
              typed multi-region ownership + one global non-diagonal residual
              (accepted lumped manufactured control; not a physical provider)
                                       |
@@ -108,6 +113,7 @@ minimum fields.  Implementations may add fields, but may not weaken them.
 | Boundary | Required typed identity and status |
 |---|---|
 | candidate to physics | candidate/Genome/prefix/mission/bounds/scenario hashes, exact G1/G2/G3 refs, required capability signature, unresolved declarations |
+| composed 3-D input to DESC request | exact composition, convention, control, and subject-binding identities; closed canonically ordered gaps; `recoverable_gap` only and no request hash until a verified candidate-bound geometry-proof contract closes the coordinate/Fourier/periodicity/orientation semantics |
 | region to region | region and state refs, interface orientation, units, constitutive/transfer operator hashes, source and boundary ownership, conservation pair, applicability and gap status |
 | physics to engineering | physical subject, scenario, converged-state/result hashes, loads and observable mappings, material/resource producer hashes, numerical status distinct from physical status |
 | G3 to control/fault | observation and actuator refs, controller graph, limits/delay/dropout/fault scenario, recovery requirement, evidence obligations, explicit unavailable capability |
@@ -153,12 +159,16 @@ count.
 3. Preserve the accepted opt-in FreeGS registry adapter. Its fixed source and
    runtime attestation plus candidate-bound operational receipt still confer no
    scientific-evidence authority.
-4. Add fixed repository-owned DESC request, result, and process contracts over
-   the accepted complete 3-D input composition. Caller-created descriptors,
-   manifests, process identities, and functions remain outside readiness.
-5. Add the reviewed pinned DESC registry adapter and execute the real provider
-   with exact input/result/process and operational-receipt binding. Keep that
-   execution `screen_only` until the separate evidence obligations are met.
+4. Preserve the accepted DESC fixed-boundary request compiler as a gap-only
+   boundary. The current composition fixture retains its three missing
+   declaration/binding gaps; the fully declared manufactured fixture retains
+   only the verified-geometry-proof gap. Neither is request-ready.
+5. Add a separately reviewed executable candidate-bound geometry-proof
+   contract. Only after that proof exists may the compiler emit an execution
+   request and may fixed repository-owned result/process contracts plus a
+   pinned DESC registry adapter be added. Until then there is no provider
+   selection, process execution, solver result, operational receipt, or
+   scientific evidence.
 6. Connect the candidate-derived 3-D provider result through the accepted
    multi-region execution contract. Preserve the accepted current-G3 trusted
    manufactured control/fault execution as a separate operational screen; the
