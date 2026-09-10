@@ -4,8 +4,9 @@
 
 Do not yet admit a complete DESC/VMEC multi-region provider from the current
 candidate. Runtime V4 owns a committed, structurally accepted composition of
-its candidate-bound typed 3-D inputs and, at `main@5363cd9`, an isolated
-candidate-bound DESC fixed-boundary request compiler.
+its candidate-bound typed 3-D inputs, an isolated candidate-bound DESC
+fixed-boundary request compiler at `5363cd9`, and a gap-only geometry-program
+preflight at `main@86dc03f`.
 
 The compiler is accepted only as a gap-only boundary. Its public status set is
 `(:recoverable_gap,)` and `can_emit_request=false`. The current composition
@@ -14,10 +15,13 @@ subject-binding gaps. The fully declared manufactured fixture returns only
 `required_verified_desc_geometric_compatibility_proof`. Both resolutions carry
 `request=nothing`.
 
-The next admissible edge is a separately reviewed, candidate-bound, executable
-proof of the Runtime chart-to-DESC coordinate, Fourier phase/sign/NFP,
-periodicity, and orientation mapping. Until that proof exists, the compiler
-must not emit a request and no provider may be selected or executed.
+The preflight shows that a geometry certificate is not yet constructible from
+the current G2 candidate. It reports eleven exact prerequisites, including an
+absent normalized-to-SI root bridge and absent geometry interpreter. The next
+admissible edge is to implement that bridge, the actual candidate-owned
+coordinate/metric programs, and their interpreter before attempting a
+separately reviewed continuous-domain proof. Until that proof exists, the
+compiler must not emit a request and no provider may be selected or executed.
 
 This remains a recoverable capability gap, not terminal `unsupported`. No DESC
 process or solver was started, no request or result artifact was emitted, and
@@ -86,6 +90,18 @@ the accepted contract. Current source confirms the separation:
   deliberately fixes `geometric_compatibility_proved=false`, admits only
   `recoverable_gap`, and cannot emit an execution request. Its focused runner
   passed 223/223 assertions at `5363cd9`.
+- `src/RuntimeV4/DESCGeometryProgramPreflightV4.jl` now reconstructs the same
+  context/composition/request binding and joins the selected G2 support, chart,
+  edges, program roots, input/output types, and forward-chain root identities.
+  The current DESC-declared fixture returns eleven exact gaps: normalized-turn
+  bounds, both angular period-axis declarations and their exact set, coordinate
+  and metric chart/graph ABI mismatches, the missing normalized-to-SI bridge,
+  missing input-dependent programs, missing pinned manifests, and the missing
+  geometry interpreter. Focused tests passed 118/118 and the standalone runner,
+  core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, and
+  pinned FreeGS 0.8.2 regression all exited zero. Independent final review
+  found no remaining P1/P2 defect. The slice is gap-only and emits no proof,
+  certificate, request, provider result, or evidence.
 
 These slices and their composition remain manufactured compiler/input fixtures
 with a `screen_only` ceiling, no provider selection or execution, and no
@@ -126,11 +142,15 @@ a solve converges, or that the result supplies the multi-region contract.
 The structural composition is now accepted. Before a provider can be admitted,
 the following backend edges must still be typed and validated:
 
-1. **Geometry proof and request emission:** the accepted gap-only compiler
+1. **Geometry program, proof, and request emission:** the accepted gap-only compiler
    already pins the Fourier phase/sign/NFP convention, normalized radial-profile
    basis, DESC-specific resolution and solver controls, and unsupported-domain
-   checks. A separate executable candidate-bound contract must now prove those
-   geometric semantics against the physical chart. Until it does,
+   checks. The accepted preflight shows that the current chart needs distinct
+   normalized and SI roots joined through the support scale, real
+   input-dependent coordinate/metric programs, pinned operator semantics, and
+   an interpreter. Only after those prerequisites exist may a separate
+   candidate-bound verifier prove the geometric semantics against the physical
+   chart. Until it does,
    `can_emit_request=false` and `request=nothing`.
 2. **Result:** bind a typed external result schema to the exact composition,
    candidate, regions, interfaces, coordinates, units, request, and requested
@@ -180,10 +200,12 @@ is not a success condition.
 A future implementation should proceed from the accepted structural
 composition without widening its authority:
 
-1. preserve the accepted request-boundary compiler and close its exact
-   `required_verified_desc_geometric_compatibility_proof` gap with a separately
-   reviewed candidate-bound proof contract; only then may request emission be
-   reconsidered;
+1. preserve the accepted request-boundary compiler and gap-only geometry
+   preflight; implement the normalized/SI root bridge, executable G2 geometry
+   programs, and interpreter, then close
+   `required_verified_desc_geometric_compatibility_proof` with a separately
+   reviewed continuous-domain proof contract; only then may request emission
+   be reconsidered;
 2. add a repository-pinned DESC fixed-boundary adapter, dependency lock, and
    controlled process wrapper without importing legacy Genome, dictionary,
    router, result, or authority objects;

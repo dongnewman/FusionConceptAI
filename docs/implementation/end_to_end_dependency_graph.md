@@ -72,7 +72,13 @@ mission/bounds + candidate-bound subject/scenarios + exact obligations
                                    +--> DESC fixed-boundary request compiler
                                    |    + exact convention/control/binding checks
                                    |    = recoverable_gap only; no request emitted
-                                   |    + next: verified candidate-bound
+                                   |    +--> geometry-program preflight
+                                   |         + exact chart-root/graph-root ABI
+                                   |         + normalized-turn axis declarations
+                                   |         = eleven exact gaps; no readiness
+                                   |         + next: normalized/SI root bridge,
+                                   |           executable programs + interpreter
+                                   |    + later: verified continuous-domain
                                    |      geometry-proof contract
                                    |    +--> request/result/process: missing
                                    |    +--> pinned real execution: missing
@@ -113,7 +119,7 @@ minimum fields.  Implementations may add fields, but may not weaken them.
 | Boundary | Required typed identity and status |
 |---|---|
 | candidate to physics | candidate/Genome/prefix/mission/bounds/scenario hashes, exact G1/G2/G3 refs, required capability signature, unresolved declarations |
-| composed 3-D input to DESC request | exact composition, convention, control, and subject-binding identities; closed canonically ordered gaps; `recoverable_gap` only and no request hash until a verified candidate-bound geometry-proof contract closes the coordinate/Fourier/periodicity/orientation semantics |
+| composed 3-D input to DESC request | exact composition, convention, control, subject binding, G2 chart/program/root identities, and closed canonically ordered gaps; the accepted preflight additionally requires normalized-turn bounds/axis declarations, a normalized-to-SI root bridge, executable coordinate/metric programs, pinned manifests, and a dedicated interpreter; `recoverable_gap` only and no request hash until a verified candidate-bound proof closes Fourier/periodicity/equivariance/metric/orientation semantics |
 | region to region | region and state refs, interface orientation, units, constitutive/transfer operator hashes, source and boundary ownership, conservation pair, applicability and gap status |
 | physics to engineering | physical subject, scenario, converged-state/result hashes, loads and observable mappings, material/resource producer hashes, numerical status distinct from physical status |
 | G3 to control/fault | observation and actuator refs, controller graph, limits/delay/dropout/fault scenario, recovery requirement, evidence obligations, explicit unavailable capability |
@@ -163,23 +169,29 @@ count.
    boundary. The current composition fixture retains its three missing
    declaration/binding gaps; the fully declared manufactured fixture retains
    only the verified-geometry-proof gap. Neither is request-ready.
-5. Add a separately reviewed executable candidate-bound geometry-proof
-   contract. Only after that proof exists may the compiler emit an execution
+5. Preserve the accepted gap-only geometry-program preflight. Its fully
+   declared fixture exposes eleven exact prerequisites and cannot report
+   `program_ready`: the current schemas lack a normalized/SI root bridge and
+   RuntimeV4 lacks an executable geometry interpreter.
+6. Implement that bridge, candidate-owned coordinate/metric programs, pinned
+   operator semantics, and interpreter, then add a separately reviewed
+   continuous-domain geometry-proof contract. Only after that proof exists may
+   the compiler emit an execution
    request and may fixed repository-owned result/process contracts plus a
    pinned DESC registry adapter be added. Until then there is no provider
    selection, process execution, solver result, operational receipt, or
    scientific evidence.
-6. Connect the candidate-derived 3-D provider result through the accepted
+7. Connect the candidate-derived 3-D provider result through the accepted
    multi-region execution contract. Preserve the accepted current-G3 trusted
    manufactured control/fault execution as a separate operational screen; the
    lumped diagonal/interface coefficients remain manufactured inputs and have
    no physical credit.
-7. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
+8. Land engineering/control/fault and numerical-V&V/physical-validation/UQ
    obligations on the sealed forward context and trusted provider boundary so
    missing evidence stays visible during early whole-device runs.
-8. Replace the present closure firewall with a candidate-bound high-fidelity
+9. Replace the present closure firewall with a candidate-bound high-fidelity
    package only after all prerequisite contracts and real provider paths exist.
-9. Scale QD/MCTS/campaign search only after the execution and evidence path can
+10. Scale QD/MCTS/campaign search only after the execution and evidence path can
    distinguish closed, failed, unknown, deferred, and unsupported outcomes.
 
 ## Legacy reuse rule

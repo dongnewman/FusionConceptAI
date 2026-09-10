@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-10
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@5363cd9`
+Current accepted and pushed implementation head: `main@86dc03f`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -26,6 +26,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | trusted repository provider registry and operational receipts | committed through `b4e8b10` | base focused 65/65, trusted FreeGS focused 43/43, real pinned FreeGS dispatch, core 26/26, and spine 54/54 passed, exit 0 | opt-in fixed FreeGS descriptor binds source/runtime/context/input/output identities; receipt remains `physical_model_screen`, not scientific evidence |
 | typed 3-D physical-provider input chain | committed through `ebc80af`; discretization `1337230`, full-state residual/Jacobian `6e2e7d5`, exact-cover multi-region laws `d527866` | final composition 157/157, runner, example, core 26/26, and spine 54/54 passed, exit 0 | all five typed declarations plus the physical-to-region support map and keyed exact covers compose as `input_complete`; structural manufactured input only, with no provider selection, solve, or evidence |
 | candidate-bound DESC fixed-boundary request compiler | committed at `5363cd9` | focused runner 223/223, standalone example, core 26/26, spine 54/54, trusted registry 65/65, and the existing pinned FreeGS regression passed, exit 0; fixtures report exact closed gaps | accepted gap-only compiler: the current composition fixture lacks the three DESC declaration/binding inputs, while the fully declared manufactured fixture lacks only `required_verified_desc_geometric_compatibility_proof`; `can_emit_request=false`, with no provider selection/execution, solver attempt, evidence, or authority |
+| candidate-bound DESC geometry-program preflight | committed at `86dc03f` | focused 118/118, standalone runner, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, and pinned FreeGS 0.8.2 execution passed, exit 0; independent hard review found no remaining P1/P2 defect | accepted gap-only prerequisite: exact G2 chart-root/graph-root ABI and program-shape audit exposes eleven current gaps, including the absent normalized-to-SI root bridge and absent geometry interpreter; `program_ready=false`, no proof/certificate/request/provider/solver/evidence authority |
 | real multi-region coupled physics | absent | not admissible | no candidate-derived 3-D constitutive/field provider through the accepted contract |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
@@ -49,20 +50,27 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    fixture reports only
    `required_verified_desc_geometric_compatibility_proof`. Neither fixture emits
    an execution request.
-5. Close the next edge with a separately reviewed, candidate-bound, executable
-   geometry-proof contract for the Runtime chart-to-DESC coordinate, Fourier
-   phase/sign/NFP, periodicity, and orientation mapping. Request emission may be
-   reconsidered only after that proof is accepted. Provider selection, result
-   and process contracts, registry admission, solver execution, receipts, and
-   evidence remain separate later edges.
-6. Connect the candidate-derived 3-D result through the accepted multi-region
+5. Preserve the accepted gap-only geometry-program preflight. The current
+   DESC-declared fixture has eleven exact program prerequisites: normalized
+   turn bounds, both angular period-axis declarations and their exact `(2,3)`
+   set, chart/graph ABI closure for coordinate and metric roots, a typed
+   normalized-to-SI root bridge, input-dependent programs, pinned manifests,
+   and a dedicated geometry interpreter.
+6. Close the next edge by implementing the paired normalized/SI root bridge,
+   executable candidate-owned coordinate/metric program, and interpreter;
+   only then add the separately reviewed continuous-domain geometry proof for
+   Fourier phase/sign/NFP, seam/equivariance, metric, axis regularity, and
+   orientation/nondegeneracy. Request emission may be reconsidered only after
+   that proof is accepted. Provider/result/process/receipt/evidence remain
+   separate later edges.
+7. Connect the candidate-derived 3-D result through the accepted multi-region
    execution boundary. Preserve the current-G3 trusted manufactured
    control/fault screen separately; its deterministic trace does not close real
    engineering, control, or fault evidence. The present lumped diagonal and
    interface coefficients remain manufactured inputs.
-7. Run focused tests first, then relevant Runtime V4 regressions and package
+8. Run focused tests first, then relevant Runtime V4 regressions and package
    tests with separate exit codes.
-8. Commit and push each accepted milestone with only its owned files staged.
+9. Commit and push each accepted milestone with only its owned files staged.
 
 ## Protected working state
 
@@ -72,7 +80,7 @@ and validation/UQ prototypes are preserved. They are not acceptance evidence
 for this cycle and will not be committed, rewritten, archived, or removed
 without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
-`ebc80af`, and `5363cd9`.
+`ebc80af`, `5363cd9`, and `86dc03f`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -84,7 +92,8 @@ zero.  Gridap B1/B2/B3, Batch C, native and multi-region manufactured controls,
 the candidate-bound FreeGS physical-model screen, its trusted operational
 receipt and zero-credit V&V/UQ request, the structurally complete typed 3-D
 input composition and its accepted gap-only DESC fixed-boundary request
-compiler, the current-G3 control/fault compiler and trusted
+compiler plus the gap-only geometry-program preflight, the current-G3
+control/fault compiler and trusted
 manufactured operational screen, local time/DAE tests, the sealed forward
 context, and contract fixtures may advance software readiness only. The DESC
 slice emits no request, selects or executes no provider, attempts no solver,
