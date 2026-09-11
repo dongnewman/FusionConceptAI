@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-12
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@4421477`
+Current accepted and pushed implementation head: `main@1c84038`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -45,6 +45,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | dedicated G3 ECF to Validation/UQ and whole-device integration boundary | committed at `8983daa` | focused 42/42 and standalone runner passed with explicit exit 0; independent final review accepted with no P1 blocker | exact ECF provider/request/result identity and dedicated registry/request/receipt chain are revalidated; the dedicated receipt is explicitly not coerced into a generic VVUQ receipt, the exact five-stage assembly stays `screen_only_deferred`, evidence credit is zero, and five unresolved real-provider/validation/UQ/closure gaps remain visible |
+| current-G3 ECF fresh-process numerical repeatability | committed at `1c84038` | focused 15/15, standalone two-process runner, trusted provider 127/127, ECF/VVUQ non-bridge 42/42, and package-wide regression passed with explicit exit 0 | two distinct fresh Julia processes reproduce the exact manufactured operational trace/result/count observables under sealed source, Project/Manifest, executable, context, request, receipt and non-bridge identities. This is `screen_only` software/numerical repeatability, not engineering qualification, physical validation, generic V&V/UQ, whole-device closure, or evidence credit |
 | high-fidelity whole-device closure | explicit zero-credit integration boundary only | not admissible | real multi-region provider, generic VVUQ bridge, held-out physical validation, Validation/UQ artifacts, integrated high-fidelity closure, and terminal authority remain missing |
 | scoped simplest feasible-device search | search infrastructure exists | not admissible at physical-device level | zero L4 credible candidates; closure path incomplete |
 
@@ -113,7 +114,7 @@ tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
    `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
    `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, `8983daa`, `c405398`,
-   `50d4a00`, and `4421477`.
+   `50d4a00`, `4421477`, and `1c84038`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -167,5 +168,8 @@ control/fault compiler and trusted
   recoverable ECF/VVUQ non-bridge and a zero-credit whole-device integration
   request. This verifies identity and exposes missing stages; it does not
   supply generic VVUQ evidence or execute whole-device closure.
+  Two sealed fresh Julia executions now reproduce that manufactured operational
+  trace exactly. This narrows a software repeatability gap only; it contributes
+  no engineering, physical-validation, generic V&V/UQ, or closure evidence.
   These results do not establish physical validation, engineering feasibility,
   whole-device closure, or a simplest feasible device.
