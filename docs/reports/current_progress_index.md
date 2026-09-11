@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-11
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@8983daa`
+Current accepted and pushed implementation head: `main@c405398`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -38,7 +38,8 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound local ideal-MHD interface traction and paired flux | committed at `22d9a38`; pressure-provider receipts hardened at `5d87bbb` and `8ad464b` | focused 62/62 and standalone real-chain runner passed with explicit exit 0; rho-surface 56/56, field-basis 95/95, hardened field provider 65/65, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no P1/P2 blocker | resamples real DESC pressure/B at the exact `c±epsilon` points, cross-checks Cartesian B, binds SI/CODATA mu0 and every interface/support/state/source/runtime identity, evaluates one-sided conservative ideal-MHD momentum traction, and assembles a central flux as equal-and-opposite contributions. `interface_flux_executed=true` and central cancellation are local algebraic facts only; finite-offset states are not boundary limits, and jump conditions, regional residual/Jacobian, global conservation, convergence, closure, validation/evidence, terminal authority, and credible-device credit remain false/zero |
 | candidate-bound ideal-MHD interface residual/Jacobian subset | committed at `384091f` | focused 12/12, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | binds the exact ordered traction subset and computes the local 3-component traction-sum plus normal-B residual and analytic 4x8 Jacobian, independently checked by central differences. This is an interface subset only: full jump conditions, regional/global residuals, convergence, closure, validation/evidence, and device authority remain false/zero |
 | candidate-bound DESC static-MHD force-balance sampling | committed at `7eb8f80` | focused 17/17, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | a sealed DESC 0.17.3 process samples `B`, `J`, `grad(p)`, and `F` at both exact finite-offset points; sealed replay and independent pressure-trace comparison give maximum formula discrepancy `2.92e-11 N m^-3`, while the measured force-balance norms are about `1.06e5 N m^-3`. This is a non-closure measurement under `screen_only`, not regional PDE assembly or equilibrium validation |
-| real multi-region coupled physics | local constitutive/interface residual/Jacobian and sampled force-balance slices only | not yet admissible as a solve | the accepted local slices still lack independently established boundary-limit traces, a complete declared MHD jump ledger, typed regional volume/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
+| candidate-bound regional integrated-force observation | committed at `c405398` | focused 122/122, standalone real-chain runner, both nested providers, and upstream traction regression 62/62 passed with explicit exit 0; independent review accepted with no P1 blocker | 2x2x2 owned tensor nodes per rho region execute through sealed DESC field/basis providers; `F_xyz * sqrt(g)` is integrated over the full torus with NFP applied exactly once. The observed total-force norm is `342182.59975165897 N`, retained as non-closure. This is not a test-function weak form, regional residual/Jacobian, conservation proof, or solve |
+| real multi-region coupled physics | local constitutive/interface residual/Jacobian, sampled point force balance, and regional volume-force observations only | not yet admissible as a solve | the accepted slices still lack independently established boundary-limit traces, a complete declared MHD jump ledger, typed regional test-function/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | dedicated G3 ECF to Validation/UQ and whole-device integration boundary | committed at `8983daa` | focused 42/42 and standalone runner passed with explicit exit 0; independent final review accepted with no P1 blocker | exact ECF provider/request/result identity and dedicated registry/request/receipt chain are revalidated; the dedicated receipt is explicitly not coerced into a generic VVUQ receipt, the exact five-stage assembly stays `screen_only_deferred`, evidence credit is zero, and five unresolved real-provider/validation/UQ/closure gaps remain visible |
@@ -81,8 +82,9 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 7. Extend the accepted local traction and its residual/Jacobian subset into a
    complete typed MHD interface-jump ledger and candidate-bound regional PDE
    residual/Jacobian execution before admitting a real multi-region solve. The
-   accepted DESC force-balance sample is a measured non-closure signal, not
-   regional volume/source/boundary assembly. Add explicit ownership,
+   accepted DESC force-balance samples and 2x2x2 regional force integrals are
+   measured non-closure signals, not test-function/source/boundary residual
+   assembly. Add explicit ownership,
    independent derivative checks, convergence protocol, and global conservation
    accounting. Global 3-D ownership and closure must be established
    independently; finite-offset samples and central pair cancellation are not
@@ -108,7 +110,7 @@ without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
    `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
-   `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, and `8983daa`.
+   `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, `8983daa`, and `c405398`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -144,7 +146,10 @@ control/fault compiler and trusted
   Jacobian with independent finite differences. A separate sealed DESC process
   samples `B`, `J`, `grad(p)`, and `F` at both finite-offset points and faithfully
   exposes force-balance norms near `1.06e5 N m^-3`; it does not turn that measured
-  non-closure into a pass. Full 3-D spatial-partition proof, declared-normal
+  non-closure into a pass. The regional observation now adds eight owned tensor
+  nodes per rho region and integrates Cartesian `F * sqrt(g)` over the full
+  torus; its nonzero `342182.59975165897 N` total norm remains an observation,
+  not a residual or conservation verdict. Full 3-D spatial-partition proof, declared-normal
   cross-check, boundary-limit/full-jump validation, regional volume/source/
   boundary residual and Jacobian execution, global conservation, solver
   convergence, and multi-region closure remain false, and these slices emit no
