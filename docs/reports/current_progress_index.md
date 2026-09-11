@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-11
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@1db44fc`
+Current accepted and pushed implementation head: `main@22d9a38`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -31,11 +31,12 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound DESC Fourier geometry interpreter | committed at `46e5d26` | focused 81/81, standalone runner, bridge 90/90, DESC preflight 118/118, core 26/26, spine 54/54, trusted registry 65/65, trusted FreeGS 43/43, and pinned FreeGS execution 42/42 passed, exit 0 | explicit per-mode radial laws drive analytic normalized/SI coordinate, Jacobian, and metric programs through exact multi-root `AtomicMIMO` bindings; sealed result is `interpreted`/`screen_only`, not continuous-domain geometry proof, request, provider execution, or evidence |
 | candidate-bound DESC continuous-domain geometry compatibility proof | committed at `cb6d6d5` | focused 89/89, standalone runner, interpreter 81/81, preflight 118/118, request compiler 223/223, bridge 90/90, forward context 72/72, core 26/26, spine 54/54, trusted registry 65/65, and FreeGS execution 42/42 passed, exit 0; independent review found no P1/P2 blocker | analytic 256-bit directed bounds prove the declared narrow Fourier program only; `screen_only`, no request/provider/solver execution, no physical or engineering validation, and zero credible devices |
 | candidate-bound real DESC request/provider execution | committed at `b95d974` | focused 70/70, standalone runner, and full `test/runtests.jl` passed with explicit exit 0; actual DESC 0.17.3 provider and fresh-process HDF5 inspector both exited 0; final independent review found no P1/P2 blocker | typed request is rebuilt from the current candidate and compatibility proof before execution; receipt seals request/output, adapter, inspector, Python, and DESC identities and rejects replay tampering; structural result validation only, `screen_only`, with no solver-convergence, physical/engineering validation, evidence, pass, promotion, P5, terminal, or credible-device authority |
-| candidate-bound real DESC field provider | committed at `4f4d8a5` | focused 62/62, standalone runner, upstream execution 70/70, geometry interpreter 81/81, compatibility proof 89/89, 3-D input composition 157/157, and full `test/runtests.jl` passed in separate exit-0 processes; final independent review found no remaining P1/P2 issue | fresh DESC 0.17.3 process reopens the bound HDF5 and samples B, \|B\|, pressure, iota, sqrt(g), and force-balance residual at typed points; exact native quantity/unit metadata, artifacts, process identities, and output replay are sealed; `screen_only`, with no solver-convergence, multi-region closure, validation/evidence, terminal authority, or credible-device credit |
+| candidate-bound real DESC field provider | committed at `4f4d8a5`, receipt hardened through `8ad464b` | final hardening focused 65/65, standalone runner, upstream execution 70/70, geometry interpreter 81/81, compatibility proof 89/89, 3-D input composition 157/157, and full `test/runtests.jl` passed in separate exit-0 processes; final review found no remaining P1/P2 issue | fresh DESC 0.17.3 process reopens the bound HDF5 and samples B, \|B\|, pressure, iota, sqrt(g), and force-balance residual at typed points; exact native quantity/unit metadata, artifacts, process identities, and output replay are sealed; receipt validation now independently recomputes the process hash and the adapter proves its loaded DESC module matches the sealed path; `screen_only`, with no solver-convergence, multi-region closure, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound DESC field-basis bridge | committed at `4dfb246` | focused 95/95, standalone runner, field provider 62/62, request/provider execution 70/70, compatibility proof 89/89, and full `test/runtests.jl` passed in separate exit-0 processes; final independent reviews found no remaining P1/P2 issue | verifies DESC `B`/`F` as orthonormal cylindrical physical components, binds and cross-checks every upstream sample, and maps positions and vectors to Cartesian under the exact current candidate/proof/receipt identities; `screen_only`, with no region partition, interface trace, multi-region solve, convergence, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound DESC rho partition/trace specification | committed at `bd8e920` | focused 64/64 and standalone real-DESC runner passed with explicit exit 0; field-basis 95/95, 3-D input composition 157/157, conservative multi-region manufactured control 117/117, and full `test/runtests.jl` passed in separate exit-0 processes; final independent reviews found no remaining P1/P2 blocker | exact normalized-rho region-interior adjacency/closure covers the positive domain with rho=0 excluded from sampling; paired trace maps reconstruct exact bound basis samples and opposite declared unit normals. `spatial_partition_geometry_validated=false`, `normal_geometry_validated=false`, and `interface_trace_executed=false`; no provider, convergence, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound real DESC rho-surface/two-sided-trace provider | committed at `1db44fc` | focused 56/56 and standalone real-DESC runner passed with explicit exit 0; structural rho partition 64/64, field-basis bridge 95/95, field provider 62/62, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no remaining P1/P2 blocker | a pinned fresh DESC 0.17.3 process samples every declared interface at `c` and `c±epsilon`, validates returned rho/theta/zeta, surface/side `grad(rho)`/`n_rho`/tangent geometry, maps R-phi-Z physical components to Cartesian, and binds strict adjacent-region ownership plus all input/output/runtime artifacts. This is sampled `screen_only` execution: declared normals are not cross-checked, global spatial-partition geometry and interface flux remain unvalidated/unexecuted, with no convergence, closure, validation/evidence, terminal authority, or credible-device credit |
-| real multi-region coupled physics | absent | not admissible | the accepted real rho-surface/two-sided-trace provider still lacks global 3-D spatial-partition proof, candidate-derived constitutive/material operators, a typed residual/Jacobian discretization, and conservative interface-flux execution/closure |
+| candidate-bound local ideal-MHD interface traction and paired flux | committed at `22d9a38`; pressure-provider receipts hardened at `5d87bbb` and `8ad464b` | focused 62/62 and standalone real-chain runner passed with explicit exit 0; rho-surface 56/56, field-basis 95/95, hardened field provider 65/65, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no P1/P2 blocker | resamples real DESC pressure/B at the exact `c±epsilon` points, cross-checks Cartesian B, binds SI/CODATA mu0 and every interface/support/state/source/runtime identity, evaluates one-sided conservative ideal-MHD momentum traction, and assembles a central flux as equal-and-opposite contributions. `interface_flux_executed=true` and central cancellation are local algebraic facts only; finite-offset states are not boundary limits, and jump conditions, regional residual/Jacobian, global conservation, convergence, closure, validation/evidence, terminal authority, and credible-device credit remain false/zero |
+| real multi-region coupled physics | local constitutive/interface-flux slice only | not yet admissible as a solve | the accepted local traction still lacks independently established boundary traces, a complete declared MHD jump ledger, typed regional PDE residual/Jacobian ownership, boundary/source ownership, global conservation accounting, and a converged multi-region solve |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
@@ -68,16 +69,19 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    candidate-owned Fourier interpreter, narrow continuous-domain compatibility
    proof, real candidate-bound DESC request/provider execution, candidate-bound
    field sampling, Cartesian field-basis bridge, normalized-rho partition/trace
-   specification, and real rho-surface/two-sided-trace provider as separate
-   edges. Do not expand the proof contract further. Their receipts prove actual
-   fresh processes and replayable sampled geometry/field results, not global
-   spatial-partition geometry, solver convergence, physical validation, or
-   evidence authority.
-7. Build candidate-derived constitutive/material laws and a typed conservative
-   interface-flux residual/Jacobian execution over the accepted two-sided trace
-   provider before admitting a real multi-region solve. Global 3-D ownership
-   and closure must be established independently; sampled region ownership is
-   not that proof. Preserve the
+   specification, real rho-surface/two-sided-trace provider, and local ideal-MHD
+   traction/paired-flux executor as separate edges. Do not expand the geometry
+   proof contract further. Their receipts and reconstruction checks prove actual
+   fresh processes plus local sampled geometry/field/traction execution, not
+   boundary limits, jump closure, global spatial-partition geometry, solver
+   convergence, physical validation, or evidence authority.
+7. Extend the accepted local traction into a complete typed MHD interface-jump
+   ledger and candidate-bound regional PDE residual/Jacobian execution before
+   admitting a real multi-region solve. Add explicit boundary/source ownership,
+   independent derivative checks, convergence protocol, and global conservation
+   accounting. Global 3-D ownership and closure must be established
+   independently; finite-offset samples and central pair cancellation are not
+   that proof. Preserve the
    current-G3 trusted manufactured
    control/fault screen separately; its deterministic trace does not close real
    engineering, control, or fault evidence. The present lumped diagonal and
@@ -95,7 +99,8 @@ for this cycle and will not be committed, rewritten, archived, or removed
 without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
-   `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, and `1db44fc`.
+   `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
+   `8ad464b`, and `22d9a38`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -122,8 +127,13 @@ control/fault compiler and trusted
   evaluates the bound DESC candidate at every declared surface and both strict
   epsilon sides, validates computed normals/tangents and coordinate round trips,
   maps returned fields to Cartesian, and seals sampled adjacent-region
-  ownership. Full 3-D spatial-partition proof, declared-normal cross-check,
-  constitutive/interface-flux execution, solver convergence, and multi-region
-  closure remain false, and it emits no validation evidence. These results do
-not establish physical validation, engineering feasibility, whole-device
-closure, or a simplest feasible device.
+  ownership. The accepted local ideal-MHD edge then resamples pressure/B at the
+  exact finite-offset points, cross-checks the Cartesian B values, evaluates
+  one-sided conservative momentum traction in sealed SI conventions, and
+  assembles an equal-and-opposite central interface flux. This proves local
+  constitutive and interface-flux execution only. Full 3-D spatial-partition
+  proof, declared-normal cross-check, boundary-limit/jump validation, regional
+  residual/Jacobian execution, global conservation, solver convergence, and
+  multi-region closure remain false, and it emits no validation evidence.
+  These results do not establish physical validation, engineering feasibility,
+  whole-device closure, or a simplest feasible device.
