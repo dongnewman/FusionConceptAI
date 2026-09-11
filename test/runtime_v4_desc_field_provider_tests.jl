@@ -86,6 +86,16 @@ end
     end
 end
 
+@testset "field receipt rejects a re-sealed forged process hash" begin
+    forged_body = merge(semantic_view(dfp_receipt),
+        (process_hash=digest256_text("forged-process"),))
+    forged_receipt = DFP.DESCFieldProviderReceiptV4(forged_body...,
+        canonical_hash(forged_body))
+    @test canonical_hash(forged_receipt) == forged_receipt.receipt_hash
+    @test_throws ArgumentError DFP.validate_desc_field_provider_receipt(
+        forged_receipt)
+end
+
 @testset "failed field provider preserves actual process exit code" begin
     process = DFP._dfp_process(dgrpe_receipt, dfp_request, mktempdir();
         adapter_source="import sys\nsys.exit(9)\n")

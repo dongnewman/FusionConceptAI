@@ -210,6 +210,11 @@ end
 
 function validate_desc_field_provider_receipt(receipt::DESCFieldProviderReceiptV4)
     canonical_hash(receipt)
+    process_names = fieldnames(DESCFieldProviderReceiptV4)[1:end-2]
+    process_body = NamedTuple{process_names}(ntuple(i -> getfield(receipt, i),
+        length(process_names)))
+    canonical_hash(process_body) == receipt.process_hash ||
+        throw(ArgumentError("DESC field receipt process hash mismatch"))
     checks = ((receipt.input_path, receipt.input_sha256, "input"),
         (receipt.adapter_path, receipt.adapter_source_sha256, "adapter"),
         (receipt.upstream_hdf5_path, receipt.upstream_hdf5_sha256,
