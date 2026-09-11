@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-11
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@4dfb246`
+Current accepted and pushed implementation head: `main@bd8e920`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -33,7 +33,8 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound real DESC request/provider execution | committed at `b95d974` | focused 70/70, standalone runner, and full `test/runtests.jl` passed with explicit exit 0; actual DESC 0.17.3 provider and fresh-process HDF5 inspector both exited 0; final independent review found no P1/P2 blocker | typed request is rebuilt from the current candidate and compatibility proof before execution; receipt seals request/output, adapter, inspector, Python, and DESC identities and rejects replay tampering; structural result validation only, `screen_only`, with no solver-convergence, physical/engineering validation, evidence, pass, promotion, P5, terminal, or credible-device authority |
 | candidate-bound real DESC field provider | committed at `4f4d8a5` | focused 62/62, standalone runner, upstream execution 70/70, geometry interpreter 81/81, compatibility proof 89/89, 3-D input composition 157/157, and full `test/runtests.jl` passed in separate exit-0 processes; final independent review found no remaining P1/P2 issue | fresh DESC 0.17.3 process reopens the bound HDF5 and samples B, \|B\|, pressure, iota, sqrt(g), and force-balance residual at typed points; exact native quantity/unit metadata, artifacts, process identities, and output replay are sealed; `screen_only`, with no solver-convergence, multi-region closure, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound DESC field-basis bridge | committed at `4dfb246` | focused 95/95, standalone runner, field provider 62/62, request/provider execution 70/70, compatibility proof 89/89, and full `test/runtests.jl` passed in separate exit-0 processes; final independent reviews found no remaining P1/P2 issue | verifies DESC `B`/`F` as orthonormal cylindrical physical components, binds and cross-checks every upstream sample, and maps positions and vectors to Cartesian under the exact current candidate/proof/receipt identities; `screen_only`, with no region partition, interface trace, multi-region solve, convergence, validation/evidence, terminal authority, or credible-device credit |
-| real multi-region coupled physics | absent | not admissible | the accepted Cartesian field basis still lacks a typed candidate-bound rho partition with disjoint/exhaustive region ownership, rho-constant oriented interface trace maps/normals, and candidate-derived 3-D constitutive laws and conservative flux execution |
+| candidate-bound DESC rho partition/trace specification | committed at `bd8e920` | focused 64/64 and standalone real-DESC runner passed with explicit exit 0; field-basis 95/95, 3-D input composition 157/157, conservative multi-region manufactured control 117/117, and full `test/runtests.jl` passed in separate exit-0 processes; final independent reviews found no remaining P1/P2 blocker | exact normalized-rho region-interior adjacency/closure covers the positive domain with rho=0 excluded from sampling; paired trace maps reconstruct exact bound basis samples and opposite declared unit normals. `spatial_partition_geometry_validated=false`, `normal_geometry_validated=false`, and `interface_trace_executed=false`; no provider, convergence, validation/evidence, terminal authority, or credible-device credit |
+| real multi-region coupled physics | absent | not admissible | the accepted structural rho specification still lacks provider-derived rho-surface geometry/normals and two-sided trace execution, full 3-D spatial-partition proof, candidate-derived constitutive/material operators, and conservative interface-flux execution |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
@@ -65,16 +66,18 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 6. Preserve the accepted paired normalized/SI root bridge, executable
    candidate-owned Fourier interpreter, narrow continuous-domain compatibility
    proof, real candidate-bound DESC request/provider execution, candidate-bound
-   field sampling, and Cartesian field-basis bridge as separate edges. Do not
-   expand the proof contract further. Their receipts prove actual fresh
-   processes and replayable structural results, not solver convergence,
-   physical validation, or evidence authority.
-7. Define the minimal typed candidate-bound rho partition and oriented
-   rho-constant interface trace contract before admitting a real multi-region
-   provider. It must bind exact support/chart/root and field-basis identities,
-   prove disjoint/exhaustive region intervals, seal trace sample maps and normal
-   orientation, and compose candidate-derived 3-D constitutive laws and
-   conservative fluxes. Preserve the current-G3 trusted manufactured
+   field sampling, Cartesian field-basis bridge, and normalized-rho
+   partition/trace specification as separate edges. Do not expand the proof
+   contract further. Their receipts prove actual fresh processes and replayable
+   structural results, not spatial-partition geometry, provider-derived
+   normals/traces, solver convergence, physical validation, or evidence
+   authority.
+7. Execute a trusted candidate-bound rho-surface geometry/normal and two-sided
+   trace provider before admitting a real multi-region solve. It must consume
+   the accepted specification, bind exact output artifacts and provider/runtime
+   identities, prove full 3-D spatial ownership, and feed candidate-derived
+   constitutive/material laws plus conservative interface fluxes. Preserve the
+   current-G3 trusted manufactured
    control/fault screen separately; its deterministic trace does not close real
    engineering, control, or fault evidence. The present lumped diagonal and
    interface coefficients remain manufactured inputs.
@@ -91,7 +94,7 @@ for this cycle and will not be committed, rewritten, archived, or removed
 without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
-   `b95d974`, `4f4d8a5`, and `4dfb246`.
+   `b95d974`, `4f4d8a5`, `4dfb246`, and `bd8e920`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -112,8 +115,10 @@ control/fault compiler and trusted
   process with a fresh-process structural HDF5 check, and reopens that bound
   result in a separate fresh process to emit typed field samples. The accepted
   basis bridge verifies those vectors' DESC-native physical-component meaning
-  and maps the bound positions and vectors to Cartesian coordinates, but it
-  supplies no typed region partition or oriented interface trace. It still
+  and maps the bound positions and vectors to Cartesian coordinates. The rho
+  specification now binds an exact normalized-domain region order and exact
+  basis-sample trace maps, while keeping full 3-D spatial partition geometry,
+  provider-derived normals, and trace execution explicitly false. It still
   proves no solver convergence or multi-region closure and emits no validation
   evidence. These results do
 not establish physical validation, engineering feasibility, whole-device
