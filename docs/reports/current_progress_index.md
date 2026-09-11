@@ -36,7 +36,9 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound DESC rho partition/trace specification | committed at `bd8e920` | focused 64/64 and standalone real-DESC runner passed with explicit exit 0; field-basis 95/95, 3-D input composition 157/157, conservative multi-region manufactured control 117/117, and full `test/runtests.jl` passed in separate exit-0 processes; final independent reviews found no remaining P1/P2 blocker | exact normalized-rho region-interior adjacency/closure covers the positive domain with rho=0 excluded from sampling; paired trace maps reconstruct exact bound basis samples and opposite declared unit normals. `spatial_partition_geometry_validated=false`, `normal_geometry_validated=false`, and `interface_trace_executed=false`; no provider, convergence, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound real DESC rho-surface/two-sided-trace provider | committed at `1db44fc` | focused 56/56 and standalone real-DESC runner passed with explicit exit 0; structural rho partition 64/64, field-basis bridge 95/95, field provider 62/62, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no remaining P1/P2 blocker | a pinned fresh DESC 0.17.3 process samples every declared interface at `c` and `c±epsilon`, validates returned rho/theta/zeta, surface/side `grad(rho)`/`n_rho`/tangent geometry, maps R-phi-Z physical components to Cartesian, and binds strict adjacent-region ownership plus all input/output/runtime artifacts. This is sampled `screen_only` execution: declared normals are not cross-checked, global spatial-partition geometry and interface flux remain unvalidated/unexecuted, with no convergence, closure, validation/evidence, terminal authority, or credible-device credit |
 | candidate-bound local ideal-MHD interface traction and paired flux | committed at `22d9a38`; pressure-provider receipts hardened at `5d87bbb` and `8ad464b` | focused 62/62 and standalone real-chain runner passed with explicit exit 0; rho-surface 56/56, field-basis 95/95, hardened field provider 65/65, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no P1/P2 blocker | resamples real DESC pressure/B at the exact `c±epsilon` points, cross-checks Cartesian B, binds SI/CODATA mu0 and every interface/support/state/source/runtime identity, evaluates one-sided conservative ideal-MHD momentum traction, and assembles a central flux as equal-and-opposite contributions. `interface_flux_executed=true` and central cancellation are local algebraic facts only; finite-offset states are not boundary limits, and jump conditions, regional residual/Jacobian, global conservation, convergence, closure, validation/evidence, terminal authority, and credible-device credit remain false/zero |
-| real multi-region coupled physics | local constitutive/interface-flux slice only | not yet admissible as a solve | the accepted local traction still lacks independently established boundary traces, a complete declared MHD jump ledger, typed regional PDE residual/Jacobian ownership, boundary/source ownership, global conservation accounting, and a converged multi-region solve |
+| candidate-bound ideal-MHD interface residual/Jacobian subset | committed at `384091f` | focused 12/12, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | binds the exact ordered traction subset and computes the local 3-component traction-sum plus normal-B residual and analytic 4x8 Jacobian, independently checked by central differences. This is an interface subset only: full jump conditions, regional/global residuals, convergence, closure, validation/evidence, and device authority remain false/zero |
+| candidate-bound DESC static-MHD force-balance sampling | committed at `7eb8f80` | focused 17/17, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | a sealed DESC 0.17.3 process samples `B`, `J`, `grad(p)`, and `F` at both exact finite-offset points; sealed replay and independent pressure-trace comparison give maximum formula discrepancy `2.92e-11 N m^-3`, while the measured force-balance norms are about `1.06e5 N m^-3`. This is a non-closure measurement under `screen_only`, not regional PDE assembly or equilibrium validation |
+| real multi-region coupled physics | local constitutive/interface residual/Jacobian and sampled force-balance slices only | not yet admissible as a solve | the accepted local slices still lack independently established boundary-limit traces, a complete declared MHD jump ledger, typed regional volume/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
@@ -75,9 +77,11 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    fresh processes plus local sampled geometry/field/traction execution, not
    boundary limits, jump closure, global spatial-partition geometry, solver
    convergence, physical validation, or evidence authority.
-7. Extend the accepted local traction into a complete typed MHD interface-jump
-   ledger and candidate-bound regional PDE residual/Jacobian execution before
-   admitting a real multi-region solve. Add explicit boundary/source ownership,
+7. Extend the accepted local traction and its residual/Jacobian subset into a
+   complete typed MHD interface-jump ledger and candidate-bound regional PDE
+   residual/Jacobian execution before admitting a real multi-region solve. The
+   accepted DESC force-balance sample is a measured non-closure signal, not
+   regional volume/source/boundary assembly. Add explicit ownership,
    independent derivative checks, convergence protocol, and global conservation
    accounting. Global 3-D ownership and closure must be established
    independently; finite-offset samples and central pair cancellation are not
@@ -100,7 +104,7 @@ without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
    `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
-   `8ad464b`, and `22d9a38`.
+   `8ad464b`, `22d9a38`, `384091f`, and `7eb8f80`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -131,9 +135,15 @@ control/fault compiler and trusted
   exact finite-offset points, cross-checks the Cartesian B values, evaluates
   one-sided conservative momentum traction in sealed SI conventions, and
   assembles an equal-and-opposite central interface flux. This proves local
-  constitutive and interface-flux execution only. Full 3-D spatial-partition
-  proof, declared-normal cross-check, boundary-limit/jump validation, regional
-  residual/Jacobian execution, global conservation, solver convergence, and
-  multi-region closure remain false, and it emits no validation evidence.
+  constitutive and interface-flux execution only. The accepted follow-on slice
+  evaluates the traction-sum/normal-B residual subset and its analytic 4x8
+  Jacobian with independent finite differences. A separate sealed DESC process
+  samples `B`, `J`, `grad(p)`, and `F` at both finite-offset points and faithfully
+  exposes force-balance norms near `1.06e5 N m^-3`; it does not turn that measured
+  non-closure into a pass. Full 3-D spatial-partition proof, declared-normal
+  cross-check, boundary-limit/full-jump validation, regional volume/source/
+  boundary residual and Jacobian execution, global conservation, solver
+  convergence, and multi-region closure remain false, and these slices emit no
+  validation evidence.
   These results do not establish physical validation, engineering feasibility,
   whole-device closure, or a simplest feasible device.
