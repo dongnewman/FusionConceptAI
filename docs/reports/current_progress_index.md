@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-12
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@1c84038`
+Current accepted and pushed implementation head: `main@2ae6cc5`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -40,6 +40,7 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound DESC static-MHD force-balance sampling | committed at `7eb8f80` | focused 17/17, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | a sealed DESC 0.17.3 process samples `B`, `J`, `grad(p)`, and `F` at both exact finite-offset points; sealed replay and independent pressure-trace comparison give maximum formula discrepancy `2.92e-11 N m^-3`, while the measured force-balance norms are about `1.06e5 N m^-3`. This is a non-closure measurement under `screen_only`, not regional PDE assembly or equilibrium validation |
 | candidate-bound regional integrated-force observation | committed at `c405398` | focused 122/122, standalone real-chain runner, both nested providers, and upstream traction regression 62/62 passed with explicit exit 0; independent review accepted with no P1 blocker | 2x2x2 owned tensor nodes per rho region execute through sealed DESC field/basis providers; `F_xyz * sqrt(g)` is integrated over the full torus with NFP applied exactly once. The observed total-force norm is `342182.59975165897 N`, retained as non-closure. This is not a test-function weak form, regional residual/Jacobian, conservation proof, or solve |
 | candidate-bound regional force q=2/q=3 comparison | committed at `4421477` | focused 18/18 including a distinct-path real-provider replay, standalone real-chain runner, upstream regional observation 122/122, and package-wide regression passed with explicit exit 0; independent hard review exposed and closed shared-run-path and tuple-comparison defects | q=2 and q=3 total forces differ by `493861.3259229757 N` (`1.4432683785832432` relative), so numerical convergence remains false. The run is a sealed `screen_only` non-closure observation, not V&V/UQ evidence or a solve |
+| candidate-bound regional-force numerical convergence assessment | committed at `2ae6cc5` | final focused 23/23, standalone real-chain runner, and package-wide regression passed with explicit exit 0 | independently recomputes q2/q3 norm differences and the absolute-OR-relative tolerance verdict; the default result is `fail` and requests q4. Even a declared-tolerance pass grants no independent-code, physical-validation, UQ, promotion, terminal, or credible-device authority |
 | candidate-bound static-MHD interface jump ledger | committed at `50d4a00` | focused 32/32 and standalone real-chain runner passed with explicit exit 0 after the package-wide suite; independent review accepted with no P1/P2 blocker | binds every exact interface, adjacent region/support, finite-offset traction sample, four-component residual and epsilon identity. Static traction-vector and normal-B continuity are declared; dynamic mass/electric/energy conditions are explicitly out of scope. All values remain finite-offset proxies, so boundary limits, validated jump conditions, regional/global residual assembly, convergence, closure, validation evidence and device authority remain false/zero |
 | real multi-region coupled physics | local constitutive/interface residual/Jacobian, sampled point force balance, regional volume-force observations with a nonconverged q=2/q=3 comparison, and a static jump ledger only | not yet admissible as a solve | the accepted slices still lack independently established boundary-limit traces, typed regional test-function/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
@@ -92,7 +93,10 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    accounting. Global 3-D ownership and closure must be established
    independently; finite-offset samples and central pair cancellation are not
    that proof. Preserve the
-   current-G3 trusted manufactured
+   Because the q2/q3 comparison fails the declared tolerance, execute q4 and a
+   declared convergence protocol before treating regional integration as
+   numerically resolved; a same-code quadrature ladder is still not independent
+   code validation. Preserve the current-G3 trusted manufactured
    control/fault screen separately; its deterministic trace does not close real
    engineering, control, or fault evidence. The present lumped diagonal and
    interface coefficients remain manufactured inputs.
@@ -114,7 +118,7 @@ tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
    `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
    `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, `8983daa`, `c405398`,
-   `50d4a00`, `4421477`, and `1c84038`.
+   `50d4a00`, `4421477`, `1c84038`, and `2ae6cc5`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -155,7 +159,11 @@ control/fault compiler and trusted
   torus; its nonzero `342182.59975165897 N` total norm remains an observation,
   not a residual or conservation verdict. A distinct-path q=3 replay is now
   sealed and reproducible, but its `1.4432683785832432` relative difference
-  from q=2 explicitly leaves numerical convergence false. The static-MHD jump ledger now binds
+  from q=2 explicitly leaves numerical convergence false. The dedicated
+  convergence assessment independently recomputes that difference and the
+  absolute-OR-relative tolerance verdict; its default result is fail and its
+  next request is q4. It remains zero-credit screen evidence, not independent
+  code verification, physical validation, or UQ. The static-MHD jump ledger now binds
   the exact interfaces, adjacent supports, finite-offset traction samples and
   four-component traction/normal-B residuals while keeping dynamic
   mass/electric/energy conditions explicitly out of scope. Full 3-D
