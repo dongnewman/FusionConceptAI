@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-11
 Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@22d9a38`
+Current accepted and pushed implementation head: `main@8983daa`
 
 This index distinguishes committed implementation, current-cycle acceptance,
 and real evidence closure.  A green software test is not a physical,
@@ -41,7 +41,8 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | real multi-region coupled physics | local constitutive/interface residual/Jacobian and sampled force-balance slices only | not yet admissible as a solve | the accepted local slices still lack independently established boundary-limit traces, a complete declared MHD jump ledger, typed regional volume/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
 | current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
-| high-fidelity whole-device closure | firewall/skeleton only | not admissible | integrated provider graph and all evidence classes missing |
+| dedicated G3 ECF to Validation/UQ and whole-device integration boundary | committed at `8983daa` | focused 42/42 and standalone runner passed with explicit exit 0; independent final review accepted with no P1 blocker | exact ECF provider/request/result identity and dedicated registry/request/receipt chain are revalidated; the dedicated receipt is explicitly not coerced into a generic VVUQ receipt, the exact five-stage assembly stays `screen_only_deferred`, evidence credit is zero, and five unresolved real-provider/validation/UQ/closure gaps remain visible |
+| high-fidelity whole-device closure | explicit zero-credit integration boundary only | not admissible | real multi-region provider, generic VVUQ bridge, held-out physical validation, Validation/UQ artifacts, integrated high-fidelity closure, and terminal authority remain missing |
 | scoped simplest feasible-device search | search infrastructure exists | not admissible at physical-device level | zero L4 credible candidates; closure path incomplete |
 
 ## Active integration queue
@@ -90,9 +91,12 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
    control/fault screen separately; its deterministic trace does not close real
    engineering, control, or fault evidence. The present lumped diagonal and
    interface coefficients remain manufactured inputs.
-8. Run focused tests first, then relevant Runtime V4 regressions and package
+8. Preserve the accepted ECF/VVUQ/whole-device boundary as an explicit
+   recoverable non-bridge. Its exact five-stage tuple is assembly bookkeeping,
+   not evidence that the stages executed or that whole-device closure exists.
+9. Run focused tests first, then relevant Runtime V4 regressions and package
    tests with separate exit codes.
-9. Commit and push each accepted milestone with only its owned files staged.
+10. Commit and push each accepted milestone with only its owned files staged.
 
 ## Protected working state
 
@@ -104,7 +108,7 @@ without a separate content and provenance review. This does not apply to the
 tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
    `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
    `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
-   `8ad464b`, `22d9a38`, `384091f`, and `7eb8f80`.
+   `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, and `8983daa`.
 Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
 and the reproducible runner command are recorded in the accepted execution
 report.
@@ -145,5 +149,9 @@ control/fault compiler and trusted
   boundary residual and Jacobian execution, global conservation, solver
   convergence, and multi-region closure remain false, and these slices emit no
   validation evidence.
+  The dedicated G3 operational receipt is now bound into an explicit
+  recoverable ECF/VVUQ non-bridge and a zero-credit whole-device integration
+  request. This verifies identity and exposes missing stages; it does not
+  supply generic VVUQ evidence or execute whole-device closure.
   These results do not establish physical validation, engineering feasibility,
   whole-device closure, or a simplest feasible device.
