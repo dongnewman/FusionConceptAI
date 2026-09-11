@@ -215,6 +215,9 @@ function validate_desc_field_provider_receipt(receipt::DESCFieldProviderReceiptV
         length(process_names)))
     canonical_hash(process_body) == receipt.process_hash ||
         throw(ArgumentError("DESC field receipt process hash mismatch"))
+    expected_command = string(`$(receipt.python_executable) $(receipt.adapter_path) $(receipt.upstream_hdf5_path) $(receipt.input_path) $(receipt.output_path) $(receipt.desc_module_path)`)
+    receipt.command == expected_command ||
+        throw(ArgumentError("DESC field receipt command does not match sealed runtime paths"))
     checks = ((receipt.input_path, receipt.input_sha256, "input"),
         (receipt.adapter_path, receipt.adapter_source_sha256, "adapter"),
         (receipt.upstream_hdf5_path, receipt.upstream_hdf5_sha256,
@@ -376,12 +379,16 @@ end
 
 const _DFP_ADAPTER_SOURCE = raw"""
 import math
+import os
 import sys
 import numpy as np
 import desc
 from desc.compute import data_index
 from desc.grid import Grid
 from desc.io import load
+
+if os.path.normcase(os.path.realpath(desc.__file__)) != os.path.normcase(os.path.realpath(sys.argv[4])):
+    raise ValueError("loaded DESC module differs from sealed module path")
 
 REQUEST_SCHEMA = "fusionconceptai:runtime-v4-desc-field-provider-request"
 OUTPUT_SCHEMA = "fusionconceptai:runtime-v4-desc-field-provider-output"
@@ -487,7 +494,7 @@ function _dfp_process(execution_receipt, request::DESCFieldProviderRequestV4,
     executable = String(execution_receipt.python_executable)
     hdf5_path = String(execution_receipt.output_path)
     module_path = String(execution_receipt.desc_module_path)
-    command = `$executable $adapter_path $hdf5_path $input_path $output_path`
+    command = `$executable $adapter_path $hdf5_path $input_path $output_path $module_path`
     stdout_buffer = IOBuffer()
     stderr_buffer = IOBuffer()
     process = run(pipeline(ignorestatus(command), stdout=stdout_buffer,

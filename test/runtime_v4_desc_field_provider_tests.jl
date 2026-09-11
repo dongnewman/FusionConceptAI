@@ -29,6 +29,7 @@ include(joinpath(@__DIR__, "..", "examples", "runtime_v4_desc_field_provider.jl"
     @test dfp_receipt.exit_code == 0
     @test dfp_receipt.output_schema_validated
     @test occursin("DESC_FIELD_PROVIDER_EXECUTED=1", dfp_receipt.stdout)
+    @test dfp_receipt.command == string(`$(dfp_receipt.python_executable) $(dfp_receipt.adapter_path) $(dfp_receipt.upstream_hdf5_path) $(dfp_receipt.input_path) $(dfp_receipt.output_path) $(dfp_receipt.desc_module_path)`)
     @test DFP.validate_desc_field_provider_receipt(dfp_receipt)
     @test canonical_hash(dfp_receipt) == dfp_receipt.receipt_hash
     @test canonical_hash(dfp_result) == dfp_result.result_hash
