@@ -1,0 +1,5 @@
+include(joinpath(@__DIR__, "..", "examples", "runtime_v4_ecf_numerical_repeatability.jl"))
+println("status=", ecf_repeatability.result.status)
+println("repeatability_passed=", ecf_repeatability.result.repeatability_passed)
+println("process_ids=", Tuple(o.process_id for o in ecf_repeatability.result.observations))
+println("ECF_NUMERICAL_REPEATABILITY_EXIT_CODE=0")
