@@ -1,0 +1,6 @@
+include(joinpath(@__DIR__,"..","examples","runtime_v4_regional_force_observation_q4_comparison.jl"))
+println("q2_q3_relative_difference=",q4_comparison.q2_q3_relative_difference)
+println("q3_q4_relative_difference=",q4_comparison.q3_q4_relative_difference)
+println("q4_total_force_N=",q4_comparison.q4_total_force)
+println("q4_convergence_status=",q4_comparison.convergence_status)
+println("REGIONAL_FORCE_Q4_COMPARISON_EXIT_CODE=0")
