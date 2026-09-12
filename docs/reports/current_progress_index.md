@@ -1,14 +1,48 @@
 # FusionConceptAI Runtime V4 current progress index
 
 Last updated: 2026-09-12
-Tracked baseline at start of this integration cycle: `main@31260e2`
-Current accepted and pushed implementation head: `main@2ae6cc5`
+Current cycle starting HEAD: `main@793109c72f983f1fde92cfb71dc5f7100dcddfd5`
+Current cycle implementation: accepted same-candidate execution and gap-ledger milestone; see the commit containing this index.
+Previous pushed acceptance includes `bf0b330` and `793109c`; the former index's `2ae6cc5` pointer was stale.
 
-This index distinguishes committed implementation, current-cycle acceptance,
-and real evidence closure.  A green software test is not a physical,
-engineering, validation, whole-device, or minimal-feasible-device claim.
+## Current same-candidate execution
 
-## Current chain status
+The active run is `runs/candidate_chain_20260912_integrated`, using the existing
+`dgpi-candidate` and candidate hash
+`0619e5bbd0537caad9bec630db6667b2e37c1346fb24ce86e4f10db39af16f10`.
+All downstream modules consume the same actual DESC outputs and validated
+G1/G2/G3 context. The runner finished with OS exit **0**, and all six integrated
+test groups passed **108/108**. Core **26/26** and spine **54/54** passed with
+exit **0**. Package regression passed **2631/2631** across **105** reported groups,
+with OS exit **0**. This accepts the executed subcomponents and accurate gap
+accounting; it does not complete the missing physical/engineering/validation stages.
+
+| Stage | Newly executed in this cycle | Actual result / remaining break |
+|---|---|---|
+| Candidate binding | Exact three-Genome, typed graph, subject and scenario binding | `observed`; the manufactured ECF fixture has a different identity and is excluded |
+| Multi-region physics | DESC sampling, periodic weak-volume/strong-force moments, sampled constitutive Jacobian | `deferred`; 2 diagnostic regions, 4 test functions, 24x1000 sampled Jacobian; FD discrepancy `2.7106651733016967e-9`. G2-owned region/interface model, complete source/boundary residual, full-state Jacobian, global conservation and actual coupled solve remain unexecuted |
+| Engineering/control/fault | G3 declaration audit and real plasma-interface momentum-load projection | `unsupported`; maximum sampled traction `1784905.64110172 Pa`. Current G3 has no realization/control operators or payloads; material, structural, thermal, power, control, protection and fault dynamics remain unexecuted |
+| Numerical verification | Independent midpoint rule, correct field-period vector rotation, local-force norm integration, analytic benchmark, deterministic discrepancy propagation | `fail`; Gauss3/Gauss4/midpoint local-force spread is `0.1188426977380375` against `1e-3`. Independent Python postprocessing agrees within `2.33e-10 N` on the total local-force magnitude |
+| Validation/UQ | Candidate-applicability and uncertainty prerequisite audit | `unsupported`; no held-out physical validation, parameter distributions/covariance propagation, or model discrepancy propagation executed |
+| Whole device | Same-candidate stage replay and dependency assessment | `deferred`; 18 explicit recoverable gaps, no integrated whole-device physics, no terminal classification, `p5_ready=false`, credible devices `0` |
+
+The local-force magnitude integral is about `1.22e6 N`, even though the correctly
+rotated full-torus vector sum is near zero through symmetry cancellation.
+Historical q2/q3/q4 Cartesian totals multiplied one field period by NFP and are
+**sector-replicated Cartesian proxies**, not full-torus vector forces. Historical
+tolerance verdicts below are retained as software records, not physical
+convergence evidence. No q5/q6 milestone is introduced.
+
+See [end-to-end report](candidate_end_to_end_v4_20260912.md),
+[typed contract and runner](../implementation/candidate_end_to_end_v4.md),
+[physics report](candidate_coupled_physics_weak_volume_v1_report.md),
+[engineering report](candidate_engineering_execution_v4_20260912.md), and
+[verification report](candidate_validation_propagation_v4_20260912.md).
+
+## Historical accepted implementation inventory
+
+This table preserves prior software acceptance. Its older fixtures and counts
+are not the current candidate's engineering, validation, or whole-device evidence.
 
 | Chain node | Tracked implementation | Current-cycle acceptance | Evidence boundary / next blocking edge |
 |---|---|---|---|
@@ -38,149 +72,61 @@ engineering, validation, whole-device, or minimal-feasible-device claim.
 | candidate-bound local ideal-MHD interface traction and paired flux | committed at `22d9a38`; pressure-provider receipts hardened at `5d87bbb` and `8ad464b` | focused 62/62 and standalone real-chain runner passed with explicit exit 0; rho-surface 56/56, field-basis 95/95, hardened field provider 65/65, and full `test/runtests.jl` passed in separate exit-0 processes; three final independent reviews found no P1/P2 blocker | resamples real DESC pressure/B at the exact `c±epsilon` points, cross-checks Cartesian B, binds SI/CODATA mu0 and every interface/support/state/source/runtime identity, evaluates one-sided conservative ideal-MHD momentum traction, and assembles a central flux as equal-and-opposite contributions. `interface_flux_executed=true` and central cancellation are local algebraic facts only; finite-offset states are not boundary limits, and jump conditions, regional residual/Jacobian, global conservation, convergence, closure, validation/evidence, terminal authority, and credible-device credit remain false/zero |
 | candidate-bound ideal-MHD interface residual/Jacobian subset | committed at `384091f` | focused 12/12, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | binds the exact ordered traction subset and computes the local 3-component traction-sum plus normal-B residual and analytic 4x8 Jacobian, independently checked by central differences. This is an interface subset only: full jump conditions, regional/global residuals, convergence, closure, validation/evidence, and device authority remain false/zero |
 | candidate-bound DESC static-MHD force-balance sampling | committed at `7eb8f80` | focused 17/17, standalone runner, upstream traction 62/62, and full `test/runtests.jl` passed with explicit exit 0; final independent review accepted with no P1/P2 blocker | a sealed DESC 0.17.3 process samples `B`, `J`, `grad(p)`, and `F` at both exact finite-offset points; sealed replay and independent pressure-trace comparison give maximum formula discrepancy `2.92e-11 N m^-3`, while the measured force-balance norms are about `1.06e5 N m^-3`. This is a non-closure measurement under `screen_only`, not regional PDE assembly or equilibrium validation |
-| candidate-bound regional integrated-force observation | committed at `c405398` | focused 122/122, standalone real-chain runner, both nested providers, and upstream traction regression 62/62 passed with explicit exit 0; independent review accepted with no P1 blocker | 2x2x2 owned tensor nodes per rho region execute through sealed DESC field/basis providers; `F_xyz * sqrt(g)` is integrated over the full torus with NFP applied exactly once. The observed total-force norm is `342182.59975165897 N`, retained as non-closure. This is not a test-function weak form, regional residual/Jacobian, conservation proof, or solve |
-| candidate-bound regional force q=2/q=3 comparison | committed at `4421477` | focused 18/18 including a distinct-path real-provider replay, standalone real-chain runner, upstream regional observation 122/122, and package-wide regression passed with explicit exit 0; independent hard review exposed and closed shared-run-path and tuple-comparison defects | q=2 and q=3 total forces differ by `493861.3259229757 N` (`1.4432683785832432` relative), so numerical convergence remains false. The run is a sealed `screen_only` non-closure observation, not V&V/UQ evidence or a solve |
-| candidate-bound regional-force numerical convergence assessment | committed at `2ae6cc5` | final focused 23/23, standalone real-chain runner, and package-wide regression passed with explicit exit 0 | independently recomputes q2/q3 norm differences and the absolute-OR-relative tolerance verdict; the default result is `fail` and requests q4. Even a declared-tolerance pass grants no independent-code, physical-validation, UQ, promotion, terminal, or credible-device authority |
-| candidate-bound regional-force q2/q3/q4 convergence ladder | committed at `bf0b330` | focused 33/33 with an independent q4 replay, standalone real-chain runner, and package-wide regression passed with explicit exit 0 | 64 fresh DESC field/basis samples per region produce q3-to-q4 relative difference `0.7209778257208969`; it decreases from q2-to-q3 `1.4432683785832432` but fails the declared tolerance. Numerical convergence, independent-code validation, physical validation, UQ, promotion, terminal authority, and credible-device credit remain false/zero |
+| candidate-bound regional integrated-force observation | committed at `c405398` | focused 122/122, standalone real-chain runner, both nested providers, and upstream traction regression 62/62 passed with explicit exit 0; independent review accepted with no P1 blocker | 2x2x2 owned tensor nodes per rho region execute through sealed DESC field/basis providers; The historical implementation multiplies a one-period Cartesian vector by NFP; this is a sector-replicated proxy, not a full-torus vector integral (corrected in the current cycle). The observed total-force norm is `342182.59975165897 N`, retained as non-closure. This is not a test-function weak form, regional residual/Jacobian, conservation proof, or solve |
+| candidate-bound regional force q=2/q=3 comparison | committed at `4421477` | focused 18/18 including a distinct-path real-provider replay, standalone real-chain runner, upstream regional observation 122/122, and package-wide regression passed with explicit exit 0; independent hard review exposed and closed shared-run-path and tuple-comparison defects | Historical q=2 and q=3 sector-replicated Cartesian proxies differ by `493861.3259229757 N` (`1.4432683785832432` relative), so numerical convergence remains false. The run is a sealed `screen_only` non-closure observation, not V&V/UQ evidence or a solve |
+| candidate-bound regional-force numerical convergence assessment | committed at `2ae6cc5` | final focused 23/23, standalone real-chain runner, and package-wide regression passed with explicit exit 0 | independently recomputes historical sector-proxy q2/q3 norm differences and the absolute-OR-relative tolerance verdict; the default result is `fail` and requests q4. Even a declared-tolerance pass grants no independent-code, physical-validation, UQ, promotion, terminal, or credible-device authority |
+| candidate-bound regional-force q2/q3/q4 convergence ladder | committed at `bf0b330` | focused 33/33 with an independent q4 replay, standalone real-chain runner, and package-wide regression passed with explicit exit 0 | 64 fresh DESC field/basis samples per region produce a historical sector-proxy q3-to-q4 relative difference `0.7209778257208969`; it decreases from q2-to-q3 `1.4432683785832432` but fails the declared tolerance. Numerical convergence, independent-code validation, physical validation, UQ, promotion, terminal authority, and credible-device credit remain false/zero |
 | candidate-bound static-MHD interface jump ledger | committed at `50d4a00` | focused 32/32 and standalone real-chain runner passed with explicit exit 0 after the package-wide suite; independent review accepted with no P1/P2 blocker | binds every exact interface, adjacent region/support, finite-offset traction sample, four-component residual and epsilon identity. Static traction-vector and normal-B continuity are declared; dynamic mass/electric/energy conditions are explicitly out of scope. All values remain finite-offset proxies, so boundary limits, validated jump conditions, regional/global residual assembly, convergence, closure, validation evidence and device authority remain false/zero |
 | real multi-region coupled physics | local constitutive/interface residual/Jacobian, sampled point force balance, regional volume-force observations with a nonconverged q=2/q=3 comparison, and a static jump ledger only | not yet admissible as a solve | the accepted slices still lack independently established boundary-limit traces, typed regional test-function/source/boundary residual and Jacobian ownership, global conservation accounting, and a converged multi-region solve |
-| current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three real current-G3 graph edges execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
+| current-G3 engineering/control/fault compilation and trusted manufactured execution | committed through `ac00ab6`; graph compilation `a297846` | graph compiler 157/157; trusted provider 127/127, example, runner, core 26/26, spine 54/54, and registry regressions passed, exit 0 | three graph edges of the separate `ecfgo-manufactured-candidate` fixture execute as one deterministic 11-event manufactured trace through a fixed repository trust root; `operational_screen`/`screen_only`, not engineering or physical evidence |
 | physical validation and UQ request boundary | committed at `7561f93` | focused 63/63, real trusted FreeGS example, core 26/26, and spine 54/54 passed, exit 0 | exact trusted execution yields seven typed recoverable evidence gaps and zero credit; no numerical V&V, held-out physical validation, independent code, or UQ evidence exists |
 | dedicated G3 ECF to Validation/UQ and whole-device integration boundary | committed at `8983daa` | focused 42/42 and standalone runner passed with explicit exit 0; independent final review accepted with no P1 blocker | exact ECF provider/request/result identity and dedicated registry/request/receipt chain are revalidated; the dedicated receipt is explicitly not coerced into a generic VVUQ receipt, the exact five-stage assembly stays `screen_only_deferred`, evidence credit is zero, and five unresolved real-provider/validation/UQ/closure gaps remain visible |
 | current-G3 ECF fresh-process numerical repeatability | committed at `1c84038` | focused 15/15, standalone two-process runner, trusted provider 127/127, ECF/VVUQ non-bridge 42/42, and package-wide regression passed with explicit exit 0 | two distinct fresh Julia processes reproduce the exact manufactured operational trace/result/count observables under sealed source, Project/Manifest, executable, context, request, receipt and non-bridge identities. This is `screen_only` software/numerical repeatability, not engineering qualification, physical validation, generic V&V/UQ, whole-device closure, or evidence credit |
 | high-fidelity whole-device closure | explicit zero-credit integration boundary only | not admissible | real multi-region provider, generic VVUQ bridge, held-out physical validation, Validation/UQ artifacts, integrated high-fidelity closure, and terminal authority remain missing |
 | scoped simplest feasible-device search | search infrastructure exists | not admissible at physical-device level | zero L4 credible candidates; closure path incomplete |
 
-## Active integration queue
+## Active chain-unblocking queue
 
-1. Preserve the accepted isolated B1/B2/B3 and Batch C boundaries and the
-   sealed forward-chain context; do not fold them into an aggregator yet.
-2. Preserve the accepted candidate-bound FreeGS axisymmetric execution as a
-   separate physical-model screen. It does not implement the accepted
-   multi-region contract's 3-D constitutive or interface operators and must not
-   be presented as that missing provider.
-3. Preserve the opt-in repository-owned FreeGS descriptor and its exact
-   capability/input/receipt binding. Public caller-created descriptors,
-   manifests, callable stubs, and source hashes remain inadmissible.
-4. Preserve the accepted isolated DESC fixed-boundary request compiler as
-   gap-only. The current composition fixture continues to report the three
-   absent DESC convention/control/binding gaps; the fully declared manufactured
-   fixture reports only
-   `required_verified_desc_geometric_compatibility_proof`. Neither fixture emits
-   an execution request.
-5. Preserve the accepted gap-only geometry-program preflight and its original
-   negative fixture. That fixture still reports eleven exact prerequisites:
-   normalized turn bounds, both angular period-axis declarations and their
-   exact `(2,3)` set, chart/graph ABI closure for coordinate and metric roots,
-   a typed normalized-to-SI root bridge, input-dependent programs, pinned
-   manifests, and a dedicated geometry interpreter.
-6. Preserve the accepted paired normalized/SI root bridge, executable
-   candidate-owned Fourier interpreter, narrow continuous-domain compatibility
-   proof, real candidate-bound DESC request/provider execution, candidate-bound
-   field sampling, Cartesian field-basis bridge, normalized-rho partition/trace
-   specification, real rho-surface/two-sided-trace provider, and local ideal-MHD
-   traction/paired-flux executor as separate edges. Do not expand the geometry
-   proof contract further. Their receipts and reconstruction checks prove actual
-   fresh processes plus local sampled geometry/field/traction execution, not
-   boundary limits, jump closure, global spatial-partition geometry, solver
-   convergence, physical validation, or evidence authority.
-7. Extend the accepted local traction and its residual/Jacobian subset into a
-   complete typed MHD interface-jump ledger and candidate-bound regional PDE
-   residual/Jacobian execution before admitting a real multi-region solve. The
-   accepted DESC force-balance samples and 2x2x2 regional force integrals are
-   measured non-closure signals, not test-function/source/boundary residual
-   assembly. Add explicit ownership,
-   independent derivative checks, convergence protocol, and global conservation
-   accounting. Global 3-D ownership and closure must be established
-   independently; finite-offset samples and central pair cancellation are not
-   that proof. The executed q2/q3/q4 ladder still fails its declared tolerance, so treat
-   regional integration as numerically unresolved and retain a higher-order or
-   independently formulated integration requirement. A same-code quadrature
-   ladder is still not independent code validation. Preserve the current-G3
-   trusted manufactured control/fault screen separately; its deterministic trace does not close real
-   engineering, control, or fault evidence. The present lumped diagonal and
-   interface coefficients remain manufactured inputs.
-8. Preserve the accepted ECF/VVUQ/whole-device boundary as an explicit
-   recoverable non-bridge. Its exact five-stage tuple is assembly bookkeeping,
-   not evidence that the stages executed or that whole-device closure exists.
-9. Run focused tests first, then relevant Runtime V4 regressions and package
-   tests with separate exit codes.
-10. Commit and push each accepted milestone with only its owned files staged.
+1. Declare Genome-owned regions/supports/adjacency and constitutive/interface
+   ASTs, full state DOFs, weak test spaces, body/source terms and exterior/interface
+   boundary laws. Obtain boundary quadrature and boundary-limit traces; then
+   execute complete residual/Jacobian, global conservation and the coupled solve.
+2. Supply G3 component load mapping, material/structural/magnet/power and
+   thermal-hydraulic models, sensor/plant/actuator/control dynamics, protection
+   and declared fault cases. Connect each to actual applicable physical outputs.
+3. Diagnose local residual integration with an error-controlled independent
+   formulation and complete weak residual. Observed spread is not a certified
+   error estimate; net-force cancellation cannot substitute for equilibrium.
+4. Obtain candidate-applicable held-out measurements with uncertainty,
+   independent physical implementation, parameter covariance/distributions and
+   model discrepancy. Execute validation and uncertainty propagation only when
+   those inputs and applicability checks exist.
+5. Reassess the whole-device stage after actual upstream execution and admissible
+   evidence close those dependencies. Keep fail/unsupported/deferred candidates
+   recoverable; do not route by legacy authority or family labels.
 
-## Protected working state
+Adding missing G1/G2/G3 declarations changes candidate identity and requires
+fresh upstream runs. A missing provider for already-owned declarations can
+preserve identity. Old receipts must never be grafted onto a revised Genome.
+Julia, three Genome layers and typed AST/operator hypergraphs remain the core.
 
-The pre-existing untracked `docs/implementation/v3_reuse_audit.md`, stage-report
-files, and older multi-region, engineering/control/fault, provider-admission,
-and validation/UQ prototypes are preserved. They are not acceptance evidence
-for this cycle and will not be committed, rewritten, archived, or removed
-without a separate content and provenance review. This does not apply to the
-tracked replacements accepted and pushed through `ac00ab6`, `d527866`,
-   `ebc80af`, `5363cd9`, `86dc03f`, `56c7af8`, `46e5d26`, `cb6d6d5`,
-   `b95d974`, `4f4d8a5`, `4dfb246`, `bd8e920`, `1db44fc`, `5d87bbb`,
-   `8ad464b`, `22d9a38`, `384091f`, `7eb8f80`, `8983daa`, `c405398`,
-   `50d4a00`, `4421477`, `1c84038`, and `2ae6cc5`.
-Generated FreeGS run artifacts remain local and uncommitted; their exact hashes
-and the reproducible runner command are recorded in the accepted execution
-report.
+## Protected working state and reproducibility
+
+The initial tracked test change in
+`test/runtime_v4_validation_uq_execution_request_tests.jl` and unrelated untracked
+prototypes/reports remain protected and excluded from this milestone. The
+independent-cubature files were explicitly reviewed, backed up, repaired and
+integrated; no other old prototype is accepted by directory-level staging.
+Initial status/HEAD/diff/hash are under `runs/candidate_chain_20260912`.
+Generated provider data and logs remain local; the runner records exact source,
+Project/Manifest, executable and artifact hashes for reproducibility.
 
 ## Current authority statement
 
-`p5_ready=false`.  The current count of credible physical device candidates is
-zero.  Gridap B1/B2/B3, Batch C, native and multi-region manufactured controls,
-the candidate-bound FreeGS physical-model screen, its trusted operational
-receipt and zero-credit V&V/UQ request, the structurally complete typed 3-D
-input composition and its accepted gap-only DESC fixed-boundary request
-compiler plus the gap-only geometry-program preflight, the current-G3
-control/fault compiler and trusted
-  manufactured operational screen, local time/DAE tests, the sealed forward
-  context, and contract fixtures may advance software readiness only. The DESC
-  geometry slice now has a candidate-bound analytic compatibility certificate,
-  emits a typed request, executes the actual DESC 0.17.3 provider/solver
-  process with a fresh-process structural HDF5 check, and reopens that bound
-  result in a separate fresh process to emit typed field samples. The accepted
-  basis bridge verifies those vectors' DESC-native physical-component meaning
-  and maps the bound positions and vectors to Cartesian coordinates. The rho
-  specification now binds an exact normalized-domain region order and exact
-  basis-sample trace maps. The accepted fresh-process rho-surface provider
-  evaluates the bound DESC candidate at every declared surface and both strict
-  epsilon sides, validates computed normals/tangents and coordinate round trips,
-  maps returned fields to Cartesian, and seals sampled adjacent-region
-  ownership. The accepted local ideal-MHD edge then resamples pressure/B at the
-  exact finite-offset points, cross-checks the Cartesian B values, evaluates
-  one-sided conservative momentum traction in sealed SI conventions, and
-  assembles an equal-and-opposite central interface flux. This proves local
-  constitutive and interface-flux execution only. The accepted follow-on slice
-  evaluates the traction-sum/normal-B residual subset and its analytic 4x8
-  Jacobian with independent finite differences. A separate sealed DESC process
-  samples `B`, `J`, `grad(p)`, and `F` at both finite-offset points and faithfully
-  exposes force-balance norms near `1.06e5 N m^-3`; it does not turn that measured
-  non-closure into a pass. The regional observation now adds eight owned tensor
-  nodes per rho region and integrates Cartesian `F * sqrt(g)` over the full
-  torus; its nonzero `342182.59975165897 N` total norm remains an observation,
-  not a residual or conservation verdict. A distinct-path q=3 replay is now
-  sealed and reproducible, but its `1.4432683785832432` relative difference
-  from q=2 explicitly leaves numerical convergence false. The dedicated
-  convergence assessment independently recomputes that difference and the
-  absolute-OR-relative tolerance verdict. The follow-on q4 execution uses 64
-  fresh field/basis samples per region and reduces the successive relative
-  difference to `0.7209778257208969`, but still fails the declared tolerance.
-  The ladder therefore remains zero-credit screen evidence, not numerical
-  convergence, independent code verification, physical validation, or UQ. The
-  static-MHD jump ledger now binds
-  the exact interfaces, adjacent supports, finite-offset traction samples and
-  four-component traction/normal-B residuals while keeping dynamic
-  mass/electric/energy conditions explicitly out of scope. Full 3-D
-  spatial-partition proof, declared-normal cross-check, boundary-limit/full-jump
-  validation, regional volume/source/
-  boundary residual and Jacobian execution, global conservation, solver
-  convergence, and multi-region closure remain false, and these slices emit no
-  validation evidence.
-  The dedicated G3 operational receipt is now bound into an explicit
-  recoverable ECF/VVUQ non-bridge and a zero-credit whole-device integration
-  request. This verifies identity and exposes missing stages; it does not
-  supply generic VVUQ evidence or execute whole-device closure.
-  Two sealed fresh Julia executions now reproduce that manufactured operational
-  trace exactly. This narrows a software repeatability gap only; it contributes
-  no engineering, physical-validation, generic V&V/UQ, or closure evidence.
-  These results do not establish physical validation, engineering feasibility,
-  whole-device closure, or a simplest feasible device.
+`p5_ready=false`; credible physical device candidates: **0**. The current ledger
+executes a whole-device **assessment**, not whole-device physics. The analytic
+integration benchmark and independent Python postprocessing verify software
+calculations, not an independent physical solver or physical validation.
+Deterministic observed formulation spread is not a confidence interval or
+certified error bound. Passing execution/tests grants no engineering feasibility,
+physical validation, terminal classification or simplest-feasible-device claim.
