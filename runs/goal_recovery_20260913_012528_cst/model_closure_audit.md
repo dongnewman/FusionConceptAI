@@ -66,6 +66,14 @@ This passes the narrow recovery-robustness portion of N1, but it does not pass a
 
 The result remains numerical-only, has evidence authority `none`, and declares physical validation `unsupported`. It does not close the candidate-owned pressure/current selector, exterior field/current-return system, or the real four-case physics failure. R03 therefore remains unaccepted, and the next ordered minimum problem is N2 rather than further solver iteration tuning.
 
+## N2 sourced-input checkpoint
+
+The official DESC `v0.17.3` release artifact `HELIOTRON_output.h5` was downloaded from tag commit `fcc29be36f0b36b1b667df4b1f8891a9b633f5d1`. Its SHA-256 `305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe` and 467439-byte length match the copy installed with the pinned `desc-opt 0.17.3` environment. This supplies the first currently available source-complete external-simulation input for N2: `NFP=19`, toroidal flux `1 Wb`, pressure `18000(1-rho^2)^2 Pa`, iota `1+1.5 rho^2`, and four radial plus three vertical boundary modes above the preregistered `1e-12 m` zero threshold.
+
+The executed normalizer produced label-neutral subject hash `07fc47f9a10537c9cc2c07db5a426b2566a5a87c1bdaa3a5ae99f3515dd889bb`. The largest discarded boundary coefficient is `1.94018e-16 m`. Registry tests pass 7/7, normalizer contract tests pass 6/6, and an independent output-validation invocation exits 0.
+
+This checkpoint establishes source acquisition and deterministic representation only. The artifact is a DESC-produced external simulation, not a measurement or independent solver. It has no inverse parameter, calibration/held-out split, measurement uncertainty, or physical-validation authority. The normalized subject must next be bound into the typed G2 declaration and freshly reexecuted through the production DESC provider; the same subject must then be mapped independently into the spatial residual before a code-to-code comparison can be evaluated. R01 and R02 remain unaccepted.
+
 ## Current classification and next work order boundaries
 
 - Numerical defect: confirmed floating-point stagnation; W01 owns the narrow algorithm correction.
