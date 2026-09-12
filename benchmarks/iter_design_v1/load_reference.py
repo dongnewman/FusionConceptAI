@@ -21,7 +21,7 @@ def validate_registry(obj):
         if ref.get("evidence_class") not in EVIDENCE: errors.append(f"{rid}: evidence_class")
         if not ref.get("mission"): errors.append(f"{rid}: mission")
         src = ref.get("source", {})
-        for key in ("url", "accessed_date", "license_or_access"): 
+        for key in ("url", "accessed_date", "license_or_access"):
             if not src.get(key): errors.append(f"{rid}: source.{key}")
         if ref.get("mission") == "non_electricity_producing_public_design_reference" and ref.get("evidence_class") == "measurement": errors.append(f"{rid}: ITER design mislabeled measurement")
         fields = ref.get("fields", {})
