@@ -150,6 +150,17 @@ function _smr_rank_audit(A,F,tolerance)
      continuum_uniqueness=:unsupported,physical_closure=:pressure_current_topology_not_fixed)
 end
 
+# Floating-point tolerances are expressed in scaled coordinates z=x./cols;
+# they describe representability only and are not physical pressure tolerances.
+_smr_scaled_bound_tolerance(z)=8eps(Float64).*max.(1.0,abs.(z))
+_smr_pressure_bound_tolerance(p,scale)=8eps(Float64)*max(1.0,abs(p/scale))*scale
+_smr_pressure_feasible(p,scale)=isfinite(p) && p >= -_smr_pressure_bound_tolerance(p,scale)
+function _smr_scaled_state_change(x,y,cols)
+    all(isfinite,y) || return false
+    zx=x./cols;zy=y./cols
+    any(abs.(zy.-zx) .> 8eps(Float64).*max.(1.0,max.(abs.(zx),abs.(zy))))
+end
+
 function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=nothing,
         _test_qr_factorization=nothing,_test_line_search_acceptance=nothing)
     d.flux.interval_Wb[1]<=flux_Wb<=d.flux.interval_Wb[2] || throw(ArgumentError("undeclared flux realization"))
@@ -161,14 +172,21 @@ function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=
     code=4;reason=:iteration_limit;last_linear=0.;last_step=0.;start=time()
     rankaudit=(method=:not_executed,rank_estimate=-1,columns=nd,nullity_estimate=-1,null_modes=(),continuum_uniqueness=:unsupported)
     for iteration in 0:maxit
+        # Canonicalize only representationally negative pressure; materially
+        # infeasible states remain failures and are never passed to residuals.
+        for i in 4:4:nd
+            _smr_pressure_feasible(x[i],cols[i]) && x[i]<0.0 && (x[i]=0.0)
+        end
         a=assemble_spatial_system_v4(d,data,x;flux_Wb);rs=a.residual./a.row_scales
         A=spdiagm(0=>1 ./a.row_scales)*a.jacobian*spdiagm(0=>cols);g=transpose(A)*rs
-        active=[i for i in 4:4:nd if x[i] <= 0.0 && g[i] > 0.0];free=setdiff(collect(1:nd),active)
+        z=x./cols
+        bound_tol=_smr_scaled_bound_tolerance(z)
+        active=[i for i in 4:4:nd if z[i] <= bound_tol[i] && g[i] > 0.0];free=setdiff(collect(1:nd),active)
         pg=copy(g);pg[active].=0.
         push!(history,(iteration=iteration,scaled_norm=norm(rs),scaled_max=maximum(abs,rs),blocks=_smr_block_norms(a),
                        projected_gradient_norm=norm(pg),step_norm=last_step,linear_relative_residual=last_linear,linear_solve_executed=iteration>0,
                        elapsed_seconds=time()-start));push!(states,copy(x))
-        if !all(isfinite,rs)||minimum(x[4:4:end])<-1e-10;code=6;reason=:nonfinite_or_infeasible_state;break;end
+        if !all(isfinite,rs)||any(i->_smr_pressure_feasible(x[i],cols[i])==false,4:4:nd);code=6;reason=:nonfinite_or_infeasible_state;break;end
         if maximum(abs,rs)<=d.solver.residual_tolerance;code=0;reason=:all_scaled_residuals_converged;break;end
         if norm(pg)<=d.solver.gradient_tolerance;code=2;reason=:stationary_nonzero_residual;break;end
         if iteration==maxit;code=4;reason=:iteration_limit;break;end
@@ -201,46 +219,69 @@ function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=
             for i in 4:4:nd;v[i]<0&&(alpha=min(alpha,-x[i]/(cols[i]*v[i])));end
             max(alpha,0.)
         end
+        function representable_trial(v,alpha_try)
+            trial=x.+alpha_try.*cols.*v
+            _smr_scaled_state_change(x,trial,cols) && all(isfinite,trial)
+        end
         qr_step_finite=all(isfinite,step);qr_linear_residual=_smr_finite_metric(norm(A*step+rs)/max(norm(rs),eps()))
         alpha=feasible_alpha(step);direction=:sparse_QR_gauss_newton
-        if !all(isfinite,step) || dot(g,step) >= 0.0 || alpha == 0.0
+        if !all(isfinite,step) || dot(g,step) >= 0.0 || alpha == 0.0 || !representable_trial(step,alpha)
             # A projected descent direction is an actual feasible fallback,
             # not clipping an infeasible Newton step into an unchanged state.
             step=-pg/max(norm(pg),1.);alpha=feasible_alpha(step);direction=:projected_gradient_fallback
         end
         last_linear=norm(A*step+rs)/max(norm(rs),eps());accepted=false;accepted_alpha=nothing
-        trials=NamedTuple[];evaluation_count=0
+        trials=NamedTuple[];evaluation_count=0;phi_before=dot(rs,rs);accepted_phi=phi_before;accepted_scaled_change=false
+        feasible_trial_seen=false;representable_trial_seen=false;strict_decrease_seen=false
         for ls in 0:d.solver.line_search_steps
             alpha_try=alpha*2.0^(-ls);trial=x.+alpha_try.*cols.*step
-            for i in 4:4:nd;-1e-10<trial[i]<0. && (trial[i]=0.);end
-            feasible=minimum(trial[4:4:end])>=0.;changed=trial!=x
-            if !feasible||!changed
+            for i in 4:4:nd;_smr_pressure_feasible(trial[i],cols[i]) && trial[i]<0. && (trial[i]=0.);end
+            feasible=all(i->_smr_pressure_feasible(trial[i],cols[i]),4:4:nd)
+            changed=trial!=x;scaled_change=_smr_scaled_state_change(x,trial,cols)
+            feasible_trial_seen |= feasible
+            representable_trial_seen |= feasible && scaled_change
+            if !feasible||!changed||!scaled_change
                 push!(trials,(trial_index=ls,alpha=alpha_try,evaluated=false,feasible=feasible,changed_state=changed,
-                    finite_residual=nothing,scaled_norm=nothing,scaled_max=nothing,accepted=false))
+                    scaled_state_change=scaled_change,finite_residual=nothing,scaled_norm=nothing,scaled_max=nothing,
+                    objective_before=phi_before,objective_after=nothing,objective_decrease=nothing,armijo_accepted=false,
+                    strict_objective_decrease=false,accepted=false))
                 continue
             end
             ar=assemble_spatial_system_v4(d,data,trial;flux_Wb,jacobian=false);rr=ar.residual./ar.row_scales
             evaluation_count+=1;finite=all(isfinite,rr)
-            armijo_accepted=finite&&dot(rr,rr)<=dot(rs,rs)+2e-4*alpha_try*dot(g,step)
+            phi_after=finite ? dot(rr,rr) : Inf
+            strict_decrease=finite && phi_after < phi_before
+            strict_decrease_seen |= strict_decrease
+            armijo_accepted=finite&&phi_after<=phi_before+2e-4*alpha_try*dot(g,step)
             # These hooks exist only to exercise otherwise nondeterministic
             # failure bookkeeping. Production callers leave both as `nothing`.
             trial_accepted=_test_line_search_acceptance===nothing ? armijo_accepted :
                 Bool(_test_line_search_acceptance((iteration=iteration,trial_index=ls,alpha=alpha_try,
                     finite=finite,armijo_accepted=armijo_accepted,scaled_norm=finite ? norm(rr) : nothing)))
+            trial_accepted=trial_accepted && strict_decrease
             push!(trials,(trial_index=ls,alpha=alpha_try,evaluated=true,feasible=true,changed_state=true,
-                finite_residual=finite,scaled_norm=finite ? norm(rr) : nothing,scaled_max=finite ? maximum(abs,rr) : nothing,accepted=trial_accepted))
+                scaled_state_change=true,finite_residual=finite,scaled_norm=finite ? norm(rr) : nothing,
+                scaled_max=finite ? maximum(abs,rr) : nothing,objective_before=phi_before,objective_after=finite ? phi_after : nothing,
+                objective_decrease=finite ? phi_before-phi_after : nothing,armijo_accepted=armijo_accepted,
+                strict_objective_decrease=strict_decrease,accepted=trial_accepted))
             if trial_accepted
-                last_step=norm((trial.-x)./cols);x=trial;accepted=true;accepted_alpha=alpha_try;accepted_count+=1;break
+                last_step=norm((trial.-x)./cols);accepted_scaled_change=scaled_change;accepted_phi=phi_after
+                x=trial;accepted=true;accepted_alpha=alpha_try;accepted_count+=1;break
             end
         end
+        no_progress=!accepted && feasible_trial_seen && (!representable_trial_seen || !strict_decrease_seen)
         push!(attempts,(attempt_index=attempt_index,iteration=iteration,state_before_hash=before_hash,
             linear_executed=true,linear_exit_code=0,linear_error_stage=nothing,linear_error=nothing,linear_solution_finite=qr_step_finite,
             linear_relative_residual=qr_linear_residual,searched_direction_relative_residual=_smr_finite_metric(last_linear),linear_rank_diagnostics=rankaudit,free_columns=Tuple(free),
             direction=direction,proposed_scaled_step=Tuple(_smr_finite_metric(v) for v in step),proposed_step_norm=_smr_finite_metric(norm(step)),
             nonfinite_step_columns=Tuple(findall(v->!isfinite(v),step)),
             line_search_trial_count=length(trials),line_search_evaluation_count=evaluation_count,trials=Tuple(trials),
-            accepted=accepted,accepted_alpha=accepted_alpha,state_after_hash=canonical_hash(Tuple(x)),elapsed_seconds=time()-start))
-        if !accepted;code=3;reason=:feasible_line_search_failed;break;end
+            accepted=accepted,accepted_alpha=accepted_alpha,objective_before=phi_before,
+            objective_after=accepted_phi,objective_decrease=phi_before-accepted_phi,
+            strict_objective_decrease=accepted && accepted_phi<phi_before,scaled_state_change=accepted_scaled_change,
+            bound_active_indices=Tuple(active),bound_tolerance=maximum(bound_tol),progress_classification=accepted ? :accepted_strict_decrease :
+                (no_progress ? :floating_point_no_progress : :line_search_rejected),state_after_hash=canonical_hash(Tuple(x)),elapsed_seconds=time()-start))
+        if !accepted;code=3;reason=no_progress ? :floating_point_no_progress : :feasible_line_search_failed;break;end
     end
     final=assemble_spatial_system_v4(d,data,x;flux_Wb)
     Afinal=spdiagm(0=>1 ./final.row_scales)*final.jacobian*spdiagm(0=>cols)
@@ -513,7 +554,7 @@ function validate_spatial_result_v4(context,p::SpatialMultiRegionResultV4)
             if t.accepted
                 length(t.proposed_scaled_step)==length(before)&&t.accepted_alpha!==nothing&&count(z->z.accepted,t.trials)==1||error("accepted step evidence missing")
                 trial=collect(before).+t.accepted_alpha.*columns.*collect(t.proposed_scaled_step)
-                for k in 4:4:length(trial);-1e-10<trial[k]<0. && (trial[k]=0.);end
+                for k in 4:4:length(trial);_smr_pressure_feasible(trial[k],d.scaling.p_Pa) && trial[k]<0. && (trial[k]=0.);end
                 after=Tuple(v for z in state_lines[(accepted_index+1)*nnode+1:(accepted_index+2)*nnode] for v in parse.(Float64,z[3:6]))
                 Tuple(trial)==after&&canonical_hash(after)==t.state_after_hash||error("state history update differs from actual attempted step")
                 accepted_index+=1
