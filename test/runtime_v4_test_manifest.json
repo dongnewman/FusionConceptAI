@@ -1,0 +1,42 @@
+{
+  "schema": "runtime_v4_test_manifest.v1",
+  "runtime_v4_default_test_entrypoint": "not covered by test/runtests.jl",
+  "layers": {
+    "fast contract/numerics": [
+      {
+        "path": "scripts/audit_runtime_v4_test_coverage.py",
+        "opt_in": true,
+        "command": "python scripts/audit_runtime_v4_test_coverage.py --output <new-output.json>",
+        "scope": "static ordered-entrypoint and coverage inventory; not execution evidence"
+      },
+      {
+        "path": "test/runtime_v4_spatial_entrypoint_tests.jl",
+        "opt_in": true,
+        "command": "julia --startup-file=no --project=. test/runtime_v4_spatial_entrypoint_tests.jl",
+        "scope": "injectable ordered-loader state machine, source hashes, duplicate/partial-load refusal, and entrypoint wiring; does not construct the parent candidate or execute child sources"
+      }
+    ],
+    "provider integration": [
+      {
+        "path": "scripts/run_v4_spatial_chain.jl",
+        "opt_in": true,
+        "scope": "DESC/provider process and receipt chain; not part of the fast focused test"
+      }
+    ],
+    "real scientific benchmark": [
+      {
+        "path": "scripts/run_v4_spatial_chain.jl",
+        "opt_in": true,
+        "scope": "spatial physics, engineering, and verification run with declared artifacts"
+      }
+    ],
+    "final acceptance": [
+      {
+        "path": "scripts/run_v4_spatial_chain.jl",
+        "opt_in": true,
+        "scope": "whole-device assessment and authority boundaries; static loading does not grant acceptance"
+      }
+    ]
+  },
+  "boundary": "Loading an included source is not evidence that its functions executed, that a provider ran, or that scientific or final acceptance criteria passed."
+}

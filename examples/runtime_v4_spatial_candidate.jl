@@ -13,10 +13,8 @@ _spatial_candidate_timed("parent_candidate") do
 end
 const SCV=RCV
 _spatial_candidate_timed("spatial_source_load") do
-    for source in ("SpatialExecutionTypesV4.jl","SpatialMultiRegionV4.jl","SpatialPickupEngineeringV4.jl",
-                   "SpatialVerificationUQV4.jl","SpatialCandidateV4.jl")
-        Base.include(SCV,joinpath(@__DIR__,"..","src","RuntimeV4",source))
-    end
+    Base.include(SCV,joinpath(@__DIR__,"..","src","RuntimeV4","SpatialRuntimeV4.jl"))
+    SCV.load_spatial_runtime_v4!()
 end
 const spatial=_spatial_candidate_timed("spatial_candidate_build") do
     SCV.build_spatial_candidate_v4(revised_context,dgpi_declaration)

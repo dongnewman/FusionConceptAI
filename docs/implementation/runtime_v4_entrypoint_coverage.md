@@ -32,15 +32,17 @@ distinct contract/compiler/capability/execution/search/archive/residual and
 whole-device tree. The inventory does not infer a production aggregation
 between these two roots.
 
-The spatial example first loads the revised candidate and then loads RuntimeV4
-source files through `Base.include` using a computed source name. The spatial
-runner includes the example, performs its staged calls, and later executes
-`Base.include(SCV, joinpath(SPATIAL_REPO, "src", "RuntimeV4",
-"SpatialWholeDeviceV4.jl"))`. This is the recorded world-age-prone loading
-path. The computed expressions are explicitly retained as dynamic/unresolved
-edges. Recording this order is factual; it does not prove that world age is
-the cause of any later behavior, nor that any included module executed
-successfully.
+The spatial example first loads the revised candidate and then loads the
+versioned `src/RuntimeV4/SpatialRuntimeV4.jl` aggregator. That aggregator
+loads, in order, `SpatialExecutionTypesV4.jl`, `SpatialMultiRegionV4.jl`,
+`SpatialPickupEngineeringV4.jl`, `SpatialVerificationUQV4.jl`,
+`SpatialCandidateV4.jl`, and `SpatialWholeDeviceV4.jl` before candidate staged
+execution. The runner includes the example and no longer performs the former
+late `Base.include` of `SpatialWholeDeviceV4.jl`. The parent-candidate and
+computed include expressions remain explicitly retained as
+dynamic/unresolved predecessor edges. Recording this order is factual; it
+does not prove that any included module executed successfully or grant a
+world-age/scientific conclusion.
 
 The current checkout is dirty and contains unrelated pre-existing changes.
 The JSON is therefore tied to the recorded commit plus the working-tree
@@ -69,12 +71,12 @@ For main-line review, the production/test split should be kept explicit:
    evidence. Static reachability, a green package suite, or a provider receipt
    cannot grant this tier.
 
-The second-stage implementation should decide and document one production
-entrypoint that owns the loading order, rather than requiring users to run
-multiple examples manually. It should also add an explicit test manifest or
-registry mapping each RuntimeV4 module to the appropriate layer, while
-preserving opt-in boundaries for provider and scientific runs. This audit
-intentionally does not modify those aggregators, Julia modules, or tests.
+The second-stage implementation now supplies one additive spatial production
+loader and `test/runtime_v4_test_manifest.json`, mapping the focused loader,
+provider, scientific, and final-acceptance layers while preserving opt-in
+boundaries. The loader refuses duplicate or partial loads rather than
+silently redefining types. It does not modify package aggregation, providers,
+evidence, authority, or W01 solver code.
 
 ## Acceptance status
 

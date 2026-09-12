@@ -136,7 +136,6 @@ const verification=checkpoint_stage("verification",()->SCV.execute_spatial_verif
     r->SCV.validate_spatial_verification_result_v4(ctx,upstream,physics,engineering,r))
 # The independent verification validator seals request bytes back to real states.
 SCV.validate_spatial_verification_result_v4(ctx,upstream,physics,engineering,verification)
-Base.include(SCV,joinpath(SPATIAL_REPO,"src","RuntimeV4","SpatialWholeDeviceV4.jl"))
 const whole=spatial_recorded(:whole;
         completion=w->(;solver_exit_code=0,scientific_status=w.status)) do
     w=SCV.assess_spatial_whole_device_v4(ctx,upstream,physics,engineering,verification)

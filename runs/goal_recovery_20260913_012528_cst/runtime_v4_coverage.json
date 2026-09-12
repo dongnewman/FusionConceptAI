@@ -1,11 +1,24 @@
 {
   "coverage_boundary": {
+    "dynamic_predecessor_chain": "The parent candidate and computed Base.include expressions remain unresolved/dynamic inventory entries.",
     "include_parsing": "Parsed include edges inventory loading syntax only; it is not execution or test evidence.",
     "package_assertions": "The package's 2631 assertions are not RuntimeV4 total coverage.",
+    "spatial_aggregator": {
+      "path": "src/RuntimeV4/SpatialRuntimeV4.jl",
+      "source_order": [
+        "SpatialExecutionTypesV4.jl",
+        "SpatialMultiRegionV4.jl",
+        "SpatialPickupEngineeringV4.jl",
+        "SpatialVerificationUQV4.jl",
+        "SpatialCandidateV4.jl",
+        "SpatialWholeDeviceV4.jl"
+      ]
+    },
     "world_age_prone_path": [
       "scripts/run_v4_spatial_chain.jl includes examples/runtime_v4_spatial_candidate.jl",
-      "the example loads RuntimeV4 sources through Base.include",
-      "the runner later calls Base.include on src/RuntimeV4/SpatialWholeDeviceV4.jl"
+      "the example loads the versioned src/RuntimeV4/SpatialRuntimeV4.jl aggregator",
+      "the aggregator loads SpatialWholeDeviceV4 before candidate staged execution",
+      "the former late WholeDevice Base.include is no longer present in the runner"
     ]
   },
   "dirty_state_warning": true,
@@ -1090,7 +1103,7 @@
       ],
       "tier": "real scientific benchmark",
       "tracked": true,
-      "working_tree_status": "clean"
+      "working_tree_status": "modified"
     },
     {
       "exists": true,
@@ -1668,7 +1681,7 @@
       ],
       "tier": "real scientific benchmark",
       "tracked": true,
-      "working_tree_status": "clean"
+      "working_tree_status": "modified"
     },
     {
       "exists": true,
@@ -2533,6 +2546,15 @@
       "tier": "real scientific benchmark",
       "tracked": true,
       "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialRuntimeV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
     },
     {
       "exists": true,
@@ -3404,6 +3426,15 @@
     {
       "exists": true,
       "kind": "test",
+      "path": "test/runtime_v4_spatial_entrypoint_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
       "path": "test/runtime_v4_spatial_graph_tests.jl",
       "reachable_from": [],
       "tier": "real scientific benchmark",
@@ -3434,8 +3465,8 @@
       "path": "test/runtime_v4_spatial_solver_stagnation_tests.jl",
       "reachable_from": [],
       "tier": "real scientific benchmark",
-      "tracked": false,
-      "working_tree_status": "untracked"
+      "tracked": true,
+      "working_tree_status": "clean"
     },
     {
       "exists": true,
@@ -3709,10 +3740,14 @@
     "scripts/run_v4_spatial_chain.jl"
   ],
   "schema": "runtime_v4_test_coverage.v1",
-  "source_commit": "c9ee99035bc04908bfc0df1e3b60d8c86033bcfb",
+  "source_commit": "be53e1534a7e65c297a804128c39872639a1981d",
   "status_entries": [
+    " M examples/runtime_v4_spatial_candidate.jl",
+    " M runs/goal_recovery_20260913_012528_cst/runtime_v4_coverage.json",
+    " M scripts/audit_runtime_v4_test_coverage.py",
+    " M scripts/run_v4_spatial_chain.jl",
     " M test/runtime_v4_validation_uq_execution_request_tests.jl",
-    "?? benchmarks/",
+    "?? benchmarks/iter_design_v1/__pycache__/",
     "?? candidate_validation_focused.exit",
     "?? candidate_validation_focused.log",
     "?? docs/implementation/engineering_control_fault_contract.md",
@@ -3725,7 +3760,6 @@
     "?? docs/implementation/regional_force_quadrature_direction_diagnostic_v4.md",
     "?? docs/implementation/regional_mhd_global_conservation_observation_v4.md",
     "?? docs/implementation/regional_mhd_weak_residual_v4.md",
-    "?? docs/implementation/runtime_v4_entrypoint_coverage.md",
     "?? docs/implementation/v3_reuse_audit.md",
     "?? docs/implementation/validation_uq_contract.md",
     "?? docs/reports/engineering_control_fault_contract_20260909.md",
@@ -3766,9 +3800,87 @@
     "?? q4_package_regression.log",
     "?? q4_package_regression_retry.exit",
     "?? q4_package_regression_retry.log",
-    "?? runs/",
+    "?? runs/candidate_chain_20260912/",
+    "?? runs/candidate_chain_20260912_integrated/",
+    "?? runs/candidate_validation_propagation/",
+    "?? runs/desc_field_basis_bridge/",
+    "?? runs/desc_field_provider/",
+    "?? runs/desc_field_provider_module_path_hardening/",
+    "?? runs/desc_field_provider_receipt_hardening/",
+    "?? runs/desc_regional_integrated_force_observation/",
+    "?? runs/desc_request_provider_execution/",
+    "?? runs/desc_rho_surface_trace_provider/",
+    "?? runs/drstp_focused/",
+    "?? runs/drstp_focused2/",
+    "?? runs/drstp_focused2_basis/",
+    "?? runs/drstp_focused2_field/",
+    "?? runs/drstp_focused3/",
+    "?? runs/drstp_focused3_basis/",
+    "?? runs/drstp_focused3_field/",
+    "?? runs/drstp_focused4/",
+    "?? runs/drstp_focused4_basis/",
+    "?? runs/drstp_focused4_field/",
+    "?? runs/drstp_focused_basis/",
+    "?? runs/drstp_focused_field/",
+    "?? runs/drstp_probe/",
+    "?? runs/drstp_probe_basis/",
+    "?? runs/drstp_probe_field/",
+    "?? runs/drstp_runner/",
+    "?? runs/drstp_runner_basis/",
+    "?? runs/drstp_runner_field/",
+    "?? runs/dsmb_final2_20260911_143331/",
+    "?? runs/dsmb_final3_20260911_144022/",
+    "?? runs/dsmb_final4_20260911_144647/",
+    "?? runs/dsmb_final5_20260911_145457/",
+    "?? runs/dsmb_final6_20260911_150209/",
+    "?? runs/dsmb_final_20260911_142340/",
+    "?? runs/dsmb_runner_20260911_150816/",
+    "?? runs/goal_recovery_20260913_012528_cst/acceptance.json",
+    "?? runs/goal_recovery_20260913_012528_cst/decisions.json",
+    "?? runs/goal_recovery_20260913_012528_cst/goal.json",
+    "?? runs/goal_recovery_20260913_012528_cst/manifest_recheck.json",
+    "?? runs/goal_recovery_20260913_012528_cst/model_closure_audit.md",
+    "?? runs/goal_recovery_20260913_012528_cst/requirements.json",
+    "?? runs/goal_recovery_20260913_012528_cst/run_registry.json",
+    "?? runs/goal_recovery_20260913_012528_cst/task_queue.json",
+    "?? runs/ideal_mhd_interface_pressure/",
+    "?? runs/imirj_final2_20260911_143312/",
+    "?? runs/imirj_final_20260911_142319/",
+    "?? runs/imirj_gate_20260911_135931/",
+    "?? runs/imirj_gate_20260911_140732/",
+    "?? runs/imirj_gate_20260911_141539/",
+    "?? runs/imirj_runner_20260911_144057/",
+    "?? runs/imit_final_pressure/",
+    "?? runs/imit_final_surface/",
+    "?? runs/imit_focused_pressure/",
+    "?? runs/imit_focused_pressure2/",
+    "?? runs/imit_focused_surface/",
+    "?? runs/imit_focused_surface2/",
+    "?? runs/imit_reg_basis/",
+    "?? runs/imit_reg_surface_retry/",
+    "?? runs/imit_runner_pressure/",
+    "?? runs/imit_runner_surface/",
+    "?? runs/reg_basis_dfb/",
+    "?? runs/reg_basis_dfp/",
+    "?? runs/reg_basis_dgrpe/",
+    "?? runs/reg_field_dfp/",
+    "?? runs/reg_field_dgrpe/",
+    "?? runs/reg_rho_dfb/",
+    "?? runs/reg_rho_dfp/",
+    "?? runs/reg_rho_dgrpe/",
+    "?? runs/regional_force_q3_chain/",
+    "?? runs/regional_force_q3_comparison/",
+    "?? runs/revised_chain_20260912_audit/",
+    "?? runs/revised_chain_20260912_r1/",
+    "?? runs/revised_chain_20260912_r2/",
+    "?? runs/revised_chain_20260912_r3/",
+    "?? runs/runtime_v4_freegs_axisymmetric_current_fixture_v1/",
+    "?? runs/spatial_chain_20260912_acceptance/",
+    "?? runs/spatial_chain_20260912_audit/",
+    "?? runs/spatial_chain_20260912_r1/",
+    "?? runs/spatial_chain_20260912_staging/",
+    "?? runs/traction_regression_20260911_150837/",
     "?? scripts/__pycache__/",
-    "?? scripts/audit_runtime_v4_test_coverage.py",
     "?? scripts/run_v4_RegionalMHDWeakResidualV4.jl",
     "?? scripts/run_v4_engineering_control_fault_execution_request.jl",
     "?? scripts/run_v4_engineering_control_fault_obligation.jl",
@@ -3788,6 +3900,7 @@
     "?? src/RuntimeV4/RegionalForceQuadratureDirectionDiagnosticV4.jl",
     "?? src/RuntimeV4/RegionalMHDGlobalConservationObservationV4.jl",
     "?? src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+    "?? src/RuntimeV4/SpatialRuntimeV4.jl",
     "?? src/RuntimeV4/ValidationUQContracts.jl",
     "?? test/runtime_v4_RegionalMHDWeakResidualProductionGap_tests.jl",
     "?? test/runtime_v4_RegionalMHDWeakResidualV4_tests.jl",
@@ -3801,10 +3914,11 @@
     "?? test/runtime_v4_physical_provider_admission_tests.jl",
     "?? test/runtime_v4_regional_force_quadrature_direction_diagnostic_tests.jl",
     "?? test/runtime_v4_regional_mhd_global_conservation_observation_tests.jl",
-    "?? test/runtime_v4_spatial_solver_stagnation_tests.jl",
+    "?? test/runtime_v4_spatial_entrypoint_tests.jl",
+    "?? test/runtime_v4_test_manifest.json",
     "?? test/runtime_v4_validation_uq_contract_tests.jl",
     "?? test_tmp.out",
-    "M src/RuntimeV4/SpatialMultiRegionV4.jl"
+    "M docs/implementation/runtime_v4_entrypoint_coverage.md"
   ],
   "tier_definitions": {
     "fast contract/numerics": "package and lightweight RuntimeV4 contract/numerics checks",
@@ -3820,9 +3934,9 @@
       "source": "examples/runtime_v4_spatial_candidate.jl"
     },
     {
-      "expression": "Base.include(SCV,joinpath(@__DIR__,\"..\",\"src\",\"RuntimeV4\",source))",
+      "expression": "Base.include(SCV,joinpath(@__DIR__,\"..\",\"src\",\"RuntimeV4\",\"SpatialRuntimeV4.jl\"))",
       "kind": "dynamic_or_unresolved",
-      "line": 18,
+      "line": 16,
       "source": "examples/runtime_v4_spatial_candidate.jl"
     },
     {
@@ -3832,15 +3946,9 @@
       "source": "scripts/run_v4_spatial_chain.jl"
     },
     {
-      "expression": "Base.include(SCV,joinpath(SPATIAL_REPO,\"src\",\"RuntimeV4\",\"SpatialWholeDeviceV4.jl\"))",
-      "kind": "dynamic_or_unresolved",
-      "line": 139,
-      "source": "scripts/run_v4_spatial_chain.jl"
-    },
-    {
       "expression": "include(joinpath(SPATIAL_REPO,\"test\",\"runtime_v4_spatial_chain_checks.jl\"))",
       "kind": "dynamic_or_unresolved",
-      "line": 144,
+      "line": 143,
       "source": "scripts/run_v4_spatial_chain.jl"
     },
     {

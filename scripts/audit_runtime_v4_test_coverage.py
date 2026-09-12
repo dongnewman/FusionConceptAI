@@ -149,9 +149,19 @@ def main() -> int:
             "include_parsing": "Parsed include edges inventory loading syntax only; it is not execution or test evidence.",
             "world_age_prone_path": [
                 "scripts/run_v4_spatial_chain.jl includes examples/runtime_v4_spatial_candidate.jl",
-                "the example loads RuntimeV4 sources through Base.include",
-                "the runner later calls Base.include on src/RuntimeV4/SpatialWholeDeviceV4.jl",
+                "the example loads the versioned src/RuntimeV4/SpatialRuntimeV4.jl aggregator",
+                "the aggregator loads SpatialWholeDeviceV4 before candidate staged execution",
+                "the former late WholeDevice Base.include is no longer present in the runner",
             ],
+            "spatial_aggregator": {
+                "path": "src/RuntimeV4/SpatialRuntimeV4.jl",
+                "source_order": [
+                    "SpatialExecutionTypesV4.jl", "SpatialMultiRegionV4.jl",
+                    "SpatialPickupEngineeringV4.jl", "SpatialVerificationUQV4.jl",
+                    "SpatialCandidateV4.jl", "SpatialWholeDeviceV4.jl"
+                ],
+            },
+            "dynamic_predecessor_chain": "The parent candidate and computed Base.include expressions remain unresolved/dynamic inventory entries.",
         },
         "tier_definitions": {
             "fast contract/numerics": "package and lightweight RuntimeV4 contract/numerics checks",
