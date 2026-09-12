@@ -9,10 +9,13 @@
     "url": "https://raw.githubusercontent.com/PlasmaControl/DESC/v0.17.3/desc/examples/HELIOTRON_output.h5",
     "sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
     "bytes": 467439,
-    "producer": "desc-opt",
-    "producer_version": "0.17.3",
-    "source_tag": "v0.17.3",
-    "source_tag_commit": "fcc29be36f0b36b1b667df4b1f8891a9b633f5d1"
+    "format_producer": "DESC HDF5 equilibrium",
+    "distributed_in_release_tag": "v0.17.3",
+    "distribution_tag_commit": "fcc29be36f0b36b1b667df4b1f8891a9b633f5d1",
+    "embedded_producer_version": "0.17.1+38.g53ea59ef0.dirty",
+    "loader_runtime_version": "0.17.3",
+    "equilibrium_count": 4,
+    "selected_equilibrium_index": 3
   },
   "source": {
     "repository": "https://github.com/PlasmaControl/DESC",
@@ -29,7 +32,8 @@
     "toroidal_flux_unit": "Wb",
     "boundary_coordinate_convention": "DESC FourierRZToroidalSurface stored basis",
     "profile_policy": "retain through last coefficient whose absolute value exceeds tolerance and preserve interior zero powers",
-    "boundary_policy": "retain stored boundary coefficients whose absolute value exceeds tolerance and report maximum discarded magnitude"
+    "boundary_policy": "retain stored boundary coefficients whose absolute value exceeds tolerance and report maximum plus L1 uniform pointwise bounds for discarded trigonometric terms",
+    "current_profile_convention": "DESC current-profile coefficients represent (2*pi/mu0)*I(rho) with ampere units; never reinterpret as iota"
   },
   "authority": {
     "evidence_authority": "external_simulation_input_only",

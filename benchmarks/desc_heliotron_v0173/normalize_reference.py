@@ -41,6 +41,8 @@ def _trimmed_profile(profile, tolerance: float, quantity: str, unit: str) -> dic
     params = profile.params.tolist()
     pairs: list[tuple[int, float]] = []
     discarded = 0.0
+    discarded_l1 = 0.0
+    discarded_terms = 0
     for mode, value in zip(modes, params, strict=True):
         if len(mode) != 3 or mode[1:] != [0, 0]:
             raise ValueError(f"{quantity} profile contains a non-radial mode")
@@ -52,6 +54,8 @@ def _trimmed_profile(profile, tolerance: float, quantity: str, unit: str) -> dic
             pairs.append((exponent, number))
         else:
             discarded = max(discarded, abs(number))
+            discarded_l1 += abs(number)
+            discarded_terms += 1
     if not pairs:
         raise ValueError(f"{quantity} profile has no significant coefficients")
     largest = max(exponent for exponent, _ in pairs)
@@ -65,6 +69,10 @@ def _trimmed_profile(profile, tolerance: float, quantity: str, unit: str) -> dic
         "radial_domain": [0.0, 1.0],
         "coefficients_by_power": dense,
         "maximum_discarded_coefficient": discarded,
+        "discarded_coefficient_l1": discarded_l1,
+        "discarded_term_count": discarded_terms,
+        "uniform_pointwise_error_bound": discarded_l1,
+        "error_bound_basis": "sum(abs(discarded coefficients)); rho^k <= 1 on rho in [0,1]",
     }
 
 
@@ -72,6 +80,8 @@ def _trimmed_boundary(surface, tolerance: float) -> dict:
     def component(modes, values, name):
         kept = []
         discarded = 0.0
+        discarded_l1 = 0.0
+        discarded_terms = 0
         for mode, value in zip(modes.tolist(), values.tolist(), strict=True):
             if len(mode) != 3 or int(mode[0]) != 0:
                 raise ValueError(f"{name} boundary contains a non-surface mode")
@@ -83,13 +93,15 @@ def _trimmed_boundary(surface, tolerance: float) -> dict:
                              "coefficient_m": number})
             else:
                 discarded = max(discarded, abs(number))
+                discarded_l1 += abs(number)
+                discarded_terms += 1
         kept.sort(key=lambda row: (row["n"], row["m"]))
-        return kept, discarded
+        return kept, discarded, discarded_l1, discarded_terms
 
-    radial, radial_discarded = component(surface.R_basis.modes,
-                                          surface.R_lmn, "R")
-    vertical, vertical_discarded = component(surface.Z_basis.modes,
-                                              surface.Z_lmn, "Z")
+    radial, radial_discarded, radial_l1, radial_terms = component(
+        surface.R_basis.modes, surface.R_lmn, "R")
+    vertical, vertical_discarded, vertical_l1, vertical_terms = component(
+        surface.Z_basis.modes, surface.Z_lmn, "Z")
     return {
         "coordinate_system": "cylindrical_R_phi_Z",
         "coefficient_unit": "m",
@@ -97,6 +109,52 @@ def _trimmed_boundary(surface, tolerance: float) -> dict:
         "vertical_modes": vertical,
         "maximum_discarded_coefficient_m": max(radial_discarded,
                                                  vertical_discarded),
+        "discarded_coefficient_l1_m": {"R": radial_l1, "Z": vertical_l1},
+        "discarded_term_count": {"R": radial_terms, "Z": vertical_terms},
+        "uniform_pointwise_error_bound_m": {
+            "R": radial_l1,
+            "Z": vertical_l1,
+            "RZ_euclidean": math.hypot(radial_l1, vertical_l1),
+        },
+        "error_bound_basis": "sum(abs(discarded coefficients)); absolute sine/cosine basis values are <= 1",
+    }
+
+
+def _decode_hdf5_scalar(value) -> str:
+    if isinstance(value, bytes):
+        return value.decode("utf-8")
+    return str(value)
+
+
+def _embedded_metadata(artifact: Path, manifest: dict) -> dict:
+    """Verify container/member identity without conflating it with tag/runtime."""
+    import h5py
+
+    with h5py.File(artifact, "r") as stream:
+        if "__version__" not in stream or "_equilibria" not in stream:
+            raise ValueError("DESC artifact lacks embedded provenance")
+        family = stream["_equilibria"]
+        indices = sorted((int(key) for key in family.keys() if key.isdigit()))
+        if indices != list(range(len(indices))):
+            raise ValueError("DESC equilibrium family indices are not contiguous")
+        expected_count = int(manifest["artifact"]["equilibrium_count"])
+        selected_index = int(manifest["artifact"]["selected_equilibrium_index"])
+        if len(indices) != expected_count or selected_index not in indices:
+            raise ValueError("DESC equilibrium selection provenance mismatch")
+        root_version = _decode_hdf5_scalar(stream["__version__"][()])
+        member_versions = [
+            _decode_hdf5_scalar(family[str(index)]["__version__"][()])
+            for index in indices
+        ]
+        expected_version = manifest["artifact"]["embedded_producer_version"]
+        if root_version != expected_version or any(
+                version != expected_version for version in member_versions):
+            raise ValueError("DESC embedded producer version mismatch")
+    return {
+        "container_embedded_version": root_version,
+        "member_embedded_versions": member_versions,
+        "equilibrium_count": expected_count,
+        "selected_equilibrium_index": selected_index,
     }
 
 
@@ -114,14 +172,20 @@ def normalize(source_path: Path = DEFAULT_SOURCE) -> dict:
     if artifact.stat().st_size != manifest["artifact"]["bytes"]:
         raise ValueError("source artifact byte count mismatch")
 
+    embedded = _embedded_metadata(artifact, manifest)
+
     import desc
     import desc.io
     from desc.equilibrium import EquilibriaFamily
 
-    if desc.__version__ != manifest["artifact"]["producer_version"]:
-        raise ValueError("DESC producer version mismatch")
+    if desc.__version__ != manifest["artifact"]["loader_runtime_version"]:
+        raise ValueError("DESC loader runtime version mismatch")
     loaded = desc.io.load(artifact)
-    equilibrium = loaded[-1] if isinstance(loaded, EquilibriaFamily) else loaded
+    if not isinstance(loaded, EquilibriaFamily):
+        raise ValueError("source artifact is not the declared equilibrium family")
+    if len(loaded) != embedded["equilibrium_count"]:
+        raise ValueError("loaded equilibrium family count mismatch")
+    equilibrium = loaded[embedded["selected_equilibrium_index"]]
     if equilibrium.pressure is None:
         raise ValueError("source equilibrium has no pressure profile")
     if (equilibrium.iota is None) == (equilibrium.current is None):
@@ -137,10 +201,14 @@ def normalize(source_path: Path = DEFAULT_SOURCE) -> dict:
         "schema_version": "n2-label-neutral-equilibrium-subject-v1",
         "source_class": manifest["source_class"],
         "source_artifact_sha256": actual_hash,
-        "producer": {
-            "name": manifest["artifact"]["producer"],
-            "version": desc.__version__,
-            "source_tag_commit": manifest["artifact"]["source_tag_commit"],
+        "provenance": {
+            "format_producer": manifest["artifact"]["format_producer"],
+            "distributed_in_release_tag": manifest["artifact"]["distributed_in_release_tag"],
+            "distribution_tag_commit": manifest["artifact"]["distribution_tag_commit"],
+            "embedded_producer_version": embedded["container_embedded_version"],
+            "loader_runtime_version": desc.__version__,
+            "equilibrium_count": embedded["equilibrium_count"],
+            "selected_equilibrium_index": embedded["selected_equilibrium_index"],
         },
         "equilibrium_scope": "fixed_boundary_static_ideal_mhd",
         "field_periods": int(equilibrium.NFP),
@@ -198,6 +266,19 @@ def validate_normalized(record: dict, *, expected_source_hash: str | None = None
         raise ValueError("normalized source hash mismatch")
     if subject.get("source_class") != "external_simulation":
         raise ValueError("source class cannot be promoted or relabeled")
+    provenance = subject.get("provenance", {})
+    required_provenance = (
+        "distributed_in_release_tag", "distribution_tag_commit",
+        "embedded_producer_version", "loader_runtime_version",
+        "equilibrium_count", "selected_equilibrium_index",
+    )
+    if any(key not in provenance for key in required_provenance):
+        raise ValueError("normalized provenance is incomplete")
+    count = provenance["equilibrium_count"]
+    selected = provenance["selected_equilibrium_index"]
+    if (not isinstance(count, int) or not isinstance(selected, int) or
+            count <= 0 or selected < 0 or selected >= count):
+        raise ValueError("normalized equilibrium selection provenance is invalid")
     authority = record.get("authority", {})
     if (authority.get("physical_validation") != "unsupported" or
             authority.get("independent_solver") is not False or
@@ -214,6 +295,10 @@ def validate_normalized(record: dict, *, expected_source_hash: str | None = None
         raise ValueError("exactly one iota/current profile is required")
     if rotational.get("unit") != ("1" if rotational["quantity"] == "iota" else "A"):
         raise ValueError("rotational/current profile unit mismatch")
+    for name, profile in (("pressure", pressure), ("rotational/current", rotational)):
+        bound = profile.get("uniform_pointwise_error_bound")
+        if bound is None or not math.isfinite(float(bound)) or float(bound) < 0:
+            raise ValueError(f"{name} truncation bound is missing or invalid")
     coefficients = pressure.get("coefficients_by_power", [])
     if not coefficients or not all(math.isfinite(float(value)) for value in coefficients):
         raise ValueError("pressure coefficients are missing or non-finite")
@@ -225,6 +310,13 @@ def validate_normalized(record: dict, *, expected_source_hash: str | None = None
     if flux.get("unit") != "Wb" or not math.isfinite(float(flux.get("value", math.nan))):
         raise ValueError("toroidal flux is missing or invalid")
     boundary = subject.get("boundary", {})
+    coordinate_bounds = boundary.get("uniform_pointwise_error_bound_m", {})
+    if any(key not in coordinate_bounds for key in ("R", "Z", "RZ_euclidean")):
+        raise ValueError("boundary truncation bounds are incomplete")
+    if any(not math.isfinite(float(coordinate_bounds[key])) or
+           float(coordinate_bounds[key]) < 0
+           for key in ("R", "Z", "RZ_euclidean")):
+        raise ValueError("boundary truncation bounds are invalid")
     radial = boundary.get("radial_modes", [])
     if len([row for row in radial if row.get("m") == 0 and row.get("n") == 0
             and row.get("coefficient_m", 0) > 0]) != 1:

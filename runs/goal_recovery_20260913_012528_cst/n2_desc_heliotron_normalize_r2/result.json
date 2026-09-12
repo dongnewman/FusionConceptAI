@@ -1,0 +1,166 @@
+{
+  "authority": {
+    "credible_device_count": 0,
+    "evidence_authority": "external_simulation_input_only",
+    "held_out_prediction_ready": false,
+    "independent_solver": false,
+    "inversion_ready": false,
+    "measurement": false,
+    "physical_validation": "unsupported"
+  },
+  "normalization": {
+    "boundary_coordinate_convention": "DESC FourierRZToroidalSurface stored basis",
+    "boundary_policy": "retain stored boundary coefficients whose absolute value exceeds tolerance and report maximum plus L1 uniform pointwise bounds for discarded trigonometric terms",
+    "coefficient_zero_tolerance": 1e-12,
+    "current_profile_convention": "DESC current-profile coefficients represent (2*pi/mu0)*I(rho) with ampere units; never reinterpret as iota",
+    "iota_unit": "1",
+    "pressure_unit": "Pa",
+    "profile_coordinate": "rho=sqrt(psi/psi_boundary)",
+    "profile_policy": "retain through last coefficient whose absolute value exceeds tolerance and preserve interior zero powers",
+    "toroidal_flux_unit": "Wb"
+  },
+  "reference": {
+    "display_name": "DESC HELIOTRON packaged equilibrium",
+    "license": "MIT",
+    "reference_id": "desc_heliotron_v0173",
+    "source_url": "https://raw.githubusercontent.com/PlasmaControl/DESC/v0.17.3/desc/examples/HELIOTRON_output.h5"
+  },
+  "remaining_gaps": [
+    "typed_RuntimeV4_subject_binding",
+    "fresh_same_subject_DESC_reexecution",
+    "independent_spatial_mapping_and_comparison",
+    "genuine_hidden_parameter_inverse",
+    "independent_held_out_prediction",
+    "experimental_validation"
+  ],
+  "schema_version": "n2-normalized-reference-v1",
+  "status": "normalized_external_simulation_input",
+  "subject": {
+    "boundary": {
+      "coefficient_unit": "m",
+      "coordinate_system": "cylindrical_R_phi_Z",
+      "discarded_coefficient_l1_m": {
+        "R": 4.976614761952757e-16,
+        "Z": 1.2509377460942418e-16
+      },
+      "discarded_term_count": {
+        "R": 84,
+        "Z": 84
+      },
+      "error_bound_basis": "sum(abs(discarded coefficients)); absolute sine/cosine basis values are <= 1",
+      "maximum_discarded_coefficient_m": 1.9401797876628102e-16,
+      "radial_modes": [
+        {
+          "coefficient_m": 0.3,
+          "m": -1,
+          "n": -1
+        },
+        {
+          "coefficient_m": 10.000000000000005,
+          "m": 0,
+          "n": 0
+        },
+        {
+          "coefficient_m": -0.9999999999999998,
+          "m": 1,
+          "n": 0
+        },
+        {
+          "coefficient_m": -0.29999999999999993,
+          "m": 1,
+          "n": 1
+        }
+      ],
+      "uniform_pointwise_error_bound_m": {
+        "R": 4.976614761952757e-16,
+        "RZ_euclidean": 5.131426676226549e-16,
+        "Z": 1.2509377460942418e-16
+      },
+      "vertical_modes": [
+        {
+          "coefficient_m": -0.29999999999999993,
+          "m": 1,
+          "n": -1
+        },
+        {
+          "coefficient_m": 1.0,
+          "m": -1,
+          "n": 0
+        },
+        {
+          "coefficient_m": -0.3,
+          "m": -1,
+          "n": 1
+        }
+      ]
+    },
+    "equilibrium_scope": "fixed_boundary_static_ideal_mhd",
+    "field_periods": 19,
+    "pressure_profile": {
+      "basis": "power_series_in_rho",
+      "coefficients_by_power": [
+        18000.0,
+        0.0,
+        -36000.0,
+        0.0,
+        18000.0
+      ],
+      "discarded_coefficient_l1": 0.0,
+      "discarded_term_count": 10,
+      "error_bound_basis": "sum(abs(discarded coefficients)); rho^k <= 1 on rho in [0,1]",
+      "maximum_discarded_coefficient": 0.0,
+      "quantity": "pressure",
+      "radial_domain": [
+        0.0,
+        1.0
+      ],
+      "uniform_pointwise_error_bound": 0.0,
+      "unit": "Pa"
+    },
+    "provenance": {
+      "distributed_in_release_tag": "v0.17.3",
+      "distribution_tag_commit": "fcc29be36f0b36b1b667df4b1f8891a9b633f5d1",
+      "embedded_producer_version": "0.17.1+38.g53ea59ef0.dirty",
+      "equilibrium_count": 4,
+      "format_producer": "DESC HDF5 equilibrium",
+      "loader_runtime_version": "0.17.3",
+      "selected_equilibrium_index": 3
+    },
+    "rotational_or_current_profile": {
+      "basis": "power_series_in_rho",
+      "coefficients_by_power": [
+        1.0,
+        0.0,
+        1.5
+      ],
+      "discarded_coefficient_l1": 0.0,
+      "discarded_term_count": 11,
+      "error_bound_basis": "sum(abs(discarded coefficients)); rho^k <= 1 on rho in [0,1]",
+      "maximum_discarded_coefficient": 0.0,
+      "quantity": "iota",
+      "radial_domain": [
+        0.0,
+        1.0
+      ],
+      "uniform_pointwise_error_bound": 0.0,
+      "unit": "1"
+    },
+    "schema_version": "n2-label-neutral-equilibrium-subject-v1",
+    "source_artifact_sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+    "source_class": "external_simulation",
+    "source_resolution": {
+      "L": 24,
+      "L_grid": 36,
+      "M": 12,
+      "M_grid": 18,
+      "N": 3,
+      "N_grid": 6
+    },
+    "stellarator_symmetric": true,
+    "toroidal_flux": {
+      "unit": "Wb",
+      "value": 1.0
+    }
+  },
+  "subject_hash": "da67a0040f1bcd3747bbd9e72d0f26849c2b9845ab50d22fc060b4eaceae98b9"
+}

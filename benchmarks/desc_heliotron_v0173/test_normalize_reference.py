@@ -15,13 +15,25 @@ def valid_record():
         "schema_version": "n2-label-neutral-equilibrium-subject-v1",
         "source_class": "external_simulation",
         "source_artifact_sha256": "a" * 64,
+        "provenance": {
+            "distributed_in_release_tag": "v0.17.3",
+            "distribution_tag_commit": "f" * 40,
+            "embedded_producer_version": "0.17.1+38.g53ea59ef0.dirty",
+            "loader_runtime_version": "0.17.3",
+            "equilibrium_count": 4,
+            "selected_equilibrium_index": 3,
+        },
         "toroidal_flux": {"value": 1.0, "unit": "Wb"},
         "pressure_profile": {"quantity": "pressure", "unit": "Pa",
-                             "coefficients_by_power": [1.0, -1.0]},
+                             "coefficients_by_power": [1.0, -1.0],
+                             "uniform_pointwise_error_bound": 0.0},
         "rotational_or_current_profile": {"quantity": "iota", "unit": "1",
-                                           "coefficients_by_power": [0.5]},
+                                           "coefficients_by_power": [0.5],
+                                           "uniform_pointwise_error_bound": 0.0},
         "boundary": {"radial_modes": [
-            {"m": 0, "n": 0, "coefficient_m": 2.0}]},
+            {"m": 0, "n": 0, "coefficient_m": 2.0}],
+            "uniform_pointwise_error_bound_m": {
+                "R": 0.0, "Z": 0.0, "RZ_euclidean": 0.0}},
     }
     return {
         "schema_version": "n2-normalized-reference-v1",
@@ -42,6 +54,11 @@ class NormalizationContractTests(unittest.TestCase):
         artifact = ROOT / manifest["artifact"]["path"]
         self.assertEqual(sha256_file(artifact), manifest["artifact"]["sha256"])
         self.assertEqual(artifact.stat().st_size, manifest["artifact"]["bytes"])
+        self.assertEqual(manifest["artifact"]["selected_equilibrium_index"], 3)
+        self.assertEqual(manifest["artifact"]["equilibrium_count"], 4)
+        self.assertEqual(manifest["artifact"]["embedded_producer_version"],
+                         "0.17.1+38.g53ea59ef0.dirty")
+        self.assertEqual(manifest["artifact"]["loader_runtime_version"], "0.17.3")
 
     def test_display_labels_do_not_change_subject_hash(self):
         record = valid_record()
@@ -65,6 +82,22 @@ class NormalizationContractTests(unittest.TestCase):
         record = valid_record()
         record["authority"]["physical_validation"] = "supported"
         with self.assertRaisesRegex(ValueError, "authority ceiling"):
+            validate_normalized(record)
+
+    def test_incomplete_selected_member_provenance_fails_closed(self):
+        record = valid_record()
+        del record["subject"]["provenance"]["selected_equilibrium_index"]
+        record["subject_hash"] = hashlib.sha256(
+            canonical_bytes(record["subject"])).hexdigest()
+        with self.assertRaisesRegex(ValueError, "provenance is incomplete"):
+            validate_normalized(record)
+
+    def test_missing_truncation_bound_fails_closed(self):
+        record = valid_record()
+        del record["subject"]["boundary"]["uniform_pointwise_error_bound_m"]
+        record["subject_hash"] = hashlib.sha256(
+            canonical_bytes(record["subject"])).hexdigest()
+        with self.assertRaisesRegex(ValueError, "truncation bounds"):
             validate_normalized(record)
 
     def test_invalid_pressure_profile_fails_closed(self):
