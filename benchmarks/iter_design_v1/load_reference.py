@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 EVIDENCE = {"design_target", "measurement", "simulation", "published_experimental_range"}
-UNITS = {"MW", "T", "MA", "m^3", "m", "A", "eV", "m^-3", "1", "boolean", "categorical", "URI", None}
+UNITS = {"MW", "T", "MA", "m^3", "m", "A", "Pa", "Wb", "eV", "m^-3", "1", "boolean", "categorical", "URI", None}
 
 def validate_registry(obj):
     errors = []

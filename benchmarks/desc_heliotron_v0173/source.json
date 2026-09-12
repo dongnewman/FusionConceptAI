@@ -1,0 +1,43 @@
+{
+  "schema_version": "n2-external-equilibrium-source-v1",
+  "reference_id": "desc_heliotron_v0173",
+  "display_name": "DESC HELIOTRON packaged equilibrium",
+  "source_class": "external_simulation",
+  "status": "source_artifact_obtained",
+  "artifact": {
+    "path": "HELIOTRON_output.h5",
+    "url": "https://raw.githubusercontent.com/PlasmaControl/DESC/v0.17.3/desc/examples/HELIOTRON_output.h5",
+    "sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+    "bytes": 467439,
+    "producer": "desc-opt",
+    "producer_version": "0.17.3",
+    "source_tag": "v0.17.3",
+    "source_tag_commit": "fcc29be36f0b36b1b667df4b1f8891a9b633f5d1"
+  },
+  "source": {
+    "repository": "https://github.com/PlasmaControl/DESC",
+    "input_documentation": "https://desc-docs.readthedocs.io/en/stable/input.html",
+    "license": "MIT",
+    "license_url": "https://github.com/PlasmaControl/DESC/blob/v0.17.3/LICENSE",
+    "retrieved_at": "2026-09-13T05:34:00+08:00"
+  },
+  "normalization": {
+    "coefficient_zero_tolerance": 1e-12,
+    "profile_coordinate": "rho=sqrt(psi/psi_boundary)",
+    "pressure_unit": "Pa",
+    "iota_unit": "1",
+    "toroidal_flux_unit": "Wb",
+    "boundary_coordinate_convention": "DESC FourierRZToroidalSurface stored basis",
+    "profile_policy": "retain through last coefficient whose absolute value exceeds tolerance and preserve interior zero powers",
+    "boundary_policy": "retain stored boundary coefficients whose absolute value exceeds tolerance and report maximum discarded magnitude"
+  },
+  "authority": {
+    "evidence_authority": "external_simulation_input_only",
+    "physical_validation": "unsupported",
+    "independent_solver": false,
+    "measurement": false,
+    "inversion_ready": false,
+    "held_out_prediction_ready": false,
+    "credible_device_count": 0
+  }
+}
