@@ -49,3 +49,12 @@ This is source representation only. The radial degree `l` is not a `rho^l`
 power law. No Julia typed Fourier-Zernike evaluator, geometry proof, DESC
 reexecution, independent spatial comparison, inverse recovery, or physical
 validation is granted by extracting these arrays.
+
+`evaluate_interior.py` reconstructs scalar R/Z independently with SciPy Jacobi
+polynomials and explicit DESC positive-cosine/negative-sine mode semantics.
+`compare_interior.py` records five frozen internal/boundary nodes, compares
+against the selected DESC basis evaluation with a predeclared `1e-9 m`
+absolute tolerance, and exits 4 if any node fails. This is same-family
+geometry-basis numerical verification only. It is not an independent
+equilibrium solver, derivative proof, RuntimeV4 typed interpreter, or physical
+validation.
