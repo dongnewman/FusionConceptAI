@@ -1,43 +1,51 @@
 # FusionConceptAI Runtime V4 current progress index
 
 Last updated: 2026-09-12
-Current cycle starting HEAD: `main@793109c72f983f1fde92cfb71dc5f7100dcddfd5`
-Current accepted and pushed implementation: `main@48bf4e5eaf0952dbc2e8c14b0abc2aaf78a6778f`.
-Previous pushed acceptance includes `bf0b330` and `793109c`; the former index's `2ae6cc5` pointer was stale.
+Current cycle starting HEAD: `main@4d5afdbb1cb67ab8c4cf2167d91c929a2786d3eb`.
+Previous accepted implementation: `48bf4e5`; completed report/index: `4d5afdb`.
+The commit containing this index records the current reviewed milestone and its evidence.
 
-## Current same-candidate execution
+## Current revised-candidate execution
 
-The active run is `runs/candidate_chain_20260912_integrated`, using the existing
-`dgpi-candidate` and candidate hash
-`0619e5bbd0537caad9bec630db6667b2e37c1346fb24ce86e4f10db39af16f10`.
-All downstream modules consume the same actual DESC outputs and validated
-G1/G2/G3 context. The runner finished with OS exit **0**, and all six integrated
-test groups passed **108/108**. Core **26/26** and spine **54/54** passed with
-exit **0**. Package regression passed **2631/2631** across **105** reported groups,
-with OS exit **0**. This accepts the executed subcomponents and accurate gap
-accounting; it does not complete the missing physical/engineering/validation stages.
+Current candidate: `7b44ba518eb7e7fdede814c1fccb94bd540f41c8b5e4fd3130e6971465c35548`.
+Context: `de87eb7f96b38dda09e4643fcbce20db17d21b3f2207a416f755768b096fd14d`.
+G1/G2/G3 were revised together, preserving parent geometry while recording the
+parent package hash, semantic changes and exploratory parameter provenance.
+Geometry/proof/DESC were rebuilt for this identity; no parent receipts were reused.
 
-| Stage | Newly executed in this cycle | Actual result / remaining break |
+The first real run is `runs/revised_chain_20260912_r2`: runner **0**, integration
+**27/27**, independent byte audit **424 records, zero mismatches**. The final
+hardening run is `runs/revised_chain_20260912_r3`, explicitly reusing the same
+revision's validated upstream/physics and recomputing affected downstream.
+Final r3 is complete: runner **0**, integration **28/28**, independent byte audit
+**436 records, zero mismatches**. Final focused groups pass **30/44/24/15** tests,
+core **26/26**, spine **54/54**, package **2631/2631** in 105 groups; every process
+and the queue exited **0**. See the report and its machine-readable evidence.
+This is acceptance of a reduced-model partial milestone; the original spatial
+multiregion goal remains active and incomplete.
+The prior `candidate_chain_20260912_integrated` remains historical partial execution.
+
+| Stage | Newly executed | Actual outcome and boundary |
 |---|---|---|
-| Candidate binding | Exact three-Genome, typed graph, subject and scenario binding | `observed`; the manufactured ECF fixture has a different identity and is excluded |
-| Multi-region physics | DESC sampling, periodic weak-volume/strong-force moments, sampled constitutive Jacobian | `deferred`; 2 diagnostic regions, 4 test functions, 24x1000 sampled Jacobian; FD discrepancy `2.7106651733016967e-9`. G2-owned region/interface model, complete source/boundary residual, full-state Jacobian, global conservation and actual coupled solve remain unexecuted |
-| Engineering/control/fault | G3 declaration audit and real plasma-interface momentum-load projection | `unsupported`; maximum sampled traction `1784905.64110172 Pa`. Current G3 has no realization/control operators or payloads; material, structural, thermal, power, control, protection and fault dynamics remain unexecuted |
-| Numerical verification | Independent midpoint rule, correct field-period vector rotation, local-force norm integration, analytic benchmark, deterministic discrepancy propagation | `fail`; Gauss3/Gauss4/midpoint local-force spread is `0.1188426977380375` against `1e-3`. Independent Python postprocessing agrees within `2.33e-10 N` on the total local-force magnitude |
-| Validation/UQ | Candidate-applicability and uncertainty prerequisite audit | `unsupported`; no held-out physical validation, parameter distributions/covariance propagation, or model discrepancy propagation executed |
-| Whole device | Same-candidate stage replay and dependency assessment | `deferred`; 18 explicit recoverable gaps, no integrated whole-device physics, no terminal classification, `p5_ready=false`, credible devices `0` |
+| Candidate | G1 physical laws, G2 owned regions/interfaces/DOFs/tests, G3 pickup/readout/control/fault/scenarios | observed; exact typed graph admission, unchanged default registry, sourced exploratory parameters |
+| Multi-region physics | 17,920 real samples, exact rho surfaces, every body/source/exterior/interface term, 36 residual rows and all 4 Jacobian columns; conservation ledger and 5 accepted state updates | **fail, exit 3**; raw norm **87,985.5 to 18,489,788.2 N**, scaled **1.77224 to 1.02080**; clipped-GN non-KKT stop. Complete declared reduced system, not full-function-space MHD |
+| Engineering/control/fault | Actual final boundary B **0.856484 T** into Faraday/RL pickup, readout, short and dump relay | computation **exit 0**, stage **fail**; nominal **3.30653 mA**, fault **20.28056 mA**, trip **1.54 ms**; upstream invalid, applicability unsupported; fault numerical dissipation **20.9%** |
+| Numerical verification | Independent stress residual, all-column FD, strong/weak identity, SVD, analytic RL/dt and 70-digit arithmetic/box diagnostic | **fail, exit 1**; roundoff cancellation triggers frozen residual gate. Aggregate Jacobian passes but pressure-column FD exceeds 1e-7; high-precision analytic columns agree around 8e-15 |
+| Sensitivity/UQ | 8 engineering design corners and 2 fixed-geometry pressure cases with physics-to-engineering recomputation | conditional execution; **2.23840 to 4.97764 mA** corner range, no distribution/CI/certified bound; physical validation unsupported and unexecuted |
+| Whole device | Same-revision dependency and stage assessment | deferred; full spatial MHD, external field/component/environment physics and validation incomplete; P5=false, credible devices **0** |
 
-The local-force magnitude integral is about `1.22e6 N`, even though the correctly
-rotated full-torus vector sum is near zero through symmetry cancellation.
-Historical q2/q3/q4 Cartesian totals multiplied one field period by NFP and are
-**sector-replicated Cartesian proxies**, not full-torus vector forces. Historical
-tolerance verdicts below are retained as software records, not physical
-convergence evidence. No q5/q6 milestone is introduced.
+Small net force and paired-interface cancellation cannot certify local equilibrium
+or conservation. Historical q2/q3/q4 Cartesian totals are sector-replicated proxies;
+no q5/q6 milestone is introduced. Prior formulation spread is not a certified
+quadrature error. The present report separates arithmetic, integration,
+discretization, constraint, solver and physical-model limitations.
 
-See [end-to-end report](candidate_end_to_end_v4_20260912.md),
-[typed contract and runner](../implementation/candidate_end_to_end_v4.md),
-[physics report](candidate_coupled_physics_weak_volume_v1_report.md),
-[engineering report](candidate_engineering_execution_v4_20260912.md), and
-[verification report](candidate_validation_propagation_v4_20260912.md).
+See [milestone report](revised_coupled_execution_v4_20260912.md),
+[contract](../implementation/revised_execution_contract_v4.md),
+[physics](complete_multiregion_v4_report_20260912.md),
+[engineering](magnetic_engineering_v4_20260912.md),
+[verification](executed_verification_uq_v4_20260912.md), and
+[previous partial execution](candidate_end_to_end_v4_20260912.md).
 
 ## Historical accepted implementation inventory
 
@@ -87,46 +95,43 @@ are not the current candidate's engineering, validation, or whole-device evidenc
 
 ## Active chain-unblocking queue
 
-1. Declare Genome-owned regions/supports/adjacency and constitutive/interface
-   ASTs, full state DOFs, weak test spaces, body/source terms and exterior/interface
-   boundary laws. Obtain boundary quadrature and boundary-limit traces; then
-   execute complete residual/Jacobian, global conservation and the coupled solve.
-2. Supply G3 component load mapping, material/structural/magnet/power and
-   thermal-hydraulic models, sensor/plant/actuator/control dynamics, protection
-   and declared fault cases. Connect each to actual applicable physical outputs.
-3. Diagnose local residual integration with an error-controlled independent
-   formulation and complete weak residual. Observed spread is not a certified
-   error estimate; net-force cancellation cannot substitute for equilibrium.
-4. Obtain candidate-applicable held-out measurements with uncertainty,
-   independent physical implementation, parameter covariance/distributions and
-   model discrepancy. Execute validation and uncertainty propagation only when
-   those inputs and applicability checks exist.
-5. Reassess the whole-device stage after actual upstream execution and admissible
-   evidence close those dependencies. Keep fail/unsupported/deferred candidates
-   recoverable; do not route by legacy authority or family labels.
+1. Address the actual non-KKT clipped-GN stop with an appropriate constrained
+   method and review row scaling; retain raw/scaled residuals and separate
+   constraint cost from algorithmic excess. Changed states require downstream recomputation.
+2. Extend the four-amplitude ansatz/test spaces and exterior-boundary model as
+   needed. Semantic changes require a new revision and affected upstream execution.
+   Current selected regions and G3 subsystem are no longer empty declarations.
+3. Use high-precision evidence to address cancellation with a defensible error
+   model; establish isolated integration and spatial errors with targeted
+   independent calculations, not an arbitrary additional quadrature ladder.
+4. Establish actual external sensor placement/aperture and applicable transient
+   input; refine fault switching/energy dynamics. Obtain applicable component,
+   environment and held-out validation data. Design intervals do not supply statistics.
+5. Reassess whole-device readiness only after actual dependent physics and
+   admissible evidence exist. Preserve recoverable fail/unsupported/deferred
+   status, Julia, three Genome layers and typed AST/operator hypergraphs.
 
-Adding missing G1/G2/G3 declarations changes candidate identity and requires
-fresh upstream runs. A missing provider for already-owned declarations can
-preserve identity. Old receipts must never be grafted onto a revised Genome.
-Julia, three Genome layers and typed AST/operator hypergraphs remain the core.
+Adding semantic G1/G2/G3 declarations changes identity. A missing implementation
+for already-owned declarations can preserve identity; old-candidate receipts
+must never be attached to a changed candidate. No legacy authority/family routing.
 
 ## Protected working state and reproducibility
 
-The initial tracked test change in
-`test/runtime_v4_validation_uq_execution_request_tests.jl` and unrelated untracked
-prototypes/reports remain protected and excluded from this milestone. The
-independent-cubature files were explicitly reviewed, backed up, repaired and
-integrated; no other old prototype is accepted by directory-level staging.
-Initial status/HEAD/diff/hash are under `runs/candidate_chain_20260912`.
-Generated provider data and logs remain local; the runner records exact source,
-Project/Manifest, executable and artifact hashes for reproducibility.
+The initial modification in `test/runtime_v4_validation_uq_execution_request_tests.jl`
+and unrelated untracked prototypes/reports are protected and excluded from this
+milestone. Initial status, HEAD, diff and hash are under
+`runs/revised_chain_20260912_audit`. Only the explicitly reviewed file list is staged.
+Generated provider data/logs remain local. The final manifest records actual
+command/arguments, resume origin, upstream/physics checkpoint identities,
+external raw dependencies, source, Project/Manifest, executable and output hashes.
 
 ## Current authority statement
 
-`p5_ready=false`; credible physical device candidates: **0**. The current ledger
-executes a whole-device **assessment**, not whole-device physics. The analytic
-integration benchmark and independent Python postprocessing verify software
-calculations, not an independent physical solver or physical validation.
-Deterministic observed formulation spread is not a confidence interval or
-certified error bound. Passing execution/tests grants no engineering feasibility,
-physical validation, terminal classification or simplest-feasible-device claim.
+`p5_ready=false`; credible physical device candidates: **0**. This milestone
+executes the complete declared reduced model and one real engineering equation
+system, including a reproducible failed solve. It does not complete full-field
+MHD or integrated device physics. Whole-device assessment is executed; physical
+validation is unsupported. Analytic/Decimal comparisons verify software, not
+physical applicability. Deterministic design corners are not distributions,
+confidence intervals or certified global bounds. Green regression tests grant
+no engineering feasibility, validation or terminal classification.
