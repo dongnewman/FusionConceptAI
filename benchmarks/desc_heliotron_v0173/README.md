@@ -32,3 +32,20 @@ L1 uniform pointwise bounds for every discarded profile and boundary term. Its
 v2 schema carries the exact compact, sorted Python canonical subject JSON as a
 wire field, allowing the Julia boundary to recompute the declared subject hash
 without assuming that Julia and Python format floating-point JSON identically.
+
+The separate `normalize_interior.py` freezes selected member 3's complete
+source-owned Fourier-Zernike R/Z interior without dropping small modes. It
+preserves every HDF5 `(l,m,n)` and coefficient in stored order, `fringe`
+indexing, R cosine/Z sine symmetry, source resolution and exact canonical
+subject wire. Run it in the pinned environment with a new output directory:
+
+```powershell
+& 'D:\006-Programing\LMC\outputs\fusion_concept_ai\.venv-desc\Scripts\python.exe' `
+  benchmarks/desc_heliotron_v0173/normalize_interior.py `
+  runs/<new-run>/n2_desc_heliotron_interior/result.json
+```
+
+This is source representation only. The radial degree `l` is not a `rho^l`
+power law. No Julia typed Fourier-Zernike evaluator, geometry proof, DESC
+reexecution, independent spatial comparison, inverse recovery, or physical
+validation is granted by extracting these arrays.
