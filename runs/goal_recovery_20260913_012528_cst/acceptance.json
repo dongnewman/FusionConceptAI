@@ -1,0 +1,21 @@
+{
+  "schema_version": "goal-recovery-acceptance-v1",
+  "updated_at": "2026-09-13T03:57:39+08:00",
+  "parent_goal_complete": false,
+  "platform_ready": false,
+  "discovery_goal_achieved": false,
+  "credible_candidate_count": 0,
+  "current_checks": [
+    {"id":"M0-stagnation-recheck","process_exit_code":0,"scientific_status":"historical_numerical_stagnation_reproduced","accepted_scope":"read-only bookkeeping diagnosis only","does_not_establish":["solver repaired","physical convergence","R03 acceptance"]},
+    {"id":"M0-manifest-recheck","process_exit_code":0,"scientific_status":"historical_artifact_integrity_replayed","accepted_scope":"549 records, 548 unique paths, zero mismatches","does_not_establish":["physical validation","physical convergence","R03 acceptance"]},
+    {"id":"W01-focused-tests","process_exit_code":0,"scientific_status":"numerical_contracts_pass","accepted_scope":"legacy spatial suites 10/10 and 57/57, stagnation regression 15/15, exact outcome tests 37/37","does_not_establish":["physical convergence","R03 acceptance"]},
+    {"id":"W02-entrypoint-tests","process_exit_code":0,"scientific_status":"loader_state_machine_pass","accepted_scope":"19/19 ordered load, hash, world-age, duplicate and partial-load checks","does_not_establish":["provider execution","scientific validity"]},
+    {"id":"W03-reference-loader-tests","process_exit_code":0,"scientific_status":"registry_contract_pass","accepted_scope":"7/7 source and inversion-readiness gate tests","does_not_establish":["raw experimental data obtained","inverse recovery","R02 or R06 acceptance"]},
+    {"id":"W04-closure-audit","process_exit_code":null,"scientific_status":"read_only_model_gaps_identified","accepted_scope":"unknown-equation-boundary-interface ownership and next minimum problems","does_not_establish":["model closure","solver convergence","R03-R05 acceptance"]},
+    {"id":"M1-full-spatial-chain-r2","process_exit_code":0,"solver_exit_codes":{"physics":4,"engineering":0,"verification":0,"whole":0},"scientific_status":"whole_device_deferred_physical_validation_unsupported","accepted_scope":"fresh candidate and DESC, four physics cases, engineering, independent derivatives, whole-device assessment, 43/43 same-revision integration checks, sealed manifest","does_not_establish":["physics convergence","engineering qualification","positive net output","independent physical validation","credible candidate","R03-R10 acceptance"]},
+    {"id":"M1-r2-byte-audit","process_exit_code":1,"scientific_status":"field_checks_pass_but_historical_recovery_predicate_not_applicable","accepted_scope":"554 records, 553 unique paths, zero hash mismatches; identity, result binding, exit semantics, four scenarios, authority ceiling and initial head all true","does_not_establish":["overall verifier pass because clean r2 intentionally has zero historical program exceptions","physical validation"]},
+    {"id":"M1-old-stagnation-predicate-on-r2","process_exit_code":1,"scientific_status":"recorded_stagnation_not_reproduced","accepted_scope":"last-five norms and gradients are not identical; state changes are not confined to node 1 pressure","does_not_establish":["convergence","physical validity"]},
+    {"id":"M1-package-regression","process_exit_code":0,"scientific_status":"package_regression_pass","accepted_scope":"complete test/runtests.jl entrypoint","does_not_establish":["RuntimeV4 production inclusion","physical convergence","scientific validation"]}
+  ],
+  "blocked_final_requirements":["R01","R02","R03","R04","R05","R06","R07","R08","R09","R10"]
+}

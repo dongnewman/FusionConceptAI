@@ -1,0 +1,21 @@
+{
+  "schema_version": "goal-recovery-run-registry-v1",
+  "created_at": "2026-09-13T01:25:28+08:00",
+  "source_commit": "c9ee99035bc04908bfc0df1e3b60d8c86033bcfb",
+  "latest_commit": "f643059f68584c3630788fbd6c4ef1a9bda050ac",
+  "protected_dirty_file": {"path":"test/runtime_v4_validation_uq_execution_request_tests.jl","sha256":"DF1A67C20C528FED9012067A45640A58C6DEDE3E45F042A26A9CAE056E757ED2","owner":"pre_existing_user_or_prior_work","policy":"do_not_modify_or_stage"},
+  "heavy_processes_at_start": [],
+  "runs": [
+    {"id":"historical-stagnation-recheck","command":"python docs/reports/goal_recovery_20260913/recheck_solver_stagnation.py","process_exit_code":0,"scientific_status":"recorded_stagnation_reproduced","input_run":"runs/spatial_chain_20260912_r1","output":"stdout and docs/reports/goal_recovery_20260913/solver_stagnation_audit.json","candidate_hash":"3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e"},
+    {"id":"historical-manifest-recheck","command":"python scripts/verify_v4_spatial_manifest.py runs/spatial_chain_20260912_r1 runs/goal_recovery_20260913_012528_cst/manifest_recheck.json","process_exit_code":0,"scientific_status":"artifact_integrity_pass_only","output":"runs/goal_recovery_20260913_012528_cst/manifest_recheck.json"},
+    {"id":"w01-focused","command":"julia --startup-file=no --project=. test/runtime_v4_spatial_solver_stagnation_tests.jl","process_exit_code":0,"scientific_status":"numerical_contract_tests_pass","test_counts":["10/10","57/57","15/15","37/37"],"commit":"be53e15"},
+    {"id":"w02-spatial-entrypoint","command":"julia --startup-file=no --project=. test/runtime_v4_spatial_entrypoint_tests.jl","process_exit_code":0,"scientific_status":"loader_contract_tests_pass","test_count":"19/19","commit":"f643059"},
+    {"id":"w03-reference-loader","command":"python benchmarks/iter_design_v1/test_load_reference.py","process_exit_code":0,"scientific_status":"reference_registry_contract_tests_pass","test_count":"7/7","commit":"4cad99d"},
+    {"id":"spatial-r1-world-age-failure","command":"julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r1","process_exit_code":1,"scientific_status":"program_exception","failure":"load_spatial_runtime_v4 method too new for caller world age after 528.6519762 second parent build","output":"runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r1"},
+    {"id":"spatial-r2-full-chain","command":"julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r2","process_exit_code":0,"scientific_status":"physics_fail_whole_deferred","solver_exit_codes":{"upstream_DESC":0,"physics":4,"engineering":0,"verification":0,"whole":0},"candidate_hash":"3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e","credible_candidate_count":0,"integration_tests":"43/43","output":"runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r2"},
+    {"id":"spatial-r2-manifest-audit","command":"python scripts/verify_v4_spatial_manifest.py runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r2 runs/goal_recovery_20260913_012528_cst/manifest_r2_audit.json","process_exit_code":1,"scientific_status":"zero_hash_mismatches_but_clean_run_does_not_match_historical_recovery_predicate","records_checked":554,"unique_paths_checked":553,"mismatch_count":0},
+    {"id":"spatial-r2-old-stagnation-recheck","command":"python docs/reports/goal_recovery_20260913/recheck_solver_stagnation.py runs/goal_recovery_20260913_012528_cst/spatial_chain_after_stagnation_fix_r2","process_exit_code":1,"scientific_status":"recorded_stagnation_not_reproduced","output":"runs/goal_recovery_20260913_012528_cst/stagnation_r2_postfix.json"},
+    {"id":"package-regression-after-spatial-r2","command":"julia --startup-file=no --project=. test/runtests.jl","process_exit_code":0,"scientific_status":"package_regression_pass","boundary":"The package entrypoint does not include the opt-in RuntimeV4 production chain."}
+  ],
+  "next_run_policy":"Every changed solver or model run uses a new child directory and retains full failure history, source/input hashes, environment, checkpoints, scenarios, and distinct process/scientific exits."
+}

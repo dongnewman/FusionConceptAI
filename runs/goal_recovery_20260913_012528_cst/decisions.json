@@ -1,0 +1,13 @@
+{
+  "schema_version": "goal-recovery-decisions-v1",
+  "decisions": [
+    {"id":"D001","time":"2026-09-13T01:25:28+08:00","decision":"Preserve the incompatible active native Goal and continue the full parent objective in this live ledger.","effect":"No native goal replacement and no false completion."},
+    {"id":"D002","time":"2026-09-13T01:25:28+08:00","decision":"Treat the historical solver symptom as numerical floating-point stagnation, not convergence or physical infeasibility.","basis":"Read-only recheck exit 0; unchanged objective and projected gradient; only one tiny pressure component changed."},
+    {"id":"D003","time":"2026-09-13T01:25:28+08:00","decision":"W01 may change only bound-active-set and line-search progress classification in scaled coordinates.","invariants":["residual tolerance remains 1e-6","all residual blocks and unknowns remain","pressure bound remains nonnegative","no mesh or mission change","strict representable objective decrease is required for acceptance"]},
+    {"id":"D004","time":"2026-09-13T01:25:28+08:00","decision":"Heavy Julia and DESC runs are owned and serialized by sol_main."},
+    {"id":"D005","time":"2026-09-13T03:57:39+08:00","decision":"Use a versioned additive spatial loader with explicit invokelatest boundary and fail-closed duplicate or partial-load state.","basis":"The first full rerun failed after 528.65 seconds at the dynamic Julia world-age boundary; a focused reproduction now passes."},
+    {"id":"D006","time":"2026-09-13T03:57:39+08:00","decision":"Do not silently correct reference metadata or grant inverse readiness without raw data and unit consistency.","basis":"FAIR MAST metadata reports an electron-density signal unit inconsistent with the expected physical dimension; raw data remain pending."},
+    {"id":"D007","time":"2026-09-13T03:57:39+08:00","decision":"Classify W01 as a numerical stagnation repair but not a physics convergence repair.","basis":"All 40 production updates across four cases have strict representable objective decrease, while every case exits 4 at its iteration limit and remains above residual tolerance."},
+    {"id":"D008","time":"2026-09-13T03:57:39+08:00","decision":"Keep credible candidate count at zero and final authority deferred.","basis":"Runner exit 0 and 43/43 integration checks establish execution integrity only; physics status is fail and physical validation is unsupported."}
+  ]
+}

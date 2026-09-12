@@ -1,0 +1,10 @@
+{
+  "schema_version": "goal-recovery-task-queue-v1",
+  "updated_at": "2026-09-13T03:57:39+08:00",
+  "tasks": [
+    {"id":"W01","parents":["R03"],"owner":"luna_w01","status":"implemented_and_replayed_nonconverged","commit":"be53e15","evidence":"focused 10/10 + 57/57 + 15/15 + 37/37; real four-case run accepts only strict objective decreases then exits 4 at iteration limits","owned_files":["src/RuntimeV4/SpatialMultiRegionV4.jl","test/runtime_v4_spatial_solver_stagnation_tests.jl"]},
+    {"id":"W02","parents":["R01","R10"],"owner":"luna_w02","status":"implemented_and_fast_verified","commits":["452d528","1710a85","f643059"],"evidence":"entrypoint 19/19; full clean chain reached all terminal stages","owned_files":["scripts/audit_runtime_v4_test_coverage.py","docs/implementation/runtime_v4_entrypoint_coverage.md","runs/goal_recovery_20260913_012528_cst/runtime_v4_coverage.json","src/RuntimeV4/SpatialRuntimeV4.jl","test/runtime_v4_spatial_entrypoint_tests.jl","test/runtime_v4_test_manifest.json"]},
+    {"id":"W03","parents":["R01","R02","R06"],"owner":"luna_w03","status":"sourced_registry_implemented_raw_data_and_inverse_pending","commits":["5e82e88","4cad99d"],"evidence":"7 loader tests pass; inversion_ready remains false for missing raw data or unit inconsistency","owned_files":["benchmarks/reference_registry_v1.json","benchmarks/iter_design_v1/README.md","benchmarks/iter_design_v1/sources.json","benchmarks/iter_design_v1/load_reference.py","benchmarks/iter_design_v1/test_load_reference.py"]},
+    {"id":"W04","parents":["R03","R04","R05"],"owner":"sol_main","status":"closure_audit_complete_next_N1","evidence":"candidate-owned pressure/current topology, exterior EM closure, and boundary compatibility gaps identified","owned_files":["runs/goal_recovery_20260913_012528_cst/model_closure_audit.md"]}
+  ]
+}
