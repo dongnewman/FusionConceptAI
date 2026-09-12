@@ -142,7 +142,7 @@ const whole=spatial_recorded(:whole;
     w=SCV.assess_spatial_whole_device_v4(ctx,upstream,physics,engineering,verification)
     SCV.write_spatial_whole_device_v4(w,SPATIAL_RUN)
     include(joinpath(SPATIAL_REPO,"test","runtime_v4_spatial_chain_checks.jl"))
-    check_spatial_chain_v4(SCV,ctx,upstream,physics,engineering,verification,w)
+    Base.invokelatest(check_spatial_chain_v4,SCV,ctx,upstream,physics,engineering,verification,w)
     w
 end
 const sources=Tuple(file_record(joinpath(root,file)) for dir in ("src","scripts","examples","test")
