@@ -1,6 +1,12 @@
 # FusionConceptAI Runtime V4 current progress index
 
 Last updated: 2026-09-12
+User-requested closeout: reduced milestone `51b5540` is pushed; spatial source is
+local staging, not accepted, and all three subagents are stopped. The candidate
+preflight was interrupted before completion; no spatial DESC/solve was started.
+See [spatial handoff](spatial_execution_handoff_20260912.md) and
+[next goal prompt](spatial_execution_next_goal_prompt_20260912.md).
+
 Current cycle starting HEAD: `main@4d5afdbb1cb67ab8c4cf2167d91c929a2786d3eb`.
 Previous accepted implementation: `48bf4e5`; completed report/index: `4d5afdb`.
 The commit containing this index records the current reviewed milestone and its evidence.
