@@ -15,6 +15,16 @@ using FusionConceptAI
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "SpatialRuntimeV4.jl"))
 end
 
+module SpatialWorldAgeProbe
+using FusionConceptAI
+end
+
+function load_spatial_from_compiled_world!(calls)
+    Base.include(SpatialWorldAgeProbe, SPATIAL_ENTRYPOINT_AGGREGATOR)
+    return Base.invokelatest(SpatialWorldAgeProbe.load_spatial_runtime_v4!;
+        include_file=(mod, path)->push!(calls, basename(path)))
+end
+
 @testset "RuntimeV4 spatial source aggregator" begin
     expected = (
         "SpatialExecutionTypesV4.jl",
@@ -53,9 +63,15 @@ end
     @test_throws ErrorException SpatialPartialLoadProbe.load_spatial_runtime_v4!(;
         include_file=(mod, path)->nothing)
 
+    world_age_calls = String[]
+    @test load_spatial_from_compiled_world!(world_age_calls) == expected_hashes
+    @test Tuple(world_age_calls) == expected
+    @test SpatialWorldAgeProbe.SPATIAL_RUNTIME_V4_LOAD_STATE[] === :loaded
+
     example_text = read(joinpath(SPATIAL_ENTRYPOINT_REPO, "examples", "runtime_v4_spatial_candidate.jl"), String)
     runner_text = read(joinpath(SPATIAL_ENTRYPOINT_REPO, "scripts", "run_v4_spatial_chain.jl"), String)
     @test occursin("SpatialRuntimeV4.jl", example_text)
     @test occursin("load_spatial_runtime_v4!", example_text)
+    @test occursin("Base.invokelatest", example_text)
     @test !occursin("Base.include(SCV,joinpath(SPATIAL_REPO,\"src\",\"RuntimeV4\",\"SpatialWholeDeviceV4.jl\"))", runner_text)
 end

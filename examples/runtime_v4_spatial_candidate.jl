@@ -14,7 +14,7 @@ end
 const SCV=RCV
 _spatial_candidate_timed("spatial_source_load") do
     Base.include(SCV,joinpath(@__DIR__,"..","src","RuntimeV4","SpatialRuntimeV4.jl"))
-    SCV.load_spatial_runtime_v4!()
+    Base.invokelatest(SCV.load_spatial_runtime_v4!)
 end
 const spatial=_spatial_candidate_timed("spatial_candidate_build") do
     SCV.build_spatial_candidate_v4(revised_context,dgpi_declaration)
