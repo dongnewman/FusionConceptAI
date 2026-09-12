@@ -32,6 +32,9 @@ q3_q4_relative_difference=0.7209778257208969
 q4_total_force_N=(34238.997157592516, 24876.08755124405, 1.4402985470951535e-8)
 q4_convergence_status=fail
 REGIONAL_FORCE_Q4_COMPARISON_EXIT_CODE=0
+
+julia --project=. test/runtests.jl
+Q4_PACKAGE_REGRESSION_RETRY_EXIT_CODE=0
 ```
 
 The focused test includes a separately written q4 replay artifact and compares
