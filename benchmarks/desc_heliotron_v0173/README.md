@@ -46,9 +46,9 @@ subject wire. Run it in the pinned environment with a new output directory:
 ```
 
 This is source representation only. The radial degree `l` is not a `rho^l`
-power law. No Julia typed Fourier-Zernike evaluator, geometry proof, DESC
+power law. Extraction alone grants no evaluator, geometry proof, DESC
 reexecution, independent spatial comparison, inverse recovery, or physical
-validation is granted by extracting these arrays.
+validation.
 
 `evaluate_interior.py` reconstructs scalar R/Z independently with SciPy Jacobi
 polynomials and explicit DESC positive-cosine/negative-sine mode semantics.
@@ -58,3 +58,17 @@ absolute tolerance, and exits 4 if any node fails. This is same-family
 geometry-basis numerical verification only. It is not an independent
 equilibrium solver, derivative proof, RuntimeV4 typed interpreter, or physical
 validation.
+
+`compare_interior_derivatives.py` freezes the same five nodes and requests
+DESC selected-member R/Z and first `(rho, theta, zeta)` derivatives. It also
+constructs the Cartesian Gram matrix using the physical toroidal angle. The
+receipt preregisters `1e-8 m` absolute derivative and `1e-7 m^2` Gram
+comparison tolerances for the Julia source-bound implementation. It grants no
+global chart admissibility or metric positivity, independent physics,
+provider execution, or physical validation.
+
+The Julia source reader additionally joins the adjacent source manifest's
+release commit, official artifact URL, producer/tag/member metadata, bytes,
+and artifact hash against its selected subject. The derivative receipt is
+hash-pinned by the Julia comparison runner and tests. It is not a reusable
+admission certificate for arbitrary coordinates or reference devices.

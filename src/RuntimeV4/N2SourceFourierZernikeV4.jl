@@ -96,6 +96,30 @@ function load_n2_source_interior(source_path::AbstractString,
         subject.embedded_producer_version == "0.17.1+38.g53ea59ef0.dirty" &&
         subject.distribution_tag == "v0.17.3" ||
         throw(ArgumentError("N2 source member/provenance identity mismatch"))
+    manifest_path = joinpath(dirname(source_path), "source.json")
+    isfile(manifest_path) || throw(ArgumentError("N2 source manifest is missing"))
+    manifest = try
+        JSON3.read(read(manifest_path, String))
+    catch error
+        throw(ArgumentError("N2 source manifest JSON is invalid: $(error)"))
+    end
+    manifest.schema_version == "n2-external-equilibrium-source-v1" &&
+        manifest.reference_id == "desc_heliotron_v0173" &&
+        manifest.source_class == "external_simulation" &&
+        manifest.artifact.path == basename(source_path) &&
+        manifest.artifact.sha256 == source_sha.value &&
+        manifest.artifact.bytes == filesize(source_path) &&
+        manifest.artifact.selected_equilibrium_index == subject.selected_equilibrium_index &&
+        manifest.artifact.equilibrium_count == subject.equilibrium_count &&
+        manifest.artifact.embedded_producer_version == subject.embedded_producer_version &&
+        manifest.artifact.distributed_in_release_tag == subject.distribution_tag &&
+        manifest.artifact.distribution_tag_commit ==
+            "fcc29be36f0b36b1b667df4b1f8891a9b633f5d1" &&
+        manifest.artifact.url ==
+            "https://raw.githubusercontent.com/PlasmaControl/DESC/v0.17.3/desc/examples/HELIOTRON_output.h5" &&
+        manifest.source.repository == "https://github.com/PlasmaControl/DESC" &&
+        manifest.source.license == "MIT" ||
+        throw(ArgumentError("N2 source manifest/provenance join mismatch"))
     resolution = subject.source_resolution
     resolution.L == 24 && resolution.M == 12 && resolution.N == 3 &&
         resolution.NFP == 19 ||
@@ -114,16 +138,18 @@ function load_n2_source_interior(source_path::AbstractString,
         radial, vertical, screen_only, false, false, false, 0)
 end
 
-function _n2z_jacobi(order::Int, alpha::Int, x::Float64)
+function _n2z_jacobi(order::Int, alpha::Int, beta::Int, x::Float64)
     order == 0 && return 1.0
     previous = 1.0
-    current = 0.5 * (alpha + (alpha + 2) * x)
+    current = 0.5 * (alpha - beta + (alpha + beta + 2) * x)
     order == 1 && return current
-    for k in 1:(order - 1)
-        a1 = 2.0 * (k + 1) * (k + alpha + 1) * (2k + alpha)
-        a2 = (2k + alpha + 1) * alpha^2
-        a3 = (2k + alpha) * (2k + alpha + 1) * (2k + alpha + 2)
-        a4 = 2.0 * (k + alpha) * k * (2k + alpha + 2)
+    for n in 2:order
+        a1 = 2.0 * n * (n + alpha + beta) * (2n + alpha + beta - 2)
+        a2 = (2n + alpha + beta - 1) * (alpha^2 - beta^2)
+        a3 = (2n + alpha + beta - 1) *
+             (2n + alpha + beta) * (2n + alpha + beta - 2)
+        a4 = 2.0 * (n + alpha - 1) * (n + beta - 1) *
+             (2n + alpha + beta)
         next = ((a2 + a3 * x) * current - a4 * previous) / a1
         previous, current = current, next
     end
@@ -133,12 +159,27 @@ end
 function _n2z_radial(term::N2ZernikeTermV4, rho::Float64)
     m = abs(term.m)
     order = (term.l - m) ÷ 2
-    isodd(order) ? -rho^m * _n2z_jacobi(order, m, 1 - 2rho^2) :
-        rho^m * _n2z_jacobi(order, m, 1 - 2rho^2)
+    isodd(order) ? -rho^m * _n2z_jacobi(order, m, 0, 1 - 2rho^2) :
+        rho^m * _n2z_jacobi(order, m, 0, 1 - 2rho^2)
+end
+
+function _n2z_radial_derivative(term::N2ZernikeTermV4, rho::Float64)
+    m = abs(term.m)
+    order = (term.l - m) ÷ 2
+    x = 1 - 2rho^2
+    leading = m == 0 ? 0.0 :
+        m * rho^(m - 1) * _n2z_jacobi(order, m, 0, x)
+    jacobi = order == 0 ? 0.0 :
+        -2rho^(m + 1) * (order + m + 1) *
+        _n2z_jacobi(order - 1, m + 1, 1, x)
+    (isodd(order) ? -1.0 : 1.0) * (leading + jacobi)
 end
 _n2z_fourier(angle::Float64, mode::Int, nfp::Int=1) =
     mode >= 0 ? cos(abs(mode) * nfp * angle) :
         sin(abs(mode) * nfp * angle)
+_n2z_fourier_derivative(angle::Float64, mode::Int, nfp::Int=1) =
+    mode >= 0 ? -abs(mode) * nfp * sin(abs(mode) * nfp * angle) :
+        abs(mode) * nfp * cos(abs(mode) * nfp * angle)
 
 function _n2z_eval(modes, rho::Float64, theta::Float64,
         zeta::Float64, nfp::Int)
@@ -147,15 +188,72 @@ function _n2z_eval(modes, rho::Float64, theta::Float64,
         for term in modes)
 end
 
+function _n2z_eval_with_derivatives(modes, rho::Float64, theta::Float64,
+        zeta::Float64, nfp::Int)
+    values = zeros(4)
+    for term in modes
+        radial = _n2z_radial(term, rho)
+        dradial = _n2z_radial_derivative(term, rho)
+        poloidal = _n2z_fourier(theta, term.m)
+        dpoloidal = _n2z_fourier_derivative(theta, term.m)
+        toroidal = _n2z_fourier(zeta, term.n, nfp)
+        dtoroidal = _n2z_fourier_derivative(zeta, term.n, nfp)
+        c = term.coefficient_m
+        values[1] += c * radial * poloidal * toroidal
+        values[2] += c * dradial * poloidal * toroidal
+        values[3] += c * radial * dpoloidal * toroidal
+        values[4] += c * radial * poloidal * dtoroidal
+    end
+    Tuple(values)
+end
+
+function _n2z_check_point(rho, theta, zeta)
+    all(value -> value isa Real && !(value isa Bool) &&
+        isfinite(Float64(value)), (rho, theta, zeta)) && 0 <= rho <= 1 ||
+        throw(ArgumentError("N2 source chart requires finite angles and rho in [0,1]"))
+    (Float64(rho), Float64(theta), Float64(zeta))
+end
+
 """Evaluate source R/Z at physical DESC radians; no metric or derivative claim."""
 function evaluate_n2_source_rz(interior::N2SourceInteriorV4,
         rho::Real, theta::Real, zeta::Real)
-    all(value -> !(value isa Bool) && isfinite(Float64(value)),
-        (rho, theta, zeta)) && 0 <= rho <= 1 ||
-        throw(ArgumentError("N2 source chart requires finite angles and rho in [0,1]"))
-    r = Float64(rho); t = Float64(theta); z = Float64(zeta)
+    r, t, z = _n2z_check_point(rho, theta, zeta)
     (_n2z_eval(interior.radial_modes, r, t, z, interior.field_periods),
      _n2z_eval(interior.vertical_modes, r, t, z, interior.field_periods))
+end
+
+"""Source-chart R/Z and first derivatives in (rho, theta, zeta) order.
+
+Units: R/Z and rho derivative in metres; angle derivatives in metres/radian.
+This is geometry reconstruction, not a physical or metric admissibility proof.
+"""
+function evaluate_n2_source_rz_jacobian(interior::N2SourceInteriorV4,
+        rho::Real, theta::Real, zeta::Real)
+    r, t, z = _n2z_check_point(rho, theta, zeta)
+    rv = _n2z_eval_with_derivatives(interior.radial_modes, r, t, z,
+        interior.field_periods)
+    zv = _n2z_eval_with_derivatives(interior.vertical_modes, r, t, z,
+        interior.field_periods)
+    (R_m=rv[1], Z_m=zv[1],
+     dR=(rho=rv[2], theta=rv[3], zeta=rv[4]),
+     dZ=(rho=zv[2], theta=zv[3], zeta=zv[4]))
+end
+
+"""Cartesian Gram metric of the frozen geometry; no positivity certification."""
+function evaluate_n2_source_gram(interior::N2SourceInteriorV4,
+        rho::Real, theta::Real, zeta::Real)
+    chart = evaluate_n2_source_rz_jacobian(interior, rho, theta, zeta)
+    _, _, z = _n2z_check_point(rho, theta, zeta)
+    c, s = cos(z), sin(z)
+    er = (chart.dR.rho*c, chart.dR.rho*s, chart.dZ.rho)
+    et = (chart.dR.theta*c, chart.dR.theta*s, chart.dZ.theta)
+    ez = (chart.dR.zeta*c - chart.R_m*s,
+          chart.dR.zeta*s + chart.R_m*c, chart.dZ.zeta)
+    vectors = (er, et, ez)
+    gram = ntuple(i -> ntuple(j -> sum(vectors[i][k] * vectors[j][k]
+        for k in 1:3), 3), 3)
+    (chart=chart, gram=gram, claim_ceiling=screen_only,
+     derivative_metric_proof=false, physical_validation=false)
 end
 
 n2_source_interior_manifest() = (
@@ -164,6 +262,7 @@ n2_source_interior_manifest() = (
     claim_ceiling=screen_only,
     typed_G2_coordinate_metric_program=false,
     derivative_or_metric_proof=false,
+    same_source_analytic_derivative_comparison_only=true,
     provider_selected=false,
     solver_executed=false,
     physical_validation=false,
