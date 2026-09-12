@@ -162,7 +162,8 @@ function _smr_scaled_state_change(x,y,cols)
 end
 
 function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=nothing,
-        _test_qr_factorization=nothing,_test_line_search_acceptance=nothing)
+        _test_qr_factorization=nothing,_test_line_search_acceptance=nothing,
+        source_function=nothing,boundary_function=nothing,normal_field_function=nothing)
     d.flux.interval_Wb[1]<=flux_Wb<=d.flux.interval_Wb[2] || throw(ArgumentError("undeclared flux realization"))
     x=Float64.(initial);nd=length(x);cols=repeat([d.scaling.B_T,d.scaling.B_T,d.scaling.B_T,d.scaling.p_Pa],div(nd,4))
     maxit=data.mesh.level==:coarse ? d.solver.coarse_iterations : d.solver.fine_iterations
@@ -177,7 +178,7 @@ function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=
         for i in 4:4:nd
             _smr_pressure_feasible(x[i],cols[i]) && x[i]<0.0 && (x[i]=0.0)
         end
-        a=assemble_spatial_system_v4(d,data,x;flux_Wb);rs=a.residual./a.row_scales
+        a=assemble_spatial_system_v4(d,data,x;flux_Wb,source_function,boundary_function,normal_field_function);rs=a.residual./a.row_scales
         A=spdiagm(0=>1 ./a.row_scales)*a.jacobian*spdiagm(0=>cols);g=transpose(A)*rs
         z=x./cols
         bound_tol=_smr_scaled_bound_tolerance(z)
@@ -247,7 +248,7 @@ function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=
                     strict_objective_decrease=false,accepted=false))
                 continue
             end
-            ar=assemble_spatial_system_v4(d,data,trial;flux_Wb,jacobian=false);rr=ar.residual./ar.row_scales
+            ar=assemble_spatial_system_v4(d,data,trial;flux_Wb,jacobian=false,source_function,boundary_function,normal_field_function);rr=ar.residual./ar.row_scales
             evaluation_count+=1;finite=all(isfinite,rr)
             phi_after=finite ? dot(rr,rr) : Inf
             strict_decrease=finite && phi_after < phi_before
@@ -283,7 +284,7 @@ function solve_spatial_state_v4(d,data,initial;flux_Wb=d.flux.nominal_Wb,limits=
                 (no_progress ? :floating_point_no_progress : :line_search_rejected),state_after_hash=canonical_hash(Tuple(x)),elapsed_seconds=time()-start))
         if !accepted;code=3;reason=no_progress ? :floating_point_no_progress : :feasible_line_search_failed;break;end
     end
-    final=assemble_spatial_system_v4(d,data,x;flux_Wb)
+    final=assemble_spatial_system_v4(d,data,x;flux_Wb,source_function,boundary_function,normal_field_function)
     Afinal=spdiagm(0=>1 ./final.row_scales)*final.jacobian*spdiagm(0=>cols)
     final_rank_audit=try
         _smr_rank_audit(Afinal,qr(Afinal;tol=d.solver.rank_relative_tolerance),d.solver.rank_relative_tolerance)
