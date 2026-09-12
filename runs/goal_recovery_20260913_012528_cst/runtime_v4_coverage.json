@@ -1,0 +1,3877 @@
+{
+  "coverage_boundary": {
+    "include_parsing": "Parsed include edges inventory loading syntax only; it is not execution or test evidence.",
+    "package_assertions": "The package's 2631 assertions are not RuntimeV4 total coverage.",
+    "world_age_prone_path": [
+      "scripts/run_v4_spatial_chain.jl includes examples/runtime_v4_spatial_candidate.jl",
+      "the example loads RuntimeV4 sources through Base.include",
+      "the runner later calls Base.include on src/RuntimeV4/SpatialWholeDeviceV4.jl"
+    ]
+  },
+  "dirty_state_warning": true,
+  "include_edges": [
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 5,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/PhysicalTypes.jl",
+      "target_literal": "IR/PhysicalTypes.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 6,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/ClosedCanonicalByteWriter.jl",
+      "target_literal": "Canonical/ClosedCanonicalByteWriter.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 7,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/ConservationLedger.jl",
+      "target_literal": "IR/ConservationLedger.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 8,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/OperatorRegistry.jl",
+      "target_literal": "IR/OperatorRegistry.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 9,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/TypedAST.jl",
+      "target_literal": "IR/TypedAST.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 10,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/OperatorHypergraph.jl",
+      "target_literal": "IR/OperatorHypergraph.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 11,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismGenes.jl",
+      "target_literal": "Genomes/MechanismGenes.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 12,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismConservationScopes.jl",
+      "target_literal": "Genomes/MechanismConservationScopes.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 13,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismConservationOwnership.jl",
+      "target_literal": "Genomes/MechanismConservationOwnership.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 14,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Contracts/StatusDimensions.jl",
+      "target_literal": "Contracts/StatusDimensions.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 15,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Contracts/GenomeContractRegistry.jl",
+      "target_literal": "Contracts/GenomeContractRegistry.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 16,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "target_literal": "Contracts/MechanismOccurrenceOwnershipContract.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 17,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismGenesV1.jl",
+      "target_literal": "Genomes/MechanismGenesV1.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 18,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/FieldGeometryPrimitives.jl",
+      "target_literal": "Genomes/FieldGeometryPrimitives.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 19,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/FieldGeometrySpatialSupport.jl",
+      "target_literal": "Genomes/FieldGeometrySpatialSupport.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 20,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/FieldGeometryFieldPrograms.jl",
+      "target_literal": "Genomes/FieldGeometryFieldPrograms.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 21,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/FieldGeometryPhaseFields.jl",
+      "target_literal": "Genomes/FieldGeometryPhaseFields.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 22,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/FieldGeometryGenome.jl",
+      "target_literal": "Genomes/FieldGeometryGenome.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 23,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/RealizationControlGenome.jl",
+      "target_literal": "Genomes/RealizationControlGenome.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 24,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/CanonicalJSON.jl",
+      "target_literal": "Canonical/CanonicalJSON.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 26,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/ExactGraphCanonicalization.jl",
+      "target_literal": "Canonical/ExactGraphCanonicalization.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 27,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/TypedASTProgramCanonical.jl",
+      "target_literal": "Canonical/TypedASTProgramCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 28,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismGeneCanonical.jl",
+      "target_literal": "Genomes/MechanismGeneCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 29,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "target_literal": "Canonical/FieldGeometryPrimitiveCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 30,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "target_literal": "Canonical/FieldGeometrySpatialSupportCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 31,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "target_literal": "Canonical/FieldGeometryFieldProgramCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 32,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "target_literal": "Canonical/FieldGeometryPhaseFieldCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 33,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismObservablesHoles.jl",
+      "target_literal": "Genomes/MechanismObservablesHoles.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 34,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/MechanismObservableCanonical.jl",
+      "target_literal": "Canonical/MechanismObservableCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 35,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/ControlPrimitives.jl",
+      "target_literal": "Genomes/ControlPrimitives.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 36,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/ControlObservationRequirements.jl",
+      "target_literal": "Genomes/ControlObservationRequirements.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 37,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/ControlObservationRequirementCanonical.jl",
+      "target_literal": "Canonical/ControlObservationRequirementCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 38,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismGenomePayload.jl",
+      "target_literal": "Genomes/MechanismGenomePayload.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 39,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/MechanismCanonicalTransport.jl",
+      "target_literal": "Canonical/MechanismCanonicalTransport.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 40,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/MechanismHashLayers.jl",
+      "target_literal": "Canonical/MechanismHashLayers.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 41,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismGenome.jl",
+      "target_literal": "Genomes/MechanismGenome.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 42,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/Hashes.jl",
+      "target_literal": "Canonical/Hashes.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 43,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Genomes/MechanismLegacyMigration.jl",
+      "target_literal": "Genomes/MechanismLegacyMigration.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 44,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Contracts/CandidateStatePackage.jl",
+      "target_literal": "Contracts/CandidateStatePackage.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 45,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/ConditionalEGraph.jl",
+      "target_literal": "IR/ConditionalEGraph.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 46,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/ConditionalEGraphTypes.jl",
+      "target_literal": "IR/ConditionalEGraphTypes.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 47,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Canonical/ConditionalEGraphCanonical.jl",
+      "target_literal": "Canonical/ConditionalEGraphCanonical.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 48,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/IR/ConditionalEGraphSaturation.jl",
+      "target_literal": "IR/ConditionalEGraphSaturation.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 49,
+      "source": "src/FusionConceptAI.jl",
+      "target": "src/Contracts/Authority.jl",
+      "target_literal": "Contracts/Authority.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 5,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Contracts.jl",
+      "target_literal": "Contracts.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 6,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Compiler.jl",
+      "target_literal": "Compiler.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 7,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Capability.jl",
+      "target_literal": "Capability.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 8,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Execution.jl",
+      "target_literal": "Execution.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 9,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Search.jl",
+      "target_literal": "Search.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 10,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Archives.jl",
+      "target_literal": "Archives.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 11,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/AlgebraicResidual.jl",
+      "target_literal": "AlgebraicResidual.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 12,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/AlgebraicScopedSearch.jl",
+      "target_literal": "AlgebraicScopedSearch.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 13,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/FieldProgramEvaluation.jl",
+      "target_literal": "FieldProgramEvaluation.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 14,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/FieldResidualNumerics.jl",
+      "target_literal": "FieldResidualNumerics.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 15,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/FieldResidualPipeline.jl",
+      "target_literal": "FieldResidualPipeline.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 16,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/DeterministicScreenProvider.jl",
+      "target_literal": "DeterministicScreenProvider.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 17,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/RuntimePipeline.jl",
+      "target_literal": "RuntimePipeline.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 18,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Frontier.jl",
+      "target_literal": "Frontier.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 19,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/WholeDevice.jl",
+      "target_literal": "WholeDevice.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 20,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Authority.jl",
+      "target_literal": "Authority.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 21,
+      "source": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "target": "src/RuntimeV4/Campaign.jl",
+      "target_literal": "Campaign.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 9,
+      "source": "test/runtests.jl",
+      "target": "test/canonical_generic_nospecialize_tests.jl",
+      "target_literal": "canonical_generic_nospecialize_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 16,
+      "source": "test/runtests.jl",
+      "target": "test/control_observation_requirement_tests.jl",
+      "target_literal": "control_observation_requirement_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 17,
+      "source": "test/runtests.jl",
+      "target": "test/control_observation_requirement_dispatch_adversarial.jl",
+      "target_literal": "control_observation_requirement_dispatch_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 18,
+      "source": "test/runtests.jl",
+      "target": "test/typed_ast_program_canonical_adversarial.jl",
+      "target_literal": "typed_ast_program_canonical_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 19,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_observable_closed_canonical_tests.jl",
+      "target_literal": "mechanism_observable_closed_canonical_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 20,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_observable_closed_canonical_adversarial.jl",
+      "target_literal": "mechanism_observable_closed_canonical_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 21,
+      "source": "test/runtests.jl",
+      "target": "test/conditional_egraph_p1_core_tests.jl",
+      "target_literal": "conditional_egraph_p1_core_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 22,
+      "source": "test/runtests.jl",
+      "target": "test/conditional_egraph_p1_adversarial.jl",
+      "target_literal": "conditional_egraph_p1_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 23,
+      "source": "test/runtests.jl",
+      "target": "test/conditional_egraph_p1_length_adversarial.jl",
+      "target_literal": "conditional_egraph_p1_length_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 24,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_genome_close_tests.jl",
+      "target_literal": "mechanism_genome_close_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 25,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_genome_close_adversarial.jl",
+      "target_literal": "mechanism_genome_close_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 26,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_payload_exact_ref_closure_tests.jl",
+      "target_literal": "mechanism_payload_exact_ref_closure_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 27,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_ledger_identity_tests.jl",
+      "target_literal": "mechanism_ledger_identity_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 172,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_primitives_tests.jl",
+      "target_literal": "field_geometry_primitives_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 173,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_spatial_support_tests.jl",
+      "target_literal": "field_geometry_spatial_support_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 174,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_spatial_support_dispatch_adversarial.jl",
+      "target_literal": "field_geometry_spatial_support_dispatch_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 175,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_spatial_support_closed_canonical_tests.jl",
+      "target_literal": "field_geometry_spatial_support_closed_canonical_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 176,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_spatial_support_closed_canonical_adversarial.jl",
+      "target_literal": "field_geometry_spatial_support_closed_canonical_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 177,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_5_3_tests.jl",
+      "target_literal": "field_geometry_5_3_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 178,
+      "source": "test/runtests.jl",
+      "target": "test/field_geometry_canonical_migration_adversarial.jl",
+      "target_literal": "field_geometry_canonical_migration_adversarial.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 186,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_conservation_scope_tests.jl",
+      "target_literal": "mechanism_conservation_scope_tests.jl"
+    },
+    {
+      "exists": true,
+      "kind": "literal_include",
+      "line": 188,
+      "source": "test/runtests.jl",
+      "target": "test/mechanism_ledger_occurrence_ownership_tests.jl",
+      "target_literal": "mechanism_ledger_occurrence_ownership_tests.jl"
+    }
+  ],
+  "nodes": [
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_RegionalMHDWeakResidualV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_algebraic_constraint_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_candidate_coupled_physics.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_candidate_engineering_execution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_candidate_validation_propagation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_conservative_multiregion_execution.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_declared_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_field_basis_bridge.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_field_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_fixed_boundary_request_compiler.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_geometry_compatibility_proof.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_geometry_program_interpreter.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_geometry_program_preflight.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_regional_integrated_force_observation.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_request_provider_execution.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_rho_partition_trace.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_rho_surface_trace_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_desc_static_mhd_balance_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_ecf_numerical_repeatability.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_ecf_vuq_whole_device_integration.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_engineering_control_fault_execution_request.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_engineering_control_fault_graph_obligation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_engineering_control_fault_obligation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_engineering_control_fault_obligations.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_field_residual_composition_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_forward_chain_context.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_freegs_axisymmetric_execution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_g2_field_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_gridap_field_convergence_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_gridap_field_evidence_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_gridap_field_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_gridap_native_comparison_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_ideal_mhd_interface_residual_jacobian.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_ideal_mhd_interface_traction.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_multiregion_coupling_contract.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_multiregion_diffusion_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_physical_provider_admission.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_force_independent_cubature.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_force_numerical_vv_assessment.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_force_observation_q3_comparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_force_observation_q4_comparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_force_quadrature_direction_diagnostic.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_mhd_global_conservation_observation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_regional_mhd_weak_residual_production_gap.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_revised_candidate.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_spatial_candidate.jl",
+      "reachable_from": [
+        "examples/runtime_v4_spatial_candidate.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_static_mhd_interface_jump_ledger.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_discretization_controls.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_governing_residual_jacobian.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_normalized_physical_root_bridge.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_oriented_interface_input.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_physical_input_composition.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_physical_provider_input.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_region_law_compiler.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_three_d_region_law_set_compiler.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_trusted_engineering_control_fault_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_trusted_freegs_axisymmetric_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_trusted_provider_registry.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_dae_composition_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_dae_initialization_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_dae_time_execution_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_field_time_bridge_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_time_event_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_time_execution_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_time_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_typed_time_refinement_fixture.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "example",
+      "path": "examples/runtime_v4_validation_uq_execution_request.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/revised_run_checkpoint_v4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_RegionalMHDWeakResidualV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_algebraic_slice.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_candidate_chain.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_candidate_validation_propagation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_field_basis_bridge.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_field_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_fixed_boundary_request_compiler.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_geometry_compatibility_proof.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_geometry_program_interpreter.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_geometry_program_preflight.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_regional_integrated_force_observation.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_request_provider_execution.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_rho_partition_trace.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_rho_surface_trace_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_desc_static_mhd_balance_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_ecf_numerical_repeatability.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_ecf_numerical_repeatability_child.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_ecf_vuq_whole_device_integration.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_engineering_control_fault_execution_request.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_engineering_control_fault_graph_obligation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_engineering_control_fault_obligation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_engineering_control_fault_obligations.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_field_residual_composition.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_freegs_axisymmetric_execution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_g2_field_evaluation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_gridap_field_convergence.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_gridap_field_evidence.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_gridap_field_residual.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_gridap_native_comparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_ideal_mhd_interface_residual_jacobian.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_ideal_mhd_interface_traction.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_multiregion_coupling_contract.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_multiregion_diffusion_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_physical_provider_admission.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_force_independent_cubature.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_force_numerical_vv_assessment.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_force_observation_q3_comparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_force_observation_q4_comparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_force_quadrature_direction_diagnostic.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_regional_mhd_global_conservation_observation.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_revised_chain.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_spatial_chain.jl",
+      "reachable_from": [
+        "scripts/run_v4_spatial_chain.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_spine.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_static_mhd_interface_jump_ledger.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_discretization_controls.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_governing_residual_jacobian.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_normalized_physical_root_bridge.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_oriented_interface_input.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_physical_input_composition.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_physical_provider_input.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_region_law_compiler.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_three_d_region_law_set_compiler.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_trusted_engineering_control_fault_provider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_trusted_provider_registry.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_dae_composition.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_dae_initialization.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_dae_time_execution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_field_time_bridge.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_time_event.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_time_execution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_time_refinement.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_typed_time_residual.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_validation_uq_execution_request.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/run_v4_vertical_slice.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runner",
+      "path": "scripts/test_runtime_v4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "root",
+      "path": "src/FusionConceptAI.jl",
+      "reachable_from": [
+        "src/FusionConceptAI.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/AlgebraicResidual.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/AlgebraicScopedSearch.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Archives.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Authority.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "final acceptance",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Campaign.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CandidateChainContractV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CandidateCoupledPhysicsV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CandidateEndToEndV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CandidateEngineeringExecutionV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CandidateValidationPropagationV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Capability.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Compiler.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/CompleteMultiRegionV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ConservativeMultiRegionExecution.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Contracts.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCFieldBasisBridgeV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCFieldProviderV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCFixedBoundaryRequestCompilerV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCGeometryCompatibilityProofV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCGeometryProgramInterpreterV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCGeometryProgramPreflightV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCRegionalIntegratedForceObservationV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCRequestProviderExecutionV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCRhoPartitionTraceContractV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCRhoSurfaceTraceProviderV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DESCStaticMHDBalanceProviderV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/DeterministicScreenProvider.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultExecutionRequestV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultGraphObligationV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultNumericalRepeatabilityV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultObligationV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultObligationsV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/EngineeringControlFaultValidationUQBridgeV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ExecutedVerificationUQV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Execution.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/FieldProgramEvaluation.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/FieldResidualNumerics.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/FieldResidualPipeline.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ForwardChainContext.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/FreeGSAxisymmetricExecution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Frontier.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/GridapFieldConvergence.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/GridapFieldEvidence.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/GridapFieldResidualAdapter.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/GridapNativeComparison.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/IdealMHDInterfaceResidualJacobianV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/IdealMHDInterfaceTractionV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/MagneticEngineeringV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/MultiRegionCouplingContracts.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/MultiRegionDiffusionProvider.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/PhysicalProviderAdmissionV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalForceIndependentCubatureV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalForceNumericalVVAssessmentV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalForceObservationQ3ComparisonV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalForceObservationQ4ComparisonV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalForceQuadratureDirectionDiagnosticV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalMHDGlobalConservationObservationV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RevisedCandidateV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RevisedWholeDeviceV4.jl",
+      "reachable_from": [],
+      "tier": "final acceptance",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/RuntimePipeline.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/Search.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialCandidateV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialExecutionTypesV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialMultiRegionV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialPickupEngineeringV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialVerificationUQV4.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/SpatialWholeDeviceV4.jl",
+      "reachable_from": [],
+      "tier": "final acceptance",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/StaticMHDInterfaceJumpLedgerV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDDiscretizationControlsV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDGoverningResidualJacobianV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDNormalizedPhysicalRootBridgeV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDOrientedInterfaceInputV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDPhysicalInputCompositionV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDPhysicalProviderInputV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDRegionLawCompilerV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ThreeDRegionLawSetCompilerV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TrustedEngineeringControlFaultProviderV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TrustedFreeGSAxisymmetricProviderV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TrustedProviderRegistryV4.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedDAEInitialization.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedDAEInitializationContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedDAETimeExecution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedDAETimeExecutionContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedFieldTimeBridge.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedFieldTimeBridgeContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedTimeEvents.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedTimeExecution.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedTimeExecutionContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedTimeRefinement.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/TypedTimeResidual.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ValidationUQContracts.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/ValidationUQExecutionRequestV4.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/WholeDevice.jl",
+      "reachable_from": [
+        "src/RuntimeV4/FusionRuntimeV4.jl"
+      ],
+      "tier": "final acceptance",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "runtime_v4_module",
+      "path": "src/RuntimeV4/WholeDeviceIntegrationV4.jl",
+      "reachable_from": [],
+      "tier": "final acceptance",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/field_geometry_spatial_support_closed_canonical_adversarial.jl",
+      "reachable_from": [
+        "test/runtests.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/field_geometry_spatial_support_closed_canonical_tests.jl",
+      "reachable_from": [
+        "test/runtests.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/field_geometry_spatial_support_dispatch_adversarial.jl",
+      "reachable_from": [
+        "test/runtests.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/field_geometry_spatial_support_tests.jl",
+      "reachable_from": [
+        "test/runtests.jl"
+      ],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtests.jl",
+      "reachable_from": [
+        "test/runtests.jl"
+      ],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_RegionalMHDWeakResidualProductionGap_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_RegionalMHDWeakResidualV4_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_algebraic_residual_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_algebraic_scoped_search_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_algebraic_slice_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_archive_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_chain_checks.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_coupled_physics_kernel_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_coupled_physics_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_engineering_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_engineering_integration_checks.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_validation_propagation_integration_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_candidate_validation_propagation_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_complete_multiregion_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_conservative_multiregion_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_core_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_field_basis_bridge_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_field_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_fixed_boundary_request_compiler_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_geometry_compatibility_proof_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_geometry_program_interpreter_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_geometry_program_preflight_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_regional_integrated_force_observation_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_request_provider_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_rho_partition_trace_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_rho_surface_trace_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_desc_static_mhd_balance_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_ecf_numerical_repeatability_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_ecf_vuq_whole_device_integration_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_engineering_control_fault_contract_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_engineering_control_fault_execution_request_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_engineering_control_fault_graph_obligation_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_engineering_control_fault_obligation_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_engineering_control_fault_obligations_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_executed_verification_uq_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_field_residual_composition_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_field_residual_numerics_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_forward_chain_context_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_freegs_axisymmetric_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_g2_field_evaluation_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_gridap_field_convergence_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_gridap_field_evidence_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_gridap_field_residual_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_gridap_native_comparison_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_ideal_mhd_interface_residual_jacobian_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_ideal_mhd_interface_traction_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_magnetic_engineering_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_multiregion_coupling_contract_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_multiregion_desc_admission_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_multiregion_diffusion_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_physical_provider_admission_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_independent_cubature_checks.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_independent_cubature_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_numerical_vv_assessment_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_observation_q3_comparison_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_observation_q4_comparison_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_force_quadrature_direction_diagnostic_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_regional_mhd_global_conservation_observation_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_revised_chain_checks.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_revised_graph_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_chain_checks.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_graph_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_multiregion_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_pickup_engineering_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_solver_stagnation_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spatial_verification_uq_tests.jl",
+      "reachable_from": [],
+      "tier": "real scientific benchmark",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_spine_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_static_mhd_interface_jump_ledger_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_discretization_controls_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_governing_residual_jacobian_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_normalized_physical_root_bridge_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_oriented_interface_input_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_physical_input_composition_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_physical_provider_input_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_region_law_compiler_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_three_d_region_law_set_compiler_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_trusted_engineering_control_fault_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_trusted_freegs_axisymmetric_provider_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_trusted_provider_registry_tests.jl",
+      "reachable_from": [],
+      "tier": "provider integration",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_dae_composition_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_dae_initialization_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_dae_time_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_field_time_bridge_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_time_event_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_time_execution_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_time_refinement_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_typed_time_residual_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_validation_uq_contract_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": false,
+      "working_tree_status": "untracked"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_validation_uq_execution_request_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "modified"
+    },
+    {
+      "exists": true,
+      "kind": "test",
+      "path": "test/runtime_v4_vertical_slice_tests.jl",
+      "reachable_from": [],
+      "tier": "fast contract/numerics",
+      "tracked": true,
+      "working_tree_status": "clean"
+    }
+  ],
+  "reachability": {
+    "examples/runtime_v4_spatial_candidate.jl": [
+      "examples/runtime_v4_spatial_candidate.jl"
+    ],
+    "scripts/run_v4_spatial_chain.jl": [
+      "scripts/run_v4_spatial_chain.jl"
+    ],
+    "src/FusionConceptAI.jl": [
+      "src/FusionConceptAI.jl"
+    ],
+    "src/RuntimeV4/FusionRuntimeV4.jl": [
+      "src/RuntimeV4/AlgebraicResidual.jl",
+      "src/RuntimeV4/AlgebraicScopedSearch.jl",
+      "src/RuntimeV4/Archives.jl",
+      "src/RuntimeV4/Authority.jl",
+      "src/RuntimeV4/Campaign.jl",
+      "src/RuntimeV4/Capability.jl",
+      "src/RuntimeV4/Compiler.jl",
+      "src/RuntimeV4/Contracts.jl",
+      "src/RuntimeV4/DeterministicScreenProvider.jl",
+      "src/RuntimeV4/Execution.jl",
+      "src/RuntimeV4/FieldProgramEvaluation.jl",
+      "src/RuntimeV4/FieldResidualNumerics.jl",
+      "src/RuntimeV4/FieldResidualPipeline.jl",
+      "src/RuntimeV4/Frontier.jl",
+      "src/RuntimeV4/FusionRuntimeV4.jl",
+      "src/RuntimeV4/RuntimePipeline.jl",
+      "src/RuntimeV4/Search.jl",
+      "src/RuntimeV4/WholeDevice.jl"
+    ],
+    "test/runtests.jl": [
+      "test/field_geometry_spatial_support_closed_canonical_adversarial.jl",
+      "test/field_geometry_spatial_support_closed_canonical_tests.jl",
+      "test/field_geometry_spatial_support_dispatch_adversarial.jl",
+      "test/field_geometry_spatial_support_tests.jl",
+      "test/runtests.jl"
+    ]
+  },
+  "roots": [
+    "src/FusionConceptAI.jl",
+    "src/RuntimeV4/FusionRuntimeV4.jl",
+    "test/runtests.jl",
+    "examples/runtime_v4_spatial_candidate.jl",
+    "scripts/run_v4_spatial_chain.jl"
+  ],
+  "schema": "runtime_v4_test_coverage.v1",
+  "source_commit": "c9ee99035bc04908bfc0df1e3b60d8c86033bcfb",
+  "status_entries": [
+    " M test/runtime_v4_validation_uq_execution_request_tests.jl",
+    "?? benchmarks/",
+    "?? candidate_validation_focused.exit",
+    "?? candidate_validation_focused.log",
+    "?? docs/implementation/engineering_control_fault_contract.md",
+    "?? docs/implementation/engineering_control_fault_execution_request_v4.md",
+    "?? docs/implementation/engineering_control_fault_obligation_v4.md",
+    "?? docs/implementation/engineering_control_fault_obligations_v4.md",
+    "?? docs/implementation/multiregion_coupling_contract.md",
+    "?? docs/implementation/multiregion_diffusion_provider.md",
+    "?? docs/implementation/physical_provider_admission_v4.md",
+    "?? docs/implementation/regional_force_quadrature_direction_diagnostic_v4.md",
+    "?? docs/implementation/regional_mhd_global_conservation_observation_v4.md",
+    "?? docs/implementation/regional_mhd_weak_residual_v4.md",
+    "?? docs/implementation/runtime_v4_entrypoint_coverage.md",
+    "?? docs/implementation/v3_reuse_audit.md",
+    "?? docs/implementation/validation_uq_contract.md",
+    "?? docs/reports/engineering_control_fault_contract_20260909.md",
+    "?? docs/reports/engineering_control_fault_execution_request_v4_20260910.md",
+    "?? docs/reports/engineering_control_fault_obligation_v4_20260910.md",
+    "?? docs/reports/engineering_control_fault_obligations_v4_20260909.md",
+    "?? docs/reports/fusionconceptai_v4_stage_report_20260906.md",
+    "?? docs/reports/fusionconceptai_v4_stage_report_20260906_evidence.md",
+    "?? docs/reports/fusionconceptai_v4_stage_report_20260906_time_residual.txt",
+    "?? docs/reports/goal_recovery_20260913.zip",
+    "?? docs/reports/goal_recovery_20260913/",
+    "?? docs/reports/multiregion_coupling_contract_20260909.md",
+    "?? docs/reports/multiregion_desc_admission_20260911.md",
+    "?? docs/reports/multiregion_diffusion_provider_20260909.md",
+    "?? docs/reports/multiregion_diffusion_provider_20260911.md",
+    "?? docs/reports/physical_provider_admission_v4_20260910.md",
+    "?? docs/reports/regional_force_quadrature_direction_diagnostic_v4_20260912.md",
+    "?? docs/reports/regional_mhd_global_conservation_observation_v4_20260912.md",
+    "?? docs/reports/regional_mhd_weak_residual_v4_20260912.md",
+    "?? docs/reports/validation_uq_contract_20260909.md",
+    "?? examples/runtime_v4_RegionalMHDWeakResidualV4.jl",
+    "?? examples/runtime_v4_engineering_control_fault_execution_request.jl",
+    "?? examples/runtime_v4_engineering_control_fault_obligation.jl",
+    "?? examples/runtime_v4_engineering_control_fault_obligations.jl",
+    "?? examples/runtime_v4_multiregion_coupling_contract.jl",
+    "?? examples/runtime_v4_multiregion_diffusion_provider.jl",
+    "?? examples/runtime_v4_physical_provider_admission.jl",
+    "?? examples/runtime_v4_regional_force_quadrature_direction_diagnostic.jl",
+    "?? examples/runtime_v4_regional_mhd_global_conservation_observation.jl",
+    "?? examples/runtime_v4_regional_mhd_weak_residual_production_gap.jl",
+    "?? focused_ecf_vuq.log",
+    "?? independent_cubature_focused.exit",
+    "?? independent_cubature_focused.log",
+    "?? q4_final_focused.exit",
+    "?? q4_final_focused.log",
+    "?? q4_final_standalone.log",
+    "?? q4_package_regression.err.log",
+    "?? q4_package_regression.log",
+    "?? q4_package_regression_retry.exit",
+    "?? q4_package_regression_retry.log",
+    "?? runs/",
+    "?? scripts/__pycache__/",
+    "?? scripts/audit_runtime_v4_test_coverage.py",
+    "?? scripts/run_v4_RegionalMHDWeakResidualV4.jl",
+    "?? scripts/run_v4_engineering_control_fault_execution_request.jl",
+    "?? scripts/run_v4_engineering_control_fault_obligation.jl",
+    "?? scripts/run_v4_engineering_control_fault_obligations.jl",
+    "?? scripts/run_v4_multiregion_coupling_contract.jl",
+    "?? scripts/run_v4_multiregion_diffusion_provider.jl",
+    "?? scripts/run_v4_physical_provider_admission.jl",
+    "?? scripts/run_v4_regional_force_quadrature_direction_diagnostic.jl",
+    "?? scripts/run_v4_regional_mhd_global_conservation_observation.jl",
+    "?? src/RuntimeV4/EngineeringControlFaultContracts.jl",
+    "?? src/RuntimeV4/EngineeringControlFaultExecutionRequestV4.jl",
+    "?? src/RuntimeV4/EngineeringControlFaultObligationV4.jl",
+    "?? src/RuntimeV4/EngineeringControlFaultObligationsV4.jl",
+    "?? src/RuntimeV4/MultiRegionCouplingContracts.jl",
+    "?? src/RuntimeV4/MultiRegionDiffusionProvider.jl",
+    "?? src/RuntimeV4/PhysicalProviderAdmissionV4.jl",
+    "?? src/RuntimeV4/RegionalForceQuadratureDirectionDiagnosticV4.jl",
+    "?? src/RuntimeV4/RegionalMHDGlobalConservationObservationV4.jl",
+    "?? src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+    "?? src/RuntimeV4/ValidationUQContracts.jl",
+    "?? test/runtime_v4_RegionalMHDWeakResidualProductionGap_tests.jl",
+    "?? test/runtime_v4_RegionalMHDWeakResidualV4_tests.jl",
+    "?? test/runtime_v4_engineering_control_fault_contract_tests.jl",
+    "?? test/runtime_v4_engineering_control_fault_execution_request_tests.jl",
+    "?? test/runtime_v4_engineering_control_fault_obligation_tests.jl",
+    "?? test/runtime_v4_engineering_control_fault_obligations_tests.jl",
+    "?? test/runtime_v4_multiregion_coupling_contract_tests.jl",
+    "?? test/runtime_v4_multiregion_desc_admission_tests.jl",
+    "?? test/runtime_v4_multiregion_diffusion_provider_tests.jl",
+    "?? test/runtime_v4_physical_provider_admission_tests.jl",
+    "?? test/runtime_v4_regional_force_quadrature_direction_diagnostic_tests.jl",
+    "?? test/runtime_v4_regional_mhd_global_conservation_observation_tests.jl",
+    "?? test/runtime_v4_spatial_solver_stagnation_tests.jl",
+    "?? test/runtime_v4_validation_uq_contract_tests.jl",
+    "?? test_tmp.out",
+    "M src/RuntimeV4/SpatialMultiRegionV4.jl"
+  ],
+  "tier_definitions": {
+    "fast contract/numerics": "package and lightweight RuntimeV4 contract/numerics checks",
+    "final acceptance": "whole-device/authority/acceptance decisions; not implied by static reachability",
+    "provider integration": "provider/adaptor and external solver integration surfaces",
+    "real scientific benchmark": "spatial or benchmark execution requiring scientific inputs"
+  },
+  "unresolved_or_dynamic_includes": [
+    {
+      "expression": "include(joinpath(SPATIAL_EXAMPLE_REPO,\"examples\",\"runtime_v4_revised_candidate.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 12,
+      "source": "examples/runtime_v4_spatial_candidate.jl"
+    },
+    {
+      "expression": "Base.include(SCV,joinpath(@__DIR__,\"..\",\"src\",\"RuntimeV4\",source))",
+      "kind": "dynamic_or_unresolved",
+      "line": 18,
+      "source": "examples/runtime_v4_spatial_candidate.jl"
+    },
+    {
+      "expression": "include(joinpath(SPATIAL_REPO,\"examples\",\"runtime_v4_spatial_candidate.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 67,
+      "source": "scripts/run_v4_spatial_chain.jl"
+    },
+    {
+      "expression": "Base.include(SCV,joinpath(SPATIAL_REPO,\"src\",\"RuntimeV4\",\"SpatialWholeDeviceV4.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 139,
+      "source": "scripts/run_v4_spatial_chain.jl"
+    },
+    {
+      "expression": "include(joinpath(SPATIAL_REPO,\"test\",\"runtime_v4_spatial_chain_checks.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 144,
+      "source": "scripts/run_v4_spatial_chain.jl"
+    },
+    {
+      "expression": "include(joinpath(@__DIR__, \"mechanism_hash_layers_tests.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 182,
+      "source": "test/runtests.jl"
+    },
+    {
+      "expression": "include(joinpath(@__DIR__, \"mechanism_hash_layers_adversarial.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 183,
+      "source": "test/runtests.jl"
+    },
+    {
+      "expression": "include(joinpath(@__DIR__, \"mechanism_phaseb_46_tests.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 184,
+      "source": "test/runtests.jl"
+    },
+    {
+      "expression": "include(joinpath(@__DIR__, \"mechanism_ledger_identity_adversarial.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 185,
+      "source": "test/runtests.jl"
+    },
+    {
+      "expression": "include(joinpath(@__DIR__, \"mechanism_conservation_scope_adversarial.jl\"))",
+      "kind": "dynamic_or_unresolved",
+      "line": 187,
+      "source": "test/runtests.jl"
+    }
+  ]
+}
