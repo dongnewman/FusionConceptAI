@@ -58,6 +58,14 @@ Given an accepted N2 state, add candidate-owned G3 coil geometry/currents and an
 
 N1 may follow the W01 numerical repair. N2 requires the W03 source registry and a new versioned equilibrium-selector declaration. N3 depends on N2 and real G3 data. Transport/burning/thermal/structural/power-cycle feedback remains outside N1-N3 and therefore R04/R05 remain unpassed even if all three succeed.
 
+## N1 manufactured-recovery execution result
+
+The preregistered refined family at commit `2bf50fd64156de71bc6e2c514e5e0d724a5f7b34` completed with process exit 0. All three perturbations converged on all three resolutions (`h=1/3`, `1/4`, and `1/5`) within the fixed 48-update budget, and every accepted update was a strict representable objective decrease. Perturbation 3 required 13, 21, and 32 accepted updates respectively, confirming that its earlier 12-update failures were budget-limited rather than divergent.
+
+This passes the narrow recovery-robustness portion of N1, but it does not pass a grid-consistency or observed-order claim. For perturbation 1, the relative solution error decreased from `6.20345e-4` at `h=1/3` to `6.94560e-5` at `h=1/4`, then increased to `2.74459e-4` at `h=1/5`; the latter pair therefore has observed order `-6.15795`. The other large positive pairwise values are also not promoted as credible asymptotic orders without a demonstrated common refinement regime. Residual convergence alone can select different nearby least-squares states in this manufactured problem.
+
+The result remains numerical-only, has evidence authority `none`, and declares physical validation `unsupported`. It does not close the candidate-owned pressure/current selector, exterior field/current-return system, or the real four-case physics failure. R03 therefore remains unaccepted, and the next ordered minimum problem is N2 rather than further solver iteration tuning.
+
 ## Current classification and next work order boundaries
 
 - Numerical defect: confirmed floating-point stagnation; W01 owns the narrow algorithm correction.
