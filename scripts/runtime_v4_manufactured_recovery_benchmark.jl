@@ -14,6 +14,12 @@ const SPF=RuntimeV4ManufacturedRecoveryBenchmark
 const _BPHI=1.0
 const _P0=1.0e5
 const _MU0=SPF._SMR_MU0
+const DEFAULT_RESOLUTIONS=((:h05,1,
+        ((level=:h05,rho=(0.,.5,1.),theta_count=4,zeta_per_period=2),),.5),
+    (:h033,1,((level=:h033,rho=(0.,1/3,.5,2/3,1.),theta_count=6,zeta_per_period=3),),1/3),
+    (:h025,1,((level=:h025,rho=(0.,.25,.5,.75,1.),theta_count=8,zeta_per_period=4),),.25))
+const DEFAULT_PERTURBATIONS=((0.11,-0.07,0.05,2.0e3),
+    (-0.23,0.13,-0.09,-3.0e3),(0.37,0.19,0.17,7.0e3))
 
 "Analytic nonzero-source field: B=e_phi, p=p0, div(T)=source."
 function manufactured_field(xyz)
@@ -70,11 +76,10 @@ function benchmark_data(spec)
      initial_state=x,raw_artifacts=(manufactured_numerical_only=true,)))
 end
 
-function run_manufactured_recovery_benchmark()
-    resolutions=((:h05,1,((level=:h05,rho=(0.,.5,1.),theta_count=4,zeta_per_period=2),),.5),
-        (:h033,1,((level=:h033,rho=(0.,1/3,.5,2/3,1.),theta_count=6,zeta_per_period=3),),1/3),
-        (:h025,1,((level=:h025,rho=(0.,.25,.5,.75,1.),theta_count=8,zeta_per_period=4),),.25))
-    perturbations=( (0.11,-0.07,0.05,2.0e3), (-0.23,0.13,-0.09,-3.0e3), (0.37,0.19,0.17,7.0e3) )
+function run_manufactured_recovery_benchmark(;resolutions=DEFAULT_RESOLUTIONS,
+        perturbations=DEFAULT_PERTURBATIONS,max_iterations=12,
+        benchmark_id=:runtime_v4_manufactured_recovery_n1_v2)
+    max_iterations isa Int&&max_iterations>=0 || throw(ArgumentError("nonnegative integer iteration budget required"))
     results=NamedTuple[]
     for spec in resolutions
         level,nfp,_,h=spec;bundle=benchmark_data(spec);d=bundle.declaration;data=bundle.data;truth=data.initial_state
@@ -84,7 +89,7 @@ function run_manufactured_recovery_benchmark()
         truth_scaled_max=maximum(abs,truth_assembly.residual./truth_assembly.row_scales)
         for δ in perturbations
             initial=truth.+repeat(collect(δ),div(length(truth),4))
-            sol=SPF.solve_spatial_state_v4(d,data,initial;flux_Wb=pi,limits=(max_iterations=12,seconds=600.),
+            sol=SPF.solve_spatial_state_v4(d,data,initial;flux_Wb=pi,limits=(max_iterations=max_iterations,seconds=600.),
                 source_function=xyz->manufactured_field(xyz).source,
                 boundary_function=manufactured_traction,normal_field_function=manufactured_normal)
             initial_err=norm(initial.-truth)/max(norm(truth),1.)
@@ -117,7 +122,7 @@ function run_manufactured_recovery_benchmark()
     end
     source_path=abspath(@__FILE__)
     production_source=abspath(joinpath(@__DIR__,"..","src","RuntimeV4","SpatialMultiRegionV4.jl"))
-    (benchmark=:runtime_v4_manufactured_recovery_n1_v2,
+    (benchmark=benchmark_id,max_iterations=max_iterations,
      julia_version=string(VERSION),source_path=source_path,
      source_sha256=bytes2hex(SHA.sha256(read(source_path))),
      production_source_path=production_source,

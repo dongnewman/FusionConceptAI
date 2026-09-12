@@ -28,3 +28,10 @@ finite positive recovery errors; failed or stationary endpoints produce null
 with an explicit reason. Every result also reports its initial error and
 whether all accepted updates had strict objective decrease and meaningful
 scaled state motion.
+
+After the v2 run exposed a 12-update cap for the largest perturbation, the
+separately preregistered v3 runner uses `h=1/3,1/4,1/5`, keeps all three
+perturbations, and raises only the iteration budget to 48. The new `h=1/5`
+level has 1220 unknowns. Its plan is frozen in
+`runs/goal_recovery_20260913_012528_cst/n1_refined_family_plan.json`; v3 cannot
+retroactively change the v2 result.
