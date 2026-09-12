@@ -36,9 +36,10 @@ def valid_record():
                 "R": 0.0, "Z": 0.0, "RZ_euclidean": 0.0}},
     }
     return {
-        "schema_version": "n2-normalized-reference-v1",
+        "schema_version": "n2-normalized-reference-v2",
         "reference": {"reference_id": "display-a", "display_name": "A"},
         "subject": subject,
+        "subject_canonical_json": canonical_bytes(subject).decode("utf-8"),
         "subject_hash": hashlib.sha256(canonical_bytes(subject)).hexdigest(),
         "authority": {"physical_validation": "unsupported",
                       "independent_solver": False, "measurement": False,
@@ -46,6 +47,12 @@ def valid_record():
                       "held_out_prediction_ready": False,
                       "credible_device_count": 0},
     }
+
+
+def refresh_subject_wire(record):
+    wire = canonical_bytes(record["subject"])
+    record["subject_canonical_json"] = wire.decode("utf-8")
+    record["subject_hash"] = hashlib.sha256(wire).hexdigest()
 
 
 class NormalizationContractTests(unittest.TestCase):
@@ -66,6 +73,12 @@ class NormalizationContractTests(unittest.TestCase):
         changed["reference"] = {"reference_id": "renamed", "display_name": "B"}
         self.assertEqual(subject_hash(record), subject_hash(changed))
 
+    def test_canonical_subject_wire_tampering_fails_closed(self):
+        record = valid_record()
+        record["subject_canonical_json"] += " "
+        with self.assertRaisesRegex(ValueError, "canonical JSON mismatch"):
+            validate_normalized(record)
+
     def test_source_hash_tampering_fails_closed(self):
         record = valid_record()
         with self.assertRaisesRegex(ValueError, "source hash"):
@@ -74,7 +87,7 @@ class NormalizationContractTests(unittest.TestCase):
     def test_measurement_relabel_fails_closed(self):
         record = valid_record()
         record["subject"]["source_class"] = "measurement"
-        record["subject_hash"] = hashlib.sha256(canonical_bytes(record["subject"])).hexdigest()
+        refresh_subject_wire(record)
         with self.assertRaisesRegex(ValueError, "promoted or relabeled"):
             validate_normalized(record)
 
@@ -87,23 +100,21 @@ class NormalizationContractTests(unittest.TestCase):
     def test_incomplete_selected_member_provenance_fails_closed(self):
         record = valid_record()
         del record["subject"]["provenance"]["selected_equilibrium_index"]
-        record["subject_hash"] = hashlib.sha256(
-            canonical_bytes(record["subject"])).hexdigest()
+        refresh_subject_wire(record)
         with self.assertRaisesRegex(ValueError, "provenance is incomplete"):
             validate_normalized(record)
 
     def test_missing_truncation_bound_fails_closed(self):
         record = valid_record()
         del record["subject"]["boundary"]["uniform_pointwise_error_bound_m"]
-        record["subject_hash"] = hashlib.sha256(
-            canonical_bytes(record["subject"])).hexdigest()
+        refresh_subject_wire(record)
         with self.assertRaisesRegex(ValueError, "truncation bounds"):
             validate_normalized(record)
 
     def test_invalid_pressure_profile_fails_closed(self):
         record = valid_record()
         record["subject"]["pressure_profile"]["coefficients_by_power"] = [1.0, 1.0]
-        record["subject_hash"] = hashlib.sha256(canonical_bytes(record["subject"])).hexdigest()
+        refresh_subject_wire(record)
         with self.assertRaisesRegex(ValueError, "not closed"):
             validate_normalized(record)
 

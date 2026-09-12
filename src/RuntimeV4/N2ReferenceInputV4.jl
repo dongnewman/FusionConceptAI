@@ -8,6 +8,7 @@ execute a provider and cannot emit physical evidence.
 """
 module N2ReferenceInputRuntime
 using SHA
+using JSON3
 using FusionConceptAI
 import FusionConceptAI: Digest256, canonical_hash, semantic_view, screen_only
 
@@ -41,6 +42,97 @@ function _n2r_subject_payload(subject)
     NamedTuple{keys}(Tuple(getproperty(subject, key) for key in keys))
 end
 _n2r_subject_hash(subject) = canonical_hash(_n2r_subject_payload(subject))
+
+function _n2r_modes_from_json(rows)
+    Tuple((m=Int(row.m), n=Int(row.n),
+        coefficient_m=Float64(row.coefficient_m)) for row in rows)
+end
+
+function _n2r_profile_from_json(profile)
+    (quantity=String(profile.quantity), unit=String(profile.unit),
+     basis=String(profile.basis),
+     radial_domain=Tuple(Float64(value) for value in profile.radial_domain),
+     coefficients_by_power=Tuple(Float64(value) for value in
+        profile.coefficients_by_power),
+     uniform_pointwise_error_bound=Float64(
+        profile.uniform_pointwise_error_bound))
+end
+
+function _n2r_subject_from_json(source)
+    provenance = source.provenance
+    boundary = source.boundary
+    resolution = source.source_resolution
+    (schema_version=String(source.schema_version),
+     source_class=String(source.source_class),
+     source_artifact_sha256=String(source.source_artifact_sha256),
+     provenance=(
+        distributed_in_release_tag=String(provenance.distributed_in_release_tag),
+        distribution_tag_commit=String(provenance.distribution_tag_commit),
+        embedded_producer_version=String(provenance.embedded_producer_version),
+        loader_runtime_version=String(provenance.loader_runtime_version),
+        equilibrium_count=Int(provenance.equilibrium_count),
+        selected_equilibrium_index=Int(provenance.selected_equilibrium_index)),
+     field_periods=Int(source.field_periods),
+     stellarator_symmetric=Bool(source.stellarator_symmetric),
+     boundary=(coordinate_system=String(boundary.coordinate_system),
+        coefficient_unit=String(boundary.coefficient_unit),
+        radial_modes=_n2r_modes_from_json(boundary.radial_modes),
+        vertical_modes=_n2r_modes_from_json(boundary.vertical_modes),
+        uniform_pointwise_error_bound_m=(
+            R=Float64(boundary.uniform_pointwise_error_bound_m.R),
+            Z=Float64(boundary.uniform_pointwise_error_bound_m.Z),
+            RZ_euclidean=Float64(
+                boundary.uniform_pointwise_error_bound_m.RZ_euclidean))),
+     pressure_profile=_n2r_profile_from_json(source.pressure_profile),
+     rotational_or_current_profile=_n2r_profile_from_json(
+        source.rotational_or_current_profile),
+     toroidal_flux=(value=Float64(source.toroidal_flux.value),
+        unit=String(source.toroidal_flux.unit)),
+     source_resolution=(L=Int(resolution.L), M=Int(resolution.M),
+        N=Int(resolution.N), L_grid=Int(resolution.L_grid),
+        M_grid=Int(resolution.M_grid), N_grid=Int(resolution.N_grid)))
+end
+
+function _n2r_load_normalized_result(path::AbstractString,
+        expected_sha256::Digest256)
+    isfile(path) || throw(ArgumentError("N2 normalized result is missing"))
+    _n2r_sha(path) == expected_sha256 ||
+        throw(ArgumentError("N2 normalized result hash mismatch"))
+    record = try
+        JSON3.read(read(path, String))
+    catch error
+        throw(ArgumentError("N2 normalized result JSON is invalid: $(error)"))
+    end
+    hasproperty(record, :schema_version) &&
+        record.schema_version == "n2-normalized-reference-v2" ||
+        throw(ArgumentError("N2 normalized result schema mismatch"))
+    hasproperty(record, :status) &&
+        record.status == "normalized_external_simulation_input" ||
+        throw(ArgumentError("N2 normalized result status mismatch"))
+    hasproperty(record, :subject_canonical_json) &&
+        hasproperty(record, :subject_hash) && hasproperty(record, :subject) ||
+        throw(ArgumentError("N2 normalized result subject receipt is incomplete"))
+    wire = String(record.subject_canonical_json)
+    wire_sha256 = Digest256(bytes2hex(SHA.sha256(codeunits(wire))))
+    wire_sha256 == Digest256(String(record.subject_hash)) ||
+        throw(ArgumentError("N2 normalized result declared subject hash mismatch"))
+    parsed_subject = try
+        JSON3.read(wire)
+    catch error
+        throw(ArgumentError("N2 canonical subject JSON is invalid: $(error)"))
+    end
+    parsed_subject == record.subject ||
+        throw(ArgumentError("N2 normalized result subject/canonical wire mismatch"))
+    authority = hasproperty(record, :authority) ? record.authority : nothing
+    authority !== nothing &&
+        authority.physical_validation == "unsupported" &&
+        authority.independent_solver == false && authority.measurement == false &&
+        authority.inversion_ready == false &&
+        authority.held_out_prediction_ready == false &&
+        authority.credible_device_count == 0 ||
+        throw(ArgumentError("N2 normalized result authority ceiling exceeded"))
+    _n2r_subject_from_json(parsed_subject), wire_sha256
+end
 
 function _n2r_finite_nonnegative(value, field::String)
     value isa Real && !(value isa Bool) && isfinite(Float64(value)) && value >= 0 ||
@@ -101,6 +193,12 @@ function _n2r_validate_subject_and_input(subject, input,
     source_resolution = _n2r_require(subject, :source_resolution)
     radial = _n2r_subject_modes(boundary, :radial_modes)
     vertical = _n2r_subject_modes(boundary, :vertical_modes)
+    boundary.coordinate_system == "cylindrical_R_phi_Z" &&
+        boundary.coefficient_unit == "m" ||
+        throw(ArgumentError("N2 boundary coordinate system or unit mismatch"))
+    length(unique((row.m, row.n) for row in radial)) == length(radial) &&
+        length(unique((row.m, row.n) for row in vertical)) == length(vertical) ||
+        throw(ArgumentError("N2 Fourier modes must be unique per component"))
     pressure_coefficients = _n2r_tuple(
         _n2r_require(pressure, :coefficients_by_power),
         "N2 pressure coefficients")
@@ -117,7 +215,14 @@ function _n2r_validate_subject_and_input(subject, input,
         throw(ArgumentError("N2 requires exactly one iota/current profile"))
     rotational.unit == (rotational.quantity == "iota" ? "1" : "A") ||
         throw(ArgumentError("N2 rotational/current unit mismatch"))
-    flux.unit == "Wb" || throw(ArgumentError("N2 toroidal flux unit mismatch"))
+    pressure.basis == "power_series_in_rho" &&
+        rotational.basis == "power_series_in_rho" &&
+        pressure.radial_domain == (0.0, 1.0) &&
+        rotational.radial_domain == (0.0, 1.0) ||
+        throw(ArgumentError("N2 profile basis or radial domain mismatch"))
+    flux.unit == "Wb" && flux.value isa Real && !(flux.value isa Bool) &&
+        isfinite(Float64(flux.value)) && flux.value != 0 ||
+        throw(ArgumentError("N2 toroidal flux is invalid"))
     _n2r_finite_nonnegative(pressure.uniform_pointwise_error_bound,
         "N2 pressure truncation bound")
     _n2r_finite_nonnegative(rotational.uniform_pointwise_error_bound,
@@ -148,8 +253,9 @@ function _n2r_validate_subject_and_input(subject, input,
         throw(ArgumentError("N2 typed toroidal flux mismatch"))
 
     gaps = String[
-        "source_owned_interior_radial_extension_missing",
-        "source_owned_coordinate_metric_program_missing",
+        "source_owned_fourier_zernike_interior_not_normalized_or_bound",
+        "current_single_power_geometry_program_cannot_represent_source_fourier_zernike_basis",
+        "candidate_coordinate_metric_program_not_bound_to_source_interior",
     ]
     subject.field_periods in 2:8 ||
         push!(gaps, "desc_interpreter_field_periods_outside_2_to_8")
@@ -224,16 +330,14 @@ function bind_n2_reference_input(context, input,
         source_artifact_path::AbstractString,
         source_artifact_sha256::Digest256,
         normalized_result_path::AbstractString,
-        normalized_result_sha256::Digest256,
-        normalized_result_subject_sha256::Digest256,
-        normalized_subject; validator=nothing)
+        normalized_result_sha256::Digest256; validator=nothing)
     validator === nothing || validator(context)
     isfile(source_artifact_path) || throw(ArgumentError("N2 source artifact is missing"))
     _n2r_sha(source_artifact_path) == source_artifact_sha256 ||
         throw(ArgumentError("N2 source artifact hash mismatch"))
-    isfile(normalized_result_path) || throw(ArgumentError("N2 normalized result is missing"))
-    _n2r_sha(normalized_result_path) == normalized_result_sha256 ||
-        throw(ArgumentError("N2 normalized result hash mismatch"))
+    normalized_subject, normalized_result_subject_sha256 =
+        _n2r_load_normalized_result(normalized_result_path,
+            normalized_result_sha256)
     gaps, profile_quantity = _n2r_validate_subject_and_input(
         normalized_subject, input, source_artifact_sha256)
     typed_subject_hash = _n2r_subject_hash(normalized_subject)

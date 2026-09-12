@@ -28,4 +28,7 @@ Run the normalization with the declared DESC loader runtime:
 The source manifest records the official release URL, tag commit, MIT license,
 artifact byte count, and SHA-256.  Any artifact or producer-version mismatch
 fails before normalization.  The normalized result also reports conservative
-L1 uniform pointwise bounds for every discarded profile and boundary term.
+L1 uniform pointwise bounds for every discarded profile and boundary term. Its
+v2 schema carries the exact compact, sorted Python canonical subject JSON as a
+wire field, allowing the Julia boundary to recompute the declared subject hash
+without assuming that Julia and Python format floating-point JSON identically.

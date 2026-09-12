@@ -225,8 +225,9 @@ def normalize(source_path: Path = DEFAULT_SOURCE) -> dict:
             "N_grid": int(equilibrium.N_grid),
         },
     }
+    subject_wire = canonical_bytes(subject).decode("utf-8")
     result = {
-        "schema_version": "n2-normalized-reference-v1",
+        "schema_version": "n2-normalized-reference-v2",
         "reference": {
             "reference_id": manifest["reference_id"],
             "display_name": manifest["display_name"],
@@ -234,7 +235,8 @@ def normalize(source_path: Path = DEFAULT_SOURCE) -> dict:
             "license": manifest["source"]["license"],
         },
         "subject": subject,
-        "subject_hash": hashlib.sha256(canonical_bytes(subject)).hexdigest(),
+        "subject_canonical_json": subject_wire,
+        "subject_hash": hashlib.sha256(subject_wire.encode("utf-8")).hexdigest(),
         "normalization": copy.deepcopy(manifest["normalization"]),
         "authority": copy.deepcopy(manifest["authority"]),
         "status": "normalized_external_simulation_input",
@@ -257,10 +259,13 @@ def _poly(coefficients: list[float], rho: float) -> float:
 
 
 def validate_normalized(record: dict, *, expected_source_hash: str | None = None) -> None:
-    if record.get("schema_version") != "n2-normalized-reference-v1":
+    if record.get("schema_version") != "n2-normalized-reference-v2":
         raise ValueError("unsupported normalized schema")
     subject = record.get("subject", {})
-    if record.get("subject_hash") != hashlib.sha256(canonical_bytes(subject)).hexdigest():
+    subject_wire = record.get("subject_canonical_json")
+    if not isinstance(subject_wire, str) or subject_wire != canonical_bytes(subject).decode("utf-8"):
+        raise ValueError("normalized subject canonical JSON mismatch")
+    if record.get("subject_hash") != hashlib.sha256(subject_wire.encode("utf-8")).hexdigest():
         raise ValueError("normalized subject hash mismatch")
     if expected_source_hash is not None and subject.get("source_artifact_sha256") != expected_source_hash:
         raise ValueError("normalized source hash mismatch")
