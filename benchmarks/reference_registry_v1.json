@@ -1,0 +1,89 @@
+{
+  "schema_version": "reference_registry_v1",
+  "generated_at": "2026-09-13",
+  "validation_pass": false,
+  "references": [
+    {
+      "reference_id": "iter_design_v1",
+      "device_name": "ITER",
+      "benchmark": true,
+      "mission": "non_electricity_producing_public_design_reference",
+      "status": "executable_design_input",
+      "evidence_class": "design_target",
+      "source": {
+        "url": "https://www.iter.org/faqs",
+        "document": "ITER FAQs",
+        "version": null,
+        "published_date": null,
+        "accessed_date": "2026-09-13",
+        "license_or_access": "Public web page; access unrestricted; page publication/version date is not exposed"
+      },
+      "fields": {
+        "fusion_power": {"value": 500.0, "unit": "MW", "uncertainty": null, "source_locator": "FAQ: What is ITER?", "missing_reason": null},
+        "auxiliary_heating_power": {"value": 50.0, "unit": "MW", "uncertainty": null, "source_locator": "FAQ: What is ITER?", "missing_reason": null},
+        "target_Q_plasma": {"value": 10.0, "unit": "1", "uncertainty": null, "source_locator": "FAQ: What is ITER?", "missing_reason": null},
+        "toroidal_field": {"value": 5.3, "unit": "T", "uncertainty": null, "source_locator": "FAQ: How did designers choose Q?", "missing_reason": null},
+        "plasma_current": {"value": 15.0, "unit": "MA", "uncertainty": null, "source_locator": "FAQ: How did designers choose Q?", "missing_reason": null},
+        "plasma_volume": {"value": 830.0, "unit": "m^3", "uncertainty": null, "source_locator": "FAQ: How did designers choose Q?", "missing_reason": null},
+        "electrical_generation": {"value": false, "unit": "boolean", "uncertainty": null, "source_locator": "FAQ: What is ITER?", "missing_reason": null},
+        "major_radius": {"value": null, "unit": "m", "uncertainty": null, "source_locator": null, "missing_reason": "not stated in the cited FAQ; obtain engineering basis field"},
+        "discharge_measurement": {"value": null, "unit": null, "uncertainty": null, "source_locator": null, "missing_reason": "ITER has not operated the cited design scenario; no measurement may be inferred"}
+      },
+      "data_split": {"calibration_artifact_ids": [], "held_out_artifact_ids": [], "calibration_channel_ids": [], "held_out_channel_ids": [], "declared": false},
+      "missing_fields": ["major_radius", "minor_radius", "coil_currents", "time_resolved_profiles", "measurement_uncertainties", "calibration_y", "held_out_y"],
+      "validation_scope": "design_consistency_only; measurement_validation_pending"
+    },
+    {
+      "reference_id": "fair_mast_shot_30421_v1",
+      "device_name": "MAST",
+      "benchmark": true,
+      "mission": "measured_plasma_diagnostic_reference",
+      "status": "metadata_executable_raw_data_pending",
+      "evidence_class": "measurement",
+      "source": {
+        "url": "https://mastapp.site/quickstart.html",
+        "document": "MAST Data Catalog Quickstart; shot 30421 signal listing",
+        "version": null,
+        "published_date": null,
+        "accessed_date": "2026-09-13",
+        "license_or_access": "Public API/Zarr service; archive CC BY-SA 4.0 unless otherwise noted"
+      },
+      "fields": {
+        "shot_id": {"value": 30421, "unit": "1", "uncertainty": null, "source_locator": "quickstart lines 143-157", "missing_reason": null},
+        "electron_temperature_signal": {"value": "t_e", "unit": "eV", "uncertainty": null, "source_locator": "quickstart signal table; dimensions time, major_radius", "missing_reason": "per-sample uncertainty not exposed in catalog listing"},
+        "electron_density_signal": {"value": "n_e", "unit": "eV", "expected_physical_unit": "m^-3", "unit_consistency": "unresolved_catalog_metadata_inconsistency", "uncertainty": null, "source_locator": "quickstart signal table; UUID f0b586cd-11ea-5208-927b-4e4f057a6c44; dimensions time, major_radius", "missing_reason": "catalog reports eV although density is expected in m^-3; resolve before use"},
+        "plasma_current_signal": {"value": "plasma_current", "unit": "A", "uncertainty": null, "source_locator": "quickstart open-and-plot example", "missing_reason": "exact signal locator requires API query"},
+        "artifact_uri": {"value": "https://mastapp.site/parquet/level2/signals?shot_id=30421", "unit": "URI", "uncertainty": null, "source_locator": "metadata endpoint only", "missing_reason": "parquet is catalog metadata, not the raw diagnostic artifact"},
+        "raw_data_obtained": {"value": false, "unit": "boolean", "uncertainty": null, "source_locator": "local acquisition record", "missing_reason": "S3 Zarr route documented but arrays were not obtained"},
+        "raw_data_route": {"value": "s3://mast/level2/shots/30421.zarr", "unit": "URI", "uncertainty": null, "source_locator": "quickstart source table", "missing_reason": null}
+      },
+      "data_split": {"calibration_artifact_ids": ["mast:30421:thomson_scattering:t_e", "mast:30421:thomson_scattering:n_e"], "held_out_artifact_ids": ["mast:30421:equilibrium:beta_pol"], "calibration_channel_ids": ["t_e", "n_e"], "held_out_channel_ids": ["beta_pol"], "declared": true},
+      "missing_fields": ["downloaded_raw_zarr", "diagnostic_uncertainty", "equilibrium_reconstruction_version", "independent_shot_for_strict_holdout", "known_inputs_and_theta"],
+      "validation_scope": "metadata_only; inversion_and_validation_blocked_by_raw_data_and_unit_resolution"
+    },
+    {
+      "reference_id": "c2w_frc_public_reference_v1",
+      "device_name": "C-2W",
+      "benchmark": true,
+      "mission": "open_field_reversed_field_configuration_reference",
+      "status": "pending_data",
+      "evidence_class": "published_experimental_range",
+      "source": {
+        "url": "https://tae.com/categories/experiment/page/47/",
+        "document": "TAE Technologies official experiment information (candidate discovery source)",
+        "version": null,
+        "published_date": null,
+        "accessed_date": "2026-09-13",
+        "license_or_access": "Public descriptive information; no usable shot file obtained"
+      },
+      "fields": {
+        "configuration": {"value": "field-reversed configuration", "unit": "categorical", "uncertainty": null, "source_locator": "public device description", "missing_reason": null},
+        "shot_data": {"value": null, "unit": null, "uncertainty": null, "source_locator": null, "missing_reason": "no obtained machine-readable discharge artifact"},
+        "diagnostic_channels": {"value": null, "unit": null, "uncertainty": null, "source_locator": null, "missing_reason": "request authorized shot files and channel schema from experiment host"}
+      },
+      "data_split": {"calibration_artifact_ids": [], "held_out_artifact_ids": [], "calibration_channel_ids": [], "held_out_channel_ids": [], "declared": false},
+      "missing_fields": ["raw_or_levelled_shot_files", "channel_units", "timebase", "uncertainties", "calibration_y", "held_out_y", "known_inputs", "theta_definition"],
+      "validation_scope": "not_executable_pending_data"
+    }
+  ]
+}
