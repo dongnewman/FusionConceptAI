@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-12
 Current cycle starting HEAD: `main@793109c72f983f1fde92cfb71dc5f7100dcddfd5`
-Current cycle implementation: accepted same-candidate execution and gap-ledger milestone; see the commit containing this index.
+Current accepted and pushed implementation: `main@48bf4e5eaf0952dbc2e8c14b0abc2aaf78a6778f`.
 Previous pushed acceptance includes `bf0b330` and `793109c`; the former index's `2ae6cc5` pointer was stale.
 
 ## Current same-candidate execution

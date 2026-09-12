@@ -197,3 +197,14 @@ The requested complete multi-region solve, real engineering/control/fault
 dynamics, physical validation, parameter/model-form UQ and integrated physical
 device remain unexecuted. The final result is **deferred**, with the numerical
 diagnostic **fail**, 18 recoverable gaps and zero credible-device credit.
+
+## Git delivery
+
+Implementation milestone:
+`48bf4e5eaf0952dbc2e8c14b0abc2aaf78a6778f`
+(`feat(runtime-v4): execute same-candidate chain with explicit stage gaps`).
+The 33 reviewed files were committed and pushed to `origin/main`; remote
+tracking was verified at ahead/behind `0/0`. This report and the progress index
+then record that exact accepted implementation in a separate documentation
+commit. The original protected test SHA-256 remained unchanged, and unrelated
+untracked files and local run evidence were excluded from the commits.
