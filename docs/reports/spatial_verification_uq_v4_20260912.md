@@ -1,60 +1,54 @@
-# Spatial verification/UQ staging report — 2026-09-12
+# Spatial verification and deterministic propagation record — 2026-09-13
 
-The numerical branch is implemented in staging. It has not yet executed on the
-new spatial candidate. No spatial residual, Jacobian, MMS, propagation or physical
-validation result is claimed from these files alone.
+Verification executed on the actual four spatial states and their actual
+engineering outputs. Numerical/formulation checks pass with exit 0; this grants
+zero physical-validation credit and does not repair upstream nonconvergence.
+Consequently the aggregate verification status is `fail` even though its
+numerical substage is `pass` and its process/solver exit is 0.
 
-| Item | Implemented | Executed | Result / exit |
-| --- | --- | --- | --- |
-| Independent raw Q1 weak/strong oracle, including `B divB / mu0` | yes | unit checks only | actual candidate pending |
-| Every state Jacobian column/block, local coloring plus independent flux row | yes | no | main Julia queue pending |
-| Nonzero-source analytic curved MMS on both mesh levels | yes | no | actual geometry pending |
-| Actual flux endpoint→actual current→finite-aperture engineering propagation | yes | no | physics and engineering cases pending |
-| Independent 256-bit exponential RL replay | yes | no | main focused/integration queue pending |
-| Applicable physical validation and model discrepancy | no | no | unsupported; no data/independent physical solver |
+## Executed checks
 
-Executed lightweight software verification: `test/spatial_verification_oracle_tests.py`
-ran three tests under Python 3.13.5 / NumPy 2.1.3, exit 0. The saved log is
-`audit/independent_oracle_focused.log`; the explicit exit is
-`audit/independent_oracle_focused.exitcode`. The tests cover merged Q1 partition,
-the cylindrical field `B_R=R` whose nonzero `B divB` force survives while curl is
-zero, and independent analytic stress divergence for the MMS. Inputs are labeled
-manufactured software fixtures; they are not upstream candidate products.
+- Independent same-geometry/same-quadrature residual formulations pass every
+  momentum, divB, traction, normal-B and total-flux block for all four cases.
+- Every structural Jacobian column was checked: 360 coarse columns, 2640 fine
+  columns, then 360 at each flux endpoint. All cases used 32 colors and 65
+  residual evaluations; maximum relative column differences were
+  `2.74e-7`, `3.87e-7`, `2.65e-7`, and `2.67e-7`, within their declared gates.
+  No structural column was empty.
+- Two nonzero-source curved MMS levels executed. The independently evaluated
+  source norms are `33462.1132` and `33465.0286 N m^-3 sqrt(m^3)`; all four
+  residual columns are complete and finite. MMS solution solves were not
+  requested, so no solution convergence order is claimed.
+- The independent 256-bit analytic circuit oracle checked induced-EMF peak,
+  total energy identity and maximum segment energy identity for all four actual
+  engineering cases; all passed with exit 0.
+- Focused Julia verification passes 57/57, the independent Python oracle passes
+  3/3, and graph/binding checks pass 15/15, all with process exit 0.
 
-The first lightweight test used zero absolute tolerance for a mathematically
-zero force component. It observed `8.13e-10 N/m³` floating-point leakage against a
-`3.66e6 N/m³` force. Its fixture assertion was corrected to a dimensioned
-`1e-8 N/m³` absolute tolerance plus `1e-13` relative tolerance; this did not change
-the candidate declaration or any production acceptance threshold. The rerun
-passed all three tests.
+Strong/weak identity differences are integration/geometry diagnostics, not a
+certified isolated quadrature error. Nominal coarse/fine momentum scaled identity
+differences are `1.56852e-4` and `8.67903e-6`; divB values are `3.06582e-4`
+and `2.47578e-5`. Failed nonlinear states cannot establish physical
+discretization error or a convergence order.
 
-Source SHA-256 at initial focused handoff:
+## Actual parameter propagation
 
-- Julia: `71a46c5fce29f0a9cc62636410c9b60e872dd88456851d05032526ca785420e5`
-- Independent Python oracle: `0305bf822a691d3df2d169b344d1a5f98847cb3e38c20a3aaa46dd35c485873d`
+The declared toroidal-flux endpoints 0.95 and 1.05 Wb were each spatially solved
+and propagated through actual J/K artifacts, finite-aperture transfer and circuit
+execution. The failed-state conditional nominal current range is
+`6.3886611e-5` to `6.7637089e-5 A`; static linkage at the low/high endpoint cases
+is `-1.2997092e-5` / `-1.3759869e-5 Wb`. This is a deterministic sampled interval
+with a secant, not a distribution, confidence interval, certified global bound
+or robustness claim.
 
-Before actual execution, the main agent authorized a binding hardening while its
-initial Julia focused process was already running. The validator now rebuilds
-the canonical oracle request from actual physical state/geometry/ownership and
-compares the exact input bytes; it checks the full structural pattern hash.
-A negative fixture replaces and rehashes an unrelated request and must still
-fail. The post-hardening focused rerun subsequently passed 33/33 with explicit
-exit 0 in `runs/spatial_chain_20260912_audit/verification_focused_r2.log` and
-`.exit`. Those are focused software checks, not actual-candidate execution.
+## Unsupported evidence
 
-The later read-only continuation audit requested three narrow additions: complete
-four-column MMS parsing/finite checks with nonzero-source status derived from the
-independent oracle norm, and independent checks of induced-emf peak plus total and
-per-segment circuit energy identities. These latest source/test edits have not yet
-been rerun. Actual spatial-candidate verification remains wholly unexecuted.
+No experiment, independent physical solver, model-discrepancy basis or applicable
+held-out validation data exists. Physical validation is `unsupported`, not
+failed and not executed. The numerical stage is implemented/executed/pass with
+exit 0; whole-device authority remains deferred because its physical inputs fail
+or are missing.
 
-Reproduce lightweight verification from the repository root:
-
-```powershell
-& 'D:\Users\Newman\anaconda3\python.exe' 'runs/spatial_chain_20260912_staging/test/spatial_verification_oracle_tests.py'
-```
-
-The main agent owns all Julia/DESC scheduling and will populate real candidate
-measurements, hashes, explicit exits, unsupported applicability and remaining
-solver/model/data blockers after the unified execution. Neither this pending
-table nor local green tests close the original full-chain objective.
+Detailed independent residual tables, per-column records, MMS rows and circuit
+oracle outputs are under `runs/spatial_chain_20260912_r1/verification/` and bound
+by `execution_manifest.json`.

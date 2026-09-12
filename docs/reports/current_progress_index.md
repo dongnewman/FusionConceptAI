@@ -1,57 +1,50 @@
 # FusionConceptAI Runtime V4 current progress index
 
-Last updated: 2026-09-12
-User-requested closeout: reduced milestone `51b5540` is pushed; spatial source is
-local staging, not accepted, and all three subagents are stopped. The candidate
-preflight was interrupted before completion; no spatial DESC/solve was started.
-See [spatial handoff](spatial_execution_handoff_20260912.md) and
-[next goal prompt](spatial_execution_next_goal_prompt_20260912.md).
+Last updated: 2026-09-13
 
-Current cycle starting HEAD: `main@4d5afdbb1cb67ab8c4cf2167d91c929a2786d3eb`.
-Previous accepted implementation: `48bf4e5`; completed report/index: `4d5afdb`.
-The commit containing this index records the current reviewed milestone and its evidence.
+The full spatial implementation is promoted and its first complete declared
+execution is recorded in `runs/spatial_chain_20260912_r1`. This supersedes the
+interrupted preflight handoff. The reduced milestone `51b5540` remains historical
+and is not treated as spatial evidence.
 
-## Current revised-candidate execution
+Source implementation was pushed at
+`c2352f2943a9c4477144d8b5c9e79a00c371b6a8`; resumable whole-stage closeout and
+independent manifest audit were pushed at
+`91dc908dbcbcf7761a8984cbba2b68d4435805a6`.
 
-Current candidate: `7b44ba518eb7e7fdede814c1fccb94bd540f41c8b5e4fd3130e6971465c35548`.
-Context: `de87eb7f96b38dda09e4643fcbce20db17d21b3f2207a416f755768b096fd14d`.
-G1/G2/G3 were revised together, preserving parent geometry while recording the
-parent package hash, semantic changes and exploratory parameter provenance.
-Geometry/proof/DESC were rebuilt for this identity; no parent receipts were reused.
+## Current spatial-candidate execution
 
-The first real run is `runs/revised_chain_20260912_r2`: runner **0**, integration
-**27/27**, independent byte audit **424 records, zero mismatches**. The final
-hardening run is `runs/revised_chain_20260912_r3`, explicitly reusing the same
-revision's validated upstream/physics and recomputing affected downstream.
-Final r3 is complete: runner **0**, integration **28/28**, independent byte audit
-**436 records, zero mismatches**. Final focused groups pass **30/44/24/15** tests,
-core **26/26**, spine **54/54**, package **2631/2631** in 105 groups; every process
-and the queue exited **0**. See the report and its machine-readable evidence.
-This is acceptance of a reduced-model partial milestone; the original spatial
-multiregion goal remains active and incomplete.
-The prior `candidate_chain_20260912_integrated` remains historical partial execution.
+Parent candidate: `7b44ba518eb7e7fdede814c1fccb94bd540f41c8b5e4fd3130e6971465c35548`.
+Spatial candidate: `3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e`.
+Context: `0f7521a157ca710b195f82757a8d204058d99231b12346f9c8f37d9be526b10d`.
+G1/G2/G3 declarations, provenance and lineage are bound to the child identity;
+fresh DESC request/result/receipt/HDF5 were produced and no parent receipt was
+attached.
 
-| Stage | Newly executed | Actual outcome and boundary |
+| Stage | Actual execution | Result and evidence boundary |
 |---|---|---|
-| Candidate | G1 physical laws, G2 owned regions/interfaces/DOFs/tests, G3 pickup/readout/control/fault/scenarios | observed; exact typed graph admission, unchanged default registry, sourced exploratory parameters |
-| Multi-region physics | 17,920 real samples, exact rho surfaces, every body/source/exterior/interface term, 36 residual rows and all 4 Jacobian columns; conservation ledger and 5 accepted state updates | **fail, exit 3**; raw norm **87,985.5 to 18,489,788.2 N**, scaled **1.77224 to 1.02080**; clipped-GN non-KKT stop. Complete declared reduced system, not full-function-space MHD |
-| Engineering/control/fault | Actual final boundary B **0.856484 T** into Faraday/RL pickup, readout, short and dump relay | computation **exit 0**, stage **fail**; nominal **3.30653 mA**, fault **20.28056 mA**, trip **1.54 ms**; upstream invalid, applicability unsupported; fault numerical dissipation **20.9%** |
-| Numerical verification | Independent stress residual, all-column FD, strong/weak identity, SVD, analytic RL/dt and 70-digit arithmetic/box diagnostic | **fail, exit 1**; roundoff cancellation triggers frozen residual gate. Aggregate Jacobian passes but pressure-column FD exceeds 1e-7; high-precision analytic columns agree around 8e-15 |
-| Sensitivity/UQ | 8 engineering design corners and 2 fixed-geometry pressure cases with physics-to-engineering recomputation | conditional execution; **2.23840 to 4.97764 mA** corner range, no distribution/CI/certified bound; physical validation unsupported and unexecuted |
-| Whole device | Same-revision dependency and stage assessment | deferred; full spatial MHD, external field/component/environment physics and validation incomplete; P5=false, credible devices **0** |
+| Candidate/upstream | child identity, geometry/proof, fresh DESC 0.17.3 and sampler | process exits 0; upstream remains screen-only and supplies initialization/geometry, not equilibrium validation |
+| Spatial physics | four cases; 360/2640 DOF; 2881/21761 rows; all volume/source/face/periodic/interface/exterior/flux terms; full sparse Jacobian and real updates | **scientific fail, exit 4** in all cases; scaled final norms 0.16146/0.13797/0.15635/0.16531, all iteration-limit stops |
+| Engineering/control/fault | actual curl(B)/mu0 J and interface K into finite-aperture Biot-Savart, reciprocity, static and conditional RL/10 us protection | computation **exit 0**, stage **fail** from invalid physical upstream; static flux -1.2997e-5 to -1.8730e-5 Wb; static EMF 0; no trip |
+| Numerical verification | independent residual blocks, every Jacobian column, two nonzero-source MMS levels, independent 256-bit circuit identities | numerical **pass, exit 0**, physical-validation credit 0; no solved convergence order |
+| Deterministic propagation | actual 0.95/1.05 Wb endpoint solves through actual engineering | executed, but failed-state range only; no distribution, CI or certified bound |
+| Physical validation | no applicable experiment/independent physical solver/discrepancy data | **unsupported and unexecuted** |
+| Whole device | dependency-bound assessment after checkpoint recovery | **deferred, exit 0**; P5=false, credible devices 0 |
 
-Small net force and paired-interface cancellation cannot certify local equilibrium
-or conservation. Historical q2/q3/q4 Cartesian totals are sector-replicated proxies;
-no q5/q6 milestone is introduced. Prior formulation spread is not a certified
-quadrature error. The present report separates arithmetic, integration,
-discretization, constraint, solver and physical-model limitations.
+The first whole-stage integration call raised a world-age program exception and
+the outer process exited 1. Upstream through verification checkpoints were not
+overwritten. After the one-line runner repair, `--resume` reused them, passed
+43/43 integration assertions and exited 0. The ledger preserves one program
+exception and zero human interruptions. Independent audit passes 549 records /
+548 unique paths with zero mismatches; package regression passes 2631/2631 in
+105 groups.
 
-See [milestone report](revised_coupled_execution_v4_20260912.md),
-[contract](../implementation/revised_execution_contract_v4.md),
-[physics](complete_multiregion_v4_report_20260912.md),
-[engineering](magnetic_engineering_v4_20260912.md),
-[verification](executed_verification_uq_v4_20260912.md), and
-[previous partial execution](candidate_end_to_end_v4_20260912.md).
+See [spatial milestone report](spatial_coupled_execution_v4_20260913.md),
+[machine-readable evidence](spatial_coupled_execution_v4_20260913_evidence.json),
+[contract](../implementation/spatial_execution_contract_v4.md),
+[physics](spatial_multiregion_v4_report_20260912.md),
+[engineering](spatial_pickup_engineering_v4_20260912.md), and
+[verification](spatial_verification_uq_v4_20260912.md).
 
 ## Historical accepted implementation inventory
 
@@ -101,21 +94,19 @@ are not the current candidate's engineering, validation, or whole-device evidenc
 
 ## Active chain-unblocking queue
 
-1. Address the actual non-KKT clipped-GN stop with an appropriate constrained
-   method and review row scaling; retain raw/scaled residuals and separate
-   constraint cost from algorithmic excess. Changed states require downstream recomputation.
-2. Extend the four-amplitude ansatz/test spaces and exterior-boundary model as
-   needed. Semantic changes require a new revision and affected upstream execution.
-   Current selected regions and G3 subsystem are no longer empty declarations.
-3. Use high-precision evidence to address cancellation with a defensible error
-   model; establish isolated integration and spatial errors with targeted
-   independent calculations, not an arbitrary additional quadrature ladder.
-4. Establish actual external sensor placement/aperture and applicable transient
-   input; refine fault switching/energy dynamics. Obtain applicable component,
-   environment and held-out validation data. Design intervals do not supply statistics.
-5. Reassess whole-device readiness only after actual dependent physics and
-   admissible evidence exist. Preserve recoverable fail/unsupported/deferred
-   status, Julia, three Genome layers and typed AST/operator hypergraphs.
+1. Diagnose the four spatial iteration-limit stops using the persisted sparse-QR,
+   line-search, block-residual and accepted-update histories. Any state-changing
+   solver repair requires rerunning physics and all dependent engineering/UQ.
+2. Supply defensible pressure/current-topology closure and exterior boundary/current
+   closure. These are model changes, not numerical tuning; revise candidate identity
+   and execute affected upstream when declarations change.
+3. Establish isolated integration error and solved-state spatial convergence only
+   after applicable converged states exist. Current MMS and strong/weak comparisons
+   are software/integration diagnostics, not physical error estimates.
+4. Add external coils, outer K/return path, complete hardware geometry, transient
+   coupling and applicable component/environment data before engineering promotion.
+5. Obtain experiments or an independent applicable physical solver plus discrepancy
+   evidence. Only then can physical validation and whole-device readiness be reassessed.
 
 Adding semantic G1/G2/G3 declarations changes identity. A missing implementation
 for already-owned declarations can preserve identity; old-candidate receipts
@@ -125,19 +116,22 @@ must never be attached to a changed candidate. No legacy authority/family routin
 
 The initial modification in `test/runtime_v4_validation_uq_execution_request_tests.jl`
 and unrelated untracked prototypes/reports are protected and excluded from this
-milestone. Initial status, HEAD, diff and hash are under
-`runs/revised_chain_20260912_audit`. Only the explicitly reviewed file list is staged.
-Generated provider data/logs remain local. The final manifest records actual
-command/arguments, resume origin, upstream/physics checkpoint identities,
-external raw dependencies, source, Project/Manifest, executable and output hashes.
+milestone. Its protected SHA-256 remained
+`DF1A67C20C528FED9012067A45640A58C6DEDE3E45F042A26A9CAE056E757ED2`.
+Initial status/HEAD are in the spatial run, and only explicitly reviewed source,
+audit and report paths are staged. The 120 MB numerical field/Jacobian/current
+artifacts remain local. Their manifest records command/arguments, recovery ledger,
+checkpoint identities, external raw dependencies, source, Project/Manifest,
+executable, environment and output hashes.
 
 ## Current authority statement
 
 `p5_ready=false`; credible physical device candidates: **0**. This milestone
-executes the complete declared reduced model and one real engineering equation
-system, including a reproducible failed solve. It does not complete full-field
-MHD or integrated device physics. Whole-device assessment is executed; physical
-validation is unsupported. Analytic/Decimal comparisons verify software, not
-physical applicability. Deterministic design corners are not distributions,
-confidence intervals or certified global bounds. Green regression tests grant
-no engineering feasibility, validation or terminal classification.
+executes the complete declared spatial model for four cases and the actual
+current-to-pickup engineering chain, including reproducible failed nonlinear
+solves. Whole-device assessment is executed and deferred; physical validation is
+unsupported and unexecuted. Independent formulation/MMS/analytic checks verify
+software and numerical identities, not physical applicability. Deterministic
+flux endpoints are not distributions, confidence intervals or certified global
+bounds. Green regression tests and runner exit 0 grant no equilibrium,
+engineering-feasibility, validation or terminal classification.

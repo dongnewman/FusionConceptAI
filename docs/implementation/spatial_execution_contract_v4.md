@@ -136,3 +136,27 @@ experimental/independent physical validation and model discrepancy remain
 unsupported; software checks grant no such credit. Main audits these original
 requirements before deciding goal completion and commits/pushes only reviewed
 executed milestones.
+
+## Executed disposition — 2026-09-13
+
+The contract was promoted without changing the frozen Julia/Genome/typed-graph
+architecture or default operator registry. The child candidate/context hashes are
+`3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e`
+and `0f7521a157ca710b195f82757a8d204058d99231b12346f9c8f37d9be526b10d`.
+A fresh same-revision DESC receipt and HDF5 were executed; no old receipt was
+attached.
+
+All four declared cases assembled and attempted their full sparse systems.
+Physics exited 4 for iteration limits in every case. Engineering and numerical
+verification executed on the resulting actual states with calculation exit 0,
+while physical-upstream validity remained false. The first whole-stage process
+aborted with a world-age program exception; the runner was repaired to invoke the
+dynamically included integration check through `Base.invokelatest`, then resumed
+from the unchanged checkpoints. Integration passed 43/43 and final runner exit
+was 0 with whole status `deferred`.
+
+The independent manifest audit checks 549 records / 548 unique paths with no
+byte mismatch and preserves one program-exception event and zero human
+interruptions. This is execution acceptance of the declared workflow, not
+scientific convergence, engineering qualification, physical validation or P5.
+See `docs/reports/spatial_coupled_execution_v4_20260913.md`.

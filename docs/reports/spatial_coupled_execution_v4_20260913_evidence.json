@@ -1,0 +1,94 @@
+{
+  "schema": "fusionconceptai:spatial-coupled-execution-evidence-v1",
+  "date": "2026-09-13",
+  "scope": "compact report of actual execution; full byte-bound artifacts remain in the run directory",
+  "starting_source_commit": "c2352f2943a9c4477144d8b5c9e79a00c371b6a8",
+  "runtime_recovery_commit": "91dc908dbcbcf7761a8984cbba2b68d4435805a6",
+  "identities": {
+    "parent_candidate_hash": "7b44ba518eb7e7fdede814c1fccb94bd540f41c8b5e4fd3130e6971465c35548",
+    "spatial_candidate_hash": "3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e",
+    "context_hash": "0f7521a157ca710b195f82757a8d204058d99231b12346f9c8f37d9be526b10d"
+  },
+  "commands": {
+    "fresh": "julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl runs/spatial_chain_20260912_r1",
+    "resume": "julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl runs/spatial_chain_20260912_r1 --resume",
+    "audit": "D:\\Users\\Newman\\anaconda3\\python.exe scripts/verify_v4_spatial_manifest.py runs/spatial_chain_20260912_r1 runs/spatial_chain_20260912_acceptance/manifest_audit_r2.json",
+    "regression": "julia --startup-file=no --project=. test/runtests.jl"
+  },
+  "execution": {
+    "fresh_process_exit": 1,
+    "fresh_abort_classification": "program_exception",
+    "fresh_abort_stage": "whole",
+    "resume_process_exit": 0,
+    "runner_exit": 0,
+    "program_exception_events": 1,
+    "human_interruption_events": 0,
+    "integration_assertions": {"pass": 43, "total": 43},
+    "package_regression": {"pass": 2631, "total": 2631, "groups": 105, "process_exit": 0}
+  },
+  "environment": {
+    "python": "3.13.5",
+    "desc": "0.17.3",
+    "numpy": "2.4.2",
+    "jax": "0.9.2",
+    "jaxlib": "0.9.2",
+    "platform": "Windows 11 10.0.26200 SP0",
+    "logical_cpu_count": 24,
+    "desc_metadata_sha256": "80659f4e2d4c385c3ae4864560a4487f43870f3e188a7eb694171dbb70d6caab",
+    "desc_record_sha256": "fceea9358f1398359a070ebc7ac22f883e24a06e1b2978e42a8c4d2a0a69aa13",
+    "geometry_hdf5_sha256": "ed68641512138db071e465567140e83a78821fad88544a500d6446a8e0ceaeb4"
+  },
+  "physics_cases": [
+    {"case_id":"nominal_coarse","dof":360,"rows":2881,"attempts":12,"accepted_updates":12,"initial_scaled_norm":0.168778537366208,"final_scaled_norm":0.161457395475602,"final_scaled_max":0.0129389638727091,"status":"fail","stopping_reason":"iteration_limit","solver_exit":4},
+    {"case_id":"nominal_fine","dof":2640,"rows":21761,"attempts":4,"accepted_updates":4,"initial_scaled_norm":0.179684825540609,"final_scaled_norm":0.137965984782661,"final_scaled_max":0.00626346947459056,"status":"fail","stopping_reason":"iteration_limit","solver_exit":4},
+    {"case_id":"flux_low_coarse","dof":360,"rows":2881,"attempts":12,"accepted_updates":12,"initial_scaled_norm":0.175970016571575,"final_scaled_norm":0.156347081526811,"final_scaled_max":0.0104156662981863,"status":"fail","stopping_reason":"iteration_limit","solver_exit":4},
+    {"case_id":"flux_high_coarse","dof":360,"rows":2881,"attempts":12,"accepted_updates":12,"initial_scaled_norm":0.17608788322526,"final_scaled_norm":0.165305568559156,"final_scaled_max":0.0112583071342821,"status":"fail","stopping_reason":"iteration_limit","solver_exit":4}
+  ],
+  "engineering_cases": [
+    {"case_id":"nominal_coarse","static_flux_Wb":-1.3760089352838949e-5,"reciprocity_relative_difference":5.761756470472382e-14,"nominal_peak_current_A":6.76370887373798e-5,"short_peak_current_A":6.854078016856258e-4,"calculation_exit":0,"status":"fail"},
+    {"case_id":"nominal_fine","static_flux_Wb":-1.8729963580624264e-5,"reciprocity_relative_difference":4.2329118004807516e-14,"nominal_peak_current_A":9.206627778832004e-5,"short_peak_current_A":9.329636482919301e-4,"calculation_exit":0,"status":"fail"},
+    {"case_id":"flux_low_coarse","static_flux_Wb":-1.2997092165983366e-5,"reciprocity_relative_difference":5.93055717507908e-14,"nominal_peak_current_A":6.388661102532377e-5,"short_peak_current_A":6.474019275139538e-4,"calculation_exit":0,"status":"fail"},
+    {"case_id":"flux_high_coarse","static_flux_Wb":-1.3759868922207956e-5,"reciprocity_relative_difference":5.983458340960842e-14,"nominal_peak_current_A":6.763600522071313e-5,"short_peak_current_A":6.853968217515356e-4,"calculation_exit":0,"status":"fail"}
+  ],
+  "verification": {
+    "executed": true,
+    "aggregate_status": "fail",
+    "numerical_status": "pass",
+    "solver_exit": 0,
+    "full_jacobian_columns": [360,2640,360,360],
+    "full_jacobian_status": ["pass","pass","pass","pass"],
+    "mms_nonzero_source_levels": 2,
+    "mms_solution_solve_executed": false,
+    "deterministic_flux_interval_Wb": [0.95,1.05],
+    "confidence_interval": "unsupported",
+    "distribution": "none",
+    "physical_validation_credit": 0
+  },
+  "whole": {
+    "status": "deferred",
+    "solver_exit": 0,
+    "spatial_execution_minimum_reached": true,
+    "physical_validation": "unsupported",
+    "p5_ready": false,
+    "credible_device_count": 0
+  },
+  "artifact_hashes": {
+    "candidate.json": "fc6106bd63a9e98be6ed2723b7bc75a3c58b88dc675768d36f66d1239b3b01b3",
+    "environment.json": "3cad1d18a0bc6dc0825c3c6b048a17b965d89e8557215ca55544a7c740d3fb3e",
+    "upstream.json": "3c912f84bbeff1ed79f830c1e0c1c3028040e214d04426013358a3d095c50e24",
+    "upstream_receipt.json": "f35510eade0fd75b706e3a80bbb643062352e74eb0ec32fcac6809ddc5679aac",
+    "physics.json": "3f369a579b8a7506f4847b66ee87e573c7f96991fc2a2324fa3dbff6259df002",
+    "engineering.json": "0c90a15a29d24a3fd8d768a37d430de0ebbe761e599dec408ecd015370f44016",
+    "verification.json": "307c5337ecf521d80b057677d459dbafcf439f2ccadf0adcbdeca95ae6cfcbdd",
+    "result.json": "7da920b428906cd83d351da22b5f8979bde15cfda0e861d733289c636aacf0dd",
+    "execution_ledger.jsonl": "609001a998d1fd46f347d566174349e2fa19d2b9cd7da116fdb06831090bd7f2",
+    "execution_manifest.json": "d0386a69a66b5932adb1eb3663ab2c9dc02b9799bd2bbc8676371522855b2f88"
+  },
+  "manifest_audit": {
+    "status": "pass",
+    "records_checked": 549,
+    "unique_paths_checked": 548,
+    "mismatch_count": 0,
+    "scope": "file-byte and stage-semantics audit; not physical validation"
+  }
+}
