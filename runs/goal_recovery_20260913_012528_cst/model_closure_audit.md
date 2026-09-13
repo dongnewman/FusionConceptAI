@@ -118,6 +118,45 @@ is an additive source-basis chart/admission proof and same-subject equilibrium
 execution, followed by independent spatial comparison. Do not weaken old
 provider gates or change the default registry merely to force admission.
 
+## W21 raw-member join and chart-domain correction
+
+The W20 candidate geometry bind now checks that normalized field periods and
+source L/M/N agree with the selected Fourier-Zernike interior. A distinct
+`h5py` validator directly reads the original HDF5 equilibrium member index 3
+of 4. It checks all 598 R and 585 Z stored terms, basis symmetry/indexing,
+the stored `_surface`, the complete `rho=1` interior mode aggregation including
+omitted boundary modes, pressure, iota, toroidal flux, provenance and both
+canonical derived-subject wires. It rejects a coefficient change even after
+the derived JSON wire and hash are recomputed, as well as a wrong member,
+NFP, changed boundary and promoted input authority. The current member-join r3
+receipt has SHA-256
+`e379fbe4ca6ee85a4aae59029dd3109ff9b20c04d2969480e7685412925bddbf`;
+maximum observed boundary discrepancy is `5.3291e-15 m` under the explicit
+`7.1787e-14 m` numerical join tolerance. This is source-integrity evidence,
+not physical validation or a rigorous geometry proof.
+
+The closed source chart has a proven coordinate obstruction: every nonaxis
+poloidal Fourier-Zernike term vanishes at `rho=0`, so the poloidal Jacobian
+column and corresponding Gram entry are zero there. Julia's 12/12 axis
+counterexamples confirm the implementation reflects that identity. A strictly
+positive determinant certificate on `[0,1]` is impossible in this chart; the
+next proof problem is off-axis orientation plus a regular axis chart/atlas, not
+loosening a tolerance. The v2 candidate r4 runner exits 0 and has SHA-256
+`0ac9003c6a3c78c7c753cc5b364e85b721afe1589a13692ddf3e4147b1505230`.
+Julia geometry 77/77 and candidate 28/28 pass; raw join 4/4, original interior
+5/5 and normalized reference 9/9 pass. Independent read-only review found no
+P1 for this screen-only scope. Candidate r3 and member-join r1/r2 are retained
+as superseded execution history.
+
+W21 does not solve the same-subject NFP19/L24 provider admission or execution,
+independent spatial physics comparison, inverse recovery, independent physical
+validation, engineering closure or positive whole-device net output. R01 is
+still partial, R01-R10 remain unaccepted, and credible count remains zero.
+The next N2 implementation should be an additive source-basis replay request
+that preserves the old DESC gates and default registry, with a bounded actual
+provider run and its own source-to-output comparison; it cannot reuse the old
+single-power geometry certificate as if it covered this source.
+
 ## Current classification and next work order boundaries
 
 - Numerical defect: confirmed floating-point stagnation; W01 owns the narrow algorithm correction.
