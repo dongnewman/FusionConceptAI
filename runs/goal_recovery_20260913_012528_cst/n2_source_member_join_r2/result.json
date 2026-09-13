@@ -1,0 +1,41 @@
+{
+  "authority": {
+    "claim_ceiling": "screen_only",
+    "credible_device_count": 0,
+    "geometry_proved": false,
+    "inverse_ready": false,
+    "measurement": false,
+    "physical_validation": false
+  },
+  "equilibrium_count": 4,
+  "gap_flags": [
+    "independent_physical_validation_missing",
+    "independent_solver_missing",
+    "measurement_missing"
+  ],
+  "interior_result_sha256": "fe6258bd0e1368dbc4d0eafef092588e3a95d76842d3c48e4f29c14987d7fcb8",
+  "join_tolerance_basis": "max(32*eps*max_coefficient, gamma_n*max_sum_abs_aggregation); numerical join tolerance, not rigorous proof",
+  "maximum_aggregation_terms": 13,
+  "normalized_result_sha256": "2f4aa65c01a05634c86c8f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+  "numeric_maxima_m": {
+    "boundary_R_raw_vs_normalized_m": 5.329070518200751e-15,
+    "boundary_Z_raw_vs_normalized_m": 5.551115123125783e-17,
+    "rho1_R_interior_vs_normalized_boundary_union_m": 2.220446049250313e-16,
+    "rho1_R_interior_vs_raw_surface_m": 5.329070518200751e-15,
+    "rho1_Z_interior_vs_normalized_boundary_union_m": 2.220446049250313e-16,
+    "rho1_Z_interior_vs_raw_surface_m": 2.220446049250313e-16
+  },
+  "numerical_join_tolerance_m": 7.17866482736427e-14,
+  "resolution": {
+    "L": 24,
+    "M": 12,
+    "N": 3,
+    "NFP": 19
+  },
+  "schema_version": "n2-desc-heliotron-member-join-v1",
+  "selected_equilibrium_index": 3,
+  "source_artifact_sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+  "source_json_sha256": "1d3759b658f972e48c44ba8fbe03d128c6a83536fb68cf298d7ebf265b82beb5",
+  "status": "screen_only_raw_member_join_verified",
+  "validator_script_sha256": "bba15baf191f2596981728c5663470dd458f4f2c8f5d8a7f4e60ecaf7c11353b"
+}

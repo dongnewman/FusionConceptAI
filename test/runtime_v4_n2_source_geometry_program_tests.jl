@@ -113,6 +113,21 @@ end
     end
 end
 
+@testset "N2 closed polar chart has a singular magnetic axis" begin
+    for term in (N2G.N2Z.N2ZernikeTermV4(1, 1, 0, 1.0),
+            N2G.N2Z.N2ZernikeTermV4(3, -1, 1, 1.0),
+            N2G.N2Z.N2ZernikeTermV4(4, 2, -1, 1.0))
+        @test iszero(N2G.N2Z._n2z_radial(term, 0.0))
+    end
+    for (theta_turn, period_turn) in ((0.0, 0.0), (0.25, 0.5), (1.0, 1.0))
+        value = N2G.evaluate_n2_source_geometry(binding_n2g,
+            N2G.N2SourceUnitTurnChartV4(0.0, theta_turn, period_turn))
+        @test all(iszero(value.jacobian[i][2]) for i in 1:3)
+        @test iszero(value.metric[2][2])
+        @test !value.geometry_proved
+    end
+end
+
 @testset "N2 source AST provenance and domain fail closed" begin
     @test_throws ArgumentError N2G.load_n2_source_geometry_program(
         source_n2g, result_n2g, Digest256(repeat("a",64)), scale_n2g)

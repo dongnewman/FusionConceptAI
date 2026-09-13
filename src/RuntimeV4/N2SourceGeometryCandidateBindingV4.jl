@@ -3,9 +3,9 @@
 Include after the normalized-to-SI bridge and N2 source/reference modules in a
 RuntimeV4 assembly. This adds no default-registry or provider authority.
 """
-const _N2GC_REVISION = "runtime-v4-n2-source-candidate-geometry-binding-v1"
+const _N2GC_REVISION = "runtime-v4-n2-source-candidate-geometry-binding-v2"
 const _N2GC_GAPS = (
-    "global_chart_orientation_and_nondegeneracy_not_proved",
+    "closed_rho_axis_chart_is_degenerate_and_off_axis_global_orientation_not_proved",
     "existing_DESC_compatibility_proof_excludes_source_NFP19_L24_basis",
     "same_subject_equilibrium_provider_not_reexecuted",
     "independent_spatial_equilibrium_comparison_missing",
@@ -64,6 +64,14 @@ function _n2gc_chart_exact(chart)
             axis.period.value == 1//1, chart.periodic_axes)
 end
 
+function _n2gc_same_source_resolution(normalized_subject,
+        interior::N2SourceGeometryProgramRuntime.N2Z.N2SourceInteriorV4)
+    resolution = normalized_subject.source_resolution
+    normalized_subject.field_periods == interior.field_periods &&
+        resolution.L == 24 && resolution.M == 12 && resolution.N == 3 &&
+        interior.field_periods == 19
+end
+
 """Join the source spectrum, normalized reference and actual G2 candidate.
 
 The source and reference results are reread and rehashed. A ready structural
@@ -109,6 +117,8 @@ function bind_n2_source_candidate_geometry(context::ForwardChainContextV4,
         normalized_subject.provenance.selected_equilibrium_index ==
             fresh_program.interior.selected_equilibrium_index &&
         normalized_subject.provenance.equilibrium_count == 4 &&
+        _n2gc_same_source_resolution(normalized_subject,
+            fresh_program.interior) &&
         normalized_subject.provenance.embedded_producer_version ==
             "0.17.1+38.g53ea59ef0.dirty" &&
         normalized_subject.provenance.distributed_in_release_tag == "v0.17.3" ||

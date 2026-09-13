@@ -23,6 +23,14 @@ include(joinpath(@__DIR__, "..", "examples",
     @test n2g_candidate_geometry_binding.root_bridge_hash ==
         n2g_bridge.resolution_hash
     @test n2g_candidate_geometry_binding.recoverable_gaps == TDNPRB._N2GC_GAPS
+    @test TDNPRB._n2gc_same_source_resolution(n2g_subject,
+        n2g_program.interior)
+    @test !TDNPRB._n2gc_same_source_resolution(
+        (field_periods=18, source_resolution=n2g_subject.source_resolution),
+        n2g_program.interior)
+    @test !TDNPRB._n2gc_same_source_resolution(
+        (field_periods=19, source_resolution=(L=23, M=12, N=3)),
+        n2g_program.interior)
     @test canonical_hash(n2g_candidate_geometry_binding) ==
         n2g_candidate_geometry_binding.binding_hash
     @test n2g_evaluation.candidate_hash == n2g_context.candidate_hash
