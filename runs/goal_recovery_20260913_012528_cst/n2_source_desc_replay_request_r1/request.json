@@ -1,0 +1,118 @@
+{
+    "schema_version": "fusionconceptai:runtime-v4-n2-source-desc-replay-request",
+    "revision": "v1",
+    "request_builder_sha256": "64d6360e65a22195bd820f5efc228fccdfedd935c3bd5dc5bda9617410c3d28e",
+    "candidate_hash": "929994a69feb9dc3fef3510e5fd80448a7b77570d7b8ed44c67ab86a6ccb2ab5",
+    "context_hash": "a8120f0909cada88223a66aa999498ff8a5aa7aea467a21cc04a73a11425e4b0",
+    "physical_subject_hash": "c9dc645d386271b184c18249264a01d765dcbc8f106be214f23a206319dbbe23",
+    "candidate_geometry_binding_hash": "960409ed6229b023af78fc1c688057b215dc9a388a7ca821290a2e44beb55d2c",
+    "source_geometry_program_hash": "f0c52ebbc2d75ae446b6077c1f4b6418599654d22b323121c5c7d6fd75245b18",
+    "source_artifact_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\desc_heliotron_v0173\\HELIOTRON_output.h5",
+    "source_artifact_sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+    "source_manifest_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\desc_heliotron_v0173\\source.json",
+    "interior_result_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\runs\\goal_recovery_20260913_012528_cst\\n2_desc_heliotron_interior_r1\\result.json",
+    "interior_result_sha256": "fe6258bd0e1368dbc4d0eafef092588e3a95d76842d3c48e4f29c14987d7fcb8",
+    "normalized_result_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\runs\\goal_recovery_20260913_012528_cst\\n2_desc_heliotron_normalize_r3\\result.json",
+    "normalized_result_sha256": "2f4aa65c01a05634c86c8f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+    "member_join_receipt_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\runs\\goal_recovery_20260913_012528_cst\\n2_source_member_join_r3\\result.json",
+    "member_join_receipt_sha256": "e379fbe4ca6ee85a4aae59029dd3109ff9b20c04d2969480e7685412925bddbf",
+    "selected_equilibrium_index": 3,
+    "source_basis": {
+        "class": "desc.basis.FourierZernikeBasis",
+        "indexing": "fringe",
+        "R_symmetry": "cos",
+        "Z_symmetry": "sin"
+    },
+    "surface_basis": {
+        "class": "desc.basis.DoubleFourierSeries",
+        "indexing": "linear",
+        "R_symmetry": "cos",
+        "Z_symmetry": "sin"
+    },
+    "profile_basis": {
+        "class": "desc.profiles.PowerSeriesProfile",
+        "symmetry": "even",
+        "coordinate": "rho",
+        "pressure_unit": "Pa",
+        "iota_unit": "1"
+    },
+    "field_periods": 19,
+    "resolution": {
+        "L": 24,
+        "M": 12,
+        "N": 3,
+        "L_grid": 36,
+        "M_grid": 18,
+        "N_grid": 6
+    },
+    "boundary": {
+        "R_modes": [
+            {
+                "m": -1,
+                "n": -1,
+                "coefficient_m": 0.3
+            },
+            {
+                "m": 0,
+                "n": 0,
+                "coefficient_m": 10.000000000000005
+            },
+            {
+                "m": 1,
+                "n": 0,
+                "coefficient_m": -0.9999999999999998
+            },
+            {
+                "m": 1,
+                "n": 1,
+                "coefficient_m": -0.29999999999999993
+            }
+        ],
+        "Z_modes": [
+            {
+                "m": 1,
+                "n": -1,
+                "coefficient_m": -0.29999999999999993
+            },
+            {
+                "m": -1,
+                "n": 0,
+                "coefficient_m": 1
+            },
+            {
+                "m": -1,
+                "n": 1,
+                "coefficient_m": -0.3
+            }
+        ]
+    },
+    "pressure_coefficients": [
+        18000,
+        0,
+        -36000,
+        0,
+        18000
+    ],
+    "iota_coefficients": [
+        1,
+        0,
+        1.5
+    ],
+    "toroidal_flux_wb": 1,
+    "controls": {
+        "optimizer": "lsq-exact",
+        "objective": "force",
+        "maxiter": 3,
+        "ftol": 1.0e-8,
+        "xtol": 1.0e-8,
+        "gtol": 1.0e-8
+    },
+    "authority": {
+        "claim_ceiling": "screen_only",
+        "geometry_proved": false,
+        "provider_executed": false,
+        "physical_validation": "unsupported",
+        "credible_device_count": 0
+    },
+    "request_hash": "d9c766eb239d9413cc9a79e9846c2e65c4535b611bdf3e35fdc8779b108f8c02"
+}

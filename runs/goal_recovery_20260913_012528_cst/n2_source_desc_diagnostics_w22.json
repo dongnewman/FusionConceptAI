@@ -1,0 +1,24 @@
+{
+  "schema_version": "n2-source-desc-replay-diagnostics-v1",
+  "claim_ceiling": "screen_only",
+  "superseded_request": {
+    "path": "n2_source_desc_replay_request_r1/request.json",
+    "sha256": "c3470d806a5a54ba3a99461db81038f5a7480ce8b9708caf9c49d3f40d2d075a",
+    "reason": "request authority canonical validation and member-receipt authority checks were tightened before solve"
+  },
+  "construct_attempts": [
+    {"id": "agent_default_python_r2b", "process_exit_code": 1, "diagnostic": "No module named desc in default Python; no solver execution"},
+    {"id": "n2_source_desc_construct_r1", "process_exit_code": 1, "diagnostic": "DESC PowerSeriesProfile modes require scalar powers, not (power,0,0) triples"},
+    {"id": "n2_source_desc_construct_r2", "process_exit_code": 1, "diagnostic": "surface basis modes use (l,m,n); verifier incorrectly used (l,m)"},
+    {"id": "n2_source_desc_construct_r3", "process_exit_code": 1, "diagnostic": "DESC expanded the even profile basis to L=24 with extra zero coefficients; verifier incorrectly required no extra zeros"},
+    {"id": "n2_source_desc_construct_r4", "process_exit_code": 1, "diagnostic": "profile(rho) returns a length-one JAX array, not a scalar"},
+    {"id": "n2_source_desc_construct_r5", "process_exit_code": 0, "diagnostic": "fresh construction and all source field checks passed"}
+  ],
+  "solve_attempts": [
+    {"id": "n2_source_desc_solve_r1", "process_exit_code": 0, "solver_success": false, "diagnostic": "historical nonconverged three-iteration solve; objective vector serialized as a truncated string"},
+    {"id": "n2_source_desc_solve_r2", "process_exit_code": 0, "solver_success": false, "diagnostic": "finite 4940-element residual metrics recorded; superseded by r3 stronger request-hash/API and result authority binding"},
+    {"id": "n2_source_desc_solve_r3", "process_exit_code": 0, "solver_success": false, "diagnostic": "current nonconverged screen-only result with adapter hash, runtime version, source identity, residual metrics and saved HDF5 reimport"}
+  ],
+  "physical_validation": "unsupported",
+  "credible_device_count": 0
+}

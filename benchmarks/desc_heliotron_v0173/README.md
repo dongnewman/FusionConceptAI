@@ -72,3 +72,11 @@ release commit, official artifact URL, producer/tag/member metadata, bytes,
 and artifact hash against its selected subject. The derivative receipt is
 hash-pinned by the Julia comparison runner and tests. It is not a reusable
 admission certificate for arbitrary coordinates or reference devices.
+
+`source_replay_adapter.py` is the opt-in W22 fresh-DESC replay for the
+candidate-owned r2 request, with a required frozen request-file SHA256. It
+constructs from the normalized boundary, even-power pressure/iota and flux;
+it does not load the source solved interior as its initial state. The recorded
+three-iteration force solve executed but did not converge. See
+`docs/implementation/n2_source_desc_replay_v4.md` for the exact command,
+receipt, tests, and screen-only limits.
