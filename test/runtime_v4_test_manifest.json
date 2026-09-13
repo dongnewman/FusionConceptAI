@@ -14,6 +14,18 @@
         "opt_in": true,
         "command": "julia --startup-file=no --project=. test/runtime_v4_spatial_entrypoint_tests.jl",
         "scope": "injectable ordered-loader state machine, source hashes, duplicate/partial-load refusal, and entrypoint wiring; does not construct the parent candidate or execute child sources"
+      },
+      {
+        "path": "test/runtime_v4_algebraic_generation_tests.jl",
+        "opt_in": true,
+        "command": "julia --startup-file=no --project=. test/runtime_v4_algebraic_generation_tests.jl",
+        "scope": "typed G1 AST edit, exact feedback identity, same-scenario 0D screen, gap archive, and checkpoint restoration; no physical-device authority"
+      },
+      {
+        "path": "scripts/run_v4_algebraic_generation_slice.jl",
+        "opt_in": true,
+        "command": "julia --startup-file=no --project=. scripts/run_v4_algebraic_generation_slice.jl <new-run-dir>",
+        "scope": "seed plus two G1 descendants through the production 0D screen and a local recovery receipt; not a spatial or device search benchmark"
       }
     ],
     "provider integration": [

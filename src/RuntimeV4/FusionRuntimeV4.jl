@@ -10,6 +10,7 @@ include("Search.jl")
 include("Archives.jl")
 include("AlgebraicResidual.jl")
 include("AlgebraicScopedSearch.jl")
+include("AlgebraicGenerationV4.jl")
 include("FieldProgramEvaluation.jl")
 include("FieldResidualNumerics.jl")
 include("FieldResidualPipeline.jl")
@@ -60,6 +61,7 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        AlgebraicScopedResolutionV4, make_algebraic_scoped_resolution,
        algebraic_scoped_resolution, AlgebraicScopedAttemptV4,
        make_algebraic_scoped_attempt, algebraic_scoped_attempt,
+       algebraic_generation_edit, next_algebraic_generation_edit,
        deterministic_screen_execute, deterministic_screen_manifest,
        deterministic_screen_provider, screen_capability, screen_execution_count,
        reset_screen_execution_count!, VerticalSliceReportV4,
