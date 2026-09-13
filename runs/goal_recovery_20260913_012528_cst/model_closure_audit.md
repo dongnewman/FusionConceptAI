@@ -86,6 +86,38 @@ The artifact is external simulation, not measurement or an independent solver. I
 
 The next W19 source-owned geometry derivative slice additionally joins the adjacent source manifest's official release URL/commit, producer, family member and HDF5 bytes before evaluating. A frozen DESC same-member receipt contains R/Z and first `(rho,theta,zeta)` derivatives at the same five previously selected points and the Cartesian Gram entries. Julia analytically differentiates its source-bound Jacobi/Fourier reconstruction and compares those entries with predeclared absolute tolerances `1e-8 m` and `1e-7 m2`. The dedicated runner exited 0; maximum absolute derivative error was `5.77405e-12 m` and Gram-entry error `4.53895e-11 m2`. Focused tests pass 16/16 + 40/40 + 8/8, adjacent N2 binding tests 11/11 + 9/9. The adversarial review's provenance-join concern was addressed, and the receipt remains hash-pinned test input rather than an unrestricted downstream admission certificate. It is a same-source analytic evaluator comparison only: no finite-difference proof, global chart positivity/orientation, G2 typed coordinate/metric AST/hyperedge, provider execution, independent equilibrium comparison, or physical validation. R01/R03/R07 remain false.
 
+## W20 candidate-owned source geometry checkpoint
+
+The exact selected member 3 Fourier-Zernike interior and corrected normalized
+boundary/profile subject are now joined to a candidate-owned G2 coordinate and
+metric subgraph. Two typed AST programs expose normalized and SI roots through
+candidate-local manifests; the default operator registry and old monomial DESC
+interpreter are unchanged. The program payload records the HDF5/interior hashes,
+all 1183 source terms, basis/phase semantics, SI scale, and source-evaluator and
+program code hashes. A typed unit-turn input is converted to physical radians
+before analytic Jacobian and Cartesian Gram evaluation.
+
+The candidate binder rereads source and reference artifacts and revalidates the
+context, exact G2 edges, declaration, chart, selected member, and structural
+normalized-to-SI bridge. The evaluator repeats the complete join; an adversarial
+self-consistent forged reference binding is rejected. The reviewed r2 runner
+exits 0 with SHA-256
+`47e16a167a74138f50b364187fc0761200c3b14ee3303de5c00145e9e7035949`.
+Focused tests pass 65/65 and 25/25, source evaluator 64/64, adjacent bridge
+90/90, DESC interpreter 81/81 and N2 reference input 20/20. The earlier r1
+receipt is retained but superseded after identity and binding-validation review.
+
+This is a `screen_only` structural program and local numerical evaluation. Its
+JSON receipt is hash-pinned run evidence, not a general downstream admission
+certificate. `bridge_ready` does not prove a global nondegenerate/oriented
+chart, source NFP 19/L24/full-basis provider compatibility, provider execution,
+independent spatial equilibrium comparison or physical validation. No inverse
+recovery or held-out prediction occurred. R01 remains partial; R01-R10 are all
+unaccepted and the credible device count remains zero. The next N2 obligation
+is an additive source-basis chart/admission proof and same-subject equilibrium
+execution, followed by independent spatial comparison. Do not weaken old
+provider gates or change the default registry merely to force admission.
+
 ## Current classification and next work order boundaries
 
 - Numerical defect: confirmed floating-point stagnation; W01 owns the narrow algorithm correction.
