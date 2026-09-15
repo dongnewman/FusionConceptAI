@@ -1,0 +1,414 @@
+"""AD49-F0 additive G2 source-stage authority factory.
+
+This adapter consumes a tracked, clean independent locator, the exact AD45
+temporary common handle, a public five-field GenomeContractRef, typed G2 source
+payload and the real metric-boundary declaration constructor.  It preserves
+GenomeContractRef throughout the G2 source/declaration path and never creates
+a QualifiedRef mapping or final package identity.
+"""
+
+const G2_SOURCE_AUTHORITY_FACTORY_VERSION_V1 = "v1"
+const G2_SOURCE_AUTHORITY_FACTORY_REF_V1 = QualifiedRefV1(
+    "fusionconceptai://GenomeV5/G2/source-authority-factory", "v1")
+const G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 =
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"
+const G2_AD45_COMMON_BINDING_HANDLE_ID_V1 =
+    "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7"
+const G2_AD45_COMMON_BINDING_HANDLE_VERSION_V1 = "v5"
+const G2_AD45_ENVELOPE_RELATIVE_PATH_V1 =
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json"
+const G2_AD45_ENVELOPE_SHA256_V1 =
+    Digest256("17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc")
+const G2_FACTORY_MODULE_DIR_V1 = @__DIR__
+
+abstract type AbstractG2SourceFactoryIdentityV1 end
+abstract type AbstractG2SourceDeclarationV1 end
+abstract type AbstractG2SourceConstructionReceiptV1 end
+
+struct G2IndependentSourceLocatorV1
+    repository_root::String
+    observed_head::String
+    source_path::String
+    source_bytes::Int
+    source_sha256::Digest256
+    head_path_status::Symbol
+    working_tree_path_status::Symbol
+    working_tree_status::Symbol
+    head_blob_sha256::Union{Nothing,Digest256}
+    provenance::Symbol
+    function G2IndependentSourceLocatorV1(repository_root::Any, observed_head::Any,
+            source_path::Any, source_bytes::Any, source_sha256::Any,
+            head_path_status::Any, working_tree_path_status::Any,
+            working_tree_status::Any, head_blob_sha256::Any=nothing,
+            provenance::Any=:repository_head)
+        root = String(repository_root); head = String(observed_head); path = String(source_path)
+        !isempty(root) && !isempty(head) && !isempty(path) ||
+            throw(ArgumentError("G2 locator text fields are required"))
+        isabspath(path) && throw(ArgumentError("G2 source_path must be relative"))
+        occursin("..", replace(path, '\\' => '/')) &&
+            throw(ArgumentError("G2 source_path must not escape repository"))
+        source_bytes isa Integer && !(source_bytes isa Bool) && source_bytes >= 0 ||
+            throw(ArgumentError("G2 source_bytes must be a non-negative integer"))
+        source_sha256 isa Digest256 || throw(ArgumentError("G2 source_sha256 must be Digest256"))
+        all(x -> x isa Symbol, (head_path_status, working_tree_path_status, working_tree_status)) ||
+            throw(ArgumentError("G2 locator statuses must be Symbols"))
+        head_blob_sha256 === nothing || head_blob_sha256 isa Digest256 ||
+            throw(ArgumentError("G2 head_blob_sha256 must be Digest256 or nothing"))
+        provenance isa Symbol && provenance in (:repository_head, :isolated_test_fixture) ||
+            throw(ArgumentError("G2 locator provenance must be explicit"))
+        new(root, head, replace(path, '\\' => '/'), Int(source_bytes), source_sha256,
+            head_path_status, working_tree_path_status, working_tree_status, head_blob_sha256, provenance)
+    end
+end
+
+struct G2SourceDeclarationConstructorV1
+    constructor::Function
+    function G2SourceDeclarationConstructorV1(constructor::Any)
+        constructor isa Function || throw(ArgumentError("G2 declaration constructor must be callable"))
+        new(constructor)
+    end
+end
+
+struct PresentG2SourceFactoryIdentityV1 <: AbstractG2SourceFactoryIdentityV1
+    factory_ref::QualifiedRefV1
+    factory_version::String
+    locator::G2IndependentSourceLocatorV1
+    common_binding_handle::QualifiedRefV1
+    contract_ref::GenomeContractRef
+    version_axes::G2VersionAxesV2
+    source_payload_hash::Digest256
+    source_content_hash::Digest256
+    declaration_hash::Digest256
+    registry_not_used::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+    factory_identity_hash::Digest256
+end
+struct AbsentG2SourceFactoryIdentityV1 <: AbstractG2SourceFactoryIdentityV1
+    reason::Symbol
+    terminal_deferred::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+end
+struct FailedG2SourceFactoryIdentityV1 <: AbstractG2SourceFactoryIdentityV1
+    reason::Symbol
+    fail_closed::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+end
+
+struct G2SourceContractBindingV1
+    common_binding_handle::QualifiedRefV1
+    common_binding_envelope_sha256::Digest256
+    contract_ref::GenomeContractRef
+    version_axes::G2VersionAxesV2
+    binding_role::Symbol
+    candidate_identity_created::Bool
+    binding_hash::Digest256
+end
+
+struct PresentG2SourceDeclarationV1 <: AbstractG2SourceDeclarationV1
+    public_contract_ref::GenomeContractRef
+    common_binding_handle::QualifiedRefV1
+    version_axes::G2VersionAxesV2
+    locator::G2IndependentSourceLocatorV1
+    source_payload::G2MBSourceV1
+    declaration::G2MBDeclarationV1
+    binding::G2SourceContractBindingV1
+    source_content_hash::Digest256
+    local_declaration_hash::Digest256
+    declaration_hash::Digest256
+    synthetic_test_only::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+end
+struct AbsentG2SourceDeclarationV1 <: AbstractG2SourceDeclarationV1
+    reason::Symbol
+    terminal_deferred::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+end
+struct FailedG2SourceDeclarationV1 <: AbstractG2SourceDeclarationV1
+    reason::Symbol
+    fail_closed::Bool
+    candidate_identity_created::Bool
+    final_candidate_or_package_hash_created::Bool
+end
+
+struct PresentG2SourceConstructionReceiptV1 <: AbstractG2SourceConstructionReceiptV1
+    status::Symbol
+    factory_ref::QualifiedRefV1
+    locator_digest::Digest256
+    source_payload_hash::Digest256
+    source_content_hash::Digest256
+    local_declaration_hash::Digest256
+    declaration_hash::Digest256
+    common_binding_handle::QualifiedRefV1
+    contract_ref::GenomeContractRef
+    version_axes::G2VersionAxesV2
+    output_source_declaration::PresentG2SourceDeclarationV1
+    registry_not_used::Bool
+    trusted::Bool
+    candidate_identity_created::Bool
+    final_hash_created::Bool
+    replayable::Bool
+    receipt_hash::Digest256
+end
+struct AbsentG2SourceConstructionReceiptV1 <: AbstractG2SourceConstructionReceiptV1
+    status::Symbol
+    reason::Symbol
+    terminal_deferred::Bool
+    trusted::Bool
+    candidate_identity_created::Bool
+    final_hash_created::Bool
+end
+struct FailedG2SourceConstructionReceiptV1 <: AbstractG2SourceConstructionReceiptV1
+    status::Symbol
+    reason::Symbol
+    fail_closed::Bool
+    trusted::Bool
+    candidate_identity_created::Bool
+    final_hash_created::Bool
+end
+
+struct G2SourceFactoryConstructionResultV1
+    identity::AbstractG2SourceFactoryIdentityV1
+    source_declaration::AbstractG2SourceDeclarationV1
+    receipt::AbstractG2SourceConstructionReceiptV1
+end
+
+semantic_view(x::G2IndependentSourceLocatorV1) =
+    (repository_root=x.repository_root, observed_head=x.observed_head, source_path=x.source_path,
+     source_bytes=x.source_bytes, source_sha256=x.source_sha256,
+     head_path_status=x.head_path_status, working_tree_path_status=x.working_tree_path_status,
+     working_tree_status=x.working_tree_status, head_blob_sha256=x.head_blob_sha256,
+     provenance=x.provenance)
+semantic_view(x::G2SourceDeclarationConstructorV1) = (constructor=string(x.constructor),)
+semantic_view(x::G2SourceContractBindingV1) =
+    (common_binding_handle=x.common_binding_handle, common_binding_envelope_sha256=x.common_binding_envelope_sha256,
+     contract_ref=x.contract_ref,
+     version_axes=x.version_axes, binding_role=x.binding_role,
+     candidate_identity_created=x.candidate_identity_created)
+semantic_view(x::PresentG2SourceFactoryIdentityV1) =
+    (factory_ref=x.factory_ref, factory_version=x.factory_version, locator=x.locator,
+     common_binding_handle=x.common_binding_handle, contract_ref=x.contract_ref,
+     version_axes=x.version_axes, source_payload_hash=x.source_payload_hash,
+     source_content_hash=x.source_content_hash, declaration_hash=x.declaration_hash,
+     registry_not_used=x.registry_not_used, candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::AbsentG2SourceFactoryIdentityV1) =
+    (reason=x.reason, terminal_deferred=x.terminal_deferred, candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::FailedG2SourceFactoryIdentityV1) =
+    (reason=x.reason, fail_closed=x.fail_closed, candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::PresentG2SourceDeclarationV1) =
+    (public_contract_ref=x.public_contract_ref, common_binding_handle=x.common_binding_handle,
+     version_axes=x.version_axes, locator=x.locator, source_payload=x.source_payload,
+     declaration=x.declaration, binding=x.binding, source_content_hash=x.source_content_hash,
+     local_declaration_hash=x.local_declaration_hash, synthetic_test_only=x.synthetic_test_only,
+     candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::AbsentG2SourceDeclarationV1) =
+    (reason=x.reason, terminal_deferred=x.terminal_deferred, candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::FailedG2SourceDeclarationV1) =
+    (reason=x.reason, fail_closed=x.fail_closed, candidate_identity_created=x.candidate_identity_created,
+     final_candidate_or_package_hash_created=x.final_candidate_or_package_hash_created)
+semantic_view(x::PresentG2SourceConstructionReceiptV1) =
+    (status=x.status, factory_ref=x.factory_ref, locator_digest=x.locator_digest,
+     source_payload_hash=x.source_payload_hash, source_content_hash=x.source_content_hash,
+     local_declaration_hash=x.local_declaration_hash, declaration_hash=x.declaration_hash,
+     common_binding_handle=x.common_binding_handle, contract_ref=x.contract_ref,
+     version_axes=x.version_axes, output_source_declaration=x.output_source_declaration,
+     registry_not_used=x.registry_not_used, trusted=x.trusted,
+     candidate_identity_created=x.candidate_identity_created, final_hash_created=x.final_hash_created,
+     replayable=x.replayable)
+semantic_view(x::AbsentG2SourceConstructionReceiptV1) =
+    (status=x.status, reason=x.reason, terminal_deferred=x.terminal_deferred, trusted=x.trusted,
+     candidate_identity_created=x.candidate_identity_created, final_hash_created=x.final_hash_created)
+semantic_view(x::FailedG2SourceConstructionReceiptV1) =
+    (status=x.status, reason=x.reason, fail_closed=x.fail_closed, trusted=x.trusted,
+     candidate_identity_created=x.candidate_identity_created, final_hash_created=x.final_hash_created)
+semantic_view(x::G2SourceFactoryConstructionResultV1) =
+    (identity=x.identity, source_declaration=x.source_declaration, receipt=x.receipt)
+
+for T in (:G2IndependentSourceLocatorV1, :G2SourceDeclarationConstructorV1,
+          :G2SourceContractBindingV1,
+          :PresentG2SourceFactoryIdentityV1, :AbsentG2SourceFactoryIdentityV1,
+          :FailedG2SourceFactoryIdentityV1, :PresentG2SourceDeclarationV1,
+          :AbsentG2SourceDeclarationV1, :FailedG2SourceDeclarationV1,
+          :PresentG2SourceConstructionReceiptV1, :AbsentG2SourceConstructionReceiptV1,
+          :FailedG2SourceConstructionReceiptV1, :G2SourceFactoryConstructionResultV1)
+    @eval canonical_json(x::$T) = canonical_json(semantic_view(x))
+end
+
+function _g2sf_git(root, args...)
+    try
+        String(readchomp(Cmd(String["git", "-C", root, String.(args)...])))
+    catch
+        nothing
+    end
+end
+function _g2sf_git_bytes(root, args...)
+    try
+        read(Cmd(String["git", "-C", root, String.(args)...]))
+    catch
+        nothing
+    end
+end
+function _g2sf_repository_anchor(module_dir=G2_FACTORY_MODULE_DIR_V1)
+    module_anchor = try realpath(normpath(joinpath(module_dir, "..", "..", ".."))) catch; return nothing end
+    top = _g2sf_git(module_anchor, "rev-parse", "--show-toplevel")
+    top isa String || return nothing
+    try realpath(top) == module_anchor ? module_anchor : nothing catch; nothing end
+end
+function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1)
+    locator.source_path == G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 || return :source_path_mismatch
+    path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
+    isfile(path) || return :source_file_missing
+    bytes = try read(path) catch; return :source_read_failed end
+    length(bytes) == locator.source_bytes || return :source_bytes_mismatch
+    Digest256(bytes2hex(SHA.sha256(bytes))) == locator.source_sha256 || return :source_hash_mismatch
+    if locator.provenance === :repository_head
+        anchor = _g2sf_repository_anchor()
+        anchor === nothing && return :repository_anchor_unavailable
+        try realpath(locator.repository_root) == anchor || return :repository_anchor_mismatch catch; return :repository_anchor_mismatch end
+    else
+        try realpath(locator.repository_root) == locator.repository_root || return :fixture_root_not_canonical catch; return :fixture_root_invalid end
+    end
+    head = _g2sf_git(locator.repository_root, "rev-parse", "HEAD")
+    head isa String && head == locator.observed_head || return :locator_head_mismatch
+    tracked = _g2sf_git(locator.repository_root, "ls-files", "--stage", "--", locator.source_path)
+    tree = _g2sf_git(locator.repository_root, "ls-tree", "-r", "--name-only", "HEAD", "--", locator.source_path)
+    tree isa String || return :source_read_or_git_probe_failed
+    actual_head_path = isempty(strip(tree)) ? :absent_untracked : :present
+    actual_head_path == locator.head_path_status || return :head_path_status_mismatch
+    if actual_head_path === :present
+        blob = _g2sf_git(locator.repository_root, "rev-parse", "HEAD:" * locator.source_path)
+        blob isa String && length(blob) == 40 || return :head_blob_probe_failed
+        head_bytes = _g2sf_git_bytes(locator.repository_root, "show", "HEAD:" * locator.source_path)
+        cat_bytes = _g2sf_git_bytes(locator.repository_root, "cat-file", "blob", blob)
+        head_bytes isa Vector{UInt8} && cat_bytes isa Vector{UInt8} || return :head_blob_read_failed
+        head_bytes == cat_bytes || return :head_blob_bytes_mismatch
+        bytes == head_bytes || return :working_tree_head_bytes_mismatch
+        length(head_bytes) == locator.source_bytes || return :head_blob_bytes_mismatch
+        head_sha = Digest256(bytes2hex(SHA.sha256(head_bytes)))
+        head_sha == locator.source_sha256 == locator.head_blob_sha256 || return :head_blob_sha256_mismatch
+    else
+        locator.head_blob_sha256 === nothing || return :head_blob_sha256_mismatch
+    end
+    porcelain = _g2sf_git(locator.repository_root, "status", "--porcelain=v1", "--untracked-files=all", "--", locator.source_path)
+    porcelain isa String || return :source_read_or_git_probe_failed
+    actual_status = isempty(porcelain) ? :clean : startswith(porcelain, "??") ? :untracked : :dirty
+    actual_work_path = actual_status === :clean ? :present : :absent_untracked
+    actual_work_path == locator.working_tree_path_status || return :working_tree_path_status_mismatch
+    actual_status == locator.working_tree_status || return :working_tree_status_mismatch
+    (actual_head_path === :present && actual_status === :clean && tracked isa String && !isempty(strip(tracked))) ? nothing : :source_authority_missing
+end
+function _g2sf_validate_handle(root, handle)
+    handle isa QualifiedRefV1 || return :common_handle_type_mismatch
+    handle.version == G2_AD45_COMMON_BINDING_HANDLE_VERSION_V1 || return :common_handle_version_mismatch
+    handle.id == G2_AD45_COMMON_BINDING_HANDLE_ID_V1 || return :foreign_common_handle
+    path = joinpath(root, split(G2_AD45_ENVELOPE_RELATIVE_PATH_V1, '/')...)
+    isfile(path) || return :ad45_envelope_missing
+    try
+        Digest256(bytes2hex(SHA.sha256(read(path)))) == G2_AD45_ENVELOPE_SHA256_V1 ? nothing : :ad45_envelope_hash_mismatch
+    catch
+        :ad45_envelope_read_failed
+    end
+end
+function _g2sf_expected_contract()
+    profile = G2MBProfileV1("fusion.g2.metric-boundary.profile")
+    GenomeContractRef("fusionconceptai://GenomeV5/G2/metric-boundary/public-contract/v1", "v5",
+        g2mb_schema_hash_v1(), g2mb_canonicalization_hash_v1(), g2mb_profile_token_v1(profile))
+end
+function _g2sf_axes_ok(axes)
+    axes isa G2VersionAxesV2 || return false
+    refs = (axes.payload_schema_version, axes.canonicalization_profile_version,
+        axes.applicability_profile_version, axes.evidence_receipt_version)
+    all(x -> x isa QualifiedRefV1 && x.version == "v5", refs) &&
+        Tuple(x.id for x in refs) == ("fusion.g2.payload-schema", "fusion.g2.canonicalization",
+            "fusion.g2.applicability", "fusion.g2.receipt")
+end
+_g2sf_absent(reason) = (AbsentG2SourceFactoryIdentityV1(reason, true, false, false),
+    AbsentG2SourceDeclarationV1(reason, true, false, false),
+    AbsentG2SourceConstructionReceiptV1(:typed_absent, reason, true, false, false, false))
+_g2sf_failed(reason) = (FailedG2SourceFactoryIdentityV1(reason, true, false, false),
+    FailedG2SourceDeclarationV1(reason, true, false, false),
+    FailedG2SourceConstructionReceiptV1(:fail_closed, reason, true, false, false, false))
+
+"""Build a source-stage G2 declaration using the real declaration constructor."""
+function g2_source_authority_factory_v1(locator::Any, common_binding_handle::Any,
+        contract_ref::Any, source_payload::Any, version_axes::Any,
+        declaration_constructor::Any)
+    for (value, reason) in ((locator, :locator_missing), (common_binding_handle, :common_handle_missing),
+            (contract_ref, :contract_ref_missing), (source_payload, :source_payload_missing),
+            (version_axes, :version_axes_missing), (declaration_constructor, :declaration_constructor_missing))
+        value === nothing && begin; b = _g2sf_absent(reason); return G2SourceFactoryConstructionResultV1(b...); end
+    end
+    locator isa G2IndependentSourceLocatorV1 || begin; b=_g2sf_failed(:locator_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    common_binding_handle isa QualifiedRefV1 || begin; b=_g2sf_failed(:common_handle_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    contract_ref isa GenomeContractRef || begin; b=_g2sf_failed(:contract_ref_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    source_payload isa G2MBSourceV1 || begin; b=_g2sf_failed(:source_payload_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    version_axes isa G2VersionAxesV2 || begin; b=_g2sf_failed(:version_axes_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    declaration_constructor isa G2SourceDeclarationConstructorV1 || begin; b=_g2sf_failed(:declaration_constructor_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    contract_ref == _g2sf_expected_contract() || begin; b=_g2sf_failed(:public_contract_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    _g2sf_axes_ok(version_axes) || begin; b=_g2sf_failed(:version_axes_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    handle_error = _g2sf_validate_handle(locator.repository_root, common_binding_handle)
+    handle_error === nothing || begin; b=_g2sf_failed(handle_error); return G2SourceFactoryConstructionResultV1(b...); end
+    locator_error = _g2sf_validate_locator(locator)
+    if locator_error !== nothing
+        b = locator_error === :source_authority_missing || locator_error === :source_file_missing ? _g2sf_absent(locator_error) : _g2sf_failed(locator_error)
+        return G2SourceFactoryConstructionResultV1(b...)
+    end
+    (declaration_constructor.constructor === g2mb_declaration_v1 || declaration_constructor.constructor === G2MBDeclarationV1) || begin; b=_g2sf_failed(:not_real_declaration_constructor); return G2SourceFactoryConstructionResultV1(b...); end
+    source_payload.candidate_ref == contract_ref || begin; b=_g2sf_failed(:source_contract_ref_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    payload_hash = source_payload.source_hash
+    declaration = try declaration_constructor.constructor(contract_ref, source_payload) catch; nothing end
+    declaration isa G2MBDeclarationV1 || begin; b=_g2sf_failed(:constructor_rejected_input); return G2SourceFactoryConstructionResultV1(b...); end
+    declaration_hash = g2mb_declaration_hash_v1(declaration)
+    binding_body = (common_binding_handle=common_binding_handle,
+        common_binding_envelope_sha256=G2_AD45_ENVELOPE_SHA256_V1, contract_ref=contract_ref,
+        version_axes=version_axes, binding_role=:temporary_common_candidate_binding_handle_only,
+        candidate_identity_created=false)
+    binding = G2SourceContractBindingV1(common_binding_handle, G2_AD45_ENVELOPE_SHA256_V1, contract_ref, version_axes,
+        :temporary_common_candidate_binding_handle_only, false, canonical_hash(binding_body))
+    synthetic_test_only = locator.provenance === :isolated_test_fixture
+    source_content_hash = canonical_hash((factory_ref=G2_SOURCE_AUTHORITY_FACTORY_REF_V1,
+        locator=locator, common_binding_handle=common_binding_handle, contract_ref=contract_ref,
+        version_axes=version_axes, source_payload=source_payload, source_payload_hash=payload_hash,
+        binding=binding, binding_hash=binding.binding_hash, declaration_hash=declaration_hash,
+        synthetic_test_only=synthetic_test_only))
+    body = (public_contract_ref=contract_ref, common_binding_handle=common_binding_handle,
+        version_axes=version_axes, locator=locator, source_payload=source_payload,
+        declaration=declaration, binding=binding, source_content_hash=source_content_hash,
+        local_declaration_hash=declaration_hash, synthetic_test_only=synthetic_test_only,
+        candidate_identity_created=false, final_candidate_or_package_hash_created=false)
+    source_decl = PresentG2SourceDeclarationV1(contract_ref, common_binding_handle, version_axes,
+        locator, source_payload, declaration, binding, source_content_hash, declaration_hash,
+        canonical_hash(body), synthetic_test_only, false, false)
+    locator_digest = canonical_hash(locator)
+    ibody = (factory_ref=G2_SOURCE_AUTHORITY_FACTORY_REF_V1, factory_version="v1", locator=locator,
+        common_binding_handle=common_binding_handle, contract_ref=contract_ref, version_axes=version_axes,
+        source_payload_hash=payload_hash, source_content_hash=source_content_hash,
+        declaration_hash=declaration_hash, registry_not_used=true, candidate_identity_created=false,
+        final_candidate_or_package_hash_created=false)
+    identity = PresentG2SourceFactoryIdentityV1(G2_SOURCE_AUTHORITY_FACTORY_REF_V1, "v1", locator,
+        common_binding_handle, contract_ref, version_axes, payload_hash, source_content_hash,
+        declaration_hash, true, false, false, canonical_hash(ibody))
+    rbody = (status=:present, factory_ref=G2_SOURCE_AUTHORITY_FACTORY_REF_V1, locator_digest=locator_digest,
+        source_payload_hash=payload_hash, source_content_hash=source_content_hash,
+        local_declaration_hash=declaration_hash, declaration_hash=source_decl.declaration_hash,
+        common_binding_handle=common_binding_handle, contract_ref=contract_ref, version_axes=version_axes,
+        output_source_declaration=source_decl, registry_not_used=true, trusted=false,
+        candidate_identity_created=false, final_hash_created=false, replayable=true)
+    receipt = PresentG2SourceConstructionReceiptV1(rbody..., canonical_hash(rbody))
+    G2SourceFactoryConstructionResultV1(identity, source_decl, receipt)
+end
+
+g2_source_factory_result_status(x::G2SourceFactoryConstructionResultV1) =
+    x.identity isa PresentG2SourceFactoryIdentityV1 ? :present :
+    x.identity isa AbsentG2SourceFactoryIdentityV1 ? :typed_absent : :fail_closed
+g2_source_factory_receipt(x::G2SourceFactoryConstructionResultV1) = x.receipt
+g2_source_factory_declaration(x::G2SourceFactoryConstructionResultV1) = x.source_declaration

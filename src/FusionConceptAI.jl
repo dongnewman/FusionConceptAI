@@ -42,6 +42,9 @@ include("Genomes/MechanismGenome.jl")
 include("Canonical/Hashes.jl")
 include("Genomes/MechanismLegacyMigration.jl")
 include("Contracts/CandidateStatePackage.jl")
+include("Contracts/CandidateStatePackageV5.jl")
+include("GenomeV5/Integration/GenomeV5Integration.jl")
+include("GenomeV5/UP2/UP2ModuleEntryV1.jl")
 include("IR/ConditionalEGraph.jl")
 include("IR/ConditionalEGraphTypes.jl")
 include("Canonical/ConditionalEGraphCanonical.jl")
@@ -115,6 +118,11 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        resolve_contract,
        MissionContractRef, ProposalEnvelopeV4, UncertaintyV4, EvidenceContentV4, EvidenceEnvelopeV4, evidence_envelope, evidence_id_for, CanonicalHashesV4, CandidateStatePackageV4,
        LegacyMigrationResultV4, migrate_legacy,
+       GenomeV5MigrationRecord, GenomeV5MigrationReceipt, G2CandidateBindingV5, v5_fresh_migration_receipt,
+       v5_deferred_migration_receipt,
+       CandidateStatePackageV5, load_genome_v5_components!, genome_v5_component_layer_order,
+       load_genome_v5_up2_components!, up2_module_load_state, up2_module_dependency_order,
+       integrate_genome_v5,
        derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash, mechanism_subject_hash,
        field_geometry_hash, realization_control_hash, realization_hash, control_hash, coupled_realization_control_hash, genome_bundle_hash,
        AuthorityProtocolV4, IntermediateAuthorityProtocolV4, DerivedEGraphViewV4,
