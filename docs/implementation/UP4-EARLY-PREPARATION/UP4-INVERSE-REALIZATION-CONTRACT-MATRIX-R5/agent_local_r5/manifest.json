@@ -1,0 +1,44 @@
+{
+  "schema": "UP4InverseRealizationContractMatrixAgentLocalR5ManifestV1",
+  "task_id": "UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5",
+  "agent_local_run": "agent_local_r5",
+  "status": "contract_only",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "static_qa": {
+    "command": "python -B docs/implementation/UP4-EARLY-PREPARATION/UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5/agent_local_r5/static_qa.py",
+    "exit_code": 0,
+    "status": "pass",
+    "checks": 20
+  },
+  "previous_failed_run": {
+    "path": "runs/agent_local_up4_inverse_realization_contract_matrix_20260918_r4",
+    "exit_code": 1,
+    "pass_count": 0,
+    "fail_count": 0,
+    "error_count": 1,
+    "hashes_unchanged": true,
+    "failure_marker": "duplicate provider domains",
+    "raw_preserved": true
+  },
+  "repair_controls": [
+    "same_domain_fixture_domains_stable_unique",
+    "cross_domain_target_source_preserved",
+    "duplicate_provider_domains_external_negative",
+    "external_error_normalized_to_fail_closed",
+    "provider_calls_zero"
+  ],
+  "input_sha256": {
+    "src/RuntimeV4/InverseRealizationRequestContractV1.jl": "5c25e92b625eff79b3e4714e3bbfb33e3b57354bddf2a24339296c890537b6e4",
+    "test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl": "898bf30229a7254f3aaa5388253c959a51247d13bb66dc4afca999168aa2a2b5",
+    "test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json": "51c025279dc514fc035366696ffa29387ffac5b68f9edfab9ceab43daab39fcd",
+    "docs/implementation/UP4-EARLY-PREPARATION/UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5/agent_local_r5/static_qa.py": "97592239adbc9b24af6ce7519e3164f63b417951ebad4cea32dfd87bb39b11cd"
+  },
+  "no_r01_r10_credit": true,
+  "no_commit": true,
+  "self_hash_excluded": true
+}

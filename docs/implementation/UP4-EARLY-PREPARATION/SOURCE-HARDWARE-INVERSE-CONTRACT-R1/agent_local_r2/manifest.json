@@ -1,0 +1,34 @@
+{
+  "schema": "UP4InverseRealizationContractManifestV2",
+  "status": "contract_only",
+  "claim_ceiling": "contract_only",
+  "runtime_execution": "not_run",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "formal_credit": "none",
+  "repair": "malformed_external_input_normalization_without_internal_defect_swallowing",
+  "protected_unchanged_scope": [
+    "legacy inverse sources and tests",
+    "M5 sources and tests",
+    "optimizer/search",
+    "provider registries",
+    "docs/v4_multitopology_generation/task_manifest.json"
+  ],
+  "added_paths": [
+    "src/RuntimeV4/InverseRealizationRequestContractV1.jl",
+    "test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl",
+    "test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json",
+    "docs/implementation/UP4-EARLY-PREPARATION/SOURCE-HARDWARE-INVERSE-CONTRACT-R1/agent_local_r2/"
+  ],
+  "static_qa_command": "python docs/implementation/UP4-EARLY-PREPARATION/SOURCE-HARDWARE-INVERSE-CONTRACT-R1/agent_local_r2/static_qa.py",
+  "static_qa_result": "pass",
+  "static_qa_exit_code": 0,
+  "input_sha256": {
+    "src/RuntimeV4/InverseRealizationRequestContractV1.jl": "566fdb01c7334f1afac68e5fa25fd4461650cf48f5884dd752facde1459e2b15",
+    "test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl": "c86bbd73006e7c408634766a47a78a60839db6e3a2bb78018c0cc2158c0c8e16",
+    "test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json": "37a5238359a2f28182e0cf68e6d60726afe80654776d91c5a850d1c7473f4996"
+  },
+  "qa_stdout": "static_qa.stdout.raw",
+  "qa_stderr": "static_qa.stderr.raw"
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "InverseRealizationRequestContractFixtureV1",
+  "claim_ceiling": "contract_only",
+  "provider_calls_required": 0,
+  "positive": {
+    "target": {"quantity": "power", "unit": "W", "function_space": "scalar", "domain": "electrical-hardware"},
+    "source": {"quantity": "voltage", "unit": "V", "function_space": "scalar", "domain": "electrical-hardware"},
+    "return": {"quantity": "power", "unit": "W", "function_space": "scalar", "domain": "electrical-hardware"},
+    "emf_policy": "required",
+    "derivative_orders": [1],
+    "material_model": "steel-v1",
+    "geometry_model": "coil-shell-v1",
+    "expected_status": "prepared"
+  },
+  "negative": [
+    {"id": "target_return_quantity_mismatch", "expected_status": "fail_closed"},
+    {"id": "target_return_unit_mismatch", "expected_status": "fail_closed"},
+    {"id": "target_return_function_space_mismatch", "expected_status": "fail_closed"},
+    {"id": "target_return_domain_mismatch", "expected_status": "fail_closed"},
+    {"id": "cross_domain_source_geometry", "expected_status": "fail_closed", "expected_reason": "source_geometry_domain_mismatch"},
+    {"id": "voltage_forbidden_emf", "expected_status": "fail_closed"},
+    {"id": "provider_capability_missing", "expected_status": "terminal_deferred"},
+    {"id": "derivative_capability_missing", "expected_status": "terminal_deferred"},
+    {"id": "return_port_missing", "expected_status": "terminal_deferred"},
+    {"id": "material_provider_capability_missing", "expected_status": "terminal_deferred"},
+    {"id": "geometry_provider_capability_missing", "expected_status": "terminal_deferred"},
+    {"id": "duplicate_provider_domains", "expected_status": "fail_closed", "expected_reason": "duplicate provider domains"}
+  ],
+  "forbidden": [
+    "provider_invocation",
+    "inverse_solver",
+    "hardware_construction",
+    "optimizer",
+    "DESC",
+    "task_manifest_mutation"
+  ]
+}

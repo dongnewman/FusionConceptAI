@@ -1,0 +1,265 @@
+{
+  "checks": [
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationBoundV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationPortV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationElectricalV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationMaterialV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationGeometryV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationProviderCapabilityV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationRequestV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:InverseRealizationContractResultV1",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:validate_inverse_realization_request",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:admit_inverse_realization_request",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:canonical_hash",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:provider_calls",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:derivative_capability_missing",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:return_port_missing",
+      "pass": true
+    },
+    {
+      "detail": "required contract token",
+      "name": "source:voltage_requires_nonforbidden_emf_policy",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:target_return_quantity_mismatch",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:provider=false",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:return_port=false",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:derivative_orders=()",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:provider_calls == 0",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:canonical_hash(reordered)",
+      "pass": true
+    },
+    {
+      "detail": "required static vector",
+      "name": "test:NaN",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:Manufactured",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:DESC",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:default_operator_registry",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:task_manifest",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:optimizer",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:subprocess",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:include(",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:run(",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:ccall(",
+      "pass": true
+    },
+    {
+      "detail": "all contract-only statuses are represented",
+      "name": "source:status-closure",
+      "pass": true
+    },
+    {
+      "detail": "finite ordered bounds are checked",
+      "name": "source:finite-bounds",
+      "pass": true
+    },
+    {
+      "detail": "provider capability collections are sorted before identity",
+      "name": "source:ordering-invariance",
+      "pass": true
+    },
+    {
+      "detail": "result constructor and decision path forbid provider invocation",
+      "name": "source:zero-provider-calls",
+      "pass": true
+    },
+    {
+      "detail": "fixture schema",
+      "name": "fixture:schema",
+      "pass": true
+    },
+    {
+      "detail": "positive ceiling is prepared/contract-only",
+      "name": "fixture:positive",
+      "pass": true
+    },
+    {
+      "detail": "manifest preserves contract-only/no-call boundary",
+      "name": "manifest:contract-boundary",
+      "pass": true
+    },
+    {
+      "detail": "missing prerequisite defers",
+      "name": "fixture:provider_capability_missing",
+      "pass": true
+    },
+    {
+      "detail": "missing prerequisite defers",
+      "name": "fixture:derivative_capability_missing",
+      "pass": true
+    },
+    {
+      "detail": "missing prerequisite defers",
+      "name": "fixture:return_port_missing",
+      "pass": true
+    },
+    {
+      "detail": "contradiction fails closed",
+      "name": "fixture:target_return_quantity_mismatch",
+      "pass": true
+    },
+    {
+      "detail": "contradiction fails closed",
+      "name": "fixture:target_return_unit_mismatch",
+      "pass": true
+    },
+    {
+      "detail": "contradiction fails closed",
+      "name": "fixture:target_return_function_space_mismatch",
+      "pass": true
+    },
+    {
+      "detail": "contradiction fails closed",
+      "name": "fixture:target_return_domain_mismatch",
+      "pass": true
+    },
+    {
+      "detail": "contradiction fails closed",
+      "name": "fixture:voltage_forbidden_emf",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:src/RuntimeV4/InverseRealizationRequestContractV1.jl",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json",
+      "pass": true
+    },
+    {
+      "detail": "?? src/RuntimeV4/InverseRealizationRequestContractV1.jl\n?? test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json\n?? test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl",
+      "name": "git:scope",
+      "pass": true
+    }
+  ],
+  "claim_ceiling": "contract_only",
+  "desc_executed": false,
+  "failed_checks": [],
+  "fixture_sha256": "37a5238359a2f28182e0cf68e6d60726afe80654776d91c5a850d1c7473f4996",
+  "julia_executed": false,
+  "provider_calls": 0,
+  "runtime_executed": false,
+  "schema": "UP4InverseRealizationContractStaticQAV1",
+  "source_sha256": "1cde7d4640534f8accd9e5946b87bbdc7e998c1be1acc4445b5d8dc8460c4d5d",
+  "status": "pass",
+  "test_sha256": "9bed224889b3faa0fdc19eff951741b9e98c94520cbdebdf5beef8e8cd9884b5"
+}

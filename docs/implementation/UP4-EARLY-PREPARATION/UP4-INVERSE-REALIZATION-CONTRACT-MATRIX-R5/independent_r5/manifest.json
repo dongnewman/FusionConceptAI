@@ -1,0 +1,58 @@
+{
+  "schema_version": "fusion-up4-inverse-realization-contract-independent-r5",
+  "record_kind": "independent_static_review",
+  "task_id": "UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5",
+  "review_id": "independent_r5",
+  "reviewer": "different_luna",
+  "verdict": "GO_STATIC_ONLY",
+  "review_status": "static_contract_pass_runtime_required",
+  "accepted": false,
+  "formal_acceptance": false,
+  "claim_ceiling": "contract_only",
+  "status_ceiling": "prepared",
+  "evidence_scope": "not_measured",
+  "runtime_execution": "not_executed",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_executed": false,
+  "solver_executed": false,
+  "commit_created": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "static_qa": {
+    "command": "python -B docs/implementation/UP4-EARLY-PREPARATION/UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5/agent_local_r5/static_qa.py",
+    "exit_code": 0,
+    "status": "pass",
+    "checks": 20,
+    "failed_checks": []
+  },
+  "r4_failure_receipt": {
+    "path": "runs/agent_local_up4_inverse_realization_contract_matrix_20260918_r4",
+    "exit_code": 1,
+    "test_summary": "0 passed, 0 failed, 1 error",
+    "failure_marker": "duplicate provider domains",
+    "hashes_unchanged": true,
+    "pre_post_hashes_match": true,
+    "raw_files_preserved": true
+  },
+  "checks": {
+    "same_domain_stable_unique_fixture": true,
+    "cross_domain_values_preserved": true,
+    "duplicate_provider_domains_direct_construction": true,
+    "duplicate_domains_normalized_to_fail_closed": true,
+    "duplicate_domains_provider_calls_zero": true,
+    "source_geometry_domain_mismatch_real_negative": true,
+    "r4_failure_receipt_and_current_hashes_reconciled": true,
+    "no_provider_solver_hardware_execution": true,
+    "no_r01_r10_credit": true
+  },
+  "current_sha256": {
+    "src/RuntimeV4/InverseRealizationRequestContractV1.jl": "5c25e92b625eff79b3e4714e3bbfb33e3b57354bddf2a24339296c890537b6e4",
+    "test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl": "898bf30229a7254f3aaa5388253c959a51247d13bb66dc4afca999168aa2a2b5",
+    "test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json": "51c025279dc514fc035366696ffa29387ffac5b68f9edfab9ceab43daab39fcd",
+    "docs/implementation/UP4-EARLY-PREPARATION/UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5/agent_local_r5/static_qa.py": "97592239adbc9b24af6ce7519e3164f63b417951ebad4cea32dfd87bb39b11cd"
+  },
+  "next_gate": "fresh-process focused Julia test and independent runtime review; retain contract_only and accepted=false"
+}

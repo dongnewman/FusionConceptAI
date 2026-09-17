@@ -1,0 +1,225 @@
+{
+  "checks": [
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:struct InverseExternalInputError <: Exception",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:Base.showerror(io::IO, error::InverseExternalInputError)",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:_irv1_input_error(message) = InverseExternalInputError",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:throw(InverseExternalInputError(:conversion",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:MethodError",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:InexactError",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:OverflowError",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:TypeError",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:admit_inverse_realization_request",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:validate_inverse_realization_request",
+      "pass": true
+    },
+    {
+      "detail": "R3 typed exception boundary",
+      "name": "source:provider_calls === 0",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:InverseExternalInputError",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:\"not-a-float\"",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:Ref(:W)",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:3.5",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:big(typemax(Int)) + 1",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:TypeError",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:same_message",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:@test_throws ArgumentError",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:@test_throws MethodError",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:@test_throws ErrorException",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:\"internal_program_defect\"",
+      "pass": true
+    },
+    {
+      "detail": "typed malformed and non-swallow vector",
+      "name": "test:provider_calls == 0",
+      "pass": true
+    },
+    {
+      "detail": "admission catches exact sealed external-input type",
+      "name": "admit:exact-type-only",
+      "pass": true
+    },
+    {
+      "detail": "validation remains outside external-input catch",
+      "name": "admit:validation-outside-catch",
+      "pass": true
+    },
+    {
+      "detail": "only local conversion seam catches expected conversion classes",
+      "name": "source:conversion-errors-local",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:Manufactured",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:DESC",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:default_operator_registry",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:task_manifest",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:optimizer",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:subprocess",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:include(",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:run(",
+      "pass": true
+    },
+    {
+      "detail": "execution/legacy boundary",
+      "name": "source:forbidden:ccall(",
+      "pass": true
+    },
+    {
+      "detail": "all contract-only statuses represented",
+      "name": "source:status-closure",
+      "pass": true
+    },
+    {
+      "detail": "fixture schema",
+      "name": "fixture:schema",
+      "pass": true
+    },
+    {
+      "detail": "manifest preserves contract-only/no-call boundary",
+      "name": "manifest:contract-boundary",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:src/RuntimeV4/InverseRealizationRequestContractV1.jl",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl",
+      "pass": true
+    },
+    {
+      "detail": "file exists",
+      "name": "file:test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json",
+      "pass": true
+    },
+    {
+      "detail": "?? src/RuntimeV4/InverseRealizationRequestContractV1.jl\n?? test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json\n?? test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl",
+      "name": "git:scope",
+      "pass": true
+    }
+  ],
+  "claim_ceiling": "contract_only",
+  "desc_executed": false,
+  "failed_checks": [],
+  "fixture_sha256": "37a5238359a2f28182e0cf68e6d60726afe80654776d91c5a850d1c7473f4996",
+  "julia_executed": false,
+  "provider_calls": 0,
+  "runtime_executed": false,
+  "schema": "UP4InverseRealizationContractStaticQAV3",
+  "source_sha256": "84f31fcb2e521997f103811b7be1fcce29ef72abe74a3124bef1c1bf88b6ed48",
+  "status": "pass",
+  "test_sha256": "c7af3607ee7ed0a9fd19a03858f881df75a758f048b386e7f0111cd5db648eaa"
+}

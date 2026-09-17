@@ -1,0 +1,69 @@
+{
+  "schema_version": "fusion-up4-inverse-realization-postrun-independent-r5",
+  "record_kind": "independent_postrun_review",
+  "task_id": "UP4-INVERSE-REALIZATION-CONTRACT-MATRIX-R5",
+  "review_id": "independent_postrun_r5",
+  "reviewer": "different_luna",
+  "verdict": "GO_RUNTIME_LIMITED",
+  "review_status": "runtime_contract_pass_formal_acceptance_pending",
+  "accepted": false,
+  "formal_acceptance": false,
+  "claim_ceiling": "contract_only",
+  "runtime_execution": "focused_contract_test_only",
+  "julia_executed": true,
+  "desc_executed": false,
+  "provider_executed": false,
+  "solver_executed": false,
+  "hardware_executed": false,
+  "commit_created": false,
+  "product_modified": false,
+  "test_modified": false,
+  "current_head": "34100427f1114771dd86a875f45afd81a66e0208",
+  "runtime_head_recorded": "70cded1ca1b64496bbee44ac0025659f446364ea",
+  "runtime_receipt": {
+    "path": "runs/agent_local_up4_inverse_realization_contract_matrix_20260918_r5",
+    "run_json_sha256": "9fd4cbb0c5aebf4852a65cfb1e66633f57370e55a42cdadf475121d40f2373ce",
+    "head_txt_sha256": "6b114fb77c18b3d2d7106bc3e864cc15d2beb24624553f4e2727bf3a80bbadbf",
+    "exit_code": 0,
+    "summary": "58/58",
+    "summary_seconds": 3.9,
+    "hashes_unchanged": true,
+    "stderr_bytes": 0,
+    "stdout_bytes": 138,
+    "stdout_sha256": "9eec3aa1181af9550be66c8d2fcc6839ef9db1d66675081560e9fd9486b6c17c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "input_reconciliation": {
+    "pre_bytes": 518,
+    "post_bytes": 518,
+    "pre_sha256": "27b4b5b2f307b01b6ba1cdd2560bd29e47bf3ba40915c2ffbc0d7c3d5564fff8",
+    "post_sha256": "27b4b5b2f307b01b6ba1cdd2560bd29e47bf3ba40915c2ffbc0d7c3d5564fff8",
+    "pre_equals_post": true,
+    "pre_equals_current": true,
+    "post_equals_current": true
+  },
+  "r4_failure_receipt": {
+    "path": "runs/agent_local_up4_inverse_realization_contract_matrix_20260918_r4",
+    "exit_code": 1,
+    "hashes_unchanged": true,
+    "failure_marker": "duplicate provider domains",
+    "raw_and_hash_files_preserved": true
+  },
+  "checks": {
+    "runtime_archive_and_runs_bytes_hashes_reconciled": true,
+    "recorded_head_is_70cded1": true,
+    "focused_summary_58_of_58": true,
+    "focused_summary_time_3_9_seconds": true,
+    "exit_zero_and_stderr_empty": true,
+    "pre_post_current_inputs_equal": true,
+    "r4_failure_preserved": true,
+    "contract_only_no_hardware_provider_credit": true,
+    "no_r01_r10_credit": true
+  },
+  "current_inputs_sha256": {
+    "src/RuntimeV4/InverseRealizationRequestContractV1.jl": "5c25e92b625eff79b3e4714e3bbfb33e3b57354bddf2a24339296c890537b6e4",
+    "test/RuntimeV4/inverse_realization_request_contract_v1_tests.jl": "898bf30229a7254f3aaa5388253c959a51247d13bb66dc4afca999168aa2a2b5",
+    "test/RuntimeV4/fixtures/inverse_realization_request_contract_v1.json": "51c025279dc514fc035366696ffa29387ffac5b68f9edfab9ceab43daab39fcd"
+  },
+  "next_gate": "retain contract_only and accepted=false; any UP4/formal claim requires separate provider/hardware/engineering/physical evidence"
+}
