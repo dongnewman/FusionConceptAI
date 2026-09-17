@@ -40,6 +40,19 @@ def main() -> int:
     errors: list[str] = []
     checked_links = 0
     manifest = json.loads((PLAN / "task_manifest.json").read_text(encoding="utf-8"))
+    # The normal planning entry consumes the same policy as local execution.
+    # Legacy external-certification receipts are deliberately not prerequisites.
+    sys.path.insert(0, str(ROOT))
+    from tools.agent_local_execution import policy_errors
+    try:
+        policy = json.loads((PLAN / "execution_policy.json").read_text(encoding="utf-8"))
+        errors.extend(policy_errors(policy))
+        if manifest.get("execution_policy") != "execution_policy.json":
+            errors.append("Manifest is not bound to the agent-local execution policy")
+        if manifest.get("execution_entry") != "tools/agent_local_execution.py":
+            errors.append("Manifest local execution entry mismatch")
+    except (OSError, ValueError, TypeError) as exc:
+        errors.append(f"Invalid execution policy: {exc}")
     tasks = manifest["tasks"]
     ids = [item["id"] for item in tasks]
     if len(ids) != len(set(ids)):

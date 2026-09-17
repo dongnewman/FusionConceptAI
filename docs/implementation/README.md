@@ -1,5 +1,7 @@
 # 实现档案入口：按阶段和验收范围查阅
 
+**2026-09-17 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。以下 2026-09-16 阶段表、HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
+
 更新：2026-09-16中期审计。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** R01–R10全部未关闭，L4=0。
 
 ## 接手入口

@@ -1,0 +1,67 @@
+{
+  "schema_version": "fusion-agent-local-preflight-v1",
+  "profile": "agent_local",
+  "status": "command_completed",
+  "task_id": "UP0-02",
+  "ready_tasks": [
+    "UP2-01-G1-DIFFUSION-V1",
+    "UP2-01-G2-METRIC-BOUNDARY-V1",
+    "UP2-01-G3-SOURCE-FEEDBACK-V1",
+    "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC"
+  ],
+  "unmet_technical_dependencies": [],
+  "errors": [],
+  "external_certification_required": false,
+  "claim_scope": "development_dispatch_only",
+  "scientific_acceptance": false,
+  "records": [
+    {
+      "path": "docs/v4_multitopology_generation/execution_policy.json",
+      "size": 1050,
+      "sha256": "4c148ca007b30431856ddf6fd5217eea23071ed80f8920742eea18b362dc4015"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/task_manifest.json",
+      "size": 94881,
+      "sha256": "958d0f630cbe753deebe589259b788f8efcff5eb493e35cdcf0844068ba53bfb"
+    },
+    {
+      "path": "tools/agent_local_execution.py",
+      "size": 7181,
+      "sha256": "e29e7cb1b1d379259930f93b23e5e21d66d41a775de6b1554d93dafb05a1763b"
+    },
+    {
+      "path": "test/test_agent_local_execution.py",
+      "size": 6038,
+      "sha256": "ff62bc20b0791818b2ea0e888caa2acfa53fdd7c93d370b1b9d591590ae98adb"
+    }
+  ],
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "test",
+    "-p",
+    "test_agent_local_execution.py",
+    "-v"
+  ],
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "started_utc": "2026-09-17T10:44:21.961131+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-17T10:44:22.416215+00:00",
+  "log_records": [
+    {
+      "path": "docs/implementation/AGENT-LOCAL-EXECUTION-20260917/execution_smoke/stdout.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/implementation/AGENT-LOCAL-EXECUTION-20260917/execution_smoke/stderr.txt",
+      "size": 1756,
+      "sha256": "6c5de8b7a39361eec6cab1da92473cafe34c670a6520f35782587a6d6b870fc9"
+    }
+  ]
+}

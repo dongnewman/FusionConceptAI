@@ -1,6 +1,6 @@
 # v4 多拓扑生成：核心规划与执行入口
 
-版本：`v4-upgrade-plan-20260914.1`。本目录保存当前架构、执行路线、工作单和未完成事项；`docs/implementation/` 保存实现记录与历史快照。本文是规划，不能作为代码实现或物理验收证据。
+版本：`v4-upgrade-plan-20260917.agent-local.1`。本目录保存当前架构、执行路线、工作单和未完成事项；`docs/implementation/` 保存实现记录与历史快照。本文是规划，不能作为代码实现或物理验收证据。
 
 ## 1. 本次调整与目标
 
@@ -12,7 +12,7 @@
 
 ## 2. 阅读路径
 
-所有执行者先读 [00 共同合同](00_normative_contracts_and_state_model.md)，再读本页和 [16 工作单](16_execution_work_orders.md)。任务状态与依赖以 [task_manifest.json](task_manifest.json) 为准；文本工作单拥有技术步骤，机器清单拥有调度关系，二者冲突必须先修正。
+所有执行者先读 [22 智能体自主研发合同](22_agent_local_execution.md) 和 [00 共同合同](00_normative_contracts_and_state_model.md)，再读本页和 [16 工作单](16_execution_work_orders.md)。任务状态与依赖以 [task_manifest.json](task_manifest.json) 为准；文本工作单拥有技术步骤，机器清单拥有调度关系，二者冲突必须先修正。
 
 | 阅读者或任务 | 必读文件 |
 |---|---|
@@ -53,21 +53,17 @@ flowchart LR
   E -->|新的机制 空间 实现| A
 ```
 
-## 4. 当前事实与下一步（2026-09-16 中期审计）
+## 4. 当前执行政策与下一步（2026-09-17）
 
-当前 HEAD 为 `b2c04d8339774635aaecd73651efcdb101e01b5d`，工作树仍有既有源码、测试和文档改动。旧 `4b69f55` 是历史基线，不是当前 checkout。接手时必须刷新实际输入，不能只写 HEAD。
+**默认由智能体自主负责，取消外部认证对主线的阻塞。** Sol 决策与验收，Luna 实现并交叉复核；不再等待 CA、证明人、TSA、OCSP/CRL、签名 ACK、权威 G2 或发布方证明。科学与工程要求保持，项目内候选身份不等于物理正确。具体替换规则和实际命令见 [22](22_agent_local_execution.md)。
 
-**先读 [20 中期审计](20_midterm_audit_20260916.md) 和 [21 下一轮执行批次](21_next_execution_batches.md)。** 当前39节点：UP0两项accepted；UP1四项按有限范围accepted、十一项planned；UP2九项、UP3三项、UP4四项、UP5三项、UP6三项均planned。UP1整体尚未验收，UP2通用执行尚未交付，R01–R10未关闭，L4=0。子切片的 accepted_limited 不改变父节点状态。
+从 [21 当前执行批次](21_next_execution_batches.md) 和 [16 工作单](16_execution_work_orders.md) 推进本地完整声明、组合执行、数值验证及逆实现。不要继续补外部责任人表或无变化地重跑 S3/R4。实际缺失的模型、输入、离散能力和数值失败仍逐项修复。
 
-AD54接受本地21文件源码发布；AD56接受Git过滤/CRLF locator软件修复；AD55 fresh F0/S2的六scope source-stage输出及独立复核通过，用户转述的Sol有限裁决已[归档](../implementation/MIDTERM-AUDIT-20260916/AD55_decision_archive.md)。三份factory仍含AD56未提交修复；HEAD来源对象与工作树执行器须分别冻结。source-stage present不是trusted source/candidate/final identity，也不是provider/mesh/solver/工程/物理/搜索信用。
-
-下一步：完整冻结实际执行闭包，fresh S3如实判定；缺外部trust root则typed absence并列清输入/责任方/唤醒条件，不重复无变化的S3。满足来源门后按既有T0/recheck/T1/T2及B00/B04进入通用执行；正式门不满足时只做已授权准备，测试专用数值执行须先经范围决策，不越过现有DAG。细节见21。
+本次变更起点 HEAD 为 `cfc745939a02fd023854dd04e9bb6d04ccadf9ee`；接手时刷新工作树和运行证据。任务清单仍有 39 项、6 项按既有范围 accepted，不能把清单的旧状态当作所有近期数值切片的完整盘点。本次不自动接受任何节点、不关闭 R01–R10、不增加 L4 数量。DAG 可按实际技术依赖版本化修改，39 不是硬性要求。
 
 ## 5. 状态、历史和档案
 
-- [task_manifest.json](task_manifest.json) 与 [16](16_execution_work_orders.md) 仍是唯一正式任务和依赖；本轮保留其原始字节及39节点。
-- [implementation 当前索引](../implementation/README.md) 按UP阶段和任务查档；[机器目录](../implementation/MIDTERM-AUDIT-20260916/archive_catalog.json) 是检索快照，不是验收或调度器。
-- 本页旧逐轮AD叙述已完整存入[入口原文快照](../implementation/MIDTERM-AUDIT-20260916/entry_snapshots/core_README.before.txt)，保持原始字节。历史的pending或旧HEAD只代表当时状态；最新限定范围由20、具体验收书和实际证据联合判断。
-- 18中的历史架构决策、所有原验收书和失败记录保留。遇到历史“当前”与本页冲突，先核对时间、输入hash及scope，禁止批量把旧结果改写成present/accepted。
-
-本目录用于完整路线指导，implementation用于实现、审计和历史档案。一次文档整理、软件测试或来源工厂复放都不会关闭父目标。
+- [task_manifest.json](task_manifest.json) 和 [16](16_execution_work_orders.md) 记录当前调度与工作单；[execution_policy.json](execution_policy.json) 给出可执行的默认政策。
+- [implementation 当前索引](../implementation/README.md) 用于查找实现记录；[20 中期审计](20_midterm_audit_20260916.md) 是 9 月 16 日历史快照，不能重设外部门。
+- [本次修改档案](../implementation/AGENT-LOCAL-EXECUTION-20260917/README.md) 保存修改前原文、保护清单与验证结果。旧 R4 的 typed_absent 继续表示缺外部认证，不再阻塞本地开发。
+- 原验收书、失败记录和旧 candidate/hash 保留原含义；任何能力完成度仍由相应代码、运行结果及技术复核决定。

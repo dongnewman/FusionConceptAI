@@ -1,0 +1,26 @@
+{
+  "schema_version": "fusion-agent-local-execution-v1",
+  "default_profile": "agent_local",
+  "decision_date": "2026-09-17",
+  "authority_basis": "explicit_user_instruction",
+  "responsibility": {
+    "architecture_and_acceptance": "sol_agent",
+    "implementation_and_evidence": "luna_agent",
+    "review": "different_luna_agent"
+  },
+  "external_approval_required": false,
+  "external_certification_blocks_execution": false,
+  "external_requirements": [],
+  "local_requirements": [
+    "actual_source_and_input_bytes",
+    "content_hashes_and_versioned_candidate_lineage",
+    "typed_units_closure_and_applicability_checks",
+    "numerical_convergence_conservation_and_error_checks",
+    "applicable_engineering_constraints",
+    "reproducible_commands_artifacts_and_agent_review"
+  ],
+  "legacy_external_profile": "explicit_optional_compatibility_only",
+  "candidate_identity_is_scientific_acceptance": false,
+  "dag_node_count_frozen": false,
+  "scientific_requirements": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10"]
+}

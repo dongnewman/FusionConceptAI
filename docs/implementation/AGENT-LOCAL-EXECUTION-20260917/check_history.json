@@ -1,0 +1,97 @@
+{
+  "record_kind": "actual_check_history",
+  "note": "The initial dotted unittest import collided with another test package; discover succeeded without changing tests. Later final checks are recorded separately.",
+  "records": [
+    {
+      "command": "python -B -m unittest test.test_agent_local_execution -v",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "c6bfeb",
+          "wall_time_seconds": 3.1271644,
+          "exit_code": 1,
+          "original_token_count": 190,
+          "output": "test_agent_local_execution (unittest.loader._FailedTest.test_agent_local_execution) ... ERROR\r\n\r\n======================================================================\r\nERROR: test_agent_local_execution (unittest.loader._FailedTest.test_agent_local_execution)\r\n----------------------------------------------------------------------\r\nImportError: Failed to import test module: test_agent_local_execution\r\nTraceback (most recent call last):\r\n  File \"D:\\Users\\Newman\\anaconda3\\Lib\\unittest\\loader.py\", line 137, in loadTestsFromName\r\n    module = __import__(module_name)\r\nModuleNotFoundError: No module named 'test.test_agent_local_execution'\r\n\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.000s\r\n\r\nFAILED (errors=1)\r\n"
+        }
+      }
+    },
+    {
+      "command": "python -B docs/v4_multitopology_generation/validate_plan.py --report .../plan_validation.json",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "6ece17",
+          "wall_time_seconds": 3.469924,
+          "exit_code": 0,
+          "original_token_count": 104,
+          "output": "{\r\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\r\n  \"plan_version\": \"v4-upgrade-plan-20260917.agent-local.1\",\r\n  \"checks\": \"pass\",\r\n  \"markdown_files_checked\": 34,\r\n  \"relative_links_checked\": 370,\r\n  \"task_count\": 39,\r\n  \"task_dag_acyclic\": true,\r\n  \"sol_prompt_characters\": 498,\r\n  \"snapshot_files_checked\": 16,\r\n  \"preexisting_files_checked\": 0,\r\n  \"errors\": []\r\n}\r\n"
+        }
+      }
+    },
+    {
+      "command": "python -B tools/agent_local_execution.py",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "559edf",
+          "wall_time_seconds": 3.3105405,
+          "exit_code": 0,
+          "original_token_count": 225,
+          "output": "{\r\n  \"schema_version\": \"fusion-agent-local-preflight-v1\",\r\n  \"profile\": \"agent_local\",\r\n  \"status\": \"ready\",\r\n  \"task_id\": null,\r\n  \"ready_tasks\": [\r\n    \"UP2-01-G1-DIFFUSION-V1\",\r\n    \"UP2-01-G2-METRIC-BOUNDARY-V1\",\r\n    \"UP2-01-G3-SOURCE-FEEDBACK-V1\",\r\n    \"UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC\"\r\n  ],\r\n  \"unmet_technical_dependencies\": [],\r\n  \"errors\": [],\r\n  \"external_certification_required\": false,\r\n  \"claim_scope\": \"development_dispatch_only\",\r\n  \"scientific_acceptance\": false,\r\n  \"records\": [\r\n    {\r\n      \"path\": \"docs/v4_multitopology_generation/execution_policy.json\",\r\n      \"size\": 1050,\r\n      \"sha256\": \"4c148ca007b30431856ddf6fd5217eea23071ed80f8920742eea18b362dc4015\"\r\n    },\r\n    {\r\n      \"path\": \"docs/v4_multitopology_generation/task_manifest.json\",\r\n      \"size\": 92188,\r\n      \"sha256\": \"762ed3190cff8aa99f850fe34065e702e5ba8d88d0db7e4e3c8dd375e986777c\"\r\n    }\r\n  ]\r\n}\r\n"
+        }
+      }
+    },
+    {
+      "command": "python -B -m unittest discover -s test -p test_agent_local_execution.py -v",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "fd07c4",
+          "wall_time_seconds": 3.8232758000000002,
+          "exit_code": 0,
+          "original_token_count": 439,
+          "output": "test_acceptance_without_archive_does_not_unlock (test_agent_local_execution.AgentLocalExecutionTests.test_acceptance_without_archive_does_not_unlock) ... ok\r\ntest_changed_input_rejected_before_or_after_execution (test_agent_local_execution.AgentLocalExecutionTests.test_changed_input_rejected_before_or_after_execution) ... ok\r\ntest_existing_run_is_not_overwritten (test_agent_local_execution.AgentLocalExecutionTests.test_existing_run_is_not_overwritten) ... ok\r\ntest_external_gate_cannot_silently_return (test_agent_local_execution.AgentLocalExecutionTests.test_external_gate_cannot_silently_return) ... ok\r\ntest_input_path_cannot_escape_repository (test_agent_local_execution.AgentLocalExecutionTests.test_input_path_cannot_escape_repository) ... ok\r\ntest_invalid_executable_is_recorded (test_agent_local_execution.AgentLocalExecutionTests.test_invalid_executable_is_recorded) ... ok\r\ntest_missing_input_does_not_start_process (test_agent_local_execution.AgentLocalExecutionTests.test_missing_input_does_not_start_process) ... ok\r\ntest_no_external_material_required_and_real_command_runs (test_agent_local_execution.AgentLocalExecutionTests.test_no_external_material_required_and_real_command_runs) ... ok\r\ntest_nonzero_command_exit_is_preserved (test_agent_local_execution.AgentLocalExecutionTests.test_nonzero_command_exit_is_preserved) ... ok\r\ntest_unfinished_technical_dependency_still_blocks (test_agent_local_execution.AgentLocalExecutionTests.test_unfinished_technical_dependency_still_blocks) ... ok\r\ntest_unknown_task_and_profile_rejected (test_agent_local_execution.AgentLocalExecutionTests.test_unknown_task_and_profile_rejected) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 11 tests in 0.322s\r\n\r\nOK\r\n"
+        }
+      }
+    },
+    {
+      "command": "git diff --check",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "7c71d4",
+          "wall_time_seconds": 3.5850418,
+          "exit_code": 0,
+          "original_token_count": 632,
+          "output": "warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/implementation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/09_evidence_authority_campaign_and_v4_roadmap.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/14_agent_orchestration.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/16_execution_work_orders.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/17_luna_worker_prompt.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/20_midterm_audit_20260916.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/21_next_execution_batches.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/task_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/validate_plan.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl', LF will be replaced by CRLF the next time Git touches it\n"
+        }
+      }
+    },
+    {
+      "command": "git diff --stat",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "3bec5c",
+          "wall_time_seconds": 3.4749442999999998,
+          "exit_code": 0,
+          "original_token_count": 924,
+          "output": "warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/implementation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/09_evidence_authority_campaign_and_v4_roadmap.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/14_agent_orchestration.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/16_execution_work_orders.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/17_luna_worker_prompt.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/20_midterm_audit_20260916.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/21_next_execution_batches.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/task_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/validate_plan.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl', LF will be replaced by CRLF the next time Git touches it\n AGENTS.md                                          |  14 +\n docs/implementation/README.md                      |   2 +\n .../00_normative_contracts_and_state_model.md      |   2 +\n ...9_evidence_authority_campaign_and_v4_roadmap.md |   2 +\n .../13_acceptance_benchmarks_and_evidence.md       |   2 +\n .../14_agent_orchestration.md                      |   4 +-\n .../15_sol_system_prompt.md                        |   2 +-\n .../16_execution_work_orders.md                    |  30 +-\n .../17_luna_worker_prompt.md                       |   2 +\n .../18_sources_and_architecture_decisions.md       |   2 +\n .../20_midterm_audit_20260916.md                   |   2 +\n .../21_next_execution_batches.md                   |  96 +--\n docs/v4_multitopology_generation/README.md         |  24 +-\n .../v4_multitopology_generation/task_manifest.json | 172 ++++--\n docs/v4_multitopology_generation/validate_plan.py  |  13 +\n .../task_queue.json                                |   5 +-\n .../M4Isolated/ManufacturedConditionalEGraphV1.jl  | 678 ++++++++++++++++++++-\n .../M4Isolated/m5c_perf_r2/profile_probe.jl        |  27 +-\n 18 files changed, 910 insertions(+), 169 deletions(-)\n"
+        }
+      }
+    },
+    {
+      "command": "Read-only SHA256 comparison against before_inventory protected_sha256",
+      "result": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "287089",
+          "wall_time_seconds": 3.5538599,
+          "exit_code": 0,
+          "original_token_count": 13,
+          "output": "{\r\n  \"protected_count\": 533,\r\n  \"changed\": []\r\n}\r\n"
+        }
+      }
+    }
+  ]
+}

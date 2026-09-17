@@ -1,0 +1,45 @@
+{
+  "record_kind": "agent_local_execution_repair_r2_command_receipts",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B -m unittest discover -s test -p test_agent_local_execution.py",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2f7525b2ded98dd268d97ed6c09e78f7cb6a28eb00bb8abad4221dd5e9be2c5e",
+      "combined_sha256": "2f7525b2ded98dd268d97ed6c09e78f7cb6a28eb00bb8abad4221dd5e9be2c5e",
+      "result": "19 tests OK; 1 Windows symlink-permission skip"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "stdout_sha256": "c668c92af8ca7afd38217fd545e7178a093c13fe2ae58245d1e4406d78881364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "c668c92af8ca7afd38217fd545e7178a093c13fe2ae58245d1e4406d78881364",
+      "result": "39 tasks, acyclic, 370 links, 0 errors"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B tools/agent_local_execution.py",
+      "exit_code": 0,
+      "stdout_sha256": "dc44da46560f70e9f461ccd35063e85180aa84db0fbd2002f80237b25cb9c62b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "dc44da46560f70e9f461ccd35063e85180aa84db0fbd2002f80237b25cb9c62b",
+      "result": "ready; development_dispatch_only; scientific_acceptance=false"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "99c9f3882d5fa817d4190fd85c710eaaeeccaa3ba94f806ec25011d730572670",
+      "combined_sha256": "99c9f3882d5fa817d4190fd85c710eaaeeccaa3ba94f806ec25011d730572670",
+      "result": "clean; existing line-ending warnings only"
+    }
+  ],
+  "modified_file_sha256": {
+    "tools/agent_local_execution.py": "d9a04a1cea9e44120e7fe5ce84733318fd42f601be45551fa6879ad27ff19b04",
+    "test/test_agent_local_execution.py": "40384c1d977bc244cce11aa7a19d1f8f673646ef36a6fed9284f0da47d9f3109",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "80d8e76fb3bac262c517020276c4f8a36af6966f44409b502825852bd32078d2",
+    "docs/v4_multitopology_generation/task_manifest.json": "3223f122e90385568997b3057fad7122fc7daafb86fc2fa2440e00dd2a33f2de"
+  },
+  "heavy_tools_used": []
+}

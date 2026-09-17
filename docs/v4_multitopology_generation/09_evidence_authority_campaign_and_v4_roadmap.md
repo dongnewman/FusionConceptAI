@@ -1,5 +1,7 @@
 # v4 最终证据 authority、campaign 与实施路线图
 
+**2026-09-17 执行规则更新：** 默认采用 [智能体自主研发合同](22_agent_local_execution.md)。项目责任由智能体承担；外部 CA、证明人、时间戳、ACK 或签发材料不再是主线前置条件。本文中的历史 external/trusted/authority 限制按该合同解释；保留实际输入、语义、数值与工程检查，不改写旧证据。
+
 > 2026-09-14 路线更新：UP6 最终关账，authority 约束贯穿全部阶段。新的实施顺序为 UP0–UP6，历史 V4-P0–P6 顺序已被本次授权替代。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
 
 ## 1. 最终 authority 的职责

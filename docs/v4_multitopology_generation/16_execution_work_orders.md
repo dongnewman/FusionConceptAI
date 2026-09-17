@@ -1,5 +1,7 @@
 # 执行工作单与依赖
 
+**2026-09-17 执行规则更新：** 默认采用 [智能体自主研发合同](22_agent_local_execution.md)。项目责任由智能体承担；外部 CA、证明人、时间戳、ACK 或签发材料不再是主线前置条件。本文中的历史 external/trusted/authority 限制按该合同解释；保留实际输入、语义、数值与工程检查，不改写旧证据。
+
 AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result for actual-A N01/N02 schema/value projection; N07/N08 and N09 have separate local accepted_limited contract archives that do not count as formal B04 receipts; the total gate remains review_pending/accepted=false with all 50 formal B04 receipts pending; UP1-04B remains planned and still owns B00 F0-F5, formal B04 mutations, receipts, checker, and two-process replay.
 
 ## 读取与派单合同
@@ -33,8 +35,13 @@ julia --project=. test/runtime_v4_algebraic_generation_tests.jl
 | [UP2-01-G2-METRIC-BOUNDARY-V1](#up2-01-g2-metric-boundary-v1) | G2 chart-to-metric mesh and executable face ownership schema | UP1-01, UP1-02, UP1-03 | 否 |
 | [UP2-01-G3-SOURCE-FEEDBACK-V1](#up2-01-g3-source-feedback-v1) | G3 same-candidate source and feedback authority schema | UP1-01, UP1-02, UP1-03 | 否 |
 | [UP1-04A-VNEXT-G3-BINDING-EDIT-PREC](#up1-04a-vnext-g3-binding-edit-prec) | G3 candidate-owned binding editable sibling precursor | UP2-01-G3-SOURCE-FEEDBACK-V1 | 否 |
+| [UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC](#up1-04a-vnext-g3-realization-edit-prec) | G3 realization source-edit precursor | UP2-01-G3-SOURCE-FEEDBACK-V1 | 否 |
+| [UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC](#up1-04a-vnext-g3-control-edit-prec) | G3 control source-edit precursor | UP2-01-G3-SOURCE-FEEDBACK-V1 | 否 |
+| [UP1-04A-VNEXT-T0](#up1-04a-vnext-t0) | VNEXT V1 declaration transport and exact semantic bundle | UP1-04A, UP2-01-G1-DIFFUSION-V1, UP2-01-G2-METRIC-BOUNDARY-V1, UP2-01-G3-SOURCE-FEEDBACK-V1 | 否 |
 | [UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC](#up1-04a-vnext-t0-authority-recheck-prec) | T0 output declaration authority recheck gate | UP1-04A-VNEXT-T0 | 否 |
 | [UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC](#up1-04a-vnext-parent-baseline-bind-prec) | G1/G2 V1 parent-baseline binding and typed-absence prerequisite | UP1-01, UP1-02, UP1-03 | 否 |
+| [UP1-04A-VNEXT-T1](#up1-04a-vnext-t1) | CandidateStatePackageV5Next and VNEXT integrator | UP1-04A-VNEXT-T0, UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC | 否 |
+| [UP1-04A-VNEXT-T2](#up1-04a-vnext-t2) | VNEXT E0/G-I1A/E1/E2/UP2 identity and receipt rebinding | UP1-04A-VNEXT-T1 | 否 |
 | [UP1-04A-VNEXT](#up1-04a-vnext) | T2 后新候选综合冻结与独立验收汇聚门 | UP1-04A-VNEXT-T2 | 否 |
 | [UP2-00](#up2-00) | contract-only typed precompiler schema/validator | UP1-04A-VNEXT | 否 |
 | [UP1-04B](#up1-04b) | B00/B04 正式冻结、checker 与双进程复放 | UP2-00 | 否 |
@@ -255,14 +262,14 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 当前状态：`planned`，`scope_status=proposal`，`accepted=false`；AD-28 已 `accepted_limited`，仅覆盖架构/无环排期/证据边界；结构反馈通道不提供 source/return/heat/ledger authority。
 
 - 前置：UP1-01、UP1-02、UP1-03；三者可与本单及另外两张 upstream 单并行读取。
-- 输入：UP1-01/02/03 accepted contract scope plus G3 source/return/heat/ledger law, feedback target, source ID, units, owner scope and external authority declarations.
+- 输入：UP1-01/02/03 accepted contract scope plus G3 source/return/heat/ledger law, feedback target, source ID, units, owner scope and agent-owned local source/declaration records.
 - 写入范围：仅 G3-SOURCE-FEEDBACK-V1 schema/profile、typed receipt contract、fixture/QA/archive；不写旧 V4、旧 evidence、UP1-04B suite 或 physical backend。
 
 步骤：
 
-1. Freeze source-law and feedback-authority version/hash recipe before new-candidate creation.
-2. Require same-candidate G1/G2 refs, source/return/heat/ledger law, units and authority in the later binding receipt.
-3. Keep missing authority terminal_deferred and contradictions fail_closed; do not convert structural feedback into physical evidence.
+1. Freeze source-law and local semantic authority version/hash recipe before new-candidate creation.
+2. Require same-candidate G1/G2 refs, source/return/heat/ledger law, units and an agent-owned local source/declaration record in the later binding receipt.
+3. Keep missing local source/declaration records terminal_deferred and contradictions fail_closed; do not convert structural feedback into physical evidence.
 
 退出门：
 
@@ -298,14 +305,14 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 当前状态：`planned`，`scope_status=proposal`，`accepted=false`，`resolution=review_pending`；AD-30 仅以 `accepted_limited` 接受架构和排期边界，T0 尚未实施。
 
-- 前置：UP1-04A、UP2-01-G1-DIFFUSION-V1、UP2-01-G2-METRIC-BOUNDARY-V1、UP2-01-G3-SOURCE-FEEDBACK-V1；输入同时冻结当前 G1/G2/G3 V1 declarations 与 AD-30 R2 合同：G1 `14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a`、G2 `261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61`、G3 `70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0`，AD-30 proposal `b5d7f1d8fd1f781e26994e0b6253065ce560050a314663afb778b0949165b7c8`，并保留 source/content/declaration hashes。三张 upstream declaration 未冻结时只能做准备/本地 contract-only 检查，不得创建或声称 fresh candidate。
+- 前置：UP1-04A、UP2-01-G1-DIFFUSION-V1、UP2-01-G2-METRIC-BOUNDARY-V1、UP2-01-G3-SOURCE-FEEDBACK-V1。派单时冻结实际 G1/G2/G3 declarations、source/factory receipts、版本、raw/canonical hashes 与 dirty closure；AD-30 中的固定 hash 仅作历史定位，不作为当前输入。本地智能体来源记录即可，不要求外部签发。
 - 文件归属：未来仅允许新增 `src/GenomeV5/Integration/VNextDeclarationTransportV1.jl`、对应 `test/GenomeV5/Integration/` T0 测试和 `docs/implementation/UP1-04A-VNEXT-T0/` 记录；不修改旧 V5 Genome、`CandidateStatePackageV5`、shared entry、`default_operator_registry()`、旧 receipt/hash 或其他层文件。本工单登记不等于现在实施源码。
 
 步骤：
 
 1. 定义 additive typed transport envelope，原样保留三张 declaration 的完整 semantic body、source/content/declaration identity，并绑定同一个 fresh candidate。
-2. 为 G2 的 `GenomeContractRef` source field 提供显式 candidate `QualifiedRefV1` envelope；为四轴记录真实 typed provenance 和逐项 equality，不用默认值或标签相似性补轴。
-3. 将 G3 realization/control/binding children 表示为 typed absent 与独立 `terminal_deferred`，完整保留 feedback target/authority 状态；source rebinding、声明编辑或冲突必须重算受影响 hashes/identity 或 `fail_closed`。
+2. 为 G2 的 GenomeContractRef source field 提供显式 candidate QualifiedRefV1 envelope；四轴使用智能体维护的实际版本、字节与来源记录并逐项核验，不用默认值或标签相似性补轴，不要求外部签发。
+3. G3 realization/control/binding children 按实际材料记录 present 或 typed_absent/terminal_deferred，完整保留 feedback target 状态；source rebinding、声明编辑或冲突重算受影响 hashes/identity 或 fail_closed，不能仅因缺外部签名强制 absent。
 
 退出门：
 
@@ -329,36 +336,39 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 <a id="up1-04a-vnext-t0-authority-recheck-prec"></a>
 
-### UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC T0 authority recheck gate
+### UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC 本地来源与声明一致性复核
 
-当前状态：本地 typed-absent software scaffold 已由 Sol 依据 independent postrun R3 `pass_limited` 接受为 `accepted_limited`；machine node 仍为 `planned`，`scope_status=proposal`，`accepted=false`，`resolution=review_pending`。该接受不产生 checked-present authority。
+待验收状态保持 planned/accepted=false，直到版本化本地路径有实际实现和复核；成功输出为 local_checked_present，明确属于项目内数据一致性，不冒称外部认证。旧 accepted_limited 仅描述历史 scaffold。
 
 - 前置：`UP1-04A-VNEXT-T0`；这是 T0 输出后的 authority recheck gate，必须在 T1 前完成。未来 T1 同时依赖 T0 与本 recheck，保持无环；T0 本身不改。
-- `write_scope.product_contract_deliverables`（`exact_file_count=7`）：`src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl`；`test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl`；`test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json`；`test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py`；`docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md`、`manifest.json`、`acceptance.md`。无 launcher，不属于 AD-34 binding scope。
-- `write_scope.mandatory_evidence_sidecars`：只允许追加到 `docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/archive/**` 或其命名 `review/**`/`status_sync_*/**` 子目录；raw stdout/stderr、exit、PID/UTC、interpreter、input/output hashes、repair/cleanup/review/status receipts 必须保留，不计入 7 个产品/合同 deliverables，不得覆盖旧轮、越出专属目录或由 cleanup 删除。测试使用 direct command，禁止临时 launcher。
-- 输入/输出：输入为 T0 bundle 与 fresh T0-owned declaration authority record 或 typed absence；输出为 checked-present、typed-absent 或 deterministic `fail_closed`。不得从 legacy `G3SFAuthorityV1` 合成 declaration ref/hash/canonical bytes/source receipt。
-- pairing gate：required G1/G2 各 exactly one upstream record；duplicate/missing/unknown layer、target key duplicate/ambiguous、target layer/candidate/authority mismatch 和 six-field projection mismatch 使用 AD-34 R4 固定错误。相等也保持 non-authoritative。
-- 当前上限：当前实现只产生 typed-absent 或 deterministic `fail_closed`；R6 static QA 为 20 checks，direct focused Julia 为 68/68，foreign declaration candidate 负例已覆盖，R1-R7 与 cleanup receipt 保留。没有 checked-present authority，因此 T1 仍 blocked，不得创建实际 authority、binding present slot 或 T1 package。
-- 退出门：独立验证 T0 bundle 输入、fresh authority/typed absence、canonical byte equality、全部 pairing/fail-closed negatives、无 legacy 合成与完整 receipt；本地 software scaffold 可记 `accepted_limited`，但不授 T0 authority、T1/T2、provider/mesh/engineering/physical/search/B00/B04/R01–R10 信用。
+- 写入范围：派单时冻结本地适配器、对应测试和新档案的确切文件；旧七文件列表仅作历史定位，不再禁止必需的版本化适配。不得覆写旧验收书、重解释旧 hash 或放宽外部验证 API。
+- 证据归档：在本任务目录追加新轮次的实际输入/输出、直接命令、日志、退出码和复核；不覆盖旧记录，不再冻结产品文件数为七。
+- 输入/输出：输入为实际 T0 bundle、智能体生成的本地 declaration/source records 及 canonical bytes；验证 layer、candidate、declaration ref/hash、source receipt、bytes 与 bundle 的实际绑定，输出 local_checked_present、typed_absent 或 deterministic fail_closed。不得从 legacy 六字段投影补造缺失内容。
+- pairing gate：G1/G2 各 exactly one upstream record；duplicate/missing/unknown layer、target key duplicate/ambiguous、target layer/candidate mismatch 与 source/declaration/feedback 对应矛盾必须失败。本地完整一致的记录可以通过；投影相等或智能体声明本身不能代替实际材料检查。
+- 实现目标：增加版本化本地 recheck 路径，验证实际内容后允许 local_checked_present，不以 trusted_receipt 标签、CA 或外部证明人为前置。旧 AD-34 scaffold 和 R1-R7 记录保留历史语义；不得只把符号改成 trusted 或将旧缺失收据升级为 present。
+- 退出门：不同智能体重算 T0 bundle、完整本地来源绑定、canonical equality 及全部 pairing/篡改/缺失负例，通过后可验收本地 recheck 并推进 T1；该结论不自动授予 solver、工程、物理、search、B00/B04 或 R01–R10 验收。
 
 <a id="up1-04a-vnext-parent-baseline-bind-prec"></a>
 
-### UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC G1/G2 V1 parent-baseline binding prerequisite
+### UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC 本地 parent-baseline binding
 
-当前状态：`planned`，`scope_status=proposal`，`accepted=false`，`resolution=review_pending`；AD-33 以 `accepted_limited` 接受架构、有限工作单边界及本地 typed-absent source/test/fixture/static-QA software slice（independent postrun R2 `pass_limited`）。该节点是唯一已创建的 AD-33 machine node；G1/G2 edit sibling 仍是 reviewed future nodes，未创建 machine node。
+当前状态为 planned；历史 AD-33 接受的是有限 typed-absent 切片，新 present 实现仍待实际验证。
 
-- 前置：仅 accepted `UP1-01`、`UP1-02`、`UP1-03`。G1/G2 V1 declaration source/archive 是只读输入，不是 accepted dependency。
-- 并行：T0、AD-31、AD-32；不得解锁或完成 T0/T1/T2。
-- 精确文件归属：`src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl`；`test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl`；`test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json`；`test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py`；以及专属文档三文件 `docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md`、`manifest.json`、`acceptance.md`。不写 AD-33 audit/repair/review 历史。
-- 输入：accepted UP1-01/02/03 合同与只读 G1/G2 V1 declaration source；输出为 `PresentParentBaselineBindingV1 | AbsentParentBaselineBindingV1`、对应 present/absent child key union 及 typed-absent state contract。
-- 实现上限：当前最多实现 typed-absent scaffold，状态为 `typed_absent` + `contract_admission=:terminal_deferred`。Absent branch 不含 parent ref、parent declaration/baseline raw/semantic hash、source locator 或 factory receipt，不得用零值伪造。
-- 编辑边界：absent state 禁止 `replace_source_payload`，返回 `baseline_authority_absent`；失败不得推进 state/history，prior canonical bytes 与 SHA 必须严格不变。Absent→present 只能 fresh source publication、fresh child/state/candidate identity review，禁止 CAS promotion。
-- Present blocker：`UP2-01-G1-DIFFUSION-V1` 与 `UP2-01-G2-METRIC-BOUNDARY-V1` 各自真实 source-backed V1 instance/factory+declaration receipt，以及 fresh same-candidate identity review。两条 sibling 各自依赖本节点和自己的 V1 declaration，彼此不依赖且不解锁 T1。
-- 直接未来命令：`julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl`；无 launcher。静态 QA、typed union、absence hash、failure atomicity 和 forbidden promotion negative controls 必须由不同 Luna 复核。
-- 本地软件 slice 收据：Python static QA `38/38`，解释器 `D:\\Users\\Newman\\anaconda3\\python.exe`，SHA256 `388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a`，版本 `3.13.5`；Julia focused R5 `52/52`、exit `0`，Julia `1.10.5` executable SHA256 `8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad`。R1–R4 失败收据保留；stable cleanup inventory `20/20` kept、`0` removed。
-- 证据上限：本地 slice 仅为 `accepted_limited` typed-absent software contract；不授 present G1/G2 baseline/child/source publication、actual child、T0/T1/T2、UP2、provider、mesh、solver、工程、物理、search、B00、B04 或 R01–R10 credit。详见 [AD-33 acceptance](../implementation/AD-33/acceptance.md)、[status sync R1](../implementation/AD-33/status_sync_r1/report.md) 与 [status sync R2](../implementation/AD-33/status_sync_r2/report.md)。
-- 证据上限：本地 slice 仅为 `accepted_limited` typed-absent software contract；不授 present G1/G2 baseline/child/source publication、actual child、T0/T1/T2、UP2、provider、mesh、solver、工程、物理、search、B00、B04 或 R01–R10 credit。详见 [AD-33 acceptance](../implementation/AD-33/acceptance.md) 与 [status sync R1](../implementation/AD-33/status_sync_r1/report.md)。
-- 证据上限：不授实现、actual child、T0/T1/T2、UP2、provider、mesh、solver、工程、物理、search、B00、B04 或 R01–R10 credit。详见 [AD-33 acceptance](../implementation/AD-33/acceptance.md) 与 [status sync R1](../implementation/AD-33/status_sync_r1/report.md)。
+- 前置：UP1-01、UP1-02、UP1-03；本任务不单独接受 T0/T1/T2。
+- 文件归属：Integration 中的 baseline binding 或版本化本地适配、对应测试及本任务目录的新一轮证据；派单时冻结确切路径，不覆盖 AD-33 旧档案。
+
+步骤：
+
+1. 输入：accepted UP1-01/02/03 合同与只读 G1/G2 V1 declaration source；输出为 `PresentParentBaselineBindingV1 | AbsentParentBaselineBindingV1`、对应 present/absent child key union 及 typed-absent state contract。
+2. 实现目标：依据真实本地 G1/G2 declaration bytes、source locator、factory receipt 和同候选绑定构建 present；必要输入缺失时才返回 typed_absent/terminal_deferred，不预设永久 absent 上限，不需要外部签发。Absent branch 不用零值伪造 parent ref/hash 或 receipt。
+3. 编辑边界：absent state 禁止 replace_source_payload；失败不推进 state/history，prior canonical bytes 与 SHA 不变。材料补齐后生成 fresh local source record、child/state/candidate identity，由不同智能体重算复核；不改写旧 absent 收据，不要求外部 source publication。
+
+退出门：
+
+- Present 条件：G1/G2 各自实际 source-backed V1 instance/factory/declaration receipt、完整哈希与 fresh same-candidate identity 复核；智能体可创建和验证这些本地材料。该节点不单独代表 T0/T1、数值或物理验收。
+- 历史 AD-33 只接受 typed-absent 软件切片，不能证明新的 present 实现。新 present 路径通过内容绑定、编辑原子性和缺失/篡改负例及智能体复核后可按软件范围接受，不自动验收 T0/T1/T2、UP2、solver、工程、物理、search、B00/B04 或 R01–R10。
+
+历史依据：[AD-33 acceptance](../implementation/AD-33/acceptance.md)、[status sync R2](../implementation/AD-33/status_sync_r2/report.md)。直接测试入口为 `julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl`；新增适配器需补对应直接测试，旧测试通过不代替新 present 路径验证。
 
 <a id="up1-04a-vnext-g3-realization-edit-prec"></a>
 
@@ -425,12 +435,12 @@ Exit gates:
 
 1. 构造 AD-19 additive successor，完整承载三张 V1 declaration、source/declaration/bundle identity、candidate binding、四轴和 G3 child/feedback actual-or-typed-absent state。
 2. 定义 package hash，覆盖上述完整输入及自身 schema/canonicalization/profile hashes；实现 fresh no-legacy pending/typed-deferred receipt 与有 legacy 时完整 before/after provenance。
-3. 保持旧 V5/package/hash/receipt/candidate identity 只读；任何 missing authority/child/axis 独立 deferred，结构冲突 fail-closed。
+3. 保持旧 V5/package/hash/receipt/candidate identity 只读；当前所需本地来源、child 或 axis 的实际内容缺失时独立 deferred，结构冲突 fail_closed。外部认证未提供不导致本地 package 缺失。
 
 退出门：
 
 - 新 package/integrator 的 identity 与 hash 可从 T0 bundle 独立 round-trip；旧 package/hash/receipt 未被复用或放宽。
-- T1 仍为 contract-only，`accepted=false`；未冻结或执行 B00/B04、provider、mesh、工程、物理或 R01–R10。
+- T1 通过实际 package/integrator round-trip、负例与不同智能体复核后可按本地软件范围 accepted；本次修改不代替验收，不自动产生 B00/B04、provider、mesh、工程、物理或 R01–R10 结论。
 
 <a id="up1-04a-vnext-t2"></a>
 

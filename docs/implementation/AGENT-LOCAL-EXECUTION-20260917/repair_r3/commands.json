@@ -1,0 +1,67 @@
+{
+  "record_kind": "agent_local_execution_repair_r3_command_receipts",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B -m unittest discover -s test -p test_agent_local_execution.py",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "bc4942afaf8145d5330be8c20e85790ed4cdb72a3678423b99e53005ed475b3e",
+      "combined_sha256": "bc4942afaf8145d5330be8c20e85790ed4cdb72a3678423b99e53005ed475b3e",
+      "raw_stdout": "raw/unittest.stdout.raw",
+      "raw_stderr": "raw/unittest.stderr.raw",
+      "raw_artifact_sha256": {
+        "stdout": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr": "27ae3316d4620666c16807d2a335dce36eca0a7aacd96af42c6c637037c06db2"
+      },
+      "result": "22 tests OK; 1 Windows symlink-permission skip"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "stdout_sha256": "c668c92af8ca7afd38217fd545e7178a093c13fe2ae58245d1e4406d78881364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "c668c92af8ca7afd38217fd545e7178a093c13fe2ae58245d1e4406d78881364",
+      "raw_stdout": "raw/validate_plan.stdout.raw",
+      "raw_stderr": "raw/validate_plan.stderr.raw",
+      "raw_artifact_sha256": {
+        "stdout": "42a380a52a674113ed66da4c504098aef8950691452c1f0db13d4d1740aa9c65",
+        "stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "result": "39 tasks, acyclic, 370 links, 0 errors"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B tools/agent_local_execution.py",
+      "exit_code": 0,
+      "stdout_sha256": "dc44da46560f70e9f461ccd35063e85180aa84db0fbd2002f80237b25cb9c62b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "dc44da46560f70e9f461ccd35063e85180aa84db0fbd2002f80237b25cb9c62b",
+      "raw_stdout": "raw/agent_local_preflight.stdout.raw",
+      "raw_stderr": "raw/agent_local_preflight.stderr.raw",
+      "raw_artifact_sha256": {
+        "stdout": "2410b2ad661b2b3dbb577f9884f36245056a986723e45261b9172d91e8c3d432",
+        "stderr": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      "result": "ready; only planned/ready tasks listed; development_dispatch_only"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "99c9f3882d5fa817d4190fd85c710eaaeeccaa3ba94f806ec25011d730572670",
+      "combined_sha256": "99c9f3882d5fa817d4190fd85c710eaaeeccaa3ba94f806ec25011d730572670",
+      "raw_stdout": "raw/git_diff_check.stdout.raw",
+      "raw_stderr": "raw/git_diff_check.stderr.raw",
+      "raw_artifact_sha256": {
+        "stdout": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "stderr": "134ef0488327da165b61c5633dc2316ace36a966874ca33f56f6ae5f52b72bdb"
+      },
+      "result": "clean; existing LF/CRLF warnings only"
+    }
+  ],
+  "modified_file_sha256": {
+    "tools/agent_local_execution.py": "8f68f125a43b9ad19d1165485b8e3a10495203b53cfadbecaeb0c773e2d99eb3",
+    "test/test_agent_local_execution.py": "5adfdef4b8953155949eae61a15fc713aac14731c63390d031ad4831a368ce6c6"
+  },
+  "heavy_tools_used": []
+}
