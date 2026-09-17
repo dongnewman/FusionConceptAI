@@ -1,0 +1,12 @@
+Independent R5 static audit
+
+PASS: isolated test includes RuntimeV4/Contracts.jl before CompositionMatcherContractV1.jl.
+PASS: matcher imports only Digest256, PhysicalType, UnitSignature, canonical_hash, semantic_view from FusionConceptAI.
+PASS: matcher does not import CapabilitySignatureV4 from package root and does not use `using FusionConceptAI`.
+PASS: isolated module exposes CapabilitySignatureV4 from preceding Contracts include; test uses M.CapabilitySignatureV4.
+PASS: test performs isdefined(M, ...) checks for the isolated bindings.
+PASS: contract-only negative matrix and zero provider/solver assertions are statically present.
+PASS: R4 receipt retained at runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r4/; exit=1; hashes_unchanged=true; root cause is missing package-root CapabilitySignatureV4.
+PASS: current R5 source/test/fixture/static-QA hashes match agent_local_r5/manifest.json.
+BOUNDARY: no Julia/DESC/runtime/physical/engineering evidence; accepted=false; formal_acceptance=false.
+VERDICT: GO for next focused isolated Julia gate; NO-GO for formal UP3 acceptance.

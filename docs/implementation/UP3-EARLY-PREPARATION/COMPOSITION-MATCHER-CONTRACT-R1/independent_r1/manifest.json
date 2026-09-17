@@ -1,0 +1,105 @@
+{
+  "manifest_version": "UP3-COMPOSITION-MATCHER-CONTRACT-independent-r1-v1",
+  "record_kind": "independent_static_review",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER-CONTRACT-R1",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "verdict": "NO-GO",
+  "accepted": false,
+  "accepted_scope": "none",
+  "status": "preparation_only",
+  "claim_ceiling": "contract_only",
+  "credits": {
+    "up3_01": false,
+    "up3_02": false,
+    "up3_03": false,
+    "provider": false,
+    "solver": false,
+    "mesh": false,
+    "numerical": false,
+    "physical": false,
+    "engineering": false,
+    "r01_r10": false
+  },
+  "execution_policy_verified": {
+    "static_qa_command": "python -B test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "static_qa_exit": 0,
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "solver": false,
+    "heavy_lane": "not_requested"
+  },
+  "boundary": {
+    "product_files": [
+      "src/RuntimeV4/CompositionMatcherContractV1.jl",
+      "test/RuntimeV4/composition_matcher_contract_v1_tests.jl",
+      "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+      "test/RuntimeV4/composition_matcher_contract_v1_fixture.json"
+    ],
+    "shared_entry_changed": false,
+    "shared_registry_changed": false,
+    "task_manifest_changed": false,
+    "review_write_scope": [
+      "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/independent_r1/report.md",
+      "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/independent_r1/manifest.json"
+    ]
+  },
+  "findings": [
+    "label_and_permutation_erasure_not_implemented",
+    "provider_or_typed_absence_conflated_with_fail_closed",
+    "julia_test_only_fixture_and_symbol_smoke_test",
+    "invalid_input_not_typed_fail_closed",
+    "plan_hash_validation_recipe_incomplete",
+    "determinism_only_partial_and_not_replayed",
+    "new_source_not_wired_into_package_entry"
+  ],
+  "product_hashes": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": {
+      "bytes": 14024,
+      "sha256": "e3a85434a6463c577b53dc1c036197f584bcb06565681ada60e65ed471516ff6"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": {
+      "bytes": 1150,
+      "sha256": "4439b0eccc144a65994f39a283e7fb5bf54486f57b1e7303bc6b20c67dd3fd14"
+    },
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": {
+      "bytes": 2592,
+      "sha256": "4187c07b1a19d0d81722600a8f740c3880991cec588c273e78b7e7d435afcfee"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": {
+      "bytes": 649,
+      "sha256": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf"
+    },
+    "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/agent_local_r1/README.md": {
+      "bytes": 1571,
+      "sha256": "77cdd59846b0524d2615d1e722e3981e047f73d721c2e723b19f78e2a3f5d82e"
+    }
+  },
+  "negative_matrix": {
+    "fixture_names": [
+      "unit_mismatch",
+      "space_mismatch",
+      "ambiguous_match",
+      "cycle",
+      "unclosed_ledger",
+      "provider_dropout",
+      "typed_absent_authority",
+      "label_erasure",
+      "permutation_erasure"
+    ],
+    "fixture_count": 9,
+    "executed_count": 0,
+    "all_negative_controls_executed": false
+  },
+  "review_notes": [
+    "Dedicated Python static QA passed; it is not semantic execution evidence.",
+    "No Julia, DESC, provider, mesh, solver, physical, or heavy computation was run.",
+    "No product or test file was modified; no stage or commit was performed.",
+    "The package entry does not include/export the new source, so the frozen Julia test is not currently runnable through the normal package entry.",
+    "This archive does not close UP3 and does not alter the UP0-UP6 DAG or R01-R10 obligations."
+  ],
+  "self_hash_excluded": true
+}

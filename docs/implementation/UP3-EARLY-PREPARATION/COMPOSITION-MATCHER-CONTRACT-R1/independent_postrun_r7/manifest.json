@@ -1,0 +1,84 @@
+{
+  "schema_version": "fusion-up3-composition-matcher-independent-postrun-r7-v1",
+  "record_kind": "independent_postrun_review",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER",
+  "review_scope": "R7 runtime receipt, source-byte hashes, archive copies, HEAD, and prior failure preservation",
+  "verdict": "GO_CONTRACT_ONLY_NO_GO_FORMAL",
+  "status_ceiling": "contract_only/prepared",
+  "accepted": false,
+  "formal_acceptance": false,
+  "claim_ceiling": "contract_only",
+  "evidence_scope": "isolated_contract_runtime_only",
+  "julia_invoked_by_reviewer": false,
+  "desc_invoked": false,
+  "product_modified": false,
+  "test_modified": false,
+  "commit": false,
+  "head": {
+    "expected": "70cded1ca1b64496bbee44ac0025659f446364ea",
+    "actual": "70cded1ca1b64496bbee44ac0025659f446364ea",
+    "match": true
+  },
+  "runtime": {
+    "source_run": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r7",
+    "archive": "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/agent_local_r7/runtime",
+    "exit_code": 0,
+    "tests_passed": 49,
+    "tests_total": 49,
+    "runtime_seconds": 21.5,
+    "stderr_bytes": 0,
+    "hashes_unchanged": true,
+    "stdout_summary_verified": true,
+    "pre_post_hashes_equal": true,
+    "archive_copies_match_source_run": true
+  },
+  "current_product_hashes": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": {
+      "bytes": 21260,
+      "sha256": "aeea3652ac1783ba2acbc8f36d644f3351c3368ae7eabfe5be65ad31af07a867"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": {
+      "bytes": 10734,
+      "sha256": "1f91105831eb865626023410eb74761d110ef3ae5459b3a2651175ed0e6d56f1"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": {
+      "bytes": 649,
+      "sha256": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf"
+    },
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": {
+      "bytes": 6938,
+      "sha256": "8528f31a9a28cf93d520876c12d0701a761dfbf64cd6e55b2ba88b7fed8beb2b"
+    }
+  },
+  "prior_failures": {
+    "r3": {
+      "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r3",
+      "exit_code": 1,
+      "hashes_unchanged": true,
+      "preserved": true
+    },
+    "r4": {
+      "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r4",
+      "exit_code": 1,
+      "hashes_unchanged": true,
+      "preserved": true
+    },
+    "r5": {
+      "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r5",
+      "exit_code": 1,
+      "hashes_unchanged": true,
+      "preserved": true
+    },
+    "r6": {
+      "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r6",
+      "exit_code": 1,
+      "hashes_unchanged": true,
+      "preserved": true
+    }
+  },
+  "targeted_diff_check": {
+    "command": "git diff --check -- src/RuntimeV4/CompositionMatcherContractV1.jl test/RuntimeV4/composition_matcher_contract_v1_tests.jl test/RuntimeV4/composition_matcher_contract_v1_fixture.json test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "exit_code": 0
+  },
+  "formal_gate": "pending automatic composition execution matrix, provider/solver/mesh/conservation/convergence and engineering evidence"
+}

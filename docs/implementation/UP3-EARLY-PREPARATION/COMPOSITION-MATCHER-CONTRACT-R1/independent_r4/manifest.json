@@ -1,0 +1,83 @@
+{
+  "schema_version": "fusion-up3-composition-matcher-contract-independent-review-r4",
+  "record_kind": "independent_static_review",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER",
+  "review_id": "independent_r4",
+  "verdict": "GO_NEXT_ISOLATED_JULIA_GATE_NO_GO_FORMAL",
+  "scope_status": "contract_only_prepared",
+  "accepted": false,
+  "formal_acceptance": false,
+  "claim_ceiling": "contract_only",
+  "evidence_scope": "not_measured",
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "provider_solver_invoked": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "commit": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "exit_code": 0,
+    "record": "PASS static_qa_composition_matcher_contract_v1_r4"
+  },
+  "checks": {
+    "source_imports_all_unqualified_package_bindings": true,
+    "source_does_not_use_export_only_using": true,
+    "test_imports_fixture_dependencies_explicitly": true,
+    "isolated_module_defines_key_bindings": true,
+    "isolated_test_calls_M_apis": true,
+    "shared_entry_unchanged": true,
+    "shared_export_list_unchanged": true,
+    "registry_and_task_manifest_unchanged": true,
+    "r3_runtime_failure_receipt_preserved": true,
+    "r3_pre_post_hashes_identical": true,
+    "current_hashes_match_agent_local_r4": true,
+    "next_isolated_julia_gate_allowed": true
+  },
+  "source_imports": [
+    "CapabilitySignatureV4",
+    "Digest256",
+    "PhysicalType",
+    "UnitSignature",
+    "canonical_hash",
+    "semantic_view"
+  ],
+  "test_imports": [
+    "CapabilitySignatureV4",
+    "Digest256",
+    "PhysicalType",
+    "UnitSignature",
+    "TemporalTypeV1",
+    "static_time",
+    "screen_only"
+  ],
+  "isolated_isdefined": [
+    "CapabilitySignatureV4",
+    "Digest256",
+    "PhysicalType",
+    "UnitSignature",
+    "canonical_hash",
+    "semantic_view"
+  ],
+  "r3_failure_receipt": {
+    "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r3",
+    "exit_code": 1,
+    "failure": "CapabilitySignatureV4 not defined at source line 30",
+    "test_summary_reached": false,
+    "hashes_unchanged": true
+  },
+  "current_sha256": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": "725ff6d2d84d292576b7737dfeec0b352f05a43e017be2642f39ead8c5e1f9b0",
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": "9157058e85405dd08445e7cd542a601c17621f96fe7a7edb0e4e043910e302ee",
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf",
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": "df565496f587bd0380401565523bca2d41714ef0b81ccfd2f13ea3098cf5e67a"
+  },
+  "next_gate": {
+    "allowed": true,
+    "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/composition_matcher_contract_v1_tests.jl",
+    "fresh_process_required": true,
+    "formal_up3_acceptance": false
+  }
+}

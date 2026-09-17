@@ -1,0 +1,75 @@
+{
+  "manifest_version": "UP3-COMPOSITION-MATCHER-CONTRACT-independent-r2-v1",
+  "record_kind": "independent_static_review",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER-CONTRACT-R1",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "verdict": "NO-GO",
+  "accepted": false,
+  "status": "preparation_only",
+  "claim_ceiling": "contract_only",
+  "runtime_executed": {
+    "julia": false,
+    "desc": false,
+    "negative_cases": false,
+    "cold_replay": false,
+    "provider": false,
+    "solver": false
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "exit_code": 0,
+    "status": "pass"
+  },
+  "isolated_include": {
+    "call_site_present": true,
+    "actual_runtime_call_verified": false,
+    "shared_entry_modified": false
+  },
+  "checks": {
+    "label_erasure_source_present": true,
+    "component_permutation_source_present": true,
+    "two_input_permutation_test_present": true,
+    "provider_dropout_deferred_source_and_assertion_present": true,
+    "typed_absent_deferred_source_and_assertion_present": true,
+    "typed_invalid_input_fail_closed_source_and_assertion_present": true,
+    "validator_recomputes_derived_fields_source_present": true,
+    "nine_fixture_negative_names": 9,
+    "nine_negative_cases_runtime_executed": false,
+    "cold_replay": false,
+    "failure_key_definition_present": false,
+    "failure_key_use_count": 1
+  },
+  "product_hashes": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": {
+      "bytes": 19794,
+      "sha256": "99264295792b2180204f317e521fe1111ea88fb3686ecd151470f3f7240d106d"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": {
+      "bytes": 8057,
+      "sha256": "c3a5dadb831df1f6c2a74fe8ffdfd65f1883441a896b7d9a4cf524d519c8fbb3"
+    },
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": {
+      "bytes": 3953,
+      "sha256": "62eaf736966f8e245758a665ad14c423dfed23a4b3ccc245e420537416a41365"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": {
+      "bytes": 649,
+      "sha256": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf"
+    }
+  },
+  "review_write_scope": [
+    "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/independent_r2/report.md",
+    "docs/implementation/UP3-EARLY-PREPARATION/COMPOSITION-MATCHER-CONTRACT-R1/independent_r2/manifest.json"
+  ],
+  "review_notes": [
+    "No Julia/DESC/provider/solver or heavy computation was run.",
+    "No product/test file was modified; no stage or commit was performed.",
+    "Static QA passed but does not detect the undefined _cmc_failure_key helper.",
+    "Fixture remains contract-only and is not authority.",
+    "UP3 and R01-R10 remain pending/false."
+  ],
+  "self_hash_excluded": true
+}

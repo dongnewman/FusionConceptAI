@@ -1,0 +1,15 @@
+{
+  "schema": "fusionconceptai:composition-matcher-contract-v1",
+  "revision": "composition-matcher-contract-v1",
+  "scope": "contract_only",
+  "components": [
+    {"id": "field-source", "provider_status": "declared", "authority_status": "contract_only"},
+    {"id": "field-consumer", "provider_status": "declared", "authority_status": "contract_only"}
+  ],
+  "positive": {"edges": 1, "provider_invocation_count": 0, "solver_invocation_count": 0},
+  "negative": [
+    "unit_mismatch", "space_mismatch", "ambiguous_match", "cycle",
+    "unclosed_ledger", "provider_dropout", "typed_absent_authority",
+    "label_erasure", "permutation_erasure"
+  ]
+}

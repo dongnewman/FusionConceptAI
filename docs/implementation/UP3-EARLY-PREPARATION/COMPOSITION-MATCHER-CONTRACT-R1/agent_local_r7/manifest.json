@@ -1,0 +1,64 @@
+{
+  "schema_version": "fusion-up3-composition-matcher-contract-r7",
+  "record_kind": "contract_only_static_qa",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER",
+  "revision": "R7",
+  "scope_status": "static_qa_pass",
+  "verdict": "GO_static_handoff_NO_GO_runtime_or_formal",
+  "accepted": false,
+  "formal_acceptance": false,
+  "claim_ceiling": "contract_only",
+  "status_ceiling": "prepared",
+  "evidence_scope": "not_measured",
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "product_modified": true,
+  "additive_paths_modified": true,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "commit": false,
+  "parent_failure_receipt": {
+    "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r6",
+    "exit_code": 1,
+    "test_summary": "36 passed, 7 failed",
+    "runtime_seconds": 11.9,
+    "failure": "implicit CapabilitySignatureV4 input_schema_hash differed across producer/consumer fixtures; composition_match_hash hashed stored plan_hash",
+    "hashes_unchanged": true
+  },
+  "repair": {
+    "fixture_schema_binding": "_sig passes input_schema_hash=input_schema; _pair defaults both sides to canonical tag input-schema",
+    "schema_negative": "consumer_input_schema=canonical tag other-input-schema",
+    "composition_hash": "canonical_hash(semantic_view(x))",
+    "tampered_stored_hash_validation": true,
+    "cycle_fixture": "reciprocal compatible edges reach exact :cycle failure",
+    "exact_failure_sets": [
+      "schema mismatch -> :unmatched_signature",
+      "ambiguous -> :ambiguous_match",
+      "cycle -> :cycle"
+    ]
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "exit_code": 0,
+    "record": "PASS static_qa_composition_matcher_contract_v1_r7"
+  },
+  "files": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": {
+      "bytes": 21260,
+      "sha256": "aeea3652ac1783ba2acbc8f36d644f3351c3368ae7eabfe5be65ad31af07a867"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": {
+      "bytes": 10734,
+      "sha256": "1f91105831eb865626023410eb74761d110ef3ae5459b3a2651175ed0e6d56f1"
+    },
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": {
+      "bytes": 649,
+      "sha256": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf"
+    },
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": {
+      "bytes": 6938,
+      "sha256": "8528f31a9a28cf93d520876c12d0701a761dfbf64cd6e55b2ba88b7fed8beb2b"
+    }
+  },
+  "next_gate": "different agent may run the focused isolated Julia test once; retain contract_only and accepted=false until runtime result plus independent review"
+}

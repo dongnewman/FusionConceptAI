@@ -1,0 +1,63 @@
+{
+  "schema_version": "fusion-up3-composition-matcher-contract-independent-r6-v1",
+  "record_kind": "independent_static_review",
+  "task_id": "UP3-EARLY-PREPARATION-COMPOSITION-MATCHER",
+  "revision": "R6",
+  "reviewer": "different-Luna-independent-review",
+  "verdict": "GO_NEXT_FOCUSED_JULIA_NO_FORMAL",
+  "next_gate": "GO",
+  "status_ceiling": "contract_only/prepared",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "formal_acceptance": false,
+  "evidence_scope": "static_only",
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "commit": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/static_qa_composition_matcher_contract_v1.py",
+    "exit_code": 0,
+    "record": "PASS static_qa_composition_matcher_contract_v1_r6",
+    "stdout": "static_qa.stdout",
+    "stderr": "static_qa.stderr"
+  },
+  "digest_repair": {
+    "helper": "M.canonical_hash((tag=String(c),))",
+    "length_assertion": true,
+    "lowercase_hex_assertion": true,
+    "distinct_label_assertion": true,
+    "repeat_padding_rejected": true
+  },
+  "identity_invariants": {
+    "label_erasure_input_hash": true,
+    "label_erasure_plan_hash": true,
+    "component_permutation_plan_hash": true,
+    "input_permutation_plan_hash": true,
+    "provider_invocation_count": 0,
+    "solver_invocation_count": 0
+  },
+  "r5_failure_receipt": {
+    "path": "runs/agent_local_up3_composition_matcher_contract_matrix_20260918_r5",
+    "head": "70cded1ca1b64496bbee44ac0025659f446364ea",
+    "exit_code": 1,
+    "test_summary": "7 passed, 0 failed, 1 errored, 0 broken",
+    "failure": "Digest256 requires exactly 64 lowercase hex characters",
+    "hashes_unchanged": true,
+    "pre_post_equal": true
+  },
+  "current_head": "23baee9f889713655b04f108f49f8dd0213e3ddf",
+  "current_files": {
+    "src/RuntimeV4/CompositionMatcherContractV1.jl": {"bytes": 21055, "sha256": "c5da07f89bb89792c33f3afadd13a8e412a9f3350694f00b73d65a464e3637e4"},
+    "test/RuntimeV4/composition_matcher_contract_v1_tests.jl": {"bytes": 9518, "sha256": "1df05362f775cfbb4aa1b1e9af26c298615469b4ed92044fef8e4ac87489f713"},
+    "test/RuntimeV4/composition_matcher_contract_v1_fixture.json": {"bytes": 649, "sha256": "62ffa652ff0ec098837fb84015ffcfa581bd04f353e27287eb24252e92357edf"},
+    "test/RuntimeV4/static_qa_composition_matcher_contract_v1.py": {"bytes": 6276, "sha256": "40358b9ab2ac2c7ae8e54b694d48603efe70f0a6f585237e84ac1fb565fe41ed"}
+  },
+  "formal_credit": "none",
+  "up3_b01_b02_b04_b08_credit": "none",
+  "conservation_convergence_engineering_credit": "none",
+  "r01_r10_credit": "none"
+}
