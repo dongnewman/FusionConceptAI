@@ -1,0 +1,85 @@
+{
+  "schema_version": "up5-condition-replay-independent-review-v1",
+  "record_kind": "independent_static_review",
+  "review_id": "M5-UP5-01-CONDITION-REPLAY-R1/independent_r1",
+  "verdict": "NO_GO",
+  "review_status": "changes_requested",
+  "status_ceiling": "contract_only",
+  "formal_acceptance": false,
+  "runtime_execution": "not_run",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls_observed": 0,
+  "static_qa_replay": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "negative_vector_count": 17,
+    "runtime_executed": false
+  },
+  "boundary_review": {
+    "additive_module": true,
+    "shared_runtime_entry_modified": false,
+    "manufactured_adapter_modified": false,
+    "registry_modified": false,
+    "task_manifest_modified": false,
+    "legacy_m5_modified": false
+  },
+  "axes_reviewed": [
+    "unit",
+    "rank",
+    "domain",
+    "boundary",
+    "time",
+    "effect",
+    "conservation"
+  ],
+  "findings": [
+    {
+      "id": "UP5-01-IND-R1-F001",
+      "severity": "P1",
+      "status": "open",
+      "summary": "17 negative vectors are listed but not executed; test file has only metadata assertions"
+    },
+    {
+      "id": "UP5-01-IND-R1-F002",
+      "severity": "P1",
+      "status": "open",
+      "summary": "replay_merge does not compare trace evaluation_hash with supplied evaluation"
+    },
+    {
+      "id": "UP5-01-IND-R1-F003",
+      "severity": "P1",
+      "status": "open",
+      "summary": "ConditionEvaluationV1 does not enforce status/ref consistency"
+    },
+    {
+      "id": "UP5-01-IND-R1-F004",
+      "severity": "P2",
+      "status": "open",
+      "summary": "ReceiptTokenV1 generation is not checked by validate_token/cache_get"
+    },
+    {
+      "id": "UP5-01-IND-R1-F005",
+      "severity": "P2",
+      "status": "open",
+      "summary": "Replay receipt/result constructors have no independent identity validation"
+    }
+  ],
+  "required_repair": [
+    "Execute actual positive and 17 negative runtime vectors.",
+    "Bind and validate evaluation_hash during replay.",
+    "Close the status/ref consistency matrix.",
+    "Validate token generation for stale cache/trace receipts.",
+    "Archive deterministic replay, cold/hot identity, and incomplete saturation receipts."
+  ],
+  "input_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "4c79d375c0be7fcc48db54909de0dc56c9ca40be83d460fb7822fb4a9fe1164e",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "87ceb645f371ed92f5ab8023c16d5b3c27caf079979f85399d45db4e2cabaf45",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "8dbcb99acde4c1b7c19c9633dd30f295ffb82946a2415e3538d64f6599b0d9a7",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "ed6e3c090d7c7c95ebfe63236e87347f5c00710008c86195956f299e6cd2b064"
+  },
+  "product_modified": false,
+  "test_modified": false,
+  "commit": false
+}

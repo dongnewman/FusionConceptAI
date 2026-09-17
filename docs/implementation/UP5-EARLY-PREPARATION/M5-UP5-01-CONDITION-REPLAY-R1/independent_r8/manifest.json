@@ -1,0 +1,62 @@
+{
+  "schema_version": "fusion-up5-condition-replay-independent-r8",
+  "record_kind": "independent_static_review",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R8",
+  "review_id": "independent_r8",
+  "reviewer": "different_luna",
+  "verdict": "GO_STATIC_ONLY",
+  "review_status": "static_contract_pass_runtime_required",
+  "accepted": false,
+  "formal_acceptance": false,
+  "no_publish": true,
+  "claim_ceiling": "screen_only",
+  "status_ceiling": "contract_only",
+  "evidence_scope": "static_only",
+  "runtime_execution": "not_executed",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_executed": false,
+  "solver_executed": false,
+  "commit_created": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "r7_lineage": {
+    "review": "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/independent_r7",
+    "verdict": "NO_GO",
+    "blocker": "identity validation bypass on bound-unmet evaluation",
+    "static_repair_verified": true
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "negative_vector_count": 24,
+    "identity_ordering": "pass",
+    "condition_status_binding": "pass",
+    "bound_unmet_identity_matrix": "pass",
+    "evaluation_hash_mismatch_explicit": true,
+    "failed_checks": []
+  },
+  "checks": {
+    "identity_before_semantic_early_return": true,
+    "condition_status_and_evaluation_hash_checked": true,
+    "token_and_all_step_identity_checked": true,
+    "six_bound_unmet_cases_real_replay_merge_calls": true,
+    "six_bound_unmet_cases_exact_fail_closed_zero_merge_hash": true,
+    "valid_missing_unmet_semantic_statuses_retained": true,
+    "24_vectors_retained": true,
+    "r7_no_go_preserved_and_addressed": true,
+    "fixture_labels_and_no_publish_boundary": true,
+    "no_runtime_backend_execution": true,
+    "no_r01_r10_credit": true
+  },
+  "current_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "6d1076cd2d755932d6ecf0e016e188cc8b4f5471af10f1f6029f36379953586a",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "1468a3b0f1304540e0acc748e3308c777cef960ffb7b8ceec61da70946ccd242",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "245fb79a7f08fb6b509bf32186a56defd1a4f9cfd8be93f47bbbc56a83890a48",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "c4d5e29dfd60cd0ac7a160f65abb231e3974bcacabf75f11b2fafbd61fec1678"
+  },
+  "next_gate": "one serialized fresh-process focused Julia run with actual per-vector statuses/hashes/zero-merge receipts; retain contract_only and accepted=false"
+}

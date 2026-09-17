@@ -1,0 +1,41 @@
+{
+  "schema": "AgentLocalExecutionEvidenceManifestV1",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R8",
+  "record_kind": "runtime_receipt_archive",
+  "status": "contract_only",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "no_publish": true,
+  "formal_credit": "none",
+  "up5_credit": "none",
+  "r01_r10_credit": "none",
+  "archive_lane_julia_executed": false,
+  "archive_lane_desc_executed": false,
+  "source_run": "runs/agent_local_up5_condition_replay_contract_matrix_20260918_r8",
+  "runtime_receipt": {
+    "head": "a6b9de90143dd46cbfc81243735e1d2ba7eb6bf6",
+    "exit_code": 0,
+    "summary": "136 pass / 136 total",
+    "elapsed": "0.7s",
+    "stderr_bytes": 0,
+    "hashes_unchanged": true,
+    "pre_post_equal": true,
+    "current_input_hashes_equal_receipt": true
+  },
+  "raw_artifacts": "archive_manifest.json",
+  "lineage": "lineage.json",
+  "verification": "source_hash_verification.json",
+  "boundary": {
+    "contract_only": true,
+    "screen_only": true,
+    "accepted": false,
+    "no_publish": true,
+    "no_up5_credit": true,
+    "no_r01_r10_credit": true
+  },
+  "independent_r7": {
+    "path": "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/independent_r7",
+    "verdict": "NO_GO",
+    "blocker": "bound-unmet identity validation ordering"
+  }
+}

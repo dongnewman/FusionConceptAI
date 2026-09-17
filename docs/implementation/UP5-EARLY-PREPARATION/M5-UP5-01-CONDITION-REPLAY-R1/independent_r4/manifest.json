@@ -1,0 +1,62 @@
+{
+  "schema_version": "fusion-up5-condition-replay-independent-r4",
+  "record_kind": "independent_static_review",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R4",
+  "review_id": "independent_r4",
+  "reviewer": "different_luna",
+  "verdict": "GO_STATIC_ONLY",
+  "review_status": "static_contract_pass_runtime_required",
+  "accepted": false,
+  "formal_acceptance": false,
+  "no_publish": true,
+  "claim_ceiling": "screen_only",
+  "status_ceiling": "contract_only",
+  "evidence_scope": "not_measured",
+  "runtime_execution": "not_executed",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_executed": false,
+  "solver_executed": false,
+  "commit_created": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "negative_vector_count": 18,
+    "repair_literal_checked": true,
+    "generator_extra_argument_scan": "pass",
+    "source_delimiter_string_boundary": "pass",
+    "module_boundary": "pass",
+    "real_seam_calls": true,
+    "failed_checks": []
+  },
+  "r3_failure_receipt": {
+    "path": "runs/agent_local_up5_condition_replay_contract_matrix_20260918_r3",
+    "exit_code": 1,
+    "error": "ParseError line 423: join(_encode(y) for y in x, \";\") invalid iteration spec",
+    "hashes_unchanged": true,
+    "pre_post_equal": true,
+    "raw_failure_preserved": true
+  },
+  "checks": {
+    "line_423_parenthesized_join": true,
+    "no_other_generator_extra_argument_source_patterns": true,
+    "static_qa_checks_repair_without_current_false_positive": true,
+    "r3_parse_error_receipt_and_hashes_reconciled": true,
+    "all_18_negative_vectors_real_branches": true,
+    "negative_vector_count_not_regressed": true,
+    "no_runtime_backend_execution": true,
+    "no_r01_r10_credit": true
+  },
+  "current_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "b0edd4d90fd38f38c9f13d7035b99cbdfec150ac6c97baf78bd1f3aa5835372c",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "a650f192a9ec172ff807118f85e7c32bf3a7fa1f97468203939760b207ebce70",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "cf713d9548bda1bfb99f7f5f68014a6a3d13d4c5563008f504307a9d14cafcc6",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "6a1c4368fb3101d07217df354341a48a45ceb90370f57e524a4385f58c1f16fd"
+  },
+  "next_gate": "one serialized fresh-process focused Julia run and independent runtime review; retain contract_only and accepted=false"
+}

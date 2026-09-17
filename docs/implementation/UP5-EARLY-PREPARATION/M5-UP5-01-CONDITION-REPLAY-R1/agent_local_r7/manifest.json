@@ -1,0 +1,61 @@
+{
+  "schema": "AgentLocalExecutionEvidenceManifestV1",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R7",
+  "status": "contract_only",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "no_publish": true,
+  "formal_credit": "none",
+  "julia_executed": false,
+  "desc_executed": false,
+  "commit": false,
+  "repair": {
+    "kind": "evaluation_hash_rebinding_seam",
+    "source_path": "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl",
+    "clone_constructor": "RewriteTraceStepV1(step::RewriteTraceStepV1, evaluation::ConditionEvaluationV1)",
+    "preserved_fields": ["step_index", "source_hash", "target_hash", "rule_hash", "registry_hash", "budget_hash", "token"],
+    "rebound_fields": ["evaluation_hash", "condition_status"],
+    "test_helper": "_replay binds by default; bind_evaluation=false is reserved for explicit mismatch negative"
+  },
+  "coverage": {
+    "semantic_cases_rebound": ["missing_condition", "mismatched_unit", "mismatched_rank", "mismatched_domain", "mismatched_boundary", "mismatched_time", "mismatched_effect", "mismatched_conservation"],
+    "exact_binding_assertions": true,
+    "evaluation_hash_mismatch_explicit": true,
+    "evaluation_hash_mismatch_expected_status": "fail_closed",
+    "frozen_negative_vectors": 18
+  },
+  "parent_failure_receipt": {
+    "path": "runs/agent_local_up5_condition_replay_contract_matrix_20260918_r6",
+    "exit_code": 1,
+    "summary": "91 passed / 16 failed / 0 errored / 0 broken",
+    "elapsed": "6.9s",
+    "hashes_unchanged": true,
+    "root_cause": "step.evaluation_hash was not rebound to each semantic evaluation"
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "negative_vector_count": 18,
+    "real_seam_calls": true,
+    "binding_markers": "pass",
+    "stdout": "static_qa.stdout.raw",
+    "stderr": "static_qa.stderr.raw"
+  },
+  "input_hashes_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "729c112438032b4345d2cca00fb7f46530d54c1cb7b49aab44b7b8cba68e9a64",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "efcc5e4240e12b1d363e7c829a8b5ca8db8d8397c5a4abd6a31291ec52560372",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "cf713d9548bda1bfb99f7f5f68014a6a3d13d4c5563008f504307a9d14cafcc6",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "40018b241bfa5f783cbc1866678138f01e796aa1566d8b7abda72dc0a73252a7"
+  },
+  "current_head": "a6b9de90143dd46cbfc81243735e1d2ba7eb6bf6",
+  "runtime_boundary": "No Julia/DESC/provider/solver/mesh/physical/search execution",
+  "next_gate": "independent static review then one serialized focused Julia run",
+  "credit": {
+    "up5": "none",
+    "numerical": "none",
+    "physical": "none",
+    "engineering": "none",
+    "r01_r10": "none"
+  }
+}

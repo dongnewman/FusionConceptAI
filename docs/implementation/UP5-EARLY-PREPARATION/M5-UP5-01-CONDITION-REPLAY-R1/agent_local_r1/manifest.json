@@ -1,0 +1,38 @@
+{
+  "schema": "AgentLocalExecutionEvidenceManifestV1",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R1",
+  "status": "contract_only",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "no_publish": true,
+  "formal_credit": "none",
+  "julia_executed": false,
+  "desc_executed": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "output": {
+      "negative_vector_count": 17,
+      "julia_executed": false,
+      "desc_executed": false,
+      "formal_credit": "none"
+    }
+  },
+  "input_hashes_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "4c79d375c0be7fcc48db54909de0dc56c9ca40be83d460fb7822fb4a9fe1164e",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "87ceb645f371ed92f5ab8023c16d5b3c27caf079979f85399d45db4e2cabaf45",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "8dbcb99acde4c1b7c19c9633dd30f295ffb82946a2415e3538d64f6599b0d9a7",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "ed6e3c090d7c7c95ebfe63236e87347f5c00710008c86195956f299e6cd2b064"
+  },
+  "owned_paths": [
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/agent_local_r1/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/agent_local_r1/manifest.json"
+  ],
+  "runtime_boundary": "No Julia/DESC/provider/solver/mesh/physical/search execution",
+  "next_gate": "independent static review then one serialized focused Julia run"
+}

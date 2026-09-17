@@ -1,0 +1,75 @@
+{
+  "schema_version": "fusion-up5-condition-replay-independent-postrun-r8-r1",
+  "record_kind": "independent_postrun_review",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R8",
+  "review_id": "independent_postrun_r8_r1",
+  "reviewer": "different_luna",
+  "verdict": "GO_RUNTIME_LIMITED",
+  "review_status": "runtime_contract_pass_formal_acceptance_pending",
+  "accepted": false,
+  "formal_acceptance": false,
+  "no_publish": true,
+  "claim_ceiling": "screen_only",
+  "status_ceiling": "contract_only",
+  "runtime_execution": "focused_contract_suite_only",
+  "julia_executed_by_audit": false,
+  "desc_executed_by_audit": false,
+  "product_modified": false,
+  "test_modified": false,
+  "commit_created": false,
+  "runtime_receipt": {
+    "source_run": "runs/agent_local_up5_condition_replay_contract_matrix_20260918_r8",
+    "archive_runtime": "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/agent_local_r8/runtime",
+    "head": "a6b9de90143dd46cbfc81243735e1d2ba7eb6bf6",
+    "exit_code": 0,
+    "summary": "136 pass / 136 total",
+    "elapsed": "0.7s",
+    "stderr_bytes": 0,
+    "hashes_unchanged": true,
+    "pre_post_equal": true,
+    "current_input_hashes_equal_receipt": true
+  },
+  "raw_artifact_hash_audit": {
+    "archive_manifest": "archive_manifest.json",
+    "all_six_manifest_pairs_match_actual_bytes": true,
+    "stdout_byte_identical": true,
+    "stderr_byte_identical": true,
+    "normalized_json_head_copies_explicitly_recorded": true
+  },
+  "lineage": {
+    "r3_failure_preserved": true,
+    "r4_failure_preserved": true,
+    "r5_failure_preserved": true,
+    "r6_failure_preserved": true,
+    "r7_no_go_preserved": true,
+    "lineage_file": "docs/implementation/UP5-EARLY-PREPARATION/M5-UP5-01-CONDITION-REPLAY-R1/agent_local_r8/runtime/lineage.json"
+  },
+  "boundary": {
+    "status": "contract_only",
+    "claim_ceiling": "screen_only",
+    "accepted": false,
+    "no_publish": true,
+    "up5_credit": "none",
+    "r01_r10_credit": "none"
+  },
+  "current_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "6d1076cd2d755932d6ecf0e016e188cc8b4f5471af10f1f6029f36379953586a",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "1468a3b0f1304540e0acc748e3308c777cef960ffb7b8ceec61da70946ccd242",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "245fb79a7f08fb6b509bf32186a56defd1a4f9cfd8be93f47bbbc56a83890a48",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "c4d5e29dfd60cd0ac7a160f65abb231e3974bcacabf75f11b2fafbd61fec1678"
+  },
+  "checks": {
+    "exit_zero": true,
+    "136_of_136": true,
+    "summary_0_7_seconds": true,
+    "stderr_empty": true,
+    "head_a6b9de9": true,
+    "four_input_pre_post_hashes_unchanged": true,
+    "current_inputs_match": true,
+    "all_raw_artifact_sha256_reconciled": true,
+    "r3_r7_lineage_preserved": true,
+    "contract_only_screen_only_boundary": true,
+    "no_up5_or_r01_r10_credit": true
+  },
+  "next_gate": "retain contract_only and accepted=false; broader UP5 claims require separately scoped engineering/physical evidence"
+}

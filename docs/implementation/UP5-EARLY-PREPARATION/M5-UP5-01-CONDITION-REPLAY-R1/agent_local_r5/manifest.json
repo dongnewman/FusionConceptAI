@@ -1,0 +1,58 @@
+{
+  "schema": "AgentLocalExecutionEvidenceManifestV1",
+  "task_id": "UP5-01-M5-CONDITION-REPLAY-R5",
+  "status": "contract_only",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "no_publish": true,
+  "formal_credit": "none",
+  "julia_executed": false,
+  "desc_executed": false,
+  "commit": false,
+  "repair": {
+    "kind": "test_macro_compatibility_and_coverage",
+    "path": "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl",
+    "old": "@testset String(vector) begin",
+    "new": "@testset \"$(String(vector))\" begin",
+    "coverage_set": "exercised_vectors == Set(UP5_01_CONDITION_REPLAY_CONTRACT.negative_vectors)",
+    "coverage_count": "length(exercised_vectors) == 18"
+  },
+  "parent_failure_receipt": {
+    "path": "runs/agent_local_up5_condition_replay_contract_matrix_20260918_r4",
+    "exit_code": 1,
+    "error": "Unexpected argument String(vector) to @testset",
+    "line": 105,
+    "source_parse_succeeded": true,
+    "hashes_unchanged": true,
+    "pre_post_equal": true
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "json_parse": "pass",
+    "negative_vector_count": 18,
+    "real_seam_calls": true,
+    "dynamic_testset_interpolation": "pass",
+    "expression_style_testset_rejected": true,
+    "coverage_assertions": "pass",
+    "stdout": "static_qa.stdout.raw",
+    "stderr": "static_qa.stderr.raw"
+  },
+  "input_hashes_sha256": {
+    "src/RuntimeV4/M4Isolated/ConditionalEGraphConditionEnvelopeV1.jl": "b0edd4d90fd38f38c9f13d7035b99cbdfec150ac6c97baf78bd1f3aa5835372c",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_tests.jl": "a0d337c8ec00a1b74bb2cdc7dd79c1353c4bcf2962c84370526c814273ee2fe7",
+    "test/RuntimeV4/M4Isolated/conditional_egraph_condition_envelope_v1_fixture.json": "cf713d9548bda1bfb99f7f5f68014a6a3d13d4c5563008f504307a9d14cafcc6",
+    "test/RuntimeV4/M4Isolated/static_qa_conditional_egraph_condition_envelope_v1.py": "a842ce6f5628071ba341d0f851dc17de7ed6d9ec44295416f8ff25751b2eaf50"
+  },
+  "current_head": "34100427f1114771dd86a875f45afd81a66e0208",
+  "runtime_boundary": "No Julia/DESC/provider/solver/mesh/physical/search execution",
+  "next_gate": "independent static review then one serialized focused Julia run",
+  "credit": {
+    "up5": "none",
+    "numerical": "none",
+    "physical": "none",
+    "engineering": "none",
+    "r01_r10": "none"
+  }
+}

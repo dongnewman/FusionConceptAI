@@ -1,0 +1,37 @@
+{
+  "schema": "ConditionalEGraphConditionEnvelopeFixtureV1",
+  "task": "UP5-01-M5-CONDITION-REPLAY-R1",
+  "status": "contract_only",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "no_publish": true,
+  "required_axes": ["unit", "rank", "domain", "boundary", "time", "effect", "conservation"],
+  "statuses": {
+    "met": "conditions_met",
+    "mismatch": "condition_unmet",
+    "missing": "equality_unknown",
+    "contradiction": "fail_closed",
+    "budget_exhaustion": "incomplete"
+  },
+  "negative_vectors": [
+    "missing_condition", "mismatched_unit", "mismatched_rank", "mismatched_domain",
+    "mismatched_boundary", "mismatched_time", "mismatched_effect",
+    "mismatched_conservation", "contradictory_available", "stale_token",
+    "foreign_token", "tampered_trace", "foreign_registry", "foreign_rule",
+    "foreign_source", "budget_mismatch", "evaluation_hash_mismatch",
+    "foreign_token_bound_unmet", "foreign_source_bound_unmet",
+    "foreign_target_bound_unmet", "foreign_rule_bound_unmet",
+    "foreign_registry_bound_unmet", "foreign_budget_bound_unmet",
+    "incomplete_not_inequality"
+  ],
+  "bound_unmet_identity_vectors": [
+    "foreign_token_bound_unmet", "foreign_source_bound_unmet",
+    "foreign_target_bound_unmet", "foreign_rule_bound_unmet",
+    "foreign_registry_bound_unmet", "foreign_budget_bound_unmet"
+  ],
+  "required_evidence": [
+    "merge_receipt_replay", "cold_hot_bytes_equal", "cold_hot_hash_equal",
+    "fresh_process_determinism", "bound_unmet_identity_fail_closed",
+    "no_solver_or_physical_credit"
+  ]
+}
