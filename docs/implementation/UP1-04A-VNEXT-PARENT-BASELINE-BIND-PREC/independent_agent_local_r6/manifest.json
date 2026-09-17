@@ -1,0 +1,143 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent-agent-local-r6",
+  "schema_version": "v1",
+  "kind": "independent_static_review",
+  "reviewer": "different-luna-high",
+  "reviewed_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "captured_local_date": "2026-09-17",
+  "verdict": "PASS",
+  "focused_julia_rerun": "PERMITTED_ONCE",
+  "status_boundary": {
+    "implementation_status": "prepare_only_runtime_input_adapter",
+    "formal_acceptance": false,
+    "machine_node_accepted": false,
+    "present_authority": false,
+    "accepted": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "review_commands": [
+    {
+      "command": "python -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+      "exit_code": 0,
+      "result": "124/124",
+      "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "julia_invoked": false
+    },
+    {
+      "command": "rg -n -F '${prefix}' test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+      "exit_code": 1,
+      "result": "zero_matches_expected_rg_no_match",
+      "julia_invoked": false
+    },
+    {
+      "command": "Python reverse-byte interpolation proof and SHA-256 recomputation",
+      "exit_code": 0,
+      "result": "exactly 3 $(prefix) tokens; reverse replacement SHA equals R5 test hash",
+      "julia_invoked": false
+    },
+    {
+      "command": "Python hashlib current R6 product and old R1 archive paths",
+      "exit_code": 0,
+      "result": "source/fixture/static match R5; test differs only by three interpolation delimiters; old R1 unchanged",
+      "julia_invoked": false
+    }
+  ],
+  "failed_wrapper_receipt": {
+    "replay_id": "independent_agent_local_r6_wrapper",
+    "status": "command_failed",
+    "exit_code": 1,
+    "failure_kind": "julia_parse_error",
+    "file": "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+    "line": 67,
+    "column": 45,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "fe6009d987bed400ac78cae61eeb427f8f179b747a59d40a3fa0d336b1382a4f",
+    "claim_scope": "contract_only; prepare-only; failed local execution; no scientific or physical acceptance"
+  },
+  "static_qa_receipt": {
+    "exit_code": 0,
+    "checks": "124/124",
+    "stdout_bytes": 554,
+    "stdout_sha256": "729502a9e1919d83ffee3d1784ea42f61fdaa112d57cc56035c904edb3f220db",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "julia_invoked": false,
+    "heavy_lane_invoked": false
+  },
+  "r6_product_sha256": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+      "bytes": 40070,
+      "sha256": "a7292894315f450df5db94e436e764773e34b900e36ff80abb751a41c7aecf2e",
+      "same_as_r5": true
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": {
+      "bytes": 23338,
+      "sha256": "b38cdb35a29da144d93d5e8407bcab75e47a0779b3d850194679241971f211dc",
+      "r5_sha256": "d510577bee27f6d89ede8bdfcac6960c89d88a166fbb6241bc94764eb32d0252",
+      "only_change": "three ${prefix} to $(prefix) delimiters"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": {
+      "bytes": 2285,
+      "sha256": "3d3237ff339885a7fe7c770342e2df676c15e369a31c29e8cb5c1364ebc2a547",
+      "same_as_r5": true
+    },
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": {
+      "bytes": 7586,
+      "sha256": "9dfbe705d646b8264328a50f12f56435f844c8f342d3cc3153b81e667f0b4a80",
+      "same_as_r5": true
+    }
+  },
+  "interpolation_proof": {
+    "illegal_pattern": "${",
+    "illegal_matches": 0,
+    "legal_pattern": "$(prefix)",
+    "legal_matches": 3,
+    "reverse_replacement_sha256": "d510577bee27f6d89ede8bdfcac6960c89d88a166fbb6241bc94764eb32d0252",
+    "reverse_matches_r5_test_sha256": true
+  },
+  "old_r1_sha256_read_only": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac"
+  },
+  "archive_checks": {
+    "R1_R5_manifests_json_valid": true,
+    "R1_R5_archives_preserved": true,
+    "public_entry_unchanged": true,
+    "task_manifest_unchanged": true,
+    "runs_unchanged_by_review": true,
+    "hardcoded_upstream_hash_literals_in_product_source": false
+  },
+  "focused_julia_recommendation": {
+    "permitted_once": true,
+    "inputs": [
+      "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json",
+      "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py"
+    ],
+    "command": "python -B tools/agent_local_execution.py --task UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC --input src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl --input test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl --input test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json --input test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py --output runs/agent_local_up1_04a_parent_r6_focused_julia_20260917 --timeout 300 --run C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+    "expected_exit_code": 0,
+    "expected_scope": "one focused contract run; prepare_only; accepted=false; present_authority=false; no downstream or R01-R10 credit"
+  },
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r6/report.md",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r6/manifest.json"
+  ],
+  "julia_invoked_by_reviewer": false,
+  "commit_created": false,
+  "manifest_self_hash": "excluded"
+}

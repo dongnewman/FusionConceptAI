@@ -1,0 +1,54 @@
+{
+  "record_kind": "agent_local_r3_evidence_manifest",
+  "captured_utc": "2026-09-17T12:08:25.7329364Z",
+  "status": "prepare_only_runtime_input_adapter",
+  "formal_acceptance": false,
+  "present_authority": false,
+  "current_upstream": "G1_G2_repairs_pending_no_frozen_hashes",
+  "julia_invoked": false,
+  "heavy_lane_invoked": false,
+  "cleanup": {
+    "created_evidence_directory": true,
+    "temporary_files_removed": 0,
+    "processes_left_running": 0
+  },
+  "static_qa": {
+    "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+    "utc_start": "2026-09-17T12:08:25.6460728Z",
+    "utc_end": "2026-09-17T12:08:25.7329364Z",
+    "pid": 39256,
+    "exit_code": 0,
+    "stdout_bytes": 554,
+    "stdout_sha256": "c3f6c07b10871a3f825adab70a63900876d27003c17c7897fc9b98d0d88f4701",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "checks": 102,
+    "passed": 102
+  },
+  "r3_product_sha256": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": "2fd321cd172ab1912caf6f7d119b95b175ade8a7c999cf99ccf7e93a0321ef0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": "6a2f8db61d7cae6397b4c08f892b2275d7dae4b086ad88e85023b0340b808430",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": "29a79ef7e7e4b3480c3cb55d4a49a4f2a51c16ca32c8c6e0828d2b4ad120c257",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": "94e862be2eb036509f228e642727a1c4faa8c957e2c34fc5eae580a6552b2c35"
+  },
+  "r3_evidence_sha256": {
+    "static_qa.stdout": "52006269196792fd11004067b92a1ed514fd4a456e34cbb80eaa03adbf44d45f",
+    "static_qa.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "static_qa_receipt.json": "de288e09e012fc12250771e23775932555217d5d74d737a41070b3d0b9b177c3"
+  },
+  "old_r1_and_r2_archives": "preserved_read_only",
+  "final_validation": {
+    "command": "PowerShell R3 final JSON/trailing-whitespace/old-R1-hash validation",
+    "utc_start": "2026-09-17T12:11:00.3767729Z",
+    "utc_end": "2026-09-17T12:11:00.4215874Z",
+    "pid": 39944,
+    "exit_code": 0,
+    "json_valid": true,
+    "trailing_whitespace_files": [],
+    "old_r1_hashes_unchanged": true,
+    "formal_acceptance": false,
+    "fixture_authority": false,
+    "julia_invoked": false,
+    "temporary_files_removed": 0
+  }
+}

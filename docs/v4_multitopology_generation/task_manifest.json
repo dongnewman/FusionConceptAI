@@ -550,8 +550,17 @@
       "accepted": false,
       "claim_ceiling": "contract_only",
       "resolution": "review_pending",
-      "local_software_scaffold_status": "accepted_limited",
-      "local_software_scaffold_basis": "independent_postrun_r2_pass_limited",
+      "local_software_scaffold_status": "accepted_local_contract",
+      "local_software_scaffold_basis": "independent_agent_local_r8_postrun_pass_bounded_software",
+      "local_software_scaffold_evidence": {
+        "status_sync_report": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/report.md",
+        "status_sync_manifest": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/manifest.json",
+        "independent_review": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r8_postrun/report.md",
+        "focused_tests": "82/82",
+        "static_qa": "133/133",
+        "claim_ceiling": "contract_only",
+        "actual_source_backed_parent_present_authority": "pending_this_node_verification"
+      },
       "depends_on": [
         "UP1-01",
         "UP1-02",
@@ -597,7 +606,7 @@
       "benchmarks": [],
       "execution_recipe_status": "freeze_exact_commands_before_execution",
       "acceptance_record": "docs/implementation/AD-33/acceptance.md",
-      "status_sync_record": "docs/implementation/AD-33/status_sync_r2/report.md",
+      "status_sync_record": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/report.md",
       "architecture_decision_ref": "docs/implementation/AD-33/acceptance.md",
       "blocked_present_on": [
         "actual local G1 declaration bytes and factory receipt",

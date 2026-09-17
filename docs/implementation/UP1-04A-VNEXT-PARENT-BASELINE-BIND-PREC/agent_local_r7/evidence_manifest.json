@@ -1,0 +1,90 @@
+{
+  "schema_version": "fusion-agent-local-v7-evidence-v1",
+  "task_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+  "replay_id": "agent_local_r7",
+  "profile": "agent_local",
+  "status": "prepare_only_runtime_input_adapter",
+  "accepted": false,
+  "formal_acceptance": false,
+  "present_authority": false,
+  "contract_boundary": {
+    "status": "accepted_local_contract",
+    "scope": "G1/G2 V1 schemas and candidate/source metadata contracts"
+  },
+  "actual_source_backed_parent_present_authority": "pending_this_node_verification",
+  "julia_invoked": false,
+  "heavy_lane_invoked": false,
+  "scope": "minimal factory identity/version guard repair after focused-run constructor failure",
+  "original_run": {
+    "directory": "runs/agent_local_up1_04a_parent_r6_focused_julia_20260917",
+    "status": "command_failed",
+    "exit_code": 1,
+    "test_pass": 0,
+    "test_fail": 0,
+    "test_error": 1,
+    "test_total": 1,
+    "failure_kind": "julia_test_error",
+    "source_file": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+    "source_line": 184,
+    "test_file": "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+    "test_line": 88,
+    "manifest_sha256": "d62c012e3943a80ca5c82dbcf2b9cd2ba4e2d838393445ed25e58876e01c9f6e",
+    "report_sha256": "07866aeb914775d979e06936feae6d84f80cb6d278e9753a0490b870b91e0392",
+    "run_json_sha256": "ea53f121f0f6a8ff7eb564476c7d29646045cf1e56f7a1b486c93fe85276cfb2",
+    "stdout_sha256": "d20838342bd317a924b29bdd1ffe91d4b15c06bb912f6eb4a740f03a4bd0241c",
+    "stderr_sha256": "10bf605ee7454e1f5dd6d093071d294440e09863b293dc1bded6ab3cabe20959"
+  },
+  "static_qa": {
+    "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+    "utc_start": "2026-09-17T13:07:01.0368211Z",
+    "utc_end": "2026-09-17T13:07:01.1645147Z",
+    "pid": 38648,
+    "exit_code": 0,
+    "check_count": 129,
+    "passed": 129,
+    "stdout_sha256": "bbb786afa2073799ba075c0f308f00a2440437d8c19e9c414607afe22f8bea10",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "product_files": [
+    {
+      "path": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "sha256": "e70b30588f95d76c0c840fe73f2363e174c992f521dba875d255a3b862a5bf60"
+    },
+    {
+      "path": "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+      "sha256": "14b156e7ec1bc59cf3e233841caa118b681c7623cddcd5580f05cf0cd4b037d0"
+    },
+    {
+      "path": "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json",
+      "sha256": "73b5f76bcab418147bd380abd05ecfe9d306b6d5c986090f30410d14ac5a2882"
+    },
+    {
+      "path": "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+      "sha256": "85eab84deda0d4f40ef737c8ea1aa0044e2011faf3944b32c0e9e3ca0e592432"
+    }
+  ],
+  "guard_scan": {
+    "exit_code": 0,
+    "inverted_factory_guard_matches": 0,
+    "valid_required_field_matches": 3
+  },
+  "cleanup": {
+    "temporary_files_removed": 0,
+    "processes_left_running": 0
+  },
+  "final_validation": {
+    "command": "PowerShell JSON/product-hash/trailing-whitespace/guard/interpolation validation",
+    "utc_start": "2026-09-17T13:10:36.5257889Z",
+    "utc_end": "2026-09-17T13:10:36.6201432Z",
+    "pid": 41508,
+    "exit_code": 0,
+    "json_parsed": true,
+    "product_hashes_match": true,
+    "evidence_stdout_file_hash_match": true,
+    "trailing_whitespace_matches": 0,
+    "illegal_interpolation_scan_exit_code": 1,
+    "illegal_interpolation_matches": 0,
+    "guard_scan_exit_code": 0
+  },
+  "commit": false
+}

@@ -1,0 +1,110 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent-agent-local-r2",
+  "schema_version": "v1",
+  "kind": "independent_static_review",
+  "reviewer": "different-luna-high",
+  "reviewed_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "captured_utc": "2026-09-17",
+  "verdict": "NO-GO",
+  "focused_julia_gate": "NO-GO",
+  "status_boundary": {
+    "implementation_status": "prepare_only_runtime_input_adapter",
+    "formal_acceptance": false,
+    "machine_node_accepted": false,
+    "present_authority": false,
+    "physical_credit": false,
+    "R01-R10": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "search": false
+  },
+  "review_commands": [
+    {
+      "command": "python -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+      "exit_code": 0,
+      "result": "78/78",
+      "reviewer_reran": true,
+      "julia_invoked": false
+    }
+  ],
+  "worker_receipt": {
+    "static_process_exit": 0,
+    "static_process_checks": "78/78",
+    "static_process_stdout_bytes": 552,
+    "static_process_stdout_sha256": "6e723db2fa75329b4f1b5bfbd245102bbfe939f4e24f9c7b66ab51405b08042b",
+    "static_file_bytes": 538,
+    "static_file_sha256": "b42e05d2b78033c0af116885ab28bc04b5baeafd94b8f7aabe930021a3415c3c",
+    "static_stderr_bytes": 0,
+    "static_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "julia_invoked": false,
+    "heavy_lane_invoked": false
+  },
+  "r2_product_hashes": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+      "bytes": 31275,
+      "sha256": "55d2f60242af013b9b8f2ebb9874019f5d87906a01d0dd28fa03f1294fda2b98"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": {
+      "bytes": 10193,
+      "sha256": "85c14a10cf89805806a7c1d11551a32012a61fb357ffbc910121af9fce4d1753"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": {
+      "bytes": 1385,
+      "sha256": "61a169d8456c3d3437d62b1f633dcd25c7c43ffdec5cd094f26ed954689c51c3"
+    },
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": {
+      "bytes": 5627,
+      "sha256": "b88c4e842ab0e9af234a567b6a277d56df0e378120646f156e7c5186cc35cc61"
+    }
+  },
+  "old_r1_hashes_unchanged": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac"
+  },
+  "findings": [
+    {
+      "id": "P1-missing-classification",
+      "severity": "P1",
+      "status": "blocking",
+      "summary": "empty/missing records and children return fail_closed before typed_absent"
+    },
+    {
+      "id": "P1-history-integrity",
+      "severity": "P1",
+      "status": "changes_requested",
+      "summary": "state verification and state hash omit operation history"
+    },
+    {
+      "id": "P1-unbound-review-boolean",
+      "severity": "P1",
+      "status": "changes_requested",
+      "summary": "candidate_identity_reviewed is a caller boolean without a bound review receipt"
+    },
+    {
+      "id": "P2-verifier-join-gap",
+      "severity": "P2",
+      "status": "changes_requested",
+      "summary": "public present verifier omits factory identity and axes joins"
+    },
+    {
+      "id": "P2-authority-wording",
+      "severity": "P2",
+      "status": "boundary",
+      "summary": "synthetic runtime contract test must not be reported as current upstream authority"
+    }
+  ],
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r2/report.md",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r2/manifest.json"
+  ],
+  "julia_invoked_by_reviewer": false,
+  "manifest_self_hash": "excluded"
+}

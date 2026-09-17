@@ -1,0 +1,35 @@
+{
+  "record_kind": "agent_local_r8_static_qa_receipt",
+  "scope": "test-only Symbol reason assertion and tampered-state snapshot repair",
+  "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+  "utc_start": "2026-09-17T13:23:15.3524103Z",
+  "utc_end": "2026-09-17T13:23:15.4726289Z",
+  "pid": 3672,
+  "exit_code": 0,
+  "stdout_bytes_raw_process": 554,
+  "stdout_sha256_raw_process": "d72360d447a0345ff83293abebcc0a454d7b70a55d6e04b43ed9e1d2c1062d51",
+  "stderr_bytes_raw_process": 0,
+  "stderr_sha256_raw_process": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256_file_representation": "ecf791b6b00a98fd501e72f633ec2786b2b61e0150776b2c629344cc42130e28",
+  "stderr_sha256_file_representation": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_file_representation": "static_qa.stdout",
+  "stderr_file_representation": "static_qa.stderr",
+  "static_result": {
+    "checks": "pass",
+    "check_count": 133,
+    "passed": 133,
+    "errors": []
+  },
+  "negative_control_repairs": [
+    "reason Symbol compared with === on either G1 or G2 output",
+    "tampered local canonical-bytes snapshot echoed by failure receipt",
+    "tampered state canonical_sha256/state_hash/source/history remain unchanged",
+    "tampered failure receipt remains unpublished and history_advanced=false"
+  ],
+  "julia_invoked": false,
+  "heavy_lane_invoked": false,
+  "cleanup": {
+    "temporary_files_removed": 0,
+    "processes_left_running": 0
+  }
+}

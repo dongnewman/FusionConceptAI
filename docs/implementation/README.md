@@ -6,7 +6,7 @@
 
 ## 接手入口
 
-先读 [中期审计](../v4_multitopology_generation/20_midterm_audit_20260916.md) 和 [下一轮执行批次](../v4_multitopology_generation/21_next_execution_batches.md)，再读自己任务的 [工作单](../v4_multitopology_generation/16_execution_work_orders.md) 与 [任务表](../v4_multitopology_generation/task_manifest.json)。39节点中6 accepted、33 planned；按任务验收书的具体scope计入，不按文件夹或AD数量推断进度。
+先读 [中期审计](../v4_multitopology_generation/20_midterm_audit_20260916.md) 和 [下一轮执行批次](../v4_multitopology_generation/21_next_execution_batches.md)，再读自己任务的 [工作单](../v4_multitopology_generation/16_execution_work_orders.md) 与 [任务表](../v4_multitopology_generation/task_manifest.json)。39节点中9 accepted、30 planned；按任务验收书的具体scope计入，不按文件夹或AD数量推断进度。parent LocalV1 的 bounded local software 入口见 [status_sync_local_r1](UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/report.md)，机器节点仍保持 `planned/proposal/accepted=false/review_pending`。
 
 [archive_catalog.json](MIDTERM-AUDIT-20260916/archive_catalog.json) 提供全部一级目录和39任务的检索映射；分类仅用于定位，没有新的authority。旧逐轮入口全文保存在 [implementation_README.before.txt](MIDTERM-AUDIT-20260916/entry_snapshots/implementation_README.before.txt)，不再作为“当前状态”执行。
 
@@ -15,7 +15,7 @@
 | 阶段 | 优先查看 | 接受范围与下一道门 |
 |---|---|---|
 | UP0 | [UP0-01](UP0-01/acceptance.md)、[UP0-02](UP0-02/acceptance.md)、[本轮快照](MIDTERM-AUDIT-20260916/before_inventory.json) | 历史基线/合同已建立；每次执行仍需刷新 |
-| UP1 | [R2根裁决](UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/decision.md)、[三层合同索引](UP1-INDEX/acceptance.md)、[UP1-04A有限接受](UP1-04/acceptance.md)、[AD30](AD-30/acceptance_r2/acceptance.md)、[AD34](AD-34/acceptance.md) | 外部证据验证/离线intake/聚合软件能力为 `accepted_limited_with_test_scope_deferred`；0 usable inputs、26 typed_absent，UP1 blockers未解除；T0及后续、B00/B04、R01-R10、39DAG、L4及parent均未关闭 |
+| UP1 | [R2根裁决](UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/decision.md)、[三层合同索引](UP1-INDEX/acceptance.md)、[UP1-04A有限接受](UP1-04/acceptance.md)、[parent LocalV1 bounded](UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/report.md)、[AD30](AD-30/acceptance_r2/acceptance.md)、[AD34](AD-34/acceptance.md) | 当前 agent-local 路径不以外部认证阻塞研发；parent LocalV1 bounded software 为 `accepted_local_contract`（82/82、133/133、`contract_only`），但 actual source-backed parent present authority 仍 pending；T0及后续、B00/B04、R01-R10、39DAG、L4及parent均未关闭。旧外部证据/离线 intake/typed-absent 档案保留其历史语义，不升级为当前 present 或 trusted authority |
 | UP2 | [G1 diffusion](UP2-01-G1-DIFFUSION-V1/agent_local_acceptance_r1/acceptance.md)、[G2 metric/boundary](UP2-01-G2-METRIC-BOUNDARY-V1/agent_local_acceptance_r1/acceptance.md)、[G3 source/feedback](UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_acceptance_r1/acceptance.md)、[UP2-00](UP2-00/)、[UP2-01准备](UP2-01-PREPARATION/)、[N06 H0A](UP2-N06-H0A-DIMENSIONED-LAW/)、[AD38](AD-38/acceptance/acceptance.md) | G1/G2/G3 仅接受本地 declaration schema/candidate-source metadata contract；不表示 source authority、通用方程、空间/耦合或 UP2-01 总任务已实现 |
 | UP3 | [组合准备](UP3-EARLY-PREPARATION/acceptance.md) | 模板/协议有限接受；实际组合矩阵、留出和降维验证待执行 |
 | UP4 | [逆实现准备](UP4-EARLY-PREPARATION/acceptance.md) | 输入/参考合同；通用硬件逆设计和工程闭环未完成 |
@@ -32,7 +32,7 @@
 | [旧AD49 S3](AD-49/S3-TRUSTED-SOURCE-IDENTITY/root_acceptance_r1/acceptance.md) | 旧HEAD上的typed absence，解释外部trust/source缺口；不能代替fresh S3 |
 | [本轮来源审查](MIDTERM-AUDIT-20260916/source_evidence_review.md) | 当前HEAD来源对象＋AD56工作树执行器的精确边界与哈希核查 |
 
-source工厂F0/S2/S3、B00 F0–F5、旧运行器S0–S10是不同命名空间。source present、trusted source、candidate identity、provider execution和physical validity分别验收。缺外部trust root不能用本地hash/测试/评审顶替，也不能借此宣称主要数值能力已经完成。
+source工厂F0/S2/S3、B00 F0–F5、旧运行器S0–S10是不同命名空间。source present、trusted source、candidate identity、provider execution和physical validity分别验收。当前 agent-local 主线不因外部 trust root 或认证材料阻塞本地研发；但缺失 authority 仍须保留 `terminal_deferred`/typed absence，不能用本地 hash、测试或评审冒称 `trusted source`，也不能据此宣称主要数值能力已经完成。
 
 ## Luna如何新增档案
 

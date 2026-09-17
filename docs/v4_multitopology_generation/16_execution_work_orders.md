@@ -352,7 +352,13 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 ### UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC 本地 parent-baseline binding
 
-当前状态为 planned；历史 AD-33 接受的是有限 typed-absent 切片，新 present 实现仍待实际验证。
+当前机器状态仍为 `planned`、`scope_status=proposal`、`accepted=false`、
+`resolution=review_pending`。本地 bounded software slice 已由独立
+`independent_agent_local_r8_postrun` 复核为 `accepted_local_contract`：focused
+contract `82/82`、static QA `133/133`；claim ceiling 仍为
+`contract_only`。这只同步本地软件边界，actual source-backed parent present
+authority 仍为 `pending_this_node_verification`，不代表 T0/T1/T2 或 formal
+acceptance。
 
 - 前置：UP1-01、UP1-02、UP1-03；本任务不单独接受 T0/T1/T2。
 - 文件归属：Integration 中的 baseline binding 或版本化本地适配、对应测试及本任务目录的新一轮证据；派单时冻结确切路径，不覆盖 AD-33 旧档案。
@@ -368,7 +374,7 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 - Present 条件：G1/G2 各自实际 source-backed V1 instance/factory/declaration receipt、完整哈希与 fresh same-candidate identity 复核；智能体可创建和验证这些本地材料。该节点不单独代表 T0/T1、数值或物理验收。
 - 历史 AD-33 只接受 typed-absent 软件切片，不能证明新的 present 实现。新 present 路径通过内容绑定、编辑原子性和缺失/篡改负例及智能体复核后可按软件范围接受，不自动验收 T0/T1/T2、UP2、solver、工程、物理、search、B00/B04 或 R01–R10。
 
-历史依据：[AD-33 acceptance](../implementation/AD-33/acceptance.md)、[status sync R2](../implementation/AD-33/status_sync_r2/report.md)。直接测试入口为 `julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl`；新增适配器需补对应直接测试，旧测试通过不代替新 present 路径验证。
+历史依据：[AD-33 acceptance](../implementation/AD-33/acceptance.md)、[status sync R2](../implementation/AD-33/status_sync_r2/report.md)。当前 bounded 状态同步见 [status_sync_local_r1](../implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/status_sync_local_r1/report.md)，实际 source-backed present authority 仍待本节点正式验证。直接测试入口为 `julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl`；新增适配器需补对应直接测试，旧测试通过不代替新 present 路径验证。
 
 <a id="up1-04a-vnext-g3-realization-edit-prec"></a>
 

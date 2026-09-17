@@ -1,0 +1,41 @@
+{
+  "schema_version": "fusion-independent-agent-local-replay-v1",
+  "task_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+  "replay_id": "agent_local_up1_04a_parent_r6_focused_julia_20260917",
+  "profile": "agent_local",
+  "credit": "contract_only",
+  "accepted": false,
+  "scope": "prepare-only",
+  "r01_r10_changed": false,
+  "t0_t1_t2_attempted": false,
+  "wrapper_run": {
+    "path": "run.json",
+    "status": "command_failed",
+    "exit_code": 1,
+    "started_utc": "2026-09-17T13:03:27.051655+00:00",
+    "finished_utc": "2026-09-17T13:03:29.292356+00:00",
+    "julia_pid": "not_captured",
+    "pre_post_julia_desc_processes": "none",
+    "untouched_preexisting_phase5_pids": [8636, 36512]
+  },
+  "test_parse": {
+    "pass": 0,
+    "fail": 0,
+    "error": 1,
+    "total": 1,
+    "group": "local parent-baseline binding V1 R3",
+    "stdout_sha256": "d20838342bd317a924b29bdd1ffe91d4b15c06bb912f6eb4a740f03a4bd0241c",
+    "stderr_sha256": "10bf605ee7454e1f5dd6d093071d294440e09863b293dc1bded6ab3cabe20959"
+  },
+  "failure": {
+    "kind": "julia_test_error",
+    "message": "ArgumentError: factory identity required",
+    "source_file": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+    "source_line": 184,
+    "test_file": "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+    "test_line": 88
+  },
+  "claim_scope": "contract_only; prepare-only; failed local execution; no scientific or physical acceptance",
+  "source_state_or_status_modified": false,
+  "run_json_stdout_stderr_modified": false
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "fusion-independent-agent-local-review-v1",
+  "task_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+  "review_id": "independent_agent_local_r8",
+  "verdict": "PASS",
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "product_modified": false,
+  "commit": false,
+  "status": "prepare_only_runtime_input_adapter",
+  "accepted": false,
+  "present_authority": false,
+  "contract_boundary": "accepted_local_contract",
+  "actual_source_backed_parent_present_authority": "pending_this_node_verification",
+  "r7_receipt": {
+    "outer_pass": 75,
+    "outer_fail": 1,
+    "outer_error": 1,
+    "outer_total": 77,
+    "nested_negative_control_pass": 2,
+    "nested_negative_control_total": 2,
+    "stdout_sha256": "bb25567de7df7d6eb7fb0907d5ec4b7117bf062f524317d412792c2f3a9582db",
+    "stderr_sha256": "ba9cd545e98116cac6c47ddb35dfc4cf6910dea94a9ad04669947c53fcbd46c3"
+  },
+  "r8_repairs": [
+    "replace Symbol membership assertion with independent === comparisons",
+    "freeze tampered canonical-bytes snapshot after mutation",
+    "require exact failure-receipt echo and unchanged state/source/history hashes",
+    "require unpublished and history_advanced=false on tampered failure"
+  ],
+  "static_qa": {
+    "executed": true,
+    "julia_free": true,
+    "exit_code": 0,
+    "check_count": 133,
+    "passed": 133,
+    "errors": []
+  },
+  "product_hashes": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": "e70b30588f95d76c0c840fe73f2363e174c992f521dba875d255a3b862a5bf60",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": "e3fec0bbe0ed6975f162c1c31227f8ca29ae85e899ac24f3745c8d372136d721",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": "73b5f76bcab418147bd380abd05ecfe9d306b6d5c986090f30410d14ac5a2882",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": "4e82b7708e90e8d064208d6d5d790593ab776e920bf2235a22ff056c92c22a2e"
+  },
+  "allowed_next_run": {
+    "count": 1,
+    "output": "runs/agent_local_up1_04a_parent_r8_focused_julia_20260917",
+    "credit": "contract_only",
+    "accepted": false
+  }
+}

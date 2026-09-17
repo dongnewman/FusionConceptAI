@@ -1,0 +1,45 @@
+{
+  "record_kind": "agent_local_r6_static_qa_receipt",
+  "scope": "minimal Julia interpolation syntax repair and static audit",
+  "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+  "utc_start": "2026-09-17T12:53:58.0315248Z",
+  "utc_end": "2026-09-17T12:53:58.0946816Z",
+  "pid": 43128,
+  "exit_code": 0,
+  "stdout_bytes_raw_process": 554,
+  "stdout_sha256_raw_process": "729502a9e1919d83ffee3d1784ea42f61fdaa112d57cc56035c904edb3f220db",
+  "stderr_bytes_raw_process": 0,
+  "stderr_sha256_raw_process": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256_file_representation": "6f559ddabf7647bfbbdd0ab935ed3436e07f1d78d3b8a59a2cdf0fa2232c1431",
+  "stderr_sha256_file_representation": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_file_representation": "static_qa.stdout",
+  "stderr_file_representation": "static_qa.stderr",
+  "static_result": {
+    "checks": "pass",
+    "check_count": 124,
+    "passed": 124,
+    "errors": []
+  },
+  "interpolation_scan": {
+    "command": "rg -n '\\$\\{' src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+    "utc": "2026-09-17T12:53:58.0946816Z",
+    "pid": 43128,
+    "exit_code": 1,
+    "matches": 0,
+    "meaning": "no illegal ${...} interpolation remained; exit 1 is rg no-match"
+  },
+  "legal_replacement_scan": {
+    "command": "rg -n '\\$\\([A-Za-z_][A-Za-z0-9_]*\\)[A-Za-z_]' test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl",
+    "exit_code": 0,
+    "matches": [
+      "67: \"GenomeV5.$prefix.DeclarationV1\", \"$(prefix)DeclarationV1\", \"$(prefix)FactoryV1\",",
+      "72: receipt = G.LocalFactoryReceiptV1(\"$(prefix)FactoryV1\", factory_version, receipt_status,"
+    ]
+  },
+  "julia_invoked": false,
+  "heavy_lane_invoked": false,
+  "cleanup": {
+    "temporary_files_removed": 0,
+    "processes_left_running": 0
+  }
+}

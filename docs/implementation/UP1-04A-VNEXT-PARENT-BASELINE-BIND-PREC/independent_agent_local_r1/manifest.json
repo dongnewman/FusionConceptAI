@@ -1,0 +1,126 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent-agent-local-r1",
+  "schema_version": "v1",
+  "kind": "independent_software_review",
+  "reviewer": "different-luna-high",
+  "reviewed_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "captured_utc": "2026-09-17",
+  "verdict": "pass_with_findings",
+  "scope_boundary": {
+    "typed_absent_scaffold": "pass_limited",
+    "machine_node_accepted": false,
+    "present_authority": false,
+    "present_parent_or_child": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "review_commands": [
+    {
+      "command": "python -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py",
+      "exit_code": 0,
+      "result": "38/38",
+      "reviewer_reran": true
+    },
+    {
+      "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl",
+      "reviewer_reran": false,
+      "reason": "explicit review boundary: do not run Julia",
+      "retained_worker_result": "52/52"
+    }
+  ],
+  "current_hashes": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": {
+      "bytes": 26420,
+      "sha256": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": {
+      "bytes": 6430,
+      "sha256": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": {
+      "bytes": 781,
+      "sha256": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b"
+    },
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": {
+      "bytes": 3703,
+      "sha256": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac"
+    },
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "bytes": 32694,
+      "sha256": "88af0f23379db7c2479e8f0b18523875260c37d7660a26b80568b625aa0533e8"
+    },
+    "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": {
+      "bytes": 31396,
+      "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "bytes": 31390,
+      "sha256": "bdce1d86f28f5a096178e560117c1a66cb9fc749c2d7d72f41a3d4b3f6e71b9e"
+    },
+    "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": {
+      "bytes": 27640,
+      "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 30019,
+      "sha256": "2ad8fdfe3a61db908d219ea91ac54140dc9f2b070949aa6acd1cb40a432ed9ae"
+    }
+  },
+  "worker_receipt_checks": {
+    "agent_local_r1_static": "38/38",
+    "agent_local_r1_focused_julia": "52/52",
+    "agent_local_r1_focused_stdout_bytes": 235,
+    "agent_local_r1_focused_stdout_sha256": "7549c44579077daa3f2dfe44caa49b327fd8cea98443a699e089a4cc49fd8627",
+    "agent_local_r1_focused_stderr_bytes": 0,
+    "agent_local_r1_focused_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "findings": [
+    {
+      "id": "P1-current-g1-input-drift",
+      "severity": "P1",
+      "status": "changes_requested",
+      "summary": "worker G1 declaration bytes/hash are stale against current checkout"
+    },
+    {
+      "id": "P1-stale-tamper-controls",
+      "severity": "P1",
+      "status": "changes_requested",
+      "summary": "expected prior state/source hashes are ignored and stale/tamper tests are absent"
+    },
+    {
+      "id": "P1-present-admission-unimplemented",
+      "severity": "P1",
+      "status": "future_gate",
+      "summary": "present receipt admission always rejects and constructors do not bind bytes/locator/candidate"
+    },
+    {
+      "id": "P2-negative-coverage-overclaim",
+      "severity": "P2",
+      "status": "changes_requested",
+      "summary": "report claims foreign/layer/child and tamper coverage not present in focused tests"
+    },
+    {
+      "id": "P2-open-abstract-unions",
+      "severity": "P2",
+      "status": "future_gate",
+      "summary": "abstract supertypes are not explicit closed Present/Absent unions"
+    }
+  ],
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r1/report.md",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r1/manifest.json"
+  ],
+  "julia_invoked_by_reviewer": false,
+  "manifest_self_hash": "excluded"
+}

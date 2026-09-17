@@ -1,0 +1,139 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent-agent-local-r3",
+  "schema_version": "v1",
+  "kind": "independent_static_review",
+  "reviewer": "different-luna-high",
+  "reviewed_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "captured_local_date": "2026-09-17",
+  "verdict": "NO-GO",
+  "focused_julia_gate": "NO-GO",
+  "status_boundary": {
+    "implementation_status": "prepare_only_runtime_input_adapter",
+    "formal_acceptance": false,
+    "machine_node_accepted": false,
+    "present_authority": false,
+    "accepted": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "review_commands": [
+    {
+      "command": "python -B test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py",
+      "exit_code": 0,
+      "result": "102/102",
+      "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "julia_invoked": false
+    },
+    {
+      "command": "PowerShell Get-FileHash current R3 product paths and preserved R1 paths",
+      "exit_code": 0,
+      "result": "hashes_match_worker_and_old_R1_records",
+      "julia_invoked": false
+    },
+    {
+      "command": "rg historical R2 hashes in append-only evidence manifests",
+      "exit_code": 0,
+      "result": "R2 values found in worker and independent manifests; no R2 product byte snapshot found",
+      "julia_invoked": false
+    }
+  ],
+  "worker_static_receipt": {
+    "exit_code": 0,
+    "checks": "102/102",
+    "stdout_bytes_raw_process": 554,
+    "stdout_sha256_raw_process": "c3f6c07b10871a3f825adab70a63900876d27003c17c7897fc9b98d0d88f4701",
+    "stderr_bytes_raw_process": 0,
+    "stderr_sha256_raw_process": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "julia_invoked": false,
+    "heavy_lane_invoked": false
+  },
+  "r3_product_sha256": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+      "bytes": 36759,
+      "sha256": "2fd321cd172ab1912caf6f7d119b95b175ade8a7c999cf99ccf7e93a0321ef0a"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": {
+      "bytes": 16038,
+      "sha256": "6a2f8db61d7cae6397b4c08f892b2275d7dae4b086ad88e85023b0340b808430"
+    },
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": {
+      "bytes": 1780,
+      "sha256": "29a79ef7e7e4b3480c3cb55d4a49a4f2a51c16ca32c8c6e0828d2b4ad120c257"
+    },
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": {
+      "bytes": 6583,
+      "sha256": "94e862be2eb036509f228e642727a1c4faa8c957e2c34fc5eae580a6552b2c35"
+    }
+  },
+  "old_r1_sha256_read_only": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac"
+  },
+  "old_r2_manifest_recorded_sha256_not_rehashed": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": "55d2f60242af013b9b8f2ebb9874019f5d87906a01d0dd28fa03f1294fda2b98",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_tests.jl": "85c14a10cf89805806a7c1d11551a32012a61fb357ffbc910121af9fce4d1753",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_local_v1_fixture.json": "61a169d8456c3d3437d62b1f633dcd25c7c43ffdec5cd094f26ed954689c51c3",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_local_v1.py": "b88c4e842ab0e9af234a567b6a277d56df0e378120646f156e7c5186cc35cc61"
+  },
+  "historical_scope_checks": {
+    "historical_R1_static": "38/38",
+    "historical_R1_focused_julia": "52/52",
+    "historical_R1_focused_julia_rerun_by_reviewer": false,
+    "R3_focused_julia_rerun_by_reviewer": false,
+    "old_R1_files_unchanged": true,
+    "public_entry_unchanged_by_review": true,
+    "task_manifest_unchanged_by_review": true,
+    "no_hardcoded_upstream_hash_in_R3_source": true
+  },
+  "findings": [
+    {
+      "id": "P1-child-cross-binding-gap",
+      "severity": "P1",
+      "status": "blocking",
+      "summary": "child request layer/id/contract is never compared with the declaration record or retained for public verification"
+    },
+    {
+      "id": "P1-malformed-absent-public-verifier",
+      "severity": "P1",
+      "status": "blocking",
+      "summary": "verify_absent_local_binding_v1 accepts arbitrary layer/child shape when the supplied absence digest is self-consistent"
+    },
+    {
+      "id": "P2-version-domain-binding",
+      "severity": "P2",
+      "status": "changes_requested",
+      "summary": "review and factory versions are only nonempty and are not checked against a declared schema/version domain"
+    },
+    {
+      "id": "P2-r2-byte-archive-gap",
+      "severity": "P2",
+      "status": "evidence_limit",
+      "summary": "R2 product hashes are manifest-recorded only because no independent R2 product byte snapshot is retained"
+    }
+  ],
+  "required_repairs_before_focused_julia": [
+    "Bind each child request to the corresponding record child identity/contract and include that binding in present/bundle verification and hashes.",
+    "Make public absent verification enforce allowed layer, layer-specific child kind, and nonempty child identity; add malformed-absent tests.",
+    "Refresh static QA and focused test receipts after repairs; retain prepare_only, accepted=false, and no R01-R10 credit."
+  ],
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r3/report.md",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_agent_local_r3/manifest.json"
+  ],
+  "julia_invoked_by_reviewer": false,
+  "commit_created": false,
+  "manifest_self_hash": "excluded"
+}
