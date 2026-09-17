@@ -1,0 +1,66 @@
+{
+  "schema_version": "fusion-up2-pre-t0-typed-compiler-ir-independent-review-v6",
+  "record_kind": "independent_static_review",
+  "task_id": "UP2-01-GENERIC-COMPILER",
+  "reviewer": "different-Luna-independent-review",
+  "review_scope": "TypedCompilerIRV1/TypedCompilerLoweringV1 R6 constructor-validator source-kind/synthetic consistency",
+  "verdict": "GO_CONTRACT_ONLY_NO_GO_FORMAL",
+  "status_ceiling": "contract_only/prepared",
+  "claim_ceiling": "contract_only",
+  "evidence_scope": "not_measured",
+  "formal_acceptance": false,
+  "accepted": false,
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "compiler_invoked": false,
+  "provider_mesh_solver_invoked": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "commit": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py",
+    "exit_code": 0,
+    "checks": 108,
+    "passed": 108,
+    "errors": []
+  },
+  "checks": {
+    "constructor_two_way_invariant": true,
+    "validator_two_way_invariant": true,
+    "constructor_validator_rule_identical": true,
+    "four_quadrants_tested": true,
+    "synthetic_true_ready": true,
+    "synthetic_false_rejected": true,
+    "local_true_rejected": true,
+    "local_false_constructible": true,
+    "local_no_authority_terminal_deferred": true,
+    "local_checked_present_authority_ready": true,
+    "local_foreign_or_unchecked_authority_fail_closed": true,
+    "lowering_has_no_source_kind_synthetic_guard": true,
+    "r5_failure_receipt_preserved": true,
+    "current_hashes_match_r6_manifest": true,
+    "shared_entry_untouched": true,
+    "heavy_execution_absent": true
+  },
+  "r5_failure_receipt": {
+    "run_dir": "runs/agent_local_up2_tcir_contract_matrix_20260917_r5",
+    "archive_manifest": "docs/implementation/UP2-01/contract_only/agent_local_r5/manifest.json",
+    "exit_code": 1,
+    "summary": "83 pass / 5 fail",
+    "error": "validator residual ir.synthetic && ir.source_kind == :synthetic rejected local_source IR",
+    "root_cause": "validator retained old one-way implication after constructor repair",
+    "hashes_unchanged": true
+  },
+  "current_sha256": {
+    "src/RuntimeV4/TypedCompilerIRV1.jl": "ff05ba2d3d81c5170f83c36dfddb9cd307b6ceec849cc0e7ecff440853197d3c",
+    "src/RuntimeV4/TypedCompilerLoweringV1.jl": "452758e71f6bb8d50257dad77e39fd3ec1e2aea81830d838fa93cb144b0f427c",
+    "test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl": "0c5d79d0b259d1efa1b863db90ff64fca0a4c12b9fb9381b320daac15a3ff732",
+    "test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py": "0e1b40e116e5bb6e38aff0c978b8c339ca4e475261322374ece730ac4e12e09d"
+  },
+  "required_future_evidence": [
+    "serialized parent lane isolated Julia contract test",
+    "runtime confirmation of constructor and validator quadrants",
+    "T0/T1/T2 formal UP2 execution gates"
+  ]
+}

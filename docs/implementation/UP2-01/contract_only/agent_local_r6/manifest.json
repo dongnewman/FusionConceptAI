@@ -1,0 +1,87 @@
+{
+  "schema_version": "fusion-up2-pre-t0-typed-compiler-ir-agent-local-r6-v1",
+  "record_kind": "additive_static_validator_boolean_repair",
+  "task_id": "UP2-01-GENERIC-COMPILER",
+  "status": "contract_only",
+  "accepted": false,
+  "formal_acceptance": false,
+  "julia_invoked": true,
+  "desc_invoked": false,
+  "compiler_invoked": false,
+  "provider_mesh_solver_invoked": false,
+  "shared_entry_modified": false,
+  "manifest_modified": false,
+  "commit": false,
+  "r5_failure_receipt": {
+    "artifact": "runs/agent_local_up2_tcir_contract_matrix_20260917_r5",
+    "exit_code": 1,
+    "summary": "83 pass / 5 fail",
+    "elapsed": "3.5s",
+    "error": "validator residual ir.synthetic && ir.source_kind == :synthetic rejected local_source IR",
+    "root_cause": "validator retained the old one-way implication after constructor repair",
+    "input_hashes": "unchanged from R5 manifest"
+  },
+  "retained_failure_receipts": [
+    {
+      "artifact": "runs/agent_local_up2_tcir_contract_matrix_20260917_r3",
+      "exit_code": 1,
+      "summary": "0 pass / 1 error",
+      "elapsed": "1.3s",
+      "error": "_tc_new_unit_v1(::SubString{String}, ...)"
+    },
+    {
+      "artifact": "runs/agent_local_up2_tcir_contract_matrix_20260917_r4",
+      "exit_code": 1,
+      "summary": "71 pass / 1 error",
+      "elapsed": "2.4s",
+      "error": "local source factory inner constructor synthetic/source_kind mismatch"
+    },
+    {
+      "artifact": "runs/agent_local_up2_tcir_contract_matrix_20260917_r5",
+      "exit_code": 1,
+      "summary": "83 pass / 5 fail",
+      "elapsed": "3.5s",
+      "error": "validator residual one-way synthetic/source_kind guard"
+    }
+  ],
+  "runtime_contract_receipt": {
+    "source": "runs/agent_local_up2_tcir_contract_matrix_20260918_r6",
+    "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --history-file=no --project=. test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl",
+    "head": "23baee9f889713655b04f108f49f8dd0213e3ddf",
+    "exit_code": 0,
+    "summary": "89 pass / 89 total",
+    "elapsed": "1.6s",
+    "stderr_bytes": 0,
+    "hashes_unchanged": true,
+    "archive": "runtime/"
+  },
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py",
+    "exit_code": 0,
+    "checks": 108,
+    "passed": 108,
+    "errors": []
+  },
+  "owned_sha256": {
+    "src/RuntimeV4/TypedCompilerIRV1.jl": "ff05ba2d3d81c5170f83c36dfddb9cd307b6ceec849cc0e7ecff440853197d3c",
+    "src/RuntimeV4/TypedCompilerLoweringV1.jl": "452758e71f6bb8d50257dad77e39fd3ec1e2aea81830d838fa93cb144b0f427c",
+    "test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl": "0c5d79d0b259d1efa1b863db90ff64fca0a4c12b9fb9381b320daac15a3ff732",
+    "test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py": "0e1b40e116e5bb6e38aff0c978b8c339ca4e475261322374ece730ac4e12e09d"
+  },
+  "semantic_boundary": {
+    "claim_ceiling": "contract_only",
+    "evidence_scope": "contract_test_only",
+    "runtime_confirmation": "isolated_contract_test_passed",
+    "formal_credit": "none",
+    "up2_t0_r_credit": "none",
+    "factorial_or_physical_execution": "not_applicable"
+  },
+  "runtime_archive_sha256": {
+    "runtime/head.txt": "de1ddbb7e46358e81025d4ef725de81f760cdf071623091d40d49e23b3cea8ca",
+    "runtime/input_hashes_post.json": "c65e0e37b40a9e1a8364fa1f43034b8947858ddf330ce8a74bb9959d8844b9c4",
+    "runtime/input_hashes_pre.json": "c65e0e37b40a9e1a8364fa1f43034b8947858ddf330ce8a74bb9959d8844b9c4",
+    "runtime/run.json": "36deb38392e743043265041bb4bf5fe8bd0bb2adbf0a28243a0c54473df4b82c",
+    "runtime/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/stdout.raw": "3011527527ec7889304722914ab97bacc2c5efbc1c129488600be2009cf65c75"
+  }
+}

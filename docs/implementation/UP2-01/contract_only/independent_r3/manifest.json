@@ -1,0 +1,68 @@
+{
+  "schema_version": "fusion-up2-pre-t0-typed-compiler-ir-independent-review-v3",
+  "record_kind": "independent_static_review",
+  "task_id": "UP2-01-GENERIC-COMPILER",
+  "reviewer": "different-Luna-independent-review",
+  "review_scope": "TypedCompilerIRV1/TypedCompilerLoweringV1 additive R3 typed invoke constructor-dispatch repair",
+  "verdict": "GO_CONTRACT_ONLY_NO_GO_FORMAL",
+  "status_ceiling": "contract_only/prepared",
+  "claim_ceiling": "contract_only",
+  "evidence_scope": "not_measured",
+  "formal_acceptance": false,
+  "accepted": false,
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "product_modified": false,
+  "test_modified": false,
+  "shared_entry_modified": false,
+  "task_manifest_modified": false,
+  "commit": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py",
+    "exit_code": 0,
+    "checks": 100,
+    "passed": 100,
+    "errors": []
+  },
+  "sealed_factory_review": {
+    "product_types": [
+      "TypedCompilerUnitV1",
+      "TypedCompilerBindingV1",
+      "TypedCompilerSourceAuthorityV1",
+      "TypedCompilerIRV1",
+      "TypedCompilerLoweringV1"
+    ],
+    "typed_invoke_wrappers": [
+      "_tc_new_unit_v1",
+      "_tc_new_binding_v1",
+      "_tc_new_source_authority_v1",
+      "_tc_new_ir_v1",
+      "_tc_new_lowering_v1"
+    ],
+    "exact_signature_dispatch": "pass_static_review",
+    "factory_success_assertions": "pass_static_review",
+    "direct_constructor_rejection_assertions": "pass_static_review"
+  },
+  "r2_failure_archive": {
+    "path": "docs/implementation/UP2-01/contract_only/agent_local_r3/manifest.json",
+    "preserved": true,
+    "summary": "0 pass / 1 error: TypedCompilerUnitV1 sealed constructor",
+    "frozen_r2_input_sha256": {
+      "src/RuntimeV4/TypedCompilerIRV1.jl": "046ed3774a2d9fc0779bf168a168b4f66caa1863ab1894798955f71e0b17df42",
+      "src/RuntimeV4/TypedCompilerLoweringV1.jl": "47573d1b31c2d8da0dd7878bd0e41d8998a2f320ff9999b6ab69eecf5752d5ba",
+      "test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl": "ed191f3ed50fb54aae3217bffb1dd52a416d9e066da9089201444493c9a4fe6e",
+      "test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py": "de20b7e49b9ef4f64372bebed77fd9d387096beadc88a3b953c05b79a4450202"
+    }
+  },
+  "current_sha256": {
+    "src/RuntimeV4/TypedCompilerIRV1.jl": "b1a3142db83035ef623bcf175afa67eee17d6e75cf1ce248c85475d0559b4e78",
+    "src/RuntimeV4/TypedCompilerLoweringV1.jl": "452758e71f6bb8d50257dad77e39fd3ec1e2aea81830d838fa93cb144b0f427c",
+    "test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl": "abb0cb6b9aada1a7ef43d739e5d56026f55a1403cecffd15b14fe6f4c37c0b83",
+    "test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py": "ad3be091ca44ff01ccd5f7e9d9cfcb9ca392120f4aac1ee87fad7f67ef512aa7"
+  },
+  "required_future_evidence": [
+    "run isolated Julia contract test in the serialized parent lane",
+    "confirm all five factory paths at runtime",
+    "complete T0/T1/T2 and UP2 formal execution gates"
+  ]
+}

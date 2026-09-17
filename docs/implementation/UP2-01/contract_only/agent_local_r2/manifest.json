@@ -1,0 +1,39 @@
+{
+  "schema_version": "fusion-up2-pre-t0-typed-compiler-ir-agent-local-r2-v1",
+  "record_kind": "additive_static_contract_repair",
+  "task_id": "UP2-01-GENERIC-COMPILER",
+  "status": "contract_only",
+  "accepted": false,
+  "formal_acceptance": false,
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "compiler_invoked": false,
+  "provider_mesh_solver_invoked": false,
+  "shared_entry_modified": false,
+  "manifest_modified": false,
+  "commit": false,
+  "static_qa": {
+    "command": "python -B test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py",
+    "exit_code": 0,
+    "checks": 84,
+    "passed": 84,
+    "errors": []
+  },
+  "repairs": [
+    "expected input/output units exact comparison",
+    "schema and revision exact V1 binding",
+    "sealed checked-present local-source authority with full-field binding",
+    "fail-closed unit/operator/source/conservation contradictions",
+    "isolated positive and negative contract assertions"
+  ],
+  "source_sha256": {
+    "src/RuntimeV4/TypedCompilerIRV1.jl": "046ed3774a2d9fc0779bf168a168b4f66caa1863ab1894798955f71e0b17df42",
+    "src/RuntimeV4/TypedCompilerLoweringV1.jl": "47573d1b31c2d8da0dd7878bd0e41d8998a2f320ff9999b6ab69eecf5752d5ba",
+    "test/RuntimeV4/UP2PreT0/typed_compiler_ir_v1_contract_tests.jl": "ed191f3ed50fb54aae3217bffb1dd52a416d9e066da9089201444493c9a4fe6e",
+    "test/RuntimeV4/UP2PreT0/static_qa_typed_compiler_ir_v1.py": "de20b7e49b9ef4f64372bebed77fd9d387096beadc88a3b953c05b79a4450202"
+  },
+  "claim_ceiling": "contract_only",
+  "evidence_scope": "not_measured",
+  "factorial_or_physical_execution": "not_applicable",
+  "formal_credit": "none"
+}
