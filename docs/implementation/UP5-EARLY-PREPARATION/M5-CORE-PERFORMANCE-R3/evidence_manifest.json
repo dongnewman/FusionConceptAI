@@ -1,0 +1,22 @@
+{
+  "schema": "M5CorePerformanceR3ImplementationEvidenceV1",
+  "status": "implementation_pending_runtime",
+  "claim_ceiling": "synthetic_egraph_equality/screen_only",
+  "formal_credit": "none",
+  "runtime": "not_executed_parent_serial_lane",
+  "canonical_bytes_hash_semantics": "must_be_verified_by_parent",
+  "files": [
+    "src/Canonical/TypedASTProgramCanonical.jl",
+    "src/IR/ConditionalEGraphTypes.jl",
+    "src/IR/ConditionalEGraphSaturation.jl",
+    "src/Canonical/ConditionalEGraphCanonical.jl",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl"
+  ],
+  "protected": [
+    "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl",
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl",
+    "tools/m5_search_contract_r2/**",
+    "runs/**",
+    "historical evidence"
+  ]
+}

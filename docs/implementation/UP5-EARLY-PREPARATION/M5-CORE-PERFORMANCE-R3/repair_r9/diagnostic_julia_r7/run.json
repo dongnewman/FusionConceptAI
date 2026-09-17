@@ -1,0 +1,42 @@
+{
+  "schema": "m5_core_performance_r3_diagnostic_v7",
+  "diagnostic_only": true,
+  "screen_only": true,
+  "accepted": false,
+  "performance_credit": false,
+  "r01_r10_credit": false,
+  "factorial_unresolved": true,
+  "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 14304,
+  "start_utc": "2026-09-17T13:35:15.2442324Z",
+  "end_utc": "2026-09-17T13:35:26.1291271Z",
+  "duration_seconds": 10.8848947,
+  "exit_code": 1,
+  "stdout": "stdout.txt",
+  "stderr": "stderr.txt",
+  "stdout_bytes": 3993,
+  "stderr_bytes": 203,
+  "head": "c878404784d5d91e91b63bb2f2b2a87650dcdcb9",
+  "input_sha256": {
+    "src/Canonical/TypedASTProgramCanonical.jl": "f61c19a08c5f57d8a46170039dcfc0a1d15de03e1eb69069175253ed779a265e",
+    "src/IR/ConditionalEGraphTypes.jl": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92",
+    "src/IR/ConditionalEGraphSaturation.jl": "cbdf1e4935370754c17b7bbbdc5897260b8130c1084f2df2e66f1f73f90c1823",
+    "src/Canonical/ConditionalEGraphCanonical.jl": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl": "1aa16a610318878752f8192aac8371343bf655f7ac176ab3671334536a9d7131"
+  },
+  "process_check": {
+    "before": "no Julia/DESC process; pre-existing phase5_remote_session.py retained",
+    "after": "no Julia/DESC process",
+    "phase5_touched": false
+  },
+  "test_summary": {
+    "available": true,
+    "passed": 58,
+    "failed": 1,
+    "errored": 0,
+    "total": 59
+  },
+  "failure": "Test line 270 expected !(equivalent_external_rule === artifact_rule), but the external rule and artifact rule were identical by ===",
+  "interpretation": "Diagnostic-only runtime failure. No product source, test, or manifest was changed; the command was not rerun. This does not close M5, does not resolve factorial performance, and carries no R01-R10 credit."
+}

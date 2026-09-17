@@ -1,0 +1,43 @@
+{
+  "schema": "M5CorePerformanceR3IndependentR11",
+  "review_id": "M5-CORE-PERFORMANCE-R3-repair-R11-independent-r1",
+  "reviewer_role": "independent_different_luna_high_static_review",
+  "decision": "pass",
+  "focused_julia_decision": "go_diagnostic_only_once_serial",
+  "julia_executed": false,
+  "desc_executed": false,
+  "write_scope": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r11/independent_r1/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r11/independent_r1/manifest.json"
+  ],
+  "stored_order_witness_factorial_free": "pass_static",
+  "cold_hot_authority_counter_logic": "pass_static",
+  "verified_token_binding_owner_program_entry_bytes_hash_witness": "pass_static",
+  "ordinary_cache_authority_boundary": "pass_static",
+  "public_canonical_semantics": "unchanged_static",
+  "n1_n8_byte_hash_equivalence": "covered_static",
+  "negative_coverage": [
+    "token deletion",
+    "entry replacement",
+    "foreign owner",
+    "wrong program",
+    "wrong hash",
+    "wrong witness",
+    "forced same-digest different-bytes",
+    "cache mutation and deletion",
+    "mixed-owner provenance",
+    "forged rule and winner hints"
+  ],
+  "saturation_reuses_sealed_provenance_without_authority_change": "pass_static",
+  "legacy_trace_byte_identity": "covered_static",
+  "r10_reference": "../repair_r10/diagnostic_julia_r8/run.json",
+  "r10_reference_status": "exists_exit_0_57_pass_0_fail_0_error",
+  "runtime_evidence": "pending_parent_serial_lane",
+  "fresh_process_determinism": "pending_parent_serial_lane",
+  "timing_evidence": "pending_parent_serial_lane",
+  "factorial_root_cause": "public canonical AST authority still uses exact permutation search; R11 only removes repeated cache-entry reentry",
+  "formal_credit": "none",
+  "screen_status": "screen_only",
+  "protected_dirty_paths_touched_by_review": [],
+  "commit_created": false
+}

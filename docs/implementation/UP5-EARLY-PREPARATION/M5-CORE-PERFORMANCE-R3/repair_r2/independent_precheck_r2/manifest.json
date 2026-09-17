@@ -1,0 +1,54 @@
+{
+  "schema": "M5CorePerformanceR3IndependentPrecheckV2",
+  "review_id": "M5-CORE-PERFORMANCE-R3-repair-R2-independent-precheck-r2",
+  "reviewer_role": "different_luna_high_static_review",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "working_tree": "dirty_preserved",
+  "decision": "fail",
+  "focused_julia_decision": "go_diagnostic_only",
+  "acceptance_decision": "no_go",
+  "runtime_executed": false,
+  "julia_executed": false,
+  "git_diff_check": "pass",
+  "claim_ceiling": "screen_only",
+  "formal_credit": "none",
+  "findings": [
+    "P1 mutable TAC cache fields and reachable guard permit forged entry/bytes/hash/owner state",
+    "P1 condition/rule/member/proposal cache maps have no shadow seals or hit validation",
+    "P1 trace/provenance fragments do not bind owner token to a cache and rule_hash is not recomputed",
+    "P1 focused negatives omit entry/shadow/owner/fragment mutation and cross-derivation injection",
+    "P2 collision witness is not a forced production digest collision and fresh-process determinism is not run",
+    "P2 frozen HEAD byte/hash comparison remains pending parent serial lane"
+  ],
+  "minimum_julia_command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "reviewed_inputs": [
+    {"path":"src/Canonical/TypedASTProgramCanonical.jl","bytes":36422,"sha256":"cd7f5cd134774cc5867748f903d9ebbbe2eaa080e382e1fbec41567f7068e9ab"},
+    {"path":"src/IR/ConditionalEGraphTypes.jl","bytes":36373,"sha256":"3fd16bb7b2ad881e0d43c089186763901024638cdf0e4114dd1134e55ec572e9"},
+    {"path":"src/IR/ConditionalEGraphSaturation.jl","bytes":36698,"sha256":"8e9d6fe5fcbe4496a92243719dd8897f1ebb316574aab526a79cf678fc3b2c70"},
+    {"path":"src/Canonical/ConditionalEGraphCanonical.jl","bytes":27963,"sha256":"fc686b1d65b09604b4a6715962d34e1f7f355f86ee27b2018d766eedb6d3ff9f"},
+    {"path":"test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl","bytes":8392,"sha256":"9764fb5177e7f0e3c0cc94c6ec9bd7262eeda962ad18125575f4e9a148d493d5"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r2/README.md","bytes":1905,"sha256":"4d94dc825a837908b5122a7cacdc246f44f9dd08b07f0edf79ee4f4492a525b5"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r2/acceptance.md","bytes":1169,"sha256":"03d0578f84c2043bc260954246f1cc727d14eaac914f14cbb6a4d82bb8bbeb59"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r2/evidence_manifest.json","bytes":688,"sha256":"5bfbc4b21c25df10df00235918e0f0ffcc0ea599fe7e0cf227eba961e8d342dc"}
+  ],
+  "protected_paths": [
+    "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl",
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "runs/**",
+    "factorial first canonicalization search",
+    "historical evidence"
+  ],
+  "write_scope": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r2/independent_precheck_r2/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r2/independent_precheck_r2/manifest.json"
+  ],
+  "checks": {
+    "git_diff_check": "pass",
+    "julia_invocation": "not_run",
+    "m4_adapter_probe_manifest_runs": "not_touched_by_this_review",
+    "factorial_search": "preserved_unoptimized",
+    "screen_only": true,
+    "commit_created": false
+  }
+}

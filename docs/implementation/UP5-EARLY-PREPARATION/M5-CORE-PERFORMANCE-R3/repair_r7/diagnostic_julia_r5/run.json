@@ -1,0 +1,42 @@
+{
+  "schema": "m5_core_performance_r3_diagnostic_v5",
+  "diagnostic_only": true,
+  "screen_only": true,
+  "accepted": false,
+  "performance_credit": false,
+  "r01_r10_credit": false,
+  "factorial_unresolved": true,
+  "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 38648,
+  "start_utc": "2026-09-17T13:12:52.7394795Z",
+  "end_utc": "2026-09-17T13:13:11.0639758Z",
+  "duration_seconds": 18.3244963,
+  "exit_code": 1,
+  "stdout": "stdout.txt",
+  "stderr": "stderr.txt",
+  "stdout_bytes": 1301,
+  "stderr_bytes": 203,
+  "head": "c878404784d5d91e91b63bb2f2b2a87650dcdcb9",
+  "input_sha256": {
+    "src/Canonical/TypedASTProgramCanonical.jl": "f61c19a08c5f57d8a46170039dcfc0a1d15de03e1eb69069175253ed779a265e",
+    "src/IR/ConditionalEGraphTypes.jl": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92",
+    "src/IR/ConditionalEGraphSaturation.jl": "cbdf1e4935370754c17b7bbbdc5897260b8130c1084f2df2e66f1f73f90c1823",
+    "src/Canonical/ConditionalEGraphCanonical.jl": "688a34adc6bd70d2c7bf66174e228f2aa24692cf15be551d2826c52e020c745d",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl": "4424c445d14c8ed4e96a6efb2df72e74ddd4d7d9c015cb4a22662a620eb055e4"
+  },
+  "process_check": {
+    "before": "no Julia/DESC process; pre-existing phase5_remote_session.py retained",
+    "after": "no Julia/DESC process",
+    "phase5_touched": false
+  },
+  "test_summary": {
+    "available": true,
+    "passed": 50,
+    "failed": 0,
+    "errored": 1,
+    "total": 51
+  },
+  "failure": "invoke: argument type error in _ceg_query_result_top_bytes at src/Canonical/ConditionalEGraphCanonical.jl:223, reached from test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl:244",
+  "interpretation": "Diagnostic-only runtime failure. No product source, test, or manifest was changed; the command was not rerun. This does not close M5, does not resolve factorial performance, and carries no R01-R10 credit."
+}

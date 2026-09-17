@@ -1,0 +1,36 @@
+{
+  "schema": "m5_core_performance_r3_diagnostic_r12_postrun_v1",
+  "direct_diagnostic": true,
+  "screen_only": true,
+  "accepted": false,
+  "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "head": "3e7ebbb14ab493d3f7540b14e436c452954e40d0",
+  "exit_code": 0,
+  "test_summary": {
+    "passed": 104,
+    "failed": 0,
+    "errored": 0,
+    "total": 104,
+    "summary_time": "31.8s"
+  },
+  "tool_wall_seconds": "approximately 30.0076 plus polling overhead",
+  "process_check": {
+    "before": "no Julia/DESC process",
+    "after": "no Julia/DESC process"
+  },
+  "stream_boundary": "direct diagnostic; no PID/raw stream split guarantee",
+  "input_hashes_before_after_identical": true,
+  "input_sha256": {
+    "src/Canonical/ConditionalEGraphCanonical.jl": "6A52C6574CB30643352B88F7CFD2FEE49A1A35D549B7986F858E7DE55E08F235",
+    "src/Canonical/TypedASTProgramCanonical.jl": "F1F1CA40E5F32AF9C5FE18AC08B87600F25149E31863489C3C6E9A40A5CFFF07",
+    "src/IR/ConditionalEGraphSaturation.jl": "9D4D0F294079724EC54F7197DAE12196A8AF9C56B553F19139251AA4F9D04341",
+    "src/IR/ConditionalEGraphTypes.jl": "1B2E57637EDE403535A9570D5081E7021FB4A99F4E18667E2DAE15713F42CF92",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl": "BEDE607D9B5A1852950BC202C504E8B62F5B46EBB30EE35B6D13A12641522736"
+  },
+  "factorial_public_authority_unresolved": true,
+  "performance_credit": false,
+  "r01_r10_credit": false,
+  "julia_started_by_current_lane": false,
+  "desc_started_by_current_lane": false,
+  "commit_created": false
+}

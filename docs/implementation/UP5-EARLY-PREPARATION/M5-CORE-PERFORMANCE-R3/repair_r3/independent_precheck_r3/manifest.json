@@ -1,0 +1,50 @@
+{
+  "schema": "M5CorePerformanceR3IndependentPrecheckV3",
+  "review_id": "M5-CORE-PERFORMANCE-R3-repair-R3-independent-precheck-r3",
+  "reviewer_role": "different_luna_high_static_review",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "working_tree": "dirty_preserved",
+  "decision": "fail",
+  "focused_julia_decision": "go_diagnostic_only",
+  "acceptance_decision": "no_go",
+  "runtime_executed": false,
+  "julia_executed": false,
+  "git_diff_check": "pass",
+  "json_manifest_parse": "pass",
+  "claim_ceiling": "screen_only",
+  "formal_credit": "none",
+  "findings": [
+    "P1 final receipt writer does not cross-check trace rule_hash/rule_ref against the current canonical rewrite rule",
+    "P2 final receipt writer does not independently re-derive cache-dependent proposal dedup/winner decisions",
+    "P2 cache-hit validation is structural/hint validation rather than uniform current-canonical authority",
+    "P2 two-process plan is valid and deferred, but the probe/comparison runner is absent and unexecuted",
+    "P2 focused test lacks forged-rule final-receipt and forged-order final-receipt negatives"
+  ],
+  "positive_closures": [
+    "diagnostic stale-field references removed",
+    "immutable owner shell and broad cache-hit structural checks present",
+    "trace owner/rule bytes/ref/hash checks present",
+    "forced assigned-digest/different-bytes hint is rejected by authoritative AST bytes/hash",
+    "factorial first exact permutation search remains explicitly unoptimized"
+  ],
+  "minimum_julia_command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "fresh_process_status": "two_independent_sequential_processes_planned_not_executed",
+  "protected_paths": [
+    "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl",
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "runs/**",
+    "factorial first canonicalization search",
+    "historical evidence"
+  ],
+  "write_scope": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r3/independent_precheck_r3/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r3/independent_precheck_r3/manifest.json"
+  ],
+  "checks": {
+    "m4_adapter_probe_manifest_runs": "not_touched_by_this_review",
+    "screen_only": true,
+    "factorial_search": "preserved_unoptimized",
+    "commit_created": false
+  }
+}

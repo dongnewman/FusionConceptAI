@@ -361,6 +361,7 @@ function _tac_permutations(n::Int)
 end
 
 function _tac_program_payload(program::TypedASTProgramV1)
+    _tac_payload_counter_bump()
     nodes = getfield(program, :nodes); roots = getfield(program, :roots); ports = getfield(program, :input_ports)
     n = fieldcount(typeof(nodes)); perms = _tac_permutations(n); total = 1; factorial_i = 2
     while factorial_i <= n; total *= factorial_i; factorial_i += 1; end
@@ -376,6 +377,53 @@ function _tac_program_payload(program::TypedASTProgramV1)
         pi += 1
     end
     best
+end
+
+# Stored-order structural witness used only by the derivation-local cache.  It
+# deliberately expands every concrete node field instead of passing AST
+# objects to the canonical payload projection; consequently it never enters
+# graph-orbit search or the factorial permutation path.
+function _tac_stored_structural_node(n::AbstractTypedASTNodeV1)
+    typeof(n) === ASTInputV1 && return (node_type=:ASTInputV1,
+        port=getfield(n,:port), output_type=getfield(n,:output_type),
+        parameters=getfield(n,:parameters))
+    typeof(n) === ASTParameterV1 && return (node_type=:ASTParameterV1,
+        name=getfield(n,:name), output_type=getfield(n,:output_type),
+        parameters=getfield(n,:parameters))
+    typeof(n) === ASTConstantV1 && return (node_type=:ASTConstantV1,
+        name=getfield(n,:name), value=getfield(n,:value),
+        output_type=getfield(n,:output_type), parameters=getfield(n,:parameters))
+    typeof(n) === ASTApplyV1 && return (node_type=:ASTApplyV1,
+        operator_ref=getfield(n,:operator_ref), inputs=getfield(n,:inputs),
+        parameters=getfield(n,:parameters), output_type=getfield(n,:output_type),
+        commutative_input_groups=getfield(n,:commutative_input_groups),
+        pure=getfield(n,:pure), cse_allowed=getfield(n,:cse_allowed))
+    throw(ArgumentError("AST structural witness contains an unsealed node kind"))
+end
+
+function _tac_stored_structural_payload(program::TypedASTProgramV1)
+    nodes=getfield(program,:nodes); n=fieldcount(typeof(nodes))
+    (schema=:typed_ast_program_v1, witness_version=:stored_order_structural_v1,
+        node_count=n, nodes=ntuple(i -> invoke(_tac_stored_structural_node,
+            Tuple{AbstractTypedASTNodeV1},getfield(nodes,i)), n),
+        roots=getfield(program,:roots), input_ports=getfield(program,:input_ports),
+        used_manifest_bindings=getfield(program,:used_manifest_bindings))
+end
+
+const _TAC_TEST_PAYLOAD_COUNTER = Ref{Any}(nothing)
+
+function _tac_payload_counter_bump()
+    counter=_TAC_TEST_PAYLOAD_COUNTER[]
+    counter===nothing || (counter[] = counter[] + 1)
+    nothing
+end
+
+function _tac_test_payload_counter_start()
+    counter=Ref(0); _TAC_TEST_PAYLOAD_COUNTER[]=counter; counter
+end
+
+function _tac_test_payload_counter_stop!()
+    _TAC_TEST_PAYLOAD_COUNTER[]=nothing; nothing
 end
 
 function _tac_candidate_for_order(program::TypedASTProgramV1, order::Tuple{Vararg{Int}})
@@ -632,6 +680,206 @@ end
 
 function _typed_ast_program_json(program::TypedASTProgramV1)
     invoke(_tac_value_string, Tuple{Any}, invoke(_tac_program_payload, Tuple{TypedASTProgramV1}, program))
+end
+
+# A derivation-local cache seam.  The cache is deliberately owned by the
+# caller (normally one conditional-e-graph derivation) and never by the
+# canonicalizer itself: canonical bytes remain the sole identity authority,
+# while repeated reads of the same immutable program do not re-enter the
+# factorial graph-order search.  IdDict is intentional here; structural
+# equality/hash implementations must not become an implicit cache protocol.
+struct _TACCacheGuardV1 end
+const _TAC_CACHE_GUARD = _TACCacheGuardV1()
+
+struct _TACVerifiedCanonicalTokenV1
+    owner_token::Any
+    program::TypedASTProgramV1
+    entry_nonce::Any
+    bytes::String
+    hash::Digest256
+    fingerprint::String
+    guard_token::Any
+    function _TACVerifiedCanonicalTokenV1(owner_token::Any,
+            program::TypedASTProgramV1, entry_nonce::Any, bytes::String,
+            hash::Digest256, fingerprint::String, guard::_TACCacheGuardV1)
+        guard === _TAC_CACHE_GUARD || throw(ArgumentError("untrusted typed-AST verified token"))
+        invoke(_tac_hash_json,Tuple{String},bytes) == hash ||
+            throw(ArgumentError("typed-AST verified token hash mismatch"))
+        new(owner_token,program,entry_nonce,bytes,hash,fingerprint,guard)
+    end
+end
+
+struct _TACCanonicalEntryV1
+    owner_token::Any
+    program::TypedASTProgramV1
+    bytes::String
+    hash::Digest256
+    fingerprint::String
+    entry_nonce::Any
+    verified_token::Any
+    function _TACCanonicalEntryV1(owner_token::Any, program::TypedASTProgramV1,
+            bytes::String, hash::Digest256, fingerprint::String,
+            guard::_TACCacheGuardV1)
+        guard === _TAC_CACHE_GUARD || throw(ArgumentError("untrusted typed-AST cache entry"))
+        new(owner_token,program,bytes,hash,fingerprint,Ref{Nothing}(),nothing)
+    end
+    function _TACCanonicalEntryV1(owner_token::Any, program::TypedASTProgramV1,
+            bytes::String, hash::Digest256, fingerprint::String,
+            entry_nonce::Any, verified_token::Any, guard::_TACCacheGuardV1)
+        guard === _TAC_CACHE_GUARD || throw(ArgumentError("untrusted typed-AST cache entry"))
+        new(owner_token,program,bytes,hash,fingerprint,entry_nonce,verified_token)
+    end
+end
+
+struct _TACDerivationCanonicalCacheV1
+    entries::IdDict{Any,_TACCanonicalEntryV1}
+    verified_tokens::IdDict{Any,Any}
+    owner_token::Any
+end
+
+_TACDerivationCanonicalCacheV1() =
+    _TACDerivationCanonicalCacheV1(IdDict{Any,_TACCanonicalEntryV1}(),
+        IdDict{Any,Any}(), Ref{Nothing}())
+
+function _tac_program_fingerprint(program::TypedASTProgramV1)::String
+    # This is a stored-order full structural witness, not canonical identity.
+    # It never calls _tac_program_payload, _tac_candidate_for_order, or
+    # _tac_permutations, and therefore has no factorial path.
+    invoke(_tac_value_string,Tuple{Any},
+        invoke(_tac_stored_structural_payload,Tuple{TypedASTProgramV1},program))
+end
+
+function _tac_validate_entry_identity(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1, entry::_TACCanonicalEntryV1)
+    getfield(entry,:owner_token) === getfield(cache,:owner_token) ||
+        throw(ArgumentError("cross-derivation typed-AST cache entry"))
+    getfield(entry,:program) === program ||
+        throw(ArgumentError("typed-AST cache entry belongs to another program"))
+    invoke(_tac_text_equal,Tuple{String,String},
+        invoke(_tac_program_fingerprint,Tuple{TypedASTProgramV1},program),
+        getfield(entry,:fingerprint)) || throw(ArgumentError("stale typed-AST cache entry"))
+    entry
+end
+
+function _tac_validate_verified_token(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1, entry::_TACCanonicalEntryV1,
+        token::_TACVerifiedCanonicalTokenV1)
+    getfield(token,:owner_token) === getfield(cache,:owner_token) ||
+        throw(ArgumentError("cross-derivation typed-AST verified token"))
+    getfield(token,:program) === program ||
+        throw(ArgumentError("typed-AST verified token belongs to another program"))
+    getfield(token,:entry_nonce) === getfield(entry,:entry_nonce) ||
+        throw(ArgumentError("typed-AST verified token belongs to another entry"))
+    getfield(token,:bytes) === getfield(entry,:bytes) ||
+        throw(ArgumentError("typed-AST verified token bytes changed"))
+    getfield(token,:hash) == getfield(entry,:hash) ||
+        throw(ArgumentError("typed-AST verified token hash changed"))
+    invoke(_tac_text_equal,Tuple{String,String},getfield(token,:fingerprint),
+        getfield(entry,:fingerprint)) || throw(ArgumentError("typed-AST verified token witness changed"))
+    getfield(entry,:verified_token) === token ||
+        throw(ArgumentError("typed-AST verified token entry binding changed"))
+    haskey(getfield(cache,:verified_tokens),program) &&
+        getfield(cache,:verified_tokens)[program] === token ||
+        throw(ArgumentError("typed-AST verified token map entry missing"))
+    invoke(_tac_hash_json,Tuple{String},getfield(entry,:bytes)) ==
+        getfield(entry,:hash) || throw(ArgumentError("typed-AST verified entry hash changed"))
+    token
+end
+
+function _tac_verified_entry(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1, entry::_TACCanonicalEntryV1)
+    tokens=getfield(cache,:verified_tokens); entry_token=getfield(entry,:verified_token)
+    if haskey(tokens,program)
+        token=tokens[program]
+        token isa _TACVerifiedCanonicalTokenV1 ||
+            throw(ArgumentError("invalid typed-AST verified token"))
+        entry_token === token || throw(ArgumentError("typed-AST verified entry binding changed"))
+        return invoke(_tac_validate_verified_token,
+            Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1,_TACCanonicalEntryV1,_TACVerifiedCanonicalTokenV1},
+            cache,program,entry,token)
+    end
+    entry_token===nothing || throw(ArgumentError("typed-AST verified token map entry missing"))
+    nothing
+end
+
+function _tac_promote_verified!(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1, entry::_TACCanonicalEntryV1)
+    token=_TACVerifiedCanonicalTokenV1(getfield(cache,:owner_token),program,
+        getfield(entry,:entry_nonce),getfield(entry,:bytes),getfield(entry,:hash),
+        getfield(entry,:fingerprint),_TAC_CACHE_GUARD)
+    verified_entry=_TACCanonicalEntryV1(getfield(entry,:owner_token),program,
+        getfield(entry,:bytes),getfield(entry,:hash),getfield(entry,:fingerprint),
+        getfield(entry,:entry_nonce),token,_TAC_CACHE_GUARD)
+    getfield(cache,:entries)[program]=verified_entry
+    getfield(cache,:verified_tokens)[program]=token
+    verified_entry
+end
+
+function _tac_cached_program_bytes(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1)::String
+    if haskey(cache.entries, program)
+        entry=cache.entries[program]
+        invoke(_tac_validate_entry_identity,
+            Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1,_TACCanonicalEntryV1},
+            cache,program,entry)
+        invoke(_tac_verified_entry,
+            Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1,_TACCanonicalEntryV1},
+            cache,program,entry)
+        invoke(_tac_hash_json,Tuple{String},getfield(entry,:bytes)) ==
+            getfield(entry,:hash) || throw(ArgumentError("mutated typed-AST cache hash"))
+        return getfield(entry,:bytes)
+    end
+    bytes = invoke(_typed_ast_program_json, Tuple{TypedASTProgramV1}, program)
+    hash = invoke(_tac_hash_json, Tuple{String}, bytes)
+    fingerprint=invoke(_tac_program_fingerprint,Tuple{TypedASTProgramV1},program)
+    entry = _TACCanonicalEntryV1(getfield(cache,:owner_token),program,bytes,hash,
+        fingerprint,_TAC_CACHE_GUARD)
+    cache.entries[program] = entry
+    bytes
+end
+
+function _tac_cached_program_hash(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1)::Digest256
+    bytes = invoke(_tac_cached_program_bytes,
+        Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1}, cache, program)
+    entry=haskey(cache.entries,program) ? cache.entries[program] :
+        throw(ArgumentError("missing typed-AST cache entry"))
+    getfield(entry,:bytes) === bytes || throw(ArgumentError("typed-AST cache bytes changed"))
+    hash = getfield(entry,:hash)
+    invoke(_tac_hash_json,Tuple{String},bytes) == hash ||
+        throw(ArgumentError("mutated typed-AST cache hash"))
+    hash
+end
+
+function _tac_authoritative_program_bytes(cache::_TACDerivationCanonicalCacheV1,
+        program::TypedASTProgramV1)::String
+    if !haskey(cache.entries,program)
+        current=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},program)
+        entry=_TACCanonicalEntryV1(getfield(cache,:owner_token),program,current,
+            invoke(_tac_hash_json,Tuple{String},current),
+            invoke(_tac_program_fingerprint,Tuple{TypedASTProgramV1},program),
+            _TAC_CACHE_GUARD)
+        getfield(cache,:entries)[program]=entry
+        return getfield(_tac_promote_verified!(cache,program,entry),:bytes)
+    end
+    entry=getfield(cache,:entries)[program]
+    invoke(_tac_validate_entry_identity,
+        Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1,_TACCanonicalEntryV1},
+        cache,program,entry)
+    verified=invoke(_tac_verified_entry,
+        Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1,_TACCanonicalEntryV1},
+        cache,program,entry)
+    verified===nothing || return getfield(entry,:bytes)
+    current=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},program)
+    current_hash=invoke(_tac_hash_json,Tuple{String},current)
+    current_fingerprint=invoke(_tac_program_fingerprint,Tuple{TypedASTProgramV1},program)
+    invoke(_tac_text_equal,Tuple{String,String},current,getfield(entry,:bytes)) ||
+        throw(ArgumentError("typed-AST cache differs from current canonical bytes"))
+    current_hash == getfield(entry,:hash) ||
+        throw(ArgumentError("typed-AST cache differs from current canonical hash"))
+    invoke(_tac_text_equal,Tuple{String,String},current_fingerprint,getfield(entry,:fingerprint)) ||
+        throw(ArgumentError("typed-AST cache differs from current structural witness"))
+    getfield(_tac_promote_verified!(cache,program,entry),:bytes)
 end
 
 function _tac_hash_json(value::String)::Digest256

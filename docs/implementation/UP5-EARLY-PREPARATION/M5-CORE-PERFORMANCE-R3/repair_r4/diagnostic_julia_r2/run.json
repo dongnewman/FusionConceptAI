@@ -1,0 +1,43 @@
+{
+  "schema": "m5_core_performance_r3_diagnostic_v2",
+  "diagnostic_only": true,
+  "screen_only": true,
+  "accepted": false,
+  "performance_credit": false,
+  "r01_r10_credit": false,
+  "factorial_unresolved": true,
+  "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 26872,
+  "start_utc": "2026-09-17T12:45:39.8373504Z",
+  "end_utc": "2026-09-17T12:45:45.3954348Z",
+  "duration_seconds": 5.5580844,
+  "exit_code": 1,
+  "stdout": "stdout.txt",
+  "stderr": "stderr.txt",
+  "stdout_bytes": 0,
+  "stderr_bytes": 427,
+  "head": "c878404784d5d91e91b63bb2f2b2a87650dcdcb9",
+  "input_sha256": {
+    "src/Canonical/TypedASTProgramCanonical.jl": "f61c19a08c5f57d8a46170039dcfc0a1d15de03e1eb69069175253ed779a265e",
+    "src/IR/ConditionalEGraphTypes.jl": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92",
+    "src/IR/ConditionalEGraphSaturation.jl": "cbdf1e4935370754c17b7bbbdc5897260b8130c1084f2df2e66f1f73f90c1823",
+    "src/Canonical/ConditionalEGraphCanonical.jl": "813454c8607ab74be9b548b6c4ad882c293288d2f21fe70acdaf841eebc4f91a",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl": "96496587347a4c7759834f3c7f0cb0bd7795b4e0ecfb1a2337e518bcfac314de"
+  },
+  "process_check": {
+    "before": "no Julia/DESC process; pre-existing phase5_remote_session.py retained",
+    "after": "no Julia/DESC process",
+    "phase5_touched": false
+  },
+  "test_summary": {
+    "available": false,
+    "passed": null,
+    "failed": null,
+    "errored": null,
+    "total": null,
+    "reason": "Julia syntax error occurred before Test summary"
+  },
+  "failure": "syntax: \":owner_token\" is not a valid function argument name around test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl:137",
+  "interpretation": "Diagnostic-only parse failure. No product source, test, or manifest was changed; the command was not rerun. This does not close M5, does not resolve factorial performance, and carries no R01-R10 credit."
+}

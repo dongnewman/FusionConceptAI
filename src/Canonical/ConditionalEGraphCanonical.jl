@@ -1,11 +1,51 @@
 """Closed byte writers for P1 values; no semantic_view/canonical_json recursion."""
 const _CEG_DOMAIN="fusionconceptai:v4:p1"
+
+function _ceg_length_delimited_key(parts::Tuple)
+    io = invoke(_ccbw_new, Tuple{})
+    i = 1
+    n = fieldcount(typeof(parts))
+    while i <= n
+        part = getfield(parts, i)
+        part isa String || throw(ArgumentError("conditional e-graph key parts must be sealed strings"))
+        _ccbw_integer!(io, UInt64(ncodeunits(part)))
+        _ccbw_byte!(io, UInt8(':'))
+        _ccbw_utf8!(io, part)
+        i += 1
+    end
+    invoke(_ccbw_finish, Tuple{Base.GenericIOBuffer}, io)
+end
+
+_ceg_member_key_bytes(k::_CEGMemberKeyV1) =
+    invoke(_ceg_length_delimited_key, Tuple{Tuple}, (k.program_bytes, k.condition_bytes))
+
+_ceg_proposal_key_bytes(k::_CEGProposalKeyV1) =
+    invoke(_ceg_length_delimited_key, Tuple{Tuple},
+        (k.rule_bytes, k.source_bytes, k.target_bytes,
+            k.orientation === UInt8(1) ? "1" : "2", k.condition_bytes))
+
+Base.isequal(a::_CEGMemberKeyV1, b::_CEGMemberKeyV1) =
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.program_bytes, b.program_bytes) &&
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.condition_bytes, b.condition_bytes)
+Base.isequal(a::_CEGProposalKeyV1, b::_CEGProposalKeyV1) =
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.rule_bytes, b.rule_bytes) &&
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.source_bytes, b.source_bytes) &&
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.target_bytes, b.target_bytes) &&
+    a.orientation === b.orientation &&
+    invoke(_ceg_sealed_equal, Tuple{String,String}, a.condition_bytes, b.condition_bytes)
+Base.hash(k::_CEGMemberKeyV1, seed::UInt) = hash(k.condition_bytes, hash(k.program_bytes, seed))
+Base.hash(k::_CEGProposalKeyV1, seed::UInt) = hash(k.condition_bytes,
+    hash(k.orientation, hash(k.target_bytes, hash(k.source_bytes, hash(k.rule_bytes, seed)))))
+
 _ceg_ref(io::Base.GenericIOBuffer,r::QualifiedRefV1)=(_ccbw_ascii!(io,"{\"id\":");_ccbw_quote!(io,getfield(r,:id));_ccbw_ascii!(io,",\"version\":");_ccbw_quote!(io,getfield(r,:version));_ccbw_byte!(io,UInt8('}')))
 function _ceg_ref_bytes(r::QualifiedRefV1)
     io=invoke(_ccbw_new,Tuple{}); invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,r); invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 _ceg_digest(io::Base.GenericIOBuffer,d::Digest256)=(_ccbw_ascii!(io,"{\"value\":");_ccbw_quote!(io,getfield(d,:value));_ccbw_byte!(io,UInt8('}')))
 _ceg_ast(io::Base.GenericIOBuffer,p::TypedASTProgramV1)=_ccbw_utf8!(io,invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},p))
+_ceg_cached_ast(io::Base.GenericIOBuffer,p::TypedASTProgramV1,cache::_CEGDerivationCacheV1)=
+    _ccbw_utf8!(io,invoke(_tac_authoritative_program_bytes,
+        Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1}, cache.canonical, p))
 function _ceg_write_conditions!(io::Base.GenericIOBuffer,cs::Tuple)
     _ccbw_byte!(io,UInt8('['));i=1; n=fieldcount(typeof(cs))
     while i<=n
@@ -30,21 +70,88 @@ function _ceg_rule_body(r::WholeProgramConditionalRewriteV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"checker_contract_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:checker_contract_hash));_ccbw_ascii!(io,",\"checker_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(r,:checker_ref));_ccbw_ascii!(io,",\"lhs_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:lhs_hash));_ccbw_ascii!(io,",\"lhs_program\":");invoke(_ceg_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1},io,getfield(r,:lhs_program));_ccbw_ascii!(io,",\"required_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(r,:required_conditions));_ccbw_ascii!(io,",\"rhs_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:rhs_hash));_ccbw_ascii!(io,",\"rhs_program\":");invoke(_ceg_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1},io,getfield(r,:rhs_program));_ccbw_ascii!(io,",\"rule_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(r,:rule_ref));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 _ceg_rule_bytes(r::WholeProgramConditionalRewriteV1)=invoke(_ceg_wrap,Tuple{String,String},"whole_program_conditional_rewrite",invoke(_ceg_rule_body,Tuple{WholeProgramConditionalRewriteV1},r))
+function _ceg_rule_body(r::WholeProgramConditionalRewriteV1, cache::_CEGDerivationCacheV1)
+    _ceg_digest_equal(invoke(_tac_hash_json,Tuple{String},invoke(_tac_authoritative_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},cache.canonical,getfield(r,:lhs_program))), getfield(r,:lhs_hash)) || throw(ArgumentError("spoofed lhs hash"))
+    _ceg_digest_equal(invoke(_tac_hash_json,Tuple{String},invoke(_tac_authoritative_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},cache.canonical,getfield(r,:rhs_program))), getfield(r,:rhs_hash)) || throw(ArgumentError("spoofed rhs hash"))
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"checker_contract_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:checker_contract_hash));_ccbw_ascii!(io,",\"checker_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(r,:checker_ref));_ccbw_ascii!(io,",\"lhs_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:lhs_hash));_ccbw_ascii!(io,",\"lhs_program\":");invoke(_ceg_cached_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1,_CEGDerivationCacheV1},io,getfield(r,:lhs_program),cache);_ccbw_ascii!(io,",\"required_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(r,:required_conditions));_ccbw_ascii!(io,",\"rhs_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(r,:rhs_hash));_ccbw_ascii!(io,",\"rhs_program\":");invoke(_ceg_cached_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1,_CEGDerivationCacheV1},io,getfield(r,:rhs_program),cache);_ccbw_ascii!(io,",\"rule_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(r,:rule_ref));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+end
+_ceg_rule_bytes(r::WholeProgramConditionalRewriteV1, cache::_CEGDerivationCacheV1)=
+    invoke(_ceg_wrap,Tuple{String,String},"whole_program_conditional_rewrite",
+        invoke(_ceg_rule_body,Tuple{WholeProgramConditionalRewriteV1,_CEGDerivationCacheV1},r,cache))
 function _ceg_set_body(s::ConditionalRewriteSetV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"rules\":[");i=1;rules=getfield(s,:rules);n=fieldcount(typeof(rules));while i<=n;r=getfield(rules,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},r));i+=1;end;_ccbw_ascii!(io,"]}");invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 _ceg_rule_set_bytes(s::ConditionalRewriteSetV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_rewrite_set",invoke(_ceg_set_body,Tuple{ConditionalRewriteSetV1},s))
+function _ceg_rule_set_bytes(s::ConditionalRewriteSetV1, cache::_CEGDerivationCacheV1)
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"rules\":[");i=1;rules=getfield(s,:rules);n=fieldcount(typeof(rules));while i<=n;r=getfield(rules,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1,_CEGDerivationCacheV1},r,cache));i+=1;end;_ccbw_ascii!(io,"]}");invoke(_ceg_wrap,Tuple{String,String},"conditional_rewrite_set",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
+end
 function _ceg_member_body(m::ConditionalProgramENodeV1)
     _ceg_digest_equal(invoke(_ceg_program_hash,Tuple{TypedASTProgramV1},getfield(m,:program)),getfield(m,:program_hash)) || throw(ArgumentError("spoofed program hash"))
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"cumulative_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(m,:cumulative_conditions));_ccbw_ascii!(io,",\"program\":");invoke(_ceg_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1},io,getfield(m,:program));_ccbw_ascii!(io,",\"program_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(m,:program_hash));_ccbw_ascii!(io,",\"provenance\":");getfield(m,:provenance)===nothing ? _ccbw_ascii!(io,"null") : _ccbw_utf8!(io,invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1},getfield(m,:provenance)));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 _ceg_member_bytes(m::ConditionalProgramENodeV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_program_enode",invoke(_ceg_member_body,Tuple{ConditionalProgramENodeV1},m))
+function _ceg_member_body(m::ConditionalProgramENodeV1, cache::_CEGDerivationCacheV1)
+    _ceg_digest_equal(invoke(_tac_hash_json,Tuple{String},invoke(_tac_authoritative_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},cache.canonical,getfield(m,:program))), getfield(m,:program_hash)) || throw(ArgumentError("spoofed program hash"))
+    getfield(m,:provenance)===nothing || throw(ArgumentError("member provenance requires current rewrite-set authority"))
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"cumulative_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(m,:cumulative_conditions));_ccbw_ascii!(io,",\"program\":");invoke(_ceg_cached_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1,_CEGDerivationCacheV1},io,getfield(m,:program),cache);_ccbw_ascii!(io,",\"program_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(m,:program_hash));_ccbw_ascii!(io,",\"provenance\":null");_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+end
+function _ceg_member_body(m::ConditionalProgramENodeV1, cache::_CEGDerivationCacheV1,
+        rules::ConditionalRewriteSetV1, source::TypedASTProgramV1)
+    _ceg_digest_equal(invoke(_tac_hash_json,Tuple{String},invoke(_tac_authoritative_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},cache.canonical,getfield(m,:program))), getfield(m,:program_hash)) || throw(ArgumentError("spoofed program hash"))
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"cumulative_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(m,:cumulative_conditions));_ccbw_ascii!(io,",\"program\":");invoke(_ceg_cached_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1,_CEGDerivationCacheV1},io,getfield(m,:program),cache);_ccbw_ascii!(io,",\"program_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(m,:program_hash));_ccbw_ascii!(io,",\"provenance\":");getfield(m,:provenance)===nothing ? _ccbw_ascii!(io,"null") : _ccbw_utf8!(io,invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1,ConditionalRewriteSetV1,_CEGDerivationCacheV1,TypedASTProgramV1,TypedASTProgramV1},getfield(m,:provenance),rules,cache,source,getfield(m,:program)));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+end
+_ceg_member_bytes(m::ConditionalProgramENodeV1, cache::_CEGDerivationCacheV1)=
+    invoke(_ceg_wrap,Tuple{String,String},"conditional_program_enode",
+        invoke(_ceg_member_body,Tuple{ConditionalProgramENodeV1,_CEGDerivationCacheV1},m,cache))
 function _ceg_trace_body(t::ConditionalRewriteTraceStepV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"cumulative_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(t,:cumulative_conditions));_ccbw_ascii!(io,",\"orientation\":");_ccbw_quote!(io,getfield(t,:orientation)===rewrite_forward ? "rewrite_forward" : "rewrite_reverse");_ccbw_ascii!(io,",\"required_conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(t,:required_conditions));_ccbw_ascii!(io,",\"round\":");_ccbw_integer!(io,Int64(getfield(t,:round)));_ccbw_ascii!(io,",\"rule_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(t,:rule_hash));_ccbw_ascii!(io,",\"rule_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(t,:rule_ref));_ccbw_ascii!(io,",\"source_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(t,:source_hash));_ccbw_ascii!(io,",\"step\":");_ccbw_integer!(io,Int64(getfield(t,:step)));_ccbw_ascii!(io,",\"target_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(t,:target_hash));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 _ceg_trace_bytes(t::ConditionalRewriteTraceStepV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_rewrite_trace_step",invoke(_ceg_trace_body,Tuple{ConditionalRewriteTraceStepV1},t))
 function _ceg_provenance_bytes(p::ConditionalEqualityProvenanceV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"conditions\":");invoke(_ceg_write_conditions!,Tuple{Base.GenericIOBuffer,Tuple},io,getfield(p,:conditions));_ccbw_ascii!(io,",\"source_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(p,:source_hash));_ccbw_ascii!(io,",\"target_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(p,:target_hash));_ccbw_ascii!(io,",\"trace\":[");i=1;trace=getfield(p,:trace);n=fieldcount(typeof(trace));while i<=n;t=getfield(trace,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_trace_bytes,Tuple{ConditionalRewriteTraceStepV1},t));i+=1;end;_ccbw_ascii!(io,"]}"); body=invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io);invoke(_ceg_wrap,Tuple{String,String},"conditional_equality_provenance",body)
+end
+function _ceg_validate_provenance_current(p::ConditionalEqualityProvenanceV1,
+        source::TypedASTProgramV1, target::TypedASTProgramV1,
+        rules::ConditionalRewriteSetV1, cache::_CEGDerivationCacheV1)
+    trace=getfield(p,:trace); n=fieldcount(typeof(trace)); n>0 || throw(ArgumentError("provenance trace cannot be empty"))
+    prior_hash=invoke(_ceg_program_hash,Tuple{TypedASTProgramV1},source)
+    expected_target=invoke(_ceg_program_hash,Tuple{TypedASTProgramV1},target)
+    invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(p,:source_hash),prior_hash) || throw(ArgumentError("provenance source hash is not current"))
+    prior_conditions=(); trace_owner=nothing; owner_mode=UInt8(0); i=1
+    while i<=n
+        step=getfield(trace,i); owner=getfield(step,:owner_token)
+        if owner===nothing
+            owner_mode===UInt8(2) && throw(ArgumentError("mixed legacy and sealed provenance trace owners"))
+            owner_mode=UInt8(1)
+        else
+            owner_mode===UInt8(1) && throw(ArgumentError("mixed legacy and sealed provenance trace owners"))
+            if owner_mode===UInt8(0)
+                trace_owner=owner
+            else
+                trace_owner===owner || throw(ArgumentError("provenance trace owners differ"))
+            end
+            owner_mode=UInt8(2)
+        end
+        rule=invoke(_ceg_trace_rule,Tuple{ConditionalRewriteSetV1,ConditionalRewriteTraceStepV1},rules,step)
+        rule===nothing && throw(ArgumentError("provenance trace rule is not in current rewrite set"))
+        current_rule_hash=invoke(_ceg_hash_text,Tuple{String},invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},rule))
+        invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(step,:rule_hash),current_rule_hash) || throw(ArgumentError("provenance trace rule hash is not current"))
+        expected_source=getfield(step,:orientation)===rewrite_forward ? getfield(rule,:lhs_hash) : getfield(rule,:rhs_hash)
+        expected_step_target=getfield(step,:orientation)===rewrite_forward ? getfield(rule,:rhs_hash) : getfield(rule,:lhs_hash)
+        invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(step,:source_hash),prior_hash) && invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(step,:source_hash),expected_source) && invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(step,:target_hash),expected_step_target) || throw(ArgumentError("provenance trace source/target chain mismatch"))
+        prior_conditions=invoke(_ceg_merge_conditions,Tuple{Tuple,Tuple},prior_conditions,getfield(step,:required_conditions))
+        invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},prior_conditions),invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(step,:cumulative_conditions))) || throw(ArgumentError("provenance trace condition chain mismatch"))
+        prior_hash=getfield(step,:target_hash); i+=1
+    end
+    invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(p,:target_hash),expected_target) && invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},prior_hash,expected_target) || throw(ArgumentError("provenance target hash is not current"))
+    invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(p,:conditions)),invoke(_ceg_condition_bytes,Tuple{Tuple},prior_conditions)) || throw(ArgumentError("provenance conditions are not current"))
+    true
+end
+function _ceg_provenance_bytes(p::ConditionalEqualityProvenanceV1,
+        rules::ConditionalRewriteSetV1, cache::_CEGDerivationCacheV1,
+        source::TypedASTProgramV1, target::TypedASTProgramV1)
+    invoke(_ceg_validate_provenance_current,Tuple{ConditionalEqualityProvenanceV1,TypedASTProgramV1,TypedASTProgramV1,ConditionalRewriteSetV1,_CEGDerivationCacheV1},p,source,target,rules,cache)
+    invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1},p)
 end
 function _ceg_budget_bytes(b::ConditionalEGraphBudgetV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"max_programs\":");_ccbw_integer!(io,Int64(getfield(b,:max_programs)));_ccbw_ascii!(io,",\"max_rewrite_attempts\":");_ccbw_integer!(io,Int64(getfield(b,:max_rewrite_attempts)));_ccbw_ascii!(io,",\"max_rounds\":");_ccbw_integer!(io,Int64(getfield(b,:max_rounds)));_ccbw_ascii!(io,",\"max_trace_steps\":");_ccbw_integer!(io,Int64(getfield(b,:max_trace_steps)));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
@@ -58,22 +165,46 @@ end
 function _ceg_members_bytes(ms::Tuple)
     io=invoke(_ccbw_new,Tuple{});_ccbw_byte!(io,UInt8('['));i=1;n=fieldcount(typeof(ms));while i<=n;m=getfield(ms,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1},m));i+=1;end;_ccbw_byte!(io,UInt8(']'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
+function _ceg_members_bytes(ms::Tuple, cache::_CEGDerivationCacheV1)
+    io=invoke(_ccbw_new,Tuple{});_ccbw_byte!(io,UInt8('['));i=1;n=fieldcount(typeof(ms));while i<=n;m=getfield(ms,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1,_CEGDerivationCacheV1},m,cache));i+=1;end;_ccbw_byte!(io,UInt8(']'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+end
+function _ceg_members_bytes(ms::Tuple, cache::_CEGDerivationCacheV1,
+        rules::ConditionalRewriteSetV1, source::TypedASTProgramV1)
+    io=invoke(_ccbw_new,Tuple{});_ccbw_byte!(io,UInt8('['));i=1;n=fieldcount(typeof(ms));while i<=n;m=getfield(ms,i);i>1&&_ccbw_byte!(io,UInt8(','));_ccbw_utf8!(io,invoke(_ceg_wrap,Tuple{String,String},"conditional_program_enode",invoke(_ceg_member_body,Tuple{ConditionalProgramENodeV1,_CEGDerivationCacheV1,ConditionalRewriteSetV1,TypedASTProgramV1},m,cache,rules,source)));i+=1;end;_ccbw_byte!(io,UInt8(']'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+end
 function _ceg_equivalence_bytes(g::DerivedConditionalEGraphV1)
     _ceg_digest_equal(invoke(_ceg_program_hash,Tuple{TypedASTProgramV1},getfield(g,:source_program)),getfield(g,:source_hash)) || throw(ArgumentError("spoofed source hash"))
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"canonicalization_profile\":");_ccbw_utf8!(io,invoke(_ceg_profile_bytes,Tuple{CanonicalizationProfileV1},getfield(g,:canonicalization_profile)));_ccbw_ascii!(io,",\"manifest_bindings\":");_ccbw_utf8!(io,invoke(_ceg_bindings_bytes,Tuple{Tuple},getfield(g,:used_manifest_bindings)));_ccbw_ascii!(io,",\"members\":");_ccbw_utf8!(io,invoke(_ceg_members_bytes,Tuple{Tuple},getfield(getfield(g,:eclass),:members)));_ccbw_ascii!(io,",\"rewrite_set\":");_ccbw_utf8!(io,invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1},getfield(g,:rewrite_set)));_ccbw_ascii!(io,",\"saturation_state\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:saturation_state))));_ccbw_ascii!(io,",\"source_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(g,:source_hash));_ccbw_ascii!(io,",\"source_program\":");invoke(_ceg_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1},io,getfield(g,:source_program));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_equivalence",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
 end
+function _ceg_equivalence_bytes(g::DerivedConditionalEGraphV1, cache::_CEGDerivationCacheV1)
+    _ceg_digest_equal(invoke(_tac_hash_json,Tuple{String},invoke(_tac_authoritative_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},cache.canonical,getfield(g,:source_program))), getfield(g,:source_hash)) || throw(ArgumentError("spoofed source hash"))
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"canonicalization_profile\":");_ccbw_utf8!(io,invoke(_ceg_profile_bytes,Tuple{CanonicalizationProfileV1},getfield(g,:canonicalization_profile)));_ccbw_ascii!(io,",\"manifest_bindings\":");_ccbw_utf8!(io,invoke(_ceg_bindings_bytes,Tuple{Tuple},getfield(g,:used_manifest_bindings)));_ccbw_ascii!(io,",\"members\":");_ccbw_utf8!(io,invoke(_ceg_members_bytes,Tuple{Tuple,_CEGDerivationCacheV1,ConditionalRewriteSetV1,TypedASTProgramV1},getfield(getfield(g,:eclass),:members),cache,getfield(g,:rewrite_set),getfield(g,:source_program)));_ccbw_ascii!(io,",\"rewrite_set\":");_ccbw_utf8!(io,invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1,_CEGDerivationCacheV1},getfield(g,:rewrite_set),cache));_ccbw_ascii!(io,",\"saturation_state\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:saturation_state))));_ccbw_ascii!(io,",\"source_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(g,:source_hash));_ccbw_ascii!(io,",\"source_program\":");invoke(_ceg_cached_ast,Tuple{Base.GenericIOBuffer,TypedASTProgramV1,_CEGDerivationCacheV1},io,getfield(g,:source_program),cache);_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_equivalence",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
+end
 function _ceg_attempt_bytes(g::DerivedConditionalEGraphV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"budget\":");_ccbw_utf8!(io,invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},getfield(g,:saturation_budget)));_ccbw_ascii!(io,",\"complete\":");_ccbw_ascii!(io, getfield(g,:complete) ? "true" : "false");_ccbw_ascii!(io,",\"equivalence\":");_ccbw_utf8!(io,invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1},g));_ccbw_ascii!(io,",\"saturation_state\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:saturation_state))));_ccbw_ascii!(io,",\"stop_reason\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:stop_reason))));_ccbw_ascii!(io,",\"usage\":");_ccbw_utf8!(io,invoke(_ceg_usage_bytes,Tuple{ConditionalEGraphUsageV1},getfield(g,:usage)));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_saturation_attempt",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
+end
+function _ceg_attempt_bytes(g::DerivedConditionalEGraphV1, cache::_CEGDerivationCacheV1)
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"budget\":");_ccbw_utf8!(io,invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},getfield(g,:saturation_budget)));_ccbw_ascii!(io,",\"complete\":");_ccbw_ascii!(io, getfield(g,:complete) ? "true" : "false");_ccbw_ascii!(io,",\"equivalence\":");_ccbw_utf8!(io,invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},g,cache));_ccbw_ascii!(io,",\"saturation_state\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:saturation_state))));_ccbw_ascii!(io,",\"stop_reason\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(g,:stop_reason))));_ccbw_ascii!(io,",\"usage\":");_ccbw_utf8!(io,invoke(_ceg_usage_bytes,Tuple{ConditionalEGraphUsageV1},getfield(g,:usage)));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_saturation_attempt",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
 end
 function _ceg_condition_top_bytes(x::EqualityConditionRequirementV1)
     io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"condition_contract_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(x,:condition_contract_hash));_ccbw_ascii!(io,",\"condition_ref\":");invoke(_ceg_ref,Tuple{Base.GenericIOBuffer,QualifiedRefV1},io,getfield(x,:condition_ref));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"equality_condition_requirement",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
 end
 canonical_json(x::EqualityConditionRequirementV1)=invoke(_ceg_condition_top_bytes,Tuple{EqualityConditionRequirementV1},x)
-canonical_json(x::WholeProgramConditionalRewriteV1)=invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},x);canonical_json(x::ConditionalRewriteSetV1)=invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1},x);canonical_json(x::ConditionalEGraphBudgetV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_budget",invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},x));canonical_json(x::ConditionalProgramENodeV1)=invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1},x);canonical_json(x::ConditionalRewriteTraceStepV1)=invoke(_ceg_trace_bytes,Tuple{ConditionalRewriteTraceStepV1},x);canonical_json(x::DerivedConditionalEGraphV1)=invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1},x)
-canonical_hash(x::EqualityConditionRequirementV1)=_ceg_hash_text(invoke(_ceg_condition_top_bytes,Tuple{EqualityConditionRequirementV1},x));canonical_hash(x::WholeProgramConditionalRewriteV1)=_ceg_hash_text(invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},x));canonical_hash(x::ConditionalRewriteSetV1)=_ceg_hash_text(invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1},x));canonical_hash(x::ConditionalEGraphBudgetV1)=_ceg_hash_text(invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_budget",invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},x)));canonical_hash(x::ConditionalProgramENodeV1)=_ceg_hash_text(invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1},x));canonical_hash(x::ConditionalRewriteTraceStepV1)=_ceg_hash_text(invoke(_ceg_trace_bytes,Tuple{ConditionalRewriteTraceStepV1},x));canonical_hash(x::DerivedConditionalEGraphV1)=_ceg_hash_text(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1},x))
+canonical_json(x::WholeProgramConditionalRewriteV1)=invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},x);canonical_json(x::ConditionalRewriteSetV1)=invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1},x);canonical_json(x::ConditionalEGraphBudgetV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_budget",invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},x));canonical_json(x::ConditionalProgramENodeV1)=invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1},x);canonical_json(x::ConditionalRewriteTraceStepV1)=invoke(_ceg_trace_bytes,Tuple{ConditionalRewriteTraceStepV1},x)
+function canonical_json(x::DerivedConditionalEGraphV1)
+    cache=_CEGDerivationCacheV1(); invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},x,cache)
+end
+canonical_hash(x::EqualityConditionRequirementV1)=_ceg_hash_text(invoke(_ceg_condition_top_bytes,Tuple{EqualityConditionRequirementV1},x));canonical_hash(x::WholeProgramConditionalRewriteV1)=_ceg_hash_text(invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},x));canonical_hash(x::ConditionalRewriteSetV1)=_ceg_hash_text(invoke(_ceg_rule_set_bytes,Tuple{ConditionalRewriteSetV1},x));canonical_hash(x::ConditionalEGraphBudgetV1)=_ceg_hash_text(invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_budget",invoke(_ceg_budget_bytes,Tuple{ConditionalEGraphBudgetV1},x)));canonical_hash(x::ConditionalProgramENodeV1)=_ceg_hash_text(invoke(_ceg_member_bytes,Tuple{ConditionalProgramENodeV1},x));canonical_hash(x::ConditionalRewriteTraceStepV1)=_ceg_hash_text(invoke(_ceg_trace_bytes,Tuple{ConditionalRewriteTraceStepV1},x))
+function canonical_hash(x::DerivedConditionalEGraphV1)
+    cache=_CEGDerivationCacheV1(); _ceg_hash_text(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},x,cache))
+end
 
-conditional_equivalence_hash(g::DerivedConditionalEGraphV1) = getfield(g,:complete) ? _ceg_hash_text(invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1},g)) : throw(ArgumentError("conditional equivalence hash requires a complete graph"))
-saturation_attempt_hash(g::DerivedConditionalEGraphV1) = _ceg_hash_text(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1},g))
+conditional_equivalence_hash(g::DerivedConditionalEGraphV1) = getfield(g,:complete) ? begin
+    cache=_CEGDerivationCacheV1(); _ceg_hash_text(invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},g,cache))
+end : throw(ArgumentError("conditional equivalence hash requires a complete graph"))
+saturation_attempt_hash(g::DerivedConditionalEGraphV1) = begin
+    cache=_CEGDerivationCacheV1(); _ceg_hash_text(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},g,cache))
+end
 canonical_json(x::ConditionalEqualityProvenanceV1)=invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1},x); canonical_hash(x::ConditionalEqualityProvenanceV1)=_ceg_hash_text(invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1},x))
 canonical_json(x::ConditionalEGraphUsageV1)=invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_usage",invoke(_ceg_usage_bytes,Tuple{ConditionalEGraphUsageV1},x)); canonical_hash(x::ConditionalEGraphUsageV1)=_ceg_hash_text(invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_usage",invoke(_ceg_usage_bytes,Tuple{ConditionalEGraphUsageV1},x)))
 function _ceg_eclass_top_bytes(x::ConditionalEClassV1)
@@ -81,12 +212,21 @@ function _ceg_eclass_top_bytes(x::ConditionalEClassV1)
 end
 canonical_json(x::ConditionalEClassV1)=invoke(_ceg_eclass_top_bytes,Tuple{ConditionalEClassV1},x); canonical_hash(x::ConditionalEClassV1)=_ceg_hash_text(invoke(_ceg_eclass_top_bytes,Tuple{ConditionalEClassV1},x))
 function _ceg_query_result_top_bytes(x::ConditionalEqualityQueryResultV1)
-    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"provenance\":");getfield(x,:provenance)===nothing ? _ccbw_ascii!(io,"null") : _ccbw_utf8!(io,invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1},getfield(x,:provenance)));_ccbw_ascii!(io,",\"status\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:status))));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_equality_query_result",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"provenance\":");
+    if getfield(x,:provenance)===nothing
+        _ccbw_ascii!(io,"null")
+    else
+        rules=getfield(x,:authority_rules); source=getfield(x,:authority_source); target=getfield(x,:authority_target)
+        rules isa ConditionalRewriteSetV1 && source isa TypedASTProgramV1 && target isa TypedASTProgramV1 || throw(ArgumentError("query provenance is missing current rewrite-set authority"))
+        _ccbw_utf8!(io,invoke(_ceg_provenance_bytes,Tuple{ConditionalEqualityProvenanceV1,ConditionalRewriteSetV1,_CEGDerivationCacheV1,TypedASTProgramV1,TypedASTProgramV1},getfield(x,:provenance),rules,_CEGDerivationCacheV1(),source,target))
+    end
+    _ccbw_ascii!(io,",\"status\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:status))));_ccbw_byte!(io,UInt8('}'));invoke(_ceg_wrap,Tuple{String,String},"conditional_equality_query_result",invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io))
 end
 canonical_json(x::ConditionalEqualityQueryResultV1)=invoke(_ceg_query_result_top_bytes,Tuple{ConditionalEqualityQueryResultV1},x)
 canonical_hash(x::ConditionalEqualityQueryResultV1)=_ceg_hash_text(invoke(_ceg_query_result_top_bytes,Tuple{ConditionalEqualityQueryResultV1},x))
 function _ceg_derivation_result_body(x::ConditionalEGraphDerivationResultV1)
-    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"artifact\":");getfield(x,:artifact)===nothing ? _ccbw_ascii!(io,"null") : _ccbw_utf8!(io,invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1},getfield(x,:artifact)));_ccbw_ascii!(io,",\"derivation_request_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(x,:derivation_request_hash));_ccbw_ascii!(io,",\"reason\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:reason))));_ccbw_ascii!(io,",\"status\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:status))));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
+    cache=_CEGDerivationCacheV1()
+    io=invoke(_ccbw_new,Tuple{});_ccbw_ascii!(io,"{\"artifact\":");getfield(x,:artifact)===nothing ? _ccbw_ascii!(io,"null") : _ccbw_utf8!(io,invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},getfield(x,:artifact),cache));_ccbw_ascii!(io,",\"derivation_request_hash\":");invoke(_ceg_digest,Tuple{Base.GenericIOBuffer,Digest256},io,getfield(x,:derivation_request_hash));_ccbw_ascii!(io,",\"reason\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:reason))));_ccbw_ascii!(io,",\"status\":");_ccbw_quote!(io,invoke(String,Tuple{Symbol},invoke(Symbol,Tuple{Enum},getfield(x,:status))));_ccbw_byte!(io,UInt8('}'));invoke(_ccbw_finish,Tuple{Base.GenericIOBuffer},io)
 end
 function canonical_json(x::ConditionalEGraphDerivationResultV1)
     invoke(_ceg_wrap,Tuple{String,String},"conditional_egraph_derivation_result",invoke(_ceg_derivation_result_body,Tuple{ConditionalEGraphDerivationResultV1},x))

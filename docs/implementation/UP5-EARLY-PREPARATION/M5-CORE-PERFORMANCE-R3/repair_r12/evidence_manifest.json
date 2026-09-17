@@ -1,0 +1,21 @@
+{
+  "artifact": "M5-CORE-PERFORMANCE-R3-repair-R12",
+  "status": "screen_only",
+  "accepted": false,
+  "upstream": {
+    "repair": "R11",
+    "diagnostic_exit_code": 1,
+    "test_summary": "7 pass / 0 fail / 2 error",
+    "wall_seconds": 13.4156,
+    "failure": "getfield(IdDict, TypedASTProgramV1 key) in _tac_validate_verified_token"
+  },
+  "repair": "indexed verified_tokens[program] retrieval after haskey",
+  "focused_test_addition": "verified authority hit returns identical bytes with zero payload calls",
+  "static_audit": "all four allowed core files scanned for getfield(map,key) misuse",
+  "julia_started": false,
+  "desc_started": false,
+  "runtime_rerun": "deferred_serial_parent_lane",
+  "factorial_unresolved": true,
+  "formal_credit": "none",
+  "commit_created": false
+}

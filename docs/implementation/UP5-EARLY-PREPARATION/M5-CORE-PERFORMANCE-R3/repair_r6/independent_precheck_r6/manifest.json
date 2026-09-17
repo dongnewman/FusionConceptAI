@@ -1,0 +1,36 @@
+{
+  "schema": "M5CorePerformanceR3IndependentPrecheckR6",
+  "review_id": "M5-CORE-PERFORMANCE-R3-repair-R6-independent-precheck-r6",
+  "reviewer_role": "independent_different_luna_high_static_review",
+  "base_head": "cfc745939a02fd023854dd4e9bb6d04ccadf9ee",
+  "working_tree": "dirty_preserved",
+  "decision": "pass",
+  "focused_julia_decision": "go_diagnostic_only",
+  "julia_executed": false,
+  "git_diff_check": "pass",
+  "proposal_identity_fresh_cache": "pass",
+  "proposal_sort_key_fresh_cache": "pass",
+  "two_mutation_negative_throws": "preserved",
+  "polluted_cache_reuse_scan": "pass",
+  "r5_diagnostic_reference": "../repair_r5/diagnostic_julia_r3/run.json",
+  "r5_diagnostic_reference_status": "exists_and_is_failure_receipt_only",
+  "r5_failure_summary": "18 passed, 0 failed, 1 errored, 19 total",
+  "product_sources_changed_by_r6": false,
+  "test_intent_changed": false,
+  "claim_ceiling": "screen_only",
+  "formal_credit": "none",
+  "factorial_root_cause": "not_covered_and_not_optimized",
+  "two_process_follow_up": "deferred_parent_owned",
+  "minimum_allowed_julia_command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "protected_scope": [
+    "src/",
+    "test/RuntimeV4/M4Isolated/m4c_perf_r2/profile_probe.jl",
+    "task manifests",
+    "runs/"
+  ],
+  "write_scope": [
+    "repair_r6/independent_precheck_r6/report.md",
+    "repair_r6/independent_precheck_r6/manifest.json"
+  ],
+  "commit_created": false
+}

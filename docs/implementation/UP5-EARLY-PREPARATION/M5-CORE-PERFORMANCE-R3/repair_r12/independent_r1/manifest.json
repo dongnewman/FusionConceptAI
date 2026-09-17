@@ -1,0 +1,49 @@
+{
+  "schema": "M5CorePerformanceR3IndependentR12",
+  "review_id": "M5-CORE-PERFORMANCE-R3-repair-R12-independent-r1",
+  "reviewer_role": "independent_different_luna_high_static_review",
+  "decision": "pass",
+  "focused_julia_decision": "go_diagnostic_only_once_serial",
+  "julia_executed": false,
+  "desc_executed": false,
+  "upstream_r11_failure": {
+    "diagnostic_exit_code": 1,
+    "test_summary": "7 pass / 0 fail / 2 error",
+    "wall_seconds": 13.4156,
+    "root_cause": "getfield(IdDict, TypedASTProgramV1 key) in _tac_validate_verified_token",
+    "receipt_rewritten": false,
+    "r11_failure_receipt_sha256_current_snapshot": "0DCFB642897A5F67062F925C16B9393F8560EA81D3E3E04629499CC21687D7B1"
+  },
+  "verified_tokens_program_indexed_lookup": "pass_static",
+  "four_core_map_key_getfield_misuse": "none_found_static",
+  "verified_hit_reaches_token_validation": "covered_static",
+  "verified_hit_bytes_equal": "covered_static",
+  "verified_hit_payload_calls": "0F_asserted_static",
+  "negative_coverage": [
+    "deleted verified token",
+    "replaced entry",
+    "foreign-owner token transplant",
+    "wrong program",
+    "wrong hash",
+    "wrong witness",
+    "unverified forged entry",
+    "cache mutation and deletion",
+    "forced same-digest different-bytes"
+  ],
+  "claim_status": "screen_only",
+  "accepted": false,
+  "factorial_unresolved": true,
+  "formal_credit": "none",
+  "runtime_rerun": "pending_parent_serial_lane",
+  "fresh_process_determinism": "pending_parent_serial_lane",
+  "timing_evidence": "pending_parent_serial_lane",
+  "parent_frozen_input_hashes": "not_materialized_in_r12_archive; parent authority required",
+  "r12_failure_receipt_sha256_current_snapshot": "8E8A1CD82DD3F4B0D97E9B227F2C7A98540641AFA0A4EA9F486687C60856B6D5",
+  "r12_evidence_manifest_sha256_current_snapshot": "90382655EACCAB3664A4E9DFF9D38E46F5B2606E046BF413EA58C959469EE791",
+  "write_scope": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r12/independent_r1/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/repair_r12/independent_r1/manifest.json"
+  ],
+  "julia_command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "commit_created": false
+}

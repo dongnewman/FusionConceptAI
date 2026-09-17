@@ -1,5 +1,45 @@
 """Typed, closed declarations for bounded conditional whole-program rewriting."""
 
+# These identity declarations are loaded before this file's constructors are
+# defined.  Their byte writers and equality/hash methods remain in the
+# canonical layer, which is included immediately afterwards.  The cache is a
+# non-authoritative derivation-local performance hint; receipt writers must
+# revalidate against current canonical bytes.
+struct _CEGMemberKeyV1
+    program_bytes::String
+    condition_bytes::String
+end
+
+struct _CEGProposalKeyV1
+    rule_bytes::String
+    source_bytes::String
+    target_bytes::String
+    orientation::UInt8
+    condition_bytes::String
+end
+
+struct _CEGRuleCacheEntryV1
+    owner_token::Any
+    rule::Any
+    bytes::String
+    fingerprint::String
+end
+
+struct _CEGDerivationCacheV1
+    canonical::_TACDerivationCanonicalCacheV1
+    condition_bytes::IdDict{Any,String}
+    rule_bytes::IdDict{Any,Any}
+    member_keys::IdDict{Any,_CEGMemberKeyV1}
+    proposal_keys::IdDict{Any,Any}
+    proposal_sort_keys::IdDict{Any,String}
+    owner_token::Any
+end
+
+_CEGDerivationCacheV1() = _CEGDerivationCacheV1(
+    _TACDerivationCanonicalCacheV1(), IdDict{Any,String}(), IdDict{Any,Any}(),
+    IdDict{Any,_CEGMemberKeyV1}(), IdDict{Any,Any}(), IdDict{Any,String}(),
+    Ref{Nothing}())
+
 struct EqualityConditionRequirementV1
     condition_ref::QualifiedRefV1
     condition_contract_hash::Digest256
@@ -92,9 +132,41 @@ ConditionalEGraphBudgetV1(; max_programs=64, max_rewrite_attempts=4096, max_roun
 @enum ConditionalEGraphSaturationStateV1 saturation_complete saturation_incomplete
 @enum ConditionalEGraphDerivationReasonV1 conditional_egraph_derived saturation_budget_exhausted manifest_or_contract_incompatible source_out_of_profile exact_canonicalization_deferred
 
+# A single module-owned guard is required to manufacture all cache-backed
+# fragments.  The public constructors below intentionally do not accept a
+# bare Digest256 or an untrusted byte tuple.
+struct _CEGSealGuardV1 end
+const _CEG_SEAL_GUARD = _CEGSealGuardV1()
+
+struct _CEGTraceFragmentsV1
+    owner_token::Any
+    guard_token::Any
+    source_bytes::String; target_bytes::String
+    expected_source_bytes::String; expected_target_bytes::String
+    source_hash::Digest256; target_hash::Digest256
+    rule_hash::Digest256; rule_bytes::String; rule_ref::QualifiedRefV1
+    function _CEGTraceFragmentsV1(owner_token::Any, source_bytes::String,
+            target_bytes::String, expected_source_bytes::String,
+            expected_target_bytes::String, source_hash::Digest256,
+            target_hash::Digest256, rule_hash::Digest256, rule_bytes::String,
+            rule_ref::QualifiedRefV1,
+            guard::_CEGSealGuardV1)
+        guard === _CEG_SEAL_GUARD || throw(ArgumentError("untrusted trace fragments"))
+        invoke(_ceg_hash_text,Tuple{String},source_bytes) == source_hash ||
+            throw(ArgumentError("trace source fragment hash mismatch"))
+        invoke(_ceg_hash_text,Tuple{String},target_bytes) == target_hash ||
+            throw(ArgumentError("trace target fragment hash mismatch"))
+        invoke(_ceg_hash_text,Tuple{String},rule_bytes) == rule_hash ||
+            throw(ArgumentError("trace rule fragment hash mismatch"))
+        new(owner_token,guard,source_bytes,target_bytes,expected_source_bytes,
+            expected_target_bytes,source_hash,target_hash,rule_hash,rule_bytes,rule_ref)
+    end
+end
+
 struct ConditionalRewriteTraceStepV1
     round::Int; rule_ref::QualifiedRefV1; rule_hash::Digest256; orientation::RewriteOrientationV1; source_hash::Digest256; target_hash::Digest256; step::Int
     required_conditions::Tuple{Vararg{EqualityConditionRequirementV1}}; cumulative_conditions::Tuple{Vararg{EqualityConditionRequirementV1}}
+    owner_token::Any
     function ConditionalRewriteTraceStepV1(round::Int, rule::WholeProgramConditionalRewriteV1,
             orientation::RewriteOrientationV1, source::TypedASTProgramV1, target::TypedASTProgramV1,
             step::Int, cumulative)
@@ -111,9 +183,42 @@ struct ConditionalRewriteTraceStepV1
         target_hash = invoke(_ceg_hash_text,Tuple{String},target_bytes)
         rule_hash = invoke(_ceg_hash_text,Tuple{String},invoke(_ceg_rule_bytes,Tuple{WholeProgramConditionalRewriteV1},rule))
         new(round,getfield(rule,:rule_ref),rule_hash,orientation,source_hash,target_hash,step,
-            getfield(rule,:required_conditions),invoke(_ceg_conditions,Tuple{Tuple},cumulative;allow_empty=true))
+            getfield(rule,:required_conditions),invoke(_ceg_conditions,Tuple{Tuple},cumulative;allow_empty=true),nothing)
+    end
+    function ConditionalRewriteTraceStepV1(round::Int,
+            rule::WholeProgramConditionalRewriteV1, orientation::RewriteOrientationV1,
+            source::TypedASTProgramV1, target::TypedASTProgramV1, step::Int,
+            cumulative, fragments::_CEGTraceFragmentsV1)
+        cumulative isa Tuple || throw(ArgumentError("cumulative conditions must be a Tuple"))
+        round in 1:32 && step in 1:256 && round===step || throw(ArgumentError("invalid trace coordinates"))
+        getfield(fragments,:guard_token) === _CEG_SEAL_GUARD ||
+            throw(ArgumentError("untrusted trace fragments"))
+        invoke(_ceg_sealed_equal,Tuple{String,String},getfield(fragments,:source_bytes),
+            getfield(fragments,:expected_source_bytes)) &&
+            invoke(_ceg_sealed_equal,Tuple{String,String},getfield(fragments,:target_bytes),
+                getfield(fragments,:expected_target_bytes)) ||
+            throw(ArgumentError("trace programs do not match rewrite orientation"))
+        invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(fragments,:rule_hash),
+            invoke(_ceg_hash_text,Tuple{String},getfield(fragments,:rule_bytes))) ||
+            throw(ArgumentError("trace rule hash does not match sealed rule bytes"))
+        invoke(_ceg_ref_equal,Tuple{QualifiedRefV1,QualifiedRefV1},getfield(rule,:rule_ref),
+            getfield(fragments,:rule_ref)) || throw(ArgumentError("trace rule reference mismatch"))
+        new(round,getfield(rule,:rule_ref),getfield(fragments,:rule_hash),orientation,
+            getfield(fragments,:source_hash),getfield(fragments,:target_hash),step,
+            getfield(rule,:required_conditions),invoke(_ceg_conditions,Tuple{Tuple},cumulative;allow_empty=true),
+            getfield(fragments,:owner_token))
     end
 end
+
+struct _CEGProvenanceFragmentsV1
+    owner_token::Any; guard_token::Any; source_hash::Digest256; target_hash::Digest256
+    function _CEGProvenanceFragmentsV1(owner_token::Any, source_hash::Digest256,
+            target_hash::Digest256, guard::_CEGSealGuardV1)
+        guard === _CEG_SEAL_GUARD || throw(ArgumentError("untrusted provenance fragments"))
+        new(owner_token,guard,source_hash,target_hash)
+    end
+end
+
 struct ConditionalEqualityProvenanceV1
     source_hash::Digest256; target_hash::Digest256; conditions::Tuple{Vararg{EqualityConditionRequirementV1}}; trace::Tuple{Vararg{ConditionalRewriteTraceStepV1}}
     function ConditionalEqualityProvenanceV1(source::TypedASTProgramV1, target::TypedASTProgramV1, conditions, trace)
@@ -138,13 +243,66 @@ struct ConditionalEqualityProvenanceV1
         invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},conds),invoke(_ceg_condition_bytes,Tuple{Tuple},prior_conditions)) || throw(ArgumentError("provenance conditions mismatch"))
         new(source_hash,target_hash,conds,ts)
     end
+    function ConditionalEqualityProvenanceV1(source::TypedASTProgramV1,
+            target::TypedASTProgramV1, conditions, trace,
+            fragments::_CEGProvenanceFragmentsV1)
+        conditions isa Tuple || throw(ArgumentError("provenance conditions must be a Tuple"))
+        trace isa Tuple || throw(ArgumentError("provenance trace must be a Tuple"))
+        getfield(fragments,:guard_token) === _CEG_SEAL_GUARD ||
+            throw(ArgumentError("untrusted provenance fragments"))
+        ts=trace; fieldcount(typeof(ts))===0 && throw(ArgumentError("provenance trace cannot be empty"))
+        i=1; nt=fieldcount(typeof(ts)); while i<=nt
+            typeof(getfield(ts,i))===ConditionalRewriteTraceStepV1 || throw(ArgumentError("invalid provenance trace")); i+=1
+        end
+        source_hash=getfield(fragments,:source_hash); target_hash=getfield(fragments,:target_hash)
+        conds=invoke(_ceg_conditions,Tuple{Tuple},conditions;allow_empty=true)
+        prior_hash=source_hash; prior_conditions=(); i=1
+        while i<=nt
+            step=getfield(ts,i)
+            getfield(step,:owner_token) === getfield(fragments,:owner_token) ||
+                throw(ArgumentError("provenance trace belongs to another derivation"))
+            invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(step,:source_hash),prior_hash) || throw(ArgumentError("provenance source chain mismatch"))
+            getfield(step,:step)===i && getfield(step,:round)===i || throw(ArgumentError("provenance coordinates are not path-local"))
+            prior_conditions=invoke(_ceg_merge_conditions,Tuple{Tuple,Tuple},prior_conditions,getfield(step,:required_conditions))
+            invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},prior_conditions),invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(step,:cumulative_conditions))) || throw(ArgumentError("provenance condition chain mismatch"))
+            prior_hash=getfield(step,:target_hash); i+=1
+        end
+        invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},prior_hash,target_hash) || throw(ArgumentError("provenance target chain mismatch"))
+        invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},conds),invoke(_ceg_condition_bytes,Tuple{Tuple},prior_conditions)) || throw(ArgumentError("provenance conditions mismatch"))
+        new(source_hash,target_hash,conds,ts)
+    end
 end
+struct _CEGSealedProgramHashV1
+    owner_token::Any; program::TypedASTProgramV1; bytes::String; value::Digest256
+    function _CEGSealedProgramHashV1(owner_token::Any, entry::_TACCanonicalEntryV1,
+            guard::_CEGSealGuardV1)
+        guard === _CEG_SEAL_GUARD || throw(ArgumentError("untrusted sealed program hash"))
+        new(owner_token,getfield(entry,:program),getfield(entry,:bytes),getfield(entry,:hash))
+    end
+end
+
 struct ConditionalProgramENodeV1
     program::TypedASTProgramV1; program_hash::Digest256; cumulative_conditions::Tuple{Vararg{EqualityConditionRequirementV1}}; provenance::Union{Nothing,ConditionalEqualityProvenanceV1}
     function ConditionalProgramENodeV1(program::TypedASTProgramV1, cumulative, provenance=nothing)
         cumulative isa Tuple || throw(ArgumentError("cumulative conditions must be a Tuple"))
         conditions=invoke(_ceg_conditions,Tuple{Tuple},cumulative;allow_empty=true)
         program_hash=invoke(_ceg_hash_text,Tuple{String},invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},program))
+        if provenance !== nothing
+            provenance isa ConditionalEqualityProvenanceV1 || throw(ArgumentError("invalid program provenance"))
+            invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(provenance,:target_hash),program_hash) || throw(ArgumentError("provenance target does not match member"))
+            invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(provenance,:conditions)),invoke(_ceg_condition_bytes,Tuple{Tuple},conditions)) || throw(ArgumentError("provenance conditions do not match member"))
+        end
+        new(program,program_hash,conditions,provenance)
+    end
+    function ConditionalProgramENodeV1(program::TypedASTProgramV1, cumulative,
+            provenance, sealed::_CEGSealedProgramHashV1)
+        cumulative isa Tuple || throw(ArgumentError("cumulative conditions must be a Tuple"))
+        conditions=invoke(_ceg_conditions,Tuple{Tuple},cumulative;allow_empty=true)
+        getfield(sealed,:program) === program ||
+            throw(ArgumentError("sealed program hash belongs to another derivation object"))
+        program_hash=getfield(sealed,:value)
+        invoke(_ceg_hash_text,Tuple{String},getfield(sealed,:bytes)) == program_hash ||
+            throw(ArgumentError("sealed program hash does not match bytes"))
         if provenance !== nothing
             provenance isa ConditionalEqualityProvenanceV1 || throw(ArgumentError("invalid program provenance"))
             invoke(_ceg_digest_equal,Tuple{Digest256,Digest256},getfield(provenance,:target_hash),program_hash) || throw(ArgumentError("provenance target does not match member"))
@@ -159,14 +317,15 @@ struct ConditionalEClassV1
         members isa Tuple || throw(ArgumentError("conditional e-class members must be a Tuple"))
         ms=members; nm=fieldcount(typeof(ms)); nm===0 && throw(ArgumentError("conditional e-class cannot be empty"))
         i=1; while i<=nm; typeof(getfield(ms,i))===ConditionalProgramENodeV1 || throw(ArgumentError("conditional e-class members are not typed")); i+=1; end
-        source_bytes=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},source_program); source_hash=invoke(_ceg_hash_text,Tuple{String},source_bytes)
-        source_count=0; member_keys=Vector{String}(undef,nm); key_count=0; i=1
+        local_cache=_TACDerivationCanonicalCacheV1()
+        source_bytes=invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,source_program); source_hash=invoke(_ceg_hash_text,Tuple{String},source_bytes)
+        source_count=0; member_index=Dict{_CEGMemberKeyV1,Nothing}(); i=1
         while i<=nm
             m=getfield(ms,i)
-            key=invoke(_ceg_member_key,Tuple{ConditionalProgramENodeV1},m)
-            j=1; while j<=key_count; invoke(_ceg_sealed_equal,Tuple{String,String},Core.arrayref(true,member_keys,j),key) && throw(ArgumentError("conditional e-class members are duplicated")); j+=1; end
-            key_count+=1; Core.arrayset(true,member_keys,key,key_count)
-            if invoke(_ceg_sealed_equal,Tuple{String,String},invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},getfield(m,:program)),source_bytes) &&
+            program_bytes=invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,getfield(m,:program)); condition_bytes=invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(m,:cumulative_conditions)); key=_CEGMemberKeyV1(program_bytes,condition_bytes)
+            haskey(member_index,key) && throw(ArgumentError("conditional e-class members are duplicated"))
+            member_index[key]=nothing
+            if invoke(_ceg_sealed_equal,Tuple{String,String},program_bytes,source_bytes) &&
                     fieldcount(typeof(getfield(m,:cumulative_conditions)))===0 && getfield(m,:provenance)===nothing
                 source_count+=1
             end
@@ -174,7 +333,7 @@ struct ConditionalEClassV1
         end
         source_count===1 || throw(ArgumentError("conditional e-class requires one identity source member"))
         values=Vector{ConditionalProgramENodeV1}(undef,nm); i=1; while i<=nm; Core.arrayset(true,values,getfield(ms,i),i); i+=1; end
-        ordered=invoke(_ceg_insertion_sorted,Tuple{Vector,Function},values, m -> invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},getfield(m,:program))*"\0"*invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(m,:cumulative_conditions)))
+        ordered=invoke(_ceg_insertion_sorted,Tuple{Vector,Function},values, m -> invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,getfield(m,:program))*"\0"*invoke(_ceg_condition_bytes,Tuple{Tuple},getfield(m,:cumulative_conditions)))
         new(source_hash,ntuple(i -> Core.arrayref(true,ordered,i),nm))
     end
 end
@@ -193,7 +352,8 @@ struct DerivedConditionalEGraphV1
     saturation_budget::ConditionalEGraphBudgetV1; usage::ConditionalEGraphUsageV1; canonicalization_profile::CanonicalizationProfileV1; complete::Bool
     stop_reason::ConditionalEGraphStopReasonV1
     function DerivedConditionalEGraphV1(source_program::TypedASTProgramV1, rewrite_set::ConditionalRewriteSetV1, registry::OperatorRegistryV1, budget::ConditionalEGraphBudgetV1, profile::CanonicalizationProfileV1)
-        computed=invoke(_ceg_saturate_components,Tuple{TypedASTProgramV1,ConditionalRewriteSetV1,OperatorRegistryV1,ConditionalEGraphBudgetV1,CanonicalizationProfileV1},source_program,rewrite_set,registry,budget,profile)
+        derivation_cache = _CEGDerivationCacheV1()
+        computed=invoke(_ceg_saturate_components,Tuple{TypedASTProgramV1,ConditionalRewriteSetV1,OperatorRegistryV1,ConditionalEGraphBudgetV1,CanonicalizationProfileV1,_CEGDerivationCacheV1},source_program,rewrite_set,registry,budget,profile,derivation_cache)
         computed isa Tuple || throw(ArgumentError("conditional derivation did not resolve to an artifact"))
         source_hash,eclass,state,usage,complete,reason=computed
         new(source_program,source_hash,getfield(source_program,:used_manifest_bindings),rewrite_set,eclass,state,budget,usage,profile,complete,reason)
@@ -201,41 +361,51 @@ struct DerivedConditionalEGraphV1
 end
 struct ConditionalEqualityQueryResultV1
     status::ConditionalEqualityStatusV1; provenance::Union{Nothing,ConditionalEqualityProvenanceV1}
+    # Query receipt emission retains the immutable derivation authority without
+    # exposing it in canonical bytes.  A standalone provenance value still has
+    # the structural writer; query receipts use these fields for revalidation.
+    authority_source::Union{Nothing,TypedASTProgramV1}
+    authority_target::Union{Nothing,TypedASTProgramV1}
+    authority_rules::Union{Nothing,ConditionalRewriteSetV1}
     function ConditionalEqualityQueryResultV1(graph::DerivedConditionalEGraphV1, target::TypedASTProgramV1)
-        target_bytes=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},target)
-        source_bytes=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},getfield(graph,:source_program))
+        local_cache=_TACDerivationCanonicalCacheV1()
+        target_bytes=invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,target)
+        source_bytes=invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,getfield(graph,:source_program))
         if invoke(_ceg_sealed_equal,Tuple{String,String},source_bytes,target_bytes)
-            return new(reflexive_equal,nothing)
+            return new(reflexive_equal,nothing,nothing,nothing,nothing)
         end
-        members=getfield(getfield(graph,:eclass),:members); i=1; nm=fieldcount(typeof(members)); while i<=nm
-            member=getfield(members,i)
-            member_bytes=invoke(_typed_ast_program_json,Tuple{TypedASTProgramV1},getfield(member,:program))
-            if !invoke(_ceg_sealed_equal,Tuple{String,String},member_bytes,target_bytes)
-                i+=1
-                continue
-            end
-            provenance=getfield(member,:provenance)
-            provenance isa ConditionalEqualityProvenanceV1 || return new(equality_unknown,nothing)
-            fieldcount(typeof(getfield(provenance,:trace)))>0 && fieldcount(typeof(getfield(provenance,:conditions)))>0 || return new(equality_unknown,nothing)
+        members=getfield(getfield(graph,:eclass),:members); i=1; nm=fieldcount(typeof(members)); member_index=Dict{String,Int}()
+        while i<=nm
+            member=getfield(members,i); member_bytes=invoke(_tac_cached_program_bytes,Tuple{_TACDerivationCanonicalCacheV1,TypedASTProgramV1},local_cache,getfield(member,:program))
+            haskey(member_index,member_bytes) || (member_index[member_bytes]=i)
             i+=1
-            return new(conditional_equal,provenance)
         end
-        new(equality_unknown,nothing)
+        member_position=get(member_index,target_bytes,0)
+        if member_position>0
+            member=getfield(members,member_position)
+            provenance=getfield(member,:provenance)
+            provenance isa ConditionalEqualityProvenanceV1 || return new(equality_unknown,nothing,nothing,nothing,nothing)
+            fieldcount(typeof(getfield(provenance,:trace)))>0 && fieldcount(typeof(getfield(provenance,:conditions)))>0 || return new(equality_unknown,nothing,nothing,nothing,nothing)
+            return new(conditional_equal,provenance,getfield(graph,:source_program),target,getfield(graph,:rewrite_set))
+        end
+        new(equality_unknown,nothing,nothing,nothing,nothing)
     end
 end
 struct ConditionalEGraphDerivationResultV1
     status::ResolutionStatus; artifact::Union{Nothing,DerivedConditionalEGraphV1}; reason::ConditionalEGraphDerivationReasonV1; derivation_request_hash::Digest256
     function ConditionalEGraphDerivationResultV1(source::TypedASTProgramV1, rules::ConditionalRewriteSetV1,
             registry::OperatorRegistryV1, budget::ConditionalEGraphBudgetV1, profile::CanonicalizationProfileV1)
-        request_hash = invoke(_ceg_request_hash,Tuple{TypedASTProgramV1,ConditionalRewriteSetV1,OperatorRegistryV1,ConditionalEGraphBudgetV1,CanonicalizationProfileV1},source,rules,registry,budget,profile)
+        request_cache = _CEGDerivationCacheV1()
+        request_hash = invoke(_ceg_request_hash,Tuple{TypedASTProgramV1,ConditionalRewriteSetV1,OperatorRegistryV1,ConditionalEGraphBudgetV1,CanonicalizationProfileV1,_CEGDerivationCacheV1},source,rules,registry,budget,profile,request_cache)
         if !(fieldcount(typeof(getfield(source,:nodes))) in 1:32 && fieldcount(typeof(getfield(source,:roots))) in 1:8)
             return new(terminal_deferred,nothing,source_out_of_profile,request_hash)
         end
         try
             artifact = DerivedConditionalEGraphV1(source,rules,registry,budget,profile)
             max_bytes = getfield(getfield(profile,:budget),:max_bytes)
-            ncodeunits(invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1},artifact)) <= max_bytes || return new(terminal_deferred,nothing,exact_canonicalization_deferred,request_hash)
-            ncodeunits(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1},artifact)) <= max_bytes || return new(terminal_deferred,nothing,exact_canonicalization_deferred,request_hash)
+            receipt_cache = _CEGDerivationCacheV1()
+            ncodeunits(invoke(_ceg_equivalence_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},artifact,receipt_cache)) <= max_bytes || return new(terminal_deferred,nothing,exact_canonicalization_deferred,request_hash)
+            ncodeunits(invoke(_ceg_attempt_bytes,Tuple{DerivedConditionalEGraphV1,_CEGDerivationCacheV1},artifact,receipt_cache)) <= max_bytes || return new(terminal_deferred,nothing,exact_canonicalization_deferred,request_hash)
             complete = getfield(artifact,:complete)
             reason = complete ? conditional_egraph_derived : saturation_budget_exhausted
             new(resolved,artifact,reason,request_hash)

@@ -1,0 +1,76 @@
+{
+  "schema": "M5CorePerformanceR3IndependentPrecheckV1",
+  "review_id": "M5-CORE-PERFORMANCE-R3-independent-precheck-r1",
+  "reviewer_role": "different_luna_high_static_review",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "working_tree": "dirty_preserved",
+  "decision": "pass_with_findings",
+  "runtime_executed": false,
+  "julia_executed": false,
+  "git_diff_check": "pass",
+  "claim_ceiling": "synthetic_egraph_equality/screen_only",
+  "formal_credit": "none",
+  "findings": [
+    "P1 sealed hash/cache authority bypass and missing mutation-isolation negative",
+    "P1 trace/provenance canonicalization remains outside the new cache",
+    "P1 focused test lacks cold/hot receipt, graph query/replay, collision, and Dict determinism coverage",
+    "P2 runtime byte/hash evidence is pending parent serialized lane"
+  ],
+  "minimum_julia_command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "reviewed_inputs": [
+    {
+      "path": "src/Canonical/TypedASTProgramCanonical.jl",
+      "bytes": 33645,
+      "sha256": "d670564f44284234713826f3d5922dc854ff5fb0c68bdd9388a8d01a7bdcfa0f"
+    },
+    {
+      "path": "src/IR/ConditionalEGraphTypes.jl",
+      "bytes": 29616,
+      "sha256": "6bc8b9be41b928d90baacab8e130dcaae6a3048d6a08b41d9ada538f16068c70"
+    },
+    {
+      "path": "src/IR/ConditionalEGraphSaturation.jl",
+      "bytes": 32410,
+      "sha256": "108113e24c35f4ef4b636895468747201ea17d8b1878e1fab2b19a63d9518602"
+    },
+    {
+      "path": "src/Canonical/ConditionalEGraphCanonical.jl",
+      "bytes": 28928,
+      "sha256": "a8cb7a44bc72a3bd8157cb625cd05ee724b3a0c2d80bb2da857953a32fab7252"
+    },
+    {
+      "path": "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+      "bytes": 2992,
+      "sha256": "1b77bf0fa07b0eab08e3a02dc32474858d6ecfc2bd0a13490b872471145f401c"
+    },
+    {
+      "path": "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/README.md",
+      "bytes": 1625,
+      "sha256": "691450cb8a5947e09f424b9ef189de352d7b26ebd6f293ba3d8d8c584cde59ff"
+    },
+    {
+      "path": "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/acceptance.md",
+      "bytes": 967,
+      "sha256": "1f8618329dc9aaa6f1e3851e34eba5e5f5c7a6f160ca03b0e3cb10fb2d90bc58"
+    },
+    {
+      "path": "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/evidence_manifest.json",
+      "bytes": 799,
+      "sha256": "75cacebbb05ca56b4e3c0742c1412212fe17e6d52acfaaf2d84cb69530439b40"
+    }
+  ],
+  "protected_paths": [
+    "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl",
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/README.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/acceptance.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/evidence_manifest.json",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "runs/**",
+    "historical evidence"
+  ],
+  "write_scope": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/independent_precheck_r1/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-CORE-PERFORMANCE-R3/independent_precheck_r1/manifest.json"
+  ]
+}

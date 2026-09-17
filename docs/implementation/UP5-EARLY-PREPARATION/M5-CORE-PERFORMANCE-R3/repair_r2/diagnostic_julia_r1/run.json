@@ -1,0 +1,40 @@
+{
+  "schema": "m5_core_performance_r3_diagnostic_v1",
+  "diagnostic_only": true,
+  "screen_only": true,
+  "accepted": false,
+  "performance_credit": false,
+  "r01_r10_credit": false,
+  "command": "julia --project=. --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 42288,
+  "start_utc": "2026-09-17T12:07:23.3736514Z",
+  "end_utc": "2026-09-17T12:07:33.6329754Z",
+  "duration_seconds": 10.259324,
+  "exit_code": 1,
+  "stdout": "stdout.txt",
+  "stderr": "stderr.txt",
+  "stdout_bytes": 1072,
+  "stderr_bytes": 203,
+  "head": "8dbbb68b065c3ccd9a9f0f97a879aae8665eb2e9",
+  "input_sha256": {
+    "src/Canonical/TypedASTProgramCanonical.jl": "cd7f5cd134774cc5867748f903d9ebbbe2eaa080e382e1fbec41567f7068e9ab",
+    "src/IR/ConditionalEGraphTypes.jl": "3fd16bb7b2ad881e0d43c089186763901024638cdf0e4114dd1134e55ec572e9",
+    "src/IR/ConditionalEGraphSaturation.jl": "8e9d6fe5fcbe4496a92243719dd8897f1ebb316574aab526a79cf678fc3b2c70",
+    "src/Canonical/ConditionalEGraphCanonical.jl": "fc686b1d65b09604b4a6715962d34e1f7f355f86ee27b2018d766eedb6d3ff9f",
+    "test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl": "9764fb5177e7f0e3c0cc94c6ec9bd7262eeda962ad18125575f4e9a148d493d5"
+  },
+  "process_check": {
+    "before": "no Julia/DESC process; pre-existing phase5_remote_session.py PID 36512 retained",
+    "after": "no Julia/DESC process",
+    "phase5_touched": false
+  },
+  "test_summary": {
+    "passed": 10,
+    "failed": 0,
+    "errored": 1,
+    "total": 11,
+    "error": "type _CEGDerivationCacheV1 has no field program_bytes at test/RuntimeV4/M4Isolated/m5_core_perf_r3_tests.jl:65"
+  },
+  "interpretation": "Diagnostic-only failure: the R3 test expects program_bytes on _CEGDerivationCacheV1, but the loaded implementation has no such field. No source or test changes were made and the command was not rerun."
+}

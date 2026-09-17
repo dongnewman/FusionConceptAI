@@ -1,0 +1,18 @@
+{
+  "artifact": "M5-CORE-PERFORMANCE-R3-repair-R9",
+  "status": "screen_only",
+  "repair_kind": "test_expectation_cache_hint_isolation",
+  "diagnostic_reference": "../repair_r8/diagnostic_julia_r6/run.json",
+  "diagnostic_result": "55 passed, 1 failed, 0 errored",
+  "rule_set_writer": "re-canonicalizes current artifact rules; does not read rule_bytes hint",
+  "forged_artifact_rule_hint": "unused; clean receipt bytes required",
+  "forged_external_equal_rule_hint": "IdDict identity-isolated; clean receipt bytes required",
+  "direct_cached_rule_negative": "retained; forged read-path entry rejects",
+  "changed_product_sources": false,
+  "julia_started": false,
+  "rerun_status": "deferred_parent_review",
+  "runtime_status": "performance implementation pending runtime",
+  "factorial_root_cause": "not_covered",
+  "formal_credit": "none",
+  "commit_created": false
+}
