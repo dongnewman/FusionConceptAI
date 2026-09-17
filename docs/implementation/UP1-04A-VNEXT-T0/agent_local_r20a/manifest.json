@@ -1,0 +1,73 @@
+{
+  "schema": "AD30-T0-LocalV1-AgentLocalR20aManifestV1",
+  "task_id": "UP1-04A-VNEXT-T0",
+  "agent_local_run": "agent_local_r20a",
+  "status": "g1_nested_rebind_fail_closed_static_only",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "screen_only": true,
+  "julia_executed": false,
+  "desc_executed": false,
+  "commit_created": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls": 0,
+  "r01_r10_credit": false,
+  "changed_files": [
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py",
+    "docs/implementation/UP1-04A-VNEXT-T0/agent_local_r20a/report.md",
+    "docs/implementation/UP1-04A-VNEXT-T0/agent_local_r20a/manifest.json"
+  ],
+  "scope": {
+    "g1_nested_payload_rebind": true,
+    "g1_u_k_f_source_ref_rebuild": true,
+    "g1_source_hash_recompute": true,
+    "g1_real_constructor_and_validator": true,
+    "g2_nested_rebind": false,
+    "g3_nested_rebind": false,
+    "cross_layer_ref_mapping": false,
+    "r20b_r20c_required": true
+  },
+  "negative_controls": {
+    "old_nested_candidate": true,
+    "old_u_source_ref": true,
+    "old_K_source_ref": true,
+    "old_f_source_ref": true,
+    "stale_source_hash": true,
+    "deterministic_rebind": true
+  },
+  "static_qa": {
+    "command": "python -B docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "accepted": false,
+    "claim_ceiling": "contract_only",
+    "fixture_authority": false,
+    "julia_executed": false,
+    "desc_executed": false,
+    "source_sha256": "9c651251bdb80709033fd349f073f9da1a6b7d0fa65aefadabecbbe03d7ac366",
+    "test_sha256": "153a3ec185aef3bf70f1f91e6ad3d7d3262fcae3766427973dab8c7d623abe68",
+    "fixture_sha256": "b1028b4d21ad690491a24549e73de5507af31edf3b70bf9357b25c3a09c24460"
+  },
+  "frozen_inputs_sha256": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": "9c651251bdb80709033fd349f073f9da1a6b7d0fa65aefadabecbbe03d7ac366",
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": "153a3ec185aef3bf70f1f91e6ad3d7d3262fcae3766427973dab8c7d623abe68",
+    "docs/implementation/UP1-04A-VNEXT-T0/vnext_declaration_transport_local_v1_fixture.json": "b1028b4d21ad690491a24549e73de5507af31edf3b70bf9357b25c3a09c24460",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py": "c0f7613b8f8c21eba0c65fd073bc60c0d5a056df32022f63ec0a2efac39daddd",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "807837ce2a4aef4c196d0f4e2635201e9843f3532bc1afd94d667865569a976b",
+    "src/FusionConceptAI.jl": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783",
+    "src/IR/OperatorRegistry.jl": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45",
+    "src/Contracts/GenomeContractRegistry.jl": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c",
+    "docs/v4_multitopology_generation/task_manifest.json": "84af082ba5fff336dd89ae506f6b8e680f96f0af2e657ae926d6e9cc666fd6ad"
+  },
+  "next_gate": {
+    "required": "different_luna_review_then_R20b_and_R20c_then_one_serial_focused_runtime_recheck",
+    "runtime_status": "NO-GO",
+    "no_t0_t1_t2_credit": true,
+    "no_r01_r10_credit": true
+  },
+  "self_hash_excluded": true
+}

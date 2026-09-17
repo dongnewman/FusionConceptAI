@@ -1,0 +1,22 @@
+{
+  "record_kind": "AD-30_T0_local_fixture",
+  "schema": "GenomeV5/Integration/VNextDeclarationTransportLocalV1",
+  "version": "v1",
+  "authority": false,
+  "purpose": "shape-only fixture; focused test constructs current declarations and reads these repository sources",
+  "actual_declaration_apis": ["g1_diffusion_declaration_v1", "g2mb_declaration_v1", "g3_sf_declaration_v1", "g1_source_authority_factory_v1", "g2_source_authority_factory_v1", "g3_source_authority_factory_v1"],
+  "source_paths": ["src/GenomeV5/G1/DiffusionDeclarationV1.jl", "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl", "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "src/GenomeV5/G3/RealizationGenomeV5.jl", "src/GenomeV5/G3/ControlGenomeV5.jl", "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl"],
+  "factory_dependencies": {
+    "G1": ["src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl", "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json"],
+    "G2": ["src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl", "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json"],
+    "G3": ["src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl", "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "src/GenomeV5/G3/RealizationGenomeV5.jl", "src/GenomeV5/G3/ControlGenomeV5.jl", "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl", "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json"]
+  },
+  "layers": ["G1", "G2", "G3"],
+  "axes": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+  "children": ["realization", "control", "binding"],
+  "child_status_boundary": "each real G3 child factory receipt is retained, but candidate_identity_created=false requires typed_absent/terminal_deferred",
+  "required_material": ["source_bytes_sha256", "declaration_bytes_sha256", "semantic_body_bytes_sha256", "source_locator", "factory_receipt", "declaration_receipt"],
+  "negative_controls": ["empty_bytes", "NaN", "Inf", "path_escape", "symlink_escape", "foreign_candidate", "duplicate_layer", "stale_source_bytes", "stale_receipt", "wrong_axis", "feedback_child_contradiction", "source_edit", "g2_typed_source_hash_tamper", "g2_self_consistent_typed_source_fabrication", "terminal_deferred_resolution"],
+  "claim_ceiling": "contract_only",
+  "accepted": false
+}

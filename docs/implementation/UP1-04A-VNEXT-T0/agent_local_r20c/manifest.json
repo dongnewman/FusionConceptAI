@@ -1,0 +1,64 @@
+{
+  "schema": "AD30-T0-LocalV1-AgentLocalR20cManifestV1",
+  "task_id": "UP1-04A-VNEXT-T0",
+  "agent_local_run": "agent_local_r20c",
+  "status": "g3_feedback_source_edit_static_only",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "screen_only": true,
+  "julia_executed": false,
+  "desc_executed": false,
+  "commit_created": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls": 0,
+  "r01_r10_credit": false,
+  "changed_files": [
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py",
+    "docs/implementation/UP1-04A-VNEXT-T0/agent_local_r20c/report.md",
+    "docs/implementation/UP1-04A-VNEXT-T0/agent_local_r20c/manifest.json"
+  ],
+  "scope": {
+    "g3_feedback_projection_validation": true,
+    "g3_missing_historical_absent_deterministic_rebind": true,
+    "g3_actual_stale_contradictory_fail_closed": true,
+    "present_g3_child_requires_fresh_receipt": true,
+    "typed_absent_child_self_consistency_rebind": true,
+    "feedback_source_vs_declaration_ref_mapping": true,
+    "r01_r10_credit": false
+  },
+  "negative_controls": {
+    "foreign_candidate_projection": true,
+    "stale_authority": true,
+    "contradictory_authority": true,
+    "actual_materialized_authority": true,
+    "present_child_without_fresh_receipt": true,
+    "unknown_feedback_target_ref": true,
+    "deterministic_rebind": true,
+    "body_hash_self_consistency": true
+  },
+  "static_qa": {
+    "command": "python -B docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "accepted": false,
+    "claim_ceiling": "contract_only",
+    "screen_only": true,
+    "julia_executed": false,
+    "desc_executed": false,
+    "source_sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa",
+    "test_sha256": "b43917ddb8fb74e1b7e5a40a0d67046160b35468ed8e144ef79e35fe028095ba",
+    "static_qa_sha256": "9442a6ac5c7c129a4528374e7dea386d2c1d6997a896d68a529b9ee924912796",
+    "fixture_sha256": "b1028b4d21ad690491a24549e73de5507af31edf3b70bf9357b25c3a09c24460",
+    "r01_r10_credit": false
+  },
+  "runtime_boundary": {
+    "runtime_status": "NO-GO",
+    "no_t0_t1_t2_credit": true,
+    "no_r01_r10_credit": true,
+    "root_serial_focused_julia_required": true
+  },
+  "self_hash_excluded": true
+}

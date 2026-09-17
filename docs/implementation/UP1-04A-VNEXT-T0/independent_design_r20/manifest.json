@@ -1,0 +1,40 @@
+{
+  "schema": "AD30-T0-LocalV1-IndependentDesignR20ManifestV1",
+  "task_id": "UP1-04A-VNEXT-T0",
+  "review_id": "independent_design_r20",
+  "status": "design_review_no_go_nested_semantic_rebind",
+  "verdict": "NO-GO",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "screen_only": true,
+  "julia_executed": false,
+  "desc_executed": false,
+  "product_modified": false,
+  "test_modified": false,
+  "commit_created": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls": 0,
+  "r01_r10_credit": false,
+  "review_scope": [
+    "_vnl_t0_semantic_rebind_candidate",
+    "G1 source_payload nested candidate/source bindings",
+    "G2 typed source and candidate envelope",
+    "G3 upstream authorities and feedback target authorities",
+    "cross G1/G2 source/declaration feedback target ref mapping",
+    "actual authority fail_closed boundary"
+  ],
+  "required_negative_vectors": 7,
+  "current_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": "efeae3112009b0e8d4b0902bb0c0da305b49bba40a919b1c4fd24b68f336ec8e",
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": "f288da66084e74739629e54d80c83c286848f50aa9ad49b6e47f05a19e602f34",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py": "1879616b2ce1a800c1e39f01abe8c7c321cc6a2fd8f353ccf43747a13cb4d14e",
+    "docs/v4_multitopology_generation/task_manifest.json": "84af082ba5fff336dd89ae506f6b8e680f96f0af2e657ae926d6e9cc666fd6ad"
+  },
+  "runtime_boundary": {
+    "r19_locator_mismatch_remains_open": true,
+    "no_t0_t1_t2_credit": true,
+    "no_r01_r10_credit": true
+  },
+  "self_hash_excluded": true
+}

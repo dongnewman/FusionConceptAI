@@ -1,0 +1,51 @@
+{
+  "schema": "AD30-T0-LocalV1-AgentLocalR21RuntimeReceiptManifestV1",
+  "task_id": "UP1-04A-VNEXT-T0",
+  "agent_local_run": "agent_local_r21_runtime",
+  "source_receipt": "runs/agent_local_up1_04a_vnext_t0_20260918_r21_wrapper",
+  "wrapper_exit_code": 0,
+  "inner_julia_exit_code": 0,
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "screen_only": true,
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls": 0,
+  "r01_r10_credit": false,
+  "test_totals": {"passed": 202, "total": 202, "groups": ["32/32", "29/29", "34/34", "37/37", "22/22", "15/15", "33/33"]},
+  "frozen_post_check": {"passed": 17, "total": 17},
+  "receipt_hashes": {
+    "run.json": {"bytes": 4974, "sha256": "eafaec0b1d88145b3fee65ed196eecebb03090ad9ab2671ed4ad2c8d4c0335da"},
+    "stdout.txt": {"bytes": 1328, "sha256": "a893a5fac7ff728f7658fdbfaea963cd8826610f1359c746175872121fc1b0c4"},
+    "stderr.txt": {"bytes": 246, "sha256": "3673c8cd9f5ffe4f18ed3800cf65817526b16a41fea323f14e63da166d77d00b"}
+  },
+  "current_inputs": {
+    "source": {"path": "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl", "bytes": 96310, "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"},
+    "test": {"path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl", "bytes": 75870, "sha256": "a92c028abf1fa1dd207c02d6a539efbdddf52be0cf9caabd5e3f208651ca8c64"},
+    "fixture": {"path": "docs/implementation/UP1-04A-VNEXT-T0/vnext_declaration_transport_local_v1_fixture.json", "bytes": 2419, "sha256": "b1028b4d21ad690491a24549e73de5507af31edf3b70bf9357b25c3a09c24460"},
+    "staticQA": {"path": "docs/implementation/UP1-04A-VNEXT-T0/static_qa_local_v1.py", "bytes": 25662, "sha256": "a32fa5ebd1eee059cd12053b82f2f1fb69a616b60e221f7682bb714df643fca3"},
+    "upstream_G1": [
+      {"path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl", "bytes": 37919, "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"},
+      {"path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl", "bytes": 31396, "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"}
+    ],
+    "upstream_G2": [
+      {"path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl", "bytes": 31706, "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3"},
+      {"path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl", "bytes": 27640, "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"}
+    ],
+    "upstream_G3": [
+      {"path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "bytes": 34374, "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7"},
+      {"path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl", "bytes": 35485, "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"},
+      {"path": "src/GenomeV5/G3/RealizationGenomeV5.jl", "bytes": 33751, "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+      {"path": "src/GenomeV5/G3/ControlGenomeV5.jl", "bytes": 10297, "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"},
+      {"path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl", "bytes": 10904, "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"}
+    ]
+  },
+  "stderr_boundary": [
+    "fatal: path 'tmp/t0_local_r3_source_edit/G1_DiffusionDeclarationV1.edited.jl' exists on disk, but not in 'HEAD'",
+    "warning: LF will be replaced by CRLF the next time Git touches it"
+  ],
+  "no_T1_T2_provider_physical_R01_R10_credit": true,
+  "self_hash_excluded": true
+}
