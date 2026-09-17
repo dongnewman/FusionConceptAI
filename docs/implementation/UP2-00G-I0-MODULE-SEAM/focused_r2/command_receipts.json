@@ -1,0 +1,22 @@
+{
+  "preflight_process_sweep": {
+    "argv": "Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' } | Select-Object Id,ProcessName,Path | ConvertTo-Json -Compress",
+    "exit": 0,
+    "started_utc": "2026-09-14T05:38:58.886161Z",
+    "stdout": "",
+    "stderr": "",
+    "observed": []
+  },
+  "dependency_hash_reconciliation": {
+    "method": "Python SHA-256 read-only hash check over current N05/N06/G-I0/core18/loader files",
+    "exit": 0,
+    "started_utc": "2026-09-14T05:38:58.886161Z",
+    "core18_match": false,
+    "all_non_core_dependencies_match": true
+  },
+  "runtime_runner": {
+    "invoked": false,
+    "reason": "AD-26 core18 SHA drift from independent static R4 frozen dependency",
+    "exit": null
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "manifest_kind": "up2_01_g3_source_feedback_v1_focused_r1",
+  "status": "focused_test_failed",
+  "accepted": false,
+  "review_pending": true,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pid": 49960,
+  "exit_code": 1,
+  "utc": {"before": "2026-09-14T20:40:54.9211201Z", "after": "2026-09-14T20:40:56.8643649Z"},
+  "pre_post": {
+    "dirty_rows_before": 300,
+    "dirty_rows_after": 300,
+    "julia_desc_before": 0,
+    "julia_desc_after": 0,
+    "target_hashes_unchanged": true
+  },
+  "input_hashes": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "37a66fcee910b123183df0f6c8eec568f617e5702b6e62875a4d7e6f4d5c5838",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0"
+  },
+  "test_summary": {
+    "passed": 1,
+    "errored": 1,
+    "total": 2,
+    "failure_path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:22",
+    "failure_type": "UndefVarError",
+    "missing_binding": "G3SFEndpointV1",
+    "later_contract_tests_reached": false
+  },
+  "raw_outputs": {
+    "stdout": {"path": "stdout.txt", "bytes": 2266, "sha256": "2828ff9be9aff6b09b42ba32621a5d194b511af0770d09778cdb6ca7b4be1abd"},
+    "stderr": {"path": "stderr.txt", "bytes": 203, "sha256": "42e397436d4057def496a22ee6b6baf48a97c0f80034726c53ee9fa3d65aa165"}
+  },
+  "credit": {
+    "software_test": true,
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "current_A": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "write_scope": ["docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/focused_r1/"]
+}

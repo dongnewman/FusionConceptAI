@@ -1,0 +1,55 @@
+{
+  "schema": "AD54.V5SourcePublicationCommit.root_acceptance_r1.cleanup_inventory.v1",
+  "rechecked_utc": "2026-09-15T23:03:00.6466629Z",
+  "scope": "AD-54 evidence cleanup and protected-dirty reconciliation",
+  "temporary_checkout": {
+    "path": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_n4rgo0qe",
+    "exists_after": false,
+    "removed": true,
+    "clean": true
+  },
+  "prior_postflight_cleanup": {
+    "path": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme",
+    "temporary_checkout_cleaned": true,
+    "probe_file_cleaned": true,
+    "windows_pack_index_lock_retry_succeeded": true
+  },
+  "temporary_scripts": {
+    "docs/implementation/AD-54/V5-SOURCE-PUBLICATION-COMMIT/execute_commit.py": {
+      "bytes": 17232,
+      "sha256": "333ef94a9e8a4d652ad69ea19ae243f446f6bdb05d3b98922cdc60a8a2f4c961",
+      "deleted": true
+    },
+    "docs/implementation/AD-54/V5-SOURCE-PUBLICATION-COMMIT/finish_postflight.py": {
+      "bytes": 12855,
+      "sha256": "f773d1cde607a97e8106d1ed1c0f79ef92560cf61792b8f0884075c0ad0b4da1",
+      "deleted": true
+    }
+  },
+  "other_cleanup": {
+    "pycache_under_ad54_evidence": [],
+    "new_python_cache_created": false,
+    "temporary_scripts_remaining_under_ad54_evidence": false,
+    "julia_or_desc_processes_remaining_at_recheck": false,
+    "probe_artifacts_remaining_outside_retained_json_receipts": false
+  },
+  "authorized_external_drift": [
+    {
+      "path": "ad53_probe_no_temp.json",
+      "change": "removed",
+      "before_bytes": 17382,
+      "before_sha256": "af345452e3db50f6fd616e52d8b3f6ce05b7f783d2181382b23bf04b88991155"
+    },
+    {
+      "path": "docs/implementation/AD-53/V5-PUBLICATION-CLOSURE-VERIFIER/post_acceptance_cleanup_r1/cleanup_receipt.json",
+      "change": "added",
+      "after_bytes": 1422,
+      "after_sha256": "47be90fe13579bdf0abbecd5077ba4756aea4c70eff14bba0c401b2067e8f528"
+    }
+  ],
+  "protected_dirty_reconciliation": {
+    "authorized_external_drift_count": 2,
+    "remaining_protected_paths_exact_unchanged": true,
+    "status": "pass_with_authorized_external_drift"
+  }
+}

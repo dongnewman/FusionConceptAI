@@ -1,0 +1,200 @@
+{
+  "schema_version": "AD-43-g1-g2-four-axis-gap-audit-v1",
+  "record_kind": "read_only_architecture_and_contract_gap_audit",
+  "task_id": "AD-43",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "architecture_only_additive_contract_proposal",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T09:35:26.720693Z",
+  "read_only": true,
+  "implementation_dispatched": false,
+  "core_source_test_modified": false,
+  "fixture_modified": false,
+  "old_receipts_modified": false,
+  "task_manifest_modified": false,
+  "candidate_payload_created": false,
+  "candidate_hash_created": false,
+  "declaration_hash_created": false,
+  "julia_desc_provider_mesh_solver_physical_run": false,
+  "claims": {
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  },
+  "decision": {
+    "g1_evidence_receipt_version": {
+      "w0_status": "typed_absent",
+      "source_contract_observed": "G1DiffusionReceiptV1",
+      "source_contract_version_axis": "not_declared",
+      "legal_additive_record": true,
+      "current_present": false
+    },
+    "g2_applicability_profile_version": {
+      "w0_status": "typed_absent",
+      "source_contract_observed": "G2MBProfileV1",
+      "source_contract_version_axis": "not_declared_as_applicability_ref",
+      "legal_additive_record": true,
+      "v5_spatial_profile_alias_forbidden": true,
+      "current_present": false
+    },
+    "g2_evidence_receipt_version": {
+      "w0_status": "typed_absent",
+      "source_contract_observed": "G2MBReceiptV1",
+      "source_contract_version_axis": "not_declared",
+      "legal_additive_record": true,
+      "current_present": false
+    },
+    "current_w0_state": "typed_absent_preserved",
+    "w2r1_state": "not_created_and_not_unlocked"
+  },
+  "frozen_inputs": [
+    {"path":"src/Contracts/GenomeContractRegistry.jl","bytes":2389,"sha256":"ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c","role":"five_field_GenomeContractRef"},
+    {"path":"src/IR/PhysicalTypes.jl","bytes":11801,"sha256":"dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4","role":"QualifiedRefV1"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","role":"G1_V1_schema_profile_receipt_source"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","role":"G2MB_V1_schema_profile_receipt_source"},
+    {"path":"src/GenomeV5/G1/GrammarProfileV2.jl","bytes":22812,"sha256":"96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c","role":"G1_V5_negative_control"},
+    {"path":"src/GenomeV5/G1/MechanismGenomeV5.jl","bytes":3887,"sha256":"8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884","role":"G1_V5_candidate_hash_negative_control"},
+    {"path":"src/GenomeV5/G2/SpatialGrammarProfileV2.jl","bytes":5945,"sha256":"3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f","role":"G2_V5_negative_control"},
+    {"path":"src/GenomeV5/G2/FieldGeometryGenomeV5.jl","bytes":18646,"sha256":"7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32","role":"G2_V5_candidate_hash_negative_control"},
+    {"path":"docs/implementation/AD-30/authority_source_audit/report.md","bytes":10006,"sha256":"aad95aa1690524c173b612634359a587b89a7dc94653d3fba5a4792e0d106ba5","role":"prior_four_axis_authority_gap"},
+    {"path":"docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2/manifest.json","bytes":21610,"sha256":"2f8c39929679099822ab137160993276c174e278c2576322783edc28befbdfb9","role":"publication_four_axis_contract"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","bytes":8352,"sha256":"6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7","role":"fresh_receipt_input_contract"},
+    {"path":"docs/implementation/AD-36/acceptance.md","bytes":3216,"sha256":"aa8610dec1c4259730fd4639cb1531da7aa5d8fd0122f167e4424f3084664dc2","role":"accepted_limited_sidecar_policy"},
+    {"path":"docs/implementation/AD-42/acceptance/acceptance.md","bytes":4297,"sha256":"ded047968a3b931ebd1acc4475cc8d8a867b3dceb971554ac70cb0c328576a06","role":"W0_W2R1_architecture_boundary"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360","role":"W0_G1_envelope"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9","role":"W0_G2_envelope"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f","role":"W0_fresh_seed_recipe"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/materialization_receipt.json","bytes":4884,"sha256":"2d969ea216eeee5d2812f5a301e30d7d70ee5baf8c062631e898787a5f742a2f","role":"W0_materialization_receipt"}
+  ],
+  "observed_gaps": {
+    "g1": ["evidence_receipt_version"],
+    "g2": ["applicability_profile_version", "evidence_receipt_version"]
+  },
+  "proposed_work_order": {
+    "id": "AD43-AXIS-CONTRACT-RECORDS",
+    "status": "proposed_prepare_only",
+    "owner": "gpt-5.6-luna/high",
+    "independent_reviewer": "different gpt-5.6-luna/high",
+    "product_files": [
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json"
+    ],
+    "inputs": [
+      "AD42-W0-PUBLIC-CONTRACT-ENVELOPE four products",
+      "src/Contracts/GenomeContractRegistry.jl",
+      "src/IR/PhysicalTypes.jl",
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "G1/G2 V5 profile and Genome sources as negative controls",
+      "AD-30 authority-source audit",
+      "AD-37 present-baseline publication contract",
+      "AD-39 publication input recovery contract",
+      "AD-36 accepted-limited sidecar policy"
+    ],
+    "forbidden_inputs": [
+      "AD-40 W2 payload/receipt as source input",
+      "fixture or synthetic record",
+      "legacy or historical receipt as present authority",
+      "payload/declaration/final candidate hash as axis derivation"
+    ],
+    "outputs": [
+      "EvidenceReceiptAxisSchemaV1",
+      "G1EvidenceReceiptContractV1",
+      "G2ApplicabilityProfileContractV1",
+      "G2EvidenceReceiptContractV1"
+    ],
+    "result_union": ["PresentAxisContractRecordV1", "AbsentAxisContractRecordV1", "FailedAxisContractRecordV1"],
+    "depends_on": ["AD42-W0-PUBLIC-CONTRACT-ENVELOPE", "UP1-01", "UP1-02", "UP1-03", "AD-36"],
+    "downstream_edge": "AD43-AXIS-CONTRACT-RECORDS -> AD42-W2R1-REAUTHOR-FRESH-PAYLOADS",
+    "forbidden_edges": [
+      "AD42-W2R1-REAUTHOR-FRESH-PAYLOADS -> AD43-AXIS-CONTRACT-RECORDS",
+      "axis_record -> candidate_hash",
+      "axis_record -> declaration_hash",
+      "axis_record -> T0",
+      "axis_record -> T1",
+      "axis_record -> T2",
+      "axis_record -> UP2",
+      "axis_record -> provider",
+      "axis_record -> mesh",
+      "axis_record -> solver",
+      "axis_record -> physical",
+      "G1_V5_axes -> G1_V1_evidence_axis",
+      "G2_V5_axes -> G2MB_V1_applicability_or_evidence_axis",
+      "G1_receipt_record <-> G2_receipt_record_type_alias"
+    ],
+    "exit_gates": [
+      "exact source/profile/schema/canonicalization byte and SHA-256 closure",
+      "G1DiffusionReceiptV1 exact field projection",
+      "G2MBProfileV1 exact profile/hash/token projection",
+      "G2MBReceiptV1 exact field projection",
+      "independent axis ref/version derivation not based on payload/declaration/candidate hash",
+      "fresh W2R1 binding fields remain required downstream",
+      "fixture/legacy/historical/V1-V5-cross-domain/foreign-layer/alias/seed mismatch negative controls",
+      "JSON/hash/API/path/control/diff validation with real PID UTC exit and raw streams",
+      "different Luna review and path-owned cleanup"
+    ],
+    "claim_ceiling": "software_contract_record_only",
+    "cleanup": "task-owned temporary files only; preserve pre-existing dirty work, historical receipts, and old W0/W2 products",
+    "sidecars": "archive/**, review/**, status_sync_*/** only; evidence metadata/raw streams only"
+  },
+  "validation": {
+    "code_tests": "not_applicable_read_only_audit",
+    "json_api_hash_path_static": "pass",
+    "git_diff_check": "pass",
+    "independent_review": "pending",
+    "julia_desc_provider_mesh_solver_physical": "not_run",
+    "run": {
+      "command": "D:/Users/Newman/anaconda3/python.exe -c <read-only JSON/hash/API/source-gap validator>",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "pid": 82620,
+      "python": "3.13.5",
+      "utc_start": "2026-09-15T09:35:26.714908Z",
+      "utc_end": "2026-09-15T09:35:26.720693Z",
+      "exit_code": 0,
+      "stdout": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stdout.json","bytes":3093,"sha256":"9850c55e680f0605074b91e7cd30aedb7481f1df00a5b02f0054143e773d9ee2"},
+      "stderr": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "final_scope_recheck": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stdout.json","bytes":711,"sha256":"d3143941ef1b6e078aa8f69c1e95c513cf40172fc660cf3054e3c931ffe09b6c"},
+      "final_scope_recheck_stderr": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "final_scope_recheck_r3": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stdout.json","bytes":736,"sha256":"495d395e2c70a375ed7450ba45a6b6a98bec24806b4e8270efb8e0525904eb85"},
+      "final_scope_recheck_r3_stderr": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    }
+  },
+  "outputs": {
+    "report": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/report.md","bytes":11449,"sha256":"07fb5f59a78918a5ae9772aa74479daaad2c692f99bb28a0acb83d4d4f4e37df"},
+    "cleanup_inventory": {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/cleanup_inventory.md","bytes":2901,"sha256":"8760779cff7651c37ff2caa45fe8bee9a243a72736f1fe0ed20b965a9f9a5575"},
+    "raw_sidecars": ["docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stdout.json","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stderr.txt","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_validation_stdout.json","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_validation_stderr.txt","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stdout.json","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stderr.txt","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stdout.json","docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stderr.txt"]
+  },
+  "cleanup": {
+    "final_exact_owned_set": [
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/report.md",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/manifest.json",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/cleanup_inventory.md",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stdout.json",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/validation_stderr.txt",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_validation_stdout.json",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_validation_stderr.txt",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stdout.json",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r2_stderr.txt",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stdout.json",
+      "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/archive/final_scope_r3_stderr.txt"
+    ],
+    "removed_paths": [],
+    "ambiguous_deferred": [],
+    "historical_receipts_preserved": true,
+    "unrelated_dirty_files_preserved": true,
+    "proposed_axis_product_directory_created": false,
+    "sidecars_evidence_only": true
+  },
+  "self_hash_excluded": true
+}

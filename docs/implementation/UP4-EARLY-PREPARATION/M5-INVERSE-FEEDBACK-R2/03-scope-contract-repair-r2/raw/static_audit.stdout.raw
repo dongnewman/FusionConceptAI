@@ -1,0 +1,18 @@
+M5-INVERSE-FEEDBACK-R2 repair R2 static audit
+scope=03-scope-contract-repair-r2
+review_verdict=fail_limited changes_requested
+json_parse=pass files=8
+draft2020-12_check_schema=pass schemas=5
+resolver_registry_hash_and_bytes=pass entries=4
+resolver_policy=absolute_urn_local_registry_only unknown_external_ref=typed_absent
+canonical_join_contract=typed_refs+parent_body+equality_and_digest_checker
+valid_screen_gate=two_unique_serial_replays+exit_codes_[0,0]+semantic_equal+byte_equal+fresh_refreeze+raw_process_refs
+feedback_cas_history=identity+owner+direction+version+append_only_sequence+before_after_digest+utc_Z
+dependency_closure=6_source_test_oracle_roles+composition+Project.toml+Manifest.toml
+dirty_closure=per_path_baseline_and_additive_end_rule
+failure_taxonomy=shared_enum_contract_and_exact_set_checker
+failure_code_enum_exact_set=pass
+hash_manifest=pass entries=17
+runtime=not_executed
+forbidden_runtime=Julia,DESC,S3,mesh,solver,provider,network,hardware
+status=review_pending implementation=not_implemented claim_ceiling=manufactured_inverse_feedback/screen_only formal_credit=none

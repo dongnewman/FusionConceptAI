@@ -1,0 +1,19 @@
+record_kind=AggregateIndependentAttackR2ReceiptV1 TEST_ONLY=true non_evidence=true
+focused=17/17 exit=0
+mismatch_candidate/source/input=conflict terminal_deferred no_publish=true
+unknown_root/package/receipt=reject-or-invalid terminal_deferred no_publish=true
+authority_false_root/package/receipt=typed_absence terminal_deferred no_publish=true
+arbitrary_names=conflict responsibility_set_mismatch no_publish=true
+typed_absence=typed_absence terminal_deferred no_publish=true
+sequence_jump_2/99=invalid_order no_publish=true
+direct_aggregate=invalid_order no_publish=true
+uppercase_fingerprint=invalid invalid_fingerprint no_publish=true
+wrong_domain=invalid no_publish=true
+duplicate_receipt_list=conflict duplicate_receipt no_publish=true
+duplicate_json_key_cli=exit=2 invalid no_publish=true
+map_permutation=equal=true
+claim_injection=rejected unknown claims; claims ceiling unchanged
+changed_input=intake_changed terminal_deferred no_publish=true ad_created=false
+legal intake->validated->aggregate=events aggregated,intake_changed,validated,aggregated; sequences 1,2,3,4
+fabricated_validated_prior=aggregated verified eligible_for_authority_recheck no_publish=false [F-01]
+fabricated_same_input_prior=deterministic_noop verified eligible_for_authority_recheck no_publish=false packages=[] [F-01]

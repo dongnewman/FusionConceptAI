@@ -1,0 +1,52 @@
+{
+  "schema": "AD56.root_acceptance_r1.hash_inventory.v1",
+  "rechecked_utc": "2026-09-16T00:37:54.6213361Z",
+  "baseline_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "task_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "raw_file_bytes_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "git_blob_oid_separate": "f514c155e2004378a61ee3efc4d0be9085eeb017",
+    "raw_sha_match": true
+  },
+  "plan": {"markdown_files":31,"relative_links":534,"tasks":39,"acyclic":true},
+  "canonical_source_rows": [
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","head_blob":"b94dd095815eed66917aa2f43b5350db587fa232","canonical_bytes":31743,"raw_bytes":31743,"raw_sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","filtered_working_oid":"b94dd095815eed66917aa2f43b5350db587fa232","filtered_matches_head":true},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","head_blob":"53de699f6fe3c5f3fea19459ed3d681a0f66a046","canonical_bytes":30773,"raw_bytes":30773,"raw_sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","filtered_working_oid":"53de699f6fe3c5f3fea19459ed3d681a0f66a046","filtered_matches_head":true},
+    {"path":"src/GenomeV5/G3/RealizationGenomeV5.jl","scope":"realization","head_blob":"58274e1912737e7bab9c8ddd430fa17cac523b16","canonical_bytes":33750,"raw_bytes":33751,"raw_sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb","filtered_working_oid":"58274e1912737e7bab9c8ddd430fa17cac523b16","filtered_matches_head":true,"present":true,"clean":true},
+    {"path":"src/GenomeV5/G3/ControlGenomeV5.jl","scope":"control","head_blob":"26c05abd5c514cfcf6fb5eee9370ada71e3a82b0","canonical_bytes":10287,"raw_bytes":10297,"raw_sha256":"eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135","filtered_working_oid":"26c05abd5c514cfcf6fb5eee9370ada71e3a82b0","filtered_matches_head":true,"present":true,"clean":true},
+    {"path":"src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl","scope":"binding","head_blob":"446a35add72c17de341b23ec8578adb566bfca81","canonical_bytes":10904,"raw_bytes":10904,"raw_sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4","filtered_working_oid":"446a35add72c17de341b23ec8578adb566bfca81","filtered_matches_head":true,"present":true,"clean":true},
+    {"path":"src/GenomeV5/G3/RealizationControlGenomeV5.jl","scope":"bundle","head_blob":"87206cfa92b5ed06489138553eccfcc4f47671c2","canonical_bytes":6704,"raw_bytes":6704,"raw_sha256":"8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4","filtered_working_oid":"87206cfa92b5ed06489138553eccfcc4f47671c2","filtered_matches_head":true,"present":true,"clean":true}
+  ],
+  "current_g3_four_scope_present": true,
+  "layer_tests": [
+    {"name":"G1","pass":"35/35","exit":0,"stdout_sha256":"2a77d5c18eb080bb0e45a502e2d961b375aabd77a5f0e92b58602e0af7bfedea","stderr_sha256":"aebd625e32ed87cf3c68643a397021a51e4603e8d206d7701db2e71cfb583494"},
+    {"name":"G2","pass":"35/35","exit":0,"stdout_sha256":"33d40a7f9d02fd8b9438d8f12777e539d7b260c186be29948306a24afdd27dd6","stderr_sha256":"327ecff86407d5ad7b8c178306fcd041ae1b4753c9e6fe70b4215e626b69c546"},
+    {"name":"G3","pass":"356/356","exit":0,"stdout_sha256":"b346ac493b5c6526c0368680d06d9612401ef742c679343c2effecf83f0cc836","stderr_sha256":"c7d4c42d0a921f8e2ab2d0ca3edeed341b6fa2617966a7e9ed3c1cf070077ff3"}
+  ],
+  "adversarial_probe": {
+    "assertions":"20/20",
+    "exit":0,
+    "stdout_sha256":"a4c3fc5681dea2d9f4fee4670f8187cf66941f99d650fe3cc92e80f4b292eab9",
+    "stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "valid_and_relabel_controls_fail_closed":true
+  },
+  "correction": {
+    "receipt":"correction_receipt_r1.json",
+    "metadata_only":true,
+    "no_runtime_tests":true,
+    "no_source_or_test_changes":true,
+    "after_hashes_match":true
+  },
+  "evidence_hashes": {
+    "implementation/report.md":"3fa9db9e05999c2cc35f78f5d52e8d266c62f44ab595a37f7fc874ce4e4e6940",
+    "implementation/manifest.json":"a4e0e93e8197bb19eaedda3b96594a1751931dcaae8a5c590f89994321ae8bf3",
+    "implementation/test_receipts.json":"17092c9211092f37d6cbc769975b066b4b7da33034eb3224ed7a1bd98e745469",
+    "independent_review_r1/report.md":"865d011748203ed84fa38e14585e3c9452a355043eea38670c00834edff56cd8",
+    "independent_review_r1/manifest.json":"7100e1799d74298e42f94b5a3335b95625cb44e518cbdb2712433bbfdfd6869a",
+    "independent_review_r1/adversarial_receipt.json":"30bf1eabd273bfcc5007d4cd5c791a1aed6ac81e8a3ce7dbaf9d32c718140048",
+    "independent_review_r1/adversarial_results.json":"0d0f1c4fc44958575087a6e2b49019cd4a1fed389e51c693fc08aab4a52c3f89",
+    "correction_review_r1/report.md":"924ec79ed7fd01673104cfc4a9d8a661d3a66ac956d2db78817ccfea99c237a2",
+    "correction_review_r1/manifest.json":"b7cf7774fdf61a79e2b977f8705d2fa007674d0ad915d9e00fc5a031061b1f99",
+    "correction_review_r1/hash_inventory.json":"b93033d46b6a3f4cf6e9c1a3704dee5b9d4a04e90595fecc65d9dd4d75312d84"
+  }
+}

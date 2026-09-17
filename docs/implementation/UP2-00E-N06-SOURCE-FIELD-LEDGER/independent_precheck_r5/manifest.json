@@ -1,0 +1,58 @@
+{
+  "schema_version": "independent-precheck-v1",
+  "work_order": "E2-N06",
+  "review_round": "R5",
+  "reviewer_role": "independent_luna_static",
+  "verdict": "ready_for_focused_r4",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "e13b0a4051c1cee65797f73e3728d590908d7c335c9c7f641cb7aaabb4084ae9",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "657ad5c058a0477adc01b59c11d4fc3bb7a92577d2d8d1d58a7205d0d4851d25",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "5576299e6364744d5f297fd58ee24f1888d37eb41a162e68b0d833ff5ac8e01f",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "static_findings": {
+    "actual_package_e0_projection_rebuild": "pass",
+    "full_identity_and_source_comparison": "pass",
+    "detached_foreign_rejection": "pass",
+    "path_kind_locator_type_routing": "pass",
+    "mutation_id_receipt_only": "pass",
+    "selector_cardinality_and_dynamic_paths": "pass",
+    "g1_g2_g3_join_and_dimension_checks": "pass",
+    "exception_taxonomy_boundary": "declared_and_runner_bounded",
+    "fixture_driven_controls": "pass",
+    "counter_zero_contract_boundary": "pass_static_only",
+    "remaining_authority_gap": "cross_layer_source_field_return_heat_ledger_terminal_deferred"
+  },
+  "qa": {
+    "json_parse": {"exit": 0},
+    "validate_plan": {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "checks": "pass"},
+    "git_diff_check": {"command": "git diff --check -- frozen N06 inputs", "exit": 0},
+    "frozen_hash_check": {"exit": 0},
+    "control_scan": {"exit": 0, "disallowed_controls": 0},
+    "julia_desc_process_sweep": {"exit": 0, "julia": 2, "desc": 0, "observed": "active Julia parent/child processes at precheck QA; no process was started or stopped by this reviewer"},
+    "julia_execution": "not_run",
+    "desc_execution": "not_run"
+  },
+  "history": {
+    "author_r1_r3": "preserved historical failures",
+    "author_r4": "required fresh serial focused run; not established by this review",
+    "prior_r4_verdict": "changes_requested",
+    "prior_r4_blockers": ["public mutation lacked actual package/E0 revalidation", "spec binding used ID-oriented dispatch"]
+  },
+  "credit_boundary": {
+    "formal_B04": false,
+    "provider_resolution": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "owned_output": [
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r5/report.md",
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r5/manifest.json",
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r5/qa.json"
+  ]
+}

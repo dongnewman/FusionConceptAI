@@ -1,0 +1,47 @@
+{
+  "schema_version": "AD49-F0-root-acceptance-R2-manifest-v1",
+  "record_kind": "root_acceptance",
+  "task_id": "AD49-F0-CONDITIONAL-G1-G2-SOURCE-AUTHORITY-FACTORIES",
+  "decision": "accepted_limited",
+  "accepted_scope": "factory_software_capability_only",
+  "only_unlocked": "fresh AD49-S2 factory probe",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_r1": {
+    "report_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/report.md",
+    "report_sha256": "a3222d1f08bf81cff03d86802e4faf36fb617158c048ea7694e93b36ac039616",
+    "manifest_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/manifest.json",
+    "manifest_sha256": "321359f6bd519f72e771079a15c1a1ec60eed4fd8b2e18fca085006197c16732",
+    "verdict": "changes_requested"
+  },
+  "review_r2": {
+    "report_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r2/report.md",
+    "report_sha256": "b87f2494ddc193ce5925b1dbf35d02148853d60a7218b63ed565b0ab7d24e621",
+    "manifest_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r2/manifest.json",
+    "manifest_sha256": "f076358e4dd5e93675751798e60f9058b3b7b3dc802231bb7e9ee083a2b3a189",
+    "direct_validation_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r2/direct_validation.json",
+    "direct_validation_sha256": "20142cf9a713ef50e60f4517c2c24150975b1a0e022396c33461fdbade9865d6",
+    "final_hashes_path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r2/final_hashes.json",
+    "final_hashes_sha256": "421caf1ed4f2cc2bfb53bf71d971542d6ceccbc6a99782bc8b73e8e1eb1994d8",
+    "verdict": "pass_limited",
+    "focused": {"g1": {"passed": 31, "total": 31, "exit_code": 0}, "g2": {"passed": 31, "total": 31, "exit_code": 0}},
+    "regressions": {"g1": "47/47 + 21/21", "g2": "57/57 + 59/59 + 8/8"},
+    "direct_validation_exit_code": 0,
+    "plan_validator_exit_code": 0,
+    "scoped_diff_check_exit_code": 0,
+    "self_hash_excluded": true,
+    "review_outputs_excluded_from_baseline": true
+  },
+  "products": [
+    {"path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl", "bytes": 28642, "sha256": "23684a9e6bb267d6fdfe06df5acc8f7c8cf299ac8c8bf8433ae601c9fdb4331b"},
+    {"path": "test/GenomeV5/G1/g1_source_authority_factory_v1_tests.jl", "bytes": 9857, "sha256": "6f6c8bfad9d7a3682e38e9d2960efdee93c63447339e46be84b36420846ec677"},
+    {"path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl", "bytes": 24807, "sha256": "5b5d013a0ad5ee6eb07f714480e36911be9aa96636a3d3f368f38163240409c8"},
+    {"path": "test/GenomeV5/G2/g2_source_authority_factory_v1_tests.jl", "bytes": 9456, "sha256": "0dd880d54e05b0101860eb84ebb0a1a5dd6c6f86077efbf1919ff205b1061b70"}
+  ],
+  "source_state": {"g1_declaration_tracked_in_head": false, "g2_declaration_tracked_in_head": false, "source_authority": false, "trusted_identity": false},
+  "claims": {"candidate_identity": false, "final_hash": false, "t0": false, "t1": false, "t2": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physics": false, "search": false, "r01_r10": false, "l4_credible_count": 0},
+  "heavy_execution": {"julia": false, "desc": false},
+  "product_mutation": false,
+  "outside_acceptance_directory_mutation": false,
+  "acceptance_self_hash_excluded": true
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "UP1.external-blocker-closure-r4.root-decision-draft.hash-manifest.v1",
+  "status": "decision_draft_pending_root_acceptance",
+  "hash_algorithm": "SHA-256",
+  "self_excluded": true,
+  "scope": "new decision-draft artifacts only; historical evidence is referenced, not rewritten",
+  "files": [
+    {
+      "path": "decision_draft.md",
+      "bytes": 10218,
+      "sha256": "5dae64db6ac2f569df4bda6cf439993609b845b011393346b4ab9fe5cf20c303"
+    },
+    {
+      "path": "decision_draft.json",
+      "bytes": 8598,
+      "sha256": "969ca171e7ba2219f5315a09f10bee204f78fed78899b2652bb0f103516283ce"
+    }
+  ],
+  "historical_hash_closure": {
+    "source_test_file_count": 48,
+    "before_count": 48,
+    "after_count": 48,
+    "unchanged": true,
+    "changed": [],
+    "missing": [],
+    "added": [],
+    "source_of_truth": "../19-final-full-regression/hash_comparison.json"
+  },
+  "evidence_refs": [
+    "../00-external-delta-scan/manifest.json",
+    "../19-final-full-regression/run_manifest.json",
+    "../19-final-full-regression/before_hash.json",
+    "../19-final-full-regression/after_hash.json",
+    "../19-final-full-regression/hash_comparison.json",
+    "../reviews/19-final-independent-review-r2/evidence_manifest.json"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "M5SearchR2ImplementationReadinessAuditInputHashesV1",
+  "hash_algorithm": "SHA-256",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "branch": "main",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "worktree_policy": "dirty_existing_changes_protected",
+  "runtime_execution": {
+    "julia": false,
+    "search": false,
+    "solver": false,
+    "provider": false,
+    "mesh": false
+  },
+  "inputs": [
+    {"path":"src/IR/ConditionalEGraphTypes.jl","sha256":"885119aa142335f4dedcb1eb506b48350bc7793538b55d622ee9766e0ac47bee"},
+    {"path":"src/IR/ConditionalEGraphSaturation.jl","sha256":"643775a5b10b9865269c66088d97ff7476312924f324d9c8b75107ad7749cdb3"},
+    {"path":"src/Canonical/ConditionalEGraphCanonical.jl","sha256":"038c43431f053aa22ecac707a950aea19ae9d6a85157ce7d8325e43f3690eb12"},
+    {"path":"src/Canonical/TypedASTProgramCanonical.jl","sha256":"b978fb99164f4d0f58c639f2e58dc1ecc3bc9baa2f9afdef63cd6e7c323809ff"},
+    {"path":"src/RuntimeV4/Compiler.jl","sha256":"7a550e2b9ac27693f7e7008f3562ef6d5f52795997bc89c676440cb2e4bab4aa"},
+    {"path":"src/RuntimeV4/Search.jl","sha256":"3068b8b65a53745f1f1ac5cb4eee50133a2383c94ed48a60a4a5547aa75d3a83"},
+    {"path":"src/Contracts/CandidateStatePackage.jl","sha256":"7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163"},
+    {"path":"src/GenomeV5/G1/GrammarProfileV2.jl","sha256":"96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"},
+    {"path":"src/FusionConceptAI.jl","sha256":"e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"},
+    {"path":"test/conditional_egraph_p1_core_tests.jl","sha256":"a9216010bb1ed18959ffcf0f795c8dff40e1685e9c3e336b08d5811ad68d0ee3"},
+    {"path":"test/conditional_egraph_p1_adversarial.jl","sha256":"df2ffdf8a2dabc20eecf786416aace65be8f50e39aede979bf5ea02b9a9318b4"},
+    {"path":"test/conditional_egraph_p1_length_adversarial.jl","sha256":"33933587b0aeb14b2168198895541bfc20e4142e08cdc31adc136addc3db1ee1"},
+    {"path":"test/RuntimeV4/M4Isolated/oracles/conditional_egraph_oracle_v1.py","sha256":"92db4edbea2060409d22ff453fa9eef119f8639f1ab6edb6cc01103218309dca"},
+    {"path":"docs/v4_multitopology_generation/03_open_ended_evolution_and_quality_diversity.md","sha256":"0d6cade2623aa024fa4da094c67a343bf89beff8d27c567703ee5670e292e23f"},
+    {"path":"docs/v4_multitopology_generation/04_mcts_and_generative_proposal.md","sha256":"add8aae786c51ab87cb8e90478d5f1d34c2e135a23cadaf0bd8522792a3ad8fa"},
+    {"path":"docs/v4_multitopology_generation/07_survivor_sparsification_and_pareto.md","sha256":"6d24ea5c28deb2271a5ac350676944a16405fc5b6afcd51ba48c5e37101b4248"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/00-scope-contract/report.md","sha256":"686056a934e465ffe42879dc82dbf0646c7bdd1937f73ea73ec72a5ddfa2ee70"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/00-scope-contract/manifest.json","sha256":"8210a2291a1189e05b20144fe98b12f8d8e504f2402d73af964fdd55b0edd501"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/00-static-audit/manifest.json","sha256":"9679c2066fe5f6af61f190f8870b196341a458e4c4ed87808bb22e979e4b6486"},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/00-static-audit/report.md","sha256":"bd7d786fe2a08a54708502e0fd9a59604836477d368ae4fa9781c84a368ee67d"}
+  ],
+  "missing_or_unfrozen_confirmed": [
+    "versioned R2 implementation and test entrypoints",
+    "immutable synthetic source fixture and grammar authority receipt",
+    "public synthetic descriptor schema and cell discretization",
+    "independent R2 checker and environment lock",
+    "M5-C owner-frozen threshold and accepted gate envelope"
+  ]
+}

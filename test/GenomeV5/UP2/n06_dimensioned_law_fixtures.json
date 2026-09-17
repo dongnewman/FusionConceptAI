@@ -1,0 +1,23 @@
+{
+  "schema_id": "GenomeV5/UP2/N06DimensionedLedgerLawV1",
+  "version": "v1",
+  "provenance_schema": "typed_source_ref+source_hash+source_path+source_type",
+  "schema_validation_only": true,
+  "actual_a_positive": false,
+  "physical_resolution": "unknown",
+  "status_ceiling": {
+    "missing": "terminal_deferred",
+    "contradiction": "fail_closed",
+    "internal_exception": "program_exception"
+  },
+  "cases": [
+    {"id": "H0A-01-actual-a", "kind": "actual_a", "expected_status": "terminal_deferred", "gap_code": "external_ref_required"},
+    {"id": "H0A-02-synthetic-present", "kind": "schema_validation_only", "expected_status": "schema_validation_only", "authority": "schema_only"},
+    {"id": "H0A-03-content-hash-mismatch", "kind": "negative_control", "expected_status": "fail_closed"},
+    {"id": "H0A-04-typed-absent", "kind": "typed_absent", "expected_status": "terminal_deferred"},
+    {"id": "H0A-05-internal-exception", "kind": "negative_control", "expected_status": "program_exception"},
+    {"id": "H0A-06-stale-source-hash", "kind": "source_derived_negative", "expected_status": "fail_closed"},
+    {"id": "H0A-07-external-feedback-authority", "kind": "independent_gap", "expected_status": "terminal_deferred", "gap_code": "external_ref_required"}
+  ],
+  "claim_ceiling": ["contract_only", "accepted=false", "review_pending", "no_physical_authority", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_R_credit"]
+}

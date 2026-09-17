@@ -1,0 +1,27 @@
+{
+  "schema": "m4-d-command-receipt-v1",
+  "id": "julia_tests_int_r2",
+  "command": "julia --startup-file=no --history-file=no --color=no test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl",
+  "executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+  "arguments": "--startup-file=no --history-file=no --color=no test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 21024,
+  "start_utc": "2026-09-16T08:57:03.3505908Z",
+  "end_utc": "2026-09-16T08:57:22.1187591Z",
+  "exit_code": 0,
+  "raw_stdout": "raw/julia_tests_int_r2.stdout.raw",
+  "raw_stderr": "raw/julia_tests_int_r2.stderr.raw",
+  "raw_combined": "raw/julia_tests_int_r2.combined.raw",
+  "stdout_sha256": "f9a5d275db6b48b0b9387c9c654eae13bd696aeafe34dd6554e07ef7cdf8be73",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "combined_sha256": "f9a5d275db6b48b0b9387c9c654eae13bd696aeafe34dd6554e07ef7cdf8be73",
+  "input_map": {
+    "source_a": "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl",
+    "source_b": "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl",
+    "source_c": "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl",
+    "source_d": "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl",
+    "test": "test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl"
+  },
+  "output_map": {"result": "raw/julia_tests_int_r2.combined.raw"},
+  "artifact_map": {"source_d_sha256": "a26d8dd66ed8d639fddac16590ee398c6a6ff32847f5020ec7c322bdb853b465", "test_sha256": "92cd4069d97c54a297dd00ab3a85a4fc9a0fc39458b744d57bb046e76dc75d88", "passed": 110, "total": 110}
+}

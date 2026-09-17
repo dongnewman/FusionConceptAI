@@ -1,0 +1,128 @@
+{
+  "schema_version": "AD-30-authority-source-audit-v1",
+  "record_kind": "AD30_T0_fresh_candidate_authority_source_audit",
+  "date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "audit_scope": {
+    "read_only_source_audit": true,
+    "julia_executed": false,
+    "desc_executed": false,
+    "provider_executed": false,
+    "mesh_executed": false,
+    "physical_executed": false,
+    "core_modified": false,
+    "source_modified": false,
+    "tests_modified": false,
+    "fixture_modified": false
+  },
+  "decision": {
+    "t0_fresh_same_candidate_join": "not_found_terminal_deferred",
+    "g2_genome_contract_ref_to_qualified_ref_mapping": "not_found_terminal_deferred",
+    "four_axis_readable_candidate_receipts": "not_found_terminal_deferred",
+    "g3_source_content_hash": "typed_absent_terminal_deferred",
+    "g3_realization_child": "typed_absent_terminal_deferred",
+    "g3_control_child": "typed_absent_terminal_deferred",
+    "g3_binding_child": "typed_absent_terminal_deferred",
+    "t1": "blocked",
+    "provider_mesh_physical_credit": false,
+    "r01_r10_credit": false
+  },
+  "candidate_refs_observed": {
+    "g1": {
+      "type": "QualifiedRefV1",
+      "path": "test/GenomeV5/G1/diffusion_v1_fixture.json",
+      "value": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture@v5",
+      "authority": "local_fixture_and_typed_source_only"
+    },
+    "g2": {
+      "type": "GenomeContractRef",
+      "path": "test/GenomeV5/G2/metric_boundary_v1_fixture.json",
+      "value": "fusionconceptai://GenomeV5/candidate/up2-01-g2-metric-boundary-fixture@v5",
+      "schema_seed": "candidate-schema-up2-01-g2-metric-boundary",
+      "canonicalization_seed": "candidate-canonicalization-up2-01-g2-metric-boundary",
+      "authority": "local_fixture_and_typed_source_only"
+    },
+    "g3": {
+      "type": "QualifiedRefV1",
+      "path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json",
+      "value": "fusionconceptai://candidate/up2-01-g3-source-feedback-v1-proposal-001@v5",
+      "authority": "local_fixture_and_typed_source_only"
+    },
+    "exact_join": false,
+    "reason": "three current fixture candidate identities differ and no readable G2 mapping receipt exists"
+  },
+  "source_file_hashes": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "807837ce2a4aef4c196d0f4e2635201e9843f3532bc1afd94d667865569a976b"
+  },
+  "t0_types_observed": {
+    "g2_mapping_receipt": {
+      "type": "VNextG2CandidateMappingReceiptV1",
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl:134-170",
+      "fields": ["source_ref", "source_version", "source_candidate_ref", "candidate_ref", "source_record_hash", "source_hash", "evidence_ref", "field_path", "attestation", "verification_status"],
+      "verification_status": "external_verification_pending",
+      "readable_external_receipt": false
+    },
+    "axis": {
+      "type": "VNextAxisProvenanceV1",
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl:68-132",
+      "required_axes": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+      "present_axis_external_verification": "pending",
+      "readable_external_receipt": false
+    },
+    "g3_children": {
+      "type": "VNextG3ChildStateV1",
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl:206-219",
+      "kinds": ["realization", "control", "binding"],
+      "status": "typed_absent_terminal_deferred"
+    },
+    "g3_source_content_hash": {
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl:310-340",
+      "value": null,
+      "status": "typed_absent_terminal_deferred"
+    }
+  },
+  "authority_evidence_search": {
+    "search_scope": ["src/GenomeV5", "src/Contracts", "docs/implementation/AD-30", "docs/implementation/UP1-04A-VNEXT-T0", "test/GenomeV5"],
+    "excluded_as_authority": ["fixtures", "labels", "opaque Digest256 evidence_ref", "historical focused receipts", "self_attested declaration hashes", "software test exit codes"],
+    "g2_mapping_receipt": "not_found",
+    "four_axis_receipt": "not_found",
+    "g3_source_content_payload": "not_found",
+    "g3_realization_control_binding_child_source": "not_found"
+  },
+  "finite_work_orders": [
+    {
+      "id": "AD30-AUTH-G2-REBIND",
+      "owner": "gpt-5.6-luna/high",
+      "inputs": ["fresh same-candidate G2 source object", "readable source/provider receipt"],
+      "outputs": ["typed G2 mapping record", "source and receipt hashes", "provenance archive"],
+      "write_scope": "new docs/implementation/AD-30/g2_candidate_rebind/ files only",
+      "exit_gate": "all ref/hash/field-path fields recomputable from readable bytes; otherwise terminal_deferred"
+    },
+    {
+      "id": "AD30-AUTH-AXES",
+      "owner": "different gpt-5.6-luna/high",
+      "inputs": ["same fresh candidate", "readable source record for every present axis"],
+      "outputs": ["four axis records per layer", "identity hashes", "stale/conflict/missing controls"],
+      "write_scope": "separate review archive only",
+      "exit_gate": "candidate binding and byte/hash recomputation pass; missing axes stay terminal_deferred"
+    },
+    {
+      "id": "AD30-AUTH-G3-CHILDREN",
+      "owner": "gpt-5.6-luna/high",
+      "inputs": ["same-candidate G3 source content", "realization/control/binding source trees and identities"],
+      "outputs": ["content-hashed G3 source", "three child refs/hashes", "feedback join"],
+      "write_scope": "new additive source/evidence files only",
+      "exit_gate": "same-candidate source/child/authority hashes exact; absent external source remains typed absent"
+    }
+  ],
+  "claim_ceiling": "contract_only",
+  "parent_goal_preserved": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10"]
+}

@@ -1,0 +1,23 @@
+{
+  "fixture_id": "UP2-00D-N03-time-authority-001",
+  "schema_id": "GenomeV5/UP2/N03TimeAuthorityProjectionV1",
+  "schema_version": "v1",
+  "schema_validation_only": true,
+  "provider_resolution_executed": false,
+  "time_basis_policy": "missing_candidate_bound_policy_deferred",
+  "mutation_count": 5,
+  "provisional_rows": [
+    {"id":"N03-01","mutation":"time_semantics_mismatch","field_path":"/g1/time_semantics","expected":"invalid_type","expected_detail":"continuous/discrete mismatch","expected_compile_calls":0,"expected_provider_calls":0},
+    {"id":"N03-02","mutation":"derivative_time_order_mismatch","field_path":"/g1/operators/0/derivative_time_order","expected":"invalid_type","expected_detail":"derivative order mismatch","expected_compile_calls":0,"expected_provider_calls":0},
+    {"id":"N03-03","mutation":"operator_temporal_kind_mismatch","field_path":"/g2/mesh/time_basis","expected":"invalid_type","expected_detail":"time basis mismatch","expected_compile_calls":0,"expected_provider_calls":0},
+    {"id":"N03-04","mutation":"control_sample_period_mismatch","field_path":"/g3/control/sample_period","expected":"invalid_type","expected_detail":"sample period mismatch","expected_compile_calls":0,"expected_provider_calls":0},
+    {"id":"N03-05","mutation":"fault_horizon_semantics_mismatch","field_path":"/g3/fault/horizon_semantics","expected":"invalid_type","expected_detail":"horizon semantics mismatch","expected_compile_calls":0,"expected_provider_calls":0}
+  ],
+  "mutations": [
+    {"id":"N03-01-local-equation-kind","field_path":"/g1/payload/equation_plan/equations/0/temporal_kind","source_locator":"G1EquationV2.temporal_kind::TimeKindV1","mutation_kind":"replace_time_kind","mutated_value":"discrete_time","expected_error":"invalid_type","expected_actual_error":"invalid_type","expected_resolution":"fail_closed","expected_detail":"continuous/discrete mismatch","expected_compile_calls":0,"expected_provider_calls":0,"expected_solver_calls":0,"evidence_reused":false},
+    {"id":"N03-02-local-derivative-bound","field_path":"/g1/payload/equation_plan/equations/0/derivative_order","source_locator":"G1EquationV2.derivative_order::Int","mutation_kind":"raise_derivative_order","mutated_value":1,"expected_error":"invalid_type","expected_actual_error":"invalid_type","expected_resolution":"fail_closed","expected_detail":"derivative order mismatch","expected_compile_calls":0,"expected_provider_calls":0,"expected_solver_calls":0,"evidence_reused":false},
+    {"id":"N03-03-local-operator-kind","field_path":"/g1/payload/grammar_profile/operators/0/temporal_kinds","source_locator":"G1OperatorSpecV2.temporal_kinds::Tuple{Vararg{TimeKindV1}}","mutation_kind":"replace_temporal_kinds","mutated_value":["discrete_time"],"expected_error":"invalid_type","expected_actual_error":"invalid_type","expected_resolution":"fail_closed","expected_detail":"time basis mismatch","expected_compile_calls":0,"expected_provider_calls":0,"expected_solver_calls":0,"evidence_reused":false},
+    {"id":"N03-04-cross-layer-policy-gap","field_path":"/g3/control/controllers/0/events/0/trigger","source_locator":"G3EventV2.trigger::Symbol","mutation_kind":"replace_trigger","mutated_value":"scheduled","expected_error":"invalid_type","expected_actual_error":"time_basis_authority_gap","expected_resolution":"terminal_deferred","expected_detail":"missing candidate-bound event time basis policy","expected_compile_calls":0,"expected_provider_calls":0,"expected_solver_calls":0,"evidence_reused":false},
+    {"id":"N03-05-local-event-time","field_path":"/g3/control/controllers/0/events/0/time","source_locator":"G3EventV2.time::Rational{Int64}","mutation_kind":"negative_time","mutated_value":"-1/1","expected_error":"invalid_type","expected_actual_error":"invalid_type","expected_resolution":"fail_closed","expected_detail":"event time must be nonnegative","expected_compile_calls":0,"expected_provider_calls":0,"expected_solver_calls":0,"evidence_reused":false}
+  ]
+}

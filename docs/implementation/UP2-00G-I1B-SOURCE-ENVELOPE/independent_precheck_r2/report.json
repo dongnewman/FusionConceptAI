@@ -1,0 +1,87 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r2-v1",
+  "review_role": "independent_static_precheck",
+  "reviewer_model": "Luna-high",
+  "verdict": "changes_requested",
+  "julia_run": "not_run_by_design",
+  "desc_run": "not_run_by_design",
+  "formal_b04": false,
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries_at_freeze": 3389,
+    "matching_julia_desc_processes": 0,
+    "status_snapshot_sha256": "70a921027e3b04743caff2eea93edc2e8ca9f16a65ebb444d746ba2b2a8b9f4f"
+  },
+  "findings": [
+    {
+      "id": "GI1B-R2-01",
+      "severity": "P1",
+      "status": "blocking",
+      "title": "focused factory assertions split leading-slash paths with an empty token",
+      "locations": ["test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:103-106"],
+      "fix": "Strip leading slash or use keepempty=false before resolving the outer-ref layer."
+    },
+    {
+      "id": "GI1B-R2-02",
+      "severity": "P1",
+      "status": "blocking",
+      "title": "row helper only checks self-consistent hashes and does not prove actual source values",
+      "locations": ["test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:94-114"],
+      "fix": "Compare every original value independently with actual package/E0/E1/A fields or typed absence in both factory branches."
+    },
+    {
+      "id": "GI1B-R2-03",
+      "severity": "P1",
+      "status": "blocking",
+      "title": "actual N06/N09/N10 classifications and returned error retention are not asserted",
+      "locations": [
+        "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:166-170",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:478-490",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:579-581"
+      ],
+      "fix": "Assert returned row resolutions/gaps and exercise a controlled program_exception together with fail_closed rows."
+    },
+    {
+      "id": "GI1B-R2-04",
+      "severity": "P1",
+      "status": "blocking",
+      "title": "exception row falls back to G1 ref/hash for unrelated source layers",
+      "locations": ["src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:505-520"],
+      "fix": "Remove the cross-layer G1 fallback and preserve a layer-correct unavailable/typed-absence identity; test the program-exception row."
+    },
+    {
+      "id": "GI1B-R2-05",
+      "severity": "P2",
+      "status": "required_before_acceptance",
+      "title": "E1-absent identity test omits profile_hash",
+      "locations": ["test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:155-161"],
+      "fix": "Assert source_ref.profile_hash equals absent_context.e1.profile_hash."
+    }
+  ],
+  "positive_static_checks": {
+    "actual_factory_call_present": true,
+    "e1_present_e2_absent_branch_present": true,
+    "e1_absent_e2_absent_branch_present": true,
+    "50_row_matrix_present": true,
+    "typed_absent_identity_present": true,
+    "source_type_runtime_check_present": true,
+    "aggregate_precedence_implementation_present": true,
+    "fixture_error_routing_absent": true,
+    "downstream_counters_zero_in_source": true
+  },
+  "qa": {
+    "json_parse": "pass",
+    "fixture_shape": "pass",
+    "planning_validator": "pass",
+    "targeted_git_diff_check": "pass",
+    "julia_desc_process_sweep": "pass_zero_matching_processes",
+    "focused_julia": "not_run_by_design"
+  },
+  "evidence": [
+    "evidence_manifest.json",
+    "command_receipts.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r1/report.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r2/repair_note.md"
+  ]
+}

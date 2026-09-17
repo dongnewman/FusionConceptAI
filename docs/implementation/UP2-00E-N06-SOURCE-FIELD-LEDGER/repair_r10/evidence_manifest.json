@@ -1,0 +1,55 @@
+{
+  "schema_version": "n06-test-repair-r10-v1",
+  "work_order": "UP2-00E-N06-SOURCE-FIELD-LEDGER",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "schema_validation_only",
+  "julia_or_desc_run": false,
+  "write_scope": [
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl",
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r10/"
+  ],
+  "r9_reference": {
+    "receipt": "focused_r9/receipt.json",
+    "real_exit": 1,
+    "classification": "program_exception",
+    "actual_a_baseline": "28/28",
+    "typed_occurrence_index": "3/3",
+    "source_derived_mutations": "31/31",
+    "failure": "fixture static_negative_controls has 14 IDs while test asserted 12",
+    "stdout_sha256": "f5e260c982bea274fef3971d3be7776cf579b9b690711c6805001735824f8e33",
+    "stderr_sha256": "83dcb1d7da537842e8ca9f65f2d8af0dcf7cf571e2f7161a726cc09532ebddd8"
+  },
+  "static_negative_control_set": {
+    "expected_count": 14,
+    "fixture_count": 14,
+    "duplicate_rejection": true,
+    "exact_set_assertion": true,
+    "missing_source_selector_executed": true,
+    "wrong_source_selector_executed": true
+  },
+  "before_hashes": {
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "e37314924102c75ac47a34652d0a480c4730e04590cb17294033719ce92d37b8",
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "after_hashes": {
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "e37314924102c75ac47a34652d0a480c4730e04590cb17294033719ce92d37b8",
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "claims": {
+    "formal_b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  },
+  "artifact_hashes": {
+    "repair_note.md": "ba098ba59bc735844c536f029b73b217a13fa83060085a3bcf5de5778cab897a",
+    "evidence_manifest.json": "self-excluded"
+  }
+}

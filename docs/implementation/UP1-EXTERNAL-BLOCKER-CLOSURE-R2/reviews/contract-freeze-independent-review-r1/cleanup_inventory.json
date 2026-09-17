@@ -1,0 +1,26 @@
+{
+  "schema": "UP1.external-blocker-closure-R2.contract-freeze-independent-review.cleanup.v1",
+  "policy": "retain review products and immutable raw process evidence; no deletion or mutation outside this directory",
+  "exact_owned_set": [
+    "findings.json",
+    "review.md",
+    "verification.json",
+    "static_contract_freeze_validator.py",
+    "raw/static_contract_freeze_validator.stdout.raw",
+    "raw/static_contract_freeze_validator.stderr.raw",
+    "raw/static_contract_freeze_validator_r2.stdout.raw",
+    "raw/static_contract_freeze_validator_r2.stderr.raw",
+    "raw/static_contract_freeze_validator_r3.stdout.raw",
+    "raw/static_contract_freeze_validator_r3.stderr.raw",
+    "manifest.json",
+    "cleanup_inventory.json"
+  ],
+  "cleanup": "retain",
+  "deletion_performed": false,
+  "disposable_paths": [],
+  "removed_paths": [],
+  "source_contract_freeze": "read_only; no cleanup target",
+  "external_or_heavy_runs": [],
+  "formal_credit": false,
+  "labels": {"TEST_ONLY": true, "non_evidence": true}
+}

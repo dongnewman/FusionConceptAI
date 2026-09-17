@@ -1,0 +1,25 @@
+warning: in the working copy of 'docs/implementation/AD-22/before/18_sources_and_architecture_decisions.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/implementation/AD-22/after/18_sources_and_architecture_decisions.md', LF will be replaced by CRLF the next time Git touches it
+diff --git a/docs/implementation/AD-22/before/18_sources_and_architecture_decisions.md b/docs/implementation/AD-22/after/18_sources_and_architecture_decisions.md
+index 6ef2daa..ed59f35 100644
+--- a/docs/implementation/AD-22/before/18_sources_and_architecture_decisions.md
++++ b/docs/implementation/AD-22/after/18_sources_and_architecture_decisions.md
+@@ -145,3 +145,17 @@ UP2-00 total gate 仍要求 N01–N10 共 50 条 mutation 均绑定真实 source
+ UP1-04B 首次执行前必须冻结 candidate-bound mutation envelope。每条 receipt 至少绑定 baseline `CandidateStatePackageV5` hash、精确的 G1/G2/G3 或 UP2 precompiler source ref/hash/path/type、原始 typed value、mutated typed value、mutation id、schema/canonicalization hashes，以及由真实 source/invariants 推导的 classification。若 typed constructor 在构造前拒绝非法值，receipt 仍必须绑定真实 baseline 与实际 attempted/mutated typed value；不得用无输入的异常标签代替 receipt。禁止 synthetic low-level input、复制 expected_error、label routing、reused evidence 或 archive pollution。
+ 
+ 只有 schema freeze 后新鲜生成的 50 条 candidate-bound receipts、checker 证据和两个独立进程 replay 才能进入 UP1-04B 复核；compile/provider/solver 为零只能证明结构短路，不授予 B00/B04、工程、物理或 R01–R10 信用。AD-21 不改变执行 DAG、任务状态或父目标范围。
++
++<a id="ad-22"></a>
++
++## 11. AD-22 N03/N04 跨层时间与账本 authority 边界（2026-09-14）
++
++Sol 裁决：19 与 `up0_02_protocol.json` 的 N03/N04 五行仍是 `illustrative_contract_mutations_pending_schema_binding`，不是可直接消费的 JSON Pointer。当 V5 没有对应字段时，不能把说明性路径静默映射为新字段，也不能删减这十类失败义务。当前 `TypedPrecompilerValidatorV1.jl:29-40` 的五行 N03 与五行 N04 是 provisional candidate-bound projection locators；它们在正式 schema freeze 前必须保留并逐行绑定真实 source field、mutation value、分类与 invocation receipt。
++
++G1 的局部时间合同已经权威：`MechanismGenomePayloadV2.jl:83-95` 对 equation 的 `operator_ref` 做 candidate-owned exact lookup，并检查 `temporal_kind in operator.temporal_kinds` 与 `derivative_order <= max_derivative_order`；`MechanismGenomePayloadV2.jl:115-184` 继续检查 typed expression、状态时间/导数、occurrence、closure ledger 和 balance。G3 的事件局部合同只权威到类型与范围：`RealizationGenomeV5.jl:306-315` 限定 trigger 枚举和非负 exact Rational time。G3 event 没有 equation time basis；静态 G1 方程不能单独使 G3 scheduled/event 失效。只有新增的、candidate-bound 且内容哈希受控的事件时间政策才能判定跨层 time mismatch；缺少该 authority 保持 `terminal_deferred`，intrinsic enum/range 错误才 `fail_closed`。
++
++G3 的 account/entry/closure 局部合同保持独立：`RealizationGenomeV5.jl:435-449` 检查 closure account_ids 非空且唯一，`:467-488` 检查 typed/unique IDs，`:504-565` 检查 port/account/entry/component 引用、单位、容量、closure domain 与余额。profile 文本的 `owner_uniqueness`（`:132-140`）目前没有对应 executable check；现有测试明确允许 shared owner（`test/GenomeV5/G3/up1_g3_contract_tests.jl:245-252`）。因此 owner 字符串相等不等于 duplicate accounting。N04 的 double-count 分类必须先冻结 owner uniqueness 的 account/closure scope，并要求 G1 occurrence ledger_id 到 G3 account/entry 及 energy boundary 的 exact mapping；缺 authority 仅为独立 `terminal_deferred`，不能由现有 G3 balance 检查代替。
++
++最小 additive authority 采用独立、版本化、内容哈希的 N03 time authority 与 N04 account-closure authority。每条声明绑定同一 candidate 的 G1/G3 public refs、component hashes、四轴、精确 source locator/type/value 和 schema/canonical/profile hash。结构类型或枚举错误必须 `fail_closed`；缺 time basis、owner scope 或 ledger join 必须保留 gap 与 `terminal_deferred`。该 authority 只服务 contract-only precompiler admission，不调用 compiler/provider/solver，不产生 B04、工程、物理或 R01–R10 信用。N03/N04 的实现应各写入互不重叠的新 UP2 文件集合，后续再由 UP2 formal validator 接入；不得修改旧 V4、default registry、已有 N09 文件或历史 evidence。
++
++本裁决只写入架构语义和证据边界，不改变 UP0–UP6 DAG、任务状态、UP2 总门或父目标范围。
+\ No newline at end of file

@@ -1,0 +1,49 @@
+{
+  "record_kind": "up1_environment_provenance_independent_review_receipt",
+  "schema": "UP1.environment-provenance-independent-review.v2",
+  "review_id": "06-environment-independent-review-r2",
+  "status": "rework",
+  "decision": "reject_p1_unauthenticated_signature_boundary",
+  "claim_ceiling": "review_only_no_up1_or_parent_goal_credit",
+  "fresh_python": "3.13.5",
+  "checks": {
+    "focused_pytest_run_1": "11 passed",
+    "focused_pytest_run_2": "11 passed",
+    "py_compile": "pass",
+    "validator_two_run_semantic_determinism": true,
+    "cli_two_run_semantic_determinism_after_pid_utc_strip": true,
+    "06_exact_manifest_file_set": "20/20",
+    "06_listed_hash_and_bytes": "all match",
+    "10_capture_artifact_hashes": "47/47 match",
+    "missing_absolute_traversal_paths": "fail_closed",
+    "root_hash_drift": "fail_closed",
+    "runtime_binary_lock_version_path_drift": "fail_closed",
+    "duplicate_identities": "fail_closed",
+    "sbom_orphan_empty_unknown_cycle_coverage": "fail_closed",
+    "publisher_receipt_recipe_internal_drift": "fail_closed",
+    "root_status_claim_derivation": "fail_closed",
+    "runtime_paths": "fail_closed",
+    "TEST_ONLY_positive": "non_evidence",
+    "duplicate_json_and_unknown_fields": "rejected",
+    "opaque_binary_signature_mutation": "present (F1)",
+    "authority_signature_metadata_mutation": "present (F1)",
+    "fully_recomputed_path_substitution": "present (F1/F3)",
+    "sbom_purl_or_ref_multiplicity": "present (F2)"
+  },
+  "findings": [
+    {"id": "F1", "priority": "P1", "summary": "signed_verified and opaque signatures are not cryptographically authenticated"},
+    {"id": "F2", "priority": "P2", "summary": "SBOM purl and duplicate sbom_refs remain weakly validated"},
+    {"id": "F3", "priority": "P2", "summary": "self-consistent lock/binary path rewrite remains possible without authenticated candidate binding"}
+  ],
+  "raw": {
+    "attack_matrix": "raw/attack_matrix.txt",
+    "pytest_1": "raw/pytest.stdout.txt",
+    "pytest_2": "raw/pytest2.stdout.txt",
+    "py_compile": "raw/py_compile.stdout.txt",
+    "determinism": "raw/determinism.txt",
+    "manifest_capture_check": "raw/manifest_capture_check.txt"
+  },
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true
+}

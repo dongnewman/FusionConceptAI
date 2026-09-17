@@ -1,0 +1,21 @@
+{
+  "schema": "UP1-R2.revocation-time-replay.run-receipt.v1",
+  "repair_revision": "repair-r3-windows-acl-and-reparse-after-03-revocation-independent-review-r1",
+  "pid": 36404,
+  "utc": "2026-09-16T19:15:51.3446129Z",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "claim_ceiling": "TEST_ONLY non_evidence",
+  "network_access": false,
+  "trusted_clock_basis": "signed_receipt_only",
+  "commands": [
+    {"argv": ["python", "-B", "-m", "pytest", "-q", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"], "exit_code": 0, "stdout_raw": "repair_r2/raw/pytest.stdout.raw", "stderr_raw": "repair_r2/raw/pytest.stderr.raw", "stdout_sha256": "F67D84DB3C9FFCEFB787234D599D2A4EE62A87B41BF25D487DE9039A0B95A00A", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"},
+    {"argv": ["python", "-B", "-c", "compile all revocation_time_replay/*.py"], "exit_code": 0, "stdout_raw": "repair_r2/raw/compile.stdout.raw", "stderr_raw": "repair_r2/raw/compile.stderr.raw", "stdout_sha256": "15157072E52D3E60328F758EA868F1E6F8E1AFBC9A19E31A436C6481CBF4F939", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"},
+    {"argv": ["python", "-B", "test/up1_external_closure_r2/revocation_time_replay/two_process_driver.py", "LEDGER", "TRUSTED_KEY"], "exit_code": 0, "stdout_raw": "repair_r2/raw/two_process.stdout.raw", "stderr_raw": "repair_r2/raw/two_process.stderr.raw", "stdout_sha256": "F256267ED09B176CEF0D6857D447B638657F44B3D99AF9C06718F9A81163E995", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "runner_raw": "repair_r2/raw/two_process.runner.raw", "runner_sha256": "39CFCE21EF29638DF59F4A554500C7734D7B7471A3C5B71AC26775047243242F"},
+    {"argv": ["pwsh", "-NoProfile", "-NonInteractive", "Get-Acl/SDDL owner+DACL audit; icacls broad-ACE and cmd Junction regressions"], "exit_code": 0, "stdout_raw": "repair_r2/raw/acl_check.stdout.raw", "stderr_raw": "repair_r2/raw/pytest.stderr.raw", "stdout_sha256": "3AB3D24FC33B3624A867FE35AE1C578482A5E610E92333E6FF0BE64DBC0D2FD0", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"}
+  ],
+  "input_sha256": "9b3e3a327cc363e3ebb05d40301777198350789221c0816964747ac2950bd0d6",
+  "test_count": 14,
+  "semantic_outcomes": ["one process valid_for_declared_scope/exit0", "second process replayed/nonce_replayed/fail_closed/exit2", "authenticated duplicate entry ledger_corrupt/fail_closed", "missing explicit key replay_ledger_absent/typed_absent/terminal_deferred", "duplicate/nonfinite CLI input fail_closed/exit2", "restricted Windows key owner/DACL accepted", "Everyone read ACE rejected trusted_key_acl_invalid", "parent Junction/reparse escape rejected ledger_corrupt", "ACL verifier unavailable trusted_key_acl_unsupported/typed_absent/terminal_deferred"],
+  "acl_check_method": "Windows PowerShell 7 pwsh Get-Acl/SDDL; owner allowlist current user/SYSTEM/Administrators; broad Allow ACE denylist and inherited ACE inspection; icacls and cmd mklink /J regressions",
+  "evidence": {"raw_dir": "repair_r2/raw", "two_process": true, "fixture_only": true, "production_key": false}
+}

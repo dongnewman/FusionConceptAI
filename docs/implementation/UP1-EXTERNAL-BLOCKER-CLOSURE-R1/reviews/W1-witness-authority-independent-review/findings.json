@@ -1,0 +1,15 @@
+{
+  "schema":"UP1.W1.independent-review-findings.v1",
+  "decision":"rework_required",
+  "review_scope":"read_only_adversarial_witness_authority_review",
+  "findings":[
+    {"id":"W1-F001","severity":"P1","state":"open","path":"witness_authority/external_input_register.json","detail":"provider/owner/authority_source are null instead of explicit unspecified typed values; inconsistent with gap_matrix responsibility fields and task requirement.","required_action":"make responsibility and authoritative source explicit or typed-unspecified and consistent"},
+    {"id":"W1-F002","severity":"P1","state":"open","path":"witness_authority/witness_attestation_schema.json","detail":"required_fields contains verifier_ref and idempotency_key but field_contracts omits them.","required_action":"add machine-checkable field contracts or document removal"},
+    {"id":"W1-F003","severity":"P1","state":"open","path":"witness_authority/witness_attestation_schema.json;authority_channel_contract.json","detail":"signature scope, canonical preimage, attestation bytes and attestation_sha256 equality are not mechanically bound.","required_action":"add canonical hash and digest/signature equality rules"},
+    {"id":"W1-F004","severity":"P1","state":"open","path":"witness_authority/authority_channel_contract.json;gap_matrix.json","detail":"future request schema lacks explicit candidate/G1/G2/G3/four-axis exact refs and hashes.","required_action":"add same-candidate layer/axis binding and foreign/stale rejection checks"},
+    {"id":"W1-F005","severity":"P2","state":"open","path":"witness_authority/witness_attestation_schema.json","detail":"freshness window and revocation-check time/source are not explicit required fields.","required_action":"add trusted-time/freshness/revocation evidence fields"},
+    {"id":"W1-F006","severity":"P2","state":"open","path":"witness_authority/authority_channel_contract.json","detail":"retry/backoff placeholders are correctly non-evidence but lack a negative fixture receipt.","required_action":"add and run placeholder-rejection fixture"}
+  ],
+  "positive_checks":["typed_absence_preserved","no_publish_preserved","role_separation_prose_present","reject_codes_present","raw_hashes_consistent","cleanup_exact_set"],
+  "credit":{"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":0}
+}

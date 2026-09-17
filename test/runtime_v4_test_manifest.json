@@ -16,6 +16,12 @@
         "scope": "injectable ordered-loader state machine, source hashes, duplicate/partial-load refusal, and entrypoint wiring; does not construct the parent candidate or execute child sources"
       },
       {
+        "path": "test/runtime_v4_spatial_geometry_edit_tests.jl",
+        "opt_in": true,
+        "command": "julia --startup-file=no --project=. test/runtime_v4_spatial_geometry_edit_tests.jl",
+        "scope": "candidate-bound G2 Fourier coefficient edit, rebuilt typed coordinate/metric roots and context, preserved G1/G3, and stale-parent/no-op rejection; loads the spatial declaration fixture but does not execute DESC"
+      },
+      {
         "path": "test/runtime_v4_algebraic_generation_tests.jl",
         "opt_in": true,
         "command": "julia --startup-file=no --project=. test/runtime_v4_algebraic_generation_tests.jl",
@@ -32,7 +38,7 @@
       {
         "path": "scripts/run_v4_spatial_chain.jl",
         "opt_in": true,
-        "scope": "DESC/provider process and receipt chain; not part of the fast focused test"
+        "scope": "DESC/provider process and receipt chain for parent or --g2-child; not part of the fast focused test"
       }
     ],
     "real scientific benchmark": [

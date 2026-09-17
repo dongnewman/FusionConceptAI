@@ -1,0 +1,55 @@
+{
+  "schema": "UP1-W2.trust-path-requirements.v1",
+  "status": "preparation_only",
+  "claim_ceiling": "preparation_only",
+  "production_materials": false,
+  "test_roots_are_not_production_trust": true,
+  "validation_order": [
+    {"stage":0,"name":"canonical_schema_profile","required":"schema/profile identifiers and deterministic encoding"},
+    {"stage":1,"name":"canonical_digest_scope_source_binding","required":"canonical receipt bytes, digest, scope, source-version and replay-field structure"},
+    {"stage":2,"name":"trust_anchor_load","required":"pinned root fingerprint and declared policy"},
+    {"stage":3,"name":"path_build_and_certificate_constraints","required":"root to intermediate to leaf chain, issuer, AKI/SKI, basicConstraints, keyUsage, EKU, nameConstraints, policy, validity, algorithms, critical extensions"},
+    {"stage":4,"name":"receipt_signature","required":"leaf signature over exact canonical receipt digest"},
+    {"stage":5,"name":"revocation","required":"CRL or OCSP as-of and freshness decision"},
+    {"stage":6,"name":"trusted_time","required":"RFC3161 or equivalent independent signed time"},
+    {"stage":7,"name":"replay_ledger","required":"nonce, sequence, idempotency and replay-window decision"},
+    {"stage":8,"name":"authority_decision","required":"closed decision enum; no terminal authority emission"}
+  ],
+  "path_order": ["canonical_schema_profile", "canonical_digest_scope_source_binding", "root", "intermediate", "leaf", "receipt_signature", "revocation", "trusted_time", "replay_scope", "authority_decision"],
+  "trust_anchor": {
+    "id": "trust_root",
+    "state": "typed_absent",
+    "required": ["fingerprint_sha256", "source_channel", "authorized_scope", "effective_at", "not_after", "rotation_policy", "revocation_policy"],
+    "source_of_authority": "external owner or independent trust administrator; not local source authors",
+    "recovery": "provide immutable fingerprint and independently confirm authorization and policy; changed input fingerprint required",
+    "test_fixture_rule": "TEST_ONLY fixture roots must be isolated and explicitly labelled; never loaded as production trust"
+  },
+  "intermediate": {
+    "id": "attestor_intermediate_ca",
+    "state": "typed_absent",
+    "required_extensions": {"basic_constraints": "CA=TRUE with bounded pathLen", "key_usage": ["keyCertSign", "cRLSign"], "aki_ski": "issuer linkage", "name_constraints": "must contain leaf identity and scope", "policy_oids": "declared project policy only"},
+    "recovery": "attestor supplies full chain and policy; independent verifier validates to pinned root"
+  },
+  "leaf": {
+    "id": "independent_attestor_leaf",
+    "state": "typed_absent",
+    "required_extensions": {"basic_constraints": "CA=FALSE", "key_usage": ["digitalSignature"], "eku": ["project_attestation_signing_oid"], "subject_or_san": "independent attestor identity and scope", "policy_oids": "declared attestation policy"},
+    "private_key": "never accepted as repository or receipt input",
+    "recovery": "provide public certificate fingerprint and signed scope statement; independent reviewer confirms identity/conflict boundary"
+  },
+  "path_validation": {
+    "fail_closed_on": ["unknown critical extension", "weak or unknown algorithm", "invalid issuer linkage", "expired certificate", "name constraint violation", "policy mismatch", "missing EKU", "invalid key usage", "revoked certificate", "invalid or expired revocation response", "untrusted time"],
+    "revocation_unavailable_mapping": {"error_code":"revocation_status_unavailable","status":"typed_absence","resolution":"terminal_deferred","no_publish":true,"note":"external service missing/untrusted is not a certificate contradiction; revoked/invalid/expired response remains fail_closed"},
+    "required_bindings": ["canonical_receipt_digest", "source_version_binding", "scope", "verification_id", "nonce", "sequence", "idempotency_key"]
+  },
+  "algorithm_policy": {
+    "test_only_profile": {"id":"TEST_ONLY-W2-R1","digest":"SHA-256","signature_algorithm":"Ed25519","public_key_bits":256,"signature_encoding":"raw_64_bytes","eku_oid":"1.3.6.1.4.1.55555.1.1","policy_oid":"1.3.6.1.4.1.55555.1.2","canonical_encoding":"UTF-8 deterministic JSON, recursively sorted keys, no whitespace, no terminal LF","production_use":false},
+    "production_profile": {"state":"typed_absent","algorithm":null,"public_key_bits":null,"signature_encoding":null,"eku_oid":null,"policy_oid":null,"retirement_rules":null,"recovery":"external contract owner must supply exact versioned values; null/placeholder/test OIDs are never accepted as production policy"},
+    "unknown_or_missing": "fail_closed"
+  },
+  "rotation": {
+    "state": "typed_absent",
+    "required": ["new_root_fingerprint", "old_root_end_of_acceptance", "overlap_window", "dual_anchor_rule", "revocation_or_retirement_receipt"],
+    "rule": "rotation changes the input fingerprint; old receipts are immutable and are not silently revalidated under a new root"
+  }
+}

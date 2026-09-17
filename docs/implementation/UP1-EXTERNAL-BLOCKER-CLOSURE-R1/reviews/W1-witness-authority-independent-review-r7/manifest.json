@@ -1,0 +1,17 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r7.manifest.v1",
+  "work_order":"W1 round7",
+  "status":"pass_limited",
+  "claim":"preparation_only",
+  "input_root":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/witness_authority/",
+  "actual_owned_exact_set":{"actual":51,"owned":51,"equal":true},
+  "current_artifact_maps":{"manifest_keys":49,"cleanup_keys":49,"key_sets_equal":true,"excluded_only":["manifest.json","cleanup_inventory.json"],"manifest_hash_matches":49,"cleanup_hash_matches":49},
+  "validation_receipt_hash":"cf2254b4959406f94908fd0f9cfe99270ce9c416023093b1b6a103263f901980",
+  "old_hash":"570577dbc2aa023c3a3d5153d7ee52f0635853c80e8900c2b39f357a0b8d056e","old_hash_scope":"previous R5 history only",
+  "r3_no_regression":{"pid":34140,"exit":0,"foreign_layer":"ERR_FOREIGN_LAYER_CANDIDATE","foreign_axis":"ERR_FOREIGN_AXIS_CANDIDATE","expected_fields_read":0},
+  "review_exact_set":["cleanup_inventory.json","findings.json","manifest.json","review.md","validation_receipt.json"],
+  "review_artifact_hashes_excluding_manifest":{"cleanup_inventory.json":"d11358bfb016da5a64c2bf03e0a6357f794f04b91bdef97332046721c83b14f6","findings.json":"e45faad931d8bcf028d13e24ee9f7bb36b8842e973a5d204a1295613ed7fbab9","review.md":"5d91a5e9d0b36e4e0ae3017ae65bc7278565d07791b5b3fd182a6bb587624eda","validation_receipt.json":"0226d1b3e68905e0d6957fe868b4ea506e5e0237f878239892febd7588b0342e"},
+  "self_hash_exclusion":"manifest.json excluded from review_artifact_hashes_excluding_manifest",
+  "outputs":["review.md","findings.json","validation_receipt.json","manifest.json","cleanup_inventory.json"],
+  "status_credit":{"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false}
+}

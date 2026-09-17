@@ -1,0 +1,241 @@
+{
+  "record_kind": "UP2-00E0-E0-INT-independent-integration-QA",
+  "captured_at_utc": "2026-09-14T03:00:11.423560+00:00",
+  "verdict": "pass_limited",
+  "scope": "read-only E0-INT documentation integration and provenance QA",
+  "limitations": [
+    "No Julia or DESC process was started; process inspection was read-only.",
+    "The integrator before/README.md is the implementation README snapshot; the core v4 README had no content snapshot, so its before_freeze hash was checked by restoring the one CRLF lost when the integrator rewrote the old text with LF.",
+    "This contract/provenance review grants no N05/N06 declaration, UP2 total, B00/B04, provider, mesh, engineering, physical, or R01-R10 credit."
+  ],
+  "target_hashes": {
+    "docs/implementation/UP2-00E0-BOUND-INPUT/acceptance.md": {
+      "sha256": "f3958a9d5baa8e19c53b5f3f55066083d60cc1b92f12e2dedf39b0338faefea0",
+      "bytes": 2694
+    },
+    "docs/implementation/UP2-00E0-BOUND-INPUT/evidence_manifest.json": {
+      "sha256": "196cd57ed52f27762b4439ff91d8d1fc887a0f5a02e907506835848a5da34d76",
+      "bytes": 9602
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "sha256": "cafd35bec340b9b0efcf231e8b726514d276c95ddd99e44193bbb976942d7a58",
+      "bytes": 19073
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "sha256": "59c2b7fb4cabbd37bbd97dce29e9c5047791644ce4d5925f19b020184aa4ea63",
+      "bytes": 55562
+    },
+    "docs/implementation/README.md": {
+      "sha256": "43a70eded3757d4926f53112d0ee7de8c7fadea095b0d095227f6cc8bd781634",
+      "bytes": 12247
+    }
+  },
+  "before_freeze_target_hashes": {
+    "docs/implementation/UP2-00E0-BOUND-INPUT/acceptance.md": {
+      "sha256": "4b5b3fbb79427f5849f98d5667dbea5812af603c3ad94bca0a03a5fcb00fa7d8",
+      "bytes": 1241
+    },
+    "docs/implementation/UP2-00E0-BOUND-INPUT/evidence_manifest.json": {
+      "sha256": "3fb2150de35a2c26188871c0cd59ecafb47f364365dd08590c44488719d77c95",
+      "bytes": 7274
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "sha256": "8f25bec3494b6c5e79c225be3084c3eada13002448aec96c788d94b39514f152",
+      "bytes": 18448
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "sha256": "1896d983912c832c5fb498855ac4c3dfb20ba9d7cfdf9c2ffb106eeb2433dbea",
+      "bytes": 55903
+    },
+    "docs/implementation/README.md": {
+      "sha256": "0f62c5145aacc4a21c2814d988552e9e16c10bba5a753a526ce3a2af061221ca",
+      "bytes": 11855
+    }
+  },
+  "frozen_source_test_fixture_runner_and_manifest_checks": {
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": {
+      "expected": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+      "actual": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+      "match": true
+    },
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": {
+      "expected": "856cde12b95b011ca1e3f1e34f5a544ca48ffb9c8de3a94c8ec38bca06ea945e",
+      "actual": "856cde12b95b011ca1e3f1e34f5a544ca48ffb9c8de3a94c8ec38bca06ea945e",
+      "match": true
+    },
+    "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": {
+      "expected": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a",
+      "actual": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a",
+      "match": true
+    },
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": {
+      "expected": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+      "actual": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+      "match": true
+    },
+    "author_r10_manifest": {
+      "expected": "7b5bf78dacf7a7abcbf78639495c4ad4ca2d7d6a4cc5a2f61c52894b93b213e5",
+      "actual": "7b5bf78dacf7a7abcbf78639495c4ad4ca2d7d6a4cc5a2f61c52894b93b213e5",
+      "match": true
+    },
+    "independent_r3_manifest": {
+      "expected": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1",
+      "actual": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1",
+      "match": true
+    }
+  },
+  "target_projection_checks": {
+    "acceptance_md_reconstructs_before_after_status_and_addendum_removal": true,
+    "v4_readme_is_before_plus_exact_e0_index_suffix": true,
+    "work_orders_is_before_plus_exact_e0_status_suffix": true,
+    "implementation_readme_is_before_snapshot_plus_exact_e0_index_suffix": true,
+    "manifest_changed_paths": [
+      "added:acceptance_record",
+      "changed:accepted",
+      "added:accepted_scope",
+      "added:author_r10_reference",
+      "added:claims.UP1_04B",
+      "added:claims.UP2_total",
+      "added:claims.exception_taxonomy_software",
+      "added:integration",
+      "added:review.historical_review_states",
+      "changed:review.independent_luna",
+      "added:review.manifest_path",
+      "added:review.manifest_sha256",
+      "removed:review.notes",
+      "added:review.r3_counts",
+      "added:review.r3_exit",
+      "added:review.report_path",
+      "added:review.sol_decision",
+      "removed:review.status_ceiling",
+      "added:review.verdict",
+      "changed:scope",
+      "changed:status"
+    ],
+    "unexpected_manifest_changes": []
+  },
+  "r7_ambiguity_check": {
+    "current_sentence_present": true,
+    "historical_r7_draft_qualification_present": true,
+    "review_requirement_satisfied_present": true,
+    "sole_execution_claim_present": false,
+    "substantive_ambiguity_resolved": true,
+    "assessment": "The preserved r7 sentence is explicitly qualified by the E0-INT addendum as historical r7 draft wording; the addendum records author r10 and independent R3 evidence, so a reader is not left with a sole-execution or unmet-review claim."
+  },
+  "claims": {
+    "required_false": {
+      "n05_n06_declarations": false,
+      "UP2_total": false,
+      "UP1_04B": false,
+      "B00": false,
+      "B04": false,
+      "provider": false,
+      "mesh": false,
+      "engineering": false,
+      "physical": false,
+      "R01_R10": false
+    },
+    "claim_ceiling_ok": true
+  },
+  "json_parse": [
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\evidence_manifest.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before_freeze.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\after_hashes.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\final_hashes.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\taxonomy_fix_r3\\evidence_manifest.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\independent_review_r3\\manifest.json",
+      "ok": true
+    }
+  ],
+  "control_scan": [
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\evidence_manifest.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\v4_multitopology_generation\\README.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\v4_multitopology_generation\\16_execution_work_orders.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\README.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\taxonomy_fix_r3\\evidence_manifest.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\independent_review_r3\\manifest.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    }
+  ],
+  "command_receipts": [
+    {
+      "argv": [
+        "python",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "started_utc": "2026-09-14T03:00:09.758884+00:00",
+      "ended_utc": "2026-09-14T03:00:09.947472+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 322,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-14T03:00:09.947501+00:00",
+      "ended_utc": "2026-09-14T03:00:10.018015+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)' } | Select-Object Name,ProcessId,ParentProcessId | ConvertTo-Json -Compress"
+      ],
+      "started_utc": "2026-09-14T03:00:10.018038+00:00",
+      "ended_utc": "2026-09-14T03:00:11.422272+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

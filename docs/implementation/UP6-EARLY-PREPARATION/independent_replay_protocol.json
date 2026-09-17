@@ -1,0 +1,28 @@
+{
+  "schema": "UP6IndependentReplayProtocolV1",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "replay_contract": {
+    "candidate_ref": {"state":"pending","value":null,"reason":"no fresh candidate is created"},
+    "scenario_manifest_hash": {"state":"pending","value":null,"reason":"scenario set is not frozen"},
+    "input_manifest_hash": {"state":"pending","value":null,"reason":"formal run inputs are not frozen"},
+    "environment_isolation": {"required":true,"policy":"fresh process and isolated environment per executor; no mutable shared cache; exact interpreter/module/toolchain/source/build hashes"},
+    "executor_independence": {"required":true,"minimum":"two different executors and declared independence groups","cache_replay_counts":false,"linear_solver_swap_counts":false},
+    "raw_and_hash_policy": {"required_fields":["command","cwd","pid_or_in_process","started_utc","ended_utc","exit_code","stdout_raw","stderr_raw","combined_raw","stdout_sha256","stderr_sha256","combined_sha256","input_hashes","output_hashes","artifact_hashes"],"missing_raw":"unknown"}
+  },
+  "executors": [
+    {"executor_id":"replay-A","operator":"pending","independence_group":"pending","environment_manifest_hash":null,"status":"pending","reason":"executor and fresh environment are not assigned"},
+    {"executor_id":"replay-B","operator":"pending","independence_group":"pending","environment_manifest_hash":null,"status":"pending","reason":"independent executor and fresh environment are not assigned"}
+  ],
+  "command_records": [
+    {"command_id":"UP6-CMD-01","purpose":"candidate-bound integrated execution","command":null,"cwd":null,"status":"pending","reason":"exact command must be frozen after UP6-01 admission","raw_stdout":null,"raw_stderr":null,"raw_combined":null,"stdout_sha256":null,"stderr_sha256":null,"combined_sha256":null,"input_hashes":[],"output_hashes":[],"artifact_hashes":[]},
+    {"command_id":"UP6-CMD-02","purpose":"VVUQ and whole-cycle ledger","command":null,"cwd":null,"status":"pending","reason":"exact command must be frozen after UP6-02 admission","raw_stdout":null,"raw_stderr":null,"raw_combined":null,"stdout_sha256":null,"stderr_sha256":null,"combined_sha256":null,"input_hashes":[],"output_hashes":[],"artifact_hashes":[]},
+    {"command_id":"UP6-CMD-03","purpose":"independent authority/replay checker","command":null,"cwd":null,"status":"pending","reason":"checker command is not implemented or executed","raw_stdout":null,"raw_stderr":null,"raw_combined":null,"stdout_sha256":null,"stderr_sha256":null,"combined_sha256":null,"input_hashes":[],"output_hashes":[],"artifact_hashes":[]}
+  ],
+  "comparison": {"observables":[],"units":[],"alignment":"pending","tolerances":null,"decision_rule":"pending","status":"pending","reason":"comparison protocol is not preregistered"},
+  "replay_outcomes": [],
+  "forbidden_shortcuts": ["reuse historical receipt as fresh replay","reuse mutable cache as second executor","treat runner exit 0 as scientific success","relabel numerical_fail or interruption as pass","merge outputs from different candidate/scenario identities"]
+}

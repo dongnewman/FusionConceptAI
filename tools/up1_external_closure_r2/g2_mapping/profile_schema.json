@@ -1,0 +1,27 @@
+{
+  "schema": "UP1.g2-production-mapping.v2",
+  "unknown_fields": "reject_at_every_object",
+  "duplicate_keys": "reject_at_every_object",
+  "production_admission": "external expected binding is mandatory; absent signature/trust authority is fail_closed",
+  "typed_absence": "mapping=null plus accountable absence and typed_absent authority_ref",
+  "required_security_fields": [
+    "namespace", "version", "effective_interval", "issuer", "signature.algorithm", "signature.key_id",
+    "signature.trust_root_ref", "trust_root.ref", "trust_root.policy_oid", "trust_root.eku",
+    "trust_root.key_usage", "trust_root.name_constraints", "revocation", "anti_replay",
+    "ambiguity", "conflict", "four_axis_evidence", "binding_edges"
+  ],
+  "binding_chain": [
+    "source_candidate_edge <-> candidate_source_edge",
+    "candidate_four_axis_evidence_edge <-> four_axis_evidence_candidate_edge",
+    "four_axis_evidence_g2_edge <-> g2_four_axis_evidence_edge"
+  ],
+  "domain_separated_hashes": {
+    "source_identity": "UP1-R2-G2-SOURCE-IDENTITY-V1\\0",
+    "canonical_declaration": "UP1-R2-G2-CANONICAL-DECLARATION-V1\\0",
+    "signature_payload": "UP1-R2-G2-SIGNATURE-PAYLOAD-V1\\0"
+  },
+  "four_axes": [
+    "payload_schema_version", "canonicalization_profile_version",
+    "applicability_profile_version", "evidence_receipt_version"
+  ]
+}

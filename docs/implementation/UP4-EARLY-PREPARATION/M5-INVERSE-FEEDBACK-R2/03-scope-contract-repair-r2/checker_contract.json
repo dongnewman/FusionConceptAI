@@ -1,0 +1,28 @@
+{
+  "schema": "M5InverseFeedbackR2TypedCheckerContractV1",
+  "status": "contract_only_not_executed",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "on_any_mismatch": "fail_closed",
+  "unknown_external_ref": "typed_absent",
+  "checks": [
+    {"id": "J01", "kind": "equality", "lhs": "/canonical_bundle/payload/candidate/body/candidate_ref", "rhs": "/candidate_binding/candidate_ref"},
+    {"id": "J02", "kind": "equality", "lhs": "/canonical_bundle/payload/candidate/body/parent_baseline_ref", "rhs": "/canonical_bundle/payload/parent_baseline/body/parent_ref"},
+    {"id": "J03", "kind": "equality", "lhs": "/canonical_bundle/payload/candidate/body/mission_ref", "rhs": "/canonical_bundle/payload/mission/body/mission_ref"},
+    {"id": "J04", "kind": "equality", "lhs": "/canonical_bundle/payload/candidate/body/scenario_id", "rhs": "/canonical_bundle/payload/scenario/body/scenario_id"},
+    {"id": "J05", "kind": "equality", "lhs": "/canonical_bundle/payload/source/body/source_ref", "rhs": "/candidate_binding/source/source_ref"},
+    {"id": "J06", "kind": "digest_recompute", "lhs": "/canonical_bundle/payload_sha256", "canonical_bytes": "/canonical_bundle/payload", "algorithm": "JCS-UTF8-LF-SHA256"},
+    {"id": "J07", "kind": "digest_recompute", "lhs": "/canonical_bundle/payload/candidate/body_sha256", "canonical_bytes": "/canonical_bundle/payload/candidate/body", "algorithm": "JCS-UTF8-LF-SHA256"},
+    {"id": "J08", "kind": "equality", "lhs": "/candidate_binding/g1/body_sha256", "rhs": "/canonical_bundle/payload/g1/body_sha256"},
+    {"id": "J09", "kind": "equality", "lhs": "/candidate_binding/g2/body_sha256", "rhs": "/canonical_bundle/payload/g2/body_sha256"},
+    {"id": "J10", "kind": "equality", "lhs": "/candidate_binding/g3/body_sha256", "rhs": "/canonical_bundle/payload/g3/body_sha256"},
+    {"id": "R01", "kind": "resolver", "rule": "every external ref is an exact URI in resolver_registry and path/bytes/sha256 match"},
+    {"id": "R02", "kind": "valid_screen_gate", "rule": "replay_count=2; unique attempt_ids=2; exit_codes=[0,0]; semantic_equal=true; byte_equal=true; fresh_refreeze=true; typed_checker_pass=true; raw_refs/process_refs nonempty"},
+    {"id": "C01", "kind": "cas", "rule": "expected_version=before_version=edge.version; after_version=before_version+1; identity tuple and owner/direction match"},
+    {"id": "C02", "kind": "append_only", "rule": "history sequence is 1..n with no duplicate, insertion, deletion, or mutation"},
+    {"id": "C03", "kind": "utc", "rule": "recorded_utc ends in Z and is parseable UTC"},
+    {"id": "T01", "kind": "taxonomy", "rule": "record code/class/resolution sets exactly equal taxonomy codes and each code maps once"},
+    {"id": "D01", "kind": "dirty_closure", "rule": "review_end paths = baseline paths unchanged plus this package additive paths"}
+  ],
+  "negative_controls": ["foreign_join", "canonical_digest_mismatch", "unknown_resolver_uri", "registry_hash_drift", "zero_replay", "one_replay", "duplicate_attempt", "nonzero_exit", "semantic_byte_mismatch", "stale_cas", "duplicate_history_sequence", "foreign_owner", "wrong_direction", "dynamic_insert", "non_utc_recorded_at", "unknown_failure_code", "resolution_mismatch", "dirty_path_not_in_baseline_or_package"]
+}

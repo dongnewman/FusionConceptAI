@@ -1,0 +1,60 @@
+{
+  "work_order": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  "erratum": "postrun_erratum_r3",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "software_test_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "source_receipt": "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/focused_r2",
+  "semantic_labels": {
+    "fixture_static_julia_or_desc_executed": false,
+    "launcher_julia_executed": true,
+    "launcher_desc_executed": false,
+    "mesh_execution": false
+  },
+  "launcher": {
+    "pid": 50816,
+    "exit_code": 0,
+    "utc_before": "2026-09-14T20:53:04.6034925Z",
+    "utc_after": "2026-09-14T20:53:12.0300209Z",
+    "julia_desc_before": 0,
+    "julia_desc_after": 0,
+    "dirty_rows_before": 300,
+    "dirty_rows_after": 300
+  },
+  "raw_outputs": {
+    "stdout": {
+      "path": "focused_r2/stdout.txt",
+      "bytes": 980,
+      "sha256": "2fe76c7c6a7264f5449b06174f2d3a18e5f123eab581f5784c5d442e7da84a44"
+    },
+    "stderr": {
+      "path": "focused_r2/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout_marker_scope": "fixture_static_julia_or_desc_executed=false"
+  },
+  "four_input_hashes": {
+    "source": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "test": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "fixture": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "static_qa": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"
+  },
+  "focused_summary": {
+    "chart_metric_determinant": "20/20",
+    "candidate_mesh_face_identity": "10/10",
+    "source_edit_identity": "5/5",
+    "contradictions_deferred": "14/14",
+    "unit_exponent_algebra": "15/15",
+    "total": "64/64"
+  },
+  "scope_protection": {
+    "old_receipt_modified": false,
+    "source_modified": false,
+    "test_modified": false,
+    "fixture_modified": false,
+    "static_qa_modified": false,
+    "mesh_declaration_promoted_to_execution": false
+  }
+}

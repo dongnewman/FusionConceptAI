@@ -1,0 +1,135 @@
+{
+  "schema_version": "AD45-candidate-binding-prerequisite-audit-independent-review-v1",
+  "record_kind": "independent_static_readiness_review",
+  "task_id": "AD-45",
+  "review_id": "independent_review_r1",
+  "reviewer": "different gpt-5.6-luna/high",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "accepted_scope": "none",
+  "claim_ceiling": "architecture_readiness_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_scope": {
+    "products_exact_count": 3,
+    "product_paths": [
+      "docs/implementation/AD-45/candidate_binding_prerequisite_audit/report.md",
+      "docs/implementation/AD-45/candidate_binding_prerequisite_audit/manifest.json",
+      "docs/implementation/AD-45/candidate_binding_prerequisite_audit/cleanup_inventory.md"
+    ],
+    "sidecars_evidence_only": true,
+    "modified_inputs": false,
+    "runtime_calls": {
+      "julia": 0,
+      "desc": 0,
+      "mesh": 0,
+      "solver": 0,
+      "provider": 0,
+      "physics": 0,
+      "search": 0
+    }
+  },
+  "evidence": {
+    "direct_validation": {
+      "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+      "python_version": "3.13.5",
+      "pid": 84132,
+      "utc": "2026-09-15T11:17:05.757707+00:00",
+      "exit_code": 0,
+      "raw_stdout": "review/validation_stdout.json",
+      "raw_stdout_bytes": 2340,
+      "raw_stdout_sha256": "9efb40b0f155d25405b20fe21e9256e1c85622cf008bdd9a2f38a6b50665ce5e",
+      "raw_stderr": "review/validation_stderr.txt",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "plan_validator": {
+      "child_pid": 83980,
+      "utc_start": "2026-09-15T11:19:07.283090+00:00",
+      "utc_end": "2026-09-15T11:19:07.701842+00:00",
+      "exit_code": 0,
+      "raw_stdout": "review/plan_validator_stdout.json",
+      "raw_stdout_sha256": "a60a05cff7db64a5ea68a50b0cfc42208d8b4aaadbc947f233b28e2ee500bf13",
+      "raw_stderr": "review/plan_validator_stderr.txt",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "31 markdown; 497 links; 39 tasks; DAG acyclic"
+    },
+    "git_diff_check": {
+      "child_pid": 85420,
+      "utc_start": "2026-09-15T11:19:29.071235+00:00",
+      "utc_end": "2026-09-15T11:19:29.175021+00:00",
+      "exit_code": 0,
+      "raw_stderr": "review/git_diff_check_stderr.txt",
+      "raw_stderr_sha256": "f33d328c3eef5b606c9042dddc1b95eb2bb5735957b314ae71c3a99fa58ce28d",
+      "warnings_only": true
+    }
+  },
+  "checks": {
+    "three_products_and_flags": true,
+    "w2r1_four_hashes": true,
+    "ad43_four_axis_hashes": true,
+    "canonical_json_and_no_terminal_lf": true,
+    "a_result_union_and_exact_products": true,
+    "a_independent_uuid_nonce_namespace_boundary": true,
+    "a_no_payload_declaration_axis_final_hash_derivation": true,
+    "a_collision_replay_concurrency_clock_negative_controls_explicit": false,
+    "a_seed_recipe_read_only_non_derivation_explicit": false,
+    "b_four_g1_and_four_g2_products_and_result_union": true,
+    "b_same_candidate_join_and_g2_mapping_boundary": true,
+    "b_blocked_on_a_w3a_source_identity_and_mapping": true,
+    "b_no_candidate_hash_creation_or_derivation": true,
+    "future_a_b_product_paths_absent": true,
+    "task_manifest_hash_unchanged": true,
+    "plan_dag_acyclic": true,
+    "git_diff_check": true
+  },
+  "findings": [
+    {
+      "id": "AD45-R1-F1",
+      "severity": "blocking_contract_gap",
+      "scope": "A",
+      "finding": "collision/replay/concurrency/clock negative controls are not individually frozen in machine-level inputs, result semantics and exit gates",
+      "required_repair": "add exact controls, classifications, raw receipts and different-Luna review gate"
+    },
+    {
+      "id": "AD45-R1-F2",
+      "severity": "blocking_contract_gap",
+      "scope": "A",
+      "finding": "AD-42 fresh seed recipe is listed as input without an explicit machine-level read-only/non-derivation guard",
+      "required_repair": "mark as negative-control context and forbid seed/commitment derivation of common QualifiedRefV1"
+    }
+  ],
+  "dispatch_decision": {
+    "A": "do_not_dispatch_until_AD45_contract_repair_and_new_independent_review",
+    "B_G1": "blocked",
+    "B_G2": "blocked"
+  },
+  "claims": {
+    "envelope_created": false,
+    "axis_attestations_created": false,
+    "candidate_hash_created": false,
+    "declaration_hash_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "task_owned_temp_removed": 0,
+    "preexisting_dirty_work_preserved": true,
+    "failure_history_preserved": true
+  },
+  "raw_sidecars": {
+    "validation_stdout": {"bytes": 2340, "sha256": "9efb40b0f155d25405b20fe21e9256e1c85622cf008bdd9a2f38a6b50665ce5e"},
+    "plan_validator_stdout": {"bytes": 343, "sha256": "a60a05cff7db64a5ea68a50b0cfc42208d8b4aaadbc947f233b28e2ee500bf13"},
+    "git_diff_check_stderr": {"bytes": 1635, "sha256": "f33d328c3eef5b606c9042dddc1b95eb2bb5735957b314ae71c3a99fa58ce28d"}
+  },
+  "self_hash_excluded": true
+}

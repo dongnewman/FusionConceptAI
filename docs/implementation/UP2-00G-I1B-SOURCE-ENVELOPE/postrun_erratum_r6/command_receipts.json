@@ -1,0 +1,39 @@
+{
+  "schema_version": "GI1B-postrun-erratum-r6-command-receipts-v1",
+  "scope": "direct raw hash calculation and immutable old-field audit; no Julia/DESC",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "commands": [
+    {
+      "operation": "raw byte/hash calculation",
+      "command": "Get-FileHash -Algorithm SHA256 focused_r5/stdout.txt focused_r5/stderr.txt; Get-Item .Length",
+      "exit_code": 0,
+      "result": "stdout 2806 bytes 22f5b6723c74b3b502100cba753a9b567c09896722f3373ae28d45b579976121; stderr 0 bytes e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855; both SHA lengths 64"
+    },
+    {
+      "operation": "receipt cross-check",
+      "command": "Parse focused-R5 receipts and independent postrun R5 records",
+      "exit_code": 0,
+      "result": "focused receipts correct; postrun R5 affected fields isolated; old files not written"
+    },
+    {
+      "operation": "execution boundary",
+      "command": "No Julia/DESC command issued",
+      "exit_code": 0,
+      "result": "static hash erratum only"
+    }
+  ],
+  "old_files_untouched": true,
+  "claim_ceiling": [
+    "hash-erratum-only",
+    "accepted=false",
+    "review_pending",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_physical",
+    "no_R01_R10"
+  ]
+}

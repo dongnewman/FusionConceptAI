@@ -1,0 +1,48 @@
+{
+  "schema_version": "independent-precheck-v1",
+  "work_order": "E2-N06",
+  "review_round": "R6",
+  "reviewer_role": "independent_luna_static",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "605f3447a8a7bc0241b8efbbe778601ad56a3a811a187c642abff57493aab6d9",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "657ad5c058a0477adc01b59c11d4fc3bb7a92577d2d8d1d58a7205d0d4851d25",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "4e01d55146eaa43e82376f2e0b5f4a6e7286469d60c6aa8244d454f6d80037be",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "findings": {
+    "dict_dot_access_r4": "closed",
+    "explicit_missing_selector_source_branch": "present",
+    "missing_selector_executable_regression": "absent",
+    "r5_identity_and_mutation_gates": "preserved",
+    "historical_r1_r5": "preserved_immutable"
+  },
+  "blocker": {
+    "priority": "P1",
+    "path": "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl",
+    "lines": "163-173",
+    "detail": "Only present selector equality is tested; absent selector branch is not exercised."
+  },
+  "qa": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "frozen_hash_exit": 0,
+    "julia_desc_process_sweep_exit": 0,
+    "julia_processes": 0,
+    "desc_processes": 0,
+    "julia_execution": "not_run",
+    "desc_execution": "not_run"
+  },
+  "credit_boundary": {
+    "formal_B04": false,
+    "provider_resolution": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "prior_archive": "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r5/"
+}

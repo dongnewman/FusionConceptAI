@@ -1,0 +1,154 @@
+{
+  "schema_version": "AD45-fresh-candidate-binding-envelope-independent-review-r1-v1",
+  "record_kind": "independent_implementation_review",
+  "task_id": "AD-45",
+  "review_id": "AD-45-FRESH-CANDIDATE-BINDING-ENVELOPE-INDEPENDENT-REVIEW-R1",
+  "status": "changes_requested",
+  "accepted": false,
+  "accepted_scope": "none",
+  "claim_ceiling": "software_contract_review_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T11:45:58.125972+00:00",
+  "product_file_count": 2,
+  "product_files": [
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/report.md",
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/manifest.json"
+  ],
+  "report_closure": {
+    "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/report.md",
+    "bytes": 6368,
+    "sha256": "b3d2fa8c5f27849def95c70b6f5dabd58d668449835127b23442ac8cdb9c989c"
+  },
+  "evidence_sidecars_only": true,
+  "review_sidecar_directory": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review",
+  "frozen_inputs": {
+    "envelope": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json",
+      "bytes": 7911,
+      "sha256": "d82ab662e72bb4ea9c50524e3ffec1146a84a4f6dc23cb37ff366b74575852c5"
+    },
+    "receipt": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/envelope_receipt.json",
+      "bytes": 3750,
+      "sha256": "31fb41e6d30e03256d07098f34ab47040c6c1d9b17330daeb7fd9754df0b6ba2"
+    },
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39
+  },
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 31752,
+    "utc_start": "2026-09-15T11:45:58.125972+00:00",
+    "utc_end": "2026-09-15T11:45:58.143994+00:00",
+    "exit_code": 1,
+    "checks": "29/35 pass; six failures preserved",
+    "stdout": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/direct_validation_stdout.json",
+      "bytes": 1959,
+      "sha256": "876d796f0aa1069d870534f5c2191d37fa7a7f31e7f5cdec90b939e1804690e8"
+    },
+    "stderr": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/direct_validation_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "plan_validator": {
+      "pid": 83664,
+      "wrapper_pid": 85836,
+      "utc_start": "2026-09-15T11:46:12.388893+00:00",
+      "utc_end": "2026-09-15T11:46:12.790002+00:00",
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/plan_validator_stdout.json",
+      "stdout_bytes": 388,
+      "stdout_sha256": "f248e7a033616549a02cb62f0c1429a56b9078f1a0f6adb7af79a3e50a9a13d6",
+      "stderr_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/plan_validator_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "31 markdown; 497 links; 39 tasks; DAG acyclic"
+    },
+    "scoped_git_diff_check": {
+      "pid": 31016,
+      "wrapper_pid": 39564,
+      "utc_start": "2026-09-15T11:46:22.735579+00:00",
+      "utc_end": "2026-09-15T11:46:22.781582+00:00",
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/scoped_git_diff_stdout.txt",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r1/review/scoped_git_diff_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "findings": [
+    {
+      "severity": "blocking",
+      "kind": "negative_control_artifact_hash_truncated",
+      "affected": [
+        "uuid_nonce_collision",
+        "envelope_replay_nonce_reuse",
+        "concurrent_dual_write_cas_conflict",
+        "wall_clock_rollback_future_skew",
+        "ad42_seed_misuse"
+      ],
+      "observed_artifact_sha256": "d82ab662e72bb4ea9c50524e3ffec1146a84a4f6dc23cb37ff366b74575852c",
+      "expected_envelope_sha256": "d82ab662e72bb4ea9c50524e3ffec1146a84a4f6dc23cb37ff366b74575852c5"
+    },
+    {
+      "severity": "blocking",
+      "kind": "negative_control_raw_receipt_missing_required_fields",
+      "missing_fields": [
+        "canonical_input_sha256",
+        "namespace",
+        "nonce_or_uuid",
+        "allocator_generation",
+        "cas_token",
+        "trusted_time_source"
+      ]
+    },
+    {
+      "severity": "blocking",
+      "kind": "wall_clock_envelope_result_not_exact_union_token",
+      "observed": "AbsentFreshCandidateBindingEnvelopeV1 when freshness time evidence cannot close",
+      "expected": "AbsentFreshCandidateBindingEnvelopeV1"
+    }
+  ],
+  "work_order_verdict": {
+    "id": "AD45-FRESH-CANDIDATE-BINDING-ENVELOPE",
+    "dispatchable_after_repair": true,
+    "requires_new_product_freeze": true,
+    "candidate_identity_created": false,
+    "candidate_hash_created": false,
+    "declaration_hash_created": false,
+    "present": false,
+    "physical_or_engineering_credit": false
+  },
+  "claims": {
+    "envelope_created": true,
+    "axis_attestations_created": false,
+    "candidate_hash_created": false,
+    "declaration_hash_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "task_owned_temp_removed": 0,
+    "preexisting_dirty_work_preserved": true,
+    "review_sidecars_only": true
+  },
+  "self_hash_excluded": true
+}

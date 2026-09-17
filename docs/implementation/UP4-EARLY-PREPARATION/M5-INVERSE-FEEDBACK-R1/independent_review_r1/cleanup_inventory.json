@@ -1,0 +1,8 @@
+{
+  "schema": "M5InverseFeedbackIndependentReviewCleanupV1",
+  "policy": "No deletion; exact paths only; no glob or broad recursive cleanup.",
+  "deleted": [],
+  "preserved": ["run_1/raw/", "run_1/*.process.json", "non_authoritative/python_pid_capture_error/", "../integration_r1/", "../test_execution_r1/", "shared entry", "default_operator_registry", "Project.toml", "Manifest.toml"],
+  "archive_exact_copy_rule": "Raw stdout, stderr, and combined streams are retained; combined is stdout bytes followed by stderr bytes.",
+  "changes_needed": ["Fix M5-IR-001 internal recomputation and corruption controls.", "Fix M5-IR-002 full upstream composition hash, owner, and provenance binding controls.", "Record actual distinct role/agent identities if role separation is required."]
+}

@@ -1,0 +1,115 @@
+{
+  "manifest_version": "AD-29-h0a-precursor-index-sync-v1",
+  "record_kind": "documentation_index_sync",
+  "decision_id": "AD-29/H0-A",
+  "status": "changes_requested",
+  "accepted": false,
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "current_scope": "H0-A precursor links and bounded status in the two requested indexes only",
+  "accepted_limited_scope": "local H0-A software contract only",
+  "parent_gates": "H0-A total and actual authority accepted=false; UP2/B00/B04/provider/mesh/DESC/physical/engineering/R01-R10 false",
+  "runner_boundary": "actual-A status, declaration type, and compile/provider/solver counters not_printed_by_runner; R6/R7 exit-1 histories preserved",
+  "protected_files": {
+    "docs/v4_multitopology_generation/README.md": {
+      "before": {
+        "bytes": 29839,
+        "sha256": "0fabc88c530c61dc561750313fb8b213e164e48520f072e06ca484fe630590d5"
+      },
+      "after": {
+        "bytes": 30782,
+        "sha256": "0ab9aac98be8dd32f5fc8a6904f2667b8d585b4d6623a3b1b8dd706e1e9d38ce"
+      }
+    },
+    "docs/implementation/README.md": {
+      "before": {
+        "bytes": 15122,
+        "sha256": "dec3861bd3d1f0becb9ed200b96791f0bb6e9de4fea1df304e3cb1a39b1cbc82"
+      },
+      "after": {
+        "bytes": 15693,
+        "sha256": "0c732d5b49532c30f8fe160325ae11cfa3195ac436f7671194f26636a1860d2c"
+      }
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "current": {
+        "bytes": 76318,
+        "sha256": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61"
+      }
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "current": {
+        "bytes": 60153,
+        "sha256": "2c68142ec7c5835a208a9cd192f6e2ca8463a2081b35ca4bfd7ba918917f9ebc"
+      }
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "current": {
+        "bytes": 66914,
+        "sha256": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+      }
+    },
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/acceptance.md": {
+      "current": {
+        "bytes": 882,
+        "sha256": "d1e715fac20e863d18a9be53360adbe7cb969db9992a2521a1a36d24f1a6d38b"
+      }
+    },
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/evidence_manifest.json": {
+      "current": {
+        "bytes": 4027,
+        "sha256": "9c004d6c6063b3ad577bdba24bf98871c78a604584db6872b9e960b1947128a2"
+      }
+    }
+  },
+  "new_outputs": {
+    "docs/implementation/AD-29/h0a_precursor_index_sync/report.md": {
+      "bytes": 1413,
+      "sha256": "5de5720f21552d34790a836b500824d1fb39b322cd22577a3bef03edbe528be0"
+    }
+  },
+  "validation": {
+    "json_tool_command": "python -m json.tool docs/implementation/AD-29/h0a_precursor_index_sync/evidence_manifest.json",
+    "json_tool_exit": 0,
+    "validate_plan_command": "python docs/v4_multitopology_generation/validate_plan.py",
+    "validate_plan_exit": 1,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 389,
+    "task_count": 35,
+    "task_dag_acyclic": true,
+    "julia_run": false,
+    "desc_run": false,
+    "errors": [
+      "Missing link from docs\\implementation\\README.md: AD-31/status_repair_r2/report.md"
+    ],
+    "checks": "failed_on_preexisting_or_concurrent_missing_link"
+  },
+  "dirty_protection": {
+    "before_status_sha256_utf8_lf": "c5bcda3258d4034dd3be8d4216912cc725756a7cfa66412925a7185f62248db7",
+    "before_bytes": 325207,
+    "before_entries": 4141,
+    "after_status_sha256_utf8_lf": "bc9f781d3b9e45d267060ac34e9e6889cc18b25aa2ce5c3146d0127a27a892b6",
+    "after_bytes": 325404,
+    "after_entries": 4144
+  },
+  "scope_guard": {
+    "16_unchanged": true,
+    "18_unchanged": true,
+    "task_manifest_unchanged": true,
+    "source_tests_current_h0_acceptance_old_evidence_unchanged": true
+  },
+  "credits": {
+    "implementation": false,
+    "H0A_total": false,
+    "actual_authority": false,
+    "UP2": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "DESC": false,
+    "physical": false,
+    "engineering": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

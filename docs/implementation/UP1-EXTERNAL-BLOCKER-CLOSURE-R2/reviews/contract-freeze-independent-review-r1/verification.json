@@ -1,0 +1,46 @@
+{
+  "schema": "UP1.external-blocker-closure-R2.contract-freeze-independent-review.verification.v1",
+  "decision": "pass_limited",
+  "reviewer": {"agent": "/root/up1r2_contract_review", "model": "gpt-5.6-luna", "reasoning_effort": "high", "different_from_owner": true},
+  "read_only_target": true,
+  "write_scope": "Only reviews/contract-freeze-independent-review-r1/** was written; 00-contract-freeze/** and all source/input/protected paths were read-only.",
+  "fresh_process": {
+    "command": "python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/contract-freeze-independent-review-r1/static_contract_freeze_validator.py",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "pid": 110864,
+    "parent_pid": 109440,
+    "started_utc": "2026-09-16T17:53:42.205691Z",
+    "ended_utc": "2026-09-16T17:53:43.101640Z",
+    "exit": 0,
+    "checks_passed": "43/43",
+    "stdout": {"path": "raw/static_contract_freeze_validator_r3.stdout.raw", "bytes": 1315, "sha256": "9b7e515a11e7b039990d156122d7d014688c0498a5a39af986f8e3303e9b97b9"},
+    "stderr": {"path": "raw/static_contract_freeze_validator_r3.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "exit_artifact": {"path": "raw/static_contract_freeze_validator_r3.stdout.raw", "sha256": "9b7e515a11e7b039990d156122d7d014688c0498a5a39af986f8e3303e9b97b9"}
+  },
+  "preserved_attempts": [
+    {"pid": 26964, "exit": 1, "reason": "reviewer script root path was one level too shallow", "stdout": {"path": "raw/static_contract_freeze_validator.stdout.raw", "bytes": 208, "sha256": "d58baf5d91db6205cc7b780bd9f06925de02ee583aff89dc779ef51917188b8d"}, "stderr": {"path": "raw/static_contract_freeze_validator.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    {"pid": 24388, "exit": 1, "reason": "reviewer-only key-name typo formal_b00_b04; corrected to formal_b00/formal_b04", "stdout": {"path": "raw/static_contract_freeze_validator_r2.stdout.raw", "bytes": 1086, "sha256": "e86b5ecb71df504ccd6d74d33786096e29876a73ba9019f5b1f96287553e7b8b"}, "stderr": {"path": "raw/static_contract_freeze_validator_r2.stderr.raw", "bytes": 909, "sha256": "cb4077744f554e646f1ab766cf3367ccb8c6f3db180ffbce20e9ef620746d14e"}}
+  ],
+  "recomputed": {
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "r2_owned_files": "9/9",
+    "planning_inputs": "6/6",
+    "ad56_factories": "3/3",
+    "task_nodes": 39,
+    "task_dag_acyclic": true,
+    "route_transitions": 8,
+    "external_usable_inputs": 0,
+    "formal_credit": false,
+    "runtime": {"julia": "not_run", "S3": "not_run", "DESC": "not_run", "mesh": "not_run", "provider": "not_run", "solver": "not_run"}
+  },
+  "worktree_status": {
+    "frozen_line_count": 374,
+    "current_line_count": 377,
+    "current_raw_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b5",
+    "frozen_sha256": "8ad8e9f6a3e3c98cbc4ad0fba5c332cd0ab70a0d01a687a10d85bea232c70fc7",
+    "snapshot_matches": false,
+    "observation_only": true
+  },
+  "labels": {"TEST_ONLY": true, "non_evidence": true},
+  "formal_gate_credit": false
+}

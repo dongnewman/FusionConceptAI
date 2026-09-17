@@ -1,0 +1,13 @@
+{
+  "schema": "M5ChainLayerReplayLedgerV1",
+  "run_id": "M5-CHAIN-REPLAY-R1-C-REPLAY2",
+  "layer": "C_conditional_egraph",
+  "status": "human_interruption_test_scope_exceeded",
+  "execution_order": ["python_oracle", "julia_tests"],
+  "budget": {"max_programs": 8, "max_rewrite_attempts": 16, "max_rounds": 4, "max_trace_steps": 8},
+  "python_oracle": {"command": "python test/RuntimeV4/M4Isolated/oracles/conditional_egraph_oracle_v1.py", "pid": 108936, "start": "2026-09-16T22:42:12.8316925+08:00", "end": "2026-09-16T22:42:13.8724490+08:00", "exit": 0, "stdout_raw": "raw/python_oracle.stdout.raw", "stderr_raw": "raw/python_oracle.stderr.raw"},
+  "julia_tests": {"command": "julia --project=. test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl", "pid": 60876, "start": "2026-09-16T22:42:25+08:00", "stop_at": "2026-09-16T23:03:04.3776958+08:00", "exit": null, "termination": "Stop-Process -Id 60876 -Force", "stdout_raw": "raw/julia_tests.stdout.raw", "stderr_raw": "raw/julia_tests.stderr.raw"},
+  "frozen_source_sha256": "7a1f52a96a7a79061b1e4bdb0fc1b7b41de5e45266d0ac4726a50502a4dc6500",
+  "claim_ceiling": "manufactured_conditional_egraph/screen_only",
+  "hashes": {"python_stdout": "FBADEA511E25DF6F6DDD4ADE00E856D2FEF1A5AB0BF9BD59177E3495E063FBD6", "python_stderr": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "julia_stdout": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "julia_stderr": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "test": "E0ED925A77F65AA045586F3C8DD78B2ACFE8E023B29F1F95BBA1F246B61A9355", "oracle": "92DB4EDBEA2060409D22FF453FA9EEF119F8639F1AB6EDB6CC01103218309DCA"}
+}

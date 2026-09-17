@@ -1,0 +1,37 @@
+{
+  "schema_version": "G-I1B-source-envelope-focused-r4-protected-v1",
+  "before_source": "command_receipts.json:preflight.protected_inputs",
+  "after_source": "command_receipts.json:postflight.protected_inputs",
+  "all_protected_inputs_match": true,
+  "before_after": [
+    {
+      "path": "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json",
+      "before_sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6",
+      "after_sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6",
+      "before_bytes": 23906,
+      "after_bytes": 23906
+    },
+    {
+      "path": "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl",
+      "before_sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12",
+      "after_sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12",
+      "before_bytes": 43037,
+      "after_bytes": 43037
+    },
+    {
+      "path": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+      "before_sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37",
+      "after_sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37",
+      "before_bytes": 25712,
+      "after_bytes": 25712
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+      "before_sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5",
+      "after_sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5",
+      "before_bytes": 408,
+      "after_bytes": 408
+    }
+  ],
+  "postflight_matching_julia_desc_processes": 0
+}

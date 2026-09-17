@@ -1,0 +1,9 @@
+{
+  "schema": "M5R2DirtyInventoryEndV1",
+  "status": "pending_independent_review",
+  "comparison": "not_executed_until_handoff",
+  "required_rule": "review-end git status per-path records must equal review-start baseline paths unchanged plus this package paths only",
+  "expected_additive_root": "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/03-scope-contract-repair-r2/",
+  "forbidden_new_paths": ["src/", "test/", "registry/", "runs/", "provider/", "hardware/"],
+  "note": "A pending receipt is intentional: no acceptance is claimed before a separate review-end capture."
+}

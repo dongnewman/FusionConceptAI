@@ -1,0 +1,26 @@
+{
+  "manifest_kind": "up2_n06_h0a_dimensioned_law_focused_r4",
+  "status": "focused_test_failed",
+  "accepted": false,
+  "review_pending": true,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+  "pid": 13520,
+  "exit_code": 1,
+  "utc": {"before": "2026-09-14T21:16:41.8552609Z", "after": "2026-09-14T21:16:46.4933824Z"},
+  "first_error": {"type": "StackOverflowError", "source": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:170", "constructor_keyword": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:177", "test": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:43", "summary": "5 passed, 1 errored, 6 total"},
+  "raw_outputs": {
+    "stdout": {"path": "stdout.txt", "bytes": 2553, "sha256": "aff9a3413dab8137ea8a8df161496809d930f6cea29e551563f032505af201b3"},
+    "stderr": {"path": "stderr.txt", "bytes": 310, "sha256": "a64e6d35d8d86249f2a54bdce3dc19890943cbc320899aa1ce2a73dcb15f1225"}
+  },
+  "pre_post": {"dirty_rows_before": 301, "dirty_rows_after": 302, "julia_desc_before": 0, "julia_desc_after": 0, "target_hashes_unchanged": true},
+  "dirty_delta": {"rows_added": ["?? independent_postrun_r5/"], "executor_owned_input_changes": false},
+  "input_hashes": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": "02a53521aaa85f7880448da60c924b0afd548f55d87d0490fcf17bb727f0f18e",
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": "51d5a34b7da01b5f2e8c757939c1ba391306b08b9aaa1b62eb0fcc4b6dea302a",
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+  },
+  "scope": {"source_modified": false, "test_modified": false, "fixture_modified": false, "runner_modified": false, "old_evidence_modified": false},
+  "execution_safety": {"redirect_before_start": true, "task_specific_pid_variable": true, "wait_for_exit": true, "rerun": false},
+  "claim_ceiling": ["focused_failed", "accepted_false", "review_pending", "no_physical", "no_B04", "no_R01_R10"]
+}

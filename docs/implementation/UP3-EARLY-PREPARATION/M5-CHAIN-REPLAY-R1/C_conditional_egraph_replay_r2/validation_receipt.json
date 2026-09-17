@@ -1,0 +1,10 @@
+{
+  "schema": "M5ChainCReplayValidationReceiptV1",
+  "valid": false,
+  "status": "deferred_performance_blocked",
+  "python_oracle": {"valid": true, "exit": 0, "deterministic": true, "replay_percent": 100, "unmet_condition_merge": false, "contradiction": "fail_closed"},
+  "julia": {"valid": false, "exit": null, "typed_tests_collected": false, "status": "human_interruption_test_scope_exceeded"},
+  "default_budget_prior": "human_interruption_test_scope_exceeded",
+  "ceiling": "manufactured_conditional_egraph/screen_only",
+  "formal_credit": "none"
+}

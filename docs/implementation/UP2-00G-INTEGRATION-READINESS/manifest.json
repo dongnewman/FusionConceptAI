@@ -1,0 +1,34 @@
+{
+  "work_order": "UP2-00G-INTEGRATION-READINESS",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "read_only_integration_audit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "checked_at_utc": "2026-09-14T03:40:56.575252+00:00",
+  "scope": "50-row local evidence classification, module wiring gap, and bounded integration work packages",
+  "formal_b04": false,
+  "b00": false,
+  "provider": false,
+  "mesh": false,
+  "engineering": false,
+  "physical": false,
+  "r01_r10_credit": false,
+  "inputs": "input_hashes.json",
+  "report": "report.md",
+  "source_status": {
+    "N01-N04": "accepted_limited local slices",
+    "N05": "review_pending",
+    "N06": "review_pending changes_requested",
+    "N07-N10": "accepted_limited local slices"
+  },
+  "fresh_formal_rows": 50,
+  "fresh_formal_receipts": 0,
+  "dependency_route": [
+    "UP2-00",
+    "UP1-04B",
+    "UP1-04",
+    "UP2-01"
+  ],
+  "julia_desc_invoked": false,
+  "review_gate": "independent Luna review required"
+}

@@ -1,0 +1,12 @@
+ERROR: LoadError: ParseError:
+# Error @ D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\N06DimensionedLedgerLawV1.jl:507:46
+function _n06_h0a_expected_role_contract(g3)
+    effects=(source=:source,load=:load,return=:return,heat=:heat_rejection)
+#                                            ╙ ── unexpected `=`
+Stacktrace:
+ [1] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\N06DimensionedLedgerLawV1.jl:507
+ [2] include(mod::Module, _path::String)
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_n06_dimensioned_law.jl:6
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\N06DimensionedLedgerLawV1.jl:507
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_n06_dimensioned_law.jl:6

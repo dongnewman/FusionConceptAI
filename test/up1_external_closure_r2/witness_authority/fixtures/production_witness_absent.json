@@ -1,0 +1,26 @@
+{
+  "mode": "PRODUCTION",
+  "request_id": "r2-absent-witness",
+  "idempotency_key": "r2-absent-witness-1",
+  "nonce": "nonce-r2-absent-witness",
+  "requested_at_trusted_time": "2026-09-17T00:00:00Z",
+  "witness_scope": "candidate-r2-demo",
+  "attestation_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "candidate_id": "candidate-r2-demo",
+  "canonical_object_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "source_revision": "revision-r2-demo",
+  "source_locator": "fusion://candidate-r2-demo/source/v1",
+  "source_version": "source-v1",
+  "layer_refs": {
+    "G1": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/G1/v1","sha256":"1111111111111111111111111111111111111111111111111111111111111111","version":"G1-v1"},
+    "G2": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/G2/v1","sha256":"2222222222222222222222222222222222222222222222222222222222222222","version":"G2-v1"},
+    "G3": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/G3/v1","sha256":"3333333333333333333333333333333333333333333333333333333333333333","version":"G3-v1"}
+  },
+  "four_axis_refs": {
+    "schema": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/axis/schema/v1","sha256":"4444444444444444444444444444444444444444444444444444444444444444","version":"schema-v1"},
+    "canonical": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/axis/canonical/v1","sha256":"5555555555555555555555555555555555555555555555555555555555555555","version":"canonical-v1"},
+    "profile": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/axis/profile/v1","sha256":"6666666666666666666666666666666666666666666666666666666666666666","version":"profile-v1"},
+    "candidate_binding": {"candidate_id":"candidate-r2-demo","ref":"fusion://candidate-r2-demo/axis/binding/v1","sha256":"7777777777777777777777777777777777777777777777777777777777777777","version":"binding-v1"}
+  },
+  "witness": {"identity":{"name":"typed_absence","organization":"typed_absence"}}
+}

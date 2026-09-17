@@ -1,0 +1,162 @@
+{
+  "manifest_version": "AD-34-g3-binding-feedback-independent-review-r1",
+  "record_kind": "independent_architecture_review",
+  "decision": "AD-34",
+  "revision": "R1",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "implementation_accepted": false,
+  "reviewer": "/root/g3_control_arch_independent_review",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "review_date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "audit_report_path": "docs/implementation/AD-34/g3_binding_feedback_audit/report.md",
+  "audit_report_sha256": "455fd02c43b8c244e97b00ee2a6a1ca28bcb55421b13737d7afba22a0f05471a",
+  "audit_manifest_path": "docs/implementation/AD-34/g3_binding_feedback_audit/manifest.json",
+  "audit_manifest_sha256": "6563d28b0560a7642f82e42a84716d4538e21c20b1b8f5c19c450af66a686981",
+  "review_inputs": [
+    {
+      "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    {
+      "path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+      "sha256": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+      "sha256": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716"
+    },
+    {
+      "path": "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+      "sha256": "807837ce2a4aef4c196d0f4e2635201e9843f3532bc1afd94d667865569a976b"
+    },
+    {
+      "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+    },
+    {
+      "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+    },
+    {
+      "path": "src/Contracts/CandidateStatePackageV5.jl",
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+    },
+    {
+      "path": "src/Contracts/GenomeContractRegistry.jl",
+      "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "sha256": "7a11562caf25e138e6e8ae0adac79d4e384577c936e8fb7f29dcb8c8256b4882"
+    },
+    {
+      "path": "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl",
+      "sha256": "aa34bcb8fef7211d071d8f2b3a23fd193e6d0081ecf1908cc3fafa679f794fb9"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/manifest.json",
+      "sha256": "73c25d60622eaffbe002f4054c60b88004c9ea4fd53db5a6b03825bca42c2173"
+    },
+    {
+      "path": "docs/implementation/AD-30/t0_readiness_audit/report.md",
+      "sha256": "8712d4ec56330a647175c30e3470c24b6b5d2e344294fd88c5e20573351c3723"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T0/software_precursor_acceptance.md",
+      "sha256": "eb7a6f2960be4a4e6ba250fe9d3a2cde8eac05a23dc120d23972b143ee52e0ec"
+    },
+    {
+      "path": "docs/implementation/AD-31/acceptance.md",
+      "sha256": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7"
+    },
+    {
+      "path": "docs/implementation/AD-32/acceptance.md",
+      "sha256": "3cd5482063e8502e6fb9e93dc392e5e640b5d31b280820c5c238f7ca9ce7cd23"
+    }
+  ],
+  "positive_findings": {
+    "binding_is_plausible_editable_sibling": true,
+    "feedback_is_t0_t1_transport_directionally": true,
+    "binding_source_child_included": true,
+    "future_binding_scope_disjoint_from_realization_control_t0": true,
+    "old_package_registry_read_only": true,
+    "t1_t2_mapping_downstream": true,
+    "no_cycle_in_proposed_relation": true
+  },
+  "blocking_findings": [
+    {
+      "id": "AD34-R1-B01",
+      "issue": "link edit is said to change source/content identities while source payload and source-record changes are outside the edit; immutable-source and editable-link semantics are not reconciled",
+      "minimal_repair": "freeze immutable source payload plus explicit editable link body/state, or define a fully provenance-bearing new-payload publication; do not leave both models"
+    },
+    {
+      "id": "AD34-R1-B02",
+      "issue": "upstream_authority and per-feedback-target authority are validated separately, so duplicate authority is not prevented",
+      "minimal_repair": "make upstream authority canonical and require exact target equality/reference with fail_closed mismatch in G3/T0/T1"
+    },
+    {
+      "id": "AD34-R1-B03",
+      "issue": "feedback target metadata is bounded, but the ownership and identity of runtime numeric feedback values are unstated",
+      "minimal_repair": "declare target metadata as parent-declaration/T0 edits and runtime values as candidate-scenario execution/evidence records; prohibit feedback-child CAS"
+    },
+    {
+      "id": "AD34-R1-B04",
+      "issue": "typed absent realization/control child refs and hashes are not field-level specified and could permit fabricated placeholder authority",
+      "minimal_repair": "use present-or-typed-absent unions with reason and absence digest; absent branch carries no ref/hash and T1 requires fresh same-candidate source-backed child"
+    },
+    {
+      "id": "AD34-R1-B05",
+      "issue": "AD-34 audit input receipt is stale: recorded control test hash 9884bffce32676240320536592cc9b8796fcc4e8233bbefd02a860bd856be1da9 differs from current aa34bcb8fef7211d071d8f2b3a23fd193e6d0081ecf1908cc3fafa679f794fb9, and current control source is omitted",
+      "minimal_repair": "refresh audit report/manifest inputs to current control source, test and pending-review archive before dispatch"
+    }
+  ],
+  "future_binding_file_scope": [
+    "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+    "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+    "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json",
+    "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json"
+  ],
+  "feedback_boundary": {
+    "new_feedback_child": false,
+    "owner": "T0/T1 transport and declaration/evidence boundary",
+    "target_metadata_edit": "rebuild parent G3 declaration and T0 bundle",
+    "runtime_value_edit": "execution/evidence record only; no feedback-child CAS"
+  },
+  "current_control_slice": {
+    "source_exists": true,
+    "test_exists": true,
+    "archive_exists": true,
+    "archive_status": "review_pending",
+    "actual_control_child": false,
+    "source_backed_t1_mapping": false
+  },
+  "credits_all_false": true,
+  "scope_boundary": {
+    "source_modified": false,
+    "tests_modified": false,
+    "old_receipts_modified": false,
+    "julia_run": false,
+    "desc_run": false,
+    "heavy_python_run": false,
+    "actual_binding": false,
+    "actual_feedback": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false
+  },
+  "report_path": "docs/implementation/AD-34/g3_binding_feedback_independent_review_r1/report.md",
+  "self_hash_excluded": true
+}

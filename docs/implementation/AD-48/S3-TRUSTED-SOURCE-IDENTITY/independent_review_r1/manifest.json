@@ -1,0 +1,31 @@
+{
+  "schema_version": "AD48-S3-independent-review-R1-manifest-v1",
+  "task_id": "AD48-S3-TRUSTED-G3-SOURCE-IDENTITY",
+  "verdict": "pass_limited",
+  "claim_ceiling": "typed_absence_software_provenance_only",
+  "reviewer": "different Codex independent process",
+  "review_model": "gpt-5",
+  "review_scope": "formal four-scope AD48-S3 typed absence; no product mutation",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "product_paths": [
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_v1.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_receipt.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_v1.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_receipt.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_v1.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_receipt.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_v1.json",
+    "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_receipt.json"
+  ],
+  "formal_products": {"count": 8,"all_exact_paths": true,"all_sha256_and_bytes_match": true,"all_results_typed_absent": true,"all_terminal_deferred": true,"all_no_publish": true},
+  "accepted_input_closure": {"fresh_s2_root_r2": true,"s1_locator_receipts": true,"f0_root_r3": true,"ad45_exact_handle_and_envelope": true},
+  "trusted_identity_authority": {"independent_attestor": "missing","signing_key_or_certificate": "missing","signature_verifier": "missing","trust_root": "missing","revocation_source": "missing","freshness_or_trusted_time_policy": "missing","present_result_permitted": false,"key_or_credential_contents_read": false},
+  "negative_controls": {"unsigned_json_reviewer_factory_receipt_test_exit_runner_exit": "Absent+terminal_deferred","scope_hash_handle_upstream_mismatch": "Failed+fail_closed","tamper": "Failed+fail_closed","replay_stale_revoked_unknown_signer": "Failed+fail_closed"},
+  "validation": {"independent_direct": {"path":"raw/direct_validation.json","passed":137,"total":137,"exit_code":0},"independent_replay": {"path":"raw/replay_validation.json","passed":8,"total":8,"exit_code":0},"source_direct": {"path":"../archive/direct_validation.json","passed":65,"total":65,"pid":86988,"utc":"2026-09-15T16:41:50.396860Z","exit_code":0},"source_replay": {"path":"../archive/replay_validation.json","passed":8,"total":8,"pid":90856,"utc":"2026-09-15T16:41:50.468566Z","exit_code":0},"plan_scope":{"path":"raw/plan_scope_validation.json","plan_exit_code":0,"scoped_diff_exit_code":0,"markdown":31,"links":526,"tasks":39,"dag_acyclic":true}},
+  "heavy_execution": {"julia": false,"desc": false,"provider": false,"mesh": false,"solver": false,"engineering": false,"physics": false,"search": false},
+  "fresh_retry": {"formal_products_rechecked": true,"prior_capacity_failure_history_preserved": true,"capacity_specific_raw_in_s3_archive": false,"historical_failure_records_left_append_only": true},
+  "claims": {"trusted_source_identity": false,"candidate_identity": false,"final_hash": false,"t0": false,"physics": false,"r01_r10": false,"l4_credible_count": 0},
+  "gate": {"ad48_g3_trusted_identity": "blocked_external_trust_root","fresh_w1": false,"w2": false,"ad46_identity": false,"ad49_independent_progress_allowed": true},
+  "protected": {"formal_products_modified": false,"source_test_registry_core_modified": false,"unrelated_dirty_work_preserved": true,"secret_contents_read": false},
+  "self_hash_excluded": true
+}

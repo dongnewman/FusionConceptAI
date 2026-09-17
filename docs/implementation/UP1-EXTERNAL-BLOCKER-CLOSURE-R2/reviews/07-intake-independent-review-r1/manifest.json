@@ -1,0 +1,25 @@
+{
+  "record_kind": "UP1R2AuthorityIntakeIndependentReviewManifestV1",
+  "status": "rework",
+  "decision": "P1_findings_present",
+  "self_hash_excluded": true,
+  "reviewed_inputs": {
+    "tools/up1_external_closure_r2/authority_intake/adapter.py": "6520B5E72C477C8BE18325342367F560D98C34240EB8179FC2472A833581B794",
+    "tools/up1_external_closure_r2/authority_intake/cli.py": "E4D3D045E1DD3B061EF8744F2391C2C6AECCA931A55A649576B736D515757A23",
+    "tools/up1_external_closure_r2/authority_intake/__main__.py": "2E1ED7E45357F5D750407D995ACACE750C72BA098B8A8D6AC32E18928D96E5C4",
+    "tools/up1_external_closure_r2/authority_intake/schema.json": "227A962A07E1E98CE98F55EE20F502652F2352FF964365C5F1D46AB657883851",
+    "tools/up1_external_closure_r2/authority_intake/protocol.md": "21595B003B5C0A320CBB7D6CA5B7AC760F6C66B6BC83A991882FF5A5690985B9",
+    "test/up1_external_closure_r2/authority_intake/test_authority_intake.py": "B44FC3E150D0A09640CE3BD50848D99A5D38987906F5D675A446185B245F6CCE",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/07-authority-intake/protocol.md": "2368B44449D44408633137BEEAAADA9A1E2BF002728DC0E542E2D784602E4097",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/07-authority-intake/validation_receipt.json": "B2BDB229E30E5C9B9B1AD19A6D1F55793407AB88D116C64E24BED7CBA6D8FA4C",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/07-authority-intake/raw/authority_intake_validation.json": "884DCE8125A5C4CBC74B60BCF25CE62BE50918C904CC71C0F87AB5491B14BBAE"
+  },
+  "raw_evidence": {
+    "path": "raw/attack_matrix.json",
+    "sha256": "D3271DFE8E70A68D134BD7588E52171E11C0442E976AB9315E4B448A3FD6B6DF"
+  },
+  "commands": [
+    "python -B -m unittest discover -s test/up1_external_closure_r2/authority_intake -p 'test_*.py' -v",
+    "fresh python -B attack matrix including Windows junction/reparse and hardlink probes"
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "schema": "UP1.R2.cleanup-execution.run-receipt.v1",
+  "captured_utc": "2026-09-16T20:54:25.8585369Z",
+  "operation": "execute_21_final_hygiene_cleanup_candidates",
+  "policy_source": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/21-final-hygiene-audit/cleanup_candidates.json",
+  "claim_ceiling": "cache_cleanup_only_no_source_or_authority_change",
+  "allowed_roots": [
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\"
+  ],
+  "deletion_method": "PowerShell Remove-Item -LiteralPath, one resolved file per operation; no recursive deletion",
+  "candidate_count": 32,
+  "deleted_count": 32,
+  "deleted_bytes": 447664,
+  "before": [
+    {
+      "path": "tools/up1_external_closure_r2/aggregate_gate/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\aggregate_gate\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 605,
+      "sha256": "f80ad0b80d3e87f3a9df909d713567948109935edeca80c274730c8c1526b32b",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_initial_exact_literalpath_then_absence_confirmed"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/aggregate_gate/__pycache__/aggregate_gate.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\aggregate_gate\\__pycache__\\aggregate_gate.cpython-313.pyc",
+      "bytes": 43163,
+      "sha256": "f0d0296999b55b6021d6b28d680b2099d48dd14229557efb3954f4eddfc75fee",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 2157,
+      "sha256": "43407533ed7d41755ed8cd6c6dc5dd86d7ce37e2c577437e2c5ac05732f5aca0",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/canonical.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\canonical.cpython-313.pyc",
+      "bytes": 12792,
+      "sha256": "4e18cb28b2892512b5c8f241ef894306aab9a9fd2bc7e5c75a870499045fe7eb",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/files.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\files.cpython-313.pyc",
+      "bytes": 9798,
+      "sha256": "39bffc10e1b1eae25d145345a2878fb3fa478ce34c42e90eb349966ef21576bd",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/fingerprint.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\fingerprint.cpython-313.pyc",
+      "bytes": 4535,
+      "sha256": "346e79d64356d6e8ecd0f7b28fdc8c151a9fefb05cd9047516ff905be17a0826",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/identity.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\identity.cpython-313.pyc",
+      "bytes": 4982,
+      "sha256": "6ca61aa696608cea615afbaa127bdc7c434047629b37f91badac6c84473a49a1",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/manifest.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\manifest.cpython-313.pyc",
+      "bytes": 11220,
+      "sha256": "16ede0b7f7595cf8f27ea05d32b8b8d699ee10960a944d53e029de19d48f476b",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/receipt.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\receipt.cpython-313.pyc",
+      "bytes": 22072,
+      "sha256": "30e59fc1daaea1cc02d24f6a02edb9e865fee4ac630eba3c4afc24feedee24c4",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/common/__pycache__/taxonomy.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__\\taxonomy.cpython-313.pyc",
+      "bytes": 4831,
+      "sha256": "9869f625fbb80b2c2a1db21d7a57befbe6efda9d28b51451b26d08bfd06c0d60",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/environment_provenance/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\environment_provenance\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 702,
+      "sha256": "fcf250d4590d6f35c785a54e26997a8814fb8b514ff900387bd71b70ded3b7e3",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/environment_provenance/__pycache__/__main__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\environment_provenance\\__pycache__\\__main__.cpython-313.pyc",
+      "bytes": 244,
+      "sha256": "bb5dd5530fbc74d2d35e44f2dc6cb58598ea60fe0a5d7fe7648a3913ef4314e5",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/environment_provenance/__pycache__/cli.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\environment_provenance\\__pycache__\\cli.cpython-313.pyc",
+      "bytes": 4146,
+      "sha256": "85a9494a6cb64728fdea763d2603dbd9f1eb9bc6b0ee823c351ceae30a5334f2",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/environment_provenance/__pycache__/validator.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\environment_provenance\\__pycache__\\validator.cpython-313.pyc",
+      "bytes": 57552,
+      "sha256": "928a5b7484041f94da8029fbe7e846b121ce8c20b4d00db2ca0f20ccd3910a76",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/integration/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\integration\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 664,
+      "sha256": "517e198415b8a85be6faa2d05546048a9e73581b316f5a04c2d4a5f3475b9801",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/integration/__pycache__/cli.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\integration\\__pycache__\\cli.cpython-313.pyc",
+      "bytes": 4751,
+      "sha256": "2c0ce3b5b5b8b12d75132d1ba6d1aae92317d15d16deb353717e3679029ddfac",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/integration/__pycache__/runner.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\integration\\__pycache__\\runner.cpython-313.pyc",
+      "bytes": 41976,
+      "sha256": "03d08e8a7fe08899aee704803fa4d5b825086828459f39c9582a475c4440d807",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/revocation_time_replay/__pycache__/cli.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\revocation_time_replay\\__pycache__\\cli.cpython-313.pyc",
+      "bytes": 3271,
+      "sha256": "a66f0e4ec5221dc9b6406adc7be1254bac296bde75f49787bacd339e77eaeafb",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/revocation_time_replay/__pycache__/core.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\revocation_time_replay\\__pycache__\\core.cpython-313.pyc",
+      "bytes": 50681,
+      "sha256": "946ab1423fe0d7b8df5e77d62f825b69739250d353bfd11e16ffa0431f480488",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/source_axis_binding/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\source_axis_binding\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 776,
+      "sha256": "fe495f89cd439326e17cca66705f63f35a5e6085aad676495e1b41484afdf9d8",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/source_axis_binding/__pycache__/source_axis_binding.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\source_axis_binding\\__pycache__\\source_axis_binding.cpython-313.pyc",
+      "bytes": 36840,
+      "sha256": "c39241f77f7860ac44d655e64dd47688a9aa66a0d03bbd89821effb7fe4c5fb1",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/witness_authority/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\witness_authority\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 599,
+      "sha256": "ab52f1925659178720424db79c3f2d49691bdf8bcb802fc9255cebc73d6ef8c9",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/witness_authority/__pycache__/__main__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\witness_authority\\__pycache__\\__main__.cpython-313.pyc",
+      "bytes": 277,
+      "sha256": "2f2ae741424d01f3b06661bd4dd87b32728ca683d24f47e5ad0b3d2b426ac7dd",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/witness_authority/__pycache__/cli.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\witness_authority\\__pycache__\\cli.cpython-313.pyc",
+      "bytes": 2789,
+      "sha256": "9fba43517b1c0812605dddac95fb22c2221aa4d133588d737754b9c1cf09e022",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "tools/up1_external_closure_r2/witness_authority/__pycache__/validator.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\witness_authority\\__pycache__\\validator.cpython-313.pyc",
+      "bytes": 27131,
+      "sha256": "c314f581c458013bebded4e8b62d5cef44021558140eb23ab611d5f91ba9d888",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/common/__pycache__/test_common.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\common\\__pycache__\\test_common.cpython-313.pyc",
+      "bytes": 19142,
+      "sha256": "7458c14b8c802d079a32815ecfcb4667c319b3351eb0e7abf5832015a30a9562",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/environment_provenance/__pycache__/__init__.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\environment_provenance\\__pycache__\\__init__.cpython-313.pyc",
+      "bytes": 160,
+      "sha256": "da4844e7a8911776750436d7d05937fef5c7d97284c7e12d059a69a45cd9bc55",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/environment_provenance/__pycache__/test_environment_provenance.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\environment_provenance\\__pycache__\\test_environment_provenance.cpython-313.pyc",
+      "bytes": 30567,
+      "sha256": "9ade9fcb28360e5c041f11642debfaffa80c40d66a87725ed23c5733565486a7",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/revocation_time_replay/__pycache__/test_revocation_time_replay.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\revocation_time_replay\\__pycache__\\test_revocation_time_replay.cpython-313.pyc",
+      "bytes": 18307,
+      "sha256": "f3b4147932b02c3c66b60c1e11a01722078387a8473b87352894e50015ab7f1b",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/revocation_time_replay/__pycache__/two_process_driver.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\revocation_time_replay\\__pycache__\\two_process_driver.cpython-313.pyc",
+      "bytes": 5579,
+      "sha256": "2a024ee10e17e9a8664fab15167cf387ca2a7721c00d271ad325b185d5544e98",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/source_axis_binding/__pycache__/test_source_axis_binding.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\source_axis_binding\\__pycache__\\test_source_axis_binding.cpython-313.pyc",
+      "bytes": 16228,
+      "sha256": "84389f222f69e633bb17c739315fcdeedc8fe2c8f964e83ede2f6c05b2b1989c",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    },
+    {
+      "path": "test/up1_external_closure_r2/witness_authority/__pycache__/test_witness_authority.cpython-313.pyc",
+      "resolved": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\witness_authority\\__pycache__\\test_witness_authority.cpython-313.pyc",
+      "bytes": 9127,
+      "sha256": "dba4b4b6d9b04f4d5badc8702d7aeab269d89b9373f18265808d5b001d7a60b8",
+      "reparse": false,
+      "manifest_owned": false,
+      "validation": "pre_delete_exact_bytes_sha256_match",
+      "deletion": "deleted_exact_literalpath"
+    }
+  ],
+  "after": {
+    "all_candidate_paths_absent": true,
+    "remaining_r2_pyc_count": 0,
+    "remaining_r2_pycache_directories": [],
+    "removed_empty_pycache_directories": [
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\aggregate_gate\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\common\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\environment_provenance\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\integration\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\revocation_time_replay\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\source_axis_binding\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r2\\witness_authority\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\common\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\environment_provenance\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\revocation_time_replay\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\source_axis_binding\\__pycache__",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r2\\witness_authority\\__pycache__"
+    ]
+  },
+  "static_validation": {
+    "command": "python -B AST parse every *.py under R2 tools/test",
+    "exit_code": 0,
+    "parsed_files": 54,
+    "status": "PASS",
+    "pyc_count_after": 0,
+    "test_source_hashes": [
+      {
+        "path": "test/up1_external_closure_r2/witness_authority/test_witness_authority.py",
+        "bytes": 15909,
+        "sha256": "eafc0914e4fed0f23561f4c3ff3e7120c3e6f174530ab3725b80224531f57e29"
+      }
+    ],
+    "witness_source_matches_20_manifest": true,
+    "source_files_deleted_or_modified_by_operation": false
+  },
+  "workspace": {
+    "head_before": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "head_after": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "status_before_from_21": {
+      "scoped_lines": 1028,
+      "scoped_bytes": 112166
+    },
+    "status_after": {
+      "scoped_lines": 1005,
+      "scoped_bytes": 110204
+    },
+    "process_observation": {
+      "id": 17636,
+      "name": "python",
+      "action": "not_terminated"
+    }
+  },
+  "recoverability": {
+    "deleted_cache_bytes_not_recoverable_from_workspace": true,
+    "source_and_evidence_remain_reconstructible_from_existing_files": true
+  }
+}
+

@@ -6,6 +6,7 @@ const SPATIAL_RUNTIME_V4_SOURCE_ORDER_V1 = (
     "SpatialPickupEngineeringV4.jl",
     "SpatialVerificationUQV4.jl",
     "SpatialCandidateV4.jl",
+    "SpatialGeometryEditV4.jl",
     "SpatialWholeDeviceV4.jl",
 )
 const SPATIAL_RUNTIME_V4_LOAD_STATE = Ref(:unloaded)

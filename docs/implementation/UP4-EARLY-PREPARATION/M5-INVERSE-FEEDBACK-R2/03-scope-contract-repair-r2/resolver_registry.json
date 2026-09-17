@@ -1,0 +1,13 @@
+{
+  "schema": "M5InverseFeedbackR2LocalResolverRegistryV1",
+  "registry_uri": "urn:fusionconceptai:m5-inverse-feedback-r2:03:resolver-registry",
+  "network": "forbidden",
+  "unknown_uri_policy": "typed_absent",
+  "entries": [
+    {"uri": "urn:fusionconceptai:m5-inverse-feedback-r2:03:canonical-bundle", "path": "canonical_bundle_schema.json", "bytes": 5249, "sha256": "248514651a2f4157f086c60ec480aab539f4ac027edcba17424ca4171ab3f0f3"},
+    {"uri": "urn:fusionconceptai:m5-inverse-feedback-r2:03:input", "path": "input_schema.json", "bytes": 9370, "sha256": "f613b1780981df28cfadb8a4fbf371d4af6a2af6236153da8ad088c0ccc99b14"},
+    {"uri": "urn:fusionconceptai:m5-inverse-feedback-r2:03:output", "path": "output_schema.json", "bytes": 6840, "sha256": "3f2ef90da617569a4c59074abeda67f4582d244f4e8c7ac470ca250fbd332b22"},
+    {"uri": "urn:fusionconceptai:m5-inverse-feedback-r2:03:failure-record", "path": "failure_record_schema.json", "bytes": 2066, "sha256": "01cb18d1dd47047f70e6df7391d8833d027ba09db1ca04975457693784359b23"}
+  ],
+  "resolution_rules": ["URI must be exact registry key", "path must remain under this package", "bytes and sha256 must match current bytes", "no URL fetch or implicit base URI", "registry drift is typed failure"]
+}

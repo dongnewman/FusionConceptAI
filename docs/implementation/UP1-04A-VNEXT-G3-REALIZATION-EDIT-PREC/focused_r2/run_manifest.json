@@ -1,0 +1,32 @@
+{
+  "record_kind": "single_focused_r2_raw_receipt",
+  "work_order_id": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+  "pid": 52016,
+  "start_utc": "2026-09-15T01:51:03.1634288Z",
+  "end_utc": "2026-09-15T01:51:10.2752761Z",
+  "exit_code": 1,
+  "stdout": {
+    "path": "stdout.raw",
+    "bytes": 2530,
+    "sha256": "92dd8aec63e8682896baa1a46961220781767b3a7ed66bf29d0edde769786130"
+  },
+  "stderr": {
+    "path": "stderr.raw",
+    "bytes": 213,
+    "sha256": "11a0cf9944d44e4bfe2d5b58408e216c885451e37bfe64bb9d7dd70aa5665416"
+  },
+  "input_hashes": "input_hashes.json",
+  "dirty_before": "dirty_before.txt",
+  "dirty_after": "dirty_after.txt",
+  "process_before": "process_before.json",
+  "process_after": "process_after.json",
+  "assertion_summary": "assertion_summary.json",
+  "first_error": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl:487 UndefVarError record not defined",
+  "claim_ceiling": "software_contract_editability_only",
+  "accepted": false,
+  "physical_resolution": "unknown",
+  "t0_t1_provider_engineering_physical": false,
+  "retry": false,
+  "repair": false
+}

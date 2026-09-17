@@ -1,0 +1,101 @@
+{
+  "manifest_version": "AD-38-up2-compile-discretization-gap-audit-independent-review-r3-v1",
+  "record_kind": "independent_static_repair_review",
+  "status": "review_pending",
+  "accepted": false,
+  "verdict": "pass_limited",
+  "claim_ceiling": "static_readiness_architecture_work_order_boundary_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewed_inputs": [
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/report.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/manifest.json",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/cleanup_inventory.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/revised_report.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/manifest.json",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r2/revised_report.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r2/manifest.json",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/AD-36/acceptance.md",
+    "src/RuntimeV4/FusionRuntimeV4.jl",
+    "src/RuntimeV4/FieldProgramEvaluation.jl",
+    "src/RuntimeV4/FieldResidualPipeline.jl",
+    "src/RuntimeV4/FieldResidualNumerics.jl"
+  ],
+  "verified": {
+    "up2_02_complete_blocked_on_and_fresh_gate": true,
+    "up2_03_complete_blocked_on_and_fresh_gate": true,
+    "up2_04_complete_blocked_on_and_fresh_gate": true,
+    "typed_absence_forbids_execution": true,
+    "field_api_hashes_and_bytes_match": true,
+    "field_api_public_exports_match": true,
+    "field_api_ceiling_remains_fixed_manufactured_screen_deferred": true,
+    "r1_api_inventory_unchanged": true,
+    "physics_compiler_exact_scope_unchanged": true,
+    "ad36_evidence_only_sidecars_unchanged": true,
+    "machine_dag_and_t0_t1_gates_unchanged": true,
+    "credits_remain_false": true,
+    "cleanup_no_deletion": true
+  },
+  "current_manifest_facts": {
+    "schema_version": "v4-upgrade-plan-20260914.1",
+    "updated_at": "2026-09-15",
+    "task_count": 39,
+    "base_head": "4b69f55",
+    "chain": ["UP1-04A-VNEXT-T2", "UP1-04A-VNEXT", "UP2-00", "UP1-04B", "UP1-04", "UP2-01", "UP2-02", "UP2-03", "UP2-04"],
+    "t1_depends_on": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"],
+    "t2_depends_on": ["UP1-04A-VNEXT-T1"],
+    "edges_match_current_manifest": true,
+    "acyclic": true
+  },
+  "field_api_hashes": {
+    "src/RuntimeV4/FieldProgramEvaluation.jl": {"bytes": 44975, "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86", "ceiling": ["fixed", "screen", "deferred"]},
+    "src/RuntimeV4/FieldResidualPipeline.jl": {"bytes": 45405, "sha256": "f928607e232e5667b27e3dc82365a376a93de830c36ec47ce2d2e767e9159856", "ceiling": ["fixed", "manufactured", "screen", "deferred"]},
+    "src/RuntimeV4/FieldResidualNumerics.jl": {"bytes": 26849, "sha256": "ed956e72e0d1f3c27d029ed1f463ce4fd38c3a9eb309c9ba9cc9ed735af2ccb5", "ceiling": ["fixed", "manufactured", "screen", "deferred"]},
+    "src/RuntimeV4/FusionRuntimeV4.jl": {"bytes": 4003, "sha256": "de87c548c716a041cb7d600cca4bb3d6712dc4222d3d8c526014d598075e8767"}
+  },
+  "repair_input_hashes": {
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/revised_report.md": "6b10bad478ea0162c6918ddc30605394abd8aafcb41849ba8796a764e01ce499",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/manifest.json": "de0389c39ec4ebfafc94897dc9f3c53dbe011dac06a3fd70e9cbf774ad6527de",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r2/revised_report.md": "e90944cdcef72cd50cf9db9665f75c432ee1c7327d4be08d37fa77ca394837bc",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r2/manifest.json": "1f87fd6f18007041490104ffe9cff0b9b04825d4287c9a13fd25e79f18c13169",
+    "docs/implementation/AD-36/acceptance.md": "71d5d11063335b02b9b6921b6d298ea55eb7cab97aae814f36dc7c95e6675771"
+  },
+  "credits": {
+    "up2": false,
+    "provider": false,
+    "mesh": false,
+    "numerical": false,
+    "engineering": false,
+    "physical": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false,
+    "r_credit": false
+  },
+  "execution_policy": {
+    "static_only": true,
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical_claim": false
+  },
+  "write_scope": {
+    "owned_new_paths": [
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/independent_review_r3/report.md",
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/independent_review_r3/manifest.json"
+    ],
+    "modified_reviewed_files": false,
+    "cleanup_action": "none",
+    "old_receipts_preserved": true
+  },
+  "validation": {
+    "json_parse": "required_after_write",
+    "report_utf8_no_control_chars": "required_after_write",
+    "exact_path_diff_scope": "required_after_write",
+    "cleanup": "read_only_no_deletion"
+  }
+}

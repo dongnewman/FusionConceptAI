@@ -1,0 +1,36 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r5-receipts-v1",
+  "policy": {
+    "julia_or_desc_started": false,
+    "writes_outside_review_directory": false,
+    "formal_b04_claimed": false
+  },
+  "freeze": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries": 3438,
+    "status_snapshot_sha256": "1497cb32894c5ff3e80e773f1863aac68e9d45ecf3aae3643a46bc734053c0c3",
+    "matching_julia_desc_processes": 0
+  },
+  "receipts": [
+    {"id": "freeze-head-status", "result": "pass", "detail": "Fresh R5 HEAD, branch, dirty count, and status snapshot recorded before review."},
+    {"id": "protected-hashes", "result": "pass", "detail": "Four owned source/fixture/test/runner files and ten dependency inputs match the frozen 14-input inventory."},
+    {"id": "repair-r5-evidence-hashes", "result": "pass", "detail": "repair_r5 note, static QA, and owned hashes match their recorded SHA256 and byte counts."},
+    {"id": "json-parse", "result": "pass", "detail": "R5 JSON evidence and repair JSON parse successfully."},
+    {"id": "fixture-shape", "result": "pass", "detail": "Fixture contains 50 unique IDs and field paths with five rows per N01-N10 group."},
+    {"id": "public-seam-source", "result": "pass_static_presence", "detail": "Public factory has no row_builder keyword and passes _gi1b_row to the internal assembly path."},
+    {"id": "public-keyword-rejection", "result": "pass_static_presence", "detail": "Focused test invokes public row_builder keyword and expects MethodError."},
+    {"id": "internal-fault-seam", "result": "pass_static_presence", "detail": "Synthetic fault uses only underscore-prefixed internal helper; ordinary factory calls use the public production path."},
+    {"id": "actual-a-and-50-rows", "result": "pass_static_presence", "detail": "E1-present and E1-absent factory calls build actual A package/context and assert 50 rows."},
+    {"id": "independent-manifest-and-hashes", "result": "pass_static_presence", "detail": "Independent attempted manifest and canonical original/attempted/mutation hash assertions remain present without production attempt/hash extraction helpers."},
+    {"id": "aggregate-and-row-counters", "result": "pass_static_presence", "detail": "Both ordinary envelopes and faulted envelope assert row and envelope compile/provider/solver counters are zero."},
+    {"id": "error-taxonomy", "result": "pass_static_presence", "detail": "Faulted result asserts program_exception precedence plus retained fail_closed and program_exception error entries."},
+    {"id": "n05-n06-n09-n10", "result": "pass_static_presence", "detail": "N05 absent metadata hashes and N06/N09/N10 deferred/provider/fresh-receipt gaps remain asserted."},
+    {"id": "method-and-closure-audit", "result": "pass_static_presence", "detail": "One public method signature, no competing public overload, unknown row_builder expected MethodError, and fault closure matches internal call shape."},
+    {"id": "source-routing", "result": "pass", "detail": "No fixture label is used for production error or classification routing."},
+    {"id": "planning-validator", "result": "pass", "detail": "Planning links and graph validation remain pass from the repair QA receipt."},
+    {"id": "targeted-diff", "result": "pass_with_preexisting_line_ending_warnings", "detail": "This review wrote only independent_precheck_r5 files."},
+    {"id": "process-sweep", "result": "pass_zero_matching_processes", "detail": "No matching Julia/DESC process was observed at R5 freeze."}
+  ],
+  "qa_status": "pass_limited_ready_for_serial_focused"
+}

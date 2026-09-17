@@ -1,0 +1,30 @@
+{
+  "schema": "UP1.external-blocker-closure-r2.witness-independent-review-r2.findings.v1",
+  "decision": "rework",
+  "accepted": false,
+  "claim_ceiling": "contract_software_preparation_only",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true,
+  "findings": [
+    {
+      "id": "WA-R2-001",
+      "severity": "P1",
+      "title": "Conflicting alias fields are silently selected instead of rejected",
+      "evidence": "With a valid complete shape, adding evidence.canonical_object_sha256=f*64 while retaining object_sha256 and recomputing the signature binding digest returned OK_SHAPE_ONLY; adding a conflicting witness.signature_material_ref returned OK_SHAPE_ONLY; adding a conflicting authority.receipt returned OK_SHAPE_ONLY. The first alias is selected and the replacement/conflict is ignored.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:340,362,441",
+      "contract": "Frozen interface contracts require structural mismatch to fail_closed; witness contract requires exact digest/binding and strict object boundaries.",
+      "required_fix": "For every alias pair, reject simultaneous non-identical values with a deterministic conflict code; compare evidence digest aliases before binding/signature checks; do not silently prefer ack over receipt or signature_material over signature_material_ref."
+    }
+  ],
+  "rerun_matrix": {
+    "unknown_fields_all_public_boundaries": "pass",
+    "exact_scope": "pass",
+    "complete_evidence_and_signature_binding_and_types": "pass",
+    "typed_absence_replay_and_changed_bytes_conflict": "pass",
+    "self_certified_independence_deferred": "pass",
+    "two_process_semantic_replay": "pass",
+    "single_process_batch_replay": "pass",
+    "threaded_ledger_concurrency": "pass"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "manifest_version": "UP6-EARLY-PREPARATION-independent-review-r2-v1",
+  "record_kind": "independent_preparation_review",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "reviewer": "different Luna/high",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "reviewed_package": "docs/implementation/UP6-EARLY-PREPARATION",
+  "verdict": "changes_requested",
+  "early_preparation_only": true,
+  "claim_ceiling": "contract_only",
+  "up6_status": "pending",
+  "l4_credible_count": 0,
+  "credits": {
+    "up6": false,
+    "provider_toolchain": false,
+    "engineering": false,
+    "vvuq": false,
+    "net_output": false,
+    "originality": false,
+    "independent_replay": false,
+    "r01_r10": false
+  },
+  "execution_policy_verified": {
+    "julia": false,
+    "desc": false,
+    "freegs": false,
+    "vmex": false,
+    "pleiades": false,
+    "cql3d": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "net_output": false,
+    "independent_replay": false,
+    "originality_search": false,
+    "web_search": false,
+    "download": false
+  },
+  "recomputed_checks": {
+    "reviewed_input_json_count": 9,
+    "reviewed_input_json_valid": true,
+    "current_total_recursive_json_count": 10,
+    "engineering_obligation_count": 15,
+    "engineering_obligation_ids_unique": true,
+    "engineering_rows_typed_pending": true,
+    "fresh_receipt_provider_count": 5,
+    "fresh_receipt_exact_join_fields": true,
+    "provider_id_or_input_hash_alone_insufficient": true,
+    "r01_r10_count": 10,
+    "r01_r10_ids_unique": true,
+    "r01_r10_all_pending": true,
+    "r01_r10_all_accepted_false": true,
+    "r01_r10_authority_uniform": "FinalWholeDeviceAuthorityV4",
+    "manifest_input_path_count": 19,
+    "manifest_input_paths_exist": true,
+    "root_manifest_writable_count": 12,
+    "root_manifest_deliverable_count": 12,
+    "root_manifest_paths_exist": true,
+    "package_relative_links_missing": 0,
+    "future_64hex_in_recursive_json": false,
+    "task_scratch_cache": false,
+    "cleanup_exact_owned": true,
+    "validation_report_counts_match_manifest": false,
+    "review_scope_exact_owned": true
+  },
+  "blocking_findings": [
+    {
+      "id": "VALIDATION-COUNT-001",
+      "path": "docs/implementation/UP6-EARLY-PREPARATION/validation_report.md",
+      "status": "open",
+      "issue": "The validation report still says ten writable files and ten new status entries, while the repaired root manifest and cleanup inventory declare twelve writable/deliverable paths.",
+      "required_repair": "Synchronize the validation report to twelve declared writable/deliverable paths and twelve target-package status entries, retain the separate recursive JSON count, and rerun the static checks."
+    }
+  ],
+  "write_scope": [
+    "docs/implementation/UP6-EARLY-PREPARATION/independent_review_r2/report.md",
+    "docs/implementation/UP6-EARLY-PREPARATION/independent_review_r2/manifest.json"
+  ],
+  "review_notes": [
+    "This review wrote only the two files in write_scope.",
+    "Repair R1 resolves the substantive typed-pending row and fresh-receipt contract findings.",
+    "Only the early-preparation template may receive limited acceptance after VALIDATION-COUNT-001 is repaired; UP6 and all R01-R10 dispositions remain pending with no evidence credit."
+  ]
+}

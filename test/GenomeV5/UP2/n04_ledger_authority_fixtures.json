@@ -1,0 +1,64 @@
+{
+  "schema_id": "GenomeV5/UP2/N04LedgerAuthorityProjectionV1",
+  "version": "v1",
+  "schema_validation_only": true,
+  "source": "actual UP1-04A CandidateStatePackageV5 G1 occurrences and G3 resource network",
+  "expected_actual_fixture_shape": {"accounts_at_least": 6, "entries_at_least": 7, "closures_at_least": 4},
+  "mutations": [
+    {
+      "id": "N04-01",
+      "class_id": "N04",
+      "field_path": "/g3/realization/network/accounts/0/owner",
+      "source_locator": "G3LedgerAccountV2.owner::String",
+      "source_type": "text",
+      "mutation_kind": "shared_owner",
+      "expected_error": "invalid_closure",
+      "expected_status": "terminal_deferred",
+      "expected_gap": "owner_uniqueness_scope_missing_shared_owner_is_legal"
+    },
+    {
+      "id": "N04-02",
+      "class_id": "N04",
+      "field_path": "/g3/realization/network/closures/0/account_ids",
+      "source_locator": "G3LedgerClosureV2.account_ids::Tuple[String]",
+      "source_type": "tuple",
+      "mutation_kind": "duplicate_account_ids",
+      "expected_error": "invalid_closure",
+      "expected_status": "fail_closed",
+      "expected_gap": null
+    },
+    {
+      "id": "N04-03",
+      "class_id": "N04",
+      "field_path": "/g3/realization/network/entries/0/account_id",
+      "source_locator": "G3LedgerEntryV2.account_id::String",
+      "source_type": "text",
+      "mutation_kind": "wrong_account_ref",
+      "expected_error": "invalid_closure",
+      "expected_status": "fail_closed",
+      "expected_gap": null
+    },
+    {
+      "id": "N04-04",
+      "class_id": "N04",
+      "field_path": "/g3/realization/network/entries/0/component_id",
+      "source_locator": "G3LedgerEntryV2.component_id::String",
+      "source_type": "text",
+      "mutation_kind": "passive_component_ref",
+      "expected_error": "invalid_closure",
+      "expected_status": "fail_closed",
+      "expected_gap": null
+    },
+    {
+      "id": "N04-05",
+      "class_id": "N04",
+      "field_path": "/g3/realization/network/entries/1/coefficient",
+      "source_locator": "G3LedgerEntryV2.coefficient::Rational{Int64}",
+      "source_type": "rational",
+      "mutation_kind": "capacity_exceeded",
+      "expected_error": "invalid_closure",
+      "expected_status": "fail_closed",
+      "expected_gap": null
+    }
+  ]
+}

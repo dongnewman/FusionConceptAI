@@ -1,0 +1,28 @@
+{
+  "schema_version":"UP2-N06-H0A-independent-precheck-r6-evidence",
+  "reviewer":"independent_luna_high_static",
+  "verdict":"ready_for_serial_focused",
+  "frozen_head":"4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_scope":"repair_r6 test-only source delta plus R5 report; static only",
+  "reviewed_files":{
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl":{"sha256":"5cfbd829602a87d3ddc4d8d321a678eba8ebaa6f378ebf1ebe669800b62fcd1a","role":"unchanged H0-A implementation"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl":{"sha256":"509582854e55383a40783df17b99261b8b84ddb64877ca5d0b132c9949817754","role":"R6 focused tests"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json":{"sha256":"779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99","role":"fixture, synthetic schema-only and actual deferred"},
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl":{"sha256":"da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","role":"runner, not executed"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r6/report.md":{"sha256":"5f18bf94118dca624c46d739dd7c2185ce8748f5124ebe840741e9a19ec345aa","role":"author R6 claims"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r5/report.md":{"sha256":"079e704797ae27de8863d4c19919778a91b13323c6b60f4568dbc8e52450d6bb","role":"prior independent review"}
+  },
+  "checks":{
+    "malformed_calibration_public_validate":"pass; correctly rehashed; program_exception; declaration nothing",
+    "malformed_calibration_public_admit":"pass; correctly rehashed; program_exception; declaration nothing",
+    "malformed_closure_public_validate":"pass; correctly rehashed; program_exception; declaration nothing",
+    "malformed_closure_public_admit":"pass; correctly rehashed; program_exception; declaration nothing",
+    "known_gap":"pass; typed terminal_deferred absence",
+    "conflict":"pass; typed fail_closed with declaration nothing",
+    "malformed_closure_relation":"pass; fail_closed distinct from program_exception",
+    "f02_f03_f04_f06":"no static regression",
+    "actual_a":"terminal_deferred",
+    "downstream_counts":{"compile_calls":0,"provider_calls":0,"solver_calls":0}
+  },
+  "non_claims":["B00","B04","physics","engineering","provider","mesh","R01-R10"]
+}

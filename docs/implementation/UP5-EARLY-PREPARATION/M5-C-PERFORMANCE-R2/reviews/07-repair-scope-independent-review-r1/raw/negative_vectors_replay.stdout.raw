@@ -1,0 +1,117 @@
+{
+  "schema": "M5C-R4-INDEPENDENT-NEGATIVE-REPLAY-V1",
+  "vector_count": 18,
+  "schema_rejected": 18,
+  "schema_gaps": 0,
+  "no_schema_gaps": 0,
+  "vectors": [
+    {
+      "id": "condition-order",
+      "target": "condition_envelope_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "condition-required-closure",
+      "target": "condition_envelope_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "binding-missing-layer",
+      "target": "binding_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "binding-duplicate-layer",
+      "target": "binding_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "budget-mismatch-overlimit",
+      "target": "budget_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "budget-invalid-rank",
+      "target": "budget_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "preflight-writer",
+      "target": "preflight_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "preflight-overflow-admit",
+      "target": "preflight_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "collision-full-key-equal",
+      "target": "collision_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "collision-hostile-incomplete",
+      "target": "collision_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "collision-domain-confusion",
+      "target": "collision_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "supervisor-post-process",
+      "target": "supervisor_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "supervisor-timeout-completed",
+      "target": "supervisor_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "supervisor-exit-relation",
+      "target": "supervisor_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "cache-entry-bytes",
+      "target": "cache_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "cache-owner",
+      "target": "cache_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "stage-zero-substitute",
+      "target": "stage_receipt_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "baseline-typed-absent",
+      "target": "baseline_capture_contract_schema.json",
+      "schema_accepted": false,
+      "verdict": "REJECTED"
+    }
+  ]
+}

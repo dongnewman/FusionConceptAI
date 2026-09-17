@@ -1,0 +1,103 @@
+{
+  "manifest_version": "AD-38-up2-compile-discretization-gap-audit-independent-review-r1-v1",
+  "record_kind": "independent_static_review",
+  "status": "review_pending",
+  "accepted": false,
+  "verdict": "changes_requested",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_scope": [
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/report.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/manifest.json",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/cleanup_inventory.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "src/RuntimeV4/Compiler.jl",
+    "src/RuntimeV4/AlgebraicResidual.jl",
+    "src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+    "src/RuntimeV4/FieldResidualNumerics.jl",
+    "src/RuntimeV4/FieldResidualPipeline.jl",
+    "src/RuntimeV4/FieldProgramEvaluation.jl",
+    "src/RuntimeV4/SpatialMultiRegionV4.jl",
+    "src/RuntimeV4/MultiRegionCouplingContracts.jl",
+    "src/RuntimeV4/MultiRegionDiffusionProvider.jl",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl",
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl"
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "severity": "blocking_for_audit_freeze",
+      "summary": "Specialized RegionalMHDWeakResidualV4 and AlgebraicResidualPlanV4 screen/deferred APIs are real but omitted from the reuse/protected boundary",
+      "required_fix": "Name both as non-general screen-only slices and add RegionalMHDWeakResidualV4.jl, AlgebraicResidual.jl and FieldResidualNumerics.jl to protected_read_only/reuse matrix"
+    },
+    {
+      "id": "F02",
+      "severity": "blocking_for_work_order_freeze",
+      "summary": "UP2-01 owns PhysicsCompilerV5.jl but no dedicated compiler test/fixture ownership is listed",
+      "required_fix": "Add an explicit compiler test and its candidate/hash, unit/closure/nullspace and deferred/fail-closed fixture/receipt ownership"
+    },
+    {
+      "id": "F03",
+      "severity": "blocking_for_dispatch_clarity",
+      "summary": "AD-38 stage gate adds T2 and UP2-00 to UP2-01 while machine task manifest lists only UP1-04",
+      "required_fix": "State these are transitive dispatch prerequisites and freeze exact manifest/work-order synchronization before any UP2-01 dispatch; preserve the acyclic chain"
+    }
+  ],
+  "verified_passes": {
+    "generic_ir_absence": true,
+    "g2_mesh_not_executed": true,
+    "t0_t1_typed_absent_blocks_physical": true,
+    "future_dependency_graph_acyclic_as_documented": true,
+    "fresh_environment_receipt_gate": true,
+    "default_registry_and_ref_only_restrictions": true,
+    "no_up2_or_r_credit": true,
+    "cleanup_no_deletion": true
+  },
+  "execution_policy": {
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "r_credit": false
+  },
+  "observed_hashes": {
+    "src/RuntimeV4/Compiler.jl": {"bytes": 14428, "sha256": "7a550e2b9ac27693f7e7008f3562ef6d5f52795997bc89c676440cb2e4bab4aa"},
+    "src/RuntimeV4/AlgebraicResidual.jl": {"bytes": 35593, "sha256": "7979cd8b2512958644f896116a284f3d6e352eb9e72e50e21193079af87f621f"},
+    "src/RuntimeV4/RegionalMHDWeakResidualV4.jl": {"bytes": 21337, "sha256": "d925718c0165b3e2563d61459365953f1cc516713f87b5601cd6a46f158d632d"},
+    "src/RuntimeV4/FieldResidualNumerics.jl": {"bytes": 26849, "sha256": "ed956e72e0d1f3c27d029ed1f463ce4fd38c3a9eb309c9ba9cc9ed735af2ccb5"},
+    "src/RuntimeV4/FieldResidualPipeline.jl": {"bytes": 45405, "sha256": "f928607e232e5667b27e3dc82365a376a93de830c36ec47ce2d2e767e9159856"},
+    "src/RuntimeV4/FieldProgramEvaluation.jl": {"bytes": 44975, "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86"},
+    "src/RuntimeV4/SpatialMultiRegionV4.jl": {"bytes": 56867, "sha256": "cac5b47beeee2fbab7de6f171f7f155ff5534bc51edec0e66ee8caf711d6b932"},
+    "src/RuntimeV4/MultiRegionCouplingContracts.jl": {"bytes": 12019, "sha256": "2fed6f0a575c031e0e984a6dbabd9e872b1417c1da71a446ca98e1fba60eb398"},
+    "src/RuntimeV4/MultiRegionDiffusionProvider.jl": {"bytes": 19060, "sha256": "9daacfaf47ea9031290ccf57ff31e24c8458b79f15fa43cae9e2eb596f41a7b5"},
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 30773, "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": {"bytes": 27211, "sha256": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716"},
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": {"bytes": 14684, "sha256": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"},
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": {"bytes": 26420, "sha256": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"}
+  },
+  "audit_input_hashes": {
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/report.md": "d1976fd3e591ea7d47bed6951633784757f70d197589666852684b4eca390785",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/manifest.json": "4f2d29c7bd5246fa6a52005f82c6454e0766a6ca136cc4900efdab3e5631bd06",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/cleanup_inventory.md": "5ebbf4685839694e9cdfc727e00d9e26deba8bfbc8d036528db9c236a38c25e2"
+  },
+  "deliverable_hashes": {
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/independent_review_r1/report.md": "d18a0976b32e359e17c6eefde922acd2c4863ac48db0b5268c8108e8a30e0f16"
+  },
+  "validation": {
+    "report_utf8_no_control_chars": true,
+    "manifest_json_parse": "required_after_write",
+    "git_diff_scope": "required_after_write",
+    "cleanup": "read_only_no_deletion",
+    "review_artifacts": [
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/independent_review_r1/report.md",
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/independent_review_r1/manifest.json"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "task_id": "AD48-S3-TRUSTED-G3-SOURCE-IDENTITY",
+  "record_kind": "direct_validation",
+  "pid": 86988,
+  "utc": "2026-09-15T16:41:50.396860Z",
+  "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "python_version": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "checks": {
+    "passed": 65,
+    "total": 65,
+    "failed": []
+  },
+  "plan_validator": {
+    "argv": [
+      "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "docs/v4_multitopology_generation/validate_plan.py"
+    ],
+    "pid": 95828,
+    "utc_start": "2026-09-15T16:41:50.059844Z",
+    "utc_end": "2026-09-15T16:41:50.359107Z",
+    "exit_code": 0
+  },
+  "scoped_diff": {
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY"
+    ],
+    "pid": 92000,
+    "utc_start": "2026-09-15T16:41:50.360041Z",
+    "utc_end": "2026-09-15T16:41:50.395962Z",
+    "exit_code": 0
+  },
+  "julia_desc_provider_mesh_solver_physics_run": false,
+  "key_or_credential_contents_read": false
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "M5InverseFeedbackIndependentReviewValidationV1",
+  "status": "changes_requested",
+  "checks": {
+    "source_test_oracle_hashes_recomputed": true,
+    "upstream_hashes_recomputed": true,
+    "shared_hashes_recomputed": true,
+    "fraction_oracle_pass": true,
+    "julia_103_of_103": true,
+    "strict_python_then_julia_order": true,
+    "roundtrip_exact_result_recorded": true,
+    "multiseed_ledger_recorded": true,
+    "feedback_deletion_delta_recorded": true,
+    "typed_negative_controls_present": true,
+    "no_optimizer_real_reference_provider_solver": true,
+    "raw_stdout_stderr_and_process_receipts": true,
+    "cleanup_non_destructive": true,
+    "roles_pairwise_distinct_proven": false,
+    "inverse_internal_recomputation_guard": false,
+    "upstream_composition_owner_provenance_binding_guard": false
+  },
+  "authoritative_order": ["python_oracle_1", "julia_tests_1"],
+  "authoritative_runs": {"python_oracle_1":"run_1/python_oracle.process.json","julia_tests_1":"run_1/julia_tests.process.json"},
+  "non_authoritative": [
+    {"path":"non_authoritative/python_pid_capture_error/","reason":"first capture had a PowerShell reserved-variable PID metadata error; raw pass output retained but not counted"},
+    {"path":"../integration_r1/","reason":"prior wrong-sequence/pre-capture attempts and PID 56012 capture timeout remain historical, not promoted"}
+  ],
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none"
+}
+

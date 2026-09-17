@@ -1,0 +1,249 @@
+{
+  "checks": [
+    {
+      "check": "realization:head_mismatch_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:source_byte_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:path_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:root_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:role_mix_negative_control_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:mutation_negative_controls_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization:src/GenomeV5/G3/RealizationGenomeV5.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "2146e486a9089f24f88b2cb3bdf41dd78d66231563b875487f5e9aad3bd46103",
+        "declared": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+      },
+      "pass": true
+    },
+    {
+      "check": "realization:src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "e9f34cf3ba30fa88d46d71d07309460da49ada980b3bb82821f6f04b558bce9e",
+        "declared": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+      },
+      "pass": true
+    },
+    {
+      "check": "realization:test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "612d2264d8f611c89f64d9cdf6fa0e00a98f5246953a7a5e0dc06fc66636c27f",
+        "declared": "ee2d3fcf80844b5ba26c983eed9810b6f7ac33ddce3403f052a3b0791143127b"
+      },
+      "pass": true
+    },
+    {
+      "check": "control:head_mismatch_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:source_byte_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:path_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:root_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:role_mix_negative_control_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:mutation_negative_controls_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control:src/GenomeV5/G3/ControlGenomeV5.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "b9a9f99221f02ff6c9190d7dc2bd8c6cf55696aa4c8951b0d83493935762674d",
+        "declared": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+      },
+      "pass": true
+    },
+    {
+      "check": "control:src/GenomeV5/G3/G3ControlChildEditabilityV1.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "58b439421cca9aa9e775c2cf75722530ff0e12def717b16ac1ed34d338176e41",
+        "declared": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+      },
+      "pass": true
+    },
+    {
+      "check": "control:test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "6b254c5f01a3ff82c6b3e2a896ac13a06a649230763a944f71703226bf9e4777",
+        "declared": "5b7a85d988d50aaf25916a9da3ff4c7af764abe993cf252498e54829193c7289"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding:head_mismatch_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:source_byte_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:path_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:root_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:role_mix_negative_control_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:mutation_negative_controls_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding:src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "6a0c88d322c87906da2670e3113fce05e4ef12b625bd567efc6b26ca385cd94d",
+        "declared": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding:src/GenomeV5/G3/G3BindingChildEditabilityV1.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "677047b93cd9fb0302867a4f448121dafa7dee5f4798ec36118699172ec52086",
+        "declared": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding:test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "fa43a99b2998e9352d5e74424ba52f4b9eecafafd7805750f8bcd83f48e45a96",
+        "declared": "3db401be2f529f7d2a4b98fa42380b2964805d87ae3b85a57b1cc506fb7bf24b"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding:test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "677936778d28cae9b07fc2711fc4fc1dd55ef1413d7299128cf15de23f8c17cf",
+        "declared": "d8ef7467209162d7e20286a8433691b00c16c881ee02fed8df79be836c4dd266"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle:head_mismatch_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:source_byte_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:path_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:root_change_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:role_mix_negative_control_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:mutation_negative_controls_declared",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle:src/GenomeV5/G3/RealizationControlGenomeV5.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "8236cbcb29f4471bc0fc6a7ac8991d439236929a5c3b2718cca53638f9a4c7b6",
+        "declared": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle:src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "6a0c88d322c87906da2670e3113fce05e4ef12b625bd567efc6b26ca385cd94d",
+        "declared": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle:src/GenomeV5/G3/RealizationGenomeV5.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "2146e486a9089f24f88b2cb3bdf41dd78d66231563b875487f5e9aad3bd46103",
+        "declared": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle:src/GenomeV5/G3/ControlGenomeV5.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "b9a9f99221f02ff6c9190d7dc2bd8c6cf55696aa4c8951b0d83493935762674d",
+        "declared": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle:src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:changed_bytes_do_not_match",
+      "detail": {
+        "changed": "eab01ef9c272223f5118a47d47021d0ebdf25646b5b944554ccda06b88e9aca3",
+        "declared": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+      },
+      "pass": true
+    }
+  ],
+  "fail_count": 0,
+  "pass_count": 39,
+  "pid": 83688,
+  "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "utc": "2026-09-15T13:14:44.791055+00:00"
+}

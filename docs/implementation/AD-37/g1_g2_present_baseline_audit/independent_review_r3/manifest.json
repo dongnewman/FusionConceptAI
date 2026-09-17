@@ -1,0 +1,189 @@
+{
+  "review_version": "AD-37-independent-review-r3",
+  "record_kind": "independent_review_read_only_future_work_order_boundary",
+  "task_id": "AD-37",
+  "reviewer": "different Luna/high",
+  "review_date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "pass_limited",
+  "accepted_scope": "AD-37 repair_r2 documentation and future G1/G2 publication work-order boundary only",
+  "claim_ceiling": "contract_only",
+  "review_inputs": {
+    "docs/v4_multitopology_generation/README.md": "8e7869dd5a306f10f3ca87c91e54482abbabdfd6ecaad8d69f88cb38be8b6643",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": "52a61657f53f6cb4be143eded6425970a10dcd37d54ff9d1d9f13d7073f54cc5",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "9844b5c91e8099f834136dcfc186fd6becb7a289e72087da8dac29e7d210b3e9",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "4bf9e091684912b7ce4ba77dd09132e157b7970f6541509a4ddfcea1386f7abc",
+    "docs/v4_multitopology_generation/task_manifest.json": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "docs/implementation/AD-36/acceptance.md": "71d5d11063335b02b9b6921b6d298ea55eb7cab97aae814f36dc7c95e6675771",
+    "docs/implementation/AD-36/manifest.json": "53c95522bc85abb00ef5d22605971119d125cd22533cfe6ed5d4f889e6b78281",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/report.md": "7ee78b00b0c4b9eb7e83d9ff306430be6d05707be9e1615fd5d50b889675bac1",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/manifest.json": "99e24ead2cf392239778ff015786f05eb303d3c291502402dc72e3dbb966240a",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/cleanup_inventory.md": "b13e58fd71dd6dd7cb20db6581e6892189145d67965bbaad354daf01394b8d39",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r1/revised_report.md": "7b0e91973142276768044a94974a6b1d2318b4d7a1237daa79c50e8f2f35e7bd",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r1/manifest.json": "24f42c293904c3a7466a36a46751c2ef73efaea451d5327ee5b0932f447fea49",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r1/report.md": "d96954dc5fb325aba9944f71d33ae22bfb57f1329980a4a7f51a3703228c399a",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r1/manifest.json": "ab95a849f0e989b6611a5c4faf8f36ed702ae1a885c2538eb86c31fe8dd9e3b0",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r2/report.md": "290285f4574db6e89c58c539e706c900c5a3b965738d0d3d0953a84dacb61d31",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r2/manifest.json": "e7a3879e55a9131dc40f554e842d0505b8c14bcc78c3b282de32c1d84b306e0f",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2/revised_report.md": "a40a33fec397b5ee06974a4f840abd105cb125d6b00fa3e8c97fbd8915e49b23",
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2/manifest.json": "2f8c39929679099822ab137160993276c174e278c2576322783edc28befbdfb9",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"
+  },
+  "original_ad37_hash_recheck": {
+    "observed_hash_count": 14,
+    "all_match": true,
+    "pid": 69700,
+    "exit_code": 0
+  },
+  "work_order_checks": {
+    "AD37-G1-PRESENT-BASELINE-PUBLISH": {
+      "status": "proposed_blocked_external",
+      "product_file_count": 14,
+      "output_record_counts": {
+        "PresentBaselinePublicationV1": 5,
+        "AbsentBaselinePublicationV1": 1,
+        "FailedBaselinePublicationV1": 1
+      },
+      "seven_output_records_in_product_files": true,
+      "evidence_index_excluded_from_product_files": true,
+      "canonical_parent_dependency": true,
+      "AD36_not_dependency": true,
+      "AD36_architecture_ref": true,
+      "AD36_pending_blocked_on": true,
+      "future_product_and_input_paths_absent": true,
+      "all_credits_false": true
+    },
+    "AD37-G2-PRESENT-BASELINE-PUBLISH": {
+      "status": "proposed_blocked_external",
+      "product_file_count": 14,
+      "output_record_counts": {
+        "PresentBaselinePublicationV1": 5,
+        "AbsentBaselinePublicationV1": 1,
+        "FailedBaselinePublicationV1": 1
+      },
+      "seven_output_records_in_product_files": true,
+      "evidence_index_excluded_from_product_files": true,
+      "canonical_parent_dependency": true,
+      "AD36_not_dependency": true,
+      "AD36_architecture_ref": true,
+      "AD36_pending_blocked_on": true,
+      "future_product_and_input_paths_absent": true,
+      "all_credits_false": true
+    }
+  },
+  "shared_contract_checks": {
+    "result_union_complete": true,
+    "eight_hash_fields": true,
+    "four_provenance_axes": true,
+    "typed_absence_terminal_deferred": true,
+    "contradiction_fail_closed": true,
+    "unexpected_fault_program_exception": true,
+    "fresh_identity_rule": true,
+    "G2_mapping_and_mesh_boundary_gap_preserved": true
+  },
+  "evidence_index_checks": {
+    "owner_pattern_is_archive_evidence_index": true,
+    "index_is_only_sidecar_enumerator": true,
+    "registration_fields_complete": true,
+    "product_data_in_sidecar": false,
+    "forbidden_kinds_include_product_source_test_fixture_static_qa_launcher": true,
+    "append_only_and_scope_violation_rules_present": true
+  },
+  "authority_boundary_checks": {
+    "source_backed_and_present_binding_occurrences_only_type_definitions": true,
+    "current_baseline_typed_absent": true,
+    "current_T0_typed_absent_or_fail_closed": true,
+    "T1_planned_review_pending_blocked": true,
+    "old_fixture_or_historical_authority_promoted": false,
+    "future_publication_directories_created": false,
+    "AD37_core_machine_node_created": false,
+    "core_task_count": 39,
+    "R01_R10_credible_candidate_credit": false
+  },
+  "local_dag_checks": {
+    "acyclic": true,
+    "canonical_dependency_ids": true,
+    "no_sibling_or_T0_T1_T2_edge": true,
+    "AD36_treated_as_task_dependency": false
+  },
+  "validation": {
+    "primary_static_validation": {
+      "pid": 58028,
+      "started_utc": "2026-09-15T06:58:18.4076264Z",
+      "ended_utc": "2026-09-15T06:58:18.5555443Z",
+      "exit_code": 0,
+      "failed_checks": []
+    },
+    "repair_r2_receipt_recheck": {
+      "pid": 49060,
+      "utc": "2026-09-15T06:52:27.4862848Z",
+      "exit_code": 0,
+      "input_matches": true,
+      "output_report_match": true
+    },
+    "audited_scope_git_diff_check": {
+      "pid": 77228,
+      "started_utc": "2026-09-15T07:01:58.7566741Z",
+      "ended_utc": "2026-09-15T07:01:58.8082913Z",
+      "exit_code": 0
+    },
+    "delivery_self_check": {
+      "command": "PowerShell JSON parse, report/sidecar/input hash, control-character, owned-path and git diff check",
+      "pid": 11756,
+      "started_utc": "2026-09-15T07:05:03.4425990Z",
+      "ended_utc": "2026-09-15T07:05:03.6328602Z",
+      "exit_code": 0,
+      "failed_checks": [],
+      "input_hash_mismatch_count": 0,
+      "git_diff_check_exit": 0
+    },
+    "raw_receipt_sidecar": {
+      "path": "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/review/validation_receipt_r3.json",
+      "sha256": "9936ddfc34c498f60bba6792f85d59195854816c567b32290de9fc160f5e288d"
+    },
+    "julia_desc_provider_mesh_solver_physical": "not_run"
+  },
+  "execution_policy": {
+    "read_only_review": true,
+    "source_test_fixture_archive_core_modified": false,
+    "heavy_recompute": false,
+    "future_implementation_dispatch": false
+  },
+  "credits": {
+    "implementation": false,
+    "actual_g1": false,
+    "actual_g2": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "write_scope": {
+    "new_paths": [
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/report.md",
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/manifest.json",
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/review/validation_receipt_r3.json"
+    ],
+    "report_sha256": "84b4221e0e23ba91ca22e54abdec59ccdcaeda660d25a8f8449c9fad54a09921",
+    "manifest_sha256": "self_hash_excluded",
+    "cleanup": {
+      "owned_temporary_or_unrelated_code_files_found": [],
+      "removed_paths": [],
+      "historical_receipts_and_prior_reviews_preserved": true
+    }
+  }
+}

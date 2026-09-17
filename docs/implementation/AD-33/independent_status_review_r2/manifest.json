@@ -1,0 +1,152 @@
+{
+  "schema_id": "AD-33/independent-status-review-r2",
+  "schema_version": "v1",
+  "kind": "independent_status_sync_review",
+  "reviewer": "different-luna-high",
+  "reviewed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "review_pending": true,
+  "accepted": false,
+  "write_scope": [
+    "docs/implementation/AD-33/independent_status_review_r2/report.md",
+    "docs/implementation/AD-33/independent_status_review_r2/manifest.json"
+  ],
+  "status_boundary": {
+    "ad33_scope": "architecture_and_finite_work_order_boundary_only",
+    "local_scaffold": "accepted_limited_in_prior_postrun_r2",
+    "machine_node": {
+      "id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+      "planned": true,
+      "proposal": true,
+      "accepted": false,
+      "review_pending": true,
+      "claim_ceiling": "contract_only",
+      "depends_on_only": ["UP1-01", "UP1-02", "UP1-03"],
+      "read_only_g1_g2_inputs": true,
+      "parallel_to": ["UP1-04A-VNEXT-T0", "AD-31", "AD-32"],
+      "must_not_unlock": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "T1", "T2"]
+    },
+    "g1_g2_edit_sibling_machine_nodes_created": false,
+    "present_authority": false,
+    "present_g1": false,
+    "present_g2": false,
+    "source_publication": false,
+    "actual": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "current_plan_validation": {
+    "command": "python docs/v4_multitopology_generation/validate_plan.py",
+    "exit_code": 1,
+    "checks": "fail",
+    "task_count": 39,
+    "dag_acyclic": true,
+    "relative_links_checked": 454,
+    "json_and_links_readable": true,
+    "errors": [
+      "Manifest/text work-order drift: UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+      "Manifest/text work-order drift: UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"
+    ]
+  },
+  "status_sync_r2_claim": {
+    "recorded_task_count": 37,
+    "recorded_dag_changed": false,
+    "recorded_status": "accepted_limited",
+    "recorded_machine_nodes_accepted": false,
+    "recorded_stable_cleanup_kept": 20,
+    "recorded_stable_cleanup_removed": 0,
+    "recorded_stable_cleanup_deferred": 0
+  },
+  "current_task_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "bytes": 86428,
+    "sha256": "fdd9521945abb25b5e427b2d3c6f8926c000ad8c73659822b874194692ba1619",
+    "task_count": 39,
+    "dag_acyclic": true,
+    "new_or_uncovered_work_order_ids": [
+      "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+      "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"
+    ]
+  },
+  "input_hash_audit": {
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "expected_status_sync_r2": "e085e52a97cd7b3dddf7a33ea8dbac4311a54695d94fca79b0660327054e3f33",
+      "current_bytes": 92624,
+      "current_sha256": "82072b6575e8b70d9a62a87af992543b6ab6a2e6b46aa0df5b088bc0e5fd84bb",
+      "match": false
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "expected_status_sync_r2": "5b04ad2cf7b64c7e866784bc778c1783a88eeb16475c42643a7fc61a980f934f",
+      "current_bytes": 72243,
+      "current_sha256": "ccccbf564558a52c76d4b1b797b1fe246692729decb229e4be47584d6b174e31",
+      "match": false
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "expected_status_sync_r2": "3d23257233b521f5cf84326f6b7d0bb9d970d6034eee61c42cc44f62a8b1084b",
+      "current_bytes": 35950,
+      "current_sha256": "b63ea205a85d5d01ffa6c199730b74684fd6c30e4e766e8b0d38c448e37b468f",
+      "match": false
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "expected_status_sync_r2": "d03b909792b9ef6d56420e00152385399ce59c6b96c018c0e2a11e22441f64cc",
+      "current_bytes": 86428,
+      "current_sha256": "fdd9521945abb25b5e427b2d3c6f8926c000ad8c73659822b874194692ba1619",
+      "match": false
+    },
+    "docs/implementation/README.md": {
+      "expected_status_sync_r2": "d96576064bce30952eafc256e167aa5d9db35ce6ea8d81c66e9b306b06becd4c",
+      "current_bytes": 19069,
+      "current_sha256": "4a16e955830a1d22b597843d243311b945aee85ab7a395af8ab7e06587fa1b49",
+      "match": false
+    },
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md": {
+      "expected_status_sync_r2": "866f59da4e51cb85aafe103f73694bebced642ebc615332dfecfec6dfeabc67b",
+      "current_sha256": "866f59da4e51cb85aafe103f73694bebced642ebc615332dfecfec6dfeabc67b",
+      "match": true
+    },
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md": {
+      "expected_status_sync_r2": "2cc43b8ffcf03d0e952eebc4a02b08058db752aeeeb41ce2625cc546d8685802",
+      "current_sha256": "2cc43b8ffcf03d0e952eebc4a02b08058db752aeeeb41ce2625cc546d8685802",
+      "match": true
+    },
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json": {
+      "expected_status_sync_r2": "3f8f1019f180a1e7cb9dd9f06aa6b2fa1fdb7b3403fe354de9b2d5d8cb46fca9",
+      "current_sha256": "3f8f1019f180a1e7cb9dd9f06aa6b2fa1fdb7b3403fe354de9b2d5d8cb46fca9",
+      "match": true
+    }
+  },
+  "postrun_r2_recheck": {
+    "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_postrun_r2/manifest.json",
+    "verdict": "pass_limited",
+    "stable_cleanup_owned": 20,
+    "stable_cleanup_all_hash_match": true,
+    "stable_cleanup_all_bytes_match": true,
+    "static_qa": "38/38 exit 0",
+    "julia_r1_r4": "retained failures",
+    "julia_r5": "52/52 exit 0",
+    "python_interpreter_sha256": "388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a",
+    "julia_interpreter_sha256": "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad",
+    "no_julia_desc_run_by_this_review": true
+  },
+  "cleanup_rule_audit": {
+    "status_sync_r2_cleanup_status": "stable",
+    "temporary_files_created": [],
+    "removed": [],
+    "deferred": [],
+    "self_hash_excluded": ["docs/implementation/AD-33/status_sync_r2/manifest.json"],
+    "protected_dirty_work": true,
+    "protected_pids": [65224, 58068],
+    "pid_66044": "already_absent_no_termination",
+    "owned_paths_currently_match": false,
+    "mismatch_reason": "core planning files and task manifest changed after status_sync_r2 receipt"
+  },
+  "minimum_repair": "refresh AD-33 status synchronization after current 39-task core planning text is stable; recompute input and owned-path hashes, resolve validator drift, preserve all false credits",
+  "self_hash_excluded": true
+}

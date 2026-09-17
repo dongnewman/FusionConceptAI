@@ -1,0 +1,41 @@
+{
+  "work_order": "UP2-00G-I0-MODULE-SEAM",
+  "attempt": "focused_r1",
+  "status": "runtime_failed",
+  "claim_ceiling": "focused_wiring_runtime_only_no_acceptance_or_credit",
+  "runner_real_exit": 1,
+  "main_pid": 71384,
+  "start_utc": "2026-09-14T12:41:15.125173+08:00",
+  "end_utc": "2026-09-14T12:41:19.539157+08:00",
+  "failure": {
+    "exception": "ERROR: LoadError: UndefVarError: `FAILURE_PROBE` not defined",
+    "path": "test/GenomeV5/UP2/run_up2_module_entry.jl:28",
+    "minimal_author_fix": "Use the defined `_FAILURE_PROBE` binding in the runner's interpolation."
+  },
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+    "test/GenomeV5/UP2/up2_module_entry_tests.jl": "3d595b399f8e9681881f61fa2e25590dd6646986385af72021a33672c96b4cb5",
+    "test/GenomeV5/UP2/run_up2_module_entry.jl": "db1fd47e395d748ffed5205c1ed00be87a1dc63d684ce85e792b6f44632598d2",
+    "test/GenomeV5/UP2/up2_module_entry_failure_probe.jl": "59204f1b24d6c03c1a6097e748c42808d06858a6197f49254c6ff28580c21591",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "a01c9c65a3bed8ed0b2f887ba3cfaac1d3941cc09bb08cd7717f6a59106de713"
+  },
+  "preflight": {
+    "julia_desc_processes": 0,
+    "r3_manifest_sha256": "b10c11c7f1554ff7ae3530d07706c363d65f6d8c681c9d6ccd4aafe07f8aad2b",
+    "protected_dirty_before_matches": true,
+    "protected_dirty_after_matches": true,
+    "input_hashes_after_match": true,
+    "post_processes_empty": true
+  },
+  "raw_artifacts": {
+    "stdout.log": "95100dba52a45182383b52a1db23ae67dd1de04c0f8f0bee8fecdfc185c02d70",
+    "stderr.log": "ad4f02b2b80dcad05edb760036507434f25972d761127f4dc11e3c13b2aae2cf",
+    "process_samples.json": "d9a4cfb51507ba00ccd8c81445987f2e5fdbf69be3be82a6826e6349ba61ee1f",
+    "receipt.json": "1cb4dc331a0650d21695442e0d55365d201dd2d8ac034f6010c4aeb82da41f0a",
+    "report.json": "52877f2d462702289967e9ab30858502eaf522570110a14f26a6813b4d7ff5de",
+    "report.md": "5468c371cf180c3300f08283c5e6f4934b32cef4237dee2da5c20a134224061a"
+  },
+  "julia_invoked_by_reviewer": true,
+  "desc_invoked_by_reviewer": false,
+  "rerun_attempted": false
+}

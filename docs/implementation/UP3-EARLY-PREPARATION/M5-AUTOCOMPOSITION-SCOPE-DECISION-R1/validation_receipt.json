@@ -1,0 +1,29 @@
+{
+  "schema": "M5AutoCompositionScopeValidationReceiptV1",
+  "status": "scope_recorded",
+  "validation_scope": "static documentation scope record",
+  "code_tests": "not_applicable",
+  "runtime_execution": "not_run",
+  "exit_code": "not_applicable",
+  "utc": "2026-09-16T00:00:00Z",
+  "checks": {
+    "authorized_not_started": true,
+    "not_up3_01": true,
+    "task_manifest_and_39_nodes_unchanged": true,
+    "canonical_ir_paths_recorded": true,
+    "A_to_D_hashes_recorded": true,
+    "typed_ports_units_owners_provenance_recorded": true,
+    "ordering_and_label_invariance_recorded": true,
+    "typed_rejects_recorded": true,
+    "forbidden_production_scope_recorded": true,
+    "five_role_separation_recorded": true,
+    "formal_reentry_exact": true
+  },
+  "raw_sidecars": {
+    "stdout": "archive/raw/scope_record.stdout.raw",
+    "stderr": "archive/raw/scope_record.stderr.raw"
+  },
+  "failure_history": "No new runtime failure; prior M4 A-D failure histories remain in their source archives and are not rewritten.",
+  "cleanup": "exact paths only; no ambiguous deletion"
+}
+

@@ -1,0 +1,38 @@
+{
+  "task_id": "AD48-F0-G3-SOURCE-AUTHORITY-FACTORY",
+  "schema_version": "AD48-F0-g3-source-authority-factory-v1",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "implementation_files": [
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":31581,"sha256":"1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4"},
+    {"path":"test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl","bytes":14904,"sha256":"02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"}
+  ],
+  "owned_file_count": 2,
+  "api": {
+    "scopes": ["realization","control","binding","bundle"],
+    "entry_point": "g3_source_authority_factory_v1",
+    "result": "G3FactoryConstructionResultV1",
+    "identity_union": ["PresentG3FactoryIdentityV1","AbsentG3FactoryIdentityV1","FailedG3FactoryIdentityV1"],
+    "receipt_union": ["PresentG3FactoryConstructionReceiptV1","AbsentG3FactoryConstructionReceiptV1","FailedG3FactoryConstructionReceiptV1"],
+    "source_stage_binding_type": "G3SourceContractBindingV1",
+    "source_stage_binding_role": "temporary_common_candidate_binding_handle_only",
+    "ad45_common_binding_handle": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+    "ad45_common_binding_handle_version": "v5",
+    "ad45_envelope_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json",
+    "ad45_envelope_sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc",
+    "final_g3_constructor": "G3ContractBindingV2 remains distinct and rejects temporary AD45 handle",
+    "source_content_type": "G3CandidateBoundSourceContentV1",
+    "source_declaration_type": "G3CandidateBoundSourceDeclarationV1",
+    "source_declaration_ref_input": "explicit_QualifiedRefV1_v1_scope_prefix",
+    "wrappers": ["g3_realization_source_authority_factory_v1","g3_control_source_authority_factory_v1","g3_binding_source_authority_factory_v1","g3_bundle_source_authority_factory_v1"]
+  },
+  "focused_julia": {"path":"C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe","version":"1.10.5","pid":93216,"utc":"2026-09-15T14:53:02.9734997Z","exit_code":0,"pass":320,"total":320,"raw":"archive/repair_r3_source_stage_focused.json"},
+  "failed_history": {"raw":["archive/focused_julia_failure_r1.txt","archive/repair_failure_history_r1.txt","archive/repair_r3_focused_julia.json","archive/repair_r3_focused_julia_stdout.txt","archive/repair_r3_focused_julia_stderr.txt","archive/repair_r3_focused_julia_retry.json","archive/repair_r3_focused_julia_stdout_retry.txt","archive/repair_r3_focused_julia_stderr_retry.txt"],"preserved":true},
+  "plan_validator": {"path":"D:/Users/Newman/anaconda3/python.exe","version":"3.13.5","pid":86256,"utc":"2026-09-15T14:54:40.3519708Z","exit_code":0,"markdown":31,"links":526,"tasks":39,"dag_acyclic":true,"raw":"archive/repair_r3_plan_validator.json"},
+  "scoped_diff_check": {"exit_code":0,"raw":"archive/repair_r3_scoped_diff_check.json"},
+  "related_g3_regression": {"isolated_serial_processes":3,"pass":302,"total":302,"exit_codes":[0,0,0],"pids":[93760,5820,81904],"utc":["2026-09-15T14:53:37.3237151Z","2026-09-15T14:53:54.3928113Z","2026-09-15T14:54:06.4476634Z"],"raw":"archive/repair_r3_source_stage_g3_regression.json"},
+  "negative_claims": {"candidate_identity_created":false,"g3_source_declaration_hash_created":true,"final_candidate_or_package_declaration_hash_created":false,"declaration_hash_created":false,"trusted_attestation_created":false,"registry_modified":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"search":false,"r01_r10":false},
+  "limitations": ["software-only repository-local source declaration/content boundary", "source-stage binding is temporary AD45 common-handle only; G3ContractBindingV2/final candidate binding remains deferred to AD46", "creates only local G3 source declaration identity; final candidate/package declaration hash remains false", "construction receipt is not trusted attestation", "no provider, mesh, solver, engineering, physical or search execution"],
+  "r3_exact_input": {"raw":"archive/repair_r3_ad45_exact_input.json","envelope_bytes":9612,"envelope_sha256":"17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc","present_scopes":4,"final_constructor_accepts_ad45":false},
+  "cleanup": {"task_owned_temp_files":0,"unrelated_files_modified":false,"default_operator_registry_modified":false}
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "17-integration-independent-review-r3",
+  "component": "integration-slice",
+  "verdict": "rework_pending_dependency",
+  "reviewer": "independent Luna worker",
+  "source_revision": "working-tree snapshot; no commit/ref claimed",
+  "source_paths": [
+    "tools/up1_external_closure_r2/integration/__init__.py",
+    "tools/up1_external_closure_r2/integration/runner.py",
+    "tools/up1_external_closure_r2/integration/cli.py",
+    "test/up1_external_closure_r2/integration/__init__.py",
+    "test/up1_external_closure_r2/integration/test_integration.py"
+  ],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/integration/__init__.py": "ff9cde85309147fd84cda51f7e34e98270a1a3c6e4eb75cf7f12b3dff523d144",
+    "tools/up1_external_closure_r2/integration/runner.py": "6d6c6f6f9c3556a5e18bc6fb6f67d33d1cc6c8f7547e553473234fc2369800d2",
+    "tools/up1_external_closure_r2/integration/cli.py": "0e75449d51412193c7f5b3780a13b2deaa441918a155627b0b76d00fb89ed95c",
+    "test/up1_external_closure_r2/integration/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "test/up1_external_closure_r2/integration/test_integration.py": "6daff3468b1ef13a9b2d8bf703e2d68277c53b0f498bb2d91b0bec122cefa45d"
+  },
+  "checks": {
+    "focused_pytest_run_1": "9 passed",
+    "focused_pytest_run_2": "9 passed",
+    "py_compile": "pass",
+    "r1_bypass_replay": "fail_closed/deferred",
+    "receipt_and_state_recompute": "pass fresh and noop",
+    "noop_sequence_and_new_ad": "pass: sequence=2, new_ad=false",
+    "hmac_tamper_and_key_replacement": "pass: fail_closed",
+    "two_process_cas": "pass: one commit, one conflict",
+    "candidate_source_anchor_typing": "FAIL: non-hex 64-char anchors accepted",
+    "aggregate_positive_reachability": "FAIL: NameError role undefined",
+    "prior_exact_state_binding": "FAIL: receipt-only comparison",
+    "windows_reparse_owner_dacl": "unavailable: WinError 1314 symlink privilege",
+    "test_only_non_evidence": "pass",
+    "production_missing_inputs": "pass: terminal_deferred/no_publish"
+  },
+  "findings": [
+    {"id": "F1", "priority": "P1", "summary": "all-verified production path raises NameError because role is undefined"},
+    {"id": "F2", "priority": "P1", "summary": "external candidate/source fingerprint anchors accept non-hex 64-character values"},
+    {"id": "F3", "priority": "P2", "summary": "prior state is compared only by receipt hash, not exact canonical state"},
+    {"id": "F4", "priority": "P2", "summary": "Windows reparse/owner/DACL negative unavailable in current capability environment"}
+  ],
+  "dependencies": {
+    "06-environment-independent-review-r5": "pass_limited",
+    "03-revocation-independent-review-r3": "rework",
+    "03-revocation-independent-review-r5": "review_in_progress_no_verdict",
+    "integration_claim_capped_by_revocation": true
+  },
+  "claim_ceiling": "review_only_no_up1_or_parent_goal_credit",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true,
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true,
+  "raw": {
+    "attack_matrix": "raw/attack_matrix.txt",
+    "pytest_1": "raw/pytest.stdout.txt",
+    "pytest_2": "raw/pytest2.stdout.txt",
+    "py_compile": "raw/py_compile.stdout.txt",
+    "determinism": "raw/determinism.txt",
+    "receipt_state_noop": "raw/receipt_state_noop.txt",
+    "cas_concurrency": "raw/cas_concurrency.txt",
+    "aggregate_reachability": "raw/aggregate_reachability.txt",
+    "platform_capability": "raw/platform_capability.txt",
+    "manifest_capture_check": "raw/manifest_capture_check.txt"
+  }
+}

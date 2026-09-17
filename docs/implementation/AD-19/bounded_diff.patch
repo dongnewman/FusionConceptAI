@@ -1,0 +1,41 @@
+--- before/18_sources_and_architecture_decisions.md
++++ after/18_sources_and_architecture_decisions.md
+@@ -107,3 +107,12 @@
+ | G3 standalone | target layer namespace、`v5` token、公共 ref 基本形状 | 无同 candidate G1/G2 外层 ref 即 `feedback_authority_gap` + `terminal_deferred`；seed/synthetic ref 不具 authority |
+ | UP1-04 integrated | 完整 ref 四字段、四轴、candidate binding 的逐字段相等性及 identity rebuild | wrong layer/version/ref fail-closed；provider gap 独立；没有执行/物理信用 |
+ 
++<a id="ad-19"></a>
++
++## 8. AD-19 V4→V5 migration and package join boundary（2026-09-14）
++
++Sol 裁决：完整 V4→V5 的 lossless mapping 当前为 `none`。G1 只有在声明驱动、逐项源字段/AST/closure/gene/canonical 证据齐全时才允许条件迁移；G2、G3 缺少目标语义或权威字段时只能 `terminal_deferred`，结构错误必须 `fail_closed`。旧 evidence、旧 hash 和旧 candidate identity 不得作为新 ref 或迁移证明。
++
++采用 additive 强类型 `CandidateStatePackageV5`、显式 staged migration adapter，以及同一 candidate 的三层 exact join。V4 package、Compiler、Campaign 和既有运行入口保持原义和只读边界。V5 package 必须绑定三个实际公共外层 `GenomeContractRef`、每层四轴、三个实际 V5 component hashes、公共 refs、candidate binding，以及 G3 realization/control/binding child refs 与 feedback；G3 feedback 只有在同一 candidate 的真实 G1/G2 外层 refs 逐字段 exact compare 后才可关闭 authority gap。G2 wrapper 必须同时绑定 `candidate_ref` 与真实 `g2_genome_hash`；G1 candidate URI 必须 exact 相等，禁止 suffix 或字符串相似兼容。
++
++身份重建必须由三个实际 component hashes、三层公共 refs、四轴、G3 child/feedback 和 candidate binding 的 canonical 内容生成。缺 mapping、provider 或 cross-layer authority 是独立 `terminal_deferred` gap；结构不合法、错层、错版本、错 ref 或绑定冲突是 `fail_closed`。fresh V5 且没有 legacy 输入时不得伪造 `terminal_deferred` migration receipt。存在 legacy 输入时，每个 receipt 必须记录完整 before/after ref 与 hash、四轴、字段逐项映射、identity before/after、算法版本、mapping provenance、状态和原因；旧 evidence 不复用。正式 B00/B04 suite 在最终 schema 完成后、首次执行前另冻版本。本决议不授实现、provider、B00/B04、工程、物理或 R01–R10 信用。
+--- before/16_execution_work_orders.md
++++ after/16_execution_work_orders.md
+@@ -612,6 +612,12 @@
+ 
+ 接手后先派 UP0-01 的只读审计；其完成后由 Sol 裁决基线与开放事项，派 UP0-02 冻结合同。之后三个 Luna 分别接 UP1-01、UP1-02、UP1-03，保持文件互斥；三者交付后轮换一位 Luna 做集成、其他作者交叉复核。不要开场就执行 50–100 个 cell 或启动新 DESC 长跑。
+ 
++### AD-19 / UP1-04 migration gate
++
++UP1-04 must add an additive, strongly typed CandidateStatePackageV5 migration path. The path consumes the three actual V5 public refs and performs a same-candidate exact join; it does not reinterpret or mutate CandidateStatePackageV4, its Compiler/Campaign call boundaries, or historical evidence. G1 may resolve only after its declaration-driven field, AST, closure, gene, and canonical checks prove the mapping. G2 and G3 mappings remain terminal_deferred until their target semantics and authority are present.
++
++The package exit gate requires exact G1/G2/G3 public refs, candidate URI/ref binding, four version axes, three component hashes, G2 candidate_ref plus real g2_genome_hash, G3 realization/control/binding child refs, and G3 feedback authority against actual same-candidate G1/G2 refs. Structural mismatch is fail_closed; missing mapping, provider, or authority is an independent terminal_deferred gap. A fresh V5 package without legacy input must not fabricate a migration receipt. A legacy receipt must contain complete before/after refs and hashes, axes, field mapping, identity rebuild, algorithm revision, and provenance. B00/B04 suites are frozen only after final schema completion and before first execution. Exit from this work order is contract/integration evidence only; it does not grant provider, B00/B04, engineering, physical, or R01–R10 credit. See [AD-19](18_sources_and_architecture_decisions.md#ad-19).
++
+ ## 工作单变更和验收记录模板
+ 
+ ```json
+--- before/README.md
++++ after/README.md
+@@ -64,6 +64,8 @@
+ 
+ 旁路维护单 W24-AUDIT-CHECKER 已接受为有限软件修复：它只校验 required-stage ledger 完成状态和 sealed artifact 字节语义。W24-G2-CHILD-R2 另有 [有限 sealed execution snapshot 归档](../implementation/W24-G2-CHILD-R2/acceptance.md)，其 `comparability_status=changes_requested`，不能升级为可比执行、物理、工程或 R01–R10 证据。直接审计 immutable W24 parent 的 exit `1` 仍是 sealed manifest 封存旧 checker hash 的真实 mismatch；隔离 fixture 的 checker exit `0` 不升级旧 run，也不产生物理、工程或 R01–R10 信用。
+ 
++[AD-19](18_sources_and_architecture_decisions.md#ad-19) fixes the V4→V5 migration boundary: complete lossless mapping is currently none; G1 is conditionally migratable only with declaration-driven field evidence, while G2/G3 gaps remain terminal_deferred. UP1-04 uses an additive strongly typed CandidateStatePackageV5, staged migration receipts, and a same-candidate exact three-layer join. V4 package/compiler/campaign boundaries remain read-only. The V5 package must bind actual G1/G2/G3 public refs, four axes, component hashes, G2 candidate_ref and real genome hash, G3 child refs/feedback, and rebuilt candidate identity. Fresh V5 packages do not fabricate legacy receipts, and legacy receipts require complete before/after provenance. AD-19 is an architecture boundary only and grants no implementation, provider, B00/B04, engineering, physical, or R01–R10 credit.
++
+ ## 5. 文档与归档规则
+ 
+ 优先级：当前用户指令和父目标约束 → 00 共同合同 → 本总纲 → 10–18 执行细则及对应 Genome 新版语义 → 01–09 专项设计。01–09 是仍适用的设计合同，不能用其历史排期提前扩大搜索。旧 schema 的语义由其冻结版本拥有；新版本必须明确迁移，不能借文档优先级改写旧数据。

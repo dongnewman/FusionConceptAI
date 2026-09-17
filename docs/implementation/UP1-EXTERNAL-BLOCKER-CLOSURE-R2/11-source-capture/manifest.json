@@ -1,0 +1,37 @@
+{
+  "schema": "UP1.external-closure-r2.source-capture.manifest.v1",
+  "capture_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "scope": "F2 low-risk locator correction only; 11-source-capture writes only",
+  "authority_boundary": "AD56 remains bookkeeping_only_not_authority; no issuer, signature, trusted time, G2 mapping, candidate identity or receipt is inferred",
+  "locator_correction": {
+    "review_finding": "external-facts-independent-review-r1/F2",
+    "previous_locator": "docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/",
+    "previous_locator_kind": "directory",
+    "revised_locator": "docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/hash_inventory.json",
+    "revised_locator_kind": "file",
+    "revised_locator_bytes": 4403,
+    "revised_locator_sha256": "b5b420c39f18781a60c2d1b6b5f04d0adf5de32184b959af87202b1a86d284e8",
+    "decision": "corrected_locator_only; bookkeeping_only conclusion unchanged"
+  },
+  "ad56_related_files": [
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g1_source_declaration.json","bytes":13906,"sha256":"e5af170f0d77bf4026dc8ffd8381d27146f980efec73b86f3e538af5f9a94209"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g1_factory_identity.json","bytes":1940,"sha256":"27b45a23f41aa48af1d4be37889b463a8a8222511197fffb2b81c42168c325b9"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g2_source_declaration.json","bytes":17268,"sha256":"21fa9ef9946b2ffeebbca6fed6843556fb5fbf5d417cb41ebf97776c0c5e8883"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g2_factory_identity.json","bytes":1957,"sha256":"91bbecda3b639fd0252adcbdb471663ab36ec657f9f8063f3413190e451d97b2"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_realization_source_declaration.json","bytes":3768,"sha256":"4c02ff5d58de0e661d54e9d7d0b24c98e85c599d97feb8d5fa7ee82d2010da8f"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_realization_factory_identity.json","bytes":2600,"sha256":"92bfa6f3665e02034595610b9dfaa1fa43841d7cde1596ebb73436bf6b0f4664"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_control_source_declaration.json","bytes":3684,"sha256":"571e5ccd4859487558d603b01a00d52b398d5ff6d6576de012cabbf1f9b2f8b4"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_control_factory_identity.json","bytes":2556,"sha256":"ffb6575516672b0f219c264992325e1126436ff3d9af9f4fbf83c081d27dc869"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_binding_source_declaration.json","bytes":3722,"sha256":"d1762173a3869597ed9b77f1b4decc14880c7c104abad61156d5b9f8741d411b"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_binding_factory_identity.json","bytes":2575,"sha256":"b1cb340f6f9df2399604a2a7b0351071be17073312b8c171ae0c4bccd497165e"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_bundle_source_declaration.json","bytes":3685,"sha256":"fa6b1f4f7002a760a5ef725e860945dff6d2e06be56add7fa2d399a353a77740"},
+    {"path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/independent_review_r1/g3_bundle_factory_identity.json","bytes":2555,"sha256":"b5ef5942d6387cab62564321b2615103cb895a88ab54db4c822df0c7a07329b8"}
+  ],
+  "local_artifact_hashes": {
+    "hash_policy": "hashes are exact working-tree bytes captured after correction; command_receipt.json is append-only receipt source; manifest.json is self_excluded",
+    "snapshot.json": {"bytes":2117,"sha256":"5f5801a6ec0f5503830d18e2bb6cb1b26209de52f4f4df263f1aa61a9cfe1feb"},
+    "missing_authority.md": {"bytes":3291,"sha256":"a661506ced3238504a4344cfb09e6c952bd84092ac3560859dc6ce4b376efc21"},
+    "source_axis_crosswalk.json": {"bytes":13499,"sha256":"8392075deaea947ad51cb12f1686df92a550fa6960145e3604c69382d08981d2"}
+  },
+  "verification": {"method":"fresh Python -B; in-memory JSON/hash/path checks; no Julia, S3 or network","command_receipt":"command_receipt.json","manifest_self_hash_excluded":true}
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "AD-42-static-audit-receipt-v2",
+  "task_id": "AD-42",
+  "command": "PowerShell inline final-scope preflight; no Julia/DESC/physical invocation",
+  "interpreter": "PowerShell",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "pid": 84492,
+  "utc_start": "2026-09-15T08:57:19.6951642Z",
+  "utc_end": "2026-09-15T08:57:19.8150144Z",
+  "exit_code": 1,
+  "result": "program_exception",
+  "failure_reason": "preflight intentionally ran before append-only r2 receipt was created; no source/core/test mutation occurred",
+  "manifest_input": {"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/manifest.json","bytes":10312,"sha256":"72f451c2ef2fe41a2af9fb8f693d8cac45121111273358a054c768c9972ea39f"},
+  "raw_streams": {"stdout":{"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r2_stdout.txt","bytes":685,"sha256":"a2ffbf59f18b67e9e4a9ba21ec9a6326a525740e3f803788d3356f019dcf40de"},"stderr":{"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r2_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "claims": {"present":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"r01_r10":false},
+  "preserved": true
+}

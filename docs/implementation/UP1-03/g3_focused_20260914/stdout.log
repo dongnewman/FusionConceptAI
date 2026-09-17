@@ -1,0 +1,26 @@
+UP1-03 G3 fixture and candidate-bound identity: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:122
+  Got exception outside of a @test
+  ArgumentError: component kind must be a non-empty valid UTF-8 string
+  Stacktrace:
+    [1] _g3_text(value::Symbol, field::String)
+      @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\G3\RealizationGenomeV5.jl:19
+    [2] FusionConceptAI.G3RealizationComponentV2(component_id::String, kind::Symbol, resource_port_ids::Tuple{String, String, String}, capacity::Rational{Int64}, capacity_unit::UnitSignature, material_id::String, manufacturing_process_id::String, passive::Bool, initial_states::Tuple{FusionConceptAI.G3InitialStateV2}, events::Tuple{FusionConceptAI.G3EventV2})
+      @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\G3\RealizationGenomeV5.jl:381
+    [3] _make_fixture(; provider_match::Symbol)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:69
+    [4] _make_fixture()
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:32
+    [5] macro expansion
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:126 [inlined]
+    [6] macro expansion
+      @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+    [7] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:123
+    [8] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+    [9] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [10] _start()
+      @ Base .\client.jl:552
+Test Summary:                                  | Pass  Error  Total  Time
+UP1-03 G3 fixture and candidate-bound identity |    3      1      4  2.7s

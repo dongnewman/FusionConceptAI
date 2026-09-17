@@ -1,0 +1,39 @@
+{
+    "record_kind": "CORE-STATUS-SYNC-N10",
+    "status": "accepted_limited",
+    "accepted_scope": "current_status_sentence_sync_for_N10_only",
+    "edited_files": [
+        "docs/v4_multitopology_generation/README.md",
+        "docs/v4_multitopology_generation/16_execution_work_orders.md"
+    ],
+    "protected": [
+        "docs/v4_multitopology_generation/task_manifest.json",
+        "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+        "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/",
+        "source/test/runs/queue"
+    ],
+    "before_hashes": "before_hashes.json",
+    "before_hash_provenance": "prior UP2-00C-N10 acceptance_integration/after_hashes_final.json; no before byte snapshot available",
+    "bounded_diff": "bounded_diff.md",
+    "claim_ceiling": {
+        "n10_local_status_sync": true,
+        "up2_total": false,
+        "formal_b04": false,
+        "b00": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "r01_r10": false
+    },
+    "execution": "no Julia/DESC",
+    "after_hashes": "after_hashes.json",
+    "protected_inputs_check": "protected_inputs_check.json",
+    "control_scan": "control_scan.json",
+    "validation": {
+        "initial_validate_plan_exit": 1,
+        "final_validate_plan_exit": 0,
+        "final_git_diff_check_exit": 0,
+        "final_json_parse_exit": 0
+    }
+}

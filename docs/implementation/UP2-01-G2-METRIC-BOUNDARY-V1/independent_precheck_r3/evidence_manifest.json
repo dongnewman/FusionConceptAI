@@ -1,0 +1,61 @@
+{
+  "manifest_kind": "up2_01_g2_metric_boundary_v1_independent_precheck_r3",
+  "status": "pass_limited",
+  "serial_focused_readiness": "ready_for_serial_focused",
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only_no_mesh_provider_physical_engineering_or_R01-R10_credit",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "julia_invoked": false,
+    "desc_invoked": false,
+    "compiler_invoked": false,
+    "provider_or_mesh_execution": false,
+    "process_sweep": "no Julia/DESC process"
+  },
+  "r3_unit_closure": {
+    "reference_coordinate_dimensionless": true,
+    "coordinate_L": true,
+    "jacobian_L": true,
+    "metric_L2": true,
+    "cofactor_area_L2": true,
+    "det_volume_L3": true,
+    "derived_area_measure_binds_units_area": true,
+    "derived_volume_measure_binds_units_volume": true,
+    "admission_recomputes_source_hash_before_semantic_checks": true,
+    "self_consistent_wrong_unit_hashes_fail_closed": true,
+    "independent_geometry_unit_negative_controls": 6
+  },
+  "preserved_r2_checks": {
+    "positive_determinant_required": true,
+    "negative_determinant_fail_closed": true,
+    "reference_normal_separate_from_physical_area_vector": true,
+    "six_face_owner_closure": true,
+    "both_mesh_statuses_terminal_deferred": true,
+    "program_exception_controlled_public_path": true,
+    "bad_input_fail_closed": true
+  },
+  "artifacts": {
+    "source": {"sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61", "bytes": 30773},
+    "focused_test": {"sha256": "c747c174471ebd3c15812a5d25bfecff0389ed6e3dcb7eec888fd47730d8b007", "bytes": 11176},
+    "fixture": {"sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5", "bytes": 3974},
+    "static_qa": {"sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31", "bytes": 7104}
+  },
+  "write_scope": [
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/independent_precheck_r3/"
+  ],
+  "protected": {
+    "R1_archive": "unchanged",
+    "R2_archive": "unchanged",
+    "R3_source_test_fixture_static_qa": "read_only_review"
+  },
+  "credit": {
+    "mesh": false,
+    "provider": false,
+    "engineering": false,
+    "physical": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  }
+}

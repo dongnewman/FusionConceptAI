@@ -1,0 +1,68 @@
+{
+  "record_kind": "independent_architecture_review",
+  "decision_id": "AD-21",
+  "revision": "independent_review_r1",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "accepted_scope": "AD-21 architecture consistency and provenance only",
+  "reviewer": "different Luna/high",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewed_paths": [
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/AD-20/evidence_manifest.json",
+    "docs/implementation/AD-21/"
+  ],
+  "snapshot_provenance": {
+    "18_before": "287721784181b0875bcd3a3173ca601095e5d54930e3a01ced7d0d33c7042cc9",
+    "18_after": "54dc500fce9d8ec2c2c9d10a939300ea2422fa7e7752b7b76ee1a15ee2faeb5e",
+    "16_before": "eea1cb17b19d534ac5aed84442ead773c9fd2851d3f44ca0279052c7e394e289",
+    "16_after": "b44783492176689b45472afc2eb5fe5ff73fb330c2817516d6190b2cb5b674d1",
+    "current_matches_after": true,
+    "bounded_diff": {
+      "path": "../ad21_bounded_diff.patch",
+      "18_added_lines": 13,
+      "16_added_lines": 5,
+      "semantic_status_or_dag_change": false
+    }
+  },
+  "checks": [
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit": 0,
+      "result": "checks=pass; task_count=27; relative_links=282; task_dag_acyclic=true"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0,
+      "result": "pass; existing LF-to-CRLF warnings only"
+    },
+    {
+      "command": "python JSON parse for AD-20, AD-21 and task_manifest",
+      "exit": 0,
+      "result": "pass"
+    }
+  ],
+  "current_task_states": {
+    "UP1-04A": "accepted",
+    "UP2-00": "ready",
+    "UP1-04B": "planned",
+    "UP1-04": "planned",
+    "UP2-01": "planned"
+  },
+  "credit_boundary": {
+    "implementation": false,
+    "provider": false,
+    "solver": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "report": "report.md"
+}

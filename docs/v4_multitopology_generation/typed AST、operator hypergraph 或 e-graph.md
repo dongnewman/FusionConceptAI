@@ -1,3 +1,11 @@
+# Typed AST、operator hypergraph 与条件 e-graph：职责和实施状态
+
+> 2026-09-14。本文是表示层说明及 UP5 接入合同，当前实际能力须以源码核验。共同语义见 [00](00_normative_contracts_and_state_model.md)，实现工作见 [16](16_execution_work_orders.md)。
+
+当前 typed AST 和 operator hypergraph 确实参与候选构造、类型/单位/守恒检查和若干执行切片。对应 `src/IR/TypedAST.jl`、`OperatorHypergraph.jl`。它们支持表达合法程序，不保证每种合法程序已存在离散/求解实现。
+
+`src/IR/ConditionalEGraph.jl` 与 `ConditionalEGraphSaturation.jl` 已有带条件、有限预算的整程序精确匹配与推导实现；当前生产搜索尚未把它用作一般子表达式 congruence/equality-saturation 引擎。不要重写为“完全没有 e-graph”，也不要称“已全面用于物理搜索”。UP5-01 负责实际接入，UP1–UP4 不等待广泛重写系统。
+
 它们是三种不同层次的“物理程序表示方法”，不是互相排斥的方案。可以把它们理解为：
 
 - typed AST：描述一个物理算子“怎么算”；
@@ -57,7 +65,7 @@ div(...) : scalar_field[W/m³]
 - 替换闭合关系；
 - 增加时间记忆项。
 
-优点是容易生成、检查和执行。缺点是它天然是一棵树，不善于表达大量共享状态、循环反馈和多区域耦合。
+优点是适合生成和类型检查；执行还要求每个算子及其组合有已验证的 lowering/kernel。缺点是它天然是一棵树，不善于表达大量共享状态、循环反馈和多区域耦合。
 
 ## 2. Operator hypergraph：算子超图
 
@@ -216,3 +224,12 @@ E-graph：
 > **typed AST 作为基因语言，operator hypergraph 作为整机物理结构，e-graph 作为等价性和原创性过滤器。**
 
 其中真正承载机制原创性的主要是 typed AST 与 operator hypergraph；e-graph 的任务是防止把代数换皮误认为原创。
+## 5. UP5 接入协议
+
+输入为 typed program、完整算子语义/效应、声明域、边界/时间解释、条件证明、规则版本、固定规则顺序和预算。输出为等价类引用、重写轨迹、条件检查与 `saturated/incomplete` 记录；这些是拟议的接入字段，非新增 Julia 类型已存在声明。
+
+先做有限保守规范化与整程序去重，再扩展子表达式 pattern/congruence。每条规则独立验证类型、单位、坐标度量、边界、闭合、守恒 occurrence、随机/有状态效应。连续方程等价不自动保证离散系统或浮点程序逐位等价；不能因此移植不同 solver input 的证据。
+
+固定配置必须确定性重放。预算截断会影响可达闭包；不同规则顺序不必得到相同 hash，未发现等价不能证明不等价。“最简”仅在已探索等价类与冻结代价模型内成立，不是全数学或全物理空间最简。
+
+负控制包括变系数扩散被错误当常系数、非兼容边界、带副作用程序被重复消除、单位不符、缺条件和预算耗尽。全部 trace 需由独立 checker 重放。通过 e-graph 测试只提供表示等价证据，独立物理、工程与外部原创性仍按 [13](13_acceptance_benchmarks_and_evidence.md) 验收。

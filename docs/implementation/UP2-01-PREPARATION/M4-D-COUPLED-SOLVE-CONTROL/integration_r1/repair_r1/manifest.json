@@ -1,0 +1,65 @@
+{
+  "schema": "m4-d-coupled-solve-control-repair-integration-v1",
+  "task_id": "UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/integration_r1/repair_r1",
+  "status": "integration_complete_review_pending",
+  "role": "integration_validation_owner",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "upstream_integration": "../",
+  "inputs": {
+    "source_a": {"path": "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl", "sha256": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "source_b": {"path": "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl", "sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "source_c": {"path": "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl", "sha256": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa"},
+    "source_d": {"path": "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl", "sha256": "ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785"},
+    "test": {"path": "test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl", "sha256": "1eb0e26e79b9899cc5a3cb2742545cbaa811fa6683fdcfa1ee4dd31dff081686"},
+    "oracle": {"path": "test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py", "sha256": "9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3"}
+  },
+  "execution": {
+    "strictly_serial": true,
+    "authoritative_order": ["python_oracle_repair_r1", "python_oracle_repair_r2", "julia_tests_repair_r1", "julia_tests_repair_r3_authoritative"],
+    "extra_non_authoritative_attempt": "julia_tests_repair_r2",
+    "command_receipts": ["command_01_python_oracle_repair_r1.receipt.json", "command_02_python_oracle_repair_r2.receipt.json", "command_03_julia_tests_repair_r1.receipt.json", "command_04_julia_tests_repair_r3_authoritative.receipt.json", "command_05_julia_tests_repair_r2_capture_timeout.receipt.json"],
+    "raw_directory": "raw/",
+    "archive_raw_directory": "archive/raw/"
+  },
+  "results": {
+    "python_runs": 2,
+    "python_exit_codes": [0, 0],
+    "python_canonical_payload_byte_equal": true,
+    "python_determinant": "3",
+    "python_solution": ["2/3", "1/3"],
+    "python_residual": ["0", "0"],
+    "python_identity_cells": 8,
+    "julia_authoritative_runs": 2,
+    "julia_authoritative_exit_codes": [0, 0],
+    "julia_authoritative_semantic_results": [{"passed": 158, "total": 158}, {"passed": 158, "total": 158}],
+    "julia_capture_timeout_raw_result": {"passed": 158, "total": 158, "pid_observed": false, "exit_observed": false},
+    "stderr_empty_authoritative_runs": true
+  },
+  "repair_controls": {
+    "foreign_right_source_owner_typed_failure": true,
+    "foreign_right_conservation_owner_typed_failure": true,
+    "invalid_nested_c_typed_failure": true,
+    "top_level_grid_counts_typed_failure": true,
+    "interface_grid_counts_typed_failure": true,
+    "pair_mapping_typed_failure": true,
+    "uncaught_exception_in_repair_controls": false
+  },
+  "protected_shared_tree": {
+    "src/FusionConceptAI.jl": {"sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783", "git_diff": false},
+    "src/RuntimeV4/FusionRuntimeV4.jl": {"sha256": "de87c548c716a041cb7d600cca4bb3d6712dc4222d3d8c526014d598075e8767", "git_diff": false},
+    "src/IR/OperatorRegistry.jl": {"sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45", "git_diff": false},
+    "src/RuntimeV4/TrustedProviderRegistryV4.jl": {"sha256": "2b3d54fdfb076a91da0739f4e5d4cff800165aef26e3c6596895e4a241b06339", "git_diff": false},
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {"sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb", "preexisting_dirty": true, "touched_by_record": false},
+    "Project.toml": {"sha256": "923b78938e12c27e836b269d71a539ae7bb292c9fe9f8cb92f9f9a8cea1370e2", "git_diff": false},
+    "Manifest.toml": {"sha256": "85074b7a5bd543c0b4155f44db0733d21d53cfd0bf4c2de6704dc858357717e7", "git_diff": false}
+  },
+  "historical": {"previous_integration_110_of_110_preserved": true, "previous_failures_and_superseded_passes_preserved": true, "capture_timeout_preserved": true},
+  "claim_ceiling": ["manufactured_coupled_solve_control", "screen_only"],
+  "formal_credit": [],
+  "parent_closed": false,
+  "not_closed": ["UP2-01", "UP2", "B00", "B04", "R01-R10", "L4", "parent"],
+  "review_required": "independent Luna review followed by Sol limited acceptance",
+  "cleanup_policy": "exact_task_owned_paths_only"
+}

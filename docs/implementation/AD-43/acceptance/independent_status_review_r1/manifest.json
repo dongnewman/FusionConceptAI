@@ -1,0 +1,190 @@
+{
+  "schema_version": "AD43-acceptance-independent-status-review-r1-v1",
+  "record_kind": "independent_status_review",
+  "task_id": "AD-43",
+  "status": "pass_limited",
+  "accepted": false,
+  "accepted_scope": "software_contract_record_only_status_sync_and_axis_product_boundary",
+  "claim_ceiling": "software_contract_record_only",
+  "reviewer": "different gpt-5.6-luna/high",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "read_only_review": true,
+  "reviewed_inputs": {
+    "acceptance": {
+      "path": "docs/implementation/AD-43/acceptance/acceptance.md",
+      "bytes": 4931,
+      "sha256": "ddaf8dedfec444076cc296a716882f4ad1a9954a14e50dda8ca348c468342eb3"
+    },
+    "acceptance_manifest_current": {
+      "path": "docs/implementation/AD-43/acceptance/manifest.json",
+      "bytes": 22958,
+      "sha256": "4f1087ab7ac1f931b1db0a2ce1f64dc9225bdb44c7644aec73b90596856ece45"
+    },
+    "acceptance_manifest_status_snapshot": {
+      "bytes": 22719,
+      "sha256": "145046a9a8472f8d5b0b9545de578808f612b2d619e4691a3f2ac5f7ca2a3474",
+      "policy": "snapshot_before_status_sync_manifest_output_registration; cross-file hash cycle excluded"
+    },
+    "status_sync": {
+      "path": "docs/implementation/AD-43/acceptance/status_sync_r2/manifest.json",
+      "bytes": 8653,
+      "sha256": "fd440977e4a8a85e4871678330dedf920fe2956461ea5da1bfda0e35639d9c20"
+    },
+    "status_sync_report": {
+      "path": "docs/implementation/AD-43/acceptance/status_sync_r2/report.md",
+      "bytes": 3469,
+      "sha256": "260a73db034e04d464f77493902b3ae6598dbb1477c24b6f299c6cda6aa73f98"
+    },
+    "axis_independent_review": {
+      "report": {
+        "path": "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/report.md",
+        "bytes": 3320,
+        "sha256": "95bf4e6712cc59af6a63cf3f4754fb97d15d61328433fecae6ad4d03a4927c7e"
+      },
+      "manifest": {
+        "path": "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/manifest.json",
+        "bytes": 5328,
+        "sha256": "ab1c88bc4b40f68025a654eebd090f1b8c21aa0f096da1c65401be1870758d07"
+      },
+      "verdict": "pass_limited"
+    },
+    "acceptance_repair_review": {
+      "report": {
+        "path": "docs/implementation/AD-43/acceptance/independent_review_r2/report.md",
+        "bytes": 1777,
+        "sha256": "466b4553cfb9cb92fd45d9a93b14a897210aeecabd37850ee7f6b7aef4be83e2"
+      },
+      "manifest": {
+        "path": "docs/implementation/AD-43/acceptance/independent_review_r2/manifest.json",
+        "bytes": 6504,
+        "sha256": "e35ee82a37eab378ff8f0173c304dc7bf40320934fbf75f40cb4891c80e9aba1"
+      },
+      "verdict": "pass_limited"
+    }
+  },
+  "products": [
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"}
+  ],
+  "boundary_recheck": {
+    "software_contract_record_only": true,
+    "axis_result": "PresentAxisContractRecordV1",
+    "present_semantics_contract_definition_and_exact_source_product_bytes_closed_only": true,
+    "future_candidate_fields_all_null": true,
+    "future_candidate_status": "typed_absent",
+    "missing_policy": "terminal_deferred",
+    "typed_absence_count": 3,
+    "candidate_bound_axis_present": false,
+    "present_declaration": false,
+    "authority": false,
+    "declaration_hash_created": false,
+    "candidate_hash_created": false,
+    "candidate_binding_created": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false,
+    "runtime_julia_desc_provider_mesh_solver_physical": false
+  },
+  "prior_receipts_rechecked": {
+    "axis_independent_90_of_90": {"pid":28864,"utc_start":"2026-09-15T10:17:45.206445Z","utc_end":"2026-09-15T10:17:45.252759Z","exit_code":0,"checks_passed":90,"checks_total":90,"stdout":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stdout.json","bytes":1532,"sha256":"c0517e6a0a41ea105a9ca0cb0ecf47784b3cf751ae906d711ad69a90ba20de80"},"stderr":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "axis_direct_38_of_38": {"pid":75732,"utc_start":"2026-09-15T10:08:20.088684Z","utc_end":"2026-09-15T10:08:47.804914Z","exit_code":0,"checks_passed":38,"checks_total":38,"stdout":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/archive/validation_r4_stdout.json","bytes":1859,"sha256":"c0c50204d0a55b810d95776c9a18ef0d7537eb577e9215d2999a066ef67d6b04"},"stderr":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/archive/validation_r4_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "acceptance_repair_19_of_19": {"pid":9900,"utc_start":"2026-09-15T10:24:39.636492Z","utc_end":"2026-09-15T10:24:39.638369Z","exit_code":0,"checks_passed":19,"checks_total":19,"stdout":{"path":"docs/implementation/AD-43/acceptance/independent_review_r2/review/validation_summary.json","bytes":559,"sha256":"d8d684e0ff3269b5ea16044304ff980be11c66dc1b25c4de459eb412d10f2abc"},"stderr":{"path":"docs/implementation/AD-43/acceptance/independent_review_r2/review/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "status_sync_24_of_24": {"pid":59748,"utc_start":"2026-09-15T10:35:45.297187Z","utc_end":"2026-09-15T10:35:45.303884Z","exit_code":0,"checks_passed":24,"checks_total":24,"stdout":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stdout.json","bytes":3076,"sha256":"16791815750f2e214ede16b11d41216ebe7ed6593574b2e53235b9f60527ca62"},"stderr":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}}
+  },
+  "independent_runs": {
+    "json_hash_path_control_scope_47_of_47": {
+      "pid":73688,
+      "python":"3.13.5",
+      "interpreter":"D:/Users/Newman/anaconda3/python.exe",
+      "utc_start":"2026-09-15T10:49:17.6874678Z",
+      "utc_end":"2026-09-15T10:49:18.5691805Z",
+      "exit_code":0,
+      "checks_passed":47,
+      "checks_total":47,
+      "raw_stdout":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_r4_stdout.json","bytes":3473,"sha256":"c2f9bde2818a653ad66cc5bfc2347df492f5cd915960f8e1d03f50467f3d1870"},
+      "raw_stderr":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_r4_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    },
+    "plan_39_tasks": {
+      "pid":83688,
+      "python":"3.13.5",
+      "interpreter":"D:/Users/Newman/anaconda3/python.exe",
+      "command":"python docs/v4_multitopology_generation/validate_plan.py",
+      "utc_start":"2026-09-15T10:49:32.9526356Z",
+      "utc_end":"2026-09-15T10:49:33.8298701Z",
+      "exit_code":0,
+      "task_count":39,
+      "task_dag_acyclic":true,
+      "raw_stdout":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/plan_validator_stdout.json","bytes":401,"sha256":"cf4058eae2fcca17ca5cdfa4207f0caf0451e9299254edf56fe875f4fe283bf7"},
+      "raw_stderr":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/plan_validator_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    },
+    "git_diff_check": {
+      "pid":29188,
+      "command":"git diff --check -- docs/implementation/AD-43",
+      "utc_start":"2026-09-15T10:49:49.6273698Z",
+      "utc_end":"2026-09-15T10:49:50.3154327Z",
+      "exit_code":0,
+      "stdout":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/git_diff_check_stdout.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "stderr":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/git_diff_check_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    }
+  },
+  "parallel_outputs_excluded": {
+    "status":"point_in_time_excluded",
+    "authority_granted":false,
+    "present_granted":false,
+    "t0_granted":false,
+    "r01_r10_granted":false,
+    "w2r1_paths_reused":false,
+    "observed_current_paths":[
+      {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":6180,"sha256":"f4841efa7e872a57e05c8eda687d951dd7775802ad3d07330947df72c5c97449"},
+      {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":13968,"sha256":"46d7329bd83188c280208b65ac58afc571c813c9d48e3732707dcf4d4bcb4210"},
+      {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":7086,"sha256":"7244861fa4c640035c06ac7b69623f048c17b86f9deeda71de8406c452bbcacf"},
+      {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":14337,"sha256":"7a68be8d2e24b6a15364800cb3855c6a3d80b6d03bed6e2f9eb59d1b29cd988c"}
+    ]
+  },
+  "scope": {
+    "read_only_review":true,
+    "reviewed_files_modified":false,
+    "core_modified":false,
+    "task_manifest_modified":false,
+    "source_modified":false,
+    "test_modified":false,
+    "fixture_modified":false,
+    "review_dir_sidecars_only":true,
+    "historical_failed_attempts_preserved":true
+  },
+  "outputs": {
+    "report":{"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/report.md","bytes":3246,"sha256":"f1d6a588b4cb7690c19224589fe22ec4a33bd212d9c6340f591071ffd960fd22"},
+    "raw_sidecars":[
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_r4_stdout.json","bytes":3473,"sha256":"c2f9bde2818a653ad66cc5bfc2347df492f5cd915960f8e1d03f50467f3d1870"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_r4_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/plan_validator_stdout.json","bytes":401,"sha256":"cf4058eae2fcca17ca5cdfa4207f0caf0451e9299254edf56fe875f4fe283bf7"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/plan_validator_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/git_diff_check_stdout.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/git_diff_check_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt1_stdout.json","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt1_stderr.txt","bytes":462,"sha256":"778096672ad583019de0fd1947d40cf614bb0b9494758b0989ee20b45a93b038"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt2_stdout.json","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt2_stderr.txt","bytes":481,"sha256":"7a772f0dbb6e9a276523099c64f0be9ff712da339a9b3443c693238384977376"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt3_stdout.json","bytes":3475,"sha256":"b71dfec533d42cac4845aff1eddc1aba85c61608dc420547c690b2c45bb5b1cc"},
+      {"path":"docs/implementation/AD-43/acceptance/independent_status_review_r1/review/validation_attempt3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    ]
+  },
+  "cleanup": {
+    "status":"closed",
+    "temporary_validator_removed":true,
+    "removed_paths":["docs/implementation/AD-43/acceptance/independent_status_review_r1/validation_temp.py"],
+    "historical_failed_attempts_preserved":true,
+    "sidecars_evidence_only":true,
+    "product_source_test_fixture_under_review_dir":false
+  },
+  "self_hash_excluded":true,
+  "self_hash_rule":"manifest bytes and recursive SHA are excluded; report and sidecar hashes are closed"
+}

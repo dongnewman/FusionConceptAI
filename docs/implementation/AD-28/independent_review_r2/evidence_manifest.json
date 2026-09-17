@@ -1,0 +1,104 @@
+{
+  "manifest_version": "AD-28-repair-r2-independent-review-r2",
+  "review_id": "AD-28-repair-r2-independent-review-r2",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "verdict": "pass_limited",
+  "accepted_scope": "architecture and preparation boundary only",
+  "claim_ceiling": "architecture_and_preparation_boundary_only_no_execution_no_provider_mesh_physical_or_R01-R10_credit",
+  "write_scope": "docs/implementation/AD-28/independent_review_r2/ only",
+  "protected_dirty_hashes": {
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 23407,
+      "sha256": "ed41002712df38952da8bc2fe294396f7e6e11255c211685562cb63fd5a3e366"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 65884,
+      "sha256": "279335e4142a41c964d94d160d661d4eb424370f33fb9e90d95d9ee82a8a9744"
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "bytes": 45918,
+      "sha256": "4e0845545a6b246eeb786f8d1ec7bb07ec487f1a18fb6b9998e0773a32bcee0a"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 55259,
+      "sha256": "37713fa0e49fd1256e28e8cc71188886dd834517f1f7475ae6198b45d6d0f209"
+    },
+    "docs/implementation/AD-28/proposal.md": {
+      "bytes": 2899,
+      "sha256": "800e16ec8b8cb7d9192345898c5c36187178cca4353e067d12c571fb48d97164"
+    },
+    "docs/implementation/AD-28/manifest.json": {
+      "bytes": 7048,
+      "sha256": "776b25695ece03fc4516f9cb5dcb2f38ad885a27bd6f8ec77012ac7adbbd27ab"
+    },
+    "docs/implementation/AD-28/qa.json": {
+      "bytes": 1350,
+      "sha256": "d561b9b06cbc63274dd5a602ab74c94d5a39b009d510a11a6964967ccc2ab8ad"
+    },
+    "docs/implementation/AD-28/command_receipts.json": {
+      "bytes": 2364,
+      "sha256": "1ebcee3f1decf617189d24c9f7c6f0510934ea331f39fc25ef9229d98da47e94"
+    }
+  },
+  "r4_n06": {
+    "path": "docs/implementation/UP2-01-PREPARATION/actual_A_compiler_candidate_N06_fixture.json",
+    "bytes": 1451,
+    "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "status": "terminal_deferred"
+  },
+  "repair_subject_hashes": {
+    "docs/implementation/AD-28/repair_r2/report.md": {
+      "bytes": 1567,
+      "sha256": "400cd39dbf9aefc35ec4d96d444cabb90b2659f7e7d948ceb6a1a5f521bb7db0"
+    },
+    "docs/implementation/AD-28/repair_r2/report.json": {
+      "bytes": 3455,
+      "sha256": "d1edfcdf76bd9c8c51def4181a6dfcdb14d58f1d5c80b4708de19b2a6f3a34e0"
+    },
+    "docs/implementation/AD-28/repair_r2/evidence_manifest.json": {
+      "bytes": 3114,
+      "sha256": "b2a30494c383563db99d880d0f4f1587cbdbe73383f706f2b478606731e7227d"
+    },
+    "docs/implementation/AD-28/repair_r2/command_receipts.json": {
+      "bytes": 2295,
+      "sha256": "281190ef73efdf55e31322394a5a28e634634e8761cc0647395b099692520292"
+    }
+  },
+  "consistency_checks": {
+    "README_old_chain_explicitly_historical": true,
+    "README_AD28_machine_chain_complete": true,
+    "core16_UP2_00_matches_manifest": true,
+    "core18_task_manifest_byte_identical": true,
+    "task_count": 31,
+    "task_dag_acyclic": true,
+    "new_nodes_planned_or_proposal": true,
+    "new_nodes_accepted_false": true,
+    "old_accepted_limited_scope_unmodified": true,
+    "physical_and_R01_R10_boundary_unchanged": true,
+    "V4_manufactured_screen_not_upgraded": true
+  },
+  "negative_controls": {
+    "julia_processes": 0,
+    "desc_processes": 0,
+    "julia_or_desc_executed": false,
+    "source_or_core_modified": false,
+    "old_audit_modified": false,
+    "physical_credit_granted": false
+  },
+  "output_artifacts": {
+    "report.md": {
+      "bytes": 2916,
+      "sha256": "4173c623261e94474c9d720a46293d9cb60e0f39baf42d7bac8a24bd98b4921e"
+    },
+    "report.json": {
+      "bytes": 2593,
+      "sha256": "ec47de7535eca74681eefac433b305cca59ee4015e1409e097750ab2a1ba97a4"
+    },
+    "command_receipts.json": {
+      "bytes": 2686,
+      "sha256": "8727ac55ca77f8e37ad21bc1f8eb5f5b36efe75aae7674d6317f97e1c2630329"
+    }
+  },
+  "manifest_self_hash": "omitted_by_design"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "UP1.g2-authoritative-mapping.v1",
+  "status": "typed_absent",
+  "no_publish": true,
+  "production_profile_schema": "g2_production_profile_schema.json",
+  "production_profile_evaluator": "production_g2_evaluator.py",
+  "mapping": {
+    "namespace": null,
+    "version": null,
+    "effective_interval": {"not_before":null,"not_after":null,"trusted_time":null},
+    "issuer": null,
+    "signature": {"algorithm":null,"key_id":null,"signature_value":null,"certificate_chain":null},
+    "ambiguity": {"state":"unknown","competing_entries":[],"decision":null},
+    "conflict": {"state":"unknown","conflicts":[],"resolution":null},
+    "revocation": {"status":"unknown","source":null,"checked_at":null,"anti_replay":null},
+    "source_ref": null,
+    "candidate_ref": null,
+    "evidence_ref": null
+  },
+  "absence": {"code":"EXTERNAL_TRUST_ROOT_AND_MAPPING_NOT_SUPPLIED","owner":"未指定外部 G2 authority/provider","authoritative_source":"待指定的签名 G2 mapping registry/attestor","authority_ref":{"state":"typed_absent","value":null},"recovery_condition":"provide signed mapping plus key/certificate, validity, revocation and anti-replay evidence; then independently verify exact candidate binding","expiry_condition":"mapping policy, source, candidate or trust material changes"},
+  "present_admission_requirements": {
+    "unknown_fields":"fail_closed",
+    "namespace":"exact registered namespace",
+    "version":"explicit immutable version",
+    "effective_interval":"not_before/not_after plus trusted_time and freshness window",
+    "issuer":"externally authenticated issuer",
+    "signature":"algorithm, signature bytes, key id, certificate chain, policy OID/EKU/key usage/name constraints",
+    "trust_root":"externally verifiable root and key fingerprint",
+    "revocation":"status plus OCSP/CRL source, checked_at, freshness and trusted time",
+    "anti_replay":"fresh nonce/request id and idempotency binding",
+    "ambiguity":"unique decision with no competing entries",
+    "conflict":"no hash/owner/candidate conflict",
+    "binding":"source/candidate/evidence/axis refs and hashes exact in both directions",
+    "strict_object_policy":"duplicate keys and unknown fields reject at every object; each listed security field is typed-checked",
+    "promotion":"only after all fields independently verified; otherwise typed_absent or fail_closed"
+  },
+  "fail_closed_rules":["foreign_namespace","stale_interval","duplicate_or_ambiguous_mapping","conflicting_hash_or_owner","revoked_or_replayed_signature","candidate_or_evidence_edge_mismatch"]
+}

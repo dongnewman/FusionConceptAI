@@ -1,0 +1,117 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-audit-r4",
+  "record_kind": "revised_architecture_proposal",
+  "decision_id": "AD-31-G3-CONTROL-EDIT-AUDIT",
+  "revision": "R4",
+  "status": "go_pending_independent_review",
+  "accepted": false,
+  "parent_records_preserved": [
+    "docs/implementation/AD-31/g3_control_editability_audit/report.md",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r2/revised_proposal.md",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r3/revised_proposal.md"
+  ],
+  "scope": "control-only immutable source payload plus separate mode-editable state and provenance-bound acyclic operation history",
+  "decision_owner": "Sol/root",
+  "decision_date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_porcelain_rows_observed": 306,
+  "report_path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r4/revised_proposal.md",
+  "revised_proposal_sha256": "467211d8a05f6a7e22820300f1f9f630fa4eca35a61a5bef34f53330301e8cb9",
+  "code_core_test_edited": false,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_engineering_physical_run": false,
+  "proposed_work_order": {
+    "id": "UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC",
+    "status": "proposal",
+    "accepted": false,
+    "claim_ceiling": "contract_only",
+    "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"],
+    "parallel_to": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+    "must_not_depend_on": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+    "implementation_files": [
+      "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl",
+      "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/"
+    ],
+    "fixed_operation": "replace_fault_source_payload",
+    "fixed_operation_semantics": "historical name; only editable state changes, exactly one existing fault.mode changes, immutable source payload/ref/record/axes/identities never change",
+    "future_mapping": "T1 only, fresh same-candidate source-backed lossless mapping into CandidateStatePackageV5Next"
+  },
+  "source_record_contract": {
+    "slot_field_order": ["slot_kind", "status", "value_ref", "source_path", "source_hash", "candidate_ref", "reason", "absence_content_hash"],
+    "slot_kind_domain": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+    "slot_status_domain": ["present", "typed_absent"],
+    "record_field_order": ["source_uri", "source_version", "payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version", "source_record_hash"],
+    "record_ref_field_order": ["record_uri", "record_version", "record_hash"],
+    "record_ref_semantics": "exact URI/version/hash triple; must equal source record fields byte-for-byte",
+    "source_record_hash_excludes": ["source_record_hash", "source_content_hash", "operation_hash", "initial_state_hash", "resulting_state_hash"]
+  },
+  "source_payload_ref_contract": {
+    "field_order": ["candidate_ref", "parent_g3_declaration_ref", "parent_g3_declaration_hash", "child_contract_ref", "child_contract_identity_hash", "source_uri", "source_version", "source_record_ref", "source_content_hash"],
+    "source_record_ref_semantics": "nested exact G3ControlSourceRecordRefV1 containing source-record URI/version/hash",
+    "state_type": "Union{Nothing,G3ControlSourcePayloadRefV1}",
+    "immutable_fields": "candidate, parent, actual additive child contract, source URI/version, source-record ref/hash and source-content hash"
+  },
+  "physical_resolution_contract": {
+    "field_order": ["status", "reason", "evidence_ref"],
+    "status_domain": ["unknown", "terminal_deferred"],
+    "unknown_rule": "reason=nothing and evidence_ref=nothing",
+    "terminal_deferred_rule": "reason is non-empty typed text; evidence_ref is nothing or a real external receipt ref; local software cannot promote status"
+  },
+  "operation_history_contract": {
+    "state_field_type": "Tuple{Vararg{G3ControlOperationRecordV1}}",
+    "typed_empty_history": "Tuple{Vararg{G3ControlOperationRecordV1}}()",
+    "operation_record_field_order": ["operation_id", "operation_kind", "key", "fault_id", "expected_prior_mode", "resulting_mode", "previous_state_hash", "expected_prior_source_content_hash", "source_record_ref", "source_payload_ref", "operation_hash", "resulting_state_hash"],
+    "operation_kind_domain": ["replace_fault_source_payload"],
+    "operation_hash_excludes": ["operation_hash", "resulting_state_hash"],
+    "operation_hash_recipe": "H(canonical(operation_id, operation_kind, key, fault_id, expected_prior_mode, resulting_mode, previous_state_hash, expected_prior_source_content_hash, source_record_ref, source_payload_ref))",
+    "resulting_state_hash_recipe": "H(canonical(key, state_status, source_payload_ref, editable_body_after, initial_source_content_hash, initial_state_hash, previous_state_hash, prior_operation_hashes_in_order, operation_hash, contract_admission, physical_resolution))",
+    "acyclic_order": ["verify previous state", "compute operation_hash", "compute resulting_state_hash", "append operation record", "publish state"],
+    "duplicate_and_order_rule": "operation_id, operation_hash and fault_id+previous_state_hash globally unique; each previous hash equals prior state hash; tuple order immutable"
+  },
+  "five_hash_layers": [
+    "source_record_hash: H(canonical(source_uri, source_version, all four complete slots)); own and downstream hashes excluded",
+    "source_content_hash: H(canonical(key, parent ref/hash, actual child contract/ref hash, source URI/version, complete source_record_ref, complete body)); own hash excluded",
+    "initial_state_hash: H(canonical(status, source ref/body/hash or typed-absent marker, admission, typed physical resolution, ZERO_DIGEST operation, typed empty history)); status included and hash frozen",
+    "operation_hash: H(canonical(operation identity, key, modes, previous_state_hash, expected source hash, exact source_record_ref, exact source_payload_ref)); operation and resulting state hash fields excluded",
+    "resulting_state_hash: H(canonical(state identity, immutable source ref, editable body, initial hashes, previous_state_hash, prior operation hashes in order, new operation_hash, statuses)); no resulting hash is an input"
+  ],
+  "zero_rules": {
+    "present_empty_history": "last_operation_hash=ZERO_DIGEST and current_state_hash==initial_state_hash exactly",
+    "typed_absent": "source_payload_ref/editable_body/initial_source_content_hash=nothing, typed empty history, last_operation_hash=ZERO_DIGEST, current_state_hash==initial_state_hash, no edit admitted",
+    "first_operation": "previous_state_hash=initial_state_hash and prior_operation_hashes_in_order=()",
+    "later_operation": "previous_state_hash=prior resulting_state_hash"
+  },
+  "canonical_bytes": {
+    "encoding": "valid UTF-8 without BOM",
+    "line_endings": "LF",
+    "field_order": "frozen ordinal order above",
+    "tuple_order": "declared order; no map/set serialization",
+    "numbers": "normalized exact Rational{Int64}; no floats or locale formatting",
+    "symbols": "exact spelling",
+    "digests": "lowercase fixed-width SHA-256 text",
+    "failure_rule": "every failure returns the old state's canonical bytes exactly unchanged, including all history, hashes, absence markers and statuses"
+  },
+  "required_negative_controls": [
+    "foreign candidate/parent/key/contract/source record/source payload/axis -> fail_closed",
+    "open/wrong-typed body, duplicate IDs, bad refs, direction/unit/cardinality/controller/fault/plan mismatch -> fail_closed",
+    "missing provenance -> typed_absent and terminal_deferred without fabricated hash",
+    "independent recomputation of all five hashes and exact source-record-ref checks",
+    "valid one-mode edit preserves immutable source and initial identity and changes only editable state/history/operation/current hash",
+    "stale source/state, forged hashes, source-ref mismatch, non-mode or multi-fault change, unsupported mode, duplicate/reordered history -> fail_closed with old canonical state bytes unchanged",
+    "typed-absent edit, dynamic path, insert/delete/rebind and old V5/package/registry/T0/realization/binding/feedback substitution -> rejected"
+  ],
+  "inputs": [
+    {"path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r3/revised_proposal.md", "sha256": "e5ccc09ea1982ad4401c66f10f58b1853312eaf2ea52dc7815a263f6752a136b"},
+    {"path": "src/GenomeV5/G3/ControlGenomeV5.jl", "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"},
+    {"path": "src/GenomeV5/G3/RealizationGenomeV5.jl", "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    {"path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"},
+    {"path": "docs/implementation/AD-31/acceptance.md", "sha256": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7"}
+  ],
+  "static_validation": {"manifest_json_tool_exit": 0, "scoped_git_diff_check_exit": 0, "julia_or_desc_run": false},
+  "review_requirement": "different Luna independently reviews R4 before implementation dispatch",
+  "claim_ceiling": {"contract_admission": true, "physical_resolution": "unknown_or_terminal_deferred", "actual_child_authority": false, "T0_authority": false, "T1_mapping": false, "provider": false, "engineering": false, "mesh": false, "solver": false, "physical": false, "search": false, "B00": false, "B04": false, "R01_R10": false},
+  "self_hash_excluded": true
+}

@@ -1,0 +1,58 @@
+{
+  "repair_id": "E1-N05-repair-R4-trusted-file-negative-controls",
+  "runtime": "not_run",
+  "matrix": [
+    {
+      "id": "source_hash",
+      "serialized_file": "forged_authored_source_hash.json",
+      "mutation": "authored_receipts[0].source_locator.source_hash -> zero digest",
+      "expected_rejection": "N05 authored receipt differs from actual source recomputation",
+      "trusted_path": true
+    },
+    {
+      "id": "absent_mutation_hash",
+      "serialized_file": "forged_absent_mutation_hash.json",
+      "mutation": "absent_authority_receipts[0].mutation_hash -> zero digest",
+      "expected_rejection": "N05 mutation hash mismatch",
+      "trusted_path": true
+    },
+    {
+      "id": "candidate_ref",
+      "serialized_file": "forged_candidate_ref.json",
+      "mutation": "candidate_ref.id -> forged candidate",
+      "expected_rejection": "N05 receipt candidate ref mismatch",
+      "trusted_path": true
+    },
+    {
+      "id": "package_hash",
+      "serialized_file": "forged_package_hash.json",
+      "mutation": "package_hash -> f digest",
+      "expected_rejection": "N05 receipt package hash mismatch",
+      "trusted_path": true
+    },
+    {
+      "id": "e0_binding_hash",
+      "serialized_file": "forged_e0_binding_hash.json",
+      "mutation": "e0.binding_hash -> e digest",
+      "expected_rejection": "N05 receipt E0 binding hash mismatch",
+      "trusted_path": true
+    },
+    {
+      "id": "declaration_hash",
+      "serialized_file": "forged_declaration_hash.json",
+      "mutation": "declaration.authored_hash -> d digest",
+      "expected_rejection": "N05 receipt declaration hash mismatch",
+      "trusted_path": true
+    },
+    {
+      "id": "missing_authored_row",
+      "serialized_file": "forged_missing_authored.json",
+      "mutation": "authored_receipts 5 rows -> 4 rows",
+      "expected_rejection": "N05 authored receipt count is not five",
+      "trusted_path": true
+    }
+  ],
+  "formal_b04": false,
+  "physical_engineering_credit": false
+}
+

@@ -1,0 +1,32 @@
+{
+  "schema": "UP1.W3.source-g2-environment.independent-review-r3.manifest.v1",
+  "status": "rework_required",
+  "claim_ceiling": "preparation_only/screen_only",
+  "review_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/W3-source-g2-environment-independent-review-r3",
+  "read_only_target": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/source_g2_environment",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "files": [
+    "cleanup_inventory.json",
+    "findings.json",
+    "manifest.json",
+    "raw/static_validator_r3.combined.raw",
+    "raw/static_validator_r3.stderr.raw",
+    "raw/static_validator_r3.stdout.raw",
+    "review.md",
+    "validation_receipt.json"
+  ],
+  "exact_file_set": true,
+  "self_hash_exclusions": ["manifest.json", "cleanup_inventory.json", "validation_receipt.json"],
+  "artifact_hashes": {
+    "findings.json": "95a0113f4ed7b86ba55cb4e3064bff61dc5c6741d06238ce646187286fa8b598",
+    "raw/static_validator_r3.combined.raw": "7209eb8efa0fc50a07d7ce6e490e51a7693ba06653de336995c91d40e5491c3f",
+    "raw/static_validator_r3.stderr.raw": "c511c32526b0565e9bd4b55a25cb749bc8d063f98ee2acee024e1b55933de6fb",
+    "raw/static_validator_r3.stdout.raw": "d19d838579973178502abbd2efef6d2d2ca7f82d56b49db1c19b63af75babc4d",
+    "review.md": "ac540764f54ced3cbfd891f5ac5a4dc6d950a4eaf38f622b328f11c45cd9c9e6",
+    "validation_receipt.json": "2ce6f3d95a39a09a714e9f9fade70dbc88b2706fa2f8e814ebc9c82b08ce77c0"
+  },
+  "source_mutation": false,
+  "upstream_register_mutation": false,
+  "new_ad": false,
+  "forbidden_execution": {"Julia": false, "DESC": false, "mesh": false, "solver": false, "recompute": false}
+}

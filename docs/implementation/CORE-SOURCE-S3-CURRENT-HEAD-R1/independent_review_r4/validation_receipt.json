@@ -1,0 +1,15 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.independent-review-r4-receipt.v1",
+  "status":"changes_requested",
+  "command":"PowerShell read-only audit: compute LF digest; scan current JSON excluding independent_review_*; verify corrected static raw hashes/concatenation; inspect frozen result, fingerprint, external states, history, cleanup, and gate flags",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid_or_in_process":"in_process",
+  "started_utc":"2026-09-16T06:17:22.7775068Z",
+  "ended_utc":"2026-09-16T06:17:22.8624329Z",
+  "exit_code":0,
+  "raw":{"stdout":"raw/audit.stdout.raw","stdout_sha256":"dcd622f4062f9b205ff1267ee63695b82b8d4d3572e473530452c879bcd0176a","stderr":"raw/audit.stderr.raw","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined":"raw/audit.stdout.raw","combined_sha256":"dcd622f4062f9b205ff1267ee63695b82b8d4d3572e473530452c879bcd0176a"},
+  "input_hashes":{"top_validation":"read-only inspected","r4_repair_receipt":"cb98109f2f345003d52461a75030c1272ea034e833202d40e102c2527c2649f7","corrected_static_receipt_actual":"ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0","head":"b2c04d8339774635aaecd73651efcdb101e01b5","index_sha256":"6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0"},
+  "artifact_hashes":{"review_raw_stdout":"dcd622f4062f9b205ff1267ee63695b82b8d4d3572e473530452c879bcd0176a","review_raw_stderr":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "checks":{"wrong65_count":0,"all_current_stderr_digest_fields_match":true,"corrected_static_vector":"pass_[4,5,12,1,47,0]","corrected_raw_combined":"pass","fingerprint":"pass","external_inputs":"pass_14","typed_absence":"pass","historical_failure":"pass","no_s3_rerun":"pass","forbidden_tools":"pass","formal_credit":"none","cleanup":"pass_exact_no_glob","stale_top_artifact_hash":"fail"},
+  "independent_reviewer":"different Luna from execution agent; Sol root adjudication required"
+}

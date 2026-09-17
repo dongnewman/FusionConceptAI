@@ -1,0 +1,146 @@
+{
+  "schema_version": "AD47-G3-source-binding-readiness-independent-review-r2-v1",
+  "record_kind": "independent_static_readiness_review",
+  "task_id": "AD-47-G3-SOURCE-BINDING-READINESS-AUDIT",
+  "review_id": "AD-47-INDEPENDENT-REVIEW-R2",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "static_contract_dispatch_boundary_only",
+  "claim_ceiling": "readiness_audit_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewed_products": [
+    {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/report.md",
+      "bytes": 14853,
+      "sha256": "f416bc0945c6fa317c9425c82b56051a56d5ded55681c309d17b2883cbf18fe8"
+    },
+    {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/manifest.json",
+      "bytes": 20011,
+      "sha256": "f8e59a6e0479090aeaf4a654d8cbb2ad922773606fd7000b17d802146e6698a2"
+    },
+    {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/cleanup_inventory.md",
+      "bytes": 840,
+      "sha256": "d701d00525b4527db6671d50c9c409b533888a0b418d38dbccc0aeacd240fb17"
+    }
+  ],
+  "review_product_files": [
+    {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/report.md",
+      "bytes": 6550,
+      "sha256": "3955eebd6122e0625f28ae3087e9b61a969fb3cf40df6ee3bcad7f7277b24e73"
+    },
+    {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/manifest.json",
+      "self_hash_excluded": true
+    }
+  ],
+  "review_sidecar_directory": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review",
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 85080,
+    "utc": "2026-09-15T12:14:31.157567+00:00",
+    "direct_validation_exit_code": 0,
+    "direct_validation_stdout": {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/direct_validation_stdout.json",
+      "bytes": 1087,
+      "sha256": "e8e7e4746d89328b99c9005fd75eddb4769167b49f826e64f6448f0aa1c5a7a3"
+    },
+    "direct_validation_stderr": {
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/direct_validation_stderr.txt",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "ad43_hash_recheck": {
+      "pid": 70216,
+      "utc": "2026-09-15T12:15:26.2470817Z",
+      "exit_code": 0,
+      "path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/ad43_hash_recheck_stdout.json",
+      "bytes": 777,
+      "sha256": "7b0d394a007b4038d5133551b58e355b5f4d48e7cb4e00c4d9c32fb82f76d4be"
+    },
+    "plan_validator": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "summary": "31 markdown; 497 relative links; 39 tasks; DAG acyclic",
+      "stdout_path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/plan_validator_stdout.json",
+      "stdout_bytes": 343,
+      "stdout_sha256": "a60a05cff7db64a5ea68a50b0cfc42208d8b4aaadbc947f233b28e2ee500bf13",
+      "stderr_path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/plan_validator_stderr.txt",
+      "stderr_bytes": 1,
+      "stderr_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/scoped_diff_check_stdout.txt",
+      "stdout_bytes": 1,
+      "stdout_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stderr_path": "docs/implementation/AD-47/g3_source_binding_readiness_audit/independent_review_r2/review/scoped_diff_check_stderr.txt",
+      "stderr_bytes": 1,
+      "stderr_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    }
+  },
+  "checks": {
+    "frozen_ad47_products": true,
+    "w0_exact_four_products": true,
+    "w0_additive_layer_g3_four_scopes_four_axes": true,
+    "w0_ad43_unchanged_no_alias_no_registry": true,
+    "w1_exact_eight_products": true,
+    "w2_exact_sixteen_products": true,
+    "w3_exact_six_products": true,
+    "all_product_paths_unique_and_absent": true,
+    "all_work_order_schema_inputs_outputs_dependencies_blocked_forbidden_exit_cleanup_reviewer": true,
+    "w1_child_source_test_receipt_closure": true,
+    "w1_authority_record_receipt_separate_unions": true,
+    "w2_scope_axis_closure": true,
+    "w3_join_feedback_separate_unions": true,
+    "ad43_frozen_hashes_recomputed": true,
+    "ad44_current_accepted_limited": true,
+    "ad45_current_accepted_limited": true,
+    "w1_source_authority_ceiling_preserved": true,
+    "typed_absence_editability_fail_atomic_preserved": true,
+    "no_candidate_hash_identity_t0_or_r_credit": true,
+    "w1_earliest_dispatch": true,
+    "w2_depends_on_w0_w1_identity_reviews": true,
+    "w3_depends_on_w0_w1_w2_feedback": true,
+    "task_manifest_39_acyclic": true,
+    "scoped_diff_check": true
+  },
+  "dispatch_decision": {
+    "W0_AD47-G3-AXIS-SCHEMA-VERSIONED-EXTENSION": "dispatchable_after_parent_review",
+    "W1_AD47-G3-SOURCE-AUTHORITY-RECORDS": "dispatchable_after_parent_review_parallel_with_W0",
+    "W2_AD47-G3-CANDIDATE-BOUND-AXIS-ATTESTATIONS": "blocked_pending_W0_W1_source_identity_and_G2_mapping",
+    "W3_AD47-G3-CHILD-BINDING-FEEDBACK-JOIN": "blocked_pending_W0_W1_W2_child_and_feedback_inputs"
+  },
+  "claims": {
+    "g3_axis_extension_implemented": false,
+    "g3_source_authority_present": false,
+    "g3_source_backed_declaration_present": false,
+    "g3_candidate_binding_present": false,
+    "g3_candidate_identity_created": false,
+    "g3_feedback_authority_present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "task_owned_temp_removed": 0,
+    "preexisting_dirty_work_preserved": true,
+    "review_sidecars_only": true,
+    "heavy_runtime_calls": 0
+  },
+  "self_hash_excluded": true
+}

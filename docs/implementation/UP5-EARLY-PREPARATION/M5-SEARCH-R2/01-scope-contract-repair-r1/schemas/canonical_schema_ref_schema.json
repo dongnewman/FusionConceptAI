@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2CanonicalSchemaRefV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schema_id", "version", "authority_status", "content_path", "schema_sha256", "encoding_rules"],
+  "properties": {
+    "schema": {"const": "M5SearchR2CanonicalSchemaRefV1"},
+    "schema_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^v[0-9]+$"},
+    "authority_status": {"enum": ["authoritative", "typed_absent", "stale", "foreign", "malformed"]},
+    "content_path": {"type": ["string", "null"]},
+    "schema_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "encoding_rules": {"const": ["utf8", "sorted_keys", "duplicate_keys_rejected", "explicit_null", "finite_numbers_only", "length_framed_bytes"]}
+  }
+}

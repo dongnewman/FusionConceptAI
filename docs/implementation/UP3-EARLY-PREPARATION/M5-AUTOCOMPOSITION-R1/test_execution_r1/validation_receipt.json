@@ -1,0 +1,75 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-VALIDATION-RECEIPT-R2",
+  "validation_time_utc": "2026-09-16T10:38:20.6494467Z",
+  "validation_time_note": "receipt authored after observing existing artifacts; this is not a test process timestamp",
+  "status": "integrity_pass_execution_receipt_partial",
+  "replay_performed": false,
+  "checks": {
+    "json_manifests_parse": true,
+    "archive_raw_exact_copies": true,
+    "raw_bytes_and_sha256_match_record": true,
+    "pid_files_match_record": true,
+    "exit_files_match_record": true,
+    "python_exit_0": true,
+    "julia_exit_0": true,
+    "julia_110_of_110": true,
+    "python_canonical_equals_permuted": true,
+    "frozen_ad_hashes_match_current_sources": true,
+    "source_test_oracle_unchanged_during_r2": true
+  },
+  "runs": {
+    "python_oracle": {
+      "pid": 109248,
+      "exit_code": 0,
+      "stdout_bytes": 1598,
+      "stdout_sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_bytes": 1598,
+      "combined_sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7",
+      "canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe",
+      "permuted_canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe"
+    },
+    "julia_tests": {
+      "pid": 80904,
+      "exit_code": 0,
+      "stdout_bytes": 176,
+      "stdout_sha256": "72f5ebbdcca167b31d18f6a5af50cb47da38a9a43285b8679ecec41904c12863",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_bytes": 176,
+      "combined_sha256": "72f5ebbdcca167b31d18f6a5af50cb47da38a9a43285b8679ecec41904c12863",
+      "summary": "110 passed / 110 total; M5-A-TESTS PASS manufactured_auto_composition/screen_only"
+    }
+  },
+  "frozen_hashes": {
+    "A": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "B": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c",
+    "C": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa",
+    "D": "ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785",
+    "D_test": "1eb0e26e79b9899cc5a3cb2742545cbaa811fa6683fdcfa1ee4dd31dff081686",
+    "D_oracle": "9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3",
+    "test": "42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08",
+    "oracle": "e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c"
+  },
+  "typed_negative_controls": {
+    "invalid_unit": "typed_failure/unit_mismatch",
+    "invalid_rank": "typed_failure/rank_mismatch",
+    "invalid_port": "typed_failure/port_mismatch",
+    "invalid_domain": "typed_failure/owner_mismatch",
+    "invalid_owner": "typed_failure/owner_mismatch",
+    "invalid_interface": "typed_failure/owner_mismatch",
+    "foreign_hash": "typed_failure/foreign_hash",
+    "foreign_identity": "typed_failure/foreign_identity",
+    "invalid_A_B_C_D": "typed_failure",
+    "foreign_input": "typed_failure/foreign_input",
+    "missing_capability": "typed_failure/missing_capability",
+    "provider_drop": "terminal_deferred/provider_drop/no_provider_constructed",
+    "invalid_label_order": "typed_failure/label_mismatch or ordering_mismatch"
+  },
+  "claim_ceiling": "manufactured_auto_composition/screen_only",
+  "formal_credit": "none",
+  "changes_needed": [
+    "Fresh repair replay is needed to produce independently recorded exact process start/end UTC timestamps; current records are not_recorded, with file times retained separately and never used as process times."
+  ]
+}

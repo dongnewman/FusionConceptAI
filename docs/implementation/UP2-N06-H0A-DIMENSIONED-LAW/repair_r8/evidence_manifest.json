@@ -1,0 +1,23 @@
+{
+  "schema_version": "UP2-N06-H0A-repair-r8",
+  "status": "review_pending",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "prior_archive": "../repair_r7/",
+  "allowed_writes": [
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r8/"
+  ],
+  "protected_source_fixture_runner_unchanged": true,
+  "claim_ceiling": ["contract_only", "schema_validation_only", "accepted=false", "review_pending", "no_physical_authority", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_R_credit"],
+  "qa": {
+    "source_reserved_word_assignment_scan": "pass",
+    "test_reserved_word_assignment_scan": "pass",
+    "related_return_access_scan": "pass",
+    "julia": "not_run",
+    "desc": "not_run",
+    "independent_r7_source_r8_test_review": "pending"
+  }
+}
+

@@ -1,0 +1,57 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-precheck-r3",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "pass_limited",
+  "ready_for_serial_focused": true,
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only_static",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "dirty_porcelain_entries": 3688,
+  "matching_julia_desc_processes": 0,
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "static_qa_exit_code": 0,
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false
+  },
+  "r2_findings": [
+    {
+      "id": "G3SF-R2-01",
+      "status": "closed",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:449-495",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:124-125"
+      ],
+      "result": "Public keyword injection is rejected by MethodError; only the underscore-prefixed internal helper reaches the controlled program_exception seam."
+    },
+    {
+      "id": "G3SF-R2-02",
+      "status": "closed",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:496-512",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:131-140"
+      ],
+      "result": "Edited return/heat values, all four coefficients, energy residual, ledger residual, and declaration hash are asserted."
+    }
+  ],
+  "required_behavior": {
+    "typed_ledger_real_evaluation": true,
+    "declaration_source_hash_recomputed": true,
+    "bare_actual_unattested": "fail_closed",
+    "trusted_receipt": "terminal_deferred:same_candidate_authority_gate:VNEXT",
+    "missing_authority": "terminal_deferred",
+    "physical_overreach": false
+  },
+  "queue_decision": "software_focused_may_enter_serial_queue",
+  "boundaries": [
+    "No Julia or DESC execution",
+    "No source/test/fixture/core/old evidence modification by this review",
+    "No compiler/provider/mesh/solver/physical/B00/B04/R01-R10 credit"
+  ]
+}

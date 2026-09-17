@@ -1,0 +1,32 @@
+{
+  "schema": "M5InverseFeedbackR2ScopeContractRepairIndependentReviewManifestV1",
+  "status": "fail_limited",
+  "recommendation": "changes_requested",
+  "review_role": "independent_review",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "not_granted": ["UP4", "UP4-01", "UP4-02", "UP4-03", "UP4-04", "B07A", "B07B", "B08", "provider", "solver", "engineering", "physical", "candidate", "R01-R10"],
+  "checkout": {"repository": "D:/006-Programing/LMC/FusionConceptAI", "branch": "main", "head": "b2c04d8339774635aaecd73651efcdb101e01b5d", "worktree": "dirty; pre-existing changes protected; target package not modified"},
+  "review_target": "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/02-scope-contract-repair/**",
+  "review_inputs": [
+    {"path":"docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md","sha256":"0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    {"path":"docs/v4_multitopology_generation/16_execution_work_orders.md","sha256":"693a072aad799ecee1537bd61f8d361691832d31ff63d541837895151176dac5"},
+    {"path":"docs/v4_multitopology_generation/20_midterm_audit_20260916.md","sha256":"c13250700bff57ada6817fdbfacc673cdc5e32349e2d2f144078386b1104cd4c"},
+    {"path":"docs/v4_multitopology_generation/21_next_execution_batches.md","sha256":"924f7da526699f40a15f7a812052c7e255d7255d301f5d72f3152bbc90e76f3b"},
+    {"path":"docs/v4_multitopology_generation/task_manifest.json","sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"},
+    {"path":"docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/reviews/01-scope-contract-independent-review-r1/report.md","sha256":"4ea03cc9a6d7ded5b2ec13d488f04a24759518634df0018d9f797e1ea9134dee"}
+  ],
+  "reverified_target_manifest_inputs": {"read_only_declared_hashes":"all_match", "fresh_source_test_oracle_declared_hashes":"all_match", "historical_source_drift":"detected"},
+  "findings": [
+    {"id":"F7","priority":"P1","summary":"canonical join lacks normative Genome ref metadata, parent typed body, and cross-object equality/digest checker"},
+    {"id":"F8","priority":"P1","summary":"valid_screen output can pass with zero replay and unconstrained exit/hash evidence"},
+    {"id":"F9","priority":"P1","summary":"external schema ref resolver/registry is not frozen or tested; check_schema alone is insufficient"},
+    {"id":"F10","priority":"P2","summary":"feedback CAS/version/history/identity/UTC transitions remain non-machine-enforced"},
+    {"id":"F11","priority":"P2","summary":"dependency/composition fresh closure and review-end dirty increment are not evidenced"},
+    {"id":"F12","priority":"P2","summary":"failure taxonomy codes are not cross-schema bound to record enums"}
+  ],
+  "static_checks": {"json_parse_and_check_schema":"pass", "closed_object_shape":"pass", "normative_ref_join":"fail:F7", "valid_screen_replay_gate":"fail:F8", "external_ref_resolution":"fail:F9", "feedback_transition":"fail_limited:F10", "dependency_dirty_closure":"fail_limited:F11", "failure_taxonomy_consistency":"fail_limited:F12", "forbidden_runtime":"pass_not_invoked"},
+  "review_execution": {"command_kind":"PowerShell read-only static contract review with Python jsonschema", "pid":88936, "utc":"2026-09-16T22:29:56.603488Z", "ended_utc":"2026-09-16T22:29:56.676086Z", "exit":0, "stdout_raw":"raw/static_review.stdout.raw", "stderr_raw":"raw/static_review.stderr.raw", "process":"process.json", "runtime_execution":"not_run"},
+  "write_scope": "this review directory only",
+  "preservation": {"target_package_untouched":true, "production_source_untouched":true, "test_source_untouched":true, "forbidden_runtime":true}
+}

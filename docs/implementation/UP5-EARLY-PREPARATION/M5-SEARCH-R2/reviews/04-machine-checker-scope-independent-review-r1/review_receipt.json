@@ -1,0 +1,94 @@
+{
+  "schema": "M5SearchR2MachineCheckerScopeIndependentReviewReceiptV1",
+  "review_id": "M5-SEARCH-R2-04-MACHINE-CHECKER-SCOPE-INDEPENDENT-R1",
+  "status": "no_go_for_future_checker_implementation_and_execution",
+  "review_mode": "read_only_json_schema_hash_owner_scope_audit",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "worktree": "dirty_existing_changes_protected",
+  "write_root": "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/reviews/04-machine-checker-scope-independent-review-r1/**",
+  "runtime_execution": {
+    "julia": false,
+    "search": false,
+    "checker": false,
+    "solver": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "performance": false
+  },
+  "checks": {
+    "json_files_parsed": 6,
+    "package_hash_entries": 9,
+    "package_hash_mismatches": 0,
+    "input_closure_entries": 18,
+    "input_closure_mismatches": 0,
+    "future_owner_collisions": 0,
+    "negative_vector_count": 15,
+    "negative_vector_ids": "NV-01..NV-15",
+    "raw_self_hash_claims_match": false,
+    "p1_p2_strict_relation_coverage": false,
+    "checker_pass_credit_barrier_required": true
+  },
+  "findings": {
+    "p0": 0,
+    "p1_not_fully_covered": 5,
+    "p2_not_fully_covered": 3,
+    "evidence_provenance_failure": 1,
+    "schema_receipt_gaps": 3
+  },
+  "authorization": {
+    "future_checker_implementation": "no",
+    "execution": "no",
+    "publish": "no",
+    "formal_credit": "none",
+    "allowed_future_checker_path": "tools/m5_search_contract_r2/check_contract.py",
+    "allowed_future_test_path": "test/m5_search_contract_r2/test_check_contract.py",
+    "allowed_future_evidence_path": "tools/m5_search_contract_r2/evidence/**"
+  },
+  "required_disposition": [
+    "review_pending",
+    "not_implemented",
+    "not_executed",
+    "terminal_deferred",
+    "screen_only",
+    "no_publish",
+    "formal_credit_none",
+    "fixture_authority_typed_absent",
+    "m5c_gate_typed_absent"
+  ],
+  "processes": [
+    {
+      "role": "static_json_schema_hash_owner_audit",
+      "command": "PowerShell JSON parse, package/input SHA-256 recompute, owner collision and negative-vector count (read-only)",
+      "pid": 62392,
+      "start_utc": "2026-09-17T04:44:37.9906482Z",
+      "end_utc": "2026-09-17T04:44:38.1336650Z",
+      "exit": 1,
+      "failure": "RAW_STALE_SELF_HASH_CLAIMS",
+      "stdout": {
+        "path": "raw/static_review.stdout.raw",
+        "bytes": 750,
+        "sha256": "6dce37534895d2343c006d555a677f475d49a9740c07eddb1543bd1fec04d905"
+      },
+      "stderr": {
+        "path": "raw/static_review.stderr.raw",
+        "bytes": 27,
+        "sha256": "f560b866faacc279239119aa284ec765f33fb57c2dfc1e35802d0e4db449515c"
+      }
+    }
+  ],
+  "source_inputs": [
+    "04-machine-checker-scope-contract-r1/contract.md",
+    "04-machine-checker-scope-contract-r1/acceptance_matrix.md",
+    "04-machine-checker-scope-contract-r1/manifest.json",
+    "04-machine-checker-scope-contract-r1/hash_manifest.json",
+    "04-machine-checker-scope-contract-r1/schemas/*.json",
+    "04-machine-checker-scope-contract-r1/negative_vectors/negative_vectors.json",
+    "04-machine-checker-scope-contract-r1/raw/static_validation.stdout.raw",
+    "reviews/03-scope-contract-independent-review-r1/review.md",
+    "03-scope-contract-repair-r2/**"
+  ],
+  "interpretation": "Owner paths are collision-free and package/input bytes are intact, but frozen raw self-hash claims are stale and negative vectors do not strictly cover every P1/P2 relation. A checker pass remains contract-only and cannot grant fixture, authority, M5-C, search, execution, or formal credit."
+}

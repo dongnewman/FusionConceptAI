@@ -1,0 +1,22 @@
+{
+  "schema": "UP1.external-closure-r2.g2-independent-review-cleanup.v1",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "cleanup_at_utc": "2026-09-16T17:57:52.3844300Z",
+  "command": "PowerShell Remove-Item -LiteralPath <two exact unreferenced raw probe paths>",
+  "numeric_exit_code": 0,
+  "retained_paths": [
+    "review.md", "findings.md", "verification.json", "verification.py", "matrix_driver.py",
+    "manifest.json", "cleanup_inventory.json", "raw/matrix_a.stdout.raw", "raw/matrix_a.stderr.raw",
+    "raw/matrix_b.stdout.raw", "raw/matrix_b.stderr.raw", "raw/cli_wrapper_test_only.receipt.raw",
+    "raw/cli_wrapped_test_only.stdout.raw", "raw/cli_wrapped_test_only.stderr.raw",
+    "raw/cli_wrapper_typed_absent.receipt.raw", "raw/cli_wrapped_typed_absent.stdout.raw",
+    "raw/cli_wrapped_typed_absent.stderr.raw", "raw/cli_wrapper_test_only.wrapper_stderr.raw",
+    "raw/cli_wrapper_typed_absent.wrapper_stderr.raw", "raw/cli_test_only.stdout.raw", "raw/cli_test_only.stderr.raw",
+    "raw/cli_typed_absent.stdout.raw", "raw/cli_typed_absent.stderr.raw", "raw/verification.stdout.raw", "raw/verification.stderr.raw"
+  ],
+  "disposable_examined_and_removed": [
+    "raw/replay_a.stdout.raw", "raw/replay_a.stderr.raw"
+  ],
+  "policy": "delete only unreferenced task-owned scratch; preserve all source, tests, historical artifacts, and immutable raw receipts"
+}

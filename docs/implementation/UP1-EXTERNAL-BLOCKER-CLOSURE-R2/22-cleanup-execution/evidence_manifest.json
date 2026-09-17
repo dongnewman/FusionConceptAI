@@ -1,0 +1,41 @@
+{
+  "schema": "UP1.R2.cleanup-execution.evidence-manifest.v1",
+  "status": "pass_limited_cache_cleanup",
+  "claim_ceiling": "cache_cleanup_only_no_source_or_authority_change",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/22-cleanup-execution/**",
+  "manifest_self_excluded": true,
+  "exact_file_count": 6,
+  "files": [
+    {
+      "path": "contract.md",
+      "bytes": 966,
+      "sha256": "6e9f336bdef57714459e2d3b88dd37220e952c239878df59736383310f241f2b"
+    },
+    {
+      "path": "acceptance.md",
+      "bytes": 1004,
+      "sha256": "2f99af745f67850349c4aa1c5bc90fa5029e9d6f763465ae5c224c49b2cc2ea6"
+    },
+    {
+      "path": "run_receipt.json",
+      "bytes": 20514,
+      "sha256": "8db0b409bfb6286ff766c72af603025c7aa18ed0baf54c8dc328661481d427d9"
+    },
+    {
+      "path": "raw/deletion_receipt.txt",
+      "bytes": 10868,
+      "sha256": "c05c7e5e92390e21c4e56b0432ca56cf05216a9936ece775967112b8c118193b"
+    },
+    {
+      "path": "raw/static_validation.txt",
+      "bytes": 408,
+      "sha256": "2b683378ad358e1f09548354029ba4e317244bc8e318f7c2e900b8bd56070053"
+    },
+    {
+      "path": "raw/status_process_after.txt",
+      "bytes": 593,
+      "sha256": "747cd68dde68bb17e7427032539ec38b89dfabe69a78d67ffe4a786ec50da5d1"
+    }
+  ],
+  "integrity_policy": "SHA-256 over exact bytes; manifest self excluded"
+}

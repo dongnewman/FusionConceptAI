@@ -1,0 +1,20 @@
+{
+  "schema": "UP1.environment-provenance-independent-review-evidence-manifest.v1",
+  "review_id": "06-environment-independent-review-r1",
+  "status": "rework",
+  "scope": "read-only hostile review of 06-environment-provenance against 10-environment-capture facts",
+  "write_boundary": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/06-environment-independent-review-r1",
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true,
+  "files": {
+    "review.md": {"bytes": 7129, "sha256": "07f11bad40c750f2fadddd11cc460616138e77c3c1ca3cb2b99345b777032174"},
+    "validation_receipt.json": {"bytes": 2553, "sha256": "56e248003d81f68682b4262a939f2f9d6f6c417c2b56eb8fbb8019bc1a5ece36"},
+    "raw/attack_matrix.txt": {"bytes": 1471, "sha256": "c76ddd5a80d35abc93f95bc2235f530c56fd35cf8bec44901524c2e8a6923ebb"},
+    "raw/determinism.txt": {"bytes": 543, "sha256": "0495db9900e6f18e3a2fc69889193c0c7455e0e46c79e73ada316d45805a6a13"},
+    "raw/manifest_capture_check.txt": {"bytes": 868, "sha256": "a9b13ea736523c6f5597858499b98e0203e13bc70b1317185e62917573d552c3"},
+    "raw/py_compile.stdout.txt": {"bytes": 87, "sha256": "ca36133982289a2837ddec433f16018f95c25ad36db9f8edf2b5db2362660c7d"},
+    "raw/pytest.stdout.txt": {"bytes": 98, "sha256": "bfb71ff885b655792c7c90000cbed5d04bcd9a434d347321bd152b7dda72f67e"}
+  },
+  "self_hash_policy": "manifest self-hash excluded; all other review-owned files listed"
+}

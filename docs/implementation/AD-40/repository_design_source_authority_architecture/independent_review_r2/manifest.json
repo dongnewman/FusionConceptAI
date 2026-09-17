@@ -1,0 +1,82 @@
+{
+  "schema_version": "AD-40-independent-review-r2-v1",
+  "record_kind": "independent_review_manifest",
+  "task_id": "AD-40",
+  "review_round": "independent_review_r2",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning": "high",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "repair_r1_receipt_evidence_closure_and_independent_review_only",
+  "claim_ceiling": "architecture_and_evidence_scope_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T08:20:36.3762568Z",
+  "reviewed_repair_manifest": {
+    "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/manifest.json",
+    "bytes": 18239,
+    "sha256": "2a1fec84afd6a68175af3cb96a7515634f350c7abcfe61cefc651a9261cad666",
+    "self_hash_excluded": true
+  },
+  "frozen_input_recheck": {
+    "count": 15,
+    "all_exist": true,
+    "all_bytes_match": true,
+    "all_sha256_match": true,
+    "paths": [
+      {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/proposal.md","bytes":10074,"sha256":"bdb2e90009bb6fd4650c9eeb521f5edce7fe596f04347c7de89170f84d94d016"},
+      {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/manifest.json","bytes":16953,"sha256":"8a0e6ddb57edf726bad49cccb340dd4ee3c2a04daf2d5d5c3955babe64261ed8"},
+      {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/cleanup_inventory.md","bytes":1207,"sha256":"20b8057e11c619d20ecf651a094634948ee9e88d4393ba06e051a32ca0a3dc35"},
+      {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","bytes":8352,"sha256":"6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7"},
+      {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/manifest.json","bytes":17817,"sha256":"47017d32163a9866806621a12c35a7b7021012422116def5037ad1da22de7dd2"},
+      {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/report.md","bytes":4413,"sha256":"ef792e6db348a2ffc36052fd50f493ef7fc0a6e8ee95fae03232a3a93caef640"},
+      {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+      {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+      {"path":"src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl","bytes":26420,"sha256":"feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"},
+      {"path":"src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl","bytes":14684,"sha256":"e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"},
+      {"path":"docs/implementation/AD-30/acceptance_r2/acceptance.md","bytes":3976,"sha256":"2de172dae2485b8a69f9c45a303cb483dfc178abc578fc1abf127f057d0fd8bf"},
+      {"path":"docs/implementation/AD-33/acceptance.md","bytes":3551,"sha256":"e6d6b039a3772680bb3178cc1e10e50dbf3e05c77f1208bc548b5139a7db156e"},
+      {"path":"docs/implementation/AD-34/acceptance.md","bytes":3217,"sha256":"00ef542ddcf14388bf7d928ca9b7b12a6a02d4f7319fc6f480a27a0b5ccd1e0d"},
+      {"path":"docs/implementation/AD-36/status_sync_r3/report.md","bytes":1689,"sha256":"a9b751e785dbd17c79bd8975e610e2f383426d88fab0a01231734fb4c2975f32"},
+      {"path":"docs/implementation/AD-37/acceptance/acceptance.md","bytes":1866,"sha256":"2260f3143d2d3e620ce2221b4783bf6347990ea5d507c28dbb417e184ce148b1"}
+    ]
+  },
+  "run_recheck": {
+    "count": 6,
+    "all_metadata_complete": true,
+    "all_exit_code_zero": true,
+    "runs": [
+      {"id":"AD40-R1-STATIC-CLOSURE","interpreter":"PowerShell 7","command":"PowerShell inline AD-40 repair R1 static closure validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":61104,"utc_start":"2026-09-15T08:05:20.1891612Z","utc_end":"2026-09-15T08:05:20.3993422Z","exit_code":0},
+      {"id":"AD40-R1-PLAN-VALIDATOR","interpreter":"python","command":"python docs/v4_multitopology_generation/validate_plan.py","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":80060,"utc_start":"2026-09-15T08:05:31.3878532Z","utc_end":"2026-09-15T08:05:31.6602447Z","exit_code":0},
+      {"id":"AD40-R1-FINAL-SCOPED-RECHECK","interpreter":"PowerShell 7","command":"PowerShell inline AD-40 repair R1 final scoped recheck","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":58636,"utc_start":"2026-09-15T08:09:01.1582656Z","utc_end":"2026-09-15T08:09:01.2854722Z","exit_code":0},
+      {"id":"AD40-R1-FINAL-SCOPED-RECHECK-R2","interpreter":"PowerShell 7","command":"PowerShell inline AD-40 repair R1 final scoped recheck R2","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":60832,"utc_start":"2026-09-15T08:10:57.5747073Z","utc_end":"2026-09-15T08:10:57.6353301Z","exit_code":0},
+      {"id":"AD40-R1-FINAL-CLOSURE","interpreter":"PowerShell 7","command":"PowerShell inline AD-40 repair R1 final closure","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":78132,"utc_start":"2026-09-15T08:12:51.6843976Z","utc_end":"2026-09-15T08:12:51.8788789Z","exit_code":0},
+      {"id":"AD40-R1-FINAL-CLOSURE-R2","interpreter":"PowerShell 7","command":"PowerShell inline AD-40 repair R1 final closure R2","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":79696,"utc_start":"2026-09-15T08:15:33.2413762Z","utc_end":"2026-09-15T08:15:33.4213893Z","exit_code":0}
+    ]
+  },
+  "stream_recheck": {"expected":18,"actual":18,"all_paths_exist":true,"all_bytes_match":true,"all_sha256_match":true},
+  "output_recheck": {"expected":16,"actual":16,"all_paths_exist":true,"all_bytes_match":true,"all_sha256_match":true,"self_hash_excluded":true},
+  "independent_commands": [
+    {"id":"R2-PLAN","interpreter":"python","command":"python docs/v4_multitopology_generation/validate_plan.py","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":81352,"utc_start":"2026-09-15T08:18:46.2526618Z","utc_end":"2026-09-15T08:18:46.5730485Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/plan_validator.stdout.txt","stdout_bytes":489,"stdout_sha256":"5f1293c665a893498cd787b9fbc17587cbf5a0337dcdfffebd3380d8cc68d176"},
+    {"id":"R2-REVALIDATION","interpreter":"PowerShell 7","command":"PowerShell inline JSON/input/run/18-stream/output/scope/control/claim validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":70776,"utc_start":"2026-09-15T08:20:13.0708625Z","utc_end":"2026-09-15T08:20:13.4033433Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/repair_revalidation.stdout.txt","stdout_bytes":811,"stdout_sha256":"57a0a5f64374aaa2198bf0f385fb5c6a670f85312dd83ad6e813ed3125b56fd7"},
+    {"id":"R2-SCOPE","interpreter":"PowerShell 7","command":"PowerShell inline repair-owned path, forbidden-path, false-claim and history-preservation validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":80072,"utc_start":"2026-09-15T08:20:36.3208452Z","utc_end":"2026-09-15T08:20:36.3762568Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/scope_recheck.stdout.txt","stdout_bytes":384,"stdout_sha256":"d89c3738f2e6c3463515c0039ff2984c246044e4ebfdaadef941660db707d9f7"}
+  ],
+  "checks": {
+    "json_hash_path_control_scope": true,
+    "plan_validator": true,
+    "repair_manifest_self_hash_excluded_and_bytes": true,
+    "architecture_work_orders_software_only_ceiling_unchanged": true,
+    "no_candidate_hash_machine_node_present_t0_t1_t2_provider_mesh_solver_physical_r_credit": true,
+    "julia_desc_provider_mesh_solver_physical": "not_run"
+  },
+  "claims": {"implementation":false,"candidate_hash_created":false,"machine_node_created":false,"present":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"r01_r10":false},
+  "outputs": [
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/report.md","bytes":4506,"sha256":"18d7d903092e3fff0eeebd64aa6fc9384ac704aa8ba832a0af2475fb28c01ebd"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/manifest.json","bytes":9653,"sha256":"self_hash_excluded"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/validation_receipt_r2.json","bytes":7611,"sha256":"96602a09f19e6987fb5b6c2f5f040ee029f27569335a9ccd999b7aadce5d7c0a"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/plan_validator.stdout.txt","bytes":489,"sha256":"5f1293c665a893498cd787b9fbc17587cbf5a0337dcdfffebd3380d8cc68d176"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/repair_revalidation.stdout.txt","bytes":811,"sha256":"57a0a5f64374aaa2198bf0f385fb5c6a670f85312dd83ad6e813ed3125b56fd7"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/scope_recheck.stdout.txt","bytes":384,"sha256":"d89c3738f2e6c3463515c0039ff2984c246044e4ebfdaadef941660db707d9f7"}
+  ],
+  "cleanup": {"final_exact_owned_set":"all six paths under independent_review_r2 including archive/review sidecars","removed":[],"ambiguous_deferred":[],"historical_receipts_preserved":true,"unrelated_dirty_files_preserved":true}
+}

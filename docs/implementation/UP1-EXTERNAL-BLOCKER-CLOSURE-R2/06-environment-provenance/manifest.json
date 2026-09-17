@@ -1,0 +1,73 @@
+{
+  "schema": "UP1.environment-provenance-r2-evidence-manifest.v1",
+  "scope": "06-environment-provenance",
+  "write_boundary": [
+    "tools/up1_external_closure_r2/environment_provenance",
+    "test/up1_external_closure_r2/environment_provenance",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance"
+  ],
+  "no_install": true,
+  "no_download": true,
+  "exclude_from_exact_set": [
+    "**/__pycache__/**",
+    "*.pyc"
+  ],
+  "exact_file_count": 20,
+  "self_hash_policy": "manifest is included in exact set but omitted from files hash map; all other owned files are independently hashable",
+  "exact_files": [
+    "tools/up1_external_closure_r2/environment_provenance/__init__.py",
+    "tools/up1_external_closure_r2/environment_provenance/__main__.py",
+    "tools/up1_external_closure_r2/environment_provenance/cli.py",
+    "tools/up1_external_closure_r2/environment_provenance/validator.py",
+    "tools/up1_external_closure_r2/environment_provenance/fixtures/README.md",
+    "tools/up1_external_closure_r2/environment_provenance/fixtures/invalid_hash_drift.json",
+    "tools/up1_external_closure_r2/environment_provenance/fixtures/test_only_positive.json",
+    "tools/up1_external_closure_r2/environment_provenance/fixtures/test_only_typed_absence.json",
+    "test/up1_external_closure_r2/environment_provenance/__init__.py",
+    "test/up1_external_closure_r2/environment_provenance/test_environment_provenance.py",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/README.md",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/contract.md",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/manifest.json",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/schema.json",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/validation_receipt.json",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/raw/cli_negative.stdout.json",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/raw/pytest.stderr.txt",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/raw/pytest.stdout.txt",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/raw/pytest2.stderr.txt",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/raw/pytest2.stdout.txt"
+  ],
+  "files": {
+    "tools/up1_external_closure_r2/environment_provenance/validator.py": {
+      "bytes": 48490,
+      "sha256": "42384059ea4ec2fe20edf51e634f044b7c685820e3f4858ffc60f213832df7c6"
+    },
+    "tools/up1_external_closure_r2/environment_provenance/cli.py": {
+      "bytes": 2758,
+      "sha256": "946f0e6612070f91d48d7474b822705ee786f1b42c8b1766c5dc2a4347c511e7"
+    },
+    "test/up1_external_closure_r2/environment_provenance/test_environment_provenance.py": {
+      "bytes": 24461,
+      "sha256": "72df184ac080f94092960b6987963defb1a04f562803f433adf7b43369de7c21"
+    },
+    "raw/pytest.stdout.txt": {
+      "bytes": 99,
+      "sha256": "a619c729d5f62ba3716916a9242d81212c4191a3c68c13669a9c1a32cffc4178"
+    },
+    "raw/pytest.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "raw/cli_negative.stdout.json": {
+      "bytes": 385,
+      "sha256": "e6f4cefac469f8f13e0a8338feb250d62c665e2cd31a4726cef3d16ca0cf5a77"
+    },
+    "raw/pytest2.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "raw/pytest2.stdout.txt": {
+      "bytes": 99,
+      "sha256": "5d70ed1325623d498edf078b964475cea05816e32204311afd4ac56d25d6c24b"
+    }
+  }
+}

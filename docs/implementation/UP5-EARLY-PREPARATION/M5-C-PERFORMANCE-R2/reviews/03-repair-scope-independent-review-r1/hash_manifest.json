@@ -1,0 +1,39 @@
+{
+  "schema": "M5CIndependentReviewHashManifestV1",
+  "review_id": "M5-C-PERFORMANCE-R2-REPAIR-SCOPE-INDEPENDENT-REVIEW-R1",
+  "hash_algorithm": "SHA-256",
+  "generated_utc": "2026-09-16T22:51:41.2117620Z",
+  "capture_command_exit": 0,
+  "capture": {
+    "powershell_pid": 94516,
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "branch": "main",
+    "julia_process_count": 0
+  },
+  "records": [
+    {"path": "judgment.md", "bytes": 5429, "sha256": "ccb109f3e8ab3795d2b5364de8829b4afa6e24ee876a3d1159e5de3ab472a2a3", "role": "review_output"},
+    {"path": "raw/audit_checks.txt", "bytes": 927, "sha256": "dac6fe32aab1ec4687e006d03711343920d248099f0ae6d2526c163d319fe86d", "role": "review_raw"},
+    {"path": "../02-repair-scope-independent-review-r1/judgment.md", "bytes": 9868, "sha256": "7146f05dd18b116fc72a750364a4961ae03b79618951630cfab867fc58da48b0", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/contract.md", "bytes": 21429, "sha256": "7e54654dc6967afcd334ca5826b62c5467c7b6b354a8cab010a5566437692f05", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/acceptance_matrix.md", "bytes": 4063, "sha256": "c3d262f92e7194ebd8fde597637cd9b7c37cad76a50052b1ac133b59ddcc39f5", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/schemas/receipt_schema.json", "bytes": 2323, "sha256": "e65901a09743b8f73c879acc6459996b9f919cbf286d41ffaaacb047539bea8c", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/schemas/condition_envelope_schema.json", "bytes": 1104, "sha256": "54b2627b7c2e01d302f29f17abba1b91016cbce32f501e4f3909afa6aea5bb2b", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/manifest.json", "bytes": 5737, "sha256": "72af2de49d2ff912f49bb1362cc38421bcc5a47a24566dcaa3452ac09e155c48", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/freeze_receipt.json", "bytes": 1753, "sha256": "ab318515b44a3d6b5f6b52eb128cdc4b63717937fb5071011f43e7c186a5394d", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/hash_manifest.json", "bytes": 2844, "sha256": "924b178f299b9ee31343dae3e3ef29924552e33eb823af5cab72967be174ccd2", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/raw/scope_repair_audit.stdout.raw", "bytes": 1696, "sha256": "979f6698442d10365530d677f5abe6faad8ecbb8fc1708630af205e195bf463f", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/raw/scope_repair_audit.stderr.raw", "bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b", "role": "reviewed_input"},
+    {"path": "../../03-repair-scope-contract-r1/raw/scope_repair_audit.combined.raw", "bytes": 1696, "sha256": "979f6698442d10365530d677f5abe6faad8ecbb8fc1708630af205e195bf463f", "role": "reviewed_input"},
+    {"path": "../../../../../../src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl", "bytes": 23892, "sha256": "7a1f52a96a7a79061b1e4bdb0fc1b7b41de5e45266d0ac4726a50502a4dc6500", "role": "frozen_m5c_input"},
+    {"path": "../../../../../../test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl", "bytes": 14243, "sha256": "e0ed925a77f65aa045586f3c8dd78b2acfe8e023b29f1f95bba1f246b61a9355", "role": "frozen_m5c_input"},
+    {"path": "../../../../../../test/RuntimeV4/M4Isolated/oracles/conditional_egraph_oracle_v1.py", "bytes": 4315, "sha256": "92db4edbea2060409d22ff453fa9eef119f8639f1ab6edb6cc01103218309dca", "role": "frozen_m5c_input"},
+    {"path": "../../../../../../test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl", "bytes": 12817, "sha256": "7ea02e3d4ea313cdce5723150674a4c8b1440cb846faa3189535397471e56522", "role": "frozen_m5c_input"},
+    {"path": "../../../../../../src/IR/ConditionalEGraphTypes.jl", "bytes": 27558, "sha256": "885119aa142335f4dedcb1eb506b48350bc7793538b55d622ee9766e0ac47bee", "role": "frozen_core_input"},
+    {"path": "../../../../../../src/IR/ConditionalEGraphSaturation.jl", "bytes": 24038, "sha256": "643775a5b10b9865269c66088d97ff7476312924f324d9c8b75107ad7749cdb3", "role": "frozen_core_input"},
+    {"path": "../../../../../../src/Canonical/ConditionalEGraphCanonical.jl", "bytes": 18769, "sha256": "038c43431f053aa22ecac707a950aea19ae9d6a85157ce7d8325e43f3690eb12", "role": "frozen_core_input"},
+    {"path": "../../../../../../src/Canonical/TypedASTProgramCanonical.jl", "bytes": 32199, "sha256": "b978fb99164f4d0f58c639f2e58dc1ecc3bc9baa2f9afdef63cd6e7c323809ff", "role": "frozen_core_input"},
+    {"path": "../../../../../../src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl", "bytes": 26258, "sha256": "284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209", "role": "historical_upstream_current_freeze"},
+    {"path": "../../../../../../src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl", "bytes": 26187, "sha256": "477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59", "role": "historical_upstream_current_freeze"}
+  ],
+  "manifest_self_hash": "excluded_by_policy"
+}

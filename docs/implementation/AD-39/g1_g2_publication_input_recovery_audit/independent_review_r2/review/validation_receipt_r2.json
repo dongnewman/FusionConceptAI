@@ -1,0 +1,53 @@
+{
+  "record_kind": "AD-39-independent-review-r2-validation-receipt",
+  "review_round": "r2",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "primary_validation": {
+    "command": "PowerShell JSON/hash/path/API/control-character/diff-scope recheck of AD-39 repair_r1",
+    "pid": 76160,
+    "started_utc": "2026-09-15T07:38:47.4674222Z",
+    "ended_utc": "2026-09-15T07:38:47.5270145Z",
+    "exit_code": 0,
+    "stdout_raw": "json=pass;head=4b69f55f7f80240147a65a22809dc1207824dde2;ad36_status=accepted_limited/accepted=True;ad36_bytes=5928;ad36_sha_match=True;historical_6021_same_sha_preserved=True;g1_fresh_inputs=6;g2_fresh_inputs=7;fresh_input_required_field_gaps=0;product_counts_14=True;result_union_ok=True;future_product_paths=0;control_characters=0;api_scan=pass;git_diff_check=pass;present_t0_t1_t2_physical_r01_r10=false;heavy_execution=not_run",
+    "stderr_raw": "",
+    "stdout_sha256": "0f0433d3f00272541127a32dbe72460cedaad208d8e15e850722258e67950bb8"
+  },
+  "input_hashes": {
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md": "6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/manifest.json": "47017d32163a9866806621a12c35a7b7021012422116def5037ad1da22de7dd2",
+    "docs/implementation/AD-36/manifest.json": "4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716"
+  },
+  "output_hashes": {
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/report.md": "ef792e6db348a2ffc36052fd50f493ef7fc0a6e8ee95fae03232a3a93caef640",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/manifest.json": "self_hash_excluded",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/review/validation_receipt_r2.json": "self_hash_excluded"
+  },
+  "checks": {
+    "json_parse": "pass",
+    "ad36_current_status_and_byte_sha": "pass",
+    "historical_6021_same_sha_metadata_bug_preserved": "pass",
+    "fresh_input_contracts": "G1=6/G2=7; all required fields present; canonical AD-37 paths unique",
+    "product_union_dependency_forbidden_edges": "pass",
+    "future_publication_paths": "absent",
+    "api_scan": "pass",
+    "control_character_scan": "pass",
+    "git_diff_check": "pass",
+    "julia_desc_provider_mesh_solver_physical": "not_run"
+  },
+  "execution_boundary": {
+    "candidate_hash_created": false,
+    "fixture_promoted": false,
+    "future_publication_dispatched": false,
+    "machine_node_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "r01_r10": false
+  }
+}

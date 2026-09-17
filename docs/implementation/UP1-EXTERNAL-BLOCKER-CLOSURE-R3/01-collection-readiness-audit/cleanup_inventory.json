@@ -1,0 +1,32 @@
+{
+  "schema": "UP1.external-handoff.collection-readiness-cleanup.r3.v1",
+  "status": "audit_only",
+  "write_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/01-collection-readiness-audit/**",
+  "owned_exact_set": [
+    "audit.md",
+    "contract_patch_proposal.md",
+    "field_matrix.json",
+    "cleanup_inventory.json",
+    "manifest.json",
+    "raw/collection_readiness.stdout.raw",
+    "raw/collection_readiness.exit.txt",
+    "raw/collection_readiness.pid.txt",
+    "raw/collection_readiness.utc.txt",
+    "raw/input_hashes.txt",
+    "raw/artifact_validation.stdout.raw",
+    "raw/artifact_validation.exit.txt",
+    "raw/artifact_validation.pid.txt",
+    "raw/artifact_validation.utc.txt"
+    ,"raw/final_validation.stdout.raw"
+    ,"raw/final_validation.exit.txt"
+    ,"raw/final_validation.pid.txt"
+    ,"raw/final_validation.utc.txt"
+  ],
+  "cleanup_performed": false,
+  "deletion_targets": [],
+  "preserve_inputs": ["../../UP1-EXTERNAL-BLOCKER-CLOSURE-R2/19-external-handoff", "../../UP1-EXTERNAL-BLOCKER-CLOSURE-R2/01-witness-authority", "../../UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay", "../../UP1-EXTERNAL-BLOCKER-CLOSURE-R2/04-source-axis-binding", "../../UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance"],
+  "temporary_artifacts": {"external_response": "none", "credentials": "none", "network": "not_used", "s3": "not_run", "julia": "not_run", "desc": "not_run", "solver": "not_run"},
+  "authority_boundary": "all owners/endpoints/materials remain typed_absence; no packet was sent",
+  "new_ad": false,
+  "source_or_test_mutation": false
+}

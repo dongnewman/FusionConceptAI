@@ -1,0 +1,25 @@
+{
+  "schema":"M5CPerformanceRepairScopeIndependentReviewR1",
+  "review_id":"M5-C-PERFORMANCE-R2-REPAIR-SCOPE-INDEPENDENT-REVIEW-R1-06",
+  "status":"not_authorized_machine_closure_and_freeze_residual",
+  "decision":"review_pending",
+  "implementation_authorized":false,
+  "authorized_future_subset":"adapter_only_bounded_screen_only only after explicit reauthorization, machine-closure repair and fresh baseline review",
+  "scope":"manufactured_conditional_egraph/screen_only",
+  "claim_ceiling":"synthetic_egraph_equality/screen_only",
+  "formal_credit":"none",
+  "execution_policy":{"read_only":true,"julia_started":false,"desc_started":false,"s3_started":false,"solver_started":false,"mesh_started":false,"search_started":false,"physical_started":false,"source_test_contract_mutation":false,"review_output_only":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/reviews/06-repair-scope-independent-review-r1/**"},
+  "reviewed_roots":["06-repair-scope-contract-r3/**","reviews/04-repair-scope-independent-review-r1/**","05-implementation-readiness-audit-r1/**"],
+  "findings":{"p0":["P0-A-no-current-implementation-or-bounded-run-authorization"],"p1":["P1-03-condition-required-closure","P1-04-binding-cross-field-closure","P1-05-budget-priority-relation","P1-06-collision-byte-hash-closure","P1-07-supervisor-receipt-relations","P1-01-write-root-closure","P1-02-limit-relation"],"p2":["P2-01-freeze-hash-and-exact-set","P2-02-stage-raw-receipt-closure","P2-03-baseline-no-schema","P2-04-cache-owner-count-hash-closure"]},
+  "negative_replay":{"vector_count":18,"schema_rejected":15,"schema_gaps":["condition-required-closure","cache-owner"],"no_schema_gaps":["baseline-typed-absent"],"exit":0},
+  "freeze_check":{"head":"b2c04d8339774635aaecd73651efcdb101e01b5d","branch":"main","julia_process_count":0,"current_input_hash_matches":9,"current_input_count":10,"hash_failure":"src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl"},
+  "outputs":[
+    {"path":"judgment.md","bytes":7496,"sha256":"f096f6eec6c2ecc0deb0e75a0bf65ee0015736318a1f16dd90f3e6f0c9f79331","role":"independent_decision"},
+    {"path":"raw/audit_checks.txt","bytes":3648,"sha256":"68fb8a1a6d8a7327b7ada616aa09e7273485a594542f610e72af6c078bdb188c","role":"audit_metadata_and_closure_checks"},
+    {"path":"raw/independent_self_test.stdout.raw","bytes":2507,"sha256":"e6dc4c9b9462ed8262b2d0b109633583b9c7afa132845f98a093e4e67ef7a2aa","role":"independent_self_test_stdout"},
+    {"path":"raw/independent_self_test.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","role":"independent_self_test_stderr"},
+    {"path":"raw/negative_vectors_replay.stdout.raw","bytes":3348,"sha256":"142848c3bf38a8d98facc67c9e86ee080dde5028c7cbf925d2795f01c160b1b1","role":"negative_vector_replay_stdout"},
+    {"path":"raw/negative_vectors_replay.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","role":"negative_vector_replay_stderr"}
+  ],
+  "manifest_self_hash":"excluded_by_policy"
+}

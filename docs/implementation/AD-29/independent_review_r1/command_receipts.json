@@ -1,0 +1,35 @@
+{
+  "schema_version": "AD-29-independent-review-r1-command-receipts-v1",
+  "reviewer": "independent_luna_high_static",
+  "scope": "read-only static review; no Julia/DESC/provider/mesh/physical/environment mutation",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_full_status_entry_count": 3610,
+  "prewrite_status_sha256_utf8_lf": "1060d963ab126a8886ce3cf2ff97ea17d41da6407708fa30ac88eed67aee998c",
+  "preflight_matching_julia_desc_process_count": 0,
+  "commands": [
+    {"operation": "HEAD and branch", "command": "git rev-parse HEAD; git branch --show-current", "result": "HEAD and main recorded"},
+    {"operation": "current dirty snapshot", "command": "git status --short --untracked-files=all", "result": "3610 entries; SHA-256 recorded as UTF-8 LF"},
+    {"operation": "process sweep", "command": "Get-Process -Name julia,julia-debug,desc -ErrorAction SilentlyContinue", "result": "zero matching processes"},
+    {"operation": "source audit read", "command": "Get-Content three PYTHON-ENV-REINSTALL-AUDIT reports and command receipts", "result": "role boundaries, missing jax-finufft, inherited FreeGS packages, external VMEX/Pleiades trees, and CQL3D no-Python toolchain confirmed"},
+    {"operation": "AD-29 archive read", "command": "Get-Content proposal.md status.json evidence_manifest.json command_receipts.json", "result": "proposal/review_pending/accepted=false/execution_authorized=false; fresh receipt gate and claim ceiling confirmed"},
+    {"operation": "core hash verification", "command": "Get-FileHash core README/16/18/task_manifest/validator and all manifest-listed audit/archive inputs", "result": "all listed actual hashes match; pre-change core hashes equal recorded post-change hashes"},
+    {"operation": "task manifest parse", "command": "Get-Content task_manifest.json | ConvertFrom-Json", "result": "31 tasks; R01-R10 unchanged; new preparation nodes planned/accepted=false"},
+    {"operation": "independent DAG traversal", "command": "PowerShell dependency traversal over task_manifest.json", "result": "31/31 nodes reached in 25 rounds; acyclic=true"},
+    {"operation": "validator receipt review", "command": "Read AD-29 evidence/command receipt for validate_plan.py", "result": "final exit 0; 31 tasks; DAG acyclic; 31 markdown; 354 relative links; 16 snapshots; initial missing-link exit 1 correctly classified transient"},
+    {"operation": "provider or physics execution", "command": "Julia/DESC/provider/mesh/physical commands", "result": "NOT RUN by instruction"}
+  ],
+  "writes": [
+    "docs/implementation/AD-29/independent_review_r1/report.md",
+    "docs/implementation/AD-29/independent_review_r1/report.json",
+    "docs/implementation/AD-29/independent_review_r1/evidence_manifest.json",
+    "docs/implementation/AD-29/independent_review_r1/command_receipts.json"
+  ],
+  "postwrite_outputs": {
+    "report.md": {"bytes": 4847, "sha256": "59552e64ab863d63027187fffdfc2f0c57328e2ec4f114345cf13ba43c6cae89"},
+    "report.json": {"bytes": 3593, "sha256": "9af65a50ca55aa838669c135614d2d0ea7c8c69e708628ba0729494d3981e2a9"},
+    "evidence_manifest.json": {"bytes": 3904, "sha256": "b7a9ce00f21eddd0cd74c6e599071a95264dd90b99c8f861ceba7e42bed6fe72"}
+  },
+  "postwrite_full_status_entry_count": 3620,
+  "claim_ceiling": ["pass_limited_architecture_only", "contract_only_static", "historical_receipts_only", "no_current_provider", "no_mesh", "no_physics", "no_engineering", "no_B00", "no_B04", "no_R01_R10"]
+}

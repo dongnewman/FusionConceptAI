@@ -1,0 +1,16 @@
+{
+  "record_kind": "ad28_status_sync_command_receipts",
+  "schema_version": "status-sync-r3",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime_policy": "read_only_static_qa_no_julia_no_desc",
+  "receipts": [
+    {"id": "capture", "command": "git rev-parse HEAD; git status --porcelain=v1", "exit_code": 0, "result": "HEAD 4b69f55f7f80240147a65a22809dc1207824dde2; status rows 295; pre-existing dirty worktree preserved"},
+    {"id": "process_sweep_before", "command": "Get-CimInstance Win32_Process | filter Julia/DESC workload", "exit_code": 0, "result": "empty"},
+    {"id": "validate_plan", "command": "python docs/v4_multitopology_generation/validate_plan.py", "exit_code": 0, "result": "checks pass; markdown_files_checked 31; relative_links_checked 346; task_count 31; task_dag_acyclic true; errors []"},
+    {"id": "dag_json", "command": "python JSON parse and dependency closure for task_manifest.json", "exit_code": 0, "result": "task_count 31; missing_dependencies []; AD28 route preserved; G1/G2/G3 parallel on UP1-01/02/03; VNEXT -> UP2-00 -> UP1-04B -> UP1-04 -> UP2-01"},
+    {"id": "git_diff_check", "command": "git diff --check", "exit_code": 0, "result": "pass; only pre-existing LF-to-CRLF warnings"},
+    {"id": "protected_hashes_after", "command": "SHA256 and byte-size check of protected dirty files", "exit_code": 0, "result": "all six protected hashes match capture manifest"},
+    {"id": "process_sweep_after", "command": "Get-CimInstance Win32_Process | filter Julia/DESC workload", "exit_code": 0, "result": "empty"}
+  ],
+  "non_execution_statement": "No Julia/DESC, compiler, mesh, provider, physical, B00, B04, complete UP1-04 or R01-R10 execution was performed or credited."
+}

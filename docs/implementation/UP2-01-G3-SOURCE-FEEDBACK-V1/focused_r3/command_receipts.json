@@ -1,0 +1,15 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-focused-r3-command-receipts-v1",
+  "reviewer": "independent_luna_high_serial_executor",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 51704,
+  "exit_code": 0,
+  "utc_observed": {"before": "2026-09-14T21:06:41.3214419Z", "after": "2026-09-14T21:06:47.5877300Z"},
+  "preflight": {"matching_julia_desc_process_count": 0, "dirty_entry_count": 301, "target_sha256_verified": true},
+  "postflight": {"matching_julia_desc_process_count": 0, "dirty_entry_count": 301, "target_sha256_unchanged": true},
+  "target_sha256": {"source": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0", "test": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e", "fixture": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40", "static_qa": "111d5a2ceb9f0364c1cc7efda26d1bb9013577862ac30bd00ff9f3321c5c2642"},
+  "raw_outputs": {"stdout": {"path": "stdout.txt", "bytes": 392, "sha256": "d128334555045139ee24f9f1c5ba36d8ee1b8e92147597d594e885670e497f12"}, "stderr": {"path": "stderr.txt", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "test_summary": {"source_feedback_typed_law": "9/9", "external_authority_resolution_ceiling": "9/9", "typed_contradiction_edit_identity": "27/27", "total": "45/45"},
+  "claim_ceiling": ["software_test_only", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"]
+}

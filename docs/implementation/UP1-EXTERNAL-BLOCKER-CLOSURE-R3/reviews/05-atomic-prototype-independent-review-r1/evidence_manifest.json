@@ -1,0 +1,67 @@
+{
+  "schema": "UP1.atomic-bundle.prototype-independent-review-manifest.r1",
+  "status": "fail_limited",
+  "decision": "fail_limited",
+  "reviewed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "network_or_external_send": false,
+  "ad_s3_julia_desc_solver": false,
+  "production_source_or_test_mutation": false,
+  "review_output_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/reviews/05-atomic-prototype-independent-review-r1",
+  "commands": [
+    {
+      "kind": "focused_tests_existing_receipt",
+      "command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p 'test_*.py'",
+      "pid": "103052",
+      "utc": "2026-09-16T23:07:52.6548490Z",
+      "exit": 0,
+      "test_count": 9,
+      "raw": "raw/focused_test_1.output.raw",
+      "sha256": "bc9f6d02175dccb906252321e8ea7acea7d9839e9b515cd8bfbe39c90a222103"
+    },
+    {
+      "kind": "focused_tests_existing_receipt",
+      "command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p 'test_*.py'",
+      "pid": "34732",
+      "utc": "2026-09-16T23:07:53.7069984Z",
+      "exit": 0,
+      "test_count": 9,
+      "raw": "05-atomic-bundle-prototype/raw/focused_test_2.output.raw",
+      "sha256": "95b2870df5fec80dec4ec8c60b0e120eecd3e5bbf6bb23537beb22dbd3389a79"
+    },
+    {
+      "kind": "offline_adversarial_probe",
+      "command": "python -B -",
+      "pid": "88180",
+      "utc": "2026-09-16T23:16:15.006193Z",
+      "exit": 0,
+      "raw": "raw/adversarial_probe.stdout.raw",
+      "sha256": "a551c522a7ffbe65bd6730265903113fafe8fe638c6087980c8dc1eb8dd59214",
+      "observations": ["fallback_number_collision", "malformed_input_crash", "cas_preseed_overwrite", "forged_quarantine_accepted", "ehp03_mapping_duplicate_pair_accepted", "ehp04_hash_fields_unchecked"]
+    }
+  ],
+  "reviewed_files_sha256": {
+    "tools/up1_external_closure_r3/atomic_bundle/canonical.py": "de77353b7a3cc991e00d541212de0cfc7d370af2cbbbf4237ced498eee56f4a7",
+    "tools/up1_external_closure_r3/atomic_bundle/bundle.py": "a2f3b591b673858c9bf749d4ace958ece9275f028eb22b69c2601f915828b16b",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle.py": "ed2ea58091ee8a34f87dadb755659bf1d8e28c06a5a888200d00b478c2e929a2",
+    "test/up1_external_closure_r3/atomic_bundle/fixtures/test_only_ed25519.json": "8c87d4cbbcdf6bb517781b120b2d62c4711992ff07aabcd47420b6c7031c2b8c",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/bundle.schema.json": "60ad24c332c11517e56af0297a6c0f9afb2d6b4e7f4eac57573dcba03b7c455d",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-03.schema.json": "d4228c8ad667a36711b43a19cd0bcb4fa2f16a1c5537e740a6d391db54a60b35",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-04.schema.json": "b595a707aab06c7fcb0a46f29436043069cb7237c112872c366fa8ed30c284a6",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/04-atomic-contract-repair-r1/bundle.schema.json": "fd5b27ddea22ef3793b368a77bd1590478f001c2e301c400605425a1a014d109",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/04-atomic-contract-repair-r1/verifier-contract.md": "f7b10a4c2ef79318497ee20b634cc93370376e80f3948b4cfd244d682c707aa1",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/05-atomic-bundle-prototype/acceptance-test-matrix.json": "72ceb6a2eef8e3eb83d256eb567da414b20d38f4ab39614880d735bb6b400bab",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/05-atomic-bundle-prototype/error-codes.json": "668772dd4595163e2ffa2672035d47ad8095c1ce20af06462de542f483ab10da",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/05-atomic-bundle-prototype/preimage-profile.json": "d20bb02bfb253f973961884bb06d6f079ee41cca729e47c8fad0a90928f934b7"
+  },
+  "raw_receipts": {
+    "adversarial_probe_pid": "raw/adversarial_probe.pid.txt",
+    "adversarial_probe_utc": "raw/adversarial_probe.utc.txt",
+    "adversarial_probe_exit": "raw/adversarial_probe.exit.txt",
+    "focused_test_pid": "raw/focused_test.pid.txt",
+    "focused_test_utc": "raw/focused_test.utc.txt",
+    "focused_test_exit": "raw/focused_test.exit.txt",
+    "focused_test_2_pid": "raw/focused_test_2.pid.txt",
+    "focused_test_2_utc": "raw/focused_test_2.utc.txt",
+    "focused_test_2_exit": "raw/focused_test_2.exit.txt"
+  }
+}

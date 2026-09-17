@@ -1,0 +1,398 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-repair-r1",
+  "record_kind": "revised_architecture_proposal_after_independent_review",
+  "decision_id": "AD-33",
+  "revision": "repair_r1",
+  "date": "2026-09-15",
+  "review_basis": {
+    "review_path": "docs/implementation/AD-33/g1_g2_editability_independent_review_r1/manifest.json",
+    "review_verdict": "changes_requested",
+    "reviewer": "different_gpt-5.6-luna_high",
+    "reviewed_report_sha256": "154ea03f20503e069f68ebd2cd72315af2685049482c418d5b91838d019016d3",
+    "reviewed_manifest_sha256": "1ad2f48e139bb51a862c60f661e04c11aa1e07ab85ec6bcbbf8b4a3be3496cc2"
+  },
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "status": "blocked_pending_architecture_repair",
+  "accepted": false,
+  "implementation_accepted": false,
+  "actual_child_accepted": false,
+  "read_only_repair": true,
+  "execution": {
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "launcher_added": false
+  },
+  "repair_findings": {
+    "F03": "Exact additive candidate-bound parent/declaration envelopes for G1 and G2; independent parent ref/hash/baseline recomputation; stored child contract ref and independently recomputed identity hash; ref-only and synthetic fixture rejection.",
+    "F04": "Four distinct present slot types per sibling and axis-tagged absent records bound to field, locator, source hash, candidate, parent and child.",
+    "F05": "Domain-tagged fixed-order non-recursive six-layer hashes; typed zero operation digest; history is a digest-only NTuple wrapper.",
+    "F06": "Closed state/input/operation/applied-or-rejected receipt fields; frozen state-CAS then source-CAS order; rejected receipt excluded from published state/history and exact prior-byte/SHA preservation.",
+    "F07": "G2 mesh plan constructor fixes execution_status=:not_executed; symbolic unique_match cannot promote execution or physical status.",
+    "F08": "Exact source/test/fixture/static-QA/archive scopes and direct commands; no launcher."
+  },
+  "nodes": [
+    {
+      "id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC",
+      "status": "blocked_pending_architecture_repair",
+      "phase": "UP1",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G1-DIFFUSION-V1"],
+      "parallel_to": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2"],
+      "semantic_owner": "G1 mechanism/source body",
+      "exact_write_scope": [
+        "src/GenomeV5/G1/G1MechanismChildEditabilityV1.jl",
+        "test/GenomeV5/G1/g1_mechanism_child_editability_v1_contract_tests.jl",
+        "test/GenomeV5/G1/g1_mechanism_child_editability_v1_fixture.json",
+        "test/GenomeV5/G1/static_qa_g1_mechanism_child_editability_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/manifest.json"
+      ],
+      "direct_commands": [
+        "python test/GenomeV5/G1/static_qa_g1_mechanism_child_editability_v1.py",
+        "julia --startup-file=no --project=. test/GenomeV5/G1/g1_mechanism_child_editability_v1_contract_tests.jl"
+      ],
+      "fixed_operation": "replace_source_payload",
+      "parent_envelope": {
+        "type": "G1MechanismParentEnvelopeV1",
+        "fields": [
+          "candidate_ref:GenomeContractRef",
+          "parent_ref:G1MechanismParentDeclarationRefV1",
+          "parent_ref_identity_hash:Digest256",
+          "parent_declaration_hash:Digest256",
+          "v1_baseline:G1MechanismV1BaselineBindingV1",
+          "parent_binding_hash:Digest256"
+        ],
+        "equality_rules": [
+          "parent_ref.candidate_ref == candidate_ref",
+          "parent_ref_identity_hash recomputed from fixed candidate/ref fields",
+          "parent_declaration_hash equals source-backed V1 declaration hash",
+          "v1_baseline_hash recomputed from baseline ref/path/source bytes hash/semantic hash",
+          "parent_binding_hash recomputed from candidate/ref identities/parent hash/baseline hash"
+        ]
+      },
+      "child_contract": {
+        "ref_type": "G1MechanismChildContractRefV1",
+        "stored_identity_hash_type": "Digest256",
+        "identity_domain": "ad33:g1:child-contract-identity:v1",
+        "ref_only_or_fixture_authority": false
+      },
+      "provenance": {
+        "present_slot_types": [
+          "G1PayloadSchemaSlotV1",
+          "G1CanonicalizationSlotV1",
+          "G1ApplicabilitySlotV1",
+          "G1EvidenceReceiptSlotV1"
+        ],
+        "absent_type": "G1ProvenanceAbsentV1",
+        "absence_domain": "ad33:g1:provenance-absence:v1",
+        "absence_bindings": [
+          "axis",
+          "candidate_ref",
+          "parent_ref",
+          "parent_declaration_hash",
+          "child_key",
+          "child_contract_ref",
+          "child_contract_identity_hash",
+          "reason"
+        ]
+      },
+      "hash_layers": [
+        "child_contract_identity_hash",
+        "source_record_hash",
+        "source_content_hash",
+        "initial_state_hash",
+        "operation_hash",
+        "result_state_hash"
+      ],
+      "history_type": "G1OperationHistoryV1{N}(NTuple{N,Digest256}); 0<=N<=64; digest-only",
+      "cas_order": [
+        "expected_prior_state_hash -> stale_state_hash",
+        "expected_prior_source_content_hash -> stale_source_content_hash"
+      ],
+      "failure_atomicity": "Rejected receipt only; published state/current hash/last operation/history and prior canonical bytes plus SHA unchanged.",
+      "body_owner": [
+        "typed state/time",
+        "operator graph",
+        "units/derivatives",
+        "governing/additive/constraint roles",
+        "occurrence/closure ledger",
+        "applicability"
+      ],
+      "credits": {
+        "child": false,
+        "t0": false,
+        "t1": false,
+        "t2": false,
+        "up2": false,
+        "b00": false,
+        "b04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "search": false,
+        "r01_r10": false
+      }
+    },
+    {
+      "id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC",
+      "status": "blocked_pending_architecture_repair",
+      "phase": "UP1",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+      "parallel_to": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2"],
+      "semantic_owner": "G2 geometry/metric-boundary body",
+      "exact_write_scope": [
+        "src/GenomeV5/G2/G2GeometryChildEditabilityV1.jl",
+        "test/GenomeV5/G2/g2_geometry_child_editability_v1_contract_tests.jl",
+        "test/GenomeV5/G2/g2_geometry_child_editability_v1_fixture.json",
+        "test/GenomeV5/G2/static_qa_g2_geometry_child_editability_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/manifest.json"
+      ],
+      "direct_commands": [
+        "python test/GenomeV5/G2/static_qa_g2_geometry_child_editability_v1.py",
+        "julia --startup-file=no --project=. test/GenomeV5/G2/g2_geometry_child_editability_v1_contract_tests.jl"
+      ],
+      "fixed_operation": "replace_source_payload",
+      "parent_envelope": {
+        "type": "G2GeometryParentEnvelopeV1",
+        "fields": [
+          "candidate_ref:GenomeContractRef",
+          "parent_ref:G2GeometryParentDeclarationRefV1",
+          "parent_ref_identity_hash:Digest256",
+          "parent_declaration_hash:Digest256",
+          "v1_baseline:G2GeometryV1BaselineBindingV1",
+          "parent_binding_hash:Digest256"
+        ],
+        "equality_rules": [
+          "parent_ref.candidate_ref == candidate_ref",
+          "parent_ref_identity_hash recomputed from fixed candidate/ref fields",
+          "parent_declaration_hash equals source-backed V1 declaration hash",
+          "v1_baseline_hash recomputed from baseline ref/path/source bytes hash/semantic hash",
+          "parent_binding_hash recomputed from candidate/ref identities/parent hash/baseline hash"
+        ]
+      },
+      "child_contract": {
+        "ref_type": "G2GeometryChildContractRefV1",
+        "stored_identity_hash_type": "Digest256",
+        "identity_domain": "ad33:g2:child-contract-identity:v1",
+        "ref_only_or_fixture_authority": false
+      },
+      "provenance": {
+        "present_slot_types": [
+          "G2PayloadSchemaSlotV1",
+          "G2CanonicalizationSlotV1",
+          "G2ApplicabilitySlotV1",
+          "G2EvidenceReceiptSlotV1"
+        ],
+        "absent_type": "G2ProvenanceAbsentV1",
+        "absence_domain": "ad33:g2:provenance-absence:v1",
+        "absence_bindings": [
+          "axis",
+          "candidate_ref",
+          "parent_ref",
+          "parent_declaration_hash",
+          "child_key",
+          "child_contract_ref",
+          "child_contract_identity_hash",
+          "reason"
+        ]
+      },
+      "hash_layers": [
+        "child_contract_identity_hash",
+        "source_record_hash",
+        "source_content_hash",
+        "initial_state_hash",
+        "operation_hash",
+        "result_state_hash"
+      ],
+      "history_type": "G2OperationHistoryV1{N}(NTuple{N,Digest256}); 0<=N<=64; digest-only",
+      "cas_order": [
+        "expected_prior_state_hash -> stale_state_hash",
+        "expected_prior_source_content_hash -> stale_source_content_hash"
+      ],
+      "failure_atomicity": "Rejected receipt only; published state/current hash/last operation/history and prior canonical bytes plus SHA unchanged.",
+      "body_owner": [
+        "charts/regions/interfaces",
+        "metric/orientation",
+        "faces/boundaries",
+        "field/source targets",
+        "basis/quadrature/mesh plan",
+        "units/applicability/discretization"
+      ],
+      "execution_guard": "G2GeometryMeshPlanV1 constructor accepts only execution_status=:not_executed; symbolic authority.mesh=:unique_match leaves terminal_deferred and cannot promote execution.",
+      "credits": {
+        "child": false,
+        "t0": false,
+        "t1": false,
+        "t2": false,
+        "up2": false,
+        "b00": false,
+        "b04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "search": false,
+        "r01_r10": false
+      }
+    }
+  ],
+  "shared_transition": {
+    "operation_input_fields": [
+      "operation_id:String",
+      "key:closed child key",
+      "expected_prior_state_hash:Digest256",
+      "expected_prior_source_content_hash:Digest256",
+      "replacement_payload:closed payload",
+      "source_record_ref:derived closed ref",
+      "canonical_input_hash:Digest256",
+      "operation_hash:Digest256"
+    ],
+    "operation_record_fields": [
+      "operation_id",
+      "key",
+      "previous_state_hash",
+      "previous_source_content_hash",
+      "replacement_source_payload_ref",
+      "source_record_ref",
+      "canonical_input_hash",
+      "operation_hash",
+      "resulting_state_hash",
+      "status=:applied"
+    ],
+    "receipt_fields": [
+      "operation_id",
+      "key",
+      "receipt_status",
+      "error_code",
+      "error_path",
+      "canonical_input_hash",
+      "operation_hash",
+      "prior_state_hash",
+      "prior_source_content_hash",
+      "result_state_hash_or_nothing",
+      "prior_state_canonical_bytes",
+      "result_state_canonical_bytes",
+      "prior_state_sha256",
+      "result_state_sha256",
+      "published",
+      "history_advanced"
+    ],
+    "cas_order": "state CAS first, source-content CAS second",
+    "failure_rule": "Rejected receipts are excluded from published state/history; prior canonical bytes and SHA remain exactly equal."
+  },
+  "closed_error_codes": [
+    "none",
+    "malformed_operation",
+    "foreign_candidate",
+    "foreign_parent_ref",
+    "parent_ref_identity_hash_mismatch",
+    "parent_declaration_hash_mismatch",
+    "v1_baseline_hash_mismatch",
+    "ref_only_authority",
+    "synthetic_fixture_authority",
+    "child_kind_mismatch",
+    "child_id_mismatch",
+    "child_contract_ref_mismatch",
+    "child_contract_identity_hash_mismatch",
+    "malformed_body",
+    "duplicate_id",
+    "unresolved_reference",
+    "unit_mismatch",
+    "closure_mismatch",
+    "applicability_mismatch",
+    "provenance_axis_mismatch",
+    "provenance_absent",
+    "provenance_conflict",
+    "source_record_hash_mismatch",
+    "source_record_ref_mismatch",
+    "source_content_hash_mismatch",
+    "canonical_input_hash_mismatch",
+    "operation_hash_mismatch",
+    "state_hash_mismatch",
+    "history_mismatch",
+    "stale_state_hash",
+    "stale_source_content_hash",
+    "unsupported_operation",
+    "dynamic_field_path",
+    "partial_patch",
+    "insert_delete_rebind",
+    "multi_object_edit",
+    "mesh_execution_status_not_executed",
+    "symbolic_authority_execution_confusion",
+    "metric_or_orientation_invalid",
+    "face_or_boundary_invalid",
+    "program_exception"
+  ],
+  "negative_controls": [
+    "foreign candidate/parent/child",
+    "parent ref-only authority",
+    "synthetic fixture authority",
+    "independent V1 baseline mismatch",
+    "four provenance axis absence/conflict",
+    "all six hash tamper paths",
+    "stale state before stale source",
+    "forged payload/source-record/operation hash",
+    "dynamic/partial/insert/delete/rebind/multi-object edit",
+    "failed-operation canonical bytes and SHA unchanged",
+    "G2 declared/executed mesh status rejected",
+    "G2 symbolic unique_match cannot promote not_executed"
+  ],
+  "dag_and_credit_boundary": {
+    "g1_g2_siblings": true,
+    "cross_sibling_dependency": false,
+    "t0_dependency": false,
+    "t1_dependency": false,
+    "t2_dependency": false,
+    "t0_role": "transport complete declarations and child actual-or-typed-absent states",
+    "t1_role": "sole lossless mapping owner into CandidateStatePackageV5Next",
+    "t2_role": "fresh E0/G-I1A/E1/E2/UP2 identity and receipt rebinding",
+    "all_credits_false": true,
+    "credits": [
+      "g1_child",
+      "g2_child",
+      "t0",
+      "t1",
+      "t2",
+      "up2",
+      "b00",
+      "b04",
+      "provider",
+      "mesh",
+      "engineering",
+      "physical",
+      "search",
+      "r01_r10"
+    ]
+  },
+  "remaining_blockers": [
+    "independent review of this exact schema and algorithms",
+    "real source-backed V1 baseline bytes and semantic hashes without synthetic seeds",
+    "owner must later synchronize reviewed sibling nodes into core DAG; this repair does not do so"
+  ],
+  "preserved": {
+    "original_report": "docs/implementation/AD-33/g1_g2_editability_audit/report.md",
+    "original_manifest": "docs/implementation/AD-33/g1_g2_editability_audit/manifest.json",
+    "core_modified": false,
+    "task_manifest_modified": false,
+    "source_test_modified": false,
+    "old_receipts_modified": false,
+    "ad31_modified": false,
+    "ad32_modified": false,
+    "r01_r10": true
+  },
+  "artifacts_added": [
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r1/revised_proposal.md",
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r1/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

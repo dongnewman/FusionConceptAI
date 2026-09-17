@@ -1,0 +1,19 @@
+{
+  "schema_version": "n06-independent-postrun-evidence-v1",
+  "review_round": "postrun-R9",
+  "verdict": "failure_audit_open_gate",
+  "accepted": false,
+  "r9_receipt_sha256": "798ad6a4cbc1271dbce3635e2e6acd5fbced13cc6360da99676f5ee4fa48d6d7",
+  "r9_stdout_sha256": "f5e260c982bea274fef3971d3be7776cf579b9b690711c6805001735824f8e33",
+  "r9_stderr_sha256": "83dcb1d7da537842e8ca9f65f2d8af0dcf7cf571e2f7161a726cc09532ebddd8",
+  "static_controls_count": 14,
+  "selector_controls": [
+    "missing_source_selector",
+    "wrong_source_selector"
+  ],
+  "selector_runtime_status": "not_reached_due_to_stale_count_at_test_line_263",
+  "mutation_runtime": "31/31 group passed; five fixture rows in frozen loop",
+  "failure": "fixture contains 14 static_negative_controls while test asserts 12",
+  "open_gate": "test-only correction must reconcile 14 static controls and prove both selector controls execute; do not merely hide the two controls by changing a count",
+  "claim_ceiling": "failure audit only; no B04/provider/mesh/engineering/physical/R01-R10 credit"
+}

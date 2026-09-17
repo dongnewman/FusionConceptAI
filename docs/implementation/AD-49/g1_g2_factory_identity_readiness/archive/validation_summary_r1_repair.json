@@ -1,0 +1,40 @@
+{
+  "schema_version": "AD49-validation-summary-r1-repair-v1",
+  "record_kind": "raw_static_validation_summary",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "repair_scope": ["report.md", "manifest.json", "cleanup_inventory.md", "archive/validation_summary_r1_repair.json"],
+  "prior_review_preserved": "independent_review_r1/**",
+  "direct_manifest_contract_validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 92896,
+    "utc_start": "2026-09-15T14:44:43.406967+00:00",
+    "utc_end": "2026-09-15T14:44:43.406967+00:00",
+    "exit_code": 0,
+    "checks": {
+      "work_order_count": true,
+      "all_required_fields": true,
+      "product_paths_unique": true,
+      "unique_product_path_count": 27,
+      "w3b_paths_unique_and_qualified": true,
+      "no_merged_union_placeholder": true,
+      "union_three_way": true,
+      "review_separation": true,
+      "forbidden_physical": true,
+      "dag_acyclic": true,
+      "candidate_hash_false": true
+    }
+  },
+  "planning_validation": {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit_code": 0, "summary": "31 markdown; 526 relative links; 39 tasks; DAG acyclic"},
+  "scoped_diff_check": {"command": "git diff --check", "exit_code": 0, "preexisting_lf_crlf_warnings": true},
+  "root_products": {
+    "report.md": {"bytes": 17583, "sha256": "0dd05bde2b272cd15673e8b317b3461dd20cbe4269f811ca0e6e50183cdd0ec2"},
+    "manifest.json": {"bytes": 23532, "sha256": "a00dda598ea44d79e5147d148f961c524deb9f7fc8787a2b88779d372b739540"},
+    "cleanup_inventory.md": {"bytes": 1359, "sha256": "80f6ac6d3ab360066eddb46df922e8673a133c03d69f8859e350988cd7b02cf5"}
+  },
+  "product_scope": {"root_product_count": 3, "future_product_paths_declared_only": 27, "future_product_paths_unique": true, "future_products_created": false},
+  "heavy_runtime": {"julia": false, "desc": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physics": false, "search": false},
+  "claims": {"source_authority": false, "factory_authority": false, "trusted_identity": false, "g2_mapping": false, "candidate_bound_axes": false, "same_candidate_join": false, "candidate_identity": false, "declaration_hash": false, "candidate_hash": false, "t0": false, "t1": false, "t2": false, "r01_r10": false, "l4_credible_count": 0},
+  "cleanup": {"task_owned_scratch": false, "ambiguous_cleanup_deferred": true, "failure_history_preserved": true}
+}

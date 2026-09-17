@@ -1,0 +1,38 @@
+{
+  "schema": "UP1ExternalClosureR2AggregateIndependentReviewManifestV2",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "08-aggregate-independent-review-r2",
+  "status": "rework",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "source_ref": "working-tree",
+  "reviewer": {"role": "independent_attack_reviewer", "model": "gpt-5.6-luna", "reasoning_effort": "high", "author_conflict": "component author excluded; Sol adjudication required"},
+  "owned_write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/08-aggregate-independent-review-r2/**",
+  "inputs": {
+    "tools/up1_external_closure_r2/aggregate_gate/aggregate_gate.py": {"bytes": 27584, "sha256": "524f706ca666e07ec0445fb89ea0d7702e47f908979deebaa4547765ce3def86"},
+    "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py": {"bytes": 9279, "sha256": "8fb4168dd88280fa66eec24325d9f3aa0ee22ee58de0d7aee770bfdc27428d39"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/manifest.json": {"bytes": 1059, "sha256": "b6d998ec4ede86194aab838eacadcf9a2efadc66de893fe223b1847f31817bf0"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/review_protocol.md": {"bytes": 16277, "sha256": "650a8dfc292088c7db7a33ef608035815a3b34fc0570faeddbbcd669354c6cf2"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/interface_contracts.json": {"bytes": 3526, "sha256": "857dc027eb53569a5fd3233f8fe113ac9498a37e7a63579685c2ca4e7487a85e"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/gate_ceiling.json": {"bytes": 1901, "sha256": "81cae273c2395dda210df53cecd2435561676c9ee21d34817894383d96035df6"}
+  },
+  "commands": [
+    {"argv": ["python", "-B", "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py"], "fresh_process": true, "exit_code": 0, "result": "17/17"},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "independent R2 attack matrix", "exit_code": 0},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "two separate child-process baseline plus fabricated-state replay", "exit_code": 0, "semantic_equal": true, "semantic_hash": "e6a62d124666eae88a16994a16d3218720b304fb2da9d03e44dbc5f22a54b167"}
+  ],
+  "raw": {
+    "raw/focused_test.stdout.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/focused_test.stderr.raw": {"bytes": 1042, "sha256": "1972a6bee1bdc749b9cb5358bf94c0bfb2b5f52f8be59e5a367fb4dd0b195918"},
+    "raw/attack_summary.stdout.raw": {"bytes": 1301, "sha256": "4fc22d22bca4f08616d84ec14f9d5a7416d3f78737f832ce81128f0643e2cb39"},
+    "raw/attack_summary.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/two_process_replay.stdout.raw": {"bytes": 419, "sha256": "760614411a3203a1965517afc5c7432d3f53b074b32cf5041b0735a4227d3d95"},
+    "raw/two_process_replay.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/process_metadata.stdout.raw": {"bytes": 934, "sha256": "c9a2e1295ddc6bb0b1f142bb89b535f9cb5b9e9122c39c7ee6c1283bb1b3b38a"}
+  },
+  "findings": ["F-01"],
+  "claim_ceiling": {"T0": false, "T1": false, "T2": false, "B00": false, "B04": false, "L4": 0, "parent": false, "AD": false},
+  "heavy_lane": {"julia": false, "desc": false, "solver": false, "mesh": false, "provider": false, "external": false},
+  "protected_dirty_snapshot": {"before_status_sha256": "901add68a5be771fa5325a044f6738f501377fb90f5b0d5fd1a8a6130f453ec4", "out_of_scope_mutation": false},
+  "self_hash_exclusions": ["manifest.json", "cleanup_inventory.json"]
+}

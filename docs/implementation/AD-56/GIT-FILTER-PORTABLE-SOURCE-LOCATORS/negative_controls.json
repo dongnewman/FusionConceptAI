@@ -1,0 +1,15 @@
+{
+  "preserved": true,
+  "controls": [
+    "absent/untracked and stale HEAD",
+    "wrong repository root",
+    "HEAD path relabel and working-tree path/status relabel",
+    "source hash and canonical head blob relabel",
+    "assume-unchanged",
+    "skip-worktree",
+    "dirty content",
+    "filtered blob mismatch after valid content mutation"
+  ],
+  "result": "all fail closed",
+  "positive_portability_fixture": "core.autocrlf=true with LF HEAD and raw CRLF checkout, filtered OID equal to HEAD OID"
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "UP1-04A-VNEXT-T0-evidence-v1",
+  "record_kind": "T0_contract_implementation_precheck",
+  "status": "review_pending",
+  "scope_status": "proposal",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "implementation_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "independent_review": {
+    "required": true,
+    "reviewer": "different-Luna",
+    "verdict": "pending"
+  },
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "work_order": {
+    "id": "UP1-04A-VNEXT-T0",
+    "status": "planned",
+    "resolution": "review_pending",
+    "contract": "AD-30 accepted_limited; T0 remains unaccepted",
+    "source": "docs/v4_multitopology_generation/16_execution_work_orders.md:292-311",
+    "machine_manifest": "docs/v4_multitopology_generation/task_manifest.json:446-482"
+  },
+  "write_scope": [
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-T0/"
+  ],
+  "forbidden_edits": [
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+    "src/Contracts/CandidateStatePackageV5.jl",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl",
+    "default_operator_registry()",
+    "core planning documents",
+    "old receipts/hashes/candidate identities"
+  ],
+  "pre_change": {
+    "new_source": "absent",
+    "new_test": "absent",
+    "new_static_qa": "absent",
+    "upstream_source_hashes": {
+      "G1": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+      "G2": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+      "G3": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    }
+  },
+  "post_change": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "fa093c4ba87c27ab528fd9c3582c377545193212de8198b19bff976bf3947f2b",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "01aaf8f14311bd9ec9915dabe99bddcf4882cceaae2c0a2ce946c64fafe12413",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": "b200571dc4b0913a9a40cee51ed31612cd1f4487aeb2f258bfad20fe96706cc5",
+    "upstream_source_hashes_unchanged": true
+  },
+  "implementation_contract": {
+    "candidate_join": "one exact v5 QualifiedRefV1 across G1/G2-envelope/G3; mismatch fail_closed",
+    "g2_mapping": "explicit GenomeContractRef source field plus QualifiedRefV1 envelope; absent mapping is typed terminal_deferred",
+    "axes": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "applicability_profile_version",
+      "evidence_receipt_version"
+    ],
+    "g3_children": "realization/control/binding typed absent terminal_deferred",
+    "g3_source_content_hash": "typed absent; never derived from declaration_hash",
+    "bundle_hash": "canonical hash over full semantic bodies, source/declaration hashes, exact candidate envelope, all axes, G3 feedback/authority and child state"
+  },
+  "synthetic_test_boundary": {
+    "fixture_authority": false,
+    "actual_candidate_authority": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "r01_r10": false,
+    "reason": "focused objects are explicitly synthetic/oracle-only and current G1/G2/G3 fixture candidates are not joined"
+  },
+  "validation": {
+    "static_qa": {
+      "command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+      "exit_code": 0,
+      "julia_executed": false,
+      "desc_executed": false,
+      "forbidden_legacy_edits_in_source": false,
+      "required_negative_controls_present": true,
+      "source_sha256": "fa093c4ba87c27ab528fd9c3582c377545193212de8198b19bff976bf3947f2b",
+      "test_sha256": "01aaf8f14311bd9ec9915dabe99bddcf4882cceaae2c0a2ce946c64fafe12413"
+    },
+    "focused_julia": {
+      "status": "not_executed",
+      "reason": "root instruction requires different-Luna precheck before execution",
+      "command_to_freeze_later": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl"
+    }
+  },
+  "remaining_gates": [
+    "different-Luna source precheck",
+    "focused Julia receipt with raw stdout/stderr SHA-256 and exit code",
+    "independent review of exact hashes, candidate envelope, axis negative controls and complete G3 body hash",
+    "T1 remains blocked until these gates pass"
+  ]
+}

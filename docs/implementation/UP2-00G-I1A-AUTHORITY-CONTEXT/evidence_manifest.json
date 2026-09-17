@@ -1,0 +1,80 @@
+{
+  "schema_version": "UP2-00G-I1A-evidence-manifest-v1",
+  "work_order": "G-I1A additive authority context",
+  "status": "accepted_limited",
+  "accepted": true,
+  "provenance_history": {"r5_static_test_sha256": "1a4737acf6a7457b95f5b33b689aaf97866f5f7946baabb0116200d9fb7472d6", "r6_focused_r2_test_sha256": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af", "r6_is_executed_input": true},
+  "claim_ceiling": "none",
+  "scope": "typed contract context only",
+  "owned_files": {
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9",
+    "test/GenomeV5/UP2/gi1_authority_context_fixtures.json": "c66a4f1cdecfb1cda62ef8b0fe8f20853d7d248e489f4adf5a9b0d7aab01942c",
+    "test/GenomeV5/UP2/gi1_authority_context_tests.jl": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af",
+    "test/GenomeV5/UP2/run_gi1_authority_context.jl": "20d01f6ee0ceb7a7bf11c160a4257224ceee61c50ff229dca62303efa0658ff6"
+  },
+  "input_hashes": {
+    "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4",
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/evidence_manifest.json": "30b6899c76e74451d29e760ac543d436bd692732fbe6d66e13c708a7bfd533ae",
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/evidence_manifest.json": "76f4667540beac8c4a15c745cccbed8e9700ac86342840ac5b0327bc4510b683"
+  },
+  "owned_before_hashes": {
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": "dc976dedd0f01aab13b7b17bd6a9e17aeacd5d272d2957659b97331b99c2903b",
+    "test/GenomeV5/UP2/gi1_authority_context_fixtures.json": "7c0793f42e01feac522c428cad7b7522a9517dc19922e67215dac4ea0dc3bf2c",
+    "test/GenomeV5/UP2/gi1_authority_context_tests.jl": "628dc6a53ed67b5e4abaa6e1eb69edbd4b760a04846d3ff4603bf4b0756ea3e3",
+    "test/GenomeV5/UP2/run_gi1_authority_context.jl": "20d01f6ee0ceb7a7bf11c160a4257224ceee61c50ff229dca62303efa0658ff6"
+  },
+  "owned_after_hashes": {
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9",
+    "test/GenomeV5/UP2/gi1_authority_context_fixtures.json": "c66a4f1cdecfb1cda62ef8b0fe8f20853d7d248e489f4adf5a9b0d7aab01942c",
+    "test/GenomeV5/UP2/gi1_authority_context_tests.jl": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af",
+    "test/GenomeV5/UP2/run_gi1_authority_context.jl": "20d01f6ee0ceb7a7bf11c160a4257224ceee61c50ff229dca62303efa0658ff6"
+  },
+  "archive_files": {
+    "acceptance.md": "ec19e66a3b88daeba9a5016e6ff69a935b8da4acf0612abf68254ae59ef842f9",
+    "api_contract.md": "1784a097d051ed093a5b8b096d3bbdf3665767d4fdcb02a7a7000c6860c45c98",
+    "prewrite_snapshot.json": "56a5aed6b35da3d83df70f808e178119fa8022fc7bd3e5290644859810a7b48b",
+    "owned_after_hashes.json": "b816c1beed462609b7e1faed4fbf9dc15428783660b5d3b845ae54d61e330baf",
+    "static_qa.json": "2e3d4ed379ed19311cb45d21b75567e326888259a02496bf4854f861940c28a4",
+    "repair_r2.md": "405c444664a5382b976fdddcb4e8b21c4edfb0ace2294ffcf41a344842943bdf",
+    "repair_r2_owned_hashes.json": "14c3de5ecc84faca9b048a579f388308ff5939a168d6bae04c7344f2f3b9f05a",
+    "repair_r2_static_qa.json": "3c89eca161d524a60a937852b1952b5d439c1fee70f2d59cdd2911987395d0c3",
+    "repair_r2/repair_note.md": "69f9345233e7a40faad7acd2ba5ed1d7cb243d14529d2d78ef1c82f49863e21e",
+    "repair_r3/repair_note.md": "aaba6c801e439b64dbda69446f48ca6a535b55b8561e67a82aa30fdf9f40da71",
+    "repair_r3/owned_hashes.json": "7a545fe71ef4d098cf96e07002b51de0bb46e6e12a4f3341507e7f44df285781",
+    "repair_r3/static_qa.json": "d516380e1c600307af4a5f2511cf1da610e39ae4caa7d2ddafd532a6988e0900",
+    "repair_r4/repair_note.md": "960654faa3d0a5d84f3ab805f655f0ed675c42c2331cee5e0a2a6ab872fcb140",
+    "repair_r4/owned_hashes.json": "dac2aab253851def81a18ec69d9726e041d0459a2c3ec6783733a64a20a4af78",
+    "repair_r4/static_qa.json": "bbe9f79cd24abc32777be02f6c8675693b526f95b6ed9b6e85834d7f5b8a06a6",
+    "repair_r5/repair_note.md": "ee226c6d66e537b9ec7804cf779b14fd64cdac273031864a65ec729474a155ac",
+    "repair_r5/owned_hashes.json": "72889217349392e6e91213605093c6e0c08128cd374197d37f8ac284040fa690",
+    "repair_r5/static_qa.json": "9706aaf4b22d0b52f15811ed968afaa077752c44a8bbf37e4609591d68c6ccd5"
+  },
+  "runtime": {"julia": "focused_r2_exit0", "desc": "not_run", "reason": "local software contract run only"},
+  "adjudication": {"sol": "accepted_limited", "independent_postrun_r2": "pass_limited", "gi1a_tests": "79/79", "source_law_e2": false},
+  "claims": {
+    "e1_present": "only source-validated up2n05_validate path",
+    "e2": "typed absent/deferred derived from n06_mapping_admission actual A projection/gaps",
+    "physical_resolution": "unknown_or_terminal_deferred",
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "notes": [
+    "R1 independent precheck changes_requested is preserved under independent_precheck_r1/.",
+    "R2 adds explicit context metadata/profile hashes, AD-26 admission enum, trusted actual A/E0 validator, exact slot positions, and typed E2-present API.",
+    "R3 fixes mutually exclusive status/error validation and retains structurally consistent explicit N06 mappings as typed E2 slots when admission remains terminal_deferred.",
+    "Current A N06 mapping remains absent/deferred; no E2-present authority or physical credit is claimed."
+  ]
+}

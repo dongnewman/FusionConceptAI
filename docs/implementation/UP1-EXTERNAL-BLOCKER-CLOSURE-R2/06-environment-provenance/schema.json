@@ -1,0 +1,24 @@
+{
+  "schema": "UP1.environment-provenance-closure.r2",
+  "evidence_classes": ["local_observation", "reproducible_declaration", "authority_proof"],
+  "outcomes": {"present": "signed authority payload closes declaration", "typed_absent": "shape is valid but signed provenance is absent", "fail_closed": "contradiction, drift, or illegal declaration", "non_evidence": "TEST_ONLY regardless of shape"},
+  "required_runtime_names": ["Julia", "Python"],
+  "required_lock_names": ["Project.toml", "Manifest.toml"],
+  "required_binary_fields": ["name", "version", "path", "sha256", "publisher", "signature", "download_receipt", "build_recipe", "sbom_refs", "license"],
+  "declaration_authenticated_closure": ["authority", "download_receipts", "binary_licenses", "sbom_components"],
+  "required_sbom_fields": ["format", "spec_version", "document_sha256", "components", "dependency_edges"],
+  "required_typed_absence_fields": ["absence_code", "owner", "authoritative_source", "recovery_condition"],
+  "expected_context": {
+    "source": "caller-supplied object; bundle field forbidden",
+    "required": ["candidate_ref", "source_revision", "frozen_root", "profile", "lock_identities", "binary_identities"],
+    "identity_fields": ["name", "version", "path", "sha256"],
+    "frozen_sha256": "required caller argument expected_context_sha256",
+    "authenticated_closure": ["authority", "download_receipts", "binary_licenses", "sbom_components"],
+    "signed_chain": "Ed25519 over canonical JSON; receipt and outer envelope must agree on algorithm/key_id/issuer/trust_root/profile"
+  },
+  "trust_anchor": {"source": "caller-supplied object; bundle field forbidden", "required": ["public_key_b64", "key_id", "issuer", "trust_root", "policy"], "frozen_sha256": "required caller argument trust_anchor_sha256"},
+  "sbom_identity": {"purl": "pkg:generic/<name>@<version>", "sbom_refs": "exact unique set; component/edge coverage exact"},
+  "hash_algorithm": "SHA-256",
+  "network": "forbidden",
+  "installation": "forbidden"
+}

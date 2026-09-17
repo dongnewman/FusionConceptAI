@@ -1,0 +1,60 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r7-v1",
+  "review_role": "independent_static_precheck",
+  "reviewer_model": "Luna-high",
+  "verdict": "ready_for_serial_focused",
+  "julia_run": "not_run_by_design",
+  "desc_run": "not_run_by_design",
+  "formal_b04": false,
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries_at_freeze": 3518,
+    "status_snapshot_sha256": "10de92a1b5092eb2327cb0f5069cb62dce9a6a4b484bcbc11b8ac6c7f980e19c",
+    "matching_julia_desc_processes": 0
+  },
+  "focused_r2_fact_check": {
+    "exit_code": 1,
+    "stdout_sha256": "1e242d58318c3e91fe4a7b4fe249fa1acd5896c1f344c07b16a1e521b34dbcde",
+    "stderr_sha256": "02c4a4e6ace82998222e054d9b17b0bcafd8d9d42faa2c96249e049e482171d7",
+    "testset_pass": 18,
+    "testset_total": 21,
+    "testset_errors": 3,
+    "failure": "GI1BMutationEnvelopeRowV1 has no field original at tests.jl:234,237,255; implementation field is row.binding.original"
+  },
+  "findings": [],
+  "r7_fixed_static_points": {
+    "actual_test_file_confirmed": true,
+    "three_row_binding_original_accesses_fixed": true,
+    "no_remaining_row_original_dot_access": true,
+    "row_original_hash_and_attempted_hash_fields_retained": true,
+    "50_row_id_path_group_assertions_retained": true,
+    "independent_original_attempted_and_mutation_hash_assertions_retained": true,
+    "source_identity_and_classification_assertions_retained": true,
+    "row_and_envelope_zero_counters_retained": true,
+    "n05_absent_metadata_and_n06_n09_n10_gaps_retained": true,
+    "public_row_builder_rejection_and_internal_fault_retained": true,
+    "focused_r2_failure_evidence_unchanged": true
+  },
+  "qa": {
+    "json_parse": "pass",
+    "focused_r2_evidence_fact_check": "pass",
+    "repair_r7_after_hash_matches_current_tests": "pass",
+    "protected_hashes_and_bytes": "pass_16_inputs",
+    "fixture_shape": "pass_50_unique_rows_5_per_group",
+    "row_original_dot_scan": "pass_zero_matches",
+    "targeted_git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "julia_desc_process_sweep": "pass_zero_matching_processes",
+    "focused_r7_julia": "not_run_by_design"
+  },
+  "evidence": [
+    "evidence_manifest.json",
+    "command_receipts.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r7/repair_note.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r7/static_qa.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r2/qa.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r2/stdout.txt",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r2/stderr.txt"
+  ]
+}
+

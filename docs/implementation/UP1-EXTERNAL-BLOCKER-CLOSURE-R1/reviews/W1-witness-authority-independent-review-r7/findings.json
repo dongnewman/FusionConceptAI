@@ -1,0 +1,19 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r7.findings.v1",
+  "conclusion":"pass_limited",
+  "claim_ceiling":"preparation_only",
+  "formal_credit":false,
+  "closed_findings":{"W1-R6-P2-001":"closed","W1-R2-P2-001":"closed_no_regression","W1-F001":"closed_no_regression","W1-F002":"closed_no_regression","W1-F003":"closed_no_regression","W1-F004":"closed_no_regression","W1-F005":"closed_no_regression","W1-F006":"closed_no_regression"},
+  "checks_passed":[
+    "actual=owned=51",
+    "manifest and cleanup current key sets equal at 49 after excluding only manifest and cleanup",
+    "49/49 manifest and cleanup disk hashes match",
+    "validation receipt current hash cf2254... matches disk and both maps",
+    "old 570577... appears only in explicit previous R5 history",
+    "JSON unique parse",
+    "R4 retained both distinct raw files without deletion",
+    "PID34140 foreign layer/axis decisions and expected-field independence"
+  ],
+  "r7_single_point":{"id":"W1-R6-P2-001","status":"closed","current_validation_receipt_sha256":"cf2254b4959406f94908fd0f9cfe99270ce9c416023093b1b6a103263f901980","old_hash":"570577dbc2aa023c3a3d5153d7ee52f0635853c80e8900c2b39f357a0b8d056e","old_hash_scope":"previous R5 history only"},
+  "prohibited_actions":["do not modify witness in this review","do not delete retained raw evidence","do not create AD or open formal gate"]
+}

@@ -1,0 +1,43 @@
+{
+  "fixture_id": "UP2-01-G1-DIFFUSION-FX-001",
+  "candidate_ref": {"id": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture", "version": "v5"},
+  "source_ref": {"id": "fusionconceptai://source/candidate-up2-01-g1-fixture", "version": "v1"},
+  "source_version": "candidate-source-v1",
+  "equation": "-DIV(K(x)*GRAD(u(x)))=f(x)",
+  "residual_sign": -1,
+  "source_payload": {
+    "u": "u_candidate(x)=x1+x2+x3",
+    "K": {
+      "expression_id": "K_candidate_x_affine",
+      "domain_min": [0, 0, 0],
+      "domain_max": [1, 1, 1],
+      "base_diag": [2, 3, 4],
+      "slope_diag": [0.1, 0.05, 0.0333333333333333]
+    },
+    "f": "f_candidate(x)=1"
+  },
+  "operator_refs": {
+    "grad": {"id": "fusionconceptai://GenomeV5/G1/operator/GRAD", "version": "v1"},
+    "k_apply": {"id": "fusionconceptai://GenomeV5/G1/operator/K_APPLY", "version": "v1"},
+    "div": {"id": "fusionconceptai://GenomeV5/G1/operator/DIV", "version": "v1"}
+  },
+  "negative_controls": [
+    "missing_authoritative_source",
+    "contradictory_positive_definite_bounds",
+    "wrong_grad_unit",
+    "wrong_div_output_binding",
+    "positive_residual_sign_rejected",
+    "source_hash_mismatch",
+    "K_lower_bound_mismatch",
+    "K_domain_out_of_bounds",
+    "malformed_K_probe_point_fail_closed",
+    "expected_residual_sign_not_negative",
+    "grad_unit_mismatch",
+    "program_exception_internal_fault_seam",
+    "manufactured_solution_as_authority",
+    "string_only_source_edit"
+  ],
+  "claim_ceiling": "contract_only",
+  "resolution_without_provider": "terminal_deferred",
+  "physical_evidence": false
+}

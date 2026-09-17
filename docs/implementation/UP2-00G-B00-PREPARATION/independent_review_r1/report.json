@@ -1,0 +1,24 @@
+{
+  "schema_version": "UP2-00G-B00-PREPARATION-independent-review-r1-v1",
+  "audit_id": "UP2-00G-B00-PREPARATION-independent-review-r1",
+  "reviewer": "different Luna/high read-only static review",
+  "reviewed_audit": "docs/implementation/UP2-00G-B00-PREPARATION/entry_audit_r1",
+  "verdict": "changes_requested",
+  "ready_for_focused": false,
+  "status": "review_pending",
+  "accepted": false,
+  "runtime_performed": false,
+  "julia_or_desc_started": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "current_dirty": {"status_lines": 292, "status_sha256": "39E9106701D4AE5A6148BB2AD31E8739C7B03BA59FD7A02EE0E9C6966CDB5017"},
+  "reviewed_snapshot_drift": [
+    {"path": "docs/v4_multitopology_generation/README.md", "reviewed_sha256": "66681d071a4124cba0e8e635011fec8cbffe0af1b93a453782d63e251d613a46", "current_sha256": "e208d32ed2febd635dd416dc221ecb01992b67f363287caf8ee11485ee03d8c0", "reason": "AD-27 index addition"},
+    {"path": "docs/v4_multitopology_generation/16_execution_work_orders.md", "reviewed_sha256": "12484c7c88e48b36358eb1cf308a414f9ea7a11e869b813bf391b0638be0c829", "current_sha256": "9c1dc8107ffb299f423084410b12e84a7ee58450da7262c18bd34f0bd8b12c63", "reason": "AD-27 index addition"},
+    {"path": "worktree status output", "reviewed_sha256": "fd017b618bf62f8080b9cb5b50a8f70dfed83148f15f5deca2c1dd6a4b195124", "current_sha256": "39e9106701d4ae5a6148bb2ad31e8739c7b03ba59fd7a02ee0e9c6966cdb5017", "reason": "dirty inventory changed"}
+  ],
+  "verified_current": {"g_i1a_acceptance": "review_pending/accepted=false", "g_i1a_source_sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9", "validate_plan_exit": 0, "git_diff_check_exit": 0, "julia_desc_processes": 0},
+  "f0_f5": {"F0": "missing serialized B00 manifest/environment/attempt current gate", "F1": "missing canonical package bytes/two-process hash comparison", "F2": "missing fresh independent replay receipts", "F3": "missing label-erasure/permutation diff artifact", "F4": "missing candidate-owned route/provider-signature/ECF receipt", "F5": "missing formal envelope/independent checker/ledger"},
+  "formal_b04_separate": true,
+  "claim_ceiling": ["read_only_entry_audit", "contract_only"],
+  "credits": {"b00": false, "b04": false, "up2_total": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false}
+}

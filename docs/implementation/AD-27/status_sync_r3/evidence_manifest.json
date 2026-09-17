@@ -1,0 +1,21 @@
+{
+  "schema_version": "AD-27-status-sync-r3",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "architecture_and_evidence_boundary_only",
+  "runtime": "not_run",
+  "reviews": {"independent_r1_architecture": "pass_limited", "independent_r2_provenance": "pass_limited", "sol": "accepted_limited"},
+  "protected_before": {
+    "readme": "66681D071A4124CBA0E8E635011FEC8CBFFE0AF1B93A453782D63E251D613A46",
+    "core18": "A7BFFC313DFEF35C7E302DD251709491A4A91E15D37A275D92FD6FE9D5ACA28C",
+    "core16": "12484C7C88E48B36358EB1CF308A414F9EA7A11E869B813BF391B0638BE0C829"
+  },
+  "current_after": {
+    "readme": {"bytes": 21150, "sha256": "82CF8CABF4B4FC16ED5D4BD78A4A8F95CEF909CE8DF23A799267D8F7A8AF1B79"},
+    "core18": {"bytes": 43916, "sha256": "820ABD804BC72D3237AD23CD8711A36563ACB9FCA9A9B7C559744EC06CBB0D42"},
+    "core16": {"bytes": 58601, "sha256": "A86CA00FC71BD195A03D9BC316392CA9E4E6C1DD6C35F165EA6AF2E71A9A9502"}
+  },
+  "r1_r2_archives_immutable": true,
+  "credits": {"h0_implementation": false, "h1_implementation": false, "dimensioned_physical_law": false, "b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "qa": {"json_parse": "pass", "control_scan": "zero_matches", "validate_plan": {"exit": 0, "checks": "pass", "task_dag_acyclic": true}, "git_diff_check": {"exit": 0, "warnings": "line-ending warnings only"}}
+}

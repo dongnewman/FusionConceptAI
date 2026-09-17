@@ -1,0 +1,32 @@
+{
+  "schema": "M5SearchR2InputHashManifestV1",
+  "hash_algorithm": "SHA-256",
+  "observed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "worktree_policy": "dirty_existing_changes_protected; hashes below are observed working-tree bytes unless head_blob_oid is present",
+  "inputs": [
+    {"path": "AGENTS.md", "working_sha256": "f7646606c7581bb6ec41daf408062607f42e7a64b7afab0f47d5b4b12823e53c"},
+    {"path": "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md", "working_sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    {"path": "docs/v4_multitopology_generation/02_proof_pruning_and_failure_semantics.md", "working_sha256": "db562ce7772a9840c43aff1a63575b74b5f506016c8cc64f7947738d2072d024"},
+    {"path": "docs/v4_multitopology_generation/03_open_ended_evolution_and_quality_diversity.md", "working_sha256": "0d6cade2623aa024fa4da094c67a343bf89beff8d27c567703ee5670e292e23f"},
+    {"path": "docs/v4_multitopology_generation/04_mcts_and_generative_proposal.md", "working_sha256": "add8aae786c51ab87cb8e90478d5f1d34c2e135a23cadaf0bd8522792a3ad8fa"},
+    {"path": "docs/v4_multitopology_generation/07_survivor_sparsification_and_pareto.md", "working_sha256": "6d24ea5c28deb2271a5ac350676944a16405fc5b6afcd51ba48c5e37101b4248"},
+    {"path": "docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md", "working_sha256": "82a5929b83af3cc9d0ba979dbeb1193eb9e9f876bae58f0e121058507a11af4d"},
+    {"path": "docs/v4_multitopology_generation/16_execution_work_orders.md", "working_sha256": "693a072aad799ecee1537bd61f8d361691832d31ff63d541837895151176dac5"},
+    {"path": "docs/v4_multitopology_generation/20_midterm_audit_20260916.md", "working_sha256": "c13250700bff57ada6817fdbfacc673cdc5e32349e2d2f144078386b1104cd4c"},
+    {"path": "docs/v4_multitopology_generation/21_next_execution_batches.md", "working_sha256": "924f7da526699f40a15f7a812052c7e255d7255d301f5d72f3152bbc90e76f3b"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/manifest.json", "working_sha256": "758132ba94ff916fbcc3ec81866f90136f579b79e4d723137c4b76e49796847a"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-SCOPE-DECISION-R1/manifest.json", "working_sha256": "779a94c7107e2ef2bbbfb271598648c38fe39de41d40725ac364dc5bd03ebe61"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/test_execution_r3/manifest.json", "working_sha256": "3be22f97174fa879eb2905a292854cbc9cddabc9525bb23f6b3d3a0d6643ff30"},
+    {"path": "src/IR/ConditionalEGraphTypes.jl", "working_sha256": "885119aa142335f4dedcb1eb506b48350bc7793538b55d622ee9766e0ac47bee"},
+    {"path": "src/IR/ConditionalEGraphSaturation.jl", "working_sha256": "643775a5b10b9865269c66088d97ff7476312924f324d9c8b75107ad7749cdb3"},
+    {"path": "src/RuntimeV4/AlgebraicGenerationV4.jl", "working_sha256": "fa07a3211a905af31de739fd82337305596ee5becdfcd4e778c2654c24e84711"},
+    {"path": "src/RuntimeV4/AlgebraicScopedSearch.jl", "working_sha256": "3831c62191eb2307024580933ce2bf40508ff85adeb0c197207aae1f7a2d1804"},
+    {"path": "src/RuntimeV4/Search.jl", "working_sha256": "3068b8b65a53745f1f1ac5cb4eee50133a2383c94ed48a60a4a5547aa75d3a83"}
+  ],
+  "missing_or_unfrozen_inputs": [
+    "M5-C performance threshold owner freeze",
+    "synthetic source fixture content and source authority receipt",
+    "versioned R2 implementation/test/oracle entrypoints",
+    "independent checker and execution environment lock"
+  ]
+}

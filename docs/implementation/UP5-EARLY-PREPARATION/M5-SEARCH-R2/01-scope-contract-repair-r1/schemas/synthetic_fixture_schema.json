@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2SyntheticFixtureV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "fixture_id", "version", "authority_status", "content_path", "content_sha256", "source_authority_receipt_hash", "typed_program_schema", "canonical_encoding"],
+  "properties": {
+    "schema": {"const": "M5SearchR2SyntheticFixtureV1"},
+    "fixture_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^v[0-9]+$"},
+    "authority_status": {"enum": ["authoritative", "typed_absent", "stale", "foreign", "malformed"]},
+    "content_path": {"type": ["string", "null"]},
+    "content_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "source_authority_receipt_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "typed_program_schema": {"type": "string", "const": "M5SearchR2TypedProgramV1"},
+    "canonical_encoding": {"type": "string", "const": "UTF-8-strict-canonical-json-v1"}
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "UP1.W4.local-input-discovery.validation-receipt.r2.v1",
+  "status": "pass",
+  "claim": "discovery_only/preparation_only",
+  "scan": {
+    "pid": 103592,
+    "start_utc": "2026-09-16T16:37:49.421279Z",
+    "end_utc": "2026-09-16T16:37:53.426310Z",
+    "exit_code": 0,
+    "raw": "raw/metadata_scan_r2.jsonl",
+    "sha256": "e4da31030c88f3c9490687dd2650bae6d820dbf68524b77feef9741b57835a07",
+    "excluded_universe": [
+      ".git",
+      "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/local_input_discovery/**",
+      "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/**"
+    ]
+  },
+  "validator": {
+    "status": "completed",
+    "command": "python -B static_discovery_validator.py",
+    "pid": 46848,
+    "start_utc": "2026-09-16T16:38:36.597077Z",
+    "end_utc": "2026-09-16T16:38:41.469568Z",
+    "exit_code": 0,
+    "raw_stdout": "repair_r2/raw/static_discovery_validator.stdout.raw",
+    "raw_stderr": "repair_r2/raw/static_discovery_validator.stderr.raw",
+    "combined_raw": "repair_r2/raw/static_discovery_validator.combined.raw",
+    "raw_stdout_sha256": "bed8397e50984f236164fedb1285acbb6234eb8d8f93c2ea2a49913abe19adac",
+    "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined_raw_sha256": "e79c6120b533aef46404e2121943d82d6852d7ed5c046133a94bbd5480918787",
+    "result": {
+      "candidate_count": 1864,
+      "changed_inputs": false,
+      "crosswalk_count": 26,
+      "excluded_count": 946,
+      "failures": [],
+      "raw_hit_count": 2810,
+      "schema": "UP1.W4.local-input-discovery.validation-receipt.v2",
+      "status": "pass",
+      "upstream_register_mutated": false
+    }
+  },
+  "candidate_count": 1864,
+  "excluded_count": 946,
+  "changed_inputs": false,
+  "upstream_register_mutated": false,
+  "failures": []
+}

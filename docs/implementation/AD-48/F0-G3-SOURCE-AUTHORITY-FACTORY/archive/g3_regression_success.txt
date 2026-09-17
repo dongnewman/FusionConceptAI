@@ -1,0 +1,18 @@
+serialized focused regression (three isolated Julia processes; the existing tests each reload the package module)
+pid=86988
+utc=2026-09-15T14:03:47.459
+julia=1.10.5
+Test Summary:                                |   65     65  8.3s
+G3 realization child editability V1 contract | PASS
+pid=92916
+utc=2026-09-15T14:03:56.918
+julia=1.10.5
+Test Summary:                                   |  167    167  8.8s
+G3 control child editability V1 closed contract | PASS
+pid=92448
+utc=2026-09-15T14:04:25.892
+julia=1.10.5
+Test Summary:                                 |   70     70  4.4s
+G3 binding child editability V1 typed absence | PASS
+EXIT realization=0 control=0 binding=0
+aggregate_pass=302/302

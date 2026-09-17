@@ -1,0 +1,53 @@
+{
+    "schema":  "UP1.R2.authority-gaps.v1",
+    "task_id":  "UP1-EXTERNAL-BLOCKER-CLOSURE-R2/W3-10-environment-capture",
+    "status":  "terminal_deferred",
+    "claim_ceiling":  "preparation_only/screen_only",
+    "observed_utc":  "2026-09-16T17:47:52.4832595Z",
+    "candidate_ref":  null,
+    "gaps":  [
+                 {
+                     "code":  "CANDIDATE_ENVIRONMENT_NOT_FROZEN",
+                     "state":  "typed_absent",
+                     "owner":  "execution environment owner",
+                     "authoritative_source":  "candidate-bound environment receipt",
+                     "recovery_condition":  "Freeze exact candidate environment values or an approved deterministic redaction ledger."
+                 },
+                 {
+                     "code":  "CANDIDATE_IMPORT_CLOSURE_NOT_BOUND",
+                     "state":  "typed_absent",
+                     "owner":  "execution/provider owner",
+                     "authoritative_source":  "candidate-bound import manifest",
+                     "recovery_condition":  "Record every imported source/module/package path and hash for the exact UP1 candidate."
+                 },
+                 {
+                     "code":  "EXTERNAL_BINARY_PROVENANCE_NOT_ATTESTED",
+                     "state":  "typed_absent",
+                     "owner":  "publisher/distributor or environment owner",
+                     "authoritative_source":  "signed publisher provenance/SBOM/license ledger",
+                     "recovery_condition":  "Supply verifiable origin, build recipe, SBOM, license and trust-chain evidence for every imported binary/library."
+                 },
+                 {
+                     "code":  "TRUST_ROOT_NOT_SUPPLIED",
+                     "state":  "typed_absent",
+                     "owner":  "external authority/PKI owner",
+                     "authoritative_source":  "external trust-root and signed attestation package",
+                     "recovery_condition":  "Provide fresh issuer, key, certificate, revocation, trusted-time and anti-replay evidence."
+                 },
+                 {
+                     "code":  "CANDIDATE_ARTIFACT_CLOSURE_NOT_BOUND",
+                     "state":  "typed_absent",
+                     "owner":  "execution/provider owner",
+                     "authoritative_source":  "candidate artifact ledger",
+                     "recovery_condition":  "Bind runtime artifacts and inputs to candidate/evidence hashes."
+                 },
+                 {
+                     "code":  "NO_AUTHORITY_FROM_LOCAL_OBSERVATION",
+                     "state":  "typed_absent",
+                     "owner":  "Sol/external authority",
+                     "authoritative_source":  "independent external authority receipt",
+                     "recovery_condition":  "Do not promote local OS, hash, Authenticode or package observations without independent authority and candidate binding."
+                 }
+             ],
+    "interpretation":  "Local observations are retained as facts of this audit only. Missing or unverifiable provenance remains typed_absent; no authority, candidate, provider, mesh, solver, engineering, physical, B00, B04, UP1 or R credit is claimed."
+}

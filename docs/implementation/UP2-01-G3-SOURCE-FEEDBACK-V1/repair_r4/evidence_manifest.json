@@ -1,0 +1,113 @@
+{
+  "accepted": false,
+  "after_hashes": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {
+      "bytes": 5247,
+      "sha256": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 27969,
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {
+      "bytes": 2332,
+      "sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {
+      "bytes": 8382,
+      "sha256": "cb817e87837c929c07d511674b89a715229a5e555599ff21a36227f9b9bf4e74"
+    }
+  },
+  "archive_files": {
+    "command_receipts.json": {
+      "bytes": 2983,
+      "sha256": "5e5ee44bb6d5566e21b900b4fee9bae3691a9ea8a4cb50746bd57b8b5afe18c6"
+    },
+    "report.json": {
+      "bytes": 3279,
+      "sha256": "fae20f20bcff6e4818e305e5cf14a2a6ec3cada396ee9043fe11fcb6eab9a0dd"
+    },
+    "report.md": {
+      "bytes": 2309,
+      "sha256": "91a9742c8e0bd03d6f70c939bee55da1d6d4c1f03fdf473597995f2fb704ac57"
+    }
+  },
+  "before_hashes": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {
+      "bytes": 5247,
+      "sha256": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 27969,
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {
+      "bytes": 2332,
+      "sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {
+      "bytes": 8302,
+      "sha256": "37a66fcee910b123183df0f6c8eec568f617e5702b6e62875a4d7e6f4d5c5838"
+    }
+  },
+  "claim_ceiling": [
+    "contract_only",
+    "review_pending",
+    "accepted_false",
+    "no_compiler",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "R01_R10": false,
+    "compiler": false,
+    "current_A": false,
+    "engineering": false,
+    "mesh": false,
+    "physical": false,
+    "provider": false,
+    "solver": false
+  },
+  "historical_failure": {
+    "artifact": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_postrun_r1",
+    "exit_code": 1,
+    "failure": "UndefVarError: G3SFEndpointV1 not defined",
+    "failure_path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:22",
+    "focused_command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+    "pid": 49960,
+    "reached_later_testsets": false
+  },
+  "manifest_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-repair-r4-evidence-v1",
+  "record_kind": "test_namespace_repair",
+  "review_id": "UP2-01-G3-SOURCE-FEEDBACK-V1-repair-r4",
+  "review_pending": true,
+  "scope": {
+    "fixture_changed": false,
+    "only_test_namespace_qualification": true,
+    "production_export_changed": false,
+    "source_changed": false,
+    "static_qa_changed": false
+  },
+  "self_hash_excluded": true,
+  "static_checks": {
+    "desc_run": false,
+    "hash_check_exit": 0,
+    "json_parse": true,
+    "julia_run": false,
+    "namespace_scan_command": "D:\\Users\\Newman\\anaconda3\\python.exe -c <namespace/hash audit>",
+    "namespace_scan_exit": 0,
+    "source_export_unchanged": true,
+    "unqualified_g3_token_count": 0
+  },
+  "status": "proposal",
+  "verdict": "repair_ready_for_independent_precheck"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "AD54.independent_review_r1.fresh_no_local_probe.v1",
+  "clone": {
+    "command": ["git", "clone", "--no-local", "D:\\006-Programing\\LMC\\FusionConceptAI", "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_independent_r1_4276cf605815429c963a46fc3a4d793e\\repo"],
+    "started_utc": "2026-09-15T22:49:21.6073482Z",
+    "ended_utc": "2026-09-15T22:49:25.6378817Z",
+    "pid": 107812,
+    "exit": 0,
+    "stdout": "",
+    "stderr": "Cloning into 'C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_independent_r1_4276cf605815429c963a46fc3a4d793e\\repo'...\n",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "b86524f67117de970499f41c0021fe1e91010b274400d42c2a432b0d3c0cc641"
+  },
+  "probe": {
+    "command": ["julia", "--startup-file=no", "--project=.", "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_independent_r1_4276cf605815429c963a46fc3a4d793e\\probe.jl"],
+    "cwd": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_independent_r1_4276cf605815429c963a46fc3a4d793e\\repo",
+    "started_utc": "2026-09-15T22:49:25.6378953Z",
+    "ended_utc": "2026-09-15T22:49:31.6728053Z",
+    "pid": 94892,
+    "exit": 0,
+    "stdout": "SOURCE_LOAD_BEGIN\nSOURCE_LOAD=pass\nMANUAL_INCLUDE_BEGIN\nMANUAL_INCLUDE=pass\nG1_STATUS=typed_absent\nG2_STATUS=typed_absent\nG3_STATUS=typed_absent\nNOTHING_TYPED_ABSENT=pass\nV5_SOURCE_PUBLICATION_INDEPENDENT_PROBE=pass\n",
+    "stderr": "",
+    "stdout_sha256": "72c8b4f80e17475b0a7394f898b6534e4035cbb78964a53078f3d900f773d2f1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "probe_source_sha256": "091fb19249bb1b62342237d5b05a0262a565b1e1a3e3e0b81a8a41c521d86251",
+    "typed_absent_probe": true
+  },
+  "cleanup": {
+    "temporary_root_cleaned": true,
+    "probe_file_cleaned": true,
+    "windows_retry_required": false
+  },
+  "prior_failed_attempts": [
+    {
+      "pid": 105064,
+      "exit": 1,
+      "command": ["julia", "--startup-file=no", "--project=.", "-e", "<multiline probe>"],
+      "stderr": "ERROR: ParseError: premature end of input at using",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resolution": "rerun via temporary probe.jl"
+    }
+  ]
+}

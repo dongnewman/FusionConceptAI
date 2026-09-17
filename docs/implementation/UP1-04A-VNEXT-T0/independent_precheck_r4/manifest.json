@@ -1,0 +1,97 @@
+{
+  "schema_version": "UP1-04A-VNEXT-T0-independent-precheck-r4-v1",
+  "record_kind": "T0_independent_static_precheck",
+  "date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "scope": {
+    "r4_repair_review": true,
+    "source_review": true,
+    "test_review": true,
+    "static_qa_run": true,
+    "json_validation_run": true,
+    "git_diff_check_run": true,
+    "julia_executed": false,
+    "desc_executed": false,
+    "provider_executed": false,
+    "mesh_executed": false,
+    "physical_executed": false,
+    "source_or_test_modified_by_reviewer": false
+  },
+  "reviewed_files": {
+    "source": {
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+      "sha256": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e"
+    },
+    "test": {
+      "path": "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+      "sha256": "d0463fab22450199e9a84f58753fe1255bdda70962f766da751d85e54c4ddbf7"
+    },
+    "static_qa": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+      "sha256": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78"
+    }
+  },
+  "protected_hashes": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4",
+    "src/IR/OperatorRegistry.jl": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45"
+  },
+  "r4_closure": {
+    "g3_stale_upstream_fail_closed": true,
+    "g3_stale_feedback_fail_closed": true,
+    "g3_contradictory_upstream_feedback_fail_closed": true,
+    "g3_actual_unattested_fail_closed": true,
+    "mapping_locally_verifiable_fields_checked_in_transport": true,
+    "mapping_source_hash_isolated_negative_control": false,
+    "mapping_verification_status_constructor_guard": true,
+    "trusted_axis_external_verification_pending": true,
+    "opaque_external_receipt_resolves": false,
+    "g3_complete_body_hash_recomputed": true,
+    "g1_g2_source_edit_hash_chain_production_tested": true,
+    "g3_ledger_feedback_authority_stale_hash_production_tested": true
+  },
+  "findings": [
+    {
+      "id": "T0-R4-001",
+      "severity": "blocking",
+      "kind": "mapping_source_hash_negative_control_coupled",
+      "location": "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl:296-305",
+      "summary": "The source-hash assertion is coupled to a changed source candidate and source body; no unchanged-source receipt with only source_hash tampered is sent through transport."
+    },
+    {
+      "id": "T0-R4-002",
+      "severity": "bounded_provenance_gap",
+      "kind": "external_receipt_opaque",
+      "location": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl:133-169,394-410",
+      "summary": "Mapping evidence_ref remains an opaque external digest; unconditional pending gap conservatively prevents resolution."
+    }
+  ],
+  "static_receipts": {
+    "static_qa_command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+    "static_qa_exit": 0,
+    "static_qa_status": "pass",
+    "static_qa_julia_executed": false,
+    "static_qa_desc_executed": false,
+    "manifest_json_command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-T0/independent_precheck_r4/manifest.json",
+    "manifest_json_exit": 0,
+    "git_diff_check_command": "git diff --check -- docs/implementation/UP1-04A-VNEXT-T0",
+    "git_diff_check_exit": 0
+  },
+  "next_gate": {
+    "required": "add isolated G2 source_hash negative control, obtain independent static review, then one serial focused Julia process only after H0 is idle",
+    "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "t1_allowed": false,
+    "physical_credit": false,
+    "r01_r10_credit": false
+  }
+}

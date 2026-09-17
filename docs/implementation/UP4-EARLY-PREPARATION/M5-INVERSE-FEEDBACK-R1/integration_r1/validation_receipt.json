@@ -1,0 +1,29 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-INTEGRATION-VALIDATION-R1",
+  "status": "pass_limited",
+  "checks": {
+    "strict_serial_python_twice_then_julia_twice": true,
+    "python_exit_0_both": true,
+    "julia_exit_0_both": true,
+    "julia_103_of_103_both": true,
+    "python_canonical_payload_recomputed": true,
+    "multiseed_permutation_byte_deterministic": true,
+    "python_raw_bytes_equal": true,
+    "canonical_payload_and_expected_values": true,
+    "det3_eigenvalues_1_3_margin_1_3": true,
+    "roundtrip_zero": true,
+    "deletion_response_and_delta": true,
+    "typed_negative_controls_covered": true,
+    "archive_raw_exact_copies": true,
+    "source_test_oracle_frozen_hashes_match": true,
+    "M4_D_and_M5_A_hash_context_recorded": true,
+    "test_execution_history_audited_and_preserved": true,
+    "no_multi_process_capture_artifact_in_test_execution": true,
+    "shared_unchanged": true,
+    "no_optimizer_real_reference_candidate_provider_solver_engineering_evidence": true,
+    "formal_UP4_credit": false
+  },
+  "raw_evidence": {"live_raw": "replay_1/raw/ and replay_2/raw/", "archive_raw": "replay_1/archive/raw/ and replay_2/archive/raw/", "definition": "combined bytes are stdout bytes followed by stderr bytes"},
+  "history_audit": {"path": "../test_execution_r1/", "observed_receipts": ["python_oracle.receipt.json", "python_oracle_run2.receipt.json", "python_oracle_run3.receipt.json", "julia_tests.receipt.json", "julia_tests_run2.receipt.json"], "failed_attempts_directory_present": false, "multi_process_capture_files_present": false, "classification": "prior pass receipts retained as historical context; no historical receipt promoted as this integration run", "initial_wrong_sequence_attempts": [{"pid": 96228, "kind": "python_oracle", "classification": "pre-capture exploratory; not authoritative"}, {"pid": 46736, "kind": "python_oracle", "classification": "wrong-sequence pre-capture; not authoritative"}, {"pid": 11240, "kind": "python_oracle", "classification": "wrong-sequence pre-capture; not authoritative"}, {"pid": 56012, "kind": "julia_tests", "classification": "wrapper capture timeout; exit/raw unobserved; not authoritative"}, {"pid": 53876, "kind": "julia_tests", "classification": "wrong-sequence pre-capture; observed 103/103; not authoritative"}, {"pid": 52820, "kind": "julia_tests", "classification": "wrong-sequence pre-capture; observed 103/103; not authoritative"}], "authoritative_sequence": "final captured Python x2 -> Julia x2 only"},
+  "claim_ceiling": "manufactured_inverse_engineering_feedback/screen_only"
+}

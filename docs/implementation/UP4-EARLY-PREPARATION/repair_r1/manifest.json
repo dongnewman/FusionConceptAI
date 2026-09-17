@@ -1,0 +1,57 @@
+{
+  "schema": "ImplementationPreparationRepairManifestV1",
+  "repair_id": "UP4-EARLY-PREPARATION-REPAIR-R1",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "parent_package": "docs/implementation/UP4-EARLY-PREPARATION/manifest.json",
+  "finding": {
+    "record_id": "local_n2_normalized_result_context",
+    "field": "exact_bytes_sha256.value",
+    "source_path": "runs/goal_recovery_20260913_012528_cst/n2_desc_heliotron_normalize_r3/result.json",
+    "previous_value": "2f4aa65c01a05634c86f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+    "corrected_value": "2f4aa65c01a05634c86c8f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+    "source_hash_recomputed_before_edit": true,
+    "source_artifact_modified": false
+  },
+  "owned_files": [
+    "docs/implementation/UP4-EARLY-PREPARATION/reference_data_catalog_template.json",
+    "docs/implementation/UP4-EARLY-PREPARATION/manifest.json",
+    "docs/implementation/UP4-EARLY-PREPARATION/validation_report.md",
+    "docs/implementation/UP4-EARLY-PREPARATION/cleanup_inventory.md",
+    "docs/implementation/UP4-EARLY-PREPARATION/repair_r1/report.md",
+    "docs/implementation/UP4-EARLY-PREPARATION/repair_r1/manifest.json"
+  ],
+  "protected_outside_scope": [
+    "docs/implementation/UP4-EARLY-PREPARATION/independent_review_r1/",
+    "src/",
+    "test/",
+    "scripts/",
+    "runs/",
+    "benchmarks/",
+    "docs/v4_multitopology_generation/",
+    "shared registry",
+    "final package"
+  ],
+  "execution_policy": {
+    "download": false,
+    "julia": false,
+    "desc": false,
+    "inverse": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "delete": false
+  },
+  "required_validation": [
+    "strict JSON parse for all package JSON files",
+    "corrected source digest equals fresh Get-FileHash result",
+    "cross-reference parent manifest and repair record",
+    "future hash placeholders remain null",
+    "diff is confined to owned repair set plus pre-existing package files",
+    "no protected source/run artifact changed"
+  ],
+  "credit": "none"
+}

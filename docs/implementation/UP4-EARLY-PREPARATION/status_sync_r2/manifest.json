@@ -1,0 +1,31 @@
+{
+  "manifest_version":"UP4-EARLY-PREPARATION-status-sync-r2",
+  "task_id":"UP4-EARLY-PREPARATION",
+  "status":"accepted_limited",
+  "accepted":true,
+  "accepted_scope":"early_preparation_template_only",
+  "claim_ceiling":"contract_only",
+  "formal_conclusions":"pending",
+  "review_basis":{"path":"docs/implementation/UP4-EARLY-PREPARATION/independent_review_r2/report.md","verdict":"pass_limited"},
+  "historical_pre_sync":{"root_manifest_status":"review_pending","root_manifest_accepted":false,"root_manifest_bytes":7492,"root_manifest_sha256":"75dcbecb6d8bb914dc55d7e937ee900f5c30c2fffd1f0ee71865439f0ca5cae0","status_sync_r1_report_sha256":"06f05c4ac38b852429ed96c2769af04179f03b4ff7f58148d325ccf452f36ae2","status_sync_r1_manifest_sha256":"080114fcdce6b503ab8c46d80062527bedc162f106b835c17eac3d7e933b81cd","preserved":true},
+  "parent_task_count":39,
+  "parent_dag_unchanged":true,
+  "execution_policy":{"inverse_solve":false,"engineering_back_substitution":false,"closed_loop":false,"provider":false,"mesh":false,"solver":false,"physical":false,"b07a":false,"b07b":false,"r01_r10":false,"l4_credible_count":0},
+  "current_outputs":{
+    "docs/implementation/UP4-EARLY-PREPARATION/manifest.json":{"bytes":7938,"sha256":"659a2d6879bb5bccf8238308a63fefc3184e707c9241159e2eae4977cadc9d5d"},
+    "docs/implementation/UP4-EARLY-PREPARATION/acceptance.md":{"bytes":2052,"sha256":"a682d72e92cc658ab17bf04601e8bb4ab13301d4d226ea3acf0866767aef4256"}
+  },
+  "validation_commands":[
+    {"kind":"validate_plan","pid":3244,"started_utc":"2026-09-15T07:41:39.6772805Z","ended_utc":"2026-09-15T07:41:40.1254175Z","exit_code":0,"stdout":"status_sync_r2/validate_plan.stdout","stderr":"status_sync_r2/validate_plan.stderr","relative_links":485,"task_count":39},
+    {"kind":"json_parse_and_state_assert","pid":77644,"started_utc":"2026-09-15T07:41:51.8095649Z","ended_utc":"2026-09-15T07:41:51.9152275Z","exit_code":0,"stdout":"status_sync_r2/json_parse.stdout","stderr":"status_sync_r2/json_parse.stderr"},
+    {"kind":"task_manifest_hash_and_historical_field_check","pid":66356,"started_utc":"2026-09-15T07:42:01.5476809Z","ended_utc":"2026-09-15T07:42:01.6360260Z","exit_code":0,"stdout":"status_sync_r2/task_hash.stdout","stderr":"status_sync_r2/task_hash.stderr","task_manifest_sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"},
+    {"kind":"control_character_scope_check","pid":69320,"started_utc":"2026-09-15T07:42:13.3054115Z","ended_utc":"2026-09-15T07:42:13.4114064Z","exit_code":0,"stdout":"status_sync_r2/control_check.stdout","stderr":"status_sync_r2/control_check.stderr"},
+    {"kind":"scoped_diff_check","pid":60744,"started_utc":"2026-09-15T07:42:23.8940412Z","ended_utc":"2026-09-15T07:42:23.9738259Z","exit_code":0,"stdout":"status_sync_r2/diff_check.stdout","stderr":"status_sync_r2/diff_check.stderr"}
+  ],
+  "credits":{"implementation":false,"inverse":false,"engineering":false,"physical":false,"provider":false,"mesh":false,"solver":false,"b07a":false,"b07b":false,"r01_r10":false,"l4_credible_count":0},
+  "product_templates_unchanged":true,
+  "old_review_receipts_unchanged":true,
+  "cleanup":{"removed_paths":[],"cleanup_deferred_ambiguous":[],"dirty_and_historical_protected":true},
+  "raw_receipts":{"validate_plan.stdout":{"bytes":480,"sha256":"d2fbd0ee873684e553c3284b99abdcacc7759d1efab2d6b8e9cbb38badf342b8"},"validate_plan.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"json_parse.stdout":{"bytes":234,"sha256":"fb697fe7e521effed36e09dfa25c03481ea5a63029b3e0063715714d0af7003b"},"json_parse.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"task_hash.stdout":{"bytes":350,"sha256":"5aa1e4dd5a42d73e0fd3260b3734d900df79f853bf1117b70afbfbe1d9af0e21"},"task_hash.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"control_check.stdout":{"bytes":178,"sha256":"a6b9ee44dbedcdbaf133df6047efdbe8fa3068c72d66ad942d7051bf9a026ed8"},"control_check.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"diff_check.stdout":{"bytes":228,"sha256":"f6edc99371feb3ff6f25ffae2307539fc689d8a51aa31b9a41ded915216c7bfc"},"diff_check.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}},
+  "self_hash_excluded":true
+}

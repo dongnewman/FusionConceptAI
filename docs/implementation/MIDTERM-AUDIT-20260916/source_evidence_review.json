@@ -1,0 +1,211 @@
+{
+  "schema": "MIDTERM-AUDIT-20260916.source_evidence_review.v1",
+  "audit_scope": "read_only_AD54_AD55_AD56_source_evidence_and_fresh_S3_boundary",
+  "workspace": "D:/006-Programing/LMC/FusionConceptAI",
+  "performed_utc": "2026-09-16",
+  "execution_policy": {
+    "julia_or_desc_run": false,
+    "source_modified": false,
+    "history_index_or_commit_modified": false,
+    "only_new_files": [
+      "docs/implementation/MIDTERM-AUDIT-20260916/source_evidence_review.md",
+      "docs/implementation/MIDTERM-AUDIT-20260916/source_evidence_review.json"
+    ]
+  },
+  "frozen_review_baseline": {
+    "path": "docs/implementation/MIDTERM-AUDIT-20260916/before_inventory.json",
+    "utc": "2026-09-16T01:48:52.393843Z",
+    "file_count": 5968,
+    "scope": "src, scripts, test, implementation archives, core guidance, AGENTS and README; audit directory excluded"
+  },
+  "current_revision": {
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "head_short": "b2c04d8",
+    "message": "feat: publish Genome V5 source closure",
+    "ad54_head_tree_count": 21,
+    "ad54_head_tree_verified_by": "git diff-tree --no-commit-id --name-only -r HEAD",
+    "task_manifest_in_head": false,
+    "task_manifest_cat_file_exit": 128,
+    "task_manifest_working_bytes": 91208,
+    "task_manifest_working_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_manifest_plan_observation": "31 markdown files, 534 relative links, 39 tasks, acyclic"
+  },
+  "decision_records": {
+    "ad54": {
+      "decision": "accepted_limited",
+      "accepted_scope": "local source publication engineering evidence only",
+      "root_acceptance_present": true,
+      "external_trust": false,
+      "source_authority": false,
+      "evidence": "docs/implementation/AD-54/V5-SOURCE-PUBLICATION-COMMIT/root_acceptance_r1/acceptance.md:3-21"
+    },
+    "ad55": {
+      "r2_status": "completed_review_pending",
+      "independent_review": "pass_limited",
+      "root_acceptance_present": false,
+      "archive_gap": true,
+      "decision_origin": "user_relayed_Sol_report",
+      "local_sol_signature_present_in_scanned_archive": false,
+      "evidence": [
+        "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/report.md:1-15",
+        "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/independent_review_r1/report.md:1-16"
+      ]
+    },
+    "ad56": {
+      "decision": "accepted_limited",
+      "accepted_scope": "git-filter-portable source locator software repair",
+      "root_acceptance_present": true,
+      "external_trust": false,
+      "evidence": "docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/root_acceptance_r1/acceptance.md:3-19"
+    },
+    "core_18_sources": {
+      "ad55_section_present": false,
+      "ad50_and_ad56_lines": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md:451-468"
+    }
+  },
+  "ad55_receipts": {
+    "old_f0_failed": {
+      "pid": 106900,
+      "exit_code": 1,
+      "stdout_sha256": "1ebc6da9a467155e9526101a116cb6808c8dd1ed42adfc9d65ab83e8fd600058",
+      "stderr_sha256": "9d3e28093355fbf2eaba66a90492071f135a6a920bcfd16f6fb01c6bbccd26b8",
+      "reason": "working_tree_head_bytes_mismatch for G3 realization/control",
+      "evidence": "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_execution/f0_receipt.json:1-20"
+    },
+    "r2": [
+      {"stage":"F0","pid":106008,"exit_code":0,"stdout_sha256":"28bdf0716c784d012429d663c9b16356515ecf6c9e8ec0c2c9a01306fb837a52","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"stage":"S2_run1","pid":103996,"exit_code":0,"stdout_sha256":"81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"stage":"S2_run2","pid":83504,"exit_code":0,"stdout_sha256":"81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    ],
+    "independent_r1": [
+      {"stage":"F0","pid":81652,"exit_code":0,"stdout_sha256":"4a55e9fc415ef503032021086261b4847793002ac4359fcb50d9f9031d82d6d7","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"stage":"S2_run1","pid":89396,"exit_code":0,"stdout_sha256":"81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"stage":"S2_run2","pid":101616,"exit_code":0,"stdout_sha256":"81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    ]
+  },
+  "count_reconciliation": {
+    "correct_canonical_output_count": 18,
+    "formula": "6 scopes * (identity + declaration + receipt)",
+    "scope_count": 6,
+    "determinism_files_count": 18,
+    "independent_receipts_canonical_outputs_count": 18,
+    "run1_json_total": 20,
+    "run2_json_total": 20,
+    "run_sidecars_excluded": ["negative_controls.json", "s2_status.json"],
+    "run1_run2_canonical_count_after_sidecar_exclusion": 18,
+    "report_line_with_19": "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/report.md:9",
+    "classification": "historical wording/count error; no nineteenth canonical product exists"
+  },
+  "key_hash_recalculation": {
+    "working_factory_files": [
+      {"path":"src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl","bytes":31396,"working_sha256":"de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2","head_blob_oid":"0a78e7c279b394345b8b6923b225bf3eb7fbc6d4"},
+      {"path":"src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl","bytes":27640,"working_sha256":"2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc","head_blob_oid":"50a9135a77fd4fbad450755abfe761a296386ec8"},
+      {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":35485,"working_sha256":"d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e","head_blob_oid":"84a4b5e264dc77c81d88d704028dc12a490f6454"}
+    ],
+    "six_source_owner_canonical_and_working": [
+      {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","working_bytes":31743,"canonical_head_bytes":31743,"working_sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","canonical_head_sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","head_blob_oid":"b94dd095815eed66917aa2f43b5350db587fa232"},
+      {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","working_bytes":30773,"canonical_head_bytes":30773,"working_sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","canonical_head_sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","head_blob_oid":"53de699f6fe3c5f3fea19459ed3d681a0f66a046"},
+      {"path":"src/GenomeV5/G3/RealizationGenomeV5.jl","working_bytes":33751,"canonical_head_bytes":33750,"working_sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb","canonical_head_sha256":"9a9bcdd8ef35000fac3171a4e434173f305e6d4de3ede36d483eae8614e7c006","head_blob_oid":"58274e1912737e7bab9c8ddd430fa17cac523b16"},
+      {"path":"src/GenomeV5/G3/ControlGenomeV5.jl","working_bytes":10297,"canonical_head_bytes":10287,"working_sha256":"eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135","canonical_head_sha256":"2459708dbee4a6d15342a09627ed2a4a9f09a78d2ee9d7e7c6b3e76e66562305","head_blob_oid":"26c05abd5c514cfcf6fb5eee9370ada71e3a82b0"},
+      {"path":"src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl","working_bytes":10904,"canonical_head_bytes":10904,"working_sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4","canonical_head_sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4","head_blob_oid":"446a35add72c17de341b23ec8578adb566bfca81"},
+      {"path":"src/GenomeV5/G3/RealizationControlGenomeV5.jl","working_bytes":6704,"canonical_head_bytes":6704,"working_sha256":"8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4","canonical_head_sha256":"8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4","head_blob_oid":"87206cfa92b5ed06489138553eccfcc4f47671c2"}
+    ]
+  },
+  "source_execution_boundary": {
+    "classification": "valid_bounded_software_evidence_with_mixed_revision_boundary",
+    "canonical_locator_basis": "git show HEAD:path and filtered hash-object --path",
+    "factory_runtime_basis": "working-tree Base.include of three dirty SourceAuthorityFactory files",
+    "pure_head_replay": false,
+    "dirty_compatibility_fix_invalidates_evidence": false,
+    "factory_diff_scope": {
+      "g1": "adds full Git/index/filtered-OID validation and removes raw checkout byte equality gate",
+      "g2": "adds full Git/index/filtered-OID validation and removes raw checkout byte equality gate",
+      "g3": "replaces raw working==HEAD bytes gate with filtered hash-object --path check"
+    },
+    "source_code_line_refs": [
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl:285-378",
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl:260-348",
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl:421-528"
+    ]
+  },
+  "input_closure_gap": {
+    "classification": "auditability_gap_not_software_run_invalidation",
+    "present_records": [
+      "commands and cwd",
+      "PID, UTC interval and exit code",
+      "raw stdout/stderr SHA-256",
+      "HEAD-pinned canonical locator paths and filtered blob OIDs",
+      "six source-owner hashes",
+      "three dirty factory working-tree hashes in R2 inventory"
+    ],
+    "not_frozen_as_itemized_hashes": [
+      "AD55 R2 f0_probe.jl",
+      "AD55 R2 s2_probe.jl",
+      "AD55 independent F0 probe",
+      "AD55 independent S2 run1 and run2 probes",
+      "test harness bytes and complete loaded module/dependency closure"
+    ],
+    "evidence": [
+      "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/hash_inventory.json:1-101",
+      "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/independent_review_r1/hash_inventory.json:1-110",
+      "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/f0_probe.jl:21-33",
+      "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/s2_probe.jl:1-40",
+      "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/independent_review_r1/f0/f0_probe.jl:21-33"
+    ],
+    "next_freeze": "hash every executed probe, harness and loaded dependency before a fresh F0/S2 and bind the list to the same revision receipt"
+  },
+  "fresh_s3": {
+    "gate": "blocked_external_trust_root_and_source_closure",
+    "required_external_or_user_inputs": [
+      "independent attestor",
+      "independent attestor signing key, certificate and signature",
+      "verifier configuration and external trust root decision",
+      "revocation policy/status",
+      "freshness policy",
+      "trusted time",
+      "fresh candidate-bound source closure at the exact revision"
+    ],
+    "software_can_do": [
+      "generate a local signing key for a system it controls without gaining external authority",
+      "generate a fresh challenge/nonce and bind it under the frozen protocol to the signed object, freshness and anti-replay checks",
+      "canonical HEAD/blob and filtered working-tree verification",
+      "certificate/signature chain verification against supplied root",
+      "revocation/freshness/time/nonce checks",
+      "same-candidate binding and deterministic replay",
+      "typed_absent/fail_closed/present classification"
+    ],
+    "software_cannot_honestly_create": [
+      "independent attestor",
+      "external certificate or signature",
+      "external root-of-trust decision",
+      "external revocation authority or trusted time",
+      "self-attestation as an independent authority"
+    ],
+    "current_trusted_attestation": false,
+    "current_source_authority": false,
+    "evidence": "docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/report.md:7-15"
+  },
+  "b00_boundary": {
+    "source_f0_s2_is_b00_evidence": false,
+    "b00_f0_f5_closed": false,
+    "protocol_definition_present": true,
+    "execution_evidence_present": false,
+    "gates": {
+      "F0_input_registration": false,
+      "F1_canonical_package": false,
+      "F2_independent_replay": false,
+      "F3_label_erasure": false,
+      "F4_routing_and_compatibility": false,
+      "F5_evidence_closure": false
+    },
+    "B00": false,
+    "B04": false,
+    "evidence_boundary": "B00 contract-only gates; no physical or downstream benchmark credit"
+  },
+  "minimal_next_step": [
+    "the new AD55 decision/status archive already records decision_origin=user_relayed_Sol_report, corrected count 18 and mixed-revision wording; later work should cite it or append corrections",
+    "if AD56 repair is committed or exact inputs change, rerun fresh F0/S2 on the new closure; otherwise only fill the stated input-closure hashes",
+    "run fresh S3 now and honestly record typed absence; rerun with external signed attestation material when supplied"
+  ],
+  "claim_ceiling": "source-stage software evidence only; no trusted source, candidate/final identity, B00/B04, provider, mesh, solver, engineering or physical credit"
+}

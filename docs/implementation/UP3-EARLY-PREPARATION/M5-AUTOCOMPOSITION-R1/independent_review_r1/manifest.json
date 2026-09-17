@@ -1,0 +1,107 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-INDEPENDENT-REVIEW-R1",
+  "reviewer_role": "independent_review",
+  "reviewer_model": "gpt-5.6-luna",
+  "status": "pass_limited",
+  "claim_ceiling": "manufactured_auto_composition/screen_only",
+  "formal_credit": "none",
+  "not_up3_01": true,
+  "checkout_head_observed": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "strict_serial": true,
+  "execution_order": ["python_oracle", "julia_tests"],
+  "fresh_runs": {
+    "python_oracle": {
+      "command": "python test\\RuntimeV4\\M4Isolated\\oracles\\auto_composition_oracle_v1.py",
+      "pid": 113620,
+      "started_utc": "2026-09-16T11:17:01.7645655Z",
+      "ended_utc": "2026-09-16T11:17:02.4939076Z",
+      "exit_code": 0,
+      "stdout_bytes": 1598,
+      "stdout_sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7",
+      "raw": "raw/python_oracle.stdout.raw",
+      "stderr_raw": "raw/python_oracle.stderr.raw",
+      "combined_raw": "raw/python_oracle.combined.raw",
+      "process_raw": "raw/python_oracle.process.json"
+    },
+    "julia_tests": {
+      "command": "julia --startup-file=no --history-file=no test\\RuntimeV4\\M4Isolated\\manufactured_auto_composition_v1_tests.jl",
+      "pid": 87320,
+      "started_utc": "2026-09-16T11:17:02.5949449Z",
+      "ended_utc": "2026-09-16T11:17:34.3997060Z",
+      "exit_code": 0,
+      "semantic": "110 passed / 110 total; M5-A-TESTS PASS manufactured_auto_composition/screen_only",
+      "stdout_bytes": 176,
+      "stdout_sha256": "066e87c910960d5b6c5498ed2b828cc33f0876d565ff6b02416497aa01f3a66c",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "066e87c910960d5b6c5498ed2b828cc33f0876d565ff6b02416497aa01f3a66c",
+      "raw": "raw/julia_tests.stdout.raw",
+      "stderr_raw": "raw/julia_tests.stderr.raw",
+      "combined_raw": "raw/julia_tests.combined.raw",
+      "process_raw": "raw/julia_tests.process.json"
+    }
+  },
+  "frozen_inputs": {
+    "M5_source": {"path": "src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl", "bytes": 26453, "sha256": "e6262a11ca47f527dfa67f08974febfd69a0334e1c64baeec7657249f0e1945a"},
+    "A_source": {"path": "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl", "bytes": 15965, "sha256": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "B_source": {"path": "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl", "bytes": 13470, "sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "C_source": {"path": "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl", "bytes": 24321, "sha256": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa"},
+    "D_source": {"path": "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl", "bytes": 24605, "sha256": "ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785"},
+    "M5_test": {"path": "test/RuntimeV4/M4Isolated/manufactured_auto_composition_v1_tests.jl", "bytes": 13210, "sha256": "42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08"},
+    "M5_oracle": {"path": "test/RuntimeV4/M4Isolated/oracles/auto_composition_oracle_v1.py", "bytes": 7823, "sha256": "e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c"},
+    "D_test_sha256": "1eb0e26e79b9899cc5a3cb2742545cbaa811fa6683fdcfa1ee4dd31dff081686",
+    "D_oracle_sha256": "9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3"
+  },
+  "recomputed_maps": {
+    "canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe",
+    "permuted_canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe",
+    "typed_ast": {"type": "TypedASTProgramV1", "nodes": 8, "roots": [5, 6, 7, 8], "input_ports": [1, 2, 3]},
+    "hypergraph": {"type": "TypedOperatorHypergraphV1", "nodes": 7, "edges": 4, "edge_order": ["M5-A", "M5-B", "M5-C", "M5-D"]},
+    "ports": ["A.u", "A.K", "A.f", "A.residual", "B.residual", "C.control", "D.solution"],
+    "stages": ["A", "B", "C", "D"],
+    "owner_interface_join_count": 3,
+    "typed_identities": {
+      "A": "3618508c98d614667c7f7412cf48a34497887b4ba5c9aee77e57c2d0776ee725",
+      "B": "c45c26af8f0bc60fda844d390567d43e18a0853881126b1a2f2f4b692bb26451",
+      "C": "aac0a6230dddbd5991fa6b400c30adc546ff1178a1c0a1fde0b218c333408a9a",
+      "D": "25df8ef8a29c292570368691cf9ef97ab56b11ffd2547409098aa2596907b888"
+    }
+  },
+  "review_checks": {
+    "canonicalization_and_permutation": true,
+    "hash_identity_joins": true,
+    "ports_units_owners_interface": true,
+    "provider_drop_terminal_deferred_no_provider": true,
+    "registry_untouched": true,
+    "shared_entry_untouched": true,
+    "R1_R2_not_recorded_preserved": true,
+    "R3_wrapper_failures_non_authoritative": true,
+    "integration_failures_non_authoritative": true,
+    "all_current_frozen_hashes_match": true
+  },
+  "core_api_hashes": {
+    "src/IR/TypedAST.jl": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373",
+    "src/IR/OperatorHypergraph.jl": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de",
+    "src/IR/OperatorRegistry.jl": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45",
+    "src/FusionConceptAI.jl": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"
+  },
+  "receipt_hashes": {
+    "delivery_r1/manifest.json": "ee4f69cde28ea043da5c4a60f1458985d997311e9f3e4d79630bfb8ee687f982",
+    "delivery_r1/validation_receipt.json": "dbacccb90cc16125f817125137e0fa9bce9f7637a923a3325273424ba2c4b1ec",
+    "integration_r1/manifest.json": "f7c963a696d7e70cd723eadc40ed5ee05888f046121ad23813d8a24573c6e59b",
+    "integration_r1/validation_receipt.json": "043ae15a1781e84053b4219e2ad1a10fd8bc8ecacc685d37e1a8c4b7fa6db3c8",
+    "test_execution_r1/execution_manifest.json": "30860c0ed72242eb2ab80e2d3feba3c31e0acfda368bb1bcdf424c36433abf63",
+    "test_execution_r1/validation_receipt.json": "d46602b4f54f991550a820bcf18b5e8fab09bf7219e90a9cfd4c45e58009c594",
+    "test_execution_r1/repair_r3/execution_summary.json": "6ddd81288e65e260532a9ed389fc1cd51d195e810a1378069cffbd2e09703604"
+  },
+  "non_blocking_observations": [
+    "The Python oracle checks a smaller negative-control subset than the Julia suite.",
+    "Stage edges use existing TypedHyperedge/legacy TypedAST compatibility while the composition-level program is TypedASTProgramV1.",
+    "A bare standalone include of M5 without the test adapter lacks _typed_ast_cse_key; package context supplies the canonical helper and the isolated test explicitly supplies its deterministic adapter."
+  ],
+  "roles_pairwise_distinct": ["source implementation", "test/oracle", "integration", "documentation", "independent review"]
+}

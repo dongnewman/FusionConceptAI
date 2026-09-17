@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:fusionconceptai:m5-search-r2:negative-vector-v2",
+  "type":"object","additionalProperties":false,"required":["schema","contract_id","coverage","negative_vectors","self_hash_policy"],
+  "properties":{"schema":{"const":"M5SearchR2MachineCheckerCoverageMatrixV2"},"contract_id":{"const":"M5-SEARCH-R2-05-MACHINE-CHECKER-SCOPE-CONTRACT-R2"},"coverage":{"type":"array"},"negative_vectors":{"type":"array"},"self_hash_policy":{"type":"object"}}
+}

@@ -1,0 +1,13 @@
+{
+  "receipt_id": "UP2-N06-H0A-independent-precheck-r1-commands",
+  "mode": "read_only",
+  "julia_or_desc_executed": false,
+  "commands": [
+    {"purpose": "HEAD/status/diff baseline", "command": "git rev-parse HEAD; git status --short; git diff --stat", "result": "HEAD=4b69f55f7f80240147a65a22809dc1207824dde2; extensive pre-existing dirty worktree recorded"},
+    {"purpose": "process sweep", "command": "Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' }", "result": "zero matching processes at initial and final sweep"},
+    {"purpose": "author file hashes", "command": "Get-FileHash src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl,test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json,test/GenomeV5/UP2/n06_dimensioned_law_tests.jl,test/GenomeV5/UP2/run_n06_dimensioned_law.jl -Algorithm SHA256", "result": "all four hashes match task-provided values"},
+    {"purpose": "static source/doc reads", "command": "Get-Content with line-numbered PowerShell views and rg searches over specified AD-24/AD-26/AD-27, N06, E0, G1, G3, fixture, test, and archive files", "result": "F-01 through F-06 recorded in report.md and evidence_manifest.json"},
+    {"purpose": "runtime restriction", "command": "No Julia/DESC runner or compiler/provider/solver command", "result": "intentionally not run"}
+  ],
+  "reviewer_note": "This receipt records inspection only; it is not a focused runtime receipt and grants no execution or R01-R10 credit."
+}

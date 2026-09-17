@@ -1,0 +1,289 @@
+{
+  "schema_version": "n06-independent-static-precheck-v1",
+  "work_order": "E2-N06-SOURCE-FIELD-LEDGER-independent-precheck-r11",
+  "review_round": "R11",
+  "reviewer_role": "different_luna_test_only_static_reviewer",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "ready_for_focused_r9",
+  "accepted": false,
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "e37314924102c75ac47a34652d0a480c4730e04590cb17294033719ce92d37b8",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "checks": {
+    "r9_frozen_hashes": {
+      "pass": true,
+      "detail": {
+        "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+        "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+        "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "e37314924102c75ac47a34652d0a480c4730e04590cb17294033719ce92d37b8",
+        "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+      }
+    },
+    "r9_repair_manifest_hashes": {
+      "pass": true,
+      "detail": "repair_r9 after_hashes equal current frozen test-only handoff"
+    },
+    "production_runner_unchanged": {
+      "pass": true,
+      "detail": "source and runner equal R8/R9 frozen values"
+    },
+    "actual_g1_selected_units": {
+      "pass": true,
+      "detail": {
+        "governing-0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "source-0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "constraint-0": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "actual_g3_unit_chain": {
+      "pass": true,
+      "detail": {
+        "source_effort": [
+          1,
+          2,
+          -3,
+          -1,
+          0,
+          0,
+          0
+        ],
+        "source_flow": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "source_entry": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "load": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "load_entry": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "return": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "return_entry": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "heat_sink": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "heat_entry": [
+          1,
+          2,
+          -3,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "source_effort_flow_sum_matches_entry": {
+      "pass": true,
+      "detail": "actual G3 effort+flow exponent sum equals source-entry power"
+    },
+    "two_unit_audits_present_and_consistent": {
+      "pass": true,
+      "detail": "unit_gap_audit_r1 plus repair_r9 unit/provenance boundary"
+    },
+    "baseline_exact_mismatch_and_admission_deferred": {
+      "pass": true,
+      "detail": "test lines 205-211; source lines 588-593 and 854-860"
+    },
+    "five_mapping_controls_nonvacuous_relative_baseline": {
+      "pass": true,
+      "detail": {
+        "target_codes": [
+          "owner_scope_accounts_duplicate",
+          "conversion_offset_invalid_for_derived_dimension",
+          "power_flow_partner_missing",
+          "power_flow_link_identity_mismatch",
+          "g1_occurrence_not_bound_to_role_selector"
+        ],
+        "helper": "setdiff(errors, baseline_errors)"
+      }
+    },
+    "five_mutations_still_independently_exercised": {
+      "pass": true,
+      "detail": "test lines 225-238; five fixture rows remain in one unconditional loop"
+    },
+    "fixture_labels_not_production_classification": {
+      "pass": true,
+      "detail": "production dispatch is path/source-bound; forged expected label still yields invalid_ref"
+    },
+    "mutation_dispatch_source_bound": {
+      "pass": true,
+      "detail": "source lines 641-752"
+    },
+    "r8_exit1_raw_preserved": {
+      "pass": true,
+      "detail": "focused R8 real exit 1 and stdout/stderr receipt hashes"
+    },
+    "r1_r7_raw_history_present": {
+      "pass": true,
+      "detail": "R1-R7 receipt/stdout/stderr files remain present"
+    },
+    "protected_dirty_hashes_unchanged": {
+      "pass": true,
+      "detail": {
+        "expected": {
+          "src/FusionConceptAI.jl": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783",
+          "test/runtime_v4_test_manifest.json": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a",
+          "README.md": "4133a9e53e020fcfc0d92eedc0394cf29a6fdeddacfe27c197fc97f3cf208fef"
+        },
+        "current": {
+          "src/FusionConceptAI.jl": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783",
+          "test/runtime_v4_test_manifest.json": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a",
+          "README.md": "4133a9e53e020fcfc0d92eedc0394cf29a6fdeddacfe27c197fc97f3cf208fef"
+        }
+      }
+    },
+    "static_command_qa": {
+      "pass": true,
+      "detail": {
+        "json_parse": 0,
+        "validate_plan": 0,
+        "git_diff_check": 0,
+        "julia_desc_process_sweep": 0
+      }
+    },
+    "no_julia_desc_started_or_observed": {
+      "pass": true,
+      "detail": ""
+    }
+  },
+  "command_receipts": [
+    {
+      "name": "json_parse",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER').rglob('*.json') if p.stat().st_size]; print('json_parse_ok')"
+      ],
+      "started_utc": "2026-09-14T05:48:25.029776Z",
+      "ended_utc": "2026-09-14T05:48:25.160778Z",
+      "exit": 0,
+      "stdout": "json_parse_ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "validate_plan",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "started_utc": "2026-09-14T05:48:25.160797Z",
+      "ended_utc": "2026-09-14T05:48:25.370878Z",
+      "exit": 0,
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 329,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "git_diff_check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-14T05:48:25.370893Z",
+      "ended_utc": "2026-09-14T05:48:25.441156Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "julia_desc_process_sweep",
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' } | Select-Object Id,ProcessName | ConvertTo-Json -Compress"
+      ],
+      "started_utc": "2026-09-14T05:48:25.441174Z",
+      "ended_utc": "2026-09-14T05:48:25.735284Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "status": "not_run",
+    "reason": "test-only R9 static precheck; focused R9 remains required"
+  },
+  "claim_ceiling": "contract/test readiness only; no B04/provider/mesh/engineering/physical/R01-R10 credit",
+  "owned_write_scope": [
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r11/"
+  ]
+}

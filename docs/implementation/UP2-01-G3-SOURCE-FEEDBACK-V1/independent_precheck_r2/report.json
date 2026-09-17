@@ -1,0 +1,73 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-precheck-r2",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "changes_requested",
+  "ready_for_serial_focused": false,
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only_static",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "dirty_porcelain_entries": 300,
+  "matching_julia_desc_processes": 0,
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "static_qa_exit_code": 0,
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false
+  },
+  "findings": [
+    {
+      "id": "G3SF-R2-01",
+      "severity": "blocking",
+      "status": "changes_requested",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:449-478",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:124-125"
+      ],
+      "summary": "Public g3_sf_admit_v1 accepts fault_seam=:internal_validation_fault and lets an arbitrary caller force program_exception.",
+      "required_repair": "Remove fault injection from the public API; retain a shared private admission core and an unexported internal test-only fault helper, with public negative coverage proving keyword injection is unavailable."
+    },
+    {
+      "id": "G3SF-R2-02",
+      "severity": "major",
+      "status": "coverage_gap",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:482-499",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:130-132"
+      ],
+      "summary": "Efficiency editing rebuilds typed ledger coefficients, but tests assert only hash change and field value, not edited return/heat coefficients and closure residuals.",
+      "required_repair": "Add independent assertions for edited return and heat values, all coefficients, energy residual, and ledger residual."
+    },
+    {
+      "id": "G3SF-R2-03",
+      "severity": "residual_authority_limit",
+      "status": "deferred",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:72-109",
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:410-413",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:107-109"
+      ],
+      "summary": "trusted_receipt is a caller-supplied symbol without an external receipt object; the current VNEXT same-candidate gate keeps it terminal_deferred and prevents promotion or old-candidate reuse.",
+      "required_repair": "Retain the explicit same-candidate gate and do not treat the symbol as external authority until a real receipt verifier is supplied."
+    }
+  ],
+  "static_passes": [
+    "typed evaluator consumes declared rational ledger entries",
+    "typed conservative split, heat relation, and ledger relation replace free-text formula fields",
+    "declaration hash is recomputed during validation",
+    "120 W exact closure is 90 W field plus 15 W return plus 15 W heat",
+    "typed contradiction and hash tamper controls are fail_closed",
+    "bare actual authority is fail_closed and missing authority is terminal_deferred",
+    "trusted-looking authority remains behind same-candidate VNEXT gaps",
+    "static QA exit 0 with no Julia or DESC run"
+  ],
+  "protected_prior_evidence": {
+    "r1_verdict": "changes_requested",
+    "repair_r2_manifest_sha256": "2b582bff73f6acaa90891fa839f6d70f7a5c92111b3b403baa37f9e852df867a"
+  }
+}

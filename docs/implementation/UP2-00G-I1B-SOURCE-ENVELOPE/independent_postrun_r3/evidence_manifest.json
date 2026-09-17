@@ -1,0 +1,64 @@
+{
+  "record_kind": "gi1b_independent_postrun_r3_evidence_manifest",
+  "schema_version": "GI1B-independent-postrun-r3-v1",
+  "review_id": "UP2-00G-I1B-independent-postrun-r3",
+  "verdict": "changes_requested",
+  "failure_attribution": "test_expected_manifest_mismatch",
+  "source_bug_found": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "status_rows": 296,
+  "focused_r3_evidence": {
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/stdout.txt": {"bytes": 17160, "sha256": "2373551bd9e9d4912e21cc071160e15ddb10fdd4b34181481b12a51f57ffbeab"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/stderr.txt": {"bytes": 316, "sha256": "9251849de1822ef0cead669fc006d37ff183502d865c4cf9c3b59cd989e3d86f"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/command_receipts.json": {"bytes": 76119, "sha256": "743f6c997cac014a72949798234bff22fdd80a450b932ae8be8723a1b4df1047"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/input_manifest.json": {"bytes": 3037, "sha256": "f53ce3fc44e8cef2db9d390b35eaef80df472a52ebd2e7b76cc99d7c8ef0cdf5"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/protected_before_after.json": {"bytes": 4608, "sha256": "f8746d2c0916296695f8e00b841aeb7f02f5e23523689546431486c7283b2a39"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r3/qa.json": {"bytes": 2264, "sha256": "5cd555fe263ddc2c0deb7ffa841a9dd789f3aeffa37931fb785a9feff790c509"}
+  },
+  "protected_current_inputs": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"bytes": 43037, "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {"bytes": 25704, "sha256": "1b21a2afa6e8c6c11529831868c0fa15b0eeb73ad19b2def94a54530f9e41c36"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"bytes": 23906, "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"bytes": 408, "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"},
+    "src/FusionConceptAI.jl": {"bytes": 10144, "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"},
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": {"bytes": 29560, "sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9"},
+    "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl": {"bytes": 24123, "sha256": "e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67"},
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {"bytes": 16452, "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"},
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {"bytes": 6704, "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"},
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {"bytes": 10904, "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"},
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {"bytes": 33751, "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    "test/GenomeV5/UP2/fixtures.json": {"bytes": 22674, "sha256": "8b8b48395b4d087e1eb1b4fe3d7d8267fb10f58bf69458d99ebdf39acd555de0"}
+  },
+  "contract_inputs": {
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": {"bytes": 12626, "sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes": 6598, "sha256": "f2a8964ca6bd1395780671f7aab7e86544484ae6b2703ce749d09ec5be0e5a43"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 66131, "sha256": "f79b008cc46f3d105b60459ce14856fc57993b2cc5e5800ad79e28d06c6506c9"},
+    "docs/implementation/AD-28/proposal.md": {"bytes": 3153, "sha256": "4324faef2f53cb3d62c79a85082c8c4086ab5b02f40d79e1df37947da7fc02fe"},
+    "docs/implementation/AD-28/manifest.json": {"bytes": 7379, "sha256": "b13cf452d8dae1b45d8c36441cb2ba6f28da8b20f94804ed117a0902041b2d27"}
+  },
+  "semantic_evidence": {
+    "source_row_spec": "N10-03 field path and locator target the G3 binding child contract_ref",
+    "n10_projection": "child.version must be v2 and child.uri must end with /binding; field original is child and authoritative value is component_identity.g3_child_refs.binding",
+    "g3_structure": "RealizationControlGenomeV5.contract_binding is outer v5 bundle; CoupledRealizationControlBindingV2.contract_binding is child v2 binding",
+    "test_mismatch": "test expected manifest line 160 reads package.g3.contract_binding.contract_ref (outer v5 bundle)",
+    "production_source_owner": "GI1B source binding uses outer G3 ref/hash as layer owner while typed field value remains child v2",
+    "all_ten_failures": "five present plus five absent; original/attempted value and all derived hashes/mutation hash",
+    "minimal_fix": "test line 160 only: package.g3.binding.contract_binding.contract_ref",
+    "rerun_gate": "allowed after independent static test-only diff/hash review and fresh serial receipt directory"
+  },
+  "claim_ceiling": ["software-run-failure-only", "no-formal-B04", "no-provider-or-solver-credit", "no-physical-or-engineering-credit", "no-parent-goal-credit"],
+  "output_artifacts": {
+    "report.md": {"bytes": 2510, "sha256": "16e98195ff306e98a8ff76f824a7ae3fe1fda75ba67835e775f8e6de09afbda6"},
+    "report.json": {"bytes": 2839, "sha256": "fc1a9fff3cdceaa387157e13f0ca8781d5f903f093ef486759e71ea4fad9edbf"},
+    "command_receipts.json": {"bytes": 2126, "sha256": "75b1c74fb6510de141a65c88b8d334330c73b299a79170d930c6fa059a618400"}
+  },
+  "negative_controls": {
+    "julia_processes_during_review": 0,
+    "desc_processes_during_review": 0,
+    "source_or_test_modified": false,
+    "focused_r3_exit1_reclassified": false,
+    "formal_credit_granted": false
+  },
+  "manifest_self_hash": "omitted_by_design"
+}

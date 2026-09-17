@@ -1,0 +1,572 @@
+{
+  "schema": "UP1-R2.full-regression.audit.v1",
+  "generated_utc": "2026-09-16T20:04:14.719156Z",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "strict_json": {
+    "files_checked": 226,
+    "pass": 224,
+    "failures": [
+      {
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/duplicate_key_input.json",
+        "status": "failure",
+        "error": "duplicate key status"
+      },
+      {
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/16-hygiene-audit/cleanup_candidates.json",
+        "status": "failure",
+        "error": "duplicate key tmp_like"
+      }
+    ],
+    "expected_negative_controls": 2,
+    "unexpected_failures": 0,
+    "failure_classification": "all parse failures are intentional duplicate-key negative fixtures"
+  },
+  "manifests": {
+    "checked": 17,
+    "rows": [
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 5,
+        "hash_matches": 5,
+        "hash_failures": [],
+        "exact_declared": 7,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/02-pki-chain/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 7,
+        "hash_matches": 7,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay/evidence_manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 15,
+        "hash_matches": 15,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/04-source-axis-binding/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 0,
+        "hash_matches": 0,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/05-g2-mapping/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 10,
+        "hash_matches": 10,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 8,
+        "hash_matches": 8,
+        "hash_failures": [],
+        "exact_declared": 20,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/07-authority-intake/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 13,
+        "hash_matches": 13,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 0,
+        "hash_matches": 0,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 22,
+        "hash_matches": 11,
+        "hash_failures": [
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          }
+        ],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/10-environment-capture/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 56,
+        "hash_matches": 56,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/11-source-capture/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 15,
+        "hash_matches": 15,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/12-system-trust-inventory/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 0,
+        "hash_matches": 0,
+        "hash_failures": [],
+        "exact_declared": 10,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/13-threat-model/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 23,
+        "hash_matches": 23,
+        "hash_failures": [],
+        "exact_declared": 25,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 10,
+        "hash_matches": 5,
+        "hash_failures": [
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          }
+        ],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/15-common/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 8,
+        "hash_matches": 8,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/16-hygiene-audit/manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 8,
+        "hash_matches": 8,
+        "hash_failures": [],
+        "exact_declared": 0,
+        "exact_missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+        "status": "strict_json_pass",
+        "declared_hashes": 16,
+        "hash_matches": 8,
+        "hash_failures": [
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          },
+          {
+            "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+            "declared": "sha256",
+            "status": "missing"
+          }
+        ],
+        "exact_declared": 0,
+        "exact_missing": []
+      }
+    ],
+    "hash_checks": 192,
+    "hash_matches": 192,
+    "hash_failures": [],
+    "exact_sets": [
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/manifest.json",
+        "declared": 7,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/02-pki-chain/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay/evidence_manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/04-source-axis-binding/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/05-g2-mapping/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/06-environment-provenance/manifest.json",
+        "declared": 20,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/07-authority-intake/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/09-local-discovery/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/10-environment-capture/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/11-source-capture/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/12-system-trust-inventory/manifest.json",
+        "declared": 10,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/13-threat-model/manifest.json",
+        "declared": 25,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/15-common/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/16-hygiene-audit/manifest.json",
+        "declared": 0,
+        "missing": []
+      },
+      {
+        "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/17-integration-slice/evidence_manifest.json",
+        "declared": 0,
+        "missing": []
+      }
+    ]
+  },
+  "review_crosswalk": [
+    {
+      "component": "00-contract-freeze",
+      "latest_review": "contract-freeze-independent-review-r1",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/contract-freeze-independent-review-r1/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "01-witness-authority",
+      "latest_review": "01-witness-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_contract_only",
+      "evidence": "reviews/01-witness-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "02-pki-chain",
+      "latest_review": "02-pki-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/02-pki-independent-review-r3/02-pki-independent-review-r3.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "03-revocation-time-replay",
+      "latest_review": "03-revocation-independent-review-r5",
+      "status": "pass_limited_with_test_scope_deferred",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/03-revocation-independent-review-r5/review_report.md",
+      "evidence_exists": true,
+      "deferred": [
+        "foreign_owner_dynamic_fixture",
+        "symlink_or_junction_dynamic_fixture"
+      ]
+    },
+    {
+      "component": "04-source-axis-binding",
+      "latest_review": "04-source-axis-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/04-source-axis-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "05-g2-mapping",
+      "latest_review": "05-g2-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_structural_only",
+      "evidence": "reviews/05-g2-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "06-environment-provenance",
+      "latest_review": "06-environment-independent-review-r5",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only_screen_only",
+      "evidence": "reviews/06-environment-independent-review-r5/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "07-authority-intake",
+      "latest_review": "07-intake-independent-review-r4",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/07-intake-independent-review-r4/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "08-aggregate-gate",
+      "latest_review": "08-aggregate-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/08-aggregate-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "09-local-discovery",
+      "latest_review": null,
+      "status": "review_not_present_manifest_pass",
+      "claim_ceiling": "preparation_only",
+      "evidence": "09-local-discovery/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "10-environment-capture",
+      "latest_review": null,
+      "status": "review_pending",
+      "claim_ceiling": "preparation_only_screen_only",
+      "evidence": "10-environment-capture/manifest.json",
+      "evidence_exists": true,
+      "deferred": [
+        "candidate_ref_null",
+        "authority_gaps"
+      ]
+    },
+    {
+      "component": "11-source-capture",
+      "latest_review": "external-facts-independent-review-r2_related_crosscut",
+      "status": "pass_limited_related_crosscut",
+      "claim_ceiling": "bookkeeping_only_not_authority",
+      "evidence": "reviews/external-facts-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "12-system-trust-inventory",
+      "latest_review": null,
+      "status": "review_pending",
+      "claim_ceiling": "preparation_only",
+      "evidence": "12-system-trust-inventory/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "13-threat-model",
+      "latest_review": "threat-protocol-independent-review-r2",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/threat-protocol-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "14-review-protocol",
+      "latest_review": "threat-protocol-independent-review-r2_related_crosscut",
+      "status": "pass_limited_related_crosscut",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/threat-protocol-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "15-common",
+      "latest_review": "15-common-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/15-common-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "16-hygiene-audit",
+      "latest_review": null,
+      "status": "review_not_present_read_only_audit",
+      "claim_ceiling": "hygiene_only",
+      "evidence": "16-hygiene-audit/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "17-integration-slice",
+      "latest_review": "17-integration-independent-review-r4",
+      "status": "pass_limited_with_test_scope_deferred",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/17-integration-independent-review-r4/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    }
+  ],
+  "boundary": "audit only; no component mutation, no authority/publish credit",
+  "source_hash_audit": {
+    "declared_hash_checks": 192,
+    "matching": 192,
+    "failures": []
+  },
+  "audit_correction": "Nested sha256 record fields were excluded from path hash counts; invalid JSON controls remain listed as expected negatives."
+}

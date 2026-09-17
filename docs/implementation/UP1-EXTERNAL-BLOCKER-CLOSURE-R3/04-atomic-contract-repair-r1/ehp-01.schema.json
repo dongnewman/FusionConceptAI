@@ -1,0 +1,7 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:up1:external-handoff:ehp-01:repair-r1",
+  "title":"EHP-01 witness authority response payload repair R1",
+  "allOf":[{"$ref":"../03-atomic-response-bundle-contract/ehp-01.schema.json"},{"type":"object","required":["schema"],"properties":{"schema":{"const":"UP1.external-handoff.ehp-01-response.v1"}}}],
+  "unevaluatedProperties":false
+}

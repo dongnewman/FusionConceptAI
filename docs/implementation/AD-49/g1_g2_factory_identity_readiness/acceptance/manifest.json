@@ -1,0 +1,73 @@
+{
+  "schema_version": "AD49-g1-g2-factory-identity-readiness-acceptance-v1",
+  "record_kind": "limited_acceptance",
+  "task_id": "AD-49",
+  "decision": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "architecture_readiness_only",
+  "only_unlocked_work_order": "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_basis": {
+    "r1_verdict": "changes_requested",
+    "r1_report_sha256": "33862f09dc13695c1a85b7d25606b21b56e91213265f0bdd62ec865d83c98143",
+    "r1_manifest_sha256": "97d40826cbc39598671c3452e84b5cb2f45d160d832d44ad047405c77c104e37",
+    "repair_validation_sha256": "1533d1b405b68ee649f84c77fa8cc62e79ea3abe1d4430c584028ff4e8b2782f",
+    "r2_verdict": "pass_limited",
+    "r2_report_sha256": "46d6bbaa81d1044b49875f5833f6e8053b6f9182e9dbe63c496eb8cb27b713d8",
+    "r2_manifest_sha256": "377eb14a2cb76c211b6eb5fddf6136323a173d942baf7a5537c480cfea710b45",
+    "r2_direct_validation_sha256": "35371957d2f0cf3249a1d9e505fefcf30925249212895151495f65b09c5d5911",
+    "r2_final_hashes_sha256": "ead191ab0247f28079acaf724cad980dffd7729bf9881a41055b7864754c6da9"
+  },
+  "frozen_root_products": {
+    "report.md": {"bytes": 17583, "sha256": "0dd05bde2b272cd15673e8b317b3461dd20cbe4269f811ca0e6e50183cdd0ec2"},
+    "manifest.json": {"bytes": 23532, "sha256": "a00dda598ea44d79e5147d148f961c524deb9f7fc8787a2b88779d372b739540"},
+    "cleanup_inventory.md": {"bytes": 1359, "sha256": "80f6ac6d3ab360066eddb46df922e8673a133c03d69f8859e350988cd7b02cf5"}
+  },
+  "validation": {
+    "python": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "direct_validation_exit": 0,
+    "plan_validator_exit": 0,
+    "plan_markdown_files": 31,
+    "plan_relative_links": 526,
+    "plan_task_count": 39,
+    "plan_dag_acyclic": true,
+    "scoped_git_diff_check_exit": 0,
+    "heavy_runtime_started": false
+  },
+  "unlock_boundary": {
+    "s1": "allowed_after_parent_decision",
+    "s2": "locked_on_S1_and_independent_probe",
+    "f0": "locked_until_independent_absent_S2_for_both_layers",
+    "s3": "locked_on_S1_S2_or_fresh_F0_S2_and_independent_attestor",
+    "g2_mapping": "locked_on_S2_S3_AD45_handle_and_independent_mapping_profile",
+    "w3b": "locked_on_S3_G2_mapping_fresh_identity_inputs_and_independent review"
+  },
+  "credit_ceiling": {
+    "candidate_source_authority": false,
+    "factory_implementation": false,
+    "candidate_identity": false,
+    "declaration_hash": false,
+    "candidate_hash": false,
+    "g2_mapping": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physics": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "scope_protection": {
+    "root_products_modified": false,
+    "r1_r2_evidence_modified": false,
+    "core_task_manifest_src_test_fixture_registry_modified": false,
+    "julia_desc_run": false,
+    "acceptance_products_only": true
+  },
+  "self_hash_excluded": true
+}

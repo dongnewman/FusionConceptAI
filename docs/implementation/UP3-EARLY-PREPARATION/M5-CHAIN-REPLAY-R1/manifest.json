@@ -1,0 +1,13 @@
+{
+  "schema": "M5ChainReplayManifestV1",
+  "run_id": "M5-CHAIN-REPLAY-R1",
+  "status": "A_pass_B_pass_C_deferred_performance_blocked",
+  "head": "b2c04d...",
+  "layers": {"A": "passed", "B": "passed", "C": "deferred_performance_blocked"},
+  "ledgers": {"A": "A_auto_composition/run_ledger.json", "B": "B_inverse_feedback/run_ledger.json", "C": "C_conditional_egraph_replay_r2/run_ledger.json"},
+  "frozen_source_sha256": {"A": "284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209", "B": "477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59", "C": "7a1f52a96a7a79061b1e4bdb0fc1b7b41de5e45266d0ac4726a50502a4dc6500"},
+  "A_product_sha256": "722e59e841d6551fe9001e1279266e1aaf5a798ca0d16625d5a4fd81a59ab694",
+  "old_acceptance": "invalidated",
+  "claim_ceiling": "manufactured_conditional_egraph/screen_only",
+  "formal_credit": "none"
+}

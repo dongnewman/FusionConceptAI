@@ -1,0 +1,40 @@
+{
+  "schema": "m4-a-equation-ir-delivery-v1",
+  "task_id": "UP2-01-PREPARATION/M4-A-EQUATION-IR/delivery_r1",
+  "status": "delivery_complete_review_pending",
+  "owner": "documentation_owner",
+  "recorder": "Luna m4_scope_record",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "claim_ceiling": ["manufactured_control", "screen_only"],
+  "scope": "manufactured declaration and isolated equation IR control only",
+  "inputs": {
+    "source": {"path":"src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl","sha256":"0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "test": {"path":"test/RuntimeV4/M4Isolated/manufactured_equation_ir_v1_tests.jl","sha256":"654c2c06d0ab0d9a12a20c602a422b35ab84b2a9d00cda034a15beb79d558634"},
+    "oracle": {"path":"test/RuntimeV4/M4Isolated/oracles/equation_ir_oracle_v1.py","sha256":"0c975eabec07ff1263139636e31a36ccae27f3c437f80b8e9a667e1da329129e"}
+  },
+  "api": ["M4UnitV1","M4RationalV1","M4DomainDeclarationV1","M4ScalarFieldDeclarationV1","M4OperatorDeclarationV1","M4DiagonalCoefficientDeclarationV1","M4SourceDeclarationV1","M4BoundaryClosureDeclarationV1","M4ProvenanceDeclarationV1","ManufacturedEquationIRV1","manufactured_equation_ir_v1","manufactured_equation_payload","validate_manufactured_equation_ir","is_valid_manufactured_equation_ir"],
+  "typed_failures": ["unknown_operator","unit_closure_failure","nonpositive_coefficient","non_spd_coefficient","non_unique_source_owner","missing_boundary_closure","foreign_source_reference","terminal_deferred"],
+  "math_oracle": {"div_k_grad_u":"11/60","source":"-11/60","exact_residual":"0","float_residual":0.0,"tolerance":1e-12,"oracle_independent_fraction_arithmetic":true},
+  "execution_evidence": {
+    "strictly_serial": true,
+    "fresh_process_each_run": true,
+    "python": {"runs":2,"exit_codes":[0,0],"canonical_semantic_equal":true,"receipts":["integration_r1/command_01_python_oracle.receipt.json","integration_r1/command_02_python_oracle.receipt.json"]},
+    "julia": {"runs":2,"exit_codes":[0,0],"semantic_results":[{"passed":42,"total":42},{"passed":42,"total":42}],"receipts":["integration_r1/command_03_julia_tests.receipt.json","integration_r1/command_04_julia_tests.receipt.json"]},
+    "stderr_empty_all_four": true,
+    "raw_roots": ["integration_r1/raw/","integration_r1/archive/raw/"]
+  },
+  "ownership": {"source_implementer":"distinct Luna; upstream identity retained in implementation record","test_oracle_owner":"distinct Luna; test_execution_r1","independent_reviewer":"different Luna; not yet assigned in this record","integration_documentation_owner":"Luna m4_scope_record"},
+  "shared_entry_unchanged": true,
+  "shared_files_modified": false,
+  "not_claimed_or_closed": ["residual_lowering","discretization","topology_transfer","coupled_solve","candidate","provider","physics","engineering","UP2-01","UP2","B00","B04","R01-R10","L4"],
+  "m4": {"A":"declaration/IR control only","B":"unauthorized","C":"unauthorized","D":"unauthorized"},
+  "formal_reentry": ["T0","authority recheck","T1","T2","aggregate","UP2-00","UP1-04B","UP1-04","UP2-01"],
+  "independent_review_required": true,
+  "sol_if_review_passes": "only a separate Sol accepted_limited decision may accept A, with ceiling manufactured_control/screen_only",
+  "failure_history": ["test_execution_r1/failure_history/attempt_001_metadata_capture_failure.combined.raw"],
+  "runtime_by_recorder": {"Python":"not_run","Julia":"not_run","solver":"not_run"},
+  "parent_closed": false
+}
+

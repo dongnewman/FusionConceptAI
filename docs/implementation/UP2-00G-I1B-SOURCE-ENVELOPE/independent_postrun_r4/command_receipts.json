@@ -1,0 +1,33 @@
+{
+  "schema_version": "G-I1B-independent-postrun-r4-command-receipts-v1",
+  "reviewer": "independent_luna_high_third_party",
+  "scope": "read-only captured-postrun review; no Julia/DESC",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_status_entry_count": 297,
+  "prewrite_status_sha256_utf8_lf": "4fc481ba691dab125a587f47b32b93e6054719d9b152043e152802b5b509952b",
+  "preflight_matching_julia_desc_process_count": 0,
+  "commands": [
+    {"operation": "HEAD and branch", "command": "git rev-parse HEAD; git branch --show-current", "result": "HEAD and main recorded"},
+    {"operation": "current dirty snapshot", "command": "git status --porcelain=v1", "result": "297 entries; SHA-256 recorded as UTF-8 LF"},
+    {"operation": "process sweep", "command": "Get-Process -Name julia,julia-debug,desc -ErrorAction SilentlyContinue", "result": "zero matching processes"},
+    {"operation": "focused_r4 receipt and preflight read", "command": "Get-Content focused_r4/command_receipts.json preflight.json input_manifest.json", "result": "PID 50860; reconstructed receipt; exit 1; no rerun"},
+    {"operation": "raw output read", "command": "Get-Content focused_r4/stdout.txt stderr.txt", "result": "299/299 upstream; 2024/2024 factory; 8/8 taxonomy; 14/14 schema; one line-407 failure"},
+    {"operation": "protected hash read", "command": "Get-Content focused_r4/protected_before_after.json qa.json", "result": "all four protected inputs match; pre/post matching Julia/DESC count zero"},
+    {"operation": "source/test/fixture/runner static read", "command": "Get-Content source/test/fixture/runner; rg authority_gap N06", "result": "free-text N06 descriptions; runtime typed_absent -> terminal_deferred + authority_gap; test keyword assertion is over-specific"},
+    {"operation": "Julia/DESC rerun", "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl", "result": "NOT RUN by instruction; focused exit 1 retained"}
+  ],
+  "writes": [
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r4/report.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r4/report.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r4/evidence_manifest.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r4/command_receipts.json"
+  ],
+  "postwrite_outputs": {
+    "report.md": {"bytes": 3908, "sha256": "c4d243605fdcc6dfc6d82f31430d5564c7065f5dae26d10dbe0370b5e41faf0d"},
+    "report.json": {"bytes": 3769, "sha256": "a52b269ccc52fae4721c4b7ca7556db6c725ef28e2f3d82c8d69446e057066e8"},
+    "evidence_manifest.json": {"bytes": 2996, "sha256": "88b22e0bc3c91b1faddf499dc57a6b12e03049f19b36c8f61aaa3c0187bd7443"}
+  },
+  "postwrite_status_entry_count": 298,
+  "claim_ceiling": ["exit_1_preserved", "software_test_failure_only", "no_B00", "no_B04", "no_physical_credit", "no_engineering_credit", "no_parent_goal_credit", "no_R_credit"]
+}

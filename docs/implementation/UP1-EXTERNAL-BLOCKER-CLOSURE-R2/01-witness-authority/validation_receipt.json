@@ -1,0 +1,33 @@
+{
+  "schema": "UP1.external_closure_r2.witness_authority.validation_receipt.v1",
+  "status": "pass_limited",
+  "accepted": false,
+  "resolution": "typed_absence",
+  "no_publish": true,
+  "claim_ceiling": "preparation_only",
+  "r01_r10_closed": false,
+  "command": "python -B test/up1_external_closure_r2/witness_authority/test_witness_authority.py",
+  "pid": 97084,
+  "utc_started": "2026-09-16T17:49:16.6659401Z",
+  "utc_ended": "2026-09-16T17:49:16.8662210Z",
+  "exit_code": 0,
+  "tests": {"passed": 8, "failed": 0, "fresh_python_b": true},
+  "raw": {"combined": "raw/fresh_tests.combined.raw", "sha256": "e404fabb9b0eac7724a508414bee0dae48d4d2a8abf52ab2c0c350db8cdb5ced"},
+  "source_hashes": {
+    "tools/up1_external_closure_r2/witness_authority/__init__.py": "8014c6f342bb3e9d3fa35e2da6276b00fa89e8435c664421d569fb2eeeed1522",
+    "tools/up1_external_closure_r2/witness_authority/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "tools/up1_external_closure_r2/witness_authority/cli.py": "3d2289193c0d2a4097784261096c1f91b8a409b5c31a3aa7ec1ad15f8dfa0be6",
+    "tools/up1_external_closure_r2/witness_authority/validator.py": "b64f41c3c5aa50faafa0afa17a9bd414d2a7a6dafa8ccfbe1497d5f06d65ef1b",
+    "test/up1_external_closure_r2/witness_authority/test_witness_authority.py": "1f015824772efc1bdb0c9f193ce85dd0cfd4b19eca6a84af421e1f43f2d01bb2"
+  },
+  "observed_cases": [
+    "8/8 fresh tests pass",
+    "TEST_ONLY is non_evidence",
+    "real witness absent is typed_absence",
+    "foreign layer and axis, duplicate/conflicting idempotency, and missing fields fail_closed",
+    "strict duplicate-key JSON rejected"
+  ],
+  "external_facts": {"person": "typed_absence", "endpoint": "typed_absence", "signature": "typed_absence", "ack": "typed_absence", "trust_root": "typed_absence"},
+  "failure_preservation": "No production failure is converted into evidence; all failures/no-publish decisions remain local and typed.",
+  "gate_statement": "R01-R10 and all UP1 external gates remain open; this receipt is software-only."
+}

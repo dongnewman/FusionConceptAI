@@ -1,0 +1,19 @@
+{
+  "schema": "core-source-s3-current-head-root-acceptance-cleanup-v1",
+  "task_id": "CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1",
+  "cleanup_action": "none",
+  "ambiguous_paths": [],
+  "protected_prior_paths": ["../report.md", "../manifest.json", "../external_inputs.json", "../source_closure.json", "../validation_receipt.json", "../archive/**", "../independent_review_*/**"],
+  "rows": [
+    {"path":"docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/report.md","owner":"root_acceptance_r1","category":"frozen_delivery","existed_before":false,"before_sha256":null,"after_sha256":"38ac63af8fafb7900ac1ca653af03fce93929e81649922d7b56b848a783c27b3","action":"retain","classification":"protected_delivery"},
+    {"path":"docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/manifest.json","owner":"root_acceptance_r1","category":"frozen_delivery_manifest","existed_before":false,"before_sha256":null,"after_sha256":"a0828e54a60711fd7c370de4f30301750c2e635d964ed6eed7542ee87b52e91d","action":"retain","classification":"protected_delivery"},
+    {"path":"docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/validation_receipt.json","owner":"root_acceptance_r1","category":"frozen_delivery_receipt","existed_before":false,"before_sha256":null,"after_sha256":"fb9a3892598a17a03837f998d1227e3723f6c38b96beab222b506c126970efa5","action":"retain","classification":"protected_delivery"},
+    {"path":"docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/cleanup_inventory.json","owner":"root_acceptance_r1","category":"frozen_delivery_inventory","existed_before":false,"before_sha256":null,"action":"retain","classification":"protected_delivery_self_hash_excluded","self_hash_excluded":true}
+  ],
+  "final_exact_owned_set": [
+    "docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/report.md",
+    "docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/manifest.json",
+    "docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/validation_receipt.json",
+    "docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/root_acceptance_r1/cleanup_inventory.json"
+  ]
+}

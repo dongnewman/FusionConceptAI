@@ -1,0 +1,34 @@
+{
+  "schema_version": "CORE-STATUS-SYNC-AD49-AD50-root-acceptance-cleanup-v1",
+  "task_id": "CORE-STATUS-SYNC-AD49-AD50",
+  "decision": "accepted_limited",
+  "accepted_scope": "status_sync_engineering_evidence_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "write_scope": [
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/root_acceptance_r1/acceptance.md",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/root_acceptance_r1/manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/root_acceptance_r1/hash_inventory.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/root_acceptance_r1/cleanup_inventory.json"
+  ],
+  "deletions": [],
+  "modified_outside_write_scope": false,
+  "protected": [
+    "src/**",
+    "test/**",
+    "runs/**",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/report.md",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/direct_validation.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/cleanup_inventory.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/independent_review_r1/**",
+    "historical evidence and unrelated dirty work"
+  ],
+  "julia_or_desc_run": false,
+  "process_touched": false,
+  "temporary_or_pycache": false,
+  "task_manifest_modified": false,
+  "dirty_tree_policy": "preserve existing dirty and untracked work; no global cleanup or revert",
+  "AD52_in_scope": false,
+  "self_hash_excluded": true
+}

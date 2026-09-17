@@ -1,0 +1,82 @@
+{
+  "schema": "UP1.atomic-bundle.independent-test-manifest-r3.v1",
+  "conclusion": "fail_limited",
+  "status": "fail_limited",
+  "authority_credit": false,
+  "formal_credit": "none",
+  "no_publish": true,
+  "claim_scope": "software_only",
+  "offline": true,
+  "heavy_lanes": "not_executed",
+  "implementation_test_frozen": true,
+  "hash_check": "hash_check.json",
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+  "focused_runs": [
+    {
+      "run": 1,
+      "pid": 97676,
+      "started_utc": "2026-09-17T00:11:23.6092791Z",
+      "ended_utc": "2026-09-17T00:11:25.2517987Z",
+      "exit": 0,
+      "failed": false,
+      "tests": 20,
+      "skipped": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e9821dc0d15bfb00809704aae4897bbc56d6af240ea89b4798dace0c769c61ee",
+      "combined_sha256": "e9821dc0d15bfb00809704aae4897bbc56d6af240ea89b4798dace0c769c61ee"
+    },
+    {
+      "run": 2,
+      "pid": 93080,
+      "started_utc": "2026-09-17T00:11:25.2769682Z",
+      "ended_utc": "2026-09-17T00:11:26.9189178Z",
+      "exit": 0,
+      "failed": false,
+      "tests": 20,
+      "skipped": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "62479e5d5ef0c9db5622795e2a90b676980ce39a4a19ca09c25721e3605819ad",
+      "combined_sha256": "62479e5d5ef0c9db5622795e2a90b676980ce39a4a19ca09c25721e3605819ad"
+    }
+  ],
+  "independent_probe": {
+    "script": "independent_attack_probe.py",
+    "pid": 16456,
+    "started_utc": "2026-09-17T00:13:49.6444272Z",
+    "ended_utc": "2026-09-17T00:13:50.8643158Z",
+    "exit": 0,
+    "stdout_sha256": "f8d4042f98762b628f46d5472d67704a2723353b784a64dd8fafb2100299fd31",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cases": {
+      "hardlink": "pass",
+      "pre_root_reparse": "typed_skip_winerror_1314",
+      "pre_parent_reparse": "typed_skip_winerror_1314",
+      "post_root_reparse_injected": "pass",
+      "post_parent_reparse_injected": "pass",
+      "g2_directional_inverse": "pass",
+      "decision_precedence": "pass",
+      "test_only_owner_receiver_context": "pass",
+      "ehp04_local_bytes_receipt": "pass",
+      "r01_r25_d01_builders": "fail"
+    },
+    "failed_cases": ["r01_r25_d01_builders"]
+  },
+  "raw": [
+    "raw/focused_run_1.stdout.raw",
+    "raw/focused_run_1.stderr.raw",
+    "raw/focused_run_1.combined.raw",
+    "raw/focused_run_2.stdout.raw",
+    "raw/focused_run_2.stderr.raw",
+    "raw/focused_run_2.combined.raw",
+    "raw/independent_attack.stdout.raw",
+    "raw/independent_attack.stderr.raw"
+  ],
+  "vector_audit": {
+    "ids": ["R01","R02","R03","R04","R05","R06","R07","R08","R09","R10","R11","R12","R13","R14","R15","R16","R17","R18","R19","R20","R21","R22","R23","R24","R25","D01"],
+    "static_placeholder": true,
+    "distinct_builder_paths": ["mutation", "independent_review"],
+    "matching_expected": ["R01"],
+    "mismatching_expected": ["R02","R03","R04","R05","R06","R07","R08","R09","R10","R11","R12","R13","R14","R15","R16","R17","R18","R19","R20","R21","R22","R23","R24","R25","D01"]
+  },
+  "restrictions": ["no_network", "no_external_publish", "no_AD", "no_S3", "no_Julia", "no_DESC", "no_solver"]
+}

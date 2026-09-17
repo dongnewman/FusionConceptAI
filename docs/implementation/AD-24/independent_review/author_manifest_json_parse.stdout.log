@@ -1,0 +1,82 @@
+{
+    "decision_id": "AD-24-UP2-N05-N06-PHYSICAL-BINDING-20260914",
+    "status": "review_pending",
+    "accepted": false,
+    "claim_scope": "architecture_proposal_only",
+    "repository": "D:/006-Programing/LMC/FusionConceptAI",
+    "head_at_audit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "core_append": {
+        "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+        "before_bytes": 31055,
+        "before_mtime": "2026-09-14T08:14:04.9062533+08:00",
+        "before_sha256": "30976b4d0b89e676f16f4402197200bc56c0d61e6f1a96245529c2bce94eab03",
+        "after_bytes": 35880,
+        "after_mtime": "2026-09-14T09:07:46.2740909+08:00",
+        "after_sha256": "3c749419e979bd3be6bf2498b50b58af5a3f957d168c437a6664ae7c0c23ee43",
+        "append_anchor": "<a id=\"ad-24\"></a>",
+        "append_only": true,
+        "scope": "AD-24 section appended after AD-23; prior bytes were not rewritten"
+    },
+    "source_audit_artifacts": [
+        {
+            "path": "docs/implementation/AD-24/n05_n06_source_audit/source_audit.md",
+            "bytes": 15464,
+            "mtime": "2026-09-14T09:03:26.1731016+08:00",
+            "sha256": "96a86fa55bedc6bc827545774734eb45704f1ca1957d4294ad0f873128f844ef"
+        },
+        {
+            "path": "docs/implementation/AD-24/n05_n06_source_audit/acceptance.md",
+            "bytes": 1655,
+            "mtime": "2026-09-14T09:02:17.6588493+08:00",
+            "sha256": "8b9ed859fb6469f38545cc7e3ee50095d3279dcc4e2c38a6f720aae3efe3a6fa"
+        },
+        {
+            "path": "docs/implementation/AD-24/n05_n06_source_audit/evidence_manifest.json",
+            "bytes": 7956,
+            "mtime": "2026-09-14T09:04:43.4969100+08:00",
+            "sha256": "1f32aea97a23d98cd897f722fd64d894f731c9fd34ed6393488c15b8e7102e39"
+        }
+    ],
+    "decision_artifacts": [
+        {
+            "path": "docs/implementation/AD-24/decision.md",
+            "bytes": 3206,
+            "mtime": "2026-09-14T09:07:46.2756697+08:00",
+            "sha256": "ade7ca5923cfd2ce9cda5e8b7563fdf760a2e123f10f195ec9ac13cc8d66773c"
+        },
+        {
+            "path": "docs/implementation/AD-24/acceptance.md",
+            "bytes": 913,
+            "mtime": "2026-09-14T09:06:40.9915723+08:00",
+            "sha256": "01018b27025c27741e686a40790b08d969ddc57ea9b010e3e6e21cc1b31f5cba"
+        }
+    ],
+    "preserved_boundaries": {
+        "up0_up6_dag_changed": false,
+        "up2_total_gate_changed": false,
+        "formal_b04_mutations_reduced": false,
+        "r01_r10_reduced": false,
+        "old_up2_rows_modified": false,
+        "old_evidence_or_runs_modified": false,
+        "readme_16_task_manifest_modified_by_ad24": false,
+        "default_registry_modified": false
+    },
+    "verification": {
+        "json_parse": "pass",
+        "git_diff_check_target": "pass",
+        "control_character_scan": "pass",
+        "julia_desc_run": false,
+        "implementation_or_physics_acceptance": false,
+        "independent_luna_review": "pending"
+    },
+    "credit_ceiling": {
+        "implementation": false,
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01_R10": false
+    }
+}

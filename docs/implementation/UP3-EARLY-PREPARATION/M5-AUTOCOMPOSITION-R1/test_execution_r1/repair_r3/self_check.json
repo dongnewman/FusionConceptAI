@@ -1,0 +1,23 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-REPAIR-R3-SELF-CHECK",
+  "status": "pass",
+  "replay_not_performed_by_self_check": true,
+  "json_files_parse": [
+    "python_oracle.started.json", "python_oracle.ended.json", "julia_tests.started.json",
+    "julia_tests.ended.json", "execution_summary.json", "manifest.json",
+    "validation_receipt.json", "cleanup_inventory.json"
+  ],
+  "raw_streams": {
+    "python_oracle.stdout": {"bytes": 1598, "sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7"},
+    "python_oracle.stderr": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "python_oracle.combined": {"definition": "stdout||stderr", "bytes": 1598, "sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7"},
+    "julia_tests.stdout": {"bytes": 176, "sha256": "981f815fd93797e3ae34c05b487283ae0352259a7036e6de11929bd408216699"},
+    "julia_tests.stderr": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "julia_tests.combined": {"definition": "stdout||stderr", "bytes": 176, "sha256": "981f815fd93797e3ae34c05b487283ae0352259a7036e6de11929bd408216699"}
+  },
+  "archive_exact": true,
+  "exit_codes": {"python_oracle": 0, "julia_tests": 0},
+  "julia_summary": "110 passed / 110 total",
+  "oracle_hashes_equal": true,
+  "technical_failure_attempts_preserved": ["attempt1_wrapper_failure", "attempt2_exitcode_failure", "attempt3_taskoutput_failure"]
+}

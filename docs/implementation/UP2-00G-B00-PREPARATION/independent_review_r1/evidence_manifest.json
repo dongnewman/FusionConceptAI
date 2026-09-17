@@ -1,0 +1,43 @@
+{
+  "schema_version": "UP2-00G-B00-independent-review-v1",
+  "audit_id": "UP2-00G-B00-PREPARATION-independent-review-r1",
+  "verdict": "changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "ready_for_focused": false,
+  "read_only": true,
+  "runtime": {"julia": false, "desc": false, "postflight_processes": 0},
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "status_lines": 292, "status_sha256": "39E9106701D4AE5A6148BB2AD31E8739C7B03BA59FD7A02EE0E9C6966CDB5017"},
+  "reviewed_r1_archive": {
+    "report.md": "6572231031B955F78B95F07DE99FAD36A318D16B7D90656D58D4085F3278F707",
+    "report.json": "30D3874F3381CD103A3C52984294B7DD25C4B7F0DA9247DDFEC51EDE03308E08",
+    "evidence_manifest.json": "A647C355F01485F6C83BBDC3A8F73BA9850007A99753E8E2DA11783627A0323D",
+    "command_receipts.json": "7B426C088C02D546325327F46A20500C02606F13BB84A1822841C4621053A03F"
+  },
+  "current_inputs": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 20977, "sha256": "E208D32ED2FEBD635DD416DC221ECB01992B67F363287CAF8EE11485EE03D8C0"},
+    "docs/v4_multitopology_generation/11_physics_compilation_and_discretization.md": {"bytes": 28542, "sha256": "F31E075F3A7C0D301179AF483DB14B6B616C0D8C50458850768D41D17BD8BB25"},
+    "docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md": {"bytes": 42827, "sha256": "82A5929B83AF3CC9D0BA979DBEB1193EB9E9F876BAE58F0E121058507A11AF4D"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes": 6598, "sha256": "F2A8964CA6BD1395780671F7AAB7E86544484AE6B2703CE749D09EC5BE0E5A43"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 58474, "sha256": "9C1DC8107FFB299F423084410B12E84A7EE58450DA7262C18BD34F0BD8B12C63"},
+    "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md": {"bytes": 24433, "sha256": "5332F0C7A5C215948254A536C93E945CAA019143DFD5AB3C595AF9B0091B9EFB"},
+    "docs/implementation/UP2-00G-I1A-AUTHORITY-CONTEXT/acceptance.md": {"bytes": 2505, "sha256": "EC19E66A3B88DAEBA9A5016E6FF69A935B8DA4ACF0612ABF68254AE59EF842F9"},
+    "docs/implementation/UP2-00G-I2-PREPARATION/entry_audit_r1/report.md": {"bytes": 7805, "sha256": "6572231031B955F78B95F07DE99FAD36A318D16B7D90656D58D4085F3278F707"},
+    "docs/implementation/UP1-04/acceptance.md": {"bytes": 5727, "sha256": "012B7DD7D84D97254A788AD2F322A0829D8E9F10D74E2B947A944408AC5E3245"},
+    "docs/implementation/UP1-04/evidence_manifest.json": {"bytes": 11499, "sha256": "47F4F8A578954358A2CD9AD6C105A5CBBBDEA10312A68B4A982697EDF8FA7237"},
+    "src/Contracts/CandidateStatePackageV5.jl": {"bytes": 13496, "sha256": "C5C70E8798E0E12FA63ECBF766079266E770735216C0E2724012D4C9527E620"},
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {"bytes": 16452, "sha256": "391A7F32CE22C73244AC41F0D6E5C321E98931649491D3FD3A52F907FFAF44C4"},
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": {"bytes": 24064, "sha256": "804CF2CB3522ECEEFE37664737934BCFFDAD15BA2D5D2A28C0A70BCF1FCA1F6D"},
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": {"bytes": 29560, "sha256": "D84DB10E6332E5F0919F2E4D1F8BA1B910DC3C39D74CFBC7869E579FF5718FD9"},
+    "src/GenomeV5/UP2/TypedPrecompilerContractV1.jl": {"bytes": 15746, "sha256": "B63258EE4C26BB686C7C8FC711449B9F22AF0A8234DC5E1A33FF271849CAE1E0"},
+    "src/GenomeV5/UP2/TypedPrecompilerValidatorV1.jl": {"bytes": 24351, "sha256": "0557532F9921AFABBD6CDCC190E216496807227EF802B3898BD0292B1E98150B"},
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {"bytes": 3155, "sha256": "7EB7ED593FBAC217EA925830E53B675A38760AED708C7864BD43C436F74D8937"},
+    "test/GenomeV5/UP2/fixtures.json": {"bytes": 22674, "sha256": "8B8B48395B4D087E1EB1B4FE3D7D8267FB10F58BF69458D99EBDF39ACD555DE0"},
+    "test/GenomeV5/UP2/up2_00_contract_tests.jl": {"bytes": 11353, "sha256": "DF202198941D02A57D856435C31F37DB82B08E3459D6140368154B42F316E50E"},
+    "test/GenomeV5/UP2/run_up2_00_contract.jl": {"bytes": 486, "sha256": "5D11A75CCF7F870124310F0A1344B908151AFBB920ED6B76FF6CBF0D34DAE4D3"}
+  },
+  "current_evidence": {"up1_04a": "45/45 accepted_limited structural only; B00/B04 false", "up2_fixture": "50 schema_validation_only; not formal receipts", "formal_b00": "absent", "independent_checker": "absent; N05 local checker shares exporter helper", "two_process_replay": "absent"},
+  "claim_ceiling": ["read_only_entry_audit", "contract_only"],
+  "credits": {"b00": false, "b04": false, "up2_total": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "qa": {"json_parse": "pending_final_receipt", "control_scan": "pending_final_receipt", "validate_plan": "pending_final_receipt", "git_diff_check": "pending_final_receipt"}
+}

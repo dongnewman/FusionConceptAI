@@ -1,0 +1,26 @@
+{
+  "schema": "M1.independent_review.v1",
+  "task_id": "UP0-01",
+  "batch_id": "M1",
+  "review_round": "independent_review_r1",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "reviewer_is_different_from_implementer": true,
+  "decision": "changes_requested",
+  "scope": "read-only review of existing M1 products and six command groups; no Julia/S3/DESC/mesh/solver",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "index_sha256": "6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0",
+  "status_capture": {"tracked_modified": 27, "untracked": 7058, "status_bytes": 611780, "status_sha256": "c1dcbf2f179d362665e720d61c77d7f8db8a3d2fe63c2135ec5ac2e9e2df14f8"},
+  "source_recomputation": {
+    "owners": "six rows independently match existing manifest; see validation_receipt and archive/command_02_owner_hashes.stdout.raw",
+    "factories": "three AD56 dirty rows independently match existing manifest; see archive/command_03_factory_hashes.stdout.raw",
+    "provenance_layers_separate": true
+  },
+  "static_recomputation": {"probe_imports": ["SHA", "JSON3", "Dates", "FusionConceptAI"], "probe_explicit_includes": 5, "loader_components": 12, "enclosing_includes": 47, "factory_includes": 0, "runtime_resolution": "deferred"},
+  "ad55_review": {"historical_pids": {"F0": 106008, "S2_run1": 103996, "S2_run2": 83504}, "historical_exit_codes": {"F0": 0, "S2_run1": 0, "S2_run2": 0}, "deterministic_output_count": 18, "reference_only": true, "fresh_s3": "not_run"},
+  "cleanup_review": {"probe_txt_exists": false, "existing_final_exact_owned_set": "noncompliant_glob", "existing_inventory": "noncompliant_aggregate_globs", "preexisting_dirty_protected": true},
+  "claim_ceiling": "execution_input_reproducibility_preparation",
+  "parent_gates": {"task_count": 39, "dag_unchanged": true, "R01_R10": "open", "B00": "open", "B04": "open", "L4": 0},
+  "no_execution": ["Julia", "S3", "DESC", "mesh", "solver", "physical_recompute"]
+}

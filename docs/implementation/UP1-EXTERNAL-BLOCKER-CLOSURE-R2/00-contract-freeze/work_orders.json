@@ -1,0 +1,23 @@
+{
+  "schema": "UP1ExternalBlockerClosureR2WorkOrdersV1",
+  "status": "frozen_contract_only",
+  "decision_authority": "Sol/root",
+  "recorder_role": "/root/up1r2_contract_freeze",
+  "baseline_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "scope": "Freeze R2 inputs, typed interfaces, ownership, gate ceilings and cleanup rules; no production implementation.",
+  "formal_route": ["T0", "authority_recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+  "dag": {"node_count": 39, "r01_r10": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10"], "changed": false},
+  "components": [
+    {"id": "T0", "kind": "declaration_transport", "status": "locked", "depends_on": ["UP1-04A", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP2-01-G3-SOURCE-FEEDBACK-V1"], "input_refs": ["g1_v1_declaration", "g2_v1_declaration", "g3_v1_declaration", "same_candidate_parent_baseline", "four_axes", "source/version/hash recipes"], "output_refs": ["t0_bundle", "declaration_records", "typed_absence_records", "fail_closed_record"], "promotion": "contract_only; no actual authority, candidate, provider, mesh, solver, physical or R credit"},
+    {"id": "authority_recheck", "kind": "output_authority_recheck", "status": "required_before_T1", "depends_on": ["T0"], "input_refs": ["t0_bundle", "fresh_authority_record_or_typed_absence", "G1/G2 exactly-one pairing", "G3 declaration body"], "output_refs": ["checked_present", "typed_absent", "deterministic_fail_closed", "recheck_receipt"], "promotion": "checked-present is necessary but not sufficient for T1; absence remains terminal_deferred"},
+    {"id": "T1", "kind": "candidate_state_package", "status": "locked", "depends_on": ["T0", "authority_recheck"], "input_refs": ["checked T0 declarations", "same-candidate G1/G2/G3 records", "authority recheck receipt", "candidate binding"], "output_refs": ["candidate_state_package", "identity_receipts", "typed child slots"], "promotion": "no UP1-04B/B00/B04 or R credit"},
+    {"id": "T2", "kind": "identity_receipt_rebinding", "status": "locked", "depends_on": ["T1"], "input_refs": ["T1 package", "E0", "G-I1A", "E1/E2", "UP2 identity schemas"], "output_refs": ["candidate-bound refs", "axes", "package hashes", "E0/G-I1A/E1/E2/UP2 receipts"], "promotion": "must be independently reviewed before aggregate"},
+    {"id": "aggregate", "kind": "lineage_aggregation", "status": "locked", "depends_on": ["T2"], "input_refs": ["T0/T1/T2 independent exits", "candidate-bound receipts", "frozen V1 recipes"], "output_refs": ["aggregate_lineage", "fresh formal-input bundle"], "promotion": "stale/foreign receipt reuse is fail_closed; no rebuild or duplicate implementation"},
+    {"id": "UP2-00", "kind": "typed_precompiler_total", "status": "locked", "depends_on": ["aggregate"], "input_refs": ["aggregate_lineage", "typed schemas", "N01-N10 contract inputs"], "output_refs": ["precompiler schema/value validation", "typed absence or fail_closed receipt"], "promotion": "contract-only until formal total acceptance"},
+    {"id": "UP1-04B", "kind": "formal_benchmarks", "status": "locked", "depends_on": ["UP2-00"], "input_refs": ["final schema", "aggregate lineage", "candidate identity"], "output_refs": ["B00 F0-F5 freeze", "50 fresh B04 receipts", "independent checker", "two-process replay", "label erase/swap controls"], "promotion": "no local projection or historical receipt substitution"},
+    {"id": "UP1-04", "kind": "genome_migration", "status": "locked", "depends_on": ["UP1-04B"], "input_refs": ["accepted UP1-04B package", "three-layer candidate-bound Genome", "shared entry contract"], "output_refs": ["integrated production entry", "migration acceptance"], "promotion": "only after UP1-04B formal gates"},
+    {"id": "UP2-01", "kind": "physics_compilation", "status": "locked", "depends_on": ["UP1-04"], "input_refs": ["UP1-04 integrated entry", "source-backed declarations", "provider/mesh capability records"], "output_refs": ["declaration-driven physical execution receipts"], "promotion": "does not alter R01-R10 acceptance criteria"}
+  ],
+  "parallel_policy": {"static_contract_preparation": "allowed only on disjoint ownership", "heavy_recompute": "one serialized lane", "formal_sequence": "must remain ordered; parallel preparation cannot unlock successors", "reviewer": "implementer and reviewer must be different Luna agents"},
+  "unknowns": "Unknown names, endpoints, credentials, keys, attestations and authority channels stay typed_absent; no inference from local files."
+}

@@ -1,0 +1,48 @@
+{
+  "work_order": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  "repair": "R3",
+  "finding_closed": "R2-F02-unit-exponent-algebra-and-derived-unit-binding",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "static_qa": {
+    "command": "python test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+    "exit_code": 0,
+    "result": "static_qa=pass",
+    "python_executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "python_version": "3.13.5",
+    "julia_or_desc_executed": false,
+    "provider_or_mesh_execution": false
+  },
+  "artifacts": {
+    "source": {
+      "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "before_sha256": "eb9124423628794baf53c1bfab75f99cc606f73883203ff5f69de921e45246dd",
+      "after_sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"
+    },
+    "focused_test": {
+      "path": "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+      "before_sha256": "49784f58298a28e57724111fd40ca4c2c64417c455e3acf12f54b636e9d9dda2",
+      "after_sha256": "c747c174471ebd3c15812a5d25bfecff0389ed6e3dcb7eec888fd47730d8b007"
+    },
+    "fixture": {
+      "path": "test/GenomeV5/G2/metric_boundary_v1_fixture.json",
+      "before_sha256": "4fd029f8e46fcfc473334a27a0531168082f4bb89cb67e2b8d7d838dc69b41c8",
+      "after_sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5"
+    },
+    "static_qa": {
+      "path": "test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+      "before_sha256": "df9f777d5dd8ec38876cb2fa12cceba3f1c6f53cb83fe011d2f366d5b563708d",
+      "after_sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"
+    }
+  },
+  "exit_gates": {
+    "compiler_execution": false,
+    "provider_execution": false,
+    "mesh_execution": false,
+    "physical_proof": false,
+    "engineering_readiness": false,
+    "r01_r10_credit": false
+  }
+}

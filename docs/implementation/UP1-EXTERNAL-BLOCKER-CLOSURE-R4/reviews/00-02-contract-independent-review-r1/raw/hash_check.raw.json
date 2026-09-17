@@ -1,0 +1,32 @@
+{
+  "observed_utc": "2026-09-17T01:39:16.6207124Z",
+  "algorithm": "SHA-256",
+  "manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/02-integration-contract/file-hash-manifest.json",
+  "count": 15,
+  "match_count": 12,
+  "mismatch_count": 3,
+  "mismatches": [
+    {
+      "path": "tools/up1_external_closure_r4/authoritative_intake/intake.py",
+      "listed_bytes": 27616,
+      "actual_bytes": 30648,
+      "listed_sha256": "d6cb0a479872dc9a72c47798c90518530ce87c7b2adde46d2ea835f4c704fe8b",
+      "actual_sha256": "d8034a069a2607510689eeb88483c3a9727c6c4fd9495554f0bd78e028182280"
+    },
+    {
+      "path": "tools/up1_external_closure_r4/g2_mapping/validator.py",
+      "listed_bytes": 22961,
+      "actual_bytes": 24510,
+      "listed_sha256": "688dfb2185731f3b6708f25700c57ec6c9649aaee435dd8543f57ddd266a9591",
+      "actual_sha256": "69079110f66c07cf781d473ccc69b251a7b9a4605de8870d659016bf83e26d00"
+    },
+    {
+      "path": "tools/up1_external_closure_r4/trust_chain/verifier.py",
+      "listed_bytes": 28757,
+      "actual_bytes": 28886,
+      "listed_sha256": "e7f6ff4bcdd73bc22331200b8a7aae70fa5bc7be690d94426408f72ed4055e6c",
+      "actual_sha256": "76a829563ab478bb3926d26fa7c70635c354a64dee3d7a4ec9fced402eeefeb2"
+    }
+  ],
+  "other_entries": "12/15 matched listed bytes and SHA-256"
+}

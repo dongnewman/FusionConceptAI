@@ -1,0 +1,107 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC-independent-postrun-r3-v1",
+  "record_kind": "independent_postrun_review",
+  "task_id": "UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC",
+  "review": "final R3 recheck after status_sync_r1",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "pass_limited",
+  "local_software_precursor": "accepted_limited_supported",
+  "machine_node": {"status": "planned", "scope_status": "proposal", "accepted": false, "resolution": "review_pending"},
+  "credits": {
+    "control_contract": false,
+    "actual_control": false,
+    "source_backed_t1": false,
+    "realization": false,
+    "binding": false,
+    "feedback": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false
+  },
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/independent_postrun_r3/report.md",
+    "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/independent_postrun_r3/manifest.json"
+  ],
+  "r9_receipt": {
+    "path": "test_r9.receipt.json",
+    "sha256": "21dfa6a5475402165cc01a95765f63d434a362e006e5699269db93a889da21b1",
+    "bytes": 1800,
+    "pid": 51564,
+    "utc_start": "2026-09-15T03:32:47.1548572Z",
+    "utc_end": "2026-09-15T03:33:03.4679458Z",
+    "exit_code": 0,
+    "summary": "167/167",
+    "stdout": {"path": "test_r9.stdout", "bytes": 138, "sha256": "6c21dbb806fc5c200ea2f11d31c2b342e8fb6ac0c40d1336c50513bcb354455f"},
+    "stderr": {"path": "test_r9.stderr", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "exit_file": {"path": "test_r9.exit", "bytes": 1, "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"},
+    "dirty_rows_before": 310,
+    "dirty_rows_after": 310,
+    "julia_processes_before": [],
+    "julia_processes_after": [],
+    "desc_processes_before": [],
+    "desc_processes_after": []
+  },
+  "parent_manifest": {
+    "path": "../manifest.json",
+    "sha256": "1769612256e963d31baadc961f505a6d326e3b3ffe5cd4a35149957ea5a40c47",
+    "status_sync_before_sha256": "ddaad62a859e43b2d153e3335970a949bbf68764e8294e8934bfcc92a79ab1f4",
+    "status_sync_after_sha256": "1769612256e963d31baadc961f505a6d326e3b3ffe5cd4a35149957ea5a40c47",
+    "status_sync_manifest": "../status_sync_r1/manifest.json"
+  },
+  "current_inputs": {
+    "source": {"path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl", "bytes": 64083, "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"},
+    "test": {"path": "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl", "bytes": 18919, "sha256": "5b7a85d988d50aaf25916a9da3ff4c7af764abe993cf252498e54829193c7289"}
+  },
+  "history": {
+    "rounds": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9"],
+    "r8_summary": "149 passed, 18 failed, 0 errored, 0 broken",
+    "r8_exit_code": 1,
+    "r9_exit_code": 0,
+    "r9_is_final_passing_round": true,
+    "historical_receipts_preserved": true
+  },
+  "checks": {
+    "parent_manifest_json_valid": true,
+    "status_sync_json_valid": true,
+    "receipt_json_valid": true,
+    "parent_manifest_hash_equals_status_sync_after": true,
+    "receipt_hash_equals_status_sync_record": true,
+    "r9_raw_hashes_recomputed": true,
+    "current_source_test_hashes_match_r9": true,
+    "r9_pid_utc_exit_summary_match": true,
+    "r9_dirty_and_process_match": true,
+    "r1_r9_history_and_r8_failure_preserved": true,
+    "provenance_candidate_parent_child_exact_binding": true,
+    "fault_mode_only": true,
+    "history_chain_terminal_current_hash": true,
+    "forged_terminal_rejected": true,
+    "failure_paths_preserve_prior_state": true,
+    "scoped_git_diff_check": true
+  },
+  "status_boundary": {
+    "physical_evidence": false,
+    "engineering_evidence": false,
+    "actual_child_population": false,
+    "t0_t1_t2": false,
+    "provider_mesh_search": false,
+    "b00_b04": false,
+    "r01_r10": false
+  },
+  "review_notes": [
+    "No Julia or DESC command was run by this independent review.",
+    "No source, test, core, implementation manifest, status sync, or old receipt was modified by this review.",
+    "The parent manifest's scalar zero process fields are consistent with the receipt's empty process arrays and status-sync wording."
+  ]
+}

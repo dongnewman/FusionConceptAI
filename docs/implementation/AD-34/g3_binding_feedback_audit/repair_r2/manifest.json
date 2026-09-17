@@ -1,0 +1,262 @@
+{
+  "manifest_version": "AD-34-g3-binding-feedback-audit-repair-r2",
+  "record_kind": "independent_review_repair_proposal",
+  "status": "blocked_pending_architecture_repair",
+  "decision": "one_editable_binding_sibling_no_feedback_child",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "parent_record": "../report.md",
+  "prior_repair": "../repair_r1/revised_proposal.md",
+  "independent_review": "../../g3_binding_feedback_independent_review_r2/report.md",
+  "written_files": [
+    "revised_proposal.md",
+    "manifest.json"
+  ],
+  "self_hash_excluded": true,
+  "revised_proposal_sha256": "c7c60051334cec70e3334bc763f509d728c8fbe97a03b95e9a2dc104be5ce12a",
+  "read_only_repair": true,
+  "source_test_core_modified": false,
+  "implementation_dispatched": false,
+  "julia_executed": false,
+  "desc_executed": false,
+  "heavy_python_executed": false,
+  "point_in_time_utc": "2026-09-15T03:44:08.7030990Z",
+  "r2_findings": {
+    "B01": "closed_at_architecture_proposal",
+    "B02": "closed_at_architecture_proposal",
+    "B03": "closed_unchanged_from_repair_r1",
+    "B04": "closed_unchanged_from_repair_r1",
+    "B05": "closed_at_point_in_time_refresh"
+  },
+  "source_model": {
+    "source_owner_of_initial_links": "G3BindingSourcePayloadV1.initial_links",
+    "editable_body_initialization": "exact canonical-byte copy of immutable initial_links",
+    "immutable_fields": [
+      "candidate_ref",
+      "parent_g3_declaration_ref",
+      "parent_g3_declaration_hash",
+      "child_contract_ref",
+      "child_contract_identity_hash",
+      "source_uri",
+      "source_version",
+      "source_record",
+      "source_record_hash",
+      "immutable_binding_schema",
+      "initial_links",
+      "realization_slot",
+      "control_slot",
+      "source_content_hash",
+      "binding_child_identity_hash",
+      "initial_body_hash",
+      "initial_source_state_hash"
+    ],
+    "mutable_fields": [
+      "editable_body.links",
+      "operation_hash",
+      "ordered_operation_history",
+      "state_hash",
+      "current contract_admission and physical_resolution state only"
+    ],
+    "initial_source_state_hash_layer": "stored in G3BindingStateV1 and repeated in manifest hash_layers",
+    "stored_identity_layers": [
+      "source_content_hash",
+      "binding_child_identity_hash",
+      "initial_body_hash",
+      "initial_source_state_hash",
+      "body_hash",
+      "operation_hash",
+      "state_hash"
+    ],
+    "hash_layers": {
+      "child_contract_identity_hash": "H(canonical(child_contract_ref))",
+      "source_record_hash": "H(canonical(source_uri, source_version, four axis versions))",
+      "source_content_hash": "H(canonical(key, child_contract_ref, child_contract_identity_hash, source_record, immutable_binding_schema, initial_links, realization_slot, control_slot))",
+      "binding_child_identity_hash": "H(canonical(key, child_contract_ref, child_contract_identity_hash, source_record_hash, source_content_hash, realization_slot, control_slot))",
+      "initial_body_hash": "H(canonical(key, source_content_hash, binding_child_identity_hash, initial_links))",
+      "initial_source_state_hash": "H(canonical(key, source_content_hash, binding_child_identity_hash, initial_body_hash, ZERO_OPERATION_HASH, empty_history, contract_admission, physical_resolution))",
+      "body_hash": "H(canonical(complete editable body))",
+      "operation_hash": "H(canonical(closed operation digest inputs))",
+      "state_hash": "H(canonical(key, fixed source/child identities, current body hash, operation hash, typed history, contract_admission, physical_resolution))"
+    }
+  },
+  "history_contract": {
+    "type": "Tuple{Vararg{G3BindingOperationDigestV1}}",
+    "digest_fields": [
+      "global_operation_id",
+      "operation",
+      "previous_state_hash",
+      "prior_body_hash",
+      "replacement_body_hash",
+      "operation_hash",
+      "result_state_hash"
+    ],
+    "empty_history_operation_hash": "ZERO_OPERATION_HASH",
+    "latest_operation_hash": "last typed digest or ZERO_OPERATION_HASH",
+    "invariants": [
+      "global operation IDs are unique",
+      "operation digests are unique",
+      "tuple order is canonical operation order",
+      "previous state and prior body hashes chain exactly",
+      "result state hash is the next state's previous state hash",
+      "duplicate IDs and digests are deterministic errors",
+      "broken order or zero/latest fabrication fails closed"
+    ]
+  },
+  "authority_migration": {
+    "canonical_owner": "one G3DeclarationAuthorityRefV1 per (candidate_ref, layer)",
+    "legacy_target_authority": "G3SFFeedbackTargetV1.authority is a non-authoritative projection only",
+    "feedback_child_files": [],
+    "status_mapping": [
+      {
+        "current": ":actual",
+        "canonical": ":actual_claim",
+        "requirements": "exact candidate/layer/declaration ref/hash/canonical bytes/status/attestation/source receipt"
+      },
+      {
+        "current": ":missing",
+        "canonical": ":typed_absent",
+        "requirements": "reason missing plus typed absence digest"
+      },
+      {
+        "current": ":historical_absent",
+        "canonical": ":typed_absent",
+        "requirements": "reason historical_absent plus typed absence digest"
+      },
+      {
+        "current": ":stale",
+        "canonical": ":stale",
+        "requirements": "exact known declaration identity but no longer current"
+      },
+      {
+        "current": ":contradictory",
+        "canonical": ":contradictory",
+        "requirements": "conflicting typed declarations or receipts preserved"
+      }
+    ],
+    "unmapped_or_mismatched": ":fail_closed",
+    "T0_T1_rejections": [
+      "candidate mismatch",
+      "layer mismatch",
+      "declaration ref or declaration hash mismatch",
+      "canonical bytes mismatch",
+      "status mismatch",
+      "attestation mismatch",
+      "source receipt mismatch",
+      "duplicate authority for one (candidate, layer)",
+      "actual claim with absent, stale, or contradictory upstream authority",
+      "changed declaration reused under an old hash"
+    ],
+    "T0_modified_in_this_repair": false,
+    "actual_feedback_authority": false
+  },
+  "control_refresh": {
+    "status": "review_pending",
+    "actual_control": false,
+    "source_backed_T1_mapping": false,
+    "current_new_control_child": {
+      "source": {
+        "path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+        "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+      },
+      "test": {
+        "path": "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl",
+        "sha256": "5b7a85d988d50aaf25916a9da3ff4c7af764abe993cf252498e54829193c7289"
+      },
+      "implementation_manifest": {
+        "path": "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/manifest.json",
+        "sha256": "1769612256e963d31baadc961f505a6d326e3b3ffe5cd4a35149957ea5a40c47"
+      },
+      "implementation_report": {
+        "path": "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/report.md",
+        "sha256": "ee17dcca58c0e260fddbc468d3b44e9d7eeaf8c9116c3907ec61993ca69aad37"
+      },
+      "R9_receipt": {
+        "path": "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/test_r9.receipt.json",
+        "sha256": "21dfa6a5475402165cc01a95765f63d434a362e006e5699269db93a889da21b1"
+      },
+      "R9_exit": {
+        "path": "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/test_r9.exit",
+        "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+      }
+    },
+    "historical_supplied_source_prefix": "7a11562...b4882",
+    "historical_supplied_test_prefix": "aa34...4fb9",
+    "old_comparison_only": {
+      "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+    },
+    "back_attribution_to_AD34_AD32_AD31": false
+  },
+  "binding_future_files": [
+    "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+    "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+    "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json",
+    "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json"
+  ],
+  "permitted_operations": [
+    "insert_link",
+    "replace_link",
+    "delete_link"
+  ],
+  "cas_order": [
+    "validate operation and operation hash",
+    "validate candidate/parent/child/source identities",
+    "compare expected source content hash",
+    "compare expected body and prior body hashes",
+    "compare expected state hash",
+    "validate link cardinality and ownership",
+    "compute replacement body and operation digest",
+    "validate unique typed history chain",
+    "compute state hash",
+    "publish one immutable state atomically"
+  ],
+  "required_fail_atomic_errors": [
+    "stale_source_content_hash",
+    "stale_body_hash",
+    "stale_state_hash",
+    "operation_hash_mismatch",
+    "foreign_child_key",
+    "source_record_mismatch",
+    "unsupported_operation",
+    "duplicate_operation_id",
+    "duplicate_operation_hash",
+    "operation_history_order_mismatch",
+    "duplicate_link_id",
+    "missing_link_id",
+    "link_owner_mismatch",
+    "child_slot_not_present",
+    "program_exception"
+  ],
+  "dag": [
+    "UP2-01-G3-SOURCE-FEEDBACK-V1 -> AD-31 architecture",
+    "UP2-01-G3-SOURCE-FEEDBACK-V1 -> AD-32 architecture",
+    "UP2-01-G3-SOURCE-FEEDBACK-V1 -> AD-34 binding precursor",
+    "UP2-01-G3-SOURCE-FEEDBACK-V1 -> T0 declaration transport",
+    "T0 -> T1 same-candidate exact package join",
+    "T1 -> T2 identity and receipt rebuild"
+  ],
+  "credits": {
+    "contract_admission": false,
+    "actual_binding_authority": false,
+    "actual_feedback_authority": false,
+    "actual_control": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "remaining_blockers": [
+    "independent acceptance of this R2 proposal",
+    "fresh typed parent declaration and same-candidate source-backed child slots",
+    "unchanged T0 exact authority migration check",
+    "future six-file implementation and different-reviewer receipt",
+    "T1 exact package join and T2 identity/receipt rebuild"
+  ],
+  "no_back_attribution": true
+}

@@ -1,0 +1,443 @@
+{
+  "schema_version": "e1-n05-independent-postrun-r5-v1",
+  "work_order": "UP2-00E1-N05-receipt-export-focused-r5",
+  "reviewer_role": "different_luna_independent_postrun",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "checks": {
+    "protected_input_hashes": {
+      "pass": true,
+      "detail": {
+        "expected": {
+          "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+          "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+          "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+          "test/GenomeV5/UP2/n05_flux_authority_tests.jl": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+          "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "f7bf3b1dcdc2caeb99030082426c56acbf31ad575434866da204bbf13a611547",
+          "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+          "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "0025916b83e05e9c8a5558d35f4ee515459031178602a86a082a5f2f387e66dc",
+          "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+          "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+        },
+        "actual": {
+          "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+          "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+          "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+          "test/GenomeV5/UP2/n05_flux_authority_tests.jl": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+          "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "f7bf3b1dcdc2caeb99030082426c56acbf31ad575434866da204bbf13a611547",
+          "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+          "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "0025916b83e05e9c8a5558d35f4ee515459031178602a86a082a5f2f387e66dc",
+          "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+          "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+        }
+      }
+    },
+    "artifact_positive_manifest_hashes": {
+      "pass": true,
+      "detail": {
+        "positive": {
+          "bytes": 22402,
+          "sha256": "777d120fc9bdfb10933e296b28b8d04cac97009d9998ae2073bcc2d075c35fea"
+        },
+        "negative_manifest": {
+          "bytes": 4006,
+          "sha256": "32de1044c7229aaee9f8638cbbfefd422b85a7a931eef390bf5305313e03300f"
+        }
+      }
+    },
+    "positive_counts_and_schema": {
+      "pass": true,
+      "detail": {
+        "authored": 5,
+        "absent": 5,
+        "schema": "UP2-00E1-N05-receipt-envelope-v1",
+        "scope": "schema_validation_only"
+      }
+    },
+    "authored_source_refs_hashes_typed_values": {
+      "pass": true,
+      "detail": {
+        "rows": {
+          "N05-01": {
+            "field_path": "/n05/left_endpoint/endpoint_ref",
+            "value_type": "UP2N05RefValueV1",
+            "attempted_type": "UP2N05RefValueV1",
+            "error_code": "invalid_closure",
+            "resolution": "fail_closed"
+          },
+          "N05-02": {
+            "field_path": "/n05/right_endpoint/endpoint_ref",
+            "value_type": "UP2N05RefValueV1",
+            "attempted_type": "UP2N05RefValueV1",
+            "error_code": "invalid_closure",
+            "resolution": "fail_closed"
+          },
+          "N05-03": {
+            "field_path": "/n05/left_endpoint/sign",
+            "value_type": "UP2N05IntValueV1",
+            "attempted_type": "UP2N05IntValueV1",
+            "error_code": "invalid_closure",
+            "resolution": "fail_closed"
+          },
+          "N05-04": {
+            "field_path": "/n05/right_endpoint/sign",
+            "value_type": "UP2N05IntValueV1",
+            "attempted_type": "UP2N05IntValueV1",
+            "error_code": "invalid_closure",
+            "resolution": "fail_closed"
+          },
+          "N05-05": {
+            "field_path": "/n05/right_endpoint/unit",
+            "value_type": "UP2N05UnitValueV1",
+            "attempted_type": "UP2N05UnitValueV1",
+            "error_code": "invalid_type",
+            "resolution": "fail_closed"
+          }
+        },
+        "canonical_value_and_mutation_hashes": true
+      }
+    },
+    "absent_authority_rows_deferred_and_hash_bound": {
+      "pass": true,
+      "detail": {
+        "rows": {
+          "N05-01": {
+            "field_path": "/n05/left_endpoint/endpoint_ref",
+            "error_code": "authority_gap",
+            "resolution": "terminal_deferred"
+          },
+          "N05-02": {
+            "field_path": "/n05/right_endpoint/endpoint_ref",
+            "error_code": "authority_gap",
+            "resolution": "terminal_deferred"
+          },
+          "N05-03": {
+            "field_path": "/n05/left_endpoint/sign",
+            "error_code": "authority_gap",
+            "resolution": "terminal_deferred"
+          },
+          "N05-04": {
+            "field_path": "/n05/right_endpoint/sign",
+            "error_code": "authority_gap",
+            "resolution": "terminal_deferred"
+          },
+          "N05-05": {
+            "field_path": "/n05/right_endpoint/unit",
+            "error_code": "authority_gap",
+            "resolution": "terminal_deferred"
+          }
+        }
+      }
+    },
+    "seven_forged_files_exact_target_diffs_and_errors": {
+      "pass": true,
+      "detail": [
+        {
+          "id": "source_hash",
+          "bytes": 22402,
+          "sha256": "5398b5aa2c426f83dc1873942d5f4e7ab7c5294dca7d61e2578d70ee9c748219",
+          "diffs": [
+            "authored_receipts[0].source_locator.source_hash"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 authored receipt differs from actual source recomputation"
+        },
+        {
+          "id": "absent_mutation_hash",
+          "bytes": 22402,
+          "sha256": "c814942709aecf18ade2877f02ec64af075fefd752a57470ed6e37a0ca05741a",
+          "diffs": [
+            "absent_authority_receipts[0].mutation_hash"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 mutation hash mismatch"
+        },
+        {
+          "id": "candidate_ref",
+          "bytes": 22397,
+          "sha256": "d99e12eed0e9b37d9e69aebed561169fff1cbbc788abe0be38f3931a1144f760",
+          "diffs": [
+            "candidate_ref.id"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 receipt candidate ref mismatch"
+        },
+        {
+          "id": "package_hash",
+          "bytes": 22402,
+          "sha256": "70c4448b54bc57d7df478ff88500ef35f8c4d46850b0fadafdb12d1420d56cbf",
+          "diffs": [
+            "package_hash"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 receipt package hash mismatch"
+        },
+        {
+          "id": "e0_binding_hash",
+          "bytes": 22402,
+          "sha256": "0db95ce270aea61d04658b37b1e1a764ba1b75674cd78c479fc3cf55a731021f",
+          "diffs": [
+            "e0.binding_hash"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 receipt E0 binding hash mismatch"
+        },
+        {
+          "id": "declaration_hash",
+          "bytes": 22402,
+          "sha256": "2a4b4a5136efa3f0fc2eab5316b161da62a57ad892293a7aa4a7286f94ab58ea",
+          "diffs": [
+            "declaration.authored_hash"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 receipt declaration hash mismatch"
+        },
+        {
+          "id": "missing_authored_row",
+          "bytes": 20119,
+          "sha256": "79fbe413460da2df4a3b12836e7ed70f4d9211f74e7790aea9a79d1fc23a9303",
+          "diffs": [
+            "authored_receipts.length",
+            "authored_receipts[0].attempted_value.canonical",
+            "authored_receipts[0].attempted_value.hash",
+            "authored_receipts[0].attempted_value_hash",
+            "authored_receipts[0].error_path",
+            "authored_receipts[0].field_path",
+            "authored_receipts[0].id",
+            "authored_receipts[0].mutation_canonical",
+            "authored_receipts[0].mutation_hash",
+            "authored_receipts[0].mutation_kind",
+            "authored_receipts[0].original_value.canonical",
+            "authored_receipts[0].original_value.hash",
+            "authored_receipts[0].original_value_hash",
+            "authored_receipts[0].source_locator.path",
+            "authored_receipts[0].source_locator.source_hash",
+            "authored_receipts[0].source_locator.source_ref.id",
+            "authored_receipts[1].attempted_value.canonical",
+            "authored_receipts[1].attempted_value.hash",
+            "authored_receipts[1].attempted_value.type",
+            "authored_receipts[1].attempted_value_hash",
+            "authored_receipts[1].error_path",
+            "authored_receipts[1].field_path",
+            "authored_receipts[1].id",
+            "authored_receipts[1].mutation_canonical",
+            "authored_receipts[1].mutation_hash",
+            "authored_receipts[1].mutation_kind",
+            "authored_receipts[1].original_value.canonical",
+            "authored_receipts[1].original_value.hash",
+            "authored_receipts[1].original_value.type",
+            "authored_receipts[1].original_value_hash",
+            "authored_receipts[1].source_locator.path",
+            "authored_receipts[1].source_locator.source_hash",
+            "authored_receipts[1].source_locator.source_ref.id",
+            "authored_receipts[2].attempted_value.canonical",
+            "authored_receipts[2].attempted_value.hash",
+            "authored_receipts[2].attempted_value_hash",
+            "authored_receipts[2].error_path",
+            "authored_receipts[2].field_path",
+            "authored_receipts[2].id",
+            "authored_receipts[2].mutation_canonical",
+            "authored_receipts[2].mutation_hash",
+            "authored_receipts[2].mutation_kind",
+            "authored_receipts[2].original_value.canonical",
+            "authored_receipts[2].original_value.hash",
+            "authored_receipts[2].original_value_hash",
+            "authored_receipts[2].source_locator.path",
+            "authored_receipts[2].source_locator.source_hash",
+            "authored_receipts[2].source_locator.source_ref.id",
+            "authored_receipts[3].attempted_value.canonical",
+            "authored_receipts[3].attempted_value.hash",
+            "authored_receipts[3].attempted_value.type",
+            "authored_receipts[3].attempted_value_hash",
+            "authored_receipts[3].error_code",
+            "authored_receipts[3].error_path",
+            "authored_receipts[3].field_path",
+            "authored_receipts[3].id",
+            "authored_receipts[3].mutation_canonical",
+            "authored_receipts[3].mutation_hash",
+            "authored_receipts[3].mutation_kind",
+            "authored_receipts[3].original_value.canonical",
+            "authored_receipts[3].original_value.hash",
+            "authored_receipts[3].original_value.type",
+            "authored_receipts[3].original_value_hash",
+            "authored_receipts[3].source_locator.path",
+            "authored_receipts[3].source_locator.source_hash",
+            "authored_receipts[3].source_locator.source_type"
+          ],
+          "only_target_field": true,
+          "error": "ArgumentError: N05 authored receipt count is not five"
+        }
+      ]
+    },
+    "trusted_file_read_path_and_shared_helper_boundary": {
+      "pass": true,
+      "detail": {
+        "file_read": true,
+        "all_seven_tested": true,
+        "shared_n05e_row_in_trusted_overload": true,
+        "formal_independence_gap": "checker trusted expected-row recomputation shares exporter _n05e_row"
+      }
+    },
+    "runtime_exit_24_of_24_raw_stream_pid_utc": {
+      "pass": true,
+      "detail": {
+        "wrapper_pid": 53928,
+        "julia_pid": 56492,
+        "process_main_pid": 56492,
+        "process_child_samples": [
+          {
+            "ProcessId": 5408,
+            "ParentProcessId": 56492,
+            "Name": "conhost.exe",
+            "CommandLine": "\\??\\C:\\Windows\\system32\\conhost.exe 0x4",
+            "CreationDate": "2026-09-14T14:04:56.28967+08:00"
+          }
+        ],
+        "start_utc": "2026-09-14T06:04:56.2585284Z",
+        "end_utc": "2026-09-14T06:05:55.3162399Z",
+        "stdout_bytes": 1744,
+        "stderr_bytes": 0
+      }
+    },
+    "protected_before_after_postflight_and_claims": {
+      "pass": true,
+      "detail": {
+        "protected_unchanged": true,
+        "postflight": [],
+        "claims": {
+          "authored_count": 5,
+          "absent_count": 5,
+          "compile_calls": 0,
+          "provider_calls": 0,
+          "solver_calls": 0,
+          "B00": false,
+          "B04": false,
+          "provider": false,
+          "mesh": false,
+          "physical": false
+        }
+      }
+    },
+    "historical_r1_r2_r3_failures_and_r4_record_preserved": {
+      "pass": true,
+      "detail": [
+        [
+          "E1-N05-R1",
+          "failed",
+          1
+        ],
+        [
+          "E1-N05-R2",
+          "failed",
+          1
+        ],
+        [
+          "E1-N05-R3",
+          "failed",
+          1
+        ],
+        [
+          "E1-N05-R4",
+          "completed_exit0",
+          0
+        ]
+      ]
+    },
+    "local_scope_and_full_gate_boundary": {
+      "pass": true,
+      "detail": {
+        "local": {
+          "status": "accepted_limited",
+          "accepted": true,
+          "scope": "R3 source-bound positive file-read envelope evidence only",
+          "independent_review": "independent_postrun_r3/verdict.json",
+          "independent_verdict": "changes_requested_for_full_gate",
+          "physical_or_engineering_credit": false
+        },
+        "full": {
+          "status": "changes_requested",
+          "accepted": false,
+          "blocking_gap": "forged/omitted controls were not serialized and re-read through a file-read trusted checker path",
+          "formal_B04": false
+        }
+      }
+    },
+    "static_qa_commands": {
+      "pass": true,
+      "detail": {
+        "json_parse": 0,
+        "validate_plan": 0,
+        "git_diff_check": 0,
+        "julia_desc_process_sweep": 0
+      }
+    },
+    "no_julia_desc_run_by_audit": {
+      "pass": true,
+      "detail": "audit executed Python/static commands only"
+    }
+  },
+  "command_receipts": [
+    {
+      "name": "json_parse",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/receipt_export_focused_r5').rglob('*.json') if p.stat().st_size]; print('json_parse_ok')"
+      ],
+      "started_utc": "2026-09-14T06:32:08.156890Z",
+      "ended_utc": "2026-09-14T06:32:08.222716Z",
+      "exit": 0,
+      "stdout": "json_parse_ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "validate_plan",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "started_utc": "2026-09-14T06:32:08.222738Z",
+      "ended_utc": "2026-09-14T06:32:08.415851Z",
+      "exit": 0,
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 329,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "git_diff_check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-14T06:32:08.415869Z",
+      "ended_utc": "2026-09-14T06:32:08.475758Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "julia_desc_process_sweep",
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' } | Select-Object Id,ProcessName | ConvertTo-Json -Compress"
+      ],
+      "started_utc": "2026-09-14T06:32:08.475771Z",
+      "ended_utc": "2026-09-14T06:32:08.733839Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "full_gate_gap": "local serialized source-bound receipt export and seven file-read negative controls pass; formal full gate remains changes_requested until the trusted checker recomputes expected rows without shared exporter _n05e_row and a separately audited checker/two-process boundary is supplied",
+  "claim_ceiling": "local source-bound serialization only; no B04/two-process/provider/mesh/engineering/physical/R01-R10 credit",
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "audit_started_runtime": false
+  },
+  "owned_write_scope": [
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/independent_postrun_r5/"
+  ]
+}

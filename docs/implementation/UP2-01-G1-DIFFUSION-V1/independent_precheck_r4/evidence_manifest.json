@@ -1,0 +1,47 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r4-evidence-v1",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "prewrite_worktree": {
+    "full_status_entry_count": 3656,
+    "status_sha256_utf8_lf": "762a759f6911eb3434bf68b0f3322eba011b1070a6a67cdd16d46c96b43049f0",
+    "matching_julia_desc_process_count": 0
+  },
+  "reviewed_files": [
+    {"path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl", "bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path": "test/GenomeV5/G1/diffusion_v1_contract_tests.jl", "bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"},
+    {"path": "test/GenomeV5/G1/diffusion_v1_fixture.json", "bytes": 1582, "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+    {"path": "test/GenomeV5/G1/static_qa_diffusion_v1.py", "bytes": 4499, "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"},
+    {"path": "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r4/report.md", "bytes": 3745, "sha256": "43f793be1e1cc5b895ef7c92312743c5984cfcd44d0cf691d8d308eb37ae09e0"},
+    {"path": "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r4/evidence_manifest.json", "bytes": 2850, "sha256": "907dbc104f02878b6f600954a33639aefea3bb4c4f98abb8274dad19f8cad28e"},
+    {"path": "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r3/report.md", "bytes": 3482, "sha256": "0956b606e576ad8979fec115fd679f0f6465659f5be51f84e9c07786fbc9d44c2"},
+    {"path": "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r3/evidence_manifest.json", "bytes": 2032, "sha256": "0faed4835e7b52a9de28a5964bc30e695fdb99d642fc3710972d56d149ec44c2"}
+  ],
+  "r4_manifest_hash_audit": {
+    "source_entry_matches_current": true,
+    "test_entry_matches_current": true,
+    "fixture_entry_matches_current": false,
+    "static_qa_entry_matches_current": false,
+    "report_hash_ledger_matches_current": true
+  },
+  "static_findings": {
+    "source_payload_order": "pass",
+    "K_positive_bounded_affine": "pass",
+    "equation_sign_units_bindings": "pass",
+    "source_edit_identity": "pass",
+    "public_validator_fixed": "pass",
+    "fault_probe_shared_catch": "pass",
+    "typed_program_exception": "pass",
+    "typed_terminal_deferred": "pass",
+    "typed_fail_closed": "pass",
+    "malformed_probe_point_fail_closed": "pass",
+    "source_hash_exception_separation": "pass",
+    "message_substring_classification": "absent",
+    "R3_review_pending_erratum": "pass"
+  },
+  "non_claims": ["compiler", "provider", "mesh", "solver", "physics", "engineering", "current_A", "B00", "B04", "R01_R10"],
+  "self_hash_excluded": "evidence_manifest.json"
+}
+

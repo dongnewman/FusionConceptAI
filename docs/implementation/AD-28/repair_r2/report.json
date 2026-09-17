@@ -1,0 +1,40 @@
+{
+  "repair_id": "AD-28-core-sync-repair-r2",
+  "revision_of": "AD-28",
+  "trigger": "docs/implementation/AD-28/independent_review_r1/report.json",
+  "verdict": "ready_for_independent_review_r2_no_execution",
+  "status": "proposal",
+  "review_status": "review_pending",
+  "accepted": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "julia_desc_invoked": false,
+  "findings_repaired": [
+    "README earlier execution chain is explicitly historical for the old candidate and the AD28 new machine chain is stated.",
+    "core16 UP2-00 wording now states planned machine node, review_pending total, accepted=false, scoped accepted_limited local slices, and VNEXT/new-candidate dependency."
+  ],
+  "repair_scope": [
+    "docs/v4_multitopology_generation/README.md one synchronization clarification",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md one UP2-00 status clarification"
+  ],
+  "protected_unchanged": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"before_bytes": 45918, "before_sha256": "4e0845545a6b246eeb786f8d1ec7bb07ec487f1a18fb6b9998e0773a32bcee0a", "after_bytes": 45918, "after_sha256": "4e0845545a6b246eeb786f8d1ec7bb07ec487f1a18fb6b9998e0773a32bcee0a"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"before_bytes": 55259, "before_sha256": "37713fa0e49fd1256e28e8cc71188886dd834517f1f7475ae6198b45d6d0f209", "after_bytes": 55259, "after_sha256": "37713fa0e49fd1256e28e8cc71188886dd834517f1f7475ae6198b45d6d0f209"}
+  },
+  "repaired_core_hashes": {
+    "docs/v4_multitopology_generation/README.md": {"before_bytes": 23103, "before_sha256": "94c6cc10a9c5085bf3da301e0f547120698721fa92f9997053addc09b4b6c83c", "after_bytes": 23407, "after_sha256": "ed41002712df38952da8bc2fe294396f7e6e11255c211685562cb63fd5a3e366"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"before_bytes": 65791, "before_sha256": "061877451c91da3e8f6d107971f2cc6c382d47ad571d8244c50829e87732bd9b", "after_bytes": 65884, "after_sha256": "279335e4142a41c964d94d160d661d4eb424370f33fb9e90d95d9ee82a8a9744"}
+  },
+  "prior_ad28_hashes_unchanged": {
+    "docs/implementation/AD-28/proposal.md": {"bytes": 2899, "sha256": "800e16ec8b8cb7d9192345898c5c36187178cca4353e067d12c571fb48d97164"},
+    "docs/implementation/AD-28/manifest.json": {"bytes": 7048, "sha256": "776b25695ece03fc4516f9cb5dcb2f38ad885a27bd6f8ec77012ac7adbbd27ab"},
+    "docs/implementation/AD-28/qa.json": {"bytes": 1350, "sha256": "d561b9b06cbc63274dd5a602ab74c94d5a39b009d510a11a6964967ccc2ab8ad"},
+    "docs/implementation/AD-28/command_receipts.json": {"bytes": 2364, "sha256": "1ebcee3f1decf617189d24c9f7c6f0510934ea331f39fc25ef9229d98da47e94"}
+  },
+  "r1_review_hashes": {
+    "report.md": {"bytes": 5637, "sha256": "7416370aae565218d24e72e50ab6003503f3379c72f3a37756941baf15cdd7f4"},
+    "report.json": {"bytes": 3844, "sha256": "d54d5df21733d0a3fabb95841dc281a530d07e3f270131823c9d90736add78e0"},
+    "evidence_manifest.json": {"bytes": 6008, "sha256": "aa0e1d54c06d591da9a59ff4b04bcce985eaff0636b448efc55786cd77868dc0"},
+    "command_receipts.json": {"bytes": 2655, "sha256": "8f07723254a00acde0b91c80375b06fb6a894cf99b4600d757412b9eff05a025"}
+  },
+  "current_n06": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "classification": "actual-A authority gap remains terminal_deferred"}
+}

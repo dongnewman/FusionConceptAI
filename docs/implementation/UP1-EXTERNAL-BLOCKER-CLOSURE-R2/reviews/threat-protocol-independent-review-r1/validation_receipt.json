@@ -1,0 +1,48 @@
+{
+  "schema": "up1_r2_threat_protocol_independent_review_validation_receipt_v1",
+  "status": "rework",
+  "claim_ceiling": "preparation_only",
+  "no_authority_credit": true,
+  "no_publish": true,
+  "review_revision": "threat-protocol-independent-review-r1",
+  "command": "python -B -c <independent JSON duplicate/exact/canonical/hash audit>",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "fresh_process": true,
+  "pid": 88132,
+  "started_at_utc": "2026-09-16T18:12:47.762765Z",
+  "ended_at_utc": "2026-09-16T18:12:47.765647Z",
+  "numeric_exit_code": 0,
+  "checks": {
+    "json_files": 12,
+    "duplicate_key_rejection": "PASS",
+    "nonfinite_number_rejection": "PASS",
+    "threat_count": 20,
+    "attack_row_count": 20,
+    "acceptance_requirement_count": 12,
+    "TM_to_attack_row_set": "20/20 exact",
+    "manifest_hash_checks": "18/18 PASS",
+    "canonical_sha256_recomputed": true,
+    "heavy_lane_run": false
+  },
+  "observed_canonical_sha256": {
+    "13-threat-model/acceptance_requirements.json": "14461277340f3f0fc9137ee547d964fdcaa7560971f16b593a40cb0cda5ef0aa",
+    "13-threat-model/attack_matrix.json": "e3b7ada2f990196cf732c098592d616951f6b0e2820efca9bf6bd0606162d30c",
+    "13-threat-model/cleanup_inventory.json": "2ccb4e44a552bf0a608fd01ffca045d5a6447244ba1b909c5a9ab4e9d8c02e27",
+    "13-threat-model/manifest.json": "2bfba986130d06423f0d96abf1d52526b9a4eacc1ecec232a334968e9ceb7d23",
+    "13-threat-model/run_ledger.json": "a0b68a601c1d4cf63e346b222e5f7765c6739f1879a8678edda07e94da986170",
+    "13-threat-model/threat_model.json": "fa6c1800838402a4ffa6e0034cdc6dd2324ad6106bcd0fd6edd53df375108c8b",
+    "13-threat-model/validation_receipt.json": "7db84d6b3b8f0fd1205ca8dcc749a5d4f24c809f450c0e1d2bc4cf6bdee15d7e",
+    "14-review-protocol/cleanup_inventory.json": "912273afc312d2e5f2940e92abdf9983c900cab477cce12acab63d0792d56e0f",
+    "14-review-protocol/evidence_contract.json": "509c4924fb564ab98091a08a0e58ed31ff67f49e009b79e0b444adf9d1b19fb6",
+    "14-review-protocol/manifest.json": "9a196affbf305db30292144f26a1bcfde6dad082b9609ac0160e1017a597eefd",
+    "14-review-protocol/review_assignments.json": "ad4ab068041e943c4f0bf3624ed556bcaae32a58761339a64ab95c255ba24736",
+    "14-review-protocol/test_matrix.json": "2b3a2ddf4406b4d7ffdf7c224b1c9f19c500097f33cae5ba00b61b71839c15e3"
+  },
+  "raw": {
+    "stdout": "raw/independent_json_exact_hash_audit.stdout.raw",
+    "stderr": "raw/independent_json_exact_hash_audit.stderr.raw",
+    "process": "raw/independent_json_exact_hash_audit.process.raw",
+    "command": "raw/independent_json_exact_hash_audit.command.raw"
+  },
+  "findings": ["F1", "F2", "F3", "F4", "F5"]
+}

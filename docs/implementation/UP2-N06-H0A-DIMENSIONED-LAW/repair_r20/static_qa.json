@@ -1,0 +1,50 @@
+{
+  "schema": "H0A-repair-r20-static-QA",
+  "files": {
+    "source": {
+      "bytes": 59585,
+      "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+    },
+    "test": {
+      "bytes": 48902,
+      "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+    },
+    "fixture": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "runner": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "checks": {
+    "source_after_matches_program_hash": true,
+    "source_before_matches_r19_after": true,
+    "test_unchanged_from_r19": true,
+    "fixture_unchanged": true,
+    "runner_unchanged": true,
+    "role_sign_projection_exactly_one": true,
+    "magnitude_sentinel_comparison_removed": true,
+    "full_coefficient_equality_preserved": true,
+    "zero_rejection_preserved": true,
+    "source_role_sign_check_preserved": true,
+    "no_other_role_sign_magnitude_comparison": true,
+    "r7_stdout_hash_verified": true,
+    "r7_stderr_hash_verified": true,
+    "r7_exit_preserved": true,
+    "r7_receipt_present": true,
+    "r7_failure_line_preserved": true,
+    "julia_desc_focused_run": false
+  },
+  "old_r7_raw": {
+    "stdout": {
+      "bytes": 9857,
+      "sha256": "c114cc2c4fced2acadbb5c822227daf1fff954e4e784150e0c213dafec5320bc"
+    },
+    "stderr": {
+      "bytes": 311,
+      "sha256": "73824bf33e176701c1e568a6af07c77665bad3bc89f6d60125ffc493efa8de45"
+    }
+  }
+}

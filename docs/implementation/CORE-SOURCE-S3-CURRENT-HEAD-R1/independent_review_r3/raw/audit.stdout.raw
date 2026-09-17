@@ -1,0 +1,29 @@
+{
+  "START_UTC": "2026-09-16T06:05:44.6422986Z",
+  "EXPECTED_LF_SHA": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "EXPECTED_LENGTH": 64,
+  "CURRENT_STDERR_FIELDS": [
+    {"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","length":64,"is64hex":true,"equals_actual":true},
+    {"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","length":64,"is64hex":true,"equals_actual":true},
+    {"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","length":64,"is64hex":true,"equals_actual":true}
+  ],
+  "CORRECTED_RAW": [
+    {"path":"raw/corrected_static_measurement.stdout.raw","bytes":299,"actual":"63fe7fbfc976292fe313cdfd6b86bd1af79269a995b3d0ba2fe0663b93367f96","declared":"63fe7fbfc976292fe313cdfd6b86bd1af79269a995b3d0ba2fe0663b93367f96","match":true},
+    {"path":"raw/corrected_static_measurement.stderr.raw","bytes":1,"actual":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","declared":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","match":true},
+    {"path":"raw/corrected_static_measurement.combined.raw","bytes":300,"actual":"b62da63b0a44b3ee4792ed6b06fcde2a3e5b8c9becb5bfb84d78746d6f51de4b","declared":"b62da63b0a44b3ee4792ed6b06fcde2a3e5b8c9becb5bfb84d78746d6f51de4b","match":true}
+  ],
+  "CORRECTED_COMBINED_EQUALS_STDOUT_PLUS_STDERR": true,
+  "CURRENT_STATIC_VECTOR": "[4,5,12,1,47,0]",
+  "HISTORICAL_ZERO_VECTOR_CURRENT_EVIDENCE": false,
+  "FINGERPRINT_CANONICAL_SHA": "840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5",
+  "FINGERPRINT_TARGET": "840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5",
+  "FINGERPRINT_MATCH": true,
+  "EXTERNAL_INPUTS": "14:13 absent,1 unknown_deferred",
+  "RESULT": "branch B; G1/G2/G3 typed_absent; terminal_deferred; no_publish=true",
+  "NO_S3_RERUN": true,
+  "FORBIDDEN_TOOLS": "Julia/DESC/mesh/solver absent",
+  "FORMAL_CREDIT": false,
+  "CLEANUP": "exact path, no glob",
+  "R1_FAILURE_HISTORY_PRESERVED": true,
+  "END_UTC": "2026-09-16T06:05:44.7372978Z"
+}

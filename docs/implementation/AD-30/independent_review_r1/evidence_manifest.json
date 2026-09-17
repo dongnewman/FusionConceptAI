@@ -1,0 +1,125 @@
+{
+  "accepted": false,
+  "archive_files": {
+    "command_receipts.json": {
+      "bytes": 1165,
+      "sha256": "4799849292fdd5e0a5595a5332e3ceb14db272c86b14fc04ba2074dcef4e9b91"
+    },
+    "report.json": {
+      "bytes": 5020,
+      "sha256": "1f37bcc1367ff28ee5a0587c92a384523609ae3895065f2646cfc5c3b76f7265"
+    },
+    "report.md": {
+      "bytes": 6667,
+      "sha256": "52d67da19586075782e03c26be70aca7d42c0cb9f5dac1b307dfe6446e825a7d"
+    }
+  },
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "R01_R10": false,
+    "UP2": false,
+    "engineering": false,
+    "mesh": false,
+    "physical": false,
+    "provider": false,
+    "search": false
+  },
+  "execution": {
+    "core_modified": false,
+    "desc": false,
+    "julia": false,
+    "old_receipts_modified": false,
+    "source_modified": false
+  },
+  "findings": {
+    "old_package_read_only": true,
+    "r01_r10_not_reduced": true,
+    "t0_t1_t2_identity_contract_under_specified": true,
+    "t1_ad19_ambiguity": true
+  },
+  "manifest_version": "AD-30-independent-review-r1-evidence-v1",
+  "no_loss_verdict": "pass_limited",
+  "pre_post_drift": {
+    "README": true,
+    "architecture_decisions": true,
+    "note": "README drift is documented external concurrent change; no edit made by this review"
+  },
+  "read_only": true,
+  "record_kind": "architecture_independent_review",
+  "required_addendum": [
+    "candidate-bound source identity/hash join and hash recipe",
+    "named exact four-axis equality/invalidation",
+    "G3 external bundle and three child refs plus feedback target refs/authority status/hash",
+    "V5Next package hash including canonical declarations/source identity",
+    "fresh migration receipt/no-legacy terminal_deferred semantics",
+    "explicit old CandidateStatePackageV5/shared-entry/default-registry isolation"
+  ],
+  "resolution": "review_pending",
+  "review_id": "AD-30-independent-review-r1",
+  "reviewed_files": {
+    "docs/implementation/AD-19/acceptance.md": {
+      "bytes": 3024,
+      "sha256": "eef6613da8ac130fd9e01f4dec0df58e76e0c4d0289ef8bf05557bd9bb16bc76"
+    },
+    "docs/implementation/AD-28/proposal.md": {
+      "bytes": 3153,
+      "sha256": "4324faef2f53cb3d62c79a85082c8c4086ab5b02f40d79e1df37947da7fc02fe"
+    },
+    "docs/implementation/AD-30/evidence_manifest.json": {
+      "bytes": 5523,
+      "sha256": "53a464c795b189f2382c7c35a440938a50e1882462faa58f4bcd6246dd365107"
+    },
+    "docs/implementation/AD-30/proposal.md": {
+      "bytes": 2920,
+      "sha256": "b738865f2d5cb4fe4ba32cba0ddc59156a3685521c19c6149fd2b029a502db1c"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 67702,
+      "sha256": "887cf584f81a96d52fbeb24249f8c80e6f5b5e0e810d98e4a4f9053470a8ff8f"
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "bytes": 53269,
+      "sha256": "ade6f012a07a881996078c44ba1cd4c8dfeba8480c1cd1e5dcce407339aa7244"
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 25933,
+      "sha256": "0ba6f7e2b3137914f673e7e6010099098c9be1506c2aa20038668d2d7a5feab2"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 57578,
+      "sha256": "2fd25e63397a06da4d77de204a62ab686bfc464bf3bf9f4549dd5d0ce73d39fc"
+    },
+    "src/Contracts/CandidateStatePackageV5.jl": {
+      "bytes": 13496,
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+    },
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "bytes": 31743,
+      "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "bytes": 30773,
+      "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 27969,
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+      "bytes": 16452,
+      "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"
+    }
+  },
+  "self_hash_excluded": true,
+  "status": "changes_requested",
+  "validation": {
+    "ad30_manifest_json_tool_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 363,
+    "task_count": 31,
+    "task_dag_acyclic": true,
+    "validate_plan_checks": "pass",
+    "validate_plan_exit": 0
+  }
+}

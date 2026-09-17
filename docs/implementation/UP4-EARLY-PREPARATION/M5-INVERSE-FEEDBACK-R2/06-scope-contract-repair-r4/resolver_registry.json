@@ -1,0 +1,58 @@
+{
+  "schema": "M5InverseFeedbackR2LocalResolverRegistryV2",
+  "registry_uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:resolver-registry",
+  "network": "forbidden",
+  "unknown_uri_policy": "typed_absent",
+  "registry_hash_policy": "registry_entry_bytes_and_sha_must_match",
+  "entries": [
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:canonical-bundle",
+      "path": "schemas/canonical_bundle_schema.json",
+      "bytes": 4438,
+      "sha256": "07cecb73e014e5268d942c4fe8647d30f5a5104fbf9e0d8485d92b7e8283411a"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:input",
+      "path": "schemas/input_schema.json",
+      "bytes": 8383,
+      "sha256": "5ed9d0d66b7a0effe36530e0574a0fffb14efdb1b180bed58d8095ef72d3ed7c"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:output",
+      "path": "schemas/output_schema.json",
+      "bytes": 10152,
+      "sha256": "e75adf57dadb905d621f640d51498dad7b8fc406af8f8d9a91a65ffacb1c4f6d"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:failure-record",
+      "path": "schemas/failure_record_schema.json",
+      "bytes": 2029,
+      "sha256": "f1fe7d54532e958e0ac7fa8f907ce652007b9bcceda5a8510c18691d156facfb"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:failure-taxonomy",
+      "path": "schemas/failure_taxonomy_schema.json",
+      "bytes": 1770,
+      "sha256": "39f9fbea0d7a3ae107f39c826f72c2a4d46487111982ebdffb331053b5f4a016"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:manifest",
+      "path": "schemas/manifest_schema.json",
+      "bytes": 2162,
+      "sha256": "9451aa7553b223186755a36f4d96b7cfc57ac45e39e00f24fa7fafbe2ca9e236"
+    },
+    {
+      "uri": "urn:fusionconceptai:m5-inverse-feedback-r2:r4:freeze",
+      "path": "schemas/freeze_schema.json",
+      "bytes": 1704,
+      "sha256": "d27ea382366a32deba75bb222421d755dac15be5949a3e375c66fd4041a4e2cb"
+    }
+  ],
+  "resolution_rules": [
+    "URI is an exact registry key",
+    "path remains below this package",
+    "registry supplies bytes and SHA-256 at freeze",
+    "no URL fetch, implicit base URI or network fallback",
+    "unknown external authority is typed_absent and not_implemented"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "record_kind": "up1_environment_provenance_independent_review_receipt",
+  "schema": "UP1.environment-provenance-independent-review.v5",
+  "review_id": "06-environment-independent-review-r5",
+  "status": "pass_limited",
+  "decision": "pass_limited_no_unresolved_p1_p2",
+  "claim_ceiling": "review_only_no_up1_or_parent_goal_credit",
+  "fresh_python": "3.13.5",
+  "checks": {
+    "focused_pytest_run_1": "16 passed",
+    "focused_pytest_run_2": "16 passed",
+    "py_compile": "pass",
+    "independent_ed25519_verification": "4/4",
+    "validator_two_run_semantic_determinism": true,
+    "06_exact_manifest_file_set": "20/20",
+    "06_listed_hash_and_bytes": "all match",
+    "10_capture_artifact_hashes": "56/56",
+    "authenticated_closure_fields": "authority/verified_at/origin/retrieved/binary license/SBOM supplier/license all fail_closed",
+    "synchronized_declaration_rehash_external_context_unchanged": "all seven fail_closed",
+    "attacker_key_sync_resign_with_external_anchor": "fail_closed",
+    "bundle_expected_context": "fail_closed",
+    "r1_r4_regression_controls": "all fail_closed; TEST_ONLY non_evidence",
+    "no_unresolved_p1_p2": true
+  },
+  "raw": {
+    "attack_matrix": "raw/attack_matrix.txt",
+    "pytest_1": "raw/pytest.stdout.txt",
+    "pytest_2": "raw/pytest2.stdout.txt",
+    "py_compile": "raw/py_compile.stdout.txt",
+    "determinism": "raw/determinism.txt",
+    "manifest_capture_check": "raw/manifest_capture_check.txt"
+  },
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true
+}

@@ -1,0 +1,255 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-repair-r4",
+  "status": "blocked_pending_architecture_repair",
+  "accepted": false,
+  "implementation_authorized": false,
+  "actual_child_created": false,
+  "read_only_repair": true,
+  "review_basis": {
+    "independent_review": "docs/implementation/AD-33/g1_g2_editability_independent_review_r4/report.md",
+    "verdict": "changes_requested",
+    "reviewer": "different gpt-5.6-luna/high",
+    "r3_proposal_sha256": "0e2d513ef488ce38836fc81139bfd68e395268e4250683a604d2bd69a406aced",
+    "r3_manifest_sha256": "75f773202d5a9225dd85c926c88acaac3f2b2a7e6577720502f7382f384b8689"
+  },
+  "execution_boundary": {
+    "julia_run": false,
+    "desc_run": false,
+    "heavy_python_run": false,
+    "provider_run": false,
+    "mesh_run": false,
+    "physical_run": false,
+    "search_run": false,
+    "launcher_added": false,
+    "direct_commands_only": true
+  },
+  "shared_prerequisite": {
+    "node_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+    "status": "blocked_pending_architecture_repair",
+    "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+    "parallel_with": ["T0"],
+    "must_not_depend_on": ["T0", "T1", "T2", "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC"],
+    "source_test_fixture_static_qa_scope_exact": [
+      "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl",
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl",
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json",
+      "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py"
+    ],
+    "docs_write_scope_exact": [
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md"
+    ],
+    "docs_write_scope_root": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/",
+    "forbidden_docs_scope": "docs/implementation/AD-33/g1_g2_editability_audit/",
+    "launcher": false,
+    "direct_commands_future_only": [
+      "julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl"
+    ],
+    "max_implementation": "typed_absent_scaffold_only until a source-backed V1 declaration receipt exists",
+    "present_execution": false
+  },
+  "typed_reference_parameters": {
+    "G1_layer_candidate": "QualifiedRefV1",
+    "G1_public_contract": "GenomeContractRef independently bound to actual QualifiedRefV1 id/version",
+    "G2_layer_candidate": "GenomeContractRef from G2MBSourceV1",
+    "G2_public_contract": "same actual five-field GenomeContractRef with exact equality",
+    "no_open_or_ref_only_adapter": true
+  },
+  "input_output_contract": {
+    "request_type": "ParentBaselineBindingRequestV1{L}",
+    "request_fields": [
+      "layer::L",
+      "requested_candidate::LayerCandidateRefV1{L}",
+      "requested_public_contract::GenomeContractRef",
+      "child_contract::ChildContractSchemaIdentityV1{L}",
+      "requested_child_kind::LayerChildKindV1{L}"
+    ],
+    "present_receipt_type": "SourceBackedV1DeclarationReceiptV1{L}",
+    "present_receipt_fields": [
+      "layer::L",
+      "actual_candidate::LayerCandidateRefV1{L}",
+      "public_contract::GenomeContractRef",
+      "actual_parent_ref::LayerParentRefV1{L}",
+      "source_locator::SourceLocatorV1",
+      "factory_receipt::FactoryConstructionReceiptV1{L}",
+      "raw_source_sha256::Digest256",
+      "semantic_body_sha256::Digest256",
+      "parent_declaration_sha256::Digest256",
+      "source_record_sha256::Digest256"
+    ],
+    "output_parent_union": "Union{PresentParentBaselineBindingV1{L},AbsentParentBaselineBindingV1{L}}",
+    "output_child_union": "Union{PresentChildKeyV1{L},AbsentChildKeyV1{L}}",
+    "output_absent_admission": "contract_admission=:terminal_deferred"
+  },
+  "present_parent_binding": {
+    "type": "PresentParentBaselineBindingV1{L}",
+    "exact_fields": [
+      "layer::L",
+      "actual_parent_ref::LayerParentRefV1{L}",
+      "parent_declaration_hash::Digest256",
+      "baseline_raw_source_sha256::Digest256",
+      "baseline_semantic_body_sha256::Digest256",
+      "source_locator::SourceLocatorV1",
+      "factory_receipt::FactoryConstructionReceiptV1{L}",
+      "requested_candidate::LayerCandidateRefV1{L}",
+      "public_contract::GenomeContractRef",
+      "parent_binding_hash::Digest256"
+    ],
+    "factory_receipt_fields": [
+      "module_identity::String",
+      "declaration_type::String",
+      "factory_identity::String",
+      "input_locator::String",
+      "construction_status::Symbol",
+      "candidate_binding_status::Symbol",
+      "declaration_hash_recomputed::Bool"
+    ],
+    "required_receipt_values": {
+      "construction_status": "source_backed_present",
+      "candidate_binding_status": "exact",
+      "declaration_hash_recomputed": true
+    },
+    "parent_binding_hash": {
+      "domain": "ad33:<layer>:parent-baseline-present:v1",
+      "fixed_order": ["layer", "actual_parent_ref", "parent_declaration_hash", "baseline_raw_source_sha256", "baseline_semantic_body_sha256", "source_locator", "factory_receipt", "requested_candidate", "public_contract"],
+      "excluded": ["parent_binding_hash", "child_hash", "state_hash", "operation_hash"]
+    }
+  },
+  "absent_parent_binding": {
+    "type": "AbsentParentBaselineBindingV1{L}",
+    "exact_fields": [
+      "layer::L",
+      "requested_candidate::LayerCandidateRefV1{L}",
+      "requested_public_contract::GenomeContractRef",
+      "reason::Symbol",
+      "absence_domain::String",
+      "absence_digest::Digest256"
+    ],
+    "forbidden_fields": [
+      "actual_parent_ref",
+      "parent_declaration_hash",
+      "baseline_raw_source_sha256",
+      "baseline_semantic_body_sha256",
+      "source_locator",
+      "factory_receipt",
+      "parent_binding_hash"
+    ],
+    "allowed_reasons": ["v1_declaration_instance_unavailable", "source_locator_unavailable", "factory_input_unavailable", "candidate_binding_unavailable"],
+    "absence_domain": "ad33:<layer>:parent-baseline-absent:v1",
+    "absence_digest_fixed_order": ["layer", "requested_candidate", "requested_public_contract", "reason"],
+    "absence_digest_excludes": ["future_child_hash", "future_state_hash", "parent_declaration_hash", "baseline_hash", "actual_parent_ref"],
+    "admission": "terminal_deferred"
+  },
+  "present_child_key": {
+    "type": "PresentChildKeyV1{L}",
+    "exact_fields": ["layer::L", "requested_candidate::LayerCandidateRefV1{L}", "public_contract::GenomeContractRef", "child_kind::LayerChildKindV1{L}", "child_id::String", "child_contract::ChildContractSchemaIdentityV1{L}", "parent_binding::PresentParentBaselineBindingV1{L}", "actual_parent_ref::LayerParentRefV1{L}", "parent_declaration_hash::Digest256", "child_key_digest::Digest256"],
+    "digest_domain": "ad33:<layer>:child-key-present:v1",
+    "digest_fixed_order": ["layer", "requested_candidate", "public_contract", "child_kind", "child_id", "child_contract", "parent_binding.parent_binding_hash", "actual_parent_ref", "parent_declaration_hash"],
+    "requires": ["present_parent_binding", "source_backed_v1_declaration_receipt"]
+  },
+  "absent_child_key": {
+    "type": "AbsentChildKeyV1{L}",
+    "exact_fields": ["layer::L", "requested_candidate::LayerCandidateRefV1{L}", "requested_public_contract::GenomeContractRef", "child_kind::LayerChildKindV1{L}", "child_id::String", "child_contract_schema_identity::ChildContractSchemaIdentityV1{L}", "parent_binding_absence_digest::Digest256", "child_key_digest::Digest256"],
+    "forbidden_fields": ["actual_parent_ref", "parent_declaration_hash", "parent_binding_hash", "baseline_raw_source_sha256", "baseline_semantic_body_sha256", "source_locator", "factory_receipt"],
+    "digest_domain": "ad33:<layer>:child-key-absent:v1",
+    "digest_fixed_order": ["layer", "requested_candidate", "requested_public_contract", "child_kind", "child_id", "child_contract_schema_identity", "parent_binding_absence_digest"],
+    "parent_binding_absence_digest_must_equal": "AbsentParentBaselineBindingV1.absence_digest"
+  },
+  "state_and_transition": {
+    "absent_state_fields": ["AbsentParentBaselineBindingV1", "AbsentChildKeyV1", "LayerSourcePayloadOrTypedAbsentV1", "contract_admission=:terminal_deferred", "state_hash", "canonical_bytes"],
+    "replace_source_payload": "forbidden when baseline binding is absent; return baseline_authority_absent",
+    "failed_replace_effect": "no published state/history change; prior canonical bytes and SHA exact unchanged",
+    "fresh_present_type": "FreshPresentSourcePublicationV1{L}",
+    "fresh_present_fields": ["new_source_record", "new_source_content_sha256", "source_backed_v1_declaration_receipt", "new_parent_binding::PresentParentBaselineBindingV1{L}", "new_present_child_key::PresentChildKeyV1{L}", "candidate_identity_review::FreshCandidateIdentityReviewV1{L}"],
+    "absent_to_present": "fresh new source publication, fresh new child state, and fresh candidate identity review only; never CAS promotion or replace_source_payload"
+  },
+  "sibling_nodes": [
+    {
+      "node_id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC",
+      "depends_on": ["UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC", "UP2-01-G1-DIFFUSION-V1", "UP1-01", "UP1-02", "UP1-03"],
+      "parallel_with": ["T0", "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC"],
+      "must_not_depend_on": ["T1", "T2", "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC"],
+      "present_child_blocked_until": "source-backed V1 declaration receipt and independent review"
+    },
+    {
+      "node_id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC",
+      "depends_on": ["UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP1-01", "UP1-02", "UP1-03"],
+      "parallel_with": ["T0", "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC"],
+      "must_not_depend_on": ["T1", "T2", "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC"],
+      "present_child_blocked_until": "source-backed V1 declaration receipt and independent review"
+    }
+  ],
+  "negative_controls": [
+    "absent parent carrying actual_parent_ref",
+    "absent parent carrying parent_declaration_hash or baseline raw/semantic hash",
+    "absent parent carrying source locator or factory receipt",
+    "wrong absence domain or mutation of layer/candidate/public contract/reason",
+    "fixture-only, URI-only, synthetic, wrong module, wrong factory, or non-recomputed V1 declaration receipt",
+    "G1 QualifiedRefV1/public GenomeContractRef mismatch and G2 five-field mismatch",
+    "absent child key carrying any parent ref/hash or baseline hash",
+    "absent child key wrong child contract identity or parent absence digest",
+    "replace_source_payload against typed-absent state",
+    "absent-to-present CAS promotion or operation replay",
+    "fresh present publication without source-backed factory receipt or identity review",
+    "prior canonical bytes/SHA mutation after every rejected operation",
+    "R1/R2 provenance, six hashes, malformed receipt, dual CAS, and G2 mesh seam controls"
+  ],
+  "exit_gates": {
+    "shared_prerequisite": [
+      "static QA proves exact present/absent field unions and forbidden absent fields",
+      "focused tests prove domain-separated absence digest and absent child digest",
+      "focused tests prove absent state terminal_deferred and replace prohibition",
+      "independent review accepts additive scope and no-launcher boundary"
+    ],
+    "typed_absent_scaffold": "may implement only absent binding/key/state and terminal_deferred",
+    "present_branch": "blocked until actual source-backed V1 instance, factory input, declaration receipt, and independent review exist",
+    "implementation_execution": false
+  },
+  "retained_boundaries": {
+    "f04": true,
+    "f05": true,
+    "f06": true,
+    "f07": true,
+    "f08": true,
+    "t0_parallel": true,
+    "t1_unlocked": false,
+    "t2_unlocked": false,
+    "provider_credit": false,
+    "mesh_credit": false,
+    "physical_credit": false,
+    "search_credit": false,
+    "b00_credit": false,
+    "b04_credit": false,
+    "engineering_credit": false,
+    "r01_r10_credit": false,
+    "implementation_credit": false,
+    "actual_child_credit": false
+  },
+  "preserved": {
+    "repair_r1": true,
+    "repair_r2": true,
+    "original_ad33_report": true,
+    "original_ad33_manifest": true,
+    "core_planning": true,
+    "task_manifest": true,
+    "source": true,
+    "tests": true,
+    "old_receipts": true,
+    "ad31": true,
+    "ad32": true,
+    "r01_r10": true,
+    "ad33_audit_history_read_only": true
+  },
+  "remaining_blockers": [
+    "Repository still lacks a verified source-backed V1 declaration instance and factory receipt.",
+    "Only typed-absent scaffold may be implemented before that receipt exists.",
+    "Present child/state publication requires fresh source publication, fresh identity review, and independent review; it cannot be obtained by CAS promotion.",
+    "R3 remains architecture/work-order proposal only and does not synchronize core/task manifests."
+  ],
+  "artifacts_added": [
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r4/revised_proposal.md",
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r4/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

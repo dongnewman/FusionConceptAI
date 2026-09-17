@@ -1,0 +1,26 @@
+{
+  "manifest_version": "AD-37-g1-g2-present-baseline-independent-review-r2-v1",
+  "record_kind": "independent_read_only_present_baseline_review",
+  "decision_id": "AD-37",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "verdict": "changes_requested",
+  "read_only": true,
+  "execution_policy": {"julia": false, "desc": false, "provider": false, "mesh": false, "solver": false, "physical": false, "source_test_core_modified": false, "historical_receipts_modified": false, "future_publication_dirs_created": false},
+  "repair_basis": {"repair_manifest": "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r1/manifest.json", "repair_manifest_sha256": "24f42c293904c3a7466a36a46751c2ef73efaea451d5327ee5b0932f447fea49", "repair_report_sha256": "7b0e91973142276768044a94974a6b1d2318b4d7a1237daa79c50e8f2f35e7bd", "prior_review_verdict": "changes_requested"},
+  "present_baseline_recheck": {"g1_source_backed_instance": "not_found_terminal_deferred", "g1_factory_receipt": "not_found_terminal_deferred", "g2_source_backed_instance": "not_found_terminal_deferred", "g2_factory_receipt": "not_found_terminal_deferred", "fixture_authority": false, "baseline": "typed_absent_only", "t0_authority_recheck": "typed_absent_or_fail_closed_present_false", "t1": "planned_review_pending_blocked"},
+  "input_recheck": {"read_only_input_count": 47, "categories": {"current_g1_v1": 10, "current_g2_v1": 11, "baseline_scaffold": 10, "t0_contract": 7, "t0_authority_recheck_contract": 9}, "all_paths_exist": true, "sorted_path_bytes_sha256_inventory": "a86b06ed4badd9fec4f7c30a41e3aadc69ed8ac1b4d8c3023c4b0b054c246406", "original_observed_hash_count": 14, "original_observed_hashes_match": true},
+  "work_order_recheck": {"ids": ["AD37-G1-PRESENT-BASELINE-PUBLISH", "AD37-G2-PRESENT-BASELINE-PUBLISH"], "product_files_each": 7, "typed_result_union_each": ["PresentBaselinePublicationV1", "AbsentBaselinePublicationV1", "FailedBaselinePublicationV1"], "branch_outputs_enumerated": true, "hash_fields_each": 8, "four_axis_fields_each": 4, "evidence_index_exact_append_only": true, "negative_controls_and_exit_gates": true, "all_credit_flags_false": true, "sibling_cycle": false, "t0_t1_t2_forbidden_edges": true, "status_each": "proposed_blocked_external"},
+  "core_plan_validation": {"checks": "pass", "task_count": 39, "task_dag_acyclic": true, "relative_links_checked": 466},
+  "ad36_alignment": {"acceptance_path": "docs/implementation/AD-36/acceptance.md", "manifest_path": "docs/implementation/AD-36/manifest.json", "acceptance_sha256": "71d5d11063335b02b9b6921b6d298ea55eb7cab97aae814f36dc7c95e6675771", "manifest_sha256": "53c95522bc85abb00ef5d22605971119d125cd22533cfe6ed5d4f889e6b78281", "current_status": "review_pending/accepted=false", "local_index_policy_aligned": true, "explicit_pending_external_blocker": false},
+  "blocking_findings": [
+    {"id": "AD37-R2-OUTPUT-SCOPE", "detail": "branch output records are under output/ but are neither product_files nor AD-36 archive/review/status sidecars", "required_repair": "promote them to explicit product outputs or move/register them as archive evidence sidecars"},
+    {"id": "AD37-R2-CANONICAL-ID", "detail": "depends_on and local DAG use PARENT-BASELINE-BIND-PREC instead of UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC", "required_repair": "replace shorthand with the core canonical task ID everywhere"},
+    {"id": "AD37-R2-AD36-PENDING", "detail": "AD-36 policy is mirrored but its review_pending/accepted=false status is not a machine-readable external blocker", "required_repair": "add canonical AD-36 policy inputs and blocked_on/external_policy_pending fields without granting acceptance"}
+  ],
+  "credits": {"implementation": false, "actual_g1": false, "actual_g2": false, "t0": false, "t1": false, "t2": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physical": false, "search": false, "b00": false, "b04": false, "r01_r10": false},
+  "write_scope": ["docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r2/report.md", "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r2/manifest.json"],
+  "review_notes": ["No Julia, DESC, provider, mesh, solver or physical command was run.", "No source, test, fixture, archive, baseline, T0, T1, core plan, prior review or prior repair file was modified.", "After repair, architecture work-order acceptance may remain blocked_external and must not dispatch a present publication."]
+}

@@ -1,0 +1,59 @@
+{
+  "manifest_kind": "up2_01_g2_metric_boundary_v1_independent_precheck_r2",
+  "status": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "claim_ceiling": "contract_only_no_mesh_provider_physical_engineering_or_R01-R10_credit",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "julia_invoked": false,
+    "desc_invoked": false,
+    "provider_or_mesh_execution": false,
+    "compiler_invoked": false,
+    "process_sweep": "no Julia/DESC process"
+  },
+  "review_inputs": [
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/independent_precheck_r1/report.md",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/report.md",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/evidence_manifest.json",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/command_receipts.json",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json",
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+    "docs/implementation/AD-28/",
+    "docs/implementation/AD-29/"
+  ],
+  "r2_closure": {
+    "physical_reference_orientation": true,
+    "det_positive_gate": true,
+    "typed_boundary_kind_units": true,
+    "mesh_not_executed_unconditional_gap": true,
+    "public_controlled_program_exception": true,
+    "source_declaration_hash_edit": true
+  },
+  "blocking": {
+    "unit_algebra": {
+      "status": "blocking",
+      "coordinate_jacobian_metric_area_volume_relation": "not_enforced",
+      "physical_area_unit_binding": "not_enforced",
+      "volume_unit_binding": "caller_supplied_and_not_checked",
+      "required": "typed algebra validation plus independent malformed-unit admission controls"
+    }
+  },
+  "hashes": {
+    "source": "eb9124423628794baf53c1bfab75f99cc606f73883203ff5f69de921e45246dd",
+    "test": "49784f58298a28e57724111fd40ca4c2c64417c455e3acf12f54b636e9d9dda2",
+    "fixture": "4fd029f8e46fcfc473334a27a0531168082f4bb89cb67e2b8d7d838dc69b41c8",
+    "static_qa": "df9f777d5dd8ec38876cb2fa12cceba3f1c6f53cb83fe011d2f366d5b563708d"
+  },
+  "credit": {
+    "mesh": false,
+    "provider": false,
+    "physical": false,
+    "engineering": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "AD53.V5PublicationClosureVerifier.raw_python_test.v1",
+  "observed_at_local": "2026-09-16T06:00:00+08:00",
+  "commands": [
+    {
+      "command": "python -m unittest -v test.GenomeV5.Integration.verify_v5_publication_closure_tests",
+      "exit": 1,
+      "stdout_stderr": "ImportError: Failed to import test module: GenomeV5; ModuleNotFoundError: No module named 'test.GenomeV5'"
+    },
+    {
+      "command": "python test/GenomeV5/Integration/verify_v5_publication_closure_tests.py",
+      "exit": 1,
+      "stdout_stderr": "FileNotFoundError: scripts/verify_v5_publication_closure.py"
+    }
+  ],
+  "status": "implementation_handoff_not_accepted",
+  "source_script_present_at_run": false,
+  "raw_receipt": true
+}

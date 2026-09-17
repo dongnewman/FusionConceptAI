@@ -1,0 +1,98 @@
+{
+  "schema_version": "ad-35-repair-r1-v1",
+  "record_kind": "changes_requested_contract_repair",
+  "task_id": "AD-35",
+  "repair_id": "repair_r1",
+  "trigger": "independent_r1_changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "sol_decision": "pending",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "creates_mainline_task": false,
+  "task_count_unchanged": 37,
+  "dag_unchanged": true,
+  "physical_credit": false,
+  "r01_r10_credit": false,
+  "allowed_mutation_scope": [
+    "docs/implementation/AD-35/repair_r1/report.md",
+    "docs/implementation/AD-35/repair_r1/manifest.json",
+    "docs/implementation/AD-35/acceptance.md",
+    "docs/implementation/AD-35/manifest.json",
+    "docs/implementation/AD-35/status_sync_r1/report.md",
+    "docs/implementation/AD-35/status_sync_r1/manifest.json",
+    "README.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/README.md"
+  ],
+  "changes": [
+    "complete_static_command_receipt_fields",
+    "replace_aggregate_cleanup_row_with_exact_path_inventory",
+    "add_status_manifest_self_hash_excluded_rule",
+    "record_full_base_commit_model_and_reasoning",
+    "retain_review_pending_until_independent_review_and_sol_decision"
+  ],
+  "cleanup": {
+    "created_scratch_paths": [],
+    "removed_paths": [],
+    "deferred_paths": [],
+    "action": "none",
+    "reason": "repair created only requested documentation records; no scratch/cache/debug/unrelated code"
+  },
+  "command_receipts": [
+    {
+      "kind": "json_plan_link_format",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/v4_multitopology_generation/validate_plan.py",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 29016,
+      "in_process": false,
+      "started_utc": "2026-09-15T04:27:47.2462628Z",
+      "ended_utc": "2026-09-15T04:27:47.4718001Z",
+      "exit_code": 0,
+      "stdout_sha256": "518954143057a18cce908c780366705fa228ecdce29059669d7f50ed4b77ce20",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "518954143057a18cce908c780366705fa228ecdce29059669d7f50ed4b77ce20",
+      "input_hashes_source": "status_sync_r1/manifest.json validation.commands[0].input_hashes",
+      "output_hashes": {},
+      "artifact_hashes": {"validation_stdout":"518954143057a18cce908c780366705fa228ecdce29059669d7f50ed4b77ce20","validation_stderr":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    },
+    {
+      "kind": "diff_format",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe diff --check -- README.md docs/v4_multitopology_generation/14_agent_orchestration.md docs/v4_multitopology_generation/16_execution_work_orders.md docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md docs/v4_multitopology_generation/task_manifest.json docs/implementation/README.md docs/implementation/AD-35",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 59272,
+      "in_process": false,
+      "started_utc": "2026-09-15T04:27:47.0634919Z",
+      "ended_utc": "2026-09-15T04:27:47.0961221Z",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d2cb6ffb663a2b94bca7a186494ceb020deacbc8ff6c9af0ce2e8eba2120ca08",
+      "combined_sha256": "d2cb6ffb663a2b94bca7a186494ceb020deacbc8ff6c9af0ce2e8eba2120ca08",
+      "input_hashes_source": "status_sync_r1/manifest.json validation.commands[1].input_hashes",
+      "output_hashes": {},
+      "artifact_hashes": {"stdout":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr":"d2cb6ffb663a2b94bca7a186494ceb020deacbc8ff6c9af0ce2e8eba2120ca08"}
+    }
+  ],
+  "artifact_hashes": {
+    "README.md": "d1fb1c2f45a38aa4c84437546eb84fe05189d8035a699d9a036d601be8453e88",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": "af054bd318c5d7f441941c595b052d11f8efc90a00aa324f1366d946e2ea9d8e",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "c1d1089f5d9e65bef5981b63207434b2ad0a977a3f97e7a6afc73df7637031b8",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "981c939165746d845a9674ddd539c52c66deeb2e1d7aa80658767f30bb56387b",
+    "docs/v4_multitopology_generation/task_manifest.json": "34b06ab39c4cf43839f5e529ecb61201813d5f374c03c86288fdb34d2e8c61a1",
+    "docs/implementation/README.md": "520fa14bd3354693f290ba0de372fe213e1950ea5e07f929956ea54b10952d3e",
+    "docs/implementation/AD-35/acceptance.md": "690fd8609b57307e64dbca87196edef9e6b0b16e8da869f8577371e4a5d2d88c",
+    "docs/implementation/AD-35/manifest.json": "f29151b6f8cbf986c4dd16332fca31b03f5b981ed87c977706e21e614a86e9ca",
+    "docs/implementation/AD-35/status_sync_r1/report.md": "a6ea166f8237ff217b80088d706da3ef29659ed632ba98793565a8e891dd3606",
+    "docs/implementation/AD-35/status_sync_r1/manifest.json": "d12493da3879d531bea29b88b9af796349ba997a1b5d4ed169ac25000cc8a96a",
+    "docs/implementation/AD-35/repair_r1/report.md": "66267f6e5232d2a4862ccbd019fb7680946ceb813bcdcbcf22e1755b4fe0fd3c"
+  },
+  "verification": {
+    "julia_desc_or_heavy_recompute": "not_run",
+    "independent_review_required": true,
+    "sol_decision_required": true
+  }
+}

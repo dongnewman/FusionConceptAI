@@ -1,0 +1,94 @@
+[
+  {
+    "name": "git_head_and_branch",
+    "argv": ["git", "rev-parse", "HEAD"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "stderr": ""
+  },
+  {
+    "name": "git_status_capture_before_review",
+    "argv": ["git", "status", "--porcelain=v1"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "status_rows": 294,
+    "stdout": "pre-existing dirty/untracked inventory observed before independent-review-r3 writes",
+    "stderr": ""
+  },
+  {
+    "name": "julia_desc_process_sweep_initial",
+    "argv": ["powershell", "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)(\\.exe)?$' }"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "interpretation": "zero exact Julia/DESC process names; review did not launch either"
+  },
+  {
+    "name": "protected_dirty_hash_recheck",
+    "argv": ["Get-FileHash", "-Algorithm", "SHA256", "six protected dirty paths"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "all six observed hashes match the R3 subject manifest and prior protected inventory",
+    "stderr": ""
+  },
+  {
+    "name": "r2_and_independent_review_hash_recheck",
+    "argv": ["Get-FileHash", "-Algorithm", "SHA256", "R2 audit and independent_review_r2 artifacts"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "all recorded R2 and independent-review-r2 hashes match current files",
+    "stderr": ""
+  },
+  {
+    "name": "actual_a_static_source_check",
+    "argv": ["rg", "temperature|auxiliary|spatial_dimension|GRAD|DIV_OP|not_executed|feedback_authority_gap|dimensioned_law_missing", "actual-A fixtures and source paths"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "G1 0-D states and no diffusion law; G2 structural geometry with unexecuted metric/mesh; G3 authority gap and deferred dimensioned law",
+    "stderr": ""
+  },
+  {
+    "name": "dependency_order_source_check",
+    "argv": ["rg", "UP1-04B|UP1-04|UP2-01|前置", "docs/v4_multitopology_generation/16_execution_work_orders.md", "docs/v4_multitopology_generation/task_manifest.json"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "UP1-04B precedes complete UP1-04; complete UP1-04 precedes UP2-01; formal B00/B04 requires fresh candidate refs",
+    "stderr": ""
+  },
+  {
+    "name": "validate_plan",
+    "argv": ["python", "docs/v4_multitopology_generation/validate_plan.py"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "record_kind=planning_document_validation_not_physics_or_implementation_acceptance; plan_version=v4-upgrade-plan-20260914.1; checks=pass; markdown_files_checked=31; relative_links_checked=337; task_count=27; task_dag_acyclic=true; errors=[]",
+    "stderr": ""
+  },
+  {
+    "name": "json_parse_subject_and_review",
+    "argv": ["python", "json.loads R3 four JSON files, R2 report.json, independent_review_r2/report.json"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "JSON_PARSE_OK subject_and_review_files",
+    "stderr": ""
+  },
+  {
+    "name": "git_diff_check",
+    "argv": ["git", "diff", "--check"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "pre-existing LF/CRLF line-ending warnings only"
+  },
+  {
+    "name": "final_exact_process_sweep",
+    "argv": ["powershell", "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)(\\.exe)?$' }"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "interpretation": "zero exact Julia/DESC process names after review writes"
+  }
+]
+

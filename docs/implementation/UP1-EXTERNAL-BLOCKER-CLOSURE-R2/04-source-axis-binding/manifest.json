@@ -1,0 +1,41 @@
+{
+  "schema": "UP1-R2.source-axis-binding.manifest.v1",
+  "status": "accepted_limited",
+  "claim_ceiling": "software_contract_and_fail_closed_validation_only",
+  "implementation": "tools/up1_external_closure_r2/source_axis_binding",
+  "tests": "test/up1_external_closure_r2/source_axis_binding",
+  "fixture": "test/up1_external_closure_r2/source_axis_binding/fixtures/typed_absence.json",
+  "evidence": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/04-source-axis-binding",
+  "authority_evidence": false,
+  "external_material_state": "typed_absence",
+  "test_only_state": "non_evidence",
+  "ad56_interpretation": "software_bookkeeping_only",
+  "fresh_command": "python -B -m unittest discover -s test/up1_external_closure_r2/source_axis_binding -p test_*.py -v",
+  "cli_command": "python -B tools/up1_external_closure_r2/source_axis_binding/source_axis_binding.py --input test/up1_external_closure_r2/source_axis_binding/fixtures/typed_absence.json",
+  "negative_controls": [
+    "missing_axis",
+    "duplicate_axis",
+    "unknown_axis",
+    "hash_mismatch",
+    "source_drift",
+    "edge_contradiction",
+    "foreign_candidate",
+    "issuer_only_without_external_validation",
+    "foreign_source_identity",
+    "unknown_schema_or_field",
+    "scalar_material_or_edge",
+    "duplicate_json_key",
+    "axis_permutation_receipt_determinism",
+    "missing_head_tree_or_untracked_content"
+  ],
+  "external_authority_gate": ["signature_validated", "trust_root_validated", "trusted_time_validated", "revocation_validated", "g2_mapping_validated"],
+  "fresh_observed_source_required": true,
+  "source_capture": ["HEAD", "HEAD^{tree}", "dirty_status_digest", "patch_digest", "untracked_file_content_hashes", "untracked_content_digest", "submodule_closure"],
+  "strict_schema": true,
+  "duplicate_json_keys": "fail_closed",
+  "deterministic_error_order": true
+  ,"closed_enums": {"identity_schema_version": ["UP1-R2.source-identity.v1"], "state": ["TEST_ONLY", "typed_absence", "EXTERNAL_ISSUED"], "provenance_class": ["test_fixture", "external_material_absent", "external_issued"]}
+  ,"authority_output_fail_closed": true
+  ,"nested_allowlists_strict": true
+  ,"rework_regressions": ["issuer_only_authority_false", "ad56_authority_false", "nested_unknown", "evil_schema", "unknown_state", "unknown_provenance_class"]
+}

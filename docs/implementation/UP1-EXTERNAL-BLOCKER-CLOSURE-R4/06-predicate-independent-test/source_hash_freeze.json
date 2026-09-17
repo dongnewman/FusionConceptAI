@@ -1,0 +1,16 @@
+{
+  "schema": "UP1-R4.predicate-independent-test.source-hash-freeze.v1",
+  "note": "Before values were captured immediately before the test-only predicate switch; production tools stayed frozen.",
+  "before": {
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_vectors.py": "65CFC64F856994FD21F09B50E7210666062841F3FF3013690CEA290D3718D3BC",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_repair.py": "EEB6A0072C27A5CB18A9F7689B401CC9C74FB7E2A9B60600B40614ED4611BD42",
+    "tools/up1_external_closure_r3/atomic_bundle/bundle.py": "5E7E0CE502C378EE20BF19B12603BE30866BBCCD623D22E0470DD7F3B0354EC1"
+  },
+  "after": {
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_vectors.py": "D40FA8B2A57F201500E6AC7C50231479F316E357F0A57BE5C19ED6773157DD7C",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_repair.py": "EEB6A0072C27A5CB18A9F7689B401CC9C74FB7E2A9B60600B40614ED4611BD42",
+    "test/up1_external_closure_r3/atomic_bundle/test_predicate_instrumentation.py": "FD57AAE787A070138057BD3BD7A87C87A1B58EBA67F3FED024D7C50CB5BDBBA5",
+    "tools/up1_external_closure_r3/atomic_bundle/bundle.py": "5E7E0CE502C378EE20BF19B12603BE30866BBCCD623D22E0470DD7F3B0354EC1"
+  },
+  "production_tools_changed": false
+}

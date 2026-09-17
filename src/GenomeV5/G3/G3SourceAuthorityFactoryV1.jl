@@ -501,11 +501,14 @@ function _g3s_validate_git(locator::G3IndependentSourceLocatorV1)
     head_bytes == cat_bytes || return :head_blob_bytes_mismatch
     working_path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
     isfile(working_path) || return :source_file_missing
-    working_bytes = try read(working_path) catch; return :source_read_failed end
-    working_bytes == head_bytes || return :working_tree_head_bytes_mismatch
+    try read(working_path) catch; return :source_read_failed end
     length(head_bytes) == locator.source_bytes || return :head_blob_bytes_mismatch
     head_sha = Digest256(bytes2hex(SHA.sha256(head_bytes)))
     head_sha == locator.source_sha256 == locator.head_blob_sha256 || return :head_blob_sha256_mismatch
+    filtered_blob = _g3s_git_read(locator.repository_root, "hash-object", "--path",
+        locator.source_path, working_path)
+    filtered_blob isa String && filtered_blob == blob ||
+        return :working_tree_filtered_blob_mismatch
 
     isempty(porcelain) || return :working_tree_dirty
     actual_status === :clean || return :working_tree_dirty
@@ -518,9 +521,7 @@ function _g3s_validate_locator(scope::Symbol, locator::G3IndependentSourceLocato
     try
         path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
         isfile(path) || return :source_file_missing
-        bytes = read(path)
-        length(bytes) == locator.source_bytes || return :source_bytes_mismatch
-        Digest256(bytes2hex(SHA.sha256(bytes))) == locator.source_sha256 || return :source_hash_mismatch
+        try read(path) catch; return :source_read_failed end
         git_error = _g3s_validate_git(locator)
         git_error === nothing || return git_error
         nothing

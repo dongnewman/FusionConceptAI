@@ -1,0 +1,6 @@
+anchor canonical recompute: candidate_context and source_identity digests matched supplied anchors
+anchor mutation: candidate_context_digest_mismatch -> fail_closed
+anchor strict64hex: x*64/y*64 -> candidate_fingerprint_anchor_invalid -> fail_closed
+aggregate public API: status=verified resolution=eligible_for_authority_recheck T0=false ad_created=false
+pipeline reachability with bound deterministic component receipts: status=eligible_for_authority_recheck aggregate=verified
+mutated prior with matching receipt: fail_closed prior_state_not_in_authenticated_ledger

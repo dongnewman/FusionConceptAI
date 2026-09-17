@@ -1,0 +1,20 @@
+M5C_R2_STATIC_VALIDATION schema=M5CStaticValidationV2
+capture_utc=2026-09-17T03:31:20.1436344Z powershell_pid=89376 command_exit=0
+execution_policy=read_only Julia=NOT_STARTED DESC=NOT_STARTED S3=NOT_STARTED solver=NOT_STARTED mesh=NOT_STARTED search=NOT_STARTED physical=NOT_STARTED
+scope_root=docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/04-repair-scope-contract-r2
+forbidden_roots_untouched=true source_tests_reviews_untouched=true
+json_parse=pass files=14
+schema_required_closure=pass manifest=true preflight=true envelope=true binding=true budget=true collision=true supervisor=true cache=true receipt_bundle=true baseline_contract=true freeze=true
+manifest_owner_path_utc_run_overwrites=pass every_artifact=true overwrites_empty=true
+condition_count=8 condition_order=type,rank,domain,unit,port,owner,interface,conservation required_all_met=closed
+aggregate_precedence=malformed>foreign>duplicate>wrong_link>detached>altered>status_mismatch>evaluator_fault>contradiction>unknown>not_applicable>absent>unmet>met
+budget_priority=invalid>sealed_budget_mismatch>over_limit>input_overload>equal>omitted
+detached_wrong_link_matrix=pass layers=9
+collision_protocol=pass protocol=M5CTestDigestV1 full_key_authority=true digest_only_index=false
+supervisor_fields=pass supervisor_wall_seconds=true supervisor_exit_code=true termination_enum=true timeout_class_enum=true
+fresh_freeze=pass old_paths=true old_bytes=true old_hashes=true current_inputs=10 raw_row_mapping=true
+baseline_contract=pass baseline_id=M5C-R2-FROZEN-BASELINE-V2 captured=false
+cache_required_schema=pass owner=true derivation=true product=true entries=true escape_flags=true
+status=review_pending implementation_authorized=false not_implemented=true scope=screen_only formal_credit=none
+current_frozen_input_hash_errors=0 manifest_claim_errors=0 hash_manifest_claim_errors=0 julia_process_count=0
+exit=0

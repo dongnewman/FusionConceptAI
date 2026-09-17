@@ -1,0 +1,88 @@
+{
+  "schema_version": "UP1-04A-VNEXT-T0-independent-postrun-r2-v1",
+  "record_kind": "T0_focused_postrun_independent_review",
+  "date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "attempt_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2",
+  "verdict": "julia_test_failed",
+  "classification": "production_gap_classification_missing",
+  "accepted": false,
+  "t1_go": false,
+  "claim_ceiling": "contract_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "process": {
+    "pid": 43044,
+    "started_utc": "2026-09-14T23:17:00.1036158+00:00",
+    "ended_utc": "2026-09-14T23:17:10.3812580+00:00",
+    "julia_exit_code": 1,
+    "launcher_failure": false,
+    "post_run_julia_or_desc_processes": [],
+    "orphan_process_found": false
+  },
+  "first_failure": {
+    "testset": "AD-30 T0 preserves complete bodies and typed gaps",
+    "line": 139,
+    "expression": "all((occursin(\"terminal_deferred\", gap) for gap = admission.gaps))",
+    "passed": 9,
+    "failed": 1,
+    "errored": 0,
+    "broken": 0,
+    "total": 10,
+    "later_groups_execution_credit": false,
+    "rerun": false
+  },
+  "non_terminal_deferred_gaps": [
+    "G3_feedback_authority_missing:g1-residual",
+    "G3_feedback_authority_missing:g2-thermal"
+  ],
+  "diagnosis": {
+    "predicate_is_overly_strict": false,
+    "production_classification_missing": true,
+    "feedback_missing_gap_omits_terminal_deferred": true,
+    "upstream_missing_gap_omitted": true,
+    "status_valid_with_gaps_is_contractual": true,
+    "physical_or_provider_result": false
+  },
+  "raw_streams": {
+    "stdout_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/stdout.bin",
+    "stdout_sha256": "4c16f41ff5e49859753a7491f61e4109bd590504108cd830b4737e8331081acc",
+    "stderr_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/stderr.bin",
+    "stderr_sha256": "312005495a46b8448fd9d31071a642b9ad86edcb1be6b87ec4be3e11ae333289",
+    "capture_metadata_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/process_capture.json",
+    "capture_metadata_sha256": "680e6994064ee4a1b8f1dbc92ede38ae65e301ad8fe4af7bc6017a2819a85063"
+  },
+  "input_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "333ff3a2976736e13809b603cdcab61524658b7fb20d1b6506ccf188dea3b063",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+  },
+  "worktree": {
+    "pre_run_porcelain_count": 304,
+    "post_run_porcelain_count": 304,
+    "current_review_prewrite_porcelain_count": 304,
+    "dirty_delta_attributed_to_attempt": false
+  },
+  "minimal_r6_work_order": {
+    "source_owner": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+    "test_owner": "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "source_change": "emit terminal_deferred gaps for feedback and upstream missing authorities",
+    "test_change": "assert exact missing-authority gap names and retain all-gaps terminal-deferred predicate",
+    "different_luna_static_review_required": true,
+    "t0_accepted": false,
+    "t1_allowed": false
+  },
+  "next_gate": {
+    "allowed_after_r6_review": true,
+    "condition": "H0 idle; six input hashes and dirty snapshot frozen",
+    "exactly_one_process": true,
+    "launcher_requirement": "use task-specific childPid variable; never assign PowerShell $PID",
+    "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "required_receipt": "raw stdout/stderr bytes and SHA-256, exit code, PID/UTC/process identity, pre/post dirty/process state",
+    "physical_credit": false,
+    "r01_r10_credit": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "UP1.external-closure-r2.g2-independent-review-manifest.v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "r1",
+  "group_id": "R2-G2",
+  "reviewer_task_id": "/root/up1r2_g2_review",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "source_revision": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "protocol_hashes": {
+    "review_protocol.md": "4c68091cfc7448795e4671b7ed37069b0a54e0df279a04563e9c84bfb6d1ac33",
+    "test_matrix.json": "53f19ea7fb95ea6461189be573a12e1ee12c7fe3451cc49f8dce2b6828f04305"
+  },
+  "labels": {"TEST_ONLY": true, "non_evidence": true},
+  "verdict": "rework",
+  "claim_ceiling": "bounded G2 software review only; no external authority, UP1, B00/B04, provider, mesh, solver, engineering, physical or R01-R10 credit",
+  "case_counts": {"total": 34, "pass": 32, "findings": 2, "rejected": 27},
+  "fresh_processes": {
+    "matrix_a": {"pid": 53032, "parent_pid": 58272, "started_at_utc": "2026-09-16T17:53:21.314724Z", "ended_at_utc": "2026-09-16T17:53:21.314735Z", "exit": 0, "stdout": {"path": "raw/matrix_a.stdout.raw", "bytes": 256548, "sha256": "7004632bde9c49e5c531b237055a7598a42ba665a2de7bdc2de0de231855d052"}, "stderr": {"path": "raw/matrix_a.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "matrix_b": {"pid": 61824, "parent_pid": 58272, "started_at_utc": "2026-09-16T17:53:21.485556Z", "ended_at_utc": "2026-09-16T17:53:21.485568Z", "exit": 0, "stdout": {"path": "raw/matrix_b.stdout.raw", "bytes": 256548, "sha256": "3d8e0809fd4eafaa62b913ae1d507a051ad2583f8259e39e3dd6666778066387"}, "stderr": {"path": "raw/matrix_b.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "semantic_replay": "equal_after_excluding_started_at_utc,ended_at_utc,pid,parent_pid"
+  },
+  "source_hashes": {
+    "tools/up1_external_closure_r2/g2_mapping/production_g2_mapping.py": "0d63a575a2aef76008903e9084c6f39f1eaae62210627faa59ff2b178765edf7",
+    "tools/up1_external_closure_r2/g2_mapping/fixtures/test_only_positive.json": "49d7ae6c2d2a9df6e397ec0b6f7767a64b666fbe0ac764a2affe0abaad6a0310",
+    "tools/up1_external_closure_r2/g2_mapping/fixtures/typed_absent.json": "656fb87ddfb35d9ea9e7a0d891f91ae11d71a25ab108f95f8bc91eeec79767bc"
+  },
+  "component_manifest_and_receipt": "verification.json:50/50 checks passed; existing 05-g2-mapping manifest/run_receipt/raw hashes matched",
+  "review_outputs": {
+    "review.md": {"bytes": 2795, "sha256": "004db9819a1c03071a8ffc2f9a2201972c40a758b6389e10eda8405f01f6aed0"},
+    "findings.md": {"bytes": 2764, "sha256": "4a5502cb02033fefa0b2052b37bf54bcbb0b7d2978a07a68bad439f6169483c6"},
+    "matrix_driver.py": {"bytes": 9770, "sha256": "d979b5051c9a3bd1d5d2cf19e61880561bcee33afb5c616e412016543db7af35"},
+    "cleanup_inventory.json": {"bytes": 1372, "sha256": "7fe55d417f88795fc91f0479c42683b9e53ad06fda5c262999cdebd4b8061356"}
+  },
+  "retained_raw": {
+    "raw/cli_wrapper_test_only.receipt.raw": {"bytes": 1278, "sha256": "41c548062e51f982199fe56bb73c5326ebe04d133de6a7d1de88a94244bf3e95"},
+    "raw/cli_wrapped_test_only.stdout.raw": {"bytes": 1532, "sha256": "f6306f5410ad5865b011c9d565e1b86057b1c6d0f8c82e7e463a64ae937a6e32"},
+    "raw/cli_wrapped_test_only.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/cli_wrapper_typed_absent.receipt.raw": {"bytes": 1279, "sha256": "044e35a35e93369c6af342865225926a666a160505b9e7378b0a069253a76cc7"},
+    "raw/cli_wrapped_typed_absent.stdout.raw": {"bytes": 122, "sha256": "a2106c5384724fd8172b6d890bb88fe7188280c0eb42e848cf8e06cc8243c583"},
+    "raw/cli_wrapped_typed_absent.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/cli_test_only.stdout.raw": {"bytes": 1532, "sha256": "f6306f5410ad5865b011c9d565e1b86057b1c6d0f8c82e7e463a64ae937a6e32"},
+    "raw/cli_test_only.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/cli_typed_absent.stdout.raw": {"bytes": 122, "sha256": "a2106c5384724fd8172b6d890bb88fe7188280c0eb42e848cf8e06cc8243c583"},
+    "raw/cli_typed_absent.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/cli_wrapper_test_only.wrapper_stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/cli_wrapper_typed_absent.wrapper_stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/verification.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "self_hash_exclusions": ["manifest.json"],
+  "cleanup": "cleanup_inventory.json"
+}

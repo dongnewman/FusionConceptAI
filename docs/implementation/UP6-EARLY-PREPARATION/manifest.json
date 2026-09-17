@@ -1,0 +1,32 @@
+{
+  "schema": "ImplementationPreparationManifestV1",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "title": "UP6 整装独立验收正式运行前加法式准备",
+  "status": "accepted_limited",
+  "repair": "repair_r2",
+  "repair_history": [
+    {"repair_id":"repair_r1","report":"docs/implementation/UP6-EARLY-PREPARATION/repair_r1/report.md","manifest":"docs/implementation/UP6-EARLY-PREPARATION/repair_r1/manifest.json","status":"reviewed_changes_requested_then_repaired"},
+    {"repair_id":"repair_r2","report":"docs/implementation/UP6-EARLY-PREPARATION/repair_r2/report.md","manifest":"docs/implementation/UP6-EARLY-PREPARATION/repair_r2/manifest.json","status":"static_recheck_passed_pending_review"}
+  ],
+  "scope_status": "preparation_only",
+  "accepted": true,
+  "accepted_scope": "early-preparation-template-only",
+  "resolution": "accepted_limited_pending_formal_up6",
+  "acceptance_record": "docs/implementation/UP6-EARLY-PREPARATION/acceptance.md",
+  "status_records": [
+    {"record_id":"status_sync_r1","report":"docs/implementation/UP6-EARLY-PREPARATION/status_sync_r1/report.md","manifest":"docs/implementation/UP6-EARLY-PREPARATION/status_sync_r1/manifest.json","status":"accepted_limited"}
+  ],
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "observed_source_baseline": {"repository":"D:/006-Programing/LMC/FusionConceptAI","head":"pending","worktree":"dirty; existing changes and historical artifacts protected","head_policy":"record current baseline in validation only; do not rewrite existing audit"},
+  "goal_boundary": {"r01_r10_status":"pending","credible_candidate_count":0,"l4_credible_count":0,"discovery_goal_achieved":false,"historical_goal_ledger_is_read_only":true},
+  "execution_policy": {"integrated_physics":false,"net_output":false,"independent_replay":false,"originality_search":false,"julia":false,"desc":false,"freegs":false,"vmex":false,"pleiades":false,"cql3d":false,"provider_solver":false,"mesh":false,"download_or_external_data":false,"external_search":false,"registry_edit":false,"task_manifest_edit":false,"core_edit":false,"heavy_lane":"not_requested"},
+  "dependencies": {"UP5-03":"pending","UP6-01":"planned","UP6-02":"planned","UP6-03":"planned","fresh_candidate":"pending","mission_and_scenarios":"pending","provider_toolchain_admission":"pending","engineering_obligation_ledger":"pending","licensed_vvuq_data":"pending","independent_checker":"pending"},
+  "input_documents": ["AGENTS.md","README.md","docs/v4_multitopology_generation/README.md","docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md","docs/v4_multitopology_generation/06_multifidelity_hard_physics_frontier.md","docs/v4_multitopology_generation/08_high_fidelity_whole_device_vvuq.md","docs/v4_multitopology_generation/09_evidence_authority_campaign_and_v4_roadmap.md","docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md","docs/v4_multitopology_generation/14_agent_orchestration.md","docs/v4_multitopology_generation/16_execution_work_orders.md","docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","docs/v4_multitopology_generation/task_manifest.json","docs/implementation/PYTHON-ENV-REINSTALL-AUDIT/inventory/python_env_inventory_20260915.md","docs/implementation/PYTHON-ENV-REINSTALL-AUDIT/replay_impact/README.md","docs/implementation/PYTHON-ENV-REINSTALL-AUDIT/replay_impact/command_receipts.md","docs/reports/goal_recovery_20260913/goal_acceptance_ledger.json","docs/implementation/UP0-01/acceptance.md","docs/reports/","runs/"],
+  "writable_paths": ["docs/implementation/UP6-EARLY-PREPARATION/architecture_audit.md","docs/implementation/UP6-EARLY-PREPARATION/provider_toolchain_audit_template.json","docs/implementation/UP6-EARLY-PREPARATION/vvuq_data_catalog_template.json","docs/implementation/UP6-EARLY-PREPARATION/engineering_obligation_ledger_template.json","docs/implementation/UP6-EARLY-PREPARATION/originality_search_protocol.json","docs/implementation/UP6-EARLY-PREPARATION/independent_replay_protocol.json","docs/implementation/UP6-EARLY-PREPARATION/r01_r10_closeout_template.json","docs/implementation/UP6-EARLY-PREPARATION/manifest.json","docs/implementation/UP6-EARLY-PREPARATION/validation_report.md","docs/implementation/UP6-EARLY-PREPARATION/cleanup_inventory.md","docs/implementation/UP6-EARLY-PREPARATION/repair_r1/report.md","docs/implementation/UP6-EARLY-PREPARATION/repair_r1/manifest.json"],
+  "protected_paths": ["src/","test/","scripts/","runs/","benchmarks/","docs/reports/","docs/implementation/ outside UP6-EARLY-PREPARATION/","docs/v4_multitopology_generation/","README.md","Project.toml","Manifest.toml","shared/default operator registry","task_manifest.json","historical raw failure evidence","other agent files","docs/implementation/UP6-EARLY-PREPARATION/independent_review_r1/","docs/implementation/UP6-EARLY-PREPARATION/independent_review_r2/","docs/implementation/UP6-EARLY-PREPARATION/independent_review_r3/"],
+  "deliverables": ["architecture_audit.md","provider_toolchain_audit_template.json","vvuq_data_catalog_template.json","engineering_obligation_ledger_template.json","originality_search_protocol.json","independent_replay_protocol.json","r01_r10_closeout_template.json","manifest.json","validation_report.md","cleanup_inventory.md","repair_r1/report.md","repair_r1/manifest.json"],
+  "validation_requirements": ["strict JSON parse","unique obligation and R01-R10 IDs","cross-file template references resolve","every cited local input path exists or is an explicit directory","pending fields have null value and nonempty reason where applicable","no future candidate/provider/solver/physical hash","diff confined to this directory","acceptance and status-record references resolve","no execution, download, external search, or broad cleanup"],
+  "credit_boundary": {"provider_toolchain":false,"physical":false,"net_output":false,"vvuq":false,"originality":false,"independent_replay":false,"engineering":false,"r01_r10":false,"l4_credible_count":0},
+  "conclusion":"Accepted limited for the early-preparation template only; no UP6 implementation, integrated physical run, net-output calculation, independent replay, originality result, provider promotion, engineering/validation credit, R01-R10 credit, or parent-goal closeout. L4 credible count remains 0."
+}

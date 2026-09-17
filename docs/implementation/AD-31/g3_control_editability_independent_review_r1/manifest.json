@@ -1,0 +1,69 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-independent-review-r1",
+  "record_kind": "independent_read_only_proposal_review",
+  "review_id": "AD-31-g3-control-editability-independent-review-r1",
+  "reviewer": "different gpt-5.6-luna/high",
+  "review_date": "2026-09-15",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "control-only candidate-owned closed source body and fixed replace_fault_source_payload work-order boundary",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pre_write_dirty_porcelain_rows": 306,
+  "read_only_core_source_test_review": true,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_physical_run": false,
+  "written_files": [
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r1/report.md",
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r1/manifest.json"
+  ],
+  "report_sha256": "aee3d71e51dc8534720a429c9830332b28afed4fd1b7d7d6fe60108437a32570",
+  "reviewed_inputs": {
+    "docs/implementation/AD-31/g3_control_editability_audit/report.md": "ca4cb51b2e8473da73591e94977a7e16ac2080749360801971e1786a26623124",
+    "docs/implementation/AD-31/g3_control_editability_audit/manifest.json": "a968e129e4b058dd80a2c3e0479c2e9abb207920e8c901a66beccf3815aa8f11",
+    "src/GenomeV5/G3/ControlGenomeV5.jl": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "docs/implementation/AD-30/g3_children_editability_audit/repair_r3/revised_proposal.md": "7026596ca52d5ece571ada5515689fdc0251e67f73e6f9c525a34e80ee45022c",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab",
+    "docs/v4_multitopology_generation/README.md": "7a2b8a9b69abe8f3af04067828e817811b410b7313d8e742cc342748a1557b28"
+  },
+  "passed_boundaries": [
+    "control-only closed typed body boundary",
+    "candidate/parent/child identity is explicitly represented",
+    "four-axis typed present/absent provenance boundary",
+    "contract_admission and physical_resolution remain separate",
+    "fixed existing-fault mode operation intent",
+    "realization sibling and T0 bypass without a cycle",
+    "old V5/package/registry and feedback/realization/binding exclusion",
+    "external timing/engineering/physical obligations remain deferred"
+  ],
+  "required_repairs": [
+    "freeze exact local record fields, order and old semantic invariants",
+    "executable exactly-one-existing-fault-mode equality rule",
+    "freeze source-record, provenance, source identity and child identity during mode edit",
+    "immutable independently checked initial source/content and initial state anchors",
+    "ordered operation identity/history and duplicate operation rejection",
+    "exact same-candidate binding for all refs and four-axis present slots",
+    "independent five-layer hash and failure-preserves-prior-state tests"
+  ],
+  "claim_ceiling": {
+    "contract_proposal": false,
+    "software_implementation": false,
+    "actual_child_authority": false,
+    "T0_authority": false,
+    "T1_mapping": false,
+    "provider": false,
+    "engineering": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "focused-run-evidence-v1",
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY-receipt-export",
+  "run_id": "focused_r1",
+  "status": "failed_program_exception",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n05_flux_receipt_export.jl",
+  "runtime": {
+    "julia_path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "main_pid": 56212,
+    "child_pids": [
+      78948,
+      76012,
+      72424
+    ],
+    "start_utc": "2026-09-14T04:53:52.780653Z",
+    "end_utc": "2026-09-14T04:54:54.2931514Z",
+    "real_exit": 1,
+    "stdout_bytes": 3457,
+    "stdout_sha256": "b5bca42aa59fa2afb56d4528cf950c061123afe5e9dcbe7f06c7684fa6205014",
+    "stderr_bytes": 318,
+    "stderr_sha256": "ba5f502f88a5ab2aa7ab05695bf43dad35933fd774072a9110c75ab05c66706a",
+    "post_exact_julia_desc_process_count": 0
+  },
+  "failure": {
+    "taxonomy": "program_exception",
+    "message": "feedback target requires GenomeContractRef",
+    "location": "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl:_n05e_package",
+    "before_export": true,
+    "envelope_generated": false,
+    "envelope_retention": "gap_no_envelope_before_prepackage_program_exception",
+    "retry_performed": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+      "sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+      "bytes": 36290
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+      "sha256": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+      "bytes": 15955
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+      "sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+      "bytes": 1116
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+      "sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+      "bytes": 410
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl",
+      "sha256": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+      "bytes": 5034
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_checker.jl",
+      "sha256": "b4d62e9ddf806809889225d704929593357145e38ed840df7c705446bdb1f331",
+      "bytes": 7431
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl",
+      "sha256": "f6905da1ce4c28d8f1d329d08338f7efc59873c50c32d04733646f8716113a64",
+      "bytes": 9002
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl",
+      "sha256": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+      "bytes": 577
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "stdout.log",
+      "sha256": "b5bca42aa59fa2afb56d4528cf950c061123afe5e9dcbe7f06c7684fa6205014",
+      "bytes": 3457
+    },
+    {
+      "path": "stderr.log",
+      "sha256": "ba5f502f88a5ab2aa7ab05695bf43dad35933fd774072a9110c75ab05c66706a",
+      "bytes": 318
+    },
+    {
+      "path": "process_receipt.json",
+      "sha256": "534536167ef7ef1f4836c16ed23182b1be55b385a5ff282214287f30a7699d7b",
+      "bytes": 526
+    },
+    {
+      "path": "process_snapshots.jsonl",
+      "sha256": "ac72fab0b2e59b0af9902f5e4db1b50dbde6cb05cc51c9c8947aafdb689f1899",
+      "bytes": 8966
+    },
+    {
+      "path": "exit.txt",
+      "sha256": "a0ac632c63c1f7e9161602003fbb3e9653d7be42c0aa7054ca74561766bd562f",
+      "bytes": 3
+    },
+    {
+      "path": "command.txt",
+      "sha256": "90dc5611ac05d9b38ee095f842db25b464edbd71b886a89190778f3ccae82a95",
+      "bytes": 86
+    },
+    {
+      "path": "dirty_before.txt",
+      "sha256": "8fa118c80c0ee16fae8f5e03834a437fca490c087cab724fa8aa93bc735580ba",
+      "bytes": 214668
+    },
+    {
+      "path": "dirty_after.txt",
+      "sha256": "49b4e64d2ea73dd78603985d645bb6eca9ed256f76e0d075bdc1e813d584c7b6",
+      "bytes": 215851
+    },
+    {
+      "path": "dirty_delta.json",
+      "sha256": "a8025c20ec35a56ff646878c7c8ff09e5a1de78b81aa64922616f7f2179eda59",
+      "bytes": 770
+    },
+    {
+      "path": "run_summary.json",
+      "sha256": "15d4fa5918c7e3366643562e653c27c85e2d4ed6eac3cf0b53007bcb78e54bad",
+      "bytes": 614
+    },
+    {
+      "path": "input_hashes.json",
+      "sha256": "c77776bc8a4a0449d045d86a763c146dadd0fd96747e80955866a174a75756e5",
+      "bytes": 1828
+    }
+  ],
+  "dirty_delta": {
+    "before_count": 2757,
+    "after_count": 2763,
+    "external_after_only": [
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/before_after_hashes.txt",
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/protected_after_hashes.txt",
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/protected_before_hashes.txt",
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/repair_r6.md",
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/run_boundary.txt",
+      "?? docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/repair_r6/static_qa.json"
+    ],
+    "note": "Dirty status changed during run only by concurrent N06 repair_r6 archive files; no E1 frozen path changed."
+  },
+  "credit_boundary": {
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

@@ -1,0 +1,4 @@
+repair failure history, preserved append-only
+1) Initial repair focused run failed with git command construction producing rev-parseHEAD and typed absence/failed-result constructor arity errors; no source registry or unrelated files changed.
+2) Second repair focused run reached the git probe but classified all probes as source_read_or_git_probe_failed because readchomp returned SubString{String} and the probe required String; no source registry or unrelated files changed.
+3) Corrected serial run passed 268/268; final raw is repair_focused_julia_success.txt.

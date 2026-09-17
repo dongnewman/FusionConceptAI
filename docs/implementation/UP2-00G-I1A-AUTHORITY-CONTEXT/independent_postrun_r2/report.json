@@ -1,0 +1,97 @@
+{
+  "schema_version": "UP2-G-I1A-independent-postrun-r2-v1",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-postrun-r2",
+  "reviewer_role": "independent_postrun_audit_different_luna_high",
+  "verdict": "pass_limited",
+  "status": "accepted_limited",
+  "accepted": true,
+  "scope": "focused_r2 serialized G-I1A contract-only and software-test postrun evidence",
+  "claim_ceiling": [
+    "contract_only",
+    "software_test_evidence_only",
+    "no_implementation_acceptance",
+    "no_physical_or_parent_goal_credit"
+  ],
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "dirty_status_lines": 292,
+    "git_diff_check_exit": 0,
+    "git_diff_check_note": "line-ending warnings only"
+  },
+  "run": {
+    "run": "focused_r2",
+    "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1_authority_context.jl",
+    "pid": 88464,
+    "start_utc": "2026-09-14T08:01:43.4775914Z",
+    "end_utc": "2026-09-14T08:04:41.9573335Z",
+    "exit_code": 0,
+    "stdout": {
+      "bytes": 4896,
+      "sha256": "C82E92F2E46AB52E7B8B55E4E9C0D41F03CEFB367B298DE3B013498FB42AB27C"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    "julia_version": "julia version 1.10.5",
+    "postflight_julia_processes": 0,
+    "postflight_desc_processes": 0
+  },
+  "test_groups": {
+    "up1_g1_core": "47/47 repeated child fixture runs",
+    "up1_g1_negative": "21/21 repeated child fixture runs",
+    "up1_g2_legal": "57/57 repeated child fixture runs",
+    "up1_g2_negative": "59/59 repeated child fixture runs",
+    "up1_g2_boundary": "8/8 repeated child fixture runs",
+    "up1_g3_identity": "49/49 repeated child fixture runs",
+    "up1_g3_resource": "35/35 repeated child fixture runs",
+    "up1_g3_refs": "23/23 repeated child fixture runs",
+    "gi1a_typed_authority": "30/30",
+    "gi1a_constructor_n06": "19/19",
+    "gi1a_absent_slots": "10/10",
+    "gi1a_tamper": "20/20",
+    "gi1a_total": "79/79"
+  },
+  "dynamic_coverage": {
+    "actual_a_e1_present_e2_absent": true,
+    "actual_a_e1_absent_e2_absent": true,
+    "typed_e2_present_terminal_deferred_synthetic_only": true,
+    "program_exception": true,
+    "fail_closed": true,
+    "zero_compile_calls": true,
+    "zero_provider_calls": true,
+    "zero_solver_calls": true,
+    "physical_resolution_terminal_deferred": true,
+    "source_bound_candidate_e0_ref_hash_context": true,
+    "r6_old_api_repair_exercised": true
+  },
+  "static_preconditions": {
+    "r5_verdict": "ready_for_serial_focused",
+    "r6_verdict": "ready_for_serial_focused",
+    "r5_r6_runtime_was_pending_before_focused_r2": true,
+    "r6_stale_owned_api_token_matches": 0,
+    "focused_r1_original_exit_1_loaderror_preserved": true,
+    "ad26_status": "accepted_limited_architecture_protocol_only",
+    "ad27_status": "decision_accepted_limited_architecture_only; implementation_evidence_proposal_only_runtime_not_run",
+    "validate_plan_exit": 0,
+    "focused_r2_json_parse_exit": 0
+  },
+  "credits": {
+    "up2_total": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  },
+  "mutation_boundary": {
+    "source_modified_by_run": false,
+    "test_modified_by_run": false,
+    "core_modified_by_run": false,
+    "audit_started_julia": false,
+    "audit_started_desc": false,
+    "new_files_only_under": "docs/implementation/UP2-00G-I1A-AUTHORITY-CONTEXT/independent_postrun_r2/"
+  }
+}

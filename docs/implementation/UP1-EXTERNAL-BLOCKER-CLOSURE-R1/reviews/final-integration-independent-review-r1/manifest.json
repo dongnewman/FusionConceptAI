@@ -1,0 +1,34 @@
+{
+  "schema": "UP1.final-integration-independent-review.manifest.v1",
+  "status": "rework",
+  "decision": "rework",
+  "claim_ceiling": "independent_integration_review_only",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/final-integration-independent-review-r1/**",
+  "exact_set": [
+    "findings.json",
+    "review.md",
+    "verification.json",
+    "static_integration_validator.py",
+    "raw/static_integration_validator.stdout.raw",
+    "raw/static_integration_validator.stderr.raw",
+    "raw/static_integration_validator_r2.stdout.raw",
+    "raw/static_integration_validator_r2.stderr.raw",
+    "manifest.json",
+    "cleanup_inventory.json"
+  ],
+  "self_hash_exclusion": ["manifest.json", "cleanup_inventory.json"],
+  "product_hashes": {
+    "review.md": "afca6bdbd5179b07333ce00f35c97a8318ccf53482198efaace429d37dbeb98f",
+    "findings.json": "b05d1cfbf2d961a0bd14a2e315bd53253cc2ab90929394e4f40eb26659ca069a",
+    "verification.json": "4592ab39ffa6819294717be41ded2a8c528577793b5a7b11fd2c509c9b08027c",
+    "static_integration_validator.py": "4958c86e2c64f2342aa3e9b22f7ddc30ecc7d40c577e4864b2765adfd78a44f6",
+    "raw/static_integration_validator.stdout.raw": "020e83a4982ba8f4d63caa3d038dac485ac67ccd9b47c28cb13c7c383b4b1c4f",
+    "raw/static_integration_validator.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/static_integration_validator_r2.stdout.raw": "64374fe2c00d86d96b6d1d46dd442ebeb75719737638f2a22c20d7f75de794ee",
+    "raw/static_integration_validator_r2.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "formal_credit": false,
+  "external_mutation": false,
+  "not_sent": true,
+  "new_ad": false
+}

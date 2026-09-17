@@ -1,0 +1,67 @@
+M5-C PERFORMANCE R2 independent review R1 raw checks
+capture_utc=2026-09-17T00:00:00Z
+execution_policy=read_only; Julia=NOT_STARTED; DESC=NOT_STARTED; S3=NOT_STARTED; solver=NOT_STARTED
+
+[checkout]
+head=b2c04d8339774635aaecd73651efcdb101e01b5d
+branch=main
+current_julia_process_count=0
+
+[frozen_input_hashes]
+src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl bytes=23892 sha256=7A1F52A96A7A79061B1E4BDB0FC1B7B41DE5E45266D0AC4726A50502A4DC6500 match=true
+test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl bytes=14243 sha256=E0ED925A77F65AA045586F3C8DD78B2ACFE8E023B29F1F95BBA1F246B61A9355 match=true
+src/IR/ConditionalEGraphTypes.jl bytes=27558 sha256=885119AA142335F4DEDCB1EB506B48350BC7793538B55D622EE9766E0AC47BEE match=true
+src/IR/ConditionalEGraphSaturation.jl bytes=24038 sha256=643775A5B10B9865269C66088D97FF7476312924F324D9C8B75107AD7749CDB3 match=true
+src/Canonical/ConditionalEGraphCanonical.jl bytes=18769 sha256=038C43431F053AA22ECAC707A950AEA19AE9D6A85157CE7D8325E43F3690EB12 match=true
+src/Canonical/TypedASTProgramCanonical.jl bytes=32199 sha256=B978FB99164F4D0F58C639F2E58DC1ECC3BC9BAA2F9AFDEF63CD6E7C323809FF match=true
+src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl bytes=26258 sha256=284094E7781F41075915AB0F3B930E17E099E1FA45853218F2F639EA57E1A209 match=true
+src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl bytes=26187 sha256=477B5A41C1A021FAE84AEEBAF13E3967C93B001ACE7F38746AF1AB1212110E59 match=true
+
+[profile_raw_hashes]
+all_initial stdout bytes=605 sha256=E5203D059C5DFBAC877BE56C76579AC6B2C5D6FBEA3BDFC69D3571907CD47E8E stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+prepare_catalog stdout bytes=647 sha256=0C8956C0EA3A269B793DF411DC7E55870FEF357AF9E48752C84EF47986F3C3C2 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+prepare_rhs stdout bytes=621 sha256=CD4EEA8A77C3C7FE406F2F0BE96684BDE6B5E64878E577141683B42D42F48188 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+saturate_fast stdout bytes=814 sha256=21E1F2B4FBF009B6D87072DD6FE7913AC7BDE2FF3A8D85E6B8C2F3FE9ACB30E9 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+prepare_rules_timeout stdout bytes=604 sha256=859EDF6D172D989B4FDE3B992BD235A0720A75FB76E9D28DA5B3247442974266 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+prepare_rules_fast_r1 stdout bytes=809 sha256=D711A66D2E91A996BD1CA1CB67C694E0182676BF3242FFBDEBDFE3AD7F4F5F82 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+prepare_rules_fast_r2 stdout bytes=815 sha256=82CC926D50AF581FA5BF77EF997196594A4EF80098C7389C4DC481E57E0C8404 stderr bytes=0 sha256=E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855 match=true
+rules_parts_harness stdout bytes=480 sha256=3539AA96D27000168B2AC774F0788E80894E6887E06171356CA0685E7CFD97DC stderr bytes=321 sha256=2A803CCC6A8EDE690C4E306D691247F9EDB638B7AD3FBC094EBE70BF126AAB92 match=true
+
+[utc_duration_recalculation]
+all_initial=55.0572187s deadline=55 event=human_interruption exit=null
+prepare_catalog=32.3995274s deadline=55 event=completed exit=0
+prepare_rhs=25.3819687s deadline=55 event=completed exit=0
+saturate_fast=55.0632345s deadline=55 event=human_interruption exit=null
+prepare_rules_timeout=55.0530241s deadline=55 event=human_interruption exit=null
+prepare_rules_fast_r1=55.0900183s deadline=55 event=human_interruption exit=null
+prepare_rules_fast_r2=59.0649666s deadline=59 event=human_interruption exit=null
+rules_parts_harness=31.8637152s deadline=59 event=program_exception exit=1
+sum=368.9736735s ceil=369s intervals_nonoverlap=true
+
+[stage_receipt_recalculation]
+include runs=8 min_ns=993759600 max_ns=1364147100
+upstream_first_compile_plus_build runs=8 min_ns=10266051000 max_ns=13168575800 allocations=471331320
+upstream_warm_build runs=8 min_ns=4925000 max_ns=8176700 allocations=8886760
+prepare_condition_catalog runs=4 min_ns=7469883100 max_ns=11944421700 allocations_min=158374696 allocations_max=158405312
+prepare_rhs runs=4 min_ns=74963800 max_ns=132658800 allocations_min=1002656 allocations_max=1009824
+prepare_source_cold_hash runs=2 min_ns=25635689700 max_ns=26372792000 allocations=9253714448
+prepare_rewrite_set runs=0 status=not_measured_timeout_before_receipt
+saturate runs=0 status=not_measured_timeout_before_receipt
+query runs=0 status=not_measured
+replay runs=0 status=not_measured
+validate runs=0 status=not_measured
+
+[probe_identity]
+capture_probe bytes=12812 sha256=F01F480007814BE6504F4C7DC7FCC36039C2F7A4FB1751E9D6B680C0BB33FB88
+current_probe bytes=12817 sha256=7EA02E3D4EA313CDCE5723150674A4C8B1440CB846FAA3189535397471E56522
+current_manifest_rerun=false
+capture_current_hash_match=false
+
+[static_factorial_check]
+_tac_permutations hard_boundary_n_le_8=true; _tac_program_payload enumerates total=n!; n=8; exact_orders=40320
+profile_search_refinement_vertex_budget_short_circuit_path=false
+conclusion=factorial_enumeration_confirmed; runtime_saturation_complexity=not_established
+
+[classification]
+human_interruption=5; completed=2; program_exception=1; timeout_like_results=deferred_not_executed
+rules_parts_stderr=invalid redefinition of constant Main.source at profile_probe.jl:131

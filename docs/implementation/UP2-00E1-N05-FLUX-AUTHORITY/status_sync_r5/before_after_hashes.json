@@ -1,0 +1,31 @@
+{
+  "schema_version": "e1-n05-status-sync-r5-v1",
+  "before": {
+    "acceptance.md": "639d0f7e0248be51a5a35e2293d45fbc8d73adad848098424f8c9e8d5dadcf05",
+    "evidence_manifest.json": "c2bed567afe41e0e417e447f09943c5fd6c2cf1cc7a8875d56fd1194827a85e6"
+  },
+  "after": {
+    "acceptance.md": "f56d63ad224f890e49e5a58209a9bb4e41cf5ac2c761ec6122880f0cee6d91e7",
+    "evidence_manifest.json": "30b6899c76e74451d29e760ac543d436bd692732fbe6d66e13c708a7bfd533ae"
+  },
+  "executor": {
+    "artifact_hashes.json": "bcdb0502d8bcfa0f9724a2e3e42d4acb90575c65659a04c8facb4a0aae156665",
+    "qa.json": "d55050f4382d5d635d3f6635a63b02d7dd5e41df85af78727cadb4aa6d2fa173",
+    "process_receipt.json": "7596e6552cf2f6175f4e54d41cac30ad8d4a909585d371c507f5d25345fcbbcd"
+  },
+  "independent_postrun_r5": {
+    "report.json": "0692e2a3725b1c55c97bac452606de4a0f6e6c1d22b83a0c1b000e8f8ae91694",
+    "evidence_manifest.json": "f02d8c620781fc2efda8e72319bd2ce366dea3e82c306e41ccf22220cb3be41e"
+  },
+  "why_needed": "Synchronize the local accepted_limited scope with the R5 actual-A/E0 positive and seven forged file-read evidence while preserving the formal/full B04 changes_requested boundary.",
+  "claims": {
+    "local_accepted_limited": true,
+    "formal_b04": false,
+    "two_process": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

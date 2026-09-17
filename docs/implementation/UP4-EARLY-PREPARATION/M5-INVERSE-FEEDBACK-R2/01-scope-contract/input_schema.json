@@ -1,0 +1,118 @@
+{
+  "schema": "EngineeringFeedbackSliceRequestV2",
+  "status": "authorized_not_started",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "required": [
+    "candidate_binding",
+    "upstream",
+    "manufactured_case",
+    "objective_and_constraints",
+    "replay",
+    "budget",
+    "evidence_policy"
+  ],
+  "candidate_binding": {
+    "type": "CandidateSourceBindingV2",
+    "required": [
+      "candidate_ref",
+      "g1_ref",
+      "g2_ref",
+      "g3_ref",
+      "parent_baseline_ref",
+      "mission_ref",
+      "scenario_id",
+      "source_ref",
+      "source_content_sha256",
+      "source_owner",
+      "provenance_ref"
+    ],
+    "identity_rule": "all refs and hashes derive from one canonical bundle; family labels and historical hashes cannot substitute",
+    "missing_resolution": "unknown+terminal_deferred"
+  },
+  "upstream": {
+    "type": "FrozenManufacturedUpstreamBundleV2",
+    "required": [
+      "m4d_snapshot",
+      "m5a_snapshot",
+      "m4d_source_sha256",
+      "m4d_test_sha256",
+      "m4d_oracle_sha256",
+      "m5a_source_sha256",
+      "m5a_test_sha256",
+      "m5a_oracle_sha256",
+      "m5a_composition_sha256",
+      "owner_ledger",
+      "provenance_ledger"
+    ],
+    "snapshot_rule": "immutable typed snapshots are retained; all composition and derived hashes are recomputed",
+    "foreign_resolution": "fail_closed"
+  },
+  "manufactured_case": {
+    "type": "ExactRationalManufacturedCaseV2",
+    "required": [
+      "family_id",
+      "matrix_schema",
+      "rhs",
+      "target",
+      "hidden_parameter_policy",
+      "feedback_edge",
+      "feedback_deletion",
+      "arithmetic_mode"
+    ],
+    "frozen_example": {
+      "family_id": "M5-INVERSE-FEEDBACK-MANUFACTURED-V1",
+      "matrix": "[[alpha,-beta],[-beta,alpha]]",
+      "rhs": ["1/1", "0/1"],
+      "target": ["2/3", "1/3"],
+      "hidden": {"alpha": "2/1", "beta": "1/1"},
+      "feedback_edge": "M5-interface-beta-feedback",
+      "deleted_beta": "0/1",
+      "deleted_response": ["1/2", "0/1"]
+    },
+    "hidden_parameter_policy": "hidden answer is oracle-only and withheld from seeds, initialization, cache and held-out observations",
+    "arithmetic_mode": "M4RationalV1_exact"
+  },
+  "objective_and_constraints": {
+    "type": "TypedObjectiveConstraintBundleV2",
+    "required": ["terms", "units", "norm", "tolerances", "hard_constraints", "diagnostics"],
+    "rule": "missing engineering quantity is pending/deferred, never silently zero"
+  },
+  "replay": {
+    "type": "DeterministicReplayPolicyV2",
+    "required": [
+      "canonical_serialization",
+      "hash_algorithm",
+      "seed_order",
+      "locale",
+      "timezone",
+      "environment_fingerprint",
+      "oracle_checker_order"
+    ],
+    "frozen": {
+      "hash_algorithm": "SHA-256",
+      "seed_order": [0, 1, 2],
+      "oracle_checker_order": ["independent_fraction_oracle", "typed_checker"]
+    }
+  },
+  "budget": {
+    "type": "BoundedFixtureBudgetV2",
+    "max_positive_cases": 1,
+    "max_seeds": 3,
+    "max_negative_controls": 24,
+    "max_serial_replays": 2,
+    "processes": 1,
+    "workers": 1,
+    "network": "forbidden",
+    "wall_clock_seconds": 120,
+    "memory_mib": 512,
+    "optimizer": "forbidden",
+    "solver_provider": "forbidden"
+  },
+  "evidence_policy": {
+    "type": "ScreenOnlyEvidencePolicyV2",
+    "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+    "allowed": ["exact_software_fixture", "typed_failure", "deterministic_replay"],
+    "forbidden_claims": ["real_reference_recovery", "hardware_feasibility", "engineering_pass", "physical_pass", "provider_pass", "formal_gate_closure"]
+  }
+}

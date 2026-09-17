@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2ContentReceiptV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "content_receipt_id", "authority_joins", "candidate_prefix", "emitter", "seed", "sequence", "budget_snapshot", "trace_rows", "outcome", "failure_code", "canonical_content_sha256"],
+  "properties": {
+    "schema": {"const": "M5SearchR2ContentReceiptV1"},
+    "content_receipt_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "authority_joins": {"type": "object", "additionalProperties": false, "required": ["source_bundle_hash", "fixture_hash", "grammar_hash", "schema_hash", "config_hash", "environment_hash"], "properties": {"source_bundle_hash": {"type": "string"}, "fixture_hash": {"type": "string"}, "grammar_hash": {"type": "string"}, "schema_hash": {"type": "string"}, "config_hash": {"type": "string"}, "environment_hash": {"type": "string"}}},
+    "candidate_prefix": {"type": "object"},
+    "emitter": {"enum": ["QD", "MCTS", "egraph"]},
+    "seed": {"type": "integer", "minimum": 0},
+    "sequence": {"type": "integer", "minimum": 0},
+    "budget_snapshot": {"type": "object"},
+    "trace_rows": {"type": "array", "items": {"type": "object"}},
+    "outcome": {"enum": ["admissible", "rejected", "saturation_incomplete", "terminal_deferred", "screen_fail"]},
+    "failure_code": {"type": ["string", "null"]},
+    "canonical_content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

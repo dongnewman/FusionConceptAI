@@ -1,0 +1,10 @@
+{
+  "schema": "UP1-R2.root-acceptance.test-and-hygiene.v1",
+  "exact_command": "python -B -m pytest -q test/up1_external_closure_r2",
+  "repaired_runs": {"count":2,"each_exit":0,"each_result":"148 passed, 3 skipped","serial":true},
+  "skips": {"count":3,"classification":"test_scope_deferred","scope":["foreign-owner dynamic fixture","symlink/junction dynamic fixture"]},
+  "historical_negative": {"collection_exit":2,"retained":true,"reason":"witness package-shadow ModuleNotFoundError before assertions"},
+  "integrity": {"python_bytecode_mode":"-B","declared_component_paths":"hash_checked_in_source_evidence","raw_receipts":"PID/UTC/exit/stdout/stderr bytes and SHA retained by 20-test-collection-fix"},
+  "hygiene": {"pyc_removed":32,"empty_dirs_removed":12,"unrelated_caches":"protected","unrelated_processes":"protected","whole_tree_cleanup":false},
+  "claim_ceiling":"collection infrastructure and evidence hygiene only"
+}

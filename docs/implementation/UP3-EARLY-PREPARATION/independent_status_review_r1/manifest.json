@@ -1,0 +1,52 @@
+{
+  "manifest_version": "UP3-EARLY-PREPARATION-independent-status-review-r1",
+  "record_kind": "independent_status_sync_review",
+  "task_id": "UP3-EARLY-PREPARATION",
+  "status": "pass_limited",
+  "accepted_scope": "early-preparation-template-only",
+  "claim_ceiling": "contract_only",
+  "review_basis": "independent_review_r1:pass_limited",
+  "current_status": "accepted_limited",
+  "current_machine_execution": false,
+  "static_checks": {
+    "json_and_cross_references": "pass_in_prior_independent_evidence",
+    "combination_cells": 7,
+    "g1_axes": 8,
+    "g2_axes": 8,
+    "g3_axes": 7,
+    "negative_categories": 15,
+    "oracle_interfaces": ["parser", "analytic_mms", "conservation"],
+    "candidate_hash_authority": false,
+    "execution": false,
+    "physical": false
+  },
+  "formal_gates": {
+    "UP3-01": "pending", "UP3-02": "pending", "UP3-03": "pending", "UP2-05": "pending",
+    "UP1-04A-VNEXT-T1": "pending", "UP1-04A-VNEXT-T2": "pending",
+    "provider_toolchain": "pending", "held_out_replay": "pending", "originality": "pending", "R01-R10": "pending"
+  },
+  "credits": {
+    "UP3": false, "R": false, "provider": false, "mesh": false, "solver": false,
+    "engineering": false, "physical": false, "generalization": false, "L4_credible_count": 0
+  },
+  "cleanup_review": {
+    "writable_deliverable_count": 11,
+    "task_local_scratch_cache_found": false,
+    "removed_paths": [],
+    "protected_dirty_and_historical_evidence": true,
+    "review_created_scratch_paths": [],
+    "review_owned_paths": [
+      "docs/implementation/UP3-EARLY-PREPARATION/independent_status_review_r1/report.md",
+      "docs/implementation/UP3-EARLY-PREPARATION/independent_status_review_r1/manifest.json"
+    ]
+  },
+  "reviewed_hashes": {
+    "acceptance.md": "46a3fc8d7a108b457a9edba6554ecd8db1137f6705b2fc049071511c1e658993",
+    "manifest.json": "b4d6645e6cace36bcec392ca6bea319ba7ae6786e2fea3ff48cefd29ee4c40b4",
+    "status_sync_r1/report.md": "ec9f63c06a64947c61273e5638e52926498a911fad7c8e2b24ceed8dd36a6387",
+    "status_sync_r1/manifest.json": "0461b22714d3f9f03662e3efd33a9dd94eefe8773eca95dd4895616239e40893"
+  },
+  "julia_desc_or_heavy_execution": "not_run",
+  "source_modified": false,
+  "tests_modified": false
+}

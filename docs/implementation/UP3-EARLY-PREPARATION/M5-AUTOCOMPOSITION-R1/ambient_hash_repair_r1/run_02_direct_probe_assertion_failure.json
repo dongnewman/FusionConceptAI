@@ -1,0 +1,14 @@
+{
+  "run_id":"run_02_direct_probe_assertion_failure",
+  "status":"execution_failure_preserved",
+  "command":"julia --startup-file=no hash_stability_probe.jl",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP3-EARLY-PREPARATION/M5-AUTOCOMPOSITION-R1/ambient_hash_repair_r1",
+  "pid":"not_persisted",
+  "started_utc":"not_persisted",
+  "ended_utc":"not_persisted",
+  "exit_code":1,
+  "stdout_raw":null,
+  "stderr_raw":null,
+  "failure":"probe assertion failed before redirected capture because _typed_ast_cse_key was not defined; later probe revision added the local helper. No raw/PID/UTC is inferred.",
+  "recovery":"new run_03 was pre-ledgered and redirected; its raw is authoritative for the repaired probe."
+}

@@ -1,0 +1,41 @@
+{
+  "fixture_id": "UP2-01-G3-SOURCE-FEEDBACK-V1-FX-001",
+  "candidate_ref": {"id": "fusionconceptai://candidate/up2-01-g3-source-feedback-v1-proposal-001", "version": "v5"},
+  "source_id": "g3-source-v1-demo",
+  "owner_scope": "candidate:up2-01-g3-source-feedback-v1-proposal-001/device-power-loop",
+  "unit_watts": [1, 2, -3, 0, 0, 0, 0],
+  "endpoints": [
+    {"id": "source-power", "role": "source", "direction": "out", "sign": 1},
+    {"id": "field-power", "role": "field", "direction": "out", "sign": -1},
+    {"id": "return-power", "role": "return", "direction": "out", "sign": -1},
+    {"id": "heat-power", "role": "heat", "direction": "out", "sign": -1},
+    {"id": "energy-ledger", "role": "ledger", "direction": "bidirectional", "sign": 1}
+  ],
+  "law": {
+    "id": "source-to-field-return-heat-v1",
+    "efficiency": [3, 4],
+    "heat_fraction": [1, 8],
+    "conservative_split": {"field_fraction": [3, 4], "return_fraction": [1, 8], "heat_fraction": [1, 8]},
+    "heat_relation": {"source_role": "source", "heat_role": "heat", "fraction": [1, 8]},
+    "ledger_relation": {"entry_roles": ["source", "field", "return", "heat"], "expected_residual": [0, 1]}
+  },
+  "ledger_entries": [
+    {"id": "source-entry", "endpoint_id": "source-power", "direction": "out", "sign": 1, "effect": "source", "coefficient": [1, 1]},
+    {"id": "field-entry", "endpoint_id": "field-power", "direction": "out", "sign": -1, "effect": "field", "coefficient": [-3, 4]},
+    {"id": "return-entry", "endpoint_id": "return-power", "direction": "out", "sign": -1, "effect": "return", "coefficient": [-1, 8]},
+    {"id": "heat-entry", "endpoint_id": "heat-power", "direction": "out", "sign": -1, "effect": "heat", "coefficient": [-1, 8]}
+  ],
+  "ledger_closure": {
+    "id": "energy-closure-v1",
+    "entry_ids": ["source-entry", "field-entry", "return-entry", "heat-entry"],
+    "expected_residual": [0, 1]
+  },
+  "feedback_targets": [
+    {"id": "g1-field-residual", "layer": "G1", "path": "/equations/diffusion/residual_scale", "quantity": "residual", "direction": "in", "sign": 1},
+    {"id": "g2-thermal-load", "layer": "G2", "path": "/regions/device/thermal_load", "quantity": "thermal_load", "direction": "in", "sign": 1}
+  ],
+  "upstream_authority": [
+    {"layer": "G1", "status": "missing"},
+    {"layer": "G2", "status": "missing"}
+  ]
+}

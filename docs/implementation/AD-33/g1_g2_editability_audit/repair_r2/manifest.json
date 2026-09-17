@@ -1,0 +1,323 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-repair-r2",
+  "status": "blocked_pending_architecture_repair",
+  "accepted": false,
+  "implementation_authorized": false,
+  "actual_child_created": false,
+  "read_only_repair": true,
+  "review_basis": {
+    "independent_review": "docs/implementation/AD-33/g1_g2_editability_independent_review_r2/report.md",
+    "verdict": "changes_requested",
+    "reviewer": "different gpt-5.6-luna/high",
+    "repair_scope": ["A_actual_v1_binding", "B_malformed_pre_cas_receipt", "C_g2_mesh_seam"],
+    "r1_proposal_sha256": "a09c87c2a68816b3edda74f3834712bb678a4a0d1c96b611d65cd35a77396830",
+    "r1_manifest_sha256": "e7d7cf21a989cf88abf419976da93373824bca04be895511afb93bc7b1b2aef0"
+  },
+  "execution_boundary": {
+    "julia_run": false,
+    "desc_run": false,
+    "heavy_python_run": false,
+    "provider_run": false,
+    "mesh_run": false,
+    "physical_run": false,
+    "search_run": false,
+    "launcher_added": false,
+    "direct_commands_only": true
+  },
+  "repair_findings_closed": {
+    "A": "G1 stores actual QualifiedRefV1 and binds it to an independently stored public GenomeContractRef through a typed candidate binding; G2 stores actual GenomeContractRef equality. Each sibling has an exact module/declaration/factory/source locator, closed factory input, real-declaration construction algorithm, fixed semantic projection excluding only declaration_hash, raw-source SHA, semantic SHA, parent-declaration SHA, and typed absent terminal_deferred when no real V1 instance exists.",
+    "B": "Malformed pre-CAS receipts have frozen operation id, typed zero key, zero digests, empty canonical bytes and domain-separated SHA values; rejected/applied/status/error/published/history truth table is exhaustive; CAS order is state first then source; failed receipts never enter state/history and preserve prior bytes/SHA.",
+    "C": "G2 public mesh constructor accepts only typed G2MeshExecutionNotExecutedV2; declared is exercised only as a raw wire decoder/tamper seam and returns mesh_execution_status_invalid before public construction; valid unique_match plus not_executed returns terminal_deferred with mesh_execution_not_executed."
+  },
+  "nodes": [
+    {
+      "node_id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC",
+      "sibling": "G1",
+      "status": "blocked_pending_architecture_repair",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G1-DIFFUSION-V1"],
+      "parallel_with": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "T0", "T1", "T2"],
+      "exact_write_scope_future": {
+        "source": ["src/GenomeV5/G1/G1MechanismEditabilityPrecursorV2.jl", "src/GenomeV5/G1/G1V1BaselineBindingV2.jl"],
+        "tests": ["test/g1_mechanism_editability_precursor_v2_test.jl", "test/g1_v1_baseline_binding_v2_test.jl"],
+        "fixtures_and_static_qa": ["test/fixtures/ad33_g1_g2_editability_v2/", "docs/implementation/AD-33/g1_g2_editability_audit/"],
+        "archive": ["docs/implementation/AD-33/g1_g2_editability_audit/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/README.md", "docs/implementation/AD-33/g1_g2_editability_audit/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/manifest.json"]
+      },
+      "direct_commands_future_only": [
+        "julia --project=. test/g1_mechanism_editability_precursor_v2_test.jl",
+        "julia --project=. test/g1_v1_baseline_binding_v2_test.jl"
+      ],
+      "actual_v1_types": {
+        "declaration": "G1DiffusionDeclarationV1",
+        "candidate_ref": "QualifiedRefV1",
+        "public_contract_ref": "GenomeContractRef",
+        "source_path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+        "module_identity": "FusionConceptAI.GenomeV5.G1.DiffusionDeclarationV1",
+        "factory_identity": "G1DiffusionDeclarationV1(candidate_ref,source_ref,source_version,source_hash,u,K,f,operators,closure_ref,applicability_ref,applicability_domain,negative_controls;ownership,source_payload,declaration_hash)"
+      },
+      "typed_binding": {
+        "type": "G1CandidateContractBindingV2",
+        "fields": [
+          "v1_candidate_ref::QualifiedRefV1",
+          "public_contract_ref::GenomeContractRef",
+          "public_role::Symbol",
+          "exact_candidate_id::String",
+          "exact_candidate_version::String"
+        ],
+        "equality": [
+          "v1_candidate_ref.id == exact_candidate_id",
+          "v1_candidate_ref.version == exact_candidate_version",
+          "exact_candidate_version == v5",
+          "public_role == mechanism",
+          "public_contract_ref.version == v5",
+          "all five public GenomeContractRef fields compare exactly to the supplied additive public contract record"
+        ],
+        "projection_rule": "QualifiedRefV1 is retained as actual V1 candidate; no implicit conversion to GenomeContractRef; public contract is independently bound and candidate id/version copies are recomputed and compared."
+      },
+      "parent_envelope": {
+        "parent_ref_type": "G1V1ParentRefV2",
+        "parent_envelope_type": "G1ParentEnvelopeV2",
+        "parent_ref_fields": ["actual_candidate_ref::QualifiedRefV1", "source_ref::QualifiedRefV1", "locator::G1V1BaselineLocatorV2", "declaration_type::String", "factory_identity::String", "candidate_binding::G1CandidateContractBindingV2", "parent_ref_identity_hash::Digest256"],
+        "envelope_fields": ["candidate_binding", "parent_ref", "parent_ref_identity_hash", "parent_declaration_hash", "v1_baseline_hash", "parent_binding_hash"],
+        "identity_domain": "ad33:g1:v1-parent-ref-identity:v2",
+        "baseline_domain": "ad33:g1:v1-baseline:v2",
+        "binding_domain": "ad33:g1:v1-parent-binding:v2",
+        "recompute_order": ["parent_ref_identity_hash", "source_bytes_sha256", "semantic_body_sha256", "parent_declaration_sha256", "v1_baseline_hash", "parent_binding_hash"],
+        "comparison_rule": "All actual candidate/source/locator/factory fields and all six stored identity/baseline fields are independently recomputed and exact-compared."
+      },
+      "baseline": {
+        "locator_type": "G1V1BaselineLocatorV2",
+        "locator_fields": ["module_path", "module_identity", "declaration_type", "factory_identity", "factory_input_locator", "source_path"],
+        "factory_input_type": "G1V1FactoryInputV2",
+        "factory_input_fields": ["candidate_ref::QualifiedRefV1", "source_ref::QualifiedRefV1", "source_version::String", "source_hash::Digest256", "u::G1DiffusionScalarFieldV1", "K::G1DiffusionCoefficientFieldV1", "f::G1DiffusionScalarFieldV1", "operators::G1DiffusionOperatorChainV1", "closure_ref::QualifiedRefV1", "applicability_ref::QualifiedRefV1", "applicability_domain::String", "ownership::Symbol", "negative_controls::G1SymbolControlsV2", "source_payload::G1DiffusionSourcePayloadV1"],
+        "present_record": "G1V1BaselinePresentV2",
+        "absent_record": "G1V1BaselineAbsentV2",
+        "absent_reason": "v1_declaration_instance_unavailable",
+        "absent_admission": "terminal_deferred",
+        "semantic_projection_fixed_order": ["candidate_ref", "source_ref", "source_version", "source_payload", "source_hash", "u", "K", "f", "operators", "closure_ref", "applicability_ref", "applicability_domain", "ownership", "negative_controls"],
+        "semantic_excludes": ["declaration_hash"],
+        "hashes": {
+          "raw_source": "SHA256(ad33:g1:v1-source-bytes:v2, exact raw source bytes)",
+          "semantic_body": "SHA256(ad33:g1:v1-semantic-body:v2, fixed typed projection canonical bytes)",
+          "parent_declaration": "SHA256(ad33:g1:v1-parent-declaration:v2, declaration.declaration_hash)"
+        },
+        "authority_rule": "Fixture, copied JSON, URI-only ref, or manually typed hash cannot produce a present baseline."
+      }
+    },
+    {
+      "node_id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC",
+      "sibling": "G2",
+      "status": "blocked_pending_architecture_repair",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+      "parallel_with": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "T0", "T1", "T2"],
+      "exact_write_scope_future": {
+        "source": ["src/GenomeV5/G2/G2GeometryEditabilityPrecursorV2.jl", "src/GenomeV5/G2/G2V1BaselineBindingV2.jl"],
+        "tests": ["test/g2_geometry_editability_precursor_v2_test.jl", "test/g2_v1_baseline_binding_v2_test.jl"],
+        "fixtures_and_static_qa": ["test/fixtures/ad33_g1_g2_editability_v2/", "docs/implementation/AD-33/g1_g2_editability_audit/"],
+        "archive": ["docs/implementation/AD-33/g1_g2_editability_audit/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/README.md", "docs/implementation/AD-33/g1_g2_editability_audit/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/manifest.json"]
+      },
+      "direct_commands_future_only": [
+        "julia --project=. test/g2_geometry_editability_precursor_v2_test.jl",
+        "julia --project=. test/g2_v1_baseline_binding_v2_test.jl"
+      ],
+      "actual_v1_types": {
+        "declaration": "G2MBDeclarationV1",
+        "candidate_ref": "GenomeContractRef in G2MBSourceV1",
+        "public_contract_ref": "GenomeContractRef",
+        "source_path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+        "module_identity": "FusionConceptAI.GenomeV5.G2.MetricBoundaryDeclarationV1",
+        "factory_identity": "G2MBDeclarationV1(contract_ref,source,schema_hash,canonicalization_hash,profile_hash,declaration_hash)"
+      },
+      "typed_binding": {
+        "type": "G2CandidateContractBindingV2",
+        "fields": ["v1_candidate_ref::GenomeContractRef", "public_contract_ref::GenomeContractRef", "public_role::Symbol"],
+        "equality": ["v1_candidate_ref == public_contract_ref by URI, version, schema_hash, canonicalization_hash, compatibility_profile", "public_role == field_geometry", "public_contract_ref.version == v5"],
+        "projection_rule": "G2 retains the actual public five-field ref from the V1 source and compares every field independently."
+      },
+      "parent_envelope": {
+        "parent_ref_type": "G2V1ParentRefV2",
+        "parent_envelope_type": "G2ParentEnvelopeV2",
+        "parent_ref_fields": ["actual_candidate_ref::GenomeContractRef", "source_ref::QualifiedRefV1", "locator::G2V1BaselineLocatorV2", "declaration_type::String", "factory_identity::String", "candidate_binding::G2CandidateContractBindingV2", "parent_ref_identity_hash::Digest256"],
+        "envelope_fields": ["candidate_binding", "parent_ref", "parent_ref_identity_hash", "parent_declaration_hash", "v1_baseline_hash", "parent_binding_hash"],
+        "identity_domain": "ad33:g2:v1-parent-ref-identity:v2",
+        "baseline_domain": "ad33:g2:v1-baseline:v2",
+        "binding_domain": "ad33:g2:v1-parent-binding:v2",
+        "recompute_order": ["parent_ref_identity_hash", "source_bytes_sha256", "semantic_body_sha256", "parent_declaration_sha256", "v1_baseline_hash", "parent_binding_hash"],
+        "comparison_rule": "All actual candidate/source/locator/factory fields and all six stored identity/baseline fields are independently recomputed and exact-compared."
+      },
+      "baseline": {
+        "locator_type": "G2V1BaselineLocatorV2",
+        "locator_fields": ["module_path", "module_identity", "declaration_type", "factory_identity", "factory_input_locator", "source_path"],
+        "factory_input_type": "G2V1FactoryInputV2",
+        "factory_input_fields": ["contract_ref::GenomeContractRef", "source::G2MBSourceV1", "schema_hash::Digest256", "canonicalization_hash::Digest256", "profile_hash::Digest256"],
+        "present_record": "G2V1BaselinePresentV2",
+        "absent_record": "G2V1BaselineAbsentV2",
+        "absent_reason": "v1_declaration_instance_unavailable",
+        "absent_admission": "terminal_deferred",
+        "semantic_projection_fixed_order": ["contract_ref", "source", "schema_hash", "canonicalization_hash", "profile_hash"],
+        "semantic_excludes": ["declaration_hash"],
+        "hashes": {
+          "raw_source": "SHA256(ad33:g2:v1-source-bytes:v2, exact raw source bytes)",
+          "semantic_body": "SHA256(ad33:g2:v1-semantic-body:v2, fixed typed projection canonical bytes)",
+          "parent_declaration": "SHA256(ad33:g2:v1-parent-declaration:v2, declaration.declaration_hash)"
+        },
+        "authority_rule": "Fixture, copied JSON, URI-only ref, or manually typed hash cannot produce a present baseline."
+      },
+      "mesh_execution_guard": {
+        "public_constructor_input": "G2MeshExecutionNotExecutedV2 only",
+        "illegal_public_values": ["declared", "executed", "Symbol", "String", "Val{:declared}"],
+        "raw_wire_decoder_error": "mesh_execution_status_invalid",
+        "valid_gap": "mesh_execution_not_executed",
+        "unique_match_rule": "authority.mesh=:unique_match plus typed not_executed remains terminal_deferred and cannot promote execution or physical status"
+      }
+    }
+  ],
+  "malformed_receipt_contract": {
+    "zero_operation_ids": {"G1": "ad33:g1:zero-operation:v2", "G2": "ad33:g2:zero-operation:v2"},
+    "zero_child_id": "ad33:zero-child:v2",
+    "zero_child_kind": "malformed_transport",
+    "zero_key_recipe": {
+      "G1": {
+        "candidate_ref": "QualifiedRefV1(ad33:g1:zero-candidate:v2,v5)",
+        "public_contract_ref": "GenomeContractRef(ad33:g1:zero-contract:v2,v5,H(ad33:g1:zero-key-schema:v2,empty),H(ad33:g1:zero-key-canonical:v2,empty),ad33:g1:zero-profile:v2)",
+        "source_ref": "QualifiedRefV1(ad33:g1:zero-source:v2,v1)",
+        "locator": "G1V1BaselineLocatorV2(ad33:g1:zero-module:v2,ad33:g1:zero-module-identity:v2,G1ZeroDeclarationV2,G1ZeroFactoryV2,ad33:g1:zero-factory-input:v2,ad33:g1:zero-source-path:v2)",
+        "parent_ref_hash": "H(ad33:g1:zero-parent-ref:v2,empty)",
+        "parent_declaration_hash": "H(ad33:g1:zero-parent-declaration:v2,empty)",
+        "key_type": "G1MechanismChildKeyV2",
+        "key_domain_values": "G1 binding, G1 parent ref, parent declaration hash, malformed_transport, ad33:zero-child:v2"
+      },
+      "G2": {
+        "candidate_ref": "GenomeContractRef(ad33:g2:zero-candidate:v2,v5,H(ad33:g2:zero-key-schema:v2,empty),H(ad33:g2:zero-key-canonical:v2,empty),ad33:g2:zero-profile:v2)",
+        "source_ref": "QualifiedRefV1(ad33:g2:zero-source:v2,v1)",
+        "locator": "G2V1BaselineLocatorV2(ad33:g2:zero-module:v2,ad33:g2:zero-module-identity:v2,G2ZeroDeclarationV2,G2ZeroFactoryV2,ad33:g2:zero-factory-input:v2,ad33:g2:zero-source-path:v2)",
+        "parent_ref_hash": "H(ad33:g2:zero-parent-ref:v2,empty)",
+        "parent_declaration_hash": "H(ad33:g2:zero-parent-declaration:v2,empty)",
+        "key_type": "G2GeometryChildKeyV2",
+        "key_domain_values": "G2 binding, G2 parent ref, parent declaration hash, malformed_transport, ad33:zero-child:v2"
+      }
+    },
+    "zero_digest_domains": {
+      "canonical_input": "ad33:receipt:zero-canonical-input:v2",
+      "operation": "ad33:receipt:zero-operation:v2",
+      "prior_state": "ad33:receipt:zero-prior-state:v2",
+      "prior_source": "ad33:receipt:zero-prior-source:v2",
+      "result_state": "ad33:receipt:zero-result-state:v2",
+      "canonical_bytes_sha": "ad33:receipt:zero-canonical-bytes:v2"
+    },
+    "zero_digest_payload": "empty",
+    "zero_bytes_type": "CanonicalBytesV2{0}(())",
+    "pre_cas_malformed": {
+      "operation_id": "layer-specific ZERO_*_OPERATION_ID",
+      "key": "layer-specific closed zero child key; transport sentinel only",
+      "error_code": "malformed_operation",
+      "error_path": "/operation",
+      "canonical_input_hash": "ZERO_CANONICAL_INPUT_HASH",
+      "operation_hash": "ZERO_OPERATION_HASH",
+      "prior_state_hash": "ZERO_PRIOR_STATE_HASH",
+      "prior_source_content_hash": "ZERO_PRIOR_SOURCE_HASH",
+      "result_state_present": false,
+      "result_state_hash": "ZERO_RESULT_STATE_HASH",
+      "prior_and_result_bytes": "CanonicalBytesV2{0}(())",
+      "prior_and_result_bytes_sha": "ZERO_BYTES_SHA256",
+      "receipt_status": "rejected",
+      "published": false,
+      "history_advanced": false
+    },
+    "truth_table": [
+      {"receipt_status": "rejected", "error_code": "none", "result_state_present": false, "published": false, "history_advanced": false, "valid": false},
+      {"receipt_status": "rejected", "error_code": "any closed non-none error", "result_state_present": false, "published": false, "history_advanced": false, "valid": true},
+      {"receipt_status": "applied", "error_code": "none", "result_state_present": true, "published": true, "history_advanced": true, "valid": true},
+      {"receipt_status": "applied", "error_code": "non-none", "result_state_present": "any", "published": "any", "history_advanced": "any", "valid": false}
+    ],
+    "cas_order": ["state_cas_expected_prior_state_hash", "source_cas_expected_prior_source_content_hash"],
+    "failure_rule": "Every rejected receipt is excluded from published state, last-operation state, and digest history; prior canonical bytes, SHA, state hash, source hash, history, and last applied operation remain byte-identical."
+  },
+  "hash_and_history_contract": {
+    "digest_type": "Digest256",
+    "layers": ["child_contract_identity", "source_record", "source_content", "initial_state", "operation", "result_current_state"],
+    "domain_version": "every domain tag is ad33:<layer>:<purpose>:v2",
+    "fixed_order": true,
+    "self_field_excluded": true,
+    "later_hashes_excluded": true,
+    "state_objects_excluded_from_operation_history": true,
+    "zero_history_digest": "H(ad33:<layer>:zero-operation-digest:v2, empty)",
+    "history_type": "G1OperationHistoryV2{N}(digests::NTuple{N,Digest256}) or G2OperationHistoryV2{N}; 0 <= N <= 64"
+  },
+  "g2_seam_contract": {
+    "public_status_type": "G2MeshExecutionNotExecutedV2",
+    "public_constructor_accepts": ["G2MeshExecutionNotExecutedV2"],
+    "public_constructor_rejects": ["Symbol", "String", "Val{:declared}", "declared", "executed"],
+    "raw_wire_type": "G2MeshWireRecordV2",
+    "raw_declared_result": "G2MeshDecodeFailureV2(mesh_execution_status_invalid, /execution_status)",
+    "valid_not_executed_unique_match_result": "terminal_deferred with mesh_execution_not_executed",
+    "execution_promotion_forbidden": true
+  },
+  "closed_error_codes": [
+    "malformed_operation", "foreign_candidate", "foreign_parent_ref", "parent_ref_identity_hash_mismatch", "parent_declaration_hash_mismatch", "v1_baseline_hash_mismatch", "v1_declaration_instance_unavailable", "ref_only_authority", "synthetic_fixture_authority", "child_kind_mismatch", "child_id_mismatch", "child_contract_ref_mismatch", "child_contract_identity_hash_mismatch", "malformed_body", "duplicate_id", "unresolved_reference", "unit_mismatch", "closure_mismatch", "applicability_mismatch", "provenance_axis_mismatch", "provenance_absent", "provenance_conflict", "source_record_hash_mismatch", "source_record_ref_mismatch", "source_content_hash_mismatch", "canonical_input_hash_mismatch", "operation_hash_mismatch", "state_hash_mismatch", "history_mismatch", "stale_state_hash", "stale_source_content_hash", "unsupported_operation", "dynamic_field_path", "partial_patch", "insert_delete_rebind", "multi_object_edit", "mesh_execution_status_invalid", "mesh_execution_not_executed", "symbolic_authority_execution_confusion", "metric_or_orientation_invalid", "face_or_boundary_invalid", "program_exception"
+  ],
+  "negative_controls": [
+    "G1 QualifiedRefV1 candidate id/version mismatch against independently stored public contract binding",
+    "foreign candidate and foreign parent",
+    "fixture-only baseline, URI-only baseline, copied JSON hash, and unavailable real V1 instance",
+    "changed raw source bytes, module identity, factory identity, or factory input",
+    "mutation of each fixed semantic projection field and declaration hash",
+    "each of four provenance axis absence/conflict and binding mismatch",
+    "all six hash-layer tamper paths and operation replay",
+    "malformed pre-CAS input with deterministic zero receipt",
+    "stale state and stale source with state-first/source-second ordering",
+    "rejected receipt insertion plus prior canonical bytes/SHA mutation",
+    "G2 raw wire token declared gives mesh_execution_status_invalid",
+    "G2 public constructor Symbol/String/Val injection is rejected before public value",
+    "G2 unique_match plus typed not_executed gives terminal_deferred and mesh_execution_not_executed"
+  ],
+  "f04_f05_f08_retained": {
+    "f04": "Four independent typed present provenance slots and axis-tagged typed absence records retain candidate/parent/child/contract bindings and absence hash domain.",
+    "f05": "Six exact domain-tagged non-recursive Digest256 layers and bounded digest-only history are retained.",
+    "f08": "No launcher; exact source/test/fixture/static-QA/archive scopes and direct future commands are frozen."
+  },
+  "dag_and_credit_boundary": {
+    "two_siblings": true,
+    "cross_sibling_dependency": false,
+    "t0_dependency": false,
+    "t1_dependency": false,
+    "t2_dependency": false,
+    "t0_role": "transport owner",
+    "t1_role": "sole lossless-package mapper",
+    "t2_role": "downstream identity and receipt rebuilder",
+    "provider_credit": false,
+    "mesh_credit": false,
+    "physical_credit": false,
+    "search_credit": false,
+    "b00_credit": false,
+    "b04_credit": false,
+    "engineering_credit": false,
+    "r01_r10_credit": false,
+    "implementation_credit": false,
+    "actual_child_credit": false
+  },
+  "remaining_blockers": [
+    "No verified source-backed real V1 declaration instance and factory input is currently available for the additive precursor; implementation must emit typed baseline absence and terminal_deferred until one exists.",
+    "Public G1/G2 contract hashes and candidate binding need independent review after implementation.",
+    "R2 is not acceptance and does not dispatch implementation or synchronize core/task manifests."
+  ],
+  "preserved": {
+    "r1_artifacts": true,
+    "original_ad33_report": true,
+    "original_ad33_manifest": true,
+    "core_planning": true,
+    "task_manifest": true,
+    "source": true,
+    "tests": true,
+    "old_receipts": true,
+    "ad31": true,
+    "ad32": true,
+    "r01_r10": true
+  },
+  "artifacts_added": [
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r2/revised_proposal.md",
+    "docs/implementation/AD-33/g1_g2_editability_audit/repair_r2/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

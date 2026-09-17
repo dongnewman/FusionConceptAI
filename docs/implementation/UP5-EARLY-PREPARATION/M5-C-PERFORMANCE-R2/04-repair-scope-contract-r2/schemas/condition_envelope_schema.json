@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5CAvailableConditionEnvelopeV2",
+  "type": "object",
+  "required": ["schema", "envelope_version", "envelope_id", "candidate_id", "m5a_source_hash", "m5b_inverse_hash", "catalog_ref", "catalog_hash", "conditions", "canonical_bytes", "canonical_sha256", "producer_owner"],
+  "properties": {
+    "schema": {"const": "M5CAvailableConditionEnvelopeV2"}, "envelope_version": {"const": "v2"}, "envelope_id": {"type": "string", "minLength": 1}, "candidate_id": {"type": "string", "minLength": 1}, "m5a_source_hash": {"$ref": "#/$defs/hash"}, "m5b_inverse_hash": {"$ref": "#/$defs/hash"}, "catalog_ref": {"type": "string", "minLength": 1}, "catalog_hash": {"$ref": "#/$defs/hash"}, "canonical_bytes": {"type": "string", "contentEncoding": "base64"}, "canonical_sha256": {"$ref": "#/$defs/hash"}, "producer_owner": {"const": "m5c_adapter"},
+    "conditions": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/condition"}}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "condition": {"type": "object", "required": ["kind", "ref", "expected_hash", "required", "fact_status", "fact_value", "fact_hash", "evidence_ref"], "properties": {"kind": {"enum": ["type", "rank", "domain", "unit", "port", "owner", "interface", "conservation"]}, "ref": {"type": "string", "minLength": 1}, "expected_hash": {"$ref": "#/$defs/hash"}, "required": {"type": "boolean"}, "fact_status": {"enum": ["met", "unmet", "unknown", "absent", "not_applicable", "contradiction", "foreign"]}, "fact_value": {}, "fact_hash": {"$ref": "#/$defs/hash"}, "evidence_ref": {"type": "string", "minLength": 1}}, "additionalProperties": false}
+  },
+  "additionalProperties": false
+}

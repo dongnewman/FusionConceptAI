@@ -1,0 +1,18 @@
+E1 receipt export R3 static QA commands (no Julia/DESC)
+
+Frozen input hash check:
+Get-FileHash -Algorithm SHA256 src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/n05_flux_authority_tests.jl
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/n05_flux_authority_fixtures.json
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/run_n05_flux_authority.jl
+
+Receipt source/test hash check:
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/n05_flux_receipt_exporter.jl
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/n05_flux_receipt_checker.jl
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl
+Get-FileHash -Algorithm SHA256 test/GenomeV5/UP2/run_n05_flux_receipt_export.jl
+
+Static token check confirms JSON3.read(read(path,String)), the trusted
+n05_check_receipt_envelope overload, and five forged identity/missing-row
+controls. Python JSON parsing and git diff --check both exit 0. An exact-name
+Julia/DESC process sweep is zero. No focused runner was invoked.

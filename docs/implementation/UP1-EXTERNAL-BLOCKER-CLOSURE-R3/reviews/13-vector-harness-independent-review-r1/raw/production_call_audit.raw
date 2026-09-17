@@ -1,0 +1,26 @@
+R01 validate_bundle -> _result (end-to-end public call; wrapper instrumentation confirms module-level validate_bundle)
+R02 _err -> _result (NO production predicate; handwritten packet-order branch)
+R03 _err -> _result (NO production predicate; handwritten canonical-exclusion branch)
+R04 _err -> _result (NO production predicate; handwritten set bundle-id branch)
+R05 _err -> _result (NO production predicate; handwritten set request-id branch)
+R06 _err -> _result (NO production predicate; handwritten set packet-digests branch)
+R07 _err -> _result (NO production predicate; handwritten shared-binding branch)
+R08 _check_quarantine -> _result
+R09 _check_quarantine -> _result
+R10 _check_quarantine -> _result
+R11 _check_quarantine -> _result
+R12 _check_ehp03 -> _result
+R13 _check_ehp03 -> _result
+R14 _check_ehp03 -> _result
+R15 _check_ehp03 -> _result
+R16 _check_ehp03 -> _result
+R17 _check_ehp04 -> _result
+R18 _check_ehp04 -> _result
+R19 _check_ehp04 -> _result
+R20 _check_ehp04 -> _result
+R21 _check_ehp04 -> _result
+R22 _check_ehp04 -> _result
+R23 validate_bundle -> _result (end-to-end public call)
+R24 _result only (NO security predicate; handwritten fixture/security state)
+R25 _result only (NO security predicate; handwritten accepted-shaped state)
+D01 _err -> _result (NO production decision-consistency predicate; handwritten derived decision)

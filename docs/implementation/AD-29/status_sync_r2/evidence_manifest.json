@@ -1,0 +1,137 @@
+{
+  "schema_version": "AD-29-status-sync-r2-evidence-v1",
+  "record_kind": "AD-29_status_sync_evidence",
+  "status": "accepted_limited",
+  "accepted_scope": "environment evidence gate and contract_only static planning boundary",
+  "execution_authorized": false,
+  "sol_decision": "accepted_limited",
+  "independent_review": {
+    "path": "docs/implementation/AD-29/independent_review_r1/report.json",
+    "verdict": "pass_limited",
+    "sha256": "9af65a50ca55aa838669c135614d2d0ea7c8c69e708628ba0729494d3981e2a9"
+  },
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pre_change": {
+    "status_sha256": "074553fd9163d4c7acd1a4b8722f23204b4c349a5691bcd7a9bad7a662248cf4",
+    "status_entries": 3620,
+    "docs/v4_multitopology_generation/README.md": "78560012e6e7ef75701920cdef61303546af7e0177ef3c984316370342d184f6",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "03dd7241c1146d3fdc0bc09b7018e7f1021db341943da1d59d3ae39117f86131",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "448947b2245bf3dac446b96d899ccabdcd30f434462c6bc9b07dd19ca500b075",
+    "docs/v4_multitopology_generation/task_manifest.json": "1f3ab94eb5875ddb80d6f366ba5b57097656074059a0280bbbc8b6ef4bba2e5d",
+    "docs/implementation/AD-29/status.json": "5589af1a79741eb4d04b4766121972283ee47b79e4df74a72e551a8f2f9642ee"
+  },
+  "post_change": {
+    "status_sha256": "0e70cbbfb73fd30fb570ea0fb375d7c6207cf37a17ea17d1b3c66bc8456b8df4",
+    "status_entries": 3634,
+    "docs/v4_multitopology_generation/README.md": "51f9116d18cd916957cbdc3b0bae1f78d225fca6587fc88c6c9864a63d566d45",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "887cf584f81a96d52fbeb24249f8c80e6f5b5e0e810d98e4a4f9053470a8ff8f",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "178c3d5b139477c7b4f2d2e67b1d0c1f85dc0068169e94a81c50ac08e2910316",
+    "docs/v4_multitopology_generation/task_manifest.json": "2fd25e63397a06da4d77de204a62ab686bfc464bf3bf9f4549dd5d0ce73d39fc",
+    "docs/implementation/AD-29/status.json": "5589af1a79741eb4d04b4766121972283ee47b79e4df74a72e551a8f2f9642ee"
+  },
+  "source_audits": {
+    "inventory": "bc737394763b55fd76ee2d4891cae01345c64065ed2ea2c5629ba159f0c07564",
+    "fusion_dependencies": "88d3627a781b21639b0249f7f236183a0e986e8d581e5472a50bc6ca55ace66c",
+    "replay_impact": "330c6adb42ed9f3275f07a6f03215a6dc21d6b237e9467fbca721d5ef2c79505"
+  },
+  "core_decision": {
+    "README": "51f9116d18cd916957cbdc3b0bae1f78d225fca6587fc88c6c9864a63d566d45",
+    "work_orders": "887cf584f81a96d52fbeb24249f8c80e6f5b5e0e810d98e4a4f9053470a8ff8f",
+    "architecture": "178c3d5b139477c7b4f2d2e67b1d0c1f85dc0068169e94a81c50ac08e2910316",
+    "task_manifest": "2fd25e63397a06da4d77de204a62ab686bfc464bf3bf9f4549dd5d0ce73d39fc"
+  },
+  "task_manifest": {
+    "task_count": 31,
+    "requirements": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10"
+    ],
+    "dag_unchanged": true,
+    "nodes": {
+      "UP2-01-G1-DIFFUSION-V1": {
+        "status": "planned",
+        "scope_status": "proposal",
+        "accepted": false,
+        "resolution": "review_pending"
+      },
+      "UP2-01-G2-METRIC-BOUNDARY-V1": {
+        "status": "planned",
+        "scope_status": "proposal",
+        "accepted": false,
+        "resolution": "review_pending"
+      },
+      "UP2-01-G3-SOURCE-FEEDBACK-V1": {
+        "status": "planned",
+        "scope_status": "proposal",
+        "accepted": false,
+        "resolution": "review_pending"
+      },
+      "UP1-04A-VNEXT": {
+        "status": "planned",
+        "scope_status": "proposal",
+        "accepted": false,
+        "resolution": "review_pending"
+      },
+      "UP2-00": {
+        "status": "planned",
+        "scope_status": "accepted_limited",
+        "accepted": false,
+        "resolution": "terminal_deferred"
+      },
+      "UP1-04B": {
+        "status": "planned",
+        "scope_status": null,
+        "accepted": null,
+        "resolution": null
+      },
+      "UP1-04": {
+        "status": "planned",
+        "scope_status": null,
+        "accepted": null,
+        "resolution": null
+      },
+      "UP2-01": {
+        "status": "planned",
+        "scope_status": null,
+        "accepted": null,
+        "resolution": null
+      }
+    }
+  },
+  "validator": {
+    "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/v4_multitopology_generation/validate_plan.py",
+    "exit_code": 0,
+    "checks": "pass",
+    "task_count": 31,
+    "task_dag_acyclic": true,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 355,
+    "snapshot_files_checked": 16,
+    "stdout_sha256": "7a1feef63cc67e441444eb8bb792d668f828abff22985e6fc4f048a0620ebd94",
+    "stderr_sha256": "e3b0c44298fc1c1499b934ca495991b7852b855"
+  },
+  "no_execution": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "environment_mutation": false
+  },
+  "self_hash_excluded": true,
+  "archive_artifacts": {
+    "acceptance": "docs/implementation/AD-29/status_sync_r2/acceptance.md",
+    "report": "docs/implementation/AD-29/status_sync_r2/report.json",
+    "command_receipts": "docs/implementation/AD-29/status_sync_r2/command_receipts.json",
+    "command_receipts_sha256": "eefab62265c35114baca416a6cc987c46ac5c7373187c2f755199eea6fcf2028"
+  },
+  "core_status": "accepted_limited"
+}

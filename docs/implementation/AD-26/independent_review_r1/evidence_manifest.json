@@ -1,0 +1,83 @@
+{
+  "decision_id": "AD-26",
+  "review_id": "AD-26-independent-review-r1",
+  "verdict": "changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "scope": "architecture_document_and_evidence_protocol_only",
+  "reviewer": "different-Luna/high",
+  "reviewed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "julia_desc_started_by_review": false,
+  "current_process_sweep": "zero observed",
+  "commands": {
+    "validate_plan": "exit 0; planning-document validation only",
+    "scoped_git_diff_check": "exit 0; existing CRLF warning only",
+    "julia_desc": "not run; process sweep observed none"
+  },
+  "target_checks": {
+    "18_sources_and_architecture_decisions.md": {
+      "marker_count": 1,
+      "after_bytes": 40098,
+      "after_sha256": "8eef18b3a9c56681dae317109aa19089fd76097c951072ee4a73118bf94bbc9f",
+      "before_bytes": 37859,
+      "before_sha256": "a01c9c65a3bed8ed0b2f887ba3cfaac1d3941cc09bb08cd7717f6a59106de713",
+      "reverse_match": true,
+      "append_only": true
+    },
+    "README.md": {
+      "marker_count": 1,
+      "after_bytes": 20065,
+      "after_sha256": "ed3080e9c164f20d8d67af5a886d3b473d4a578048aaccbbfa17dee07a8c9f75",
+      "before_bytes": 19536,
+      "before_sha256": "5973a415e59eaeee3dee4c641ec1a68032e845f77c0758bc53db73c7cdd3b963",
+      "reverse_match": true,
+      "append_only": true
+    },
+    "16_execution_work_orders.md": {
+      "marker_count": 1,
+      "after_bytes": 56910,
+      "after_sha256": "b0620c8b7fb6ee71f06e6c8fe4f8251a0ae924a7c19eb4fee08bdbe800189e33",
+      "before_bytes": 56459,
+      "before_sha256": "d756c7cd2f4456d6a14f02cc698bfef6958057a4828b7121d70eecffebf3114d",
+      "reverse_match": true,
+      "append_only": true
+    }
+  },
+  "source_boundaries": {
+    "E0": "accepted_limited; original CandidateStatePackageV5 hash and E0 binding/bound-input identities remain source-bound; n05/n06 absent and deferred",
+    "E1": "review_pending/accepted=false; additive typed N05 contract-only source",
+    "E2": "review_pending/accepted=false; additive typed N06 contract-only source",
+    "G_I1": "no implementation archive/source found; AD-26 is preparation/protocol only"
+  },
+  "credit_ceiling": {
+    "implementation": false,
+    "UP2_total": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "blocking_finding": "Present E1/E2 extension branch does not explicitly bind schema_hash, canonicalization_hash and compatibility_profile_hash in the authority-context payload; only typed-absent wording carries these fields explicitly.",
+  "historical_author_process_note": "AD-26 author archive records pre-existing Julia PIDs 80484 and 79724 and says the task did not start/terminate them; this review did not run Julia/DESC.",
+  "review_archive_files": {
+    "commands.txt": {
+      "bytes": 311,
+      "sha256": "d575bbf82cc5c037110dcdb33bb3c32476e966908d52431bdf2cf36298c74f98"
+    },
+    "input_hashes.json": {
+      "bytes": 3707,
+      "sha256": "6a9240ba46978c969e8e5a86666e55aa7be2f7ff07cadcae91a50f40eb8b6be0"
+    },
+    "qa.json": {
+      "bytes": 1126,
+      "sha256": "61d7bfe0482b614831d616b3b57a4af49e19d2a57c88d8dceacb780a577ce11f"
+    },
+    "report.md": {
+      "bytes": 4309,
+      "sha256": "80431ce5334874b8fe4fb6e8caf50c265455211fafd9d2093204c02dfc209dae"
+    }
+  }
+}

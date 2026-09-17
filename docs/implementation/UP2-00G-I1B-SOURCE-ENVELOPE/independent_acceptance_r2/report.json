@@ -1,0 +1,70 @@
+{
+  "review_id": "UP2-00G-I1B-SOURCE-ENVELOPE-independent-acceptance-r2",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "focused_r5": {
+    "pid": 14796,
+    "exit_code": 0,
+    "assertions": "2653/2653",
+    "stdout_bytes": 2806,
+    "stdout_sha256": "22f5b6723c74b3b502100cba753a9b567c09896722f3373ae28d45b579976121",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "focused_r5_structured_receipts": {
+    "output_hashes_json": "correct",
+    "command_receipts_json": "correct",
+    "report_json": "correct",
+    "stderr_sha256_length": 64
+  },
+  "independent_postrun_r5_historical_fields": {
+    "report_json_stderr_sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "report_json_stderr_sha256_length": 62,
+    "evidence_manifest_stderr_sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence_manifest_stderr_sha256_length": 62,
+    "historical_old_value_preserved": true
+  },
+  "r6": {
+    "verdict": "changes_requested",
+    "accepted": false,
+    "review_pending": true,
+    "replacement_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replacement_bytes": 0,
+    "archive_hashes_match": true,
+    "report_text_reviewable": false,
+    "report_text_issue": "control characters and unexpanded placeholders/expressions"
+  },
+  "four_input_hashes_bytes": "pass",
+  "focused_r4": {
+    "exit_code": 1,
+    "assertions": "2051/2052",
+    "preserved": true,
+    "overwritten": false
+  },
+  "owner_state": {
+    "acceptance_status": "review_pending",
+    "accepted": false,
+    "observed_focused_total": "2653/2653"
+  },
+  "credit_boundary": {
+    "actual_a_source_envelope_software": true,
+    "n06_actual_authority": false,
+    "up2_total": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "engineering": false,
+    "r01_r10": false
+  },
+  "validation": {
+    "validate_plan_exit": 0,
+    "json_parse": "pass",
+    "relative_links": "pass",
+    "julia_or_desc_run_by_reviewer": false
+  },
+  "root_recommendation": "after_clean_R6_report_reissue_accept_only_actual_A_source_envelope_software_as_accepted_limited"
+}

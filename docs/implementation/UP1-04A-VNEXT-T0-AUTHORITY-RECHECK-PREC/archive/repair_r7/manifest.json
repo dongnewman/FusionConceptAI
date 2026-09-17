@@ -1,0 +1,34 @@
+{
+  "repair": "repair_r7",
+  "reason": "independent R2 fixture SHA had an extra trailing f",
+  "execution": "none",
+  "point_in_time_utc": "2026-09-15T05:38:00Z",
+  "changed_files": [
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/archive/repair_r7/report.md",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/archive/repair_r7/manifest.json"
+  ],
+  "before_sha256": {
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl": "6e42e5ccc85f22589fdcbdc9a408f902c230bbd8c098c146eb8a7e13ed472aca",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59",
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py": "e25c6435392b594f9a82937f8b07b034524f191921bdf02700e7de36bda09220",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md": "6bc4e8ffb56787745bfc4368e7e9b3af7958906c8fcd00aeb42cbb7e16194e0e",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json": "37b5189e5cb5b47aae13805c8267486760ecd38d49adc11bfb073faaf3b76bb2",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md": "be294fdaed57fa335a9918d3a5c3b04edb3aa743fa003f604328b36afa01cdd8"
+  },
+  "after_sha256": {
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl": "6e42e5ccc85f22589fdcbdc9a408f902c230bbd8c098c146eb8a7e13ed472aca",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59",
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py": "e25c6435392b594f9a82937f8b07b034524f191921bdf02700e7de36bda09220",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md": "6bc4e8ffb56787745bfc4368e7e9b3af7958906c8fcd00aeb42cbb7e16194e0e",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json": "d17bc5794678142776f9c2693a1fb696f0ebf85c7a433c07c598154003c5c159",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md": "be294fdaed57fa335a9918d3a5c3b04edb3aa743fa003f604328b36afa01cdd8"
+  },
+  "actual_fixture_sha256": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59",
+  "current_manifest_fixture_sha256": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59",
+  "cleanup": {"task_owned_scratch_cache_paths": [], "removed_paths": [], "protected_preexisting_dirty_history": true},
+  "machine": {"accepted": false, "review_pending": true},
+  "credits": {"r01_r10": false, "binding": false, "feedback": false, "control": false, "t0": false, "t1": false, "t2": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "search": false, "b00": false, "b04": false}
+}

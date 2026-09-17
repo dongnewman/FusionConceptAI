@@ -1,0 +1,54 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r4-evidence-v1",
+  "review_scope": "static-only independent precheck; no Julia or DESC execution",
+  "verdict": "changes_requested",
+  "freeze": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries": 3427,
+    "status_snapshot_sha256": "abca186d32edbd1f9b29cfb427cf67661ca4a838cf2ceff6b037dbf732ee9f3a",
+    "matching_julia_desc_processes": 0
+  },
+  "protected_inputs": [
+    {"path": "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl", "sha256": "76520c0be6f17dbc8118f8ead7421f69096d351a3b880d973f7b527f4c66b164", "bytes": 42485},
+    {"path": "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json", "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6", "bytes": 23906},
+    {"path": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl", "sha256": "ad9ce5a3c29b445a7df1393636fb96d9cde3887996c2028e59ab9fe0ff1ed5fe", "bytes": 25123},
+    {"path": "test/GenomeV5/UP2/run_gi1b_source_envelope.jl", "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5", "bytes": 408},
+    {"path": "src/GenomeV5/UP2/GI1AuthorityContextV1.jl", "sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9", "bytes": 29560},
+    {"path": "src/GenomeV5/UP2/N03TimeAuthorityProjectionV1.jl", "sha256": "0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef", "bytes": 17588},
+    {"path": "src/GenomeV5/UP2/N04LedgerAuthorityProjectionV1.jl", "sha256": "7e47f0ec806fedf2315e847bb0dec7bbfcdb5ec7e6645be79ebc62bbf18b7a3c", "bytes": 11779},
+    {"path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl", "sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df", "bytes": 36290},
+    {"path": "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl", "sha256": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c", "bytes": 51115},
+    {"path": "src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl", "sha256": "3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa", "bytes": 13796},
+    {"path": "src/GenomeV5/UP2/N09ProviderGapProjectionV1.jl", "sha256": "5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad", "bytes": 15547},
+    {"path": "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl", "sha256": "e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67", "bytes": 24123},
+    {"path": "src/Contracts/CandidateStatePackageV5.jl", "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620", "bytes": 13496},
+    {"path": "test/GenomeV5/UP2/gi1_authority_context_tests.jl", "sha256": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af", "bytes": 19200}
+  ],
+  "prior_inventory": {
+    "path": "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r3/evidence_manifest.json",
+    "sha256": "cda06c72ce6e994b7462b1799f973d6524eb0388deef31d1d38f81833d76bfdb",
+    "note": "R3 manifest contains the prior full inventory; current protected hashes above supersede changed R3 source/test hashes."
+  },
+  "repair_r4_evidence": [
+    {"path": "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r4/repair_note.md", "sha256": "139412bafaa5c6181fe635cd5118feabb9bb878242a725b8b0b52aab8e7c2c8c", "bytes": 1900},
+    {"path": "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r4/static_qa.json", "sha256": "d32c2520fb0fb623a4698efa842371941010524b324cb309e7ff47c10c314c28", "bytes": 1159},
+    {"path": "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r4/owned_hashes.json", "sha256": "91a532cec5829709ee16f1d850d3aeabf53a661698515b29d5e34a674272e61c", "bytes": 1478}
+  ],
+  "findings": [
+    {
+      "id": "GI1B-R4-01",
+      "severity": "P1",
+      "claim": "Public row_builder injection is a production source-forgery path.",
+      "source_locations": ["src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:589-626", "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:306-321"],
+      "required_fix": "Internalize the fault seam or independently revalidate all supplied rows against actual source."
+    }
+  ],
+  "outputs": [
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r4/report.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r4/report.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r4/evidence_manifest.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r4/command_receipts.json"
+  ],
+  "claim_ceiling": ["source-static-only", "no-formal-B04", "no-physical-or-engineering-credit", "no-parent-goal-credit"]
+}

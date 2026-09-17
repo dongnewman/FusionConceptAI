@@ -1,0 +1,23 @@
+{
+  "schema_version": "UP2-G-I1A-status-independent-review-evidence-v2",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-status-review-r2",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "scope": "status synchronization and archive provenance only",
+  "reviewed_hashes": {
+    "status_sync_acceptance": "51A3826532EA341BC8DF752F5590C138CCF251DFD084A098CDCE6B811F459D31",
+    "status_sync_evidence": "F600B54BD9E1B97D382B04B729C26CFBC07D383A724971219BABB21E3DAE48FB",
+    "primary_acceptance": "C27943F1F45A049490042EA203748E77B67F088255450F9EBC0BB184CD610793",
+    "primary_evidence": "183F3CC8546A3588824494A85117F0BC55796B35370E4F1C4978A473FA8E7671",
+    "postrun_report": "7DCC62897ADC36F7B8D82933613745E4995EF8BE1792831DA3D8430073FA9652",
+    "postrun_evidence": "2B13FC496E40B0A0AE1EEBF78253FB859D994FB9AEBD7E2CB0BC71819A105C6F"
+  },
+  "input_hash_mismatch": {
+    "path": "test/GenomeV5/UP2/gi1_authority_context_tests.jl",
+    "old_manifest_hash": "1A4737ACF6A7457B95F5B33B689AAF97866F5F7946BAABB0116200D9FB7472D6",
+    "actual_executed_r6_hash": "83D765EC5A7FF5867F5E80D1BF4CE2DF2CAB21F55E82D63E4BA579C219A8B1AF"
+  },
+  "history_preserved": {"focused_r1_exit1": true, "r6_repair": true, "focused_r2_exit0": true, "independent_postrun_r2": true},
+  "credits": {"accepted_limited_contract_only": false, "real_e2_law": false, "up2_total": false, "g_i2": false, "b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "qa": {"json_parse": "pass", "control_scan": "pass_zero_matches", "validate_plan": {"exit": 0, "checks": "pass"}, "git_diff_check": {"exit": 0}, "process_sweep": {"julia": 0, "desc": 0}}
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "independent_precheck_r19b_evidence_manifest",
+  "review_id": "UP2-N06-H0A-DIMENSIONED-LAW-independent-precheck-r19b",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "scope": {
+    "static_only": true,
+    "lightweight_json_parse": true,
+    "julia_or_desc_executed_by_reviewer": false,
+    "source_test_fixture_runner_modified_by_reviewer": false,
+    "old_r19_report_modified": false,
+    "h0a_acceptance": false,
+    "credit_ceiling": ["contract_only", "no_UP2_total", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R01_R10_credit"]
+  },
+  "ruling": {
+    "public_identity_gate_for_mutated_endpoints": "required_and_correct",
+    "mutated_public_endpoint_selector_dispatch": "not_required",
+    "expected_source_owned_four_endpoint_selector_path": "required",
+    "reorder_success_claim": "forbidden",
+    "prior_r19_changes_requested_reason": "resolved_by_scope_clarification"
+  },
+  "live_hashes": {
+    "source": {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "bytes": 59570, "sha256": "9bdf3919666611f7bf7c679ed2fb6d2630d692ccca46de183dccbb5bef98ee4c", "status": "protected_unchanged"},
+    "test": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "bytes": 48902, "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8", "status": "r19_test_only"},
+    "fixture": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "status": "protected_unchanged"},
+    "runner": {"path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "status": "protected_unchanged"}
+  },
+  "source_lines": {
+    "identity_reconstruction": "N06DimensionedLedgerLawV1.jl:751-754",
+    "expected_endpoint_semantics": "N06DimensionedLedgerLawV1.jl:755-762",
+    "expected_law_source_selector": "N06DimensionedLedgerLawV1.jl:763-770",
+    "declaration_admission_delegation": "N06DimensionedLedgerLawV1.jl:803-810"
+  },
+  "public_expected_endpoint_controls": {
+    "sign_validate_and_admit_source_mismatch": true,
+    "sign_validate_and_admit_no_ambiguity": true,
+    "input_unit_validate_and_admit_mismatch": true,
+    "input_unit_validate_and_admit_no_ambiguity": true,
+    "reorder_validate_and_admit_identity_fail": true,
+    "reorder_no_false_ambiguity": true,
+    "source_unit_public_identity_fail": true,
+    "source_hash_public_identity_fail": true,
+    "private_source_hash_semantics": true,
+    "mutated_endpoint_selector_dispatch_claim": false
+  },
+  "preserved_controls": {
+    "r16_dimension_contradiction": true,
+    "r16_typed_external_ref_required": true,
+    "registry_unavailable_source_binding_missing": true,
+    "four_endpoint_unique_selector_contract": true,
+    "zero_single_multiple_taxonomy": true,
+    "r18_append_only_erratum": true,
+    "actual_fixture_integration_path": true
+  },
+  "process_snapshot": {
+    "julia_desc_present": false,
+    "reviewer_started_runtime": false,
+    "focused_run": false
+  },
+  "next_gate": {
+    "allowed": "one_serialized_focused_run",
+    "preconditions": ["T0 completed", "fresh source/test/fixture/runner hash freeze", "dirty/process snapshots", "no concurrent Julia/DESC"],
+    "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+    "acceptance": false,
+    "physical_or_engineering_credit": false
+  }
+}

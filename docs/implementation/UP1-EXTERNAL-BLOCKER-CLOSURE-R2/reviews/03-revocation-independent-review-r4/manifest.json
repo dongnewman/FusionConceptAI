@@ -1,0 +1,35 @@
+{
+  "schema": "up1_external_blocker_independent_review_manifest_v1",
+  "review_revision": "03-revocation-independent-review-r4",
+  "verdict": "rework",
+  "claim_ceiling": "TEST_ONLY non_evidence",
+  "source_hashes": {
+    "tools/up1_external_closure_r2/revocation_time_replay/core.py": "1F134AB454A7E763BC90CA5FCC25F55F6E417185CB63D3E4309A0D7ED4F37F83",
+    "tools/up1_external_closure_r2/revocation_time_replay/cli.py": "FEC3DAA658757B9FE22FC5CBAE32C395BF06C92965339E2CDAF561E99E8CBD21",
+    "tools/up1_external_closure_r2/revocation_time_replay/__init__.py": "A657EE0E6F29DB3F91774D93879A30D6E25504C13D51D26BEDD9938A30C546AD",
+    "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py": "821D830C21EA16EE2AEB7CCF05875EA9B3B0FEA6689790141CAFC7B7C3507A5F",
+    "test/up1_external_closure_r2/revocation_time_replay/two_process_driver.py": "75205CC5518977471BEF06BFB2EC4D55B183A08DE52C7EA23D831DC4C735F9E2"
+  },
+  "review_artifact_hashes": {
+    "attack_harness.py": "88A5E16EB465788C707AAC292B25E6CA56F90C400398DAC00B85B81058BF4CC5",
+    "review_report.md": "D8F1851D483B5C1E35A75DB9C0B9DBAE0522551C85338336CE4941E26B852BA6",
+    "run_receipt.json": "3FA9C7E648E828C3467C6EDE9D04E72D699ACB113C229869FBADCE5CF77E1E80",
+    "cleanup_inventory.json": "A28CBC9B90C92DC9B0CB23D33D5A3CD611548FD9301F9547514B04A7A36D1647"
+  },
+  "raw_sha256": {
+    "raw/attack_harness.stdout.raw": "43F3559831ABECEF4EFEE239666A9A11996CB8850E0532436941A751F128DAEE",
+    "raw/attack_harness.stderr.raw": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "raw/pytest.stdout.raw": "651E17C2D5A43E85C72F9A6AABA57773D0C882BBC5A1CE9187AD3A1B76C597FB",
+    "raw/pytest.stderr.raw": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "raw/compile.stdout.raw": "15157072E52D3E60328F758EA868F1E6F8E1AFBC9A19E31A436C6481CBF4F939",
+    "raw/compile.stderr.raw": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  "raw_artifacts": ["raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw", "raw/compile.stdout.raw", "raw/compile.stderr.raw"],
+  "main_evidence_closure": {"manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay/evidence_manifest.json", "repair_receipt": "repair_r2/run_receipt.json", "repair_raw_count": 8, "repair_raw_hashes_recomputed": true, "source_hashes_recomputed": true},
+  "findings": [{"id": "R4-P2-01", "severity": "P2", "title": "foreign-owner rejection lacks a live receipt", "required_fix": "privileged Windows owner-mismatch fixture with raw trusted_key_acl_invalid/exit-2 evidence"}],
+  "manifest_self_hash_excluded": true,
+  "retained_raw_streams": ["raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw", "raw/compile.stdout.raw", "raw/compile.stderr.raw"],
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true
+}

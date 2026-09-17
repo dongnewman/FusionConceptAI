@@ -1,0 +1,83 @@
+{
+  "manifest_version": "AD-29-independent-h0a-index-review-r1-v1",
+  "record_kind": "independent_documentation_index_review",
+  "decision_id": "AD-29/H0-A",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "scope": "current core v4 README and implementation README H0-A index wording, links, and concurrent AD-31 missing-link resolution",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "concurrent_target": {
+    "path": "docs/implementation/AD-31/status_repair_r2/report.md",
+    "exists": true,
+    "bytes_observed": 4033,
+    "sha256_observed": "2fee0d3fd9294d70a6772929056ff0bff06943d429c0f579e44305bdf12b18f5",
+    "meaning": "AD-31 architecture/work-order accepted_limited only; no implementation or physical credit"
+  },
+  "author_receipt_preserved": {
+    "report": "docs/implementation/AD-29/h0a_precursor_index_sync/report.md",
+    "manifest": "docs/implementation/AD-29/h0a_precursor_index_sync/evidence_manifest.json",
+    "recorded_status": "changes_requested",
+    "recorded_validate_plan_exit": 1,
+    "recorded_error": "Missing link from docs\\implementation\\README.md: AD-31/status_repair_r2/report.md",
+    "interpretation": "concurrent missing target at author run; historical receipt retained"
+  },
+  "current_validation": {
+    "validate_plan": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "checks": "pass",
+      "markdown_files_checked": 31,
+      "relative_links_checked": 391,
+      "task_count": 35,
+      "task_dag_acyclic": true,
+      "errors": []
+    },
+    "json": [
+      {"path": "docs/v4_multitopology_generation/task_manifest.json", "command": "python -m json.tool", "exit_code": 0},
+      {"path": "docs/implementation/AD-31/manifest.json", "command": "python -m json.tool", "exit_code": 0},
+      {"path": "docs/implementation/AD-29/h0a_precursor_index_sync/evidence_manifest.json", "command": "python -m json.tool", "exit_code": 0}
+    ],
+    "targeted_index_links": {
+      "core_readme": {"h0a_links": "2/2 resolved", "ad31_links": "3/3 resolved"},
+      "implementation_readme": {"h0a_links": "2/2 resolved", "ad31_links": "3/3 resolved"}
+    },
+    "julia": false,
+    "desc": false,
+    "physical_or_engineering": false
+  },
+  "current_hashes": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 30854, "sha256": "7a2b8a9b69abe8f3af04067828e817811b410b7313d8e742cc342748a1557b28"},
+    "docs/implementation/README.md": {"bytes": 15693, "sha256": "0c732d5b49532c30f8fe160325ae11cfa3195ac436f7671194f26636a1860d2c"},
+    "docs/implementation/AD-29/h0a_precursor_index_sync/report.md": {"bytes": 1413, "sha256": "5de5720f21552d34790a836b500824d1fb39b322cd22577a3bef03edbe528be0"},
+    "docs/implementation/AD-29/h0a_precursor_index_sync/evidence_manifest.json": {"bytes": 4135, "sha256": "50d154c3f4d45cac2420237f78372ed6e9572038b3d868a1d69ce1c1a1e6f06a"},
+    "docs/implementation/AD-31/manifest.json": {"bytes": 5182, "sha256": "e8906bf8a44ebc8e363d5ea18176005fb9345dcdd43877d4148d8ba2a2552cf0"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/software_precursor_acceptance_r1.md": {"bytes": 3628, "sha256": "0ebdd6fc1d289743c2a5b4d55f9302b79e792529850d15e0aab36a75965fcb69"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_software_acceptance_r1/report.md": {"bytes": 5659, "sha256": "cb036a625099503afaeadc905d46c25bd9d0b16e1a7da5bc6e0b44f420df9370"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/acceptance.md": {"bytes": 882, "sha256": "d1e715fac20e863d18a9be53360adbe7cb969db9992a2521a1a36d24f1a6d38b"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/evidence_manifest.json": {"bytes": 4027, "sha256": "9c004d6c6063b3ad577bdba24bf98871c78a604584db6872b9e960b1947128a2"}
+  },
+  "boundary": {
+    "h0a_local_precursor": "accepted_limited",
+    "h0a_total": false,
+    "actual_authority": false,
+    "runner_actual_a_status_declaration_counters": "not_printed_by_runner",
+    "UP2": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "DESC": false,
+    "physical": false,
+    "engineering": false,
+    "R01_R10": false
+  },
+  "scope_guard": {
+    "production_source_changed": false,
+    "old_receipts_changed": false,
+    "this_review_wrote_only": [
+      "docs/implementation/AD-29/independent_h0a_index_review_r1/report.md",
+      "docs/implementation/AD-29/independent_h0a_index_review_r1/evidence_manifest.json"
+    ],
+    "note": "The author protected hash for core README and 18 architecture decisions is stale against later concurrent documentation evolution; no historical file was rewritten."
+  }
+}

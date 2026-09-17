@@ -1,0 +1,99 @@
+{
+  "checks": [
+    {
+      "detail": "actual=8 owned=8 declared=8",
+      "name": "final_exact_owned_set",
+      "passed": true
+    },
+    {
+      "detail": "mismatches=[]",
+      "name": "final_stable_hashes",
+      "passed": true
+    },
+    {
+      "detail": "mismatches=[]",
+      "name": "final_cleanup_hashes",
+      "passed": true
+    },
+    {
+      "detail": "six stable non-self artifacts",
+      "name": "final_self_exclusions",
+      "passed": true
+    },
+    {
+      "detail": "cleanup is non-destructive and documentation-only",
+      "name": "final_no_delete",
+      "passed": true
+    },
+    {
+      "detail": "root-final basis matches final integration R2",
+      "name": "r2_consistent",
+      "passed": true
+    },
+    {
+      "detail": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-EXTERNAL-BLOCKER-CLOSURE-R1\\reviews\\final-integration-independent-review-r2\\review.md",
+      "name": "r2_review_path_and_decision",
+      "passed": true
+    },
+    {
+      "detail": "zero usable inputs and typed absence",
+      "name": "external_inputs_blocked",
+      "passed": true
+    },
+    {
+      "detail": "unchanged input policy",
+      "name": "no_new_ad_no_s3_rerun",
+      "passed": true
+    },
+    {
+      "detail": "four responsibility owners/channels remain typed_absent",
+      "name": "four_typed_absent_owners",
+      "passed": true
+    },
+    {
+      "detail": "not_sent/no credit",
+      "name": "handoff_not_sent",
+      "passed": true
+    },
+    {
+      "detail": "no endpoint-like owner literals",
+      "name": "no_invented_channels",
+      "passed": true
+    },
+    {
+      "detail": "route=['T0', 'authority_recheck', 'T1', 'T2', 'aggregate', 'UP2-00', 'UP1-04B', 'UP1-04', 'UP2-01']",
+      "name": "formal_route",
+      "passed": true
+    },
+    {
+      "detail": "formal gates/credits remain open",
+      "name": "gates_open",
+      "passed": true
+    },
+    {
+      "detail": "39-node preservation",
+      "name": "dag_preserved",
+      "passed": true
+    },
+    {
+      "detail": "M5-C boundary",
+      "name": "m5_c_deferred_no_credit",
+      "passed": true
+    },
+    {
+      "detail": "no Julia/S3/DESC/solver",
+      "name": "runtime_not_run",
+      "passed": true
+    }
+  ],
+  "decision": "pass_limited",
+  "findings": [],
+  "summary": {
+    "formal_credit": false,
+    "m5_c": "deferred_performance_blocked",
+    "read_only": true,
+    "route_transition_count": 8,
+    "up1_blockers_resolved": false,
+    "usable_external_inputs": 0
+  }
+}

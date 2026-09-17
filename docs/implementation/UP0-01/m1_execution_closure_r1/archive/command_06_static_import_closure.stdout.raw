@@ -1,0 +1,6 @@
+probe imports: SHA, JSON3, Dates, FusionConceptAI
+probe explicit Base.include: G1/DiffusionDeclarationV1.jl; G2/MetricBoundaryDeclarationV1.jl; G1/G1SourceAuthorityFactoryV1.jl; G2/G2SourceAuthorityFactoryV1.jl; G3/G3SourceAuthorityFactoryV1.jl
+loader: 12 explicit component files in G1/G2/G3 order (4 each)
+src/FusionConceptAI.jl: 47 static include directives; loader file is included by module
+factory files: 0 include directives
+static limitations: Julia package resolver/runtime dispatch and external module loading not executed; mark unknown/deferred

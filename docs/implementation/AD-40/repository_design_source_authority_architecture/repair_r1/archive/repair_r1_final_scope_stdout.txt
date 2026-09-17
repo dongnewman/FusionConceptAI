@@ -1,0 +1,35 @@
+{
+  "pid": 58636,
+  "utc_start": "2026-09-15T08:09:01.1582656Z",
+  "utc_end": "2026-09-15T08:09:01.2854722Z",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "interpreter": "PowerShell 7",
+  "command": "PowerShell inline AD-40 repair R1 final scoped recheck: original immutability, repair path scope, raw receipt links, false claim flags, no future payload/core/source/test writes",
+  "exit_code": 0,
+  "checks": {
+    "original_cleanup_inventory.md": true,
+    "original_manifest.json": true,
+    "original_proposal.md": true,
+    "repair_manifest_parse": true,
+    "claims_false": true,
+    "repair_products_present": true,
+    "all_repair_paths_allowed": true,
+    "no_future_payload": true,
+    "no_core_source_test": true,
+    "no_candidate_hash_value": true,
+    "raw_hash_links": true,
+    "control_characters": true,
+    "combined": true
+  },
+  "repair_paths": [
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/manifest.json",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/report.md",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_plan_validator_combined.txt",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_plan_validator_stderr.txt",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_plan_validator_stdout.txt",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_static_validation_combined.txt",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_static_validation_stderr.txt",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/archive/repair_r1_static_validation_stdout.txt"
+  ],
+  "result": "pass"
+}

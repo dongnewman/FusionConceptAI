@@ -1,0 +1,173 @@
+{
+  "record_kind": "E0-INT-final-QA",
+  "captured_at_utc": "2026-09-14T02:43:03.792170+00:00",
+  "json_parse": [
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\after_hashes.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before\\evidence_manifest.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before_freeze.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\final_hashes.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\qa.json",
+      "ok": true
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\evidence_manifest.json",
+      "ok": true
+    }
+  ],
+  "control_scan": [
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/acceptance.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/evidence_manifest.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs/v4_multitopology_generation/README.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs/implementation/README.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\after_hashes.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before_freeze.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\finalize_hashes.py",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\final_hashes.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\integrate_e0.py",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\qa.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\qa_e0.py",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before\\16_execution_work_orders.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before\\acceptance.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before\\evidence_manifest.json",
+      "bad_control_count": 0,
+      "first_bad": []
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E0-BOUND-INPUT\\acceptance_integration\\before\\README.md",
+      "bad_control_count": 0,
+      "first_bad": []
+    }
+  ],
+  "validate_plan": {
+    "command": "python docs/v4_multitopology_generation/validate_plan.py",
+    "exit": 0,
+    "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 322,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  "protected_files": {
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": {
+      "expected": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+      "actual": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+      "match": true
+    },
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": {
+      "expected": "856cde12b95b011ca1e3f1e34f5a544ca48ffb9c8de3a94c8ec38bca06ea945e",
+      "actual": "856cde12b95b011ca1e3f1e34f5a544ca48ffb9c8de3a94c8ec38bca06ea945e",
+      "match": true
+    },
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": {
+      "expected": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+      "actual": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+      "match": true
+    },
+    "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": {
+      "expected": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a",
+      "actual": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a",
+      "match": true
+    },
+    "docs/implementation/UP2-00E0-BOUND-INPUT/taxonomy_fix_r3/evidence_manifest.json": {
+      "expected": "7b5bf78dacf7a7abcbf78639495c4ad4ca2d7d6a4cc5a2f61c52894b93b213e5",
+      "actual": "7b5bf78dacf7a7abcbf78639495c4ad4ca2d7d6a4cc5a2f61c52894b93b213e5",
+      "match": true
+    },
+    "docs/implementation/UP2-00E0-BOUND-INPUT/independent_review_r3/manifest.json": {
+      "expected": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1",
+      "actual": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1",
+      "match": true
+    }
+  },
+  "process_state_after_docs": {
+    "command": "powershell Get-CimInstance Win32_Process julia/desc",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "empty": true
+  },
+  "claims": {
+    "accepted_scope_only": true,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "manifest_version": "AD-43-acceptance-independent-review-r1-v1",
+  "record_kind": "independent_acceptance_review",
+  "task_id": "AD-43",
+  "review_id": "acceptance/independent_review_r1",
+  "reviewer": "different Luna/high",
+  "review_mode": "read_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "accepted_scope_reviewed": "architecture_only_three_typed_absences_and_finite_axis_contract_records_boundary",
+  "claim_ceiling": "software_contract_record_boundary_only",
+  "reviewed_acceptance": {
+    "path": "docs/implementation/AD-43/acceptance/manifest.json",
+    "bytes": 12811,
+    "sha256": "cf49681623ec775b805998d50114039c424cda32b86d598add2fa2850333d3c4"
+  },
+  "reviewed_audit": {
+    "report": {
+      "path": "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/report.md",
+      "bytes": 11449,
+      "sha256": "07fb5f59a78918a5ae9772aa74479daaad2c692f99bb28a0acb83d4d4f4e37df"
+    },
+    "manifest": {
+      "path": "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/manifest.json",
+      "bytes": 13224,
+      "sha256": "4a97993b564752787cbd0367a397c859efc96dc29b662e959a2b970ded9aae5e"
+    },
+    "prior_independent_review": {
+      "report_path": "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/report.md",
+      "report_bytes": 6585,
+      "report_sha256": "88a8da966d82c94571ba96765a3c28ef976bdc7918d5ecb3522c3939196da8c5",
+      "manifest_path": "docs/implementation/AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/manifest.json",
+      "manifest_bytes": 10424,
+      "manifest_sha256": "598d2891dce21319c51a8a794dcfbd7d8b3483b9e8b665759ad7474e7bc8fa24"
+    }
+  },
+  "scope_findings": {
+    "typed_absence_count": 3,
+    "typed_absence_axes": [
+      "g1_evidence_receipt_version",
+      "g2_applicability_profile_version",
+      "g2_evidence_receipt_version"
+    ],
+    "future_axis_product_count": 4,
+    "future_axis_products_status": "observed_parallel_outputs_pending_independent_review",
+    "future_axis_products_accepted": false,
+    "future_axis_products_point_in_time_excluded": true,
+    "candidate_bound_axis_present": false,
+    "all_claims_false": true,
+    "physical_or_engineering_run": false
+  },
+  "frozen_input_recheck": {
+    "count": 17,
+    "exact_sha256_matches": 16,
+    "expected_recorded_drift": {
+      "path": "docs/implementation/AD-42/acceptance/acceptance.md",
+      "frozen_bytes": 4297,
+      "frozen_sha256": "ded047968a3b931ebd1acc4475cc8d8a867b3dceb971554ac70cb0c328576a06",
+      "current_bytes": 4543,
+      "current_sha256": "7993dacc1606d1db58ae8ff1f97eabce980c3078e89e7c09e611527cbb92075c",
+      "policy": "record_only_excluded_from_AD43_acceptance"
+    },
+    "unrecorded_drift": false
+  },
+  "prior_evidence_rechecked": {
+    "independent_review_55_of_55": {
+      "checks_passed": 55,
+      "checks_total": 55,
+      "pid": 15060,
+      "utc": "2026-09-15T09:47:56.576491Z",
+      "exit_code": 0
+    },
+    "independent_final_closure_15_of_15": {
+      "checks_passed": 15,
+      "checks_total": 15,
+      "pid": 81508,
+      "utc": "2026-09-15T09:53:42.824004Z",
+      "exit_code": 0
+    },
+    "acceptance_validator_20_of_20": {
+      "checks_passed": 20,
+      "checks_total": 20,
+      "pid": 84328,
+      "utc": "2026-09-15T10:03:53.930627+00:00",
+      "exit_code": 0
+    },
+    "recorded_plan": {
+      "pid": 84088,
+      "utc_start": "2026-09-15T10:04:07.528718+00:00",
+      "utc_end": "2026-09-15T10:04:07.902221+00:00",
+      "exit_code": 0,
+      "task_count": 39,
+      "task_dag_acyclic": true,
+      "stdout_path": "docs/implementation/AD-43/acceptance/status_sync_r1/plan_dag_stdout.json",
+      "stdout_bytes": 621,
+      "stdout_sha256": "ad359f7e9ff4280cf4e3b59e368a359b7492bef0d02e8177f8ccf00e2192d3f7",
+      "stderr_path": "docs/implementation/AD-43/acceptance/status_sync_r1/plan_dag_stderr.txt",
+      "stderr_bytes": 1,
+      "stderr_sha256_recorded": "01ba4719c80b6fe911b091a7c05124b64eeece9649b934ca495991b7852b855",
+      "stderr_sha256_current": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "stderr_hash_match": false
+    }
+  },
+  "independent_runs": {
+    "json_hash_path_control_scope": {
+      "pid": 83776,
+      "utc_start": "2026-09-15T10:14:47.589799Z",
+      "utc_end": "2026-09-15T10:14:47.593066Z",
+      "exit_code": 1,
+      "checks_passed": 54,
+      "checks_total": 55,
+      "raw_stdout_path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/validation_summary.json",
+      "raw_stdout_bytes": 1570,
+      "raw_stdout_sha256": "64791cfea4f9270325dee795a969f98619a9ac7a908b4e15645f70f3de0c2ac8",
+      "failure": "prior_plan_recorded_hashes_match"
+    },
+    "current_plan": {
+      "pid": 41812,
+      "utc_start": "2026-09-15T10:13:37.059631Z",
+      "utc_end": "2026-09-15T10:13:37.322212Z",
+      "exit_code": 0,
+      "task_count": 39,
+      "task_dag_acyclic": true,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 497,
+      "raw_stdout_path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/plan_validator_summary.json",
+      "raw_stdout_bytes": 517,
+      "raw_stdout_sha256": "c4fd7adf5e3da606e87372efdfc3e3d0ac70e1bcddbd177ddc76b67c7b6e637d"
+    },
+    "git_diff_check": {
+      "pid": 81372,
+      "utc_start": "2026-09-15T10:15:03.248335Z",
+      "utc_end": "2026-09-15T10:15:03.308397Z",
+      "exit_code": 0,
+      "raw_stdout_bytes": 0,
+      "raw_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stderr_bytes": 1911,
+      "raw_stderr_sha256": "1ed5abdbf36718c1906fa0147efa553a03bb12fbb85308cfde915433e817e1ca",
+      "raw_path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/git_diff_check_summary.json",
+      "warnings_only": true
+    }
+  },
+  "blocking_finding": {
+    "id": "AD43-ACCEPTANCE-PLAN-STDERR-HASH-MISMATCH",
+    "severity": "changes_requested",
+    "path": "docs/implementation/AD-43/acceptance/status_sync_r1/plan_dag_stderr.txt",
+    "bytes": 1,
+    "recorded_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece9649b934ca495991b7852b855",
+    "current_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "required_action": "append-only status/closure repair of the AD-43 acceptance plan stderr hash, followed by a different-Luna re-review"
+  },
+  "write_scope": {
+    "allowed_paths": [
+      "docs/implementation/AD-43/acceptance/independent_review_r1/report.md",
+      "docs/implementation/AD-43/acceptance/independent_review_r1/manifest.json",
+      "docs/implementation/AD-43/acceptance/independent_review_r1/review/validation_summary.json",
+      "docs/implementation/AD-43/acceptance/independent_review_r1/review/plan_validator_summary.json",
+      "docs/implementation/AD-43/acceptance/independent_review_r1/review/git_diff_check_summary.json"
+    ],
+    "no_reviewed_file_modified": true
+  },
+  "cleanup": {
+    "status": "closed",
+    "removed_paths": [],
+    "review_owned_temporary_or_unrelated_code_files_found": [],
+    "historical_receipts_preserved": true,
+    "parallel_work_preserved": true,
+    "unrelated_dirty_files_preserved": true,
+    "sidecars_evidence_only": true,
+    "product_or_source_or_test_or_fixture_under_review_dir": false
+  },
+  "outputs": {
+    "report": {
+      "path": "docs/implementation/AD-43/acceptance/independent_review_r1/report.md",
+      "bytes": 2802,
+      "sha256": "e0822301ecd4883fb78b617c27f094d27b4469a5dcb37b91d917c732ddd1385"
+    },
+    "raw_sidecars": [
+      {
+        "path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/validation_summary.json",
+        "bytes": 1570,
+        "sha256": "64791cfea4f9270325dee795a969f98619a9ac7a908b4e15645f70f3de0c2ac8"
+      },
+      {
+        "path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/plan_validator_summary.json",
+        "bytes": 517,
+        "sha256": "c4fd7adf5e3da606e87372efdfc3e3d0ac70e1bcddbd177ddc76b67c7b6e637d"
+      },
+      {
+        "path": "docs/implementation/AD-43/acceptance/independent_review_r1/review/git_diff_check_summary.json",
+        "bytes": 382,
+        "sha256": "a9783304252839a26e948290a05e83c6aefc4c8bad6b42e1542073a2af621799"
+      }
+    ]
+  },
+  "self_hash_excluded": true,
+  "self_hash_rule": "manifest bytes and SHA are excluded recursively; all other declared outputs are byte/hash closed"
+}

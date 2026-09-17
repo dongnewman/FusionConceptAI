@@ -1,0 +1,27 @@
+{
+  "schema": "m4-a-test-execution-v1",
+  "sequence": 2,
+  "role": "test_owner",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/manufactured_equation_ir_v1_tests.jl",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 69792,
+  "start_utc": "2026-09-16T06:36:01.9613172Z",
+  "end_utc": "2026-09-16T06:36:05.2633123Z",
+  "exit_code": 0,
+  "stdout_raw": "command_02_julia_tests.stdout.raw",
+  "stderr_raw": "command_02_julia_tests.stderr.raw",
+  "combined_raw": "command_02_julia_tests.combined.raw",
+  "input_hashes": {
+    "test/RuntimeV4/M4Isolated/manufactured_equation_ir_v1_tests.jl": "eefe99c12229074301c5ec45b4d7236521b08f716d229ea2062d01403ecde633",
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "test/RuntimeV4/M4Isolated/oracles/equation_ir_oracle_v1.py": "0c975eabec07ff1263139636e31a36ccae27f3c437f80b8e9a667e1da329129e"
+  },
+  "output_artifact_hashes": {
+    "command_02_julia_tests.stdout.raw": "58fed649f6d475425a9d82e06c1c30292c8f6b2c22a6beee675be595a7ef2262",
+    "command_02_julia_tests.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command_02_julia_tests.combined.raw": "58fed649f6d475425a9d82e06c1c30292c8f6b2c22a6beee675be595a7ef2262"
+  },
+  "status": "passed"
+}

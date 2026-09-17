@@ -1,0 +1,38 @@
+{
+  "record_kind": "UP1R2AuthorityIntakeIndependentAttackMatrixR4V1",
+  "python": "3.13.5",
+  "focused_run": {
+    "command": "python -B -m unittest discover -s test/up1_external_closure_r2/authority_intake -p 'test_*.py' -v",
+    "exit_code": 0,
+    "total_cases": 19,
+    "executed_passed": 17,
+    "skipped": 2,
+    "failed": 0
+  },
+  "r3_regression": {
+    "input_junction_inserted_after_path_check": ["rejected", "reparse_input"],
+    "output_junction_inserted_before_handle_open": ["quarantined", "cas_symlink", 0],
+    "cas_replacement": ["quarantined", "cas_collision", true],
+    "hardlink": ["accepted_local", true],
+    "receipt_boundary": {
+      "signature": null,
+      "external_signature_state": "not_verified",
+      "external_endpoint_state": "typed_absence",
+      "typed_absence": true,
+      "external_authority_claim": false,
+      "local_bookkeeping_only": true
+    },
+    "non_windows_handle_mode": ["unsupported", "handle_pinned_io_unsupported"]
+  },
+  "artifact_check": {
+    "manifest_entries": 13,
+    "manifest_sizes_and_sha256_all_match": true,
+    "raw_stdout_exact": true,
+    "raw_stderr_exact": true,
+    "raw_exit_code": 0,
+    "declared_total_cases": 19,
+    "declared_executed_passed": 17,
+    "declared_skipped": 2,
+    "pass_count_consistent": true
+  }
+}

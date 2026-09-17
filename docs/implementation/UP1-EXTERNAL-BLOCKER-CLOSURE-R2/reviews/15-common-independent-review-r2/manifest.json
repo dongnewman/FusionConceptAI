@@ -1,0 +1,13 @@
+{
+  "schema": "UP1-R2-common-independent-review-manifest-v2",
+  "exact_set": ["attack_review.py", "findings.json", "manifest.json", "raw/stderr.raw", "raw/stdout.raw", "review.md"],
+  "hash_policy": "SHA-256 over exact file bytes; manifest self-hash is excluded",
+  "files": {
+    "attack_review.py": "de1b508c5d540119a0c239134082cef21f288d28c2dc650b0c4bc9a7fa520b26",
+    "findings.json": "bbf98384064d99d89a8db10018d1748bec47ce988b0407df00584f66163cfd31",
+    "raw/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/stdout.raw": "b9f154038f7eecfd4f580ad3ffec7d0b95e757aac3f05d0a00b6d7cfb4964a48",
+    "review.md": "c3dd62fb65807264c04292f760dfa5689a2c7c786fb1b0dcc9ed5a6e6fd8cafa"
+  },
+  "self_excluded": ["manifest.json"]
+}

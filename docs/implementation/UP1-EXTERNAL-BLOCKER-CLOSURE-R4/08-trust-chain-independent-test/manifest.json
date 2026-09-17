@@ -1,0 +1,43 @@
+{
+  "schema": "UP1.external-closure-r4.trust-chain-independent-test.v1",
+  "component": "tools/up1_external_closure_r4/trust_chain",
+  "test": "test/up1_external_closure_r4/trust_chain/test_trust_chain_independent.py",
+  "environment": {
+    "os": "Windows",
+    "python": "3.13.5",
+    "cryptography": "44.0.1"
+  },
+  "command": "python -m unittest discover -s test/up1_external_closure_r4/trust_chain -p test_*.py -v",
+  "serial_runs": [
+    {
+      "pid": 90620,
+      "utc_start": "2026-09-17T01:32:36.8152421Z",
+      "utc_end": "2026-09-17T01:32:43.9777708Z",
+      "exit": 1,
+      "passed": 12,
+      "failed": 1
+    },
+    {
+      "pid": 71500,
+      "utc_start": "2026-09-17T01:32:53.6066681Z",
+      "utc_end": "2026-09-17T01:33:01.3335300Z",
+      "exit": 1,
+      "passed": 12,
+      "failed": 1
+    }
+  ],
+  "finding": {
+    "id": "TC-R4-001",
+    "expected": "typed_absence/EVALUATION_TIME_ABSENT",
+    "observed": "unverified/none",
+    "classification": "fail_closed_boundary_gap",
+    "decision": "PARTIAL_FAIL_DEFERRED"
+  },
+  "implementation_sha256": {
+    "__init__.py": "9082A2FF7C34DACC88BF2DDC7C53D276AC1315398B22E677FAAA1C8AAC30F73E",
+    "__main__.py": "935A1C1166B0C1EA35A82256345000BF2C73DED718D77773BC27A71ECCE28F7D",
+    "cli.py": "26B074AB7859A4C2766DBA7FBFF5B895B3337E9BCBE8BFB7C7A7BC141A2134BA",
+    "README.md": "7E900386412AE7E157B58C89B76B53A8BB66A2AD9256DECE628030C6C496139A",
+    "verifier.py": "E7F6FF4BCDD73BC22331200B8A7AAE70FA5BC7BE690D94426408F72ED4055E6C"
+  }
+}

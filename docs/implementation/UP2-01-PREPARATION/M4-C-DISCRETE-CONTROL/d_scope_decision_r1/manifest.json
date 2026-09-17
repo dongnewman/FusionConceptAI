@@ -1,0 +1,27 @@
+{
+  "schema": "m4-d-manufactured-coupled-solve-control-scope-decision-v1",
+  "task_id": "UP2-01-PREPARATION/M4-C-DISCRETE-CONTROL/d_scope_decision_r1",
+  "status": "authorized_not_started",
+  "decision_authority": "Sol/root",
+  "recorder": "Luna m4_scope_record",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "scope_basis": "../root_acceptance_r1/manifest.json",
+  "claim_ceiling": ["manufactured_coupled_solve_control", "screen_only"],
+  "objective": "isolated manufactured two-region coupled algebraic solve control",
+  "inputs": {"region_payloads":2,"source":"two identical-grid C payloads","default_grid":[2,2,2],"interface_mapping":"identity bijection"},
+  "block": {"matrix":[[2,-1],[-1,2]],"rhs":[1,0],"kind":"SPD","exact_solution":{"a":"2/3","b":"1/3"},"block_residual":"0","arithmetic":"Fraction","solve":"deterministic direct 2x2 only"},
+  "required_bindings": ["region","grid","interface bijection","unit","equation","source","conservation owner","provenance"],
+  "typed_failures": ["singular_block","non_spd_block","grid_mismatch","nonbijective_interface","unit_mismatch","owner_mismatch","provenance_mismatch","foreign_c_input","nonzero_residual"],
+  "future_paths": {"source":"src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl","test":"test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl","oracle":"test/RuntimeV4/M4Isolated/oracles/coupled_solve_control_oracle_v1.py","evidence":"docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/**"},
+  "roles_pairwise_distinct": {"source_implementer":"distinct Luna","test_oracle_owner":"distinct Luna","integration_owner":"distinct Luna","documentation_owner":"Luna m4_scope_record","independent_reviewer":"distinct Luna"},
+  "hard_exclusions": ["iterative_pde_solver","production_coupling","candidate","provider","physics","engineering"],
+  "not_closed_or_credited": ["UP2","B00","B04","R01-R10","L4","parent_goal"],
+  "formal_reentry": ["T0","authority recheck","T1","T2","aggregate","UP2-00","UP1-04B","UP1-04","UP2-01"],
+  "runtime": {"Julia":"not_run","Python":"not_run","solver":"not_run"},
+  "execution": {"started":false,"strict_serial_required":true,"raw_pid_utc_exit_hashes_required":true},
+  "review": {"independent_review_required":true,"sol_acceptance_required":true,"acceptance_ceiling":"manufactured_coupled_solve_control/screen_only"},
+  "parent_closed": false,
+  "formal_credit": []
+}
+

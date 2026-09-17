@@ -1,0 +1,16 @@
+{
+  "receipt_id": "UP2-N06-H0A-independent-precheck-r2-commands",
+  "mode": "read_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "julia_or_desc_executed": false,
+  "commands": [
+    {"purpose":"freeze HEAD/status/dirty scope","command":"git rev-parse HEAD; git status --short --untracked-files=all -- <R2 files and protected H0-A paths>; git diff --stat","result":"HEAD matches repair archive; pre-existing dirty worktree preserved"},
+    {"purpose":"initial and final process sweep","command":"Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' }","result":"zero matching processes"},
+    {"purpose":"author file hashes","command":"Get-FileHash N06DimensionedLedgerLawV1.jl,n06_dimensioned_law_fixtures.json,n06_dimensioned_law_tests.jl,run_n06_dimensioned_law.jl -Algorithm SHA256","result":"matches repair_r2 owned_outputs"},
+    {"purpose":"protected input hashes","command":"Recompute every protected_inputs SHA256 listed in repair_r2/evidence_manifest.json","result":"all 11 protected inputs matched"},
+    {"purpose":"static source/test/archive review","command":"Line-numbered Get-Content and rg over repair source/test/fixture/runner, R1 report, repair_r2 archive, AD-24/AD-26/AD-27 references","result":"F01 fixed; R2-F03/R2-F04/R2-F05/R2-F06 and R2-QA-01 remain"},
+    {"purpose":"JSON QA","command":"ConvertFrom-Json on repair_r2 evidence_manifest.json and command_receipts.json","result":"pass"},
+    {"purpose":"runtime restriction","command":"No Julia focused runner, no DESC, no compiler/provider/solver execution","result":"intentionally not run"}
+  ],
+  "reviewer_note":"This is a static precheck receipt only. It grants no serial runtime, B00/B04, physical, or R01-R10 credit."
+}

@@ -1,0 +1,70 @@
+{
+  "record_kind": "architecture_independent_review",
+  "review_id": "AD-30-independent-review-r2",
+  "reviewer": "different Luna/high",
+  "status": "pass_limited",
+  "resolution": "review_pending",
+  "accepted": false,
+  "root_recommendation": "accepted_limited_architecture_boundary_only",
+  "implementation_authorized": false,
+  "no_loss_verdict": "pass_limited",
+  "findings": {
+    "r1_identity_join_gap_closed": true,
+    "r1_four_axis_gap_closed_at_contract_level": true,
+    "r1_g3_authority_gap_closed_at_contract_level": true,
+    "r1_t1_hash_gap_closed_at_contract_level": true,
+    "r1_migration_gap_closed_at_contract_level": true,
+    "old_v5_and_registry_read_only": true,
+    "t2_and_formal_b00_b04_gate_preserved": true,
+    "r01_r10_not_reduced": true,
+    "residual_g2_candidate_envelope_required": true,
+    "residual_axis_source_required": true,
+    "g3_source_hash_is_complete_body_declaration_hash": true
+  },
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "R01_R10": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false
+  },
+  "execution": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "source_modified": false,
+    "old_package_modified": false,
+    "old_receipts_modified": false
+  },
+  "validation": {
+    "repair_manifest_json_tool_exit": 0,
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 363,
+    "task_count": 31,
+    "task_dag_acyclic": true
+  },
+  "dirty_protection": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "repair_snapshot_entries": 3914,
+    "repair_snapshot_status_sha256_utf8_lf": "50f0745b64910c2d2ea273a6ed0f22ca7c832b5068573dd71e36f5ffd293ba3d",
+    "review_prewrite_entries": 3929,
+    "review_prewrite_status_sha256_utf8_lf": "9e3b472f311c329f9fee0b9d07efce3e9288ad8b4461b7af1a83b6c113e0385e",
+    "concurrent_dirty_drift": true,
+    "protected_core_files_unchanged_from_repair": true
+  },
+  "source_line_evidence": {
+    "G1": "src/GenomeV5/G1/DiffusionDeclarationV1.jl:269-325,350-359",
+    "G2": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:354-401,513-535",
+    "G3": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:72-100,240-277,297-329",
+    "old_integration": "src/GenomeV5/Integration/GenomeV5Integration.jl:133-147,149-191,202-217,277-340",
+    "old_package": "src/Contracts/CandidateStatePackageV5.jl:201-226"
+  },
+  "self_hash_excluded": true
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": "AD47-G3-source-authority-records-independent-review-r1-v1",
+  "record_kind": "independent_static_source_authority_review",
+  "task_id": "AD47-G3-SOURCE-AUTHORITY-RECORDS",
+  "review_id": "AD47-G3-SOURCE-AUTHORITY-RECORDS-INDEPENDENT-REVIEW-R1",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "eight_typed_absence_software_source_provenance_products_only",
+  "claim_ceiling": "no_source_authority_no_candidate_no_physical_credit",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "product_file_count": 8,
+  "review_product_files": [
+    {
+      "path": "docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/independent_review_r1/report.md",
+      "self_hash_excluded": true
+    },
+    {
+      "path": "docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/independent_review_r1/manifest.json",
+      "self_hash_excluded": true
+    }
+  ],
+  "review_sidecar_directory": "docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/independent_review_r1/review",
+  "frozen_products": {
+    "realization": {
+      "record": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/realization/source_authority_record_v1.json","bytes":6303,"sha256":"67b90ef6faf6ca4691d9e17294a53e31f8f15337f67001b76920929246338645"},
+      "receipt": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/realization/authority_receipt.json","bytes":7612,"sha256":"fba00a23ae5c26bc7d19e9eb0c506f05af465728043cf5c552a9fe439559c7bf"}
+    },
+    "control": {
+      "record": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/control/source_authority_record_v1.json","bytes":6221,"sha256":"ac9d72bfd3b01812407bac148c3e1f4b441f67897ce379aaa95a786c8c9305a7"},
+      "receipt": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/control/authority_receipt.json","bytes":7528,"sha256":"69b30001434c72ce8c9796ba51aba9c604e90d937c37f49157da680fc85ab154"}
+    },
+    "binding": {
+      "record": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/binding/source_authority_record_v1.json","bytes":6919,"sha256":"06768dd5d3182a089f805396d84a2a2853b1d8345cfdf4cb663a98b74f8f7361"},
+      "receipt": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/binding/authority_receipt.json","bytes":8924,"sha256":"97c27cc50232d1911d3573d2578268c83eb3540f62ca261075efd19f534e1dff"}
+    },
+    "bundle": {
+      "record": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/bundle/source_authority_record_v1.json","bytes":5972,"sha256":"cd74ea290aee5518005408496844e04d0f8c52e21c9aacc06d85e1b54a3f7653"},
+      "receipt": {"path":"docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/bundle/authority_receipt.json","bytes":7052,"sha256":"78087a9fa7f917766f460141db2a8fb5154da0af58a7f5d206c3ee14cc689d07"}
+    }
+  },
+  "checks": {
+    "frozen_bytes_and_hashes": true,
+    "json_record_and_receipt_unions": true,
+    "absence_reason_resolution_no_publish": true,
+    "candidate_handle_only_no_identity": true,
+    "canonical_semantic_hash_and_nested_receipt_closure": true,
+    "source_locator_bytes_and_sha": true,
+    "working_tree_untracked_head_blob_null": true,
+    "negative_controls_fail_closed": true,
+    "source_test_fixture_static_qa_precursor_receipts_checked": true,
+    "bundle_feedback_inputs_checked": true,
+    "no_candidate_declaration_final_hash": true,
+    "no_t0_t1_t2_provider_mesh_solver_engineering_physical_search": true,
+    "no_r01_r10_or_l4_credit": true,
+    "direct_check_156_of_156": true,
+    "task_manifest_39_acyclic": true,
+    "scoped_diff_check": true
+  },
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 81064,
+    "utc": "2026-09-15T12:34:15.533978+00:00",
+    "direct_validation_exit_code": 0,
+    "direct_validation_stdout": "review/direct_validation_stdout.json",
+    "direct_validation_stderr": "review/direct_validation_stderr.txt",
+    "initial_failed_attempt_preserved": "review/direct_validation_attempt1_failed.json",
+    "plan_validator": {"exit_code":0,"summary":"31 markdown; 497 relative links; 39 tasks; DAG acyclic","wrapper_pid":11756,"utc_start":"2026-09-15T12:34:23.8427168Z","utc_end":"2026-09-15T12:34:24.3082108Z","stdout":"review/plan_validator_stdout.json","stderr":"review/plan_validator_stderr.txt"},
+    "scoped_git_diff_check": {"exit_code":0,"wrapper_pid":21812,"utc_start":"2026-09-15T12:34:33.4286148Z","utc_end":"2026-09-15T12:34:33.5047305Z","stdout":"review/scoped_diff_check_stdout.txt","stderr":"review/scoped_diff_check_stderr.txt"}
+  },
+  "gap_decomposition": {
+    "source_locator_gate": "required_before_authority",
+    "factory_identity_gate": "required_before_publish",
+    "trusted_attestation_source_identity_gate": "required_before_candidate_bound_axes",
+    "w1_result": "typed_absence_preserved_until_all_three_gates_close"
+  },
+  "claims": {
+    "g3_source_authority_present": false,
+    "g3_source_backed_declaration_present": false,
+    "g3_candidate_binding_present": false,
+    "g3_candidate_identity_created": false,
+    "g3_candidate_bound_axes_present": false,
+    "g3_feedback_authority_present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "task_owned_temp_removed": 0,
+    "preexisting_dirty_work_preserved": true,
+    "review_sidecars_only": true,
+    "heavy_runtime_calls": 0
+  },
+  "self_hash_excluded": true
+}

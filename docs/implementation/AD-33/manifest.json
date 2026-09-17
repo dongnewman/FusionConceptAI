@@ -1,0 +1,128 @@
+{
+  "manifest_version": "AD-33-accepted-limited-v1",
+  "record_kind": "accepted_limited_architecture_and_work_order",
+  "decision_id": "AD-33",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "architecture_and_finite_work_order_boundary_only",
+  "implementation_accepted": false,
+  "actual_child_accepted": false,
+  "decision_owner": "Sol/root",
+  "decision_date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "independent_review": {
+    "reviewer": "different_gpt-5.6-luna_high",
+    "status": "pass_limited",
+    "report": "docs/implementation/AD-33/g1_g2_editability_independent_review_r5/report.md",
+    "manifest": "docs/implementation/AD-33/g1_g2_editability_independent_review_r5/manifest.json",
+    "report_sha256": "f7130355131fb258b8f153aaea5c15d54c452a2796f0a035ea3cf9baf29109d8",
+    "manifest_sha256": "63e7f76ba8e897b0efbd2a3a2fbbadb3693a64a24fb06a2a40f07217be1adf28"
+  },
+  "reviewed_proposal": {
+    "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r4/revised_proposal.md",
+    "sha256": "40a87333d16f71fe306ba014c0c026b998c18c032b462f8e551adeb9206deea3"
+  },
+  "reviewed_proposal_manifest": {
+    "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r4/manifest.json",
+    "sha256": "84731b35e4ac5b5b83dfef53cc817dfbdb2ab3d6a690d74be36e563e3f0a9c85"
+  },
+  "machine_nodes": [
+    {
+      "id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+      "phase": "UP1",
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "claim_ceiling": "contract_only",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03"],
+      "parallel_to": ["UP1-04A-VNEXT-T0", "AD-31", "AD-32"],
+      "must_not_unlock": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "T1", "T2"],
+      "read_only_inputs": [
+        "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+        "docs/implementation/UP2-01-G1-DIFFUSION-V1/",
+        "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/"
+      ],
+      "blocked_present_on": [
+        "UP2-01-G1-DIFFUSION-V1 declaration instance and source-backed factory receipt",
+        "UP2-01-G2-METRIC-BOUNDARY-V1 declaration instance and source-backed factory receipt",
+        "fresh same-candidate identity review for any present publication"
+      ],
+      "exact_future_scope": {
+        "source": ["src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl"],
+        "test": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl"],
+        "fixture": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json"],
+        "static_qa": ["test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py"],
+        "docs": [
+          "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md",
+          "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json",
+          "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md"
+        ]
+      },
+      "launcher": false,
+      "direct_commands_future_only": [
+        "julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl"
+      ],
+      "typed_absent_scaffold_only": true,
+      "present_child_implementation": false,
+      "replace_source_payload_absent": "forbidden; return baseline_authority_absent",
+      "absent_state": "typed_absent + contract_admission=terminal_deferred",
+      "absent_to_present": "fresh source publication + fresh child/state identity + fresh candidate identity review; never CAS promotion",
+      "failure_atomicity": "rejected operation leaves prior canonical bytes, SHA, state and history unchanged"
+    }
+  ],
+  "reviewed_future_siblings": [
+    {
+      "id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC",
+      "machine_node_created": false,
+      "depends_on": ["UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC", "UP2-01-G1-DIFFUSION-V1"],
+      "present_blocked": true,
+      "present_blocker": "real source-backed G1 V1 instance/factory receipt and fresh identity review"
+    },
+    {
+      "id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC",
+      "machine_node_created": false,
+      "depends_on": ["UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+      "present_blocked": true,
+      "present_blocker": "real source-backed G2 V1 instance/factory receipt and fresh identity review"
+    }
+  ],
+  "credits": {
+    "architecture_boundary": true,
+    "typed_absent_scaffold": false,
+    "implementation": false,
+    "actual_g1_child": false,
+    "actual_g2_child": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false
+  },
+  "preserved": {
+    "repair_r1": true,
+    "repair_r2": true,
+    "repair_r3": true,
+    "repair_r4": true,
+    "old_audit_and_reviews": true,
+    "core_source_test": true,
+    "old_receipts": true,
+    "ad31": true,
+    "ad32": true
+  },
+  "status_sync": {
+    "report": "docs/implementation/AD-33/status_sync_r1/report.md",
+    "manifest": "docs/implementation/AD-33/status_sync_r1/manifest.json"
+  },
+  "self_hash_excluded": true
+}

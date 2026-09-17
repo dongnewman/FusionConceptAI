@@ -1,0 +1,71 @@
+{
+  "schema": "UP3HoldoutSetTemplateV1",
+  "status": "pending_review",
+  "claim_ceiling": "contract_only",
+  "split_rule": "Combination-level disjointness is required; changing one scalar in an otherwise identical row is not a held-out combination.",
+  "identity_placeholders": {
+    "candidate": {"type": "CandidateIdentityV1", "state": "pending", "value": null},
+    "scenario": {"type": "ScenarioIdentityV1", "state": "pending", "value": null},
+    "input": {"type": "SolverInputIdentityV1", "state": "pending", "value": null},
+    "provider": {"type": "ProviderManifestIdentityV1", "state": "pending", "value": null},
+    "hash_bundle": {"type": "HashBundleV1", "state": "pending", "value": null}
+  },
+  "partitions": {
+    "training_calibration": {
+      "artifact_ids": [],
+      "combination_ids": [],
+      "allowed_uses": ["fit_basis", "fit_scaling", "fit_parameters", "initial_guess_design"],
+      "answer_visibility": "allowed",
+      "status": "pending"
+    },
+    "development_validation": {
+      "artifact_ids": [],
+      "combination_ids": [],
+      "allowed_uses": ["checker_selection", "solver_diagnostics", "threshold_confirmation_after_freeze"],
+      "answer_visibility": "scoped",
+      "status": "pending"
+    },
+    "held_out_combination": {
+      "artifact_ids": [],
+      "combination_ids": [],
+      "axis_variation_required": ["coefficient_structure", "boundary", "region_connection", "topology", "source_resource", "scenario"],
+      "answer_visibility": "hidden_until_terminal",
+      "status": "pending"
+    },
+    "independent_replay": {
+      "artifact_ids": [],
+      "combination_ids": [],
+      "environment_receipt": {"type": "EnvironmentReceiptIdentityV1", "state": "pending", "value": null},
+      "answer_visibility": "hidden_until_checker",
+      "status": "pending"
+    }
+  },
+  "leakage_controls": [
+    {"id": "HL-01", "surface": "candidate_identity", "rule": "A candidate identity belongs to exactly one partition; no historical candidate hash may be reused as authority.", "expected": "fail_closed_or_reject"},
+    {"id": "HL-02", "surface": "topology_identity", "rule": "Topology graph and interface ownership are split as a unit; derived mesh/basis artifacts inherit the split.", "expected": "zero_intersection"},
+    {"id": "HL-03", "surface": "scenario_identity", "rule": "Operating/fault/cooling/ramp scenarios and their derived trajectories cannot cross partitions.", "expected": "zero_intersection"},
+    {"id": "HL-04", "surface": "oracle_answers", "rule": "Exact solution, source, boundary and conservation answer fields stay hidden for held-out rows.", "expected": "hidden_until_terminal"},
+    {"id": "HL-05", "surface": "solver_cache", "rule": "Cache keys include partition and all candidate/scenario/input/provider identities; cache hits cannot reveal held-out answers.", "expected": "fresh_key_or_scoped_reuse"},
+    {"id": "HL-06", "surface": "normalization_and_initialization", "rule": "Scaling, basis, initial guesses and priors are fit only on permitted partitions.", "expected": "audit_receipt_required"},
+    {"id": "HL-07", "surface": "labels_and_failure_taxonomy", "rule": "Display labels, family names and failure labels are not split selectors and cannot alter routing.", "expected": "label_erasure_invariant"}
+  ],
+  "held_out_family_template": {
+    "family_id": {"type": "HeldOutFamilyIdentityV1", "state": "pending", "value": null},
+    "base_cell": {"type": "CombinationCellIdentityV1", "state": "pending", "value": null},
+    "changed_axes": [],
+    "candidate": {"type": "CandidateIdentityV1", "state": "pending", "value": null},
+    "scenario": {"type": "ScenarioIdentityV1", "state": "pending", "value": null},
+    "input": {"type": "SolverInputIdentityV1", "state": "pending", "value": null},
+    "provider": {"type": "ProviderManifestIdentityV1", "state": "pending", "value": null},
+    "oracle": {"type": "OracleRequestIdentityV1", "state": "pending", "value": null},
+    "membership_receipt": {"type": "SplitMembershipReceiptV1", "state": "pending", "value": null},
+    "result": {"state": "not_executed", "value": null}
+  },
+  "acceptance_predicates": {
+    "partition_intersection": "exactly_zero_artifact_or_combination_identity_intersection",
+    "held_out_axis_change": "at_least_one_declared_combination_axis_changes_per_family",
+    "answer_noninterference": "training_or_development_outputs cannot contain held_out oracle answers",
+    "fresh_replay": "replay uses independent process/environment and same frozen identity recipe",
+    "status": "pending_until_review"
+  }
+}

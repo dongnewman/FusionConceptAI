@@ -1,0 +1,23 @@
+{
+  "schema_version": "AD-27-provenance-repair-r2",
+  "status": "changes_requested",
+  "review_status": "review_pending",
+  "accepted": false,
+  "read_only": true,
+  "runtime": {"julia": false, "desc": false, "postflight_processes": 0},
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "status_lines_before": 290, "status_sha256_before": "A7DDFA270908670436014147A9449FA5C01EB0EEA098B397BDAF240072161585"},
+  "before_hash_source": "docs/implementation/AD-27/decision_manifest.json protected_inputs",
+  "current_after": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 20977, "sha256": "E208D32ED2FEBD635DD416DC221ECB01992B67F363287CAF8EE11485EE03D8C0"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 58474, "sha256": "9C1DC8107FFB299F423084410B12E84A7EE58450DA7262C18BD34F0BD8B12C63"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 43825, "sha256": "9D5D32FEDA8320DB05BD2B9B7ECC3FCB5D82C0A832EC27D2A39222DA0960CEAD"}
+  },
+  "exact_splices": {
+    "README": {"range": [20300, 20977], "reconstructed_sha256": "66681D071A4124CBA0E8E635011FEC8CBFFE0AF1B93A453782D63E251D613A46"},
+    "core16": {"range": [57674, 58472], "reconstructed_sha256": "12484C7C88E48B36358EB1CF308A414F9EA7A11E869B813BF391B0638BE0C829", "preserved_suffix_bytes": 2},
+    "core18": {"range": [40362, 43825], "reconstructed_sha256": "A7BFFC313DFEF35C7E302DD251709491A4A91E15D37A275D92FD6FE9D5ACA28C"}
+  },
+  "qa": {"json_parse": "pass", "control_scan": "zero_matches", "verify_append": {"exit": 0, "cases": 3}, "validate_plan": {"exit": 0, "checks": "pass", "task_dag_acyclic": true}, "git_diff_check": {"exit": 0, "warnings": "line-ending warnings only"}},
+  "claim_ceiling": ["provenance_only", "architecture_unaccepted"],
+  "credits": {"ad27": false, "b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false}
+}

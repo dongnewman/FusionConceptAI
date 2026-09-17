@@ -1,0 +1,196 @@
+{
+  "schema_version": "UP2-00E1-N05-independent-precheck-r3-v1",
+  "verdict": "ready_for_focused_r2",
+  "scope": "independent static R3 only; not acceptance",
+  "reviewer": "Luna/high independent reviewer",
+  "captured_at_utc": "2026-09-14T03:33:49.512441+00:00",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "frozen_snapshot": {
+    "source_path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+    "source_sha256": "fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799",
+    "test_path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+    "test_sha256": "b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363",
+    "runner_path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+    "runner_sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+    "fixture_path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+    "fixture_sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81"
+  },
+  "invalid_if_any_frozen_file_changes": true,
+  "manifest_snapshot_comparison": {
+    "expected": {
+      "source_path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+      "source_sha256": "fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799",
+      "test_path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+      "test_sha256": "b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363",
+      "runner_path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+      "runner_sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+      "fixture_path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+      "fixture_sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+      "pre_execution_status_sha256": "1f051b61a0addcd48b9edf4e4d226347f5e78f69ba51591d585305801f834c5b"
+    },
+    "current": {
+      "source_path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+      "source_sha256": "fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799",
+      "test_path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+      "test_sha256": "b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363",
+      "runner_path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+      "runner_sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+      "fixture_path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+      "fixture_sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81"
+    },
+    "matches": {
+      "source_sha256": true,
+      "test_sha256": true,
+      "runner_sha256": true,
+      "fixture_sha256": true
+    }
+  },
+  "checks": [
+    {
+      "name": "frozen_r3_hashes_match_manifest",
+      "passed": true,
+      "severity": "blocker",
+      "evidence": "{\"current\": {\"source_path\": \"src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl\", \"source_sha256\": \"fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799\", \"test_path\": \"test/GenomeV5/UP2/n05_flux_authority_tests.jl\", \"test_sha256\": \"b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363\", \"runner_path\": \"test/GenomeV5/UP2/run_n05_flux_authority.jl\", \"runner_sha256\": \"3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3\", \"fixture_path\": \"test/GenomeV5/UP2/n05_flux_authority_fixtures.json\", \"fixture_sha256\": \"049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81\"}, \"manifest_snapshot\": {\"source_path\": \"src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl\", \"source_sha256\": \"fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799\", \"test_path\": \"test/GenomeV5/UP2/n05_flux_authority_tests.jl\", \"test_sha256\": \"b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363\", \"runner_path\": \"test/GenomeV5/UP2/run_n05_flux_authority.jl\", \"runner_sha256\": \"3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3\", \"fixture_path\": \"test/GenomeV5/UP2/n05_flux_authority_fixtures.json\", \"fixture_sha256\": \"049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81\", \"pre_execution_status_sha256\": \"1f051b61a0addcd48b9edf4e4d226347f5e78f69ba51591d585305801f834c5b\"}, \"per_file\": {\"source_sha256\": true, \"test_sha256\": true, \"runner_sha256\": true, \"fixture_sha256\": true}}"
+    },
+    {
+      "name": "baseline_call_precedes_mutation_and_receipt",
+      "passed": true,
+      "severity": "info",
+      "evidence": "baseline call line 563 precedes _n05_spec_value line 571, mutation line 585, and error evaluation line 586",
+      "static_case": {
+        "positive": "only a baseline :valid declaration or :terminal_deferred nil declaration reaches receipt construction",
+        "negative": "baseline fail_closed/program_exception throws before locator or receipt"
+      }
+    },
+    {
+      "name": "forged_authority_metadata_is_rejected_by_baseline",
+      "passed": true,
+      "severity": "info",
+      "evidence": "mutation delegates baseline to up2n05_validate; that validator compares authority candidate/package/component refs and binding hash before mutation",
+      "static_case": {
+        "counterexample": "a current declaration embedded in an authority with foreign candidate_ref, stale package_hash, or forged binding_hash yields baseline fail_closed and no receipt"
+      }
+    },
+    {
+      "name": "bad_e0_binding_is_rejected_before_mutation",
+      "passed": true,
+      "severity": "info",
+      "evidence": "up2n05_validate calls _n05_e0_status at line 449 before its declared path; mutation has no direct bypass",
+      "static_case": {
+        "counterexample": "pass an E0 binding whose source join is contradictory; baseline status is fail_closed, so mutation guard throws"
+      }
+    },
+    {
+      "name": "g1_actual_match_is_unique_and_typed",
+      "passed": true,
+      "severity": "info",
+      "evidence": "_n05_authority_errors collects four-key matches at line 399 and requires one actual G1LedgerOccurrenceV2 before path reconstruction",
+      "static_case": {
+        "positive": "one actual occurrence proceeds",
+        "negative": "zero or duplicate four-key matches emit G1_occurrence_not_unique and cannot supply a receipt"
+      }
+    },
+    {
+      "name": "g1_full_four_key_and_actual_rebuilt_path",
+      "passed": true,
+      "severity": "info",
+      "evidence": "four-key match lines 401-404; actual match object feeds path at line 410; helper line 147 contains all four key components",
+      "static_case": {
+        "negative": "locator path forged with a different side/ledger id mismatches the actual occurrence-derived path",
+        "taxonomy": "G1LedgerOccurrenceV2 has no .source; the authored N05 field is .locator"
+      }
+    },
+    {
+      "name": "g1_locator_ref_hash_type_exact",
+      "passed": true,
+      "severity": "info",
+      "evidence": "G1 locator ref/hash/type checks at lines 408/409/413; no fictitious endpoint.occurrence.source access exists",
+      "static_case": {
+        "negative": "wrong ref/hash/type reaches the corresponding fail_closed error"
+      }
+    },
+    {
+      "name": "law_endpoint_unit_source_provenance_exact",
+      "passed": true,
+      "severity": "info",
+      "evidence": "law and authored unit source ref/type/path/hash each have explicit validator mismatch branches"
+    },
+    {
+      "name": "mutation_dispatch_path_kind_and_id_label_only",
+      "passed": true,
+      "severity": "info",
+      "evidence": "registry dispatch lines 313-318 uses path+kind; mutation uses binding.target and leaves id/expected fields to receipt/tests"
+    },
+    {
+      "name": "missing_authority_five_rows_remain_deferred",
+      "passed": true,
+      "severity": "info",
+      "evidence": "five fixture rows are covered; nil declaration requires baseline terminal_deferred at line 565 and emits authority_gap/terminal_deferred"
+    },
+    {
+      "name": "e0_three_state_and_exception_taxonomy_preserved",
+      "passed": false,
+      "severity": "info",
+      "evidence": "_n05_e0_status maps valid/program_exception/fail_closed near line 432; validator catches declaration exceptions near line 459",
+      "static_case": {
+        "positive": "valid, source contradiction, and exception remain distinct",
+        "negative": "program_exception exits before a formal valid receipt"
+      }
+    },
+    {
+      "name": "declaration_and_law_hash_recomputation_present",
+      "passed": true,
+      "severity": "info",
+      "evidence": "declaration canonical body is checked at line 353; law/source hashes are recomputed at lines 366/369"
+    },
+    {
+      "name": "scope_and_no_authority_credit",
+      "passed": true,
+      "severity": "info",
+      "evidence": "manifest remains review_pending/accepted=false contract_only; AD-24/E0 boundaries retain no physical/provider/mesh/engineering/B04/R credit"
+    }
+  ],
+  "blockers": [],
+  "prior_r2_wording_note": "The prior R2 report had a stale G1 evidence sentence. This R3 report is the corrected record: G1LedgerOccurrenceV2 has no .source; its actual four-key match is used to rebuild the full locator path, and the authored field is occurrence.locator.",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "real_exit": 0,
+      "started_utc": "2026-09-14T03:33:49.514630+00:00",
+      "finished_utc": "2026-09-14T03:33:49.584671+00:00"
+    },
+    {
+      "command": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc|mpiexec|mpirun)(\\.exe)?$' } | Select-Object Name,ProcessId,CommandLine | ConvertTo-Json -Compress"
+      ],
+      "real_exit": 0,
+      "started_utc": "2026-09-14T03:33:49.584689+00:00",
+      "finished_utc": "2026-09-14T03:33:50.922523+00:00"
+    },
+    {
+      "command": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json,sys; [json.load(open(p,encoding='utf-8')) for p in sys.argv[1:]]; print('json_parse_ok='+str(len(sys.argv)-1))",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\UP2\\n05_flux_authority_fixtures.json",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\evidence_manifest.json"
+      ],
+      "real_exit": 0,
+      "started_utc": "2026-09-14T03:33:50.922551+00:00",
+      "finished_utc": "2026-09-14T03:33:51.011205+00:00"
+    }
+  ],
+  "limitations": [
+    "No Julia/DESC execution was performed; this is not dynamic validation or acceptance.",
+    "R1 and R2 directories were not modified.",
+    "Process probe was empty at capture time.",
+    "Any later source/test/fixture/runner or manifest change invalidates this frozen R3 review."
+  ]
+}

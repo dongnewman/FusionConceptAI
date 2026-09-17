@@ -1,0 +1,53 @@
+{
+  "schema_version": "AD43-axis-contract-independent-review-r1-v1",
+  "record_kind": "independent_review",
+  "task_id": "AD43-AXIS-CONTRACT-RECORDS",
+  "status": "pass_limited",
+  "accepted_scope": "source_only_axis_contract_products",
+  "claim_ceiling": "software_contract_record_only",
+  "reviewer": "different gpt-5.6-luna/high",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "read_only_review": true,
+  "products": [
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"}
+  ],
+  "frozen_review_inputs": [
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f"},
+    {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/report.md","bytes":11449,"sha256":"07fb5f59a78918a5ae9772aa74479daaad2c692f99bb28a0acb83d4d4f4e37df"},
+    {"path":"docs/implementation/AD-43/g1_g2_four_axis_gap_audit/manifest.json","bytes":13224,"sha256":"4a97993b564752787cbd0367a397c859efc96dc29b662e959a2b970ded9aae5e"},
+    {"path":"docs/implementation/AD-43/acceptance/acceptance.md","bytes":4338,"sha256":"b8fe90aae95f5e7cbb8634faf62c0125404e9b2a0ca891e376289556e99df051"},
+    {"path":"docs/implementation/AD-43/acceptance/manifest.json","bytes":12811,"sha256":"cf49681623ec775b805998d50114039c424cda32b86d598add2fa2850333d3c4"},
+    {"path":"docs/implementation/AD-42/acceptance/acceptance.md","bytes":4543,"sha256":"7993dacc1606d1db58ae8ff1f97eabce980c3078e89e7c09e611527cbb92075c"},
+    {"path":"docs/implementation/AD-42/acceptance/status_sync_r2/report.md","bytes":2145,"sha256":"862ce05cfdaba9ea6c130eed8fa487e5e06edd8fbbd276e4f06f4e66f064cdcf"},
+    {"path":"docs/implementation/AD-42/acceptance/status_sync_r2/manifest.json","bytes":5153,"sha256":"06ceff4641d7dd90c1492effffc4eab12981bd127e8bb4c63ee78b8115bd5102"}
+  ],
+  "validation": {
+    "checks": "90/90",
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 28864,
+    "utc_start": "2026-09-15T10:17:45.206445Z",
+    "utc_end": "2026-09-15T10:17:45.252759Z",
+    "exit_code": 0,
+    "command": "independent Python JSON/canonical/hash/API/negative/scope validator",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "raw_stdout": {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stdout.json","bytes":1532,"sha256":"c0517e6a0a41ea105a9ca0cb0ecf47784b3cf751ae906d711ad69a90ba20de80"},
+    "raw_stderr": {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "prior_failed_raw_preserved": [
+      {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_stdout.json","bytes":1857,"sha256":"d5d5ffceab352257e80387061b6de1bea166d99629a29cadfb9c29c46ce74abe"},
+      {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r2_stdout.json","bytes":1705,"sha256":"2b6fada980b5e376ffa04d08be7667712dadefb333fa53048068a5647f902c77"}
+    ]
+  },
+  "runtime_calls": {"julia":0,"desc":0,"candidate_hash":0,"declaration_hash":0,"payload_hash":0,"provider":0,"mesh":0,"solver":0,"physical":0},
+  "claims": {"candidate_bound_axis_present":false,"authority":false,"present_declaration":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"r01_r10":false},
+  "downstream": {"allowed":"W2R1 fresh rebinding only","candidate_bound_axis_present":false,"w2r1_unlocked_by_review":false,"t0_t1_t2":false,"r01_r10":false},
+  "scope": {"modified_audited_files":false,"modified_core":false,"modified_source":false,"modified_test":false,"modified_fixture":false,"sidecars_only":true,"historical_failures_preserved":true},
+  "self_hash_excluded": true
+}

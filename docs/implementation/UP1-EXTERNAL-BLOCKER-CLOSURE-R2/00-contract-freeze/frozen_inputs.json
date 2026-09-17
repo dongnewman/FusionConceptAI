@@ -1,0 +1,28 @@
+{
+  "schema": "UP1ExternalBlockerClosureR2FrozenInputsV1",
+  "status": "frozen_snapshot",
+  "captured_utc": "2026-09-17",
+  "checkout_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "worktree": {"porcelain": "dirty_pre_existing", "status_line_count": 374, "status_sha256": "8ad8e9f6a3e3c98cbc4ad0fba5c332cd0ab70a0d01a687a10d85bea232c70fc7", "status_encoding": "UTF-8 joined porcelain lines plus terminal LF"},
+  "ad56_dirty_scope": {
+    "task": "AD-56",
+    "accepted_scope": "git-filter-portable source locator software repair",
+    "paths": [
+      {"path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl", "raw_bytes": 31396, "raw_sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2", "working_blob_oid": "9fab079f8c60a088653ef5bdde03e2ac2205029d"},
+      {"path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl", "raw_bytes": 27640, "raw_sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc", "working_blob_oid": "8edc6c3233c99873a68190b6a159449dd75dae84"},
+      {"path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl", "raw_bytes": 35485, "raw_sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e", "working_blob_oid": "85e15aaa7c21854f64f71e7b4d34dfefd3de7266"}
+    ],
+    "source_tests_and_registries_mutated_by_this_freeze": false,
+    "must_preserve": true
+  },
+  "planning_inputs": [
+    {"path": "docs/v4_multitopology_generation/README.md", "bytes": 8572, "raw_sha256": "3c819861e0bfb71f4c55420f3c22d96d08469cc2e2551e3ae67c7f1258e4a413", "git_blob_oid": "fed8b82bb15749a8192172bb20e7bccb125f8fce"},
+    {"path": "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md", "bytes": 12626, "raw_sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab", "git_blob_oid": "9154275f1c4d02a93a07b90929f813ca10d3a8c7"},
+    {"path": "docs/v4_multitopology_generation/16_execution_work_orders.md", "bytes": 98433, "raw_sha256": "693a072aad799ecee1537bd61f8d361691832d31ff63d541837895151176dac5", "git_blob_oid": "ed98c12a53ceded1c0f32006836fb9bc6003b8a9"},
+    {"path": "docs/v4_multitopology_generation/20_midterm_audit_20260916.md", "bytes": 14368, "raw_sha256": "c13250700bff57ada6817fdbfacc673cdc5e32349e2d2f144078386b1104cd4c", "git_blob_oid": "e150fb1dd27989d38000a6ee48046e7034bf7809"},
+    {"path": "docs/v4_multitopology_generation/21_next_execution_batches.md", "bytes": 10363, "raw_sha256": "924f7da526699f40a15f7a812052c7e255d7255d301f5d72f3152bbc90e76f3b", "git_blob_oid": "630e9566efe30f97173a6e85cfa60594c397806d"},
+    {"path": "docs/v4_multitopology_generation/task_manifest.json", "bytes": 91208, "raw_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8", "git_blob_oid": "f514c155e2004378a61ee3efc4d0be9085eeb017", "tasks": 39, "acyclic": true}
+  ],
+  "r1_root_final_acceptance": {"path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/root-final-acceptance-r1/acceptance_manifest.json", "raw_sha256": "de41876e3cee675d2dd4c19666b25067c7b004f394289fa866253017068f3a25", "status": "accepted_limited", "usable_external_inputs": 0, "fresh_s3": {"G1": "typed_absent", "G2": "typed_absent", "G3": "typed_absent", "terminal": "terminal_deferred", "publish": false}, "formal_credit": false},
+  "historical_ad56": {"task_manifest_raw_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8", "task_manifest_git_blob_oid": "f514c155e2004378a61ee3efc4d0be9085eeb017", "g1": "35/35", "g2": "35/35", "g3": "356/356", "interpretation": "software locator repair only; not external trust or physical evidence"}
+}

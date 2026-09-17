@@ -1,0 +1,11 @@
+{
+  "schema": "M5ConditionalEGraphTestExecutionManifestV1",
+  "run_id": "M5-EGRAPH-R1-R3-FRESH",
+  "status": "julia_fixture_failure",
+  "scope": "manufactured_conditional_egraph/screen_only",
+  "serial_order": ["python_oracle", "julia_tests"],
+  "python_oracle": {"pid": 98120, "start": "2026-09-16T21:52:55.6607804+08:00", "end": "2026-09-16T21:52:56.7161441+08:00", "exit": 0, "stdout": "raw/python_oracle.stdout.raw", "stderr": "raw/python_oracle.stderr.raw"},
+  "julia_tests": {"pid": 75144, "start": "2026-09-16T21:53:16.0268370+08:00", "end": "2026-09-16T21:54:48.1004551+08:00", "exit": 1, "stdout": "raw/julia_tests.stdout.raw", "stderr": "raw/julia_tests.stderr.raw", "failure": "build_inverse(d,a) invalid at test line 66"},
+  "hashes": {"python_stdout": "FBADEA511E25DF6F6DDD4ADE00E856D2FEF1A5AB0BF9BD59177E3495E063FBD6", "python_stderr": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "julia_stdout": "B419DF33012CF62C5D12FF7A7AC105033676B2204ECE2097DA9755D22FA237B7", "julia_stderr": "F6C78560331B199065C62D35D31527BBA20431A1F954B806F5B83AA3AD415C1B1", "test": "E492214B561A1E2686E908793734944FE6E381790E73A329D560EBA07C74B67E", "diagnostic_probe": "DBD53792F3569BC74AFAC7E196D7EC4E7C239505B721C17C44638B587D89A007"},
+  "claims_not_made": ["UP5-01", "B00", "B04", "R", "L4", "parent_goal", "semantic_edit", "physical_equivalence", "provider_evidence", "search_proof"]
+}

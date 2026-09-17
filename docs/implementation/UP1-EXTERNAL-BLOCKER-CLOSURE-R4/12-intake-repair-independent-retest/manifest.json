@@ -1,0 +1,96 @@
+{
+  "schema": "UP1.authoritative-intake-r4.repair-independent-retest.v1",
+  "verdict": "pass_limited",
+  "formal_credit": "none",
+  "authority_credit": false,
+  "no_publish": true,
+  "scope": "offline local software-boundary retest only; no external send, acknowledgement, credentials, AD/S3, or promotion",
+  "frozen_inputs": {
+    "implementation_root": "tools/up1_external_closure_r4/authoritative_intake",
+    "focused_test": "test/up1_external_closure_r4/authoritative_intake/test_intake_contract.py",
+    "existing_probe": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/04-intake-independent-test/independent_intake_probe.py",
+    "implementation_intake_py_sha256": "d8034a069a2607510689eeb88483c3a9727c6c4fd9495554f0bd78e028182280",
+    "implementation_unchanged_before_after": true,
+    "focused_test_unchanged_before_after": true,
+    "existing_probe_unchanged_before_after": true
+  },
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r4/authoritative_intake -p test_*.py -v",
+  "focused_runs": [
+    {
+      "run": 1,
+      "pid": 104164,
+      "start_utc": "2026-09-17T01:42:24.8578831Z",
+      "end_utc": "2026-09-17T01:42:25.6611453Z",
+      "exit": 0,
+      "tests": 14,
+      "failures": 0,
+      "skipped": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "9e23ffa433527bbe7cfb6902c8c9201092dd48a61ceede995fc5719c1c107689",
+      "process_receipt": "raw/retest_run_01.process.json"
+    },
+    {
+      "run": 2,
+      "pid": 91336,
+      "start_utc": "2026-09-17T01:42:38.4142377Z",
+      "end_utc": "2026-09-17T01:42:39.1886151Z",
+      "exit": 0,
+      "tests": 14,
+      "failures": 0,
+      "skipped": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0614b963a6b53010a6e718f598d687f8d8c951be33dadb46e2b50b36059a9ea3",
+      "process_receipt": "raw/retest_run_02.process.json"
+    }
+  ],
+  "existing_adversarial_probe": {
+    "pid": 49984,
+    "start_utc": "2026-09-17T01:42:52.8811708Z",
+    "end_utc": "2026-09-17T01:42:53.6325906Z",
+    "exit": 1,
+    "records": 10,
+    "passed": 9,
+    "failed": 1,
+    "failure": "hardlink_digest_alias_rejected expected immutable_collision or reparse_path, observed immutable_alias",
+    "semantic_hardlink_rejection": true,
+    "stdout_sha256": "e37b4ccec354c5702cc827e8b89b15d6c63da3c90a2e32ac45286a91857dd36b",
+    "process_receipt": "raw/adversarial_probe.process.json"
+  },
+  "repair_boundary_oracle": {
+    "script": "repair_boundary_probe.py",
+    "script_sha256": "7b93403b29ef34164ef2aaa770d0528567ec6fa58c8da12318639f6c4f536cec",
+    "pid": 108460,
+    "start_utc": "2026-09-17T01:43:53.3461555Z",
+    "end_utc": "2026-09-17T01:43:54.0537361Z",
+    "exit": 0,
+    "records": 2,
+    "passed": 2,
+    "skipped": 0,
+    "hardlink_observed": "immutable_alias",
+    "path_escape_observed": "path_escape",
+    "outside_created": false,
+    "stdout_sha256": "f842be15b35b07c0e4c689e6b6e9274fe99b26fd7223475903a477742deddbc6",
+    "process_receipt": "raw/repair_boundary_probe.process.json"
+  },
+  "symlink_reparse": {
+    "status": "environment_limited_skip",
+    "reason": "Windows WinError 1314: required privilege is not held",
+    "not_promoted_to_safety_claim": true
+  },
+  "raw_receipts": [
+    "raw/frozen_before.json",
+    "raw/frozen_after.json",
+    "raw/retest_run_01.stdout.txt",
+    "raw/retest_run_01.stderr.txt",
+    "raw/retest_run_01.process.json",
+    "raw/retest_run_02.stdout.txt",
+    "raw/retest_run_02.stderr.txt",
+    "raw/retest_run_02.process.json",
+    "raw/adversarial_probe.stdout.json",
+    "raw/adversarial_probe.stderr.txt",
+    "raw/adversarial_probe.process.json",
+    "raw/repair_boundary_probe.stdout.json",
+    "raw/repair_boundary_probe.stderr.txt",
+    "raw/repair_boundary_probe.process.json"
+  ]
+}

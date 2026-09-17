@@ -1,0 +1,17 @@
+{
+  "schema": "UP1ExternalBlockerClosureR2InterfaceContractsV1",
+  "status": "frozen_contract_only",
+  "absence_types": ["typed_absent", "terminal_deferred", "not_applicable", "program_exception", "fail_closed"],
+  "common_fields": ["schema", "version", "candidate_id", "source_ref", "source_version", "canonical_sha256", "authority_ref", "four_axes", "status", "claim_ceiling", "inputs", "outputs", "receipt"],
+  "rules": {"canonical_bytes": "hash before/after every source, declaration, package and identity transition", "same_candidate": "all G1/G2/G3 and downstream refs must bind exact candidate and authority", "unknown": "unknown external facts are typed_absent, never null-as-present", "contradiction": "structural mismatch is deterministic fail_closed", "fault": "unexpected tool/runtime fault is program_exception and cannot promote"},
+  "interfaces": [
+    {"id": "DeclarationV1", "producer": "G1/G2/G3 V1 source owner", "consumer": "T0", "input": ["layer", "candidate key", "source/version", "canonical source bytes/hash", "four axes", "authority record or absence"], "output": ["typed declaration or AbsentDeclaration", "declaration hash", "receipt"], "absence": "missing authority/source/provider => typed_absent; no synthesized ref/hash"},
+    {"id": "T0BundleV1", "producer": "T0", "consumer": "authority_recheck", "input": ["exactly one G1 and one G2 record", "G3 declaration records", "same-candidate parent baseline", "four axes"], "output": ["canonical bundle", "per-layer records", "absence/fail_closed reason"], "absence": "duplicate/missing/unknown layer or target mismatch => fail_closed; missing authority => typed_absent"},
+    {"id": "AuthorityRecheckV1", "producer": "authority_recheck", "consumer": "T1", "input": ["T0 bundle", "fresh external authority record or typed absence", "canonical bytes"], "output": ["checked_present or typed_absent", "recheck receipt", "recomputed hashes"], "absence": "unchanged external set => terminal_deferred/no_publish; legacy authority cannot be synthesized"},
+    {"id": "CandidateStatePackageVNext", "producer": "T1", "consumer": "T2", "input": ["checked T0 bundle", "same-candidate declarations", "authority receipt", "candidate binding"], "output": ["candidate package", "typed child slots", "package hash"], "absence": "any missing required child remains typed_absent; no actual candidate identity"},
+    {"id": "IdentityReceiptAggregateV1", "producer": "T2/aggregate", "consumer": "UP2-00", "input": ["T2 refs/axes/package/E0/G-I1A/E1/E2/UP2 receipts", "independent exits"], "output": ["lineage aggregate", "fresh input hashes"], "absence": "stale, foreign, or changed upstream receipt => fail_closed and rebuild required"},
+    {"id": "TypedPrecompilerV1", "producer": "UP2-00", "consumer": "UP1-04B", "input": ["aggregate", "N01-N10 schema/value inputs"], "output": ["typed value/absence result", "validation receipt"], "absence": "contract-only typed absence; no formal B00/B04 credit"},
+    {"id": "FormalBenchmarkPackageV1", "producer": "UP1-04B", "consumer": "UP1-04", "input": ["final schema", "candidate identity", "aggregate"], "output": ["B00 F0-F5", "50 fresh B04", "independent checker", "two-process replay", "label erase/swap"], "absence": "missing any formal artifact leaves gate open/locked"}
+  ],
+  "forbidden_promotions": ["local hash to trusted source", "software test to physical evidence", "typed absence to present child", "historical receipt to fresh receipt", "screen/proxy to B00/B04", "any component result to R01-R10 credit"]
+}

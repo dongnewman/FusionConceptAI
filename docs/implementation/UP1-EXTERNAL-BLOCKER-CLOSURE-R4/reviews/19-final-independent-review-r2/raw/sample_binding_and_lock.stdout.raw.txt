@@ -1,0 +1,22 @@
+probe: merge_stage_results with atomic_bundle.candidate_id=A and authoritative_intake.candidate_id=B
+status=fail_closed
+decision=rejected_all
+failure_codes=['BINDING_CONFLICT']
+conflicted_binding_candidate_id=None
+no_publish=True
+formal_credit=none
+authority_credit=False
+t0_executed=False
+s3_executed=False
+
+probe: OfflineIntegrationOrchestrator().run({})
+status=terminal_deferred
+decision=terminal_deferred
+no_publish=True
+formal_credit=none
+authority_credit=False
+t0_executed=False
+s3_executed=False
+network_access=False
+runtime_execution=False
+

@@ -1,0 +1,24 @@
+{
+  "schema": "M4-D-COUPLED-SOLVE-CONTROL-TEST-EXECUTION-V1",
+  "status": "execution_complete_review_pending",
+  "claim_ceiling": "manufactured_coupled_solve_control",
+  "evidence_scope": "screen_only",
+  "ownership": {
+    "test_owner": "gpt-5.6-luna-high-m4d-tests",
+    "source_owner": "separate M4-D source implementer",
+    "integration_owner": "not this work order",
+    "review_owner": "not this work order"
+  },
+  "inputs": {
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl": {"sha256": "0B456DCC0DF3BD13A1941AA502A9CC5347912B2FA86CDA6C65900449299B8E57"},
+    "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl": {"sha256": "0445EC58F35EBBF5E34AE032611BEFAB7050A0A65D2A376CCD37B71A0E9A936C"},
+    "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl": {"sha256": "20804BAFB5D42152D220A1D25897F6B460C7056B0C695DBAA5153C0D113710FA"},
+    "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl": {"sha256": "A26D8DD66ED8D639FDDAC16590EE398C6A6FF32847F5020EC7C322BDB853B465"},
+    "test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl": {"sha256": "CF303AC006C7F2DD47F73487015A08DD27D376875065114B3B759AB63C828D2E"},
+    "test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py": {"sha256": "9CA3C1C012690C7C06579D0AB5FFD274666E340C900C59E49F7A93408A0FCBE3"}
+  },
+  "execution_order": ["python_oracle_r1", "julia_tests_attempt_001", "julia_tests_attempt_002", "julia_tests_r3_superseded", "julia_tests_r4_authoritative"],
+  "api_boundary": ["isolated include A/B/C/D", "exact Fraction oracle", "no iterative solver", "no PDE/mesh/provider/production entry"],
+  "negative_controls": ["foreign C", "grid mismatch", "nonbijective mapping", "singular block", "non-SPD block", "wrong RHS", "unit", "equation", "source", "source owner", "conservation owner", "provenance", "nonzero residual"],
+  "parent_credit": "none; no UP2/B00/B04/R01-R10/L4 or parent closure"
+}

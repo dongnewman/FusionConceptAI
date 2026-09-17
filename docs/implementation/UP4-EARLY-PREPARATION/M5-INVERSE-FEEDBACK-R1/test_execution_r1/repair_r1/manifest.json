@@ -1,0 +1,14 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-REPAIR-R1",
+  "status": "started",
+  "reason": "source P1 adds nested upstream snapshots; expand corruption regression coverage",
+  "source_p1_sha256_prefix": "f0dcf8aa...53976",
+  "execution_order": ["python_oracle", "julia_isolated_tests"],
+  "python_command": "python test/RuntimeV4/M4Isolated/oracles/inverse_feedback_oracle_v1.py",
+  "julia_command": "julia --startup-file=no --history-file=no test/RuntimeV4/M4Isolated/manufactured_inverse_feedback_v1_tests.jl",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": false,
+  "preserve": ["parent R1 103/103 evidence", "R1 review changes_requested", "all failed attempts"],
+  "artifacts": {"raw": "raw/", "archive_raw": "archive/raw/", "execution_summary": "execution_summary.json", "validation": "validation_receipt.json", "report": "report.md", "cleanup": "cleanup_inventory.json"}
+}

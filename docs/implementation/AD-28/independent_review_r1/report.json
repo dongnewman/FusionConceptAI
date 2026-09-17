@@ -1,0 +1,60 @@
+{
+  "review_id": "AD-28-independent-review-r1",
+  "subject": "docs/implementation/AD-28/",
+  "verdict": "changes_requested",
+  "pass_scope_if_corrected": "architecture and preparation work-order boundary only",
+  "claim_ceiling": "architecture_and_preparation_boundary_only_no_execution_no_provider_mesh_physical_or_R01-R10_credit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "baseline": {
+    "status_rows_current": 295,
+    "ad28_captured_before_rows": 294,
+    "julia_desc_exact_name_processes": 0,
+    "julia_desc_invoked": false,
+    "protected_hashes_match": true,
+    "core_output_hashes_match_ad28_manifest": true,
+    "ad28_archive_hashes_match": true
+  },
+  "work_orders": {
+    "UP2-01-G1-DIFFUSION-V1": {"status": "planned", "scope_status": "proposal", "accepted": false, "depends_on": ["UP1-01", "UP1-02", "UP1-03"], "input_output_scope_exit_present": true, "writable_scope_present": true},
+    "UP2-01-G2-METRIC-BOUNDARY-V1": {"status": "planned", "scope_status": "proposal", "accepted": false, "depends_on": ["UP1-01", "UP1-02", "UP1-03"], "input_output_scope_exit_present": true, "writable_scope_present": true},
+    "UP2-01-G3-SOURCE-FEEDBACK-V1": {"status": "planned", "scope_status": "proposal", "accepted": false, "depends_on": ["UP1-01", "UP1-02", "UP1-03"], "input_output_scope_exit_present": true, "writable_scope_present": true},
+    "UP1-04A-VNEXT": {"status": "planned", "scope_status": "proposal", "accepted": false, "depends_on": ["UP1-04A", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP2-01-G3-SOURCE-FEEDBACK-V1"], "fresh_candidate_and_full_identity_rebuild": true, "old_receipt_reuse": false}
+  },
+  "dag": {
+    "sequence": ["UP1-01/02/03", "UP2-01-G1-DIFFUSION-V1 + UP2-01-G2-METRIC-BOUNDARY-V1 + UP2-01-G3-SOURCE-FEEDBACK-V1", "UP1-04A-VNEXT", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+    "acyclic": true,
+    "task_count": 31,
+    "new_nodes_proposal_or_planned": true,
+    "new_nodes_accepted_false": true,
+    "complete_UP1_04_gate_for_UP2_01": true,
+    "old_accepted_limited_reused": false
+  },
+  "consistency_findings": {
+    "readme_legacy_chain_omits_vnext": {"status": "changes_requested", "evidence": "docs/v4_multitopology_generation/README.md:75 and :99-105", "reason": "unqualified earlier execution-chain text conflicts with the AD-28 machine DAG"},
+    "core16_up2_00_ready_vs_manifest": {"status": "changes_requested", "evidence": "docs/v4_multitopology_generation/16_execution_work_orders.md:350; docs/v4_multitopology_generation/task_manifest.json:434-481", "reason": "core16 says current ready while machine status remains planned, accepted=false and total review_pending"},
+    "core_machine_dag": {"status": "pass", "evidence": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md:248-260; task_manifest AD-28 nodes"}
+  },
+  "actual_a_boundary": {
+    "G1_u_K_f": "absent; 0D temperature/auxiliary only",
+    "G2_metric_mesh_face_ownership": "structural declarations only; not executed",
+    "G3_feedback_authority": "absent; terminal_deferred",
+    "current_n06_sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "R01_R10_shrunk": false,
+    "physical_credit": false
+  },
+  "required_corrections": [
+    "Mark the earlier README execution chain as historical/pre-AD28 or include UP1-04A-VNEXT.",
+    "Qualify core16 UP2-00 current ready wording to match planned/review_pending/accepted=false total-gate status.",
+    "Rerun plan, DAG, JSON and hash QA after wording corrections; keep AD-28 proposal/review_pending and accepted=false."
+  ],
+  "qa": {
+    "validate_plan_exit": 0,
+    "json_parse": "pass",
+    "task_dag_acyclic": true,
+    "git_diff_check_exit": 0,
+    "julia_desc_execution": "not_run",
+    "write_scope": "docs/implementation/AD-28/independent_review_r1/ only"
+  }
+}
+

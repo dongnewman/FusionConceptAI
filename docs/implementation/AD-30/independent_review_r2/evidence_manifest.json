@@ -1,0 +1,70 @@
+{
+  "manifest_version": "AD-30-independent-review-r2-evidence-v1",
+  "record_kind": "architecture_independent_review",
+  "review_id": "AD-30-independent-review-r2",
+  "status": "pass_limited",
+  "resolution": "review_pending",
+  "accepted": false,
+  "root_recommendation": "accepted_limited_architecture_boundary_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewed_inputs": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 56742, "sha256": "d913df0b895764d5d31e5c5d81acf06aeb5acef5d01e6c9f941b14f93416ccd6"},
+    "docs/implementation/AD-30/proposal.md": {"bytes": 5030, "sha256": "b5d7f1d8fd1f781e26994e0b6253065ce560050a314663afb778b0949165b7c8"},
+    "docs/implementation/AD-30/repair_r2/report.md": {"bytes": 3962, "sha256": "b0c5daeea678a888866fb9cb3b08a06a98d4be8a939139a310d9289082958002"},
+    "docs/implementation/AD-30/repair_r2/evidence_manifest.json": {"bytes": 3827, "sha256": "0fae58dad2c59312b74485b33d36ed592bf065b4c60450862a9a7dc973e1fc95"},
+    "docs/implementation/AD-19/acceptance.md": {"bytes": 3024, "sha256": "eef6613da8ac130fd9e01f4dec0df58e76e0c4d0289ef8bf05557bd9bb16bc76"},
+    "docs/implementation/AD-28/proposal.md": {"bytes": 3153, "sha256": "4324faef2f53cb3d62c79a85082c8c4086ab5b02f40d79e1df37947da7fc02fe"},
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 30773, "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {"bytes": 27969, "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"},
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {"bytes": 16452, "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"},
+    "src/Contracts/CandidateStatePackageV5.jl": {"bytes": 13496, "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"}
+  },
+  "review_outputs": {
+    "report.md": {"bytes": 8221, "sha256": "a041373109ec5b77adaaba24c295ff9f2037ff084b9cfbc3a054930965394e95"},
+    "report.json": {"bytes": 2519, "sha256": "745733a5b9229f3430cd601b7b6647f9782ce5c4d5ae06653e721deed7af76c3"},
+    "command_receipts.json": {"bytes": 956, "sha256": "d0e1c2f9cdc0ee2489e71360508c12fee3e0808ddc588ec7466024630c681ce0"}
+  },
+  "validation": {
+    "repair_manifest_json_tool_exit": 0,
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 363,
+    "task_count": 31,
+    "task_dag_acyclic": true,
+    "julia_run": false,
+    "desc_run": false
+  },
+  "dirty_protection": {
+    "repair_snapshot_entries": 3914,
+    "repair_snapshot_status_sha256_utf8_lf": "50f0745b64910c2d2ea273a6ed0f22ca7c832b5068573dd71e36f5ffd293ba3d",
+    "review_prewrite_entries": 3929,
+    "review_prewrite_status_sha256_utf8_lf": "9e3b472f311c329f9fee0b9d07efce3e9288ad8b4461b7af1a83b6c113e0385e",
+    "review_postwrite_entries": 3945,
+    "review_postwrite_status_sha256_utf8_lf": "902d14c3e4d6a18e55ebd7ab5d16c5eae9ae5a3f87eafb5dc766d64f222f5334",
+    "concurrent_dirty_drift": true,
+    "before_repair_status_available": false,
+    "protected_core_files_unchanged_from_repair": true
+  },
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "R01_R10": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false
+  },
+  "scope": {
+    "written": [
+      "docs/implementation/AD-30/independent_review_r2/report.md",
+      "docs/implementation/AD-30/independent_review_r2/report.json",
+      "docs/implementation/AD-30/independent_review_r2/command_receipts.json",
+      "docs/implementation/AD-30/independent_review_r2/evidence_manifest.json"
+    ],
+    "core_source_and_legacy_boundaries_edited": false
+  },
+  "self_hash_excluded": true
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "m1-execution-closure-root-acceptance-validation-v1",
+  "task_id": "UP0-01/m1_execution_closure_r1/root_acceptance_r1",
+  "validation_kind": "documentation_validation",
+  "code_tests": "not_applicable",
+  "julia_solver_execution": "not_run",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "command": "python -c inline M1 root-acceptance JSON/exact-scope/static assertions",
+  "pid_or_in_process": 49236,
+  "started_utc": "2026-09-16T05:21:42.955814+00:00",
+  "ended_utc": "2026-09-16T05:21:42.956913+00:00",
+  "exit_code": 0,
+  "stdout_raw": "archive/root_acceptance_validation.stdout.raw",
+  "stderr_raw": "archive/empty.stderr.raw",
+  "stdout_sha256": "237f707a381b40a585e4cf38c9f8fb9ecf6cb2eb0d7d6ba939cd8328910ebf17",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "combined_sha256": "237f707a381b40a585e4cf38c9f8fb9ecf6cb2eb0d7d6ba939cd8328910ebf17",
+  "input_hashes": {"head": "b2c04d8339774635aaecd73651efcdb101e01b5d", "m1_independent_review_r3": "read_only_review_basis"},
+  "output_hashes": "archive/root_acceptance_hashes.json",
+  "status": "pass_limited; Sol/root accepted M1 reproducibility preparation only"
+}

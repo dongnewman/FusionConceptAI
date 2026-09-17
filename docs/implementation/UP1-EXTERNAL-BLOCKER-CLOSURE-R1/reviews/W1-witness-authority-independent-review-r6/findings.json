@@ -1,0 +1,26 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r6.findings.v1",
+  "conclusion":"rework_required",
+  "claim_ceiling":"preparation_only",
+  "formal_credit":false,
+  "closed_checks":{
+    "actual_owned_exact_set":"pass_51_of_51",
+    "manifest_cleanup_nonself_keyset":"pass_49_of_49_same_keys",
+    "r4_raw_retention":"pass_both_retained_due_stdout_difference",
+    "W1-R2-P2-001":"closed_no_regression",
+    "json_unique_parse":"pass"
+  },
+  "findings":[
+    {
+      "id":"W1-R6-P2-001",
+      "severity":"P2",
+      "title":"cleanup current hash map has one stale validation-receipt hash",
+      "status":"open",
+      "evidence":["witness_authority/cleanup_inventory.json#/final_exact_owned_set/validation_receipt.json","witness_authority/manifest.json#/product_hashes_at_manifest_preimage/validation_receipt.json","witness_authority/validation_receipt.json"],
+      "observation":"Manifest current map records cf2254b4959406f94908fd0c9fce99270ce9c416023093b1b6a103263f901980 and no longer contains old 570577..., but cleanup still records 570577dbc2aa023c3a3d5153d7ee52f0635853c80e8900c2b39f357a0b8d056e. Actual=owned is 51 and non-self key sets are equal at 49, but only 48/49 cleanup hashes match.",
+      "required_action":"Update the single cleanup validation_receipt row to cf2254..., preserve self-exclusion only for manifest and cleanup, and independently recheck 49/49 hashes."
+    }
+  ],
+  "regression_observations":{"pid":34140,"exit":0,"foreign_layer":"ERR_FOREIGN_LAYER_CANDIDATE","foreign_axis":"ERR_FOREIGN_AXIS_CANDIDATE","expected_fields_read":0},
+  "prohibited_actions":["do not modify witness in this review","do not delete retained raw files","do not create AD or open formal gate"]
+}

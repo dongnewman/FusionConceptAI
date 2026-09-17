@@ -1,0 +1,57 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-launcher-audit-r2",
+  "reviewer": "independent_luna_high_static",
+  "disposition": "launcher_failure_confirmed",
+  "focused_result": "not_executed",
+  "accepted": false,
+  "review_pending": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "launcher_error": {
+    "artifact": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/focused_r2/launcher_error.txt",
+    "cause": "PowerShell $PID is read-only/constant",
+    "line": 36,
+    "assignment": "$pid = $p.Id",
+    "sha256": "b816f60b876a9a7f1a934253907622ab21dd6809b83d13d52487c85b73a84266"
+  },
+  "runtime_capture": {
+    "started_once_recorded": true,
+    "child_pid_captured": false,
+    "wait_for_exit_completed": false,
+    "exit_code": null,
+    "stdout_captured": false,
+    "stderr_captured": false,
+    "test_result_claimable": false
+  },
+  "process_and_dirty_audit": {
+    "process_before_entries": 0,
+    "process_after_entries": 0,
+    "current_julia_desc_processes": 0,
+    "dirty_rows_before": 301,
+    "dirty_rows_after": 301,
+    "dirty_snapshots_equal": true
+  },
+  "input_hashes_equal_pre_post": true,
+  "safe_retry_gate": {
+    "task_specific_pid_variable": "$childProcessId",
+    "redirect_before_start": true,
+    "wait_for_exit_and_capture_code": true,
+    "raw_stdout_stderr_drain_and_hash": true,
+    "preserve_process_dirty_and_input_receipts": true
+  },
+  "claim_ceiling": [
+    "no_focused_result",
+    "accepted_false",
+    "review_pending",
+    "no_compiler_acceptance",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ]
+}

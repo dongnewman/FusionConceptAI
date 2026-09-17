@@ -1,0 +1,56 @@
+AD41-R3 current-state pointer and before/after hash validation
+PID=84084
+UTC_START=2026-09-15T08:40:04.8291812Z
+main_manifest_parse=true
+r2_manifest_parse=true
+superseded_pointer=true
+current_pointer=true
+before_hash=true
+after_hash=true
+W1_correct=true
+W2_W4=true
+no_credit=true
+failed_attempt_preserved=true
+UTC_END=2026-09-15T08:40:04.8697250Z
+EXIT=0
+
+AD41-R3 39-task DAG validation
+PID=71412
+UTC_START=2026-09-15T08:40:17.4220951Z
+task_count=39
+processed=39
+acyclic=true
+missing=[]
+UTC_END=2026-09-15T08:40:17.4451288Z
+EXIT=0
+
+AD41-R3 plan validator
+PID=84916
+UTC_START=2026-09-15T08:40:24.8143703Z
+markdown_files_checked=31
+relative_links_checked=485
+task_count=39
+task_dag_acyclic=true
+errors=[]
+UTC_END=2026-09-15T08:40:24.8143703Z
+EXIT=0
+
+AD41-R3 repair_r2 path/control validation
+PID=44756
+UTC_START=2026-09-15T08:40:39.3260276Z
+repair_r2_receipt_paths_checked=3
+issues=[]
+path_scope=true
+control_chars=true
+UTC_END=2026-09-15T08:40:39.6075873Z
+EXIT=0
+
+AD41-R3 repair_r2 raw receipt hash validation
+PID=30140
+UTC_START=2026-09-15T08:40:50.4818985Z
+stdout_match=true
+stderr_match=true
+receipt_match=true
+pass=true
+UTC_END=2026-09-15T08:40:50.5152227Z
+EXIT=0

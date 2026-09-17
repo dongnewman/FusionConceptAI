@@ -1,0 +1,44 @@
+{
+  "work_order": "UP2-00E-N06-SOURCE-FIELD-LEDGER",
+  "attempt": "focused_r9",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "main_pid": 33600,
+  "child_pids_observed": [
+    13708,
+    54652,
+    55796,
+    72544,
+    73372,
+    77544,
+    79896,
+    80456,
+    80604
+  ],
+  "started_utc": "2026-09-14T05:51:13.909664Z",
+  "ended_utc": "2026-09-14T05:53:15.179636Z",
+  "real_exit": 1,
+  "classification": "program_exception",
+  "input_hashes_match": true,
+  "stdout": {
+    "path": "stdout.log",
+    "bytes": 4652,
+    "sha256": "f5e260c982bea274fef3971d3be7776cf579b9b690711c6805001735824f8e33"
+  },
+  "stderr": {
+    "path": "stderr.log",
+    "bytes": 335,
+    "sha256": "83dcb1d7da537842e8ca9f65f2d8af0dcf7cf571e2f7161a726cc09532ebddd8"
+  },
+  "postflight": "",
+  "protected_before_after_match": true,
+  "prior_failures_preserved": true,
+  "no_retry_in_round": true,
+  "compile_calls": 0,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "physical": false,
+  "provider": false,
+  "engineering": false,
+  "b00_b04": false
+}

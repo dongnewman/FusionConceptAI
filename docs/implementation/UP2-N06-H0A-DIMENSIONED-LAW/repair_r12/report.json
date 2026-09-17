@@ -1,0 +1,14 @@
+{
+  "schema_version": "H0A-repair-r12",
+  "status": "repair_static_complete_diagnostic_inconclusive",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": {"focused": "not_run", "diagnostic": "executed_once_exit1_harness_failure", "desc": "not_run"},
+  "diagnostic": {"path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/diagnostic_r12/diagnostic_r12.jl", "pid": 23916, "exit_code": 1, "utc_before": "2026-09-14T21:53:26.7808964Z", "utc_after": "2026-09-14T21:53:38.0702554Z", "stdout_bytes": 272, "stdout_sha256": "58ec17309e64723b09d28749543d3a78c526c853b2677cf88aa207c199f03d4e", "stderr_bytes": 2455, "stderr_sha256": "d34d59ba7298d335f3141247a2038ce6c9ac461dfa79dcdc88097b7376d8240e", "dirty_rows_before": 303, "dirty_rows_after": 303, "julia_desc_before": 0, "julia_desc_after": 0, "failure": "diagnostic harness omitted load_genome_v5_up2_components!; UndefVarError MechanismGenomeV5 during fixture deserialize"},
+  "repair": {"source_modified": false, "test_change": "guard declaration field assertions and validate call behind typed absent declaration", "status_assertion_preserved": true, "program_exception_not_downgraded": true},
+  "before_after": {"src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {"before": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251", "after": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251"}, "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {"before": "eadd8c19344a117edeaa5ffad4fbe6f9e1300d3c81388918b00c63876efa10e5", "after": "809a745ab0af4add6ba8f33d7f273f4573fe8bbc98ce64e9400d9edf113d667d"}},
+  "protected_inputs": {"test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"}, "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": {"bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"}},
+  "static_qa": {"json_fixture_parse": true, "hashes_verified": true, "julia_desc_run_after_diagnostic": false},
+  "claim_ceiling": ["contract_only", "schema_validation_only", "actual_A_unresolved", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R_credit"],
+  "next_gate": "Corrected one-shot diagnostic or independent Luna review; no focused rerun in this turn."
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "UP1.external-blocker-closure-r2.witness-independent-review-r3.manifest.v1",
+  "status": "pass_limited",
+  "decision": "pass_limited",
+  "accepted": false,
+  "reviewer": {"agent": "/root/up1r2_witness_review", "model": "gpt-5.6-luna", "reasoning_effort": "high", "different_from_owner": true},
+  "claim_ceiling": "contract_software_preparation_only",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/01-witness-independent-review-r3/**",
+  "exact_set": ["attack_review.py", "fresh_pytest_runner.py", "findings.json", "review.md", "cleanup_inventory.json", "manifest.json", "raw/attack_review.stdout.raw", "raw/attack_review.stderr.raw", "raw/attack_review.exit", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw", "raw/pytest.exit", "raw/duplicate_cli.stdout.raw", "raw/duplicate_cli.stderr.raw", "raw/duplicate_cli.exit"],
+  "self_hash_exclusion": ["manifest.json", "cleanup_inventory.json"],
+  "product_hashes": {
+    "attack_review.py": "bb8e24c49bb346e4cb55a942d062da0e09bc21e670583806e7a1501965fe8686",
+    "fresh_pytest_runner.py": "9381ddbd1ab79804215631a3d21b237aa0b8fc297e78328513b57555dc76b119",
+    "findings.json": "e9582929bbdca1fd27ca60cc3d55e3475d1063ab2c82746d1755e2721b327102",
+    "review.md": "ae7c765fd949bf356ee88c70e6efa2018bc127d46a106eb9e4bcd0f5a091e613",
+    "raw/attack_review.stdout.raw": "1d713535e70d971ffe08507c1b417d536707228f8fd21220da2d0a94ecaf315b",
+    "raw/attack_review.stderr.raw": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "raw/attack_review.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/pytest.stdout.raw": "4258855bf09affd111196d65fb047d16879d148875e49b5c22ba4c36adc5b7ae",
+    "raw/pytest.stderr.raw": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "raw/pytest.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/duplicate_cli.stdout.raw": "1a79f94b406c21e68318d038769928c6f548168246d5f65c85d622c7a612fa67",
+    "raw/duplicate_cli.stderr.raw": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "raw/duplicate_cli.exit": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+  },
+  "source_hashes": {
+    "tools/up1_external_closure_r2/witness_authority/__init__.py": "8014c6f342bb3e9d3fa35e2da6276b00fa89e8435c664421d569fb2eeeed1522",
+    "tools/up1_external_closure_r2/witness_authority/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "tools/up1_external_closure_r2/witness_authority/cli.py": "3d2289193c0d2a4097784261096c1f91b8a409b5c31a3aa7ec1ad15f8dfa0be6",
+    "tools/up1_external_closure_r2/witness_authority/validator.py": "220a6dd0f4a605188feb22f8c2d981926821599c84322e5560f7ebc44a251be6",
+    "test/up1_external_closure_r2/witness_authority/test_witness_authority.py": "40ac6d4d747879cedd5a3b37856791dcff8eccfc77d9f5390f37a20022227a75",
+    "test/up1_external_closure_r2/witness_authority/fixtures/missing_field_negative.json": "0bdcbe289f31c165d3302dfaf0aeef3ebb4d7387b2ef686d7d892404b8b855c2",
+    "test/up1_external_closure_r2/witness_authority/fixtures/negative_cases.json": "09cbdcfd5ccfcd25687e914ba8161aab7db3499026c05fffb2b61fb982b7e433",
+    "test/up1_external_closure_r2/witness_authority/fixtures/production_witness_absent.json": "d1fa0d5fbadab600537b6cc17fef06fa76b56ca910e5a201e3521f3dc8811334",
+    "test/up1_external_closure_r2/witness_authority/fixtures/test_only_shape.json": "158fa2a3ac12b96ba09e9f8e4446592ea4a44fc80bd150d6a358424992cfd886"
+  },
+  "criteria_hashes": {
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/01-witness-authority/contract.md": "6e946872c19d7a8ee179d6bd3c9e1f7440942f17bb4eec3eed537ea608dfc411",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/interface_contracts.json": "857dc027eb53569a5fd3233f8fe113ac9498a37e7a63579685c2ca4e7487a85e",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/13-threat-model/acceptance_requirements.json": "d0a58a58e5c22a798c8d8d68c8a4b1ed742f156292321119912b9aceb7a1e965",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/review_protocol.md": "650a8dfc292088c7db7a33ef608035815a3b34fc0570faeddbbcd669354c6cf2"
+  },
+  "runs": {
+    "attack_probe": {"command": "python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/01-witness-independent-review-r3/attack_review.py", "pid": 112764, "exit_code": 0, "utc_started": "2026-09-16T18:36:20.351082Z", "utc_ended": "2026-09-16T18:36:20.594408Z"},
+    "focused_tests": {"command": "python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/01-witness-independent-review-r3/fresh_pytest_runner.py", "reviewer_pid": 59324, "child_pid": 26708, "exit_code": 0, "utc_started": "2026-09-16T18:36:35.753592Z", "utc_ended": "2026-09-16T18:36:36.462605Z", "passed": 12},
+    "duplicate_json_cli": {"command": "python -B tools/up1_external_closure_r2/witness_authority/cli.py", "pid": 95912, "exit_code": 2, "utc_started": "2026-09-16T18:19:19.298915Z", "utc_ended": "2026-09-16T18:19:19.299012Z"}
+  },
+  "formal_credit": false,
+  "external_mutation": false,
+  "heavy_lane_run": false,
+  "labels": {"TEST_ONLY": true, "non_evidence": true, "no_publish": true}
+}

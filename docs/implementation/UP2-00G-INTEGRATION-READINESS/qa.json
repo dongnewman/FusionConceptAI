@@ -1,0 +1,30 @@
+{
+  "work_order": "UP2-00G-INTEGRATION-READINESS",
+  "checked_at_utc": "2026-09-14T03:42:03.852368+00:00",
+  "checks": {
+    "json:input_hashes.json": 0,
+    "json:manifest.json": 0,
+    "json:qa.json": 0,
+    "control:build_audit.py": 0,
+    "control:input_hashes.json": 0,
+    "control:manifest.json": 0,
+    "control:qa.json": 0,
+    "control:qa_json_input.log": 0,
+    "control:qa_json_manifest.log": 0,
+    "control:report.md": 0,
+    "matrix_rows": 50,
+    "matrix_exact_50": 0,
+    "process_sweep_exit": 0,
+    "julia_desc_zero": 0,
+    "validate_plan_exit": 0,
+    "git_diff_check_exit": 0
+  },
+  "process_sweep": [],
+  "commands": {
+    "json_parse": "python json.load",
+    "validate_plan": "python docs/v4_multitopology_generation/validate_plan.py",
+    "git_diff_check": "git diff --check",
+    "process_sweep": "Get-CimInstance Win32_Process julia|desc"
+  },
+  "note": "Read-only audit did not start Julia/DESC. Existing Julia processes observed during capture are not attributed to this work order; no process was killed."
+}

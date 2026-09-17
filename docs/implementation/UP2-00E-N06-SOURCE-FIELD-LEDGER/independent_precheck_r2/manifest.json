@@ -1,0 +1,45 @@
+{
+  "record_kind": "E2-N06-independent-static-precheck-r2",
+  "status": "changes_requested",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "reviewer": "different Luna high; independent static review",
+  "implementation_author": "up0_independent",
+  "scope": "N06 source-field-return-heat-ledger mapping R2 static precheck",
+  "input_hashes": "input_hashes.json",
+  "verdict": "changes_requested",
+  "r1_findings_closed": [
+    "cardinality and duplicate checks for primary G1/G2/G3 collections",
+    "dynamic source paths and source locator/type binding",
+    "semantic_view for N06InvocationCounterV1 is present in frozen source"
+  ],
+  "blocking_findings": [
+    "power_from_effort_flow law does not require both typed effort and flow sources",
+    "selected control-resource link is not bound to selected effort port",
+    "G1 occurrence and G2 region/patch remain helper-only rather than explicit projection authority",
+    "conversion law hash is locally derived and not external source authority"
+  ],
+  "historical_author_runs": {
+    "focused_r1": {"exit": 1, "classification": "program_exception_unsupported_first_generator_default", "preserved": true},
+    "focused_r2": {"exit": 1, "classification": "program_exception_invalid_owner_scope_and_derived_conversion_offset", "preserved": true},
+    "focused_r3": {"exit": 1, "classification": "program_exception_missing_semantic_view_N06InvocationCounterV1", "preserved": true}
+  },
+  "execution": {"julia": "not_run", "desc": "not_run", "independent_focused_run": "not_run"},
+  "classification_boundary": {
+    "missing_cross_layer_or_effort_flow_authority": "terminal_deferred",
+    "present_typed_contradiction": "fail_closed",
+    "unexpected_exception": "program_exception",
+    "formal_B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "required_before_r4": [
+    "enforce or explicitly defer candidate-bound typed effort+flow authority",
+    "bind selected link to selected port or reject ambiguity",
+    "make G1/G2 source authority explicit before closing cross-layer mapping"
+  ],
+  "qa": {"json_parse": "pending final QA", "control_scan": "pending final QA", "source_hash_check": "pending final QA"}
+}

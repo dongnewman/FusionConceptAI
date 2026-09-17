@@ -1,0 +1,36 @@
+{
+  "fixture_id": "AD34-T0-AUTHORITY-RECHECK-V1-FX-001",
+  "candidate_ref": {
+    "id": "fusionconceptai://candidate/up2-01-g3-source-feedback-v1-proposal-001",
+    "version": "v5"
+  },
+  "owner_scope": "candidate-owned-g3",
+  "required_layers": ["G1", "G2"],
+  "legacy_status_mapping": {
+    "actual": {"result": "typed_absent", "resolution": "terminal_deferred", "reason": "legacy_actual_without_declaration_authority"},
+    "missing": {"result": "typed_absent", "resolution": "terminal_deferred", "reason": "legacy_missing_authority"},
+    "historical_absent": {"result": "typed_absent", "resolution": "terminal_deferred", "reason": "legacy_historical_absent_authority"},
+    "stale": {"result": "fail_closed", "reason": "legacy_stale_authority"},
+    "contradictory": {"result": "fail_closed", "reason": "legacy_contradictory_authority"},
+    "unknown": {"result": "fail_closed", "reason": "unmapped_legacy_authority_status"}
+  },
+  "target_key_fields": ["target_layer", "target_path", "quantity", "unit", "direction", "sign", "source_id", "owner_scope"],
+  "legacy_authority_fields": ["layer", "candidate_ref", "contract_ref", "contract_hash", "status", "attestation"],
+  "errors": [
+    "duplicate_upstream_authority_layer",
+    "missing_upstream_authority_layer",
+    "unknown_upstream_authority_layer",
+    "upstream_authority_candidate_mismatch",
+    "unknown_target_layer",
+    "legacy_target_authority_layer_or_candidate_mismatch",
+    "legacy_target_upstream_projection_mismatch",
+    "duplicate_or_ambiguous_feedback_target",
+    "duplicate_feedback_target_id",
+    "synthetic_authority_rejected",
+    "ref_only_authority_rejected",
+    "fixture_authority_rejected",
+    "fresh_authority_missing_field"
+  ],
+  "present_policy": "requires fresh T0-owned declaration ref/hash/canonical bytes/source receipt; legacy, synthetic, ref-only, and fixture inputs cannot produce checked_present",
+  "current_expected": "typed_absent_scaffold_only"
+}

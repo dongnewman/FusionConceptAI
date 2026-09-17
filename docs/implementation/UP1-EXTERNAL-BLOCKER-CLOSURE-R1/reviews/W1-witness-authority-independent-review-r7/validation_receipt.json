@@ -1,0 +1,20 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r7.validation-receipt.v1",
+  "review_scope":"read_only_final_hash_closure_and_regression",
+  "review_utc":"2026-09-17",
+  "conclusion":"pass_limited",
+  "claim_ceiling":"preparation_only",
+  "formal_credit":{"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks":{
+    "actual_file_count":51,
+    "owned_file_count":51,
+    "actual_equals_owned":true,
+    "current_artifact_maps":{"manifest_keys":49,"cleanup_keys":49,"key_sets_equal":true,"excluded_only":["manifest.json","cleanup_inventory.json"],"manifest_hash_matches":49,"cleanup_hash_matches":49},
+    "validation_receipt":{"disk_sha256":"cf2254b4959406f94908fd0f9cfe99270ce9c416023093b1b6a103263f901980","manifest_sha256":"cf2254b4959406f94908fd0f9cfe99270ce9c416023093b1b6a103263f901980","cleanup_sha256":"cf2254b4959406f94908fd0f9cfe99270ce9c416023093b1b6a103263f901980","consistent":true},
+    "old_570577_scope":{"manifest_previous":true,"cleanup_previous":true,"current_map":false,"validation_current":false},
+    "json_unique_parse":"pass",
+    "r3_validator_no_regression":{"pid":34140,"exit":0,"stdout_sha256":"9387c01857f379725bd609273ad1fea15998407952105b14807eca128b11d208","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","foreign_layer":"ERR_FOREIGN_LAYER_CANDIDATE","foreign_axis":"ERR_FOREIGN_AXIS_CANDIDATE","expected_fields_read":0},
+    "prior_safety_findings":"no_regression"
+  },
+  "limitations":["Preparation-only static evidence; no witness, authority, S3, Julia, DESC, mesh, solver, or formal suite.","Pass is limited to hash/fixture/contract closure and cannot unlock formal gates.","No file was modified or deleted by this review."]
+}

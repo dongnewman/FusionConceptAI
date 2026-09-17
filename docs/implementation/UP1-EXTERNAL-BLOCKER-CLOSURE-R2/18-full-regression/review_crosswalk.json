@@ -1,0 +1,181 @@
+{
+  "schema": "UP1-R2.full-regression.review-crosswalk.v1",
+  "generated_utc": "2026-09-16T20:04:14.719156Z",
+  "components": [
+    {
+      "component": "00-contract-freeze",
+      "latest_review": "contract-freeze-independent-review-r1",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/contract-freeze-independent-review-r1/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "01-witness-authority",
+      "latest_review": "01-witness-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_contract_only",
+      "evidence": "reviews/01-witness-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "02-pki-chain",
+      "latest_review": "02-pki-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/02-pki-independent-review-r3/02-pki-independent-review-r3.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "03-revocation-time-replay",
+      "latest_review": "03-revocation-independent-review-r5",
+      "status": "pass_limited_with_test_scope_deferred",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/03-revocation-independent-review-r5/review_report.md",
+      "evidence_exists": true,
+      "deferred": [
+        "foreign_owner_dynamic_fixture",
+        "symlink_or_junction_dynamic_fixture"
+      ]
+    },
+    {
+      "component": "04-source-axis-binding",
+      "latest_review": "04-source-axis-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "TEST_ONLY_non_evidence",
+      "evidence": "reviews/04-source-axis-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "05-g2-mapping",
+      "latest_review": "05-g2-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_structural_only",
+      "evidence": "reviews/05-g2-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "06-environment-provenance",
+      "latest_review": "06-environment-independent-review-r5",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only_screen_only",
+      "evidence": "reviews/06-environment-independent-review-r5/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "07-authority-intake",
+      "latest_review": "07-intake-independent-review-r4",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/07-intake-independent-review-r4/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "08-aggregate-gate",
+      "latest_review": "08-aggregate-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/08-aggregate-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "09-local-discovery",
+      "latest_review": null,
+      "status": "review_not_present_manifest_pass",
+      "claim_ceiling": "preparation_only",
+      "evidence": "09-local-discovery/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "10-environment-capture",
+      "latest_review": null,
+      "status": "review_pending",
+      "claim_ceiling": "preparation_only_screen_only",
+      "evidence": "10-environment-capture/manifest.json",
+      "evidence_exists": true,
+      "deferred": [
+        "candidate_ref_null",
+        "authority_gaps"
+      ]
+    },
+    {
+      "component": "11-source-capture",
+      "latest_review": "external-facts-independent-review-r2_related_crosscut",
+      "status": "pass_limited_related_crosscut",
+      "claim_ceiling": "bookkeeping_only_not_authority",
+      "evidence": "reviews/external-facts-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "12-system-trust-inventory",
+      "latest_review": null,
+      "status": "review_pending",
+      "claim_ceiling": "preparation_only",
+      "evidence": "12-system-trust-inventory/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "13-threat-model",
+      "latest_review": "threat-protocol-independent-review-r2",
+      "status": "pass_limited",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/threat-protocol-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "14-review-protocol",
+      "latest_review": "threat-protocol-independent-review-r2_related_crosscut",
+      "status": "pass_limited_related_crosscut",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/threat-protocol-independent-review-r2/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "15-common",
+      "latest_review": "15-common-independent-review-r3",
+      "status": "pass_limited",
+      "claim_ceiling": "software_bookkeeping_only",
+      "evidence": "reviews/15-common-independent-review-r3/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "16-hygiene-audit",
+      "latest_review": null,
+      "status": "review_not_present_read_only_audit",
+      "claim_ceiling": "hygiene_only",
+      "evidence": "16-hygiene-audit/manifest.json",
+      "evidence_exists": true,
+      "deferred": []
+    },
+    {
+      "component": "17-integration-slice",
+      "latest_review": "17-integration-independent-review-r4",
+      "status": "pass_limited_with_test_scope_deferred",
+      "claim_ceiling": "preparation_only",
+      "evidence": "reviews/17-integration-independent-review-r4/review.md",
+      "evidence_exists": true,
+      "deferred": []
+    }
+  ],
+  "matrix_summary": {
+    "components": 10,
+    "all_exit_zero": true,
+    "passed_total": 148,
+    "skipped_total": 3,
+    "not_full_suite_acceptance": true
+  }
+}

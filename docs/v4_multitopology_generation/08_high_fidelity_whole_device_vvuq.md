@@ -1,5 +1,7 @@
 # v4 高保真整装、工程与 VVUQ
 
+> 2026-09-14 路线更新：UP4 提供闭环基础，UP6 完成整装与独立验证。局部模块组合或 inverse 源拟合不得替代 R01–R10 的完整验收。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 目标
 
 本模块对极少量 frontier candidates 执行完整、候选绑定、场景绑定的 whole-device integration。单个平衡、场线、稳定性或工程后处理通过不能代替整装闭合。

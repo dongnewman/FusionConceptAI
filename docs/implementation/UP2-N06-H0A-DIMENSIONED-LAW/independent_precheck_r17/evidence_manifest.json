@@ -1,0 +1,66 @@
+{
+  "schema": "independent_precheck_r17_evidence_manifest",
+  "review_id": "UP2-N06-H0A-DIMENSIONED-LAW-independent-precheck-r17",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "scope": {
+    "static_only": true,
+    "julia_or_desc_executed_by_reviewer": false,
+    "source_test_fixture_runner_modified_by_reviewer": false,
+    "h0a_acceptance": false,
+    "focused_run_allowed": false,
+    "credit_ceiling": ["contract_only", "no_UP2_total", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R01_R10_credit"]
+  },
+  "live_hashes": {
+    "source": {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "bytes": 58976, "sha256": "e7f18c58834cfcb2eeaef813656525e16d3ea8ae1dd9df19277f08b57aaf949c", "status": "R17_after"},
+    "test": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "bytes": 44400, "sha256": "d717b99fc349eafc38d0f2810f0316bdafcb1333e711febede73b8944038309c", "status": "R17_after"},
+    "fixture": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "status": "protected_unchanged"},
+    "runner": {"path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "status": "protected_unchanged"}
+  },
+  "r6_protected_receipt": {
+    "path": "focused_r6/receipt.json",
+    "pid": 48048,
+    "exit_code": 1,
+    "stdout": {"path": "focused_r6/stdout.raw", "bytes": 8091, "sha256": "7607f6d7200b30e2018e1d349e514a3c25e332a727b88c7f06bb2fe5d8131c2b"},
+    "stderr": {"path": "focused_r6/stderr.raw", "bytes": 311, "sha256": "71eddcba500bf2c1b4dfe1bf9dfe53461f13e51faced6547744fdcae54d4d565"},
+    "assertion_group_summary_count": 46,
+    "accepted": false
+  },
+  "source_contract": {
+    "selector_fields": ["ledger_id", "equation_id", "port_side", "port_index"],
+    "complete_endpoint_cardinality_preserved": true,
+    "tuple_order_independent": true,
+    "registry_unavailable": "source_binding_missing gap",
+    "zero": "g1_occurrence_source_missing gap",
+    "single": "source-derived sign check",
+    "multiple": "g1_occurrence_source_ambiguous error",
+    "identity_and_provenance_checks_outside_matcher": true,
+    "old_whole_tuple_match_removed": true,
+    "positional_or_fixture_fallback": false
+  },
+  "negative_controls": {
+    "reorder_private_matcher": true,
+    "missing_private_matcher_and_law": true,
+    "duplicate_private_matcher": true,
+    "sign_private_law_validator": true,
+    "input_unit_private_and_public_admission": true,
+    "source_unit_hash_private_endpoint_validator": true,
+    "r16_dimensionless_contradiction_preserved": true,
+    "r16_typed_external_gap_preserved": true,
+    "registry_unavailable_executable_control": false,
+    "all_requested_controls_public_wrapper": false
+  },
+  "findings": {
+    "production_selector_join": "static_pass_limited",
+    "four_endpoint_contract": "preserved",
+    "candidate_package_ref_hash_provenance_boundary": "preserved",
+    "test_evidence_path_completeness": "changes_requested",
+    "documentation_hash_consistency": "changes_requested_runner_sha_typo"
+  },
+  "next_gate": {
+    "required": ["correct report hash typo", "clarify or extend public-wrapper controls", "add deterministic registry-unavailable control", "different-Luna recheck"],
+    "focused_runtime": "only after pass_limited and T0 completion; one serialized run with fresh receipts",
+    "accepted": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "M5SearchR2MachineCheckerNegativeVectorsV1",
+  "vectors": [
+    {"id":"NV-01","mutation":"typed_absent closure with one authoritative child","expected_status":"fail_closed","expected_failure_code":"identity_mismatch"},
+    {"id":"NV-02","mutation":"authoritative content path bytes changed after declared SHA-256","expected_status":"fail_closed","expected_failure_code":"provenance_changed"},
+    {"id":"NV-03","mutation":"content receipt digest does not equal canonical content bytes","expected_status":"fail_closed","expected_failure_code":"schema_malformed"},
+    {"id":"NV-04","mutation":"operational envelope raw stdout length/hash changed","expected_status":"fail_closed","expected_failure_code":"envelope_content_join_mismatch"},
+    {"id":"NV-05","mutation":"accepted M5-C gate has pseudo-digest or wrong closure config hash","expected_status":"fail_closed","expected_failure_code":"gate_missing_or_unbound"},
+    {"id":"NV-06","mutation":"budget event after=99 for before=0 delta=1 limit=32","expected_status":"fail_closed","expected_failure_code":"budget_ledger_invalid"},
+    {"id":"NV-07","mutation":"budget final counter differs from folded events","expected_status":"fail_closed","expected_failure_code":"budget_fold_mismatch"},
+    {"id":"NV-08","mutation":"descriptor cell changes while receipt/ledger retain prior hash","expected_status":"fail_closed","expected_failure_code":"descriptor_identity_mismatch"},
+    {"id":"NV-09","mutation":"caller supplies precedence_rank=7 for fail_closed","expected_status":"fail_closed","expected_failure_code":"failure_mapping_invalid"},
+    {"id":"NV-10","mutation":"prohibited scan has empty input refs and null scan receipt","expected_status":"review_pending","expected_failure_code":"scan_incomplete"},
+    {"id":"NV-11","mutation":"solver lane counter is nonzero","expected_status":"fail_closed","expected_failure_code":"scope_violation"},
+    {"id":"NV-12","mutation":"only operational envelopes exist without two fresh content receipts","expected_status":"not_executed","expected_failure_code":"replay_not_executed"},
+    {"id":"NV-13","mutation":"same attempt id is reused as both replay observations","expected_status":"fail_closed","expected_failure_code":"replay_mismatch"},
+    {"id":"NV-14","mutation":"content receipt contains PID or UTC nested under trace metadata","expected_status":"fail_closed","expected_failure_code":"schema_malformed"},
+    {"id":"NV-15","mutation":"future implementation writes source or review path","expected_status":"scope_violation","expected_failure_code":"scope_violation"}
+  ]
+}

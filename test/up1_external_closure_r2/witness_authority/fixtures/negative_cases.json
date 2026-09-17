@@ -1,0 +1,15 @@
+{
+  "schema": "UP1.external_closure_r2.witness_authority.negative_cases.v1",
+  "mode": "TEST_ONLY",
+  "cases": [
+    {"name":"missing_required_candidate_field","mutation":{"remove":"source_version"},"expected_status":"non_evidence","expected_resolution":"fail_closed","expected_error_code":"ERR_MISSING_FIELD"},
+    {"name":"foreign_layer_candidate","mutation":{"path":"layer_refs.G2.candidate_id","value":"foreign-candidate"},"expected_status":"fail_closed","expected_resolution":"fail_closed","expected_error_code":"ERR_FOREIGN_LAYER_CANDIDATE"},
+    {"name":"foreign_axis_candidate","mutation":{"path":"four_axis_refs.profile.candidate_id","value":"foreign-candidate"},"expected_status":"fail_closed","expected_resolution":"fail_closed","expected_error_code":"ERR_FOREIGN_AXIS_CANDIDATE"},
+    {"name":"duplicate_idempotency","mutation":{"repeat":"same record in AuthorityLedger"},"expected_status":"fail_closed","expected_resolution":"fail_closed","expected_error_code":"ERR_DUPLICATE_IDEMPOTENCY"},
+    {"name":"conflicting_idempotency","mutation":{"repeat":"same idempotency key with changed object digest"},"expected_status":"fail_closed","expected_resolution":"fail_closed","expected_error_code":"ERR_IDEMPOTENCY_CONFLICT"},
+    {"name":"duplicate_json_key","mutation":{"raw":"{\"mode\":\"TEST_ONLY\",\"mode\":\"PRODUCTION\"}"},"expected_status":"fail_closed","expected_resolution":"fail_closed","expected_error_code":"ERR_INVALID_JSON"}
+  ],
+  "oracle_is_not_read_by_validator": true,
+  "no_publish": true,
+  "claim_ceiling": "preparation_only"
+}

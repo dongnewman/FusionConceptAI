@@ -1,0 +1,17 @@
+{
+  "schema": "UP1.r3.vector-harness-independent-review-r1.receipt.v1",
+  "review_scope": "offline local Python only; no network, AD/S3, Julia/DESC/solver, credentials, publication, or production mutation",
+  "command": "python -B -W ignore::DeprecationWarning -c \"import os,sys,unittest; ... discover('test/up1_external_closure_r3/atomic_bundle', pattern='test_*.py') ...\"",
+  "runs": [
+    {"name":"focused_run_1","pid":95960,"utc_start":"2026-09-17T01:08:07.1276529Z","utc_end":"2026-09-17T01:08:08.3811182Z","exit":0,"tests":24,"skipped":1,"raw":"raw/focused_run_1.stdout.raw","bytes":243,"sha256":"215d52600223c5c59e9561989c1f52b97ef089e3740bdb7cadfeb2792f18281a"},
+    {"name":"focused_run_2","pid":46356,"utc_start":"2026-09-17T01:08:17.0152633Z","utc_end":"2026-09-17T01:08:18.2432688Z","exit":0,"tests":24,"skipped":1,"raw":"raw/focused_run_2.stdout.raw","bytes":243,"sha256":"40446505c46bd9a837e0408b9ea3f192b504cfe295ba8c969b82321d4a4084db"}
+  ],
+  "raw_evidence": [
+    {"path":"raw/vector_receipt_audit.raw","bytes":412,"sha256":"0978e2a6b902e01e2b6dbefa0acacc438c8535c61938a885179945ff06ecde64"},
+    {"path":"raw/production_call_audit.raw","bytes":1357,"sha256":"22f0b3a0edad4109b7c38ebd10e57008be8a41b0c97011f2a4858c09c798132b"},
+    {"path":"raw/r01_r23_end_to_end.raw","bytes":189,"sha256":"2245a0e5e2bb2c18d4e681387eeabe667d157d637c61065b9b6059e2479b8ab1"},
+    {"path":"raw/fail_closed_boundary.raw","bytes":519,"sha256":"406fb1b7db1531f069865b31f03b8a215509b2545cd137677ddbdb04ed54e248"}
+  ],
+  "vector_receipt_audit": {"rows":26,"unique_vector_id":26,"unique_input_hash":26,"unique_path":26,"required_fields":true,"replay_exact":true},
+  "frozen_inputs_unchanged": true
+}

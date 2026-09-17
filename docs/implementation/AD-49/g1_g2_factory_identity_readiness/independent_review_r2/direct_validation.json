@@ -1,0 +1,346 @@
+{
+  "schema_version": "AD49-independent-review-r2-direct-v1",
+  "record_kind": "fresh_static_recomputation",
+  "pid": 59400,
+  "python_executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "python_version": "3.13.5",
+  "utc_start": "2026-09-15T14:54:32.206+00:00",
+  "utc_end": "2026-09-15T14:54:32.206+00:00",
+  "checks": {
+    "six_work_orders": {
+      "pass": true,
+      "details": 6
+    },
+    "all_work_order_fields": {
+      "pass": true,
+      "details": {
+        "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS": [],
+        "AD49-S2-G1-G2-FACTORY-IDENTITY-PROBE": [],
+        "AD49-F0-CONDITIONAL-G1-G2-SOURCE-AUTHORITY-FACTORIES": [],
+        "AD49-S3-TRUSTED-G1-G2-SOURCE-IDENTITY": [],
+        "AD49-G2-MAPPING": [],
+        "AD49-W3B-CANDIDATE-BOUND-AXES-AND-JOIN": []
+      }
+    },
+    "twenty_seven_declared_paths": {
+      "pass": true,
+      "details": 27
+    },
+    "all_product_paths_unique": {
+      "pass": true,
+      "details": {
+        "count": 27,
+        "unique": 27
+      }
+    },
+    "all_paths_owned_by_AD49_contract": {
+      "pass": true,
+      "details": [
+        "docs/implementation/AD-49/G1-SOURCE-LOCATOR/g1_source_locator_v1.json",
+        "docs/implementation/AD-49/G1-SOURCE-LOCATOR/g1_source_locator_receipt.json",
+        "docs/implementation/AD-49/G2-SOURCE-LOCATOR/g2_source_locator_v1.json",
+        "docs/implementation/AD-49/G2-SOURCE-LOCATOR/g2_source_locator_receipt.json",
+        "docs/implementation/AD-49/G1-FACTORY-PROBE/g1_factory_identity_probe_v1.json",
+        "docs/implementation/AD-49/G1-FACTORY-PROBE/g1_factory_construction_probe_receipt.json",
+        "docs/implementation/AD-49/G2-FACTORY-PROBE/g2_factory_identity_probe_v1.json",
+        "docs/implementation/AD-49/G2-FACTORY-PROBE/g2_factory_construction_probe_receipt.json",
+        "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+        "test/GenomeV5/G1/g1_source_authority_factory_v1_tests.jl",
+        "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+        "test/GenomeV5/G2/g2_source_authority_factory_v1_tests.jl",
+        "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_v1.json",
+        "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_receipt.json",
+        "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_v1.json",
+        "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_receipt.json",
+        "docs/implementation/AD-49/G2-MAPPING/genome_contract_to_qualified_ref_mapping_v1.json",
+        "docs/implementation/AD-49/G2-MAPPING/mapping_receipt.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/payload_schema_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/canonicalization_profile_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/applicability_profile_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/evidence_receipt_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/payload_schema_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/canonicalization_profile_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/applicability_profile_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/evidence_receipt_attestation.json",
+        "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/same_candidate_join_receipt.json"
+      ]
+    },
+    "product_file_counts_match": {
+      "pass": true,
+      "details": {
+        "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS": 4,
+        "AD49-S2-G1-G2-FACTORY-IDENTITY-PROBE": 4,
+        "AD49-F0-CONDITIONAL-G1-G2-SOURCE-AUTHORITY-FACTORIES": 4,
+        "AD49-S3-TRUSTED-G1-G2-SOURCE-IDENTITY": 4,
+        "AD49-G2-MAPPING": 2,
+        "AD49-W3B-CANDIDATE-BOUND-AXES-AND-JOIN": 9
+      }
+    },
+    "separated_three_way_result_unions": {
+      "pass": true,
+      "details": {
+        "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS": true,
+        "AD49-S2-G1-G2-FACTORY-IDENTITY-PROBE": true,
+        "AD49-F0-CONDITIONAL-G1-G2-SOURCE-AUTHORITY-FACTORIES": true,
+        "AD49-S3-TRUSTED-G1-G2-SOURCE-IDENTITY": true,
+        "AD49-G2-MAPPING": true,
+        "AD49-W3B-CANDIDATE-BOUND-AXES-AND-JOIN": true
+      }
+    },
+    "w3b_nine_products": {
+      "pass": true,
+      "details": 9
+    },
+    "w3b_layer_qualified_unique_paths": {
+      "pass": true,
+      "details": {
+        "g1": [
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/payload_schema_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/canonicalization_profile_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/applicability_profile_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G1/evidence_receipt_attestation.json"
+        ],
+        "g2": [
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/payload_schema_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/canonicalization_profile_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/applicability_profile_attestation.json",
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/G2/evidence_receipt_attestation.json"
+        ],
+        "join": [
+          "docs/implementation/AD-49/W3-B-CANDIDATE-BOUND-AXES/same_candidate_join_receipt.json"
+        ]
+      }
+    },
+    "w3b_four_axes_each_layer": {
+      "pass": true,
+      "details": null
+    },
+    "dependency_dag_acyclic": {
+      "pass": true,
+      "details": {
+        "cycle": false,
+        "topological_order": [
+          "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS",
+          "AD49-S2-G1-G2-FACTORY-IDENTITY-PROBE",
+          "AD49-F0-CONDITIONAL-G1-G2-SOURCE-AUTHORITY-FACTORIES",
+          "AD49-S3-TRUSTED-G1-G2-SOURCE-IDENTITY",
+          "AD49-G2-MAPPING",
+          "AD49-W3B-CANDIDATE-BOUND-AXES-AND-JOIN"
+        ],
+        "declared_acyclic": true
+      }
+    },
+    "s1_unique_earliest_dispatchable": {
+      "pass": true,
+      "details": [
+        "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS"
+      ]
+    },
+    "s1_status_ready_after_parent_review": {
+      "pass": true,
+      "details": "proposed_ready_after_parent_review"
+    },
+    "g1_g2_source_and_test_files_untracked_head_absent": {
+      "pass": true,
+      "details": {
+        "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+          "exists": true,
+          "bytes": 31743,
+          "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+          "git_status": "?? src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+          "git_tracked": false,
+          "head_present": false
+        },
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+          "exists": true,
+          "bytes": 30773,
+          "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+          "git_status": "?? src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+          "git_tracked": false,
+          "head_present": false
+        },
+        "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {
+          "exists": true,
+          "bytes": 9655,
+          "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+          "git_status": "?? test/GenomeV5/G1/diffusion_v1_contract_tests.jl",
+          "git_tracked": false,
+          "head_present": false
+        },
+        "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {
+          "exists": true,
+          "bytes": 11208,
+          "sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+          "git_status": "?? test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+          "git_tracked": false,
+          "head_present": false
+        }
+      }
+    },
+    "no_g1_g2_factory_locator_trusted_identity_or_mapping_api_in_current_sources": {
+      "pass": true,
+      "details": {
+        "g1": {
+          "source_authority_factory": false,
+          "independent_locator": false,
+          "trusted_source_identity": false
+        },
+        "g2": {
+          "source_authority_factory": false,
+          "independent_locator": false,
+          "trusted_source_identity": false,
+          "explicit_mapping": false
+        },
+        "absent_future_factory_files": {
+          "g1": true,
+          "g2": true
+        }
+      }
+    },
+    "future_g1_g2_factory_files_absent": {
+      "pass": true,
+      "details": {
+        "g1": true,
+        "g2": true
+      }
+    },
+    "ad45_handle_only_common_binding_and_no_identity": {
+      "pass": true,
+      "details": {
+        "binding_handle": {
+          "id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+          "identity_role": "common_candidate_binding_handle_only",
+          "type": "QualifiedRefV1",
+          "version": "v5"
+        },
+        "envelope_identity_fields": {
+          "candidate_identity_created": false,
+          "candidate_identity_hash": null,
+          "declaration_hash": null,
+          "declaration_hash_created": false
+        },
+        "receipt_claim_ceiling": "software_binding_handle_only"
+      }
+    },
+    "manifest_credit_ceiling_preserved": {
+      "pass": true,
+      "details": {
+        "candidate_identity_created": false,
+        "declaration_hash_created": false,
+        "candidate_hash_created": false,
+        "candidate_bound_axes_present": false,
+        "same_candidate_join_present": false,
+        "g1_factory_present": false,
+        "g2_factory_present": false,
+        "g1_source_locator_present": false,
+        "g2_source_locator_present": false,
+        "g1_trusted_source_identity_present": false,
+        "g2_trusted_source_identity_present": false,
+        "g2_genome_contract_to_qualified_ref_mapping_present": false,
+        "t0": false,
+        "t1": false,
+        "t2": false,
+        "provider": false,
+        "mesh": false,
+        "solver": false,
+        "engineering": false,
+        "physical": false,
+        "search": false,
+        "r01_r10": false,
+        "l4_credible_count": 0
+      }
+    },
+    "work_orders_forbid_identity_hash_mapping_physics": {
+      "pass": true,
+      "details": null
+    },
+    "repair_summary_prior_direct_validation_exit_zero": {
+      "pass": true,
+      "details": {
+        "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+        "python_version": "3.13.5",
+        "pid": 92896,
+        "utc_start": "2026-09-15T14:44:43.406967+00:00",
+        "utc_end": "2026-09-15T14:44:43.406967+00:00",
+        "exit_code": 0,
+        "checks": {
+          "work_order_count": true,
+          "all_required_fields": true,
+          "product_paths_unique": true,
+          "unique_product_path_count": 27,
+          "w3b_paths_unique_and_qualified": true,
+          "no_merged_union_placeholder": true,
+          "union_three_way": true,
+          "review_separation": true,
+          "forbidden_physical": true,
+          "dag_acyclic": true,
+          "candidate_hash_false": true
+        }
+      }
+    },
+    "r1_preserved_as_prior_changes_requested": {
+      "pass": true,
+      "details": null
+    },
+    "root_report_architecture_ceiling_present": {
+      "pass": true,
+      "details": null
+    }
+  },
+  "exit_code": 0,
+  "input_hashes": {
+    "docs/implementation/AD-49/g1_g2_factory_identity_readiness/manifest.json": "a00dda598ea44d79e5147d148f961c524deb9f7fc8787a2b88779d372b739540",
+    "docs/implementation/AD-49/g1_g2_factory_identity_readiness/report.md": "0dd05bde2b272cd15673e8b317b3461dd20cbe4269f811ca0e6e50183cdd0ec2",
+    "docs/implementation/AD-49/g1_g2_factory_identity_readiness/archive/validation_summary_r1_repair.json": "1533d1b405b68ee649f84c77fa8cc62e79ea3abe1d4430c584028ff4e8b2782f",
+    "docs/implementation/AD-49/g1_g2_factory_identity_readiness/independent_review_r1/report.md": "33862f09dc13695c1a85b7d25606b21b56e91213265f0bdd62ec865d83c98143",
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc",
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/envelope_receipt.json": "adf9caefb31398c4cf4fd04dc443fb8f409d7485e1ee04f125a28e3b427a9b64",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/Contracts/GenomeContractRegistry.jl": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c",
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db"
+  },
+  "source_state": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "exists": true,
+      "bytes": 31743,
+      "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+      "git_status": "?? src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "git_tracked": false,
+      "head_present": false
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "exists": true,
+      "bytes": 30773,
+      "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+      "git_status": "?? src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "git_tracked": false,
+      "head_present": false
+    },
+    "src/Contracts/GenomeContractRegistry.jl": {
+      "exists": true,
+      "bytes": 2389,
+      "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c",
+      "git_status": "",
+      "git_tracked": true,
+      "head_present": true
+    },
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {
+      "exists": true,
+      "bytes": 9655,
+      "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+      "git_status": "?? test/GenomeV5/G1/diffusion_v1_contract_tests.jl",
+      "git_tracked": false,
+      "head_present": false
+    },
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {
+      "exists": true,
+      "bytes": 11208,
+      "sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+      "git_status": "?? test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+      "git_tracked": false,
+      "head_present": false
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "record_kind": "UP2-00E0-R1-independent-review",
+  "reviewer": "different Luna; static-only due blocking taxonomy defect",
+  "verdict": "changes_requested",
+  "reviewed_snapshot": {
+    "source_sha256": "25621a87a005ea37502686ff2f1e5419b8c71fa3cd877ca875f0e6dd397ec321",
+    "test_sha256": "b82c2a5deabc098253302ef589541dc2627db77d8ba0f3d1fa2745f19311104b",
+    "fixture_sha256": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+    "runner_sha256": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a"
+  },
+  "primary_finding": {
+    "classification": "program_exception",
+    "r2_exit": 1,
+    "r2_stdout_sha256": "4abb6fc639eaa9412ff5f2b82a1bedd68af85c04dcb5d36e74f3a7f1d43162b9",
+    "error": "package_source_exception:type RealizationControlGenomeV5 has no field version_axes",
+    "frozen_source_location": "UP2CandidatePhysicalBindingV1.jl:187-198 (r7 source)",
+    "contract_locations": [
+      "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md:76",
+      "docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md:36"
+    ],
+    "reason": "validator crash/unexpected source exception must remain program_exception; structural fail_closed is reserved for known rejected declarations/contradictions."
+  },
+  "adversarial_source_join": {
+    "factory_source_check": "present in frozen source; factory invokes up2e0_check_package before envelope construction",
+    "source_overload": "present; compares candidate/ref/component hashes and version axes against actual package",
+    "bound_input_binding_hash": "included",
+    "low_level_caveat": "up2e0_validate_binding(binding) is self-consistency only; package overload is required for authoritative source join"
+  },
+  "timeline": {
+    "r1": "changes_requested against author r7 snapshot",
+    "post_r1": "taxonomy_fix observed as superseded_after_changes_requested; not used as R1 pass evidence",
+    "next": "fresh R2 must freeze repaired source/test and run independently"
+  },
+  "runtime": {
+    "independent_julia": "not_executed",
+    "reason": "static blocker made a run on the superseded r7 snapshot non-actionable; precheck recorded no Julia/DESC"
+  },
+  "claim_ceiling": {
+    "contract_only": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "preserved_r2_artifacts": [
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/focused_r2.stdout.log",
+      "bytes": 3033,
+      "sha256": "4abb6fc639eaa9412ff5f2b82a1bedd68af85c04dcb5d36e74f3a7f1d43162b9"
+    },
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/focused_r2.stderr.log",
+      "bytes": 331,
+      "sha256": "7b4b7a23f29a4a287fb88318de3e92fd1daa8c10bc9a4ac263ae4a5c275107af"
+    },
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/focused_r2.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "docs/implementation/UP2-00E0-BOUND-INPUT/focused_r2.environment.txt",
+      "bytes": 718,
+      "sha256": "c9b8bacc0a5d49ab8d4bde8d75316c46253cc1ae129f29d85e999e3db380267c"
+    }
+  ]
+}

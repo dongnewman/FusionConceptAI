@@ -1,0 +1,55 @@
+{
+  "record_kind": "UP1ExternalClosureAggregateR2ConcurrentReceiptV1",
+  "command": "two simultaneous python -B CLI transitions with one baseline prior state and one shared ledger",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "utc_start": "2026-09-16T18:34:06.2829596Z",
+  "utc_end": "2026-09-16T18:34:07.0676676Z",
+  "processes": [
+    {
+      "pid": 47156,
+      "stderr_raw": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/r2_concurrent_a.stderr.raw"
+      },
+      "stdout_raw": {
+        "bytes": 1327,
+        "sha256": "a92818bf2d0bada440a0a21d41c049acab721c3d2ac635696b87a4fc99607a63",
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/r2_concurrent_a.stdout.raw"
+      },
+      "exit_code": 0,
+      "label": "r2_concurrent_a"
+    },
+    {
+      "pid": 96848,
+      "stderr_raw": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/r2_concurrent_b.stderr.raw"
+      },
+      "stdout_raw": {
+        "bytes": 689,
+        "sha256": "c0d6853fed73b7e65f809ee2c3bf602a5274fd40c2a43ca8ca36ab04b703ca02",
+        "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/r2_concurrent_b.stdout.raw"
+      },
+      "exit_code": 0,
+      "label": "r2_concurrent_b"
+    }
+  ],
+  "ledger": {
+    "records": 2,
+    "sha256": "9305d8b7574ce1b19780f3f9dd8a04053d29aed3c50c92e50388943a236d6fbf",
+    "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/r2_state_ledger.json"
+  },
+  "expected_atomic_result": "one intake_changed append and one conflict from stale prior",
+  "claims": {
+    "parent": false,
+    "T1": false,
+    "B00": false,
+    "T2": false,
+    "L4": 0,
+    "B04": false,
+    "T0": false
+  },
+  "ad_created": false
+}

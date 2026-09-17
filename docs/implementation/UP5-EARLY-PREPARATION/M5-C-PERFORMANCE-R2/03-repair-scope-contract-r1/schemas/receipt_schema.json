@@ -1,0 +1,17 @@
+{
+  "schema": "M5CReceiptSchemaBundleV1",
+  "status_values": ["review_pending", "not_implemented", "screen_only", "formal_credit=none", "terminal_deferred", "not_measured", "program_exception", "human_interruption", "fail_closed", "condition_unmet", "budget_mismatch"],
+  "preflight_receipt_required": ["receipt_id", "schema", "derivation_input_hash", "candidate_id", "m5a_source_hash", "m5b_inverse_hash", "n", "rule_count", "projected_members", "projected_trace_steps", "projected_provenance_bytes", "factorial_order_upper_bound", "projected_canonical_bytes", "max_bytes", "requested_budget", "effective_budget", "arithmetic", "decision", "reason", "guard_phase", "canonical_writer_called", "rewrite_set_constructor_called", "utc", "producer_owner"],
+  "preflight_schema": "M5CPreflightReceiptV1",
+  "condition_envelope_schema": "M5CAvailableConditionEnvelopeV1",
+  "condition_evaluation_schema": "M5CConditionEvaluationReceiptV1",
+  "full_binding_schema": "M5CFullBindingReceiptV1",
+  "supervisor_schema": "M5CSupervisorReceiptV1",
+  "freeze_schema": "M5CFreezeReceiptV1",
+  "cache_schema": "M5CCacheReceiptV1",
+  "saturating_arithmetic": {"base": "UInt128", "cap": "min(UInt128_MAX,max(limit,1)+1)", "overflow_action": "saturate_and_defer", "nonfinite_action": "defer"},
+  "budget_branches": {"omitted": "no_op", "equal_sealed": "no_op", "different_sealed": "budget_mismatch", "input_overload": "rebuild", "over_limit": "terminal_deferred"},
+  "supervisor_required": ["schema", "run_id", "stage", "command", "startup_file_flag", "history_file_flag", "cwd", "host", "supervisor_pid", "child_pid", "child_parent_pid", "pre_process_count", "post_process_count", "utc_start", "utc_end", "deadline_utc", "termination", "raw_exit_code", "timeout_class", "stdout_path", "stderr_path", "combined_path", "stdout_bytes", "stdout_sha256", "stderr_bytes", "stderr_sha256", "input_artifact_hash", "output_artifact_hash", "budget", "status", "receipt_sha256"],
+  "stage_enum": ["include", "upstream_first_compile_plus_build", "upstream_warm_build", "prepare_condition_catalog", "prepare_rhs", "prepare_source_cold_hash", "prepare_rewrite_set", "saturate_budget_2_4_1_2", "saturate_budget_3_8_2_3", "saturate_budget_4_16_3_4", "saturate_budget_8_32_4_8", "query", "replay", "validate"],
+  "manifest_self_hash": "excluded_by_policy"
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "AD44-RSDA-W3-readiness-audit-v1",
+  "record_kind": "static_readiness_audit",
+  "task_id": "AD-44",
+  "status": "readiness_audit_only",
+  "accepted": false,
+  "accepted_scope": "none",
+  "claim_ceiling": "architecture_readiness_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T10:45:16.024127Z",
+  "dirty_worktree_lines_observed": 328,
+  "implementation_dispatched": false,
+  "w3_executed": false,
+  "machine_node_created": false,
+  "task_manifest_modified": false,
+  "candidate_hash_created": false,
+  "declaration_hash_created": false,
+  "present": false,
+  "t0": false,
+  "t1": false,
+  "t2": false,
+  "provider": false,
+  "mesh": false,
+  "solver": false,
+  "engineering": false,
+  "physical": false,
+  "r01_r10": false,
+  "l4_credible_count": 0,
+  "observed_gates": {
+    "ad40_repository_design_source_architecture": "accepted_limited",
+    "ad42_w2r1_independent_review": {
+      "status": "pass_limited",
+      "report": "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md",
+      "pid": 4360,
+      "checks": "47/47",
+      "exit_code": 0
+    },
+    "ad43_axis_contracts": "accepted_limited_with_independent_pass_limited",
+    "parent_baseline_present_authority": "unavailable",
+    "t0_present_authority_currently_allowed": false
+  },
+  "current_gaps": {
+    "repository_design_source_authority_record": [
+      "repository HEAD/path/exact working-tree byte receipt not yet materialized",
+      "authority-record semantic hash and source/payload role-separated receipt not yet materialized",
+      "applicability/profile closure must cite AD43 source-only contracts without candidate-derived axis versions"
+    ],
+    "candidate_binding_provenance": [
+      "candidate_identity.created=false and hash=null in both W2R1 products",
+      "G2 common_candidate_mapping_input.target_common_candidate_ref is typed_absent/null",
+      "W2R1 attestation_status is authoring_run_only",
+      "AD43 candidate-bound source_record_hash/source_identity_hash/candidate_identity_hash/attestation_ref are null",
+      "fresh common candidate binding envelope is not present as an independent input"
+    ]
+  },
+  "frozen_inputs": [
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":6180,"sha256":"f4841efa7e872a57e05c8eda687d951dd7775802ad3d07330947df72c5c97449"},
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":13968,"sha256":"46d7329bd83188c280208b65ac58afc571c813c9d48e3732707dcf4d4bcb4210"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":7086,"sha256":"7244861fa4c640035c06ac7b69623f048c17b86f9deeda71de8406c452bbcacf"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":14337,"sha256":"7a68be8d2e24b6a15364800cb3855c6a3d80b6d03bed6e2f9eb59d1b29cd988c"},
+    {"path":"docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md","bytes":4294,"sha256":"8932d5ca6e33d7701952ab4fcd16c660123e7cd9d5d0f97ce39c0728d9845b53"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"},
+    {"path":"docs/implementation/AD-40/acceptance/acceptance.md","bytes":4298,"sha256":"5a68a407476ea5eb493844ee3fb53ba9e98445b665cb4ab09b086f212d9b540e"},
+    {"path":"docs/implementation/AD-43/acceptance/acceptance.md","bytes":4931,"sha256":"ddaf8dedfec444076cc296a716882f4ad1a9954a14e50dda8ca348c468342eb3"},
+    {"path":"docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json","bytes":7490,"sha256":"3f8f1019f180a1e7cb9dd9f06aa6b2fa1fdb7b3403fe354de9b2d5d8cb46fca9"},
+    {"path":"docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json","bytes":19383,"sha256":"d08d796acaf23b94158c4db4ac8a702003042dbadabd6c4c7697126dbaef21c6"},
+    {"path":"docs/v4_multitopology_generation/task_manifest.json","bytes":91208,"sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"}
+  ],
+  "work_orders": [
+    {
+      "id":"AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS",
+      "status":"proposed_ready_after_parent_review",
+      "parallel_group":"G1_G2_authority_records",
+      "product_file_count":4,
+      "product_files":[
+        "docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json",
+        "docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/authority_receipt.json",
+        "docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json",
+        "docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/authority_receipt.json"
+      ],
+      "inputs":[
+        "AD-40 accepted_limited architecture boundary",
+        "AD42-W2R1-REAUTHOR-FRESH-PAYLOADS and different-Luna pass_limited review",
+        "AD43-AXIS-CONTRACT-RECORDS and different-Luna pass_limited review",
+        "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+        "AD-42 W0 public contract envelopes and fresh seed recipe",
+        "repository HEAD/path/exact payload and schema/factory byte snapshot"
+      ],
+      "outputs":[
+        "RepositoryDesignSourceAuthorityRecordV1[G1,G2]",
+        "AbsentRepositoryDesignSourceAuthorityV1 or FailedRepositoryDesignSourceAuthorityV1 per layer",
+        "software-only authority receipts with separated schema_factory_source and candidate_declaration_payload roles"
+      ],
+      "result_union":["RepositoryDesignSourceAuthorityRecordV1","AbsentRepositoryDesignSourceAuthorityV1","FailedRepositoryDesignSourceAuthorityV1"],
+      "depends_on":["AD-40","AD42-W2R1-REAUTHOR-FRESH-PAYLOADS","AD43-AXIS-CONTRACT-RECORDS","UP1-01","UP1-02","UP1-03"],
+      "forbidden_edges":["AD44-RSDA-W3-CANDIDATE-BINDING-PROVENANCE","AD40-RSDA-FACTORY-RECEIPTS","AD40-RSDA-FRESH-IDENTITY-REVIEWS","AD37-G1-PRESENT-BASELINE-PUBLISH","AD37-G2-PRESENT-BASELINE-PUBLISH","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical","search","R01-R10"],
+      "exit_gates":["repository_design_source authority class exact","HEAD/path/bytes/SHA and working-tree status closed","payload/source/schema/factory byte roles separated","AD43 schema/canonicalization/applicability/evidence references exact","missing typed_absent plus terminal_deferred; conflict fail_closed","no candidate/declaration hash or present promotion","direct JSON/hash/path/diff raw receipt with PID UTC exit","different-Luna review"],
+      "cleanup":"task-owned temporary files only; preserve dirty worktree and historical receipts",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; evidence/raw metadata only"
+    },
+    {
+      "id":"AD44-RSDA-W3-CANDIDATE-BINDING-PROVENANCE",
+      "status":"proposed_blocked_common_candidate_identity_and_axis_attestation",
+      "parallel_group":"G1_G2_binding",
+      "product_file_count":8,
+      "product_files":[
+        "docs/implementation/AD-44/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json",
+        "docs/implementation/AD-44/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json",
+        "docs/implementation/AD-44/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json",
+        "docs/implementation/AD-44/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json",
+        "docs/implementation/AD-44/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json",
+        "docs/implementation/AD-44/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/g2_candidate_mapping_receipt.json",
+        "docs/implementation/AD-44/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json",
+        "docs/implementation/AD-44/RSDA-SAME-CANDIDATE-JOIN/cross_layer_join_receipt.json"
+      ],
+      "inputs":[
+        "AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS frozen outputs",
+        "fresh public GenomeContractRef values",
+        "independently supplied FreshCandidateBindingEnvelopeV1 with common QualifiedRefV1",
+        "four candidate-bound provenance axis records and independent attestations"
+      ],
+      "outputs":["CandidateBoundRepositorySourceProvenanceV1[G1,G2]","GenomeContractToQualifiedRefMappingReceiptV1[G2]","same-candidate cross-layer join receipt","AbsentCandidateBoundRepositorySourceProvenanceV1 or FailedCandidateBoundRepositorySourceProvenanceV1 per layer"],
+      "result_union":["CandidateBoundRepositorySourceProvenanceV1","AbsentCandidateBoundRepositorySourceProvenanceV1","FailedCandidateBoundRepositorySourceProvenanceV1"],
+      "depends_on":["AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS","AD42-W2R1-REAUTHOR-FRESH-PAYLOADS","AD43-AXIS-CONTRACT-RECORDS"],
+      "blocked_on":["fresh common candidate binding envelope absent","candidate-bound axis attestations absent","final candidate identity/hash must remain outside this work order"],
+      "forbidden_edges":["AD40-RSDA-FACTORY-RECEIPTS","AD40-RSDA-FRESH-IDENTITY-REVIEWS","AD37-G1-PRESENT-BASELINE-PUBLISH","AD37-G2-PRESENT-BASELINE-PUBLISH","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical","search","R01-R10"],
+      "exit_gates":["W3-A exact frozen inputs","fresh envelope exact equality","all four axes independently attested","G2 GenomeContractRef remains typed and mapping receipt is explicit","same-candidate G1/G2 join exact","missing terminal_deferred; conflict fail_closed","no payload/declaration/axis hash derivation of candidate identity","no final candidate hash created","different-Luna input freeze and review"],
+      "cleanup":"task-owned temporary files only; preserve all receipts and unrelated dirty files",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; raw/evidence metadata only"
+    }
+  ],
+  "forbidden_global":["modify core","modify task_manifest.json","modify source/test/fixture","reuse AD40 old W2 or historical/legacy/fixture data","create candidate hash","promote present","execute T0/T1/T2","execute provider/mesh/solver/physical/search"],
+  "validation":{
+    "command":"D:\\Users\\Newman\\anaconda3\\python.exe - (read-only final closure validator)",
+    "interpreter":"Python 3.13.5",
+    "pid":80612,
+    "utc":"2026-09-15T10:49:35.830763Z",
+    "exit_code":0,
+    "checks":"JSON parse; exact three products; sidecar/path scope; W3 product absence; product counts; claim flags; task-manifest frozen hash; diff check; W2R1 pass gate; W3-B blocked gate; no machine node",
+    "product_count":3,
+    "sidecar_count":2,
+    "raw_stdout":"docs/implementation/AD-44/rsda_w3_readiness_audit/archive/validation_stdout.json",
+    "raw_stderr":"docs/implementation/AD-44/rsda_w3_readiness_audit/archive/validation_stderr.txt"
+  },
+  "cleanup":"closed_no_owned_cleanup_required",
+  "self_hash_excluded":true
+}

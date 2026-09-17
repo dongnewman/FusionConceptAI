@@ -1,0 +1,177 @@
+{
+  "record_kind": "AD-41-independent-review",
+  "schema_version": "v1",
+  "task_id": "AD-41",
+  "review_round": "independent_review_r3",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "static_current_state_scheduling_audit_only",
+  "claim_ceiling": "architecture_and_scheduling_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T08:40:50.5152227Z",
+  "reviewer": "different Luna/high",
+  "source_of_truth": [
+    "AGENTS.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/10_genome_upgrade_execution.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/report.md",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/manifest.json",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r1/revised_report.md",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r1/manifest.json",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/report.md",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/manifest.json",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/report.md",
+    "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/manifest.json"
+  ],
+  "products": [
+    {
+      "path": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/report.md",
+      "role": "independent final review report",
+      "bytes": 3698,
+      "sha256": "c9a44661c91eb104b92f51974045804bedf5584c3ec1eb2f51e0f194fb99a904"
+    },
+    {
+      "path": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/manifest.json",
+      "role": "independent final review manifest",
+      "sha256": "self_hash_excluded"
+    }
+  ],
+  "sidecars": [
+    {
+      "path": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "role": "raw validation stdout",
+      "bytes": 1166,
+      "sha256": "d4df1ab880726eb7f3cbdf4928dd88609d6f258438735abc66edad6e850ea6df"
+    },
+    {
+      "path": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt",
+      "role": "raw validation stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "supersession_review": {
+    "main_manifest_current_pointer": "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/report.md",
+    "prior_wording_repair": "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r1/revised_report.md",
+    "AD40_input": "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/",
+    "AD40_repair_r2": "conditional_only_after_concrete_different_luna_finding",
+    "historical_before_report_sha256": "77ea4ec9e8bf04e6ed2a6ea73dc5ecdf959f0325a5418037745dc2ab25d7521d",
+    "current_report_sha256": "0e46aea26abe471ba936ab1b70a92074a1078783b1a8abc801516f6eacee37cb",
+    "failed_attempt_preserved": "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/archive/validation_attempt1.json",
+    "old_reviews_preserved": true
+  },
+  "work_order_review": {
+    "W1": {
+      "stage": "independent_review_AD40_repair_r1",
+      "different_luna_review": true,
+      "sol_decision_required": true,
+      "repair_r2_conditional_only": true,
+      "candidate_hash_created": false
+    },
+    "W2": {"depends_on": ["AD41-W1"], "disposition": "prepare_only_until_W1_passes", "candidate_hash_created": false},
+    "W3": {"depends_on": ["AD41-W2"], "disposition": "prepare_only_until_W2_accepted", "candidate_hash_created": false},
+    "W4": {"depends_on": ["AD41-W3"], "disposition": "wait_for_W3", "candidate_hash_created": false}
+  },
+  "preserved_claims": {
+    "task_count": 39,
+    "dag_acyclic": true,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "R01-R10": false,
+    "L4_credible_count": 0,
+    "G1_G2_source_backed_authority": false
+  },
+  "validation_runs": [
+    {
+      "id": "AD41-R3-CURRENT-POINTER-HASHES",
+      "pid": 84084,
+      "utc_start": "2026-09-15T08:40:04.8291812Z",
+      "utc_end": "2026-09-15T08:40:04.8697250Z",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "command": "PowerShell inline current pointer, W1, before/after hash, no-credit and failed-attempt checks",
+      "exit_code": 0,
+      "stdout": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "stderr": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt"
+    },
+    {
+      "id": "AD41-R3-DAG",
+      "pid": 71412,
+      "utc_start": "2026-09-15T08:40:17.4220951Z",
+      "utc_end": "2026-09-15T08:40:17.4451288Z",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "command": "PowerShell inline 39-task Kahn traversal",
+      "exit_code": 0,
+      "stdout": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "stderr": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt"
+    },
+    {
+      "id": "AD41-R3-PLAN-VALIDATOR",
+      "pid": 84916,
+      "utc_start": "2026-09-15T08:40:24.8143703Z",
+      "utc_end": "2026-09-15T08:40:24.8143703Z",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "stdout": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "stderr": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt"
+    },
+    {
+      "id": "AD41-R3-PATH-CONTROL",
+      "pid": 44756,
+      "utc_start": "2026-09-15T08:40:39.3260276Z",
+      "utc_end": "2026-09-15T08:40:39.6075873Z",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "command": "PowerShell inline repair_r2 path and control-character validation",
+      "exit_code": 0,
+      "stdout": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "stderr": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt"
+    },
+    {
+      "id": "AD41-R3-RAW-HASHES",
+      "pid": 30140,
+      "utc_start": "2026-09-15T08:40:50.4818985Z",
+      "utc_end": "2026-09-15T08:40:50.5152227Z",
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "command": "PowerShell inline repair_r2 stdout/stderr/receipt hash comparison",
+      "exit_code": 0,
+      "stdout": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stdout.txt",
+      "stderr": "docs/implementation/AD-41/up1_remaining_gate_audit/independent_review_r3/archive/validation_r3.stderr.txt"
+    }
+  ],
+  "checks": {
+    "json_parse": true,
+    "sha256": true,
+    "before_after_hash": true,
+    "superseded_pointers": true,
+    "path_scope": true,
+    "control_characters": true,
+    "git_diff_scope": "pre-existing dirty source/test/core paths preserved; this review writes only independent_review_r3",
+    "julia": false,
+    "DESC": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false
+  },
+  "cleanup": {
+    "status": "closed_no_owned_cleanup_required",
+    "removed_paths": [],
+    "ambiguous_deferred": [],
+    "historical_failure_receipts_preserved": true,
+    "unrelated_dirty_files_preserved": true
+  },
+  "self_hash_excluded": true
+}

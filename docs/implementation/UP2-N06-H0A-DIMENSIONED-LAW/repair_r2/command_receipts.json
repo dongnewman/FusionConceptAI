@@ -1,0 +1,18 @@
+{
+  "schema_version": "UP2-N06-H0A-repair-r2-command-receipts",
+  "status": "review_pending",
+  "accepted": false,
+  "runtime_executed": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "commands": [
+    {"command": "git rev-parse HEAD; git status --short", "exit": 0, "purpose": "freeze HEAD and preserve dirty worktree"},
+    {"command": "Get-Process julia,julia.exe,desc,desc.exe", "exit": 0, "purpose": "pre/post no-runtime process sweep", "result": "no matching process"},
+    {"command": "ConvertFrom-Json n06_dimensioned_law_fixtures.json", "exit": 0, "purpose": "fixture JSON parse"},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "purpose": "planning QA; checks pass; DAG acyclic; 337 links"},
+    {"command": "git diff --check", "exit": 0, "purpose": "diff QA; pre-existing LF-to-CRLF warnings only"},
+    {"command": "Julia focused runner", "exit": null, "purpose": "intentionally not run; serial focused lane awaits different Luna R2 precheck"},
+    {"command": "DESC execution", "exit": null, "purpose": "not in H0-A scope"}
+  ],
+  "protected_files_modified": false,
+  "independent_review": {"path": "../../UP2-N06-DIMENSIONED-LAW-PREPARATION/independent_precheck_r1/report.md", "read_only": true, "overwritten": false}
+}

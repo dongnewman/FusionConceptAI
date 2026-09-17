@@ -1,0 +1,28 @@
+{
+  "schema": "M5ConditionalEGraphRunLedgerV1",
+  "status": "complete_julia_fixture_failure",
+  "run_id": "M5-EGRAPH-R1-R3-FRESH",
+  "execution_order": ["python_oracle", "julia_tests"],
+  "capture": "Start-Process -PassThru with explicit redirected stdout/stderr paths",
+  "python_oracle": {
+    "command": "python test/RuntimeV4/M4Isolated/oracles/conditional_egraph_oracle_v1.py",
+    "start_utc_or_local": "2026-09-16T21:52:55.6607804+08:00",
+    "end_utc_or_local": "2026-09-16T21:52:56.7161441+08:00",
+    "pid": 98120,
+    "exit": 0,
+    "stdout_raw": "raw/python_oracle.stdout.raw",
+    "stderr_raw": "raw/python_oracle.stderr.raw",
+    "result": "PASS"
+  },
+  "julia_tests": {
+    "command": "julia --project=. test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl",
+    "start_utc_or_local": "2026-09-16T21:53:16.0268370+08:00",
+    "end_utc_or_local": "2026-09-16T21:54:48.1004551+08:00",
+    "pid": 75144,
+    "exit": 1,
+    "stdout_raw": "raw/julia_tests.stdout.raw",
+    "stderr_raw": "raw/julia_tests.stderr.raw",
+    "result": "FAIL_FIXTURE_INVERSE"
+  },
+  "note": "Prepared before the sole R3 authoritative replay. R1 and R2 wrapper failures remain preserved and are not overwritten."
+}

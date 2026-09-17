@@ -1,0 +1,16 @@
+{
+  "schema_version": "UP2-G-I1A-independent-precheck-receipts-v5",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-precheck-r5",
+  "commands": [
+    {"command": "Get-FileHash on R5 source, fixture, test, and runner", "exit": 0, "result": "all four supplied hashes match", "julia_or_desc": false},
+    {"command": "git rev-parse HEAD and git status --short count", "exit": 0, "result": "HEAD 4b69f55f7f80240147a65a22809dc1207824dde2; 290 dirty status lines preserved", "julia_or_desc": false},
+    {"command": "Get-Process julia/desc", "exit": 0, "result": "zero julia and zero desc processes", "julia_or_desc": false},
+    {"command": "rg/Get-Content source and tests for factory, shared admission, E2 branch, N05 upstream, taxonomy, and physical boundary", "exit": 0, "result": "static evidence recorded in report", "julia_or_desc": false},
+    {"command": "static delimiter/method-reference inspection", "exit": 0, "result": "no obvious static blocker; Julia runtime remains pending", "julia_or_desc": false},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 1, "result": "external failure: missing link from 16_execution_work_orders.md to ../implementation/AD-27/decision.md; no core file owned or modified by this review", "julia_or_desc": false},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py (final retry after core link stabilized)", "exit": 0, "result": "pass; checks=pass, task DAG acyclic", "julia_or_desc": false},
+    {"command": "git diff --check", "exit": 0, "result": "pass; pre-existing line-ending warnings only", "julia_or_desc": false},
+    {"command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1_authority_context.jl", "exit": null, "result": "not run; serialized focused lane pending", "julia_or_desc": false}
+  ],
+  "postflight": {"julia": 0, "desc": 0, "executed": false}
+}

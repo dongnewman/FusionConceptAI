@@ -1,0 +1,20 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-REPAIR-CURRENT-AUTHORITATIVE-R1",
+  "status": "pass_limited",
+  "manifest": "manifest.json",
+  "validation": "validation_receipt.json",
+  "report": "report.md",
+  "cleanup": "cleanup_inventory.json",
+  "execution_summary": "execution_summary.json",
+  "authoritative_order": ["python_oracle", "julia_tests"],
+  "authoritative_runs": ["raw/", "archive/raw/"],
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "source_sha256": "f0dcf8aa0dc199a4e3404ecec1a4f516b899e1cfd523454d698f9afe91553976",
+  "test_sha256": "f2279400356a786c83a13ad3f82400af052e64f5bbc8ceefbf0e8119e6903ea2",
+  "oracle_sha256": "6e13536aabb62f039bffe6c286e11323347b86b4d3c146270f38e8bf8129d0ab",
+  "julia_summary": "203/203",
+  "historical_parent": "../",
+  "historical_review_changes_requested": "../../independent_review_r1/",
+  "preservation": {"parent_103_of_103": true, "old_review_changes_requested": true, "all_failures": true}
+}

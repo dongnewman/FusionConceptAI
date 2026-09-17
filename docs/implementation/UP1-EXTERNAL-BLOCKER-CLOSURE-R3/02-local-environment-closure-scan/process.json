@@ -1,0 +1,44 @@
+{
+  "record_kind": "up1_r3_local_environment_closure_scan_process",
+  "schema": "UP1.local-environment-closure-scan-r3-process.v1",
+  "scope": "02-local-environment-closure-scan",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "scan_pid": 60108,
+  "started_utc": "2026-09-16T21:50:28.8049838Z",
+  "ended_utc": "2026-09-16T21:55:30.0000000Z",
+  "exit_code": 0,
+  "launcher": "PowerShell/file reads only",
+  "command_policy": {
+    "julia_started": false,
+    "python_started": false,
+    "desc_started": false,
+    "s3_started": false,
+    "solver_started": false,
+    "compiler_started": false,
+    "package_manager_started": false,
+    "network_used": false,
+    "installation_performed": false,
+    "source_tests_prior_evidence_modified": false
+  },
+  "process_sweeps": [
+    {
+      "observed_utc": "2026-09-16T21:50:28.8049838Z",
+      "filter": "julia|python|python3|desc|s3|solver",
+      "matching_process_count": 0,
+      "raw": "raw/process_sweep_initial.json"
+    },
+    {
+      "observed_utc": "2026-09-16T21:55:30.0000000Z",
+      "filter": "julia|python|python3|desc|s3|solver",
+      "matching_process_count": 2,
+      "raw": "raw/process_sweep_late.json",
+      "interpretation": "concurrent activity observed; not started or controlled by this scan"
+    }
+  ],
+  "raw": {
+    "static_observation": "raw/static_observation.txt",
+    "initial_process_sweep": "raw/process_sweep_initial.json",
+    "late_process_sweep": "raw/process_sweep_late.json"
+  },
+  "claim_ceiling": "local_observation_only; no UP1 or parent-goal credit"
+}

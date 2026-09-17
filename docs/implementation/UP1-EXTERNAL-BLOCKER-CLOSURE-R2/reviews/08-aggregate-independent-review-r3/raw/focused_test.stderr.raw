@@ -1,0 +1,27 @@
+test_all_non_verified_states_are_preserved_and_fail_closed ... ok
+test_authority_false_at_each_layer_cannot_verify ... ok
+test_changed_input_is_only_intake_changed ... ok
+test_cli_json_duplicate_key_is_rejected ... ok
+test_concurrent_changed_intake_has_atomic_compare_and_swap ... ok
+test_direct_aggregate_and_sequence_jump_are_rejected ... ok
+test_exact_responsibility_set_is_required ... ok
+test_fingerprints_require_lowercase_sha256_and_domains ... ok
+test_forged_prior_state_is_rejected_even_when_fingerprint_matches ... ok
+test_ledger_tamper_fails_closed ... ok
+test_map_permutation_has_identical_canonical_output ... ok
+test_mismatched_receipt_fingerprint_is_conflict ... ok
+test_missing_ledger_is_typed_absence_and_cannot_trust_prior ... ok
+test_missing_receipt_is_typed_absence ... ok
+test_noop_reads_complete_ledger_state_not_input_package_overlay ... ok
+test_same_input_is_deterministic_noop ... ok
+test_sequence_is_positive_when_present ... ok
+test_typed_absence_is_terminal_and_not_publishable ... ok
+test_unknown_root_package_receipt_fields_are_rejected ... ok
+test_validated_predecessor_is_required_before_aggregate ... ok
+test_verified_four_package_result_only_allows_authority_recheck ... ok
+test_version_and_four_count_are_fail_closed ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.165s
+
+OK

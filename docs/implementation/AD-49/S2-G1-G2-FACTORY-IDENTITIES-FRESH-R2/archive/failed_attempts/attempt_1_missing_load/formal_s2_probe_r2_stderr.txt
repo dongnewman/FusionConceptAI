@@ -1,0 +1,11 @@
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+ERROR: LoadError: ParseError:
+# Error @ D:\006-Programing\LMC\FusionConceptAI\docs\implementation\AD-49\S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2\archive\run_s2_probe.jl:128:225
+    for (i,n) in enumerate(neg)
+        vals=collect(n); print(io,"    {\"control\":\"",_qjson(vals[1][2]),"\",\"observed\":\"",_qjson(string(vals[2][2])),"\",\"expected\":\"",_qjson(string(vals[3][2])),"\",\"pass\":",_bool(vals[end][2]),"}",i==length(neg)?"\n":" ,\n")
+#                                                                                                                                                                                                                               └ ── space required before `?` operator
+Stacktrace:
+ [1] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\docs\implementation\AD-49\S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2\archive\run_s2_probe.jl:128
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\docs\implementation\AD-49\S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2\archive\run_s2_probe.jl:128

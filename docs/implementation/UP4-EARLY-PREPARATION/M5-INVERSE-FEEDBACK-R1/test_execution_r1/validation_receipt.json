@@ -1,0 +1,22 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-VALIDATION-RECEIPT-R1",
+  "status": "pass",
+  "python_oracle_exit_code": 0,
+  "julia_tests_exit_code": 0,
+  "julia_tests_pass_total": 103,
+  "julia_tests_total": 103,
+  "serial_order_verified": true,
+  "raw_stdout_stderr_retained": true,
+  "required_exact_values": {
+    "recovered_alpha": "2/1",
+    "recovered_beta": "1/1",
+    "determinant": "3/1",
+    "eigenvalues": ["1/1", "3/1"],
+    "eigen_margin_proxy": "1/3",
+    "roundtrip_residual": ["0/1", "0/1"],
+    "deletion_response": ["1/2", "0/1"],
+    "feedback_response_delta": ["1/6", "1/3"]
+  },
+  "formal_credit": false,
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only"
+}

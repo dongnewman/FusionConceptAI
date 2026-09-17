@@ -1,0 +1,36 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r6-v1",
+  "reviewer": "independent_luna_high_static_and_serial_executor",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": "not_run",
+  "serial_focused_ready": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {"full_status_entry_count": 3685, "status_sha256_utf8_lf": "82c0228ed98c2bf80448f424823e9a349f45ce2706914ab69aa8e6951da3fbe5", "matching_julia_desc_process_count": 0},
+  "r6_provenance": {
+    "target_mutation_in_r6": false,
+    "r5_misreference_resolved": true,
+    "r2_r3_r4_r5_paths_and_hashes_verified": true,
+    "old_receipts_rewritten": false,
+    "r6_manifest_json_parse": true,
+    "target_hash_assertion_exit": 0,
+    "static_qa_exit": 0,
+    "static_qa_status": "pass"
+  },
+  "targets": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"},
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {"bytes": 1582, "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {"bytes": 4499, "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"}
+  },
+  "receipt_chain": {
+    "repair_r2": {"report_sha256": "0956b606e576ad8979fec115fd679f0f6465659f5be51f84e9c07786fbc9d44c", "manifest_sha256": "0faed4835e7b52a9de28a5964bc30e695fdb99d642fc3710972d56d149ec44c2"},
+    "repair_r3": {"report_sha256": "7e1ab164339f782a83b7819cca39c5a31276782e5b66ddc0e0262531356f1560", "manifest_sha256": "2beb6360023fce345760e618b845d8dca66f0de964c0f1d230e812188f63b813"},
+    "repair_r4": {"report_sha256": "43f793be1e1cc5b895ef7c92312743c5984cfcd44d0cf691d8d308eb37ae09e0", "manifest_sha256": "907dbc104f02878b6f600954a33639aefea3bb4c4f98abb8274dad19f8cad28e"},
+    "repair_r5": {"report_sha256": "ee0986149fda19d060e53320f4e64377c75c8b6f4d88ecce295309acdf3baaf4", "manifest_sha256": "22f850682478efe8e0d5499860ed45816d0fb5b3599494a65cb9a7a63930c857"}
+  },
+  "credit_ceiling": ["software_focused_only", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"]
+}
+

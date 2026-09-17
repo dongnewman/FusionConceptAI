@@ -1,0 +1,15 @@
+canonical_duplicate_key: DuplicateKeyError
+canonical_invalid_utf8: InvalidUTF8Error
+canonical_nonfinite: NonFiniteNumberError
+canonical_cycle: CyclicValueError
+canonical_numeric_subclasses: NonCanonicalNumberError
+canonical_large_integer: NonCanonicalNumberError
+fingerprint_nested_self_reference: EvidenceError(self_reference)
+fingerprint_cycle: EvidenceError(cyclic_value)
+receipt_fake_candidate_domain: EvidenceError(identity_mismatch)
+receipt_conflicting_digest_alias: EvidenceError(identity_mismatch)
+receipt_unknown_status: EvidenceError(invalid_status)
+receipt_reverse_utc: EvidenceError(invalid_field)
+manifest_duplicate_normalized: manifest_duplicate_path + manifest_unexpected
+implementation_manifest: ok=true
+implementation_input_hashes: all_match=true

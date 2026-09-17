@@ -1,0 +1,147 @@
+{
+  "accepted": false,
+  "archive_files": {
+    "command_receipts.json": {
+      "bytes": 2727,
+      "sha256": "c874ef5731ccab306de699b067373e409c798301f8835c296b51d0fa19159b1a"
+    },
+    "report.json": {
+      "bytes": 4376,
+      "sha256": "a3317770d988e683c68cfd72f2ea7e5ff87c65ebd19f369a331346d05f874dad"
+    },
+    "report.md": {
+      "bytes": 5008,
+      "sha256": "cc0a2f89cb93b3263b35940a514e70b2c8c277f98100cdfdfceee44af570ead5"
+    }
+  },
+  "claim_ceiling": [
+    "software_test_only",
+    "accepted_false",
+    "review_pending",
+    "no_compiler",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "coverage": {
+    "contract_test_coverage_gaps": [
+      "receipt zero counters are not directly asserted",
+      "schema/canonicalization/profile receipt hashes and required-gap tuple are not directly asserted"
+    ],
+    "fail_closed_negative_controls": "34/34",
+    "positive": "32/32",
+    "reported_total": "71/71",
+    "source_edit_identity": "5/5"
+  },
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "R01_R10": false,
+    "compiler": false,
+    "current_A": false,
+    "engineering": false,
+    "mesh": false,
+    "physical": false,
+    "provider": false,
+    "solver": false
+  },
+  "dirty_state": {
+    "after_completion_entry_count": 3697,
+    "after_completion_status_sha256_utf8_lf": "5a5377c953e753d7a84f540ecb0a10322a12d245f89c788ca5c9fc6356a4366d",
+    "before_entry_count": 3692,
+    "before_status_sha256_utf8_lf": null,
+    "postwrite_entry_count": 3704
+  },
+  "focused_execution": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G1/diffusion_v1_contract_tests.jl",
+    "exit_code": 0,
+    "pid": 51988,
+    "runtime": "julia_1.10.5",
+    "test_summary": {
+      "fail_closed_negative_controls": "34/34",
+      "positive": "32/32",
+      "reported_total": "71/71",
+      "source_edit_identity": "5/5"
+    }
+  },
+  "manifest_version": "UP2-01-G1-DIFFUSION-V1-independent-postrun-r1-evidence-v1",
+  "precheck_artifact": "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_precheck_r6",
+  "process_boundary": {
+    "postflight_matching_julia_desc": 0,
+    "preflight_matching_julia_desc": 0,
+    "review_current_matching_julia_desc": 0
+  },
+  "qa": {
+    "current_process_sweep_empty": true,
+    "json_parse": true,
+    "raw_stderr_hash_match": false,
+    "raw_stdout_hash_match": true,
+    "static_qa_exit": 0,
+    "target_hash_assertion": true
+  },
+  "raw_outputs": {
+    "stderr": {
+      "actual": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "claimed": {
+        "bytes": 0,
+        "path": "stderr.txt",
+        "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "claimed_sha256_length": 62,
+      "receipt_match": false
+    },
+    "stdout": {
+      "actual": {
+        "bytes": 454,
+        "sha256": "685826d01c1257313467060d3c7268b3ea5825aad17d630aeebe9593cad40152"
+      },
+      "claimed": {
+        "bytes": 454,
+        "path": "stdout.txt",
+        "sha256": "685826d01c1257313467060d3c7268b3ea5825aad17d630aeebe9593cad40152"
+      },
+      "receipt_match": true
+    }
+  },
+  "read_only": true,
+  "required_correction": [
+    "re-seal or additively correct the stderr raw-output SHA to the actual 64-character digest",
+    "preserve original command/PID/exit/raw files/target hashes"
+  ],
+  "review_id": "UP2-01-G1-DIFFUSION-V1-independent-postrun-r1",
+  "review_pending": true,
+  "reviewed_artifact": "docs/implementation/UP2-01-G1-DIFFUSION-V1/focused_r1",
+  "self_hash_excluded": true,
+  "target_hash_audit": {
+    "all_four_targets_match_precheck": true,
+    "before_after_unchanged": true,
+    "targets": {
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+        "bytes": 31743,
+        "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"
+      },
+      "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {
+        "bytes": 9655,
+        "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"
+      },
+      "test/GenomeV5/G1/diffusion_v1_fixture.json": {
+        "bytes": 1582,
+        "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"
+      },
+      "test/GenomeV5/G1/static_qa_diffusion_v1.py": {
+        "bytes": 4499,
+        "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"
+      }
+    }
+  },
+  "verdict": "changes_requested"
+}

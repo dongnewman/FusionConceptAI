@@ -1,0 +1,15 @@
+{
+  "fixture_class": "TEST_ONLY",
+  "cases": [
+    {"id": "missing_production_root", "expected_status": "typed_absence", "expected_error_code": "trust_anchor_absent"},
+    {"id": "receipt_signature_mutation", "expected_status": "fail_closed", "expected_error_code": "certificate_signature_invalid"},
+    {"id": "policy_oid_mismatch", "expected_status": "fail_closed", "expected_error_code": "policy_oid_mismatch"},
+    {"id": "ca_path_length_exceeded", "expected_status": "fail_closed"},
+    {"id": "production_rsa_below_2048", "expected_status": "fail_closed", "expected_error_code": "signature_profile_unknown"},
+    {"id": "expired_receipt_or_trusted_time", "expected_status": "fail_closed", "expected_error_code": "timestamp_expired"},
+    {"id": "rfc822_domain_suffix_bypass", "expected_status": "fail_closed", "expected_error_code": "name_constraints_violation"},
+    {"id": "leaf_ca_only_key_usage", "expected_status": "fail_closed", "expected_error_code": "key_usage_invalid"},
+    {"id": "receipt_unknown_or_duplicate_json", "expected_status": "fail_closed", "expected_error_code": "canonical_bytes_mismatch"},
+    {"id": "test_only_mode_mismatch", "expected_status": "fail_closed", "expected_error_code": "signature_profile_unknown"}
+  ]
+}

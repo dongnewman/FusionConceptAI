@@ -1,0 +1,27 @@
+{
+  "schema": "up1_external_blocker_independent_review_manifest_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "03-revocation-independent-review-r2",
+  "group_id": "W2-R2-03-revocation-time-replay",
+  "status": "rework",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "claim_ceiling": "contract_software_preparation_only",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/03-revocation-independent-review-r2/",
+  "owned_files": {
+    "attack_harness.py": "2d5613036910099aa100c842818f8c625c40c4ff3f5cfbb5af1441a025444bd4",
+    "cleanup_inventory.json": "7dd05f61fb1814f30f6c2a0849eaf8861b648d8b040b6e4873d20c8ec391cc88",
+    "manifest.json": null,
+    "raw/attack_harness.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/attack_harness.stdout.raw": "5d40c6f0c749898e490585c7f33acc8470095383f2f2026ec711c8647eb4a6c9",
+    "raw/pytest.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/pytest.stdout.raw": "7910c4bc2f96d85dac2302aa9be0ebcc503449d857d4a908140cf5d9d7e2319c",
+    "review_report.md": "5fa6d4dcf46d66ada55cbd67f13ddd539d397ea7ebe04b42e507639fc280a53c",
+    "run_receipt.json": "b76be65dffd5637f42330d902f32f659d62542c90fae450706dae3a1b87a0955"
+  },
+  "manifest_self_hash_excluded": true,
+  "retained_raw_streams": ["raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw"],
+  "forbidden_write_paths": ["tools/", "test/", "src/", "scripts/", "runs/", "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay/"],
+  "no_external_or_heavy_execution": true,
+  "next_action": "repair R2-01..R2-05 and rerun from a new review revision; do not amend this receipt"
+}

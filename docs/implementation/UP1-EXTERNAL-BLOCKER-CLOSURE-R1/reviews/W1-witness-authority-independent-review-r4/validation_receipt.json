@@ -1,0 +1,24 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r4.validation-receipt.v1",
+  "review_scope":"read_only_W1-R2-P2-001_closure_and_regression",
+  "review_utc":"2026-09-17",
+  "conclusion":"rework_required",
+  "claim_ceiling":"preparation_only",
+  "formal_credit":{"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks":{
+    "fresh_validator":{"command":"python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/witness_authority/repair_r1/static_validator.py","pid":34140,"started_utc":"2026-09-16T16:01:05.9956489Z","ended_utc":"2026-09-16T16:01:07.0367018Z","process_reported_started_utc":"2026-09-16T16:01:06.617553Z","process_reported_ended_utc":"2026-09-16T16:01:06.619040Z","exit_code":0,"stdout_sha256":"9387c01857f379725bd609273ad1fea15998407952105b14807eca128b11d208","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"9387c01857f379725bd609273ad1fea15998407952105b14807eca128b11d208","raw_hashes_match":true},
+    "observed_decisions":{"foreign_layer_binding_negative":"fail_closed|ERR_FOREIGN_LAYER_CANDIDATE","foreign_axis_binding_negative":"fail_closed|ERR_FOREIGN_AXIS_CANDIDATE","contract_shape_positive":"typed_absence|ERR_NOT_PRESENT|non_evidence","placeholder_present_negative":"fail_closed|ERR_PLACEHOLDER_PRESENT","placeholder_retry_negative":"fail_closed|ERR_RETRY_BUDGET_PLACEHOLDER_OR_INVALID"},
+    "evaluator_expected_fields_read":0,
+    "fixture_full_shape":{"foreign_layer":true,"foreign_axis":true,"placeholder_markers":false,"binding_mismatch_isolated":true},
+    "json_unique_parse":"pass",
+    "actual_file_count":51,
+    "requested_exact_file_count":48,
+    "cleanup_owned_count":49,
+    "cleanup_hash_mismatches":0,
+    "manifest_hash_mismatches":0,
+    "unowned_extra_count":2,
+    "unowned_extra_paths":["repair_r3/raw/static_validator.stdout.raw","repair_r3/raw/static_validator.stderr.raw"],
+    "prior_safety_findings":"no_regression"
+  },
+  "limitations":["No witness, authority, trust root, S3, Julia, DESC, mesh, solver, or formal test suite was run.","Package exact-set target is not met despite W1-R2-P2-001 evaluator closure.","No file was deleted or modified by this review."]
+}

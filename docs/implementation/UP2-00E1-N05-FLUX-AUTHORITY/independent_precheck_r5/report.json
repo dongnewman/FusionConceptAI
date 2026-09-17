@@ -1,0 +1,190 @@
+{
+  "blockers": [],
+  "checked_at_utc": "2026-09-14T04:13:32.218268+00:00",
+  "checks": {
+    "R3_regression_patterns": {
+      "symbol_concat": false,
+      "unsupported_first_generator_default": false
+    },
+    "command_exits": {
+      "git_diff_check": 0,
+      "json_parse": 0,
+      "julia_desc_process_sweep": 0,
+      "validate_plan": 0
+    },
+    "fixture": {
+      "exact_five_contract_rows": true,
+      "rows": [
+        [
+          "N05-01",
+          "/n05/left_endpoint/endpoint_ref",
+          "foreign_left_endpoint_ref",
+          "invalid_closure",
+          "fail_closed"
+        ],
+        [
+          "N05-02",
+          "/n05/right_endpoint/endpoint_ref",
+          "foreign_right_endpoint_ref",
+          "invalid_closure",
+          "fail_closed"
+        ],
+        [
+          "N05-03",
+          "/n05/left_endpoint/sign",
+          "left_sign_zero",
+          "invalid_closure",
+          "fail_closed"
+        ],
+        [
+          "N05-04",
+          "/n05/right_endpoint/sign",
+          "same_endpoint_sign",
+          "invalid_closure",
+          "fail_closed"
+        ],
+        [
+          "N05-05",
+          "/n05/right_endpoint/unit",
+          "right_unit_mismatch",
+          "invalid_type",
+          "fail_closed"
+        ]
+      ],
+      "schema_id": "GenomeV5/UP2/N05FluxAuthorityProjectionV1",
+      "schema_validation_only": true,
+      "schema_version": "v1"
+    },
+    "frozen_hashes": {
+      "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": {
+        "actual": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+        "expected": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+        "match": true
+      },
+      "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": {
+        "actual": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+        "expected": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+        "match": true
+      },
+      "test/GenomeV5/UP2/n05_flux_authority_tests.jl": {
+        "actual": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+        "expected": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+        "match": true
+      },
+      "test/GenomeV5/UP2/run_n05_flux_authority.jl": {
+        "actual": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+        "expected": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+        "match": true
+      }
+    },
+    "implementation_source_assertions": {
+      "binding_hash_includes_declared_hashes_and_declaration": true,
+      "classifier_uses_observed_errors_and_priority": true,
+      "dispatch_does_not_read_id_or_expected_oracle": true,
+      "e0_baseline_validation_precedes_mutation": true,
+      "e0_three_state_and_no_downstream_calls": true,
+      "endpoint_source_type_and_hash_is_authored": true,
+      "endpoint_unit_source_path_type_hash_checked": true,
+      "g1_actual_locator_ref_hash_full_path_type_checked": true,
+      "g1_unique_actual_four_key_join": true,
+      "law_hash_recomputed_and_source_checked": true,
+      "mutation_dispatch_is_field_path_and_kind": true,
+      "no_fixture_or_spec_expected_error_in_classifier": true,
+      "no_physics_execution_route": true,
+      "schema_canonical_profile_hashes_declared": true,
+      "strict_unique_interface": true,
+      "unknown_error_set_raises_exception": true
+    },
+    "no_author_fixture_or_id_routing": {
+      "source_expected_fields_only_in_spec_type": true,
+      "source_spec_id_only_receipt_label_or_hash": true,
+      "tests_are_oracle_consumers": true
+    },
+    "test_adversarial_assertions": {
+      "actual_A_package_and_E0_source_binding": true,
+      "closure_priority_and_genuine_unit_regression": true,
+      "duplicate_g1_and_interface_fail_closed": true,
+      "five_source_bound_mutations_and_zero_calls": true,
+      "foreign_stale_authority_and_package_rejected": true,
+      "id_label_only_and_path_kind_rejection": true,
+      "law_unit_and_binding_hash_probes": true,
+      "three_state_receipts": true
+    }
+  },
+  "claim_ceiling": "static_precheck_only_no_julia_or_desc_or_acceptance",
+  "commands": [
+    {
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json; json.load(open('test/GenomeV5/UP2/n05_flux_authority_fixtures.json', encoding='utf-8'))"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:13:30.194537+00:00",
+      "name": "json_parse",
+      "started_utc": "2026-09-14T04:13:30.143211+00:00",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:13:30.388520+00:00",
+      "name": "validate_plan",
+      "started_utc": "2026-09-14T04:13:30.194549+00:00",
+      "stderr": "",
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 325,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:13:30.458383+00:00",
+      "name": "git_diff_check",
+      "started_utc": "2026-09-14T04:13:30.388533+00:00",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 \u673a\u5236\u57fa\u56e0\u7ec4.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 \u573a\u2014\u51e0\u4f55\u57fa\u56e0\u7ec4.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 \u5b9e\u73b0\u2014\u63a7\u5236Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)(\\.exe)?$' } | Select-Object ProcessId,Name,CommandLine | ConvertTo-Json -Compress"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:13:32.218250+00:00",
+      "name": "julia_desc_process_sweep",
+      "started_utc": "2026-09-14T04:13:30.458397+00:00",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "frozen_hashes": {
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+    "test/GenomeV5/UP2/n05_flux_authority_tests.jl": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "test/GenomeV5/UP2/run_n05_flux_authority.jl": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3"
+  },
+  "limitations": [
+    "Julia/DESC and the N05 runner were not started; no dynamic or acceptance claim is made.",
+    "The unknown observed-error branch raises ArgumentError; the contract boundary retains this as program_exception, but this precheck does not execute it.",
+    "Any author change to one of the four frozen files invalidates this verdict."
+  ],
+  "review_id": "UP2-00E1-N05-FLUX-AUTHORITY-independent-precheck-r5",
+  "reviewer": "different-Luna static reviewer",
+  "source_lines": {
+    "UP2N05MutationReceiptV1(spec.id": 585,
+    "baseline = up2n05_validate(authority, package, e0_binding)": 568,
+    "closure_markers =": 603,
+    "function _n05_authority_errors": 343,
+    "function up2n05_validate_mutation": 559
+  },
+  "verdict": "ready_for_focused_r4"
+}

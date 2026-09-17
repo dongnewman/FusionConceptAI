@@ -1,0 +1,28 @@
+R5 fresh independent attack matrix; every mutation exercised against signed fixture with external context and trust anchor.
+
+R1-R4 structural/authentication controls (all fail_closed:reject):
+missing_path, absolute_escape, traversal, runtime_hash_drift, binary_hash_drift,
+lock_hash_drift, runtime_version_drift, binary_version_drift, runtime_path_drift,
+binary_path_drift, duplicate_lock, duplicate_binary, duplicate_runtime,
+sbom_orphan, sbom_empty, sbom_unknown, sbom_cycle, sbom_coverage, purl_drift,
+duplicate_sbom_ref, publisher_drift, signature_subject, opaque_signature,
+profile_drift, receipt_digest_drift, recipe_digest_drift, root_status_drift,
+claim_ceiling_drift, runtime_paths_unknown, runtime_paths_case, signed_no_root,
+missing_external_context, missing_external_anchor, external_candidate,
+external_source, external_root, external_profile, external_lock, external_binary,
+anchor_key, anchor_issuer, anchor_root, anchor_policy.
+
+R5 authenticated-closure field mutations, with declaration authenticated_closure
+and declaration_sha256 synchronously recomputed while external context remains
+unchanged (all fail_closed:reject). For receipt origin/retrieved mutations the
+download receipt self-digest was also recomputed before validation:
+authority, verified_at, receipt_origin, receipt_retrieved, binary_license,
+sbom_supplier, sbom_license.
+
+R3/R4 chain attacks (all fail_closed:reject):
+attacker-generated key with synchronized binary/receipt/outer re-signing,
+bundle-self-supplied expected_context.
+
+Positive boundary:
+TEST_ONLY_positive => non_evidence:non_evidence.
+No mutation was written to audited implementation, tests, or capture evidence.

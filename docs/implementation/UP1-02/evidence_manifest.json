@@ -1,0 +1,297 @@
+{
+  "task_id": "UP1-02",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted",
+  "accepted": true,
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "accepted_scope": "axis_aligned_rational_3d_g2_structural_contract",
+  "allowed_write_paths": [
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+    "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+    "test/GenomeV5/G2/up1_g2_contract_tests.jl",
+    "test/GenomeV5/G2/fixtures.json",
+    "docs/implementation/UP1-02/acceptance.md",
+    "docs/implementation/UP1-02/evidence_manifest.json"
+  ],
+  "protected_dirty_rule": "All other dirty tracked and untracked paths are protected; no shared entrypoint, old V4 source, default registry, existing tests, runs, queue or core index may be changed.",
+  "input_hashes": {
+    "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md": "5332f0c7a5c215948254a536c93e945caa019143dfd5ab3c595af9b0091b9efb",
+    "docs/v4_multitopology_generation/up0_02_protocol.json": "6904ea161a27ff007a071697f7740ad923ce79d05e23433d356460546ecd7bfb",
+    "src/Genomes/FieldGeometryGenome.jl": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725",
+    "src/Genomes/FieldGeometrySpatialSupport.jl": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405",
+    "src/Genomes/FieldGeometryPrimitives.jl": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5",
+    "src/RuntimeV4/SpatialMultiRegionV4.jl": "cac5b47beeee2fbab7de6f171f7f155ff5534bc51edec0e66ee8caf711d6b932",
+    "src/RuntimeV4/SpatialRuntimeV4.jl": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb",
+    "src/RuntimeV4/SpatialExecutionTypesV4.jl": "995de2eb6365685328d4600049c32042e143ddb66537792f985a8b90cdb4b96c",
+    "src/FusionConceptAI.jl": "a7ad18c87f0f8c8ac324cfe90c0cb7616bdd22277b4f6e926557c01195c507ef"
+  },
+  "target_hash_timeline": {
+    "before_write": {
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": null,
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": null,
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": null,
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": null,
+      "test/GenomeV5/G2/up1_g2_contract_tests.jl": null,
+      "test/GenomeV5/G2/fixtures.json": null,
+      "docs/implementation/UP1-02/acceptance.md": null,
+      "docs/implementation/UP1-02/evidence_manifest.json": null
+    },
+    "after_write": {
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": "3d591d48a05c70426e5b59f650f9d49139db5a82bd73a63dc01854fd3336e501",
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": "7d4624016b631be096b68957537bded807bd3afa30efd03ef201d18778450ec7",
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": "d21b1c6496784a42769bd93dd3836dc429f9422fca8bcda485957eaeed5c7a10",
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": "4cab23083a874a2958185b2dab522771be71ad8b94c975a7c24d19d932df3044",
+      "test/GenomeV5/G2/up1_g2_contract_tests.jl": "0c85414093b1381df0fd661e7dd5ab2a87b22c35f3904f925c02e0b7353b70fb",
+      "test/GenomeV5/G2/fixtures.json": "df931c45ab38b859078d11d2cdb6da5aadacb053322cce353f6c65ad620a58d8",
+      "docs/implementation/UP1-02/acceptance.md": "bdacf1100848d15b91016ad62dd61e27e58033b093c05eb7dd15743b7c38e285",
+      "docs/implementation/UP1-02/evidence_manifest.json": null
+    },
+    "changes_requested_repair_before_write": {
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": "3d591d48a05c70426e5b59f650f9d49139db5a82bd73a63dc01854fd3336e501",
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": "7d4624016b631be096b68957537bded807bd3afa30efd03ef201d18778450ec7",
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": "d21b1c6496784a42769bd93dd3836dc429f9422fca8bcda485957eaeed5c7a10",
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": "4cab23083a874a2958185b2dab522771be71ad8b94c975a7c24d19d932df3044",
+      "test/GenomeV5/G2/up1_g2_contract_tests.jl": "0c85414093b1381df0fd661e7dd5ab2a87b22c35f3904f925c02e0b7353b70fb",
+      "test/GenomeV5/G2/fixtures.json": "df931c45ab38b859078d11d2cdb6da5aadacb053322cce353f6c65ad620a58d8",
+      "docs/implementation/UP1-02/acceptance.md": "bdacf1100848d15b91016ad62dd61e27e58033b093c05eb7dd15743b7c38e285",
+      "docs/implementation/UP1-02/evidence_manifest.json": "eadb066d6b7c76f9279c1f266ec95807f4dc019b44441ba5362071ea43131b7b"
+    },
+    "after_repair_write": {
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32",
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f",
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7",
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6",
+      "test/GenomeV5/G2/up1_g2_contract_tests.jl": "bdf467b1dfebbe2964f459036ab6aab64a3535930aba0bf73dc463755fd10ca2",
+      "test/GenomeV5/G2/fixtures.json": "831d54a696670166e2b912a1e3b6bd1dd97a03bdf33f6c41260c5d604661f84e",
+      "docs/implementation/UP1-02/acceptance.md": "94155b6a1a9566948245a028e52b7ac0a7092cea08b7ac12450b92643b900f10",
+      "docs/implementation/UP1-02/evidence_manifest.json": null
+    }
+  },
+  "output_hashes": {
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32",
+    "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f",
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7",
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6",
+    "test/GenomeV5/G2/up1_g2_contract_tests.jl": "bdf467b1dfebbe2964f459036ab6aab64a3535930aba0bf73dc463755fd10ca2",
+    "test/GenomeV5/G2/fixtures.json": "831d54a696670166e2b912a1e3b6bd1dd97a03bdf33f6c41260c5d604661f84e",
+    "docs/implementation/UP1-02/acceptance.md": "94155b6a1a9566948245a028e52b7ac0a7092cea08b7ac12450b92643b900f10"
+  },
+  "contract_checks": {
+    "external_g2_ref": "GenomeContractRef v5 remains independent",
+    "version_axes": "four explicit non-V1 QualifiedRefV1 axes",
+    "candidate_binding": "plan_hash binds RegionInterfaceContractV2 and FieldSpacePlanV2; candidate_hash binds all G2 content and admission",
+    "edit_propagation": "interface coordinate/normal and mesh cell edits rebuild plan and candidate hashes",
+    "physical_boundary": "mesh execution, physical solver, engineering evidence and R01-R10 claims are false/not evidenced.",
+    "accepted_scope": "axis_aligned_rational_3d_g2_structural_contract; two legal axis-aligned rational 3D topologies, fail-closed region/interface/exterior patch admission, editable plan/hash propagation, provider deferred",
+    "b04_boundary": "B04 compile-before-provider and provider invocation counter are false/not evidenced; remain pending UP1-04."
+  },
+  "negative_controls": [
+    "interface faces do not coincide -> fail_closed",
+    "interface normal points opposite the left-to-right contract orientation -> fail_closed",
+    "positive-area duplicate exterior face patch -> invalid_boundary/exterior_face_patch_overlap:z_min/fail_closed",
+    "provider_match=no_match -> terminal_deferred with no solver/provider execution",
+    "dimension outside 3 or legacy V1 refs -> constructor rejection",
+    "no V4 source, shared entrypoint, default registry, existing dirty test or run modified"
+  ],
+  "exit_gate": [
+    "r7 focused Julia test proves x=1 and y=1/2 legal axis-aligned rational 3D two-region plans",
+    "r7 focused Julia test proves region/interface/exterior patch invalid mutations fail closed",
+    "r7 focused Julia test proves provider gap is terminal_deferred with no provider invocation",
+    "r7 focused Julia test proves interface/mesh edits change plan and candidate hash",
+    "independent Luna review passes scope and evidence boundaries",
+    "B04 compile-before-provider, provider counter, mesh, physical and engineering gates remain outside this acceptance"
+  ],
+  "commands": {
+    "fixture_json_parse": {
+      "argv": [
+        "python",
+        "-c",
+        "import json; json.load(open('test/GenomeV5/G2/fixtures.json',encoding='utf-8')); json.load(open('docs/implementation/UP1-02/evidence_manifest.json',encoding='utf-8')); print('json_final_exit=0')"
+      ],
+      "exit_code": 0,
+      "status": "pass"
+    },
+    "focused_julia_test": {
+      "argv": [
+        "julia",
+        "--project=.",
+        "test/GenomeV5/G2/up1_g2_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "status": "pass_software_only",
+      "started_at": "2026-09-14T04:18:08.8305436+08:00",
+      "finished_at": "2026-09-14T04:18:17.4282183+08:00",
+      "pid": 43120,
+      "stdout": "docs/implementation/UP1-02/focused_test.r7.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r7.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r7.exit",
+      "summary": "r7: legal 57/57; negative 59/59; physical/provider boundary 8/8; total 124/124; accepted only for structural contract scope; no B04, mesh or physical execution",
+      "stdout_sha256": "eea270c02a5577790213d50b7fce2907f0f6f2c692852befa8fb3061f2e081be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    "git_diff_check": {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "pass",
+      "note": "existing LF-to-CRLF warnings only"
+    },
+    "validate_plan": {
+      "argv": [
+        "python",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "exit_code": 0,
+      "status": "pass_planning_validation_only",
+      "summary": "checks pass; markdown_files_checked=31; relative_links_checked=241; task_count=24; task_dag_acyclic=true; this does not validate physics or implementation"
+    }
+  },
+  "static_review": {
+    "status": "pass",
+    "checks": [
+      "all four source files are confined to src/GenomeV5/G2",
+      "tests and fixture are confined to test/GenomeV5/G2",
+      "no shared entrypoint or default registry references",
+      "all structural failures are fail-closed",
+      "no solver or provider invocation code"
+    ]
+  },
+  "execution_boundary": {
+    "julia_started": true,
+    "desc_started": false,
+    "mesh_execution": false,
+    "physical_solver": false,
+    "physical_result": false,
+    "claim_ceiling": "none",
+    "claim_scope": "contract_only",
+    "b04_compile_before_provider": "false; pending UP1-04",
+    "engineering_result": false,
+    "r01_r10_credit": false
+  },
+  "independent_review": {
+    "reviewer": "different Luna (final independent review)",
+    "result": "pass",
+    "scope": "axis_aligned_rational_3d_g2_structural_contract",
+    "checks": [
+      "four-layer schema and semantic views match actual fields and hashes derive from controlled content",
+      "JSON fixture drives both legal topologies and all negative mutations",
+      "region/interface/exterior patch overlap and closure checks fail closed",
+      "version axes, external GenomeContractRef and internal refs bind exact domains and candidate identity",
+      "editable interface/mesh plans change plan_hash and candidate_hash",
+      "r7 execution and artifact hashes are consistent",
+      "mesh, provider, physical and engineering evidence remain outside scope"
+    ]
+  },
+  "sol_decision": "accepted with limited software contract scope; B04=false, mesh=false, physical=false; no provider, engineering or R01-R10 credit",
+  "self_hash_rule": "evidence_manifest.json final hash is recorded externally because embedding it would be circular",
+  "next_dependency": "UP1-04 remains planned for three-Genome migration, shared entrypoint integration and B00/B04 evidence; UP1-02 acceptance does not advance G1/G3 or close parent R01-R10.",
+  "run_history": [
+    {
+      "attempt": "r1",
+      "pid": 60836,
+      "started_at": "2026-09-14T03:59:03.7974090+08:00",
+      "finished_at": "2026-09-14T03:59:08.6289772+08:00",
+      "exit_code": 1,
+      "stdout": "docs/implementation/UP1-02/focused_test.r1.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r1.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r1.exit",
+      "finding": "JSON3 Int64 fixture adapter called String(::Int64); no admission executed; fixed by explicit Integer ratio path."
+    },
+    {
+      "attempt": "r2",
+      "pid": 40956,
+      "started_at": "2026-09-14T03:59:57.6672416+08:00",
+      "finished_at": "2026-09-14T04:00:06.5642676+08:00",
+      "exit_code": 1,
+      "stdout": "docs/implementation/UP1-02/focused_test.r2.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r2.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r2.exit",
+      "finding": "legal 57/57; three negative assertions used a temporary detail-code draft without interface suffix and incorrectly searched terminal_deferred in errors."
+    },
+    {
+      "attempt": "r3",
+      "pid": 63916,
+      "started_at": "2026-09-14T04:01:00.6414476+08:00",
+      "finished_at": "2026-09-14T04:01:09.7913959+08:00",
+      "exit_code": 1,
+      "stdout": "docs/implementation/UP1-02/focused_test.r3.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r3.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r3.exit",
+      "finding": "diagnostic testset context used a runtime expression rejected by Julia Test macro; no contract change."
+    },
+    {
+      "attempt": "r4",
+      "pid": 11780,
+      "started_at": "2026-09-14T04:01:56.7984669+08:00",
+      "finished_at": "2026-09-14T04:02:08.3760005+08:00",
+      "exit_code": 1,
+      "stdout": "docs/implementation/UP1-02/focused_test.r4.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r4.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r4.exit",
+      "finding": "legal 57/57; the same three diagnostic assertions failed: actual detail codes were interface_faces_do_not_coincide:g2.interface.x1, interface_orientation_mismatch:g2.interface.x1, and provider_match was a gap/resolution. Frozen categories were restored afterward."
+    },
+    {
+      "attempt": "r5",
+      "pid": 33492,
+      "started_at": "2026-09-14T04:03:10.2543418+08:00",
+      "finished_at": "2026-09-14T04:03:18.9183818+08:00",
+      "exit_code": 0,
+      "stdout": "docs/implementation/UP1-02/focused_test.r5.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r5.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r5.exit",
+      "finding": "temporary detail-code assertions passed; this is retained for audit and is not the acceptance run."
+    },
+    {
+      "attempt": "r6",
+      "pid": 62708,
+      "started_at": "2026-09-14T04:05:16.7870107+08:00",
+      "finished_at": "2026-09-14T04:05:24.4235632+08:00",
+      "exit_code": 0,
+      "stdout": "docs/implementation/UP1-02/focused_test.r6.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r6.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r6.exit",
+      "finding": "final classification-preserving run: legal 57/57, negative 54/54, boundary 8/8."
+    },
+    {
+      "attempt": "r7",
+      "pid": 43120,
+      "started_at": "2026-09-14T04:18:08.8305436+08:00",
+      "finished_at": "2026-09-14T04:18:17.4282183+08:00",
+      "exit_code": 0,
+      "stdout": "docs/implementation/UP1-02/focused_test.r7.stdout.log",
+      "stderr": "docs/implementation/UP1-02/focused_test.r7.stderr.log",
+      "exit_artifact": "docs/implementation/UP1-02/focused_test.r7.exit",
+      "stdout_sha256": "eea270c02a5577790213d50b7fce2907f0f6f2c692852befa8fb3061f2e081be",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "finding": "final fixture-driven overlap run: legal 57/57, negative 59/59, boundary 8/8; duplicate positive-area z_min exterior patch reached exterior_face_patch_overlap:z_min and remained fail-closed; mesh/physical not_executed."
+    }
+  ],
+  "classification_audit": {
+    "frozen_expected_categories": {
+      "interface_nonoverlap": "invalid_boundary|invalid_closure",
+      "interface_wrong_orientation": "invalid_closure",
+      "region_volume_overlap": "invalid_closure",
+      "interface_tangential_coverage": "invalid_closure",
+      "missing_interface": "invalid_closure",
+      "repeated_interface": "invalid_closure",
+      "open_exterior": "invalid_boundary",
+      "exterior_patch_gap": "invalid_boundary",
+      "missing_provider": "terminal_deferred",
+      "exterior_patch_overlap": "invalid_boundary"
+    },
+    "preservation": "Final fixture expected categories remain the pre-registered protocol classes; expected_detail records deterministic admission detail for audit and does not alter category thresholds. The r7 exterior_patch_overlap fixture retains invalid_boundary and exterior_face_patch_overlap:z_min.",
+    "provider_semantics": "terminal_deferred requires structural_status=valid and geometry_status=valid with provider gap; it is not an admission error and does not imply B04 provider execution.",
+    "b04_boundary": "B04 compile-before-provider and invocation counter remain pending UP1-04; focused pass is software contract evidence only.",
+    "exterior_overlap": "duplicate_boundary_patch copies the split_y_half z_min/left positive-area patch; the existing validator emits exterior_face_patch_overlap:z_min and the test asserts fail-closed with mesh/physical not_executed."
+  }
+}

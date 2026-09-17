@@ -1,0 +1,85 @@
+{
+  "claim_ceiling": [
+    "software_test_only",
+    "accepted_false",
+    "review_pending",
+    "no_compiler",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "focused_exit_code": 0,
+  "focused_pid": 51988,
+  "postflight": {
+    "dirty_entry_count": 3697,
+    "dirty_status_sha256_utf8_lf": "5a5377c953e753d7a84f540ecb0a10322a12d245f89c788ca5c9fc6356a4366d",
+    "matching_julia_desc_processes": 0
+  },
+  "preflight": {
+    "dirty_entry_count": 3692,
+    "dirty_status_sha256_utf8_lf": null,
+    "matching_julia_desc_processes": 0,
+    "note": "pre-run status hash unavailable and intentionally not inferred"
+  },
+  "raw_output_audit": {
+    "stderr": {
+      "actual": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "claimed": {
+        "bytes": 0,
+        "path": "stderr.txt",
+        "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "claimed_sha256_length": 62,
+      "receipt_match": false
+    },
+    "stdout": {
+      "actual": {
+        "bytes": 454,
+        "sha256": "685826d01c1257313467060d3c7268b3ea5825aad17d630aeebe9593cad40152"
+      },
+      "claimed": {
+        "bytes": 454,
+        "path": "stdout.txt",
+        "sha256": "685826d01c1257313467060d3c7268b3ea5825aad17d630aeebe9593cad40152"
+      },
+      "receipt_match": true
+    }
+  },
+  "review_commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G1/static_qa_diffusion_v1.py",
+      "exit_code": 0,
+      "result": "static_qa=pass; julia_or_desc_executed=false"
+    },
+    {
+      "command": "Python SHA-256/JSON audit of focused_r1 stdout, stderr, manifests, receipts, and four target files",
+      "exit_code": 0,
+      "result": "stdout match; stderr receipt SHA mismatch; four targets match"
+    },
+    {
+      "command": "Get-Process sweep for Julia/DESC",
+      "exit_code": 0,
+      "result": "current_matching_julia_desc_processes=0"
+    }
+  ],
+  "reviewed_focused_command": "julia --startup-file=no --project=. test/GenomeV5/G1/diffusion_v1_contract_tests.jl",
+  "reviewer": "independent_luna_high_postrun_auditor",
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-postrun-r1-command-receipts-v1",
+  "scope": "read-only focused execution provenance and contract coverage audit",
+  "target_before_after_unchanged": true,
+  "test_summary": {
+    "fail_closed_negative_controls": "34/34",
+    "positive": "32/32",
+    "reported_total": "71/71",
+    "source_edit_identity": "5/5"
+  }
+}

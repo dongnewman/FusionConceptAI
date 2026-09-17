@@ -1,0 +1,36 @@
+{
+  "schema_version": "E1-N05-independent-precheck-evidence-v1",
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY",
+  "review": "R5 stable serialized negative-control capture static precheck",
+  "status": "ready_for_serial_focused_r5",
+  "accepted": false,
+  "scope": "static readiness only; no runtime acceptance",
+  "write_scope": [
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/independent_precheck_r5/"
+  ],
+  "author_and_core_files_immutable": true,
+  "no_julia_or_desc": true,
+  "stable_output_root_required": true,
+  "negative_control_manifest": {
+    "file": "negative_control_manifest.json",
+    "covers": "positive envelope plus seven forged files",
+    "records": ["absolute path", "bytes", "sha256", "changed_field", "expected_targeted_rejection", "actual_error_message"],
+    "static_logic_verified": true,
+    "runtime_artifact_present": false
+  },
+  "formal_independence": "exporter and checker share _n05e_row; independent checker/two-process B04 replay remains open",
+  "claims": {
+    "formal_b04": false,
+    "physical": false,
+    "engineering": false,
+    "provider": false,
+    "mesh": false,
+    "r01_r10": false
+  },
+  "artifact_hashes": {
+    "report.md": "2ad541a26b8c0161664d989a379ab647d4cd16feb1921ef10feab824f4a93850",
+    "input_hashes.json": "73a9f1656cda5d4cbf9e10efb56f39886819cabb2a05f23fc8a2711d715e3605",
+    "verdict.json": "814cf29434cd639413b8acf431cb74b7e3ab0e310250a680bbdf0ac03c0b1f59",
+    "evidence_manifest.json": "self-excluded"
+  }
+}

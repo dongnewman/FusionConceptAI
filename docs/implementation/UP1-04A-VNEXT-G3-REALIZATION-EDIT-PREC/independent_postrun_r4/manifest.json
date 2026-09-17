@@ -1,0 +1,164 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-independent-postrun-r4",
+  "record_kind": "independent_focused_postrun_success_review",
+  "date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer": {
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
+    "independent_of_implementation_worker": true
+  },
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "local_software_precursor": {
+    "decision": "accepted_limited_supported",
+    "scope": "additive realization-only local software contract/editability slice R3-R6",
+    "machine_work_order_node_accepted": false,
+    "actual_child_population": false
+  },
+  "focused_run": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+    "pid": 15468,
+    "start_utc": "2026-09-15T02:20:48.9783709Z",
+    "end_utc": "2026-09-15T02:20:59.4391247Z",
+    "exit_code": 0,
+    "retry": false,
+    "repair_during_run": false,
+    "test_summary": {
+      "passed": 65,
+      "failed": 0,
+      "errored": 0,
+      "broken": 0,
+      "total": 65
+    }
+  },
+  "raw_streams": {
+    "stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/stdout.raw",
+      "bytes": 130,
+      "sha256": "3cb363b0e53ff26ca9a632a9838c394d95a97e65a6cad453c750a0dcc6803d3f",
+      "manifest_match": true
+    },
+    "stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "manifest_match": true
+    }
+  },
+  "receipt_hashes": {
+    "run_manifest": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/run_manifest.json",
+      "sha256": "160252e6ee9f05483b56b37fc7c830eb1792049fe31e1f7b1df4ec5c43596ad1"
+    },
+    "assertion_summary": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/assertion_summary.json",
+      "sha256": "731722b20d2647d49f17db4c709f31cc6c0ff3c813b6b75a72adfecc0398e6f0"
+    },
+    "input_hashes": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/input_hashes.json",
+      "sha256": "621abdb5c79348814397ed98ea60cc87db7bdb97e76d2129070994b8bc20edff"
+    },
+    "dirty_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/dirty_before.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "dirty_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/dirty_after.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "process_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/process_before.json",
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "process_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/process_after.json",
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "success_report": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/success_report.md",
+      "sha256": "def58f69ff9d851b355fa23552fb28de38ad234fa10aa121442031ea07676009"
+    }
+  },
+  "frozen_input_hashes_recorded": {
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf",
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": "ee2d3fcf80844b5ba26c983eed9810b6f7ac33ddce3403f052a3b0791143127b",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/implementation/AD-31/manifest.json": "e8906bf8a44ebc8e363d5ea18176005fb9345dcdd43877d4148d8ba2a2552cf0",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/manifest.json": "e8e10108f72e0b1d4500b146fd27bf5c51104f6a71ea372bf10afe2a64850690",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/manifest.json": "81ceabf2aaeb5a0c1f5369e68d057c965f068914b5722c8c3bb7019c89da75ba",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r4/manifest.json": "058c1ef2968cde584c9a4d9f63cef7af651d95e131d1ae81898bcb6834b5da36",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r5/manifest.json": "c5abb6a08fba58bf1f25968f5c253f56ea21ec8a82aa567792db955c24352d3e",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r6/manifest.json": "5b36ed33af25207c4f30bbe1d7b6d6a968da1da889d8ee55614db2a647877d7f",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "9f415c71936979c71757b31070c78d43c1d4ccebabe68211ef100b444ba13493",
+    "docs/v4_multitopology_generation/task_manifest.json": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+  },
+  "live_recheck_after_run": {
+    "recheck_status": "three_postrun_worktree_drifted_inputs",
+    "attribution": "concurrent planning/document updates after focused_r4; not attributed to R6 source/test slice",
+    "mismatches": {
+      "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+        "frozen_sha256": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61",
+        "current_sha256": "b0d7e6e8955051bb1d7f83f692d54c1e502e0a099119e79c9bc51dfc65c4c8ee"
+      },
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+        "frozen_sha256": "9f415c71936979c71757b31070c78d43c1d4ccebabe68211ef100b444ba13493",
+        "current_sha256": "640fdf85429ef1bb6716dbba4cd87a9e7b8f138778aa22db97fab7378f178ded"
+      },
+      "docs/v4_multitopology_generation/task_manifest.json": {
+        "frozen_sha256": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a",
+        "current_sha256": "9e51b1a4d252462972d6f507194d51a93a00aa3efc2aba21a2368340129fdae2"
+      }
+    },
+    "source_test_and_other_frozen_inputs_match": true,
+    "reuse_requires_frozen_manifest": true
+  },
+  "coverage": {
+    "closed_body_and_physical_invariants": true,
+    "identity_and_source_record_hashes": true,
+    "initial_and_current_state_hashes": true,
+    "fixed_replace_and_operation_history": true,
+    "stale_foreign_forged_duplicate_rejection": true,
+    "typed_absence_zero_one_multiple": true,
+    "status_and_physical_negative_controls": true,
+    "assertions_executed": 65,
+    "software_contract_only": true
+  },
+  "history_preserved": {
+    "focused_r1_run_manifest_sha256": "f26cc3940e6e3f98d26c3e74998f72f2f084eb35d1a1b4f12a6f6cf58c3c2c49",
+    "focused_r2_run_manifest_sha256": "17986149348c22a6581c05b8dba57bdbe4de8e411ca6e004680b02742451909a",
+    "focused_r3_run_manifest_sha256": "5b01c7f5dbc25909ea01132d41bfaee2b7d61314cd52b66e08149cde48eceef5",
+    "focused_r1_preserved": true,
+    "focused_r2_preserved": true,
+    "focused_r3_preserved": true
+  },
+  "claim_ceiling": {
+    "local_realization_software_precursor_accepted_limited_supported": true,
+    "machine_work_order_node_accepted": false,
+    "actual_child_population": false,
+    "physical_resolution": "unknown",
+    "t0_t1_t2_credit": false,
+    "provider_mesh_solver_evidence": false,
+    "engineering_evidence": false,
+    "physical_evidence": false,
+    "search_credit": false,
+    "b00_b04_credit": false,
+    "r01_r10_credit": false
+  },
+  "protected_paths": {
+    "old_g3_v1_v5": "read_only_unaccepted",
+    "t0": "read_only_unaccepted",
+    "package_registry": "read_only_unaccepted",
+    "control_binding_feedback": "read_only_unaccepted",
+    "tracked_before_after_diff_available": false,
+    "untracked_baseline_limitation": true
+  },
+  "review_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_postrun_r4/report.md": "7b9212caf0a5b71febba9bfcf5c673322eadf6d87eedbe98b72bfae8eeb75c89"
+  },
+  "self_hash_excluded": true
+}

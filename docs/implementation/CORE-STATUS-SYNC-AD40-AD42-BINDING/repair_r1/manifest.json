@@ -1,0 +1,61 @@
+{
+  "schema_version": "core-status-sync-ad40-ad42-binding-repair-r1-v1",
+  "record_kind": "append_only_evidence_closure_repair",
+  "task_id": "CORE-STATUS-SYNC-AD40-AD42-BINDING",
+  "repair_round": "repair_r1",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "one_output_sha256_field_correction_only",
+  "claim_ceiling": "architecture_and_static_planning_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "affected_path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+  "affected_bytes": 77295,
+  "before_bad_sha256": "A5DBBCA671F6F988D9B769D2C5C96D2861BEB9F7B8FE3F28385CA9BBED29614F7",
+  "after_sha256": "A5DBBCA671F6F988D9B769D2C5C96D2861BEB9F7B8FE3F28385CA9BBED29614F",
+  "changed_paths": [
+    "docs/implementation/CORE-STATUS-SYNC-AD40-AD42-BINDING/manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD40-AD42-BINDING/report.md"
+  ],
+  "protected_paths": [
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/implementation/CORE-STATUS-SYNC-AD40-AD42-BINDING/independent_review_r1/**",
+    "src/**",
+    "test/**",
+    "runs/**"
+  ],
+  "claims": {
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "validation": {
+    "json_hash_closure": {"pid": 59492, "utc_start": "2026-09-15T09:39:31.8307427Z", "utc_end": "2026-09-15T09:39:31.8688209Z", "exit_code": 0, "raw_stdout": "raw/json_hash_closure.stdout.txt", "raw_stderr": "raw/json_hash_closure.stderr.txt"},
+    "validate_plan": {"pid": 80040, "utc_start": "2026-09-15T09:39:32.2203379Z", "utc_end": "2026-09-15T09:39:32.4820541Z", "exit_code": 0, "relative_links_checked": 497, "task_count": 39, "dag_acyclic": true, "raw_stdout": "raw/validate_plan.stdout.txt", "raw_stderr": "raw/validate_plan.stderr.txt"},
+    "path_scope": {"pid": 41052, "utc_start": "2026-09-15T09:39:32.2034550Z", "utc_end": "2026-09-15T09:39:32.2209414Z", "exit_code": 0, "exact_owned_set": 14, "raw_stdout": "raw/path_scope.stdout.txt", "raw_stderr": "raw/path_scope.stderr.txt"},
+    "control_scan_attempt1": {"pid": 11952, "utc_start": "2026-09-15T09:36:57.8204185Z", "utc_end": "2026-09-15T09:36:57.8519809Z", "exit_code": 1, "reason": "Markdown report was incorrectly included in JSON parse set; no mutation", "raw_stdout": "raw/control_scan_attempt1.stdout.txt", "raw_stderr": "raw/control_scan_attempt1.stderr.txt"},
+    "control_scan_final": {"pid": 47684, "utc_start": "2026-09-15T09:39:32.2229209Z", "utc_end": "2026-09-15T09:39:32.2455463Z", "exit_code": 0, "raw_stdout": "raw/control_scan_final.stdout.txt", "raw_stderr": "raw/control_scan_final.stderr.txt"},
+    "diff_check": {"pid": 33652, "utc_start": "2026-09-15T09:39:32.2137825Z", "utc_end": "2026-09-15T09:39:32.2710221Z", "exit_code": 0, "raw_stdout": "raw/diff_check.stdout.txt", "raw_stderr": "raw/diff_check.stderr.txt"}
+  },
+  "output_hashes": {
+    "docs/implementation/CORE-STATUS-SYNC-AD40-AD42-BINDING/repair_r1/report.md": {"bytes": 1161, "sha256": "3B2DA165F1FC56588B778A35F5EB89ACB6D4DD5272904EEF1FB07470C570DA33"}
+  },
+  "cleanup": {
+    "owned_temporary_or_unrelated_files_found": [],
+    "removed_paths": [],
+    "cleanup_status": "closed_no_owned_cleanup_required",
+    "historical_receipts_protected": true
+  },
+  "report_sha256": "self_hash_excluded",
+  "manifest_sha256": "self_hash_excluded"
+}

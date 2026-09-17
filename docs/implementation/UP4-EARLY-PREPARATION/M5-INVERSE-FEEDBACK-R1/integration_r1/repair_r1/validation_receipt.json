@@ -1,0 +1,25 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-INTEGRATION-REPAIR-VALIDATION-R1",
+  "status": "review_pending",
+  "checks": {
+    "frozen_source_f0dc_hash_matches": true,
+    "frozen_test_f227_hash_matches": true,
+    "oracle_hash_unchanged": true,
+    "strict_serial_python_twice_then_julia_twice": true,
+    "python_exit_0_both": true,
+    "julia_exit_0_both": true,
+    "julia_203_of_203_both": true,
+    "stored_derived_field_recompute_probe": true,
+    "m5a_composition_hash_recomputed": true,
+    "nested_m5a_m4d_owner_provenance_joint_mutations_typed": true,
+    "probe_no_exception": true,
+    "archive_raw_exact_copies": true,
+    "shared_unchanged": true,
+    "historical_103_and_wrong_sequence_timeout_preserved": true,
+    "formal_UP4_credit": false
+  },
+  "raw_evidence": {"live_raw": "replay_1/raw/, replay_2/raw/, probe_raw/", "archive_raw": "replay_1/archive/raw/, replay_2/archive/raw/, probe_archive/raw/", "definition": "combined is stdout bytes followed by stderr bytes"},
+  "maps": {"target_to_hidden": "(2/3,1/3) -> (alpha=2,beta=1)", "hidden_to_forward": "A=[[2,-1],[-1,2]], rhs=(1,0) -> (2/3,1/3)", "det_eigen_margin": "det=3; eigen=(1,3); margin=1/3", "roundtrip": "(0,0)", "deletion": "(2/3,1/3) -> (1/2,0); delta=(1/6,1/3)", "composition": "M5-A composition hash 722e59e8…ab694"},
+  "probe_result": {"cases": 25, "typed_failure": 25, "exceptions": 0, "m5a_composition_hash": "722e59e841d6551fe9001e1279266e1aaf5a798ca0d16625d5a4fd81a59ab694"},
+  "review_boundary": "implementation repair verified by tests/probe; independent review pending; no formal credit"
+}

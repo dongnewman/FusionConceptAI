@@ -1,0 +1,52 @@
+{
+  "schema": "M5InverseFeedbackR2TypedCheckerContractV3",
+  "status": "contract_only_not_executed",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "on_any_mismatch": "fail_closed",
+  "unknown_external_ref": "typed_absent",
+  "canonicalization": {"profile": "JCS-UTF8-LF-RATIONAL-SHA256-V1", "algorithm": "SHA-256", "numbers": "reduced_ascii_a_over_b_string_no_float"},
+  "pointer_semantics": "JSON Pointer paths ending in /* expand over every history item; no history item may be omitted",
+  "pointer_equalities": [
+    ["/canonical_bundle/payload/candidate/body/candidate_ref", "/candidate_binding/candidate_ref", "/feedback/candidate_ref", "/feedback_deletion/candidate_ref", "/history/*/candidate_ref"],
+    ["/canonical_bundle/payload/candidate/body/parent_baseline_ref", "/canonical_bundle/payload/parent_baseline/body/parent_ref", "/candidate_binding/parent_baseline/body_ref"],
+    ["/canonical_bundle/payload/candidate/body/mission_ref", "/canonical_bundle/payload/mission/body/mission_ref", "/candidate_binding/mission/body_ref"],
+    ["/canonical_bundle/payload/candidate/body/scenario_id", "/canonical_bundle/payload/scenario/body/scenario_id", "/candidate_binding/scenario/body_ref"],
+    ["/canonical_bundle/payload/source/body/source_ref", "/candidate_binding/source/source_ref", "/feedback/source_ref", "/feedback_deletion/source_ref", "/history/*/source_ref"],
+    ["/canonical_bundle/payload/source/body/owner", "/candidate_binding/source/owner", "/feedback/owner_ref", "/feedback_deletion/owner_ref", "/history/*/owner_ref"],
+    ["/feedback/edge_ref", "/feedback_deletion/edge_ref", "/history/*/edge_ref"],
+    ["/feedback/parameter", "/feedback_deletion/parameter", "/history/*/parameter"],
+    ["/feedback/axis", "/feedback_deletion/axis", "/history/*/axis"],
+    ["/feedback/direction", "/feedback_deletion/direction", "/history/*/direction"]
+  ],
+  "digest_recomputations": [
+    {"id":"D01","declared":"/canonical_bundle/payload_sha256","bytes":"/canonical_bundle/payload"},
+    {"id":"D02","declared":"/canonical_bundle/payload/candidate/body_sha256","bytes":"/canonical_bundle/payload/candidate/body"},
+    {"id":"D03","declared":"/canonical_bundle/payload/g1/body_sha256","bytes":"/canonical_bundle/payload/g1/body"},
+    {"id":"D04","declared":"/canonical_bundle/payload/g2/body_sha256","bytes":"/canonical_bundle/payload/g2/body"},
+    {"id":"D05","declared":"/canonical_bundle/payload/g3/body_sha256","bytes":"/canonical_bundle/payload/g3/body"},
+    {"id":"D06","declared":"/canonical_bundle/payload/parent_baseline/body_sha256","bytes":"/canonical_bundle/payload/parent_baseline/body"},
+    {"id":"D07","declared":"/canonical_bundle/payload/mission/body_sha256","bytes":"/canonical_bundle/payload/mission/body"},
+    {"id":"D08","declared":"/canonical_bundle/payload/scenario/body_sha256","bytes":"/canonical_bundle/payload/scenario/body"},
+    {"id":"D09","declared":"/canonical_bundle/payload/source/body_sha256","bytes":"/canonical_bundle/payload/source/body"},
+    {"id":"D10","declared":"/canonical_bundle/payload/source/body/content_sha256","bytes":"/source_content_bytes"},
+    {"id":"D11","declared":"/candidate_binding/binding_sha256","bytes":"/candidate_binding/projection"},
+    {"id":"D12","declared":"/candidate_binding/canonical_bundle_sha256","bytes":"/canonical_bundle/canonical_bytes","encoding":"base64","rule":"decode canonical_bytes and hash the exact bytes; decoded bytes must equal JCS(payload) UTF-8 LF"}
+  ],
+  "invariants": [
+    {"id":"J01","rule":"all pointer_equalities and canonical ref metadata (uri,version,schema_hash,canonicalization_hash,compatibility_profile,content_sha256,body_sha256) are equal to the same bundle"},
+    {"id":"J02","rule":"candidate_binding.binding_sha256 and canonical_bundle_sha256 are recomputed from the declared projections; D12 decodes a real canonical_bytes field and compares it byte-for-byte to JCS(payload)"},
+    {"id":"J03","rule":"every typed body digest and source content digest is recomputed before accept"},
+    {"id":"R01","rule":"every external ref is an exact URI in resolver_registry and path/bytes/sha256 match; URL/network/implicit base is rejected"},
+    {"id":"R02","rule":"unknown authority is typed_absent and cannot be fresh_refreeze_complete"},
+    {"id":"V01","rule":"valid_screen implies valid=true, authority=fresh_refreeze_complete, fresh_refreeze=true, join_checker_pass=true, all_ref_digests_pass=true, cas_pass=true, identity_pass=true, owner_pass=true, direction_pass=true, taxonomy_pass=true, typed_checker_pass=true"},
+    {"id":"V02","rule":"valid_screen requires replay_count=2, two unique attempt IDs, serial_order=[1,2], exit_codes=[0,0], semantic_equal=true, byte_equal=true, same environment/input/dependency hashes, nonempty raw/process refs"},
+    {"id":"C01","rule":"expected_version=before_version=edge.version=feedback_deletion.edge_version and after_version=before_version+1; immutable identity tuple (candidate_ref,source_ref,owner_ref,edge_ref,parameter,axis,direction) equals feedback, deletion, and every history item"},
+    {"id":"C02","rule":"history is non-empty; sequence is exactly 1..n, one append per accepted delete, no duplicate/skip/insert/delete/mutation; every item version links previous after_version to next before_version"},
+    {"id":"C03","rule":"before_state_bytes, after_state_bytes, operation_bytes and fail_atomic receipt bytes recompute to their declared hashes; rejected mutation preserves byte-identical state and history and appends nothing"},
+    {"id":"C04","rule":"recorded_utc is parseable UTC and ends in Z"},
+    {"id":"T01","rule":"record code maps exactly once to the concrete taxonomy class and resolution"},
+    {"id":"D13","rule":"review_end paths equal unchanged baseline paths plus this package paths only"}
+  ],
+  "negative_controls": ["foreign_join","canonical_digest_mismatch","canonical_bytes_mismatch","canonical_bytes_sha256_mismatch","binding_digest_mismatch","unknown_resolver_uri","registry_hash_drift","unknown_external_authority","zero_replay","one_replay","duplicate_attempt","nonzero_exit","semantic_byte_mismatch","false_join","false_cas","false_identity","false_owner","false_direction","stale_cas","foreign_history_candidate","foreign_history_source","foreign_history_owner","empty_history","duplicate_history_sequence","skipped_history_sequence","dynamic_insert","history_version_gap","missing_state_bytes","state_hash_mismatch","fail_atomic_state_changed","non_utc_recorded_at","unknown_failure_code","resolution_mismatch","dirty_path_not_in_baseline_or_package","baseline_bytes_changed","unexpected_end_path"]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "UP6VVUQDataCatalogTemplateV1",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "binding_policy": {
+    "candidate_ref": {"state":"pending","value":null,"reason":"fresh candidate identity is not created in preparation"},
+    "scenario_manifest_ref": {"state":"pending","value":null,"reason":"mission scenarios and required set are not frozen"},
+    "physical_subject_hash": {"state":"pending","value":null,"reason":"no physical materialization is executed"},
+    "calibration_validation_isolation": "required; calibration records cannot also serve as validation evidence",
+    "historical_data_promotion": false
+  },
+  "evidence_dimensions": {
+    "verification": {"purpose":"implementation, discretization, convergence, residual, interface conservation and replay correctness","required_fields":["code_ref","mesh_basis_time_ref","oracle_or_invariant","tolerance","raw_receipt","artifact_hash"]},
+    "validation": {"purpose":"candidate-bound comparison with independent measured or reference data","required_fields":["data_ref","observable_mapping","measurement_uncertainty","geometry_operating_point_mapping","heldout_split","discrepancy_ref"]},
+    "discrepancy": {"purpose":"model-to-data or independent-code difference with direction, units and alignment","required_fields":["source_pair","observable","alignment","model","unit","uncertainty_propagation","decision_rule"]},
+    "uncertainty": {"purpose":"parameter, manufacturing, initial-condition, numerical, measurement and model-form uncertainty","required_fields":["random_or_interval_distribution","seed_or_interval_protocol","correlation","propagation_method","coverage","gate_margin"]}
+  },
+  "data_record_template": {
+    "data_id": "pending",
+    "class": "verification_fixture|validation_measurement|reference_device|calibration|discrepancy_model|uncertainty_distribution",
+    "status": "pending",
+    "source": {"uri_or_path":null,"publisher_or_owner":null,"retrieval_date":null,"version":null,"content_sha256":null,"license_or_permission":null,"state":"pending","reason":"no data is downloaded or admitted in preparation"},
+    "candidate_binding": {"candidate_ref":null,"physical_subject_hash":null,"genome_bundle_hash":null,"state":"pending","reason":"candidate binding awaits formal run"},
+    "scenario_binding": {"scenario_id":null,"scenario_manifest_hash":null,"operating_point":null,"geometry_boundary_mapping":null,"state":"pending","reason":"scenario manifest is not frozen"},
+    "observable_mapping": {"name":null,"unit":null,"normalization":null,"coordinate_frame":null,"time_window":null,"state":"pending","reason":"quantity protocol is not registered"},
+    "split_role": "pending",
+    "uncertainty": {"measurement":null,"parameter":null,"manufacturing":null,"numerical":null,"model_form":null,"state":"pending","reason":"uncertainty protocol is not executed"},
+    "discrepancy": {"model_ref":null,"value":null,"unit":null,"threshold_source":null,"state":"pending","reason":"no comparison is performed"},
+    "receipt": {"command":null,"cwd":null,"exit_code":null,"stdout_sha256":null,"stderr_sha256":null,"combined_sha256":null,"artifact_hashes":[],"state":"pending","reason":"no VVUQ execution is authorized in this preparation"},
+    "limitations": {"value":null,"state":"pending","reason":"scope and extrapolation limits require candidate-bound review"}
+  },
+  "catalog": [],
+  "minimum_gates": [
+    "Verification pass cannot be relabeled validation pass.",
+    "A data item without license/permission, version and content hash remains unavailable.",
+    "A validation item must be independent of calibration and bound to the same candidate, geometry, operating point and scenario.",
+    "Discrepancy and uncertainty must propagate to every hard-gate margin; an interval crossing a gate remains unknown or failed per the frozen rule.",
+    "Historical reference artifacts remain read-only context and cannot create current VVUQ credit."
+  ]
+}

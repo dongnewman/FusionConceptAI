@@ -1,0 +1,19 @@
+{
+  "schema": "UP1.final-integration-independent-review.cleanup.v2",
+  "policy": "retain all review products and raw process evidence; no deletion or mutation outside this directory",
+  "exact_owned_set": [
+    "review.md",
+    "findings.json",
+    "verification.json",
+    "static_integration_validator.py",
+    "raw/static_integration_validator.stdout.raw",
+    "raw/static_integration_validator.stderr.raw",
+    "manifest.json",
+    "cleanup_inventory.json"
+  ],
+  "cleanup": "retain",
+  "deletion_performed": false,
+  "source_packages": "read_only; no cleanup target",
+  "formal_credit": false,
+  "notes": "The four unowned historical W1 raw streams remain retained under the independently audited git-hygiene disposition."
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "UP1-W2-trust-chain-independent-review-manifest.v1",
+  "reviewer_role": "independent Luna high",
+  "scope": "read-only adversarial review of UP1-EXTERNAL-BLOCKER-CLOSURE-R1/trust_chain",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": "none",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "input_exact_set": [
+    "cleanup_inventory.json",
+    "contract.md",
+    "external_input_register.json",
+    "manifest.json",
+    "revocation_time_replay_contract.json",
+    "trust_path_requirements.json",
+    "validation_receipt.json"
+  ],
+  "input_sha256": {
+    "cleanup_inventory.json": "0b5d97182d1bdc8fb85498f85b893680d688b44f0f17a57dab44fa49e32a9868",
+    "contract.md": "f94398e6a957263ad8a8b08b486803ce73db5a976cd9929712f949d81771a1fe",
+    "external_input_register.json": "4a277014c6e9e790d75f5200660c182f805cac484d1da4dba975a1ac42490074",
+    "manifest.json": "fd7c32ecd1d70c283cbe70105b3b07c990fc2f1f8a714c6a121f9a4f5d9822f1",
+    "revocation_time_replay_contract.json": "72f9d999ed4f80c5e5bcfd1c243df6bec803339605999fea4bff05d6ea44c3ba",
+    "trust_path_requirements.json": "466294fffa333591ef6fdeba5374e2f7408e20da47c9cb6b69ed403a8d291757",
+    "validation_receipt.json": "16a75948d18551374055e7c645d814f0ff6601576d59b6ac08ec5509776d997b"
+  },
+  "review_outputs": ["review.md", "findings.json", "validation_receipt.json", "manifest.json", "cleanup_inventory.json"],
+  "forbidden_actions": ["write input files", "modify source/test/AD", "generate keys/certificates", "run external trust validation", "grant formal gate credit"],
+  "current_state": {"fresh_s3": "typed_absence/terminal_deferred/no_publish", "ad55": "source_stage_present_only", "ad56": "software_locator_accepted_limited_only", "task_count": 39, "r01_r10": "open", "b00": "open", "b04": "open", "l4": 0}
+}

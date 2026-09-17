@@ -1,0 +1,63 @@
+{
+  "entries": [
+    {
+      "bytes": 1742,
+      "decision": "accepted_limited",
+      "gate": null,
+      "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+      "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae",
+      "verdict": null
+    },
+    {
+      "bytes": 4949,
+      "decision": "accepted_limited",
+      "gate": null,
+      "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r2/manifest.json",
+      "sha256": "f8f729e08f758902393249122e8401ecf4e0b2df9218a264922b186490d99523",
+      "verdict": null
+    },
+    {
+      "bytes": 4501,
+      "decision": "accepted_limited",
+      "gate": null,
+      "path": "docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/root_acceptance_r1/manifest.json",
+      "sha256": "bcae920cd43096c2decfda91ba010d37f5cf66c13c4bcb643c066dbd3f8107e2",
+      "verdict": null
+    },
+    {
+      "bytes": 3482,
+      "decision": "accepted_limited",
+      "gate": null,
+      "path": "docs/implementation/AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/root_acceptance_r2/manifest.json",
+      "sha256": "9a8abecbe19a48ba35d5a9de051ee929170a8869fdf6cfa66f3d1fdda13dd641",
+      "verdict": null
+    },
+    {
+      "bytes": 4712,
+      "decision": "accepted_limited",
+      "gate": null,
+      "path": "docs/implementation/AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/manifest.json",
+      "sha256": "d591fff04ef1f60dc717e623a9c0a2d547fe38111a8b713746fdf71a9cd97b3c",
+      "verdict": null
+    },
+    {
+      "bytes": 4022,
+      "decision": "accepted_limited",
+      "gate": "blocked_external_trust_root_and_source_closure",
+      "path": "docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/root_acceptance_r1/manifest.json",
+      "sha256": "f555309187dabd24ee04fe34c59d839187a2f8949bb7149c660f13bdd2f982c8",
+      "verdict": null
+    },
+    {
+      "bytes": 4902,
+      "decision": null,
+      "gate": "blocked_external_trust_root_and_source_closure",
+      "path": "docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/independent_review_r1/review_manifest.json",
+      "sha256": "3d5664f47e29db3bd602e1dd6536b6cbe099c0e1163902d11871dbb30bcdf08c",
+      "verdict": "pass_limited"
+    }
+  ],
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "schema_version": "AD50-core-status-sync-upstream-hashes-v1",
+  "self_hash_excluded": true
+}

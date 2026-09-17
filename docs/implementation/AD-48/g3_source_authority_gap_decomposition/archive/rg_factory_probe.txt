@@ -1,0 +1,4 @@
+No G3-specific source-authority factory, SourceLocatorV1 adapter, or trusted-attestation signer was found in src/GenomeV5/G3.
+Existing constructors: RealizationGenomeV5, ControlGenomeV5, CoupledRealizationControlBindingV2, RealizationControlGenomeV5; editable-source constructors/factories are g3_*_source_record/payload/initial_state helpers.
+Existing generic SourceLocatorV1 and FactoryConstructionReceiptV1 are in src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl and are deliberately typed-absence parent-baseline scaffolding; no G3 present path is wired to them.
+No default_operator_registry modification was made or permitted.

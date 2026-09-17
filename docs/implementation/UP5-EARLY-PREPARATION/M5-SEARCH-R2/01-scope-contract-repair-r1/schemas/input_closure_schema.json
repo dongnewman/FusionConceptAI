@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2InputClosureV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "closure_id", "authority_status", "fixture", "grammar", "canonical_schema", "source_bundle", "mission_hash", "bounds_hash", "scenario_hash"],
+  "properties": {
+    "schema": {"const": "M5SearchR2InputClosureV1"},
+    "closure_id": {"type": "string", "pattern": "^M5SR2-CLOSURE-[A-Z0-9-]+$"},
+    "authority_status": {"enum": ["authoritative", "typed_absent", "stale", "foreign", "malformed"]},
+    "fixture": {"$ref": "synthetic_fixture_schema.json"},
+    "grammar": {"$ref": "grammar_bundle_schema.json"},
+    "canonical_schema": {"$ref": "canonical_schema_ref_schema.json"},
+    "source_bundle": {"$ref": "source_authority_ref_schema.json"},
+    "mission_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "bounds_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "scenario_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+  }
+}

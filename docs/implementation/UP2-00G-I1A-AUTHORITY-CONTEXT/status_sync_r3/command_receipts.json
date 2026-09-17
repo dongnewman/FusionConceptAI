@@ -1,0 +1,18 @@
+{
+  "schema_version": "UP2-G-I1A-status-sync-r3-command-receipts-v1",
+  "read_only_runtime": true,
+  "started_utc": "2026-09-14T08:06:09Z",
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "dirty_status_lines": 292, "dirty_status_sha256": "39E9106701D4AE5A6148BB2AD31E8739C7B03BA59FD7A02EE0E9C6966CDB5017"},
+  "commands": [
+    {"command": "Get-Content independent_status_review_r2/report.*", "exit": 0, "purpose": "read sole provenance blocker"},
+    {"command": "Get-Content focused_r2/input_hashes.json and Get-FileHash all 11 inputs", "exit": 0, "purpose": "reconcile executed R6 input", "result": "11/11 matches; test is 83D765... not historical 1A4737..."},
+    {"command": "Update primary evidence_manifest test input/owned-after hash; preserve R5 in provenance_history", "exit": 0, "purpose": "narrow provenance repair"},
+    {"command": "Get-Content -Raw status_sync_r3/*.json | ConvertFrom-Json", "exit": 0, "purpose": "JSON parse QA"},
+    {"command": "Select-String status_sync_r3 files for control characters", "exit": 0, "purpose": "control scan"},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "purpose": "planning QA; checks pass; DAG acyclic"},
+    {"command": "git diff --check", "exit": 0, "purpose": "diff QA; line-ending warnings only"},
+    {"command": "Get-CimInstance Win32_Process | filter Julia/DESC repository processes", "exit": 0, "purpose": "no-runtime gate", "result": "empty"}
+  ],
+  "no_source_test_core_index_or_old_run_changes": true,
+  "credits": {"local_contract_only": true, "formal_b04": false, "physical": false, "r01_r10": false}
+}

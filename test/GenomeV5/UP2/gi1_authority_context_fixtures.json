@@ -1,0 +1,19 @@
+{
+  "schema_version": "UP2-00G-I1A-authority-context-fixture-v1",
+  "cases": [
+    {"id": "actual_a_e1_present_e2_absent", "e1_present": true, "e2_present": false},
+    {"id": "actual_a_e1_absent_e2_absent", "e1_present": false, "e2_present": false},
+    {"id": "foreign_e0_candidate", "mutation": "foreign_e0_candidate", "expected_status": "fail_closed"},
+    {"id": "stale_e1_package_hash", "mutation": "stale_e1_package_hash", "expected_status": "fail_closed"},
+    {"id": "tampered_context_identity", "mutation": "tampered_context_identity", "expected_status": "fail_closed"},
+    {"id": "tampered_context_metadata", "mutation": "tampered_context_metadata", "expected_status": "fail_closed"},
+    {"id": "swapped_slots", "mutation": "swapped_slots", "expected_status": "fail_closed"},
+    {"id": "foreign_component_hash", "mutation": "foreign_component_hash", "expected_status": "fail_closed"},
+    {"id": "foreign_axis", "mutation": "foreign_axis", "expected_status": "fail_closed"},
+    {"id": "invalid_e2_present", "mutation": "invalid_e2_present", "expected_status": "fail_closed"},
+    {"id": "explicit_n06_invalid_mapping", "mutation": "explicit_n06_invalid_mapping", "expected_status": "fail_closed"},
+    {"id": "constructor_state_branches", "mutation": "constructor_state_branches", "expected_status": "valid_and_fail_closed"},
+    {"id": "admission_taxonomy_statuses", "mutation": "admission_taxonomy_statuses", "expected_status": "four_state_identity"},
+    {"id": "program_exception_factory_path", "mutation": "n05_resolution_program_exception", "expected_status": "program_exception"}
+  ]
+}

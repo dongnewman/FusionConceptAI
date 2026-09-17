@@ -1,0 +1,28 @@
+{
+  "record": "M5-C ConditionalEGraph repair R1",
+  "status": "repair_complete_review_pending",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "claim_ceiling": "manufactured_conditional_egraph/screen_only",
+  "formal_credit": "none",
+  "source": {
+    "path": "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl",
+    "sha256_before": "c4271f93e3b781a36ffc3f83d5a0bf42fd51c95ba0bf92a46dba8765cd3d6ab4",
+    "sha256_after": "f53854872c907626047ac582a3a1a804a3c87e6aae537522418a81328076f1b8",
+    "allowed_change": "minimum syntax/validation repair only"
+  },
+  "frozen_upstream_inputs": {
+    "m5a_source_sha256": "e6262a11ca47f527dfa67f08974febfd69a0334e1c64baeec7657249f0e1945a",
+    "m5a_composition_sha256": "722e59e841d6551fe9001e1279266e1aaf5a798ca0d16625d5a4fd81a59ab694",
+    "m5b_source_sha256": "f0dcf8aa0dc199a4e3404ecec1a4f516b899e1cfd523454d698f9afe91553976"
+  },
+  "repair_contract": [
+    "replace ambiguous graph short-circuit begin with explicit if/else so try has an unambiguous catch",
+    "evaluate graph completeness/status ternary into status_ok before typed failure push",
+    "require absent graph to have terminal_deferred status",
+    "guard generic aliases against M5-B validate/payload/is_valid constant collisions",
+    "map validation exceptions to fail_closed typed failure; do not run formal tests"
+  ],
+  "probe": "repair_r1/parse_include_probe.jl",
+  "role_boundary": "implementation Luna only; independent review and Sol/root acceptance remain separate",
+  "exclusions": "No test/oracle/shared/default registry/other source edit; no formal test, solver, candidate, provider, physics, engineering, B00/B04, R01-R10, or L4 credit"
+}

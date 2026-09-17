@@ -1,0 +1,33 @@
+{
+  "manifest_version": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-postrun-r3-evidence-v1",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "source_receipt": "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/focused_r2",
+  "semantic_labels": {"fixture_static_julia_or_desc_executed": false, "launcher_julia_executed": true, "launcher_desc_executed": false, "mesh_execution": false},
+  "raw_outputs": {
+    "stdout.txt": {"bytes": 980, "sha256": "2fe76c7c6a7264f5449b06174f2d3a18e5f123eab581f5784c5d442e7da84a44"},
+    "stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "stdout_marker_scope": "fixture_static_julia_or_desc_executed=false"
+  },
+  "run": {"pid": 50816, "exit_code": 0, "utc_before": "2026-09-14T20:53:04.6034925Z", "utc_after": "2026-09-14T20:53:12.0300209Z", "julia_desc_before": 0, "julia_desc_after": 0},
+  "four_input_hashes": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 30773, "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"bytes": 11208, "sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db"},
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": {"bytes": 3974, "sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5"},
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": {"bytes": 7104, "sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"}
+  },
+  "focused_r2_old_receipt_files": {
+    "run.json": {"bytes": 544, "sha256": "c0fb8c4681fb2af423b4ba7309dc4f0bef14a60562dc75afca08f726d899881a"},
+    "input_hashes.json": {"bytes": 924, "sha256": "68d5b4ca8462a44fa88a460dd792b658304ee0373dc86d8513bd7edb059e4b46"},
+    "output_hashes.json": {"bytes": 1148, "sha256": "b76565b31e92b5fb688f1627abeb8afab4d5667f60c0183af28658b7158822fb"},
+    "evidence_manifest.json": {"bytes": 1901, "sha256": "b06491781c2f7bd76c3706bf3e1e2d2abf7bd648a3935f80a27adeed0e0e3d8b"},
+    "report.json": {"bytes": 2615, "sha256": "fe976a14d42741a5b7d1ece983a9036d792e6441ec77dca20e5b4b5678cf3924"},
+    "report.md": {"bytes": 2432, "sha256": "c41014c47892b44c6953be7be3574b02f1cf8f17f389505b636c5686df295603"},
+    "command_receipts.json": {"bytes": 1734, "sha256": "7be4dc33b2fdcb8efa3eaf496b902802536d968bb8d48ea2b96acec231241ec7"}
+  },
+  "verification": {"raw_hash_json_check_exit": 0, "json_parse_exit": 0, "julia": "not_run", "desc": "not_run"},
+  "claim_ceiling": ["software_test_only", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"],
+  "self_hash_excluded": true
+}

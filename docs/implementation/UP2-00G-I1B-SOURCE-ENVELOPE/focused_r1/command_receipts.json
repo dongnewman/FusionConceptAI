@@ -1,0 +1,252 @@
+{
+  "schema_version": "G-I1B-source-envelope-focused-r1-run-v1",
+  "scope": "single serial focused Julia run; no DESC",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "start_utc": "2026-09-14T17:53:24.3878104Z",
+  "end_utc": "2026-09-14T17:53:30.7569804Z",
+  "root_pid": 4384,
+  "observed_julia_processes": [
+    {
+      "utc": "2026-09-14T17:53:25.2792488Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:26.2104134Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:27.2480742Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:28.1855509Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:29.0316981Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:29.9039617Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+    },
+    {
+      "utc": "2026-09-14T17:53:30.7539021Z",
+      "pid": 4384,
+      "parent_pid": 18516,
+      "name": "julia.exe",
+      "command_line": null
+    }
+  ],
+  "exit_code": 1,
+  "stdout": {
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00G-I1B-SOURCE-ENVELOPE\\focused_r1\\stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00G-I1B-SOURCE-ENVELOPE\\focused_r1\\stderr.txt",
+    "bytes": 1078,
+    "sha256": "b240b5d933e86f61b72adc3c87fe88e93554bb84529d56c1cb17b9d439c76313"
+  },
+  "preflight": {
+    "utc": "2026-09-14T17:53:23.8080844Z",
+    "branch": "main",
+    "environment": {
+      "JULIA_DEPOT_PATH": null,
+      "GITHUB_ACTIONS": null,
+      "CI": null,
+      "JULIA_LOAD_PATH": null,
+      "JULIA_PROJECT": null
+    },
+    "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+    "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "status_snapshot_sha256": "a15ac8beb9cc15ec8aa530e7775354ea0c8de490cbba1ea0771f6eefacba29a6",
+    "matching_julia_desc_processes": 0,
+    "julia_path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "environment_overrides": {
+      "project": "--project=.",
+      "startup_file": "--startup-file=no"
+    },
+    "julia_version": "julia version 1.10.5",
+    "dirty_porcelain_entries": 3455,
+    "protected_inputs": [
+      {
+        "path": "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl",
+        "sha256": "e07e140130ce1299b70aff84f9d97a3d8cf6749d423e06f22f2822fd7de051e8",
+        "bytes": 42985
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json",
+        "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6",
+        "bytes": 23906
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+        "sha256": "5b5ffc8d0c5c0a28c64294e5d6cdef48d4b5a6dfba2d1c83ce51c8fa6b2a896e",
+        "bytes": 25255
+      },
+      {
+        "path": "test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+        "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5",
+        "bytes": 408
+      },
+      {
+        "path": "src/GenomeV5/UP2/GI1AuthorityContextV1.jl",
+        "sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9",
+        "bytes": 29560
+      },
+      {
+        "path": "src/GenomeV5/UP2/N03TimeAuthorityProjectionV1.jl",
+        "sha256": "0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef",
+        "bytes": 17588
+      },
+      {
+        "path": "src/GenomeV5/UP2/N04LedgerAuthorityProjectionV1.jl",
+        "sha256": "7e47f0ec806fedf2315e847bb0dec7bbfcdb5ec7e6645be79ebc62bbf18b7a3c",
+        "bytes": 11779
+      },
+      {
+        "path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+        "sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+        "bytes": 36290
+      },
+      {
+        "path": "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl",
+        "sha256": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+        "bytes": 51115
+      },
+      {
+        "path": "src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl",
+        "sha256": "3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa",
+        "bytes": 13796
+      },
+      {
+        "path": "src/GenomeV5/UP2/N09ProviderGapProjectionV1.jl",
+        "sha256": "5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad",
+        "bytes": 15547
+      },
+      {
+        "path": "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl",
+        "sha256": "e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67",
+        "bytes": 24123
+      },
+      {
+        "path": "src/Contracts/CandidateStatePackageV5.jl",
+        "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+        "bytes": 13496
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1_authority_context_tests.jl",
+        "sha256": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af",
+        "bytes": 19200
+      },
+      {
+        "path": "test/GenomeV5/UP1-04/layer_fixture_child.jl",
+        "sha256": "357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df",
+        "bytes": 569
+      }
+    ],
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2"
+  },
+  "postflight": {
+    "matching_julia_desc_processes": 0,
+    "protected_inputs": [
+      {
+        "path": "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl",
+        "sha256": "e07e140130ce1299b70aff84f9d97a3d8cf6749d423e06f22f2822fd7de051e8",
+        "bytes": 42985
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json",
+        "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6",
+        "bytes": 23906
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+        "sha256": "5b5ffc8d0c5c0a28c64294e5d6cdef48d4b5a6dfba2d1c83ce51c8fa6b2a896e",
+        "bytes": 25255
+      },
+      {
+        "path": "test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+        "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5",
+        "bytes": 408
+      },
+      {
+        "path": "src/GenomeV5/UP2/GI1AuthorityContextV1.jl",
+        "sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9",
+        "bytes": 29560
+      },
+      {
+        "path": "src/GenomeV5/UP2/N03TimeAuthorityProjectionV1.jl",
+        "sha256": "0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef",
+        "bytes": 17588
+      },
+      {
+        "path": "src/GenomeV5/UP2/N04LedgerAuthorityProjectionV1.jl",
+        "sha256": "7e47f0ec806fedf2315e847bb0dec7bbfcdb5ec7e6645be79ebc62bbf18b7a3c",
+        "bytes": 11779
+      },
+      {
+        "path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+        "sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+        "bytes": 36290
+      },
+      {
+        "path": "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl",
+        "sha256": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+        "bytes": 51115
+      },
+      {
+        "path": "src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl",
+        "sha256": "3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa",
+        "bytes": 13796
+      },
+      {
+        "path": "src/GenomeV5/UP2/N09ProviderGapProjectionV1.jl",
+        "sha256": "5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad",
+        "bytes": 15547
+      },
+      {
+        "path": "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl",
+        "sha256": "e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67",
+        "bytes": 24123
+      },
+      {
+        "path": "src/Contracts/CandidateStatePackageV5.jl",
+        "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+        "bytes": 13496
+      },
+      {
+        "path": "test/GenomeV5/UP2/gi1_authority_context_tests.jl",
+        "sha256": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af",
+        "bytes": 19200
+      },
+      {
+        "path": "test/GenomeV5/UP1-04/layer_fixture_child.jl",
+        "sha256": "357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df",
+        "bytes": 569
+      }
+    ],
+    "utc": "2026-09-14T17:53:30.7812916Z"
+  }
+}

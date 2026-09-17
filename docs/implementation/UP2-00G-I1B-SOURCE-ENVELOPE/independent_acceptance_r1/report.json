@@ -1,0 +1,61 @@
+{
+  "review_id": "UP2-00G-I1B-SOURCE-ENVELOPE-independent-acceptance-r1",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "focused_r5": {
+    "pid": 14796,
+    "exit_code": 0,
+    "assertions": "2653/2653",
+    "stdout_bytes": 2806,
+    "stdout_sha256": "22f5b6723c74b3b502100cba753a9b567c09896722f3373ae28d45b579976121",
+    "stderr_bytes": 0,
+    "stderr_sha256_actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256_recorded": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_hash_matches_record": false,
+    "launcher_julia_executed": true,
+    "launcher_desc_executed": false,
+    "dirty_rows": "301->301",
+    "julia_desc_processes": "0->0"
+  },
+  "r9": {
+    "precheck": "pass_limited",
+    "scope": "test-only semantic authority_gap non-empty repair"
+  },
+  "postrun_r5": {
+    "verdict": "pass_limited",
+    "accepted": false,
+    "review_pending": true
+  },
+  "focused_r4_preserved": {
+    "exit_code": 1,
+    "assertions": "2051/2052",
+    "overwritten": false
+  },
+  "protected_inputs": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"bytes": 43037, "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {"bytes": 25685, "sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"bytes": 23906, "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"bytes": 408, "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"}
+  },
+  "acceptance_scope": {
+    "actual_a_source_envelope_software": true,
+    "n06_actual_authority": false,
+    "up2_total": false,
+    "formal_b00_b04": false,
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "engineering": false,
+    "r01_r10": false
+  },
+  "validation": {
+    "validate_plan_exit": 0,
+    "json_parse": "pass",
+    "relative_links": "pass",
+    "julia_or_desc_run_by_reviewer": false
+  },
+  "root_final_acceptance": "blocked_until_empty_stderr_sha_record_is_corrected"
+}

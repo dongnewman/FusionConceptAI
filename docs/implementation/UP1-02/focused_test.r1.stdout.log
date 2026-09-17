@@ -1,0 +1,40 @@
+UP1-02 G2 V5 fixture-driven legal 3D plans: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:161
+  Got exception outside of a @test
+  MethodError: no method matching String(::Int64)
+  
+  Closest candidates are:
+    String(!Matched::JSON3.PointerString)
+     @ JSON3 C:\Users\Newman\.julia\packages\JSON3\rT1w2\src\strings.jl:23
+    String(!Matched::Vector{UInt8})
+     @ Base strings\string.jl:67
+    String(!Matched::LazyString)
+     @ Base strings\lazy.jl:80
+    ...
+  
+  Stacktrace:
+    [1] _g2_ratio(x::Int64)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:19
+    [2] (::var"#3#4"{JSON3.Array{Int64, Base.CodeUnits{UInt8, String}, SubArray{UInt64, 1, Vector{UInt64}, Tuple{UnitRange{Int64}}, true}}})(i::Int64)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:26
+    [3] ntuple
+      @ .\ntuple.jl:19 [inlined]
+    [4] _g2_ratios(xs::JSON3.Array{Int64, Base.CodeUnits{UInt8, String}, SubArray{UInt64, 1, Vector{UInt64}, Tuple{UnitRange{Int64}}, true}}, n::Int64)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:26
+    [5] _g2_build(case_id::String; mutation::Nothing)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:50
+    [6] _g2_build(case_id::String)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:44
+    [7] macro expansion
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:166 [inlined]
+    [8] macro expansion
+      @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+    [9] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:162
+   [10] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+   [11] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [12] _start()
+      @ Base .\client.jl:552
+Test Summary:                              | Pass  Error  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |    3      1      4  3.2s

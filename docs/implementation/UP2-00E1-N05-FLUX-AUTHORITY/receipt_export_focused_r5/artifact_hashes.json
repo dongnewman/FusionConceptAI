@@ -1,0 +1,166 @@
+{
+  "schema_version": "E1-N05-focused-r5-artifact-summary-v1",
+  "positive": {
+    "path": "outputs/n05_receipts.json",
+    "bytes": 22402,
+    "sha256": "777d120fc9bdfb10933e296b28b8d04cac97009d9998ae2073bcc2d075c35fea",
+    "authored_count": 5,
+    "absent_count": 5
+  },
+  "negative_manifest": {
+    "path": "outputs/negative_control_manifest.json",
+    "bytes": 4006,
+    "sha256": "32de1044c7229aaee9f8638cbbfefd422b85a7a931eef390bf5305313e03300f",
+    "count": 7,
+    "refs": [
+      {
+        "id": "source_hash",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_authored_source_hash.json",
+        "recorded_bytes": 22402,
+        "actual_bytes": 22402,
+        "recorded_sha256": "5398b5aa2c426f83dc1873942d5f4e7ab7c5294dca7d61e2578d70ee9c748219",
+        "actual_sha256": "5398b5aa2c426f83dc1873942d5f4e7ab7c5294dca7d61e2578d70ee9c748219",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "authored_receipts[0].source_locator.source_hash",
+        "expected_error": "N05 authored receipt differs from actual source recomputation",
+        "actual_error": "ArgumentError: N05 authored receipt differs from actual source recomputation"
+      },
+      {
+        "id": "absent_mutation_hash",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_absent_mutation_hash.json",
+        "recorded_bytes": 22402,
+        "actual_bytes": 22402,
+        "recorded_sha256": "c814942709aecf18ade2877f02ec64af075fefd752a57470ed6e37a0ca05741a",
+        "actual_sha256": "c814942709aecf18ade2877f02ec64af075fefd752a57470ed6e37a0ca05741a",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "absent_authority_receipts[0].mutation_hash",
+        "expected_error": "N05 mutation hash mismatch",
+        "actual_error": "ArgumentError: N05 mutation hash mismatch"
+      },
+      {
+        "id": "candidate_ref",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_candidate_ref.json",
+        "recorded_bytes": 22397,
+        "actual_bytes": 22397,
+        "recorded_sha256": "d99e12eed0e9b37d9e69aebed561169fff1cbbc788abe0be38f3931a1144f760",
+        "actual_sha256": "d99e12eed0e9b37d9e69aebed561169fff1cbbc788abe0be38f3931a1144f760",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "candidate_ref.id",
+        "expected_error": "N05 receipt candidate ref mismatch",
+        "actual_error": "ArgumentError: N05 receipt candidate ref mismatch"
+      },
+      {
+        "id": "package_hash",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_package_hash.json",
+        "recorded_bytes": 22402,
+        "actual_bytes": 22402,
+        "recorded_sha256": "70c4448b54bc57d7df478ff88500ef35f8c4d46850b0fadafdb12d1420d56cbf",
+        "actual_sha256": "70c4448b54bc57d7df478ff88500ef35f8c4d46850b0fadafdb12d1420d56cbf",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "package_hash",
+        "expected_error": "N05 receipt package hash mismatch",
+        "actual_error": "ArgumentError: N05 receipt package hash mismatch"
+      },
+      {
+        "id": "e0_binding_hash",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_e0_binding_hash.json",
+        "recorded_bytes": 22402,
+        "actual_bytes": 22402,
+        "recorded_sha256": "0db95ce270aea61d04658b37b1e1a764ba1b75674cd78c479fc3cf55a731021f",
+        "actual_sha256": "0db95ce270aea61d04658b37b1e1a764ba1b75674cd78c479fc3cf55a731021f",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "e0.binding_hash",
+        "expected_error": "N05 receipt E0 binding hash mismatch",
+        "actual_error": "ArgumentError: N05 receipt E0 binding hash mismatch"
+      },
+      {
+        "id": "declaration_hash",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_declaration_hash.json",
+        "recorded_bytes": 22402,
+        "actual_bytes": 22402,
+        "recorded_sha256": "2a4b4a5136efa3f0fc2eab5316b161da62a57ad892293a7aa4a7286f94ab58ea",
+        "actual_sha256": "2a4b4a5136efa3f0fc2eab5316b161da62a57ad892293a7aa4a7286f94ab58ea",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "declaration.authored_hash",
+        "expected_error": "N05 receipt declaration hash mismatch",
+        "actual_error": "ArgumentError: N05 receipt declaration hash mismatch"
+      },
+      {
+        "id": "missing_authored_row",
+        "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_missing_authored.json",
+        "recorded_bytes": 20119,
+        "actual_bytes": 20119,
+        "recorded_sha256": "79fbe413460da2df4a3b12836e7ed70f4d9211f74e7790aea9a79d1fc23a9303",
+        "actual_sha256": "79fbe413460da2df4a3b12836e7ed70f4d9211f74e7790aea9a79d1fc23a9303",
+        "bytes_match": true,
+        "sha_match": true,
+        "changed_field": "authored_receipts[1:5]",
+        "expected_error": "N05 authored receipt count is not five",
+        "actual_error": "ArgumentError: N05 authored receipt count is not five"
+      }
+    ]
+  },
+  "claims": {
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false
+  },
+  "artifact_files": [
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\n05_receipts.json",
+      "bytes": 22402,
+      "sha256": "777d120fc9bdfb10933e296b28b8d04cac97009d9998ae2073bcc2d075c35fea"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\negative_control_manifest.json",
+      "bytes": 4006,
+      "sha256": "32de1044c7229aaee9f8638cbbfefd422b85a7a931eef390bf5305313e03300f"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_absent_mutation_hash.json",
+      "bytes": 22402,
+      "sha256": "c814942709aecf18ade2877f02ec64af075fefd752a57470ed6e37a0ca05741a"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_authored_source_hash.json",
+      "bytes": 22402,
+      "sha256": "5398b5aa2c426f83dc1873942d5f4e7ab7c5294dca7d61e2578d70ee9c748219"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_candidate_ref.json",
+      "bytes": 22397,
+      "sha256": "d99e12eed0e9b37d9e69aebed561169fff1cbbc788abe0be38f3931a1144f760"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_declaration_hash.json",
+      "bytes": 22402,
+      "sha256": "2a4b4a5136efa3f0fc2eab5316b161da62a57ad892293a7aa4a7286f94ab58ea"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_e0_binding_hash.json",
+      "bytes": 22402,
+      "sha256": "0db95ce270aea61d04658b37b1e1a764ba1b75674cd78c479fc3cf55a731021f"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_missing_authored.json",
+      "bytes": 20119,
+      "sha256": "79fbe413460da2df4a3b12836e7ed70f4d9211f74e7790aea9a79d1fc23a9303"
+    },
+    {
+      "path": "docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\receipt_export_focused_r5\\outputs\\forged_negative_controls\\forged_package_hash.json",
+      "bytes": 22402,
+      "sha256": "70c4448b54bc57d7df478ff88500ef35f8c4d46850b0fadafdb12d1420d56cbf"
+    }
+  ]
+}

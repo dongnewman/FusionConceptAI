@@ -1,0 +1,17 @@
+{
+  "schema": "UP1.authoritative-intake-r4.independent-test.manifest.v1",
+  "verdict": "fail_limited",
+  "formal_credit": "none",
+  "authority_credit": false,
+  "no_publish": true,
+  "scope": "offline local software test only; no network, external send, acknowledgement, credentials, AD/S3, or promotion",
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r4/authoritative_intake -p test_*.py -v",
+  "focused_runs": [
+    {"run": 1, "pid": 49520, "start_utc": "2026-09-17T01:31:05.6546772Z", "end_utc": "2026-09-17T01:31:06.6921316Z", "exit": 1, "tests": 14, "failures": 2, "skipped": 2, "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "stderr_sha256": "74be8c14fa1084574a43f310fccc5cb9a41367bd2bcce20dfb030e1963c2ebba"},
+    {"run": 2, "pid": 62552, "start_utc": "2026-09-17T01:31:06.7080219Z", "end_utc": "2026-09-17T01:31:07.7281275Z", "exit": 1, "tests": 14, "failures": 2, "skipped": 2, "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "stderr_sha256": "99b151638ef416313d90809f267933d1b54c1eaec8b7d0397421c38e00ffa2bc"}
+  ],
+  "independent_probe": {"script": "independent_intake_probe.py", "pid": 18200, "utc_start": "2026-09-17T01:31:20.6718200Z", "utc_end": "2026-09-17T01:31:21.6945524Z", "exit": 1, "records": 10, "passed": 8, "failed": 2, "stdout_sha256": "461407049f848176e9566cdc316c634a0b3dddc084604ebae7088ccb4e8ad133", "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "failure_ids": ["hardlink_digest_alias_rejected", "path_traversal_component_rejected"],
+  "frozen_intake_sha256": "d6cb0a479872dc9a72c47798c90518530ce87c7b2adde46d2ea835f4c704fe8b",
+  "raw_receipts": ["raw/run1.stdout.txt", "raw/run1.stderr.txt", "raw/run1.process.json", "raw/run2.stdout.txt", "raw/run2.stderr.txt", "raw/run2.process.json", "raw/probe.stdout.json", "raw/probe.stderr.txt", "raw/probe.process.json"]
+}

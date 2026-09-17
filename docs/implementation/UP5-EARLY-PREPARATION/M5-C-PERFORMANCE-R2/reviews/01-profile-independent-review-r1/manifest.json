@@ -1,0 +1,76 @@
+{
+  "schema": "M5CPerformanceIndependentReviewManifestV1",
+  "review_id": "M5-C-PERFORMANCE-R2-INDEPENDENT-REVIEW-R1",
+  "status": "partial_profile_usable_no_implementation_release",
+  "scope": "manufactured_conditional_egraph/screen_only",
+  "formal_credit": "none",
+  "execution_policy": {
+    "read_only": true,
+    "julia_started": false,
+    "desc_started": false,
+    "s3_started": false,
+    "solver_started": false,
+    "production_or_existing_test_mutation": false
+  },
+  "reviewed_records": [
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/00-static-audit/report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/00-static-audit/manifest.json",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/manifest.json",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/profile_report.md",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/measurements.json",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/cleanup_inventory.json",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/bottleneck_hypothesis.json",
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl"
+  ],
+  "judgment": {
+    "usable": [
+      "frozen source/dependency bytes and hashes",
+      "raw bytes and SHA-256 integrity",
+      "declared PID/UTC/exit classification with provenance caveat",
+      "include/upstream/warm/catalog/RHS/cold canonical preparation receipts",
+      "static exact 8! factorial enumeration claim"
+    ],
+    "not_measured": [
+      "rewrite_set",
+      "saturate",
+      "query",
+      "replay",
+      "validate",
+      "graph counters",
+      "budget scaling and steady-state graph size"
+    ],
+    "release_decision": "P0/P1 repair and a fresh bounded profile are required"
+  },
+  "findings": {
+    "raw_hashes_all_match_manifest": true,
+    "frozen_source_and_test_hashes_match_manifest": true,
+    "utc_sum_seconds": 368.9736735,
+    "utc_sum_ceiling_seconds": 369,
+    "single_probe_policy_seconds": 60,
+    "total_policy_seconds": 600,
+    "declared_counts": {"completed": 2, "human_interruption": 5, "program_exception": 1},
+    "actual_stage_receipt_counts": {
+      "include": 8,
+      "upstream_first_compile_plus_build": 8,
+      "upstream_warm_build": 8,
+      "prepare_condition_catalog": 4,
+      "prepare_rhs": 4,
+      "prepare_source_cold_hash": 2,
+      "prepare_rewrite_set": 0,
+      "saturate": 0,
+      "query": 0,
+      "replay": 0,
+      "validate": 0
+    },
+    "measurements_run_count_mismatch": true,
+    "probe_capture_current_hash_mismatch": true,
+    "probe_capture_current_rerun": false,
+    "factorial_orders_at_n8": 40320,
+    "screen_only_preserved": true
+  },
+  "outputs": [
+    {"path": "judgment.md", "role": "判定与最小 P0/P1 边界"},
+    {"path": "raw/independent_checks.txt", "role": "机械复算 raw"}
+  ],
+  "manifest_self_hash": "excluded_by_policy"
+}

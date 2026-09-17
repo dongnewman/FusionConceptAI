@@ -1,0 +1,27 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:fusionconceptai:m5-inverse-feedback-r2:r4:canonical-bundle",
+  "title":"M5InverseFeedbackR2CanonicalBundleV4",
+  "type":"object","additionalProperties":false,
+  "required":["bundle_schema","serialization_profile","payload","payload_sha256","canonical_bytes","canonical_bytes_sha256"],
+  "properties":{
+    "bundle_schema":{"const":"M5InverseFeedbackR2CanonicalBundleV4"},
+    "serialization_profile":{"const":"JCS-UTF8-LF-RATIONAL-SHA256-V1"},
+    "payload":{"$ref":"#/$defs/payload"},
+    "payload_sha256":{"$ref":"#/$defs/sha"},
+    "canonical_bytes":{"type":"string","minLength":1,"contentEncoding":"base64","description":"base64 of exact JCS(payload) UTF-8 LF bytes; this is the sole D12 byte source"},
+    "canonical_bytes_sha256":{"$ref":"#/$defs/sha"}
+  },
+  "$defs":{
+    "sha":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "ref":{"type":"string","pattern":"^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$"},
+    "typed":{"type":"object","additionalProperties":false,"required":["uri","version","schema_hash","canonicalization_hash","compatibility_profile","content_sha256","body_sha256","body"],"properties":{"uri":{"type":"string","pattern":"^urn:fusionconceptai:[A-Za-z0-9:_-]+$"},"version":{"type":"string","pattern":"^v[0-9]+$"},"schema_hash":{"$ref":"#/$defs/sha"},"canonicalization_hash":{"$ref":"#/$defs/sha"},"compatibility_profile":{"type":"string","minLength":1},"content_sha256":{"$ref":"#/$defs/sha"},"body_sha256":{"$ref":"#/$defs/sha"},"body":{"type":"object"}}},
+    "genome":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["ref","role"],"properties":{"ref":{"$ref":"#/$defs/ref"},"role":{"enum":["G1","G2","G3"]}}}}}]},
+    "parent":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["parent_ref","owner","baseline_kind"],"properties":{"parent_ref":{"$ref":"#/$defs/ref"},"owner":{"$ref":"#/$defs/ref"},"baseline_kind":{"const":"frozen_manufactured_baseline"}}}}}]},
+    "mission":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["mission_ref","objective","claim_ceiling"],"properties":{"mission_ref":{"$ref":"#/$defs/ref"},"objective":{"const":"manufactured_inverse_feedback_screen"},"claim_ceiling":{"const":"manufactured_inverse_feedback/screen_only"}}}}}]},
+    "scenario":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["scenario_id","kind","units","direction"],"properties":{"scenario_id":{"$ref":"#/$defs/ref"},"kind":{"const":"manufactured_feedback_on_off"},"units":{"const":"dimensionless_fixture"},"direction":{"enum":["forward_to_response","response_to_parameter"]}}}}}]},
+    "source":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["source_ref","source_schema","owner","provenance_ref","provenance_sha256","applicability_domain"],"properties":{"source_ref":{"$ref":"#/$defs/ref"},"source_schema":{"$ref":"#/$defs/ref"},"owner":{"$ref":"#/$defs/ref"},"provenance_ref":{"$ref":"#/$defs/ref"},"provenance_sha256":{"$ref":"#/$defs/sha"},"applicability_domain":{"const":"manufactured_fixture_only"}}}}}]},
+    "candidate":{"allOf":[{"$ref":"#/$defs/typed"},{"type":"object","properties":{"body":{"type":"object","additionalProperties":false,"required":["candidate_ref","parent_baseline_ref","mission_ref","scenario_id","physical_subject"],"properties":{"candidate_ref":{"$ref":"#/$defs/ref"},"parent_baseline_ref":{"$ref":"#/$defs/ref"},"mission_ref":{"$ref":"#/$defs/ref"},"scenario_id":{"$ref":"#/$defs/ref"},"physical_subject":{"const":"manufactured_screen_only_nonphysical"}}}}}]},
+    "payload":{"type":"object","additionalProperties":false,"required":["candidate","g1","g2","g3","parent_baseline","mission","scenario","source","applicability"],"properties":{"candidate":{"$ref":"#/$defs/candidate"},"g1":{"$ref":"#/$defs/genome"},"g2":{"$ref":"#/$defs/genome"},"g3":{"$ref":"#/$defs/genome"},"parent_baseline":{"$ref":"#/$defs/parent"},"mission":{"$ref":"#/$defs/mission"},"scenario":{"$ref":"#/$defs/scenario"},"source":{"$ref":"#/$defs/source"},"applicability":{"const":"manufactured_screen_only_nonphysical"}}}
+  }
+}

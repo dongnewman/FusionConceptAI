@@ -1,0 +1,14 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-precheck-r3-receipts",
+  "reviewer": "independent_luna_high_static",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime_policy": {"julia":"not_run","desc":"not_run"},
+  "receipts": [
+    {"id":"R3-HEAD-STATUS","action":"git rev-parse HEAD and git status --short --untracked-files=all","result":"HEAD matched frozen target; 3420 dirty status entries observed; no worktree cleanup or unrelated edit","exit_code":0},
+    {"id":"R3-SHA256","action":"SHA256 of source, fixture, tests, runner","result":"source=8fe3ef74019f3a7810afebabf6ed95c95bef7bd22c189fafcc57f514076682b1; fixture=779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99; tests=5e0f5902e1119b67b864cbb3b9e4e1dc78ad325051a96af00bfe9f882c761e4f; runner=da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","exit_code":0},
+    {"id":"R3-PROCESS-SWEEP","action":"enumerate processes whose names match julia or desc","result":"zero matching processes","exit_code":0},
+    {"id":"R3-FIXTURE-JSON","action":"parse all independent_precheck_r3 JSON outputs and n06_dimensioned_law_fixtures.json as JSON","result":"ConvertFrom-Json parse pass; Julia runner not invoked","exit_code":0},
+    {"id":"R3-STATIC-DIFF","action":"compare reviewed source/test/fixture/runner hashes with repair_r3 archive","result":"all four reviewed hashes match repair_r3 evidence_manifest; no runtime result inferred","exit_code":0}
+  ],
+  "qa": {"archive_path_correct":true,"only_allowed_review_outputs":"independent_precheck_r3/report.md, report.json, evidence_manifest.json, command_receipts.json","julia_desc_zero":true,"verdict":"changes_requested"}
+}

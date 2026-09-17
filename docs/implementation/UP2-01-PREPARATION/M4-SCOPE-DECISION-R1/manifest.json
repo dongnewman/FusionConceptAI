@@ -1,0 +1,126 @@
+{
+  "schema": "m4-scope-decision-r1",
+  "record_kind": "bounded_architecture_scope_decision",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1",
+  "status": "review_pending",
+  "accepted": false,
+  "accepted_scope": "isolated_manufactured_analytic_scope_decision_only",
+  "decision_origin": "current Sol architecture adjudication",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "parent_task_count": 39,
+  "parent_dag_unchanged": true,
+  "r01_r10_unchanged": true,
+  "products_exactly": [
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/decision.md",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/manifest.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/cleanup_inventory.json"
+  ],
+  "evidence_sidecars_root": "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/archive/",
+  "m1_dependency": {
+    "status": "review_pending",
+    "accepted_by_this_decision": false,
+    "required_independent_review": "different Luna plus separate Sol adjudication",
+    "claim_ceiling": "execution_input_reproducibility_preparation",
+    "paths": [
+      "docs/implementation/UP0-01/m1_execution_closure_r1/report.md",
+      "docs/implementation/UP0-01/m1_execution_closure_r1/execution_input_manifest.json",
+      "docs/implementation/UP0-01/m1_execution_closure_r1/environment_manifest.json",
+      "docs/implementation/UP0-01/m1_execution_closure_r1/validation_receipt.json"
+    ],
+    "path_hashes": {
+      "report.md": "1680d46235c7297ac6f95ff02067139899091280e7f8a4e2f52372cca27ec18d",
+      "execution_input_manifest.json": "cabda76d939c5f914318026831324e38098a7e37b8a3aa4f9f7b15faa1aaf297",
+      "environment_manifest.json": "dbe4423823735c46d619de1a96f5ba3fb39420362d62fcb1d815be4baeca4c03",
+      "validation_receipt.json": "3fc5ceb47b2367cfdf7313fa31dc6c9558e3a54ff94999926d769d9b36e00993"
+    },
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "dirty_factory_sha256": {
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2",
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc",
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"
+    },
+    "environment": {
+      "powershell": {"path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe", "version": "7.5.5"},
+      "python": {"path": "D:\\Users\\Newman\\anaconda3\\python.exe", "version": "3.13.5", "sha256": "388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a"},
+      "julia": {"path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe", "version": "1.10.5", "sha256": "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad", "executed": false}
+    },
+    "static_import_closure": {
+      "probe_imports": ["SHA", "JSON3", "Dates", "FusionConceptAI"],
+      "loader": "src/GenomeV5/Integration/GenomeV5Integration.jl; 12 G1/G2/G3 components in dependency order",
+      "explicit_declarations_and_factories": 5,
+      "factory_include_directives": 0,
+      "unknown": ["Julia package resolver/runtime method dispatch", "external module binary/dependency provenance"]
+    }
+  },
+  "external_trust_blockers": {
+    "state": "typed_absence",
+    "recovery": "real external material change followed by fresh freeze and independent verification; unchanged input forbids repeated S3/new AD",
+    "items": [
+      "provider/owner designation",
+      "independent attestor basis",
+      "trust root/public key fingerprint/authentication chain",
+      "certificate/signature/algorithm",
+      "verifier identity/version",
+      "validity/revocation/trusted time/freshness/nonce anti-replay",
+      "source/version binding",
+      "G2 mapping",
+      "four axes",
+      "acceptance command/contact channel"
+    ]
+  },
+  "frozen_inputs": {
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "ad55_archive": "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/",
+    "ad56_archive": "docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/",
+    "dirty_execution_files": [
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl"
+    ],
+    "input_kind": "explicit_manufactured_or_analytic_only",
+    "external_trust_root": "typed_absence_if_missing"
+  },
+  "authorized": {
+    "lane": "isolated_manufactured_analytic_development",
+    "slice_A": "declaration_to_equation_residual_IR",
+    "slice_B": "contingent_only_after_A_independent_review_and_Sol_acceptance",
+    "slice_C_topology_transfer": "not_dispatched",
+    "slice_D_coupled_solve": "not_dispatched",
+    "steady_scalar_diffusion_only": true,
+    "time_and_multifield": "terminal_deferred"
+  },
+  "claim_ceiling": ["manufactured_control", "screen_only"],
+  "forbidden": [
+    "actual_candidate_input",
+    "source_authority_or_trusted_attestation",
+    "CandidateStatePackageV5",
+    "ForwardChainContextV4",
+    "RuntimeEvidenceV4",
+    "formal_provider_manifest",
+    "candidate_identity",
+    "task_manifest_or_dag_mutation",
+    "shared_entry_or_default_operator_registry_mutation",
+    "old_v4_evidence_or_runs_mutation",
+    "UP2_OR_B00_OR_B04_OR_PROVIDER_OR_MESH_OR_ENGINEERING_OR_PHYSICAL_OR_R01_R10_CLOSURE"
+  ],
+  "formal_reentry": ["T0", "authority recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+  "formal_reentry_prerequisites_and_receipts": ["fresh G1/G2/G3", "candidate identity", "UP1-04B: 50 fresh receipts + checker + two-process replay", "B00", "B04", "solver input hashes", "full re-verification"],
+  "roles": {
+    "A_source_implementer": "Luna-A-source-implementer/high",
+    "A_test_and_oracle_owner": "Luna-B-test-oracle/high",
+    "A_independent_reviewer": "Luna-C-independent-reviewer/high; cannot review self or another role's same change",
+    "A_integration_documentation_owner": "Luna-D-integration-docs/high",
+    "acceptance": "Sol/high"
+  },
+  "validation": {
+    "validation_kind": "documentation_validation",
+    "code_tests": "not_applicable",
+    "required_checks": ["json", "link", "diff", "format", "static_consistency"],
+    "julia_solver_execution": "not_run"
+  },
+  "cleanup_policy": "exact_task_owned_paths_only; ambiguous paths preserved",
+  "sol_decision": "scope_authorized_limited_pending_independent_luna_review",
+  "remaining_obligations": ["independent Luna review", "Sol acceptance of A before B dispatch", "all formal parent gates remain open"]
+}

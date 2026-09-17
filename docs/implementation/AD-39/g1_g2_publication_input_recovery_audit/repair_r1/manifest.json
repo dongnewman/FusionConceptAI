@@ -1,0 +1,150 @@
+{
+  "schema_version": "AD-39-g1-g2-publication-input-recovery-repair-r1-v1",
+  "record_kind": "append_only_repair_read_only_publication_input_recovery",
+  "task_id": "AD-39",
+  "repair_round": "repair_r1",
+  "status": "review_pending",
+  "accepted": false,
+  "accepted_scope": "none_pending_independent_review",
+  "claim_ceiling": "architecture_audit_and_finite_work_order",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "preserved_paths": [
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/report.md",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/manifest.json",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/cleanup_inventory.md",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r1/report.md",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r1/manifest.json",
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r1/review/validation_receipt_r1.json"
+  ],
+  "execution_policy": {
+    "read_only": true,
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "candidate_hash_created": false,
+    "fixture_promoted": false,
+    "future_publication_dispatched": false,
+    "machine_node_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "r01_r10": false
+  },
+  "ad36_reconciliation": {
+    "current_status": "accepted_limited",
+    "current_accepted": true,
+    "current_scope": "mandatory_evidence_sidecar_scope_contract_only",
+    "current_acceptance_path": "docs/implementation/AD-36/acceptance.md",
+    "current_acceptance_bytes": 3216,
+    "current_acceptance_sha256": "aa8610dec1c4259730fd4639cb1531da7aa5d8fd0122f167e4424f3084664dc2",
+    "current_manifest_path": "docs/implementation/AD-36/manifest.json",
+    "current_manifest_bytes": 5928,
+    "current_manifest_sha256": "4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9",
+    "current_status_sync_r3_report": {"path":"docs/implementation/AD-36/status_sync_r3/report.md","bytes":1689,"sha256":"a9b751e785dbd17c79bd8975e610e2f383426d88fab0a01231734fb4c2975f32"},
+    "current_status_sync_r3_manifest": {"path":"docs/implementation/AD-36/status_sync_r3/manifest.json","bytes":8725,"sha256":"5e1fe238e484d68bfdde6f50e0ea493358a222f4464ef55abf92636980b7aafd"},
+    "historical_ad39_snapshot": {
+      "path": "docs/implementation/AD-36/manifest.json",
+      "recorded_bytes": 6021,
+      "recorded_sha256": "4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9",
+      "interpretation": "same_sha_different_bytes_receipt_metadata_bug; preserve old receipt and use current recomputed pair"
+    },
+    "policy_blocker_resolved": true,
+    "fresh_input_blocker_remains": true
+  },
+  "source_input_hash_rechecks": {
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/report.md": {"bytes":11891,"sha256":"e1edb6b1abfe6f9f65b3d47606c558c5ddbd20b1c2f6f536fba0b0da234d2d06"},
+    "docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/manifest.json": {"role":"original_manifest_self_hash_excluded"},
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": {"bytes":26420,"sha256":"feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"}
+  },
+  "work_orders": [
+    {
+      "id":"AD39-G1-INPUT-RECOVERY-AND-PUBLISH",
+      "layer":"G1",
+      "semantic_owner":"mechanism diffusion declaration and source body only",
+      "status":"proposed_blocked_external",
+      "depends_on":["UP1-01","UP1-02","UP1-03","UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC","UP2-01-G1-DIFFUSION-V1"],
+      "architecture_decision_refs":["AD-36","AD-37"],
+      "external_blockers":["fresh source_bytes.bin/source_record.json","fresh candidate_binding.json","fresh provenance_axes.json","fresh factory_receipt.json","fresh_candidate_identity_review.json"],
+      "fresh_inputs":[
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/source_bytes.bin","canonical_owner":"EXT-G1-SOURCE-AUTHORITY","producer":"external authority","schema":"raw source bytes","hash":"SHA-256 exact bytes; no normalization","canonicalization":"none; preserve exact bytes","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/source_record.json","canonical_owner":"EXT-G1-SOURCE-AUTHORITY","producer":"external authority","schema":"SourceRecordV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"lexicographic named keys; source bytes hash and semantic body hash included","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/candidate_binding.json","canonical_owner":"AD39-G1-CANDIDATE-BINDING","producer":"proposed future work-order producer","schema":"CandidateBindingV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"exact public GenomeContractRef/QualifiedRefV1 equality; no alias or suffix match","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/provenance_axes.json","canonical_owner":"AD39-G1-PROVENANCE-ATTESTATION","producer":"proposed independent attestation producer","schema":"GenomeProvenanceAxesV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"four exact axes bound to same candidate/source","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/factory_receipt.json","canonical_owner":"AD39-G1-SOURCE-BACKED-FACTORY-RECEIPT","producer":"proposed direct factory producer","schema":"FactoryConstructionReceiptV1","hash":"SHA-256 canonical UTF-8 LF JSON over receipt and linked input hashes","canonicalization":"source_backed_present; exact binding; declaration hash recomputed","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/fresh_candidate_identity_review.json","canonical_owner":"AD39-G1-FRESH-IDENTITY-REVIEW","producer":"different Luna independent reviewer","schema":"FreshCandidateIdentityReviewV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"rebuild candidate/parent/child/state/receipt identities from fresh inputs","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"}
+      ],
+      "result_union":["PresentBaselinePublicationV1","AbsentBaselinePublicationV1","FailedBaselinePublicationV1"],
+      "product_file_count":14,
+      "product_files":["src/GenomeV5/Integration/G1PresentBaselinePublicationV1.jl","test/GenomeV5/Integration/g1_present_baseline_publication_v1_contract_tests.jl","test/GenomeV5/Integration/g1_present_baseline_publication_v1_fixture.json","test/GenomeV5/Integration/static_qa_g1_present_baseline_publication_v1.py","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/README.md","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/manifest.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/acceptance.md","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/source_backed_declaration_record.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/parent_binding_receipt.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/child_state_receipt.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/factory_construction_receipt.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/declaration_receipt.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/absence_record.json","docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/output/failure_record.json"],
+      "outputs":["source_record","source_bytes","candidate_binding","provenance_axes","factory_receipt","fresh_identity_review","parent_binding_hash","child_key_hash","state_hash","receipt_hash","one_result_union_member"],
+      "forbidden_edges":["AD39-G2-INPUT-RECOVERY-AND-PUBLISH","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2"],
+      "parallel_edges":["G2 source input recovery","G1 candidate binding and provenance preparation"],
+      "command_freeze":["hash all fresh inputs before factory call","direct focused contract command only after input freeze","temporary launchers forbidden"],
+      "exit_gate":["json/path/API/static validation","raw source and semantic hashes","exact candidate binding","four provenance axes","factory and declaration receipts","fresh identity review","raw stdout/stderr PID UTC exit input/output hashes","independent review","evidence index registration"],
+      "cleanup":"only task-owned temporary files; preserve dirty and historical evidence"
+    },
+    {
+      "id":"AD39-G2-INPUT-RECOVERY-AND-PUBLISH",
+      "layer":"G2",
+      "semantic_owner":"chart metric boundary topology and discretization declaration body only",
+      "status":"proposed_blocked_external",
+      "depends_on":["UP1-01","UP1-02","UP1-03","UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC","UP2-01-G2-METRIC-BOUNDARY-V1"],
+      "architecture_decision_refs":["AD-36","AD-37"],
+      "external_blockers":["fresh source_bytes.bin/source_record.json","fresh candidate_binding.json","fresh g2_candidate_mapping_receipt.json","fresh provenance_axes.json","fresh factory_receipt.json","fresh_candidate_identity_review.json"],
+      "fresh_inputs":[
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/source_bytes.bin","canonical_owner":"EXT-G2-SOURCE-AUTHORITY","producer":"external authority","schema":"raw source bytes","hash":"SHA-256 exact bytes; no normalization","canonicalization":"none; preserve exact bytes","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/source_record.json","canonical_owner":"EXT-G2-SOURCE-AUTHORITY","producer":"external authority","schema":"SourceRecordV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"lexicographic named keys; source bytes hash and semantic body hash included","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/candidate_binding.json","canonical_owner":"AD39-G2-CANDIDATE-BINDING","producer":"proposed future work-order producer","schema":"CandidateBindingV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"exact public GenomeContractRef equality; no alias or suffix match","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/g2_candidate_mapping_receipt.json","canonical_owner":"AD39-G2-CANDIDATE-QUALIFIED-REF-MAPPING","producer":"proposed independent mapping producer","schema":"GenomeContractToQualifiedRefMappingReceiptV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"exact URI/version/schema/canonicalization/profile and candidate equality; algorithm/profile hash included","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/provenance_axes.json","canonical_owner":"AD39-G2-PROVENANCE-ATTESTATION","producer":"proposed independent attestation producer","schema":"GenomeProvenanceAxesV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"four exact axes bound to same candidate/source","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/factory_receipt.json","canonical_owner":"AD39-G2-SOURCE-BACKED-FACTORY-RECEIPT","producer":"proposed direct factory producer","schema":"FactoryConstructionReceiptV1","hash":"SHA-256 canonical UTF-8 LF JSON over receipt and linked input hashes","canonicalization":"source_backed_present; exact binding; declaration hash recomputed","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"},
+        {"path":"docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/fresh_candidate_identity_review.json","canonical_owner":"AD39-G2-FRESH-IDENTITY-REVIEW","producer":"different Luna independent reviewer","schema":"FreshCandidateIdentityReviewV1","hash":"SHA-256 canonical UTF-8 LF JSON","canonicalization":"rebuild candidate/parent/child/state/receipt identities from fresh inputs","absence_policy":"typed_absent/terminal_deferred","conflict_policy":"fail_closed"}
+      ],
+      "result_union":["PresentBaselinePublicationV1","AbsentBaselinePublicationV1","FailedBaselinePublicationV1"],
+      "product_file_count":14,
+      "product_files":["src/GenomeV5/Integration/G2PresentBaselinePublicationV1.jl","test/GenomeV5/Integration/g2_present_baseline_publication_v1_contract_tests.jl","test/GenomeV5/Integration/g2_present_baseline_publication_v1_fixture.json","test/GenomeV5/Integration/static_qa_g2_present_baseline_publication_v1.py","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/README.md","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/manifest.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/acceptance.md","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/source_backed_declaration_record.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/parent_binding_receipt.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/child_state_receipt.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/factory_construction_receipt.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/declaration_receipt.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/absence_record.json","docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/output/failure_record.json"],
+      "outputs":["source_record","source_bytes","candidate_binding","g2_candidate_mapping_receipt","provenance_axes","factory_receipt","fresh_identity_review","parent_binding_hash","child_key_hash","state_hash","receipt_hash","one_result_union_member"],
+      "forbidden_edges":["AD39-G1-INPUT-RECOVERY-AND-PUBLISH","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2"],
+      "parallel_edges":["G1 source input recovery","G2 candidate binding and provenance preparation"],
+      "command_freeze":["hash all fresh inputs before factory call","direct focused contract command only after input freeze","temporary launchers forbidden"],
+      "exit_gate":["json/path/API/static validation","raw source and semantic hashes","exact candidate binding","four provenance axes","G2 mapping receipt","factory and declaration receipts","fresh identity review","raw stdout/stderr PID UTC exit input/output hashes","independent review","evidence index registration"],
+      "cleanup":"only task-owned temporary files; preserve dirty and historical evidence"
+    }
+  ],
+  "validation": {
+    "code_tests": "not_applicable_read_only_audit_repair",
+    "heavy_execution": "not_run",
+    "checks":["json_parse","ad36_byte_sha_reconciliation","source_hash_recheck","exact_write_scope","api_symbol_scan","control_character_scan","git_diff_check"],
+    "sidecar_policy":"AD-36 accepted_limited; sidecars are evidence-only under repair_r1/review/** and excluded from product count",
+    "receipt_sidecars":{
+      "stdout":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation.stdout",
+      "stderr":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation.stderr",
+      "receipt":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation_receipt_r1.json",
+      "stdout_bytes":685,
+      "stdout_sha256":"d74490428e0d539d0ba2eeca7588ff55fb1b3553f2979a32d84e54911e64912d",
+      "stderr_bytes":0,
+      "stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt_hash_recorded_in_receipt_only":true
+    }
+  },
+  "cleanup":{
+    "owned_temporary_or_unrelated_code_files_found":[],
+    "removed_paths":[],
+    "historical_evidence_preserved":true,
+    "cleanup_deferred_ambiguous":[],
+    "new_product_paths":["docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/manifest.json"],
+    "new_sidecar_paths":["docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation.stdout","docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation.stderr","docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/review/validation_receipt_r1.json"],
+    "action":"retain_all_task_owned_delivery_and_sidecars"
+  },
+  "historical_ad39_report_sha256":"e1edb6b1abfe6f9f65b3d47606c558c5ddbd20b1c2f6f536fba0b0da234d2d06",
+  "historical_ad39_cleanup_sha256":"de1449ab0416fe3a842b1358313a13338d460f9231fa02d7932eabf7e4fc5333",
+  "revised_report_sha256":"6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7",
+  "manifest_sha256":"self_hash_excluded"
+}

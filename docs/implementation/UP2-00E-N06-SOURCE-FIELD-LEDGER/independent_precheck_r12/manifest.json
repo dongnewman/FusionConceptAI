@@ -1,0 +1,64 @@
+{
+  "schema": "independent_precheck_manifest_v1",
+  "task": "UP2-00E-N06 R10 test-only independent static precheck",
+  "reviewer": "independent Luna (different from N06 author)",
+  "status": "ready_for_serial_focused_r10",
+  "accepted": false,
+  "claim_ceiling": {
+    "contract_only": true,
+    "runtime_execution": false,
+    "formal_b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  },
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": {"sha256": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c", "bytes": 51115},
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": {"sha256": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b", "bytes": 23325},
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": {"sha256": "e37314924102c75ac47a34652d0a480c4730e04590cb17294033719ce92d37b8", "bytes": 3393},
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": {"sha256": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af", "bytes": 411},
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": {"sha256": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d", "bytes": 24064},
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": {"sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884", "bytes": 3887},
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {"sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32", "bytes": 18646},
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {"sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb", "bytes": 33751},
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {"sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4", "bytes": 6704},
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {"sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4", "bytes": 10904},
+    "src/GenomeV5/G3/ControlGenomeV5.jl": {"sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135", "bytes": 10297},
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {"sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4", "bytes": 16452},
+    "src/FusionConceptAI.jl": {"sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783", "bytes": 10144},
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": {"sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab", "bytes": 12626},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"sha256": "f6da71dc768aea6e98adffeacc61358054f520f6a89a605035b8ba5b2d0460b2", "bytes": 56934},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"sha256": "a7bffc313dfef35c7e302dd251709491a4a91e15d37a275d92fd6fe9d5aca28c", "bytes": 40362},
+    "docs/v4_multitopology_generation/README.md": {"sha256": "d1f0923b41dc793e0c8a0036aee892e98f400b050f49bffedd51dabfda0b8b6c", "bytes": 20109},
+    "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md": {"sha256": "5332f0c7a5c215948254a536c93e945caa019143dfd5ab3c595af9b0091b9efb", "bytes": 24433},
+    "docs/v4_multitopology_generation/task_manifest.json": {"sha256": "a36213635acf8897e16549696b0c1dbbc56e72a6e13d0dd5a898b8eeae1c95a1", "bytes": 47524}
+  },
+  "r9_history": {
+    "receipt": "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/focused_r9/receipt.json",
+    "exit": 1,
+    "classification": "program_exception",
+    "stdout_sha256": "f5e260c982bea274fef3971d3be7776cf579b9b690711c6805001735824f8e33",
+    "stderr_sha256": "83dcb1d7da537842e8ca9f65f2d8af0dcf7cf571e2f7161a726cc09532ebddd8",
+    "reason": "stale static-negative-control count (fixture had 14 IDs while test expected 12), after 28/28, 3/3, and 31/31 groups"
+  },
+  "static_findings": {
+    "fixture_static_negative_control_count": 14,
+    "fixture_static_negative_control_unique": true,
+    "fixture_static_negative_control_exact_set": true,
+    "mapping_negative_control_count": 5,
+    "mutation_count": 5,
+    "mapping_controls_each_source_delta_checked": true,
+    "mutations_unconditional_loop": true,
+    "selector_controls_real_projection_path": true,
+    "selector_controls_restore_state_in_finally": true,
+    "production_oracle_used_for_routing": true
+  },
+  "execution": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "serial_focused_r10": "pending separate authorization"
+  },
+  "history_policy": "R9 raw evidence is immutable; this R12 archive is a new independent static review and does not overwrite prior attempts."
+}

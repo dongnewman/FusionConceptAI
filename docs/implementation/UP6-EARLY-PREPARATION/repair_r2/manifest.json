@@ -1,0 +1,64 @@
+{
+  "schema": "UP6EarlyPreparationRepairManifestV1",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "repair_id": "repair_r2",
+  "trigger": "independentR2=changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "l4_credible_count": 0,
+  "root_manifest_writable_count": 12,
+  "root_manifest_deliverable_count": 12,
+  "recomputed_checks": {
+    "recursive_json_count": 11,
+    "recursive_json_errors": 0,
+    "root_paths_missing": 0,
+    "repair_history_refs_missing": 0,
+    "engineering_obligation_count": 15,
+    "engineering_typed_field_errors": 0,
+    "r01_r10_count": 10,
+    "r01_r10_ids_unique": true,
+    "unexpected_unprotected_files": 0,
+    "future_identity_hash_like_values": 0
+  },
+  "allowed_writes": [
+    "docs/implementation/UP6-EARLY-PREPARATION/manifest.json",
+    "docs/implementation/UP6-EARLY-PREPARATION/validation_report.md",
+    "docs/implementation/UP6-EARLY-PREPARATION/cleanup_inventory.md",
+    "docs/implementation/UP6-EARLY-PREPARATION/repair_r2/report.md",
+    "docs/implementation/UP6-EARLY-PREPARATION/repair_r2/manifest.json"
+  ],
+  "protected": [
+    "docs/implementation/UP6-EARLY-PREPARATION/independent_review_r1/",
+    "docs/implementation/UP6-EARLY-PREPARATION/independent_review_r2/",
+    "provider_toolchain_audit_template.json",
+    "engineering_obligation_ledger_template.json",
+    "src/",
+    "test/",
+    "scripts/",
+    "runs/",
+    "task_manifest.json"
+  ],
+  "execution_policy": {
+    "julia": false,
+    "provider": false,
+    "solver": false,
+    "physical": false,
+    "net_output": false,
+    "independent_replay": false,
+    "originality_search": false,
+    "web": false,
+    "download": false,
+    "cleanup_outside_target": false
+  },
+  "required_checks": [
+    "strict recursive JSON parse",
+    "root writable/deliverable count equals 12",
+    "each of the 12 root paths exists",
+    "repair history paths resolve",
+    "R01-R10 and 15-row references remain intact",
+    "diff and cleanup scope remain target-only"
+  ],
+  "conclusion": "Documentation-only repair; root count synchronization does not create evidence or close any UP6/R01-R10 obligation."
+}

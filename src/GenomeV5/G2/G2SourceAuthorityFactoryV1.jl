@@ -257,6 +257,74 @@ function _g2sf_git_bytes(root, args...)
         nothing
     end
 end
+function _g2sf_validate_git(locator::G2IndependentSourceLocatorV1)
+    root = try realpath(locator.repository_root) catch; return :repository_root_invalid end
+    git_top = _g2sf_git(locator.repository_root, "rev-parse", "--show-toplevel")
+    git_top isa String && !isempty(strip(git_top)) || return :repository_root_not_git
+    try realpath(git_top) == root || return :repository_root_mismatch
+    catch; return :repository_root_mismatch end
+    head = _g2sf_git(locator.repository_root, "rev-parse", "HEAD")
+    head isa String && occursin(r"^[0-9a-f]{40}$", head) || return :head_probe_failed
+    head == locator.observed_head || return :locator_head_mismatch
+    tree = _g2sf_git(locator.repository_root, "ls-tree", "-r", "--name-only", "HEAD", "--", locator.source_path)
+    tracked = _g2sf_git(locator.repository_root, "ls-files", "--stage", "--", locator.source_path)
+    verbose = _g2sf_git(locator.repository_root, "ls-files", "-v", "--", locator.source_path)
+    tree isa String && tracked isa String && verbose isa String || return :source_read_or_git_probe_failed
+    tree_lines = isempty(tree) ? String[] : split(tree, '\n'; keepempty=false)
+    tracked_lines = isempty(tracked) ? String[] : split(tracked, '\n'; keepempty=false)
+    verbose_lines = isempty(verbose) ? String[] : split(verbose, '\n'; keepempty=false)
+    actual_head_path = isempty(tree_lines) ? :absent_untracked : :present
+    actual_head_path == locator.head_path_status || return :head_path_status_mismatch
+    porcelain = _g2sf_git(locator.repository_root, "status", "--porcelain=v1", "--untracked-files=all", "--", locator.source_path)
+    porcelain isa String || return :source_read_or_git_probe_failed
+    actual_status = isempty(porcelain) ? :clean : startswith(porcelain, "??") ? :untracked : :dirty
+    actual_work_path = actual_status === :clean ? :present : :absent_untracked
+    actual_work_path == locator.working_tree_path_status || return :working_tree_path_status_mismatch
+    actual_status == locator.working_tree_status || return :working_tree_status_mismatch
+    if actual_head_path === :absent_untracked
+        isempty(tracked_lines) || return :tracked_path_mismatch
+        isempty(verbose_lines) || return :index_flags_malformed
+        locator.head_blob_sha256 === nothing || return :head_blob_sha256_mismatch
+        actual_status === :untracked || return :source_authority_missing
+        return :source_authority_missing
+    end
+    length(tree_lines) == 1 && tree_lines[1] == locator.source_path || return :head_path_missing
+    locator.head_path_status == :present || return :head_path_status_mismatch
+    length(tracked_lines) == 1 || return :tracked_path_missing
+    tracked_match = match(r"^([0-9]{6}) ([0-9a-f]{40}) ([0-3])\t(.+)$", tracked_lines[1])
+    tracked_match === nothing && return :tracked_entry_malformed
+    tracked_match.captures[3] == "0" || return :tracked_entry_unmerged
+    tracked_match.captures[4] == locator.source_path || return :tracked_path_mismatch
+    length(verbose_lines) == 1 || return :tracked_path_missing
+    flag = first(verbose_lines[1])
+    flag == 'h' && return :index_assume_unchanged
+    flag == 's' && return :index_skip_worktree
+    (flag == 'H' || flag == 'S') || return :index_flags_malformed
+    debug_index = _g2sf_git(locator.repository_root, "ls-files", "--debug", "--", locator.source_path)
+    debug_index isa String || return :index_flags_probe_failed
+    debug_match = match(r"flags:\s*([0-9a-fA-F]+)", debug_index)
+    debug_match === nothing && return :index_flags_malformed
+    index_flags = try parse(UInt32, debug_match.captures[1]; base=16) catch; return :index_flags_malformed end
+    index_flags & UInt32(0x8000) != 0 && return :index_assume_unchanged
+    index_flags & UInt32(0x4000) != 0 && return :index_skip_worktree
+    index_flags == 0 || return :index_flags_malformed
+    blob = _g2sf_git(locator.repository_root, "rev-parse", "HEAD:" * locator.source_path)
+    blob isa String && occursin(r"^[0-9a-f]{40}$", blob) || return :head_blob_probe_failed
+    head_bytes = _g2sf_git_bytes(locator.repository_root, "show", "HEAD:" * locator.source_path)
+    cat_bytes = _g2sf_git_bytes(locator.repository_root, "cat-file", "blob", blob)
+    head_bytes isa Vector{UInt8} && cat_bytes isa Vector{UInt8} || return :head_blob_read_failed
+    head_bytes == cat_bytes || return :head_blob_bytes_mismatch
+    working_path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
+    isfile(working_path) || return :source_file_missing
+    try read(working_path) catch; return :source_read_failed end
+    length(head_bytes) == locator.source_bytes || return :head_blob_bytes_mismatch
+    head_sha = Digest256(bytes2hex(SHA.sha256(head_bytes)))
+    head_sha == locator.source_sha256 == locator.head_blob_sha256 || return :head_blob_sha256_mismatch
+    filtered_blob = _g2sf_git(locator.repository_root, "hash-object", "--path", locator.source_path, working_path)
+    filtered_blob isa String && filtered_blob == blob || return :working_tree_filtered_blob_mismatch
+    isempty(porcelain) && actual_status === :clean || return :working_tree_dirty
+    nothing
+end
 function _g2sf_repository_anchor(module_dir=G2_FACTORY_MODULE_DIR_V1)
     module_anchor = try realpath(normpath(joinpath(module_dir, "..", "..", ".."))) catch; return nothing end
     top = _g2sf_git(module_anchor, "rev-parse", "--show-toplevel")
@@ -267,9 +335,7 @@ function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1)
     locator.source_path == G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 || return :source_path_mismatch
     path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
     isfile(path) || return :source_file_missing
-    bytes = try read(path) catch; return :source_read_failed end
-    length(bytes) == locator.source_bytes || return :source_bytes_mismatch
-    Digest256(bytes2hex(SHA.sha256(bytes))) == locator.source_sha256 || return :source_hash_mismatch
+    try read(path) catch; return :source_read_failed end
     if locator.provenance === :repository_head
         anchor = _g2sf_repository_anchor()
         anchor === nothing && return :repository_anchor_unavailable
@@ -279,32 +345,7 @@ function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1)
     end
     head = _g2sf_git(locator.repository_root, "rev-parse", "HEAD")
     head isa String && head == locator.observed_head || return :locator_head_mismatch
-    tracked = _g2sf_git(locator.repository_root, "ls-files", "--stage", "--", locator.source_path)
-    tree = _g2sf_git(locator.repository_root, "ls-tree", "-r", "--name-only", "HEAD", "--", locator.source_path)
-    tree isa String || return :source_read_or_git_probe_failed
-    actual_head_path = isempty(strip(tree)) ? :absent_untracked : :present
-    actual_head_path == locator.head_path_status || return :head_path_status_mismatch
-    if actual_head_path === :present
-        blob = _g2sf_git(locator.repository_root, "rev-parse", "HEAD:" * locator.source_path)
-        blob isa String && length(blob) == 40 || return :head_blob_probe_failed
-        head_bytes = _g2sf_git_bytes(locator.repository_root, "show", "HEAD:" * locator.source_path)
-        cat_bytes = _g2sf_git_bytes(locator.repository_root, "cat-file", "blob", blob)
-        head_bytes isa Vector{UInt8} && cat_bytes isa Vector{UInt8} || return :head_blob_read_failed
-        head_bytes == cat_bytes || return :head_blob_bytes_mismatch
-        bytes == head_bytes || return :working_tree_head_bytes_mismatch
-        length(head_bytes) == locator.source_bytes || return :head_blob_bytes_mismatch
-        head_sha = Digest256(bytes2hex(SHA.sha256(head_bytes)))
-        head_sha == locator.source_sha256 == locator.head_blob_sha256 || return :head_blob_sha256_mismatch
-    else
-        locator.head_blob_sha256 === nothing || return :head_blob_sha256_mismatch
-    end
-    porcelain = _g2sf_git(locator.repository_root, "status", "--porcelain=v1", "--untracked-files=all", "--", locator.source_path)
-    porcelain isa String || return :source_read_or_git_probe_failed
-    actual_status = isempty(porcelain) ? :clean : startswith(porcelain, "??") ? :untracked : :dirty
-    actual_work_path = actual_status === :clean ? :present : :absent_untracked
-    actual_work_path == locator.working_tree_path_status || return :working_tree_path_status_mismatch
-    actual_status == locator.working_tree_status || return :working_tree_status_mismatch
-    (actual_head_path === :present && actual_status === :clean && tracked isa String && !isempty(strip(tracked))) ? nothing : :source_authority_missing
+    _g2sf_validate_git(locator)
 end
 function _g2sf_validate_handle(root, handle)
     handle isa QualifiedRefV1 || return :common_handle_type_mismatch

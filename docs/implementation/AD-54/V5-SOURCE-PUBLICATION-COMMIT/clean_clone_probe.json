@@ -1,0 +1,56 @@
+{
+  "schema": "AD54.V5SourcePublicationCommit.clean_clone_probe.v1",
+  "clone": {
+    "command": [
+      "git",
+      "clone",
+      "--no-local",
+      "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\repo"
+    ],
+    "utc": "2026-09-15T22:34:10.104300Z",
+    "pid": null,
+    "exit": 0,
+    "stdout": "",
+    "stderr": "Cloning into 'C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\repo'...\n"
+  },
+  "probe": {
+    "command": [
+      "julia",
+      "--startup-file=no",
+      "--project=.",
+      "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\probe.jl"
+    ],
+    "utc": "2026-09-15T22:34:15.362240Z",
+    "pid": 94824,
+    "exit": 0,
+    "stdout": "V5_SOURCE_PUBLICATION_PROBE=pass\n",
+    "stderr": "",
+    "typed_absent_probe": true
+  },
+  "cleanup": {
+    "temporary_root": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme",
+    "temporary_checkout_cleaned": true,
+    "probe_file_cleaned": true,
+    "cleanup_attempts": [
+      {
+        "target": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\repo\\.git\\objects\\pack\\pack-50be27ac9410a39f18e94f5b67863d0d66985002.idx",
+        "retry": "chmod_then_remove",
+        "success": true
+      },
+      {
+        "target": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\repo\\.git\\objects\\pack\\pack-50be27ac9410a39f18e94f5b67863d0d66985002.pack",
+        "retry": "chmod_then_remove",
+        "success": true
+      },
+      {
+        "target": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad54_v5_source_publication_postflight_vnbb2sme\\repo\\.git\\objects\\pack\\pack-50be27ac9410a39f18e94f5b67863d0d66985002.rev",
+        "retry": "chmod_then_remove",
+        "success": true
+      }
+    ],
+    "pycache_cleanup": "no Python tests were run; no new pycache generated",
+    "cleanup_utc": "2026-09-15T22:34:15.575199Z",
+    "prior_cleanup_failure": "initial post-commit cleanup hit Windows WinError 5 on clone pack index; retry cleanup completed"
+  }
+}

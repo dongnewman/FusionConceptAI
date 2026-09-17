@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5SearchR2SyntheticDescriptorV2",
+  "title": "M5SearchR2SyntheticDescriptorV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "descriptor_id", "authority_status", "descriptor_schema_hash", "descriptor_hash", "source", "dimensions", "normalization", "derivation", "canonical_input", "label_erasure", "cell_key", "replacement_tie_break", "evidence_boundary"],
+  "properties": {
+    "schema": {"const": "M5SearchR2SyntheticDescriptorV2"}, "descriptor_id": {"const": "synthetic_descriptor_v2"}, "authority_status": {"enum": ["authoritative", "typed_absent", "stale", "foreign", "malformed"]}, "descriptor_schema_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "descriptor_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "source": {"const": "canonical_typed_prefix_bytes_and_sealed_ledger_counts"}, "dimensions": {"const": [{"name": "prefix_byte_mod_16", "unit": "index", "min": 0, "max": 15, "bins": 16}, {"name": "typed_node_count_mod_16", "unit": "index", "min": 0, "max": 15, "bins": 16}]}, "normalization": {"const": "modulo_after_nonnegative_integer_projection"}, "derivation": {"const": "deterministic_no_physics_no_provider_no_measurement"}, "canonical_input": {"const": "length_framed(prefix_bytes || final_counter_fold_bytes)"}, "label_erasure": {"const": true}, "cell_key": {"type": "array", "prefixItems": [{"type": "integer", "minimum": 0, "maximum": 15}, {"type": "integer", "minimum": 0, "maximum": 15}], "items": false, "maxItems": 2}, "replacement_tie_break": {"const": "(cell_key,quality_key,canonical_prefix_hash,seed,sequence) bytewise ascending"}, "evidence_boundary": {"const": "occupancy_bookkeeping_only_not_behavior_capability_or_physical_evidence"}
+  },
+  "allOf": [{"if": {"properties": {"authority_status": {"const": "typed_absent"}}}, "then": {"properties": {"descriptor_hash": {"type": "null"}, "cell_key": {"maxItems": 0}}}}, {"if": {"properties": {"authority_status": {"const": "authoritative"}}}, "then": {"properties": {"descriptor_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "cell_key": {"minItems": 2}}}}]
+}

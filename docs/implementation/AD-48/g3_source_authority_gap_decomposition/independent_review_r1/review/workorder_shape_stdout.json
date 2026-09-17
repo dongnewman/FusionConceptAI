@@ -1,0 +1,25 @@
+{
+  "record_kind": "AD48_work_order_shape_review",
+  "report_tokens_present": {
+    "S1_schema_and_union": true,
+    "S2_schema_and_union": true,
+    "S3_schema_and_union": true,
+    "F0_exact_source_and_test_paths": true,
+    "parallel_boundary": true,
+    "terminal_deferred": true,
+    "no_publish": true
+  },
+  "manifest": {
+    "scope_count": 4,
+    "work_order_count": 3,
+    "all_work_orders_have_review": true,
+    "S1_product_count": 8,
+    "S2_product_count": 8,
+    "S3_product_count": 8,
+    "conditional_F0_exact_paths": true,
+    "default_operator_registry_forbidden": true,
+    "negative_claims_preserved": true
+  },
+  "legal_order": "AD47-W1 review -> S1 -> F0 only if S2 proves factory absent -> S2 -> S3 -> fresh W1 -> W2",
+  "parallelism": "S1 may be prepared in parallel with AD47 G3 axis-schema extension; S2/S3 remain dependent"
+}

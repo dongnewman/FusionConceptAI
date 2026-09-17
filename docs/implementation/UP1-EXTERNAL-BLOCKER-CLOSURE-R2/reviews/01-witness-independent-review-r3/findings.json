@@ -1,0 +1,19 @@
+{
+  "schema": "UP1.external-blocker-closure-r2.witness-independent-review-r3.findings.v1",
+  "decision": "pass_limited",
+  "accepted": false,
+  "claim_ceiling": "contract_software_preparation_only",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true,
+  "findings": [],
+  "coverage": {
+    "alias_alone_and_coexist": "6/6 pass",
+    "unknown_public_boundaries": "12/12 pass",
+    "r1_binding_scope_type_independence": "8/8 pass",
+    "typed_absence_replay_conflict": "pass",
+    "two_process_replay": "pass",
+    "batch_replay": "pass",
+    "ledger_concurrency": "1 present + 23 duplicate"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "fixture_id": "UP1-FX-G1-001",
+  "contract_version": "v5",
+  "payload_type": "MechanismGenomePayloadV2",
+  "profile": {
+    "profile_ref": {"id": "fusion.g1.grammar", "version": "v2"},
+    "canonicalization_profile": {"id": "fusion.g1.canonical", "version": "v2"},
+    "applicability_profile": {"id": "fusion.g1.applicability", "version": "v2"},
+    "max_states": 8,
+    "max_equations": 64,
+    "max_ast_nodes": 256
+  },
+  "version_axes": {
+    "payload_schema": {"id": "fusion.g1.payload-schema", "version": "v2"},
+    "canonicalization_profile": {"id": "fusion.g1.canonicalization", "version": "v2"},
+    "applicability_profile": {"id": "fusion.g1.applicability", "version": "v2"},
+    "evidence_receipt": {"id": "fusion.g1.receipt", "version": "v2"}
+  },
+  "states": [
+    {"id": "temperature", "value_kind": "scalar_field", "tensor_rank": 0, "spatial_dimension": 0, "unit_exponents": [0, 0, 0, 0, 0, 0, 0], "time": "static_time", "derivative_order": 0},
+    {"id": "auxiliary", "value_kind": "vector_field", "tensor_rank": 1, "spatial_dimension": 0, "unit_exponents": [0, 0, 0, 0, 0, 0, 0], "time": "static_time", "derivative_order": 0}
+  ],
+  "operators": [
+    {"id": "fusion.g1.balance", "version": "v2", "roles": ["governing"], "input_arity": 1, "output_arity": 1, "input_units": [[0, 0, 0, 0, 0, 0, 0]], "output_units": [[0, 0, 0, 0, 0, 0, 0]], "input_ranks": [0], "output_ranks": [0], "temporal_kinds": ["static_time"], "max_derivative_order": 0, "effects": ["redistribution"]},
+    {"id": "fusion.g1.source", "version": "v2", "roles": ["additive"], "input_arity": 1, "output_arity": 1, "input_units": [[0, 0, 0, 0, 0, 0, 0]], "output_units": [[0, 0, 0, 0, 0, 0, 0]], "input_ranks": [0], "output_ranks": [0], "temporal_kinds": ["static_time"], "max_derivative_order": 0, "effects": ["net_creation"]},
+    {"id": "fusion.g1.constraint", "version": "v2", "roles": ["constraint"], "input_arity": 2, "output_arity": 2, "input_units": [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]], "output_units": [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]], "input_ranks": [0, 1], "output_ranks": [0, 1], "temporal_kinds": ["static_time"], "max_derivative_order": 0, "effects": ["redistribution"]}
+  ],
+  "closures": [
+    {"id": "energy-balance", "ledger_id": "energy", "unit_exponents": [0, 0, 0, 0, 0, 0, 0], "equation_ids": ["governing-0", "source-0"], "expected_balance_num": 0, "expected_balance_den": 1},
+    {"id": "constraint-balance", "ledger_id": "constraint", "unit_exponents": [0, 0, 0, 0, 0, 0, 0], "equation_ids": ["constraint-0"], "expected_balance_num": 0, "expected_balance_den": 1}
+  ],
+  "equations": [
+    {"id": "governing-0", "role": "governing", "operator_id": "fusion.g1.balance", "inputs": ["temperature"], "outputs": ["temperature"], "closure": "energy-balance", "effects": ["redistribution"], "occurrences": [{"side": "output", "port_index": 1, "coefficient_num": 1, "coefficient_den": 1, "ledger_id": "energy", "effect": "redistribution"}], "expression_kind": "scalar"},
+    {"id": "source-0", "role": "additive", "operator_id": "fusion.g1.source", "inputs": ["temperature"], "outputs": ["temperature"], "closure": "energy-balance", "effects": ["net_creation"], "occurrences": [{"side": "output", "port_index": 1, "coefficient_num": -1, "coefficient_den": 1, "ledger_id": "energy", "effect": "net_creation"}], "expression_kind": "scalar"},
+    {"id": "constraint-0", "role": "constraint", "operator_id": "fusion.g1.constraint", "inputs": ["temperature", "auxiliary"], "outputs": ["temperature", "auxiliary"], "closure": "constraint-balance", "effects": ["redistribution"], "occurrences": [{"side": "output", "port_index": 1, "coefficient_num": 1, "coefficient_den": 1, "ledger_id": "constraint", "effect": "redistribution"}, {"side": "output", "port_index": 2, "coefficient_num": -1, "coefficient_den": 1, "ledger_id": "constraint", "effect": "redistribution"}], "expression_kind": "mimo"}
+  ],
+  "negative_cases": [
+    "missing_closure",
+    "duplicate_effect_occurrence",
+    "unit_mismatch",
+    "legacy_operator_version",
+    "legacy_wire_domain_ref",
+    "provider_no_match_terminal_deferred",
+    "version_axes_mismatch",
+    "mimo_root_node_mismatch",
+    "mimo_output_port_mismatch",
+    "empty_closure_occurrences",
+    "mimo_input_type_mismatch",
+    "mimo_input_unit_mismatch"
+  ]
+}

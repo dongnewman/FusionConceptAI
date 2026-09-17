@@ -1,0 +1,14 @@
+{
+  "schema_version":"UP2-N06-H0A-independent-precheck-r5-receipts",
+  "reviewer":"independent_luna_high_static",
+  "frozen_head":"4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime_policy":{"julia":"not_run","desc":"not_run"},
+  "receipts":[
+    {"id":"R5-HEAD-STATUS","action":"git rev-parse HEAD and git status --short --untracked-files=all","result":"HEAD matched frozen target; 3468 dirty status entries observed; no cleanup or unrelated edit","exit_code":0},
+    {"id":"R5-SHA256","action":"SHA256 source/test/fixture/runner","result":"source=5cfbd829602a87d3ddc4d8d321a678eba8ebaa6f378ebf1ebe669800b62fcd1a; tests=d9791d98d85bb15f600da60ddb30e6527b5b5b2d1581650cadca3422ab5aae35; fixture=779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99; runner=da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","exit_code":0},
+    {"id":"R5-PROCESS-SWEEP","action":"enumerate process names matching julia or desc","result":"zero matching processes","exit_code":0},
+    {"id":"R5-JSON-QA","action":"ConvertFrom-Json parse fixture and R5 archive JSON","result":"all four JSON inputs parsed successfully; runtime not invoked","exit_code":0},
+    {"id":"R5-STATIC-COVERAGE","action":"inspect public exception routes and F02/F03/F04/F06 regression controls","result":"calibration program_exception route present; closure malformed public control and fail_closed declaration emptiness assertion remain missing","exit_code":0}
+  ],
+  "qa":{"archive_path_correct":true,"julia_desc_zero":true,"only_review_archive_written":true,"verdict":"changes_requested"}
+}

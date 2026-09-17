@@ -1,0 +1,58 @@
+{
+  "task_id": "CORE-STATUS-SYNC-AD42-AD48-independent-review-r1",
+  "reviewed_task": "CORE-STATUS-SYNC-AD42-AD48",
+  "verdict": "pass_limited",
+  "accepted_scope": "independent_core_status_index_and_software_boundary_recheck_only",
+  "claim_ceiling": "no_source_authority_candidate_identity_t0_t1_t2_provider_mesh_solver_engineering_physical_search_or_r_credit",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "task_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39,
+    "dag_acyclic": true,
+    "unchanged": true
+  },
+  "exact_core_product_count": 5,
+  "core_products_match_manifest": true,
+  "core_products": [
+    {"path":"docs/v4_multitopology_generation/README.md","bytes":43704,"sha256":"7424478f3d6b7710c861613b220b6f7c8cbcb9c7ef3181c935108f89d84f5654"},
+    {"path":"docs/v4_multitopology_generation/14_agent_orchestration.md","bytes":12357,"sha256":"98e4b6b7f4278c98d967e446f604e5b5a0a62be939e5c90f451cc9e497eafeba"},
+    {"path":"docs/v4_multitopology_generation/16_execution_work_orders.md","bytes":97342,"sha256":"6cd886854519ab4f2a47d6975cf55429559fe01d733f910c0cffb418361eaf45"},
+    {"path":"docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","bytes":78596,"sha256":"2be252ae37655a5eb5b9cc040a665e7ac9ad5c38a1c9a4eb68640eff952258d6"},
+    {"path":"docs/implementation/README.md","bytes":25530,"sha256":"b61bb4b4c75e2b3ba14ff4a7a1c6d1f591094f504c4d13c07034632487cf8743"}
+  ],
+  "status_checks": {
+    "ad42_source_authoring_only": true,
+    "ad43_axis_contract_only": true,
+    "ad44_w3a_software_provenance_only": true,
+    "ad44_w3b_blocked": true,
+    "ad45_temporary_handle_only": true,
+    "ad46_three_identity_work_orders_blocked": true,
+    "ad47_w0_additive_contract_only": true,
+    "ad47_w1_typed_absence_no_authority": true,
+    "ad48_s1_locator_only": true,
+    "ad48_s2_in_progress_pending_unaccepted": true,
+    "ad48_f0_conditional_after_independent_s2_absence": true,
+    "t0_t1_t2_false": true,
+    "up3_up6_formal_runs_pending": true,
+    "r01_r10_false": true,
+    "l4_credible_count_zero": true
+  },
+  "verification": {
+    "direct_recheck": "review/direct_recheck.json",
+    "relative_link_recheck": {"path":"review/link_recheck.json","links_checked":172,"missing":0},
+    "plan_validator": {"path":"review/plan_validator_stdout.json","exit":0,"markdown_files":31,"relative_links":526,"tasks":39,"dag_acyclic":true},
+    "scoped_git_diff_check": {"exit":0,"stdout":"review/scoped_git_diff_stdout.txt","stderr":"review/scoped_git_diff_stderr.txt"},
+    "physical_or_engineering_run": false,
+    "provider_mesh_solver_run": false,
+    "search_run": false
+  },
+  "writable_paths": [
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/independent_review_r1/report.md",
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/independent_review_r1/manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/independent_review_r1/review/**"
+  ],
+  "forbidden_paths": ["docs/v4_multitopology_generation/task_manifest.json","src/**","test/**","fixture/**","runs/**","five reviewed core products","existing implementation products"],
+  "self_hash_excluded": true
+}

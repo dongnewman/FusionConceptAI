@@ -1,0 +1,3110 @@
+{
+  "schema": "hygiene-cleanup-execution-v1",
+  "repository_root": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "exact_delete_list": "docs/implementation/HYGIENE-CHECKPOINT-20260917/03-deletion-risk-review/exact_delete_paths.txt",
+  "keep_paths": "docs/implementation/HYGIENE-CHECKPOINT-20260917/03-deletion-risk-review/keep_paths.txt",
+  "pid": 85880,
+  "pid_observation": {
+    "pid": 85880,
+    "present": true,
+    "name": "python",
+    "start_time_utc": "2026-09-17T04:56:23.8079300Z",
+    "path": "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "hold_paths_source": "03-deletion-risk-review/keep_paths.txt",
+    "held_path_overlap_with_delete_list": false
+  },
+  "started_utc": "2026-09-17T05:48:58.6869401Z",
+  "ended_utc": "2026-09-17T05:49:08.0348375Z",
+  "quarantine_root": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z",
+  "target_count_parsed": 109,
+  "target_count_preflight_safe": 109,
+  "result_count": 109,
+  "failure_count": 0,
+  "failures": [],
+  "notes": [
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\authoritative_intake\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\source_axis_binding\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\authoritative_intake\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\environment_closure\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\source_axis_binding\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\environment_closure\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r3\\atomic_bundle\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r3\\atomic_bundle\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\trust_chain\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\integration\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\trust_chain\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\integration\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\g2_mapping\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\freshness\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\g2_mapping\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\up1_external_closure_r4\\freshness\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\reports\\goal_recovery_20260913\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\M4Isolated\\oracles\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\desc_heliotron_v0173\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r3\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\iter_design_v1\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\G1\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\scripts\\__pycache__",
+    "empty_cache_dir_removed:D:\\006-Programing\\LMC\\FusionConceptAI\\test\\__pycache__",
+    "cache_dir_retained_nonempty:D:\\006-Programing\\LMC\\FusionConceptAI\\.pytest_cache count=1"
+  ],
+  "results": [
+    {
+      "line": 4,
+      "relative_path": ".pytest_cache/.gitignore",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39,
+        "sha256": "E7C6BB30148CF667606DCD63E7CA77ACAA3CFB0C8303BF09E6419E1E1669DC6D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39,
+        "sha256": "E7C6BB30148CF667606DCD63E7CA77ACAA3CFB0C8303BF09E6419E1E1669DC6D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\.gitignore",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.2140843Z",
+      "error": null
+    },
+    {
+      "line": 61,
+      "relative_path": "tools/up1_external_closure_r4/authoritative_intake/__pycache__/cli.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2497,
+        "sha256": "E44B8CACE0787042D34D694D57E7D4FCBAC819A9CCE1C14681F68A3A15E81979",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2497,
+        "sha256": "E44B8CACE0787042D34D694D57E7D4FCBAC819A9CCE1C14681F68A3A15E81979",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\cli.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.2885314Z",
+      "error": null
+    },
+    {
+      "line": 60,
+      "relative_path": "tools/up1_external_closure_r4/authoritative_intake/__pycache__/__main__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 332,
+        "sha256": "8F9582B15F95797895B06E6ACE1A96E8B33BEA8BF901D65FA5CE4B17A01EF65E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 332,
+        "sha256": "8F9582B15F95797895B06E6ACE1A96E8B33BEA8BF901D65FA5CE4B17A01EF65E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\__main__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.2922510Z",
+      "error": null
+    },
+    {
+      "line": 59,
+      "relative_path": "tools/up1_external_closure_r4/authoritative_intake/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 751,
+        "sha256": "EDF1610693AA78DB561FF1341BAF80CF9E48C23C0F7A8701EA867A45A41C3D63",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 751,
+        "sha256": "EDF1610693AA78DB561FF1341BAF80CF9E48C23C0F7A8701EA867A45A41C3D63",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.2952764Z",
+      "error": null
+    },
+    {
+      "line": 58,
+      "relative_path": "tools/up1_external_closure_r4/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 491,
+        "sha256": "5550CDAF44DAC9044D5591457C8D1839D0E9AC79320CA40045B3335C9FA1F59D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 491,
+        "sha256": "5550CDAF44DAC9044D5591457C8D1839D0E9AC79320CA40045B3335C9FA1F59D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.2977012Z",
+      "error": null
+    },
+    {
+      "line": 57,
+      "relative_path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/canonical.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8750,
+        "sha256": "86984C7026DD4BCE47E079A66F8BE86AC9B2DC2A98F9B6DEDBCF0893B6E07906",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8750,
+        "sha256": "86984C7026DD4BCE47E079A66F8BE86AC9B2DC2A98F9B6DEDBCF0893B6E07906",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\canonical.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3002759Z",
+      "error": null
+    },
+    {
+      "line": 56,
+      "relative_path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/bundle.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 84091,
+        "sha256": "E05BD6DA7E0CC66F0352C7F735558008C4DA5FCBB01456EF895F8C0EBEFE4DCE",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 84091,
+        "sha256": "E05BD6DA7E0CC66F0352C7F735558008C4DA5FCBB01456EF895F8C0EBEFE4DCE",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\bundle.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3033054Z",
+      "error": null
+    },
+    {
+      "line": 55,
+      "relative_path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1199,
+        "sha256": "BAB46EBF9A1DC472D31045F23AFBB7A99ED8BADF1476C2DCAF1B9E550E19CCB7",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1199,
+        "sha256": "BAB46EBF9A1DC472D31045F23AFBB7A99ED8BADF1476C2DCAF1B9E550E19CCB7",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3063076Z",
+      "error": null
+    },
+    {
+      "line": 62,
+      "relative_path": "tools/up1_external_closure_r4/authoritative_intake/__pycache__/intake.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39477,
+        "sha256": "2F6B9676662BA6F5702038C45F3DFA325826F82B6C4EC4401AD1A151ACDD4A61",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39477,
+        "sha256": "2F6B9676662BA6F5702038C45F3DFA325826F82B6C4EC4401AD1A151ACDD4A61",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\intake.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3095482Z",
+      "error": null
+    },
+    {
+      "line": 54,
+      "relative_path": "tools/up1_external_closure_r3/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 234,
+        "sha256": "DBDF8D92E46252C1B77EDDF9306533D36712D100186A56B110B9F17FDD48CD5E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 234,
+        "sha256": "DBDF8D92E46252C1B77EDDF9306533D36712D100186A56B110B9F17FDD48CD5E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r3\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3135190Z",
+      "error": null
+    },
+    {
+      "line": 52,
+      "relative_path": "test/up1_external_closure_r4/trust_chain/__pycache__/test_trust_chain_independent.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23543,
+        "sha256": "349F723708423DA4B861814BA792FC61868CA0BBF478690103BD89C7A5C9251F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23543,
+        "sha256": "349F723708423DA4B861814BA792FC61868CA0BBF478690103BD89C7A5C9251F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\trust_chain\\__pycache__\\test_trust_chain_independent.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3167106Z",
+      "error": null
+    },
+    {
+      "line": 51,
+      "relative_path": "test/up1_external_closure_r4/source_axis_binding/__pycache__/test_source_axis_binding_independent.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 26197,
+        "sha256": "7069B5BFB9D567EE7144C421017E413E38927D8DC20EC0C23A5F4D2EF5ABB397",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 26197,
+        "sha256": "7069B5BFB9D567EE7144C421017E413E38927D8DC20EC0C23A5F4D2EF5ABB397",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\source_axis_binding\\__pycache__\\test_source_axis_binding_independent.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3190142Z",
+      "error": null
+    },
+    {
+      "line": 50,
+      "relative_path": "test/up1_external_closure_r4/integration/__pycache__/test_integration.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 51185,
+        "sha256": "B87C5998F4B09EBB7AA1FFCBDE438EB35C46E207FDCA15A38CA03E8E9D79BDAF",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 51185,
+        "sha256": "B87C5998F4B09EBB7AA1FFCBDE438EB35C46E207FDCA15A38CA03E8E9D79BDAF",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\integration\\__pycache__\\test_integration.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3215975Z",
+      "error": null
+    },
+    {
+      "line": 49,
+      "relative_path": "test/up1_external_closure_r4/integration/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 260,
+        "sha256": "D47868E49ECC65056CCD73EFD38930F514DF43F0B86FABAE5AA8C7362CD2B8DA",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 260,
+        "sha256": "D47868E49ECC65056CCD73EFD38930F514DF43F0B86FABAE5AA8C7362CD2B8DA",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\integration\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3245019Z",
+      "error": null
+    },
+    {
+      "line": 48,
+      "relative_path": "test/up1_external_closure_r4/g2_mapping/__pycache__/test_independent_g2_mapping.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20558,
+        "sha256": "70FAE88A06F4959ADFDF0CA7D2DA149149C66371F7612A2E84DBEBFBC76B9C81",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20558,
+        "sha256": "70FAE88A06F4959ADFDF0CA7D2DA149149C66371F7612A2E84DBEBFBC76B9C81",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\g2_mapping\\__pycache__\\test_independent_g2_mapping.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3267147Z",
+      "error": null
+    },
+    {
+      "line": 47,
+      "relative_path": "test/up1_external_closure_r4/freshness/__pycache__/test_freshness_independent.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 26551,
+        "sha256": "39524EA02D78E6B04861120FD6E39BB738C64575491A57C5E26FC09D39B31D3F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 26551,
+        "sha256": "39524EA02D78E6B04861120FD6E39BB738C64575491A57C5E26FC09D39B31D3F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\freshness\\__pycache__\\test_freshness_independent.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3290621Z",
+      "error": null
+    },
+    {
+      "line": 46,
+      "relative_path": "test/up1_external_closure_r4/environment_closure/__pycache__/test_environment_closure_independent.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20149,
+        "sha256": "8BB33ED357E587B89F6F883CD7FF9C016E675E3B8D7AAFF33B98D14A123C8E63",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20149,
+        "sha256": "8BB33ED357E587B89F6F883CD7FF9C016E675E3B8D7AAFF33B98D14A123C8E63",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\environment_closure\\__pycache__\\test_environment_closure_independent.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3313807Z",
+      "error": null
+    },
+    {
+      "line": 53,
+      "relative_path": "test/up1_external_closure_r4/trust_chain/__pycache__/test_trust_chain_independent.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23392,
+        "sha256": "99669BF02234AF69BCE94577862D8E536BEEC70693D077D996C76230C9CE7872",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23392,
+        "sha256": "99669BF02234AF69BCE94577862D8E536BEEC70693D077D996C76230C9CE7872",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\trust_chain\\__pycache__\\test_trust_chain_independent.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3345288Z",
+      "error": null
+    },
+    {
+      "line": 63,
+      "relative_path": "tools/up1_external_closure_r4/environment_closure/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 529,
+        "sha256": "18FFECD6F927910F9FA638A9766E0122EA5D625469D0D76F5D7D363185D3A7E5",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 529,
+        "sha256": "18FFECD6F927910F9FA638A9766E0122EA5D625469D0D76F5D7D363185D3A7E5",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\environment_closure\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3368016Z",
+      "error": null
+    },
+    {
+      "line": 64,
+      "relative_path": "tools/up1_external_closure_r4/environment_closure/__pycache__/__main__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 279,
+        "sha256": "FCD5A4AA89EE9F4E48B8F9B7CE02CC94AAED604C60DBCB1C30A9554010FD5FD0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 279,
+        "sha256": "FCD5A4AA89EE9F4E48B8F9B7CE02CC94AAED604C60DBCB1C30A9554010FD5FD0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\environment_closure\\__pycache__\\__main__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3398804Z",
+      "error": null
+    },
+    {
+      "line": 65,
+      "relative_path": "tools/up1_external_closure_r4/environment_closure/__pycache__/cli.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5025,
+        "sha256": "B993027ECECAB71F4A7D4416516D29465816EE0667A8A33EBCB892E4B8EACB52",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5025,
+        "sha256": "B993027ECECAB71F4A7D4416516D29465816EE0667A8A33EBCB892E4B8EACB52",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\environment_closure\\__pycache__\\cli.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3429437Z",
+      "error": null
+    },
+    {
+      "line": 109,
+      "relative_path": "independent_precheck_r9/report.json",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2501,
+        "sha256": "DB36DB848D85C30566F72E8D8E6A3306A43055C8F826141C818DD0AC3BE221A2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2501,
+        "sha256": "DB36DB848D85C30566F72E8D8E6A3306A43055C8F826141C818DD0AC3BE221A2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\independent_precheck_r9\\report.json",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3450477Z",
+      "error": null
+    },
+    {
+      "line": 81,
+      "relative_path": "1",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 71,
+        "sha256": "E5D158236CEAE0AE7CA4045416BCAC4D3176727A8D71D07FECF4B5A693D4D96C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 71,
+        "sha256": "E5D158236CEAE0AE7CA4045416BCAC4D3176727A8D71D07FECF4B5A693D4D96C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\1",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3470323Z",
+      "error": null
+    },
+    {
+      "line": 80,
+      "relative_path": "0",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 52,
+        "sha256": "42E454B61A71D5A231811F6B22D0FF55E658F8FADB1FBDFBDADE738FAA8D33C9",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 52,
+        "sha256": "42E454B61A71D5A231811F6B22D0FF55E658F8FADB1FBDFBDADE738FAA8D33C9",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\0",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3491490Z",
+      "error": null
+    },
+    {
+      "line": 79,
+      "relative_path": "tools/up1_external_closure_r4/trust_chain/__pycache__/verifier.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 36981,
+        "sha256": "A71A38CBF90B480B07DE28387198B619D19C3B8D38229B228B4A60BD7665843F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 36981,
+        "sha256": "A71A38CBF90B480B07DE28387198B619D19C3B8D38229B228B4A60BD7665843F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\trust_chain\\__pycache__\\verifier.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3516121Z",
+      "error": null
+    },
+    {
+      "line": 78,
+      "relative_path": "tools/up1_external_closure_r4/trust_chain/__pycache__/cli.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2268,
+        "sha256": "F8CBAC2A59DE1843570F0FEA2AF4D7CA108CB64DEE5D1A88A83A76F56BC2666D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2268,
+        "sha256": "F8CBAC2A59DE1843570F0FEA2AF4D7CA108CB64DEE5D1A88A83A76F56BC2666D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\trust_chain\\__pycache__\\cli.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3548296Z",
+      "error": null
+    },
+    {
+      "line": 77,
+      "relative_path": "tools/up1_external_closure_r4/trust_chain/__pycache__/__main__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 233,
+        "sha256": "4E5A9E5297979D1CCCF5DE5386D93EDA447B20430F4A97BD92EB08106004182C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 233,
+        "sha256": "4E5A9E5297979D1CCCF5DE5386D93EDA447B20430F4A97BD92EB08106004182C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\trust_chain\\__pycache__\\__main__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3577928Z",
+      "error": null
+    },
+    {
+      "line": 76,
+      "relative_path": "tools/up1_external_closure_r4/trust_chain/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1090,
+        "sha256": "9A8B1632C52664A8E302E7B2F1B28997556D75F151D715EDD9E411CFB732EAE4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1090,
+        "sha256": "9A8B1632C52664A8E302E7B2F1B28997556D75F151D715EDD9E411CFB732EAE4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\trust_chain\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3611301Z",
+      "error": null
+    },
+    {
+      "line": 75,
+      "relative_path": "tools/up1_external_closure_r4/source_axis_binding/__pycache__/source_axis_binding.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 44020,
+        "sha256": "F7D2431026E3C9A6C580212140D30D8B9E49B3FB890D4C2E5EA01806AD241025",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 44020,
+        "sha256": "F7D2431026E3C9A6C580212140D30D8B9E49B3FB890D4C2E5EA01806AD241025",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\source_axis_binding\\__pycache__\\source_axis_binding.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3638999Z",
+      "error": null
+    },
+    {
+      "line": 74,
+      "relative_path": "tools/up1_external_closure_r4/source_axis_binding/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 910,
+        "sha256": "31970D2CFEC51B572B60D9BF2CB6A81D3BF57D4D7DEDAFFB09E81952ECEC8BA0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 910,
+        "sha256": "31970D2CFEC51B572B60D9BF2CB6A81D3BF57D4D7DEDAFFB09E81952ECEC8BA0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\source_axis_binding\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3667576Z",
+      "error": null
+    },
+    {
+      "line": 73,
+      "relative_path": "tools/up1_external_closure_r4/integration/__pycache__/runner.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1519,
+        "sha256": "B65E1B0CA361F836CA21406C6C363627A8D964382E12B86661FE0E16AF89CE6E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 1519,
+        "sha256": "B65E1B0CA361F836CA21406C6C363627A8D964382E12B86661FE0E16AF89CE6E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\integration\\__pycache__\\runner.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3693902Z",
+      "error": null
+    },
+    {
+      "line": 72,
+      "relative_path": "tools/up1_external_closure_r4/integration/__pycache__/orchestrator.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 37871,
+        "sha256": "1A5325F29D6014174AF6D48D5A7F8D60FE26D88BFD5CE5ED24FE2D64AA10F0D0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 37871,
+        "sha256": "1A5325F29D6014174AF6D48D5A7F8D60FE26D88BFD5CE5ED24FE2D64AA10F0D0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\integration\\__pycache__\\orchestrator.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3726052Z",
+      "error": null
+    },
+    {
+      "line": 71,
+      "relative_path": "tools/up1_external_closure_r4/integration/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 634,
+        "sha256": "157D2537E38DF7B8A919C8007903BA2CC34258D234BD3E54B00B7E1DAE210337",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 634,
+        "sha256": "157D2537E38DF7B8A919C8007903BA2CC34258D234BD3E54B00B7E1DAE210337",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\integration\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3766824Z",
+      "error": null
+    },
+    {
+      "line": 70,
+      "relative_path": "tools/up1_external_closure_r4/g2_mapping/__pycache__/validator.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 31311,
+        "sha256": "B6F358F22F7BD15B0B9FD408980A0094273909E52A533F811DA3E02F8AE6EFD0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 31311,
+        "sha256": "B6F358F22F7BD15B0B9FD408980A0094273909E52A533F811DA3E02F8AE6EFD0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\g2_mapping\\__pycache__\\validator.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3791537Z",
+      "error": null
+    },
+    {
+      "line": 69,
+      "relative_path": "tools/up1_external_closure_r4/g2_mapping/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 723,
+        "sha256": "5506B3A7FAA6A36CC3C21634BAF936B6FB16348A0DC4B5E404A7A5416A7438E3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 723,
+        "sha256": "5506B3A7FAA6A36CC3C21634BAF936B6FB16348A0DC4B5E404A7A5416A7438E3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\g2_mapping\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3823320Z",
+      "error": null
+    },
+    {
+      "line": 68,
+      "relative_path": "tools/up1_external_closure_r4/freshness/__pycache__/core.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 44229,
+        "sha256": "5A78328A55DAD57666B0346E2802FB37C723696CDC51F38B798BD0C12F32AA83",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 44229,
+        "sha256": "5A78328A55DAD57666B0346E2802FB37C723696CDC51F38B798BD0C12F32AA83",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\freshness\\__pycache__\\core.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3844812Z",
+      "error": null
+    },
+    {
+      "line": 67,
+      "relative_path": "tools/up1_external_closure_r4/freshness/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 827,
+        "sha256": "16A7E44ACB57F59BE943C5814E842DBF4A72F09D82B5CB5D999937FCE5FEEDC4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 827,
+        "sha256": "16A7E44ACB57F59BE943C5814E842DBF4A72F09D82B5CB5D999937FCE5FEEDC4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\freshness\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3874791Z",
+      "error": null
+    },
+    {
+      "line": 66,
+      "relative_path": "tools/up1_external_closure_r4/environment_closure/__pycache__/collector.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 33187,
+        "sha256": "0048301A44DA21A73FE8D17F00DC163842B70D7179198D46624F21B67F8368F2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 33187,
+        "sha256": "0048301A44DA21A73FE8D17F00DC163842B70D7179198D46624F21B67F8368F2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\tools\\up1_external_closure_r4\\environment_closure\\__pycache__\\collector.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3910419Z",
+      "error": null
+    },
+    {
+      "line": 45,
+      "relative_path": "test/up1_external_closure_r4/environment_closure/__pycache__/test_environment_closure_independent.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20300,
+        "sha256": "D1937E924888BF17BBC34924777495B66FA80540B501760C16E705D224A977D1",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 20300,
+        "sha256": "D1937E924888BF17BBC34924777495B66FA80540B501760C16E705D224A977D1",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\environment_closure\\__pycache__\\test_environment_closure_independent.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3944158Z",
+      "error": null
+    },
+    {
+      "line": 110,
+      "relative_path": "independent_postrun_r5/report.json",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2061,
+        "sha256": "EF79D6AA15141A9AEC636B36F9810A3D5D2C8AF864C366ADB30FA837DC3D2A26",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2061,
+        "sha256": "EF79D6AA15141A9AEC636B36F9810A3D5D2C8AF864C366ADB30FA837DC3D2A26",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\independent_postrun_r5\\report.json",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.3972435Z",
+      "error": null
+    },
+    {
+      "line": 44,
+      "relative_path": "test/up1_external_closure_r4/authoritative_intake/__pycache__/test_intake_contract.cpython-313-pytest-8.3.4.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 19686,
+        "sha256": "71829E9FCD01BDC69931754C0465BDF13BF3CA104364FD0EF1A0F78C054656EC",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 19686,
+        "sha256": "71829E9FCD01BDC69931754C0465BDF13BF3CA104364FD0EF1A0F78C054656EC",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\test_intake_contract.cpython-313-pytest-8.3.4.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4002851Z",
+      "error": null
+    },
+    {
+      "line": 42,
+      "relative_path": "test/up1_external_closure_r3/atomic_bundle/__pycache__/test_predicate_instrumentation.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3557,
+        "sha256": "14E8853CA4776CF6241D5A71AC39C62F5CCC221184DB277A9388AB4B2FA87EC6",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3557,
+        "sha256": "14E8853CA4776CF6241D5A71AC39C62F5CCC221184DB277A9388AB4B2FA87EC6",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\test_predicate_instrumentation.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4031486Z",
+      "error": null
+    },
+    {
+      "line": 20,
+      "relative_path": "benchmarks/iter_design_v1/__pycache__/load_reference.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 6517,
+        "sha256": "B2057E22EB053B081284BB54658987DAB78439F183C411A601BB1FBC058850AD",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 6517,
+        "sha256": "B2057E22EB053B081284BB54658987DAB78439F183C411A601BB1FBC058850AD",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\iter_design_v1\\__pycache__\\load_reference.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4059838Z",
+      "error": null
+    },
+    {
+      "line": 19,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/validate_member_join.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 21467,
+        "sha256": "87E051237C56280A7D3DD4458F126DE439FABB7C9B583B1CDF2351C2C7C4EDDF",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 21467,
+        "sha256": "87E051237C56280A7D3DD4458F126DE439FABB7C9B583B1CDF2351C2C7C4EDDF",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\validate_member_join.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4087943Z",
+      "error": null
+    },
+    {
+      "line": 18,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/test_validate_member_join.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 7634,
+        "sha256": "FCC30018334561908B072DFCDA02C5EC3E4A15F13D1E29260FA9F71413EAC0F2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 7634,
+        "sha256": "FCC30018334561908B072DFCDA02C5EC3E4A15F13D1E29260FA9F71413EAC0F2",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\test_validate_member_join.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4117002Z",
+      "error": null
+    },
+    {
+      "line": 17,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/test_source_replay_adapter.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8997,
+        "sha256": "0794AB51BF4C57DA057598CE1B5C4860F0B7721A715F6D0A2C330F7E47935C0C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8997,
+        "sha256": "0794AB51BF4C57DA057598CE1B5C4860F0B7721A715F6D0A2C330F7E47935C0C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\test_source_replay_adapter.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4149732Z",
+      "error": null
+    },
+    {
+      "line": 16,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/test_normalize_reference.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8071,
+        "sha256": "DD2BFC140B37D6C0EAA7773B267A25A3CB218273FA2EAF76ABB8342160943B92",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8071,
+        "sha256": "DD2BFC140B37D6C0EAA7773B267A25A3CB218273FA2EAF76ABB8342160943B92",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\test_normalize_reference.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4178186Z",
+      "error": null
+    },
+    {
+      "line": 15,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/test_normalize_interior.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 7806,
+        "sha256": "B40C58C871B86515230EB27A35DE089EAB6092E0FD5BABE2740FFF8E99DD566B",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 7806,
+        "sha256": "B40C58C871B86515230EB27A35DE089EAB6092E0FD5BABE2740FFF8E99DD566B",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\test_normalize_interior.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4207552Z",
+      "error": null
+    },
+    {
+      "line": 14,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/source_replay_adapter.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 25231,
+        "sha256": "209C2DD85A1B190FB40830B09ECAF307C9B241F8E1B36E911EDD5F12C8D5F1FD",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 25231,
+        "sha256": "209C2DD85A1B190FB40830B09ECAF307C9B241F8E1B36E911EDD5F12C8D5F1FD",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\source_replay_adapter.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4238176Z",
+      "error": null
+    },
+    {
+      "line": 21,
+      "relative_path": "benchmarks/iter_design_v1/__pycache__/test_load_reference.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5838,
+        "sha256": "B2B3D84414076F39B19CBE2638444AED5F962AB61E804B00467C46EA4B9AF778",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5838,
+        "sha256": "B2B3D84414076F39B19CBE2638444AED5F962AB61E804B00467C46EA4B9AF778",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\iter_design_v1\\__pycache__\\test_load_reference.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4270873Z",
+      "error": null
+    },
+    {
+      "line": 13,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/normalize_reference.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23581,
+        "sha256": "432341DFB04F0B28E8471A7A7ED205E2B979E892FC2BB7BD2F662EE9D92D5C1F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23581,
+        "sha256": "432341DFB04F0B28E8471A7A7ED205E2B979E892FC2BB7BD2F662EE9D92D5C1F",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\normalize_reference.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4315653Z",
+      "error": null
+    },
+    {
+      "line": 11,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/evaluate_interior.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5690,
+        "sha256": "5A4D6D2F819BC16D1FEE234C02CEDDB55C36E7B7ADF6205A372E1A11F31C5046",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5690,
+        "sha256": "5A4D6D2F819BC16D1FEE234C02CEDDB55C36E7B7ADF6205A372E1A11F31C5046",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\evaluate_interior.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4349193Z",
+      "error": null
+    },
+    {
+      "line": 10,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/compare_interior.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5393,
+        "sha256": "A64020B4E519F8491BE40016E6E6DB918F30972810D05F2B1B47D3AB52F942F3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 5393,
+        "sha256": "A64020B4E519F8491BE40016E6E6DB918F30972810D05F2B1B47D3AB52F942F3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\compare_interior.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4383571Z",
+      "error": null
+    },
+    {
+      "line": 9,
+      "relative_path": ".pytest_cache/v/cache/stepwise",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2,
+        "sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2,
+        "sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\v\\cache\\stepwise",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4415034Z",
+      "error": null
+    },
+    {
+      "line": 8,
+      "relative_path": ".pytest_cache/v/cache/nodeids",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39020,
+        "sha256": "10902BBE32A7B7FD82F388E8960CE568BDDBCBA4135503CD2C085B23216C3A14",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 39020,
+        "sha256": "10902BBE32A7B7FD82F388E8960CE568BDDBCBA4135503CD2C085B23216C3A14",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\v\\cache\\nodeids",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4453512Z",
+      "error": null
+    },
+    {
+      "line": 7,
+      "relative_path": ".pytest_cache/v/cache/lastfailed",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2,
+        "sha256": "44136FA355B3678A1146AD16F7E8649E94FB4FC21FE77E8310C060F61CAAFF8A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 2,
+        "sha256": "44136FA355B3678A1146AD16F7E8649E94FB4FC21FE77E8310C060F61CAAFF8A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\v\\cache\\lastfailed",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4483933Z",
+      "error": null
+    },
+    {
+      "line": 6,
+      "relative_path": ".pytest_cache/README.md",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 310,
+        "sha256": "420E808D79A6C25D3CDA0AF33BC4782314A14949866682C68CE8149E89B66B70",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 310,
+        "sha256": "420E808D79A6C25D3CDA0AF33BC4782314A14949866682C68CE8149E89B66B70",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\README.md",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4513848Z",
+      "error": null
+    },
+    {
+      "line": 5,
+      "relative_path": ".pytest_cache/CACHEDIR.TAG",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 191,
+        "sha256": "37DC88EF9A0ABEDDBE81053A6DD8FDFB13AFB613045EA1EB4A5C815A74A3BDE4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 191,
+        "sha256": "37DC88EF9A0ABEDDBE81053A6DD8FDFB13AFB613045EA1EB4A5C815A74A3BDE4",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\.pytest_cache\\CACHEDIR.TAG",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4538742Z",
+      "error": null
+    },
+    {
+      "line": 12,
+      "relative_path": "benchmarks/desc_heliotron_v0173/__pycache__/normalize_interior.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 13000,
+        "sha256": "0588711659030D546A264621AF2B607F6BD9BD9D78746C86E93625891903CAAA",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 13000,
+        "sha256": "0588711659030D546A264621AF2B607F6BD9BD9D78746C86E93625891903CAAA",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\benchmarks\\desc_heliotron_v0173\\__pycache__\\normalize_interior.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4569128Z",
+      "error": null
+    },
+    {
+      "line": 22,
+      "relative_path": "candidate_validation_focused.exit",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\candidate_validation_focused.exit",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4614205Z",
+      "error": null
+    },
+    {
+      "line": 23,
+      "relative_path": "candidate_validation_focused.log",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 208,
+        "sha256": "3E3283B79763B20176E5D5829C351AFCA8B049C2310FEF1D96924788E87B8EC0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 208,
+        "sha256": "3E3283B79763B20176E5D5829C351AFCA8B049C2310FEF1D96924788E87B8EC0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\candidate_validation_focused.log",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4640413Z",
+      "error": null
+    },
+    {
+      "line": 24,
+      "relative_path": "docs/reports/goal_recovery_20260913/__pycache__/recheck_solver_stagnation.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8412,
+        "sha256": "4294C9B82723A247543ADA687AC168B6713CEF894D9CAEE10F42F05ACD62943A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8412,
+        "sha256": "4294C9B82723A247543ADA687AC168B6713CEF894D9CAEE10F42F05ACD62943A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\docs\\reports\\goal_recovery_20260913\\__pycache__\\recheck_solver_stagnation.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4673675Z",
+      "error": null
+    },
+    {
+      "line": 41,
+      "relative_path": "test/up1_external_closure_r3/atomic_bundle/__pycache__/test_atomic_bundle.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 14810,
+        "sha256": "96B3943DD150E020AF1AA81BBED3D5A4C3D4D5E6981FF5C25D3C59325C4D26A3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 14810,
+        "sha256": "96B3943DD150E020AF1AA81BBED3D5A4C3D4D5E6981FF5C25D3C59325C4D26A3",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\test_atomic_bundle.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4710026Z",
+      "error": null
+    },
+    {
+      "line": 40,
+      "relative_path": "test/up1_external_closure_r3/atomic_bundle/__pycache__/test_atomic_bundle_vectors.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 32982,
+        "sha256": "A4CE910395AB0466669416B4F2B0435BB0ABE0F059DCFA3D7B839B37232AA781",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 32982,
+        "sha256": "A4CE910395AB0466669416B4F2B0435BB0ABE0F059DCFA3D7B839B37232AA781",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\test_atomic_bundle_vectors.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4749084Z",
+      "error": null
+    },
+    {
+      "line": 39,
+      "relative_path": "test/up1_external_closure_r3/atomic_bundle/__pycache__/test_atomic_bundle_repair.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 13670,
+        "sha256": "87AA63121EEBFE26BB342CE4A6C945E5D5C832BA6C63CF6654A68F2598F76870",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 13670,
+        "sha256": "87AA63121EEBFE26BB342CE4A6C945E5D5C832BA6C63CF6654A68F2598F76870",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r3\\atomic_bundle\\__pycache__\\test_atomic_bundle_repair.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4783880Z",
+      "error": null
+    },
+    {
+      "line": 38,
+      "relative_path": "test/RuntimeV4/M4Isolated/oracles/__pycache__/inverse_feedback_oracle_v1.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8642,
+        "sha256": "440AB3A924ED678AF62A9237D4BAA5EB57EA7DA3D5F10C10251E384116FC233B",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8642,
+        "sha256": "440AB3A924ED678AF62A9237D4BAA5EB57EA7DA3D5F10C10251E384116FC233B",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\RuntimeV4\\M4Isolated\\oracles\\__pycache__\\inverse_feedback_oracle_v1.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4816294Z",
+      "error": null
+    },
+    {
+      "line": 37,
+      "relative_path": "test/GenomeV5/G1/__pycache__/static_qa_diffusion_v1.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3139,
+        "sha256": "3179E6B255BCCD006563A744A8523046DC11C6DD7ABF175A3DD68E550357A267",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3139,
+        "sha256": "3179E6B255BCCD006563A744A8523046DC11C6DD7ABF175A3DD68E550357A267",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\GenomeV5\\G1\\__pycache__\\static_qa_diffusion_v1.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4842130Z",
+      "error": null
+    },
+    {
+      "line": 36,
+      "relative_path": "test/__pycache__/verify_v4_spatial_manifest_tests.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 9057,
+        "sha256": "CF332DBD8C04D046AB17A2F52C153014B32921861564A41B2A347F55C1A6D83D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 9057,
+        "sha256": "CF332DBD8C04D046AB17A2F52C153014B32921861564A41B2A347F55C1A6D83D",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\__pycache__\\verify_v4_spatial_manifest_tests.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4866550Z",
+      "error": null
+    },
+    {
+      "line": 35,
+      "relative_path": "scripts/__pycache__/verify_v5_publication_closure.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 25511,
+        "sha256": "791509765947ACB61478BF949DCB72ABC5E8F17C509FA033E0E8E0D62A7C853A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 25511,
+        "sha256": "791509765947ACB61478BF949DCB72ABC5E8F17C509FA033E0E8E0D62A7C853A",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\verify_v5_publication_closure.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4887899Z",
+      "error": null
+    },
+    {
+      "line": 34,
+      "relative_path": "scripts/__pycache__/verify_v4_spatial_manifest.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8661,
+        "sha256": "1AB1F4187DB17B1DED7263DDA51BA0E20671EB46F073BED1B0EC224FC5D8E314",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 8661,
+        "sha256": "1AB1F4187DB17B1DED7263DDA51BA0E20671EB46F073BED1B0EC224FC5D8E314",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\verify_v4_spatial_manifest.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4913561Z",
+      "error": null
+    },
+    {
+      "line": 33,
+      "relative_path": "scripts/__pycache__/spatial_verification_oracle_v4.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 27091,
+        "sha256": "9B065131591EFC31626AE42AF0D21F6EE67CC026508ADD4BC3F97ACA5BB4BA09",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 27091,
+        "sha256": "9B065131591EFC31626AE42AF0D21F6EE67CC026508ADD4BC3F97ACA5BB4BA09",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\spatial_verification_oracle_v4.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4937586Z",
+      "error": null
+    },
+    {
+      "line": 32,
+      "relative_path": "scripts/__pycache__/complete_multiregion_desc_sample.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 10794,
+        "sha256": "306A5F470E53EF9E1805758A8A5A65AD2FCD0A0794B8A4C9770D93D9E9B0A35C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 10794,
+        "sha256": "306A5F470E53EF9E1805758A8A5A65AD2FCD0A0794B8A4C9770D93D9E9B0A35C",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\complete_multiregion_desc_sample.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4962043Z",
+      "error": null
+    },
+    {
+      "line": 31,
+      "relative_path": "scripts/__pycache__/audit_v4_spatial_g2_pair.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 12847,
+        "sha256": "924B2220FD4468534F12D2A150A144C06BFDF5444A08EF9BD47BDBFD0DA5F507",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 12847,
+        "sha256": "924B2220FD4468534F12D2A150A144C06BFDF5444A08EF9BD47BDBFD0DA5F507",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\audit_v4_spatial_g2_pair.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.4986014Z",
+      "error": null
+    },
+    {
+      "line": 30,
+      "relative_path": "scripts/__pycache__/audit_runtime_v4_test_coverage.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 11614,
+        "sha256": "F54C9B50AEA13F640972EA0DD590965F8C8A0EBB4128B8331C6791645FE6A48E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 11614,
+        "sha256": "F54C9B50AEA13F640972EA0DD590965F8C8A0EBB4128B8331C6791645FE6A48E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\scripts\\__pycache__\\audit_runtime_v4_test_coverage.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5011964Z",
+      "error": null
+    },
+    {
+      "line": 29,
+      "relative_path": "q4_package_regression.log",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23,
+        "sha256": "8A61BF5B7F6072657F0C4370ADE5516C7AE4F0EF443B5D6B89F6FD74B780CBB5",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 23,
+        "sha256": "8A61BF5B7F6072657F0C4370ADE5516C7AE4F0EF443B5D6B89F6FD74B780CBB5",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\q4_package_regression.log",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5030983Z",
+      "error": null
+    },
+    {
+      "line": 28,
+      "relative_path": "q4_package_regression.err.log",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 0,
+        "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 0,
+        "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\q4_package_regression.err.log",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5049544Z",
+      "error": null
+    },
+    {
+      "line": 27,
+      "relative_path": "q4_final_focused.log",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 194,
+        "sha256": "C30E989F99A4DB6D9D62B9BC8B35A8404836E3B602658E5DAB1920C668F421FE",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 194,
+        "sha256": "C30E989F99A4DB6D9D62B9BC8B35A8404836E3B602658E5DAB1920C668F421FE",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\q4_final_focused.log",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5068674Z",
+      "error": null
+    },
+    {
+      "line": 26,
+      "relative_path": "q4_final_focused.exit",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\q4_final_focused.exit",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5086351Z",
+      "error": null
+    },
+    {
+      "line": 25,
+      "relative_path": "focused_ecf_vuq.log",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 312,
+        "sha256": "226132A3AA9C1574B725E55F8A66748FA17072A011BE48EF58C52511BBA168A0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 312,
+        "sha256": "226132A3AA9C1574B725E55F8A66748FA17072A011BE48EF58C52511BBA168A0",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\focused_ecf_vuq.log",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5104846Z",
+      "error": null
+    },
+    {
+      "line": 43,
+      "relative_path": "test/up1_external_closure_r4/authoritative_intake/__pycache__/__init__.cpython-313.pyc",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 278,
+        "sha256": "B1701090F7ED12ECF849A78A47FE89940A806B77EAD22D8E9573E839CE67D510",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 278,
+        "sha256": "B1701090F7ED12ECF849A78A47FE89940A806B77EAD22D8E9573E839CE67D510",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\test\\up1_external_closure_r4\\authoritative_intake\\__pycache__\\__init__.cpython-313.pyc",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5133194Z",
+      "error": null
+    },
+    {
+      "line": 112,
+      "relative_path": "FusionConceptAI/docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/test_execution_r2/replay2/run_ledger.json",
+      "kind": "file",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 839,
+        "sha256": "E292083B4141F881EEDBBCCD72AD6FE86453BA3388E9BD0F0FC8CA2D4DF63B1E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "after": {
+        "exists": true,
+        "kind": "file",
+        "bytes": 839,
+        "sha256": "E292083B4141F881EEDBBCCD72AD6FE86453BA3388E9BD0F0FC8CA2D4DF63B1E",
+        "hash_kind": "content",
+        "item_count": 1
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\FusionConceptAI\\docs\\implementation\\UP5-EARLY-PREPARATION\\M5-EGRAPH-R1\\test_execution_r2\\replay2\\run_ledger.json",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5169156Z",
+      "error": null
+    },
+    {
+      "line": 108,
+      "relative_path": "runs/imirj_runner_20260911_144057",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 134609,
+        "sha256": "6B365928B3FF4B6C2308B19B797C7C54E3F80D6D716872D4231A57887FA7B355",
+        "hash_kind": "entry_manifest",
+        "item_count": 21,
+        "file_count": 16,
+        "directory_count": 5
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 134609,
+        "sha256": "6B365928B3FF4B6C2308B19B797C7C54E3F80D6D716872D4231A57887FA7B355",
+        "hash_kind": "entry_manifest",
+        "item_count": 21,
+        "file_count": 16,
+        "directory_count": 5
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imirj_runner_20260911_144057",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5329679Z",
+      "error": null
+    },
+    {
+      "line": 107,
+      "relative_path": "runs/dsmb_runner_20260911_150816",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 137068,
+        "sha256": "8393BA7D1EBC1ADD1D0F17B942B7C3713270D25D958DD5C607CCEB537E4863E4",
+        "hash_kind": "entry_manifest",
+        "item_count": 25,
+        "file_count": 19,
+        "directory_count": 6
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 137068,
+        "sha256": "8393BA7D1EBC1ADD1D0F17B942B7C3713270D25D958DD5C607CCEB537E4863E4",
+        "hash_kind": "entry_manifest",
+        "item_count": 25,
+        "file_count": 19,
+        "directory_count": 6
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\dsmb_runner_20260911_150816",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5487052Z",
+      "error": null
+    },
+    {
+      "line": 104,
+      "relative_path": "runs/imit_reg_surface_retry",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 129731,
+        "sha256": "77750CEEFC4CBA83AF96A72D66FD0FABD67B269F0340DAAA7DA8BA2EEAF2102B",
+        "hash_kind": "entry_manifest",
+        "item_count": 17,
+        "file_count": 13,
+        "directory_count": 4
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 129731,
+        "sha256": "77750CEEFC4CBA83AF96A72D66FD0FABD67B269F0340DAAA7DA8BA2EEAF2102B",
+        "hash_kind": "entry_manifest",
+        "item_count": 17,
+        "file_count": 13,
+        "directory_count": 4
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_reg_surface_retry",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5618870Z",
+      "error": null
+    },
+    {
+      "line": 101,
+      "relative_path": "runs/imit_focused_pressure2",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4687,
+        "sha256": "D5B06A5397D1D1D0BB41FE2B5B8381A321175E77A5B87AE6580D1E4B07D02E9F",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4687,
+        "sha256": "D5B06A5397D1D1D0BB41FE2B5B8381A321175E77A5B87AE6580D1E4B07D02E9F",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_focused_pressure2",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5729371Z",
+      "error": null
+    },
+    {
+      "line": 100,
+      "relative_path": "runs/imit_focused_pressure",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4687,
+        "sha256": "63899BF55E239D864E67A7665560F5571EAAFF9299CFE0F74607E3D2F3CC3A37",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4687,
+        "sha256": "63899BF55E239D864E67A7665560F5571EAAFF9299CFE0F74607E3D2F3CC3A37",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_focused_pressure",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5840614Z",
+      "error": null
+    },
+    {
+      "line": 103,
+      "relative_path": "runs/imit_focused_surface2",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "6DB66A3A16DF0865B7EB69A9ADB87011A6898024155C21560BF236EB9FAC468B",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "6DB66A3A16DF0865B7EB69A9ADB87011A6898024155C21560BF236EB9FAC468B",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_focused_surface2",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.5968732Z",
+      "error": null
+    },
+    {
+      "line": 92,
+      "relative_path": "runs/drstp_focused4_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "5D0EC2BD933B05BECF018CA0AEB5DD2F44A45999CFE1ED1D0D8C968601F461DF",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "5D0EC2BD933B05BECF018CA0AEB5DD2F44A45999CFE1ED1D0D8C968601F461DF",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused4_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6074826Z",
+      "error": null
+    },
+    {
+      "line": 93,
+      "relative_path": "runs/drstp_focused4_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "8458C82830BBACD8208836A557D42C8B7062860791450C334177ACEB0E06A949",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "8458C82830BBACD8208836A557D42C8B7062860791450C334177ACEB0E06A949",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused4_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6190867Z",
+      "error": null
+    },
+    {
+      "line": 105,
+      "relative_path": "runs/imit_runner_pressure",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4878,
+        "sha256": "F395F32AC0B39A6B006BC09BCDE265C5D2ED5FD0FFC3B64E7CA79D8ED305961E",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4878,
+        "sha256": "F395F32AC0B39A6B006BC09BCDE265C5D2ED5FD0FFC3B64E7CA79D8ED305961E",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_runner_pressure",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6314369Z",
+      "error": null
+    },
+    {
+      "line": 102,
+      "relative_path": "runs/imit_focused_surface",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "07C7D22C961A80517C3D83E33BDBBF1F66C2601EC42764863DDC193C328D7E65",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "07C7D22C961A80517C3D83E33BDBBF1F66C2601EC42764863DDC193C328D7E65",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_focused_surface",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6427468Z",
+      "error": null
+    },
+    {
+      "line": 89,
+      "relative_path": "runs/drstp_focused3_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "886B9BCFB9585E43935C7E5BEC1B920A0810BFDEDF0878C7AEC9AF01A6602784",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "886B9BCFB9585E43935C7E5BEC1B920A0810BFDEDF0878C7AEC9AF01A6602784",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused3_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6534867Z",
+      "error": null
+    },
+    {
+      "line": 87,
+      "relative_path": "runs/drstp_focused2_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "2FE864E68C3BEE12CDBD46A0B4043034C30FAD22AEF01B36454EC6CBAB59D431",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "2FE864E68C3BEE12CDBD46A0B4043034C30FAD22AEF01B36454EC6CBAB59D431",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused2_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6648642Z",
+      "error": null
+    },
+    {
+      "line": 86,
+      "relative_path": "runs/drstp_focused2_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "55389B6BE13BA9960EE6D3E4B655A3A425545A5A34BA232CF88D9DCDA415B529",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "55389B6BE13BA9960EE6D3E4B655A3A425545A5A34BA232CF88D9DCDA415B529",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused2_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6757831Z",
+      "error": null
+    },
+    {
+      "line": 90,
+      "relative_path": "runs/drstp_focused3_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "63040D47B734D506DE59917F4965946DDA3959F56047F98E6B14940618086D24",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "63040D47B734D506DE59917F4965946DDA3959F56047F98E6B14940618086D24",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused3_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.6906939Z",
+      "error": null
+    },
+    {
+      "line": 106,
+      "relative_path": "runs/imit_runner_surface",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "9F3904ECC60CBFFC6A4D6200E324BB8FCD8E307904D1B86ACD1C91D16A37F82E",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "9F3904ECC60CBFFC6A4D6200E324BB8FCD8E307904D1B86ACD1C91D16A37F82E",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\imit_runner_surface",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7034464Z",
+      "error": null
+    },
+    {
+      "line": 84,
+      "relative_path": "runs/drstp_focused_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "BB8965B0F00772E6E32A916B3A32EB7B1385F4AC11914A1DA05FE4DE03908989",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "BB8965B0F00772E6E32A916B3A32EB7B1385F4AC11914A1DA05FE4DE03908989",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7149602Z",
+      "error": null
+    },
+    {
+      "line": 83,
+      "relative_path": "runs/drstp_focused_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "B1518CCDBFC90772D214C2308444D0EBF989B0C17EF2C9804C0B0A567A3CC949",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "B1518CCDBFC90772D214C2308444D0EBF989B0C17EF2C9804C0B0A567A3CC949",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7261801Z",
+      "error": null
+    },
+    {
+      "line": 98,
+      "relative_path": "runs/drstp_runner_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "47535C74CBCB397C67DC60C1F81C720E6D620356F1BA807144625C7893921D39",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "47535C74CBCB397C67DC60C1F81C720E6D620356F1BA807144625C7893921D39",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_runner_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7369472Z",
+      "error": null
+    },
+    {
+      "line": 99,
+      "relative_path": "runs/drstp_runner_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "B63CBAF48BB47A534AC52A7B1BEDA18A4975DD8A6CD1F41CAE0770F71EF26413",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "B63CBAF48BB47A534AC52A7B1BEDA18A4975DD8A6CD1F41CAE0770F71EF26413",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_runner_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7476619Z",
+      "error": null
+    },
+    {
+      "line": 96,
+      "relative_path": "runs/drstp_probe_field",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "0D7D72C6D61055B82664B11DC6DEF282C595A0DC25210A3D5FC4B5A82AD4AACD",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 4697,
+        "sha256": "0D7D72C6D61055B82664B11DC6DEF282C595A0DC25210A3D5FC4B5A82AD4AACD",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_probe_field",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7591735Z",
+      "error": null
+    },
+    {
+      "line": 95,
+      "relative_path": "runs/drstp_probe_basis",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "90C21BA6E09DC7837316C940E447FFA4DDDC53817CD50FE358E1DD919642E1E3",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 5725,
+        "sha256": "90C21BA6E09DC7837316C940E447FFA4DDDC53817CD50FE358E1DD919642E1E3",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_probe_basis",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7712632Z",
+      "error": null
+    },
+    {
+      "line": 111,
+      "relative_path": "M4-SCOPE-DECISION-R1",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 155,
+        "sha256": "86E1806F4DDB0BCD27E78947A32A9654DC6C183E4F24FC457D5298B2EEB4B92F",
+        "hash_kind": "entry_manifest",
+        "item_count": 4,
+        "file_count": 1,
+        "directory_count": 3
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 155,
+        "sha256": "86E1806F4DDB0BCD27E78947A32A9654DC6C183E4F24FC457D5298B2EEB4B92F",
+        "hash_kind": "entry_manifest",
+        "item_count": 4,
+        "file_count": 1,
+        "directory_count": 3
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\M4-SCOPE-DECISION-R1",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7819851Z",
+      "error": null
+    },
+    {
+      "line": 91,
+      "relative_path": "runs/drstp_focused4",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "2A1E81C16BB6812B8A3D244536D72D1FD24E5B0DA584752BA2EA64A9BD09B954",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "2A1E81C16BB6812B8A3D244536D72D1FD24E5B0DA584752BA2EA64A9BD09B954",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused4",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.7929357Z",
+      "error": null
+    },
+    {
+      "line": 88,
+      "relative_path": "runs/drstp_focused3",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "3E328B8B50F06733954C4BC4FE3C318B4B25DEB7F22574C5E12BE00421C319C2",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "3E328B8B50F06733954C4BC4FE3C318B4B25DEB7F22574C5E12BE00421C319C2",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused3",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.8032718Z",
+      "error": null
+    },
+    {
+      "line": 85,
+      "relative_path": "runs/drstp_focused2",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6859,
+        "sha256": "9D9D376CE1ADE87199918C19F92DB4EEA235501C2F3686ECCCEC1319CB7D0DFD",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6859,
+        "sha256": "9D9D376CE1ADE87199918C19F92DB4EEA235501C2F3686ECCCEC1319CB7D0DFD",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused2",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.8141881Z",
+      "error": null
+    },
+    {
+      "line": 82,
+      "relative_path": "runs/drstp_focused",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6746,
+        "sha256": "8CE2756546EAE659C7B1CC618CAE8D0A276554842E5FDF80AB8F1204CAFABC22",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6746,
+        "sha256": "8CE2756546EAE659C7B1CC618CAE8D0A276554842E5FDF80AB8F1204CAFABC22",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_focused",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.8249155Z",
+      "error": null
+    },
+    {
+      "line": 97,
+      "relative_path": "runs/drstp_runner",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "E48A978DE9EA01E22AC6B4E7AA2E1AC88D12C27C8D4D73FCCECAFFD4AE40B792",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 7509,
+        "sha256": "E48A978DE9EA01E22AC6B4E7AA2E1AC88D12C27C8D4D73FCCECAFFD4AE40B792",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_runner",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.8349953Z",
+      "error": null
+    },
+    {
+      "line": 94,
+      "relative_path": "runs/drstp_probe",
+      "kind": "directory",
+      "status": "moved",
+      "before": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6746,
+        "sha256": "861955E309F7F1FFA06C75092C6178151E14EB7083A63CAF58C8F2205CD50F0B",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "after": {
+        "exists": true,
+        "kind": "directory",
+        "bytes": 6746,
+        "sha256": "861955E309F7F1FFA06C75092C6178151E14EB7083A63CAF58C8F2205CD50F0B",
+        "hash_kind": "entry_manifest",
+        "item_count": 3,
+        "file_count": 3,
+        "directory_count": 0
+      },
+      "quarantine_path": "D:\\006-Programing\\LMC\\.codex_trash\\FusionConceptAI-hygiene-20260917-20260917T054858Z\\runs\\drstp_probe",
+      "empty_before_directory_move": false,
+      "pid": 85880,
+      "utc": "2026-09-17T05:49:07.8496293Z",
+      "error": null
+    }
+  ],
+  "stage_commit": "not performed by this cleanup executor"
+}

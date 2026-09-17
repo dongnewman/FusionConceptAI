@@ -1,0 +1,33 @@
+{
+  "schema": "UP1.external-blocker-closure-r4.root-decision-independent-review-r1.evidence.v1",
+  "created_utc": "2026-09-17",
+  "scope": "read-only audit of 20 draft against 00-19, review 19, final manifest, 26-input contract, and 39-node/R01-R10 boundary",
+  "decision": "changes_requested",
+  "finding": {
+    "id": "DOC-P2-COUNT-001",
+    "severity": "documentation-consistency-only",
+    "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/20-root-decision-draft/decision_draft.md",
+    "lines": [41, 42],
+    "detail": "JSON total p2=2 and p2_items length=2, but both per-item Markdown rows show count=2; repair to one each or a single total."
+  },
+  "verified": {
+    "r3": {"runs": 2, "tests": 25, "skipped": 1, "exits": [0, 0]},
+    "r4": {"runs": 2, "passed": 98, "skipped": 2, "tests": 100, "exits": [0, 0]},
+    "static": {"runs": 1, "exit": 0, "ast_compile": 48, "imports": 11},
+    "hash_closure": {"before": 48, "after": 48, "changed": [], "missing": [], "added": []},
+    "external": {"count": 26, "typed_absent": 26, "usable": 0},
+    "plan": {"task_count": 39, "acyclic": true, "validator_errors": []},
+    "parent": {"r01_r10": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10"], "credible_candidate_count": 0, "discovery_goal_achieved": false}
+  },
+  "files": [
+    {"path": "20-root-decision-draft/decision_draft.md", "bytes": 10218, "sha256": "5daed6fbed0374f9b96c4ac11555fbbd49e86bd42942493191e7c5602b3c9834"},
+    {"path": "20-root-decision-draft/decision_draft.json", "bytes": 8598, "sha256": "969ca171e7ba2219f5315a09f10bee204f78fed78899b2652bb0f103516283ce"},
+    {"path": "00-external-delta-scan/manifest.json", "bytes": 2280, "sha256": "6a50704624b7f7a7345812c49743187032d11779fb755c61b3d73191bb41ae3f"},
+    {"path": "00-external-delta-scan/external_material_inventory.json", "bytes": 9939, "sha256": "642bea6650370acc8c5a3052abcb7264540ba9fd1bf831df163be216cc0b2421"},
+    {"path": "01-external-input-contract/external_input_contract_r4.json", "bytes": 36200, "sha256": "a60a16bb82ac325764cab1f3a72619ebc1065c9ea82053e7961d622e37d1e9a0"},
+    {"path": "19-final-full-regression/run_manifest.json", "bytes": 5901, "sha256": "784c805285cf214bc84c3581adec43102d00cd581029068074789613aaac2e77"},
+    {"path": "19-final-full-regression/hash_comparison.json", "bytes": 254, "sha256": "030ecc51efc8796ecbb4f797c6406b2878dab76cfc121f620048dae8c015109e"},
+    {"path": "reviews/19-final-independent-review-r2/review.md", "bytes": 4840, "sha256": "2f37e14594e2c6c9d3fefe02a20a15150ff3538139c81f89f337c005f4047f10"},
+    {"path": "docs/v4_multitopology_generation/task_manifest.json", "bytes": 91208, "sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"}
+  ]
+}

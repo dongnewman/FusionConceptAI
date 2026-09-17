@@ -1,0 +1,10 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-INTEGRATION-CLEANUP-R1",
+  "policy": "No deletion; exact paths only; no glob or broad recursive cleanup.",
+  "actions": [],
+  "authoritative_artifacts": ["manifest.json", "validation_receipt.json", "report.md", "replay_1/archive/raw", "replay_2/archive/raw"],
+  "archive_exact_copy_rule": "Each replay raw stream has a direct raw copy and an archive/raw byte-identical copy; combined is stdout bytes concatenated with stderr bytes.",
+  "preserved_history": ["test_execution_r1/repair_r2", "test_execution_r1/repair_r3/attempt1_wrapper_failure", "test_execution_r1/repair_r3/attempt2_exitcode_failure", "test_execution_r1/repair_r3/attempt3_taskoutput_failure"],
+  "nested_archive_note": "Any historical nested archive/raw/archive paths are retained as historical path artifacts; direct integration replay archive/raw paths are authoritative.",
+  "changes_needed": []
+}

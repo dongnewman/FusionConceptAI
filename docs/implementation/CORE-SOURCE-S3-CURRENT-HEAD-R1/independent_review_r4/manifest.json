@@ -1,0 +1,20 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.independent-review-r4.v1",
+  "review_id":"CORE-SOURCE-S3-CURRENT-HEAD-R1/independent_review_r4",
+  "reviewer_model":"gpt-5.6-luna",
+  "reasoning_effort":"high",
+  "decision":"changes_requested",
+  "review_scope":"final read-only current JSON stderr hash scan, corrected static raw/combined, fingerprint, inputs, branch, preservation, cleanup, and gate review",
+  "no_s3_rerun":true,
+  "frozen_inputs":{"head":"b2c04d8339774635aaecd73651efcdb101e01b5d","index_sha256":"6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0","input_fingerprint":"840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5"},
+  "stderr_scan":{"expected_lf_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","expected_length":64,"current_json_wrong65_count_excluding_reviews":0,"current_digest_fields":5,"all_current_digest_fields_match":true},
+  "four_repair_paths":{"top_validation":"pass_digest","r2_repair_receipt":"pass_digest","r3_corrected_static":"pass_digest","r3_validation":"pass_digest"},
+  "corrected_static":{"vector":[4,5,12,1,47,0],"raw_hashes":true,"combined_stdout_plus_stderr":true,"historical_zero_vector_current_evidence":false},
+  "stale_reference":{"path":"validation_receipt.json.artifact_hashes.corrected_static_measurement_receipt","declared":"b4d1ac87e41d1f44f1a2ff190a23503eae41167949d9fb8e0fa2dd20d0ef0f36","actual":"ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0","blocking":true},
+  "external_inputs":{"count":14,"absent":13,"unknown_deferred":1},
+  "result":{"branch":"blocked_external_trust_root_and_source_closure","G1":"typed_absent","G2":"typed_absent","G3":"typed_absent","resolution":"terminal_deferred","no_publish":true},
+  "preservation":{"r1_failure_history":true,"input_unchanged_no_repeat":true,"new_ad_created":false,"formal_gate_credit":false,"R01_R10":"open","L4":0},
+  "forbidden_execution":{"Julia":false,"S3":false,"DESC":false,"mesh":false,"solver":false},
+  "cleanup":{"exact_path":true,"glob":false},
+  "required_repair":"update only the stale top-level corrected_static_measurement_receipt artifact hash; no S3 rerun or new AD"
+}

@@ -1,0 +1,47 @@
+{
+  "status_sync": "AD-32-independent-postrun-r2",
+  "status": "metadata_only",
+  "parent_manifest": "../manifest.json",
+  "manifest_sha256_before": "ddaad62a859e43b2d153e3335970a949bbf68764e8294e8934bfcc92a79ab1f4",
+  "manifest_sha256_after": "1769612256e963d31baadc961f505a6d326e3b3ffe5cd4a35149957ea5a40c47",
+  "r9_receipt": {
+    "path": "../test_r9.receipt.json",
+    "sha256": "21dfa6a5475402165cc01a95765f63d434a362e006e5699269db93a889da21b1",
+    "bytes": 1800,
+    "pid": 51564,
+    "utc_start": "2026-09-15T03:32:47.1548572Z",
+    "utc_end": "2026-09-15T03:33:03.4679458Z",
+    "exit_code": 0,
+    "summary": "167/167",
+    "stdout": {
+      "path": "../test_r9.stdout",
+      "bytes": 138,
+      "sha256": "6c21dbb806fc5c200ea2f11d31c2b342e8fb6ac0c40d1336c50513bcb354455f"
+    },
+    "stderr": {
+      "path": "../test_r9.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dirty_rows_before": 310,
+    "dirty_rows_after": 310,
+    "julia_processes_before": [],
+    "julia_processes_after": [],
+    "desc_processes_before": [],
+    "desc_processes_after": []
+  },
+  "final_artifact_hashes_unchanged": {
+    "source": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb",
+    "test": "5b7a85d988d50aaf25916a9da3ff4c7af764abe993cf252498e54829193c7289"
+  },
+  "independent_review": {
+    "status": "pending",
+    "prior_disposition": "changes_requested",
+    "recheck_required": true
+  },
+  "machine_node": {
+    "accepted": false,
+    "all_credits_false": true
+  },
+  "julia_desc_run": false
+}

@@ -1,0 +1,107 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-audit-r5",
+  "record_kind": "revised_architecture_proposal",
+  "decision_id": "AD-31-G3-CONTROL-EDIT-AUDIT",
+  "revision": "R5",
+  "status": "go_pending_independent_review",
+  "accepted": false,
+  "parent_records_preserved": [
+    "docs/implementation/AD-31/g3_control_editability_audit/report.md",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r2/revised_proposal.md",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r3/revised_proposal.md",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r4/revised_proposal.md"
+  ],
+  "scope": "control-only immutable source payload plus separate mode-editable state, exact source-record refs and executable failure-byte invariance",
+  "decision_owner": "Sol/root",
+  "decision_date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_porcelain_rows_observed": 306,
+  "report_path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r5/revised_proposal.md",
+  "revised_proposal_sha256": "86662a362109b3060f08c1b5065db2c28a162f934de1b4cb07cfb37eab2149ed",
+  "code_core_test_edited": false,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_engineering_physical_run": false,
+  "proposed_work_order": {
+    "id": "UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC",
+    "status": "proposal",
+    "accepted": false,
+    "claim_ceiling": "contract_only",
+    "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"],
+    "parallel_to": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+    "must_not_depend_on": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+    "implementation_files": [
+      "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl",
+      "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/"
+    ],
+    "fixed_operation": "replace_fault_source_payload",
+    "fixed_operation_semantics": "historical name; only editable state changes and exactly one existing fault.mode changes; immutable source payload/ref/record/axes/identities never change",
+    "future_mapping": "T1 only, fresh same-candidate source-backed lossless mapping into CandidateStatePackageV5Next"
+  },
+  "source_record_contract": {
+    "slot_field_order": ["slot_kind", "status", "value_ref", "source_path", "source_hash", "candidate_ref", "reason", "absence_content_hash"],
+    "slot_kind_domain": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+    "slot_status_domain": ["present", "typed_absent"],
+    "record_field_order": ["record_uri", "record_version", "payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version", "source_record_hash"],
+    "record_ref_field_order": ["record_uri", "record_version", "record_hash"],
+    "record_ref_rule": "source record ref URI/version/hash must byte-match source record record_uri/record_version/source_record_hash",
+    "slot_absence_hash": "H(canonical(domain, slot_kind, status=typed_absent, candidate_ref, reason)) excluding absence_content_hash",
+    "record_hash_excludes": ["source_record_hash", "source_content_hash", "operation_hash", "initial_state_hash", "resulting_state_hash"]
+  },
+  "parent_and_child_identity": {
+    "parent_binding_field_order": ["candidate_ref", "declaration_ref", "declaration_hash", "binding_hash"],
+    "parent_binding_recipe": "binding_hash=H(canonical(candidate_ref, declaration_ref, declaration_hash)) excluding binding_hash",
+    "child_contract_identity_recipe": "child_contract_identity_hash=H(canonical(child_contract_ref)) excluding child_contract_identity_hash",
+    "source_payload_ref_field_order": ["candidate_ref", "parent_binding", "parent_g3_declaration_ref", "parent_g3_declaration_hash", "child_contract_ref", "child_contract_identity_hash", "source_record_ref", "source_content_hash"],
+    "source_record_ref_is_complete": true
+  },
+  "state_contract": {
+    "field_order": ["key", "source_payload_ref", "editable_body", "initial_source_content_hash", "initial_state_hash", "current_state_hash", "last_operation_hash", "operation_history", "state_status", "contract_admission", "physical_resolution", "absence_reason", "absence_content_hash"],
+    "operation_history_type": "Tuple{Vararg{G3ControlOperationRecordV1}}",
+    "typed_empty_history": "Tuple{Vararg{G3ControlOperationRecordV1}}()",
+    "present_rule": "source_payload_ref/editable_body/initial_source_content_hash present; absence fields nothing",
+    "absent_rule": "source_payload_ref/editable_body/initial_source_content_hash nothing; absence reason/hash present; contract_admission terminal_deferred; no edit",
+    "state_absence_hash": "H(canonical(domain, key, state_status=typed_absent, terminal_deferred admission, typed physical resolution, absence_reason, source/edit/hash nothing, ZERO_DIGEST last operation, typed empty history)) excluding absence_content_hash",
+    "physical_resolution_type": "G3ControlPhysicalResolutionV1(status, reason, evidence_ref), status unknown|terminal_deferred; terminal_deferred requires typed non-empty reason"
+  },
+  "operation_contract": {
+    "record_field_order": ["operation_id", "operation_kind", "key", "fault_id", "expected_prior_mode", "resulting_mode", "previous_state_hash", "expected_prior_source_content_hash", "prior_editable_body_hash", "replacement_editable_body_hash", "source_record_ref", "source_payload_ref", "operation_hash", "resulting_state_hash"],
+    "operation_kind_domain": ["replace_fault_source_payload"],
+    "operation_hash_recipe": "H(canonical(operation_id, operation_kind, key, fault_id, expected_prior_mode, resulting_mode, previous_state_hash, expected_prior_source_content_hash, prior_editable_body_hash, replacement_editable_body_hash, source_record_ref, source_payload_ref)) excluding operation_hash and resulting_state_hash",
+    "resulting_state_hash_recipe": "H(canonical(key, state_status, source_payload_ref, editable_body_after, initial_source_content_hash, initial_state_hash, previous_state_hash, prior_operation_hashes_in_order, operation_hash, last_operation_hash, admission, typed physical resolution))",
+    "duplicate_and_chain_rule": "operation_id, operation_hash and fault_id+previous_state_hash globally unique; previous_state_hash equals prior result; tuple order immutable"
+  },
+  "five_hash_layers": [
+    "source_record_hash over record URI/version and all complete slots; own/downstream hashes excluded",
+    "source_content_hash over key, complete parent binding/ref/hash, actual child contract ref/hash, source URI/version, complete source_record_ref and body; own hash excluded",
+    "initial_state_hash over state status, source ref/body/hash or typed-absent marker, admission, typed physical resolution, ZERO_DIGEST operation and typed empty history; status included and frozen",
+    "operation_hash over full operation identity including prior and replacement editable body hashes, fault ID, before/after mode, previous state hash and exact source-record/source-payload refs; operation/result hashes excluded",
+    "resulting_state_hash over state identity, immutable source ref, editable body, initial hashes, previous state, prior operation hashes, new operation hash and last-operation hash; no resulting hash input"
+  ],
+  "zero_rules": {
+    "empty_history": "last_operation_hash=ZERO_DIGEST and current_state_hash==initial_state_hash exactly",
+    "typed_absent": "source/edit/hash fields nothing, typed absence digest, typed empty history, last_operation_hash=ZERO_DIGEST, current==initial, no edit",
+    "first_operation": "previous_state_hash=initial_state_hash and prior_operation_hashes_in_order=()",
+    "later_operation": "previous_state_hash=prior resulting_state_hash and last_operation_hash=history[end].operation_hash"
+  },
+  "canonical_failure_check": {
+    "before": "before_bytes=canonical_json(semantic_view(old_state)); before_hash=sha256(before_bytes)",
+    "invoke": "result=replace_fault_source_payload(old_state, invalid_operation)",
+    "after": "after_bytes=canonical_json(semantic_view(result.state)); after_hash=sha256(after_bytes)",
+    "required": ["after_bytes==before_bytes", "after_hash==before_hash", "result.state===old_state when runtime identity check is meaningful; otherwise serialized byte equality is mandatory"],
+    "scope": "every failure path including stale, forged, foreign, malformed, duplicate, reordered, non-mode, multi-fault, absent and forbidden operation"
+  },
+  "inputs": [
+    {"path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r4/revised_proposal.md", "sha256": "467211d8a05f6a7e22820300f1f9f630fa4eca35a61a5bef34f53330301e8cb9"},
+    {"path": "src/GenomeV5/G3/ControlGenomeV5.jl", "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"},
+    {"path": "src/GenomeV5/G3/RealizationGenomeV5.jl", "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    {"path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"},
+    {"path": "docs/implementation/AD-31/acceptance.md", "sha256": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7"}
+  ],
+  "static_validation": {"manifest_json_tool_exit": 0, "scoped_git_diff_check_exit": 0, "julia_or_desc_run": false},
+  "review_requirement": "different Luna independently reviews R5 before implementation dispatch",
+  "claim_ceiling": {"contract_admission": true, "physical_resolution": "unknown_or_terminal_deferred", "actual_child_authority": false, "T0_authority": false, "T1_mapping": false, "provider": false, "engineering": false, "mesh": false, "solver": false, "physical": false, "search": false, "B00": false, "B04": false, "R01_R10": false},
+  "self_hash_excluded": true
+}

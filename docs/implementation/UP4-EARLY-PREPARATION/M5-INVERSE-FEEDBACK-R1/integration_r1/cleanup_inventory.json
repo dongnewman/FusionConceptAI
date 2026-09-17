@@ -1,0 +1,10 @@
+{
+  "schema": "M5-INVERSE-FEEDBACK-INTEGRATION-CLEANUP-R1",
+  "policy": "No deletion; exact paths only; no glob or broad recursive cleanup.",
+  "actions": [],
+  "authoritative_artifacts": ["manifest.json", "validation_receipt.json", "current_authoritative.json", "report.md", "replay_1/raw/", "replay_1/archive/raw/", "replay_2/raw/", "replay_2/archive/raw/"],
+  "archive_exact_copy_rule": "Each replay stdout/stderr/combined stream has a byte-identical archive/raw copy; combined is stdout bytes followed by stderr bytes.",
+  "preserved_history": ["../test_execution_r1/", "../test_execution_r1/archive/raw/"],
+  "historical_attempt_classification": "All prior receipts remain read-only historical context; no failed-attempt directory or multi-process capture artifact was present. No historical run is relabeled authoritative.",
+  "changes_needed": []
+}

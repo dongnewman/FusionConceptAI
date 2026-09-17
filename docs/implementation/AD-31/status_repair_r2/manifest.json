@@ -1,0 +1,83 @@
+{
+  "manifest_version": "AD-31-status-repair-r2-v1",
+  "record_kind": "canonical_work_order_reconciliation",
+  "decision_id": "AD-31",
+  "status": "repair_record_pending_independent_review",
+  "accepted": false,
+  "scope": "Reconcile the preserved R3 proposal names with the canonical AD-31 machine node and record executed static validation receipts.",
+  "canonical_work_order": {
+    "id": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+    "status": "planned",
+    "scope_status": "proposal",
+    "accepted": false,
+    "implementation_files": [
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/"
+    ],
+    "topology": "parallel_to_UP1-04A-VNEXT-T0_without_T0_or_T1_completion_edge"
+  },
+  "preserved_proposal_mapping": [
+    {
+      "old": "UP1-04A-VNEXT-G3-REALIZATION-SOURCE-EDIT-R3",
+      "canonical": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC"
+    },
+    {
+      "old": "src/GenomeV5/G3/G3RealizationSourceEditV1.jl",
+      "canonical": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl"
+    },
+    {
+      "old": "test/GenomeV5/G3/g3_realization_source_edit_v1_tests.jl",
+      "canonical": "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl"
+    },
+    {
+      "old": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-SOURCE-EDIT-R3/",
+      "canonical": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/"
+    }
+  ],
+  "preserved_inputs": {
+    "r3_proposal": {
+      "path": "docs/implementation/AD-30/g3_children_editability_audit/repair_r3/revised_proposal.md",
+      "sha256": "7026596ca52d5ece571ada5515689fdc0251e67f73e6f9c525a34e80ee45022c"
+    },
+    "r3_review": {
+      "path": "docs/implementation/AD-30/g3_children_editability_independent_review_r3/report.md",
+      "sha256": "e15d68252517de196fd5f0c1bb37f029e7d2c2d7cb88158bbe118c50ff5cf9b4"
+    }
+  },
+  "executed_validation": {
+    "task_manifest_json": {
+      "command": "python -m json.tool docs/v4_multitopology_generation/task_manifest.json",
+      "exit_code": 0,
+      "checked_file_sha256": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+    },
+    "ad31_manifest_json": {
+      "command": "python -m json.tool docs/implementation/AD-31/manifest.json",
+      "exit_code": 0,
+      "self_hash_excluded": true
+    },
+    "plan_and_link_validator": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 391,
+      "task_count": 35,
+      "task_dag_acyclic": true,
+      "sol_prompt_characters": 493,
+      "errors": []
+    },
+    "scoped_diff_check": {
+      "command": "git diff --check -- docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md docs/v4_multitopology_generation/16_execution_work_orders.md docs/v4_multitopology_generation/README.md docs/v4_multitopology_generation/task_manifest.json docs/implementation/README.md docs/implementation/AD-31/acceptance.md docs/implementation/AD-31/manifest.json docs/implementation/AD-31/status_repair_r2/",
+      "exit_code": 0,
+      "blocking_output_bytes": 0
+    }
+  },
+  "excluded_execution": {
+    "julia_run": false,
+    "desc_run": false,
+    "provider_mesh_engineering_physical_run": false,
+    "source_or_test_mutation": false
+  },
+  "claim_ceiling": "documentation_sync_and_static_validation_only",
+  "review_requirement": "different Luna independent review remains required before any implementation acceptance"
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "AD44-RSDA-W3-A-independent-review-r1-v1",
+  "task_id": "AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS",
+  "review_id": "AD44-RSDA-W3-A-INDEPENDENT-REVIEW-R1",
+  "verdict": "changes_requested",
+  "scope": "independent raw recheck of four W3-A products only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "products": [
+    {"layer":"G1","path":"docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json","bytes":6410,"sha256":"05c26a883441b99e729346e72beef42ef3c5c1245b496a8d9ab7006f77cb1afe"},
+    {"layer":"G1","path":"docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/authority_receipt.json","bytes":3149,"sha256":"bbd23ea50fc4e3200d42a4859bab612ff1bb07a442cf09826d90a88eebb35cf4"},
+    {"layer":"G2","path":"docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json","bytes":6787,"sha256":"0cb67cade7e8d36c7240c130eccc5e0c8ab9552f96f05a890d65d14804b01021"},
+    {"layer":"G2","path":"docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/authority_receipt.json","bytes":3341,"sha256":"787f4a81f67113a6724165e49a898558691eb3a8fddc097f4e11cda15374abb2"}
+  ],
+  "independent_run": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 65392,
+    "utc_start": "2026-09-15T11:25:54.151358Z",
+    "utc_end": "2026-09-15T11:25:54.640953Z",
+    "exit_code": 1,
+    "checks_passed": 104,
+    "checks_total": 109,
+    "raw_stdout": "review/validation_stdout.json",
+    "raw_stderr": "review/validation_stderr.txt"
+  },
+  "planning_validation": {"command":"python docs/v4_multitopology_generation/validate_plan.py","exit_code":0,"task_count":39,"task_dag_acyclic":true},
+  "scoped_git_diff_check": {"exit_code":0},
+  "findings": [
+    {"id":"W3A-R1-HEAD-BLOB-UNAVAILABLE-G1","severity":"blocking","detail":"G1 source is untracked (??); HEAD:path does not resolve although product claims head_blob_sha256."},
+    {"id":"W3A-R1-HEAD-BLOB-UNAVAILABLE-G2","severity":"blocking","detail":"G2 source is untracked (??); HEAD:path does not resolve although product claims head_blob_sha256."},
+    {"id":"W3A-R1-G2-AUTHORING-RECEIPT-HASH","severity":"blocking","detail":"G2 inputs.authoring_receipt contains a 66-character digest that differs from the actual 64-character SHA-256."},
+    {"id":"W3A-R1-STALE-G1-RAW","severity":"blocking","detail":"G1 raw validator snapshot is 2912 bytes/45de0bb5..., current receipt is 3149 bytes/bbd23ea5...."},
+    {"id":"W3A-R1-STALE-G2-RAW","severity":"blocking","detail":"G2 raw validator snapshot is 3104 bytes/b4ebe492..., current receipt is 3341 bytes/787f4a81...."}
+  ],
+  "w3b_status": "proposed_blocked_common_candidate_identity_and_axis_attestation",
+  "w3b_products_created": false,
+  "protected_inputs_modified": false,
+  "claim_ceiling": "software_source_provenance_only",
+  "all_candidate_present_physical_and_r01_r10_credit": false
+}

@@ -1,0 +1,18 @@
+Test Summary:                                  | Pass  Total  Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  8.0s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  2.5s
+UP1-03 versioned references and JSON fixture boundary: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:277
+  Expression: G.G3ContractBindingV2(G.GenomeContractRef("fusionconceptai://GenomeV5/G3/bad", "v1", G.digest256_text("bad-schema"), G.digest256_text("bad-canonical"), "bad"), _CANDIDATE, _axes("bad"))
+    Expected: ArgumentError
+      Thrown: KeyError
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:277 [inlined]
+ [2] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [3] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\up1_g3_contract_tests.jl:277
+Test Summary:                                         | Pass  Fail  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   20     1     21  0.8s

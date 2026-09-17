@@ -1,0 +1,92 @@
+{
+  "schema_version": "UP1-04A-VNEXT-T0-independent-postrun-r1-v1",
+  "record_kind": "T0_focused_postrun_independent_review",
+  "date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "attempt_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r1",
+  "verdict": "executor_launcher_failed",
+  "test_execution_status": "test_not_executed_for_acceptance",
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "source_attempt": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "process_start_returned": true,
+    "capture_status": "harness_failed_after_process_start",
+    "first_real_error": "Cannot overwrite variable PID because it is read-only or constant",
+    "error_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r1/process_capture_error.txt",
+    "error_sha256": "4457958a905b579dfacb7e16e2feecf8977b187dcdefb7e1f75fef6c7a627ec4",
+    "pid_captured": false,
+    "stdout_captured": false,
+    "stderr_captured": false,
+    "exit_code_captured": false,
+    "rerun": false
+  },
+  "input_hashes_verified": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": {
+      "sha256": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+      "matches_attempt": true
+    },
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": {
+      "sha256": "333ff3a2976736e13809b603cdcab61524658b7fb20d1b6506ccf188dea3b063",
+      "matches_attempt": true
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": {
+      "sha256": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+      "matches_attempt": true
+    },
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+      "matches_attempt": true
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+      "matches_attempt": true
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+      "matches_attempt": true
+    }
+  },
+  "worktree_and_process_state": {
+    "pre_run_porcelain_count": 304,
+    "post_attempt_porcelain_count": 304,
+    "current_porcelain_count": 304,
+    "pre_run_julia_or_desc_processes": [],
+    "post_attempt_julia_or_desc_processes_recorded": [],
+    "current_julia_or_desc_processes": [],
+    "orphan_process_found": false
+  },
+  "attempt_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-T0/focused_r1/run_metadata.json": "ff1d0868405383e9c5bfc245bbe1a1f1b007a212c69ce37afa78276dbea67953",
+    "docs/implementation/UP1-04A-VNEXT-T0/focused_r1/process_capture_error.txt": "4457958a905b579dfacb7e16e2feecf8977b187dcdefb7e1f75fef6c7a627ec4"
+  },
+  "independent_review_scope": {
+    "source_or_test_modified_by_reviewer": false,
+    "julia_executed_by_reviewer": false,
+    "desc_executed_by_reviewer": false,
+    "classification_is_test_or_physics_result": false
+  },
+  "next_gate": {
+    "allowed": true,
+    "condition": "H0 serial lane idle and six input hashes plus dirty snapshot frozen",
+    "launcher_requirement": "use task-specific childPid variable; never assign to PowerShell $PID",
+    "exactly_one_process": true,
+    "must_capture": [
+      "raw stdout bytes",
+      "raw stderr bytes",
+      "stdout SHA-256",
+      "stderr SHA-256",
+      "exit code",
+      "actual PID/process identity",
+      "pre/post dirty snapshots",
+      "post-run process absence"
+    ],
+    "t0_accepted": false,
+    "t1_allowed": false,
+    "physical_credit": false,
+    "r01_r10_credit": false
+  }
+}

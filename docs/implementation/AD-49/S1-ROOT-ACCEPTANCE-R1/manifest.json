@@ -1,0 +1,26 @@
+{
+  "schema_version": "AD49-S1-root-acceptance-R1-v1",
+  "record_kind": "limited_root_acceptance",
+  "task_id": "AD49-S1-INDEPENDENT-G1-G2-SOURCE-LOCATORS",
+  "decision": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "g1_g2_independent_source_locator_typed_absence_only",
+  "only_unlocked_work_order": "AD49-S2-G1-G2-FACTORY-IDENTITY-PROBE",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "source_observations": [
+    {"layer":"G1","path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","working_tree_status":"??","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","ls_files_exit":1,"head_path_exit":128,"result":"AbsentG1IndependentSourceLocatorV1","contract_admission":"terminal_deferred"},
+    {"layer":"G2","path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","working_tree_status":"??","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","ls_files_exit":1,"head_path_exit":128,"result":"AbsentG2IndependentSourceLocatorV1","contract_admission":"terminal_deferred"}
+  ],
+  "frozen_root_products": {
+    "docs/implementation/AD-49/G1-SOURCE-LOCATOR/g1_source_locator_v1.json":{"bytes":5309,"sha256":"840ec00d25e069b13af1562a9e4ebb7ab1b2896a0818dc1fa15a3c7167c770a5"},
+    "docs/implementation/AD-49/G1-SOURCE-LOCATOR/g1_source_locator_receipt.json":{"bytes":9341,"sha256":"91fcbcc2e93f586d913ee260e85cad39045b0aab77087e54c8137e652a2e79d3"},
+    "docs/implementation/AD-49/G2-SOURCE-LOCATOR/g2_source_locator_v1.json":{"bytes":5324,"sha256":"439a2d496be0e7c6bd8bbefb7790f4f45f577e7b3954901a5914a5276b5294fa"},
+    "docs/implementation/AD-49/G2-SOURCE-LOCATOR/g2_source_locator_receipt.json":{"bytes":9341,"sha256":"1145085a95a5b5d77bd5e5dfb4f5d629f0cdab9f333883f75f268ff597d9f90b"}
+  },
+  "review_basis": {"verdict":"pass_limited","report":"docs/implementation/AD-49/S1-INDEPENDENT-REVIEW-R1/report.md","report_sha256":"7b19b96fa5d84c7f344b05851422e3cbe80005b8ac06a551d98544a6d9031337","direct_validation_sha256":"a15c4e6e8d3d7ccc89f094be716599a7fc3a0095ed868709288bdae73cc7d4d6","final_scope_sha256":"e165b1b317709a76bb014aab28acee035b2ad1e8021eeab7ff41140f9bcfb720"},
+  "dispatch_history": {"prior_capacity_failures":2,"effect":"dispatch_history_only","review_conclusion_from_failures":false},
+  "credit_ceiling": {"source_authority":false,"factory_implementation":false,"candidate_identity":false,"declaration_hash":false,"candidate_hash":false,"g2_mapping":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physics":false,"r01_r10":false,"l4_credible_count":0},
+  "scope_protection": {"reviewed_products_modified":false,"source_test_fixture_registry_task_manifest_modified":false,"julia_desc_or_physics_run":false,"other_directories_modified":false},
+  "self_hash_excluded": true
+}

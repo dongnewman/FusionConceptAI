@@ -1,0 +1,59 @@
+{
+  "schema": "AD55.current_head_f0_s2_execution_r2.v1",
+  "task": "AD-55-F0-S2",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "status": "completed_review_pending",
+  "accepted": false,
+  "write_scope": "docs/implementation/AD-55/CURRENT-HEAD-F0-S2-SOURCE-FACTORY/f0_s2_execution_r2/**",
+  "inputs": {
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "plan": {
+      "markdown_files": 31,
+      "relative_links": 534,
+      "tasks": 39,
+      "acyclic": true
+    },
+    "ad56_root_acceptance_read": true,
+    "ad56_s2_artifacts_reused": false
+  },
+  "execution": {
+    "f0": {
+      "receipt": "f0_receipt.json",
+      "exit_code": 0,
+      "pid": 106008
+    },
+    "s2_run1": {
+      "receipt": "s2_run1_receipt.json",
+      "exit_code": 0,
+      "pid": 103996
+    },
+    "s2_run2": {
+      "receipt": "s2_run2_receipt.json",
+      "exit_code": 0,
+      "pid": 83504
+    },
+    "serialized": true,
+    "no_residual_processes": true
+  },
+  "outputs": {
+    "six_scopes_present": true,
+    "canonical_identity_declaration_receipt": true,
+    "deterministic": true,
+    "negative_controls": "pass"
+  },
+  "claims": {
+    "source_authority": false,
+    "trusted": false,
+    "candidate_identity_created": false,
+    "final_identity_created": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering_readiness": false,
+    "physics": false,
+    "search": false,
+    "R01_R10": false,
+    "L4": 0
+  },
+  "review_gate": "independent review required; no acceptance claimed"
+}

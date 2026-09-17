@@ -1,0 +1,17 @@
+{
+  "schema":"M5InverseFeedbackR2LocalResolverRegistryV2",
+  "registry_uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:resolver-registry",
+  "network":"forbidden",
+  "unknown_uri_policy":"typed_absent",
+  "registry_hash_policy":"registry_entry_bytes_and_sha_must_match",
+  "entries":[
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:canonical-bundle","path":"schemas/canonical_bundle_schema.json","bytes":4244,"sha256":"6580146ec28bcd8e4a2e9a9e9c42a6e94c0964faf6e68ed336eaf7d9834b63cc"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:input","path":"schemas/input_schema.json","bytes":8383,"sha256":"9bd213f3ef63e40a839b7b994be4ec4173b0f906c10d774ccd84032a5b540cb3"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:output","path":"schemas/output_schema.json","bytes":8652,"sha256":"ea217b59f253e8fe4db8b63bc5a2ffa0def078a60eb2e8d3f3c60fbec9e55743"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:failure-record","path":"schemas/failure_record_schema.json","bytes":2029,"sha256":"afa69a17b039f148f68edf0857105f48be48a15f6efa3e18ce49b65bbc82f997"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:failure-taxonomy","path":"schemas/failure_taxonomy_schema.json","bytes":1770,"sha256":"d98e7b2cddc675582969bbdc6b7ed5f56e7fe1ae8ff0b423525232d2bcf0fd65"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:manifest","path":"schemas/manifest_schema.json","bytes":2162,"sha256":"cbe4f335aaac7be6d251ea1a9a67240f061968e021c8ee7b07363482eaf31d7a"},
+    {"uri":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:freeze","path":"schemas/freeze_schema.json","bytes":1403,"sha256":"65413c4cfa951c27bff37dce7ff90ba023db81cb1b8fd0d1c5167cef44f7c9d0"}
+  ],
+  "resolution_rules":["URI is an exact registry key","path remains below this package","registry supplies bytes and SHA-256 at freeze","no URL fetch, implicit base URI or network fallback","unknown external authority is typed_absent and not_implemented"]
+}

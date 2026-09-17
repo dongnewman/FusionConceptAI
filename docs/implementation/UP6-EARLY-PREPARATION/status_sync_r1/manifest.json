@@ -1,0 +1,49 @@
+{
+  "schema": "UP6EarlyPreparationStatusSyncManifestV1",
+  "task_id": "UP6-EARLY-PREPARATION",
+  "status_sync_id": "status_sync_r1",
+  "trigger": "independent_review_r3=pass_limited",
+  "status": "accepted_limited",
+  "accepted_scope": "early-preparation-template-only",
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "root_manifest_ref": "docs/implementation/UP6-EARLY-PREPARATION/manifest.json",
+  "acceptance_ref": "docs/implementation/UP6-EARLY-PREPARATION/acceptance.md",
+  "review_ref": "docs/implementation/UP6-EARLY-PREPARATION/independent_review_r3/manifest.json",
+  "root_writable_count": 12,
+  "root_deliverable_count": 12,
+  "credit_boundary": {
+    "provider_toolchain": false,
+    "engineering": false,
+    "physical": false,
+    "net_output": false,
+    "vvuq": false,
+    "originality": false,
+    "independent_replay": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "execution_policy": {
+    "julia": false,
+    "provider": false,
+    "solver": false,
+    "physical": false,
+    "net_output": false,
+    "vvuq": false,
+    "originality_search": false,
+    "independent_replay": false,
+    "web": false,
+    "download": false,
+    "core_edit": false,
+    "index_edit": false,
+    "other_package_edit": false
+  },
+  "required_checks": [
+    "root manifest acceptance scope is limited",
+    "root writable/deliverable count remains 12",
+    "acceptance/status/review references resolve",
+    "all substantive credits remain pending false",
+    "JSON and diff scope are static-only"
+  ],
+  "conclusion": "Status synchronization only; no UP6 or R01-R10 acceptance and no evidence credit."
+}

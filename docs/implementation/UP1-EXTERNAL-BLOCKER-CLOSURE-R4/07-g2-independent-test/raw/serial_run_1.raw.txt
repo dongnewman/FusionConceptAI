@@ -1,0 +1,14 @@
+RUNNER_PID=96092
+RUN_STARTED_UTC=2026-09-17T01:31:23.274660Z
+[unit] pid=8576 started_at_utc=2026-09-17T01:31:23.274676Z ended_at_utc=2026-09-17T01:31:23.586198Z exit=0 stdout_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 stderr_sha256=eccee89dc70f4a5c830d5e462a0f4a78824614b538fce8ab0d4c8a6ec30df16f
+[unit.stdout]
+[unit.stderr]
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 0.181s
+
+OK
+[adversarial] pid=35904 started_at_utc=2026-09-17T01:31:23.586320Z ended_at_utc=2026-09-17T01:31:23.713003Z exit=0 stdout_sha256=b58a945bb745b89a427013933117bf0d393bee1d691138410102e41bcd9710e7 stderr_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+[adversarial.stdout]
+{"cases":[{"accepted":false,"case_id":"ADV-GRAPH-DUP-ENDPOINT-TIME","decision":"terminal_deferred","description":"same graph endpoint pair, different issued_at","error":null,"expected":"fail_closed","finding":true,"formal_credit":"none","no_publish":true,"observed":"accepted_or_deferred","resolution":"terminal_deferred"},{"accepted":false,"case_id":"ADV-MAPPING-DUP-ENDPOINT-TIME","decision":"terminal_deferred","description":"same mapping endpoint pair, different issued_at","error":null,"expected":"fail_closed","finding":true,"formal_credit":"none","no_publish":true,"observed":"accepted_or_deferred","resolution":"terminal_deferred"},{"accepted":false,"case_id":"ADV-UNKNOWN-STATUS","decision":"terminal_deferred","description":"unknown present status token","error":null,"expected":"fail_closed","finding":true,"formal_credit":"none","no_publish":true,"observed":"accepted_or_deferred","resolution":"terminal_deferred"},{"accepted":false,"case_id":"ADV-CONFLICTING-ALIASES","decision":"terminal_deferred","description":"R3 g2_mapping and standalone mapping aliases disagree","error":null,"expected":"fail_closed","finding":true,"formal_credit":"none","no_publish":true,"observed":"accepted_or_deferred","resolution":"terminal_deferred"},{"accepted":false,"case_id":"ADV-PROFILE-SOURCE-DIGEST","decision":"terminal_deferred","description":"profile source digest disagrees with source_identity","error":null,"expected":"fail_closed","finding":true,"formal_credit":"none","no_publish":true,"observed":"accepted_or_deferred","resolution":"terminal_deferred"}],"component":"D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\g2_mapping","conservative_decision":"fail_closed_gap","ended_at_utc":"2026-09-17T01:31:23.701501Z","finding_count":5,"formal_credit":"none","no_publish":true,"pid":35904,"schema":"UP1.g2-independent-mapping-r4.adversarial-probe.v1","started_at_utc":"2026-09-17T01:31:23.700198Z"}
+RUN_ENDED_UTC=2026-09-17T01:31:23.713172Z

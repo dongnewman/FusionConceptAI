@@ -1,0 +1,33 @@
+{
+  "manifest_version": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-precheck-r1",
+  "status": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_status_rows": 300,
+  "julia_desc_processes_at_capture": 0,
+  "write_scope": "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/independent_precheck_r1/ only",
+  "inputs": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 23631, "sha256": "b4899d5cc5062e05d56e0f1cb4994f350aa04d20a46d28bd17c492398b0e2181"},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"bytes": 6480, "sha256": "507311e181a1872fc64dc7c5878e8bed8ab86af971b3554790d958ba16ae210a"},
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": {"bytes": 3047, "sha256": "dad79223e0f702a5c690b882b4efc4608ed454758ec4277897645e21f3f0efbe"},
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": {"bytes": 4678, "sha256": "02051a6b895d74d77d22f6234611cde28f6cb7e44f6c9e1d1272f26a138c0e8f"},
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/acceptance.md": {"bytes": 3186, "sha256": "154fc87fead97999b9941f44fa64fb456ebb9f2e165c05760f28d50c6b8bd887"},
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/evidence_manifest.json": {"bytes": 3780, "sha256": "a6930ca150531e6da3cf0dcb4f369fe9b9a975b90a88fc104c32625a615fea17"}
+  },
+  "static_qa": {
+    "command": "python test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+    "status": "pass",
+    "julia": "not_run",
+    "desc": "not_run",
+    "provider_or_mesh_execution": false
+  },
+  "blocking_findings": [
+    "reference_face_normal_not_physical_affine_orientation",
+    "coordinate_units_and_volume_orientation_measure_absent",
+    "program_exception_public_behavior_not_tested",
+    "not_executed_mesh_status_can_bypass_execution_gap"
+  ],
+  "actual_a": {"authority": "absent", "resolution": "terminal_deferred"},
+  "required_recheck": "different Luna static R2 review before serial focused runtime"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "CORE-SOURCE-S3-CURRENT-HEAD-R1.independent-review.v1",
+  "review_id": "CORE-SOURCE-S3-CURRENT-HEAD-R1/independent_review_r1",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "decision": "changes_requested",
+  "review_scope": "read-only independent S3 receipt, source closure, typed absence, external input handoff, and gate-boundary review",
+  "reviewed_products": [
+    "report.md",
+    "manifest.json",
+    "source_closure.json",
+    "external_inputs.json",
+    "validation_receipt.json",
+    "cleanup_inventory.json",
+    "archive/raw/*",
+    "archive/failure_history.json",
+    "archive/static_validation.json"
+  ],
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "frozen_index_sha256": "6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0",
+  "candidate_input_fingerprint": "840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5",
+  "independent_fingerprint_reproduction": "not_verified_missing_canonical_preimage_or_exact_serialization_receipt",
+  "confirmed": {
+    "owner_count": 6,
+    "dirty_ad56_factory_count": 3,
+    "external_input_count": 14,
+    "external_states": {"absent": 13, "unknown_deferred": 1},
+    "static_closure": {"probe_imports": 4, "probe_explicit_includes": 5, "loader_components": 12, "loader_base_include": 1, "module_include_directives": 47, "factory_include_directives": 0},
+    "authority": {"G1": "typed_absent", "G2": "typed_absent", "G3": "typed_absent", "resolution": "terminal_deferred", "no_publish": true},
+    "parent_credit": false,
+    "forbidden_execution_observed": false,
+    "new_ad_created": false
+  },
+  "blocking_findings": [
+    "declared S3 stderr SHA-256 length is 65 and does not match the raw file",
+    "combined raw is byte-identical to stdout and omits the one-byte stderr stream",
+    "S3 raw static-closure counts are zero while source_closure and live files independently give 4/5/12/1/47/0",
+    "receipt command is a non-replayable placeholder",
+    "input fingerprint canonical preimage/serialization receipt is absent"
+  ],
+  "no_repeat_instruction": "Do not rerun S3 or create a synonymous AD while frozen inputs are unchanged; repair evidence append-only and re-review only."
+}

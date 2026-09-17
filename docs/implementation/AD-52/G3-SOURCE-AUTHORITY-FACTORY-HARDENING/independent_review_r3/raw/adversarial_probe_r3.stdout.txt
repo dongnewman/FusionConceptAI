@@ -1,0 +1,31 @@
+PROCESS_PID=94348
+RESULT|present|realization|(status = "present", reason = "none", trusted = false, candidate = false, final = false, declaration = true)
+RESULT|present|control|(status = "present", reason = "none", trusted = false, candidate = false, final = false, declaration = true)
+RESULT|present|binding|(status = "present", reason = "none", trusted = false, candidate = false, final = false, declaration = true)
+RESULT|present|bundle|(status = "present", reason = "none", trusted = false, candidate = false, final = false, declaration = true)
+RESULT|current_untracked|realization|(status = "typed_absent", reason = "source_authority_missing", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|current_untracked|control|(status = "typed_absent", reason = "source_authority_missing", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|current_untracked|binding|(status = "typed_absent", reason = "source_authority_missing", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|current_untracked|bundle|(status = "typed_absent", reason = "source_authority_missing", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|scope_relabel|(status = "fail_closed", reason = "scope_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|repository_root_relabel|(status = "fail_closed", reason = "ad45_envelope_missing", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|head_relabel|(status = "fail_closed", reason = "locator_head_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|path_relabel|(status = "fail_closed", reason = "source_path_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|source_bytes_relabel|(status = "fail_closed", reason = "source_bytes_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|source_hash_relabel|(status = "fail_closed", reason = "source_hash_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|head_blob_relabel|(status = "fail_closed", reason = "head_blob_sha256_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|head_path_status_relabel|(status = "fail_closed", reason = "head_path_status_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|work_path_status_relabel|(status = "fail_closed", reason = "working_tree_path_status_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|work_status_relabel|(status = "fail_closed", reason = "working_tree_status_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|declaration_ref_mismatch|(status = "fail_closed", reason = "source_declaration_ref_scope_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|handle_mismatch|(status = "fail_closed", reason = "foreign_common_handle", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|contract_mismatch|(status = "fail_closed", reason = "contract_ref_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|axes_mismatch|(status = "fail_closed", reason = "version_axes_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|invalid_scope|(status = "fail_closed", reason = "invalid_scope", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|assume_unchanged|(status = "fail_closed", reason = "index_assume_unchanged", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|skip_worktree|(status = "fail_closed", reason = "index_skip_worktree", trusted = false, candidate = false, final = false, declaration = false)
+RESULT|control|working_bytes_mutated|(status = "fail_closed", reason = "working_tree_path_status_mismatch", trusted = false, candidate = false, final = false, declaration = false)
+Test Summary:                                          | Pass  Total   Time
+AD52 R3 independent adversarial source authority probe |  110    110  15.7s
+AD52_R3_PROBE_PASS|positive=4|current_untracked=4|controls=18|registry_unchanged=true
+

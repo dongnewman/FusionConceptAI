@@ -1,0 +1,108 @@
+{
+  "record_kind": "AD-41-up1-remaining-gate-audit",
+  "schema_version": "v1",
+  "status": "accepted_limited_audit_pending_independent_review",
+  "accepted": false,
+  "accepted_scope": "read_only_live_UP1_state_and_dependency_audit",
+  "claim_ceiling": "architecture_audit_only",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_utc": "2026-09-15",
+  "superseded_by": [
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r1/revised_report.md",
+    "docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/report.md"
+  ],
+  "current_repair_pointer": {
+    "repair_round": "repair_r2",
+    "scope": "main_report_and_manifest_live_W1_wording_and_status_pointer_only",
+    "AD40_current_input": "docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/",
+    "AD40_repair_r2": "conditional_only_after_concrete_different_luna_finding",
+    "W2_W3_W4_DAG_and_claims": "unchanged"
+  },
+  "historical_before_repair_r2": {
+    "report_bytes": 12587,
+    "report_sha256": "77ea4ec9e8bf04e6ed2a6ea73dc5ecdf959f0325a5418037745dc2ab25d7521d",
+    "manifest_bytes": 4014,
+    "manifest_sha256": "ac7d9322f0b70aec4c07b2d543c5af051ad36e1053c15b93af3ffa2f89a3731b"
+  },
+  "source_of_truth": [
+    "AGENTS.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/10_genome_upgrade_execution.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/README.md"
+  ],
+  "write_scope": {
+    "products": [
+      "docs/implementation/AD-41/up1_remaining_gate_audit/report.md",
+      "docs/implementation/AD-41/up1_remaining_gate_audit/manifest.json",
+      "docs/implementation/AD-41/up1_remaining_gate_audit/cleanup_inventory.md"
+    ],
+    "sidecars": [
+      "docs/implementation/AD-41/up1_remaining_gate_audit/archive/validation_r1.stdout.txt",
+      "docs/implementation/AD-41/up1_remaining_gate_audit/archive/validation_r1.stderr.txt",
+      "docs/implementation/AD-41/up1_remaining_gate_audit/archive/validation_r1.json"
+    ],
+    "forbidden": ["src/**", "test/**", "docs/v4_multitopology_generation/**", "runs/**", "historical_receipts/**", "task_manifest.json"]
+  },
+  "observed_nodes": {
+    "machine_task_count": 39,
+    "dag_acyclic": true,
+    "present_g1_g2_source_backed": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "R01-R10": false,
+    "L4_credible_count": 0
+  },
+  "work_orders": [
+    {"id":"AD41-W1","stage":"independent_review_AD40_repair_r1","disposition":"immediately_dispatchable","depends_on":[],"candidate_hash_created":false,"conditional_followup":"AD40_repair_r2_only_after_concrete_new_defect"},
+    {"id":"AD41-W2","stage":"RSDA_G1_G2_payload_authoring","disposition":"prepare_only_until_W1","depends_on":["AD41-W1"],"candidate_hash_created":false},
+    {"id":"AD41-W3","stage":"RSDA_authority_binding_provenance","disposition":"prepare_only_until_W2","depends_on":["AD41-W2"],"candidate_hash_created":false},
+    {"id":"AD41-W4","stage":"RSDA_factory_and_identity_review","disposition":"wait_for_W3","depends_on":["AD41-W3"],"candidate_hash_created":false}
+  ],
+  "validation_policy": {
+    "json_parse": true,
+    "sha256": true,
+    "markdown_links": true,
+    "path_scope": true,
+    "control_characters": true,
+    "git_diff_scope": true,
+    "real_pid_utc_exit": true,
+    "julia": false,
+    "DESC": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false
+  },
+  "file_hashes": {
+    "manifest_self_hash": "excluded",
+    "report_sha256": "77ea4ec9e8bf04e6ed2a6ea73dc5ecdf959f0325a5418037745dc2ab25d7521d",
+    "cleanup_inventory_sha256": "624ad3657c529817eee4b2e5d5ad65d38131ff3d3995ae3df32463b7530c089c",
+    "validation_stdout_sha256": "ba6a80ddd0f8414735814c55689b30fb4d99901248d59dde108386237e1a84fa",
+    "validation_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation_receipt_sha256": "9aed9e79e61bb5e4daa6d6ee754e4a140737aa06338ccf4d5505fbf65681ad4e",
+    "validation_r2_stdout_sha256": "8b41bc0a6b53ef720c937cc96d031e998cfb7b4e9b01f2797daca86a7b429076",
+    "validation_r2_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation_r2_receipt_sha256": "f29395c994546167a700d43d6c38f83eaba86c484b10b9328535d85ca7103df9"
+  },
+  "current_file_hashes_after_repair_r2": {
+    "report_sha256": "0e46aea26abe471ba936ab1b70a92074a1078783b1a8abc801516f6eacee37cb",
+    "manifest_self_hash": "excluded"
+  },
+  "evidence_sidecars": {
+    "append_only": true,
+    "contains_only_static_validation": true,
+    "no_product_or_future_candidate_payload": true
+  }
+}

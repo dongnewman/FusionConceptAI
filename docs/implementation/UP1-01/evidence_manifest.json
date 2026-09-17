@@ -1,0 +1,409 @@
+{
+  "task_id": "UP1-01",
+  "status": "accepted_limited",
+  "scope_status": "accepted_limited",
+  "accepted": true,
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "up0_02_inputs": {
+    "protocol_sha256": "6904ea161a27ff007a071697f7740ad923ce79d05e23433d356460546ecd7bfb",
+    "contract_sha256": "5332f0c7a5c215948254a536c93e945caa019143dfd5ab3c595af9b0091b9efb"
+  },
+  "allowed_write_paths": [
+    "src/GenomeV5/G1/GrammarProfileV2.jl",
+    "src/GenomeV5/G1/EquationPlanV2.jl",
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+    "src/GenomeV5/G1/MechanismGenomeV5.jl",
+    "test/GenomeV5/G1/up1_g1_contract_tests.jl",
+    "test/GenomeV5/G1/fixtures.json",
+    "docs/implementation/UP1-01/acceptance.md",
+    "docs/implementation/UP1-01/evidence_manifest.json",
+    "docs/implementation/UP1-01/focused_stdout_r5.log",
+    "docs/implementation/UP1-01/focused_stderr_r5.log",
+    "docs/implementation/UP1-01/focused_stdout_r6.log",
+    "docs/implementation/UP1-01/focused_stderr_r6.log",
+    "docs/implementation/UP1-01/focused_stdout_r7.log",
+    "docs/implementation/UP1-01/focused_stderr_r7.log",
+    "docs/implementation/UP1-01/focused_stdout_r8.log",
+    "docs/implementation/UP1-01/focused_stderr_r8.log",
+    "docs/implementation/UP1-01/focused_stdout_r9.log",
+    "docs/implementation/UP1-01/focused_stderr_r9.log",
+    "docs/implementation/UP1-01/focused_stdout_r10.log",
+    "docs/implementation/UP1-01/focused_stderr_r10.log",
+    "docs/implementation/UP1-01/focused_stdout_r11.log",
+    "docs/implementation/UP1-01/focused_stderr_r11.log",
+    "docs/implementation/UP1-01/focused_stdout_r12.log",
+    "docs/implementation/UP1-01/focused_stderr_r12.log",
+    "docs/implementation/UP1-01/focused_stdout_r13.log",
+    "docs/implementation/UP1-01/focused_stderr_r13.log"
+  ],
+  "protected_dirty_rule": "All other pre-existing tracked and untracked paths remain protected; no old V1/V4 source, default registry, shared entrypoint, existing test, README, manifest or run was modified.",
+  "implementation_claims": [
+    "candidate-owned additive operator/profile is explicit and does not mutate default_operator_registry()",
+    "schema, canonicalization, grammar and applicability contract material are version-controlled and externally hash-bound",
+    "scalar and true two-input/two-output MIMO equation plan is represented with typed expression DAGs and deterministic structural residual semantics",
+    "admission fail-closes missing closure, duplicate occurrence, unit mismatch, unsupported legacy operator version, unbound operator and mismatched version axes or MIMO ports",
+    "candidate-bound lowering/compile remains deferred until schema/profile/provider resolution; structural residual export carries typed inputs/outputs and bindings",
+    "expression edit rebuilds candidate and changes equation-plan and candidate hashes",
+    "provider no_match and pending external hashes remain terminal_deferred",
+    "G1 internal binding materializes to the public GenomeContractRef only with available authoritative hashes, exact v5 token, compatibility profile, four axes and candidate binding checks",
+    "MechanismGenomeV5 exposes only the public GenomeContractRef; pending internal bindings cannot construct the outer Genome"
+  ],
+  "static_checks": {
+    "source_files_written": 4,
+    "test_files_written": 2,
+    "archive_files_written": 2,
+    "focused_recipe_frozen": true,
+    "julia_compile_or_test_executed": true,
+    "reason": "r13 focused recipe passed after JSON-fixture-driven MIMO input unit mutation and typed-node repair; adjacent regression remains pending",
+    "focused_test_current_revision": true
+  },
+  "heavy_lane_observation": {
+    "captured_at": "2026-09-14T03:00:55+08:00",
+    "processes": [
+      {
+        "pid": 16512,
+        "name": "pwsh.exe",
+        "created_at": "2026-09-14T02:15:53",
+        "role": "r2 wrapper"
+      },
+      {
+        "pid": 5812,
+        "name": "julia.exe",
+        "created_at": "2026-09-14T02:15:57",
+        "role": "r2 worker"
+      }
+    ],
+    "command_scope": "scripts/run_v4_spatial_chain.jl ... w24_spatial_g2_child_r2",
+    "up1_01_started_or_terminated_process": false,
+    "focused_exit": 0,
+    "focused_artifacts": [
+      "docs/implementation/UP1-01/focused_stdout_r6.log",
+      "docs/implementation/UP1-01/focused_stderr_r6.log"
+    ]
+  },
+  "result_boundary": {
+    "physical_result": false,
+    "engineering_result": false,
+    "provider_result": false,
+    "claim_ceiling": "none",
+    "scope": "contract_only",
+    "status_ceiling": "accepted_limited"
+  },
+  "environment": {
+    "powershell": "7.5.5",
+    "os": "Microsoft Windows 10.0.26200",
+    "git": "2.51.0.windows.2",
+    "julia": "1.10.5",
+    "python": "3.13.5"
+  },
+  "commands": [
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match 'FusionConceptAI|Julia|DESC|r2' }"
+      ],
+      "exit_code": 0,
+      "purpose": "observe W24 lane before focused run"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "pid": 33668,
+      "purpose": "current hash/schema/profile/fixture G1 focused contract test after all other Julia lanes released"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "python JSON parse validation for fixtures.json and evidence_manifest.json"
+      ],
+      "exit_code": 0,
+      "purpose": "static JSON validation"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "pid": 31996,
+      "started_at": "2026-09-14T04:28:15.3082677+08:00",
+      "ended_at": "2026-09-14T04:28:25.0158628+08:00",
+      "purpose": "r8 focused contract test after MIMO explicit-rank fail-closed repair"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "pid": 7644,
+      "started_at": "2026-09-14T04:41:26.3144553+08:00",
+      "ended_at": "2026-09-14T04:41:34.3316413+08:00",
+      "purpose": "r9 focused contract test after public GenomeContractRef materialization and AD-17 v5 token refactor"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "pid": 56440,
+      "started_at": "2026-09-14T05:02:36+08:00",
+      "ended_at": "2026-09-14T05:02:44+08:00",
+      "purpose": "r11 focused contract test after AST physical-type admission hardening and legal fixture alignment"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 1,
+      "pid": 33776,
+      "started_at": "2026-09-14T05:11:24+08:00",
+      "ended_at": "2026-09-14T05:11:33+08:00",
+      "purpose": "r12 focused test; preserved constructor error in newly added MIMO input-unit mutation"
+    },
+    {
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "argv": [
+        "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl"
+      ],
+      "exit_code": 0,
+      "pid": 42292,
+      "started_at": "2026-09-14T05:12:18+08:00",
+      "ended_at": "2026-09-14T05:12:27+08:00",
+      "purpose": "r13 focused test after typed G1StateInputV2 repair for JSON-fixture-driven MIMO input-unit mutation"
+    }
+  ],
+  "negative_controls": [
+    "No Julia/DESC compile or test was started while the heavy lane was occupied",
+    "No existing process was terminated",
+    "No V1/V4 source or hash was rewritten",
+    "No default operator registry mutation",
+    "No physical, engineering, provider or parent R01-R10 acceptance claim"
+  ],
+  "independent_review": {
+    "reviewer": "different Luna",
+    "result": "pass",
+    "checks": [
+      "source syntax/API review",
+      "candidate-owned registry isolation",
+      "scalar and MIMO plan closure",
+      "negative controls fail closed",
+      "hash-changing edit",
+      "legacy rejection",
+      "focused test after lane release"
+    ],
+    "accepted_scope": "g1_typed_mechanism_mimo_closure_candidate_owned_structural_contract",
+    "excluded_scope": [
+      "provider result",
+      "B00",
+      "B04",
+      "shared entrypoint integration",
+      "engineering result",
+      "physical result",
+      "R01-R10 parent acceptance"
+    ]
+  },
+  "output_hashes": {
+    "src/GenomeV5/G1/GrammarProfileV2.jl": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c",
+    "src/GenomeV5/G1/EquationPlanV2.jl": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99",
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18",
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884",
+    "test/GenomeV5/G1/up1_g1_contract_tests.jl": "8a3055f96611112106425a8cda5bd2b9a3e1a91646eaa73247a2d6bdaf1bfdc4",
+    "test/GenomeV5/G1/fixtures.json": "9531b5baa6f45cf71527c882de1fa1fa60bedd2c999498e4147fa81a23451bf0",
+    "docs/implementation/UP1-01/acceptance.md": "e1c182b1e63c6810fb332c005745c39f842be6e977f5d765c6c985c9e957bb50",
+    "docs/implementation/UP1-01/focused_stdout_r5.log": "68d56e78174762a44f64ee5025cf6e30505e566ba02f549541683f009374cf72",
+    "docs/implementation/UP1-01/focused_stderr_r5.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP1-01/focused_stdout_r6.log": "d2868d3e3f105402130e760384c57bc5dd886044f47b860b43ee89d5670f8c47",
+    "docs/implementation/UP1-01/focused_stderr_r6.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP1-01/focused_stdout_r7.log": "6550a7848038d4b7cea8f111bc4956c6478d4c39ec78eb8281ec5f1fbdb679ef",
+    "docs/implementation/UP1-01/focused_stderr_r7.log": "0f1101f7e1cbafe1104aadf723b42d91d4ce407c459be072a72fa77d01315a55",
+    "docs/implementation/UP1-01/focused_stdout_r8.log": "42bb14c56bcc19c56603f389517c72b2ba67e4d32041cf0ed2b41b2bcd448aea",
+    "docs/implementation/UP1-01/focused_stderr_r8.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP1-01/focused_stdout_r9.log": "7c60ece5852c8bf3c818d7c29d4ac7a0a1cb982bb1ce33dfbc27aa27cbee24c9",
+    "docs/implementation/UP1-01/focused_stderr_r9.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP1-01/focused_stdout_r10.log": "3858db33f0e61d644707624a405c7d14e35333da8ff189e0c5f0c1abc5892eae",
+    "docs/implementation/UP1-01/focused_stderr_r10.log": "ae950bc6618fc0163de6220ceed5f8ac909b221ad863aca58e3c48931af3fc8b",
+    "docs/implementation/UP1-01/focused_stdout_r11.log": "1d1aebd63a70a667297737d7088002fabc61bbba998f7303efeef6d8872596de",
+    "docs/implementation/UP1-01/focused_stderr_r11.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP1-01/focused_stdout_r12.log": "96daae52f5b81f42b6400e4672236941668d582dd2d4c5b633929f0a79e97650",
+    "docs/implementation/UP1-01/focused_stderr_r12.log": "5ede8d63d15509f7974bb0205323cea85fa2f565d13269d7a68267ccd464200c",
+    "docs/implementation/UP1-01/focused_stdout_r13.log": "ab3f1511fce8569e4e91a33e0902a4c3c6c01bd9cb8e7361d63a4b8a7a8a2b8c",
+    "docs/implementation/UP1-01/focused_stderr_r13.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "self_hash_rule": "output_hashes covers all listed implementation, archive and stable log files and excludes this evidence_manifest.json; manifest SHA-256 is recorded externally after the final write to avoid a circular self-hash.",
+  "next_dependency": "Integrate the accepted limited scope through the shared index/manifest; retain provider, B00/B04, engineering, physical and R01-R10 work as separate downstream gates.",
+  "focused_test": {
+    "recipe": "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "run_pid": 42292,
+    "exit_code": 0,
+    "testsets": "2 testsets, 47/47 and 21/21 assertions passed (68/68 total)",
+    "stdout_capture": "docs/implementation/UP1-01/focused_stdout_r13.log",
+    "stderr_capture": "docs/implementation/UP1-01/focused_stderr_r13.log",
+    "stdout_sha256": "ab3f1511fce8569e4e91a33e0902a4c3c6c01bd9cb8e7361d63a4b8a7a8a2b8c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "earlier_repair_runs": [
+      {
+        "run_pid": 23504,
+        "exit_code": 1,
+        "stdout_sha256": "8bc35f38992b250b700477171eb7c2d6a4a1c2579311e2121aeb920a525ee106",
+        "stderr_sha256": "e771d09dca621e2189d8e169649221b03862ba7dc51490acfbc35f1714bdc0bd",
+        "classification": "fixture scalar input type error"
+      },
+      {
+        "run_pid": 66044,
+        "exit_code": 1,
+        "stdout_sha256": "e047338b1cf1fa569b9d567b779d8765e2657275297966ffa4e52bf3e6f97b38",
+        "stderr_sha256": "da01c68d893fbab910a603dc4d5bcdb71b2e4298d24ee1a235b0c24e8a1c006d",
+        "classification": "fixture MIMO input type error"
+      },
+      {
+        "run_pid": 10836,
+        "exit_code": 1,
+        "stdout_sha256": "e458c398002e3abbdc05d31576d2c1bfbf06e0c8487275f1fee6a7f8558cc927",
+        "stderr_sha256": "a0890665584afb9d2951e0c33843a078ae11ec6b71e7a1da23bf7e9c0836d14e",
+        "classification": "edit test lacked semantic change"
+      },
+      {
+        "run_pid": 33776,
+        "exit_code": 1,
+        "stdout_sha256": "96daae52f5b81f42b6400e4672236941668d582dd2d4c5b633929f0a79e97650",
+        "stderr_sha256": "5ede8d63d15509f7974bb0205323cea85fa2f565d13269d7a68267ccd464200c",
+        "classification": "new MIMO input unit mutation test passed a PhysicalType instead of a typed G1StateInputV2; preserved and superseded by r13"
+      }
+    ],
+    "physical_result": false,
+    "provider_result": false,
+    "adjacent_regression": "pending",
+    "artifact_hash": null,
+    "artifact_status": "stable r7 failure, r8/r9/r11 historical passes, r10 and r12 constructor failures retained, r13 current-revision stdout/stderr logs archived; no physical artifact produced",
+    "valid_for_current_revision": true,
+    "status": "passed_current_revision",
+    "rerun_required": "none for this focused contract recipe; adjacent regression remains pending",
+    "started_at": "2026-09-14T05:12:18+08:00",
+    "ended_at": "2026-09-14T05:12:27+08:00"
+  },
+  "negative_control_repair_r7": {
+    "status": "failed",
+    "reason": "wrong_port_types omitted MIMO ranks, causing constructor default (0,0) to mask port 2 rank mismatch; preserved as failure history",
+    "stdout": "docs/implementation/UP1-01/focused_stdout_r7.log",
+    "stdout_sha256": "6550a7848038d4b7cea8f111bc4956c6478d4c39ec78eb8281ec5f1fbdb679ef",
+    "stderr": "docs/implementation/UP1-01/focused_stderr_r7.log",
+    "stderr_sha256": "0f1101f7e1cbafe1104aadf723b42d91d4ce407c459be072a72fa77d01315a55"
+  },
+  "ad17_contract_version_token": {
+    "required": "v5",
+    "fixture": "v5",
+    "legacy_class_name": "MechanismGenomeV5",
+    "legacy_rejected": true,
+    "wire_domain_v2_rejected": true,
+    "evidence_status": "verified_by_r13_focused_test"
+  },
+  "pending_rerun": {
+    "status": "completed_r13",
+    "recipe": "julia --startup-file=no --project=. test/GenomeV5/G1/up1_g1_contract_tests.jl",
+    "reason": "JSON-fixture-driven MIMO input unit mismatch now fails closed with typed node preserved; current focused recipe passed",
+    "lane": "released_to_Sol_scheduler"
+  },
+  "public_ref_materialization": {
+    "outer_type": "GenomeContractRef",
+    "internal_binding_type": "G1GenomeContractRefV2",
+    "function": "g1_materialize_contract_ref",
+    "requirements": [
+      "schema_hash available and equals g1_schema_hash()",
+      "canonicalization_hash available and equals g1_canonicalization_hash()",
+      "grammar/applicability hashes equal authoritative profile",
+      "version exactly v5",
+      "compatibility profile exact",
+      "four axes valid and compatible",
+      "nonempty candidate_binding"
+    ],
+    "pending_behavior": "materialization throws; outer MechanismGenomeV5 cannot be constructed",
+    "evidence_status": "verified_by_r9_focused_test"
+  },
+  "r10_changes": {
+    "admission": [
+      "AST state input PhysicalType must equal payload state PhysicalType",
+      "closure-bound equation must contain at least one ledger occurrence",
+      "MIMO input unit/rank mismatch is fail-closed"
+    ],
+    "negative_controls": [
+      "empty_closure_occurrences",
+      "mimo_input_type_mismatch"
+    ],
+    "focused_test_status": "failed_preserved; superseded_by_r11_pass"
+  },
+  "current_r11_lane_observation": {
+    "captured_at": "2026-09-14T05:03:00+08:00",
+    "pre_run_process_check": "NO_JULIA_DESC_PROCESSES",
+    "run_pid": 56440,
+    "run_process_state": "terminated",
+    "run_started_observed": "2026-09-14T05:02:36+08:00",
+    "run_ended_observed": "2026-09-14T05:02:44+08:00",
+    "post_run_process_check": "NO_JULIA_DESC_PROCESSES",
+    "artifacts": [
+      "docs/implementation/UP1-01/focused_stdout_r11.log",
+      "docs/implementation/UP1-01/focused_stderr_r11.log"
+    ]
+  },
+  "current_r13_lane_observation": {
+    "captured_at": "2026-09-14T05:13:00+08:00",
+    "pre_run_process_check": "PRE_R13_NO_JULIA_DESC_PROCESSES",
+    "run_pid": 42292,
+    "run_process_state": "terminated",
+    "run_started_observed": "2026-09-14T05:12:18+08:00",
+    "run_ended_observed": "2026-09-14T05:12:27+08:00",
+    "exit_code": 0,
+    "post_run_process_check": "POST_RUN_NO_JULIA_DESC_PROCESSES",
+    "artifacts": [
+      "docs/implementation/UP1-01/focused_stdout_r13.log",
+      "docs/implementation/UP1-01/focused_stderr_r13.log"
+    ]
+  },
+  "r12_changes": {
+    "status": "failed_preserved",
+    "fixture_change": "negative_cases includes mimo_input_unit_mismatch; mutation changes only constraint operator input port 2 unit exponent from JSON fixture",
+    "failure": "test constructor received PhysicalType directly instead of typed G1StateInputV2; exit 1; superseded by r13"
+  },
+  "r13_changes": {
+    "status": "passed",
+    "repair": "wrapped mutated physical type in G1StateInputV2 for auxiliary input; admission negative asserts typed_expression_input_physical_type_mismatch",
+    "stdout_sha256": "ab3f1511fce8569e4e91a33e0902a4c3c6c01bd9cb8e7361d63a4b8a7a8a2b8c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit_code": 0,
+    "testsets": "47/47 and 21/21 (68/68)"
+  },
+  "accepted_scope": "g1_typed_mechanism_mimo_closure_candidate_owned_structural_contract",
+  "accepted_scope_claims": [
+    "public GenomeContractRef outer ref with exact v5 token, four-axis binding and authoritative hash materialization",
+    "typed scalar and 2x2 MIMO equation plans with per-port unit/rank/time/derivative checks",
+    "closure occurrence/effect/ledger fail-closed admission and typed edit identity changes",
+    "pending lowering remains deferred until schema/profile/provider resolution"
+  ],
+  "excluded_from_acceptance": [
+    "provider result",
+    "B00",
+    "B04",
+    "shared entrypoint integration",
+    "engineering result",
+    "physical result",
+    "R01-R10 parent acceptance"
+  ],
+  "acceptance_decision": {
+    "decision": "accepted_limited",
+    "reviewer": "different Luna",
+    "review_result": "pass",
+    "authority": "Sol scope decision relayed by parent",
+    "physical_credit": false,
+    "engineering_credit": false,
+    "provider_credit": false
+  }
+}

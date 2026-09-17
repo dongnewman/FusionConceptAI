@@ -1,0 +1,41 @@
+{
+  "schema_version": "AD42-W0-status-sync-r2-v1",
+  "record_kind": "local_software_materialization_acceptance_status_sync",
+  "task_id": "AD-42",
+  "work_order": "AD42-W0-PUBLIC-CONTRACT-ENVELOPE",
+  "status": "accepted_limited",
+  "accepted_scope": "software_contract_materialization_only",
+  "claim_ceiling": "software_contract_materialization_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "decision_basis": {
+    "decision_owner": "Sol/root",
+    "independent_review": "docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/independent_review_r1/report.md",
+    "independent_review_status": "pass_limited",
+    "independent_review_checks": "40/40",
+    "direct_validation_checks": 21,
+    "fresh_status_sync_checks": "15/15",
+    "future_axis_dependency": "AD-43 axis records remain pending for W2R1",
+    "result": "PresentPublicContractEnvelopeV1"
+  },
+  "products": [
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/materialization_receipt.json","bytes":4884,"sha256":"2d969ea216eeee5d2812f5a301e30d7d70ee5baf8c062631e898787a5f742a2f"}
+  ],
+  "evidence": {
+    "fresh_validator": {"interpreter":"D:/Users/Newman/anaconda3/python.exe","python":"3.13.5","pid":34168,"utc":"2026-09-15T09:58:16.861072Z","exit_code":0,"raw_stdout":{"path":"docs/implementation/AD-42/acceptance/status_sync_r2/raw/validator_stdout.json","bytes":786,"sha256":"45e6dd83c562897c363f9ee7231ebf81002b0824fb7aeed317403e8c93d1a55f"},"raw_stderr":{"path":"docs/implementation/AD-42/acceptance/status_sync_r2/raw/validator_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "independent_review_raw": {"stdout":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/independent_review_r1/review/validation_stdout.json","stderr":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/independent_review_r1/review/validation_stderr.txt","checks":"40/40"},
+    "direct_validation_runtime":{"pid":26812,"utc":"2026-09-15T09:17:54Z","exit_code":0,"checks":21,"stdout":{"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/validation_stdout.txt","bytes":115,"sha256":"abfad59ef8e84d9813190f9d9ef402e413ff613e817db0315f040b109406547b"},"stderr":{"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "direct_validation_receipt":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/validation_receipt.json",
+    "materialization_runtime":{"pid":69780,"utc":"2026-09-15T09:16:26Z","exit_code":0,"stdout":{"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/materialization_stdout_r2.txt","bytes":819,"sha256":"9e8e35a294edb6b8179297decbc6c93270fcadd7a3b4585fed5d981c5ddfe146"},"stderr":{"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/materialization_stderr_r2.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "materialization_receipt":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/materialization_run_receipt_r2.json",
+    "final_closure":{"checks":"14/14","exit_code":0,"stdout":{"path":"docs/implementation/AD-42/acceptance/status_sync_r2/raw/final_closure_stdout.json","bytes":478,"sha256":"efcf0b348fba6160e7ef074033729f17b2202076a8a71af9c8910c5e97b33d08"},"stderr":{"path":"docs/implementation/AD-42/acceptance/status_sync_r2/raw/final_closure_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "historical_failure":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/archive/materialization_failure_r1.json"
+  },
+  "typed_absence": {"g1_evidence_receipt":true,"g2_applicability_profile":true,"g2_evidence_receipt":true,"count":3},
+  "claims": {"payload":false,"declaration":false,"declaration_hash":false,"candidate_identity":false,"candidate_hash":false,"authority":false,"binding":false,"present_declaration":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"r01_r10":false},
+  "downstream": {"w2r1_status":"pending_AD43_axis_records","w2r1_products_created":false,"w2r1_evidence_transferred":false},
+  "cleanup": {"status":"closed","historical_failure_preserved":true,"existing_status_sync_r1_preserved":true,"four_products_untouched":true,"core_task_manifest_src_test_untouched":true,"julia_desc_provider_mesh_solver_physical":"not_run","unrelated_dirty_files_preserved":true},
+  "self_hash_excluded": true
+}

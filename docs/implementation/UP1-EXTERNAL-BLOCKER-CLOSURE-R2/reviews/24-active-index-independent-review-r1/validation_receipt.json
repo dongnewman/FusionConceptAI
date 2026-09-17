@@ -1,0 +1,47 @@
+{
+  "schema": "UP1-R2.active-index-independent-review-r1.validation.v1",
+  "review_pid": 58164,
+  "review_utc": "2026-09-16T21:39:20.6843508Z",
+  "verdict": "pass_limited",
+  "review_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/24-active-index-update",
+  "review_write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/24-active-index-independent-review-r1/",
+  "read_only_review": true,
+  "checks": {
+    "before_reconstruction": {"bytes": 5523, "sha256": "0A5F6214C9AAB3228EC298DF9436AA39EADC900C3DBDBF5BF850B066AC45D87B", "matches_recorded": true},
+    "after_observed": {"bytes": 5714, "sha256": "BBD78A0D3AF2578CA89FB502135E2B2855B203A4CFA017D2B403238F5DE4E349", "matches_recorded": true},
+    "changed_line_count": 1,
+    "changed_line_number": 16,
+    "up1_row_unique": true,
+    "changed_links_all_exist": true,
+    "global_39_count_phrase_before_and_after": true,
+    "boundary_ceiling_and_test_scope_deferred": true,
+    "zero_usable_inputs": true,
+    "typed_absent_26_of_26": true,
+    "up1_blockers_unresolved": true,
+    "all_formal_gates_open_or_deferred": true,
+    "s3_no_publish": true,
+    "ad_no_promotion": true,
+    "v4_core_in_active_diff": false,
+    "manifest_entries_all_match": true
+  },
+  "links": [
+    {"path": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/decision.md", "exists": true},
+    {"path": "UP1-INDEX/acceptance.md", "exists": true},
+    {"path": "UP1-04/acceptance.md", "exists": true},
+    {"path": "AD-30/acceptance_r2/acceptance.md", "exists": true},
+    {"path": "AD-34/acceptance.md", "exists": true}
+  ],
+  "root_boundary": {
+    "usable_external_inputs": 0,
+    "expected_items": 26,
+    "typed_absent_items": 26,
+    "status": "NOT_RESOLVED",
+    "deferred_scope": ["03 revocation/time foreign-owner dynamic fixture", "03 revocation/time symlink/Junction dynamic fixture", "17 integration dependency fixtures with the same test-scope boundary"],
+    "s3": {"G1": "typed_absent", "G2": "typed_absent", "G3": "typed_absent", "transition": "terminal_deferred", "publish": "no_publish"},
+    "ad": {"AD55": "no_trust", "AD56": "bookkeeping_only", "new_ad": false},
+    "open": ["R01-R10", "39-node DAG", "B00", "B04", "L4", "frozen parent goal", "M5-C"]
+  },
+  "claim_ceiling": "documentation synchronization and independent diff/boundary verification only",
+  "external_operations": false,
+  "exit": 0
+}

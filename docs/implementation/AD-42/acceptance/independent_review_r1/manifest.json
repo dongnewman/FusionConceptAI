@@ -1,0 +1,198 @@
+{
+  "schema_version": "AD42-acceptance-independent-review-r1-v1",
+  "record_kind": "different_luna_independent_acceptance_review",
+  "task_id": "AD-42",
+  "review_id": "AD42-ACCEPTANCE-INDEPENDENT-REVIEW-R1",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "architecture_only_cycle_break_and_finite_W0_to_W2R1_boundary",
+  "claim_ceiling": "architecture_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "read_only_review": true,
+  "core_source_test_task_manifest_modified": false,
+  "physical_or_solver_run": false,
+  "candidate_hash_created": false,
+  "declaration_hash_created": false,
+  "authority_created": false,
+  "present_created": false,
+  "claims": {
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  },
+  "frozen_inputs": [
+    {"path":"src/Contracts/GenomeContractRegistry.jl","bytes":2389,"sha256":"ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"},
+    {"path":"src/IR/PhysicalTypes.jl","bytes":11801,"sha256":"dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G1/GrammarProfileV2.jl","bytes":22812,"sha256":"96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"},
+    {"path":"src/GenomeV5/G1/MechanismGenomePayloadV2.jl","bytes":16572,"sha256":"ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"},
+    {"path":"src/GenomeV5/G1/MechanismGenomeV5.jl","bytes":3887,"sha256":"8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"src/GenomeV5/G2/SpatialGrammarProfileV2.jl","bytes":5945,"sha256":"3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"},
+    {"path":"src/GenomeV5/G2/FieldGeometryGenomeV5.jl","bytes":18646,"sha256":"7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"},
+    {"path":"docs/implementation/AD-40/acceptance/acceptance.md","bytes":4298,"sha256":"5a68a407476ea5eb493844ee3fb53ba9e98445b665cb4ab09b086f212d9b540e"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/manifest.json","bytes":16953,"sha256":"8a0e6ddb57edf726bad49cccb340dd4ee3c2a04daf2d5d5c3955babe64261ed8"},
+    {"path":"docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2/manifest.json","bytes":21610,"sha256":"2f8c39929679099822ab137160993276c174e278c2576322783edc28befbdfb9"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","bytes":8352,"sha256":"6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7"},
+    {"path":"docs/implementation/AD-41/up1_remaining_gate_audit/repair_r2/manifest.json","bytes":4684,"sha256":"5cc9c6170e58ae9894610873b97b035a7eeb26e5ad14d775203c181a891a9307"}
+  ],
+  "frozen_input_closure": {"count": 14, "hashes_closed": true},
+  "historical_ad40_w2_products": [
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":1968,"sha256":"540094f46e2a4010e94b20214e64e1f66c9fe994afc30a71cdfa67dfcda88475","point_in_time_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":2401,"sha256":"47aed536d296c7fc53fe82c3c844b4a208bf88d30acda5a95424aeae9d58be5e","point_in_time_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":2006,"sha256":"cf6f280428409ccee64e134355753ef841f83fa170f353b22395ad78d05c9133","point_in_time_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":2438,"sha256":"3959c4302312038d3e9c9e9faf3d669c2f50af455cd8f455da5885d35758c8d7","point_in_time_excluded":true}
+  ],
+  "historical_product_closure": {"count": 4, "hashes_closed": true, "authority_transferred": false},
+  "audited_sidecars": {
+    "count": 11,
+    "hashes_closed": true,
+    "paths": [
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_stdout.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_stderr.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_receipt.json",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/input_inventory.json",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/scope_snapshot.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r2_stdout.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r2_stderr.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r2_receipt.json",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r3_stdout.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r3_stderr.txt",
+      "docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r3_receipt.json"
+    ]
+  },
+  "prior_independent_review": {
+    "status": "pass_limited",
+    "report": {"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/independent_review_r1/report.md","bytes":5759,"sha256":"7c7e3744c4b7742f28dd36cec15648e7c14a5e41bae1ffb47f7ac67fa09035d6"},
+    "raw_stdout": {"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/independent_review_r1/review/validation_stdout.json","bytes":1061,"sha256":"f6e80bd036676f0523e7520b95b751bb780ea3b8e9aff3a04f4dccb3776b948f"},
+    "raw_stderr": {"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/independent_review_r1/review/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "hashes_closed": true
+  },
+  "parallel_w0_outputs": {
+    "status": "observed_after_audit_cut_pending_independent_review",
+    "acceptance_included": false,
+    "authority_granted": false,
+    "present_granted": false,
+    "products": [
+      {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360"},
+      {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9"},
+      {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f"},
+      {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/materialization_receipt.json","bytes":4884,"sha256":"2d969ea216eeee5d2812f5a301e30d7d70ee5baf8c062631e898787a5f742a2f"}
+    ],
+    "hashes_closed": true,
+    "w2r1_products_created": false
+  },
+  "contract_checks": {
+    "intrinsic_cycle": false,
+    "w0_before_w2r1": true,
+    "reverse_hash_edges_fail_closed": true,
+    "g1_candidate_type": "QualifiedRefV1",
+    "g2_source_candidate_type": "GenomeContractRef",
+    "g1_v1_v5_domain_merge": false,
+    "g2mb_v1_field_geometry_v5_domain_merge": false,
+    "w0_exact_product_count": 4,
+    "w2r1_exact_product_count": 4,
+    "future_w2r1_products_absent": true
+  },
+  "validation_runs": {
+    "json_hash_path_control": {
+      "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+      "python_version": "3.13.5",
+      "pid": 72588,
+      "utc_start": "2026-09-15T09:27:50.011573Z",
+      "utc_end": "2026-09-15T09:27:50.093943Z",
+      "exit_code": 0,
+      "command": "tmp/ad42_review_r1_verifier.py",
+      "stdout_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/validation_stdout.json",
+      "stdout_bytes": 10676,
+      "stdout_sha256": "c990f342596f7279ba91050564240334b707e8fcc5ec308e5124bb9cd38ce9d6",
+      "stderr_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/validation_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "plan_dag": {
+      "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+      "wrapper_pid": 84668,
+      "child_pid": 58844,
+      "utc_start": "2026-09-15T09:28:39.574500Z",
+      "utc_end": "2026-09-15T09:28:39.906162Z",
+      "exit_code": 0,
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "stdout_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/plan_validator_stdout.txt",
+      "stdout_bytes": 401,
+      "stdout_sha256": "cf4058eae2fcca17ca5cdfa4207f0caf0451e9299254edf56fe875f4fe283bf7",
+      "stderr_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/plan_validator_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reported_markdown_files": 31,
+      "reported_relative_links": 497,
+      "reported_task_count": 39,
+      "task_dag_acyclic": true
+    },
+    "scope": {
+      "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+      "pid": 63012,
+      "utc": "2026-09-15T09:32:05.146780Z",
+      "exit_code": 0,
+      "command": "tmp/ad42_scope_checker.py",
+      "stdout_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/scope_validation_r1.json",
+      "stdout_bytes": 548,
+      "stdout_sha256": "0b71c5df744f19e1d80f0b7dd1366f381e6f43279873df0e2e6c4bcc74d0587f",
+      "stderr_path": "docs/implementation/AD-42/acceptance/independent_review_r1/review/scope_validation_r1.stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file_count": 9,
+      "unexpected_files": [],
+      "forbidden_name_hits": []
+    }
+  },
+  "checks": {
+    "json_hash_path_control": true,
+    "frozen_inputs_14_closed": true,
+    "historical_ad40_products_4_closed": true,
+    "audited_sidecars_11_present": true,
+    "prior_review_hashes_closed": true,
+    "w0_parallel_hashes_closed_but_excluded": true,
+    "failure_receipts_preserved": true,
+    "reverse_edges_fail_closed": true,
+    "g1_g2_types_and_v5_negative_controls": true,
+    "plan_31_md_497_links_39_tasks_acyclic": true,
+    "scope_validation_pass": true
+  },
+  "outputs": {
+    "report": {"path":"docs/implementation/AD-42/acceptance/independent_review_r1/report.md","bytes":4643,"sha256":"8c80956ea8315f8d3aab236cbc3fe74b144279bab0ccd4fa69459ce3352fd38b"},
+    "manifest": {"path":"docs/implementation/AD-42/acceptance/independent_review_r1/manifest.json","self_hash_excluded":true},
+    "raw_sidecars": [
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/validation_stdout.json",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/validation_stderr.txt",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/plan_validator_stdout.txt",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/plan_validator_stderr.txt",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/plan_validator_receipt.json",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/scope_validation_r1.json",
+      "docs/implementation/AD-42/acceptance/independent_review_r1/review/scope_validation_r1.stderr.txt"
+    ]
+  },
+  "cleanup": {
+    "status": "closed",
+    "owned_temporary_files": ["tmp/ad42_review_r1_verifier.py", "tmp/ad42_plan_runner.py", "tmp/ad42_scope_checker.py"],
+    "removed_paths": [
+      {"path":"tmp/ad42_review_r1_verifier.py","bytes":6825,"sha256":"4a8f09c843c47633ff474a8dd66f953f7f2d2539d68db87b552bfe811ba28cbb"},
+      {"path":"tmp/ad42_plan_runner.py","bytes":1708,"sha256":"7ddcfc3bf549169eb58a51cdcc082ba5f4b0ee14abdaeb41f012eb8d83cafd21"},
+      {"path":"tmp/ad42_scope_checker.py","bytes":1759,"sha256":"0751a3fa732a58f99791e4c1a8b7e082203ec9e0412a1ff3ba109568dae4fbe5"}
+    ],
+    "historical_receipts_preserved": true,
+    "unrelated_dirty_files_preserved": true,
+    "forbidden_files_under_review_dir": false
+  },
+  "self_hash_excluded": true
+}

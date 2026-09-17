@@ -1,0 +1,30 @@
+{
+  "schema_version": "UP2-G-I1A-status-independent-review-v2",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-status-review-r2",
+  "reviewer_role": "different_luna_high",
+  "verdict": "changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "read_only": true,
+  "runtime": {"julia": false, "desc": false, "rejudged_focused_run": false},
+  "claim_ceiling": ["status_archive_review_only", "local_contract_only_if_repaired"],
+  "credits": {"up2_total": false, "g_i2": false, "b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "dirty_status_lines_at_review": 293, "julia_processes": 0, "desc_processes": 0},
+  "scope_consistent": {
+    "status_sync_limited_actual_a_software": true,
+    "independent_postrun_r2_pass_limited": true,
+    "core16_boundary": true,
+    "implementation_readme_boundary": true,
+    "core_readme_contradiction": false,
+    "physical_or_b04_promotion": false
+  },
+  "blocking_mismatch": {
+    "path": "test/GenomeV5/UP2/gi1_authority_context_tests.jl",
+    "recorded_in_primary_manifest": "1A4737ACF6A7457B95F5B33B689AAF97866F5F7946BAABB0116200D9FB7472D6",
+    "recorded_in_status_sync_manifest": "1A4737ACF6A7457B95F5B33B689AAF97866F5F7946BAABB0116200D9FB7472D6",
+    "executed_r6_focused_r2": "83D765EC5A7FF5867F5E80D1BF4CE2DF2CAB21F55E82D63E4BA579C219A8B1AF",
+    "meaning": "accepted runtime is not reproducibly bound to the corrected test bytes"
+  },
+  "required_repair": "Update primary and status-sync manifests to the R6 executed test hash, preserve the old R5 hash as history, rerun archive QA, and obtain fresh independent status review.",
+  "runtime_evidence_referenced": {"focused_r2_process_sha256": "4EDD906874EF858D548611C5C478B8E234EA912FA85EE0436639BEB1FED45AC9", "focused_r2_stdout_sha256": "C82E92F2E46AB52E7B8B55E4E9C0D41F03CEFB367B298DE3B013498FB42AB27C", "focused_r2_exit": 0, "gi1a_groups": "30/30, 19/19, 10/10, 20/20"}
+}

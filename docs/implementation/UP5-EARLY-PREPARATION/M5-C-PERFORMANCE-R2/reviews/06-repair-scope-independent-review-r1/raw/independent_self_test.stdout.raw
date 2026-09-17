@@ -1,0 +1,33 @@
+{
+  "schema": "M5C-R3-CONTRACT-SELF-TEST-V1",
+  "status": "pass",
+  "test_count": 24,
+  "tests": [
+    {"name":"receipt-bundle-positive","schema":"receipt_schema.json","valid":true,"expected":true},
+    {"name":"condition-positive","schema":"condition_envelope_schema.json","valid":true,"expected":true},
+    {"name":"condition-order-negative","schema":"condition_envelope_schema.json","valid":false,"expected":false},
+    {"name":"binding-positive","schema":"binding_schema.json","valid":true,"expected":true},
+    {"name":"binding-layer-negative","schema":"binding_schema.json","valid":false,"expected":false},
+    {"name":"budget-omitted","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"budget-equal","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"budget-sealed_budget_mismatch","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"budget-over_limit","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"budget-input_overload","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"budget-invalid","schema":"budget_schema.json","valid":true,"expected":true},
+    {"name":"collision-positive","schema":"collision_schema.json","valid":true,"expected":true},
+    {"name":"collision-branch-negative","schema":"collision_schema.json","valid":false,"expected":false},
+    {"name":"supervisor-positive","schema":"supervisor_schema.json","valid":true,"expected":true},
+    {"name":"supervisor-post-process-negative","schema":"supervisor_schema.json","valid":false,"expected":false},
+    {"name":"cache-positive","schema":"cache_schema.json","valid":true,"expected":true},
+    {"name":"cache-entry-negative","schema":"cache_schema.json","valid":false,"expected":false},
+    {"name":"preflight-positive","schema":"preflight_schema.json","valid":true,"expected":true},
+    {"name":"preflight-writer-negative","schema":"preflight_schema.json","valid":false,"expected":false},
+    {"name":"stage-positive","schema":"stage_receipt_schema.json","valid":true,"expected":true},
+    {"name":"stage-not-measured","schema":"stage_receipt_schema.json","valid":true,"expected":true},
+    {"name":"freeze-positive","schema":"freeze_schema.json","valid":true,"expected":true},
+    {"name":"manifest-positive","schema":"manifest_schema.json","valid":true,"expected":true},
+    {"name":"custom_cross_field_relations","valid":true,"expected":true}
+  ],
+  "julia_process_count": 0,
+  "implementation_started": false
+}

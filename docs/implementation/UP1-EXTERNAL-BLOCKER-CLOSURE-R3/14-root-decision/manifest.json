@@ -1,0 +1,44 @@
+{
+  "schema": "UP1.external-blocker-closure-r3.root-decision-manifest.v1",
+  "status": "decision_draft_pending_root_review",
+  "verdict": "fail_limited",
+  "claim_ceiling": "offline_non_authoritative_software_capability_increment_only",
+  "scope": "R3 00-13 and reviews/13 evidence synthesis; documentation only",
+  "mutations": {
+    "source": false,
+    "tests": false,
+    "dag_39": false,
+    "r01_r10": false,
+    "new_ad": false,
+    "parent_goal": false,
+    "authority": false,
+    "publication": false
+  },
+  "decision_file": "decision.json",
+  "human_readable_file": "README.md",
+  "hash_file": "hashes.sha256",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 5625,
+      "sha256": "32f690671a74b575c3cdc70d3ab10a003eda8c177517bbb4493dd6150c1a1d2d"
+    },
+    {
+      "path": "decision.json",
+      "bytes": 4076,
+      "sha256": "4ed646baab88cfbd154af301bae27a4e9a133cd6327e9f93f32cc5eb3d10c7ca"
+    }
+  ],
+  "evidence_inputs": [
+    "../00-external-delta-scan/scan_summary.md",
+    "../13-vector-harness-repair-r1/README.md",
+    "../13-vector-harness-repair-r1/run-receipt.md",
+    "../13-vector-harness-repair-r1/vector-receipt.json",
+    "../reviews/13-vector-harness-independent-review-r1/review.md",
+    "../reviews/13-vector-harness-independent-review-r1/freeze_manifest.json",
+    "../reviews/13-vector-harness-independent-review-r1/receipt-manifest.json"
+  ],
+  "required_root_action": "review_or_replace_draft; no signature is present",
+  "hash_algorithm": "SHA-256",
+  "self_hash_exclusion": ["manifest.json", "hashes.sha256"]
+}

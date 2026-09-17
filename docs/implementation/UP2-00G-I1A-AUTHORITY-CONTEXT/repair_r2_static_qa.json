@@ -1,0 +1,33 @@
+{
+  "schema_version": "UP2-00G-I1A-static-qa-r2-v1",
+  "json_fixture_parse": {
+    "command": "PowerShell ConvertFrom-Json fixture",
+    "exit": 0
+  },
+  "required_source_scan": {
+    "command": "PowerShell R2 required API scan",
+    "exit": true,
+    "missing": []
+  },
+  "required_test_scan": {
+    "command": "PowerShell R2 fixture/control scan",
+    "exit": true,
+    "missing": []
+  },
+  "process_sweep": {
+    "command": "Get-Process julia,desc",
+    "exit": 0,
+    "count": 0
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "exit": 0
+  },
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "focused_exit": null
+  },
+  "protected_r1_archive": "preserved",
+  "result": "static_pass_pending_independent_review"
+}

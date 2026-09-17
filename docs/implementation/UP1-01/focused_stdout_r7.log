@@ -1,0 +1,16 @@
+Test Summary:                                           | Pass  Total  Time
+UP1-01 G1 V2 contract and fixture-driven component core |   38     38  8.4s
+UP1-01 G1 fail-closed negative controls: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G1\up1_g1_contract_tests.jl:178
+  Expression: G.G1EquationV2(mimo.equation_id, mimo.role, mimo.operator_ref, mimo.input_state_refs, mimo.output_state_refs, mimo.input_units, mimo.output_units, mimo.temporal_kind, mimo.derivative_order, mimo.effects, mimo.occurrences, mimo.closure_ref, wrong_port_types; mimo = true)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G1\up1_g1_contract_tests.jl:178 [inlined]
+ [2] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [3] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G1\up1_g1_contract_tests.jl:144
+Test Summary:                           | Pass  Fail  Total  Time
+UP1-01 G1 fail-closed negative controls |   10     1     11  1.6s

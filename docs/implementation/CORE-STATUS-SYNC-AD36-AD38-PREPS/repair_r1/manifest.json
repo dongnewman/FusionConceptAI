@@ -1,0 +1,72 @@
+{
+  "manifest_version": "CORE-STATUS-SYNC-AD36-AD38-PREPS-repair-r1",
+  "date": "2026-09-15",
+  "decision": "accepted_limited",
+  "scope": "R1 documentation and status synchronization only",
+  "review_basis": {
+    "path": "docs/implementation/CORE-STATUS-SYNC-AD36-AD38-PREPS/independent_review_r1/report.md",
+    "sha256": "9e669743953a1a3df6808e97b7c7bd5c949bf0ccdf532c87eee9e67db4806056",
+    "verdict": "changes_requested",
+    "findings_closed": ["F1 README link count", "F2 UP4 root status", "F3 AD-38 stale AD-36 blocker", "F4 historical task-count field interpretation"]
+  },
+  "current_outputs": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 39132, "sha256": "e0af4be730d45f0745c26c2692873744919f6af1a05f037bdfeb904ab677881c"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 76075, "sha256": "00946da95b743149e7e632e2ac6e56b5f817c9b3e3c6f8c844c6808af2dd36b7"},
+    "docs/implementation/README.md": {"bytes": 21580, "sha256": "9b11a422ba233020f32efbbf593eedf8fa437af938a2f734e28812c909a3b950"},
+    "docs/implementation/UP4-EARLY-PREPARATION/manifest.json": {"bytes": 7938, "sha256": "659a2d6879bb5bccf8238308a63fefc3184e707c9241159e2eae4977cadc9d5d"},
+    "docs/implementation/UP4-EARLY-PREPARATION/acceptance.md": {"bytes": 2052, "sha256": "a682d72e92cc658ab17bf04601e8bb4ab13301d4d226ea3acf0866767aef4256"},
+    "docs/implementation/AD-38/acceptance/acceptance.md": {"bytes": 2811, "sha256": "eab8bb1c77c9c2c402fa8ff9cc68446b126538756424979e2d0b540d7e5a77e2"},
+    "docs/implementation/AD-38/acceptance/manifest.json": {"bytes": 10550, "sha256": "072ddca3d492f1e6c54767a85e57bdaecbfb2a1c5cdbdf1cfe75b70cfbba1eb5"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 91208, "sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"}
+  },
+  "current_state": {
+    "validator_markdown_files": 31,
+    "actual_relative_links": 485,
+    "task_count": 39,
+    "task_dag_acyclic": true,
+    "task_manifest_hash_unchanged": true,
+    "environment_gate_task_count_unchanged_field": false,
+    "environment_gate_field_interpretation": "historical AD-29 comparison with earlier 31-task baseline; task_manifest not rewritten",
+    "physical_or_engineering_evidence": false,
+    "all_credits_false_or_pending": true,
+    "machine_nodes_added": false,
+    "task_manifest_modified": false
+  },
+  "commands": [
+    {"kind": "validate_plan", "pid": 3244, "started_utc": "2026-09-15T07:41:39.6772805Z", "ended_utc": "2026-09-15T07:41:40.1254175Z", "exit_code": 0, "stdout": "raw/validate_plan.stdout", "stderr": "raw/validate_plan.stderr", "actual_relative_links": 485},
+    {"kind": "json_parse_and_state_assert", "pid": 77644, "started_utc": "2026-09-15T07:41:51.8095649Z", "ended_utc": "2026-09-15T07:41:51.9152275Z", "exit_code": 0, "stdout": "raw/json_parse.stdout", "stderr": "raw/json_parse.stderr"},
+    {"kind": "task_manifest_hash_and_historical_field_check", "pid": 66356, "started_utc": "2026-09-15T07:42:01.5476809Z", "ended_utc": "2026-09-15T07:42:01.6360260Z", "exit_code": 0, "stdout": "raw/task_hash.stdout", "stderr": "raw/task_hash.stderr"},
+    {"kind": "control_character_scope_check", "pid": 69320, "started_utc": "2026-09-15T07:42:13.3054115Z", "ended_utc": "2026-09-15T07:42:13.4114064Z", "exit_code": 0, "stdout": "raw/control_check.stdout", "stderr": "raw/control_check.stderr"},
+    {"kind": "scoped_diff_check", "pid": 60744, "started_utc": "2026-09-15T07:42:23.8940412Z", "ended_utc": "2026-09-15T07:42:23.9738259Z", "exit_code": 0, "stdout": "raw/diff_check.stdout", "stderr": "raw/diff_check.stderr"},
+    {"kind": "final_validate_plan", "pid": 65656, "started_utc": "2026-09-15T07:51:42.1271611Z", "ended_utc": "2026-09-15T07:51:42.5296177Z", "exit_code": 0, "stdout": "raw/final_validate_plan.stdout", "stderr": "raw/final_validate_plan.stderr", "actual_relative_links": 485},
+    {"kind": "final_json_parse_and_state_assert", "pid": 72812, "started_utc": "2026-09-15T07:51:05.6190537Z", "ended_utc": "2026-09-15T07:51:05.7318844Z", "exit_code": 0, "stdout": "raw/final_json_parse.stdout", "stderr": "raw/final_json_parse.stderr"},
+    {"kind": "final_task_manifest_hash_check", "pid": 10332, "started_utc": "2026-09-15T07:51:28.3017039Z", "ended_utc": "2026-09-15T07:51:28.4256585Z", "exit_code": 0, "stdout": "raw/final_task_hash.stdout", "stderr": "raw/final_task_hash.stderr"},
+    {"kind": "final_control_character_scope_check", "pid": 10332, "started_utc": "2026-09-15T07:51:28.4300081Z", "ended_utc": "2026-09-15T07:51:28.5309149Z", "exit_code": 0, "stdout": "raw/final_control_check.stdout", "stderr": "raw/final_control_check.stderr"},
+    {"kind": "final_scoped_diff_check", "pid": 10332, "started_utc": "2026-09-15T07:51:28.5315528Z", "ended_utc": "2026-09-15T07:51:28.6102166Z", "exit_code": 0, "stdout": "raw/final_diff_check.stdout", "stderr": "raw/final_diff_check.stderr"}
+  ],
+  "raw_receipts": {
+    "raw/validate_plan.stdout": {"bytes": 480, "sha256": "d2fbd0ee873684e553c3284b99abdcacc7759d1efab2d6b8e9cbb38badf342b8"},
+    "raw/validate_plan.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/json_parse.stdout": {"bytes": 234, "sha256": "fb697fe7e521effed36e09dfa25c03481ea5a63029b3e0063715714d0af7003b"},
+    "raw/json_parse.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/task_hash.stdout": {"bytes": 350, "sha256": "5aa1e4dd5a42d73e0fd3260b3734d900df79f853bf1117b70afbfbe1d9af0e21"},
+    "raw/task_hash.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/control_check.stdout": {"bytes": 178, "sha256": "a6b9ee44dbedcdbaf133df6047efdbe8fa3068c72d66ad942d7051bf9a026ed8"},
+    "raw/control_check.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/diff_check.stdout": {"bytes": 228, "sha256": "f6edc99371feb3ff6f25ffae2307539fc689d8a51aa31b9a41ded915216c7bfc"},
+    "raw/diff_check.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/final_validate_plan.stdout": {"bytes": 481, "sha256": "ac1b4f45869c97b7ff989c41a7a989a441b3f11df3e88dbabc1705f71be31d90"},
+    "raw/final_validate_plan.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/final_json_parse.stdout": {"bytes": 234, "sha256": "b811edda7db1befc7688695dea8933b7a6db7db12e54a7bafb4be6976bcf4ba6"},
+    "raw/final_json_parse.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/final_task_hash.stdout": {"bytes": 350, "sha256": "2fd3884dab7d4bb6ecf00abf3c0f9812e4b9553c86c370e0109d56934283708c"},
+    "raw/final_task_hash.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/final_control_check.stdout": {"bytes": 183, "sha256": "fc9ccea28ddb7bd4a2fd81fe3cc7726eb6473b861c2d4241f0fbad574db49e7a"},
+    "raw/final_control_check.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "raw/final_diff_check.stdout": {"bytes": 228, "sha256": "46d5a6b13d4992793a2e2d56026f9c608ce08bbc928d1774ae4cffbe61f8a935"},
+    "raw/final_diff_check.stderr": {"bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+  },
+  "credits": {"implementation": false, "inverse": false, "engineering": false, "provider": false, "mesh": false, "solver": false, "physical": false, "b07a": false, "b07b": false, "search": false, "r01_r10": false, "l4_credible_count": 0},
+  "cleanup": {"removed_paths": [], "dirty_and_historical_protected": true},
+  "self_hash_excluded": true
+}

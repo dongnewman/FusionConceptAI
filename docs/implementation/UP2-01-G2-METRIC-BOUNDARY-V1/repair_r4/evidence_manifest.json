@@ -1,0 +1,63 @@
+{
+  "work_order": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  "repair": "R4",
+  "finding": "focused_r1_test_line_143_boundary_value_unit_mismatch_predicate_direction",
+  "status": "review_pending",
+  "accepted": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "diagnostic": {
+    "directory": "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/diagnostic_r2",
+    "command": "julia --startup-file=no --project=. docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/diagnostic_r2/diagnostic_unit_source.jl",
+    "pid": 54756,
+    "exit_code": 0,
+    "utc_before": "2026-09-14T20:45:49.6007580Z",
+    "utc_after": "2026-09-14T20:45:55.2997126Z",
+    "focused_test_rerun": false,
+    "source_validator_result": "fail_closed",
+    "errors": ["boundary_value_unit_mismatch:face-x-min"],
+    "stdout_sha256": "efdf0e74947ca0990bb0aa5ba7fb874d253c144a9094d2672d7cc43ad46e5fbf",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run_metadata_sha256": "811245ce9985f778512652be32c8c154ce80202a912208b27abaad0af97ae4ad",
+    "diagnostic_script_sha256": "73fbbe9e55da45e7e2ecaf253333bf13898c96ef5cb5d55d3c44f6d5a3e6222d"
+  },
+  "artifacts": {
+    "source": {
+      "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "before_sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+      "after_sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"
+    },
+    "focused_test": {
+      "path": "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+      "before_sha256": "c747c174471ebd3c15812a5d25bfecff0389ed6e3dcb7eec888fd47730d8b007",
+      "after_sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db"
+    },
+    "fixture": {
+      "path": "test/GenomeV5/G2/metric_boundary_v1_fixture.json",
+      "before_sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+      "after_sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5"
+    },
+    "static_qa": {
+      "path": "test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+      "before_sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31",
+      "after_sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"
+    }
+  },
+  "qa": {
+    "static_qa_exit_code": 0,
+    "static_qa_result": "static_qa=pass",
+    "json_metadata_parse": "pass",
+    "git_diff_check": "pass",
+    "julia_desc_post_processes": [],
+    "review_pending": true,
+    "accepted": false,
+    "claim_ceiling": "contract_only"
+  },
+  "credits": {
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "engineering": false,
+    "r01_r10": false
+  }
+}

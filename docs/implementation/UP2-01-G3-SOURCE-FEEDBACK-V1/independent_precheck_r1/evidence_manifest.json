@@ -1,0 +1,30 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-precheck-r1-evidence-v1",
+  "status": "changes_requested",
+  "accepted": false,
+  "review_scope": "read-only static review; source/test/fixture/core/old evidence untouched",
+  "reviewed_files": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {"sha256": "4924e9091cb2a149d9574d12225614d1eada8e6b972a337eb8e25a9e356c1fa1", "bytes": 21539},
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {"sha256": "53bd15c132974ef544c7489709c05b4e99b8e4a503f8cf977087db6ee094a689", "bytes": 2175},
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {"sha256": "844441b8c36e3e352db6e8ded160947d93220cd0dc5942e65c91a47214b1d8a1", "bytes": 4714},
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {"sha256": "fa641261c4322f4947f532c2dce6366f5df5ea732db01ffcb18ce92ad68c5627", "bytes": 3650}
+  },
+  "upstream_inputs": {
+    "AD-29_status": "docs/implementation/AD-29/status.json",
+    "AD-29_manifest": "docs/implementation/AD-29/evidence_manifest.json",
+    "work_order": "docs/v4_multitopology_generation/16_execution_work_orders.md:248-267",
+    "AD-18_gate": "docs/v4_multitopology_generation/16_execution_work_orders.md:363-369"
+  },
+  "static_qa": {
+    "command": "python docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+    "exit_code": 0,
+    "julia_run": false,
+    "desc_run": false,
+    "interpretation": "The existing checker passes fixture arithmetic and token/hash checks but does not cover the blocking findings in report.json."
+  },
+  "protected_evidence": {
+    "AD-29_manifest_sha256": "recorded in AD-29 archive and not modified",
+    "old_implementation_evidence": "not modified"
+  },
+  "no_credit": ["compiler", "provider", "mesh", "engineering", "physical", "B00", "B04", "R01-R10"]
+}

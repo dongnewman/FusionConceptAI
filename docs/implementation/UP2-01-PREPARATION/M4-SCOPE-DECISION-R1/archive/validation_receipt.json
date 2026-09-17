@@ -1,0 +1,145 @@
+{
+  "schema": "m4-scope-decision-r1-validation-receipt",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1",
+  "validation_kind": "documentation_validation",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "code_tests": "not_applicable",
+  "julia_solver_execution": "not_run",
+  "input_hashes": {
+    "docs/v4_multitopology_generation/task_manifest.json": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"
+  },
+  "artifact_hashes": "archive/final_hashes.json",
+  "informational_raw_sidecars": [
+    {
+      "path": "archive/final_json_parse.stdout.raw",
+      "sha256": "4ab60cf0dad51e58af893f5fdee80a1a117b2dfd3a05c24f778f5b29de275454",
+      "role": "informational final JSON/exact-count recheck; not a separate product"
+    },
+    {
+      "path": "archive/scope_git_status.stdout.raw",
+      "sha256": "84e8458c73dcc97a563b55679de8ba16dbc7c20127216738b23e3d1ff072b5c4",
+      "role": "informational scoped status capture; not a product or acceptance"
+    }
+  ],
+  "command_receipts": [
+    {
+      "name": "planning_validator",
+      "argv": ["python", "docs/v4_multitopology_generation/validate_plan.py"],
+      "pid_or_in_process": "python_pid=111412; wrapper_pid=21024",
+      "started_utc": "2026-09-16T03:12:48.8806587Z",
+      "ended_utc": "2026-09-16T03:12:49.7340770Z",
+      "exit_code": 0,
+      "stdout_raw": "archive/plan_validate_v2.stdout.raw",
+      "stdout_sha256": "eaac17e3b277bc88e9915155e02da7d85187526ef48fc5fa382a91c3d17d1771",
+      "stderr_raw": "archive/empty.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw": "archive/plan_validate_v2.stdout.raw",
+      "combined_sha256": "eaac17e3b277bc88e9915155e02da7d85187526ef48fc5fa382a91c3d17d1771",
+      "output_hashes": {"products": "archive/final_hashes.json"}
+    },
+    {
+      "name": "json_exact_scope_static_consistency",
+      "argv": ["python", "-c", "inline JSON/exact-count/static assertions"],
+      "pid_or_in_process": 87648,
+      "started_utc": "2026-09-16T03:08:50.055532+00:00",
+      "ended_utc": "2026-09-16T03:08:50.058980+00:00",
+      "exit_code": 0,
+      "stdout_raw": "archive/static_consistency.stdout.raw",
+      "stdout_sha256": "bb2d88519f180e87f1afa0526e651ce0d3b4ccbb1c2f8beccb425b6f067a071f",
+      "stderr_raw": "archive/empty.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw": "archive/static_consistency.stdout.raw",
+      "combined_sha256": "bb2d88519f180e87f1afa0526e651ce0d3b4ccbb1c2f8beccb425b6f067a071f",
+      "output_hashes": {"products": "archive/final_hashes.json"}
+    },
+    {
+      "name": "utf8_lf_format",
+      "argv": ["python", "-c", "inline UTF-8/LF/trailing-whitespace check"],
+      "pid_or_in_process": 95744,
+      "started_utc": "2026-09-16T03:09:11.456620+00:00",
+      "ended_utc": "2026-09-16T03:09:11.463022+00:00",
+      "exit_code": 0,
+      "stdout_raw": "archive/format.stdout.raw",
+      "stdout_sha256": "a66da5bdec9566b5827e463fcaad45e3cc080ff3ef6fe1afeb3b10b3c0b7fe9d",
+      "stderr_raw": "archive/empty.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw": "archive/format.stdout.raw",
+      "combined_sha256": "a66da5bdec9566b5827e463fcaad45e3cc080ff3ef6fe1afeb3b10b3c0b7fe9d",
+      "output_hashes": {"products": "archive/final_hashes.json"}
+    },
+    {
+      "name": "git_diff_check",
+      "argv": ["python", "-c", "inline git diff --no-index --check with core.autocrlf=false"],
+      "pid_or_in_process": 94088,
+      "started_utc": "2026-09-16T03:09:58.175314+00:00",
+      "ended_utc": "2026-09-16T03:09:58.725475+00:00",
+      "exit_code": 0,
+      "stdout_raw": "archive/diff_check.stdout.raw",
+      "stdout_sha256": "b87be5858a1dbe0f595c8a8bd10bbe97a79b6eac9761b7bfd866c7d12bf41877",
+      "stderr_raw": "archive/empty.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw": "archive/diff_check.stdout.raw",
+      "combined_sha256": "b87be5858a1dbe0f595c8a8bd10bbe97a79b6eac9761b7bfd866c7d12bf41877",
+      "output_hashes": {"products": "archive/final_hashes.json"}
+    },
+    {
+      "name": "path_and_link_boundary",
+      "argv": ["python", "-c", "inline existing-reference and future-owned-path boundary check"],
+      "pid_or_in_process": 70324,
+      "started_utc": "2026-09-16T03:10:19.666559+00:00",
+      "ended_utc": "2026-09-16T03:10:19.668985+00:00",
+      "exit_code": 0,
+      "stdout_raw": "archive/link_boundary.stdout.raw",
+      "stdout_sha256": "8e6af652b07baf0d555cde97900c8bd921e3c8ed3defb68720096221f55c1f58",
+      "stderr_raw": "archive/empty.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw": "archive/link_boundary.stdout.raw",
+      "combined_sha256": "8e6af652b07baf0d555cde97900c8bd921e3c8ed3defb68720096221f55c1f58",
+      "output_hashes": {"products": "archive/final_hashes.json"}
+    },
+    {
+      "name": "static_consistency_attempt_001_unicode_assertion",
+      "argv": ["python", "-c", "inline static assertions with Unicode R01 en-dash"],
+      "pid_or_in_process": 97488,
+      "started_utc": "2026-09-16T03:07:29.073644+00:00",
+      "ended_utc": "not_emitted_by_failed_command",
+      "exit_code": 1,
+      "stdout_raw": "archive/failure_history/static_consistency_attempt_001.combined.raw",
+      "stderr_raw": "archive/failure_history/static_consistency_attempt_001.combined.raw",
+      "combined_raw": "archive/failure_history/static_consistency_attempt_001.combined.raw",
+      "combined_sha256": "4d97f6afbc19b72547a38ad1a511d7551d2c792e76c86a6bec1e61acaab2b214",
+      "classification": "program_exception_in_checker; retained_failure_history"
+    },
+    {
+      "name": "static_consistency_attempt_002_missing_required_tokens",
+      "argv": ["python", "-c", "inline static assertions before explicit prohibition text was added"],
+      "pid_or_in_process": 89148,
+      "started_utc": "2026-09-16T03:07:54.463646+00:00",
+      "ended_utc": "not_emitted_by_failed_command",
+      "exit_code": 1,
+      "stdout_raw": "archive/failure_history/static_consistency_attempt_002.combined.raw",
+      "stderr_raw": "archive/failure_history/static_consistency_attempt_002.combined.raw",
+      "combined_raw": "archive/failure_history/static_consistency_attempt_002.combined.raw",
+      "combined_sha256": "967770c748927075d73718ab9c3cd7b5a6305cbaf51d4651340df464770e596d",
+      "classification": "checker_assertion; corrected_and_revalidated"
+    },
+    {
+      "name": "git_diff_check_attempt_001_autocrlf_warning",
+      "argv": ["python", "-c", "inline git diff --no-index --check using default autocrlf"],
+      "pid_or_in_process": 78184,
+      "started_utc": "2026-09-16T03:09:37.829978+00:00",
+      "ended_utc": "not_emitted_by_failed_command",
+      "exit_code": 1,
+      "stdout_raw": "archive/failure_history/diff_check_attempt_001.combined.raw",
+      "stderr_raw": "archive/failure_history/diff_check_attempt_001.combined.raw",
+      "combined_raw": "archive/failure_history/diff_check_attempt_001.combined.raw",
+      "combined_sha256": "f6f547ee5362e6e9b843a37487c79068ca18830169eed2b8417067d70244b46f",
+      "classification": "environment_warning_misclassified_by_checker; corrected_with_core_autocrlf_false"
+    }
+  ],
+  "status": "static_validation_pass; implementation_and_numerical_execution_not_run",
+  "sol_decision": "scope_authorized_limited_pending_independent_luna_review"
+}

@@ -1,5 +1,7 @@
 # v4 多保真硬物理 frontier
 
+> 2026-09-14 路线更新：UP2 起逐项数值验证，UP5 才使用扩大搜索预算，UP6 完成全部适用物理。下文首轮规模仅是 UP5 之后的候选上限，须按实际成本和能力重新冻结。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 目标
 
 本模块把一次性流水线改为逐层冻结、合并后晋升的 `StageFrontierV4`。每层只消费上一层明确 admitted 的候选和本层 evidence request；并行 shard 不能因先完成而抢走晋升预算。

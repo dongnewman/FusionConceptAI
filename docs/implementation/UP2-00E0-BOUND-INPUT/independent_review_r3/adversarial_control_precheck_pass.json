@@ -1,0 +1,25 @@
+{
+  "record_kind": "UP2-00E0-R3-adversarial-static-control",
+  "verdict": "ready_for_focused_run",
+  "checks": {
+    "inspector_seam_program_exception": true,
+    "ordinary_checker_same_seam": true,
+    "source_join_helper_present": true,
+    "source_join_preserves_program_exception": true,
+    "source_join_compares_refs_hashes_axes": true,
+    "factory_does_not_relabel_program_exception": true,
+    "bound_input_contains_binding_hash": true,
+    "n05_n06_require_typed_content_hash": true,
+    "adversarial_injection_crosses_production_seam": true,
+    "adversarial_source_join_assertion": true,
+    "lane_empty_before_run": true
+  },
+  "locations": {
+    "inspector": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:186-214",
+    "factory": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:338-343",
+    "source_join_helper": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:392-417",
+    "source_join_public": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:419-422",
+    "injection_test": "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl:189-193"
+  },
+  "limitation": "Static control and focused software runner cannot grant N05/N06, provider, B04, mesh, engineering, physical, or R credit."
+}

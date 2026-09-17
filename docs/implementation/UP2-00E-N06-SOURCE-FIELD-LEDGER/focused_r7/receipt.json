@@ -1,0 +1,33 @@
+{
+  "run": "focused_r7",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "main_pid": 80484,
+  "child_pids_observed": [],
+  "started_utc": "2026-09-14T05:13:30.6238915Z",
+  "ended_utc": "2026-09-14T05:14:31.8003433Z",
+  "exit": 1,
+  "classification": "program_exception",
+  "stdout": {
+    "path": "stdout.log",
+    "bytes": 2653,
+    "sha256": "f44688f5eb2da94023d968e17216ecdac142a0d087d901dede5689e9e29477f0"
+  },
+  "stderr": {
+    "path": "stderr.log",
+    "bytes": 335,
+    "sha256": "c4347365a73a884ebfbbf37d4c83e4e11f45fc81b3a1cf4a781e65ecfc65f2ff"
+  },
+  "test_summary": "UP2-00E N06 actual A projection and typed boundary: 10 passed, 1 error",
+  "error": "UndefVarError: link not defined in n06_projection_from_a at source line 433; _n06_actual_fields returns link in ninth position but projection discarded it",
+  "compile_calls": 0,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "physical": false,
+  "provider": false,
+  "engineering": false,
+  "b00_b04": false,
+  "postflight": "[]",
+  "prior_failures_preserved": true,
+  "no_retry_in_round": true
+}

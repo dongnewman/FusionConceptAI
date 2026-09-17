@@ -1,0 +1,37 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "03-revocation-independent-review-r2",
+  "group_id": "W2-R2-03-revocation-time-replay",
+  "component": "revocation_time_replay",
+  "case_id": "R1 replay set plus durable ledger/HMAC/CAS/OCSP attacks",
+  "verdict": "rework",
+  "reviewer_task_id": "delegated-independent-review-worker",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "source_revision": "working-tree snapshot; no commit/ref claimed",
+  "source_paths": ["tools/up1_external_closure_r2/revocation_time_replay/core.py", "tools/up1_external_closure_r2/revocation_time_replay/cli.py", "tools/up1_external_closure_r2/revocation_time_replay/__init__.py", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/revocation_time_replay/core.py": "2571d2ed929266d9b8543d7a29bce9edf8aa87a8cb32e270bb880905ca0a62a1",
+    "tools/up1_external_closure_r2/revocation_time_replay/cli.py": "b9dd9640d11eaa4516be842fc6d1fc418a2fc1fbbebb5b0a8964eac9aafe6fde",
+    "tools/up1_external_closure_r2/revocation_time_replay/__init__.py": "a657ee0e6f29db3f91774d93879a30d6e25504c13d51d26bedd9938a30c546ad",
+    "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py": "3ab731ec6d7b5fd8962f1dc401f57b295a75c1bc717c69e96cf6ea29da1022e9"
+  },
+  "fixture_paths": ["attack_harness.py"],
+  "fixture_hashes": {"attack_harness.py": "2d5613036910099aa100c842818f8c625c40c4ff3f5cfbb5af1441a025444bd4"},
+  "input_canonical_bytes_or_hash": "independently constructed synthetic_TEST_ONLY fixture; no external authority",
+  "candidate_binding": "synthetic_TEST_ONLY_c-001; no production identity",
+  "four_version_axes": {"payload_schema_version": "UP1-R2.revocation-time-replay.v1", "canonicalization_profile_version": "TEST_ONLY deterministic JSON", "grammar_or_capability_applicability_profile_version": "not_applicable_TEST_ONLY", "execution_or_evidence_receipt_version": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1"},
+  "mutation_summary": {"mutation_ids": ["R2-duplicate-idempotency-entries", "R2-duplicate-nonce-entries", "R2-stale-hmac", "R2-duplicate-json", "R2-nonfinite-json", "R2-available-string", "R2-ocsp-bad-chain", "R2-caller-selected-key-path"], "derived_classification": "source/invariant-derived; observed rows retained in raw attack output"},
+  "processes": [
+    {"command_argv": ["D:/Users/Newman/anaconda3/python.exe", "-B", "-m", "pytest", "-q", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"], "cwd": "D:/006-Programing/LMC/FusionConceptAI", "environment_profile": "Windows; Python 3.13.5; pytest 8.3.4", "interpreter_path": "D:/Users/Newman/anaconda3/python.exe", "interpreter_version": "Python 3.13.5", "module_paths": ["pytest", "revocation_time_replay/core.py"], "module_versions": {"pytest": "8.3.4"}, "started_at_utc": "2026-09-16T18:33:36.179291Z", "ended_at_utc": "2026-09-16T18:33:36.977931Z", "pid": 96520, "parent_pid": 70268, "numeric_exit_code": 0, "stdout_path": "raw/pytest.stdout.raw", "stdout_sha256": "7910c4bc2f96d85dac2302aa9be0ebcc503449d857d4a908140cf5d9d7e2319c", "stderr_path": "raw/pytest.stderr.raw", "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"command_argv": ["D:/Users/Newman/anaconda3/python.exe", "-B", "attack_harness.py"], "cwd": "D:/006-Programing/LMC/FusionConceptAI", "environment_profile": "Windows; Python 3.13.5; child CLI processes Python -B", "interpreter_path": "D:/Users/Newman/anaconda3/python.exe", "interpreter_version": "Python 3.13.5", "module_paths": ["core.py", "cli.py"], "module_versions": {}, "started_at_utc": "2026-09-16T18:34:45.274892Z", "ended_at_utc": "2026-09-16T18:34:46.479711Z", "pid": 17636, "parent_pid": 66648, "numeric_exit_code": 0, "stdout_path": "raw/attack_harness.stdout.raw", "stdout_sha256": "5d40c6f0c749898e490585c7f33acc8470095383f2f2026ec711c8647eb4a6c9", "stderr_path": "raw/attack_harness.stderr.raw", "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  ],
+  "replay": {"replay_index": 1, "replay_process_id": "two child CLI processes in attack_harness", "semantic_output_sha256": "5d40c6f0c749898e490585c7f33acc8470095383f2f2026ec711c8647eb4a6c9", "semantic_row_count": 14, "replay_comparison": "two-process atomic CAS produced one commit and one replay rejection; same-key retry is replayed per repaired contract"},
+  "counters": {"compile_calls": 0, "provider_calls": 0, "solver_calls": 0, "mesh_calls": 0, "external_calls": 0},
+  "cleanup": {"retained_paths": ["attack_harness.py", "review_report.md", "run_receipt.json", "manifest.json", "cleanup_inventory.json", "raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw"], "disposable_paths": [], "removed_paths": [], "cleanup_policy_ref": "cleanup_inventory.json", "cleanup_at_utc": "2026-09-16T18:36:00Z"},
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "claim_ceiling": "contract_software_preparation_only",
+  "no_publish": true
+}

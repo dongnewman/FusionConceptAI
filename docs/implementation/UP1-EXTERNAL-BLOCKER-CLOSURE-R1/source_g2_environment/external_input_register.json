@@ -1,0 +1,15 @@
+{
+  "schema":"UP1.external-input-register.v2",
+  "status":"typed_absent",
+  "checked_utc":"2026-09-16",
+  "fingerprint_rule":{"algorithm":"SHA-256","canonicalization":"UTF-8 JSON, lexicographic keys, compact separators, no terminal newline","preimage":"this object excluding canonical_input_fingerprint and fingerprint_rule"},
+  "canonical_input_fingerprint":"96cf258fa20442513b3a409860a7dbbb780f7048199fd7dc3d380584be9cb6c1",
+  "no_repeat":{"unchanged_action":"do_not_create_new_AD_or_repeat_acceptance","material_change_required":"input hash, owner, authority, source, policy, or candidate change"},
+  "inputs":[
+    {"id":"source_candidate_evidence_binding","kind":"candidate_lineage","state":"typed_absent","owner":"candidate compiler/authority owner unspecified","authoritative_source":"signed candidate/evidence envelope","authority_ref":{"state":"typed_absent","value":null},"input_hash":null,"recovery_condition":"provide exact bidirectional source, candidate and evidence references with hashes/media/schema/owner","expiry_condition":"candidate/source/evidence revision changes"},
+    {"id":"g2_authoritative_mapping","kind":"g2_mapping","state":"typed_absent","owner":"G2 authority/attestor unspecified","authoritative_source":"signed mapping namespace registry","authority_ref":{"state":"typed_absent","value":null},"input_hash":null,"recovery_condition":"provide issuer, key chain, interval, revocation and anti-replay proof","expiry_condition":"mapping policy or source changes"},
+    {"id":"four_axis_materials","kind":"four_axis_materials","state":"typed_absent","owner":"G1/G2/G3 schema owners unspecified","authoritative_source":"versioned axis material registry","authority_ref":{"state":"typed_absent","value":null},"input_hash":null,"recovery_condition":"supply each axis bytes/media/schema/owner and candidate/evidence edges","expiry_condition":"axis source or candidate changes"},
+    {"id":"candidate_environment_closure","kind":"environment_import_artifact_closure","state":"typed_absent","owner":"execution/provider owner unspecified","authoritative_source":"candidate-bound environment receipt","authority_ref":{"state":"typed_absent","value":null},"input_hash":null,"recovery_condition":"freeze runtime/import/package/build/artifact/locale/timezone facts","expiry_condition":"source, environment, dependency or candidate changes"},
+    {"id":"binary_provenance","kind":"binary_provenance","state":"typed_absent","owner":"binary publishers/distributors unspecified","authoritative_source":"signed provenance, SBOM and license records","authority_ref":{"state":"typed_absent","value":null},"input_hash":null,"recovery_condition":"supply all required fields for every imported binary","expiry_condition":"binary, provenance policy or candidate changes"}
+  ]
+}

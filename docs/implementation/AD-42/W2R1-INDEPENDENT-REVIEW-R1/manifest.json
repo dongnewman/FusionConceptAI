@@ -1,0 +1,58 @@
+{
+  "task_id": "AD42-W2R1-INDEPENDENT-REVIEW-R1",
+  "review_kind": "independent_review",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "pass_limited",
+  "accepted_scope": "software_source_authoring_canonical_slice_only",
+  "review_run": {
+    "interpreter": "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "python_version": "3.13.5",
+    "command": "direct Python verifier via stdin; canonical JSON, hash, schema, negative-control and scope checks",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "pid": 4360,
+    "utc_start": "2026-09-15T10:42:13.799105+00:00",
+    "utc_end": "2026-09-15T10:42:13.809517+00:00",
+    "exit_code": 0,
+    "checks_passed": 47,
+    "checks_total": 47
+  },
+  "product_files": [
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":6180,"sha256":"f4841efa7e872a57e05c8eda687d951dd7775802ad3d07330947df72c5c97449"},
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":13968,"sha256":"46d7329bd83188c280208b65ac58afc571c813c9d48e3732707dcf4d4bcb4210"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":7086,"sha256":"7244861fa4c640035c06ac7b69623f048c17b86f9deeda71de8406c452bbcacf"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":14337,"sha256":"7a68be8d2e24b6a15364800cb3855c6a3d80b6d03bed6e2f9eb59d1b29cd988c"}
+  ],
+  "frozen_inputs": [
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"}
+  ],
+  "historical_read_only_hashes": [
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","sha256":"540094f46e2a4010e94b20214e64e1f66c9fe994afc30a71cdfa67dfcda88475"},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","sha256":"cf6f280428409ccee64e134355753ef841f83fa170f353b22395ad78d05c9133"},
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","sha256":"47aed536d296c7fc53fe82c3c844b4a208bf88d30acda5a95424aeae9d58be5e"},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","sha256":"3959c4302312038d3e9c9e9faf3d669c2f50af455cd8f455da5885d35758c8d7"}
+  ],
+  "review_sidecars": [
+    {"path":"docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stdout.json","bytes":1180,"sha256":"8b9d732b718c109170d677f0757c3ade4e466ea273347f60f9fe80eaf27d18cf","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"}
+  ],
+  "report": {"path":"docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md","bytes":4294,"sha256":"8932d5ca6e33d7701952ab4fcd16c660123e7cd9d5d0f97ce39c0728d9845b53"},
+  "manifest_self_hash_excluded": true,
+  "writable_paths": [
+    "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md",
+    "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/manifest.json",
+    "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/**"
+  ],
+  "forbidden_changes": ["reviewed_products","W0","AD-40-history","AD-43-axis-records","src","test","core_indexes","task_manifest","candidate_identity","authority","T0","T1","T2","provider","mesh","solver","physical","R01-R10"],
+  "cleanup": {"final_exact_owned_set":["docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md","docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/manifest.json","docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stdout.json","docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stderr.txt"],"ambiguous":[],"unrelated_cleanup":"none"},
+  "claims": {"source_authoring_canonical": true,"source_backed_authority": false,"factory_authority": false,"candidate_identity": false,"present_declaration": false,"T0": false,"T1": false,"T2": false,"provider": false,"mesh": false,"solver": false,"engineering": false,"physical": false,"R01_R10": false}
+}

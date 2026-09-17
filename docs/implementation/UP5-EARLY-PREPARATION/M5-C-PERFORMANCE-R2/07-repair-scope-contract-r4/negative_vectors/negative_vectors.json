@@ -1,0 +1,23 @@
+{
+  "schema":"M5C-R4-NEGATIVE-VECTORS-V1",
+  "vectors":[
+    {"id":"condition-order","target":"condition_envelope_schema.json","mutation":"reverse conditions tuple","expected":"invalid:condition.order"},
+    {"id":"condition-required-closure","target":"condition_envelope_schema.json","mutation":"required_all_met=true with required rank fact_status=unknown and fact_value=null","expected":"invalid:condition.required_closure"},
+    {"id":"binding-missing-layer","target":"binding_schema.json","mutation":"remove graph layer","expected":"invalid:binding.missing_layer"},
+    {"id":"binding-duplicate-layer","target":"binding_schema.json","mutation":"replace adapter layer with duplicate graph","expected":"invalid:binding.duplicate_layer"},
+    {"id":"budget-mismatch-overlimit","target":"budget_schema.json","mutation":"sealed mismatch plus over-limit result","expected":"invalid:budget_mismatch_priority"},
+    {"id":"budget-invalid-rank","target":"budget_schema.json","mutation":"invalid relation with priority_rank=3","expected":"invalid:budget.invalid"},
+    {"id":"preflight-writer","target":"preflight_schema.json","mutation":"canonical_writer_called=true","expected":"invalid:preflight.writer_called"},
+    {"id":"preflight-overflow-admit","target":"preflight_schema.json","mutation":"overflow=true while decision=admit","expected":"invalid:preflight.overflow_before_guard"},
+    {"id":"collision-full-key-equal","target":"collision_schema.json","mutation":"full_key_equal=true but payload bytes differ","expected":"invalid:key_collision"},
+    {"id":"collision-hostile-incomplete","target":"collision_schema.json","mutation":"remove hostile stderr sha256","expected":"invalid:hostile_receipt_incomplete"},
+    {"id":"collision-domain-confusion","target":"collision_schema.json","mutation":"duplicate proposal domain outcome","expected":"invalid:key_domain_confusion"},
+    {"id":"supervisor-post-process","target":"supervisor_schema.json","mutation":"post_process_count=1","expected":"invalid:supervisor.receipt_incomplete"},
+    {"id":"supervisor-timeout-completed","target":"supervisor_schema.json","mutation":"termination=timeout_kill,status=completed","expected":"invalid:terminal_deferred"},
+    {"id":"supervisor-exit-relation","target":"supervisor_schema.json","mutation":"supervisor_exit_relation=zero,exit_code=1","expected":"invalid:supervisor.receipt_incomplete"},
+    {"id":"cache-entry-bytes","target":"cache_schema.json","mutation":"remove immutable_key_bytes","expected":"invalid:cache_entry_incomplete"},
+    {"id":"cache-owner","target":"cache_schema.json","mutation":"inject forbidden entry owner_derivation_id=d-2; owner is structurally inherited from top-level cache","expected":"invalid:cache.owner_mismatch"},
+    {"id":"stage-zero-substitute","target":"stage_receipt_schema.json","mutation":"not_measured with corrected_count=0","expected":"invalid:not_measured"},
+    {"id":"baseline-typed-absent","target":"baseline_capture_contract_schema.json","mutation":"status contract_only_not_captured but source_run_id populated","expected":"invalid:baseline.typed_absent"}
+  ]
+}

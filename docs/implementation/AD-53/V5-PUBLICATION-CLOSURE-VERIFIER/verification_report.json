@@ -1,0 +1,543 @@
+{
+  "closure": {
+    "schema": "AD53.V5PublicationClosureVerifier.v2",
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "core_closure_status": "complete",
+    "missing_paths": [],
+    "unknown_paths": [],
+    "rejected_paths": [],
+    "base_head_tracked_dependencies": [
+      "src/IR/PhysicalTypes.jl",
+      "src/Canonical/ClosedCanonicalByteWriter.jl",
+      "src/IR/ConservationLedger.jl",
+      "src/IR/OperatorRegistry.jl",
+      "src/IR/TypedAST.jl",
+      "src/IR/OperatorHypergraph.jl",
+      "src/Genomes/MechanismGenes.jl",
+      "src/Genomes/MechanismConservationScopes.jl",
+      "src/Genomes/MechanismConservationOwnership.jl",
+      "src/Contracts/StatusDimensions.jl",
+      "src/Contracts/GenomeContractRegistry.jl",
+      "src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "src/Genomes/MechanismGenesV1.jl",
+      "src/Genomes/FieldGeometryPrimitives.jl",
+      "src/Genomes/FieldGeometrySpatialSupport.jl",
+      "src/Genomes/FieldGeometryFieldPrograms.jl",
+      "src/Genomes/FieldGeometryPhaseFields.jl",
+      "src/Genomes/FieldGeometryGenome.jl",
+      "src/Genomes/RealizationControlGenome.jl",
+      "src/Canonical/CanonicalJSON.jl",
+      "src/Canonical/ExactGraphCanonicalization.jl",
+      "src/Canonical/TypedASTProgramCanonical.jl",
+      "src/Genomes/MechanismGeneCanonical.jl",
+      "src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "src/Genomes/MechanismObservablesHoles.jl",
+      "src/Canonical/MechanismObservableCanonical.jl",
+      "src/Genomes/ControlPrimitives.jl",
+      "src/Genomes/ControlObservationRequirements.jl",
+      "src/Canonical/ControlObservationRequirementCanonical.jl",
+      "src/Genomes/MechanismGenomePayload.jl",
+      "src/Canonical/MechanismCanonicalTransport.jl",
+      "src/Canonical/MechanismHashLayers.jl",
+      "src/Genomes/MechanismGenome.jl",
+      "src/Canonical/Hashes.jl",
+      "src/Genomes/MechanismLegacyMigration.jl",
+      "src/Contracts/CandidateStatePackage.jl",
+      "src/IR/ConditionalEGraph.jl",
+      "src/IR/ConditionalEGraphTypes.jl",
+      "src/Canonical/ConditionalEGraphCanonical.jl",
+      "src/IR/ConditionalEGraphSaturation.jl",
+      "src/Contracts/Authority.jl"
+    ],
+    "overlay_publication_paths": [
+      "src/FusionConceptAI.jl",
+      "src/Contracts/CandidateStatePackageV5.jl",
+      "src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+      "src/GenomeV5/G1/GrammarProfileV2.jl",
+      "src/GenomeV5/G1/EquationPlanV2.jl",
+      "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+      "src/GenomeV5/G1/MechanismGenomeV5.jl",
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "src/GenomeV5/G3/ControlGenomeV5.jl",
+      "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl"
+    ],
+    "entries": [
+      {
+        "path": "src/FusionConceptAI.jl",
+        "bytes": 10144,
+        "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783",
+        "tracked_at_head": true,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/hash_inventory.json",
+          "AD-52/G3-SOURCE-AUTHORITY-FACTORY-HARDENING/root_acceptance_r1/acceptance.md",
+          "AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/independent_review_r2/review.md"
+        ]
+      },
+      {
+        "path": "src/Contracts/CandidateStatePackageV5.jl",
+        "bytes": 13496,
+        "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-23/independent_review/after_hashes.json",
+          "AD-23/independent_review/before_hashes.json",
+          "AD-23/independent_review/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/Integration/GenomeV5Integration.jl",
+        "bytes": 16452,
+        "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-23/independent_review/after_hashes.json",
+          "AD-23/independent_review/before_hashes.json",
+          "AD-23/independent_review/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+        "bytes": 3155,
+        "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "UP2-00G-B00-PREPARATION/independent_review_r1/evidence_manifest.json",
+          "UP2-00G-I0-MODULE-SEAM/independent_review_r1/input_hashes.json",
+          "UP2-00G-I0-MODULE-SEAM/independent_review_r2/evidence_manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/GrammarProfileV2.jl",
+        "bytes": 22812,
+        "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-42/acceptance/independent_review_r1/manifest.json",
+          "AD-42/public_contract_materialization_cycle_audit/independent_review_r1/manifest.json",
+          "AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/EquationPlanV2.jl",
+        "bytes": 15159,
+        "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-24/independent_review/input_hashes.json",
+          "AD-24/independent_review/manifest.json",
+          "AD-24/independent_review/manifest_json_parse.stdout.log"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+        "bytes": 16572,
+        "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-22/independent_review/after_hashes.json",
+          "AD-22/independent_review/before_hashes.json",
+          "AD-22/independent_review/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/MechanismGenomeV5.jl",
+        "bytes": 3887,
+        "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-42/acceptance/independent_review_r1/manifest.json",
+          "AD-42/public_contract_materialization_cycle_audit/independent_review_r1/manifest.json",
+          "AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+        "bytes": 5945,
+        "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-42/acceptance/independent_review_r1/manifest.json",
+          "AD-42/public_contract_materialization_cycle_audit/independent_review_r1/manifest.json",
+          "AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+        "bytes": 5333,
+        "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-24/independent_review/input_hashes.json",
+          "AD-24/independent_review/manifest.json",
+          "AD-24/independent_review/manifest_json_parse.stdout.log"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+        "bytes": 9905,
+        "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "UP2-01-PREPARATION/independent_review_r2/evidence_manifest.json",
+          "UP2-01-PREPARATION/independent_review_r2/report.json",
+          "UP2-01-PREPARATION/independent_review_r2/report.md"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+        "bytes": 18646,
+        "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-42/acceptance/independent_review_r1/manifest.json",
+          "AD-42/public_contract_materialization_cycle_audit/independent_review_r1/manifest.json",
+          "AD-43/g1_g2_four_axis_gap_audit/independent_review_r1/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+        "bytes": 33751,
+        "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-22/independent_review/after_hashes.json",
+          "AD-22/independent_review/before_hashes.json",
+          "AD-22/independent_review/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+        "bytes": 10297,
+        "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-30/g3_children_editability_independent_review/manifest.json",
+          "AD-30/g3_children_editability_independent_review_r2/manifest.json",
+          "AD-31/g3_control_editability_independent_review_r1/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+        "bytes": 10904,
+        "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-23/independent_review/after_hashes.json",
+          "AD-23/independent_review/before_hashes.json",
+          "AD-24/independent_review/input_hashes.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+        "bytes": 6704,
+        "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-23/independent_review/after_hashes.json",
+          "AD-23/independent_review/before_hashes.json",
+          "AD-30/g3_children_editability_independent_review/manifest.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+        "bytes": 31743,
+        "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/acceptance.md",
+          "AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/hash_inventory.json",
+          "AD-49/S3-TRUSTED-SOURCE-IDENTITY/root_acceptance_r1/hash_inventory.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+        "bytes": 28642,
+        "sha256": "23684a9e6bb267d6fdfe06df5acc8f7c8cf299ac8c8bf8433ae601c9fdb4331b",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/manifest.json",
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/report.md",
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/validate_review.py"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+        "bytes": 30773,
+        "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/acceptance.md",
+          "AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/root_acceptance_r1/hash_inventory.json",
+          "AD-49/S3-TRUSTED-SOURCE-IDENTITY/root_acceptance_r1/hash_inventory.json"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+        "bytes": 24807,
+        "sha256": "5b5d013a0ad5ee6eb07f714480e36911be9aa96636a3d3f368f38163240409c8",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/manifest.json",
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/report.md",
+          "AD-49/F0-G1-G2-SOURCE-AUTHORITY-FACTORIES/independent_review_r1/validate_review.py"
+        ]
+      },
+      {
+        "path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "bytes": 35491,
+        "sha256": "ceac9a33368606843337194ee446b6de6f2b7c6223cbc110229d5df17cf84d39",
+        "tracked_at_head": false,
+        "status": "accepted_limited",
+        "why_required": "required V5 core publication closure",
+        "evidence": [
+          "AD-52/G3-SOURCE-AUTHORITY-FACTORY-HARDENING/root_acceptance_r1/acceptance.md",
+          "AD-52/G3-SOURCE-AUTHORITY-FACTORY-HARDENING/root_acceptance_r1/hash_inventory.json",
+          "AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/independent_review_r1/manifest.json"
+        ]
+      }
+    ],
+    "optional_products": {
+      "g3_source_feedback": {
+        "order": [
+          "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"
+        ],
+        "paths_present": true,
+        "independent": true
+      },
+      "g3_binding_editability": {
+        "order": [
+          "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+          "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+          "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+          "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl"
+        ],
+        "paths_present": true,
+        "independent": true
+      }
+    },
+    "optional_feedback_excluded_from_core": true,
+    "evidence_max_per_path": 3,
+    "source_authority": false,
+    "trusted_source_identity": false,
+    "candidate_identity_created": false,
+    "final_candidate_or_package_declaration_hash_created": false,
+    "physical_search_and_engineering": false,
+    "R01_R10": false,
+    "L4_credible_count": 0
+  },
+  "original_repo_protection": {
+    "before": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "after": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "unchanged": true
+  },
+  "temporary_validation": {
+    "status": "complete",
+    "temporary_checkout": "C:\\Users\\Newman\\AppData\\Local\\Temp\\ad53_v5_closure_pkocgq06\\repo",
+    "temporary_checkout_cleaned": true,
+    "cleanup": {
+      "cleaned": true
+    },
+    "probe": {
+      "pid": 95628,
+      "exit": 0,
+      "command": [
+        "julia",
+        "--startup-file=no",
+        "--project=.",
+        "-e",
+        "using FusionConceptAI\nFusionConceptAI.load_genome_v5_components!()\n@assert FusionConceptAI.genome_v5_component_layer_order() == (:G1, :G2, :G3)\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G1\", \"DiffusionDeclarationV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G1\", \"G1SourceAuthorityFactoryV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G2\", \"MetricBoundaryDeclarationV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G2\", \"G2SourceAuthorityFactoryV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G3\", \"G3SourceAuthorityFactoryV1.jl\"))\n@assert FusionConceptAI.g1_source_factory_result_status(FusionConceptAI.g1_source_authority_factory_v1(nothing, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\n@assert FusionConceptAI.g2_source_factory_result_status(FusionConceptAI.g2_source_authority_factory_v1(nothing, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\n@assert FusionConceptAI.g3_factory_result_status(FusionConceptAI.g3_source_authority_factory_v1(:bundle, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\nprintln(\"V5_CLOSURE_PROBE=pass\")\n"
+      ],
+      "stdout": "V5_CLOSURE_PROBE=pass\n",
+      "stderr": "",
+      "stdout_sha256": "0258dc2e2121f09a4f813745d584092753a7d4565c5db4943522faba879e20a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false
+    }
+  },
+  "implementation_status": "completed_review_pending",
+  "accepted": false,
+  "physical_search_and_engineering": false,
+  "R01_R10": false,
+  "L4_credible_count": 0,
+  "overall_status": "completed_review_pending",
+  "schema": "AD53.V5PublicationClosureVerifier.v2",
+  "raw_receipts": [
+    "raw_python_test_receipt.json",
+    "raw_python_test_receipt_r2.json",
+    "raw_python_test_receipt_r3.json",
+    "raw_python_test_receipt_r4.json",
+    "raw_python_test_receipt_r5.json",
+    "raw_python_test_receipt_r6.json",
+    "raw_temp_probe_receipt_r1.json",
+    "residual_cleanup_receipt_r2.json",
+    "residual_cleanup_receipt_r3.json"
+  ],
+  "plan_validation": {
+    "record_kind": "planning_document_validation_not_physics_or_implementation_acceptance",
+    "plan_version": "v4-upgrade-plan-20260914.1",
+    "checks": "pass",
+    "markdown_files_checked": 31,
+    "relative_links_checked": 534,
+    "task_count": 39,
+    "task_dag_acyclic": true,
+    "sol_prompt_characters": 493,
+    "snapshot_files_checked": 16,
+    "preexisting_files_checked": 91,
+    "errors": []
+  },
+  "scoped_diff": {
+    "schema": "AD53.scoped_diff_r1.v1",
+    "status": "pass",
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "head_matches_report": true,
+    "cached_diff_empty": true,
+    "original_repo_protection": {
+      "before": {
+        "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+        "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+        "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+      },
+      "after": {
+        "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+        "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+        "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+      },
+      "unchanged": true
+    },
+    "protected_paths_preexisting_or_frozen": [
+      "src/FusionConceptAI.jl",
+      "docs/v4_multitopology_generation/task_manifest.json",
+      "src/Contracts/CandidateStatePackageV5.jl",
+      "src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "src/GenomeV5/UP2/UP2ModuleEntryV1.jl"
+    ],
+    "owned_write_scope": [
+      "scripts/verify_v5_publication_closure.py",
+      "test/GenomeV5/Integration/verify_v5_publication_closure_tests.py",
+      "docs/implementation/AD-53/V5-PUBLICATION-CLOSURE-VERIFIER/**"
+    ],
+    "tracked_diff_observed": [
+      "README.md",
+      "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+      "docs/v4_multitopology_generation/01_candidate_integration_and_abstract_compilation.md",
+      "docs/v4_multitopology_generation/02_proof_pruning_and_failure_semantics.md",
+      "docs/v4_multitopology_generation/03_open_ended_evolution_and_quality_diversity.md",
+      "docs/v4_multitopology_generation/04_mcts_and_generative_proposal.md",
+      "docs/v4_multitopology_generation/05_realization_and_independent_physics_execution.md",
+      "docs/v4_multitopology_generation/06_multifidelity_hard_physics_frontier.md",
+      "docs/v4_multitopology_generation/07_survivor_sparsification_and_pareto.md",
+      "docs/v4_multitopology_generation/08_high_fidelity_whole_device_vvuq.md",
+      "docs/v4_multitopology_generation/09_evidence_authority_campaign_and_v4_roadmap.md",
+      "\"docs/v4_multitopology_generation/G1 \\346\\234\\272\\345\\210\\266\\345\\237\\272\\345\\233\\240\\347\\273\\204.md\"",
+      "\"docs/v4_multitopology_generation/G2 \\345\\234\\272\\342\\200\\224\\345\\207\\240\\344\\275\\225\\345\\237\\272\\345\\233\\240\\347\\273\\204.md\"",
+      "\"docs/v4_multitopology_generation/G3 \\345\\256\\236\\347\\216\\260\\342\\200\\224\\346\\216\\247\\345\\210\\266Genome.md\"",
+      "docs/v4_multitopology_generation/Genome V3.md",
+      "docs/v4_multitopology_generation/README.md",
+      "\"docs/v4_multitopology_generation/typed AST\\343\\200\\201operator hypergraph \\346\\210\\226 e-graph.md\"",
+      "runs/goal_recovery_20260913_012528_cst/task_queue.json",
+      "scripts/run_v4_spatial_chain.jl",
+      "scripts/verify_v4_spatial_manifest.py",
+      "src/FusionConceptAI.jl",
+      "src/RuntimeV4/SpatialRuntimeV4.jl",
+      "test/runtime_v4_spatial_entrypoint_tests.jl",
+      "test/runtime_v4_test_manifest.json",
+      "test/runtime_v4_validation_uq_execution_request_tests.jl"
+    ],
+    "task_manifest_modified_by_verifier": false
+  },
+  "static_audit": {
+    "schema": "AD53.static_audit_r1.v1",
+    "checks": {
+      "all_evidence_at_most_3": true,
+      "ad53_self_evidence_absent": true,
+      "feedback_not_core": true,
+      "core_only_expected": true,
+      "protection_true": true,
+      "temp_cleanup_true": true
+    },
+    "core_overlay_count": 21,
+    "base_dependency_count": 44
+  },
+  "source_authority": false,
+  "hash_inventory": "hash_inventory.json",
+  "cleanup_inventory": "cleanup_inventory.json",
+  "completion_checks": {
+    "python_tests": "9/9 exit 0",
+    "temp_probe": "PID 95628 exit 0 V5_CLOSURE_PROBE=pass",
+    "plan_validation": "pass",
+    "static_audit": "pass",
+    "scoped_diff": "pass",
+    "temporary_checkout_cleaned": true,
+    "original_repo_protection_unchanged": true
+  }
+}

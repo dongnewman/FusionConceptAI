@@ -1,0 +1,71 @@
+{
+  "manifest_version": "UP2-01-G1-DIFFUSION-V1-repair-r5-hash-correction",
+  "status": "changes_ready_for_independent_r5_review",
+  "review_pending": true,
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "scope": [
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r5/"
+  ],
+  "target_mutation_in_r5": false,
+  "r4_manifest_original_errors": {
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {
+      "r3_before_recorded": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+      "r4_after_recorded": "1dba965964c8d9b4792ebb8f5dae68bb6fdb85b6f8d315d83a73a2bc5ae9a152"
+    },
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {
+      "r3_before_recorded": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066",
+      "r4_after_recorded": "b8fe5945558fefb22d6ec08c5ad7a5861f9e87d8dc50dea51a6ad8335bd36626"
+    }
+  },
+  "current_targets_before_after_sha256": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "bytes": 31743,
+      "before": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+      "after": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"
+    },
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {
+      "bytes": 9655,
+      "before": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+      "after": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"
+    },
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {
+      "bytes": 1582,
+      "before": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+      "after": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"
+    },
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {
+      "bytes": 4499,
+      "before": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066",
+      "after": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"
+    }
+  },
+  "historical_receipts_untouched": {
+    "repair_r3_report_sha256": "0956b606e576ad8979fec115fd679f0f6465659f5be51f84e9c07786fbc9d44c",
+    "repair_r3_manifest_sha256": "0faed4835e7b52a9de28a5964bc30e695fdb99d642fc3710972d56d149ec44c2",
+    "repair_r4_report_sha256": "43f793be1e1cc5b895ef7c92312743c5984cfcd44d0cf691d8d308eb37ae09e0",
+    "repair_r4_manifest_sha256": "907dbc104f02878b6f600954a33639aefea3bb4c4f98abb8274dad19f8cad28e"
+  },
+  "verification": {
+    "hash_and_json_command": "D:\\Users\\Newman\\anaconda3\\python.exe -c <target manifest hash assertion>",
+    "hash_and_json_exit": 0,
+    "hash_and_json_status": "pass",
+    "static_qa_command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G1/static_qa_diffusion_v1.py",
+    "static_qa_exit": 0,
+    "static_qa_status": "pass",
+    "julia": "not_run",
+    "desc": "not_run",
+    "interpreter": "D:\\Users\\Newman\\anaconda3\\python.exe"
+  },
+  "credit_boundary": {
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

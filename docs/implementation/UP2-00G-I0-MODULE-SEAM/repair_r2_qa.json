@@ -1,0 +1,952 @@
+{
+  "work_order": "UP2-00G-I0-MODULE-SEAM",
+  "repair": "R2",
+  "checks": {
+    "frozen_hashes": 0,
+    "behavior_tokens": 0,
+    "entry_no_execution_call": 0,
+    "json_parse": 0,
+    "control_scan": 0,
+    "protected_dirty_hashes": 0,
+    "validate_plan_exit": 0,
+    "git_diff_check_exit": 0,
+    "process_sweep_exit": 0
+  },
+  "hashes": {
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+    "test/GenomeV5/UP2/up2_module_entry_tests.jl": "3d595b399f8e9681881f61fa2e25590dd6646986385af72021a33672c96b4cb5",
+    "test/GenomeV5/UP2/run_up2_module_entry.jl": "db1fd47e395d748ffed5205c1ed00be87a1dc63d684ce85e792b6f44632598d2",
+    "test/GenomeV5/UP2/up2_module_entry_failure_probe.jl": "59204f1b24d6c03c1a6097e748c42808d06858a6197f49254c6ff28580c21591"
+  },
+  "protected_mismatches": [],
+  "process_sweep": {
+    "count": 2,
+    "raw": [
+      {
+        "CimClass": {
+          "CimSuperClassName": "CIM_Process",
+          "CimSuperClass": {
+            "CimSuperClassName": "CIM_LogicalElement",
+            "CimSuperClass": "ROOT/cimv2:CIM_LogicalElement",
+            "CimClassProperties": "Caption Description InstallDate Name Status CreationClassName CreationDate CSCreationClassName CSName ExecutionState Handle KernelModeTime OSCreationClassName OSName Priority TerminationDate UserModeTime WorkingSetSize",
+            "CimClassQualifiers": "Locale = 1033 UUID = \"{8502C566-5FBB-11D2-AAC1-006008C78BC7}\" Abstract = True",
+            "CimClassMethods": "",
+            "CimSystemProperties": "Microsoft.Management.Infrastructure.CimSystemProperties"
+          },
+          "CimClassProperties": [
+            "Caption",
+            "Description",
+            "InstallDate",
+            "Name",
+            "Status",
+            "CreationClassName",
+            "CreationDate",
+            "CSCreationClassName",
+            "CSName",
+            "ExecutionState",
+            "Handle",
+            "KernelModeTime",
+            "OSCreationClassName",
+            "OSName",
+            "Priority",
+            "TerminationDate",
+            "UserModeTime",
+            "WorkingSetSize",
+            "CommandLine",
+            "ExecutablePath",
+            "HandleCount",
+            "MaximumWorkingSetSize",
+            "MinimumWorkingSetSize",
+            "OtherOperationCount",
+            "OtherTransferCount",
+            "PageFaults",
+            "PageFileUsage",
+            "ParentProcessId",
+            "PeakPageFileUsage",
+            "PeakVirtualSize",
+            "PeakWorkingSetSize",
+            "PrivatePageCount",
+            "ProcessId",
+            "QuotaNonPagedPoolUsage",
+            "QuotaPagedPoolUsage",
+            "QuotaPeakNonPagedPoolUsage",
+            "QuotaPeakPagedPoolUsage",
+            "ReadOperationCount",
+            "ReadTransferCount",
+            "SessionId",
+            "ThreadCount",
+            "VirtualSize",
+            "WindowsVersion",
+            "WriteOperationCount",
+            "WriteTransferCount"
+          ],
+          "CimClassQualifiers": [
+            "Locale = 1033",
+            "UUID = \"{8502C4DC-5FBB-11D2-AAC1-006008C78BC7}\"",
+            "CreateBy = \"Create\"",
+            "DeleteBy = \"DeleteInstance\"",
+            "dynamic = True",
+            "provider = \"CIMWin32\"",
+            "SupportsCreate = True",
+            "SupportsDelete = True"
+          ],
+          "CimClassMethods": [
+            "Create",
+            "Terminate",
+            "GetOwner",
+            "GetOwnerSid",
+            "SetPriority",
+            "AttachDebugger",
+            "GetAvailableVirtualSize"
+          ],
+          "CimSystemProperties": {
+            "Namespace": "root/cimv2",
+            "ServerName": "NEWORLDS-LAPTOP",
+            "ClassName": "Win32_Process",
+            "Path": null
+          }
+        },
+        "CimInstanceProperties": [
+          {
+            "Name": "Caption",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Description",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "InstallDate",
+            "Value": null,
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Name",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Status",
+            "Value": null,
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CreationClassName",
+            "Value": "Win32_Process",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CreationDate",
+            "Value": "/Date(1789360072401)/",
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CSCreationClassName",
+            "Value": "Win32_ComputerSystem",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CSName",
+            "Value": "NEWORLDS-LAPTOP",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ExecutionState",
+            "Value": null,
+            "CimType": 4,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Handle",
+            "Value": "75968",
+            "CimType": 14,
+            "Flags": "Property, Key, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "KernelModeTime",
+            "Value": 16718750,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OSCreationClassName",
+            "Value": "Win32_OperatingSystem",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OSName",
+            "Value": "Microsoft Windows 11 专业版|C:\\Windows|\\Device\\Harddisk1\\Partition3",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Priority",
+            "Value": 8,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "TerminationDate",
+            "Value": null,
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "UserModeTime",
+            "Value": 161406250,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WorkingSetSize",
+            "Value": 513896448,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CommandLine",
+            "Value": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ExecutablePath",
+            "Value": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "HandleCount",
+            "Value": 243,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "MaximumWorkingSetSize",
+            "Value": 1380,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "MinimumWorkingSetSize",
+            "Value": 200,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OtherOperationCount",
+            "Value": 22036,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OtherTransferCount",
+            "Value": 186840,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PageFaults",
+            "Value": 145643,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PageFileUsage",
+            "Value": 2163956,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ParentProcessId",
+            "Value": 73508,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakPageFileUsage",
+            "Value": 2165488,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakVirtualSize",
+            "Value": 7517507584,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakWorkingSetSize",
+            "Value": 503292,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PrivatePageCount",
+            "Value": 2215890944,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ProcessId",
+            "Value": 75968,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaNonPagedPoolUsage",
+            "Value": 42,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPagedPoolUsage",
+            "Value": 1297,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPeakNonPagedPoolUsage",
+            "Value": 56,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPeakPagedPoolUsage",
+            "Value": 1313,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ReadOperationCount",
+            "Value": 863,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ReadTransferCount",
+            "Value": 27263175,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "SessionId",
+            "Value": 1,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ThreadCount",
+            "Value": 53,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "VirtualSize",
+            "Value": 7515906048,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WindowsVersion",
+            "Value": "10.0.26200",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WriteOperationCount",
+            "Value": 0,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WriteTransferCount",
+            "Value": 0,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          }
+        ],
+        "CimSystemProperties": {
+          "Namespace": "root/cimv2",
+          "ServerName": "NEWORLDS-LAPTOP",
+          "ClassName": "Win32_Process",
+          "Path": null
+        },
+        "ProcessName": "julia.exe",
+        "Handles": 243,
+        "VM": 7515906048,
+        "WS": 513896448,
+        "Path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "Caption": "julia.exe",
+        "Description": "julia.exe",
+        "InstallDate": null,
+        "Name": "julia.exe",
+        "Status": null,
+        "CreationClassName": "Win32_Process",
+        "CreationDate": "/Date(1789360072401)/",
+        "CSCreationClassName": "Win32_ComputerSystem",
+        "CSName": "NEWORLDS-LAPTOP",
+        "ExecutionState": null,
+        "Handle": "75968",
+        "KernelModeTime": 16718750,
+        "OSCreationClassName": "Win32_OperatingSystem",
+        "OSName": "Microsoft Windows 11 专业版|C:\\Windows|\\Device\\Harddisk1\\Partition3",
+        "Priority": 8,
+        "TerminationDate": null,
+        "UserModeTime": 161406250,
+        "WorkingSetSize": 513896448,
+        "CommandLine": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "ExecutablePath": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "HandleCount": 243,
+        "MaximumWorkingSetSize": 1380,
+        "MinimumWorkingSetSize": 200,
+        "OtherOperationCount": 22036,
+        "OtherTransferCount": 186840,
+        "PageFaults": 145643,
+        "PageFileUsage": 2163956,
+        "ParentProcessId": 73508,
+        "PeakPageFileUsage": 2165488,
+        "PeakVirtualSize": 7517507584,
+        "PeakWorkingSetSize": 503292,
+        "PrivatePageCount": 2215890944,
+        "ProcessId": 75968,
+        "QuotaNonPagedPoolUsage": 42,
+        "QuotaPagedPoolUsage": 1297,
+        "QuotaPeakNonPagedPoolUsage": 56,
+        "QuotaPeakPagedPoolUsage": 1313,
+        "ReadOperationCount": 863,
+        "ReadTransferCount": 27263175,
+        "SessionId": 1,
+        "ThreadCount": 53,
+        "VirtualSize": 7515906048,
+        "WindowsVersion": "10.0.26200",
+        "WriteOperationCount": 0,
+        "WriteTransferCount": 0,
+        "PSComputerName": null
+      },
+      {
+        "CimClass": {
+          "CimSuperClassName": "CIM_Process",
+          "CimSuperClass": {
+            "CimSuperClassName": "CIM_LogicalElement",
+            "CimSuperClass": "ROOT/cimv2:CIM_LogicalElement",
+            "CimClassProperties": "Caption Description InstallDate Name Status CreationClassName CreationDate CSCreationClassName CSName ExecutionState Handle KernelModeTime OSCreationClassName OSName Priority TerminationDate UserModeTime WorkingSetSize",
+            "CimClassQualifiers": "Locale = 1033 UUID = \"{8502C566-5FBB-11D2-AAC1-006008C78BC7}\" Abstract = True",
+            "CimClassMethods": "",
+            "CimSystemProperties": "Microsoft.Management.Infrastructure.CimSystemProperties"
+          },
+          "CimClassProperties": [
+            "Caption",
+            "Description",
+            "InstallDate",
+            "Name",
+            "Status",
+            "CreationClassName",
+            "CreationDate",
+            "CSCreationClassName",
+            "CSName",
+            "ExecutionState",
+            "Handle",
+            "KernelModeTime",
+            "OSCreationClassName",
+            "OSName",
+            "Priority",
+            "TerminationDate",
+            "UserModeTime",
+            "WorkingSetSize",
+            "CommandLine",
+            "ExecutablePath",
+            "HandleCount",
+            "MaximumWorkingSetSize",
+            "MinimumWorkingSetSize",
+            "OtherOperationCount",
+            "OtherTransferCount",
+            "PageFaults",
+            "PageFileUsage",
+            "ParentProcessId",
+            "PeakPageFileUsage",
+            "PeakVirtualSize",
+            "PeakWorkingSetSize",
+            "PrivatePageCount",
+            "ProcessId",
+            "QuotaNonPagedPoolUsage",
+            "QuotaPagedPoolUsage",
+            "QuotaPeakNonPagedPoolUsage",
+            "QuotaPeakPagedPoolUsage",
+            "ReadOperationCount",
+            "ReadTransferCount",
+            "SessionId",
+            "ThreadCount",
+            "VirtualSize",
+            "WindowsVersion",
+            "WriteOperationCount",
+            "WriteTransferCount"
+          ],
+          "CimClassQualifiers": [
+            "Locale = 1033",
+            "UUID = \"{8502C4DC-5FBB-11D2-AAC1-006008C78BC7}\"",
+            "CreateBy = \"Create\"",
+            "DeleteBy = \"DeleteInstance\"",
+            "dynamic = True",
+            "provider = \"CIMWin32\"",
+            "SupportsCreate = True",
+            "SupportsDelete = True"
+          ],
+          "CimClassMethods": [
+            "Create",
+            "Terminate",
+            "GetOwner",
+            "GetOwnerSid",
+            "SetPriority",
+            "AttachDebugger",
+            "GetAvailableVirtualSize"
+          ],
+          "CimSystemProperties": {
+            "Namespace": "root/cimv2",
+            "ServerName": "NEWORLDS-LAPTOP",
+            "ClassName": "Win32_Process",
+            "Path": null
+          }
+        },
+        "CimInstanceProperties": [
+          {
+            "Name": "Caption",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Description",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "InstallDate",
+            "Value": null,
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Name",
+            "Value": "julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Status",
+            "Value": null,
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CreationClassName",
+            "Value": "Win32_Process",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CreationDate",
+            "Value": "/Date(1789360115556)/",
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CSCreationClassName",
+            "Value": "Win32_ComputerSystem",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CSName",
+            "Value": "NEWORLDS-LAPTOP",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ExecutionState",
+            "Value": null,
+            "CimType": 4,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Handle",
+            "Value": "74540",
+            "CimType": 14,
+            "Flags": "Property, Key, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "KernelModeTime",
+            "Value": 7187500,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OSCreationClassName",
+            "Value": "Win32_OperatingSystem",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OSName",
+            "Value": "Microsoft Windows 11 专业版|C:\\Windows|\\Device\\Harddisk1\\Partition3",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "Priority",
+            "Value": 8,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "TerminationDate",
+            "Value": null,
+            "CimType": 13,
+            "Flags": "Property, ReadOnly, NotModified, NullValue",
+            "IsValueModified": false
+          },
+          {
+            "Name": "UserModeTime",
+            "Value": 61406250,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WorkingSetSize",
+            "Value": 421421056,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "CommandLine",
+            "Value": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ExecutablePath",
+            "Value": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "HandleCount",
+            "Value": 237,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "MaximumWorkingSetSize",
+            "Value": 1380,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "MinimumWorkingSetSize",
+            "Value": 200,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OtherOperationCount",
+            "Value": 19759,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "OtherTransferCount",
+            "Value": 175158,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PageFaults",
+            "Value": 121737,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PageFileUsage",
+            "Value": 2073864,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ParentProcessId",
+            "Value": 75968,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakPageFileUsage",
+            "Value": 2081136,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakVirtualSize",
+            "Value": 7432732672,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PeakWorkingSetSize",
+            "Value": 418476,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "PrivatePageCount",
+            "Value": 2123636736,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ProcessId",
+            "Value": 74540,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaNonPagedPoolUsage",
+            "Value": 41,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPagedPoolUsage",
+            "Value": 1295,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPeakNonPagedPoolUsage",
+            "Value": 42,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "QuotaPeakPagedPoolUsage",
+            "Value": 1311,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ReadOperationCount",
+            "Value": 850,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ReadTransferCount",
+            "Value": 27097952,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "SessionId",
+            "Value": 1,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "ThreadCount",
+            "Value": 52,
+            "CimType": 6,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "VirtualSize",
+            "Value": 7417991168,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WindowsVersion",
+            "Value": "10.0.26200",
+            "CimType": 14,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WriteOperationCount",
+            "Value": 0,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          },
+          {
+            "Name": "WriteTransferCount",
+            "Value": 0,
+            "CimType": 8,
+            "Flags": "Property, ReadOnly, NotModified",
+            "IsValueModified": false
+          }
+        ],
+        "CimSystemProperties": {
+          "Namespace": "root/cimv2",
+          "ServerName": "NEWORLDS-LAPTOP",
+          "ClassName": "Win32_Process",
+          "Path": null
+        },
+        "ProcessName": "julia.exe",
+        "Handles": 237,
+        "VM": 7417991168,
+        "WS": 421421056,
+        "Path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "Caption": "julia.exe",
+        "Description": "julia.exe",
+        "InstallDate": null,
+        "Name": "julia.exe",
+        "Status": null,
+        "CreationClassName": "Win32_Process",
+        "CreationDate": "/Date(1789360115556)/",
+        "CSCreationClassName": "Win32_ComputerSystem",
+        "CSName": "NEWORLDS-LAPTOP",
+        "ExecutionState": null,
+        "Handle": "74540",
+        "KernelModeTime": 7187500,
+        "OSCreationClassName": "Win32_OperatingSystem",
+        "OSName": "Microsoft Windows 11 专业版|C:\\Windows|\\Device\\Harddisk1\\Partition3",
+        "Priority": 8,
+        "TerminationDate": null,
+        "UserModeTime": 61406250,
+        "WorkingSetSize": 421421056,
+        "CommandLine": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "ExecutablePath": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "HandleCount": 237,
+        "MaximumWorkingSetSize": 1380,
+        "MinimumWorkingSetSize": 200,
+        "OtherOperationCount": 19759,
+        "OtherTransferCount": 175158,
+        "PageFaults": 121737,
+        "PageFileUsage": 2073864,
+        "ParentProcessId": 75968,
+        "PeakPageFileUsage": 2081136,
+        "PeakVirtualSize": 7432732672,
+        "PeakWorkingSetSize": 418476,
+        "PrivatePageCount": 2123636736,
+        "ProcessId": 74540,
+        "QuotaNonPagedPoolUsage": 41,
+        "QuotaPagedPoolUsage": 1295,
+        "QuotaPeakNonPagedPoolUsage": 42,
+        "QuotaPeakPagedPoolUsage": 1311,
+        "ReadOperationCount": 850,
+        "ReadTransferCount": 27097952,
+        "SessionId": 1,
+        "ThreadCount": 52,
+        "VirtualSize": 7417991168,
+        "WindowsVersion": "10.0.26200",
+        "WriteOperationCount": 0,
+        "WriteTransferCount": 0,
+        "PSComputerName": null
+      }
+    ]
+  },
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run"
+  },
+  "failures": [],
+  "claim_ceiling": "wiring_contract_only",
+  "note": "A nonempty process sweep is external activity; this repair did not start or stop processes."
+}

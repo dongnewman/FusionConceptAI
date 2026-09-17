@@ -1,0 +1,117 @@
+{
+  "manifest_version": "AD-32-independent-status-review-r1",
+  "record_kind": "independent_status_sync_review",
+  "decision_id": "AD-32",
+  "review_revision": "R1",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "implementation_accepted": false,
+  "reviewer": "/root/g3_control_arch_independent_review",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "review_date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "inputs": [
+    {
+      "path": "docs/implementation/AD-32/acceptance.md",
+      "sha256": "3cd5482063e8502e6fb9e93dc392e5e640b5d31b280820c5c238f7ca9ce7cd23"
+    },
+    {
+      "path": "docs/implementation/AD-32/manifest.json",
+      "sha256": "c160c6fe95cc427a2eb260f932ac88ec4661ed146b3593dac12b8fa9beec867e"
+    },
+    {
+      "path": "docs/implementation/AD-32/status_sync/report.md",
+      "sha256": "d3d6c076847dfde1482260082162c21b2c425b10405331e66dcbdcbed55b22e6"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/task_manifest.json",
+      "sha256": "9e51b1a4d252462972d6f507194d51a93a00aa3efc2aba21a2368340129fdae2"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "sha256": "b0d7e6e8955051bb1d7f83f692d54c1e502e0a099119e79c9bc51dfc65c4c8ee"
+    },
+    {
+      "path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r7/revised_proposal.md",
+      "sha256": "6eb25f7bb000a37db19ce1435f2848b88c91aa0e08da2b546bc1723bc63069b5"
+    },
+    {
+      "path": "docs/implementation/AD-31/g3_control_editability_independent_review_r7/report.md",
+      "sha256": "151f4c036175b8d3425da27a562dc23c005047ada9795e7ee7c33b1ab231430c"
+    }
+  ],
+  "plan_validation": {
+    "validator": "docs/v4_multitopology_generation/validate_plan.py",
+    "exit_code": 0,
+    "checks": "pass",
+    "task_count": 36,
+    "task_dag_acyclic": true,
+    "relative_links_checked": 401,
+    "errors": []
+  },
+  "git_diff_check": {
+    "exit_code": 0,
+    "line_ending_warnings_only": true
+  },
+  "ad32": {
+    "status": "accepted_limited",
+    "accepted_scope": "architecture_and_finite_contract_only",
+    "implementation_accepted": false,
+    "actual_control_child_accepted": false,
+    "manifest_sha256_recomputed": "c160c6fe95cc427a2eb260f932ac88ec4661ed146b3593dac12b8fa9beec867e"
+  },
+  "machine_node": {
+    "id": "UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC",
+    "status": "planned",
+    "scope_status": "proposal",
+    "accepted": false,
+    "resolution": "review_pending",
+    "depends_on": [
+      "UP2-01-G3-SOURCE-FEEDBACK-V1"
+    ],
+    "architecture_decision_ref": "docs/implementation/AD-32/acceptance.md",
+    "parallel_to": [
+      "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+      "UP1-04A-VNEXT-T0"
+    ],
+    "must_not_depend_on": [
+      "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+      "UP1-04A-VNEXT-T0"
+    ],
+    "dependency_adjudication": "AD-32 is an architecture_decision_ref and explicit prerequisite text, not a task ID; the task-manifest dependency set therefore contains only the source-feedback task."
+  },
+  "write_scope": [
+    "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+    "test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-G3-CONTROL-EDIT-PREC/"
+  ],
+  "future_write_scope_absent": true,
+  "old_control_package_registry_t0_read_only": true,
+  "credits_all_false": true,
+  "credits_checked": [
+    "actual_control",
+    "realization",
+    "binding",
+    "feedback",
+    "t0",
+    "t1",
+    "up2",
+    "b00",
+    "b04",
+    "provider",
+    "mesh",
+    "engineering",
+    "physical",
+    "search",
+    "r01_r10"
+  ],
+  "julia_run": false,
+  "desc_run": false,
+  "source_modified": false,
+  "test_modified": false,
+  "historical_environment_gate_task_count_31_is_scoped": true,
+  "report_path": "docs/implementation/AD-32/independent_status_review_r1/report.md",
+  "self_hash_excluded": true
+}

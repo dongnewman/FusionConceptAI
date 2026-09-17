@@ -1,0 +1,54 @@
+{
+  "record_kind": "AD-37-independent-review-r3-validation-receipt",
+  "review_round": "r3",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "primary_validation": {
+    "command": "PowerShell JSON/hash/count/path/control-character/DAG/product-scope assertions over repair_r2 and current core inputs",
+    "pid": 58028,
+    "started_utc": "2026-09-15T06:58:18.4076264Z",
+    "ended_utc": "2026-09-15T06:58:18.5555443Z",
+    "exit_code": 0,
+    "stdout_raw": "failed_checks=[]; product_scope=G1/G2 each 14 products with 5 Present + 1 Absent + 1 Failed output records; canonical dependencies; AD-36 external pending; no future publication directories; core task count 39; R01-R10 false",
+    "stderr_raw": ""
+  },
+  "source_hash_recheck": {
+    "command": "PowerShell recompute of original AD-37 observed source/test/fixture/baseline/T0 hashes",
+    "pid": 69700,
+    "started_utc": "2026-09-15T06:59:38.5967267Z",
+    "ended_utc": "2026-09-15T06:59:38.5967267Z",
+    "exit_code": 0,
+    "count": 14,
+    "all_match": true,
+    "stdout_raw": "all_match=true; count=14; mismatches=[]",
+    "stderr_raw": ""
+  },
+  "repair_r2_receipt_recheck": {
+    "command": "PowerShell recompute of repair_r2 raw receipt input and revised_report hashes",
+    "pid": 49060,
+    "utc": "2026-09-15T06:52:27.4862848Z",
+    "exit_code": 0,
+    "input_matches": true,
+    "output_report_match": true,
+    "stdout_raw": "input_matches=true; output_report_match=true",
+    "stderr_raw": ""
+  },
+  "audited_scope_diff_check": {
+    "command": "git diff --check -- docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2",
+    "pid": 77228,
+    "started_utc": "2026-09-15T07:01:58.7566741Z",
+    "ended_utc": "2026-09-15T07:01:58.8082913Z",
+    "exit_code": 0,
+    "stdout_raw": "",
+    "stderr_raw": ""
+  },
+  "execution_boundary": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "future_publication_directory_created": false
+  }
+}

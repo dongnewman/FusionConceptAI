@@ -1,0 +1,127 @@
+{
+  "task_id": "AD42-W2R1-ACCEPTANCE",
+  "decision": "accepted_limited",
+  "accepted_scope": "software_source_authoring_canonical_only",
+  "actual_decision_model": "gpt-5.6-sol",
+  "actual_decision_reasoning_effort": "high",
+  "review_basis": {
+    "path": "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/report.md",
+    "bytes": 4294,
+    "sha256": "8932d5ca6e33d7701952ab4fcd16c660123e7cd9d5d0f97ce39c0728d9845b53",
+    "verdict": "pass_limited",
+    "reviewer_model": "gpt-5.6-luna",
+    "reviewer_reasoning_effort": "high",
+    "checks": "47/47",
+    "raw_stdout": {
+      "path": "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stdout.json",
+      "bytes": 1180,
+      "sha256": "8b9d732b718c109170d677f0757c3ade4e466ea273347f60f9fe80eaf27d18cf"
+    },
+    "raw_stderr": {
+      "path": "docs/implementation/AD-42/W2R1-INDEPENDENT-REVIEW-R1/review/validation_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "product_files": [
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":6180,"sha256":"f4841efa7e872a57e05c8eda687d951dd7775802ad3d07330947df72c5c97449","layer":"G1","role":"fresh canonical source payload"},
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":13968,"sha256":"46d7329bd83188c280208b65ac58afc571c813c9d48e3732707dcf4d4bcb4210","layer":"G1","role":"source-authoring receipt"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":7086,"sha256":"7244861fa4c640035c06ac7b69623f048c17b86f9deeda71de8406c452bbcacf","layer":"G2","role":"fresh canonical source payload"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":14337,"sha256":"7a68be8d2e24b6a15364800cb3855c6a3d80b6d03bed6e2f9eb59d1b29cd988c","layer":"G2","role":"source-authoring receipt"}
+  ],
+  "frozen_inputs": [
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/fresh_seed_binding_recipe.json","bytes":2058,"sha256":"e4662a84e992cc2acd0a84cbe87b47860d8c3619807efbf14501e7ad80d8e74f"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g1_public_contract_envelope.json","bytes":3201,"sha256":"8fbef1ebc7d65105aa2afeb27a5979e1a052c0c246d90d3a44a38f7e83344360"},
+    {"path":"docs/implementation/AD-42/W0-PUBLIC-CONTRACT-ENVELOPE/g2_public_contract_envelope.json","bytes":3867,"sha256":"9a749c17698cf682835b876a2294bf6cb0412d73b25505b6e21d57f7ca2b41b9"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"}
+  ],
+  "historical_negative_controls": [
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","sha256":"540094f46e2a4010e94b20214e64e1f66c9fe994afc30a71cdfa67dfcda88475"},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","sha256":"cf6f280428409ccee64e134355753ef841f83fa170f353b22395ad78d05c9133"},
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","sha256":"47aed536d296c7fc53fe82c3c844b4a208bf88d30acda5a95424aeae9d58be5e"},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","sha256":"3959c4302312038d3e9c9e9faf3d669c2f50af455cd8f455da5885d35758c8d7"}
+  ],
+  "semantic_closure": {
+    "canonical_encoding": "UTF-8 lexicographic compact JSON with no terminal LF",
+    "w0_public_refs_exact": true,
+    "w0_seed_recipe_exact": true,
+    "shared_seed_commitment": "7a228cf5538ca73e5d24e8bc046d3945da1c4b689d0c14d035fec78c3fe4429a",
+    "g1_candidate_ref_type": "QualifiedRefV1",
+    "g2_public_contract_ref_type": "GenomeContractRef",
+    "g2_mapping_status": "typed_absent",
+    "g2_mapping_value": null,
+    "four_axis_records": true,
+    "source_hash_closure": true,
+    "declaration_hash_created": false,
+    "candidate_identity_created": false,
+    "failure_union": ["AbsentDeclarationSourceV1","FailedDeclarationSourceV1","program_exception"],
+    "seed_mismatch_controls": {"count":2,"pid":70232,"exit_code":1,"fail_closed":true,"product_data":false},
+    "cleanup_and_failure_history_append_only": true
+  },
+  "claim_ceiling": "software_source_authoring_canonical_only",
+  "claims": {
+    "source_backed_authority": false,
+    "factory_authority": false,
+    "present_declaration": false,
+    "candidate_identity": false,
+    "candidate_hash": false,
+    "declaration_hash": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "R01_R10": false
+  },
+  "downstream_gate": {"status":"blocked_pending","next_work_order":"AD-44 source-authority/binding workorders","authority_or_factory_receipt_created":false},
+  "final_closure_r3": {"status":"pass","checks":"37/37","interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"direct Python final acceptance closure validator R3","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":53920,"utc_start":"2026-09-15T10:55:19.274560Z","utc_end":"2026-09-15T10:55:19.287146Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r3.stdout.json","stdout_bytes":541,"stdout_sha256":"2d5efc3cd9bbd4c92c6bee6bfb14b3d20402b3a2e033ddca4df44f14412104e3","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r3.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "git_diff_check": {"full_worktree":{"status":"preexisting_dirty_boundary","exit_code":2,"pid":61776,"stdout_bytes":247176,"stdout_sha256":"48e8cf22ede576cb9b94c588b4f2fe8d8543cd707db78d1502bcb0e2d5e89296","receipt":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_full_worktree_attempt1.receipt.json"},"task_scope":{"status":"pass","command":"git diff --check -- docs/implementation/AD-42/W2R1-ACCEPTANCE","pid":68008,"utc_start":"2026-09-15T11:00:18.823552Z","utc_end":"2026-09-15T11:00:18.880639Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_scoped.stdout.txt","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_scoped.stderr.txt","stdout_bytes":0,"stderr_bytes":0,"stdout_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "final_closure_r4": {"status":"pass","checks":"40/40","interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"direct Python final acceptance closure validator R4","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":83016,"utc_start":"2026-09-15T11:01:59.584679Z","utc_end":"2026-09-15T11:01:59.595651Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r4.stdout.json","stdout_bytes":562,"stdout_sha256":"16aa3ec0e5b3ab9111da11180147a38e90365ca90e7021634dc098b87b57c630","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r4.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "failed_attempts": [
+    {"id":"AD42-W2R1-ACCEPTANCE-JSON-HASH-PATH-CONTROL-ATTEMPT1","status":"program_exception","exit_code":1,"raw_stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt1.stdout.json","note":"incorrect expected independent-review report byte count; no repository product or frozen input changed"},
+    {"id":"AD42-W2R1-ACCEPTANCE-JSON-HASH-PATH-CONTROL-ATTEMPT2","status":"program_exception","exit_code":1,"raw_stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt2.stdout.json","note":"scope checker required not-yet-created final raw sidecars; no repository product or frozen input changed"}
+    ,{"id":"AD42-W2R1-ACCEPTANCE-PLAN-DAG-ATTEMPT1","status":"program_exception","exit_code":2,"raw_stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag_attempt1.stderr.txt","note":"wrapper passed a literal python argument before the plan path; no repository product or frozen input changed"}
+  ],
+  "validation": {
+    "json_hash_path_control": {"status":"pass","checks":"26/26","runs":[{"interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"direct Python JSON/hash/path/control validator","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":32856,"utc":"2026-09-15T10:50:33.076012Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control.stdout.json","stdout_bytes":610,"stdout_sha256":"096a55cf14cd37f882455f8ceff9c81f975f64263f9e41e4a5529bfc6cd92530","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}]},
+    "plan_dag": {"status":"pass","checks":"31 markdown/497 links/39 tasks/DAG acyclic","runs":[{"interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"docs/v4_multitopology_generation/validate_plan.py","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":49512,"utc_start":"2026-09-15T10:51:23.298786Z","utc_end":"2026-09-15T10:51:23.565963Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag.stdout.json","stdout_bytes":389,"stdout_sha256":"ab8b0dc2f2b09b5b823d24ca3efa08431accca5759aa007c79461aac99c38d52","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}]},
+    "final_closure": {"status":"pass","checks":"32/32","runs":[{"interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"direct Python final acceptance closure validator","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":61808,"utc_start":"2026-09-15T10:52:00.007147Z","utc_end":"2026-09-15T10:52:00.017061Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure.stdout.json","stdout_bytes":610,"stdout_sha256":"6db37890bdb28e36b0a8afe9653419ea75371654d42fab9fe5170c6ff4a6c403","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},{"interpreter":"D:\\Users\\Newman\\anaconda3\\python.exe","command":"direct Python final acceptance closure validator R2","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":71764,"utc_start":"2026-09-15T10:54:16.051265Z","utc_end":"2026-09-15T10:54:16.056662Z","exit_code":0,"stdout_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r2.stdout.json","stdout_bytes":529,"stdout_sha256":"6897c745fd36a983985cc9014e17f00ce6d78504b50c8182f71ab6dff441cc63","stderr_path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r2.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}]}
+  },
+  "outputs": [
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/acceptance.md","bytes":3424,"sha256":"456d43bec5f85d5e1a6c40435ca1bd658fef16db9cb1709cb4d0142314874eec","role":"Sol/root acceptance decision","self_hash_excluded":false},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/manifest.json","role":"acceptance manifest","self_hash_excluded":true},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt1.stdout.json","bytes":331,"sha256":"cd19b0b4d44b1b0b9d842df590337f380f5d52d5cf538c9901a4437af07ba0a8","role":"preserved failed raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt1.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"preserved failed raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt2.stdout.json","bytes":327,"sha256":"07c3cb2e4f7bf43f07f62731e73b1289d89117d0744a079278802058852febd6","role":"preserved failed raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control_attempt2.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"preserved failed raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control.stdout.json","bytes":610,"sha256":"096a55cf14cd37f882455f8ceff9c81f975f64263f9e41e4a5529bfc6cd92530","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/json_hash_path_control.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag_attempt1.stdout.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"preserved failed raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag_attempt1.stderr.txt","bytes":142,"sha256":"be1b44849e3e97ea118310a48ba61d39323284719200b281b5a76500f32f990e","role":"preserved failed raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag.stdout.json","bytes":389,"sha256":"ab8b0dc2f2b09b5b823d24ca3efa08431accca5759aa007c79461aac99c38d52","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/plan_dag.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure.stdout.json","bytes":610,"sha256":"6db37890bdb28e36b0a8afe9653419ea75371654d42fab9fe5170c6ff4a6c403","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r2.stdout.json","bytes":529,"sha256":"6897c745fd36a983985cc9014e17f00ce6d78504b50c8182f71ab6dff441cc63","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r2.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r3.stdout.json","bytes":541,"sha256":"2d5efc3cd9bbd4c92c6bee6bfb14b3d20402b3a2e033ddca4df44f14412104e3","role":"raw stdout"},
+    {"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r3.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"}
+    ,{"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_scoped.stdout.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stdout"}
+    ,{"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_scoped.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"}
+    ,{"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/git_diff_check_full_worktree_attempt1.receipt.json","bytes":674,"sha256":"b2ad292c9bd7565800b78f05c90dbea419ca0ab4a40c014ae42e7b2f83f0ec3a","role":"preserved full-worktree failed-run receipt"}
+    ,{"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r4.stdout.json","bytes":562,"sha256":"16aa3ec0e5b3ab9111da11180147a38e90365ca90e7021634dc098b87b57c630","role":"raw stdout"}
+    ,{"path":"docs/implementation/AD-42/W2R1-ACCEPTANCE/status_sync_r1/raw/final_closure_r4.stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","role":"raw stderr"}
+  ],
+  "cleanup": {"status":"closed","owned_temporary_or_unrelated_files":[],"removed_paths":[],"ambiguous_deferred":[],"historical_receipts_preserved":true,"unrelated_dirty_preserved":true,"other_agent_work_preserved":true,"sidecars_evidence_only":true},
+  "self_hash_excluded": true
+}

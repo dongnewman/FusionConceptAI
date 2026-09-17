@@ -1,0 +1,10 @@
+{
+  "schema": "M5ConditionalEGraphValidationReceiptV1",
+  "valid": false,
+  "status": "fixture_failure",
+  "python": {"valid": true, "exit": 0, "replay_percent": 100, "deterministic": true, "unmet_condition_merge": false, "budget_status": "terminal_deferred", "contradiction_status": "fail_closed"},
+  "julia": {"valid": false, "pid": 75144, "exit": 1, "typed_tests_collected": false, "failure_code": "invalid_upstream", "failure_path": "upstream", "detail": "build_inverse(d,a) returned invalid: MethodError no method matching canonical_hash(::NamedTuple) after e-graph canonical include"},
+  "diagnostic": {"pid": 68264, "exit": 1, "failure_code": "invalid_upstream", "failure_path": "upstream", "stdout_raw": "diagnostic_raw/probe.stdout.raw", "stderr_raw": "diagnostic_raw/probe.stderr.raw", "stdout_sha256": "2395ED4E61E15CEA92113A4FEE7C1CE9AB51C96D532611CBBB9BAE6BB0D7D19A", "stderr_sha256": "04CA271079D031435C5EC74E84DFAAF937F250A265C2223592B07F11BF0A9D79"},
+  "ceiling": "manufactured_conditional_egraph/screen_only",
+  "formal_credit": "none"
+}

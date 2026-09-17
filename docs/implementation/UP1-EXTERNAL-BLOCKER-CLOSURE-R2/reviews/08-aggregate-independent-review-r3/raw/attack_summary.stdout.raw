@@ -1,0 +1,13 @@
+record_kind=AggregateIndependentR3FreshAttackReceiptV2 TEST_ONLY=true non_evidence=true
+focused=22/22 exit=0
+r1_r2_attacks=all fail-closed or deterministic
+ledger_shape=UP1-EXTERNAL-CLOSURE-R2-STATE-LEDGER-V1 records=1 code_version=aggregate-gate-r2.2 prev_hash=null
+forged_prior=conflict prior_state_not_in_ledger no_publish=true
+missing_ledger_argument=typed_absence state_ledger_required terminal_deferred no_publish=true
+noop_packages_empty_overlay=verified deterministic_noop package_count=4 from ledger
+ledger_tamper_state/prev_hash/sequence/code_version/state_hash/input_fp/record_hash/unknown=invalid state_ledger_tampered no_publish=true
+ledger_rollback=conflict prior_state_not_in_ledger no_publish=true
+legal_multistep=aggregated,intake_changed,validated,aggregated sequences=1,2,3,4 final_verified
+concurrent_CAS=one intake_changed + one ledger_failure conflict; ledger_records=2
+claim_ceiling=T0/T1/T2/B00/B04/parent=false L4=0 ad_created=false ad_action=none
+unknown_root=AggregateInputError; authority_false=typed_absence; arbitrary_names=conflict; wrong_domain=invalid

@@ -1,0 +1,36 @@
+{
+  "record_kind": "raw_independent_review_validation",
+  "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+  "python_version": "3.13.5",
+  "pid": 82396,
+  "utc_start": "2026-09-15T14:33:58.4658780Z",
+  "utc_end": "2026-09-15T14:33:58.7520844Z",
+  "exit_code": 0,
+  "all_pass": false,
+  "failed_review_assertions": [
+    "AD49-W3B-CANDIDATE-BOUND-AXES-AND-JOIN_exact_paths: eight G1/G2 axis paths are described by repeated basenames without complete G1/G2 directory ownership",
+    "work_order_details: machine manifest does not carry exact product paths and per-work-order forbidden/exit/cleanup fields; report prose carries only part of this contract"
+  ],
+  "passed_core_assertions": [
+    "HEAD matches 4b69f55f7f80240147a65a22809dc1207824dde2",
+    "six work orders and counts 4/4/4/4/2/9",
+    "six-work-order dependency graph acyclic",
+    "G1/G2 constructor and receipt APIs found",
+    "no independent locator/factory/mapping API found",
+    "G1/G2 source and test files exist in working tree and are absent from HEAD",
+    "registry has no QualifiedRefV1 cross-type alias",
+    "claims remain false and no AD-44 product path is duplicated"
+  ],
+  "source_hashes": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a", "head_tracked": false},
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 30773, "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61", "head_tracked": false},
+    "src/Contracts/GenomeContractRegistry.jl": {"bytes": 2389, "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c", "head_tracked": true},
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6", "head_tracked": false},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"bytes": 11208, "sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db", "head_tracked": false}
+  },
+  "root_products": {
+    "report.md": {"bytes": 16987, "sha256": "0ec415606415cc63104b20e1f881265ef23b2a3391493bad0f5d59418a60e7fe"},
+    "manifest.json": {"bytes": 6798, "sha256": "3524881a79505e1b4eafa23438bb15b7283ccec3d76900f823a159831e89de46"},
+    "cleanup_inventory.md": {"bytes": 950, "sha256": "ec3313fe6a7222c18942c88506a6a54779d62554d9fb2b91e52a813d2fe0e617"}
+  }
+}

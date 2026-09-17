@@ -1,0 +1,79 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-postrun-r3",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "changes_requested",
+  "ready_for_serial_focused": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime_review": {
+    "focused_r3_command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+    "focused_r3_start_utc": "2026-09-14T19:44:41.1206494Z",
+    "focused_r3_end_utc": "2026-09-14T19:44:44.4838455Z",
+    "root_pid": 8900,
+    "exit_code": 1,
+    "first_testset": {"name": "H0-A fixture and contract schema", "pass": 5, "fail": 0, "error": 1, "total": 6},
+    "later_testsets_reached": false,
+    "stdout_sha256": "2c2440192446c975acd05859413361a3d568d048d8f530be379d31ef82678bd3",
+    "stderr_sha256": "a64e6d35d8d86249f2a54bdce3dc19890943cbc320899aa1ce2a73dcb15f1225",
+    "preflight_matching_julia_desc": 0,
+    "postflight_matching_julia_desc": 0,
+    "review_julia": "not_run",
+    "review_desc": "not_run"
+  },
+  "input_hashes": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {"sha256": "03aa28636626efa4a5fdcb2f806e23bfc3e166f0d6fcabe72ebb0e7c6001e8dc", "bytes": 56213},
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {"sha256": "1c2066a0fad0a324db263619d822e0e2d0422f73b23f6b702d74686a46383fdb", "bytes": 37453},
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "bytes": 1451},
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": {"sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "bytes": 299}
+  },
+  "findings": [
+    {
+      "id": "H0A-EMPTY-NAMEDTUPLE",
+      "severity": "blocking",
+      "status": "changes_requested",
+      "occurrences": [
+        {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "lines": [40, 41], "context": "_h0a_equation defaults"},
+        {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "lines": [166], "context": "N06H0AUnitEquationV1 inner constructor"},
+        {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "lines": [175], "context": "N06H0AUnitEquationV1 keyword defaults"}
+      ],
+      "narrow_repair": "Replace each NamedTuple{(),Tuple{}}() with NamedTuple() or NamedTuple{(),Tuple{}}(()) without changing field types or semantics."
+    },
+    {
+      "id": "H0A-RESERVED-KEY-SCAN",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "No reserved-word keyword assignment was found; :return is used as a quoted Symbol key."
+    },
+    {
+      "id": "H0A-DIGEST-SCAN",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "The test helper uses digest256_text and source hashes use digest256_text/canonical_hash; no raw fixed-character Digest256 construction remains."
+    },
+    {
+      "id": "H0A-DEFAULT-TYPE-SCAN",
+      "severity": "blocking",
+      "status": "changes_requested",
+      "summary": "Typed role_coefficients and role_directions fields have invalid empty NamedTuple defaults in both source and test; other inspected nothing defaults are compatible with Any/union fields or validated before reconstruction."
+    }
+  ],
+  "protected_evidence": {
+    "focused_r3_qa_sha256": "28a7bfd562c4da67fd1354c6a60b59da354f8e68395e94a736e4b73c6f8ffc02",
+    "focused_r3_input_manifest_sha256": "a23700af6d98bb2d024d4ea9f7eef79bb357774ecae5312fc16e72be0931f6c2",
+    "focused_r3_command_receipts_sha256": "4f30fbd39f513213504ecc714118b69f5e2b56b8a14c3b155ea2a353680a4fb3",
+    "focused_r3_launch_sha256": "941ee617e0f2f6a6150068acc92ffad31717951363e3aa4ac58cf1e4fb17a825",
+    "focused_r3_protected_before_after_sha256": "f9506fe2cf6c0729989e3947d5e705642a7c1a75c2c272bed374b19eb5a8ad7e"
+  },
+  "claim_ceiling": [
+    "static_postrun_review_only",
+    "focused_r3_exit_1_preserved",
+    "actual_a_terminal_deferred",
+    "no_H0A_dimensioned_law_credit",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_engineering",
+    "no_physical",
+    "no_R01_R10"
+  ]
+}

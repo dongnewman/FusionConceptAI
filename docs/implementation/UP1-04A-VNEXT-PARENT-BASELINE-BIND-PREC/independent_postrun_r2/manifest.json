@@ -1,0 +1,283 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent-postrun-r2",
+  "schema_version": "v1",
+  "kind": "independent_software_acceptance_review",
+  "reviewer": "different-luna-high",
+  "captured_utc": "2026-09-15",
+  "verdict": "pass_limited",
+  "status_boundary": {
+    "review_pending": true,
+    "accepted": false,
+    "local_scaffold_status": "accepted_limited",
+    "machine_node_accepted": false,
+    "present_authority": false,
+    "present_g1_child": false,
+    "present_g2_child": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "engineering": false,
+    "search": false,
+    "R01": false,
+    "R02": false,
+    "R03": false,
+    "R04": false,
+    "R05": false,
+    "R06": false,
+    "R07": false,
+    "R08": false,
+    "R09": false,
+    "R10": false
+  },
+  "write_scope": [
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_postrun_r2/report.md",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/independent_postrun_r2/manifest.json"
+  ],
+  "reviewed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "stable_cleanup": {
+    "json_path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.json",
+    "json_sha256": "fd144dec7154d28b2e554ed315f19dfbf5fd51f7faace84c68dda1502b4edc67",
+    "json_bytes": 7301,
+    "md_path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.md",
+    "md_sha256": "083dff7de0b1fbd05f69d4df5b0d95292b5691a62ca2e981fa46df9ca85b9e9c",
+    "md_bytes": 1407,
+    "status": "stable",
+    "captured_utc": "2026-09-15T04:32:13.8384524Z",
+    "owned_count": 20,
+    "all_exist": true,
+    "all_bytes_match": true,
+    "all_hash_match": true,
+    "scratch_cache_unrelated_code": [],
+    "removed": [],
+    "deferred": [],
+    "self_hash_excluded": [
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.md"
+    ],
+    "owned_set_hash_verification": {
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md": {
+        "exists": true,
+        "bytes": 1672,
+        "expected_bytes": 1672,
+        "sha256": "2fecd7b33ceeb26b2ced67de964565c63c48f5d14d8db0cc651fa26f50f2293a",
+        "expected_sha256": "2fecd7b33ceeb26b2ced67de964565c63c48f5d14d8db0cc651fa26f50f2293a",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_after_final.json": {
+        "exists": true,
+        "bytes": 3885,
+        "expected_bytes": 3885,
+        "sha256": "a21f940358a65582a5c221450d806dae9a1b5dbfa996f7b43c010248385e8751",
+        "expected_sha256": "a21f940358a65582a5c221450d806dae9a1b5dbfa996f7b43c010248385e8751",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_after.json": {
+        "exists": true,
+        "bytes": 3372,
+        "expected_bytes": 3372,
+        "sha256": "a582f684e74aa8015b03b520be9268aacbd633505450c957807394093593daca",
+        "expected_sha256": "a582f684e74aa8015b03b520be9268aacbd633505450c957807394093593daca",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_before.json": {
+        "exists": true,
+        "bytes": 4037,
+        "expected_bytes": 4037,
+        "sha256": "75eda85517eebe4d5649b910f5a1f88d293b70c276e89629c66439326ae70723",
+        "expected_sha256": "75eda85517eebe4d5649b910f5a1f88d293b70c276e89629c66439326ae70723",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/final_static_report_r1.json": {
+        "exists": true,
+        "bytes": 386262,
+        "expected_bytes": 386262,
+        "sha256": "335053c3f6f190d72bd41156685b1428ea0760cb3e092ea6b8b6e14ed030c222",
+        "expected_sha256": "335053c3f6f190d72bd41156685b1428ea0760cb3e092ea6b8b6e14ed030c222",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r1.json": {
+        "exists": true,
+        "bytes": 3839,
+        "expected_bytes": 3839,
+        "sha256": "223d5e8debb0ef9ec5593b3b4d091987154e161ec3971f9979802c49630d3667",
+        "expected_sha256": "223d5e8debb0ef9ec5593b3b4d091987154e161ec3971f9979802c49630d3667",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r2.json": {
+        "exists": true,
+        "bytes": 3839,
+        "expected_bytes": 3839,
+        "sha256": "197f80fb2bdf3acefd8d1026ca8fbd8d3f834c199a87f4e4fe3cd67adcee26c2",
+        "expected_sha256": "197f80fb2bdf3acefd8d1026ca8fbd8d3f834c199a87f4e4fe3cd67adcee26c2",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r3_debug.json": {
+        "exists": true,
+        "bytes": 4048,
+        "expected_bytes": 4048,
+        "sha256": "d15057f860a94a748a113efa93ffb3c1716f68bf35728ed47e66f9ba456357c6",
+        "expected_sha256": "d15057f860a94a748a113efa93ffb3c1716f68bf35728ed47e66f9ba456357c6",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r4.json": {
+        "exists": true,
+        "bytes": 3839,
+        "expected_bytes": 3839,
+        "sha256": "aea7fa1595e4beea873bc875885df06938bc683d39cec982ba3301ecc0bed888",
+        "expected_sha256": "aea7fa1595e4beea873bc875885df06938bc683d39cec982ba3301ecc0bed888",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r5.json": {
+        "exists": true,
+        "bytes": 1031,
+        "expected_bytes": 1031,
+        "sha256": "d06ca04f3492ecd1c14c753c6c062add5ba47b55ddf69710de16c8f17b144de7",
+        "expected_sha256": "d06ca04f3492ecd1c14c753c6c062add5ba47b55ddf69710de16c8f17b144de7",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json": {
+        "exists": true,
+        "bytes": 6096,
+        "expected_bytes": 6096,
+        "sha256": "67ace1b6cca32076d52df3685b3b5a1c3a4c659d65897be7de578545370b1812",
+        "expected_sha256": "67ace1b6cca32076d52df3685b3b5a1c3a4c659d65897be7de578545370b1812",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/process_cleanup_evidence_r1.json": {
+        "exists": true,
+        "bytes": 442,
+        "expected_bytes": 442,
+        "sha256": "a2fd8098d1b507623f985fb71533e38cf248e761b5b6784d0eb01b031d08c11c",
+        "expected_sha256": "a2fd8098d1b507623f985fb71533e38cf248e761b5b6784d0eb01b031d08c11c",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md": {
+        "exists": true,
+        "bytes": 2201,
+        "expected_bytes": 2201,
+        "sha256": "4b04e8ebfa4ba39723be644762df83d37b073529d88e510b111ccc3d7e875cd4",
+        "expected_sha256": "4b04e8ebfa4ba39723be644762df83d37b073529d88e510b111ccc3d7e875cd4",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r1.json": {
+        "exists": true,
+        "bytes": 1639,
+        "expected_bytes": 1639,
+        "sha256": "eb0aa3e5bc5afb6002a33ca45b58b7038f040e280c6e2d57036a84738d52835e",
+        "expected_sha256": "eb0aa3e5bc5afb6002a33ca45b58b7038f040e280c6e2d57036a84738d52835e",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r2.json": {
+        "exists": true,
+        "bytes": 1639,
+        "expected_bytes": 1639,
+        "sha256": "351574e347a24f2a4e48483b2c11ccc658e62281c223e607696b280a25f00bc5",
+        "expected_sha256": "351574e347a24f2a4e48483b2c11ccc658e62281c223e607696b280a25f00bc5",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r3_final.json": {
+        "exists": true,
+        "bytes": 1645,
+        "expected_bytes": 1645,
+        "sha256": "6729816f214a305e3e0f83c521d468e868ae42239887a67ceb9342705243912b",
+        "expected_sha256": "6729816f214a305e3e0f83c521d468e868ae42239887a67ceb9342705243912b",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": {
+        "exists": true,
+        "bytes": 26420,
+        "expected_bytes": 26420,
+        "sha256": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+        "expected_sha256": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": {
+        "exists": true,
+        "bytes": 3703,
+        "expected_bytes": 3703,
+        "sha256": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac",
+        "expected_sha256": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": {
+        "exists": true,
+        "bytes": 781,
+        "expected_bytes": 781,
+        "sha256": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+        "expected_sha256": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+        "bytes_match": true,
+        "hash_match": true
+      },
+      "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": {
+        "exists": true,
+        "bytes": 6430,
+        "expected_bytes": 6430,
+        "sha256": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+        "expected_sha256": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+        "bytes_match": true,
+        "hash_match": true
+      }
+    }
+  },
+  "manifest_current": {
+    "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json",
+    "bytes": 6096,
+    "sha256": "67ace1b6cca32076d52df3685b3b5a1c3a4c659d65897be7de578545370b1812",
+    "matches_stable_snapshot": true,
+    "status": "planned",
+    "accepted": false,
+    "acceptance_state": "review_pending",
+    "local_scaffold_status": "accepted_limited",
+    "manifest_self_hash": "excluded_from_manifest_hash"
+  },
+  "process_cleanup": {
+    "receipt": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/process_cleanup_evidence_r1.json",
+    "inspected_pid": 66044,
+    "pid_66044": "not_running_at_inspection",
+    "termination_issued": false,
+    "protected_pids": [
+      65224,
+      58068
+    ],
+    "final_julia": [],
+    "final_desc": [],
+    "review_time_julia_desc": []
+  },
+  "prior_findings": {
+    "source_test_fixture_static_hashes_unchanged": true,
+    "static_qa_receipts": "r1/r2/r3_final exit 0, 38/38",
+    "julia_receipts": "r1-r4 retained 49/52 with exit 1; r5 exit 0, 52/52",
+    "embedded_stream_hashes_recomputed": true,
+    "historical_failures_preserved": true,
+    "no_julia_desc_launched_by_review": true
+  },
+  "semantic_boundary": {
+    "public_state": "typed_absent/terminal_deferred only",
+    "present_source_backed_instance": false,
+    "present_authority": false,
+    "replace_cas_failure_atomic": true,
+    "mesh_provider_physical_execution": false,
+    "all_credits_false": true
+  }
+}

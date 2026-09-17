@@ -1,0 +1,29 @@
+{
+  "schema": "UP1.final-integration-independent-review.findings.v1",
+  "decision": "rework",
+  "findings": [
+    {
+      "id": "FI-R1-P1-001",
+      "severity": "P1",
+      "status": "open",
+      "path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/external-handoffs-r1/conditional_schedule.json",
+      "claim": "The conditional handoff schedule does not explicitly preserve the frozen formal route after T2.",
+      "evidence": {
+        "ordering": "T0 -> recheck -> T1 -> T2 -> B00/B04; no stage may be skipped or inferred from local preparation",
+        "declared_stages": ["S0", "S1", "T0", "recheck", "T1", "T2", "B00_or_B04_review"],
+        "required_order": ["T0", "recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"]
+      },
+      "repair_required": "Add explicit aggregate, UP2-00, UP1-04B, UP1-04 and UP2-01 stages with ordered transitions and failure behavior; refresh the handoff manifest/cleanup hashes; obtain independent re-review.",
+      "formal_gate_action": "none"
+    }
+  ],
+  "closed_checks": [
+    "latest W1/W2/W3/W4 review paths and pass_limited conclusions",
+    "zero usable external inputs and unchanged-input no-new-AD/no-S3 policy",
+    "no formal gate credit; R01-R10/39-node/B00/B04/L4/parent remain open",
+    "26 lossless W1/W2/W3 external absence IDs covered by four packets",
+    "unknown endpoint/name/credential not invented and packets not_sent",
+    "read-only git hygiene and four historical raw retain decisions",
+    "handoff exact-set and non-self hashes"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "accepted": false,
+  "after_hashes": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {
+      "bytes": 5251,
+      "sha256": "111d5a2ceb9f0364c1cc7efda26d1bb9013577862ac30bd00ff9f3321c5c2642"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 27969,
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {
+      "bytes": 2332,
+      "sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {
+      "bytes": 8412,
+      "sha256": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e"
+    }
+  },
+  "before_hashes": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {
+      "bytes": 5247,
+      "sha256": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 27969,
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {
+      "bytes": 2332,
+      "sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40"
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {
+      "bytes": 8382,
+      "sha256": "cb817e87837c929c07d511674b89a715229a5e555599ff21a36227f9b9bf4e74"
+    }
+  },
+  "changes": [
+    "added const G = FusionConceptAI after Base.include",
+    "qualified both G._g3sf_admit_fault_seam_v1 calls",
+    "updated static QA repair manifest path and qualified-call text checks"
+  ],
+  "claim_ceiling": [
+    "contract_only",
+    "review_pending",
+    "accepted_false",
+    "no_compiler",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -c <namespace/hash audit>",
+      "exit_code": 0,
+      "result": "zero unqualified G3SF/g3_sf/private fault tokens; before/after hashes recorded"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+      "exit_code": 0,
+      "result": "all static checks true; manifest hashes matched; Julia/DESC not invoked"
+    },
+    {
+      "command": "Julia/DESC execution",
+      "exit_code": null,
+      "result": "not run by instruction"
+    }
+  ],
+  "historical_failure": {
+    "artifact": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_postrun_r1",
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+    "exit_code": 1,
+    "failure": "UndefVarError: G3SFEndpointV1 not defined",
+    "failure_path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:22",
+    "later_testsets_reached": false,
+    "pid": 49960
+  },
+  "review_id": "UP2-01-G3-SOURCE-FEEDBACK-V1-repair-r5",
+  "review_pending": true,
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-repair-r5-command-receipts-v1",
+  "scope": "test and static-QA namespace repair; static-only evidence; no focused rerun"
+}

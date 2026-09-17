@@ -1,0 +1,170 @@
+{
+  "blockers": [
+    "N06 mutation dispatch still uses spec.id/field.id instead of field_path + mutation_kind + source locator/type",
+    "n06_validate_mutation accepts only a projection and spec; it cannot revalidate the full E0 binding before a receipt"
+  ],
+  "checked_at_utc": "2026-09-14T04:05:12.284855+00:00",
+  "checks": {
+    "actual_fields_arity": {
+      "caller_occurrences": [
+        "_n06_actual_fields(package::CandidateStatePackageV5)",
+        "_n06_actual_fields(package)",
+        "_n06_actual_fields(package)",
+        "_n06_actual_fields(package)",
+        "_n06_actual_fields(package)",
+        "_n06_actual_fields(reordered)"
+      ],
+      "projection_and_join_callers_destructure_ten": true,
+      "return_tuple_arity": 10
+    },
+    "command_exits": {
+      "git_diff_check": 0,
+      "json_parse": 0,
+      "julia_desc_process_sweep": 0,
+      "validate_plan": 0
+    },
+    "fixture_contract": {
+      "execution_claims": {
+        "compile_calls": 0,
+        "formal_B04": false,
+        "physical": false,
+        "provider": false,
+        "provider_calls": 0,
+        "solver_calls": 0
+      },
+      "mutation_count": 5,
+      "schema_validation_only": true,
+      "selector_count": 4,
+      "selectors_exact": true,
+      "static_negative_controls": [
+        "duplicate_resource_port_id",
+        "forged_source_locator",
+        "forged_source_type",
+        "same_dimension_exponent_mismatch",
+        "missing_power_flow_partner",
+        "foreign_valid_flow_link",
+        "reordered_network_dynamic_path",
+        "wrong_mutation_kind_for_target"
+      ]
+    },
+    "frozen_hashes": {
+      "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": {
+        "actual": "a9d78114db29a0ff16b785fe08318884c073e6a433ec16a4c403445ada004ec8",
+        "expected": "a9d78114db29a0ff16b785fe08318884c073e6a433ec16a4c403445ada004ec8",
+        "match": true
+      },
+      "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": {
+        "actual": "9cc85ec2cf0f4e00cf4f613705cca15fd2cd5be23d56042eeb3a96d3fcb80f44",
+        "expected": "9cc85ec2cf0f4e00cf4f613705cca15fd2cd5be23d56042eeb3a96d3fcb80f44",
+        "match": true
+      },
+      "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": {
+        "actual": "9a19b54ae2c92f8b557ffc79e144e4bf8e6cc4e2fa1bf04f50ae871f66a31783",
+        "expected": "9a19b54ae2c92f8b557ffc79e144e4bf8e6cc4e2fa1bf04f50ae871f66a31783",
+        "match": true
+      },
+      "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": {
+        "actual": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af",
+        "expected": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af",
+        "match": true
+      }
+    },
+    "mutation_dispatch_blocker": {
+      "field_lookup_by_id": true,
+      "id_dictionary_present": true,
+      "kind_bound_in_validator": true,
+      "mutation_api_has_package_e0": false,
+      "mutation_routes_by_field_id": true
+    },
+    "source_checks": {
+      "E0_program_exception_and_fail_closed_paths": true,
+      "conversion_dimensions_and_law_hash": true,
+      "exact_identity_hashes": true,
+      "exception_taxonomy_text_and_gates": true,
+      "field_locator_type_checks": true,
+      "full_E0_validator_before_actual_fields": true,
+      "g3_effort_flow_and_selected_link": true,
+      "no_external_physical_claim": true,
+      "no_order_or_fixed_index_selector": true,
+      "unique_g1_equation_and_four_key_occurrence": true,
+      "unique_g2_interface_region_patch": true
+    },
+    "test_checks": {
+      "actual_A_package_and_E0": true,
+      "detached_foreign_wrong_kind_negatives": true,
+      "dimension_and_flow_negatives": true,
+      "five_mutation_rows_source_derived": true,
+      "identity_and_admission_negatives": true,
+      "no_external_execution_claim": true
+    }
+  },
+  "claim_ceiling": "static_precheck_only_no_julia_or_acceptance",
+  "commands": [
+    {
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json; json.load(open('test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json', encoding='utf-8'))"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:05:10.317006+00:00",
+      "name": "json_parse",
+      "started_utc": "2026-09-14T04:05:10.265452+00:00",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:05:10.517159+00:00",
+      "name": "validate_plan",
+      "started_utc": "2026-09-14T04:05:10.317021+00:00",
+      "stderr": "",
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 325,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:05:10.586126+00:00",
+      "name": "git_diff_check",
+      "started_utc": "2026-09-14T04:05:10.517173+00:00",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 \u673a\u5236\u57fa\u56e0\u7ec4.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 \u573a\u2014\u51e0\u4f55\u57fa\u56e0\u7ec4.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 \u5b9e\u73b0\u2014\u63a7\u5236Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)(\\.exe)?$' } | Select-Object ProcessId,Name,CommandLine | ConvertTo-Json -Compress"
+      ],
+      "exit": 0,
+      "finished_utc": "2026-09-14T04:05:12.284832+00:00",
+      "name": "julia_desc_process_sweep",
+      "started_utc": "2026-09-14T04:05:10.586141+00:00",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "frozen_hashes": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "a9d78114db29a0ff16b785fe08318884c073e6a433ec16a4c403445ada004ec8",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "9cc85ec2cf0f4e00cf4f613705cca15fd2cd5be23d56042eeb3a96d3fcb80f44",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "9a19b54ae2c92f8b557ffc79e144e4bf8e6cc4e2fa1bf04f50ae871f66a31783",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "limitations": [
+    "No Julia/DESC or N06 runner was started; all findings are static and adversarial code-path review.",
+    "Existing focused R1/R2/R3 failures remain immutable historical evidence and were not edited.",
+    "Any change to the four frozen files invalidates this precheck."
+  ],
+  "review_id": "E2-N06-independent-precheck-r4",
+  "reviewer": "different-Luna/high static reviewer",
+  "verdict": "changes_requested"
+}

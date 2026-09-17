@@ -1,0 +1,198 @@
+{
+  "schema": "AD55.f0_s2.independent_test_receipts.v1",
+  "scope": "f0_s2_execution_r2",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "stages": [
+    {
+      "task": "AD-55",
+      "stage": "f0",
+      "mode": "f0",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --project=\"D:\\006-Programing\\LMC\\FusionConceptAI\" \"D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\AD-55\\CURRENT-HEAD-F0-S2-SOURCE-FACTORY\\independent_review_r1\\f0\\f0_probe.jl\" f0",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 81652,
+      "started_utc": "2026-09-16T01:25:05.0698995Z",
+      "ended_utc": "2026-09-16T01:25:45.0007109Z",
+      "exit_code": 0,
+      "strictly_serial": true,
+      "stdout": {
+        "path": "f0\\stdout.raw",
+        "bytes": 27812,
+        "sha256": "4a55e9fc415ef503032021086261b4847793002ac4359fcb50d9f9031d82d6d7"
+      },
+      "stderr": {
+        "path": "f0\\stderr.raw",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "process_before": {},
+      "process_after": {}
+    },
+    {
+      "task": "AD-55",
+      "stage": "s2_run1",
+      "mode": "s2",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --project=\"D:\\006-Programing\\LMC\\FusionConceptAI\" \"D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\AD-55\\CURRENT-HEAD-F0-S2-SOURCE-FACTORY\\independent_review_r1\\s2_run1\\s2_probe.jl\" s2",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 89396,
+      "started_utc": "2026-09-16T01:25:48.8031681Z",
+      "ended_utc": "2026-09-16T01:26:25.1590125Z",
+      "exit_code": 0,
+      "strictly_serial": true,
+      "stdout": {
+        "path": "s2_run1\\stdout.raw",
+        "bytes": 66,
+        "sha256": "81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d"
+      },
+      "stderr": {
+        "path": "s2_run1\\stderr.raw",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "process_before": {},
+      "process_after": {}
+    },
+    {
+      "task": "AD-55",
+      "stage": "s2_run2",
+      "mode": "s2",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --project=\"D:\\006-Programing\\LMC\\FusionConceptAI\" \"D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\AD-55\\CURRENT-HEAD-F0-S2-SOURCE-FACTORY\\independent_review_r1\\s2_run2\\s2_probe.jl\" s2",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 101616,
+      "started_utc": "2026-09-16T01:26:28.9003272Z",
+      "ended_utc": "2026-09-16T01:27:02.3865062Z",
+      "exit_code": 0,
+      "strictly_serial": true,
+      "stdout": {
+        "path": "s2_run2\\stdout.raw",
+        "bytes": 66,
+        "sha256": "81036d5a60f5c15455c9e80915b0a11c432000e91d2ee07875f67b93aa16a14d"
+      },
+      "stderr": {
+        "path": "s2_run2\\stderr.raw",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "process_before": {},
+      "process_after": {}
+    }
+  ],
+  "strict_serial": true,
+  "plan_validator": {
+    "exit_code": 0,
+    "stdout_sha256": "33a3bf410412f68b953ccf3894f90c2422382633f2cf738cc07d41b41b177f22",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observed": {
+      "record_kind": "planning_document_validation_not_physics_or_implementation_acceptance",
+      "plan_version": "v4-upgrade-plan-20260914.1",
+      "checks": "pass",
+      "markdown_files_checked": 31,
+      "relative_links_checked": 534,
+      "task_count": 39,
+      "task_dag_acyclic": true,
+      "sol_prompt_characters": 493,
+      "snapshot_files_checked": 16,
+      "preexisting_files_checked": 0,
+      "errors": []
+    }
+  },
+  "canonical_outputs": {
+    "count": 18,
+    "all_equal": true
+  },
+  "negative_controls": {
+    "run1": {
+      "status": "pass",
+      "controls": {
+        "g3_contract": "fail_closed",
+        "g1_head": "fail_closed",
+        "g2_blob": "fail_closed",
+        "g3_axis": "fail_closed",
+        "g1_axis": "fail_closed",
+        "g1_nothing": "typed_absent",
+        "g1_length": "fail_closed",
+        "g2_nothing": "typed_absent",
+        "g1_hash": "fail_closed",
+        "g3_hash": "fail_closed",
+        "g2_contract": "fail_closed",
+        "g2_path": "fail_closed",
+        "g3_length": "fail_closed",
+        "g1_blob": "fail_closed",
+        "g2_length": "fail_closed",
+        "g2_head": "fail_closed",
+        "g3_nothing": "typed_absent",
+        "g1_dirty": "fail_closed",
+        "g1_path": "fail_closed",
+        "g2_dirty": "fail_closed",
+        "g3_blob": "fail_closed",
+        "g3_dirty": "fail_closed",
+        "g3_path": "fail_closed",
+        "g2_axis": "fail_closed",
+        "g1_contract": "fail_closed",
+        "g3_head": "fail_closed",
+        "g2_hash": "fail_closed"
+      },
+      "claims": {
+        "source_authority": false,
+        "trusted": false,
+        "candidate_identity_created": false,
+        "final_identity_created": false,
+        "provider": false,
+        "mesh": false,
+        "solver": false,
+        "engineering_readiness": false,
+        "physics": false,
+        "search": false,
+        "R01_R10": false,
+        "L4": 0
+      }
+    },
+    "run2": {
+      "status": "pass",
+      "controls": {
+        "g3_contract": "fail_closed",
+        "g1_head": "fail_closed",
+        "g2_blob": "fail_closed",
+        "g3_axis": "fail_closed",
+        "g1_axis": "fail_closed",
+        "g1_nothing": "typed_absent",
+        "g1_length": "fail_closed",
+        "g2_nothing": "typed_absent",
+        "g1_hash": "fail_closed",
+        "g3_hash": "fail_closed",
+        "g2_contract": "fail_closed",
+        "g2_path": "fail_closed",
+        "g3_length": "fail_closed",
+        "g1_blob": "fail_closed",
+        "g2_length": "fail_closed",
+        "g2_head": "fail_closed",
+        "g3_nothing": "typed_absent",
+        "g1_dirty": "fail_closed",
+        "g1_path": "fail_closed",
+        "g2_dirty": "fail_closed",
+        "g3_blob": "fail_closed",
+        "g3_dirty": "fail_closed",
+        "g3_path": "fail_closed",
+        "g2_axis": "fail_closed",
+        "g1_contract": "fail_closed",
+        "g3_head": "fail_closed",
+        "g2_hash": "fail_closed"
+      },
+      "claims": {
+        "source_authority": false,
+        "trusted": false,
+        "candidate_identity_created": false,
+        "final_identity_created": false,
+        "provider": false,
+        "mesh": false,
+        "solver": false,
+        "engineering_readiness": false,
+        "physics": false,
+        "search": false,
+        "R01_R10": false,
+        "L4": 0
+      }
+    },
+    "equivalent": true,
+    "pass": true
+  }
+}

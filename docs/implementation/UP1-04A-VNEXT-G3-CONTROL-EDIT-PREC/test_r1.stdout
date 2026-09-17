@@ -1,0 +1,56 @@
+G3 control child editability V1 closed contract: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:68
+  Got exception outside of a @test
+  MethodError: no method matching semantic_view(::G3ControlProvenanceSlotV1)
+  
+  Closest candidates are:
+    semantic_view(!Matched::SourceBudgetRefV1)
+     @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Genomes\FieldGeometryPrimitives.jl:55
+    semantic_view(!Matched::OperatorParameterSpecV1)
+     @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\IR\OperatorRegistry.jl:100
+    semantic_view(!Matched::TypedASTProgramV1)
+     @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\IR\TypedAST.jl:428
+    ...
+  
+  Stacktrace:
+    [1] _canonical(x::Any)
+      @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Canonical\CanonicalJSON.jl:59
+    [2] (::Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}})(i::Int64)
+      @ Main.FusionConceptAI .\none:0
+    [3] iterate(::Base.Generator{Vector{Int64}, Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}}})
+      @ Base .\generator.jl:47
+    [4] join(io::IOBuffer, iterator::Base.Generator{Vector{Int64}, Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}}}, delim::String)
+      @ Base .\strings\io.jl:350
+    [5] sprint(::Function, ::Base.Generator{Vector{Int64}, Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}}}, ::Vararg{Any}; context::Nothing, sizehint::Int64)
+      @ Base .\strings\io.jl:114
+    [6] sprint(::Function, ::Base.Generator{Vector{Int64}, Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}}}, ::Vararg{Any})
+      @ Base .\strings\io.jl:107
+    [7] join(iterator::Base.Generator{Vector{Int64}, Main.FusionConceptAI.var"#392#393"{Vector{Tuple{Symbol, Any}}, Vector{String}}}, delim::String)
+      @ Base .\strings\io.jl:357
+    [8] _canonical_pairs(pairs::Vector{Tuple{Symbol, Any}})
+      @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Canonical\CanonicalJSON.jl:66
+    [9] _canonical(x::Any)
+      @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Canonical\CanonicalJSON.jl:51
+   [10] canonical_json(x::Any)
+      @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Canonical\CanonicalJSON.jl:196
+   [11] canonical_hash(x::Any)
+      @ Main.FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\Canonical\Hashes.jl:5
+   [12] make_source_record()
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:50
+   [13] make_payload(body::G3ControlSourceBodyV1)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:56
+   [14] make_payload()
+      @ Main D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:55
+   [15] macro expansion
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:69 [inlined]
+   [16] macro expansion
+      @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [17] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_control_child_editability_v1_tests.jl:69
+   [18] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+   [19] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [20] _start()
+      @ Base .\client.jl:552
+Test Summary:                                   | Error  Total  Time
+G3 control child editability V1 closed contract |     1      1  4.5s

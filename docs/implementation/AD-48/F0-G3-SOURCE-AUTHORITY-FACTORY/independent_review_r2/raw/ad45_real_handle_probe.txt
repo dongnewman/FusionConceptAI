@@ -1,0 +1,11 @@
+record_kind=AD48-F0-R2-real-AD45-handle-compatibility-probe
+ad45_handle=fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7
+ad45_handle_version=v5
+command=julia --startup-file=no --project=. raw/ad45_real_handle_probe.jl
+preflight_julia_processes=none
+scope=realization status=fail_closed reason=foreign_common_handle
+scope=control status=fail_closed reason=foreign_common_handle
+scope=binding status=fail_closed reason=foreign_common_handle
+scope=bundle status=fail_closed reason=foreign_common_handle
+EXIT=0
+interpretation=the factory rejects the frozen AD45 common binding handle before source declaration construction because line 482 requires fusionconceptai://candidate/ rather than the frozen candidate-binding namespace

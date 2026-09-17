@@ -1,0 +1,25 @@
+{
+  "schema": "m4-b-residual-lowering-delivery-validation-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/delivery_r1",
+  "status": "delivery_complete_review_pending",
+  "validation_kind": "documentation_only_upstream_evidence_record",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "runtime_execution_by_recorder": "not_run",
+  "pid_or_in_process": "documentation_in_process",
+  "started_utc": "not_applicable",
+  "ended_utc": "not_applicable",
+  "exit_code": "not_applicable",
+  "stdout_raw": "archive/raw/delivery_record.stdout.raw",
+  "stderr_raw": "archive/raw/delivery_record.stderr.raw",
+  "combined_raw": "archive/raw/delivery_record.stdout.raw",
+  "upstream_test_execution": "../test_execution_r1/validation_receipt.json",
+  "upstream_integration": "../integration_r1/validation_receipt.json",
+  "assertions": {"initial_51_plus_2_failure_preserved":true,"typed_vector_single_point_repair":true,"python_exact_residual_zero":true,"julia_53_of_53":true,"two_python_integration_replays":true,"two_julia_integration_replays":true,"all_integration_exits_zero":true,"roles_pairwise_distinct":true,"shared_entry_unchanged":true,"preflight_variable_collision_non_counted":true},
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "failure_history": ["../test_execution_r1/command_02_julia_tests.*","../integration_r1/archive/harness_capture_abort_20260916T0718Z/"],
+  "code_tests": "not_run_by_recorder; upstream receipts retained",
+  "formal_credit": [],
+  "parent_goal_closed": false
+}
+

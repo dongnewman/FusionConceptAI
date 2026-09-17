@@ -1,0 +1,19 @@
+{
+  "schema": "M5R2DirtyInventoryV1",
+  "capture": "git status --porcelain=v1 -z plus per-path bytes/SHA-256",
+  "repository_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "captured_utc": "2026-09-17T03:27:05.0798986Z",
+  "status_path_count": 384,
+  "status_sha256": "bbad0f19b16e5ef8cacf0ac3c974c0e47b6ff09aebf1f329cc035252a2aa1c54",
+  "coverage": "all status paths are captured by the command; dependency closure below is content-hashed explicitly; pre-existing paths are protected",
+  "dependency_paths": [
+    {"path": "src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl", "bytes": 26187, "sha256": "477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59"},
+    {"path": "test/RuntimeV4/M4Isolated/manufactured_inverse_feedback_v1_tests.jl", "bytes": 15357, "sha256": "f2279400356a786c83a13ad3f82400af052e64f5bbc8ceefbf0e8119e6903ea2"},
+    {"path": "test/RuntimeV4/M4Isolated/oracles/inverse_feedback_oracle_v1.py", "bytes": 5811, "sha256": "6e13536aabb62f039bffe6c286e11323347b86b4d3c146270f38e8bf8129d0ab"},
+    {"path": "src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl", "bytes": 26258, "sha256": "284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209"},
+    {"path": "test/RuntimeV4/M4Isolated/manufactured_auto_composition_v1_tests.jl", "bytes": 13210, "sha256": "42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08"},
+    {"path": "test/RuntimeV4/M4Isolated/oracles/auto_composition_oracle_v1.py", "bytes": 7823, "sha256": "e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c"},
+    {"path": "Project.toml", "bytes": 563, "sha256": "923b78938e12c27e836b269d71a539ae7bb292c9fe9f8cb92f9f9a8cea1370e2"},
+    {"path": "Manifest.toml", "bytes": 3348, "sha256": "85074b7a5bd543c0b4155f44db0733d21d53cfd0bf4c2de6704dc858357717e7"}
+  ]
+}

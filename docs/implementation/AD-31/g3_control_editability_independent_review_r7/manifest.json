@@ -1,0 +1,76 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-independent-review-r7",
+  "record_kind": "independent_proposal_review",
+  "decision_id": "AD-31-G3-CONTROL-EDIT-AUDIT",
+  "revision": "R7",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "implementation_accepted": false,
+  "reviewer": "/root/g3_control_arch_independent_review",
+  "review_date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_porcelain_rows_observed": 306,
+  "proposal_path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r7/revised_proposal.md",
+  "proposal_sha256": "6eb25f7bb000a37db19ce1435f2848b88c91aa0e08da2b546bc1723bc63069b5",
+  "proposal_manifest_path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r7/manifest.json",
+  "proposal_manifest_sha256": "deaa040c779f1fa554a75cb5fc364489050e80ed71088569aff76026ee4fa762",
+  "prior_revision_path": "docs/implementation/AD-31/g3_control_editability_audit/repair_r6/revised_proposal.md",
+  "prior_revision_sha256": "457a40ca7b6c2cdf93c109fe12810f32008a283de89be6e776928a24bde5db65",
+  "review_inputs": [
+    {
+      "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+      "role": "old control semantics and g3_edit_fault mode-only comparison"
+    },
+    {
+      "path": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+      "role": "sibling realization and source identity boundary"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+      "role": "source feedback contract boundary"
+    },
+    {
+      "path": "docs/implementation/AD-31/acceptance.md",
+      "sha256": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+      "role": "AD-31 acceptance ceiling"
+    }
+  ],
+  "closed_r6_findings": [
+    "all parent_binding, child identity, source_record_ref and source_payload_ref values derive from actual payload fields",
+    "initial and typed-absence hashes contain one grouped child key serialization with all four key fields",
+    "forged refs, including URI-matching/digest-mismatching refs, fail closed"
+  ],
+  "contract_checks": {
+    "old_control_semantics": "pass_limited",
+    "single_existing_fault_mode_edit": true,
+    "immutable_source_payload_and_identity": true,
+    "typed_absence_and_zero_history": true,
+    "full_operation_and_state_chain": true,
+    "failure_canonical_bytes_unchanged_required": true,
+    "no_hash_recursion_or_dual_key_serialization_found": true,
+    "control_only_no_t0_no_realization_dependency": true,
+    "physical_evidence_deferred": true
+  },
+  "required_before_implementation_acceptance": [
+    "execute all derived-ref constructor checks against actual payload fields",
+    "implement grouped-key initial/absence hash recipes without legacy duplicates",
+    "verify empty/first/second chain and duplicate/reordered/omitted/forged failure paths",
+    "prove exactly one existing fault.mode change and byte-identical failed state",
+    "retain physical/provider/engineering/solver/search and R01-R10 claim ceiling"
+  ],
+  "scope_boundary": {
+    "core_source_modified": false,
+    "tests_modified": false,
+    "julia_run": false,
+    "desc_run": false,
+    "physical_run": false,
+    "actual_child_authority": false,
+    "t0_authority": false
+  },
+  "report_path": "docs/implementation/AD-31/g3_control_editability_independent_review_r7/report.md",
+  "self_hash_excluded": true
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2ProhibitedTokensV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "match", "tokens", "action"],
+  "properties": {
+    "schema": {"const": "M5SearchR2ProhibitedTokensV1"},
+    "match": {"const": "case_insensitive_exact_token_or_claim_boundary"},
+    "tokens": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "action": {"const": "reject_execution_claim_and_set_review_pending_no_publish"}
+  }
+}

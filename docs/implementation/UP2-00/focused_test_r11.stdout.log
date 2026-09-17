@@ -1,0 +1,48 @@
+Test Summary:                  | Pass  Total  Time
+UP2-00 fixture is schema-bound |    7      7  1.2s
+Test Summary:                 | Pass  Total  Time
+UP2-00 real N01 N02 N05 slice |  123    123  5.8s
+Test Summary:                                           | Pass  Total  Time
+UP2-00 A projection entrance is typed and package-bound |    3      3  0.2s
+Test Summary:                                           | Pass  Total   Time
+UP1-01 G1 V2 contract and fixture-driven component core |   47     47  10.1s
+Test Summary:                           | Pass  Total  Time
+UP1-01 G1 fail-closed negative controls |   21     21  0.9s
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  7.8s
+Test Summary:                               | Pass  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   59     59  1.8s
+Test Summary:                                     | Pass  Total  Time
+UP1-02 G2 physical and provider evidence boundary |    8      8  0.1s
+Test Summary:                                  | Pass  Total   Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  11.7s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  3.5s
+Test Summary:                                         | Pass  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   23     23  0.4s
+UP2-00 actual A package projection slice: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:158
+  Got exception outside of a @test
+  ArgumentError: UP2 flux interface ref must be v5
+  Stacktrace:
+    [1] UP2FluxPairV1
+      @ D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\TypedPrecompilerContractV1.jl:97 [inlined]
+    [2] up2_projection_from_a(package::CandidateStatePackageV5{FusionConceptAI.MechanismGenomeV5, FusionConceptAI.FieldGeometryGenomeV5, FusionConceptAI.RealizationControlGenomeV5})
+      @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\TypedPrecompilerValidatorV1.jl:149
+    [3] macro expansion
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:161 [inlined]
+    [4] macro expansion
+      @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+    [5] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:159
+    [6] include(fname::String)
+      @ Base.MainInclude .\client.jl:489
+    [7] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_up2_00_contract.jl:10
+    [8] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+    [9] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [10] _start()
+      @ Base .\client.jl:552
+Test Summary:                            | Pass  Error  Total   Time
+UP2-00 actual A package projection slice |    1      1      2  56.2s

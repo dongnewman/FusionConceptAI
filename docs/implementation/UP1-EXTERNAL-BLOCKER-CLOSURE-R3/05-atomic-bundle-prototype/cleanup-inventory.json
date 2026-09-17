@@ -1,0 +1,28 @@
+{
+  "schema": "UP1.atomic-bundle.prototype-cleanup-inventory.v1",
+  "scope": "05-atomic-bundle-prototype and its owned tools/test directories only",
+  "unrelated_dirty_work_preserved": true,
+  "mutated_contracts": false,
+  "mutated_r2": false,
+  "mutated_production_source_or_tests": false,
+  "network_or_external_send": false,
+  "ad_s3_julia_desc_solver": false,
+  "credentials_or_trust_store": false,
+  "python_process_after_runs": false,
+  "cleanup_actions": [
+    {"target": "owned temporary CAS test directories", "action": "not retained by focused tests", "recoverable": true},
+    {"target": "other workspace files and dirty worktree", "action": "untouched", "recoverable": true}
+  ],
+  "evidence": {
+    "focused_runs": [
+      {"id": 1, "exit": 0, "raw": "raw/focused_test_1.output.raw", "pid": "raw/focused_test_1.pid.txt", "utc": "raw/focused_test_1.utc.txt", "sha256": "raw/focused_test_1.output.sha256.txt"},
+      {"id": 2, "exit": 0, "raw": "raw/focused_test_2.output.raw", "pid": "raw/focused_test_2.pid.txt", "utc": "raw/focused_test_2.utc.txt", "sha256": "raw/focused_test_2.output.sha256.txt"}
+    ],
+    "test_count": 9,
+    "command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py"
+  },
+  "status": "prototype_pass_limited",
+  "formal_credit": "none",
+  "authority_credit": false,
+  "no_publish": true
+}

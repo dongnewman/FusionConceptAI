@@ -1,0 +1,38 @@
+{
+  "schema_version": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-precheck-r4-v1",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "pass_limited",
+  "serial_focused_ready": true,
+  "review_pending": true,
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {"full_status_entry_count": 3764, "status_sha256_utf8_lf": "ec49de5e6a96f876049a21962002151dce4299e3eb9365706c6759a411a70de4", "matching_julia_desc_process_count": 0},
+  "diagnostic_r2": {
+    "exit_code": 0,
+    "pid": 54756,
+    "focused_test_rerun": false,
+    "source_sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "stdout": {"bytes": 540, "sha256": "efdf0e74947ca0990bb0aa5ba7fb874d253c144a9094d2672d7cc43ad46e5fbf"},
+    "stderr": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "error_code": "structural_contradiction",
+    "expected_error": "boundary_value_unit_mismatch:face-x-min",
+    "julia_or_desc_executed": true,
+    "claim_ceiling": "diagnostic_only"
+  },
+  "r4_repair": {
+    "changed_assertions": 2,
+    "explicit_predicate_direction": true,
+    "full_negative_token_preserved": true,
+    "source_fixture_static_qa_unchanged": true,
+    "source_hash": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "test_before_hash": "c747c174471ebd3c15812a5d25bfecff0389ed6e3dcb7eec888fd47730d8b007",
+    "test_after_hash": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "fixture_hash": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "static_qa_hash": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"
+  },
+  "qa": {"static_qa_exit": 0, "static_qa_status": "pass", "json_parse": "pass", "repair_r4_manifest_target_hash_check": "pass", "julia_or_desc_executed": false, "provider_or_mesh_execution": false},
+  "credit_ceiling": ["contract_only_static", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"]
+}
+

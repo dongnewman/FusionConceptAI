@@ -1,0 +1,253 @@
+{
+  "schema": "w24-g2-child-r2-evidence-v1",
+  "status": "review_pending",
+  "accepted": true,
+  "accepted_scope": "sealed_execution_status_snapshot",
+  "comparability_status": "changes_requested",
+  "sol_ruling": {
+    "decision": "accept_limited_snapshot_only",
+    "reviewer_result": "pass_limited",
+    "pair_comparability": "changes_requested",
+    "credit_boundary": "no_provider_engineering_physical_discovery_credible_candidate_or_R01_R10_credit"
+  },
+  "run": "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2",
+  "starting_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runner_sha256": "ad5f7864da35bcd355ac256a20574648bab1372055954a71596bb631348d1520",
+  "pair_plan_sha256": "e5ae0e6706b55f6163ebda907acfcad491223a8af7e6280d788bd3ca7e82edd1",
+  "command": "julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2 --g2-child > runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2.stdout.log 2> runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2.stderr.log",
+  "observed_process_exit": 0,
+  "elapsed_seconds": 4775.824,
+  "environment": {
+    "julia_version": "1.10.5",
+    "julia_threads": 24,
+    "blas_threads": 12,
+    "logical_cpu_threads": 24,
+    "python_version": "3.13.5",
+    "desc_provider_executed": true,
+    "desc_solver_exit": 0,
+    "desc_inspection_exit": 0,
+    "desc_output_schema_validated": true,
+    "post_run_julia_desc_processes": 0
+  },
+  "resource_observation": {
+    "logical_cpu_threads": 24,
+    "julia_threads": 24,
+    "blas_threads": 12,
+    "sampled_peak_julia_working_set_bytes": 1802055680,
+    "memory_limit": "not available",
+    "concurrent_repo_julia_or_desc_processes_before": 0,
+    "concurrent_repo_julia_or_desc_processes_during": 1,
+    "concurrent_repo_julia_or_desc_processes_after": 0
+  },
+  "stage_evidence": {
+    "candidate": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "elapsed_seconds": 881.5592655
+    },
+    "upstream_DESC": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 0,
+      "scientific_status": "observed",
+      "elapsed_seconds": 824.7976013
+    },
+    "physics": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 4,
+      "scientific_status": "fail",
+      "elapsed_seconds": 446.4976021
+    },
+    "engineering": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 0,
+      "scientific_status": "fail",
+      "elapsed_seconds": 61.8803703
+    },
+    "verification": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 0,
+      "scientific_status": "fail",
+      "elapsed_seconds": 468.9570528
+    },
+    "whole": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 0,
+      "scientific_status": "deferred",
+      "elapsed_seconds": 81.7423374
+    },
+    "manifest": {
+      "execution_state": "completed",
+      "program_exit_code": 0,
+      "solver_exit_code": 0,
+      "scientific_status": "deferred",
+      "elapsed_seconds": 0.0
+    }
+  },
+  "sealed_outcome": {
+    "outcome": "deferred",
+    "physical_validation": "unsupported",
+    "p5_ready": false,
+    "credible_device_count": 0,
+    "claim_ceiling": "screen_only"
+  },
+  "identity": {
+    "parent_candidate_hash": "3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e",
+    "child_candidate_hash": "7214413813420fdc494ef96dfb1de7fe7de38db5a1489e574dfbe25890842a55",
+    "parent_context_hash": "0f7521a157ca710b195f82757a8d204058d99231b12346f9c8f37d9be526b10d",
+    "child_context_hash": "9f408a27de5a6206c2d046d8d6e6a577f9b1641b11a3c308ef4730b2ff24f582",
+    "parent_g1_hash": "8f3049841f15797beb91fbac410a578221d12330b626a41d00a5b53ace20fd92",
+    "child_g1_hash": "8f3049841f15797beb91fbac410a578221d12330b626a41d00a5b53ace20fd92",
+    "parent_g2_hash": "96089d1e1b3c6379b6dad366886e6ab9089b594c92ea9d804361020b27d690ec",
+    "child_g2_hash": "9c35419afb4ba5f4c9f78058079fa0ba012de1dd5a465a355629c9f03a548ae1",
+    "parent_g3_hash": "d8d1e0a4157336a63d39c43566630d2f16b60b0c5b8318cca7d640b1f6d9b50a",
+    "child_g3_hash": "d8d1e0a4157336a63d39c43566630d2f16b60b0c5b8318cca7d640b1f6d9b50a",
+    "child_request_hash": "7f4054738b6ba96c545d975e14df8859f31247d9d2a05e0de2af7343068f5471",
+    "child_receipt_hash": "bf717efaf67f51ec374a8d7c57aa2ce63d384be4dd922facfc36d60c8d36d203",
+    "reused_checkpoints": false
+  },
+  "artifact_sha256": {
+    "stdout_log": "27a779db2573a1494c49023c0c1fa14ea290ea09630b64be202b5d0b730ccd1b",
+    "stderr_log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate.json": "1cd550c7b60a9e30daa238d6e2d2e58242a8bfec4448220340bf0ffc5a38c9e1",
+    "upstream.json": "c257998056dc9cb26bfd63add4f4763fece48c5c300aff3fc6c3a3ae4f7a6f65",
+    "upstream_receipt.json": "89db57f9e077fcd0d86bd364192ff460f6d1f513d9ea548e16fe3dba0682025c",
+    "physics.json": "74eddc98aaed4b7dd9f340a3ab2213f5508a6bc31191a2da2f13a594a03b442c",
+    "engineering.json": "41a9e7e951bb148836b78b147e6a839d702a50d94a264e7be2850a60fc37b087",
+    "verification.json": "600b01f434299db40e818cbc189756476704d88756efb5b47c6220128a64a4a4",
+    "result.json": "1aca626e12b9538760b494537ce8487ba2199816e27de72d1ffed6000932ee67",
+    "execution_manifest.json": "5e2d6709722c71b83b5b8f2e24be5b751b07a0ec78138d3cb642581714c20768",
+    "execution_ledger.jsonl": "e03dbe788ca239436acb734e71dfce7b83c581995cc80c2ac7988524881b83b8",
+    "runner.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "w24_spatial_manifest_audit.json": "226ecb353d24f202c17fab18d6b724e9f38de750db7ea3448161cc56fc6a474c",
+    "w24_spatial_g2_pair_audit_attempt.json": "320e0f461270f10aa08648aa5feedfad794506b134bf38129f48e6e4cd288cd7"
+  },
+  "pair_audit": {
+    "command": "python scripts/audit_v4_spatial_g2_pair.py runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1 runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2 runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/w24_spatial_g2_pair_audit.json",
+    "exit_code": 1,
+    "status": "failed_before_output",
+    "reason": "paired source hash set differs",
+    "parent_source_records": 433,
+    "child_source_records": 449,
+    "child_only_source_records": 16,
+    "verifier_parent_sha256": "a8f42022a8be19c4a1960678cf41e97cc157f33f429464d17335da4f08ec886b",
+    "verifier_child_sha256": "bbf9a7e3fc2f6c611f05194ed9909dc22b9c7f4f9cf0694ea7ef6573813b16d6",
+    "classification": "changes_requested",
+    "result_artifact_written": false
+  },
+  "single_run_manifest_audit": {
+    "command": "python scripts/verify_v4_spatial_manifest.py runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2 runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/w24_spatial_manifest_audit.json",
+    "exit_code": 1,
+    "status": "fail_due_to_post_run_shared_worktree_source_bytes",
+    "mismatch_count": 5,
+    "passed_checks": [
+      "identity_ok",
+      "manifest_result_hash_present",
+      "result_json_bytes_bound",
+      "process_exit_semantics_ok",
+      "four_scenarios_ok",
+      "authority_ceiling_ok",
+      "ledger_recovery_history_ok",
+      "initial_head_ok"
+    ],
+    "mismatches": [
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "test/GenomeV5/G2/up1_g2_contract_tests.jl"
+    ],
+    "interpretation": "source bytes changed in the shared worktree after the runner sealed its manifest while UP1 G2 work was active; execution artifacts and identity checks remain preserved"
+  },
+  "credit_boundary": {
+    "physical": false,
+    "engineering": false,
+    "discovery": false,
+    "r01_r10": false,
+    "b00": "pending"
+  },
+  "review": {
+    "owner": "gpt-5.6-luna",
+    "reviewer": "different Luna",
+    "requested": true
+  },
+  "independent_limited_evidence_snapshot": {
+    "reviewer": "different Luna",
+    "status": "pass",
+    "scope": "read-only single-run artifact identity, terminal ledger, process/exit semantics, four-case presence, claim ceiling and artifact hash snapshot",
+    "limitations": [
+      "paired source-set comparability remains changes_requested",
+      "no physical, engineering, provider, discovery or R01-R10 credit"
+    ],
+    "credit": {
+      "physical": false,
+      "engineering": false,
+      "provider": false,
+      "discovery": false,
+      "r01_r10": false,
+      "credible_device_count": 0
+    }
+  },
+  "scientific_classification": {
+    "physics": {
+      "raw_stage_status": "fail",
+      "classification": "scientific_fail",
+      "solver_exit_code": 4,
+      "stopping_reason": "iteration_limit",
+      "physical_validation_credit": 0
+    },
+    "engineering": {
+      "raw_stage_status": "fail",
+      "classification": "scientific_fail",
+      "solver_exit_code": 0,
+      "physical_validation_credit": 0
+    },
+    "verification": {
+      "raw_stage_status": "fail",
+      "classification": "scientific_fail",
+      "solver_exit_code": 0,
+      "physical_validation_credit": 0
+    },
+    "whole": {
+      "raw_stage_status": "deferred",
+      "classification": "deferred",
+      "physical_validation_credit": 0
+    },
+    "runner_exit_does_not_promote_scientific_status": true
+  },
+  "artifact_verification": {
+    "algorithm": "SHA-256",
+    "artifact_count": 14,
+    "verified_against_run_files": true,
+    "scope": "the 14 artifact_sha256 entries below; no run file was modified",
+    "paths": [
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2.stdout.log",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2.stderr.log",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/candidate.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/upstream.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/upstream_receipt.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/physics.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/engineering.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/verification.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/result.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/execution_manifest.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/execution_ledger.jsonl",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/runner.exit",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/w24_spatial_manifest_audit.json",
+      "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/w24_spatial_g2_pair_audit_attempt.json"
+    ]
+  },
+  "archive_edit_boundary": {
+    "allowed_paths": [
+      "docs/implementation/W24-G2-CHILD-R2/acceptance.md",
+      "docs/implementation/W24-G2-CHILD-R2/evidence_manifest.json"
+    ],
+    "run_artifacts_modified": false,
+    "julia_or_desc_started_for_archive_edit": false,
+    "status_remains": "review_pending"
+  }
+}

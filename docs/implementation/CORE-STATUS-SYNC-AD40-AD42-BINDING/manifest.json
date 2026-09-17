@@ -1,0 +1,121 @@
+{
+  "schema_version": "core-status-sync-ad40-ad42-binding-v1",
+  "record_kind": "documentation_status_synchronization",
+  "task_id": "CORE-STATUS-SYNC-AD40-AD42-BINDING",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "core_document_index_sync_for_ad39_ad40_ad40_w2_ad41_ad42_and_g3_binding_typed_absence_ceiling",
+  "claim_ceiling": "architecture_and_static_planning_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_utc": "2026-09-15T09:15:42Z",
+  "modified_files": [
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/implementation/README.md"
+  ],
+  "forbidden_modified": [
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "src/**",
+    "test/**",
+    "runs/**",
+    "historical_receipts/**"
+  ],
+  "output_hashes": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 41320, "sha256": "27BB81C54D7A62CD2275116B776C7915B3884E2BDBC31EA23A3DA0DF214A3FBE"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes": 11114, "sha256": "F792C792FDE709AD1672F039FA3BBF0ECE3FA85F034B13E772B7967F5C5F1B2F"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 95949, "sha256": "841DDC9B2C4891A712951D712F9947BB27BD08D51A3B977960FD96D746BC7183"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 77295, "sha256": "A5DBBCA671F6F988D9B769D2C5C96D2861BEB9F7B8FE3F28385CA9BBED29614F"},
+    "docs/implementation/README.md": {"bytes": 22822, "sha256": "CDEF2F737E763A09CC8FD27DED3230813B5C4070261934F2C222EC09A82E3AB2"}
+  },
+  "task_manifest": {
+    "task_count": 39,
+    "sha256": "7D1700038F78DD1EA872CBC3FD6DA29C5071596DAE40D0C43B598B501195BAE8",
+    "dag_acyclic": true,
+    "machine_node_delta": 0
+  },
+  "status_decisions": {
+    "AD-39": "accepted_limited_static_audit_only",
+    "AD-40": "accepted_limited_repository_design_source_authority_architecture_and_seven_work_orders",
+    "AD-40-W2": "accepted_limited_repaired_typed_absence_authoring_observation_excluded_from_authority",
+    "AD-41": "accepted_limited_static_scheduling_audit_only",
+    "AD-42": "accepted_limited_cycle_break_and_W0_W2R1_preparation_boundary",
+    "G3-binding-precursor": "accepted_limited_typed_absence_software_only_machine_node_pending"
+  },
+  "claims": {
+    "g1_g2_public_refs": false,
+    "g1_g2_payload_authority": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "validation": {
+    "validate_plan": {
+      "pid": 60852,
+      "utc_start": "2026-09-15T09:15:42.2748013Z",
+      "utc_end": "2026-09-15T09:15:42.5264285Z",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 497,
+      "task_count": 39,
+      "dag_acyclic": true,
+      "raw_stdout": "status/validate_plan.stdout.txt",
+      "raw_stderr": "status/validate_plan.stderr.txt"
+    },
+    "task_manifest_integrity": {
+      "pid": 34120,
+      "utc_start": "2026-09-15T09:15:42.3449553Z",
+      "utc_end": "2026-09-15T09:15:42.3576956Z",
+      "exit_code": 0,
+      "task_count": 39,
+      "sha256": "7D1700038F78DD1EA872CBC3FD6DA29C5071596DAE40D0C43B598B501195BAE8",
+      "raw_stdout": "status/task_manifest.stdout.txt",
+      "raw_stderr": "status/task_manifest.stderr.txt"
+    },
+    "scoped_diff_check": {
+      "pid": 84520,
+      "utc_start": "2026-09-15T09:15:42.2131386Z",
+      "utc_end": "2026-09-15T09:15:42.2718517Z",
+      "exit_code": 0,
+      "raw_stdout": "status/diff_check.stdout.txt",
+      "raw_stderr": "status/diff_check.stderr.txt"
+    },
+    "actual_link_measurement": {
+      "pid": 82540,
+      "utc_start": "2026-09-15T09:15:42.3447518Z",
+      "utc_end": "2026-09-15T09:15:42.3605471Z",
+      "exit_code": 0,
+      "edited_document_link_tokens": 429,
+      "validator_relative_links_checked": 497,
+      "raw_stdout": "status/link_count.stdout.txt",
+      "raw_stderr": "status/link_count.stderr.txt"
+    },
+    "scope_check": {
+      "attempt1": {"pid": 13740, "utc_start": "2026-09-15T09:17:33.0678137Z", "utc_end": "2026-09-15T09:17:33.0918716Z", "exit_code": 1, "reason": "unordered checker false mismatch; no file mutation", "raw_stdout": "status/scope_check_attempt1.stdout.txt", "raw_stderr": "status/scope_check_attempt1.stderr.txt"},
+      "final": {"pid": 33420, "utc_start": "2026-09-15T09:18:43.6769416Z", "utc_end": "2026-09-15T09:18:43.7137443Z", "exit_code": 0, "exact_owned_set": 14, "raw_stdout": "status/scope_check_final.stdout.txt", "raw_stderr": "status/scope_check_final.stderr.txt"}
+    }
+  },
+  "cleanup": {
+    "owned_temporary_or_unrelated_code_files_found": [],
+    "removed_paths": [],
+    "cleanup_status": "closed_no_owned_cleanup_required",
+    "preexisting_dirty_protected": true,
+    "historical_receipts_protected": true
+  },
+  "report_sha256": "self_hash_excluded",
+  "manifest_sha256": "self_hash_excluded"
+}

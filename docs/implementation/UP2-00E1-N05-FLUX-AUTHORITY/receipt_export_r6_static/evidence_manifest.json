@@ -1,0 +1,74 @@
+{
+  "schema_version": "author-static-repair-manifest-v1",
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY-receipt-export",
+  "repair_id": "R6-json3-roundtrip",
+  "status": "ready_for_independent_precheck",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "input_hashes": [
+    {
+      "path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+      "sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+      "bytes": 36290
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+      "sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+      "bytes": 1116
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+      "sha256": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+      "bytes": 15955
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+      "sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+      "bytes": 410
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl",
+      "sha256": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+      "bytes": 5034
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_checker.jl",
+      "sha256": "b4d62e9ddf806809889225d704929593357145e38ed840df7c705446bdb1f331",
+      "bytes": 7431
+    },
+    {
+      "path": "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl",
+      "sha256": "373ba3d631cdf40a68d472b915e5814247e245f16ba765a3f23cdb231aff90da",
+      "bytes": 9758
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl",
+      "sha256": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+      "bytes": 577
+    }
+  ],
+  "change": "JSON3.Object recursive typed conversion plus serialize/re-read for every forged envelope; valid file-read path remains",
+  "protected_history": [
+    "receipt_export_focused_r1",
+    "receipt_export_focused_r2",
+    "receipt_export_r1",
+    "receipt_export_r3",
+    "receipt_export_r4_static",
+    "receipt_export_r5_static"
+  ],
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "process_sweep_count": 0,
+    "retry": "not_authorized"
+  },
+  "credit_boundary": {
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

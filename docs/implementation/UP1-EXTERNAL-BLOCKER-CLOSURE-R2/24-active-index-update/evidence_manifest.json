@@ -1,0 +1,45 @@
+{
+  "schema": "UP1-R2.evidence-manifest.v1",
+  "task": "active-index-update",
+  "status": "accepted_limited_with_test_scope_deferred",
+  "policy": "Exact bytes and SHA-256 for every evidence file except this manifest; no files outside this directory are owned.",
+  "entries": [
+    {
+      "path": "acceptance.md",
+      "bytes": 1075,
+      "sha256": "21B30487F6906B07B2D15C476B63A22C8C6A9D260FE3585B0484FB91ECB89F7C"
+    },
+    {
+      "path": "contract.md",
+      "bytes": 1279,
+      "sha256": "B99DB0778398027F80BBD887050D8DCC8B7A60F5D537B6CBF1524313BF646976"
+    },
+    {
+      "path": "raw/after_validation.txt",
+      "bytes": 724,
+      "sha256": "D5A7B560154DFEFADC3BEBBB02882D390A30A39EF1CACCAD83A4C232257779B8"
+    },
+    {
+      "path": "raw/before_capture.txt",
+      "bytes": 571,
+      "sha256": "12FD06E0DA698CCBE1504E9C865E9FE512ABA33B97B862EB7D120D48DDA852A0"
+    },
+    {
+      "path": "raw/diff.patch",
+      "bytes": 1451,
+      "sha256": "0F099568501C65087443C39010CD75E6B07D66E1C5DFE3AAB005B7FED6969610"
+    },
+    {
+      "path": "raw/final_validation.txt",
+      "bytes": 1392,
+      "sha256": "32ACC0D1E12CFEB291DEF61C08B19B0D56C416C16B5F55A0CCCBCC60F24CEAAD"
+    },
+    {
+      "path": "run_receipt.json",
+      "bytes": 2069,
+      "sha256": "08682B8A3E6077C54FCDC4FEBB1F9D64FDB98C3607FEF981CDD8EB8AFF9CC744"
+    }
+  ],
+  "entry_count": 7,
+  "manifest_self_check": "excluded_by_policy"
+}

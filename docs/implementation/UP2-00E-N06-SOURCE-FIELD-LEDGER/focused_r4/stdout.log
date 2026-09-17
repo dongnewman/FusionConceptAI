@@ -1,0 +1,44 @@
+Test Summary:                                           | Pass  Total   Time
+UP1-01 G1 V2 contract and fixture-driven component core |   47     47  11.1s
+Test Summary:                           | Pass  Total  Time
+UP1-01 G1 fail-closed negative controls |   21     21  0.9s
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  8.7s
+Test Summary:                               | Pass  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   59     59  2.2s
+Test Summary:                                     | Pass  Total  Time
+UP1-02 G2 physical and provider evidence boundary |    8      8  0.1s
+Test Summary:                                  | Pass  Total   Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  11.9s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  4.0s
+Test Summary:                                         | Pass  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   23     23  0.2s
+UP2-00E N06 actual A projection and typed boundary: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\n06_source_field_ledger_mapping_tests.jl:163
+  Got exception outside of a @test
+  type Dict has no field source
+  Stacktrace:
+    [1] getproperty
+      @ .\Base.jl:37 [inlined]
+    [2] _n06_actual_fields(package::CandidateStatePackageV5{FusionConceptAI.MechanismGenomeV5, FusionConceptAI.FieldGeometryGenomeV5, FusionConceptAI.RealizationControlGenomeV5})
+      @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\N06SourceFieldLedgerMappingV1.jl:310
+    [3] n06_projection_from_a(package::CandidateStatePackageV5{FusionConceptAI.MechanismGenomeV5, FusionConceptAI.FieldGeometryGenomeV5, FusionConceptAI.RealizationControlGenomeV5}, e0::FusionConceptAI.UP2CandidatePhysicalBindingV1)
+      @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\N06SourceFieldLedgerMappingV1.jl:406
+    [4] macro expansion
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\n06_source_field_ledger_mapping_tests.jl:174 [inlined]
+    [5] macro expansion
+      @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+    [6] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\n06_source_field_ledger_mapping_tests.jl:164
+    [7] include(fname::String)
+      @ Base.MainInclude .\client.jl:489
+    [8] top-level scope
+      @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_n06_source_field_ledger_mapping.jl:7
+    [9] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+   [10] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [11] _start()
+      @ Base .\client.jl:552
+Test Summary:                                      | Pass  Error  Total     Time
+UP2-00E N06 actual A projection and typed boundary |    8      1      9  1m06.8s

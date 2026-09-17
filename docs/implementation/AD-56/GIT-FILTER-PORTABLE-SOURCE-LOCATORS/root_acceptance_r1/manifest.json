@@ -1,0 +1,72 @@
+{
+  "schema": "AD56.root_acceptance_r1.manifest.v1",
+  "task": "AD-56 git-filter-portable source locators",
+  "decision": "accepted_limited",
+  "accepted_scope": "git-filter-portable source locator software repair",
+  "implementation_path": "docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS",
+  "independent_review": {"verdict":"pass_limited","accepted":false},
+  "correction_review": {"verdict":"pass_limited","accepted":false,"metadata_only":true},
+  "baseline_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "task_manifest": {
+    "path":"docs/v4_multitopology_generation/task_manifest.json",
+    "raw_file_bytes_sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "git_blob_oid_separate":"f514c155e2004378a61ee3efc4d0be9085eeb017"
+  },
+  "plan": {"markdown_files":31,"relative_links":534,"tasks":39,"acyclic":true},
+  "layer_tests": {
+    "execution":"serial",
+    "G1":{"exit":0,"pass":"35/35"},
+    "G2":{"exit":0,"pass":"35/35"},
+    "G3":{"exit":0,"pass":"356/356"},
+    "core_autocrlf_true_fixture":true,
+    "mutation_and_negative_controls":true
+  },
+  "adversarial_probe": {
+    "exit":0,
+    "assertions":"20/20",
+    "valid_present":true,
+    "source_length_relabel_fail_closed":true,
+    "source_hash_relabel_fail_closed":true,
+    "head_blob_relabel_fail_closed":true,
+    "head_relabel_fail_closed":true
+  },
+  "current_repo_g3": {
+    "realization":"present",
+    "control":"present",
+    "binding":"present",
+    "bundle":"present",
+    "all_filtered_working_oids_match_head_blobs":true,
+    "all_four_clean":true
+  },
+  "claims": {
+    "source_authority":false,
+    "trusted":false,
+    "trusted_source_identity":false,
+    "candidate":false,
+    "candidate_identity":false,
+    "final":false,
+    "final_identity":false,
+    "provider":false,
+    "mesh":false,
+    "solver":false,
+    "engineering":false,
+    "engineering_readiness":false,
+    "physics":false,
+    "search":false,
+    "R01_R10":false,
+    "R01-R10":false,
+    "L4":0
+  },
+  "AD55_boundary": {
+    "fresh_F0_required":true,
+    "fresh_S2_required":true,
+    "independent_review_current_S2_probe_substitutes_formal_AD55":false,
+    "prior_failure_history_preserved":true
+  },
+  "cleanup": {
+    "path":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/root_acceptance_r1/cleanup_inventory.json",
+    "status":"pass"
+  },
+  "write_scope":"docs/implementation/AD-56/GIT-FILTER-PORTABLE-SOURCE-LOCATORS/root_acceptance_r1/** only",
+  "root_acceptance_ran_julia_or_desc":false
+}

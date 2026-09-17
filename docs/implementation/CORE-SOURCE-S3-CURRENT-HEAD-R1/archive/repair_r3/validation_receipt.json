@@ -1,0 +1,14 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.repair-r3-validation.v1",
+  "status":"completed_review_pending",
+  "command_path":"archive/repair_r3/validation_exact_command.txt",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid_or_in_process":"in_process",
+  "exit_code":0,
+  "raw":{"stdout":{"path":"validation.stdout.raw","bytes":221,"sha256":"8c22379d0ae82ffe08bbcc32aa042bdf63ea33e4753666228ea11847ea38f3f6"},"stderr":{"path":"validation.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"combined":{"path":"validation.combined.raw","bytes":222,"sha256":"30ee08faf6f90ff98f5c680697e37b95def1ecc5dcedec0deeb0013ebd1acffa","rule":"stdout || stderr"}},
+  "checks":{"json_parse":true,"stderr_sha256_fields_all_current_candidate_and_r2":true,"stderr_hash_length_64":true,"stderr_hash_file_match":true,"combined_concat":true,"static_vector":[4,5,12,1,47,0],"historical_zero_vector_not_current":true,"fingerprint_replay":true,"s3_rerun":false,"Julia":false,"DESC":false,"mesh":false,"solver":false},
+  "failure_history":{"prior_expected_hash_length_65":true,"classification":"program_validation_failure_preserved; corrected by independent file recomputation","not_scientific_failure":true},
+  "input_hashes":{"input_fingerprint":"840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5","head":"b2c04d8339774635aaecd73651efcdb101e01b5d"},
+  "output_hashes":{"corrected_static_measurement_receipt":"archive/repair_r3/corrected_static_measurement_receipt.json","top_level_validation":"../../validation_receipt.json"},
+  "artifact_hashes":{"command":"0111d816fb5e1697639312cf68492283046842eed0a38f9d3a1b72ce93c7f19c","stdout":"8c22379d0ae82ffe08bbcc32aa042bdf63ea33e4753666228ea11847ea38f3f6","stderr":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","combined":"30ee08faf6f90ff98f5c680697e37b95def1ecc5dcedec0deeb0013ebd1acffa"}
+}

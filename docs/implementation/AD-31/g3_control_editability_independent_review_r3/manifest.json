@@ -1,0 +1,68 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-independent-review-r3",
+  "record_kind": "independent_read_only_proposal_review",
+  "review_id": "AD-31-g3-control-editability-independent-review-r3",
+  "reviewer": "different gpt-5.6-luna/high",
+  "review_date": "2026-09-15",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "R3 control-only immutable source payload, typed editable state and acyclic replace_fault_source_payload history",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pre_write_dirty_porcelain_rows": 306,
+  "read_only_core_source_test_review": true,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_physical_run": false,
+  "written_files": [
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r3/report.md",
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r3/manifest.json"
+  ],
+  "report_sha256": "cb00dbb3a86e8e296c43af5ae7d16e5a8e5479187b3cdd1d17ed3f8b4b1b68d9",
+  "reviewed_inputs": {
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r3/revised_proposal.md": "e5ccc09ea1982ad4401c66f10f58b1853312eaf2ea52dc7815a263f6752a136b",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r3/manifest.json": "b4af7504b6e273256d7e58a0fda022f896a9bb55a8b9910fc33469296c4d5854",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r2/revised_proposal.md": "4762ba5f31742ef9e3490c3336a66ff56dde4a5ed06e587c100a3b970f439fe1",
+    "src/GenomeV5/G3/ControlGenomeV5.jl": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": "0034f0c494df9a61f6f753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"
+  },
+  "closed_checks": [
+    "R2 body/source record and typed-absent field/type/status closure",
+    "immutable source versus editable body semantics",
+    "initial status included in frozen initial hash",
+    "operation previous-state hash chain without current-state recursion",
+    "full-history duplicate/order and prior-state linkage rules",
+    "single existing fault.mode edit with old ControlGenome semantics",
+    "control-only sibling, no T0 dependency, physical status deferred"
+  ],
+  "required_repairs": [
+    "bind source_record_ref into operation record/hash and exact state identity",
+    "complete source_payload_ref with parent/child/source-record identity or equivalent recomputable identity",
+    "replace unparameterized operation_history Tuple with a closed typed representation",
+    "freeze one explicit five-layer canonical field recipe",
+    "define ZERO_DIGEST and typed reason details for initial/physical-deferred states",
+    "freeze canonical-byte failure preservation rule"
+  ],
+  "claim_ceiling": {
+    "contract_proposal": false,
+    "software_implementation": false,
+    "actual_child_authority": false,
+    "T0_authority": false,
+    "T1_mapping": false,
+    "provider": false,
+    "engineering": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

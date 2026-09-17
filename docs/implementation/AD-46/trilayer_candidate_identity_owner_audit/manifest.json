@@ -1,0 +1,151 @@
+{
+  "schema_version": "AD46-trilayer-candidate-identity-owner-readiness-audit-v1",
+  "task_id": "AD46-TRILAYER-CANDIDATE-IDENTITY-OWNER-AUDIT",
+  "status": "readiness_audit_only",
+  "accepted": false,
+  "claim_ceiling": "static_contract_readiness_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "task_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39,
+    "dag_acyclic": true
+  },
+  "products": [
+    {
+      "path": "docs/implementation/AD-46/trilayer_candidate_identity_owner_audit/report.md",
+      "bytes": 12198,
+      "sha256": "6a4a61a99d1d398c5ba991835e9a098a7bcc8b39b2d168759e4738ce3db9810e"
+    },
+    {
+      "path": "docs/implementation/AD-46/trilayer_candidate_identity_owner_audit/manifest.json",
+      "self_hash_excluded": true
+    },
+    {
+      "path": "docs/implementation/AD-46/trilayer_candidate_identity_owner_audit/cleanup_inventory.md",
+      "bytes": 1349,
+      "sha256": "99550549388ba519f8f54f8c7039199c3f5a2b4a14b7abf586989858b633bc7b"
+    }
+  ],
+  "archive": {
+    "directory": "docs/implementation/AD-46/trilayer_candidate_identity_owner_audit/archive",
+    "raw_only": true,
+    "validation_stdout": {
+      "path": "archive/validation_r2_stdout.json",
+      "bytes": 1404,
+      "sha256": "7b325a5f7fdbaa412dad559c72689d20acf4112714510d7e9a2f29af1dee62a4"
+    },
+    "validation_stderr": {
+      "path": "archive/validation_r2_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "prior_attempts_preserved": true
+  },
+  "independent_review_sidecar": {
+    "directory": "docs/implementation/AD-46/trilayer_candidate_identity_owner_audit/independent_review_r1",
+    "verdict": "changes_requested",
+    "accepted": false,
+    "preserved": true,
+    "formal_product": false
+  },
+  "observed_state": {
+    "ad44_w3a_verdict": "pass_limited",
+    "ad44_w3a_root_acceptance": "accepted_limited",
+    "ad44_w3a_checks": "47/47",
+    "ad44_w3a_claim_ceiling": "software_source_provenance_only",
+    "ad44_w3a_frozen_products": 4,
+    "ad44_w3a_head_source_paths": "absent_untracked",
+    "ad44_w3b_products_present": false,
+    "ad45_a_handle_present": true,
+    "ad45_a_candidate_identity_created": false,
+    "ad45_a_independent_review_verdict": "pass_limited",
+    "ad45_a_independent_review_present": true,
+    "ad45_a_independent_review_accepted": true,
+    "ad45_a_independent_review_checks": "59/59",
+    "ad45_a_root_acceptance": "accepted_limited",
+    "ad45_a_accepted_scope": "software_common_qualified_ref_binding_handle_only",
+    "ad45_a_frozen_envelope": {
+      "bytes": 9612,
+      "sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc"
+    },
+    "ad45_a_frozen_receipt": {
+      "bytes": 5776,
+      "sha256": "adf9caefb31398c4cf4fd04dc443fb8f409d7485e1ee04f125a28e3b427a9b64"
+    },
+    "ad45_a_repaired_history": [
+      "five_negative_control_raw_artifact_sha256_values_one_character_short",
+      "negative_control_raw_receipt_missing_canonical_input_namespace_nonce_or_uuid_allocator_generation_cas_token_trusted_time_source",
+      "wall_clock_result_not_exact_union_token"
+    ],
+    "ad45_b_products_present": false,
+    "g3_source_scaffold_present": true,
+    "g3_present_authority_available": false,
+    "parent_authority_available": false,
+    "identity_input_freeze_blocked_on": [
+      "fresh_G1_G2_G3_source_backed_declarations_and_factory",
+      "G3_source_backed_declaration_binding_axes_child_control_feedback_provenance",
+      "candidate_bound_axes_and_G2_mapping",
+      "independent_source_identity_reviews"
+    ],
+    "t0_present_closed": true,
+    "identity_products_created_by_ad46": false,
+    "r01_r10_credit": false
+  },
+  "work_orders": [
+    {
+      "id": "AD46-IDENTITY-INPUT-FREEZE",
+      "product_count": 2,
+      "result_union": [
+        "IdentityInputFreezeV1",
+        "AbsentIdentityInputFreezeV1",
+        "FailedIdentityInputFreezeV1"
+      ],
+      "status": "blocked_pending_fresh_trilayer_source_and_identity_inputs"
+    },
+    {
+      "id": "AD46-TRILAYER-JOIN",
+      "product_count": 2,
+      "result_union": [
+        "TrilayerJoinV1",
+        "AbsentTrilayerJoinV1",
+        "FailedTrilayerJoinV1"
+      ],
+      "status": "blocked_pending_identity_input_freeze"
+    },
+    {
+      "id": "AD46-IDENTITY-MATERIALIZATION",
+      "product_count": 2,
+      "result_union": [
+        "CandidateIdentityV1",
+        "AbsentCandidateIdentityV1",
+        "FailedCandidateIdentityV1"
+      ],
+      "status": "blocked_external_identity_owner_and_trilayer_inputs"
+    }
+  ],
+  "final_validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 88012,
+    "utc_start": "2026-09-15T12:05:54.776608Z",
+    "utc_end": "2026-09-15T12:05:55.271639Z",
+    "exit_code": 0,
+    "plan_validator_pid": 69520,
+    "plan_validator_exit_code": 0,
+    "scoped_git_diff_check_exit_code": 0,
+    "dirty_status_lines_observed": 332,
+    "checks_all_true": true
+  },
+  "forbidden_scope": [
+    "identity_or_candidate_hash_generation",
+    "binding_materialization",
+    "T0_T1_T2",
+    "UP2",
+    "provider_mesh_solver_physics_search",
+    "R01_R10_credit",
+    "core_task_manifest_src_test_fixture_changes"
+  ],
+  "independent_review_required": true,
+  "three_layer_reduction_allowed": false
+}

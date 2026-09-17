@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2BudgetEventV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["stage", "scope", "sequence", "counter", "before", "after", "limit", "remaining", "event_hash"],
+  "properties": {
+    "stage": {"enum": ["egraph_saturation", "qd_emission", "mcts_emission", "synthetic_screen", "replay"]},
+    "scope": {"enum": ["seed", "global"]},
+    "sequence": {"type": "integer", "minimum": 0},
+    "counter": {"enum": ["eclass_created", "enode_created", "rewrite_applied", "trace_rows", "qd_proposals", "qd_cells", "qd_members", "mcts_roots", "mcts_expansions", "mcts_proposals", "unique_prefixes", "screen_evaluations", "proposal_receipts", "global_trace_rows"]},
+    "before": {"type": "integer", "minimum": 0}, "after": {"type": "integer", "minimum": 0}, "limit": {"type": "integer", "minimum": 0}, "remaining": {"type": "integer", "minimum": 0},
+    "event_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

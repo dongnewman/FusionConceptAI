@@ -1,0 +1,32 @@
+{
+  "record_kind": "UP2-00E0-R1-post-review-observation",
+  "captured_at": "2026-09-14T02:07:21.998547+00:00",
+  "current_files": [
+    {
+      "path": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl",
+      "bytes": 22760,
+      "sha256": "1261df1fe2faf0d68414db99b96496bbf29a43f429ec93e5f61a583fefad2323"
+    },
+    {
+      "path": "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl",
+      "bytes": 10900,
+      "sha256": "336dbd637fa63fe8008f7ffa7c96e21e070acd50e184dcfb98b160d4878e4e2d"
+    },
+    {
+      "path": "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json",
+      "bytes": 2193,
+      "sha256": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a"
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl",
+      "bytes": 332,
+      "sha256": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a"
+    }
+  ],
+  "classification_fix_observed": true,
+  "classification_fix_locations": {
+    "catch_dispatch": 194,
+    "program_exception": 211
+  },
+  "interpretation": "Observed bytes are a later taxonomy-fix snapshot after R1 changes_requested; they supersede the R1 input and require a fresh R2 freeze/review."
+}

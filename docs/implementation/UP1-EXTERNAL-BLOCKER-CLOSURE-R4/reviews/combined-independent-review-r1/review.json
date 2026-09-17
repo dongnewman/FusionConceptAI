@@ -1,0 +1,87 @@
+{
+  "schema": "UP1.external-input-recheck.combined-independent-review-r1.v1",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "fixed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "fixed_tree": "e28da2ff057201c2257f6b879d3860b7a49cb428",
+  "review_scope": "seven 22-external-input-recheck subdirectories against 21-root-acceptance and 19-final-full-regression",
+  "verdict": {
+    "external_input_delta": "no",
+    "new_ad": "no",
+    "s3_rerun": "no",
+    "T0_authorized": "no",
+    "formal_credit": "none",
+    "usable_external_inputs": 0,
+    "external_snapshot": "26/26 typed_absent",
+    "terminal_state": "terminal_deferred",
+    "authority_credit": false,
+    "publish": false,
+    "parent_goal_closed": false
+  },
+  "independent_checks": {
+    "json_files_checked": 22,
+    "json_parse_failures": 0,
+    "hash_manifest_entries_checked": 57,
+    "hash_manifest_entries_matching": 57,
+    "hash_manifest_mismatches": 0,
+    "root_acceptance_hash_entries_matching": 2,
+    "fixed_head_matches_current": true,
+    "intake_root_path_pairs": 14,
+    "intake_root_path_pairs_present": 0,
+    "contract_items": 26,
+    "contract_items_typed_absent": 26,
+    "contract_items_usable": 0
+  },
+  "baseline": {
+    "root_acceptance_status": "root_accepted_scope_limited",
+    "root_software": "PASS_LIMITED / ACCEPT_FOR_LOCAL_INTEGRATION",
+    "root_formal_external": "BLOCKED_NO_CREDIT",
+    "r3_atomic": {"runs": 2, "tests": 25, "skipped": 1, "exit_codes": [0, 0]},
+    "r4_full": {"runs": 2, "passed": 98, "skipped": 2, "tests": 100, "exit_codes": [0, 0]},
+    "static_compile_import_exit": 0,
+    "source_test_hash_closure": "48/48 unchanged",
+    "dag_nodes": 39,
+    "r01_r10_changed": false,
+    "parent_goal_status": "active"
+  },
+  "subdirectories": {
+    "witness": {"usable": 0, "untrusted": 9, "typed_absent": true, "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "trust-chain": {"usable": 0, "untrusted_local_policy_or_replay": true, "typed_absent": true, "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "freshness-replay": {"usable": 0, "untrusted_local_fixtures": true, "typed_absent": "26/26", "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "source-axis": {"usable": 0, "untrusted_local_dirty_or_test_only": true, "four_axis_set_complete": false, "typed_absent": true, "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "g2-mapping": {"usable": 0, "untrusted_local_software_or_fixtures": true, "authoritative_mapping_present": false, "adversarial_cases_fail_closed": 5, "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "authoritative-channel": {"usable": 0, "untrusted_new_external_packets": 0, "channel_fields_typed_absent": 26, "external_ack_true": 0, "new_ad": false, "s3_rerun": false, "formal_credit": "none"},
+    "environment-binary": {"usable": 0, "untrusted_local_observations": true, "candidate_environment_closure": "typed_absent", "binary_provenance": "typed_absent", "new_ad": false, "s3_rerun": false, "formal_credit": "none"}
+  },
+  "authority_boundary": {
+    "local_or_historical_material_promoted": false,
+    "local_fixture_treated_as_authority": false,
+    "remote_or_unlisted_channels_queried": false,
+    "network": false,
+    "julia": false,
+    "desc": false,
+    "s3": false,
+    "tests": false,
+    "source_or_test_modified": false
+  },
+  "responsible_parties": [
+    "authoritative channel owner and intake operator",
+    "independent witness/governance/attestor",
+    "project PKI/CA/verifier and policy owners",
+    "TSA/time-policy and replay-ledger owners",
+    "source/candidate/G2/four-axis authorities",
+    "environment/SBOM provider and binary publisher",
+    "independent reviewer"
+  ],
+  "recovery": "Fresh atomic EHP-01..04 bundle through a signed authoritative channel; exact-byte hashes; same-candidate source/G1/G2/G3/four-axis binding; pinned trust root and chain; signatures; trusted time; revocation; freshness/replay; environment/binary provenance; independent review; rebuild identities and run one fresh authority recheck.",
+  "raw_receipts": {
+    "witness_path_scan": {"pid": 104052, "utc": "2026-09-17T03:55:57.2597775Z/2026-09-17T03:55:57.3342309Z", "exit": 0, "sha256": "43bd7fe4578bbeb4b90ae9533fe54c0a606fd68d73ac11091ae6706f4cc27b55"},
+    "trust_chain_scope": {"pid": 56748, "utc": "2026-09-17T04:02:27.5045664Z/2026-09-17T04:02:29.2982589Z", "exit": 0, "sha256": "810ce1a3641f2c7c55b39d9e8ef0fe5ffdded4860c97ae88499fd6bfa829a92c"},
+    "trust_chain_marker": {"pid": 2760, "utc": "2026-09-17T04:03:09.7402230Z", "exit": 1, "failure": "no certificate marker match; expected negative result"},
+    "trust_chain_discarded_probe": {"pid": 56748, "exit": 2, "failure": "option-sensitive exploratory rg invocation; discarded with no evidentiary effect"},
+    "freshness_replay": {"pid": 31432, "utc": "2026-09-17T04:03:49.2975187Z", "exit": 0, "sha256": "a769e2dc1ac575810d60ba3977b8425e867fb09856c4cfbf825675a0e3d2e32e"},
+    "source_axis": {"pid": 72928, "utc": "2026-09-17T04:01:36.6401025Z/2026-09-17T04:01:38.5214212Z", "exit": 0, "sha256": "0a452d3dcf50cce560ff4bb95c592b5798b0c3d1ca504402c54a7e703471d93f"},
+    "g2_probe": {"pid": 109180, "utc": "2026-09-17T04:04:30.249026Z/2026-09-17T04:04:30.249875Z", "exit": 0, "sha256": "966D4A2A6C795C1B522F2450E8DFA6C42CAC08B78610ED27C15130793ECAAD8F", "failure": null},
+    "authoritative_channel": {"pid": 113236, "utc": "2026-09-17T03:56:51.960702Z/2026-09-17T03:56:52.778109Z", "exit": 0, "sha256": "af0c53d787c3cf8b16cb561659c2fb3de52e996b9665df865a8ef06fc511a03b"},
+    "environment_binary": {"pid": 94364, "utc": "2026-09-17T04:01:35.9384378Z", "exit": 0, "raw_sha256": ["e8af55b8da8b2c723ee38808d2ae6f8df3421f0ecf698b82e6ee93b390ed3241", "d648de0992834cf99b84cad4b9d09c4207c3e1e8d601a553f593171c25314c5f", "baacf359747b9b52af2ee9d8b2d106ca3367e8bc0081e63257198e6c2722ce19"], "failure": "initial parser error corrected before substantive capture"}
+  }
+}

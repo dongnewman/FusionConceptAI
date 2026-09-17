@@ -1,0 +1,5 @@
+# Initial reviewer verdict record
+
+The first run of the independent reconstruction script returned `changes_requested` because it compared the core v4 README with a same-named `before/README.md` that is actually the implementation README, and assumed two leading newlines for the integrator append. It also treated the live process probe as a failure while another task's Julia process was running. These were reviewer reconstruction/provenance errors, not target-file findings. The original false-verdict `report.json` bytes were overwritten by the corrected rerun and are not retained; this note records the reason and timing of that correction.
+
+The script was corrected to use the core README's `before_freeze.json` byte/hash record, reverse the exact `integrate_e0.py` append, restore the one CRLF removed by the integrator's LF rewrite, use the implementation README snapshot for that target, and rerun the process probe after the external process exited. The final report is `pass_limited`; the initial result is retained here as an audit trail.

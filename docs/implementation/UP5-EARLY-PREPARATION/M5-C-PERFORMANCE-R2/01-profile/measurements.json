@@ -1,0 +1,23 @@
+{
+  "schema": "M5CPerformanceMeasurementsV1",
+  "status": "partial_due_to_bounded_human_interruption",
+  "scope": "manufactured_conditional_egraph/screen_only",
+  "julia": "1.10.5",
+  "flags": ["--startup-file=no", "--history-file=no"],
+  "stages": {
+    "include": {"runs": 5, "elapsed_ns_min": 993759600, "elapsed_ns_max": 1364147100, "allocations_min": 36078160, "allocations_max": 36078240},
+    "upstream_first_compile_plus_build": {"runs": 5, "elapsed_ns_min": 10266051000, "elapsed_ns_max": 13168575800, "allocations": 471331320},
+    "upstream_warm_build": {"runs": 5, "elapsed_ns_min": 4925000, "elapsed_ns_max": 8176700, "allocations": 8886760},
+    "prepare_source_cold_hash": {"runs": 2, "elapsed_ns_min": 25635689700, "elapsed_ns_max": 26372792000, "allocations": 9253714448},
+    "prepare_condition_catalog": {"runs": 3, "elapsed_ns_min": 7469883100, "elapsed_ns_max": 11944421700, "allocations_min": 158374696, "allocations_max": 158405312},
+    "prepare_rhs": {"runs": 3, "elapsed_ns_min": 74963800, "elapsed_ns_max": 132658800, "allocations_min": 1002656, "allocations_max": 1009824},
+    "prepare_rewrite_set": {"runs": 0, "status": "not_measured_timeout_before_receipt"},
+    "saturate": {"runs": 0, "status": "not_measured_timeout_before_receipt", "budget_schedule": [[2,4,1,2],[3,8,2,3],[4,16,3,4],[8,32,4,8]]},
+    "query": {"runs": 0, "status": "not_measured"},
+    "replay": {"runs": 0, "status": "not_measured"},
+    "validate": {"runs": 0, "status": "not_measured"}
+  },
+  "graph_counter_definition": {"nodes": "usage.programs", "edges": "usage.trace_steps", "attempts": "usage.rewrite_attempts", "rounds": "usage.rounds"},
+  "graph_counters": {"status": "not_observed_before_timeout"},
+  "claims_not_made": ["UP5-01", "formal_credit", "B00", "B04", "provider_evidence", "physical_equivalence", "search_proof", "parent_goal"]
+}

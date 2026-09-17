@@ -1,0 +1,30 @@
+{
+  "schema": "M5InverseFeedbackR2ScopeContractRepairR2ManifestV1",
+  "package": "03-scope-contract-repair-r2",
+  "repair_mode": "additive_only",
+  "status": "review_pending",
+  "implementation_status": "not_implemented",
+  "runtime_execution": "not_executed",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "decision_authority": "Sol/root",
+  "review_input": "reviews/02-scope-contract-repair-independent-review-r1/report.md",
+  "closed_findings": ["F7-P1-complete-canonical-join", "F8-P1-valid-screen-replay-gate", "F9-P1-local-external-ref-resolver", "F10-P2-feedback-CAS-history", "F11-P2-dependency-dirty-closure", "F12-P2-failure-taxonomy-closure"],
+  "checkout": {"repository": "D:/006-Programing/LMC/FusionConceptAI", "branch": "main", "head": "b2c04d8339774635aaecd73651efcdb101e01b5d", "review_start_utc": "2026-09-17T03:27:05.0798986Z", "review_start_dirty_path_count": 384, "review_start_status_sha256": "bbad0f19b16e5ef8cacf0ac3c974c0e47b6ff09aebf1f329cc035252a2aa1c54", "baseline_rule": "per_path_status_and_content_hash; pre-existing paths are protected and not attributed to this package"},
+  "dependency_closure": [
+    {"role": "m5_source", "path": "src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl", "bytes": 26187, "sha256": "477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59", "imports": ["M4RationalV1"]},
+    {"role": "m5_test", "path": "test/RuntimeV4/M4Isolated/manufactured_inverse_feedback_v1_tests.jl", "bytes": 15357, "sha256": "f2279400356a786c83a13ad3f82400af052e64f5bbc8ceefbf0e8119e6903ea2", "imports": ["m5_source"]},
+    {"role": "m5_oracle", "path": "test/RuntimeV4/M4Isolated/oracles/inverse_feedback_oracle_v1.py", "bytes": 5811, "sha256": "6e13536aabb62f039bffe6c286e11323347b86b4d3c146270f38e8bf8129d0ab", "imports": ["python_stdlib"]},
+    {"role": "m5a_source", "path": "src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl", "bytes": 26258, "sha256": "284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209", "imports": ["M4RationalV1"]},
+    {"role": "m5a_test", "path": "test/RuntimeV4/M4Isolated/manufactured_auto_composition_v1_tests.jl", "bytes": 13210, "sha256": "42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08", "imports": ["m5a_source"]},
+    {"role": "m5a_oracle", "path": "test/RuntimeV4/M4Isolated/oracles/auto_composition_oracle_v1.py", "bytes": 7823, "sha256": "e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c", "imports": ["python_stdlib"]},
+    {"role": "julia_project", "path": "Project.toml", "bytes": 563, "sha256": "923b78938e12c27e836b269d71a539ae7bb292c9fe9f8cb92f9f9a8cea1370e2", "imports": ["julia_stdlib"]},
+    {"role": "julia_manifest", "path": "Manifest.toml", "bytes": 3348, "sha256": "85074b7a5bd543c0b4155f44db0733d21d53cfd0bf4c2de6704dc858357717e7", "imports": ["julia_project"]}
+  ],
+  "dirty_closure": {"baseline_receipt": "raw/dirty_inventory_start.json", "review_end_receipt": "raw/dirty_inventory_end.json", "capture_command": "git status --porcelain=v1 -z plus per-path bytes/SHA-256", "incremental_acceptance": "review_end = baseline paths unchanged + this package paths only", "unrelated_dirty_work_protected": true},
+  "resolver": {"registry": "resolver_registry.json", "registry_sha256": "69c068e5328ef80653031c97caee6ffa08ee8b272dc3e9c415290f86913f70a2", "network": "forbidden", "unknown_uri": "typed_absent", "registry_drift": "typed_failure"},
+  "hash_manifest": {"path": "hash_manifest.json", "algorithm": "SHA-256", "self_hash_excluded": true},
+  "write_scope": "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/03-scope-contract-repair-r2/**",
+  "forbidden": ["Julia", "DESC", "S3", "mesh", "solver", "provider", "hardware", "network/download", "production source/test edit", "history rewrite", "registry edit outside package", "candidate generation"],
+  "acceptance": {"current_status": "review_pending", "implementation": "not_implemented", "runtime": "not_executed", "screen_only": true, "formal_credit": "none", "fresh_refreeze": "required_before_ready", "independent_review": "pending", "root_decision": "pending"}
+}

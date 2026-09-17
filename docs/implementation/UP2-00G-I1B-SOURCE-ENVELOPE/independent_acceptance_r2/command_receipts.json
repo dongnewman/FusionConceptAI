@@ -1,0 +1,42 @@
+{
+  "record_kind": "GI1B-independent-acceptance-r2-command-receipts",
+  "status": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "commands": [
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py --delivery-protection",
+      "exit_code": 0,
+      "result": "planning checks pass; relative links checked",
+      "julia_or_desc_executed": false
+    },
+    {
+      "command": "read-only JSON parse and receipt-field audit",
+      "exit_code": 0,
+      "result": "focused three structured receipts correct; two postrun structured records retain 62-character historical value; R6 replacement field correct"
+    },
+    {
+      "command": "read-only direct SHA-256/byte calculation for focused_r5 raw stdout/stderr",
+      "exit_code": 0,
+      "result": "stdout 2806 bytes and stderr 0 bytes match canonical hashes"
+    },
+    {
+      "command": "read-only protected four-input and focused_r4 history audit",
+      "exit_code": 0,
+      "result": "four input hashes/bytes pass; focused_r4 exit1 2051/2052 and raw evidence preserved"
+    },
+    {
+      "command": "read-only R6 report text audit",
+      "exit_code": 0,
+      "result": "R6 report archive hash matches manifest but text contains control characters and unexpanded placeholders"
+    }
+  ],
+  "execution_boundary": {
+    "julia_rerun": false,
+    "desc_rerun": false,
+    "source_modified": false,
+    "test_modified": false,
+    "fixture_modified": false,
+    "old_evidence_modified": false
+  }
+}

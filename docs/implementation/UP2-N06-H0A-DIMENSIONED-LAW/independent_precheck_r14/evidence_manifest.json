@@ -1,0 +1,62 @@
+{
+  "schema": "independent_precheck_r14_evidence_manifest",
+  "review_id": "UP2-N06-H0A-DIMENSIONED-LAW-independent-precheck-r14",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "scope": {
+    "static_only": true,
+    "julia_or_desc_executed_by_reviewer": false,
+    "no_H0A_acceptance": true,
+    "no_B00_or_B04_credit": true,
+    "no_provider_mesh_engineering_physical_credit": true,
+    "no_R01_R10_credit": true
+  },
+  "workspace": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "dirty_status_lines": 304,
+    "dirty_status_sha256_utf8_lf": "a0de96652a74e954aa03fb2cc3737538627d4f82bdf9fb4a3f391ce1d661e8d6"
+  },
+  "targets": {
+    "source": {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "bytes": 57924, "sha256": "2d38d9fc7ae42c8bf7a77bea7ad99557e390a321e26f5d918be1996443a629ff", "status": "R14_after"},
+    "test": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "bytes": 39270, "sha256": "b0e626d73c7246c9308c1ff8b315866e9c95dea4dd50aba796959d4092b31756", "status": "R14_after"},
+    "fixture": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "status": "protected_unchanged"},
+    "runner": {"path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "status": "protected_unchanged"}
+  },
+  "helper_review": {
+    "helper": "_n06_h0a_exact_match",
+    "helper_lines": [517, 521],
+    "missing_returns_no_item": true,
+    "single_returns_only_source_item": true,
+    "ambiguous_returns_no_item": true,
+    "old_first_generator_nothing_count": 0,
+    "old_callsite_lines": [484, 526, 617, 641],
+    "all_old_callsites_repaired": true,
+    "unknown_exceptions_remain_program_exception": true
+  },
+  "classification_review": {
+    "flow_entry_missing": "gap_terminal_deferred",
+    "g1_occurrence_missing": "gap_terminal_deferred",
+    "role_port_missing": "error_fail_closed",
+    "source_direction_port_missing": "error_fail_closed",
+    "ambiguous_matches": "error_fail_closed",
+    "blocking_mismatch": "zero_match_port_paths_do_not_follow_required_terminal_deferred_contract"
+  },
+  "negative_controls": {
+    "helper_missing": true,
+    "helper_single": true,
+    "helper_ambiguous": true,
+    "g1_source_missing_gap": true,
+    "g1_source_ambiguous_error": true,
+    "zero_port_gap_controls": false,
+    "mirror_or_expected_label_routing_found": false
+  },
+  "receipt_erratum_r14": {
+    "historical_manifest_preserved": true,
+    "historical_bad_source_hash_length": 48,
+    "correct_live_source_hash_length": 64,
+    "correct_live_source_sha256": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251"
+  },
+  "next_gate": "route zero role/source-direction port matches to typed gaps, add source-shaped controls, obtain independent static recheck, then one serialized focused run",
+  "claim_ceiling": ["static_contract_only", "accepted_false", "review_pending", "no_H0A_acceptance", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R_credit"]
+}

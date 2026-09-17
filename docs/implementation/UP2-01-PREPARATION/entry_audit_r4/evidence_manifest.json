@@ -1,0 +1,50 @@
+{
+  "manifest_version": "UP2-01-entry-audit-r4",
+  "status": "ready_for_independent_review_no_execution",
+  "accepted": false,
+  "claim_ceiling": "preparation_static_audit_no_Julia_DESC_no_core_change_no_provider_or_physical_credit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "capture_drift": {"status_rows_before_r4": 294, "status_rows_after_r4": 294, "post_capture_paths": ["docs/implementation/UP2-01-PREPARATION/entry_audit_r4/report.md", "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/report.json", "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/evidence_manifest.json", "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/command_receipts.json"], "interpretation": "R4 paths are newly untracked; default porcelain aggregate remains 294. No source/core/protected path was written."},
+  "process_state": {"initial": "no Julia/DESC", "final": "no Julia/DESC", "julia_desc_run_by_audit": false},
+  "write_scope": "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/ only",
+  "r3_author_audit": {
+    "report.md": {"bytes": 9111, "sha256": "66439d070cc1e33bf75d80d4b814f05d5ca5ddc3f9a2ceca8dc2e3109cc0def5"},
+    "report.json": {"bytes": 9087, "sha256": "e1b4adce6568e56517775750b0a26feff25db0537d81ce4d73fbf77b26f57517"},
+    "evidence_manifest.json": {"bytes": 5456, "sha256": "56fc0367e19a5ce4b6d3cb42b02fe97e8ec0af4e8684df3c641698a7ae51384a"},
+    "command_receipts.json": {"bytes": 3854, "sha256": "59743f3aea4361ab790ffc95277a176d6bba48022e5d907a576aec568e55afe4"}
+  },
+  "independent_review_r3": {
+    "report.md": {"bytes": 6645, "sha256": "8d590924189794a87115b4871693fbb7f9a19db572c2be4c5cc2e6d9cf2f4ea0"},
+    "report.json": {"bytes": 5002, "sha256": "6dfb6878be10207ff9aeb793d207e7eee1850bddadd90cfc421cbccaea843992"},
+    "evidence_manifest.json": {"bytes": 7563, "sha256": "ec6048ff6201d487151d1aca540c53c6ad8541919fb85ca0fd44bf94277e89a9"},
+    "command_receipts.json": {"bytes": 3966, "sha256": "16d7f250818a882215235f811f3bf2ba9c489f150370d1221f0153b3c966cf8b"}
+  },
+  "protected_dirty_hashes": {
+    "runs/goal_recovery_20260913_012528_cst/task_queue.json": {"bytes": 16762, "sha256": "dbc57e7e44677cfd4b5d950a37d3d9063fde61fc7e4cec9b8cc44c9a9c3c84c0"},
+    "scripts/run_v4_spatial_chain.jl": {"bytes": 12890, "sha256": "ad5f7864da35bcd355ac256a20574648bab1372055954a71596bb631348d1520"},
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {"bytes": 1757, "sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb"},
+    "test/runtime_v4_spatial_entrypoint_tests.jl": {"bytes": 3522, "sha256": "673b29e372f4ba2d841630d2e37b01371653c032046002b3c60bf693e2335532"},
+    "test/runtime_v4_test_manifest.json": {"bytes": 2928, "sha256": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"},
+    "test/runtime_v4_validation_uq_execution_request_tests.jl": {"bytes": 10738, "sha256": "df1a67c20c528fed9012067a45640a58c6dede3e45f042a26a9cae056e757ed2"}
+  },
+  "actual_a_inherited_input_hashes": {
+    "test/GenomeV5/G1/fixtures.json": {"bytes": 4323, "sha256": "9531b5baa6f45cf71527c882de1fa1fa60bedd2c999498e4147fa81a23451bf0"},
+    "test/GenomeV5/G2/fixtures.json": {"bytes": 9763, "sha256": "831d54a696670166e2b912a1e3b6bd1dd97a03bdf33f6c41260c5d604661f84e"},
+    "test/GenomeV5/G3/fixtures.json": {"bytes": 11273, "sha256": "f25945083f250f3620e0dc66a003a926df7235e6ce377f5946d85f6d7caa0bb0"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"bytes": 1453, "sha256": "760296eb0d9bf3a4ebbc1f7fd7b6b40ae7152d0150c330f9f452b17b2682ab4b"},
+    "src/GenomeV5/UP2/TypedPrecompilerValidatorV1.jl": {"bytes": 24351, "sha256": "0557532f9921afabbd6cdcc190e216496807227ef802b3898bd0292b1e98150b"},
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": {"bytes": 9905, "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"},
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {"bytes": 18646, "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"},
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {"bytes": 10904, "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"},
+    "test/GenomeV5/UP1-04/up1_04a_integration_tests.jl": {"bytes": 11181, "sha256": "518c59da3c5535a0fee66323d933447276d54169fc17666bd610caa0d1a431d8"},
+    "src/RuntimeV4/FieldProgramEvaluation.jl": {"bytes": 44975, "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86"}
+  },
+  "r4_outputs_before_manifest_rehash": {
+    "report.md": {"bytes": 9503, "sha256": "b95b863bcc62230304b034d8b15bac58d56fe5298f524a5f76f10548198f16fc"},
+    "report.json": {"bytes": 8138, "sha256": "117a9bdf998b0e65716e9935102e7311328ca01ecac554a917b78b8df4f6d1a8"},
+    "command_receipts.json": {"bytes": 3115, "sha256": "c3773a2ba88f1219cb132f2203d3de2ca33174282247dd644ceda18483b73155"}
+  },
+  "manifest_self_hash": "omitted_by_design; manifest contains its own evidence inventory",
+  "review_correction": "R3 circular after-UP1-04 input removed; upstream declarations freeze before new candidate and UP1-04B, and UP2-01 dispatch follows complete UP1-04"
+}

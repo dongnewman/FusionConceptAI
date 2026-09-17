@@ -1,0 +1,1863 @@
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48
+  Expression: result.identity isa G.PresentG3FactoryIdentityV1
+   Evaluated: FusionConceptAI.FailedG3FactoryIdentityV1(:realization, :constructor_rejected_input, true, false, false, false) isa FusionConceptAI.PresentG3FactoryIdentityV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49
+  Expression: result.receipt isa G.PresentG3FactoryConstructionReceiptV1
+   Evaluated: FusionConceptAI.FailedG3FactoryConstructionReceiptV1(:realization, :fail_closed, :constructor_rejected_input, true, false, false, false, false) isa FusionConceptAI.PresentG3FactoryConstructionReceiptV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51
+  Test threw exception
+  Expression: result.identity.registry_not_used
+  type FailedG3FactoryIdentityV1 has no field registry_not_used
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryIdentityV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [3] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [4] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [5] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [6] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [7] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [8] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53
+  Expression: result.identity.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55
+  Expression: result.binding isa G.G3ContractBindingV2
+   Evaluated: nothing isa FusionConceptAI.G3ContractBindingV2
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56
+  Expression: result.source_declaration isa G.G3CandidateBoundSourceDeclarationV1
+   Evaluated: nothing isa FusionConceptAI.G3CandidateBoundSourceDeclarationV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57
+  Test threw exception
+  Expression: result.source_declaration.source_declaration_hash == result.receipt.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58
+  Test threw exception
+  Expression: result.source_declaration.content.source_sha256 == result.identity.source_sha256
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59
+  Test threw exception
+  Expression: result.source_declaration.content.locator_digest == result.receipt.locator_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_handle == _FACTORY_HANDLE
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_path == G.G3_AD45_ENVELOPE_RELATIVE_PATH_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_sha256 == G.G3_AD45_ENVELOPE_SHA256_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65
+  Test threw exception
+  Expression: result.source_declaration.declaration_ref == _factory_declaration_ref(scope)
+  type Nothing has no field declaration_ref
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67
+  Expression: result.receipt.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70
+  Test threw exception
+  Expression: result.receipt.constructed_binding_hash isa G.Digest256
+  type FailedG3FactoryConstructionReceiptV1 has no field constructed_binding_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71
+  Test threw exception
+  Expression: result.receipt.source_sha256 == result.identity.source_sha256
+  type FailedG3FactoryConstructionReceiptV1 has no field source_sha256
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48
+  Expression: result.identity isa G.PresentG3FactoryIdentityV1
+   Evaluated: FusionConceptAI.FailedG3FactoryIdentityV1(:control, :constructor_rejected_input, true, false, false, false) isa FusionConceptAI.PresentG3FactoryIdentityV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49
+  Expression: result.receipt isa G.PresentG3FactoryConstructionReceiptV1
+   Evaluated: FusionConceptAI.FailedG3FactoryConstructionReceiptV1(:control, :fail_closed, :constructor_rejected_input, true, false, false, false, false) isa FusionConceptAI.PresentG3FactoryConstructionReceiptV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51
+  Test threw exception
+  Expression: result.identity.registry_not_used
+  type FailedG3FactoryIdentityV1 has no field registry_not_used
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryIdentityV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [3] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [4] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [5] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [6] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [7] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [8] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53
+  Expression: result.identity.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55
+  Expression: result.binding isa G.G3ContractBindingV2
+   Evaluated: nothing isa FusionConceptAI.G3ContractBindingV2
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56
+  Expression: result.source_declaration isa G.G3CandidateBoundSourceDeclarationV1
+   Evaluated: nothing isa FusionConceptAI.G3CandidateBoundSourceDeclarationV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57
+  Test threw exception
+  Expression: result.source_declaration.source_declaration_hash == result.receipt.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58
+  Test threw exception
+  Expression: result.source_declaration.content.source_sha256 == result.identity.source_sha256
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59
+  Test threw exception
+  Expression: result.source_declaration.content.locator_digest == result.receipt.locator_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_handle == _FACTORY_HANDLE
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_path == G.G3_AD45_ENVELOPE_RELATIVE_PATH_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_sha256 == G.G3_AD45_ENVELOPE_SHA256_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65
+  Test threw exception
+  Expression: result.source_declaration.declaration_ref == _factory_declaration_ref(scope)
+  type Nothing has no field declaration_ref
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67
+  Expression: result.receipt.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70
+  Test threw exception
+  Expression: result.receipt.constructed_binding_hash isa G.Digest256
+  type FailedG3FactoryConstructionReceiptV1 has no field constructed_binding_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71
+  Test threw exception
+  Expression: result.receipt.source_sha256 == result.identity.source_sha256
+  type FailedG3FactoryConstructionReceiptV1 has no field source_sha256
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48
+  Expression: result.identity isa G.PresentG3FactoryIdentityV1
+   Evaluated: FusionConceptAI.FailedG3FactoryIdentityV1(:binding, :constructor_rejected_input, true, false, false, false) isa FusionConceptAI.PresentG3FactoryIdentityV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49
+  Expression: result.receipt isa G.PresentG3FactoryConstructionReceiptV1
+   Evaluated: FusionConceptAI.FailedG3FactoryConstructionReceiptV1(:binding, :fail_closed, :constructor_rejected_input, true, false, false, false, false) isa FusionConceptAI.PresentG3FactoryConstructionReceiptV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51
+  Test threw exception
+  Expression: result.identity.registry_not_used
+  type FailedG3FactoryIdentityV1 has no field registry_not_used
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryIdentityV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [3] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [4] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [5] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [6] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [7] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [8] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53
+  Expression: result.identity.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55
+  Expression: result.binding isa G.G3ContractBindingV2
+   Evaluated: nothing isa FusionConceptAI.G3ContractBindingV2
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56
+  Expression: result.source_declaration isa G.G3CandidateBoundSourceDeclarationV1
+   Evaluated: nothing isa FusionConceptAI.G3CandidateBoundSourceDeclarationV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57
+  Test threw exception
+  Expression: result.source_declaration.source_declaration_hash == result.receipt.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58
+  Test threw exception
+  Expression: result.source_declaration.content.source_sha256 == result.identity.source_sha256
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59
+  Test threw exception
+  Expression: result.source_declaration.content.locator_digest == result.receipt.locator_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_handle == _FACTORY_HANDLE
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_path == G.G3_AD45_ENVELOPE_RELATIVE_PATH_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_sha256 == G.G3_AD45_ENVELOPE_SHA256_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65
+  Test threw exception
+  Expression: result.source_declaration.declaration_ref == _factory_declaration_ref(scope)
+  type Nothing has no field declaration_ref
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67
+  Expression: result.receipt.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70
+  Test threw exception
+  Expression: result.receipt.constructed_binding_hash isa G.Digest256
+  type FailedG3FactoryConstructionReceiptV1 has no field constructed_binding_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71
+  Test threw exception
+  Expression: result.receipt.source_sha256 == result.identity.source_sha256
+  type FailedG3FactoryConstructionReceiptV1 has no field source_sha256
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:47 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48
+  Expression: result.identity isa G.PresentG3FactoryIdentityV1
+   Evaluated: FusionConceptAI.FailedG3FactoryIdentityV1(:bundle, :constructor_rejected_input, true, false, false, false) isa FusionConceptAI.PresentG3FactoryIdentityV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:48 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49
+  Expression: result.receipt isa G.PresentG3FactoryConstructionReceiptV1
+   Evaluated: FusionConceptAI.FailedG3FactoryConstructionReceiptV1(:bundle, :fail_closed, :constructor_rejected_input, true, false, false, false, false) isa FusionConceptAI.PresentG3FactoryConstructionReceiptV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:49 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51
+  Test threw exception
+  Expression: result.identity.registry_not_used
+  type FailedG3FactoryIdentityV1 has no field registry_not_used
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryIdentityV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [3] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [4] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:51 [inlined]
+   [5] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [6] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [7] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [8] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53
+  Expression: result.identity.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:53 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55
+  Expression: result.binding isa G.G3ContractBindingV2
+   Evaluated: nothing isa FusionConceptAI.G3ContractBindingV2
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:55 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56
+  Expression: result.source_declaration isa G.G3CandidateBoundSourceDeclarationV1
+   Evaluated: nothing isa FusionConceptAI.G3CandidateBoundSourceDeclarationV1
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:56 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57
+  Test threw exception
+  Expression: result.source_declaration.source_declaration_hash == result.receipt.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:57 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58
+  Test threw exception
+  Expression: result.source_declaration.content.source_sha256 == result.identity.source_sha256
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:58 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59
+  Test threw exception
+  Expression: result.source_declaration.content.locator_digest == result.receipt.locator_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:59 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_handle == _FACTORY_HANDLE
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:60 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_path == G.G3_AD45_ENVELOPE_RELATIVE_PATH_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:61 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63
+  Test threw exception
+  Expression: result.source_declaration.content.common_binding_envelope_sha256 == G.G3_AD45_ENVELOPE_SHA256_V1
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:63 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65
+  Test threw exception
+  Expression: result.source_declaration.declaration_ref == _factory_declaration_ref(scope)
+  type Nothing has no field declaration_ref
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:65 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67
+  Expression: result.receipt.g3_source_declaration_hash_created
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:67 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70
+  Test threw exception
+  Expression: result.receipt.constructed_binding_hash isa G.Digest256
+  type FailedG3FactoryConstructionReceiptV1 has no field constructed_binding_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:70 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+four scope construction: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71
+  Test threw exception
+  Expression: result.receipt.source_sha256 == result.identity.source_sha256
+  type FailedG3FactoryConstructionReceiptV1 has no field source_sha256
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:71 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:40 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+determinism, registry and fail-atomic behavior: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:134
+  Test threw exception
+  Expression: a.receipt.construction_digest == b.receipt.construction_digest
+  type FailedG3FactoryConstructionReceiptV1 has no field construction_digest
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:134 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:132 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+determinism, registry and fail-atomic behavior: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:135
+  Test threw exception
+  Expression: a.receipt.semantic_digest == b.receipt.semantic_digest
+  type FailedG3FactoryConstructionReceiptV1 has no field semantic_digest
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:135 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:132 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+determinism, registry and fail-atomic behavior: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:136
+  Test threw exception
+  Expression: a.receipt.constructed_binding_hash == b.receipt.constructed_binding_hash
+  type FailedG3FactoryConstructionReceiptV1 has no field constructed_binding_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:136 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:132 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150
+  Test threw exception
+  Expression: first.source_declaration.source_declaration_hash == second.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152
+  Test threw exception
+  Expression: first.source_declaration.content.source_content_digest == second.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration) == first.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration.content) == first.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158
+  Test threw exception
+  Expression: first.receipt.source_declaration_hash == first.source_declaration.source_declaration_hash
+  type FailedG3FactoryConstructionReceiptV1 has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160
+  Test threw exception
+  Expression: first.receipt.output_source_declaration == first.source_declaration
+  type FailedG3FactoryConstructionReceiptV1 has no field output_source_declaration
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150
+  Test threw exception
+  Expression: first.source_declaration.source_declaration_hash == second.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152
+  Test threw exception
+  Expression: first.source_declaration.content.source_content_digest == second.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration) == first.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration.content) == first.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158
+  Test threw exception
+  Expression: first.receipt.source_declaration_hash == first.source_declaration.source_declaration_hash
+  type FailedG3FactoryConstructionReceiptV1 has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160
+  Test threw exception
+  Expression: first.receipt.output_source_declaration == first.source_declaration
+  type FailedG3FactoryConstructionReceiptV1 has no field output_source_declaration
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150
+  Test threw exception
+  Expression: first.source_declaration.source_declaration_hash == second.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152
+  Test threw exception
+  Expression: first.source_declaration.content.source_content_digest == second.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration) == first.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration.content) == first.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158
+  Test threw exception
+  Expression: first.receipt.source_declaration_hash == first.source_declaration.source_declaration_hash
+  type FailedG3FactoryConstructionReceiptV1 has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160
+  Test threw exception
+  Expression: first.receipt.output_source_declaration == first.source_declaration
+  type FailedG3FactoryConstructionReceiptV1 has no field output_source_declaration
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150
+  Test threw exception
+  Expression: first.source_declaration.source_declaration_hash == second.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:150 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152
+  Test threw exception
+  Expression: first.source_declaration.content.source_content_digest == second.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:152 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration) == first.source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:154 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156
+  Test threw exception
+  Expression: G.canonical_hash(first.source_declaration.content) == first.source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:156 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158
+  Test threw exception
+  Expression: first.receipt.source_declaration_hash == first.source_declaration.source_declaration_hash
+  type FailedG3FactoryConstructionReceiptV1 has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:158 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160
+  Test threw exception
+  Expression: first.receipt.output_source_declaration == first.source_declaration
+  type FailedG3FactoryConstructionReceiptV1 has no field output_source_declaration
+  Stacktrace:
+   [1] getproperty(x::FusionConceptAI.FailedG3FactoryConstructionReceiptV1, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:160 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173
+  Expression: G.g3_factory_result_status(result) == :present
+   Evaluated: fail_closed == present
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:173 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:179
+  Test threw exception
+  Expression: changed.source_declaration.source_declaration_hash != (_factory_result(:realization)).source_declaration.source_declaration_hash
+  type Nothing has no field source_declaration_hash
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:179 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+declaration replay, separation and wrappers: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:181
+  Test threw exception
+  Expression: changed.source_declaration.content.source_content_digest == (_factory_result(:realization)).source_declaration.content.source_content_digest
+  type Nothing has no field content
+  Stacktrace:
+   [1] getproperty(x::Nothing, f::Symbol)
+     @ Base .\Base.jl:37
+   [2] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [3] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:181 [inlined]
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:147 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G3\g3_source_authority_factory_v1_tests.jl:37
+Test Summary:                                    | Pass  Fail  Error  Total   Time
+AD48-F0 G3 source-authority factory V1           |  201    32     69    302  12.7s
+  four scope construction                        |   30    28     40     98   2.6s
+  missing inputs are typed absence               |  100                 100   0.0s
+  mismatches fail closed                         |   48                  48   0.3s
+  determinism, registry and fail-atomic behavior |    4            3      7   0.5s
+  declaration replay, separation and wrappers    |   12     4     26     42   3.2s
+  source change and path invalidation            |    7                   7   0.9s

@@ -1,0 +1,26 @@
+{
+  "pass_count": 2,
+  "pid": 108460,
+  "record_count": 2,
+  "records": [
+    {
+      "expected": "immutable_alias",
+      "name": "hardlink_rejected",
+      "observed": "immutable_alias",
+      "pass": true,
+      "samefile_after": true,
+      "target_bytes_unchanged": true
+    },
+    {
+      "expected": "path_escape",
+      "name": "root_parent_escape_rejected_before_mkdir",
+      "observed": "path_escape",
+      "outside_created": false,
+      "pass": true,
+      "spool_children": []
+    }
+  ],
+  "schema": "UP1.authoritative-intake-r4.repair-boundary-probe.v1",
+  "skip_count": 0,
+  "utc": "2026-09-17T01:43:54.041355Z"
+}

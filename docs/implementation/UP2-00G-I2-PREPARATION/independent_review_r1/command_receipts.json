@@ -1,0 +1,15 @@
+{
+  "schema_version": "UP2-G-I2-independent-review-receipts-v1",
+  "review_id": "UP2-00G-I2-PREPARATION-independent-review-r1",
+  "runtime_policy": "No Julia or DESC was run.",
+  "commands": [
+    {"command": "Get-Process julia -ErrorAction SilentlyContinue; Get-Process desc -ErrorAction SilentlyContinue", "exit": 0, "result": "zero julia and zero desc processes at preflight", "evidence": "static process sweep"},
+    {"command": "Get-FileHash on every path in entry_audit_r1/evidence_manifest.json", "exit": 0, "result": "23/27 exact matches; 2 hash mismatches and 2 missing paths", "evidence": "reconciled in report.json"},
+    {"command": "ConvertFrom-Json on reviewed audit report.json, evidence_manifest.json, and command_receipts.json", "exit": 0, "result": "pass", "evidence": "static JSON parse"},
+    {"command": "rg source/protocol checks for B00 F0-F5, B04 N01-N10, n05 checker/exporter helper reuse", "exit": 0, "result": "pass; findings recorded in report.md", "evidence": "read-only source inspection"},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "result": "pass; no mutation performed by this review", "evidence": "plan validator"},
+    {"command": "git diff --check", "exit": 0, "result": "pass for review changes; existing line-ending warnings only", "evidence": "static diff check"},
+    {"command": "control-character scan of four new review files excluding CR/LF/TAB", "exit": 0, "result": "zero matches", "evidence": "static text scan"}
+  ],
+  "process_postflight": {"julia": 0, "desc": 0, "executed": false}
+}

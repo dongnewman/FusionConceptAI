@@ -1,0 +1,42 @@
+{
+  "schema": "CORE-SOURCE-S3-CURRENT-HEAD-R1.independent-review-r2.v1",
+  "review_id": "CORE-SOURCE-S3-CURRENT-HEAD-R1/independent_review_r2",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "decision": "changes_requested",
+  "review_scope": "R2 read-only byte/hash, combined raw, static closure, exact command, canonical fingerprint, external-input, and gate-boundary review",
+  "no_s3_rerun": true,
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "frozen_index_sha256": "6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0",
+  "fingerprint": {
+    "candidate": "840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5",
+    "preimage_path": "archive/repair_r2/input_fingerprint_preimage.json",
+    "preimage_sha256": "d8fdf6c750f3a6db5324275400d7799b79b3467cec3c0d25485be79b024a5159",
+    "canonicalization": "UTF-8 JSON, sorted keys, compact separators, no terminal LF",
+    "independent_recomputed": true
+  },
+  "raw_checks": {
+    "stdout_bytes": 1439,
+    "stderr_bytes": 1,
+    "combined_bytes": 1440,
+    "combined_rule": "stdout || stderr, no separator",
+    "combined_concat_match": true,
+    "combined_hash_match": true,
+    "stderr_actual_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece9649e09c058ef8f9805daca546b",
+    "stderr_declared_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece9649e09c058ef8f9805daca546b",
+    "stderr_hash_match": false,
+    "stderr_declared_length": 65
+  },
+  "static_closure": {
+    "vector": [4,5,12,1,47,0],
+    "semantics": ["probe import declarations","probe explicit include targets","loader component file entries","loader Base.include directive sites","enclosing module include directives","factory include directives"],
+    "source_closure_matches": true,
+    "authoritative_raw_vector": [0,0,0,0,0,0],
+    "raw_classification_issue": true
+  },
+  "result": {"branch":"blocked_external_trust_root_and_source_closure","G1":"typed_absent","G2":"typed_absent","G3":"typed_absent","resolution":"terminal_deferred","no_publish":true},
+  "external_inputs": {"count":14,"absent":13,"unknown_deferred":1},
+  "preservation": {"r1_failure_history":true,"input_unchanged_no_repeat":true,"new_ad_created":false,"formal_credit":false,"R01_R10":"open","L4":0},
+  "forbidden_execution": {"Julia":false,"S3":false,"DESC":false,"mesh":false,"solver":false},
+  "required_repair": ["replace the 65-character stderr digest with the actual 64-character SHA-256 in both R2 receipts","explicitly classify stale zero-vector raw as historical and link a separate corrected static-measurement raw/receipt without rerunning S3"]
+}

@@ -1,0 +1,78 @@
+{
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "round": "r3",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "interpreter_identity": {
+    "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "python_version": "Python 3.13.5",
+    "julia": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "julia_version": "julia version 1.10.5"
+  },
+  "commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "pid": 26908,
+      "utc_start": "2026-09-15T07:18:09.6611912Z",
+      "utc_end": "2026-09-15T07:18:10.1581821Z",
+      "exit_code": 0,
+      "stdout_sha256": "ea5184a08ce941d92c1cf7cc8173401f2f020681c66b496d6d100f43839afa1e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "julia --project=. test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "pid": 57692,
+      "utc_start": "2026-09-15T07:18:10.1584370Z",
+      "utc_end": "2026-09-15T07:18:23.8898055Z",
+      "exit_code": 0,
+      "stdout_sha256": "d79327e5c2faa87625e5948bd4a724d3c808d1413e6e35c7235232b463f60b12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "sha256": "16454897a8f9c0ac7ca2f9af3c0e7ce970a66e33ce6afd39e883ed235e7a0fd5",
+      "bytes": 23968
+    },
+    {
+      "path": "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "sha256": "ca749fa7d471e0c06e31bba1561306a9036ac16432c0b7e5e7234a2e59c4e67b",
+      "bytes": 10076
+    },
+    {
+      "path": "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json",
+      "sha256": "1c52682d1cb3844646d1301337e2995c0ed308ca5cdae1ce04428b86699d0b75",
+      "bytes": 793
+    },
+    {
+      "path": "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "sha256": "aea9c89b5bbc63429e043101a02237a6f184b890249bcd3c8ee69cc09eab4f08",
+      "bytes": 2408
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md",
+      "sha256": "e5c843aef87e49950ae95d7a79e181c415f9cf0827d2ca4aeea44df4e5662ba2",
+      "bytes": 1005
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json",
+      "sha256": "7f0495ae8f80df74beb6c6b35ae11d44edb012ebca34802f64754b60a58a6de8",
+      "bytes": 2211
+    }
+  ],
+  "test_result": "pass_limited",
+  "actual": false,
+  "physical": false,
+  "credits": {
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  }
+}

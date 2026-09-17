@@ -1,0 +1,50 @@
+[
+  {
+    "id": "capture_head_dirty",
+    "command": "git rev-parse HEAD; git branch --show-current; git status --short",
+    "exit_code": 0,
+    "result": "HEAD 4b69f55f7f80240147a65a22809dc1207824dde2; branch main; status_rows 296"
+  },
+  {
+    "id": "focused_r3_receipt_read",
+    "command": "read focused_r3 stdout.txt stderr.txt command_receipts.json input_manifest.json protected_before_after.json qa.json",
+    "exit_code": 0,
+    "result": "preserved Julia exit 1; 2014/2024 GI1B pass, 10 fail, 0 errors; all failures N10-03; upstream 598/598 passed"
+  },
+  {
+    "id": "n10_semantic_source_audit",
+    "command": "static source/test/fixture audit for N10-03 path, typed value, child identity and outer source owner",
+    "exit_code": 0,
+    "result": "production and N10 projection use G3 binding child v2; test expected manifest uses outer G3 bundle v5"
+  },
+  {
+    "id": "contract_boundary_audit",
+    "command": "read 00 normative contracts, 14 orchestration, 16 work orders and AD-28 contract",
+    "exit_code": 0,
+    "result": "child/bundle version split and no-credit boundaries remain explicit"
+  },
+  {
+    "id": "protected_hash_recheck",
+    "command": "SHA256 and byte-size recheck of source, test, fixture, runner, integration contracts and focused_r3 evidence",
+    "exit_code": 0,
+    "result": "all recorded focused_r3 inputs and protected before/after values match current files"
+  },
+  {
+    "id": "process_sweep",
+    "command": "Get-Process exact Julia/DESC name sweep",
+    "exit_code": 0,
+    "result": "JULIA_PROCESSES=0; DESC_PROCESSES=0; no Julia/DESC run by this review"
+  },
+  {
+    "id": "minimal_fix_gate",
+    "command": "static decision for test-only expected-manifest edit and serial rerun",
+    "exit_code": 0,
+    "result": "allowed after independent static diff/hash review; fresh receipt directory required; current exit1 retained"
+  },
+  {
+    "id": "scope_status",
+    "command": "git status --short -- docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r3",
+    "exit_code": 0,
+    "result": "only independent_postrun_r3 directory written by this review"
+  }
+]

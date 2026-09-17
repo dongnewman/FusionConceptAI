@@ -1,0 +1,18 @@
+{
+  "schema_version": "AD-42-static-audit-receipt-v3",
+  "task_id": "AD-42",
+  "command": "PowerShell inline JSON/hash/path/control/scope validation; no Julia/DESC/physical invocation",
+  "interpreter": "PowerShell",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "pid": 77932,
+  "utc_start": "2026-09-15T08:58:52.8524049Z",
+  "utc_end": "2026-09-15T08:58:52.9520006Z",
+  "exit_code": 0,
+  "result": "pass_limited_static_scope",
+  "manifest_input": {"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/manifest.json","bytes":10312,"sha256":"72f451c2ef2fe41a2af9fb8f693d8cac45121111273358a054c768c9972ea39f"},
+  "raw_streams": {"stdout":{"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r3_stdout.txt","bytes":571,"sha256":"8dc98e9b020345075400b272729228ee9de1202dc2cfcee24367c1f794f7f682"},"stderr":{"path":"docs/implementation/AD-42/public_contract_materialization_cycle_audit/archive/static_audit_r3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "checks": {"json_manifest":true,"self_flags":true,"observed_products":true,"inputs":true,"sidecars":true,"report_terms":true,"exact_scope":true,"no_julia_desc_physical":true},
+  "counts": {"frozen_inputs":14,"historical_w2_products":4,"sidecars_at_run":8},
+  "claims": {"present":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"r01_r10":false},
+  "future_product_paths_not_created": true
+}

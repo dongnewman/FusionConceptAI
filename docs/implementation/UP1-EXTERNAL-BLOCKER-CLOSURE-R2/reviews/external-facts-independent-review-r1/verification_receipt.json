@@ -1,0 +1,45 @@
+{
+  "schema": "UP1.R2.external-facts-independent-review.verification-receipt.v1",
+  "status": "rework",
+  "verdict": "rework",
+  "claim_ceiling": "preparation_only/screen_only",
+  "review_mode": "fresh python -B read-only hash and structural checks",
+  "reviewed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "reviewed_head_tree": "e28da2ff057201c2257f6b879d3860b7a49cb428",
+  "checks": {
+    "09_crosswalk_26_rows": true,
+    "09_all_scan_records_nonusable": true,
+    "09_no_content_emitted": true,
+    "09_sensitive_unopened": true,
+    "09_no_new_real_inputs": true,
+    "09_no_changed_inputs": true,
+    "09_no_new_ad": true,
+    "09_no_s3_rerun": true,
+    "10_binary_hashes": true,
+    "10_lock_hashes": true,
+    "10_candidate_authority_absent": true,
+    "11_head_and_tree_match": true,
+    "11_source_hashes": true,
+    "12_certificate_count": true,
+    "12_project_binding_fail_closed": true,
+    "12_no_network_or_store_mutation": true,
+    "environment_dirty_patch_receipt": false
+  },
+  "status_observation": {
+    "source_snapshot_status_count": 378,
+    "source_snapshot_status_sha256": "8789fa44bfaca60b93ed84e0eb97e5582a120b15cbf3c4633c09a0ace137d0ba",
+    "environment_capture_status_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b",
+    "fresh_default_status_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b",
+    "fresh_raw_patch_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+    "recorded_environment_patch_sha256": "e6b42d07d326be263a19509faddeece612f0e42495b8980de0e55f60f282fb99",
+    "interpretation": "snapshot timing and later review/artifact creation explain status drift; HEAD/tree and patch bytes remain independently inspectable"
+  },
+  "raw_evidence": [
+    "raw/fresh_checks.txt",
+    "raw/hash_recalculation.txt",
+    "raw/scope_and_authority_checks.txt"
+  ],
+  "no_mutation": true,
+  "network_used": false,
+  "secrets_read": false
+}

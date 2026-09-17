@@ -1,0 +1,109 @@
+{
+  "manifest_version": "AD-30-t0-precursor-index-sync-v1",
+  "record_kind": "documentation_index_sync",
+  "decision_id": "AD-30",
+  "status": "changes_requested",
+  "accepted": false,
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "current_scope": "T0 precursor links and bounded status in the two requested indexes only",
+  "precursor_scope": "accepted_limited local complete-declaration transport, typed gaps, hash behavior, 79/79 software contract",
+  "main_gate": "T0 main accepted=false; actual fresh same-candidate exact join and external G2/four-axis/G3 source-content authority false; T1 no_go",
+  "links": {
+    "precursor_acceptance": "docs/implementation/UP1-04A-VNEXT-T0/software_precursor_acceptance.md",
+    "independent_software_r1": "docs/implementation/UP1-04A-VNEXT-T0/independent_software_acceptance_r1/report.md"
+  },
+  "changed_files": {
+    "docs/v4_multitopology_generation/README.md": {
+      "before": {
+        "bytes": 28055,
+        "sha256": "8c63ab143a3987796e9af82ae0e6b06df54b6e58ecf1782dcab045d9dcee53ce"
+      },
+      "after": {
+        "bytes": 28443,
+        "sha256": "9e65529da27a7b0a4c7b6412ae34bb7be4b71d9eddef1b7c70c0e1808941e6d9"
+      }
+    },
+    "docs/implementation/README.md": {
+      "before": {
+        "bytes": 14379,
+        "sha256": "e84b03bccd59b21dd2c55aa12fb8a50378d42072d5d3fa854c9d4b365802799b"
+      },
+      "after": {
+        "bytes": 14548,
+        "sha256": "2f2c5c8109e2c22d16c026a9eb57d43c8255197822734cf9d88c4a3abc150b97"
+      }
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "current": {
+        "bytes": 73348,
+        "sha256": "011533c4c174feb77636aab3d96d5b3d05457d7eaae26f3d52db08a622809280"
+      }
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "current": {
+        "bytes": 57483,
+        "sha256": "f16d5a00a7a0896138398b77c18eba4769b6f1962406d55f11862b4ef5b76e0b"
+      }
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "current": {
+        "bytes": 63912,
+        "sha256": "b149ffa8a725c2a8e9c62bcd3c81becbca92bae9e3b49b3eef9360aef4a9fab5"
+      }
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0/acceptance.md": {
+      "current": {
+        "bytes": 2821,
+        "sha256": "053ae4504d924b02d301a482275a6f6fc2af7c596de4551e38a0f6a648037844"
+      }
+    }
+  },
+  "new_outputs": {
+    "docs/implementation/AD-30/t0_precursor_index_sync/report.md": {
+      "bytes": 1307,
+      "sha256": "6194596e1402f743a09c8fb83a9a932c0a1db619150f2814bc7f25e9fa0782a9"
+    }
+  },
+  "validation": {
+    "json_tool_command": "python -m json.tool docs/implementation/AD-30/t0_precursor_index_sync/evidence_manifest.json",
+    "json_tool_exit": 0,
+    "validate_plan_command": "python docs/v4_multitopology_generation/validate_plan.py",
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 374,
+    "task_count": 34,
+    "task_dag_acyclic": true,
+    "julia_run": false,
+    "desc_run": false
+  },
+  "dirty_protection": {
+    "before_status_sha256_utf8_lf": "6f5fac84a711a66bddb79a7f867511c81dee63bfbdeeccc618b5a4575485e50c",
+    "before_bytes": 313221,
+    "before_entries": 3987,
+    "after_status_sha256_utf8_lf": "f6c4682fbdac4e4c42653d6539527446a0de4101f3495fb27deb45a16b8c9ec5",
+    "after_bytes": 320366,
+    "after_entries": 4081
+  },
+  "scope_guard": {
+    "16_unchanged": true,
+    "18_unchanged": true,
+    "task_manifest_unchanged": true,
+    "source_tests_old_evidence_unchanged": true,
+    "existing_t0_main_acceptance_unchanged": true
+  },
+  "credits": {
+    "implementation": false,
+    "T0_main": false,
+    "T1": false,
+    "UP2": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

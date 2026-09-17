@@ -1,0 +1,31 @@
+{
+  "schema_version": "UP2-G-I1A-focused-r2-run-receipt-v1",
+  "run": "focused_r2",
+  "status": "exit0_test_pass",
+  "claim_ceiling": ["contract_only", "software_test_evidence_only"],
+  "credits": {"b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "process_receipt": "process.json",
+  "input_hashes": "input_hashes.json",
+  "protected_hashes": "protected_hashes.json",
+  "postflight": "postflight.json",
+  "exit_code": 0,
+  "stdout_sha256": "C82E92F2E46AB52E7B8B55E4E9C0D41F03CEFB367B298DE3B013498FB42AB27C",
+  "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+  "test_groups": {
+    "up1_g1_core": "47/47 repeated child fixture runs",
+    "up1_g1_negative": "21/21 repeated child fixture runs",
+    "up1_g2_legal": "57/57 repeated child fixture runs",
+    "up1_g2_negative": "59/59 repeated child fixture runs",
+    "up1_g2_boundary": "8/8 repeated child fixture runs",
+    "up1_g3_identity": "49/49 repeated child fixture runs",
+    "up1_g3_resource": "35/35 repeated child fixture runs",
+    "up1_g3_refs": "23/23 repeated child fixture runs",
+    "gi1a_typed_authority": "30/30",
+    "gi1a_constructor_n06": "19/19",
+    "gi1a_absent_slots": "10/10",
+    "gi1a_tamper": "20/20",
+    "gi1a_total": "79/79"
+  },
+  "no_source_test_core_changes": true,
+  "physical_or_b04_claim": false
+}

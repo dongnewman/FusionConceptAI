@@ -1,0 +1,27 @@
+{
+  "schema": "UP1.W4.local-input-discovery.independent-review-r2.manifest.v1",
+  "work_order": "W4",
+  "status": "rework_required",
+  "claim": "discovery_only/preparation_only",
+  "write_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/W4-local-input-discovery-independent-review-r2/",
+  "source_bundle": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/local_input_discovery/",
+  "review_exact_set": ["cleanup_inventory.json","findings.json","manifest.json","review.md","validation_receipt.json"],
+  "review_exact_set_count": 5,
+  "source_exact_set_count": 34,
+  "source_exact_set_matches_current_files": true,
+  "archive_rule": "archive/pre_repair_r1 remains preserved and is not silently replaced",
+  "source_scan_partition": {"raw_hits":2851,"candidates":1904,"excluded":947,"identity":"1904+947=2851"},
+  "source_runs": {"metadata_scan_pid":21104,"validator_pid":62980,"validator_exit":0},
+  "source_register_crosswalk": {"W1":10,"W2":11,"W3":5,"total":26,"lossless":true,"digest":"1418e81174f6f598ce06b9dbfb48481d3881f36d0e3c5c2d78f8a5376b5fa6aa"},
+  "source_artifact_hash_mismatches": 2,
+  "source_artifact_mismatch_paths": ["docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/source_g2_environment/manifest.json","docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/source_g2_environment/static_validator.py"],
+  "review_self_hash_exclusion": "manifest.json excluded from review artifact hash map",
+  "review_artifact_hashes_excluding_manifest": {
+    "cleanup_inventory.json":"903a477bd91f0c06d40db42d9f308a025fb95cfa390fb413115a5b5b80204846",
+    "findings.json":"31578bfea0b4d88cae000ab28f0e0d21751f0995e10e47a18f64b48ad6c0ac5c",
+    "review.md":"7a5f03e5a4bf67ce37b8979c00f4bc1bfda0b924508151c2828c1d4b2c97a577",
+    "validation_receipt.json":"624a2ff8b634cb95e0875ccccc6da93ad6c17dd47b6aebc35c6bd1578e88c265"
+  },
+  "outputs": ["review.md","findings.json","validation_receipt.json","manifest.json","cleanup_inventory.json"],
+  "status_credit": {"discovery_only":true,"preparation_only":true,"T0":false,"B00":false,"B04":false,"UP1":false,"R":false,"L4":false,"parent_goal":false}
+}

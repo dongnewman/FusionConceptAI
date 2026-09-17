@@ -1,0 +1,5 @@
+command: independent Python -B parent with two child Python -B processes from current test
+processes=2
+observed: test_two_process_same_frozen_missing_input_is_semantically_stable passed
+semantic_equal=true
+note: deterministic stage hashes are not authenticity, receipt self-recomputation, or CAS evidence.

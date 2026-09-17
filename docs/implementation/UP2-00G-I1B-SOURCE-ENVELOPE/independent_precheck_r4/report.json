@@ -1,0 +1,60 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r4-v1",
+  "review_role": "independent_static_precheck",
+  "reviewer_model": "Luna-high",
+  "verdict": "changes_requested",
+  "julia_run": "not_run_by_design",
+  "desc_run": "not_run_by_design",
+  "formal_b04": false,
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries_at_freeze": 3427,
+    "status_snapshot_sha256": "abca186d32edbd1f9b29cfb427cf67661ca4a838cf2ceff6b037dbf732ee9f3a",
+    "matching_julia_desc_processes": 0
+  },
+  "findings": [
+    {
+      "id": "GI1B-R4-01",
+      "severity": "P1",
+      "status": "blocking",
+      "title": "public factory accepts arbitrary row_builder and can bypass source-derived rows",
+      "locations": [
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:589-595",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:597-626",
+        "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:306-321"
+      ],
+      "impact": "A caller can inject fabricated rows with valid outer shape and bypass actual source access, source identity, typed originals, attempted values, classification, and hashes while retaining the public 50-row envelope contract.",
+      "fix": "Move row_builder fault injection to an internal/test-only helper and keep the public factory fixed to _gi1b_row, or reject non-default builders publicly and independently validate every row against actual source access before assembly."
+    }
+  ],
+  "r4_fixed_static_points": {
+    "ordinary_envelope_zero_counters": true,
+    "faulted_envelope_and_row_zero_counters": true,
+    "independent_attempted_manifest": true,
+    "no_production_attempt_or_hash_helper_for_expected_extraction": true,
+    "independent_mutation_payload_hash": true,
+    "factory_program_exception_negative_control": true,
+    "program_exception_and_fail_closed_errors_retained": true,
+    "n05_absent_metadata_hashes": true,
+    "n06_n09_n10_gaps_and_classification": true,
+    "source_identity_exception_marker_without_g1_fallback": true
+  },
+  "qa": {
+    "json_parse": "pass",
+    "fixture_shape": "pass",
+    "planning_validator": "pass",
+    "targeted_git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "source_only_routing_scan": "pass",
+    "julia_desc_process_sweep": "pass_zero_matching_processes",
+    "focused_julia": "not_run_by_design"
+  },
+  "evidence": [
+    "evidence_manifest.json",
+    "command_receipts.json",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_precheck_r3/report.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r4/repair_note.md",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r4/static_qa.json"
+  ]
+}
+

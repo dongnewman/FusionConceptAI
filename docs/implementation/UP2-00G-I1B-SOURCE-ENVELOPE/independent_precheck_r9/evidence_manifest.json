@@ -1,0 +1,52 @@
+{
+  "record_kind": "gi1b_independent_precheck_r9_evidence",
+  "schema_version": "GI1B-independent-precheck-r9-evidence-v1",
+  "review_id": "UP2-00G-I1B-independent-precheck-r9",
+  "verdict": "pass_limited",
+  "serial_focused_r5_readiness": "ready_for_serial_focused",
+  "accepted": false,
+  "review_pending": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_inputs": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"bytes": 43037, "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {"bytes": 25685, "sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"bytes": 23906, "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"bytes": 408, "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"}
+  },
+  "test_before_after": {
+    "before_bytes": 25712,
+    "before_sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37",
+    "after_bytes": 25685,
+    "after_sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299",
+    "changed_line": 407,
+    "change_kind": "semantic_nonempty_N06_authority_gap_check"
+  },
+  "focused_r4_archive": {
+    "command_receipts.json": {"bytes": 1433, "sha256": "24284bb63cf5057a73f3ad5c08b5ecc7001796905f59705b443433a039b6ecab"},
+    "input_manifest.json": {"bytes": 1101, "sha256": "eb71931bc2c22b9fa35738a03bfa8842d53acbdcb08aa0db2a28a41a7b204bbf"},
+    "preflight.json": {"bytes": 1078, "sha256": "d085cfadfa28d0383974df7012015d4d54470724ee4bcdba463c05ea83051cb4"},
+    "protected_before_after.json": {"bytes": 1622, "sha256": "498a74c8b1450b5c5f92e9be3449df034492c029ea235ec6b5b0f1a307c6bac2"},
+    "qa.json": {"bytes": 2401, "sha256": "7389d37ce4139fca6465fcf0ca5ac7d2b12068db103644b4b676bb2878702e6c"},
+    "stdout.txt": {"bytes": 3517, "sha256": "8d0409a26d78e8b65a94cad060bfefb41d972f2ab34d6568356be0d9ae494d9c"},
+    "stderr.txt": {"bytes": 312, "sha256": "25fec85128abe7b380aecdfe1988bbf15e3268ff5dcec1af2bd437eb1c2ac453"}
+  },
+  "repair_r9_static_qa": {
+    "owned_hashes_sha256": "9dc7686ada79eecfd90a927b4e13d43eee8bfb1c1a8353e4619acb6111745fdb",
+    "repair_note_sha256": "dd8b96adda2a2945deb5236ec9d06f17eed71b363c10029f93c91a841c3fe5bc",
+    "static_qa_sha256": "e6d0c7a4a25b63937c36601cd49895f18d7bc5ccf786e1efbb7ce3f2e9ef65a5",
+    "static_qa_status": "pass_limited"
+  },
+  "verification": {
+    "static_hash_json_check_exit": 0,
+    "julia": "not_run",
+    "desc": "not_run"
+  },
+  "dirty_state": {
+    "prewrite_entry_count": 3784,
+    "prewrite_status_sha256_utf8_lf": "26a5e83f63c033abac4ba7d13c2e98d70a43db9140c3f4d8b46e7cebfc6e7650",
+    "postwrite_entry_count": 3797,
+    "postwrite_status_sha256_utf8_lf": "1a69e065aa0b38899048c39e05af264ebda483c4ebf72f6d02b0bb4abac15275"
+  },
+  "negative_controls": {"source_modified": false, "fixture_modified": false, "runner_modified": false, "focused_r4_overwritten": false, "formal_credit_granted": false},
+  "self_hash_excluded": true
+}

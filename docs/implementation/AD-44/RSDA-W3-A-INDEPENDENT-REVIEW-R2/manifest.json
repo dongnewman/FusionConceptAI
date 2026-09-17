@@ -1,0 +1,24 @@
+{
+  "schema_version": "AD44-RSDA-W3-A-independent-review-r2-v1",
+  "task_id": "AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS",
+  "review_id": "AD44-RSDA-W3-A-INDEPENDENT-REVIEW-R2",
+  "verdict": "pass_limited",
+  "accepted_scope": "software_source_provenance_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "products": [
+    {"layer":"G1","path":"docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json","bytes":6550,"sha256":"0980aa741561445f2d66efbf828100b1df3afa24d177c54a2712fa2ed7ccb750"},
+    {"layer":"G1","path":"docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/authority_receipt.json","bytes":3404,"sha256":"3264717def0fdb1afb0ddf1213691b41a8b37d0d7f81460cb6616d5ac16e3cc2"},
+    {"layer":"G2","path":"docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/repository_design_source_authority_record_v1.json","bytes":6925,"sha256":"15a2479d73270fa3ef4562bc8e509404a18c61b4392d250f7f360546098eaa3e"},
+    {"layer":"G2","path":"docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/authority_receipt.json","bytes":3596,"sha256":"807950e896c342ddb2187b66364687d656ef0433469a72192e32c17c86b5506d"}
+  ],
+  "independent_run": {"interpreter":"D:/Users/Newman/anaconda3/python.exe","python_version":"3.13.5","pid":82216,"utc_start":"2026-09-15T11:40:38.442522Z","utc_end":"2026-09-15T11:40:38.783437Z","exit_code":0,"checks_passed":47,"checks_total":47,"raw_stdout":"review/validation_stdout.json","raw_stderr":"review/validation_stderr.txt"},
+  "semantic_hashes": {"G1":"079ff8f3076e27fee3fd8b4b4646d646c9426ef816a16ae1aaa1d7fc2e0521d1","G2":"1cb9cc4e5c93a25190a413948ddb5b16867a87dd9b2cd0641f8d6cdf4672be7a"},
+  "final_receipt_snapshots": {"G1":"docs/implementation/AD-44/RSDA-G1-AUTHORITY-RECORD/archive/final_receipt_snapshot.json","G2":"docs/implementation/AD-44/RSDA-G2-AUTHORITY-RECORD/archive/final_receipt_snapshot.json","self_hash_excluded":true,"snapshot_referenced_by_receipts":false},
+  "planning_validation": {"command":"python docs/v4_multitopology_generation/validate_plan.py","exit_code":0,"task_count":39,"task_dag_acyclic":true},
+  "scoped_git_diff_check": {"exit_code":0},
+  "prior_failed_receipts_preserved": true,
+  "w3b_status": "proposed_blocked_common_candidate_identity_and_axis_attestation",
+  "w3b_products_created": false,
+  "protected_inputs_modified": false,
+  "all_candidate_present_physical_and_r01_r10_credit": false
+}

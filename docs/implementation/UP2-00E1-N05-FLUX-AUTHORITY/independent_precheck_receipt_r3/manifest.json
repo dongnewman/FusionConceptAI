@@ -1,0 +1,75 @@
+{
+  "schema_version": "independent-static-precheck-v1",
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY-independent-precheck-receipt-r3",
+  "verdict": "ready_for_focused_export_r1",
+  "accepted": false,
+  "accepted_scope": "contract_only_static_readback_trusted_checker_precheck",
+  "reviewer_role": "different_luna_non_author_independent_reviewer",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "status": "not_run",
+    "reason": "independent static precheck; serial focused export remains required"
+  },
+  "frozen_inputs": {
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "f6905da1ce4c28d8f1d329d08338f7efc59873c50c32d04733646f8716113a64",
+    "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "b4d62e9ddf806809889225d704929593357145e38ed840df7c705446bdb1f331",
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+    "test/GenomeV5/UP2/n05_flux_authority_tests.jl": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "test/GenomeV5/UP2/run_n05_flux_authority.jl": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3"
+  },
+  "verified": {
+    "json3_reread_before_trusted_overload": true,
+    "trusted_overload_actual_rebuild": true,
+    "candidate_forgery_from_reread": true,
+    "package_forgery_from_reread": true,
+    "e0_forgery_from_reread": true,
+    "declaration_forgery_from_reread": true,
+    "source_hash_forgery_from_reread": true,
+    "mutation_hash_forgery_from_reread": true,
+    "missing_row_from_reread": true,
+    "fixture_expected_error_used_for_classification": false,
+    "fixture_id_used_for_routing": false,
+    "file_checker_misrepresented_as_source_bound": false,
+    "prior_r1_r2_history_present": true,
+    "r4_inputs_protected": true
+  },
+  "required_focused_gates": [
+    "run trusted checker on JSON3 object re-read from emitted file",
+    "capture real process PID/start/end/exit/stdout/stderr and post-process sweep",
+    "confirm NamedTuple/JSON3.Object structural comparison at runtime",
+    "retain compile/provider/solver counters at zero"
+  ],
+  "receipt_contract": {
+    "authored_fail_closed": 5,
+    "absent_terminal_deferred": 5,
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0
+  },
+  "claim_ceiling": {
+    "contract_only": true,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "qa": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "git_diff_check_exit": 0,
+    "julia_desc_sweep_exit": 0,
+    "julia_desc_process_count": 0,
+    "julia_execution": "not_run"
+  },
+  "owned_write_scope": [
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/independent_precheck_receipt_r3/"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "record_kind": "up1_r3_local_environment_closure_inventory",
+  "schema": "UP1.local-environment-closure-scan-r3.v1",
+  "observed_utc": "2026-09-16T21:50:28.8049838Z",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "evidence_class": "local-observed",
+  "host": {
+    "name": "NEWORLDS-LAPTOP",
+    "os": "Microsoft Windows 11 Professional",
+    "version": "10.0.26200",
+    "build": "26200",
+    "architecture": "AMD64"
+  },
+  "binaries": [
+    {"name":"Julia","path":"C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe","exists":true,"bytes":169744,"sha256":"8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad","file_version":"1.10.5","product_version":"1.10.5","publisher_metadata":"JuliaLang","metadata_classification":"typed_unverified"},
+    {"name":"Python-Anaconda","path":"D:\\Users\\Newman\\anaconda3\\python.exe","exists":true,"bytes":104264,"sha256":"388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a","file_version":"3.13.5","product_version":"3.13.5","publisher_metadata":"Python Software Foundation","metadata_classification":"typed_unverified"},
+    {"name":"Python-DESC-venv","path":"D:\\006-Programing\\LMC\\outputs\\fusion_concept_ai\\.venv-desc\\Scripts\\python.exe","exists":true,"bytes":253256,"sha256":"cec2fab4b3258900cc330346de8c664e57fa04227406920a6edb06f0efeeebb1","file_version":"3.13.5","product_version":"3.13.5","publisher_metadata":"Python Software Foundation","metadata_classification":"typed_unverified"},
+    {"name":"DESC-launcher","path":"D:\\006-Programing\\LMC\\outputs\\fusion_concept_ai\\.venv-desc\\Scripts\\desc.exe","exists":true,"bytes":108373,"sha256":"f5796f9665f142a995ee01626b05806facd3e648be9d15784c53729dab0f7d83","file_version":null,"product_version":null,"publisher_metadata":null,"metadata_classification":"typed_unverified"},
+    {"name":"Python-WindowsApps-alias","path":"C:\\Users\\Newman\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","exists":true,"bytes":0,"sha256":null,"read_error":"reparse-point target cannot be read","metadata_classification":"typed_unverified"}
+  ],
+  "dependency_declarations": [
+    {"kind":"julia_project","path":"Project.toml","bytes":563,"sha256":"923b78938e12c27e836b269d71a539ae7bb292c9fe9f8cb92f9f9a8cea1370e2","classification":"local-observed"},
+    {"kind":"julia_manifest","path":"Manifest.toml","bytes":3348,"sha256":"85074b7a5bd543c0b4155f44db0733d21d53cfd0bf4c2de6704dc858357717e7","classification":"local-observed"},
+    {"kind":"gridap_project","path":"tools/qualification/gridap/Project.toml","bytes":55,"sha256":"223fb6c8ea33f03989ccb4d76ed80016a3bc2799bc4210490c4e43cc7affceb6","classification":"local-observed"},
+    {"kind":"gridap_manifest","path":"tools/qualification/gridap/Manifest.toml","bytes":34697,"sha256":"2e1d103396d3f3faa13687bd4a95fde287d1f94e8b0006046b65e1e29aa3765a","classification":"local-observed"},
+    {"kind":"python_requirements_or_lock","path":"requirements*.txt|requirements*.lock|Pipfile*|poetry.lock|uv.lock|environment*.yml|environment*.yaml","exists":false,"classification":"typed_absent"}
+  ],
+  "local_manager_records": {"desc_venv_dist_info":49,"desc_venv_metadata":49,"desc_venv_record_files":49,"desc_venv_direct_url_files":0,"anaconda_conda_meta_json":508},
+  "missing_or_unverified_fields": {
+    "candidate_bound_import_closure":"typed_absent",
+    "binary_publisher_signature":"external-authority-required",
+    "signed_download_receipt_origin_and_retrieval_time":"external-authority-required",
+    "reproducible_build_or_container_recipe":"external-authority-required",
+    "sbom_document_supplier_license_and_dependency_edges":"external-authority-required",
+    "independent_trust_root_and_verification_receipt":"external-authority-required",
+    "python_exact_lock_and_channel_freeze":"typed_absent",
+    "local_hash_as_external_trust":"typed_unverified"
+  },
+  "status_credit": {"UP1":false,"candidate":false,"source_authority":false,"solver":false,"physical":false,"parent_goal":false}
+}

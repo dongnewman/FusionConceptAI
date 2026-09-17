@@ -1,0 +1,31 @@
+{
+  "schema": "UP1-R2-common-independent-review-v3",
+  "verdict": "pass_limited",
+  "source_revision": "common-rework-r3-present-at-review-time",
+  "findings": [],
+  "observations": [
+    {
+      "id": "C-R3-O1",
+      "severity": "low",
+      "priority": "P3",
+      "area": "identity-api",
+      "status": "accepted-observation",
+      "summary": "Forged direct Fingerprint construction is rejected with ValueError; receipt-shaped forgery is rejected with typed identity mismatch/invalid field taxonomy."
+    }
+  ],
+  "checks": {
+    "focused_unittest": "pass_13",
+    "attack_driver": "exit_0_no_p1_p2",
+    "compileall": "pass",
+    "r1_r2_attack_replay": "pass",
+    "forged_fingerprint_preimage_digest": "constructor_rejected_and_receipt_rejected",
+    "domain_version_type_alias": "pass_typed_rejection",
+    "malformed_error_details_path": "pass_invalid_error",
+    "oversized_integer": "pass_non_canonical_number",
+    "two_process_determinism": "pass_stdout_equal_pids_distinct",
+    "windows_replacement_pressure": "256_of_256_rejected_no_leak",
+    "implementation_manifest": "pass",
+    "implementation_input_hashes": "all_match",
+    "windows_symlink_control": "unavailable_winerror_1314"
+  }
+}

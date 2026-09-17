@@ -1,0 +1,62 @@
+{
+  "manifest_version": "AD-36-status-sync-r3",
+  "record_kind": "accepted_limited_status_sync_receipt",
+  "task_id": "AD-36",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "mandatory_evidence_sidecar_scope_contract_only",
+  "review_basis": {"path":"docs/implementation/AD-36/independent_review_r3/report.md","verdict":"pass_limited","reviewer":"different Luna/high"},
+  "parent_task_count": 39,
+  "parent_dag_acyclic": true,
+  "parent_dag_unchanged": true,
+  "creates_mainline_task": false,
+  "physical_credit": false,
+  "r01_r10_credit": false,
+  "exact_file_count_scope": "product_and_contract_deliverables_only",
+  "sidecar_policy": {"evidence_only":true,"allowed_roots":["docs/implementation/<task-id>/archive/**","docs/implementation/<task-id>/review/**","docs/implementation/<task-id>/status_sync_*/**"],"excluded_from_exact_file_count":true,"forbidden_payloads":["product_or_contract_deliverable","source","test","fixture","staticQA","launcher"],"scope_violation_action":"fail_closed_and_preserve_violation_evidence","temporary_launcher_forbidden":true},
+  "inputs": {
+    "docs/implementation/AD-36/acceptance.md": {"bytes":3216,"sha256":"aa8610dec1c4259730fd4639cb1531da7aa5d8fd0122f167e4424f3084664dc2"},
+    "docs/implementation/AD-36/manifest.json": {"bytes":5928,"sha256":"4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9"},
+    "docs/implementation/AD-36/independent_review_r3/report.md": {"bytes":3455,"sha256":"2e4cb0bd3e0eca794e8b334abaa9850437dcab130d22127101b03611f3e86cf2"},
+    "docs/implementation/AD-36/independent_review_r3/manifest.json": {"bytes":7041,"sha256":"221a9770815c2b43956660f501f4731340623e975454f534f0836e11334ea11a"},
+    "docs/implementation/AD-37/acceptance/acceptance.md": {"bytes":1866,"sha256":"2260f3143d2d3e620ce2221b4783bf6347990ea5d507c28dbb417e184ce148b1"},
+    "docs/implementation/AD-37/acceptance/manifest.json": {"bytes":1952,"sha256":"744213bf91c45c3a6255533b45af01d9989d756d8f6147660ed882e62bbde89f"},
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/repair_r2/revised_report.md": {"bytes":4810,"sha256":"a40a33fec397b5ee06974a4f840abd105cb125d6b00fa3e8c97fbd8915e49b23"},
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/report.md": {"bytes":4676,"sha256":"84b4221e0e23ba91ca22e54abdec59ccdcaeda660d25a8f8449c9fad54a09921"},
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/manifest.json": {"bytes":9275,"sha256":"dce9ff890ae7824aad53a051b73c9bf8b28a65e68f8502ece310097538526a5c"},
+    "docs/implementation/AD-38/acceptance/acceptance.md": {"bytes":2735,"sha256":"4d3f4ece894894bd972a8569f342169bfa6093152f16241ed52d969e47f46d66"},
+    "docs/implementation/AD-38/acceptance/manifest.json": {"bytes":10520,"sha256":"23bbfaf476904df31f8574506c4cd48242e97e7611b505ef68fc7723a931d860"},
+    "docs/implementation/UP3-EARLY-PREPARATION/manifest.json": {"bytes":4612,"sha256":"b4d6645e6cace36bcec392ca6bea319ba7ae6786e2fea3ff48cefd29ee4c40b4"},
+    "docs/implementation/UP4-EARLY-PREPARATION/manifest.json": {"bytes":7492,"sha256":"75dcbecb6d8bb914dc55d7e937ee900f5c30c2fffd1f0ee71865439f0ca5cae0"},
+    "docs/implementation/UP5-EARLY-PREPARATION/manifest.json": {"bytes":5545,"sha256":"758132ba94ff916fbcc3ec81866f90136f579b79e4d723137c4b76e49796847a"},
+    "docs/implementation/UP6-EARLY-PREPARATION/manifest.json": {"bytes":6311,"sha256":"fefc2ca5f339729e999d42ce8b479c8cac0e7d19ad9af1fff4fed3208e7a1845"},
+    "docs/v4_multitopology_generation/README.md": {"bytes":38864,"sha256":"3abd02561dc220d0c0552ebde6f11bb8fa257471f448883b1af534a56c3d577d"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes":10092,"sha256":"0520d754ddea25f674c0ad26e604dee5e301064c7be7f4eb4f3f4515ca764cea"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes":94844,"sha256":"f87a8632dc37330b527829870ba1b77b831167425a2387d38d8ccb6755b7bfc6"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes":75623,"sha256":"be1491b9d03a8180c5d809b8789e8074bd8a08f5315f6599cf047a9ca22ad8b9"},
+    "docs/implementation/README.md": {"bytes":21580,"sha256":"9b11a422ba233020f32efbbf593eedf8fa437af938a2f734e28812c909a3b950"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes":91208,"sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"}
+  },
+  "commands": [
+    {"kind":"json_manifest_parse","command":"python -c json.loads over 12 manifests","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":69304,"started_utc":"2026-09-15T07:15:08.5580903Z","ended_utc":"2026-09-15T07:15:08.6784252Z","exit_code":0,"stdout":"status_sync_r3/json_parse.stdout","stdout_sha256":"405df4225e21e549460a284cec67e1f411ec58a625e848a5b9bb78a0c1aa7175","stderr":"status_sync_r3/json_parse.stderr","stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"kind":"validate_plan","command":"python docs/v4_multitopology_generation/validate_plan.py","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":74536,"started_utc":"2026-09-15T07:18:49.2905096Z","ended_utc":"2026-09-15T07:18:49.5516263Z","exit_code":0,"stdout":"status_sync_r3/plan_validate.stdout","stdout_sha256":"8f2e76bd665148b8063865afdf836597ee8aa1bc3d108e780ede63d6ad3cf060","stderr":"status_sync_r3/plan_validate.stderr","stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"kind":"git_diff_check_scoped","command":"git diff --check -- scoped AD-36/AD-37 acceptance/core docs","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":61048,"started_utc":"2026-09-15T07:18:59.4938199Z","ended_utc":"2026-09-15T07:18:59.5693068Z","exit_code":0,"stdout":"status_sync_r3/diff_check.stdout","stdout_sha256":"e8d078872cd25ac79e107b3eb5124b7374e9b9a4cde6d5b3ef5ce807b22d087f","stderr":"status_sync_r3/diff_check.stderr","stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+  ],
+  "outputs": {"plan_validator":{"task_count":39,"dag_acyclic":true,"markdown_files":31,"relative_links":485,"exit_code":0},"json_parse":{"count":12,"exit_code":0},"diff_check":{"exit_code":0,"warning":"LF will be replaced by CRLF on next Git touch"}},
+  "raw_receipts": {
+    "json_parse.stdout": {"bytes":836,"sha256":"405df4225e21e549460a284cec67e1f411ec58a625e848a5b9bb78a0c1aa7175"},
+    "json_parse.stderr": {"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "plan_validate.stdout": {"bytes":481,"sha256":"8f2e76bd665148b8063865afdf836597ee8aa1bc3d108e780ede63d6ad3cf060"},
+    "plan_validate.stderr": {"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "diff_check.stdout": {"bytes":228,"sha256":"e8d078872cd25ac79e107b3eb5124b7374e9b9a4cde6d5b3ef5ce807b22d087f"},
+    "diff_check.stderr": {"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+  },
+  "receipt_reconciliation": {
+    "historical_failed_attempt": {"stdout":"reconcile_attempt1.stdout","stderr":"reconcile_attempt1.stderr","pid":78164,"started_utc":"2026-09-15T07:20:41.3929006Z","ended_utc":"2026-09-15T07:20:41.4863143Z","exit_code":1,"reason":"stale json_parse.stdout hash detected and preserved"},
+    "final_success": {"command":"python -c verify all status_sync_r3 raw_receipts bytes and SHA256","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":75292,"started_utc":"2026-09-15T07:21:30.3352650Z","ended_utc":"2026-09-15T07:21:30.4079753Z","exit_code":0,"stdout":"reconcile_success.stdout","stdout_bytes":140,"stdout_sha256":"5e479bcb718e49a5ca9f355ba4d5062e76e0e93496d00ca1411c9df835ba048c","stderr":"reconcile_success.stderr","stderr_bytes":1,"stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    "historical_failed_attempt_hashes": {"reconcile_attempt1.stdout":"6c3a4e2f5b6d401cb64b7ee5cc74dcd9da253a1a726141c8f4bf8b0ba8a83436","reconcile_attempt1.stderr":"3423218716c38b9845cec3a779c33e4560b64fa934edcc3280328425d9a62f53"},
+    "final_manifest_check": {"command":"python -c parse 10 manifests and assert task_manifest SHA256","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":64888,"started_utc":"2026-09-15T07:22:35.7345640Z","ended_utc":"2026-09-15T07:22:35.8649053Z","exit_code":0,"stdout":"final_manifest_check.stdout","stdout_bytes":241,"stdout_sha256":"09364ecab092ec3715c25a4ec17389361112fcd3854156b4afec4b8f96891229","stderr":"final_manifest_check.stderr","stderr_bytes":1,"stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+  },
+  "cleanup": {"action":"retain","removed_paths":[],"cleanup_deferred_ambiguous":[],"dirty_and_historical_protected":true},
+  "self_hash_excluded": true
+}

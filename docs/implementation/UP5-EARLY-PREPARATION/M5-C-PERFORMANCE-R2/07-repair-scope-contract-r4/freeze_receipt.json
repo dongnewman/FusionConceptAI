@@ -1,0 +1,39 @@
+{
+  "schema":"M5CFreezeReceiptV3",
+  "run_id":"M5-C-PERFORMANCE-R2-R4-FREEZE-20260917T045027Z-01",
+  "mode":"read_only_static_fresh_freeze",
+  "capture_command":"PowerShell read-only SHA-256/byte recount; no Julia launch",
+  "command_exit":0,
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "host":"local",
+  "powershell_pid":111468,
+  "utc_start":"2026-09-17T04:50:27.4636591Z",
+  "utc_end":"2026-09-17T04:50:27.4636591Z",
+  "head":"b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch":"main",
+  "pre_process_count":{"julia":0},"post_process_count":{"julia":0},
+  "execution":{"julia_started":false,"desc_started":false,"s3_started":false,"solver_started":false,"mesh_started":false,"search_started":false,"physical_started":false},
+  "current_inputs":[
+    {"path":"src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl","bytes":23892,"sha256":"7a1f52a96a7a79061b1e4bdb0fc1b7b41de5e45266d0ac4726a50502a4dc6500"},
+    {"path":"test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl","bytes":14243,"sha256":"e0ed925a77f65aa045586f3c8dd78b2acfe8e023b29f1f95bba1f246b61a9355"},
+    {"path":"test/RuntimeV4/M4Isolated/oracles/conditional_egraph_oracle_v1.py","bytes":4315,"sha256":"92db4edbea2060409d22ff453fa9eef119f8639f1ab6edb6cc01103218309dca"},
+    {"path":"test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl","bytes":12817,"sha256":"7ea02e3d4ea313cdce5723150674a4c8b1440cb846faa3189535397471e56522"},
+    {"path":"src/IR/ConditionalEGraphTypes.jl","bytes":27558,"sha256":"885119aa142335f4dedcb1eb506b48350bc7793538b55d622ee9766e0ac47bee"},
+    {"path":"src/IR/ConditionalEGraphSaturation.jl","bytes":24038,"sha256":"643775a5b10b9865269c66088d97ff7476312924f324d9c8b75107ad7749cdb3"},
+    {"path":"src/Canonical/ConditionalEGraphCanonical.jl","bytes":18769,"sha256":"038c43431f053aa22ecac707a950aea19ae9d6a85157ce7d8325e43f3690eb12"},
+    {"path":"src/Canonical/TypedASTProgramCanonical.jl","bytes":32199,"sha256":"b978fb99164f4d0f58c639f2e58dc1ecc3bc9baa2f9afdef63cd6e7c323809ff"},
+    {"path":"src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl","bytes":26258,"sha256":"284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209"},
+    {"path":"src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl","bytes":26187,"sha256":"477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59"}
+  ],
+  "historical_inputs":[
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/manifest.json::frozen_inputs.historical_r1_manifest","bytes":1339,"sha256":"bbcd735e84a97bde0fe2381e92450808a2e5be3def98537520f4297bb992274a","historical_only":true},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/manifest.json::frozen_inputs.historical_r2_manifest","bytes":528,"sha256":"bbea4ff12167c15f4e8b2a41c580274ee9b13d464d585d6728141540c5895cf5","historical_only":true},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/manifest.json::frozen_inputs.historical_r3_manifest","bytes":1404,"sha256":"3be22f97174fa879eb2905a292854cbc9cddabc9525bb23f6b3d3a0d6643ff30","historical_only":true},
+    {"path":"docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/01-profile/manifest.json::frozen_inputs.probe_at_capture","bytes":12812,"sha256":"f01f480007814be6504f4c7dc7fcc36039c2f7a4fb1751e9d6b680c0bb33fb88","historical_only":true},
+    {"path":"historical M5-A source capture (path unavailable in current checkout)","bytes":null,"sha256":"e6262a11ca47f527dfa67f08974febfd69a0334e1c64baeec7657249f0e1945a","historical_only":true},
+    {"path":"historical M5-B source capture (path unavailable in current checkout)","bytes":null,"sha256":"0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c","historical_only":true}
+  ],
+  "raw_row_mapping_ref":"acceptance_matrix.md#2-raw-row-corrected-count-mapping",
+  "raw_row_mapping_sha256":"0000000000000000000000000000000000000000000000000000000000000000",
+  "receipt_sha256":"excluded_until_manifest_seal"
+}

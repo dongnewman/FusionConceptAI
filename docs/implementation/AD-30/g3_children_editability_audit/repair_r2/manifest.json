@@ -1,0 +1,105 @@
+{
+  "manifest_version": "AD-30-g3-realization-source-edit-proposal-r2",
+  "record_kind": "revised_proposal",
+  "revision": "R2",
+  "parent_record": "docs/implementation/AD-30/g3_children_editability_audit/report.md",
+  "preserves_parent_record": true,
+  "status": "proposal_pending_independent_review",
+  "scope": "one realization-only candidate-owned closed source body and one fixed replace_source_payload operation",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "date": "2026-09-15",
+  "read_only_to_code_and_core": true,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_physical_run": false,
+  "written_files": [
+    "docs/implementation/AD-30/g3_children_editability_audit/repair_r2/revised_proposal.md",
+    "docs/implementation/AD-30/g3_children_editability_audit/repair_r2/manifest.json"
+  ],
+  "revised_proposal_sha256": "324471e87a185fe6a28b707d515ccbcaf01d2173288541100ac5d77d886644fa",
+  "file_ownership_for_future_implementation": [
+    "src/GenomeV5/G3/G3RealizationSourceEditV1.jl",
+    "test/GenomeV5/G3/g3_realization_source_edit_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-SOURCE-EDIT-R2/"
+  ],
+  "forbidden_scope": [
+    "control child",
+    "binding child",
+    "feedback child",
+    "generic dynamic field-path editor",
+    "insert/delete/rebind operation",
+    "direct T0 import or dependency",
+    "T0 child-authority redefinition",
+    "old G3 V5 types or bundle edit",
+    "CandidateStatePackageV5 edit",
+    "shared entry or default registry edit",
+    "core planning edit",
+    "historical receipt reuse"
+  ],
+  "identity_requirements": {
+    "child_key": "candidate_ref + parent_g3_declaration_hash + child_kind=realization + child_id",
+    "source_content_hash": "SHA256(canonical(child_key, source_uri, source_version, closed_source_body, four_provenance_slots))",
+    "operation": "replace_source_payload only",
+    "operation_hash": "SHA256(canonical(operation_id, child_key, expected_prior_source_content_hash, replacement_payload, provenance_ref))",
+    "state_hash": "SHA256(canonical(child_key, source_content_hash, operation_hash, status))",
+    "stale_hash": "fail_closed with prior state unchanged"
+  },
+  "provenance_requirements": {
+    "slots": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "applicability_profile_version",
+      "evidence_receipt_version"
+    ],
+    "present_slot": "exact typed value/ref + source ref/path + source hash + candidate ref + status",
+    "absent_slot": "typed absence + reason + absence-content hash; no fabricated value/hash",
+    "missing_status": "terminal_deferred",
+    "conflict_status": "fail_closed"
+  },
+  "inputs": [
+    {
+      "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+      "sha256": "f16d5a00a7a0896138398b77c18eba4769b6f1962406d55f11862b4ef5b76e0b"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "sha256": "011533c4c174feb77636aab3d96d5b3d05457d7eaae26f3d52db08a622809280"
+    },
+    {
+      "path": "docs/implementation/AD-30/g3_children_editability_audit/report.md",
+      "sha256": "52df1ff6b12dfe6c82722d5eb0caf5d821f23e50d94dc6c1eb02d76d910de91d"
+    },
+    {
+      "path": "docs/implementation/AD-30/g3_children_editability_audit/manifest.json",
+      "sha256": "d3ee2559939e587c6162b3d32496739f20df622f6c96b7c562d85aa3930ad618"
+    }
+  ],
+  "future_exit_gate": [
+    "closed typed body and fixed operation source reviewed by different Luna",
+    "hash round-trip and edit mutation evidence from raw focused receipt",
+    "typed absence/terminal_deferred and stale-hash fail_closed negative controls",
+    "no T0/old package/registry/core mutation, verified by dirty protection",
+    "accepted_limited software contract only"
+  ],
+  "claim_ceiling": {
+    "software_contract": true,
+    "actual_child_authority": false,
+    "T0_authority": false,
+    "T1_mapping": false,
+    "provider": false,
+    "engineering": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

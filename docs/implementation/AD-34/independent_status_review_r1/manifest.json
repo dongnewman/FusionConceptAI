@@ -1,0 +1,134 @@
+{
+  "manifest_version": "AD-34-independent-status-review-r1",
+  "record_kind": "independent_architecture_status_review",
+  "review_verdict": "pass_limited",
+  "claim_ceiling": "architecture_and_work_order_boundary_only",
+  "reviewed_basis": [
+    "docs/implementation/AD-34/acceptance.md",
+    "docs/implementation/AD-34/manifest.json",
+    "docs/implementation/AD-34/status_sync_r1/report.md",
+    "docs/implementation/AD-34/status_sync_r1/manifest.json",
+    "docs/implementation/AD-34/g3_binding_feedback_audit/repair_r4/revised_proposal.md",
+    "docs/implementation/AD-34/g3_binding_feedback_audit/repair_r4/manifest.json",
+    "docs/implementation/AD-34/g3_binding_feedback_independent_review_r5/report.md",
+    "docs/implementation/AD-34/g3_binding_feedback_independent_review_r5/manifest.json",
+    "README.md",
+    "docs/implementation/README.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/task_manifest.json"
+  ],
+  "machine_nodes": {
+    "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "claim_ceiling": "contract_only",
+      "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"],
+      "exact_file_count": 6,
+      "exact_files": [
+        "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+        "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+        "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json",
+        "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json"
+      ],
+      "current_state": "typed_absent_scaffold_only",
+      "feedback_child": false,
+      "link_CAS": "disabled_until_checked_present_recheck"
+    },
+    "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "claim_ceiling": "contract_only",
+      "depends_on": ["UP1-04A-VNEXT-T0"],
+      "exact_file_count": 7,
+      "exact_files": [
+        "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl",
+        "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl",
+        "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json",
+        "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json",
+        "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md"
+      ],
+      "launcher": false,
+      "current_state": "typed_absent_only"
+    }
+  },
+  "t0_unchanged": true,
+  "t1_depends_on": [
+    "UP1-04A-VNEXT-T0",
+    "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"
+  ],
+  "legacy_pairing": {
+    "required_upstream_layers": ["G1", "G2"],
+    "required_cardinality": "exactly_one_each",
+    "fail_closed_errors": [
+      "duplicate_upstream_authority_layer",
+      "missing_upstream_authority_layer",
+      "unknown_upstream_authority_layer",
+      "legacy_target_authority_layer_or_candidate_mismatch",
+      "legacy_target_upstream_projection_mismatch",
+      "duplicate_or_ambiguous_feedback_target",
+      "duplicate_feedback_target_id"
+    ],
+    "six_field_equality_promotes_authority": false,
+    "legacy_actual_result": "typed_absent:terminal_deferred:legacy_actual_without_declaration_authority"
+  },
+  "core_validation": {
+    "task_count": 39,
+    "relative_links_checked": 456,
+    "task_dag_acyclic": true,
+    "validator_checks": "pass",
+    "validator_exit_code": 0,
+    "validator_record_kind": "planning_document_validation_not_physics_or_implementation_acceptance",
+    "diff_check_exit_code": 0,
+    "julia_or_desc_run": false,
+    "validator_receipt": {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B docs/v4_multitopology_generation/validate_plan.py",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 69468,
+      "started_utc": "2026-09-15T05:06:08.6300357Z",
+      "ended_utc": "2026-09-15T05:06:09.3308199Z",
+      "exit_code": 0,
+      "stdout_sha256": "3751d11a9d47eb4cb2de2ad159841cfdbe626b17f37cb4b0e24436462e820026",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "3751d11a9d47eb4cb2de2ad159841cfdbe626b17f37cb4b0e24436462e820026"
+    }
+  },
+  "credits": {
+    "implementation_authorized": false,
+    "actual_binding": false,
+    "actual_feedback": false,
+    "actual_control": false,
+    "T0_authority": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "cleanup_inventory": {
+    "review_created_paths": [
+      "docs/implementation/AD-34/independent_status_review_r1/report.md",
+      "docs/implementation/AD-34/independent_status_review_r1/manifest.json"
+    ],
+    "review_created_scratch_paths": [],
+    "removed_paths": [],
+    "preexisting_dirty_and_historical_receipts_protected": true,
+    "broad_cleanup": false,
+    "receipts_rewritten": false
+  }
+}
+
+

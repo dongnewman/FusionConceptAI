@@ -1,0 +1,29 @@
+{
+  "schema_version": "AD-30-independent-review-r2-command-receipts-v1",
+  "review_id": "AD-30-independent-review-r2",
+  "scope": "read-only architecture review and static validation",
+  "commands": [
+    {
+      "command": "python -m json.tool docs/implementation/AD-30/repair_r2/evidence_manifest.json",
+      "exit_code": 0,
+      "result": "JSON pass"
+    },
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "result": "plan pass; 31 markdown; 363 links; 31 tasks; DAG acyclic"
+    },
+    {
+      "command": "git rev-parse HEAD; git status --short --untracked-files=all",
+      "exit_code": 0,
+      "result": "HEAD and independent-review pre-write dirty snapshot captured in report.json"
+    },
+    {
+      "command": "Julia/DESC/provider/mesh/physical execution",
+      "exit_code": null,
+      "result": "not run by instruction"
+    }
+  ],
+  "review_pending": true,
+  "accepted": false
+}

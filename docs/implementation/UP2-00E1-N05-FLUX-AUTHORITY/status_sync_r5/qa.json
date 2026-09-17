@@ -1,0 +1,24 @@
+{
+  "schema_version": "e1-n05-status-sync-r5-qa-v1",
+  "status": "review_pending",
+  "json_parse": {
+    "exit": 0,
+    "stdout": "json_parse_ok"
+  },
+  "validate_plan": {
+    "exit": 0,
+    "record_kind": "planning_document_validation_not_physics_or_implementation_acceptance",
+    "checks": "pass"
+  },
+  "git_diff_check": {
+    "exit": 0,
+    "stderr_warnings": "line-ending normalization warnings only"
+  },
+  "process_sweep": {
+    "exit": 0,
+    "stdout": ""
+  },
+  "julia_desc": "not_run",
+  "scope_check": "acceptance.md and evidence_manifest.json only, plus status_sync_r5 archive",
+  "claim_check": "local limited only; formal/full B04, two-process, provider, mesh, engineering, physical, R01-R10 false"
+}

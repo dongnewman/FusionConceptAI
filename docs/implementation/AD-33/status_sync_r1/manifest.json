@@ -1,0 +1,89 @@
+{
+  "manifest_version": "AD-33-status-sync-r1",
+  "record_kind": "architecture_status_synchronization",
+  "decision_id": "AD-33",
+  "status": "accepted_limited",
+  "accepted_scope": "architecture_and_finite_work_order_boundary_only",
+  "accepted": true,
+  "machine_nodes_created": ["UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC"],
+  "machine_nodes_accepted": false,
+  "g1_g2_edit_sibling_nodes_created": false,
+  "independent_review": {
+    "reviewer": "different gpt-5.6-luna_high",
+    "verdict": "pass_limited",
+    "report": "docs/implementation/AD-33/g1_g2_editability_independent_review_r5/report.md",
+    "manifest": "docs/implementation/AD-33/g1_g2_editability_independent_review_r5/manifest.json",
+    "report_sha256": "f7130355131fb258b8f153aaea5c15d54c452a2796f0a035ea3cf9baf29109d8",
+    "manifest_sha256": "63e7f76ba8e897b0efbd2a3a2fbbadb3693a64a24fb06a2a40f07217be1adf28"
+  },
+  "shared_node": {
+    "id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+    "status": "planned",
+    "scope_status": "proposal",
+    "accepted": false,
+    "resolution": "review_pending",
+    "claim_ceiling": "contract_only",
+    "depends_on_only": ["UP1-01", "UP1-02", "UP1-03"],
+    "v1_paths_are_read_only_inputs": true,
+    "parallel_to": ["UP1-04A-VNEXT-T0", "AD-31", "AD-32"],
+    "must_not_unlock": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "T1", "T2"],
+    "blocked_present_on": [
+      "UP2-01-G1-DIFFUSION-V1 real source-backed declaration instance and factory receipt",
+      "UP2-01-G2-METRIC-BOUNDARY-V1 real source-backed declaration instance and factory receipt",
+      "fresh same-candidate identity review"
+    ],
+    "exact_scope": {
+      "source": ["src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl"],
+      "test": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl"],
+      "fixture": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json"],
+      "static_qa": ["test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py"],
+      "docs": [
+        "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json",
+        "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md"
+      ]
+    },
+    "launcher": false,
+    "future_command": "julia --project=. test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl",
+    "typed_absent_scaffold_maximum": true,
+    "replace_source_payload_absent": "forbidden",
+    "absent_to_present": "fresh publication and fresh identity review; no CAS promotion",
+    "failure_atomicity": "prior canonical bytes and SHA unchanged; state/history unchanged"
+  },
+  "reviewed_future_nodes": {
+    "g1": {"id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "machine_node_created": false, "present_blocked": true},
+    "g2": {"id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "machine_node_created": false, "present_blocked": true}
+  },
+  "credits": {
+    "architecture_boundary": true,
+    "typed_absent_scaffold": false,
+    "implementation": false,
+    "actual_g1": false,
+    "actual_g2": false,
+    "source_publication": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false
+  },
+  "preserved": {
+    "old_audit": true,
+    "old_review": true,
+    "source": true,
+    "test": true,
+    "old_receipts": true,
+    "ad31": true,
+    "ad32": true,
+    "other_nodes": true
+  },
+  "self_hash_excluded": true
+}

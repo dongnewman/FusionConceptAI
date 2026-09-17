@@ -1,0 +1,34 @@
+{
+  "schema": "UP1.root-final-acceptance-independent-review.manifest.v1",
+  "status": "pass_limited",
+  "decision": "pass_limited",
+  "claim_ceiling": "integration_bookkeeping_only",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/root-final-acceptance-independent-review-r1/**",
+  "exact_set": [
+    "findings.json",
+    "review.md",
+    "verification.json",
+    "static_root_final_validator.py",
+    "raw/static_root_final_validator.stdout.raw",
+    "raw/static_root_final_validator.stderr.raw",
+    "raw/static_root_final_validator_r2.stdout.raw",
+    "raw/static_root_final_validator_r2.stderr.raw",
+    "manifest.json",
+    "cleanup_inventory.json"
+  ],
+  "self_hash_exclusion": ["manifest.json", "cleanup_inventory.json"],
+  "product_hashes": {
+    "review.md": "b5c306c7d5aaa156204f0f390316fe1bdf0804805f0f9b2879f3cf1e79ec7b4a",
+    "findings.json": "b3c09caf92029b47e66a4de0d8631b04dedb03126ed6e051f3fd01089e3934f0",
+    "verification.json": "c08a3da599cf8471040df1883d6304f7a9ec2c4f5255b8b26daace19b779ab3e",
+    "static_root_final_validator.py": "b3113fc8d4d8b7821b359bb59c960c4b616b9d1ae545bc135e4e34c544a14b3e",
+    "raw/static_root_final_validator.stdout.raw": "ebce18b2857edb44399833e603e6b2da1ef4195d320ad3bfbf3adc579737d9cc",
+    "raw/static_root_final_validator.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/static_root_final_validator_r2.stdout.raw": "719b43227c4eedf2a2b1fda9dadb681ee7f95dac468541a2d554eb17c508f6cc",
+    "raw/static_root_final_validator_r2.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "formal_credit": false,
+  "external_mutation": false,
+  "not_sent": true,
+  "new_ad": false
+}

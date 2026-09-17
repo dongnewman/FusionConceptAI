@@ -1,0 +1,24 @@
+{
+  "schema_version": "E1-N05-independent-precheck-verdict-v1",
+  "verdict": "ready_for_serial_focused_r5",
+  "static_only": true,
+  "runtime_evidence_present": false,
+  "stable_output_root_required": true,
+  "positive_file_read_trusted_path": true,
+  "negative_controls": {
+    "count": 7,
+    "separate_files": true,
+    "trusted_file_read_overload": true,
+    "path_bytes_sha_manifest": true,
+    "actual_runtime_hashes_observed": false
+  },
+  "source_bound_actual_a_e0_spec_recompute": true,
+  "shared_n05e_row_formal_b04_gap": true,
+  "formal_b04": false,
+  "physical": false,
+  "engineering": false,
+  "provider": false,
+  "mesh": false,
+  "r01_r10": false,
+  "required_run_condition": "set N05_RECEIPT_OUTPUT_DIR to a new archive directory and preserve all manifest-listed files"
+}

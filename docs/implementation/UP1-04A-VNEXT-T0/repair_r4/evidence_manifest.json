@@ -1,0 +1,77 @@
+{
+  "record_kind": "AD-30_T0_R4_repair",
+  "decision": "conditional_go_independent_static_precheck",
+  "claim_ceiling": "contract_only",
+  "runtime_executed": {
+    "julia": false,
+    "desc": false,
+    "focused_test": false,
+    "t1": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false
+  },
+  "static_gates": [
+    {
+      "command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+      "exit_code": 0,
+      "status": "pass",
+      "julia_executed": false,
+      "desc_executed": false
+    },
+    {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-T0/repair_r4/evidence_manifest.json",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "status": "pass"
+    }
+  ],
+  "files": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": {
+      "sha256": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+      "pre_r4_sha256": "f4d0992fecd0c145734eadf50625789d8bdb6298fa1ffdd38a5b3a4624c53fcf"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": {
+      "sha256": "d0463fab22450199e9a84f58753fe1255bdda70962f766da751d85e54c4ddbf7",
+      "pre_r4_sha256": "015b7117f9c541edd3a4fc79982835b0ba6fc7ca10f5113525891f9acbf801f7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": {
+      "sha256": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+      "pre_r4_sha256": "381682b1fbc525df042257a3e1733a54e5d803210a90e7de1e47d9e58d669c2f"
+    }
+  },
+  "negative_controls": [
+    "g2_mapping_source_ref_mismatch",
+    "g2_mapping_source_version_mismatch",
+    "g2_mapping_source_candidate_ref_mismatch",
+    "g2_mapping_candidate_ref_mismatch",
+    "g2_mapping_source_record_hash_mismatch",
+    "g2_mapping_source_hash_mismatch",
+    "g2_mapping_field_path_mismatch",
+    "g2_mapping_unattested",
+    "g2_mapping_external_verification_pending",
+    "axis_identity_hash_mismatch",
+    "axis_candidate_ref_mismatch",
+    "trusted_axis_external_verification_pending",
+    "g3_ledger_feedback_authority_stale_declaration_hash",
+    "g3_upstream_stale_authority",
+    "g3_feedback_stale_authority",
+    "g3_upstream_contradictory_authority",
+    "g3_feedback_contradictory_authority",
+    "g3_actual_unattested_authority",
+    "g1_source_edit_hash_chain",
+    "g2_source_edit_hash_chain"
+  ],
+  "known_gaps": [
+    "no_independently_readable_g2_mapping_evidence_receipt",
+    "no_independently_readable_applicability_or_evidence_axis_record",
+    "evidence_ref_is_opaque_and_external_verification_pending",
+    "g3_source_content_hash_typed_absent",
+    "g3_realization_control_binding_children_typed_absent"
+  ],
+  "next_gate": "different_luna_independent_static_precheck_then_root_decides_focused_julia_gate"
+}

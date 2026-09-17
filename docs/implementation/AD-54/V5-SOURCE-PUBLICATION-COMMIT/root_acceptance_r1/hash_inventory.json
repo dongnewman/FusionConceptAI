@@ -1,0 +1,70 @@
+{
+  "schema": "AD54.V5SourcePublicationCommit.root_acceptance_r1.hash_inventory.v1",
+  "rechecked_utc": "2026-09-15T23:03:00.6466629Z",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "parent": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "overlay_count": 21,
+  "all_frozen_sha256_match": true,
+  "all_committed_head_blobs_match": true,
+  "all_working_tree_blobs_match": true,
+  "all_tracked": true,
+  "index_empty": true,
+  "paths": [
+    {"path":"src/FusionConceptAI.jl","bytes":10144,"sha256":"e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"},
+    {"path":"src/Contracts/CandidateStatePackageV5.jl","bytes":13496,"sha256":"c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"},
+    {"path":"src/GenomeV5/Integration/GenomeV5Integration.jl","bytes":16452,"sha256":"391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"},
+    {"path":"src/GenomeV5/UP2/UP2ModuleEntryV1.jl","bytes":3155,"sha256":"7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"},
+    {"path":"src/GenomeV5/G1/GrammarProfileV2.jl","bytes":22812,"sha256":"96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"},
+    {"path":"src/GenomeV5/G1/EquationPlanV2.jl","bytes":15159,"sha256":"b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"},
+    {"path":"src/GenomeV5/G1/MechanismGenomePayloadV2.jl","bytes":16572,"sha256":"ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"},
+    {"path":"src/GenomeV5/G1/MechanismGenomeV5.jl","bytes":3887,"sha256":"8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"},
+    {"path":"src/GenomeV5/G2/SpatialGrammarProfileV2.jl","bytes":5945,"sha256":"3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"},
+    {"path":"src/GenomeV5/G2/RegionInterfaceContractV2.jl","bytes":5333,"sha256":"683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"},
+    {"path":"src/GenomeV5/G2/FieldSpacePlanV2.jl","bytes":9905,"sha256":"7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"},
+    {"path":"src/GenomeV5/G2/FieldGeometryGenomeV5.jl","bytes":18646,"sha256":"7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"},
+    {"path":"src/GenomeV5/G3/RealizationGenomeV5.jl","bytes":33751,"sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    {"path":"src/GenomeV5/G3/ControlGenomeV5.jl","bytes":10297,"sha256":"eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"},
+    {"path":"src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl","bytes":10904,"sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"},
+    {"path":"src/GenomeV5/G3/RealizationControlGenomeV5.jl","bytes":6704,"sha256":"8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl","bytes":28642,"sha256":"23684a9e6bb267d6fdfe06df5acc8f7c8cf299ac8c8bf8433ae601c9fdb4331b"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl","bytes":24807,"sha256":"5b5d013a0ad5ee6eb07f714480e36911be9aa96636a3d3f368f38163240409c8"},
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":35491,"sha256":"ceac9a33368606843337194ee446b6de6f2b7c6223cbc110229d5df17cf84d39"}
+  ],
+  "task_manifest": {
+    "path":"docs/v4_multitopology_generation/task_manifest.json",
+    "sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "match":true
+  },
+  "plan_validation": {
+    "exit":0,
+    "checks":"pass",
+    "markdown_files_checked":31,
+    "relative_links_checked":534,
+    "task_count":39,
+    "task_dag_acyclic":true
+  },
+  "git_publication": {
+    "origin":"https://github.com/dongnewman/FusionConceptAI.git",
+    "origin_main":"4b69f55f7f80240147a65a22809dc1207824dde2",
+    "origin_main_dot_dot_main":"0 1",
+    "tags_at_head":[],
+    "push_performed":false,
+    "tag_performed":false
+  },
+  "source_probe": {
+    "fresh_no_local_clone":true,
+    "fresh_serial_probe":"pass",
+    "fresh_nothing_input":"typed_absent",
+    "source_authority_established":false
+  },
+  "input_evidence_hashes": {
+    "implementation_report.md":"74fa00502c95a5b13c30da3cf5230481564ac6636deb9d0e5488e1b49be8b465",
+    "implementation_manifest.json":"302020321194e0c8519b2bc7d247711b624a8b186d2b21a6a53fb5ec0dd626cd",
+    "independent_review_r1/report.md":"48c87b8b4ba79e08d883aaedfc8842f95d27dc65a42b9846a78eb807664bc7ea",
+    "independent_review_r1/manifest.json":"cf4f0ca29f2aa80027c3dd1673bb3ff69a48ebffc14175f3c7aa5db8f019eea5",
+    "independent_review_r1/hash_inventory.json":"6cd92025f5e9dbdde8e4290585ce1a46959490af7d00d2cc0dc5b1fd69c5c7b9",
+    "independent_review_r1/cleanup_inventory.json":"e5a8a5c8d4a222a7d825b7953600d5ce56dfe26b19c6763feafaafe30fff0a53"
+  }
+}

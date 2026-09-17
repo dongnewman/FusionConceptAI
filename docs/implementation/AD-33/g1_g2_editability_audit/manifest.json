@@ -1,0 +1,230 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-audit-v1",
+  "record_kind": "limited_read_only_architecture_gap_audit",
+  "decision_id": "AD-33",
+  "decision_date": "2026-09-15",
+  "decision_owner": "g1_g2_editability_arch_audit",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_dirty_rows": 307,
+  "read_only_audit": true,
+  "heavy_execution": {
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false
+  },
+  "decision": {
+    "split_into_sibling_precursors": true,
+    "dispatch": "blocked_pending_architecture_repair",
+    "reason": "G1 and G2 have distinct semantic ownership and independent edit/negative-control surfaces, but current V1 declarations lack child state, typed four-axis provenance/absence, stale guards, and fail-atomic operation receipts.",
+    "core_plan_modified": false,
+    "task_manifest_modified": false,
+    "source_tests_modified": false,
+    "old_receipts_modified": false,
+    "ad31_modified": false,
+    "ad32_modified": false,
+    "r01_r10_preserved": true
+  },
+  "read_order": [
+    "AGENTS.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/10_genome_upgrade_execution.md",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/AD-31/acceptance.md",
+    "docs/implementation/AD-31/manifest.json",
+    "docs/implementation/AD-32/acceptance.md",
+    "docs/implementation/AD-32/manifest.json",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/README.md",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/evidence_manifest.json",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/acceptance.md",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/evidence_manifest.json"
+  ],
+  "observed_inputs": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/implementation/AD-31/manifest.json": "e8906bf8a44ebc8e363d5ea18176005fb9345dcdd43877d4148d8ba2a2552cf0",
+    "docs/implementation/AD-32/acceptance.md": "3cd5482063e8502e6fb9e93dc392e5e640b5d31b280820c5c238f7ca9ce7cd23",
+    "docs/implementation/AD-32/manifest.json": "c160c6fe95cc427a2eb260f932ac88ec4661ed146b3593dac12b8fa9beec867e",
+    "docs/v4_multitopology_generation/task_manifest.json": "9e51b1a4d252462972d6f507194d51a93a00aa3efc2aba21a2368340129fdae2"
+  },
+  "proposed_nodes": [
+    {
+      "id": "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC",
+      "status": "blocked_pending_architecture_repair",
+      "phase": "UP1",
+      "semantic_owner": "G1 mechanism/source body",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G1-DIFFUSION-V1"],
+      "parallel_to": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2"],
+      "exact_write_scope": [
+        "src/GenomeV5/G1/G1MechanismChildEditabilityV1.jl",
+        "test/GenomeV5/G1/g1_mechanism_child_editability_v1_contract_tests.jl",
+        "test/GenomeV5/G1/g1_mechanism_child_editability_v1_fixture.json",
+        "test/GenomeV5/G1/static_qa_g1_mechanism_child_editability_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC/manifest.json"
+      ],
+      "inputs": [
+        "read-only UP2-01-G1-DIFFUSION-V1 declaration contract",
+        "read-only G1 semantic owner rules in 00, 10 and G1 Genome document",
+        "fresh typed candidate/declaration envelope",
+        "fresh typed mechanism body values"
+      ],
+      "outputs": [
+        "closed G1 mechanism source payload or typed-absent state",
+        "child/parent/source/state identity and hash helpers",
+        "one atomic replace_source_payload operation receipt",
+        "focused contract tests, static QA and archive manifest"
+      ],
+      "fixed_operation": "replace_source_payload",
+      "operation_semantics": "full closed-body replacement guarded by expected_prior_state_hash and expected_prior_source_content_hash; no dynamic path, insert/delete, rebind or partial patch; failed calls return byte-identical prior state",
+      "body_requirements": [
+        "typed state/time semantics",
+        "typed operator graph and units/derivative support",
+        "governing/additive/constraint roles",
+        "occurrence and closure ledger ownership",
+        "applicability/capability profile",
+        "no Dict/Any/open path/old-type alias"
+      ],
+      "blocking_gaps": [
+        "current G1 V1 has no external typed parent declaration ref",
+        "current V1 has no four-axis source record or typed absence",
+        "current V1 has no materialized state/history/operation hash",
+        "current field-selector edit has no stale guard or fail-atomic receipt"
+      ],
+      "exit_gates": [
+        "fresh additive envelope and hash recipe reviewed",
+        "static QA and focused contract test pass",
+        "raw streams, input/output hashes, PID, exit code and dirty protection recorded",
+        "different Luna independent review pass_limited",
+        "contract-only claim ceiling; all execution/physical credits false"
+      ]
+    },
+    {
+      "id": "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC",
+      "status": "blocked_pending_architecture_repair",
+      "phase": "UP1",
+      "semantic_owner": "G2 geometry/metric-boundary body",
+      "depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+      "parallel_to": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2"],
+      "exact_write_scope": [
+        "src/GenomeV5/G2/G2GeometryChildEditabilityV1.jl",
+        "test/GenomeV5/G2/g2_geometry_child_editability_v1_contract_tests.jl",
+        "test/GenomeV5/G2/g2_geometry_child_editability_v1_fixture.json",
+        "test/GenomeV5/G2/static_qa_g2_geometry_child_editability_v1.py",
+        "docs/implementation/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/README.md",
+        "docs/implementation/UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC/manifest.json"
+      ],
+      "inputs": [
+        "read-only UP2-01-G2-METRIC-BOUNDARY-V1 declaration contract",
+        "read-only G2 semantic owner rules in 00, 10 and G2 Genome document",
+        "fresh typed candidate/declaration envelope",
+        "fresh typed chart/metric/boundary/basis/quadrature/mesh values"
+      ],
+      "outputs": [
+        "closed G2 geometry source payload or typed-absent state",
+        "child/parent/source/state identity and hash helpers",
+        "one atomic replace_source_payload operation receipt",
+        "focused contract tests, static QA and archive manifest"
+      ],
+      "fixed_operation": "replace_source_payload",
+      "operation_semantics": "full closed-body replacement guarded by expected_prior_state_hash and expected_prior_source_content_hash; geometry hash, mesh/evaluation identity and solver-input identity remain separate; failed calls return byte-identical prior state",
+      "body_requirements": [
+        "typed chart/domain/transition and metric/orientation",
+        "region/interface/exterior/boundary ownership",
+        "field/source target semantics",
+        "basis/quadrature/mesh-plan semantics",
+        "units/applicability/discretization profile",
+        "no fixture seed or mesh/provider receipt as authority"
+      ],
+      "blocking_gaps": [
+        "current authority is symbolic and has no four-axis source provenance",
+        "current V1 has no child key/parent binding/typed absence",
+        "current edit API has no materialized state/history/operation hash",
+        "current edit API has no stale guard or fail-atomic receipt"
+      ],
+      "exit_gates": [
+        "fresh additive envelope and hash recipe reviewed",
+        "static QA and focused contract test pass",
+        "raw streams, input/output hashes, PID, exit code and dirty protection recorded",
+        "different Luna independent review pass_limited",
+        "contract-only claim ceiling; provider/mesh/physical/search credits false"
+      ]
+    }
+  ],
+  "shared_contract": {
+    "provenance_slots": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+    "slot_present": "typed value/ref, locator/path, source_hash, candidate_ref and status",
+    "slot_absent": "no value or fabricated source hash, explicit reason and absence_content_hash",
+    "hash_layers": ["child_contract_identity_hash", "source_record_hash", "source_content_hash", "initial_state_hash", "operation_hash", "state_hash"],
+    "status_axes": {
+      "contract_admission": ["declared_consistent", "terminal_deferred", "fail_closed", "program_exception"],
+      "physical_resolution": ["unknown", "terminal_deferred"]
+    },
+    "missing_authority": "typed_absent plus contract_admission=terminal_deferred",
+    "contradiction": "fail_closed",
+    "unexpected_fault": "program_exception",
+    "fail_atomic": "canonical state bytes and SHA256 unchanged for every failed operation"
+  },
+  "negative_controls": [
+    "foreign candidate/parent/child identity",
+    "malformed/open body and unresolved references",
+    "wrong units/orientation/closure",
+    "missing provenance typed absence",
+    "conflicting provenance fail_closed",
+    "forged payload/source-record/operation hash",
+    "stale source hash",
+    "stale state hash",
+    "dynamic/partial/insert/delete/rebind edit",
+    "failed-operation canonical-byte stability"
+  ],
+  "t0_t1_t2": {
+    "t0": "only transports complete G1/G2/G3 declarations and child actual-or-typed-absent states; siblings do not redefine T0 authority",
+    "t1": "only owner of lossless mapping into CandidateStatePackageV5Next; local child state is not a T1 package",
+    "t2": "rebuilds E0/G-I1A/E1/E2/UP2 identity and receipts from fresh T1 package",
+    "upstream_change_rule": "new candidate identity and fresh downstream hashes/receipts; no old receipt grafting"
+  },
+  "credits": {
+    "g1_child": false,
+    "g2_child": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false
+  },
+  "minimum_repair_sequence": [
+    "freeze additive candidate/declaration envelope for both V1 parents",
+    "freeze shared provenance-slot/typed-absence vocabulary",
+    "freeze six-layer hash/state and fail-atomic operation receipt",
+    "then add reviewed sibling work-order records and dispatch only bounded software gates"
+  ],
+  "artifacts_added": [
+    "docs/implementation/AD-33/g1_g2_editability_audit/report.md",
+    "docs/implementation/AD-33/g1_g2_editability_audit/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

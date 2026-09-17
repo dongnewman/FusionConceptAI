@@ -1,0 +1,4 @@
+method: PowerShell 7 pwsh -NoProfile -NonInteractive Get-Acl -LiteralPath; owner + DACL/SDDL parsed in verifier
+restricted fixture: owner=NEWORLDS-LAPTOP\Newman; allowed owner; no broad Allow ACE; accepted
+wide fixture: icacls /grant *S-1-1-0:R; rejected trusted_key_acl_invalid (fail_closed)
+parent reparse fixture: cmd /c mklink /J; rejected ledger_corrupt (fail_closed)

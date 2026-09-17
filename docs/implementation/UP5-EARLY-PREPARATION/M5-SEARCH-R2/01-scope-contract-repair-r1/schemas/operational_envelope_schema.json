@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2OperationalEnvelopeV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "run_id", "attempt_id", "content_receipt_id", "command", "cwd", "host", "pid", "utc_start", "utc_end", "exit_code", "termination", "stdout", "stderr", "comparison_role"],
+  "properties": {
+    "schema": {"const": "M5SearchR2OperationalEnvelopeV1"},
+    "run_id": {"type": "string"}, "attempt_id": {"type": "string"},
+    "content_receipt_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "command": {"type": "array", "items": {"type": "string"}}, "cwd": {"type": "string"}, "host": {"type": "string"}, "pid": {"type": "integer", "minimum": 0},
+    "utc_start": {"type": "string", "format": "date-time"}, "utc_end": {"type": "string", "format": "date-time"}, "exit_code": {"type": "integer"},
+    "termination": {"enum": ["completed", "timeout", "human_kill", "child_fault", "absent"]},
+    "stdout": {"type": "object", "required": ["path", "sha256", "bytes"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}, "bytes": {"type": "integer", "minimum": 0}}},
+    "stderr": {"type": "object", "required": ["path", "sha256", "bytes"], "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}, "bytes": {"type": "integer", "minimum": 0}}},
+    "comparison_role": {"const": "operational_not_content_identity"}
+  }
+}

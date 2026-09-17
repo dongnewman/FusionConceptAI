@@ -1,0 +1,73 @@
+{
+  "record_kind": "AD-30_T0_software_precursor_acceptance",
+  "decision": "accepted_limited",
+  "accepted_scope": "software_contract_precursor_only",
+  "statuses": {
+    "t0_machine_main_node": "accepted_false",
+    "actual_fresh_same_candidate_exact_join": false,
+    "t1": "no_go",
+    "g2_external_mapping": "deferred",
+    "four_axis_real_receipts": "deferred",
+    "g3_source_content_hash": "deferred",
+    "g3_realization_control_binding_children": "deferred",
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10_credit": false
+  },
+  "evidence_chain": [
+    {
+      "path": "focused_r1/report.md",
+      "role": "launcher_failure_preserved",
+      "status": "unknown_julia_result"
+    },
+    {
+      "path": "focused_r2/report.md",
+      "role": "real_focused_failure_preserved",
+      "status": "julia_exit_1"
+    },
+    {
+      "path": "focused_r3/report.md",
+      "role": "successful_focused_software_receipt",
+      "status": "julia_exit_0"
+    },
+    {
+      "path": "focused_r3/evidence_manifest.json",
+      "role": "successful_receipt_binding"
+    },
+    {
+      "path": "acceptance.md",
+      "role": "main_t0_gate_preserved",
+      "status": "review_pending_accepted_false"
+    }
+  ],
+  "focused_r3": {
+    "pid": 55428,
+    "started_utc": "2026-09-14T23:26:25.9668343+00:00",
+    "ended_utc": "2026-09-14T23:26:41.6582139+00:00",
+    "exit_code": 0,
+    "assertions_passed": 79,
+    "assertions_total": 79,
+    "stdout_sha256": "cdb905c18a2dc1ef68a76c6abb84edb6f329e22fbe76306b816cf12ed9cef9e2",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "process_metadata_sha256": "17b51d6b9cb14dbd85c14c1bd4a777d12013e5b211b915ea1ef1d303ceba0536"
+  },
+  "frozen_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "807837ce2a4aef4c196d0f4e2635201e9843f3532bc1afd94d667865569a976b",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": "5620b0f7fcb05575bafa34424fe8cc62dd02bd388f8e01eb193497f9d9268be6",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+  },
+  "worktree_and_process": {
+    "focused_r3_pre_run_porcelain_count": 304,
+    "focused_r3_post_run_porcelain_count": 304,
+    "post_run_julia_or_desc_processes": []
+  },
+  "claim_ceiling": "contract_only",
+  "external_receipt_credit": false,
+  "physical_engineering_provider_mesh_credit": false,
+  "next_gate": "independent_review_of_limited_archive_then_root_architecture_decision"
+}

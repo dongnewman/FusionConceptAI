@@ -1,0 +1,80 @@
+{
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY-receipt-export-r1",
+  "status": "review_pending",
+  "accepted": false,
+  "scope": "schema_validation_only",
+  "runtime": {
+    "status": "not_run",
+    "julia": false,
+    "desc": false,
+    "reason": "serial lane occupied by N06; independent static precheck required before future run"
+  },
+  "owned_files": [
+    "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl",
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl",
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl",
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl",
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/receipt_export_r1/"
+  ],
+  "inputs": {
+    "E1_source_sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "E1_test_sha256": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "E1_fixture_sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+    "E1_runner_sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3"
+  },
+  "static_qa": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "git_diff_check_exit": 0,
+    "process_sweep": []
+  },
+  "receipt_contract": {
+    "authored_fail_closed": 5,
+    "absent_terminal_deferred": 5,
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0
+  },
+  "claim_ceiling": {
+    "contract_only": true,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "independent_review": "required before serial focused export run",
+  "repair_history": [
+    {
+      "id": "R1-preparation",
+      "status": "superseded_before_runtime",
+      "archive": "pre_repair/",
+      "reason": "envelope-only checksum did not bind source locator to actual A/E0 authority; absent hash formula was incomplete"
+    },
+    {
+      "id": "R2-static-repair",
+      "status": "ready_for_independent_precheck",
+      "archive": "repair_r2.md",
+      "changes": [
+        "absent mutation canonical payload now exactly (id,original,mutated)",
+        "trusted checker rebuilds all ten receipts from actual package/E0/authorities and compares every field by typed field_path+mutation_kind",
+        "forged source-hash and absent mutation-hash negative controls added"
+      ]
+    }
+  ],
+  "checker_boundary": {
+    "internal_checksum": true,
+    "trusted_actual_A_recomputation": true,
+    "trusted_inputs": [
+      "CandidateStatePackageV5",
+      "UP2CandidatePhysicalBindingV1",
+      "UP2N05AuthorityV1 authored",
+      "UP2N05AuthorityV1 absent",
+      "five typed mutation specs"
+    ],
+    "fixture_expected_error_used": false,
+    "fixture_id_routing_used": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "M1.independent_review_r2.v1",
+  "task_id": "UP0-01",
+  "review_round": "independent_review_r2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "decision": "changes_requested",
+  "write_scope": "independent_review_r2/** only",
+  "no_execution": ["Julia","S3","DESC","mesh","solver"],
+  "checks": {
+    "r2_raw_sidecar_hashes": "pass",
+    "r2_combined_equals_stdout_empty_stderr": "pass",
+    "r2_command_receipts_sha256": "63ae6b2b856ccfd8663bf217f19fd5683d19ad783e351c50fc404d4b8c59435a",
+    "validation_receipt_exact_command_fields": "fail",
+    "cleanup_exact_rows": {"total":66,"executor_owned":44,"reviewer_referenced":22,"union":66,"intersection":0,"glob_paths":0},
+    "probe_deletion_proof": "incomplete_wrong_path_only",
+    "static_closure": {"probe_explicit_includes":5,"loader_components":12,"enclosing_includes":47,"factory_includes":0},
+    "ad55_s2_run2_reference_only": true,
+    "scoped_julia_prohibition_wording": "pass"
+  },
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "index_sha256": "6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0",
+  "claim_ceiling": "execution_input_reproducibility_preparation",
+  "parent_status": {"task_count":39,"dag_unchanged":true,"B00":"open","B04":"open","R01_R10":"open","L4":0}
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "UP3NegativeCasesTemplateV1",
+  "status": "pending_review",
+  "claim_ceiling": "contract_only",
+  "execution_allowed": false,
+  "typed_placeholder_rule": "candidate/scenario/input/provider/hash values remain state=pending and value=null until a fresh candidate and reviewed provider manifest exist",
+  "common_expected": {
+    "compile_provider_solver_invocations": {"compile": 0, "provider": 0, "solver": 0},
+    "evidence": "none",
+    "archive_mutation": "none",
+    "status": "pending"
+  },
+  "categories": [
+    {"id": "NC-TYPE", "class": "invalid_type", "examples": ["wrong rank", "wrong scalar/vector shape", "wrong time field type", "empty axis"], "expected_resolution": "fail_closed", "expected_stage": "parse_before_provider"},
+    {"id": "NC-UNIT", "class": "invalid_units", "examples": ["coefficient/source mismatch", "coordinate/time unit mismatch", "ledger dimension mismatch"], "expected_resolution": "fail_closed", "expected_stage": "parse_before_provider"},
+    {"id": "NC-CLOSURE", "class": "invalid_closure", "examples": ["duplicate governing owner", "unpaired interface flux", "unowned source/sink", "duplicate ledger entry"], "expected_resolution": "fail_closed", "expected_stage": "parse_before_provider"},
+    {"id": "NC-BOUNDARY", "class": "invalid_boundary", "examples": ["missing boundary", "degenerate chart", "wrong face owner", "wrong normal orientation", "nonclosed external patch"], "expected_resolution": "fail_closed_or_terminal_deferred", "expected_stage": "parse_before_provider"},
+    {"id": "NC-DERIV", "class": "missing_derivative_capability", "examples": ["provider lacks required GRAD/DIV/Jacobian/time derivative", "unsupported function-space trace"], "expected_resolution": "terminal_deferred", "expected_stage": "capability_route"},
+    {"id": "NC-PROVIDER", "class": "provider_dropout", "examples": ["remove unique provider", "provider manifest version mismatch", "provider capability axis mismatch"], "expected_resolution": "terminal_deferred", "expected_stage": "capability_route"},
+    {"id": "NC-OOD", "class": "out_of_domain", "examples": ["dimension/topology outside manifest", "coefficient range outside applicability", "time regime outside profile"], "expected_resolution": "terminal_deferred", "expected_stage": "capability_route"},
+    {"id": "NC-EDGE-FEEDBACK", "class": "coupling_edge_removed", "examples": ["remove interface flux", "remove source-return edge", "remove cooling/control feedback"], "expected_resolution": "numerical_fail_or_physical_fail_when_applicable", "expected_stage": "coupled_execution"},
+    {"id": "NC-LEDGER", "class": "conservation_account_corruption", "examples": ["reverse sign", "duplicate Joule term", "global sum hides per-node defect", "unowned reservoir"], "expected_resolution": "fail_closed_or_numerical_fail", "expected_stage": "conservation_oracle"},
+    {"id": "NC-IDENTITY", "class": "foreign_or_stale_identity", "examples": ["candidate ref from another candidate", "stale scenario hash", "input/provider hash mismatch", "old receipt reused"], "expected_resolution": "fail_closed", "expected_stage": "identity_join_before_provider"},
+    {"id": "NC-LABEL", "class": "label_or_ordering_invariance", "examples": ["family/name change", "region/interface permutation", "AST/port ordering permutation"], "expected_resolution": "same_canonical_route_or_explicit_structural_diff", "expected_stage": "canonicalization"},
+    {"id": "NC-HOLDOUT", "class": "holdout_leakage", "examples": ["held-out answer in initialization", "derived mesh shared across split", "cache key omits partition", "same topology identity in train and holdout"], "expected_resolution": "program_exception_or_reject", "expected_stage": "split_checker"},
+    {"id": "NC-BUDGET", "class": "budget_or_timeout", "examples": ["iteration limit", "wall timeout", "memory ceiling", "artifact quota exceeded"], "expected_resolution": "deferred_or_numerical_fail_with_receipt", "expected_stage": "execution"},
+    {"id": "NC-ORACLE", "class": "oracle_input_missing", "examples": ["missing exact solution", "missing source/boundary", "missing ledger law", "missing independent reference"], "expected_resolution": "terminal_deferred", "expected_stage": "oracle_admission"},
+    {"id": "NC-PROGRAM", "class": "program_exception", "examples": ["unexpected parser/provider/checker exception", "malformed artifact", "noncanonical receipt"], "expected_resolution": "program_exception", "expected_stage": "any"}
+  ],
+  "case_template": {
+    "case_id": {"type": "NegativeCaseIdentityV1", "state": "pending", "value": null},
+    "category": null,
+    "base_cell": {"type": "CombinationCellIdentityV1", "state": "pending", "value": null},
+    "candidate": {"type": "CandidateIdentityV1", "state": "pending", "value": null},
+    "scenario": {"type": "ScenarioIdentityV1", "state": "pending", "value": null},
+    "input": {"type": "SolverInputIdentityV1", "state": "pending", "value": null},
+    "provider": {"type": "ProviderManifestIdentityV1", "state": "pending", "value": null},
+    "hashes": {"type": "HashBundleV1", "state": "pending", "value": null},
+    "mutation_path": null,
+    "expected_error_path": null,
+    "expected_compile_provider_solver_invocations": {"compile": 0, "provider": 0, "solver": 0},
+    "observed": {"state": "not_executed", "value": null},
+    "status": "pending",
+    "evidence": "none"
+  },
+  "invariants": [
+    "A rejected negative case is not physical_fail and cannot prune the full grammar.",
+    "A provider gap is not a numerical failure and cannot be converted to unsupported by label.",
+    "One failed candidate cannot delete a capability axis or alter the acceptance threshold.",
+    "All mutation receipts preserve baseline and attempted typed values and remain separate from authority evidence."
+  ]
+}

@@ -1,0 +1,853 @@
+{
+  "checks": [
+    {
+      "check": "realization/source_locator_v1.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 3764,
+        "actual_sha256": "bfb7a4f2cd4e128078b38dd3f47c2e11d6a85a5350662cda400054eeec8ba029"
+      },
+      "pass": true
+    },
+    {
+      "check": "realization/source_locator_v1.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source_locator_receipt.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 6613,
+        "actual_sha256": "fa042cdc32954d38f2c55c4204593cbbae32b309c291267841dda07a0f85408a"
+      },
+      "pass": true
+    },
+    {
+      "check": "realization/source_locator_receipt.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/record_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/semantic_hash",
+      "detail": {
+        "actual": "c9b5cde2001630d209261daba90b410da67a1dc43ab2dc0faed607dff89061e2",
+        "declared": "c9b5cde2001630d209261daba90b410da67a1dc43ab2dc0faed607dff89061e2"
+      },
+      "pass": true
+    },
+    {
+      "check": "realization/repo_root_head",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/no_identity_derivation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/forbidden_derivations",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/semantic_invalidation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source_rows_present",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/src/GenomeV5/G3/RealizationGenomeV5.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/src/GenomeV5/G3/RealizationGenomeV5.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source/test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/source_role_kind_separation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/dependent_role_mix_closed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/w1_input_closure_frozen",
+      "detail": null,
+      "pass": false
+    },
+    {
+      "check": "realization/record_ref_exact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_self_hash_excluded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/all_source_sha256_lengths_64",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/canonical_json",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/closure_paths_and_bytes_recomputed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/git_head_and_root_recorded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/head_mismatch_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/mutation_negative_control_rejects_changed_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/mutation_negative_control_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/no_candidate_or_declaration_identity",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/no_heavy_runtime",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/registry_unchanged",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/role_mix_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_check/w1_inputs_frozen_and_read_only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_runtime_zero",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "realization/receipt_plan_dag",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source_locator_v1.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 3722,
+        "actual_sha256": "e0d3c8468210c85a3ed66a22ddee1be4d86ed3052d6a09884619d5af374490c4"
+      },
+      "pass": true
+    },
+    {
+      "check": "control/source_locator_v1.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source_locator_receipt.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 6571,
+        "actual_sha256": "40c223e302a2263657150d1eba088db1b21825d0db4730403719b563acdfe845"
+      },
+      "pass": true
+    },
+    {
+      "check": "control/source_locator_receipt.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/record_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/semantic_hash",
+      "detail": {
+        "actual": "098ebcb155430cc7004bb493705705714b304de906f324ac1c38da829eff5259",
+        "declared": "098ebcb155430cc7004bb493705705714b304de906f324ac1c38da829eff5259"
+      },
+      "pass": true
+    },
+    {
+      "check": "control/repo_root_head",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/no_identity_derivation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/forbidden_derivations",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/semantic_invalidation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source_rows_present",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/src/GenomeV5/G3/ControlGenomeV5.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/src/GenomeV5/G3/ControlGenomeV5.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/src/GenomeV5/G3/G3ControlChildEditabilityV1.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/src/GenomeV5/G3/G3ControlChildEditabilityV1.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source/test/GenomeV5/G3/g3_control_child_editability_v1_tests.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/source_role_kind_separation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/dependent_role_mix_closed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/w1_input_closure_frozen",
+      "detail": null,
+      "pass": false
+    },
+    {
+      "check": "control/record_ref_exact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_self_hash_excluded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/all_source_sha256_lengths_64",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/canonical_json",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/closure_paths_and_bytes_recomputed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/git_head_and_root_recorded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/head_mismatch_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/mutation_negative_control_rejects_changed_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/mutation_negative_control_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/no_candidate_or_declaration_identity",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/no_heavy_runtime",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/registry_unchanged",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/role_mix_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_check/w1_inputs_frozen_and_read_only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_runtime_zero",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "control/receipt_plan_dag",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source_locator_v1.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 4451,
+        "actual_sha256": "07b4de5bc4b290ce60a3f5a9158c315a795a6b013db286d5c563adcbb3543eaa"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding/source_locator_v1.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source_locator_receipt.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 7300,
+        "actual_sha256": "407387f7f1e3a5e76102a3e9234d446b39a96e1bf276336584af2e02374ffd78"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding/source_locator_receipt.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/record_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/semantic_hash",
+      "detail": {
+        "actual": "0aa41d6a0247da0415aa4271ae74c6b18972825792584d4ea0d2571dfcd06537",
+        "declared": "0aa41d6a0247da0415aa4271ae74c6b18972825792584d4ea0d2571dfcd06537"
+      },
+      "pass": true
+    },
+    {
+      "check": "binding/repo_root_head",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/no_identity_derivation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/forbidden_derivations",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/semantic_invalidation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source_rows_present",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/src/GenomeV5/G3/G3BindingChildEditabilityV1.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/src/GenomeV5/G3/G3BindingChildEditabilityV1.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source/test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/source_role_kind_separation",
+      "detail": null,
+      "pass": false
+    },
+    {
+      "check": "binding/dependent_role_mix_closed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/w1_input_closure_frozen",
+      "detail": null,
+      "pass": false
+    },
+    {
+      "check": "binding/record_ref_exact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_self_hash_excluded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/all_source_sha256_lengths_64",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/canonical_json",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/closure_paths_and_bytes_recomputed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/git_head_and_root_recorded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/head_mismatch_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/mutation_negative_control_rejects_changed_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/mutation_negative_control_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/no_candidate_or_declaration_identity",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/no_heavy_runtime",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/registry_unchanged",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/role_mix_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_check/w1_inputs_frozen_and_read_only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_runtime_zero",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "binding/receipt_plan_dag",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source_locator_v1.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 5773,
+        "actual_sha256": "fb826aa4d32bd6284f3fca7ec9f21b66e3f06d1fc13d4fc678793442ccf8e361"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle/source_locator_v1.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source_locator_receipt.json/frozen_bytes_sha",
+      "detail": {
+        "actual_bytes": 8622,
+        "actual_sha256": "bb3b187bbfc77dd55434e56c13e53793052fb61e07e4ff559c6806f1aff77772"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle/source_locator_receipt.json/canonical_no_lf",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/record_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_shape",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/semantic_hash",
+      "detail": {
+        "actual": "d8eab541fc8d63928a418bd3ac1e5b2825ecd67cc5acd1e316deb345a94a79a0",
+        "declared": "d8eab541fc8d63928a418bd3ac1e5b2825ecd67cc5acd1e316deb345a94a79a0"
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle/repo_root_head",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/no_identity_derivation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/forbidden_derivations",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/semantic_invalidation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source_rows_present",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/RealizationControlGenomeV5.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/RealizationControlGenomeV5.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/RealizationGenomeV5.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/RealizationGenomeV5.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/ControlGenomeV5.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/ControlGenomeV5.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/G3SourceFeedbackLawV1.jl/bytes_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source/src/GenomeV5/G3/G3SourceFeedbackLawV1.jl/head_absent_untracked",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/source_role_kind_separation",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/dependent_role_mix_closed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/w1_input_closure_frozen",
+      "detail": null,
+      "pass": false
+    },
+    {
+      "check": "bundle/record_ref_exact",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_self_hash_excluded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/all_source_sha256_lengths_64",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/canonical_json",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/closure_paths_and_bytes_recomputed",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/git_head_and_root_recorded",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/head_mismatch_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/mutation_negative_control_rejects_changed_sha",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/mutation_negative_control_requires_new_locator",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/no_candidate_or_declaration_identity",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/no_heavy_runtime",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/registry_unchanged",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/role_mix_negative_control",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_check/w1_inputs_frozen_and_read_only",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_runtime_zero",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle/receipt_plan_dag",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "cross_scope_same_observation",
+      "detail": {
+        "observations": [
+          [
+            "D:/006-Programing/LMC/FusionConceptAI",
+            "4b69f55f7f80240147a65a22809dc1207824dde2",
+            "2026-09-15T13:07:50.695721Z"
+          ]
+        ]
+      },
+      "pass": true
+    },
+    {
+      "check": "bundle_five_main_sources",
+      "detail": [
+        "g3_bundle_source",
+        "g3_binding_source",
+        "g3_realization_source",
+        "g3_control_source",
+        "g3_feedback_source"
+      ],
+      "pass": true
+    },
+    {
+      "check": "bundle_no_test_in_main_closure",
+      "detail": null,
+      "pass": true
+    },
+    {
+      "check": "bundle_child_sources_tests_are_dependencies",
+      "detail": null,
+      "pass": true
+    }
+  ],
+  "current_dirty_entry_count": 333,
+  "fail_count": 5,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pass_count": 153,
+  "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "python_version": "3.13.5",
+  "repo_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "reviewer_pid": 90780,
+  "utc": "2026-09-15T13:12:17.301882+00:00"
+}

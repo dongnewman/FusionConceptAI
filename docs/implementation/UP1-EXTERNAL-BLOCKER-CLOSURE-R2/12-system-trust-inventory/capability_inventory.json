@@ -1,0 +1,149 @@
+{
+  "schema": "UP1-R2.system-trust-capability-inventory.v1",
+  "status": "read_only_observation",
+  "claim_ceiling": "preparation_only",
+  "captured_start_utc": "2026-09-16T17:46:39.6779535Z",
+  "captured_end_utc": "2026-09-16T17:46:40.6862043Z",
+  "observer_pid": 110872,
+  "host": "NEWORLDS-LAPTOP",
+  "os_version": "Microsoft Windows NT 10.0.26200.0",
+  "network_accessed": false,
+  "credentials_accessed": false,
+  "private_key_material_read": false,
+  "private_key_exported": false,
+  "store_mutation_performed": false,
+  "stores": {
+    "provider": "PowerShell Certificate provider / System.Security.Cryptography.X509Certificates",
+    "inventory": [
+      {
+        "store": "CurrentUser\\Root",
+        "state": "present",
+        "certificate_count": 280
+      },
+      {
+        "store": "LocalMachine\\Root",
+        "state": "present",
+        "certificate_count": 280
+      },
+      {
+        "store": "CurrentUser\\CA",
+        "state": "present",
+        "certificate_count": 22
+      },
+      {
+        "store": "LocalMachine\\CA",
+        "state": "present",
+        "certificate_count": 6
+      },
+      {
+        "store": "CurrentUser\\My",
+        "state": "present",
+        "certificate_count": 2
+      },
+      {
+        "store": "LocalMachine\\My",
+        "state": "present",
+        "certificate_count": 0
+      },
+      {
+        "store": "CurrentUser\\TrustedPeople",
+        "state": "present",
+        "certificate_count": 0
+      },
+      {
+        "store": "LocalMachine\\TrustedPeople",
+        "state": "present",
+        "certificate_count": 0
+      }
+    ],
+    "counts": {
+      "CurrentUser\\Root": 280,
+      "LocalMachine\\Root": 280,
+      "CurrentUser\\CA": 22,
+      "LocalMachine\\CA": 6,
+      "CurrentUser\\My": 2,
+      "LocalMachine\\My": 0,
+      "CurrentUser\\TrustedPeople": 0,
+      "LocalMachine\\TrustedPeople": 0
+    },
+    "enumeration_error_count": 0
+  },
+  "certificate_parsing": {
+    "powershell_provider": "available",
+    "x509certificate2_metadata": "available",
+    "openssl_x509_parser": "available from local OpenSSL 3.0.18 installation; no input certificate file was exported",
+    "python_cryptography_parser": "available from local cryptography 44.0.1 installation",
+    "parsed_unique_certificate_count": 301,
+    "root_store_unique_count": 277,
+    "non_root_store_unique_count": 24,
+    "parsing_scope": "public metadata and extension OIDs only"
+  },
+  "signature_verification": {
+    "openssl": "capability observed from openssl verify -help",
+    "python_cryptography": "capability observed from import and OpenSSL backend version",
+    "project_receipt_verification": "not executed; no signed project receipt or production profile supplied"
+  },
+  "tools": [
+    {
+      "name": "openssl_version_and_build",
+      "command": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe",
+      "arguments": [
+        "version",
+        "-a"
+      ],
+      "available": true,
+      "pid": 109812,
+      "started_utc": "2026-09-16T17:46:39.6808331Z",
+      "ended_utc": "2026-09-16T17:46:39.7551215Z",
+      "exit_code": 0
+    },
+    {
+      "name": "openssl_verify_capability",
+      "command": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe",
+      "arguments": [
+        "verify",
+        "-help"
+      ],
+      "available": true,
+      "pid": 50680,
+      "started_utc": "2026-09-16T17:46:39.7586483Z",
+      "ended_utc": "2026-09-16T17:46:39.8089847Z",
+      "exit_code": 0
+    },
+    {
+      "name": "python_cryptography_capability",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "arguments": [
+        "-c",
+        "import sys,cryptography; print('python='+sys.version.replace(chr(10),' ')); print('cryptography='+cryptography.__version__); from cryptography.hazmat.backends.openssl import backend; print('cryptography_openssl='+backend.openssl_version_text())"
+      ],
+      "available": true,
+      "pid": 53784,
+      "started_utc": "2026-09-16T17:46:39.8094283Z",
+      "ended_utc": "2026-09-16T17:46:39.9327502Z",
+      "exit_code": 0
+    },
+    {
+      "name": "certutil_help",
+      "command": "C:\\Windows\\system32\\certutil.exe",
+      "arguments": [
+        "-?"
+      ],
+      "available": true,
+      "pid": 40688,
+      "started_utc": "2026-09-16T17:46:39.9330984Z",
+      "ended_utc": "2026-09-16T17:46:39.9935902Z",
+      "exit_code": 0
+    }
+  ],
+  "tool_versions": {
+    "PowerShell": "7.5.5 (PSEdition Core)",
+    "OpenSSL": "3.0.18 (30 Sep 2025)",
+    "Python": "3.13.5 (Anaconda, 64-bit)",
+    "cryptography": "44.0.1",
+    "cryptography_backend": "OpenSSL 3.0.18 30 Sep 2025",
+    "certutil": "10.0.26100.8875 (WinBuild.160101.0800)",
+    "version_source": "local command output / local file version metadata; no network"
+  },
+  "policy_boundary": "Windows system roots and generic user certificates are not project trust roots without explicit project authorization"
+}

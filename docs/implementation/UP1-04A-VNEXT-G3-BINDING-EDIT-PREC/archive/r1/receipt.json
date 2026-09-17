@@ -1,0 +1,92 @@
+{
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "round": "r1",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "commands": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "pid": 14624,
+      "utc_start": "2026-09-15T07:12:59.7564743Z",
+      "utc_end": "2026-09-15T07:13:00.4167172Z",
+      "exit_code": 0,
+      "stdout_sha256": "ea5184a08ce941d92c1cf7cc8173401f2f020681c66b496d6d100f43839afa1e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "julia --project=. test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "pid": 39580,
+      "utc_start": "2026-09-15T07:13:00.4549155Z",
+      "utc_end": "2026-09-15T07:13:10.7043659Z",
+      "exit_code": 0,
+      "stdout_sha256": "b248fde5474c545224e45350bbf6cb34df44104e1a23f8fdf8334d3901836ec0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs\\implementation\\UP1-04A-VNEXT-G3-BINDING-EDIT-PREC\\archive\\r1\\static_qa.stdout",
+      "sha256": "ea5184a08ce941d92c1cf7cc8173401f2f020681c66b496d6d100f43839afa1e",
+      "bytes": 49
+    },
+    {
+      "path": "docs\\implementation\\UP1-04A-VNEXT-G3-BINDING-EDIT-PREC\\archive\\r1\\static_qa.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs\\implementation\\UP1-04A-VNEXT-G3-BINDING-EDIT-PREC\\archive\\r1\\focused_julia.stdout",
+      "sha256": "b248fde5474c545224e45350bbf6cb34df44104e1a23f8fdf8334d3901836ec0",
+      "bytes": 132
+    },
+    {
+      "path": "docs\\implementation\\UP1-04A-VNEXT-G3-BINDING-EDIT-PREC\\archive\\r1\\focused_julia.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "sha256": "16454897a8f9c0ac7ca2f9af3c0e7ce970a66e33ce6afd39e883ed235e7a0fd5",
+      "bytes": 23968
+    },
+    {
+      "path": "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "sha256": "aa8c330a529f506112e5a5f4d7d0afcd8cdade3fd3af31e3a141b484f48af9b2",
+      "bytes": 7135
+    },
+    {
+      "path": "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json",
+      "sha256": "1c52682d1cb3844646d1301337e2995c0ed308ca5cdae1ce04428b86699d0b75",
+      "bytes": 793
+    },
+    {
+      "path": "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "sha256": "50e6091404f742e1304eff9ec80737eb8ccbd5d35f5de5074ccded376dbd9d23",
+      "bytes": 1600
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md",
+      "sha256": "e5c843aef87e49950ae95d7a79e181c415f9cf0827d2ca4aeea44df4e5662ba2",
+      "bytes": 1005
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json",
+      "sha256": "7f0495ae8f80df74beb6c6b35ae11d44edb012ebca34802f64754b60a58a6de8",
+      "bytes": 2211
+    }
+  ],
+  "test_result": "pass_limited",
+  "actual": false,
+  "physical": false,
+  "credits": {
+    "T2": false,
+    "T1": false,
+    "R01_R10": false,
+    "engineering": false,
+    "search": false,
+    "T0": false,
+    "provider": false,
+    "B04": false,
+    "mesh": false,
+    "B00": false
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "UP1.atomic-bundle.prototype-repair-r2-manifest.v1",
+  "status": "prototype_pass_limited",
+  "authority_credit": false,
+  "formal_credit": "none",
+  "no_publish": true,
+  "claim_scope": "software_only",
+  "scope": [
+    "tools/up1_external_closure_r3/atomic_bundle",
+    "test/up1_external_closure_r3/atomic_bundle",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/09-atomic-prototype-repair-r2"
+  ],
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+  "focused_runs": [
+    {
+      "run": 1,
+      "pid": 35220,
+      "utc": "2026-09-17T00:03:32.497760+00:00",
+      "exit": 0,
+      "failed": false,
+      "raw_sha256": "204f52cfaba27159f04e7d7792e063dc98e2a75384be92018c30953eecf3f0cc",
+      "tests": 20,
+      "skipped": 1
+    },
+    {
+      "run": 2,
+      "pid": 16652,
+      "utc": "2026-09-17T00:03:32.497846+00:00",
+      "exit": 0,
+      "failed": false,
+      "raw_sha256": "204f52cfaba27159f04e7d7792e063dc98e2a75384be92018c30953eecf3f0cc",
+      "tests": 20,
+      "skipped": 1
+    }
+  ],
+  "vector_execution": "R01-R25+D01: 26 independent builders executed"
+}

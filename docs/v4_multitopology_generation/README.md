@@ -1,100 +1,73 @@
-# 多拓扑生成到可信物理装置 v4：设计总纲
+# v4 多拓扑生成：核心规划与执行入口
 
-状态：下一阶段设计大纲，不代表已经实现或产生可信装置  
-日期：2026-09-02  
-适用项目：FusionConceptAI
+版本：`v4-upgrade-plan-20260914.1`。本目录保存当前架构、执行路线、工作单和未完成事项；`docs/implementation/` 保存实现记录与历史快照。本文是规划，不能作为代码实现或物理验收证据。
 
-## 1. 一句话目标
+## 1. 本次调整与目标
 
-v4 把已经完成定义的机制 Genome、场—几何 Genome、实现—控制 Genome 接入一条统一的、可恢复的搜索与证据链，在不枚举完整笛卡尔积、不按装置家族路由、不把代理预测当物理证据的前提下，从开放式多拓扑生成推进到证据边界内的最简可信候选。
+按 2026-09-14 用户指令，先扩大三层 Genome 的可执行表达能力，再完成物理编译、空间离散与耦合，验证合法模块组合，完成逆向 realization 与工程反馈，最后接入条件 e-graph 和更广的演化搜索。三层 Genome 允许版本化补齐；旧版合同、候选身份和历史 evidence 不得被原地重解释。本次指令替代旧版“本目录不修改 Genome”及搜索优先的实施顺序。
 
-三种 Genome 的既有文档是 v4 的规范性上游，本目录不复制、改写或另立其语义。v4 只定义它们如何被引用、组合、编译、搜索、求解和审计。
+保留完整父目标：用同一条可复现链路完成真实参考对象表示、可识别的隐参数逆恢复与留出预测，再通过 G1/G2/G3 的机制、场、几何、拓扑、实现和控制搜索，产生至少一个经过独立物理、工程、整装净输出及原创性审查的 L4 候选。R01–R10 不能被局部里程碑代替。建成装置并测得正净输出是额外的 L5 证据要求。
 
-## 2. 总体组成与职责
+这里的“通用”是**在声明的模型、空间和数值适用域内，依据合同自动组合并可扩展**。有限软件不承诺任意抽象拓扑都可物化、任意等离子体模型都可闭合、任意目标场都有可制造源。
 
-| 部分 | 核心职责 | 主要产物 | 详细文档 |
-|---|---|---|---|
-| 共同合同与状态模型 | 固定术语、哈希、状态、authority 和不可补偿规则 | `CandidateStatePackageV4` | [00 共同合同](00_normative_contracts_and_state_model.md) |
-| 候选集成与抽象编译 | 组合三种 Genome；编译区域、接口、边界、端口、因果和义务 | `CompiledCandidatePrefixV4` | [01 候选集成](01_candidate_integration_and_abstract_compilation.md) |
-| 严格证明式剪枝 | 只凭可验证证书永久删除不可能前缀；区分失败、休眠和未知 | `PruneCertificateV4` | [02 证明式剪枝](02_proof_pruning_and_failure_semantics.md) |
-| 开放式演化与 QD | 保留踏脚石、失败前沿和多样化谱系，不收敛到单一家族 | `DeepQDArchiveV4` | [03 演化与 QD](03_open_ended_evolution_and_quality_diversity.md) |
-| MCTS 与生成式提议 | 对多步机制组合做渐进展开；以 AI 提议候选而非判定物理 | `ProposalEnvelopeV4` | [04 MCTS 与生成提议](04_mcts_and_generative_proposal.md) |
-| realization 与独立物理解算 | 把 Genome 编译为有限、有单位、可执行的候选绑定输入；按 capability 路由 | `ExecutablePhysicalSubjectV4` | [05 realization 与求解](05_realization_and_independent_physics_execution.md) |
-| 多保真硬物理 frontier | 按适用义务依次执行场、轨道/损失、平衡、稳定性和输运 | `StageFrontierV4` | [06 硬物理 frontier](06_multifidelity_hard_physics_frontier.md) |
-| 成活者稀疏化与 Pareto | 在硬门之后、同一比较作用域内做结构和工程最简化 | `ScopedParetoArchiveV4` | [07 稀疏化与 Pareto](07_survivor_sparsification_and_pareto.md) |
-| 高保真整装与 VVUQ | 完整耦合整装、数值 VVUQ、双代码、工程与验证证据 | `WholeDeviceEvidencePackageV4` | [08 高保真与 VVUQ](08_high_fidelity_whole_device_vvuq.md) |
-| 最终证据 authority 与实施 | 终局分类、可信声明、campaign、验收和 v4 实施顺序 | `CredibleCandidateEnvelopeV4` | [09 authority 与路线图](09_evidence_authority_campaign_and_v4_roadmap.md) |
+## 2. 阅读路径
 
-## 3. 统一流程
+所有执行者先读 [00 共同合同](00_normative_contracts_and_state_model.md)，再读本页和 [16 工作单](16_execution_work_orders.md)。任务状态与依赖以 [task_manifest.json](task_manifest.json) 为准；文本工作单拥有技术步骤，机器清单拥有调度关系，二者冲突必须先修正。
 
-```text
-三种既有 Genome 合同
-        │
-        ▼
-候选前缀组合与抽象编译 ── 严格证书成立 ──> proof_pruned
-        │
-        ├── 开放式演化 / Deep-QD / 失败前沿 / 休眠复活
-        ├── progressive-widening MCTS
-        └── GFlowNet/代理/规则生成的候选提议
-        │                 以上都只有提议权
-        ▼
-有限 realization 与 exact solver-input 编译
-        ▼
-独立 capability-routed 物理解算
-        ▼
-不可变多保真 frontier
-场/解析界 → 轨道或损失 → 平衡 → 稳定性 → 输运
-        ▼
-同作用域稀疏化与 Pareto
-        ▼
-有限压力 + 动理学 + 工程 + 故障场景 + numerical VVUQ + 双代码
-        ▼
-validation VVUQ / 外部证据
-        ▼
-最终整装 authority
-        ▼
-证据边界内的最简可信候选，或有作用域的 fail/unknown/unsupported
+| 阅读者或任务 | 必读文件 |
+|---|---|
+| Sol（high）总调度 | [主线提示词，500 字以内](15_sol_system_prompt.md)、[14 协作与决策](14_agent_orchestration.md)、16、13 |
+| Luna（high）执行者 | [17 执行提示词](17_luna_worker_prompt.md)、被分配工作单、00、对应技术章 |
+| Genome 补齐 | [G1](<G1 机制基因组.md>)、[G2](<G2 场—几何基因组.md>)、[G3](<G3 实现—控制Genome.md>)、[10 升级实施](10_genome_upgrade_execution.md) |
+| 编译、离散与耦合 | [01 抽象编译](01_candidate_integration_and_abstract_compilation.md)、[11 执行编译](11_physics_compilation_and_discretization.md) |
+| 模块组合、源与硬件逆实现 | [05 realization 合同](05_realization_and_independent_physics_execution.md)、[12 组合与逆实现](12_composition_and_inverse_realization.md) |
+| 验证和最终证据 | [13 验收协议](13_acceptance_benchmarks_and_evidence.md)、[06 物理 frontier](06_multifidelity_hard_physics_frontier.md)、[08 整装 VVUQ](08_high_fidelity_whole_device_vvuq.md)、[09 authority](09_evidence_authority_campaign_and_v4_roadmap.md) |
+| 更广搜索与等价改写 | [AST / hypergraph / e-graph](<typed AST、operator hypergraph 或 e-graph.md>)、[02 证明剪枝](02_proof_pruning_and_failure_semantics.md)、[03 演化 QD](03_open_ended_evolution_and_quality_diversity.md)、[04 MCTS](04_mcts_and_generative_proposal.md)、[07 Pareto](07_survivor_sparsification_and_pareto.md) |
+| 技术选择与来源 | [18 架构决策及来源](18_sources_and_architecture_decisions.md) |
+| 已有实现和旧计划 | [implementation 档案索引](../implementation/README.md)；历史材料不能反向覆盖本规划 |
+
+## 3. 强制实施顺序
+
+`UP0–UP6` 是本次工程升级阶段，与现有运行器的 `S0–S10`、历史 `V4-P0–P6` 不同。
+
+| 阶段 | 交付内容 | 退出门，均需实现证据和独立评审 |
+|---|---|---|
+| UP0 | 当前源码、脏文件、运行中断、旧证据和版本合同基线 | 可复查基线，保护清单，合同边界与派单依赖无冲突 |
+| UP1 | G1 算子与闭合；G2 空间与场合同；G3 资源、源、材料和控制合同；最小组件核 | 合法/非法构造、版本迁移、标签擦除、组件数值验证；不是只添字段 |
+| UP2 | 自研物理编译、离散组装和耦合；复用成熟数值算法 | 声明驱动执行，支持变系数和组合结构；不靠候选身份或整棵 AST 特判；空间兼容性取代固定模型身份判断 |
+| UP3 | 成熟模块按端口、方程和作用域自动组合 | 未预写专用驱动的合法组合实际求解；守恒、耦合一致性、留出组合和非法组合全部核验 |
+| UP4 | 源/硬件逆实现；供能、热、材料、结构、控制约束回代；真实参考逆恢复 | 实现误差重新进入主物理，闭环共同收敛，参考逆恢复有可识别性和留出证据 |
+| UP5 | 条件 e-graph、丰富 typed edits、物理反馈和扩大搜索 | 等价改写可重放；G1/G2/G3 均有实际编辑与重新执行；小规模有效后按证据扩容 |
+| UP6 | 全部适用物理与工程义务、整装净输出、VVUQ、独立原创性与复放 | 原父目标 R01–R10 全部独立验收，至少一个新候选通过全部必需终局门 |
+
+阶段门按所声明的能力配置逐项验收，不把早期有限配置的通过写成全部物理覆盖。每阶段内部采用“小合同→小实现→真实运行→独立评审”的纵向切片。UP1 的 G3 定义逆设计对象、约束和元件核；UP4 才集成完整逆设计和物理闭环，因此不形成依赖循环。保留现行小规模迭代作回归；UP5 之前不得把广搜索当作补齐执行能力的替代。
+
+```mermaid
+flowchart LR
+  A[UP1 三层 Genome 与组件] --> B[UP2 编译 离散 耦合]
+  B --> C[UP3 合法模块组合]
+  C --> D[UP4 源硬件逆实现和反馈]
+  D --> E[UP5 等价改写和结构搜索]
+  E --> F[UP6 整装及独立验收]
+  D -->|实现误差 供能 热 形变| B
+  E -->|新的机制 空间 实现| A
 ```
 
-搜索循环可以从任何非终局档案成员产生后代；证据链只能前向晋升。搜索器不得更改历史证据，较高保真结果不得反向给较低保真候选补信用。
+## 4. 当前事实与下一步（2026-09-16 中期审计）
 
-## 4. v4 的核心变化
+当前 HEAD 为 `b2c04d8339774635aaecd73651efcdb101e01b5d`，工作树仍有既有源码、测试和文档改动。旧 `4b69f55` 是历史基线，不是当前 checkout。接手时必须刷新实际输入，不能只写 HEAD。
 
-相对 v3，v4 增加以下强制能力：
+**先读 [20 中期审计](20_midterm_audit_20260916.md) 和 [21 下一轮执行批次](21_next_execution_batches.md)。** 当前39节点：UP0两项accepted；UP1四项按有限范围accepted、十一项planned；UP2九项、UP3三项、UP4四项、UP5三项、UP6三项均planned。UP1整体尚未验收，UP2通用执行尚未交付，R01–R10未关闭，L4=0。子切片的 accepted_limited 不改变父节点状态。
 
-1. 不预先物化完整联合 Genome；仅对被选中的部分 Genome 惰性展开。
-2. 永久剪枝仅允许基于机器可验证的无解证书；低保真不利结果进入休眠或失败前沿。
-3. 每个行为生态位保留多条不同谱系，而不是每格只有一个赢家。
-4. 类型化遗传编程、QD、MCTS、连续优化、生成式模型和随机复活以多 emitter 方式并行，且每类有预算下限。
-5. AI 模型只有提议和预算排序权，没有物理判定、晋升或终局分类权。
-6. realization 是既有 Genome 的候选绑定物化，不得暗中发明未编码组件、状态或边界。
-7. 中间 provider 缺口采用 `terminal_deferred`；只有最终整装 authority 可以给出终局 `unsupported`。
-8. 最简性只在已声明 grammar、bounds、mission、evidence level 和 comparison scope 内成立。
+AD54接受本地21文件源码发布；AD56接受Git过滤/CRLF locator软件修复；AD55 fresh F0/S2的六scope source-stage输出及独立复核通过，用户转述的Sol有限裁决已[归档](../implementation/MIDTERM-AUDIT-20260916/AD55_decision_archive.md)。三份factory仍含AD56未提交修复；HEAD来源对象与工作树执行器须分别冻结。source-stage present不是trusted source/candidate/final identity，也不是provider/mesh/solver/工程/物理/搜索信用。
 
-## 5. 跨文档不可变原则
+下一步：完整冻结实际执行闭包，fresh S3如实判定；缺外部trust root则typed absence并列清输入/责任方/唤醒条件，不重复无变化的S3。满足来源门后按既有T0/recheck/T1/T2及B00/B04进入通用执行；正式门不满足时只做已授权准备，测试专用数值执行须先经范围决策，不越过现有DAG。细节见21。
 
-- 不使用 device family、历史名称、parent、benchmark 身份或候选序号进行生成、路由、门控或晋升。
-- 三种 Genome 的语义由其既有文档拥有；v4 只保存其版本化引用和规范哈希。
-- `unknown`、`unsupported`、`physical_fail`、`numerical_fail`、`not_applicable` 和 `terminal_deferred` 不得合并。
-- 代理分数、新颖性、信息增益、成本和复杂度不得补偿硬物理门。
-- 所有物理结论必须绑定 exact candidate、scenario、solver input、backend、数值配置和证据哈希。
-- 不适用必须有 applicability proof；没有执行不能默认通过。
-- 最终可信结果不等于实验验证、工程可建造或商业可行，声明必须受 evidence ceiling 限制。
+## 5. 状态、历史和档案
 
-## 6. 文档优先级与冲突解决
+- [task_manifest.json](task_manifest.json) 与 [16](16_execution_work_orders.md) 仍是唯一正式任务和依赖；本轮保留其原始字节及39节点。
+- [implementation 当前索引](../implementation/README.md) 按UP阶段和任务查档；[机器目录](../implementation/MIDTERM-AUDIT-20260916/archive_catalog.json) 是检索快照，不是验收或调度器。
+- 本页旧逐轮AD叙述已完整存入[入口原文快照](../implementation/MIDTERM-AUDIT-20260916/entry_snapshots/core_README.before.txt)，保持原始字节。历史的pending或旧HEAD只代表当时状态；最新限定范围由20、具体验收书和实际证据联合判断。
+- 18中的历史架构决策、所有原验收书和失败记录保留。遇到历史“当前”与本页冲突，先核对时间、输入hash及scope，禁止批量把旧结果改写成present/accepted。
 
-本目录内优先级为：
-
-1. [00 共同合同](00_normative_contracts_and_state_model.md)；
-2. 本总纲；
-3. 01–09 各详细设计。
-
-三种既有 Genome 文档对 Genome 内部语义具有更高优先级；v4 不得覆盖它们。若详细文档与共同合同冲突，以共同合同为准并修正文档，不允许实现自行选择解释。
-
-v4 继承以下现有基线的证据边界：
-
-- [统一多拓扑装置生成架构 v3](../universal_multitopology_device_generation_architecture_v3_20260827.md)；
-- [v141 unbiased generic chain](../v141_unbiased_generic_chain_design.md)；
-- [v142 terminal-deferred whole-device](../v142_terminal_deferred_whole_device_design.md)。
-
-本目录是下一阶段设计，不改变历史运行结果、密封 artifact 或既有 acceptance 声明。
+本目录用于完整路线指导，implementation用于实现、审计和历史档案。一次文档整理、软件测试或来源工厂复放都不会关闭父目标。

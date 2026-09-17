@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5SearchR2OperationalEnvelopeV2",
+  "title": "M5SearchR2OperationalEnvelopeV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "run_id", "attempt_id", "content_receipt_id", "canonical_content_sha256", "environment_hash", "command", "cwd", "host", "pid", "utc_start", "utc_end", "exit_code", "termination", "stdout", "stderr", "comparison_role"],
+  "properties": {
+    "schema": {"const": "M5SearchR2OperationalEnvelopeV2"}, "run_id": {"type": "string", "minLength": 1}, "attempt_id": {"type": "string", "minLength": 1}, "content_receipt_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "canonical_content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "environment_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "command": {"type": "array", "items": {"type": "string"}, "minItems": 1}, "cwd": {"type": "string", "minLength": 1}, "host": {"type": "string", "minLength": 1}, "pid": {"type": "integer", "minimum": 0}, "utc_start": {"type": "string", "format": "date-time"}, "utc_end": {"type": "string", "format": "date-time"}, "exit_code": {"type": "integer"}, "termination": {"enum": ["completed", "timeout", "human_interruption", "program_exception", "external_kill", "not_started"]}, "comparison_role": {"const": "operational_not_content_identity"},
+    "stdout": {"$ref": "#/$defs/raw"}, "stderr": {"$ref": "#/$defs/raw"}
+  },
+  "$defs": {"raw": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "bytes"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "bytes": {"type": "integer", "minimum": 0}}}}
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "UP1.external-blocker-closure-r4.root-decision-draft.v1",
+  "status": "decision_draft_pending_root_acceptance",
+  "created_utc": "2026-09-17",
+  "checkout": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "scope": "R4 local software handoff and external-blocker disposition only",
+  "verdict": {
+    "software": "PASS_LIMITED / ACCEPT_FOR_LOCAL_INTEGRATION",
+    "formal_external": "BLOCKED_NO_CREDIT"
+  },
+  "counts": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 2,
+    "p2_items": [
+      {
+        "id": "P2-001",
+        "title": "Windows reparse runtime",
+        "state": "test_scope_deferred",
+        "owner": "authorized Windows environment owner",
+        "recovery": "Create the relevant junction/symlink/reparse fixture on an authorized host and retain independent raw stdout/stderr, exit, and hash receipts."
+      },
+      {
+        "id": "P2-002",
+        "title": "R22 direct-wire acceptance",
+        "state": "test_scope_deferred",
+        "owner": "predicate and external-wire owners",
+        "recovery": "Repair or replace the quarantine raw-digest self-referential envelope, then repeat fresh direct-wire acceptance evidence."
+      }
+    ]
+  },
+  "external_snapshot": {
+    "typed_absent": 26,
+    "typed_absent_total": 26,
+    "usable_external_inputs": 0,
+    "fresh_external_delta": false,
+    "new_ad": false,
+    "s3_rerun": false,
+    "disposition": "terminal_deferred -> no_publish"
+  },
+  "regression": {
+    "r3_atomic": {
+      "runs": 2,
+      "tests": 25,
+      "skipped": 1,
+      "exit_codes": [0, 0]
+    },
+    "r4_full": {
+      "runs": 2,
+      "passed": 98,
+      "skipped": 2,
+      "tests": 100,
+      "exit_codes": [0, 0]
+    },
+    "static_compile_import": {
+      "runs": 1,
+      "exit_code": 0,
+      "boundary": "PASS"
+    },
+    "source_test_hash_closure": {
+      "before_count": 48,
+      "after_count": 48,
+      "unchanged": true,
+      "changed": [],
+      "missing": [],
+      "added": []
+    }
+  },
+  "gates_not_passed": [
+    "G7-EXTERNAL-PRESENT",
+    "G8-SOURCE-ENV-G2",
+    "G9-RECHECK-ELIGIBILITY",
+    "G10-T0",
+    "G11-T1",
+    "G12-T2"
+  ],
+  "authorization": {
+    "formal_credit": "none",
+    "authority_credit": false,
+    "no_publish": true,
+    "t0_go": false,
+    "t1_go": false,
+    "t2_go": false,
+    "network_executed": false,
+    "julia_desc_executed": false,
+    "heavy_lane_executed": false,
+    "parent_goal_closed": false,
+    "dag_39_changed": false,
+    "r01_r10_changed": false,
+    "new_ad_authorized": false,
+    "s3_authorized": false
+  },
+  "up1_handoff": [
+    {"stage":"UP1-00","increment":"bounded external delta scan and absence inventory","not_passed":"26/26 external inputs remain typed_absent","owner":"external channel/intake owners","recovery":"fresh complete candidate-bound EHP set through a real authoritative channel"},
+    {"stage":"UP1-01","increment":"EHP-01..04 atomic input contract and typed-state taxonomy","not_passed":"G7 and externally_verified transition","owner":"EHP owners, PKI/trust administrator, independent reviewer","recovery":"all four ordered packets plus signed set/review receipts and raw-byte hashes"},
+    {"stage":"UP1-02","increment":"additive seven-stage integration contract and locks","not_passed":"contract presence is not formal integration acceptance","owner":"root integration owner","recovery":"root-owned acceptance after the contract evidence is complete"},
+    {"stage":"UP1-03","increment":"environment closure observation and fail-closed path handling","not_passed":"candidate-bound provenance and Windows reparse runtime","owner":"environment/SBOM and binary-provenance owners","recovery":"independent lock/channel, provenance, SBOM, and reparse-capable retest"},
+    {"stage":"UP1-04","increment":"authoritative-intake structural and quarantine boundary","not_passed":"real owner acknowledgement and authenticated channel ACK","owner":"authoritative channel owner and intake operator","recovery":"fresh authenticated transport, ACK/rejection receipt, and raw response"},
+    {"stage":"UP1-05","increment":"freshness, trusted-time, replay, nonce/sequence, and CAS checks","not_passed":"external time/revocation/replay authority","owner":"PKI, TSA/time-policy, revocation, and replay-ledger owners","recovery":"fresh scope-bound signed time, revocation, replay, and CAS receipts"},
+    {"stage":"UP1-06","increment":"predicate dispatch/absence instrumentation and negative boundary coverage","not_passed":"R22 direct-wire acceptance","owner":"predicate and external-wire owners","recovery":"fresh non-self-referential R22 envelope and direct-wire evidence"},
+    {"stage":"UP1-07","increment":"candidate/source-bound G2 graph and mapping validation","not_passed":"externally authoritative signed G2 mapping","owner":"G2 mapping authority and independent attestor","recovery":"complete signed bijective graph/mapping bound to candidate/source/run"},
+    {"stage":"UP1-08","increment":"pinned-root chain, signature, time, algorithm, and revocation behavior","not_passed":"project trust root and external signed authority receipt","owner":"project PKI/trust administrator and attestor","recovery":"fresh pinned root/policy, chain, signature, trusted time, and revocation evidence"},
+    {"stage":"UP1-09","increment":"source-axis binding, identity joins, drift detection, and non-evidence ceiling","not_passed":"fresh external source identity and four-axis material","owner":"source authority and independent attestor","recovery":"same-candidate lineage/source digest and rebuilt downstream receipts"},
+    {"stage":"UP1-10","increment":"G2 repair negative cases","not_passed":"positive external G2 authority","owner":"G2 authority/attestor","recovery":"fresh externally issued and independently reviewed bundle"},
+    {"stage":"UP1-11","increment":"trust-chain repair with explicit typed absence for missing time","not_passed":"external trust/time/revocation evidence","owner":"PKI/time/revocation authority","recovery":"fresh receipts bound to exact payload bytes"},
+    {"stage":"UP1-12","increment":"intake repair focused suite and no-publish preservation","not_passed":"authenticated external send/ACK","owner":"channel owner and root intake reviewer","recovery":"real channel exchange with raw response and independent review"},
+    {"stage":"UP1-13","increment":"seven-stage offline orchestrator seam and typed-absent propagation","not_passed":"G7-G9 and formal credit","owner":"root integration owner","recovery":"complete external bundle, trust, G2, environment, and replay receipts"},
+    {"stage":"UP1-14","increment":"canonical stage order independent retest","not_passed":"ordering does not authorize execution","owner":"integration owner and independent reviewer","recovery":"preserve frozen order and attach it to a fresh accepted aggregate"},
+    {"stage":"UP1-15","increment":"earlier full regression and 45-file hash closure","not_passed":"offline regression has no external or parent-goal effect","owner":"regression owner","recovery":"authorized scope change followed by a fresh bounded regression"},
+    {"stage":"UP1-16","increment":"reparse/TOCTOU repair static and ordinary-file checks","not_passed":"Windows reparse runtime","owner":"Windows environment owner","recovery":"reparse-capable host and independent raw receipts"},
+    {"stage":"UP1-17","increment":"first cross-binding repair exposed complete tuple conflicts","not_passed":"three public conflict fields failed this retest; superseded","owner":"integration implementation owner","recovery":"use UP1-18 only; do not reuse UP1-17 as closure"},
+    {"stage":"UP1-18","increment":"second binding repair passes 33-test integration package twice","not_passed":"software-only local acceptance","owner":"integration implementation owner and independent reviewer","recovery":"keep source/test bytes frozen and obtain root local-integration acceptance"},
+    {"stage":"UP1-19","increment":"final dual-run R3/R4 regression, static boundary, and 48-file hash closure","not_passed":"formal/external and T0/T1/T2","owner":"root scope owner plus external material owners","recovery":"fresh external evidence and a new root decision"}
+  ],
+  "evidence_refs": [
+    "00-external-delta-scan/scan_summary.md",
+    "01-external-input-contract/README.md",
+    "02-integration-contract/integration-acceptance-gates.md",
+    "16-env-reparse-repair-independent-retest/report.md",
+    "18-cross-binding-repair2-independent-retest/report.md",
+    "19-final-full-regression/report.md",
+    "19-final-full-regression/run_manifest.json",
+    "reviews/19-final-independent-review-r2/review.md"
+  ]
+}

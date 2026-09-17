@@ -1,0 +1,31 @@
+{
+  "schema_version":"UP2-N06-H0A-independent-precheck-r4-evidence",
+  "reviewer":"independent_luna_high_static",
+  "verdict":"changes_requested",
+  "frozen_head":"4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_scope":"repair_r4 source/test/fixture/runner plus R3 report; static only",
+  "reviewed_files":{
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl":{"sha256":"cd773f7918b00d62b322e5f6bb676209ad577fec98cff2c0395e77ed8335664c","role":"R4 H0-A implementation"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl":{"sha256":"719fde120f2cf391e169a240c44d115c9d32e994a79cab38085b973f1926ec5f","role":"R4 focused tests"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json":{"sha256":"779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99","role":"fixture, synthetic schema-only and actual deferred"},
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl":{"sha256":"da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","role":"runner, not executed"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r4/report.md":{"sha256":"ee56e1c569e628065c3f67b6ec63ca7c67f80db699001877f97fdd6fd18d6399","role":"author R4 claims"},
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r3/report.md":{"sha256":"17b6dd0222ab97fb91a9dad11359f48fa1b8b0720729e9729b4f92cb158863d6","role":"prior independent review"}
+  },
+  "checks":{
+    "public_identity_validate_and_admit":"static pass",
+    "correctly_rehashed_wrong_law":"static source identity rejection present",
+    "structured_closure_relation":"static pass; G3 row/account/balance joins present",
+    "four_role_sign_direction":"static pass as local typed contract",
+    "unit_algebra_power_output":"public negative controls present",
+    "g2_payload_rehash":"public negative controls present",
+    "law_payload_rehash":"public negative controls present",
+    "upstream_preflight":"message-free typed status mapping present",
+    "public_program_exception":"missing dynamic control; blocking",
+    "validate_malformed_payload_boundary":"unhandled semantic conversion risk; blocking",
+    "feedback_pending_foreign":"static separation present",
+    "actual_a":"terminal_deferred",
+    "downstream_counts":{"compile_calls":0,"provider_calls":0,"solver_calls":0}
+  },
+  "non_claims":["B00","B04","physics","engineering","provider","mesh","R01-R10"]
+}

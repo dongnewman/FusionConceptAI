@@ -1,0 +1,27 @@
+{
+  "schema_version": "H0A-DIMENSIONED-LAW-independent-postrun-r4-command-receipts-v1",
+  "reviewer": "independent_luna_high_postrun",
+  "scope": "read-only focused-R4 failure review; no Julia/DESC",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "review_dirty_entry_count": 3871,
+  "review_dirty_status_sha256_utf8_lf": "1d04cab381fa8d556215f79e4f01b04c311c1c9453176b17252ca9cb877843d8",
+  "review_process_sweep": "zero matching Julia/DESC processes",
+  "commands": [
+    {"operation": "raw output hash/byte recomputation", "command": "Get-FileHash -Algorithm SHA256 focused_r4/stdout.txt focused_r4/stderr.txt; Get-Item .Length", "result": "stdout 2553 bytes SHA aff9a341...; stderr 310 bytes SHA a64e6d35..."},
+    {"operation": "run/input metadata audit", "command": "ConvertFrom-Json focused_r4/run.json input_manifest.json post_input_manifest.json", "result": "PID 13520; exit 1; UTC/dirty/process fields and four protected inputs consistent"},
+    {"operation": "constructor dispatch static audit", "command": "Get-Content source lines 145-187; rg N06H0AUnitEquationV1", "result": "outer line170 recursively calls same outer dispatch at line177; final line183 needs explicit full-state path"},
+    {"operation": "focused-R3 preservation audit", "command": "Hash focused_r3 stdout/stderr/qa and read repair history", "result": "exit1 original evidence retained; no overwrite"},
+    {"operation": "runner dispatch SHA audit", "command": "Get-FileHash test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "result": "actual 64-char hash da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc; preceding instruction had truncated typo"},
+    {"operation": "Julia/DESC execution", "command": "julia ...", "result": "NOT RUN by independent postrun review"}
+  ],
+  "narrow_fix": "Use explicit private base/full constructor dispatch (e.g. Val(:base)/Val(:full)) or an equivalent private builder; retain public keyword API and typed validation.",
+  "writes": ["docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r4/report.md", "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r4/report.json", "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r4/evidence_manifest.json", "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r4/command_receipts.json"],
+  "postwrite_outputs": {
+    "report.md": {"bytes": 3444, "sha256": "95eea9e5396276cfabbe5a18975f213ccd753bb36c135eedf4af47983b273342"},
+    "report.json": {"bytes": 2857, "sha256": "0e1a0598bea0008b0b565713dfbf19ff7d48705558634d6594ff14dc879f651f"},
+    "evidence_manifest.json": {"bytes": 2511, "sha256": "f7072bdeb9a81f712e1f7c248ae046265837b73d86f029dcff7eb48fcb2d92aa"}
+  },
+  "postwrite_full_status_entry_count": 3878,
+  "claim_ceiling": ["changes_requested", "software_run_failure_only", "accepted_false", "review_pending", "no_physical_credit", "no_provider", "no_mesh", "no_engineering", "no_B00", "no_B04", "no_parent_goal"]
+}

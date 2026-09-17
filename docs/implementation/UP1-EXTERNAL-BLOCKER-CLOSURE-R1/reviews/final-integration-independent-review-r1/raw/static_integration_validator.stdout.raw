@@ -1,0 +1,136 @@
+{
+  "checks": [
+    {
+      "detail": "reviews/W1-witness-authority-independent-review-r7/review.md",
+      "name": "latest_W1_review",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W2-trust-chain-independent-review-r3/review.md",
+      "name": "latest_W2_review",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W3-source-g2-environment-independent-review-r4/review.md",
+      "name": "latest_W3_review",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W4-local-input-discovery-independent-review-r3/review.md",
+      "name": "latest_W4_review",
+      "passed": true
+    },
+    {
+      "detail": "usable_external_inputs=0",
+      "name": "root_external_count",
+      "passed": true
+    },
+    {
+      "detail": "fresh_S3='typed_absent/terminal_deferred/no_publish'",
+      "name": "root_fresh_s3_deferred",
+      "passed": true
+    },
+    {
+      "detail": "formal_credit=False",
+      "name": "root_formal_credit_false",
+      "passed": true
+    },
+    {
+      "detail": "39-node topology preservation fields",
+      "name": "root_39_nodes",
+      "passed": true
+    },
+    {
+      "detail": "root acceptance/credits",
+      "name": "root_no_gate_credit",
+      "passed": true
+    },
+    {
+      "detail": "checkout_head='b2c04d8339774635aaecd73651efcdb101e01b5d'",
+      "name": "root_head",
+      "passed": true
+    },
+    {
+      "detail": "request_packets and manifest not_sent",
+      "name": "handoff_not_sent",
+      "passed": true
+    },
+    {
+      "detail": "external mutation/credentials/new AD controls",
+      "name": "handoff_no_mutation",
+      "passed": true
+    },
+    {
+      "detail": "endpoint-like literals in packets=[]",
+      "name": "no_invented_endpoint",
+      "passed": true
+    },
+    {
+      "detail": "missing=[] extra=['DEPENDENCY_IMPORT_CLOSURE_UNKNOWN', 'EXTERNAL_BINARY_CLOSURE_UNKNOWN', 'W1-G01', 'W1-G02', 'W1-G03', 'W1-G04', 'W1-G05', 'W1-G06', 'W1-G07', 'W1-G08', 'W1-G09']",
+      "name": "lossless_external_absence_union",
+      "passed": false
+    },
+    {
+      "detail": "four packet IDs",
+      "name": "four_packets",
+      "passed": true
+    },
+    {
+      "detail": "required=['T0', 'recheck', 'T1', 'T2', 'aggregate', 'UP2-00', 'UP1-04B', 'UP1-04', 'UP2-01']; ordering='T0 -> recheck -> T1 -> T2 -> B00/B04; no stage may be skipped or inferred from local preparation'; stages=['S0', 'S1', 'T0', 'recheck', 'T1', 'T2', 'B00_or_B04_review']",
+      "name": "strict_formal_route",
+      "passed": false
+    },
+    {
+      "detail": "conditional schedule controls",
+      "name": "schedule_no_new_ad",
+      "passed": true
+    },
+    {
+      "detail": "hygiene read-only/no mutation",
+      "name": "hygiene_read_only",
+      "passed": true
+    },
+    {
+      "detail": "four historical unowned raw retain dispositions",
+      "name": "hygiene_four_raw_retain",
+      "passed": true
+    },
+    {
+      "detail": "hygiene head='b2c04d8339774635aaecd73651efcdb101e01b5d'",
+      "name": "hygiene_head",
+      "passed": true
+    },
+    {
+      "detail": "mismatches=[]",
+      "name": "handoff_hashes",
+      "passed": true
+    },
+    {
+      "detail": "owned=['cleanup_inventory.json', 'conditional_schedule.json', 'handoff_overview.md', 'manifest.json', 'recovery_and_rejection_matrix.json', 'request_packets.json', 'responsibility_matrix.json'] manifest=['cleanup_inventory.json', 'conditional_schedule.json', 'handoff_overview.md', 'manifest.json', 'recovery_and_rejection_matrix.json', 'request_packets.json', 'responsibility_matrix.json']",
+      "name": "handoff_exact_set",
+      "passed": true
+    }
+  ],
+  "decision": "rework",
+  "findings": [
+    {
+      "detail": "missing=[] extra=['DEPENDENCY_IMPORT_CLOSURE_UNKNOWN', 'EXTERNAL_BINARY_CLOSURE_UNKNOWN', 'W1-G01', 'W1-G02', 'W1-G03', 'W1-G04', 'W1-G05', 'W1-G06', 'W1-G07', 'W1-G08', 'W1-G09']",
+      "id": "lossless_external_absence_union",
+      "severity": "P1"
+    },
+    {
+      "detail": "required=['T0', 'recheck', 'T1', 'T2', 'aggregate', 'UP2-00', 'UP1-04B', 'UP1-04', 'UP2-01']; ordering='T0 -> recheck -> T1 -> T2 -> B00/B04; no stage may be skipped or inferred from local preparation'; stages=['S0', 'S1', 'T0', 'recheck', 'T1', 'T2', 'B00_or_B04_review']",
+      "id": "strict_formal_route",
+      "severity": "P1"
+    }
+  ],
+  "summary": {
+    "formal_gate_credit": false,
+    "fresh_s3": "typed_absent/terminal_deferred/no_publish",
+    "julia_s3_desc_solver_executed": false,
+    "read_only": true,
+    "strict_route_check": false,
+    "usable_external_inputs": 0
+  },
+  "validator": "final-integration-independent-review-r1/static_integration_validator.py"
+}

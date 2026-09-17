@@ -1,0 +1,23 @@
+{
+  "receipt_id": "AD41-validation-r2",
+  "command_kind": "static_read_only_audit_validation",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 19648,
+  "start_utc": "2026-09-15T08:11:29.4237386Z",
+  "end_utc": "2026-09-15T08:11:29.4884252Z",
+  "exit_code": 0,
+  "checks": {"json_parse": "pass", "path_scope": "pass", "control_characters": "pass", "markdown_links": "pass", "git_diff_scope": "pass"},
+  "missing_markdown_links": 0,
+  "stdout_path": "archive/validation_r2.stdout.txt",
+  "stderr_path": "archive/validation_r2.stderr.txt",
+  "stdout_sha256": "8b41bc0a6b53ef720c937cc96d031e998cfb7b4e9b01f2797daca86a7b429076",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "input_paths": ["report.md", "manifest.json", "cleanup_inventory.md"],
+  "output_paths": ["report.md", "manifest.json", "cleanup_inventory.md", "archive/validation_r2.stdout.txt", "archive/validation_r2.stderr.txt", "archive/validation_r2.json"],
+  "julia": false,
+  "DESC": false,
+  "provider": false,
+  "mesh": false,
+  "solver": false,
+  "physical": false
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "UP2-00G-I1A-static-qa-v1",
+  "json_fixture_parse": {
+    "command": "PowerShell ConvertFrom-Json test/GenomeV5/UP2/gi1_authority_context_fixtures.json",
+    "exit": 0
+  },
+  "source_boundary_scan": {
+    "command": "PowerShell required-symbol/runtime-invocation scan",
+    "exit": 0,
+    "result": "required typed factory/validators present; no Julia/DESC/provider/compiler/solver invocation in source"
+  },
+  "test_fixture_consumption_scan": {
+    "command": "PowerShell fixture-id/control scan",
+    "exit": 0,
+    "result": "all five fixture cases referenced; E1/E2/tamper controls present"
+  },
+  "process_sweep": {
+    "command": "Get-Process julia,desc",
+    "exit": 0,
+    "count": 0
+  },
+  "git_diff_check": {
+    "command": "git diff --check",
+    "exit": 0,
+    "note": "pre-existing LF/CRLF conversion warnings only"
+  },
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "focused_exit": null
+  }
+}

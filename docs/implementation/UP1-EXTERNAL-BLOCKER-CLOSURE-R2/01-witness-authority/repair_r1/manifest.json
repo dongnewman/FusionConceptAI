@@ -1,0 +1,20 @@
+{
+  "schema":"UP1.external_closure_r2.witness_authority.repair_r1.manifest.v1",
+  "scope":"01-witness-authority",
+  "decision":"rework_complete_limited",
+  "accepted":false,
+  "no_publish":true,
+  "claim_ceiling":"contract_software_preparation_only",
+  "preserved_prior_review":"../../reviews/01-witness-independent-review-r1/findings.json",
+  "preserved_prior_failures":true,
+  "source_paths":["tools/up1_external_closure_r2/witness_authority/**"],
+  "test_paths":["test/up1_external_closure_r2/witness_authority/**"],
+  "evidence_paths":["docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/01-witness-authority/repair_r1/**"],
+  "fresh_command":"python -B test/up1_external_closure_r2/witness_authority/test_witness_authority.py",
+  "fresh_exit_code":0,
+  "tests_passed":11,
+  "source_hashes":{"validator.py":"e0a9adcf23d634733d80c27f14074e63d52fb0f149bfcc1e1de3e5df95c73178","tests.py":"6bc9f43dd2c42beafa62d1d523bdd83d0c25d9def4dbf1f76edc2a7f4ef6c016"},
+  "raw_hashes":{"fresh_tests":"2d2657801425944f853f16e7c8bf46d11e573d7895787cff8748b5303b02f35e","cli_cases":"b31d13c4a0f128989fd0abfaedb1f5ee37b706c2ba2f8dd56a4685f11f110a92","independent_reviewer":"b2d7c2515ef5631b3a25bf0a33cf0f1923ecebdcd0543cd1274ab415730440d0"},
+  "r01_r10_closed":false,
+  "external_state":"typed_absence/terminal_deferred"
+}

@@ -1,0 +1,56 @@
+{
+  "record_kind": "AD45_read_only_validation_summary",
+  "utc": "2026-09-15T11:07:04.794708+00:00",
+  "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+  "python_version": "3.13.5",
+  "pid": 33648,
+  "checks": {
+    "frozen_json_parse": "pass",
+    "frozen_product_canonical_no_lf": "pass",
+    "task_count": 39,
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_dag": "acyclic",
+    "plan_validator": {"exit_code": 0, "summary": "31 markdown; 497 links; 39 tasks; DAG acyclic"},
+    "git_diff_check": {"exit_code": 0, "note": "existing LF/CRLF warnings only"},
+    "ad45_preexisting_directory": false,
+    "candidate_or_declaration_hash_created": false,
+    "envelope_or_axis_attestation_created": false,
+    "t0_t1_t2_provider_mesh_solver_physics_search_executed": false,
+    "r01_r10_credit": false
+  },
+  "final_product_closure": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 85960,
+    "utc": "2026-09-15T11:12:58.142571+00:00",
+    "exit_code": 0,
+    "product_count": 3,
+    "manifest_parse": true,
+    "owned_path_scope": "pass",
+    "accepted": false
+  },
+  "repair_r1": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 77916,
+    "utc": "2026-09-15T11:25:42.267259+00:00",
+    "exit_code": 0,
+    "plan_validator_exit_code": 0,
+    "git_diff_check_exit_code": 0,
+    "checks": {
+      "manifest_json": true,
+      "A_machine_contract": true,
+      "A_negative_controls": true,
+      "seed_read_only_forbidden": true,
+      "future_outputs_absent": true,
+      "B_blocked": true,
+      "accepted_false": true
+    },
+    "errors": [],
+    "scoped_changes": ["report.md", "manifest.json", "cleanup_inventory.md", "archive/validation_summary.json"],
+    "preserved": ["independent_review_r1 changes_requested", "all review raw failure history", "core/task_manifest/source/test/fixture"],
+    "self_hash_excluded": true
+  },
+  "raw_stream_policy": "command output summarized here; no raw stream outside archive/**",
+  "self_hash_excluded": true
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "UP2-G-I1A-status-sync-r3-evidence-v1",
+  "status": "repair_complete_pending_independent_review",
+  "accepted_limited_current_scope": true,
+  "accepted": true,
+  "runtime": {"focused_r2_exit": 0, "gi1a_groups": "30/30,19/19,10/10,20/20", "desc": false},
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "dirty_status_lines": 292, "dirty_status_sha256": "39E9106701D4AE5A6148BB2AD31E8739C7B03BA59FD7A02EE0E9C6966CDB5017"},
+  "executed_input": {
+    "focused_r2_input_hashes_json": "B84A5C5701BA95B47DA1C31316891622EEF9889B89E580CFB3DA361CA5125A6B",
+    "source_sha256": "D84DB10E6332E5F0919F2E4D1F8BA1B910DC3C39D74CFBC7869E579FF5718FD9",
+    "fixture_sha256": "C66A4F1CDECFB1CDA62EF8B0FE8F20853D7D248E489F4ADF5A9B0D7AAB01942C",
+    "test_sha256": "83D765EC5A7FF5867F5E80D1BF4CE2DF2CAB21F55E82D63E4BA579C219A8B1AF",
+    "runner_sha256": "20D01F6EE0CEB7A7BF11C160A4257224CEEE61C50FF229DCA62303EFA0658FF6",
+    "all_11_input_paths_match": true
+  },
+  "historical_provenance": {"r5_static_test_sha256": "1A4737ACF6A7457B95F5B33B689AAF97866F5F7946BAABB0116200D9FB7472D6", "r6_repair_owned_hashes": "2955AFD4FCB418FE3417D323E49969B1F365D279C889ACAB7321652FCE408381", "focused_r2_receipt_sha256": "2C4F014EF09AD393960E6F03FBECE5B0B5EAB1EBB447123D9F5D4FC066D77C12"},
+  "reviews": {"independent_postrun_r2": "pass_limited", "independent_status_review_r2": "changes_requested_repaired", "fresh_review": "required"},
+  "credits": {"real_dimensioned_e2_law": false, "up2_total": false, "g_i2": false, "b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "qa": {"json_parse": "pass", "control_scan": "zero_matches", "validate_plan": {"exit": 0, "checks": "pass", "task_dag_acyclic": true}, "git_diff_check": {"exit": 0, "warnings": "line-ending warnings only"}}
+}

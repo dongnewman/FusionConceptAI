@@ -1,0 +1,105 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC-independent-review-r2-v1",
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "review_id": "independent_review_r2",
+  "reviewer": "different Luna/high",
+  "review_mode": "read_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "accepted_scope": "none_pending_constructor_gate_repair",
+  "claim_ceiling": "typed_absence_software_only",
+  "review_report": {
+    "path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/independent_review_r2/report.md",
+    "sha256": "ab1a8bdf537c33d5868034c28e249a37deebbd52141776bdf0549c3906b1b26e",
+    "bytes": 3838
+  },
+  "product_contract": {
+    "exact_file_count": 6,
+    "paths": [
+      {"path":"src/GenomeV5/G3/G3BindingChildEditabilityV1.jl","sha256":"a1c75f80a933dfdf1f6a6b504ae46774e1cac7352c0b1eebe60f38e1aaceedae","bytes":24433},
+      {"path":"test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl","sha256":"f172f58d2dfccd54c8d7e847a71297e5ac3ff65ca6b50b267334741cce6633b2","bytes":11556},
+      {"path":"test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json","sha256":"1c52682d1cb3844646d1301337e2995c0ed308ca5cdae1ce04428b86699d0b75","bytes":793},
+      {"path":"test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py","sha256":"d081be6ce28fe70e3265a1e178168f305d153590d9442394b9ce178b3a1bceff","bytes":2635},
+      {"path":"docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md","sha256":"6ca26b9bee65c878a562f040c52d02f0132ce77c64445fb4c3232320c2264011","bytes":1309},
+      {"path":"docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json","sha256":"fdb96c866903b02ac8e34dca9320cf07fb1daf49001572b76ca4fc0fde8638d9","bytes":2510}
+    ],
+    "hash_match": "archive/r4/receipt.json"
+  },
+  "validation": {
+    "pre_run_process_audit": {"julia":0,"desc":0,"gridap":0,"mesh":0},
+    "static_qa": {
+      "command":"D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "cwd":"D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid":68812,
+      "utc_start":"2026-09-15T07:36:45.1893087Z",
+      "utc_end":"2026-09-15T07:36:46.2255119Z",
+      "exit_code":0,
+      "stdout_path":"archive/independent_review_r2/static_qa.stdout",
+      "stdout_sha256":"37e6c2f0ffc3f487aa4e0429ee4f5b828426eb716c288c88810d9fa96f3afa6e",
+      "stderr_path":"archive/independent_review_r2/static_qa.stderr",
+      "stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result":"PASS"
+    },
+    "focused_julia": {
+      "command":"julia --project=. test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "cwd":"D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid":67896,
+      "utc_start":"2026-09-15T07:36:54.8935196Z",
+      "utc_end":"2026-09-15T07:37:10.9325724Z",
+      "exit_code":0,
+      "interpreter":"C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+      "version":"julia version 1.10.5",
+      "stdout_path":"archive/independent_review_r2/focused_julia.stdout",
+      "stdout_sha256":"53c04c6ea7d6c720d014b0e20b7ee275e448d2010b067d4542af30b5f4c1b291",
+      "stderr_path":"archive/independent_review_r2/focused_julia.stderr",
+      "stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result":"69/69"
+    },
+    "constructor_probe": {
+      "command":"julia --project=. -e '<source include>; PresentChildBindingV1(fake values); println(typeof(p))'",
+      "utc_start":"2026-09-15T07:37:22.6845749Z",
+      "utc_end":"2026-09-15T07:37:26.1972028Z",
+      "exit_code":0,
+      "pid":"not captured by direct shell wrapper",
+      "stdout_path":"archive/independent_review_r2/probe_present_constructor.stdout",
+      "stdout_sha256":"e155d5281429f69520ef79aba364bff9af97067af4f304acb9d268738da72b24",
+      "finding":"direct PresentChildBindingV1 constructor still accepts fabricated values"
+    },
+    "factory_probe": {
+      "command":"julia --project=. -e '<source include>; g3_binding_source_payload_v1(key; realization_slot=present); catch and print error'",
+      "utc_start":"2026-09-15T07:38:08.9291713Z",
+      "utc_end":"2026-09-15T07:38:15.2426862Z",
+      "exit_code":0,
+      "pid":"not captured by direct shell wrapper",
+      "stdout_path":"archive/independent_review_r2/probe_factory_rejection.stdout",
+      "stdout_sha256":"4238fd8f94b8318c53250ef18fc0804108504636a8deae6eaccf542b0d0794eb",
+      "finding":"factory rejects with ArgumentError(binding_authority_typed_absent)"
+    }
+  },
+  "checks": {
+    "complete_true_typed_absent": true,
+    "legacy_actual_reason_and_terminal_deferred": true,
+    "cas_insert_replace_delete_fail_atomic": true,
+    "six_product_exact_scope": true,
+    "r0_r4_and_review_r1_append_only_preserved": true,
+    "core_registry_t0_t1_t2_unchanged": true,
+    "direct_present_constructor_rejected": false
+  },
+  "credits": {"actual":false,"T0":false,"T1":false,"T2":false,"provider":false,"mesh":false,"engineering":false,"physical":false,"search":false,"B00":false,"B04":false,"R01_R10":false},
+  "write_scope": {
+    "new_product_files": 0,
+    "review_paths": [
+      "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/independent_review_r2/report.md",
+      "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/independent_review_r2/manifest.json"
+    ],
+    "append_only_sidecar_root":"docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/archive/independent_review_r2/",
+    "source_modified":false,
+    "tests_modified":false,
+    "core_modified":false,
+    "historical_evidence_modified":false,
+    "broad_cleanup":false,
+    "ambiguous_cleanup_deferred":[]
+  },
+  "self_hash_excluded": true,
+  "self_hash_rule":"manifest records its own path/existence but excludes recursive self SHA256"
+}

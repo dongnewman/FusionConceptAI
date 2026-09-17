@@ -1,0 +1,31 @@
+{
+  "schema_version": "UP1-EXTERNAL-CLOSURE-R2-EVIDENCE-MANIFEST-V1",
+  "scope": "versioned_json_aggregate_gate_only",
+  "owned_code": [
+    "tools/up1_external_closure_r2/aggregate_gate/__init__.py",
+    "tools/up1_external_closure_r2/aggregate_gate/aggregate_gate.py"
+  ],
+  "owned_tests": [
+    "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py"
+  ],
+  "states": ["verified", "typed_absence", "invalid", "unsupported", "stale", "replayed", "conflict"],
+  "resolutions": ["terminal_deferred", "eligible_for_authority_recheck"],
+  "claims_ceiling": {"T0": false, "T1": false, "T2": false, "B00": false, "B04": false, "L4": 0, "parent": false},
+  "ad_created": false,
+  "test_status": "r2_pass_22_of_22_exit_0",
+  "strict_unknown_fields": true,
+  "strict_responsibility_set": ["g1", "g2", "g3", "source_authority"],
+  "strict_fingerprint": "lowercase_64_hex_sha256_with_optional_candidate_source_input_domain_labels",
+  "ordered_transition": ["intake", "intake_changed", "validated", "aggregate"],
+  "two_process_semantic_equal": true,
+  "state_ledger": {
+    "schema_version": "UP1-EXTERNAL-CLOSURE-R2-STATE-LEDGER-V1",
+    "software_bookkeeping_only": true,
+    "cross_process_lock": true,
+    "atomic_replace": true,
+    "receipt_fields": ["canonical_state_hash", "prev_hash", "sequence", "input_fingerprint", "code_version"],
+    "missing_ledger": "typed_absence_no_publish",
+    "forged_prior": "conflict_no_publish",
+    "tampered_ledger": "invalid_no_publish"
+  }
+}

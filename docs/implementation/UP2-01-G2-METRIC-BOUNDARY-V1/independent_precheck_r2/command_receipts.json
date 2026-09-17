@@ -1,0 +1,42 @@
+{
+  "record_kind": "up2_01_g2_metric_boundary_v1_independent_precheck_r2_receipts",
+  "runtime_policy": "read_only_python_static_qa_no_julia_no_desc",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "receipts": [
+    {
+      "id": "freeze_and_process_sweep",
+      "command": "git rev-parse HEAD; git status --short; PowerShell Julia/DESC process sweep",
+      "exit_code": 0,
+      "result": "HEAD frozen; dirty status rows=300; no Julia/DESC process"
+    },
+    {
+      "id": "read_r1_r2_inputs",
+      "command": "Read complete R1 report and R2 report/manifest/receipts plus current G2 source/test/fixture/static QA",
+      "exit_code": 0,
+      "result": "R1 changes_requested and R2 repair claims reviewed; implementation files unchanged by this review"
+    },
+    {
+      "id": "static_qa_r2_review",
+      "command": "D:/Users/Newman/anaconda3/python.exe test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+      "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+      "exit_code": 0,
+      "result": "static_qa=pass; julia_or_desc_executed=false; provider_or_mesh_execution=false; review_pending=true; accepted=false"
+    },
+    {
+      "id": "hash_capture",
+      "command": "Get-FileHash -Algorithm SHA256 current G2 source/test/fixture/static QA and R2 archive inputs",
+      "exit_code": 0,
+      "result": "Hashes recorded in report.json and evidence_manifest.json"
+    },
+    {
+      "id": "archive_json_validation",
+      "command": "PowerShell/JSON parse of new R2 report and evidence files",
+      "exit_code": 0,
+      "result": "archive JSON objects parse successfully"
+    }
+  ],
+  "non_execution_statement": "No Julia, DESC, compiler, provider, mesh backend, solver, engineering or physical execution was performed. This review grants no mesh/provider/physical/engineering/B00/B04/R01-R10 credit.",
+  "disposition": "changes_requested",
+  "accepted": false,
+  "review_pending": true
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "M5CPerformanceStaticAuditManifestV1",
+  "run_id": "M5-C-PERFORMANCE-R2-STATIC-AUDIT",
+  "scope": "manufactured_conditional_egraph/screen_only",
+  "mode": "read_only_static_source_test_docs",
+  "claim_ceiling": "synthetic_egraph_equality/screen_only",
+  "formal_credit": false,
+  "forbidden_execution": ["Julia", "DESC", "S3", "solver"],
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "worktree": "dirty_preexisting_changes_preserved",
+  "capture": {
+    "utc": "2026-09-16T21:49:25.5701712Z",
+    "pid": 48960,
+    "host_cwd": "D:\\006-Programing\\LMC\\FusionConceptAI"
+  },
+  "commands": [
+    {"command": "git rev-parse HEAD", "exit": 0},
+    {"command": "git branch --show-current", "exit": 0},
+    {"command": "git status --short", "exit": 0},
+    {"command": "Get-ChildItem docs/implementation/UP5-EARLY-PREPARATION -Recurse -File; identify applicable M5-EGRAPH-R1 and M5-EGRAPH-SCOPE-DECISION-R1 records", "exit": 0},
+    {"command": "Get-FileHash -Algorithm SHA256 for audited inputs and read-only dependencies", "exit": 0},
+    {"command": "Select-String/rg static scan for definitions, loops, budgets, canonicalization, query, replay, and validation", "exit": 0},
+    {"command": "Get-Date -AsUTC; capture PowerShell PID", "exit": 0}
+  ],
+  "inputs": [
+    {"path": "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl", "bytes": 23892, "lines": 474, "sha256": "7a1f52a96a7a79061b1e4bdb0fc1b7b41de5e45266d0ac4726a50502a4dc6500"},
+    {"path": "test/RuntimeV4/M4Isolated/manufactured_conditional_egraph_v1_tests.jl", "bytes": 14243, "lines": 277, "sha256": "e0ed925a77f65aa045586f3c8dd78b2acfe8e023b29f1f95bba1f246b61a9355"},
+    {"path": "src/IR/ConditionalEGraphTypes.jl", "bytes": 27558, "lines": 355, "sha256": "885119aa142335f4dedcb1eb506b48350bc7793538b55d622ee9766e0ac47bee"},
+    {"path": "src/IR/ConditionalEGraphSaturation.jl", "bytes": 24038, "lines": 269, "sha256": "643775a5b10b9865269c66088d97ff7476312924f324d9c8b75107ad7749cdb3"},
+    {"path": "src/Canonical/ConditionalEGraphCanonical.jl", "bytes": 18769, "lines": 94, "sha256": "038c43431f053aa22ecac707a950aea19ae9d6a85157ce7d8325e43f3690eb12"},
+    {"path": "src/Canonical/TypedASTProgramCanonical.jl", "bytes": 32199, "lines": 681, "sha256": "b978fb99164f4d0f58c639f2e58dc1ecc3bc9baa2f9afdef63cd6e7c323809ff"},
+    {"path": "src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl", "bytes": 26258, "sha256": "284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209"},
+    {"path": "src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl", "bytes": 26187, "sha256": "477b5a41c1a021fae84aeebaf13e3967c93b001ace7f38746af1ab1212110e59"}
+  ],
+  "prior_evidence": [
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-SCOPE-DECISION-R1/report.md", "sha256": "cc55ba1904e511ac215b99f496dd0cc78b830a5cdd4f93ed6471196ce4b92ed4"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/repair_r1/report.md", "sha256": "5d6db79c40cfdbed100fab3bacf183a86386afffbce5c4c42a2faf60e9499d2a"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/test_execution_r1/report.md", "sha256": "adfc77410cea202fbcb039c5b30ed761a55eb58aa914747121cec21a82960987"},
+    {"path": "docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/test_execution_r3/report.md", "sha256": "830d38bb8cf7f31b42c70f56f8d9437ecf490fd7d06ae6548829c83a17761ecb"}
+  ],
+  "new_execution_evidence": false,
+  "new_source_or_test_mutation": false,
+  "report": "report.md"
+}

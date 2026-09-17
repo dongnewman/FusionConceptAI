@@ -1,0 +1,49 @@
+{
+  "schema_version": "AD48-g3-source-authority-gap-decomposition-acceptance-r1-v1",
+  "record_kind": "implementation_acceptance_status_sync",
+  "task_id": "AD-48-G3-SOURCE-AUTHORITY-GAP-DECOMPOSITION",
+  "decision": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "g3_source_authority_gap_topology_only",
+  "claim_ceiling": "software_readiness_and_finite_work_order_topology_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "acceptance_products": [
+    {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/acceptance/acceptance.md","role":"status_sync_decision"},
+    {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/acceptance/manifest.json","role":"status_sync_manifest"}
+  ],
+  "frozen_inputs": {
+    "report": {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/report.md","bytes":14214,"sha256":"7037300a6207518bf6c1369e1f2642aa9e71eeecb818aeb95e469dc80a2c360f"},
+    "manifest": {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/manifest.json","bytes":7228,"sha256":"31986f6f401c2b47455f3e287c18247c702cc4b6c0152714c180051fd2f9f2ba"},
+    "cleanup_inventory": {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/cleanup_inventory.md","bytes":827,"sha256":"4a17966bd6318b900fa11b6c45bb8e1219606cabb13790c53c385b54026dc801"}
+  },
+  "independent_reviews": {
+    "r1": {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/independent_review_r1/report.md","verdict":"changes_requested","preserved":true},
+    "r2": {"path":"docs/implementation/AD-48/g3_source_authority_gap_decomposition/independent_review_r2/report.md","verdict":"pass_limited","preserved":true}
+  },
+  "work_order_decision": {
+    "s1": {"product_count":8,"status":"approved_after_parent_review","scope":["realization","control","binding","bundle"]},
+    "s2": {"product_count":8,"status":"blocked_until_s1_result"},
+    "f0": {"status":"conditional_only_after_s2_absent_evidence","exact_files":["src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl"]},
+    "s3": {"product_count":8,"status":"blocked_until_s1_s2_and_independent_source_identity_review"},
+    "fresh_w1": {"product_count":8,"status":"required_after_s3_or_any_source_factory_attestation_change"},
+    "w2": {"status":"blocked_until_fresh_w1_and_candidate_bound_inputs"},
+    "legal_order":"W1 review -> S1 -> S2 factory probe -> F0 only after S2 Absent evidence -> fresh S2 -> S3 -> fresh W1 -> W2"
+  },
+  "validation": {
+    "interpreter":"D:/Users/Newman/anaconda3/python.exe",
+    "python_version":"3.13.5",
+    "direct_json_hash_path_control":{"pid":91052,"utc":"2026-09-15T13:04:57.424058+00:00","exit_code":0,"raw":"status_sync_r1/raw/direct_json_hash_path_control.json"},
+    "plan_validator":{"exit_code":0,"markdown_files_checked":31,"relative_links_checked":497,"task_count":39,"task_dag_acyclic":true,"raw":"status_sync_r1/raw/plan_validator_stdout.json"},
+    "scoped_git_diff_check":{"exit_code":0,"stdout_raw":"status_sync_r1/raw/scoped_git_diff_stdout.txt","stderr_raw":"status_sync_r1/raw/scoped_git_diff_stderr.txt"},
+    "julia_desc_provider_mesh_solver_engineering_physics_search_runs":0,
+    "final_closure_raw":"status_sync_r1/raw/final_closure.json",
+    "acceptance_recheck_raw":"status_sync_r1/raw/acceptance_recheck.json"
+  },
+  "negative_credit": {
+    "g3_source_authority":false,"factory_identity":false,"trusted_source_identity":false,"candidate_identity":false,"candidate_bound_axes":false,
+    "t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"search":false,"r01_r10":false,"l4_credible_count":0
+  },
+  "scope_protection": {"frozen_products_modified":false,"reviews_modified":false,"core_modified":false,"task_manifest_modified":false,"source_test_fixture_registry_modified":false,"preexisting_dirty_preserved":true},
+  "self_hash_excluded":true
+}

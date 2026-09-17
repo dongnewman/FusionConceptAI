@@ -1,0 +1,105 @@
+{
+  "schema": "UP1.external-blocker-closure-r4.root-acceptance.v1",
+  "status": "root_accepted_scope_limited",
+  "created_utc": "2026-09-17",
+  "scope": "R4 reviewed root acceptance for bounded local software integration only",
+  "verdict": {
+    "software": "PASS_LIMITED / ACCEPT_FOR_LOCAL_INTEGRATION",
+    "formal_external": "BLOCKED_NO_CREDIT"
+  },
+  "finding_counts": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 2,
+    "p2_items": [
+      {
+        "id": "P2-001",
+        "title": "Windows reparse runtime",
+        "state": "test_scope_deferred"
+      },
+      {
+        "id": "P2-002",
+        "title": "R22 direct-wire acceptance",
+        "state": "test_scope_deferred"
+      }
+    ]
+  },
+  "external_snapshot": {
+    "typed_absent": 26,
+    "typed_absent_total": 26,
+    "usable_external_inputs": 0,
+    "new_ad": false,
+    "s3_rerun": false
+  },
+  "local_regression": {
+    "r3_atomic": {
+      "runs": 2,
+      "tests": 25,
+      "skipped": 1,
+      "exit_codes": [0, 0]
+    },
+    "r4_full": {
+      "runs": 2,
+      "passed": 98,
+      "skipped": 2,
+      "tests": 100,
+      "exit_codes": [0, 0]
+    },
+    "static_compile_import": {
+      "exit_code": 0,
+      "boundary": "PASS"
+    },
+    "source_test_hash_closure": {
+      "before_count": 48,
+      "after_count": 48,
+      "unchanged": true,
+      "changed": [],
+      "missing": [],
+      "added": []
+    }
+  },
+  "authorization_boundary": {
+    "formal_credit": false,
+    "authority_credit": false,
+    "publication": false,
+    "t0": false,
+    "authority_recheck": false,
+    "t1": false,
+    "t2": false,
+    "network": false,
+    "julia_desc": false,
+    "heavy_lane": false,
+    "new_ad": false,
+    "s3": false,
+    "dag_39_changed": false,
+    "r01_r10_changed": false,
+    "parent_goal_closed": false,
+    "parent_goal_status": "active"
+  },
+  "hygiene": {
+    "unique_cache_artifacts": 57,
+    "pycache_directories": 17,
+    "pyc_files": 40,
+    "deletion_status": "blocked_by_execution_policy",
+    "misplaced_file_deleted": true,
+    "empty_parent_may_remain": true
+  },
+  "evidence_refs": [
+    "20-root-decision-draft/decision_draft.md",
+    "20-root-decision-draft/decision_draft.json",
+    "20-root-decision-draft/hash_manifest.json",
+    "reviews/20-root-decision-independent-review-r2-fast/review.md",
+    "reviews/20-root-decision-independent-review-r2-fast/hashes.json",
+    "reviews/20-root-decision-independent-review-r2/review.md",
+    "19-final-full-regression/report.md",
+    "19-final-full-regression/run_manifest.json",
+    "19-final-full-regression/hash_comparison.json",
+    "99-hygiene-cleanup/hygiene-cleanup-2026-09-17.md",
+    "99-hygiene-cleanup/retry.md"
+  ],
+  "new_files_only": [
+    "decision.md",
+    "decision.json",
+    "hash_manifest.json"
+  ]
+}

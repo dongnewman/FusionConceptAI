@@ -1,0 +1,121 @@
+{
+  "schema": "UP4InverseProblemInputTemplateV1",
+  "status": "review_pending",
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "purpose": "prepare typed inputs for B07A source-hardware realization and B07B true-reference hidden-parameter recovery",
+  "identity": {
+    "candidate_ref": {"state": "pending", "value": null, "reason": "fresh T1 package and exact G1/G2/G3 join required"},
+    "mission_ref": {"state": "pending", "value": null, "reason": "mission and bounds must be frozen before result visibility"},
+    "physical_subject_hash": {"state": "pending", "value": null, "reason": "source/material/network/control edits rebuild identity"},
+    "design_alternative_id": {"state": "pending", "value": null, "reason": "design alternative is existential and must be explicit"},
+    "scenario_ids": {"state": "pending", "value": null, "reason": "operating/fault/cooling/tolerance/start-stop/recovery scenarios are universal"},
+    "solver_input_hashes": {"state": "pending", "value": null, "reason": "generated only after provider match and frozen numerical configuration"},
+    "provider_manifest_hashes": {"state": "pending", "value": null, "reason": "UP2-05 provider identities are not available"}
+  },
+  "common_input_contract": {
+    "target_kind": {"state": "pending", "value": null, "allowed": ["synthetic_source_demand", "measured_reference", "experimental_observation", "design_reference"], "reason": "must distinguish B07A from B07B"},
+    "target_field_or_observables": {"state": "pending", "value": null, "reason": "include components, support, time and measurement/target distinction"},
+    "target_units": {"state": "pending", "value": null, "reason": "must use the units/coordinate contract"},
+    "target_coordinate_frame": {"state": "pending", "value": null, "reason": "must include frame, basis, handedness and transform refs"},
+    "source_basis_refs": {"state": "pending", "value": null, "reason": "must be declared by G3; no hidden source basis"},
+    "source_parameterization": {"state": "pending", "value": null, "reason": "geometry/current/material/driver/return variables must be finite and typed"},
+    "forward_model_ref": {"state": "pending", "value": null, "reason": "UP3-02 and UP2-05 evidence required"},
+    "objective": {"state": "pending", "value": null, "reason": "weights, norms, units, regularization and target provenance must be frozen before results"},
+    "constraints": {"state": "pending", "value": null, "reason": "field/circuit/thermal/structure/interface/conservation/bounds constraints required"},
+    "initialization_policy": {"state": "pending", "value": null, "reason": "multi-start seeds may not contain hidden answers or held-out observations"},
+    "uncertainty_policy": {"state": "pending", "value": null, "reason": "parameter/data/model discrepancy must be represented or left unknown"},
+    "independence_group": {"state": "pending", "value": null, "reason": "forward checker and inverse executor roles must be independent as declared"}
+  },
+  "b07a_source_hardware_realization": {
+    "protocol_id": {"state": "pending", "value": null, "reason": "formal B07A protocol must be frozen before execution"},
+    "branch_status": "pending",
+    "allowed_target": "synthetic target field or source demand is allowed",
+    "required_inputs": [
+      "UP3-02 candidate-bound target/source demand",
+      "G3 finite source/coil/driver/return/material/manufacturing domain",
+      "power supply and return network",
+      "thermal/cooling and structural boundary",
+      "control and fault scenarios",
+      "independent forward checker and provider manifest"
+    ],
+    "design_variables": [
+      {"name": "coil_geometry", "state": "pending", "value": null, "unit": "m/rad/typed geometry", "reason": "G3 and G2 geometry authority required"},
+      {"name": "turn_count_or_basis_coefficients", "state": "pending", "value": null, "unit": "dimensionless or typed source basis", "reason": "finite parameterization required"},
+      {"name": "current_and_ramp", "state": "pending", "value": null, "unit": "A and A/s", "reason": "capacity and return closure required"},
+      {"name": "driver_parameters", "state": "pending", "value": null, "unit": "typed V/I/P/time", "reason": "resource network required"},
+      {"name": "material_and_manufacturing", "state": "pending", "value": null, "unit": "typed SI domains", "reason": "versioned property/process data required"},
+      {"name": "cooling_and_support", "state": "pending", "value": null, "unit": "typed thermal/structural", "reason": "cannot default to zero loss or infinite support"}
+    ],
+    "required_outputs": [
+      "multi-start traces and convergence classification",
+      "realized source geometry/current/material/network record",
+      "target and realized field error with units",
+      "source/return KCL/KVL and power/energy ledger",
+      "thermal/temperature and structural/stress/clearance records",
+      "rank/condition/non-identifiability and unreachable residual",
+      "independent forward replay receipt",
+      "all required scenario outcomes and evidence ceiling"
+    ],
+    "credit_boundary": "B07A can support scoped R04/R05 engineering evidence only after its own gates; it never supplies R02 real-reference inverse credit"
+  },
+  "b07b_true_reference_hidden_parameter_recovery": {
+    "protocol_id": {"state": "pending", "value": null, "reason": "formal B07B protocol must be frozen before execution"},
+    "branch_status": "pending",
+    "required_inputs": [
+      "provenance-complete real reference/experiment/design data",
+      "known observed quantities and explicit hidden parameter declaration",
+      "source-owned geometry/interior/boundary basis with coordinate and unit authority",
+      "candidate-independent calibration/validation/held-out split",
+      "noise and missingness masks",
+      "forward model applicability and independent checker"
+    ],
+    "hidden_parameter_policy": {
+      "parameter_values_in_input": {"state": "pending", "value": null, "reason": "ground-truth answer must be withheld from initialization and cache"},
+      "identifiability_scope": {"state": "pending", "value": null, "reason": "report identifiable combinations or intervals when full recovery is nonunique"},
+      "prior_and_bounds": {"state": "pending", "value": null, "reason": "freeze before seeing held-out results"}
+    },
+    "split": {
+      "calibration_ids": {"state": "pending", "value": null, "reason": "candidate-independent split required"},
+      "validation_ids": {"state": "pending", "value": null, "reason": "must not overlap calibration or held-out"},
+      "held_out_ids": {"state": "pending", "value": null, "reason": "combination identity must differ; no one-column leakage"},
+      "overlap_checker": "must prove artifact, shot, scenario, topology and derived-array disjointness"
+    },
+    "required_outputs": [
+      "representation round-trip and unrepresentable-field report",
+      "multi-start parameter recovery traces",
+      "Jacobian/sensitivity rank and condition report",
+      "posterior or uncertainty interval with data/model discrepancy",
+      "held-out observable prediction and coverage",
+      "grammar-reachable recovery test",
+      "source/license/version/hash provenance receipt",
+      "failure class and resolution for every missing or out-of-domain item"
+    ],
+    "credit_boundary": "B07B is the only branch eligible for R02 inverse credit, and only after true source provenance, identifiability and held-out evidence pass"
+  },
+  "objective_and_constraints_template": {
+    "objective_terms": [
+      {"term": "field_or_observation_misfit", "weight": {"state": "pending", "value": null, "reason": "freeze before results"}, "unit": {"state": "pending", "value": null, "reason": "required"}, "target_ref": {"state": "pending", "value": null, "reason": "required"}},
+      {"term": "source_or_current_misfit", "weight": {"state": "pending", "value": null, "reason": "freeze before results"}, "unit": {"state": "pending", "value": null, "reason": "required"}, "target_ref": {"state": "pending", "value": null, "reason": "required"}},
+      {"term": "power_energy_cost", "weight": {"state": "pending", "value": null, "reason": "freeze before results"}, "unit": "J or W with ledger scope", "target_ref": {"state": "pending", "value": null, "reason": "required"}},
+      {"term": "thermal_structural_penalty", "weight": {"state": "pending", "value": null, "reason": "must not replace hard gates"}, "unit": "typed SI", "target_ref": {"state": "pending", "value": null, "reason": "required"}}
+    ],
+    "hard_constraints": [
+      "R_field=0 or declared numerical tolerance",
+      "R_circuit=0 per node and declared KVL/RL/protection",
+      "R_thermal=0 with cooling boundary",
+      "R_structure=0 with load/support boundary",
+      "R_interface=0 for field/flux/traction/thermal/current transfers",
+      "R_conservation=0 for source/sink ledgers",
+      "finite voltage/current/power/temperature/stress/clearance/manufacturing bounds"
+    ],
+    "static_emf_rule": "static stationary flux does not become EMF; a derivative source, time grid, direction and uncertainty are mandatory"
+  },
+  "result_state_template": {
+    "provider_match": ["unique_match", "no_match", "ambiguous", "out_of_domain", "invalid_signature"],
+    "resolution": ["resolved", "terminal_deferred"],
+    "stage_outcome": ["pass", "physical_fail", "numerical_fail", "unknown", "not_applicable", "terminal_deferred"],
+    "execution_classification": ["program_exception", "human_interruption", "not_executed", "unknown"],
+    "pending_rule": "missing authority is unknown plus terminal_deferred; contradiction is fail_closed; no terminal unsupported or credible result may be emitted by this template"
+  }
+}

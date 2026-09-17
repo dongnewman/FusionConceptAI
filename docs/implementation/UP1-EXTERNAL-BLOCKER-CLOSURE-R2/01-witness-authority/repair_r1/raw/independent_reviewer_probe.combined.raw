@@ -1,0 +1,15 @@
+COMMAND=python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/01-witness-independent-review-r1/adversarial_review.py
+PID=52000
+UTC_STARTED=2026-09-16T18:15:08.042043Z
+UTC_ENDED=2026-09-16T18:15:08.123770Z
+EXIT=0
+unknown_top_level_extension=fail_closed|ERR_UNKNOWN_FIELD|root.unexpected_extension
+non_exact_witness_scope=fail_closed|ERR_SCOPE_MISMATCH|witness.independence_declaration.scope
+self_attested_independence=fail_closed|ERR_AXIS_OR_LAYER_SET|witness.evidence_candidates[0].layer_refs
+signature_digest_not_bound=fail_closed|ERR_AXIS_OR_LAYER_SET|witness.evidence_candidates[0].layer_refs
+evidence_binding_incomplete_foreign_refs=fail_closed|ERR_EVIDENCE_BINDING_MISMATCH|witness.evidence_candidates[0].layer_refs.G1
+wrong_signature_and_ack_types=fail_closed|ERR_AXIS_OR_LAYER_SET|witness.evidence_candidates[0].layer_refs
+repeat_typed_absence_idempotency=first:ERR_WITNESS_EXTERNAL_ABSENT|second:ERR_DUPLICATE_IDEMPOTENCY|second_status:fail_closed
+same_idempotency_changed_request_bytes=fail_closed|ERR_IDEMPOTENCY_CONFLICT
+cli_unknown_field=fail_closed|ERR_UNKNOWN_FIELD|exit:0
+TEST_ONLY=true|non_evidence=true|no_publish=true

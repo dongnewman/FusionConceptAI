@@ -1,0 +1,19 @@
+{
+  "schema": "M5ConditionalEGraphTestExecutionManifestV1",
+  "status": "authoritative_julia_blocked_source_parse_error",
+  "scope": "manufactured_conditional_egraph/screen_only",
+  "not_up5_01": true,
+  "formal_credit": "none",
+  "ordering": ["python_oracle", "julia_tests"],
+  "runs": {
+    "python_oracle": {"pid": 56800, "exit": 0, "started": "2026-09-16T21:36:30.3101571+08:00", "ended": "2026-09-16T21:36:30.4887711+08:00", "stdout": "raw/python_oracle.authoritative.stdout.raw", "stderr": "raw/python_oracle.authoritative.stderr.raw"},
+    "julia_tests": {"pid": 104576, "exit": 1, "started": "2026-09-16T21:36:41.7059884+08:00", "ended": "2026-09-16T21:36:45.5622681+08:00", "stdout": "raw/julia_tests.authoritative.stdout.raw", "stderr": "raw/julia_tests.authoritative.stderr.raw", "failure": "ManufacturedConditionalEGraphV1.jl:378-394 parse error"}
+  },
+  "artifacts": {
+    "test_sha256": "4E5C23EEE8F8107DAA1F8D55D737FCDCBC3BFB4B1B3E3FDE7315A3E3C85BC29B",
+    "oracle_sha256": "92DB4EDBEA2060409D22FF453FA9EEF119F8639F1AB6EDB6CC01103218309DCA",
+    "source_observed_sha256": "C4271F93E3B781A36FFC3F83D5A0BF42FD51C95BA0BF92A46DBA8765CD3D6AB4"
+  },
+  "cleanup": "none; failure artifacts retained",
+  "claims_not_made": ["UP5-01", "G1", "G2", "G3", "semantic_edit", "physical_equivalence", "provider_evidence", "search_proof"]
+}

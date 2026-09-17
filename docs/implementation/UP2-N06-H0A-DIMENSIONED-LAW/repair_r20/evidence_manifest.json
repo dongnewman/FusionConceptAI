@@ -1,0 +1,93 @@
+{
+  "schema": "H0A-repair-r20-evidence",
+  "status": "repair_static_complete",
+  "accepted": false,
+  "review_pending": true,
+  "files_sha256": {
+    "source": {
+      "bytes": 59585,
+      "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+    },
+    "test": {
+      "bytes": 48902,
+      "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+    },
+    "fixture": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "runner": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "before_after": {
+    "source": {
+      "before_bytes": 59570,
+      "before_sha256": "9bdf3919666611f7bf7c679ed2fb6d2630d692ccca46de183dccbb5bef98ee4c",
+      "after": {
+        "bytes": 59585,
+        "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+      }
+    },
+    "test": {
+      "before_bytes": 48902,
+      "before_sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8",
+      "after": {
+        "bytes": 48902,
+        "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+      }
+    }
+  },
+  "protected_inputs": {
+    "fixture": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "runner": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "change_scope": [
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl"
+  ],
+  "production_change": "row coefficient sign projection now compares _n06_h0a_sign(row.coefficient) to expected_rule.sign",
+  "preserved_contracts": [
+    "full coefficient equality",
+    "zero rejection",
+    "source exact selector join",
+    "direction",
+    "provenance",
+    "unit",
+    "closure",
+    "typed error classification"
+  ],
+  "other_same_comparisons_found": false,
+  "old_r7_failure_receipt_preserved": true,
+  "old_r7_raw": {
+    "stdout": {
+      "bytes": 9857,
+      "sha256": "c114cc2c4fced2acadbb5c822227daf1fff954e4e784150e0c213dafec5320bc"
+    },
+    "stderr": {
+      "bytes": 311,
+      "sha256": "73824bf33e176701c1e568a6af07c77665bad3bc89f6d60125ffc493efa8de45"
+    }
+  },
+  "julia_desc_focused_run": false,
+  "claim_ceiling": [
+    "contract_only",
+    "schema_validation_only",
+    "actual_A_deferred_or_fail_closed_by_runtime_classification",
+    "no_UP2_total",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_physical",
+    "no_engineering",
+    "no_R_credit"
+  ],
+  "next_gate": "Different Luna R20 independent precheck; then separately authorized focused rerun"
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "m4-b-residual-lowering-independent-review-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/independent_review_r1",
+  "status": "pass_limited",
+  "reviewer": "/root/m4b_review",
+  "role": "independent_reviewer",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "inputs": {
+    "source_a": {"path":"src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl","sha256":"0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "source_b": {"path":"src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl","sha256":"0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "test": {"path":"test/RuntimeV4/M4Isolated/manufactured_residual_lowering_v1_tests.jl","sha256":"c7032beecfcca29db8a751eec4aaf4797eadfed66b12e8da611c392783740f73"},
+    "oracle": {"path":"test/RuntimeV4/M4Isolated/oracles/residual_lowering_oracle_v1.py","sha256":"0d89c69ab3689a0cf7cde9756f95a76b8f7e4c8fc93a7a99ed9aa460bd5781fd"}
+  },
+  "upstream_basis": {
+    "delivery": "../delivery_r1/",
+    "test_execution": "../test_execution_r1/",
+    "integration": "../integration_r1/",
+    "m4a_acceptance": "../M4-A-EQUATION-IR/root_acceptance_r1/"
+  },
+  "fresh_execution": {
+    "strictly_serial": true,
+    "order": ["python_oracle", "julia_b_tests"],
+    "python": {"pid":75120,"exit":0,"passed_exact_terms":true,"combined_sha256":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3"},
+    "julia": {"pid":94064,"exit":0,"passed":53,"total":53,"combined_sha256":"11f8ac5615e49c620a822fda6ab497709a9b33a695abdcd4227d0bca4cabe10f"},
+    "stderr_empty": true,
+    "receipts": ["command_01_python_oracle.receipt.json","command_02_julia_tests.receipt.json"]
+  },
+  "arithmetic": {"terms":["1/10","1/20","1/30"],"divergence_total":"11/60","source":"-11/60","residual":"0"},
+  "causal_repair": {
+    "initial_exit": 1,
+    "initial_pass": 51,
+    "initial_errors": 2,
+    "initial_receipt": "../test_execution_r1/command_02_julia_tests.receipt.json",
+    "cause": "collect(empty result.failures) inferred Vector{Union{}} before owner-binding push",
+    "repair": "ManufacturedResidualLoweringFailureV1 typed vector comprehension",
+    "repair_source_sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"
+  },
+  "static_audit_raw": "raw/command_03_static_audit.stdout.raw",
+  "roles_pairwise_distinct": true,
+  "shared_entry_registry_project_manifest_unchanged": true,
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "hard_exclusions": ["mesh","discretization","assembly","solver","coupling","topology_transfer","candidate","provider","physics","engineering"],
+  "unauthorized": ["M4-C","M4-D"],
+  "formal_credit": [],
+  "parent_closed": false,
+  "sol_acceptance_required": true
+}
+

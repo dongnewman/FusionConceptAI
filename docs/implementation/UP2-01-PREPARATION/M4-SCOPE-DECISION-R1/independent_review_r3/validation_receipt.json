@@ -1,0 +1,62 @@
+{
+  "schema": "m4-scope-decision-r1-independent-review-r3-validation",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1",
+  "validation_kind": "independent_r3_scope_and_hash_recheck",
+  "verdict": "pass_limited",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "code_tests": "not_applicable",
+  "julia_solver_execution": "not_run",
+  "command_receipts": [
+    {
+      "name": "r3_product_hash_recompute",
+      "argv": ["PowerShell read-only SHA256 and byte-size recomputation"],
+      "pid_or_in_process": "in_process=functions.exec",
+      "started_utc": "2026-09-16T04:00:00Z",
+      "ended_utc": "2026-09-16T04:02:00Z",
+      "exit_code": 0,
+      "stdout_raw": "raw/r3_products.stdout.raw",
+      "stdout_sha256": "acdfc2a6fee130514a480abc06f19d65b84591bbe3463ed16f58e68cce9b6861",
+      "stderr_raw": "raw/r3_products.stderr.raw",
+      "stderr_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "combined_raw": "raw/r3_products.stdout.raw",
+      "combined_sha256": "acdfc2a6fee130514a480abc06f19d65b84591bbe3463ed16f58e68cce9b6861"
+    },
+    {
+      "name": "r3_requirement_recheck",
+      "argv": ["PowerShell/read-only formal order, M1, typed absence, roles, cleanup, history and sidecar audit"],
+      "pid_or_in_process": "in_process=same_independent_reviewer",
+      "started_utc": "2026-09-16T04:02:00Z",
+      "ended_utc": "2026-09-16T04:04:00Z",
+      "exit_code": 0,
+      "stdout_raw": "raw/r3_requirements.stdout.raw",
+      "stdout_sha256": "00bb723baa5e6c537282f77f8cb8d8aa51e3ec4561d1236fa861234d278dac84",
+      "stderr_raw": "raw/r3_requirements.stderr.raw",
+      "stderr_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "combined_raw": "raw/r3_requirements.stdout.raw",
+      "combined_sha256": "00bb723baa5e6c537282f77f8cb8d8aa51e3ec4561d1236fa861234d278dac84"
+    }
+  ],
+  "input_hashes": {
+    "decision.md": "779f41bfc86596147261ff08197f36b2c6d5bf2306d48555c9873a77614b788f",
+    "manifest.json": "71be66c2c5ec0c79c754a6be37dd3ba27008a78067fdf6678da20e3f34221c34",
+    "cleanup_inventory.json": "5df3c467eaf72209ad4637520a4fade95c6ea4aafd0756290b4b3c1faaf9f90f",
+    "task_manifest.json": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"
+  },
+  "checks": {
+    "formal_reentry": "pass_exact_order",
+    "final_hashes": "pass_all_three_size_and_sha256",
+    "r1_r2_failure_history": "pass_retained",
+    "m1": "pass_review_pending_not_accepted",
+    "typed_absence": "pass_10_items_and_no_repeat_on_unchanged_input",
+    "roles": "pass_four_pairwise_distinct_reviewer_non_combining",
+    "validation_sidecars": "pass_final_json_parse_and_scope_git_status_indexed_and_hashed",
+    "cleanup": "pass_exact_three_product_scope_no_ambiguous_delete",
+    "runtime": "pass_no_julia_solver_no_A_dispatch"
+  },
+  "claim_ceiling": ["manufactured_control", "screen_only"],
+  "claims": {"UP2":false,"B00":false,"B04":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"R01_R10":false,"l4_credible_count":0},
+  "remaining_obligations": ["Sol acceptance of the bounded scope decision", "A implementation remains separately dispatched only after acceptance", "all formal parent gates remain open"]
+}

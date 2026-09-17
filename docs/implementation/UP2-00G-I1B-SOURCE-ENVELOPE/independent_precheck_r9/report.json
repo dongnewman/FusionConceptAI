@@ -1,0 +1,33 @@
+{
+  "schema_version": "GI1B-independent-precheck-r9-v1",
+  "review_id": "UP2-00G-I1B-independent-precheck-r9",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "pass_limited",
+  "serial_focused_r5_readiness": "ready_for_serial_focused",
+  "accepted": false,
+  "review_pending": false,
+  "review_mode": "static; no Julia/DESC",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "repair_r9": {
+    "scope": "one test-only assertion",
+    "old_free_text_authority_substring_assertion_absent": true,
+    "semantic_nonempty_n06_authority_gap_present": true,
+    "typed_terminal_deferred_authority_gap_retained": true,
+    "typed_absent_binding_and_n06_gap_retained": true,
+    "actual_a_e1_present_factory_retained": true,
+    "both_absent_factory_retained": true,
+    "independent_50_row_manifest_retained": true,
+    "aggregate_taxonomy_retained": true,
+    "schema_matrix_retained": true
+  },
+  "owned_hash_audit": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"bytes": 43037, "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {"before_bytes": 25712, "before_sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37", "after_bytes": 25685, "after_sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"bytes": 23906, "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"bytes": 408, "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"}
+  },
+  "focused_r4_preserved": {"exit_code": 1, "gi1b_pass": 2051, "gi1b_total": 2052, "failure": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:407 lexical authority substring assertion", "receipt_hashes_unchanged": true, "raw_hashes_unchanged": true},
+  "dirty_state": {"prewrite_entry_count": 3784, "prewrite_status_sha256_utf8_lf": "26a5e83f63c033abac4ba7d13c2e98d70a43db9140c3f4d8b46e7cebfc6e7650", "postwrite_entry_count": 3797, "postwrite_status_sha256_utf8_lf": "1a69e065aa0b38899048c39e05af264ebda483c4ebf72f6d02b0bb4abac15275"},
+  "no_execution": {"julia": false, "desc": false, "source_modified_by_review": false, "test_modified_by_review": false, "old_evidence_modified_by_review": false},
+  "claim_ceiling": ["software-static-gate-only", "no-B00", "no-B04", "no-provider", "no-mesh", "no-engineering", "no-physical", "no-parent-goal"]
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "M5InverseFeedbackIndependentReviewR2ManifestV1",
+  "status": "pass_limited",
+  "review_role": "independent_review_r2",
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "not_up4_01": true,
+  "not_up4_02": true,
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "checkout_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "frozen_inputs": {
+    "source": {"path":"src/RuntimeV4/M4Isolated/ManufacturedInverseFeedbackV1.jl","bytes":26255,"sha256":"f0dcf8aa0dc199a4e3404ecec1a4f516b899e1cfd523454d698f9afe91553976"},
+    "test": {"path":"test/RuntimeV4/M4Isolated/manufactured_inverse_feedback_v1_tests.jl","bytes":15357,"sha256":"f2279400356a786c83a13ad3f82400af052e64f5bbc8ceefbf0e8119e6903ea2"},
+    "oracle": {"path":"test/RuntimeV4/M4Isolated/oracles/inverse_feedback_oracle_v1.py","bytes":5811,"sha256":"6e13536aabb62f039bffe6c286e11323347b86b4d3c146270f38e8bf8129d0ab"},
+    "M4_D_source":"ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785",
+    "M4_D_test":"1eb0e26e79b9899cc5a3cb2742545cbaa811fa6683fdcfa1ee4dd31dff081686",
+    "M4_D_oracle":"9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3",
+    "M5_A_source":"e6262a11ca47f527dfa67f08974febfd69a0334e1c64baeec7657249f0e1945a",
+    "M5_A_test":"42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08",
+    "M5_A_oracle":"e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c"
+  },
+  "execution_order": ["python_oracle_1", "julia_tests_1"],
+  "authoritative_runs": {
+    "python_oracle_1": {"receipt":"run_1/python_oracle.process.json","pid":48708,"exit_code":0,"stdout_sha256":"183b4eec66a36292d4ca14cc4904bd7b4d93f8ccf5905d83cdf0a2d960200647","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"183b4eec66a36292d4ca14cc4904bd7b4d93f8ccf5905d83cdf0a2d960200647"},
+    "julia_tests_1": {"receipt":"run_1/julia_tests.process.json","pid":113636,"exit_code":0,"semantic":"203/203","stdout_sha256":"cb2f0cc2005b65d92d317b60ca26f230aef8d22b0ae52e6213fc3ad9f0d009bb","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"cb2f0cc2005b65d92d317b60ca26f230aef8d22b0ae52e6213fc3ad9f0d009bb"}
+  },
+  "integration_repair_audit": {"replays":2,"python_each":"exit 0; identical raw hash","julia_each":"exit 0; 203/203","archive_byte_equal":true,"probe_cases":25,"probe_typed_failures":25,"probe_exceptions":0,"probe_m5a_composition_hash":"722e59e841d6551fe9001e1279266e1aaf5a798ca0d16625d5a4fd81a59ab694","old_103_retained":true,"wrong_sequence_timeout_setup_parse_non_authoritative":true},
+  "semantic_results": {"target":["2/3","1/3"],"recovered":{"alpha":"2/1","beta":"1/1"},"determinant":"3/1","eigenvalues":["1/1","3/1"],"margin":"1/3","roundtrip":["0/1","0/1"],"deletion":["1/2","0/1"],"delta":["1/6","1/3"],"seeds":[0,1,2],"oracle_payload_sha256":"0664f4a8d794c32046168f7890ee4b54f48e9b2caa8a3066c5670eb3c38a31a8"},
+  "repair_guards": {"nested_snapshots":true,"all_stored_derived_recompute":true,"composition_hash_canonical_replay":true,"owner_ledger_canonical_projection":true,"provenance_ledger_canonical_projection":true,"typed_no_exception":true},
+  "scope_guards": {"source_test_oracle_unchanged_during_review":true,"shared_entry_unchanged":true,"default_registry_unchanged":true,"project_manifest_unchanged":true,"optimizer":false,"real_reference":false,"candidate":false,"provider":false,"solver":false,"engineering_evidence":false,"physical_evidence":false},
+  "roles": {"declared_labels":["source implementation","test/oracle","integration","documentation","independent review"],"labels_pairwise_distinct":true,"actor_ids_present":false,"actor_level_proof":"not available"},
+  "formal_boundary": {"not_UP4_formal_credit":true,"not_UP4_01":true,"not_UP4_02":true,"status":"pass_limited; manufactured_inverse_feedback/screen_only"}
+}
+

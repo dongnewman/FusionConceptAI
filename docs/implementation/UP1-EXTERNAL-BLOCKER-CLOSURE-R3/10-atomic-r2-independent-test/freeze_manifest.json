@@ -1,0 +1,43 @@
+{
+  "schema": "UP1.atomic-bundle.independent-test-freeze-r3.v1",
+  "captured_utc": "2026-09-17T00:14:27.1241384Z",
+  "implementation": [
+    {
+      "path": "tools/up1_external_closure_r3/atomic_bundle/__init__.py",
+      "bytes": 656,
+      "sha256": "259a1550c703f0d2d1a437668ce7a9b2ecec70aa88727e5d232f1442c2c75a81"
+    },
+    {
+      "path": "tools/up1_external_closure_r3/atomic_bundle/bundle.py",
+      "bytes": 52010,
+      "sha256": "087eb10f58c83581d4bc8b42e79b7aee929a273432c43fc62c8a4dc4277c6665"
+    },
+    {
+      "path": "tools/up1_external_closure_r3/atomic_bundle/canonical.py",
+      "bytes": 5936,
+      "sha256": "95402ce98bb3567301df24808f5941abe03d4dc32256d72393c5689ea1e5d51b"
+    }
+  ],
+  "tests": [
+    {
+      "path": "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_repair.py",
+      "bytes": 7917,
+      "sha256": "a78df75c2eb094ce942e3b2658da4ee9d14d21d16d2ba4525a094b6daa16c578"
+    },
+    {
+      "path": "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle.py",
+      "bytes": 9365,
+      "sha256": "c2a5d17ae63d921f4896d45996609eac5791b9e03fe4d340bed48b51ec36a145"
+    }
+  ],
+  "probe": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/10-atomic-r2-independent-test/independent_attack_probe.py",
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+  "restrictions": [
+    "offline",
+    "serial",
+    "no AD/S3/Julia/DESC/solver",
+    "no publish",
+    "authority none",
+    "formal none"
+  ]
+}

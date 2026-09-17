@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:up1:external-handoff:ehp-04:repair-r1",
+  "title":"EHP-04 environment, binary and SBOM response payload repair R1",
+  "allOf":[
+    {"$ref":"../03-atomic-response-bundle-contract/ehp-04.schema.json"},
+    {"type":"object","required":["schema","expected_context_sha256","runtime_and_imports","binaries","sbom_documents","outer_authority","foreign_owner_fixture"],"properties":{
+      "schema":{"const":"UP1.external-handoff.ehp-04-response.v1"},
+      "runtime_and_imports":{"type":"object","properties":{
+        "runtimes":{"type":"array","minItems":2,"maxItems":2,"uniqueItems":true,"contains":{"type":"object","properties":{"name":{"const":"Julia"}},"required":["name"]},"allOf":[{"contains":{"type":"object","properties":{"name":{"const":"Python"}},"required":["name"]}}]},
+        "imports":{"type":"array","uniqueItems":true},"lockfiles":{"type":"array","uniqueItems":true}
+      }},
+      "binaries":{"type":"array","uniqueItems":true},
+      "sbom_documents":{"type":"array","uniqueItems":true,"items":{"type":"object","properties":{"components":{"type":"array","minItems":1,"uniqueItems":true},"dependency_edges":{"type":"array","minItems":1,"uniqueItems":true}}}}
+    }}
+  ],
+  "unevaluatedProperties":false
+}

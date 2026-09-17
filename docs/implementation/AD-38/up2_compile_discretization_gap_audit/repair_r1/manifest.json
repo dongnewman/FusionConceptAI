@@ -1,0 +1,288 @@
+{
+  "manifest_version": "AD-38-up2-compile-discretization-gap-audit-repair-r1-v1",
+  "record_kind": "static_readiness_audit_repair",
+  "task_id": "AD-38",
+  "status": "changes_requested",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "repair_of": [
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/report.md",
+    "docs/implementation/AD-38/up2_compile_discretization_gap_audit/manifest.json"
+  ],
+  "write_scope": {
+    "owned_new_paths": [
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/revised_report.md",
+      "docs/implementation/AD-38/up2_compile_discretization_gap_audit/repair_r1/manifest.json"
+    ],
+    "modified_core_source": false,
+    "modified_tests": false,
+    "modified_original_audit": false,
+    "cleanup_action": "none"
+  },
+  "current_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "schema_version": "v4-upgrade-plan-20260914.1",
+    "updated_at": "2026-09-15",
+    "base_head": "4b69f55",
+    "task_count": 39,
+    "task_dag_acyclic": true,
+    "source_read_only": true
+  },
+  "authority_gates": {
+    "t0_authority_recheck": {
+      "machine_status": "planned",
+      "machine_accepted": false,
+      "local_scope": "accepted_limited_typed_absent_or_fail_closed_only",
+      "checked_present_current": false,
+      "allowed_current_outputs": ["typed_absent", "terminal_deferred", "fail_closed"]
+    },
+    "t1_dual_gate": {
+      "machine_status": "planned",
+      "machine_accepted": false,
+      "depends_on_exact": [
+        "UP1-04A-VNEXT-T0",
+        "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"
+      ],
+      "present_authority_bypass": false
+    },
+    "t2_gate": {
+      "machine_status": "planned",
+      "machine_accepted": false,
+      "depends_on_exact": ["UP1-04A-VNEXT-T1"]
+    },
+    "forbidden_bypass": [
+      "fixture_as_authority",
+      "synthetic_or_ref_only_authority",
+      "legacy_actual_without_declaration_authority",
+      "default_operator_registry_bridge",
+      "historical_receipt_promotion"
+    ]
+  },
+  "dependency_chain": [
+    {
+      "id": "UP1-04A-VNEXT-T2",
+      "current_status": "planned",
+      "current_accepted": false,
+      "depends_on_current_manifest": ["UP1-04A-VNEXT-T1"],
+      "read_only_inputs": ["UP1-04A-VNEXT-T1 accepted output", "current task_manifest.json"],
+      "blocked_on": ["UP1-04A-VNEXT-T1 machine acceptance", "T0/T1 authority gates"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP1-04A-VNEXT",
+      "current_status": "planned",
+      "current_accepted": false,
+      "depends_on_current_manifest": ["UP1-04A-VNEXT-T2"],
+      "read_only_inputs": ["T2 frozen candidate/package receipts", "current task_manifest.json"],
+      "blocked_on": ["UP1-04A-VNEXT-T2 machine acceptance", "complete T0/T1 authority chain"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP2-00",
+      "current_status": "planned",
+      "current_accepted": false,
+      "depends_on_current_manifest": ["UP1-04A-VNEXT"],
+      "read_only_inputs": ["UP1-04A-VNEXT aggregate package", "B04 contract guidance", "current task_manifest.json"],
+      "blocked_on": ["UP1-04A-VNEXT machine acceptance", "formal UP2-00 total gate"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "b00": false, "b04": false, "r01_r10": false}
+    },
+    {
+      "id": "UP1-04B",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP2-00"],
+      "read_only_inputs": ["UP2-00 accepted schema/validator", "candidate-bound mutation inputs", "current task_manifest.json"],
+      "blocked_on": ["UP2-00 machine acceptance", "fresh formal receipts/checker/two-process replay"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "b00": false, "b04": false, "r01_r10": false}
+    },
+    {
+      "id": "UP1-04",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP1-04B"],
+      "read_only_inputs": ["UP1-04B formal receipts", "actual G1/G2/G3 public refs", "current task_manifest.json"],
+      "blocked_on": ["UP1-04B machine acceptance", "exact same-candidate G1/G2/G3 joins"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP2-01",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP1-04"],
+      "read_only_inputs": ["UP1-04 accepted V5 package", "T0/T1/T2 authority receipts", "RuntimeV4 API inventory", "AD-29/AD-36 contracts", "current task_manifest.json"],
+      "blocked_on": ["UP1-04 machine acceptance", "checked-present T0/T1/T2 authority", "fresh AD-29 environment receipt before execution"],
+      "credits": {"compiler": false, "provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP2-02",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP2-01"],
+      "read_only_inputs": ["UP2-01 accepted EquationIR/WeakResidualIR compile receipt", "G2 chart/metric declarations", "current task_manifest.json"],
+      "blocked_on": ["UP2-01 machine acceptance", "present G2 chart/metric authority", "mesh/basis/quadrature/boundary ownership"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP2-03",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP2-02"],
+      "read_only_inputs": ["UP2-02 closed discrete residual/mesh receipt", "region/interface declarations", "current task_manifest.json"],
+      "blocked_on": ["UP2-02 machine acceptance", "topology transfer proof", "exterior closure and orientation ledger"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    },
+    {
+      "id": "UP2-04",
+      "current_status": "planned",
+      "current_accepted": null,
+      "depends_on_current_manifest": ["UP2-03"],
+      "read_only_inputs": ["UP2-03 closed topology/discrete residual receipt", "coupling constraints and solver protocol", "current task_manifest.json"],
+      "blocked_on": ["UP2-03 machine acceptance", "coupled residual assembly", "constraint residual receipt", "solver identity/convergence receipt"],
+      "credits": {"provider": false, "mesh": false, "numerical": false, "physical": false, "r01_r10": false}
+    }
+  ],
+  "local_dag_assert": {
+    "expected_chain_ids": ["UP1-04A-VNEXT-T2", "UP1-04A-VNEXT", "UP2-00", "UP1-04B", "UP1-04", "UP2-01", "UP2-02", "UP2-03", "UP2-04"],
+    "expected_edges": [
+      ["UP1-04A-VNEXT-T2", "UP1-04A-VNEXT"],
+      ["UP1-04A-VNEXT", "UP2-00"],
+      ["UP2-00", "UP1-04B"],
+      ["UP1-04B", "UP1-04"],
+      ["UP1-04", "UP2-01"],
+      ["UP2-01", "UP2-02"],
+      ["UP2-02", "UP2-03"],
+      ["UP2-03", "UP2-04"]
+    ],
+    "edges_match_current_manifest": true,
+    "acyclic": true,
+    "mismatches": []
+  },
+  "api_inventory": [
+    {
+      "path": "src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+      "sha256": "D925718C0165B3E2563D61459365953F1CC516713F87B5601CD6A46F158D632D",
+      "types": ["RegionalMHDTestFunctionV4", "RegionalMHDSourceTermV4", "RegionalMHDBoundaryTermV4", "RegionalMHDUpstreamBindingV4", "RegionalMHDWeakResidualV4", "RegionalMHDWeakExecutionRequestV4", "RegionalMHDWeakExecutionResultV4", "RegionalMHDWeakExecutionReceiptV4", "RegionalMHDProductionGapRequestV4"],
+      "functions": ["assemble_regional_mhd_weak_residual", "validate_regional_mhd_weak_residual", "replay_regional_mhd_weak_residual", "execute_regional_mhd_weak_residual", "validate_regional_mhd_weak_execution", "regional_mhd_weak_residual_manifest", "make_regional_mhd_production_gap_request", "validate_regional_mhd_production_gap_request", "bind_regional_mhd_desc_production_gap"],
+      "reuse_ceiling": ["screen", "manufactured", "deferred"],
+      "not_authority_for": ["EquationIR", "compiled_residual", "mesh", "provider", "physical"]
+    },
+    {
+      "path": "src/RuntimeV4/AlgebraicResidual.jl",
+      "sha256": "7979CD8B2512958644F896116A284F3D6E352EB9E72E50E21193079AF87F621F",
+      "types": ["StateValueV4", "AlgebraicScenarioV4", "AlgebraicResidualRowV4", "AlgebraicResidualPlanV4", "AlgebraicResidualCompilationV4", "ExecutableAlgebraicSubjectV4", "AlgebraicResidualResultV4", "AlgebraicSliceReportV4"],
+      "functions": ["compile_algebraic_residual_plan", "evaluate_algebraic_residual", "solve_algebraic_residual", "algebraic_residual_manifest", "execute_algebraic_once!"],
+      "reuse_ceiling": ["screen", "fixed", "deferred"],
+      "not_authority_for": ["PDE", "weak_residual", "mesh", "topology", "coupled_physics", "physical"]
+    },
+    {
+      "path": "src/RuntimeV4/Compiler.jl",
+      "sha256": "7A550E2B9AC27693F7E7008F3562EF6D5F52795997BC89C676440CB2E4BAB4AA",
+      "types": ["CompiledCandidatePrefixV4"],
+      "functions": ["compile_candidate", "derive_capability_obligations", "_runtime_validate_compiled_prefix", "_runtime_edge_obligation", "_runtime_structural_obligation"],
+      "reuse_ceiling": ["screen", "deferred"],
+      "not_authority_for": ["EquationIR", "weak_lowering", "discrete_operator", "solver"]
+    },
+    {
+      "path": "src/RuntimeV4/SpatialMultiRegionV4.jl",
+      "sha256": "CAC5B47BEEEE2FBAB7DE6F171F7F155FF5534BC51EDEC0E66EE8CAF711D6B932",
+      "types": ["SpatialMultiRegionDeclarationV4", "SpatialMeshV4", "SpatialMultiRegionCaseV4", "SpatialMultiRegionResultV4"],
+      "functions": ["spatial_multiregion_declaration_v4", "build_spatial_mesh_v4", "spatial_basis_v4", "load_spatial_data_v4", "spatial_field_v4", "assemble_spatial_system_v4", "solve_spatial_state_v4", "execute_spatial_multiregion_v4", "validate_spatial_result_v4"],
+      "reuse_ceiling": ["fixed", "screen", "deferred"],
+      "not_authority_for": ["general_G2_mesh", "quadrature_receipt", "physical_validation"]
+    },
+    {
+      "path": "src/RuntimeV4/MultiRegionCouplingContracts.jl",
+      "sha256": "2FED6F0A575C031E0E984A6DBABD9E872B1417C1DA71A446CA98E1FBA60EB398",
+      "types": ["MultiRegionRefV4", "MultiRegionInterfaceV4", "MultiRegionFluxBindingV4", "MultiRegionCouplingContractV4", "MultiRegionCouplingValidationV4"],
+      "functions": ["multiregion_coupling_contract", "validate_multiregion_coupling", "semantic_view", "canonical_hash"],
+      "reuse_ceiling": ["screen", "deferred"],
+      "not_authority_for": ["physical_coupled_system", "topology_transfer", "solver"]
+    },
+    {
+      "path": "src/RuntimeV4/MultiRegionDiffusionProvider.jl",
+      "sha256": "9DAACFAF47EA9031290CCF57FF31E24C8458B79F15FA43CAE9E2EB596F41A7B5",
+      "types": ["MultiRegionContextIntegrationV4", "MultiRegionDESCAdmissionV4", "DiffusionBoundaryV4", "DiffusionRegionSpecV4", "MultiRegionCouplingPlanV4", "MultiRegionDiffusionResultV4", "MultiRegionDiffusionReceiptV4"],
+      "functions": ["integrate_multiregion_context", "admit_desc_multiregion_provider", "solve_multiregion_diffusion"],
+      "reuse_ceiling": ["screen", "fixed", "deferred"],
+      "not_authority_for": ["general_provider", "multiregion_closure", "coupled_solver", "physical"]
+    }
+  ],
+  "up2_01_product_scope": {
+    "proposed_exact_product_files": [
+      "src/RuntimeV4/EquationIRV4.jl",
+      "src/RuntimeV4/WeakResidualIRV4.jl",
+      "src/RuntimeV4/PhysicsCompilerV5.jl",
+      "test/runtime_v4_physics_compiler_v5_contract_tests.jl",
+      "test/runtime_v4_physics_compiler_v5_fixture.json",
+      "test/runtime_v4_physics_compiler_v5_static_qa.py",
+      "docs/implementation/UP2-01/README.md",
+      "docs/implementation/UP2-01/acceptance.md",
+      "docs/implementation/UP2-01/manifest.json"
+    ],
+    "ad36_evidence_sidecars": {
+      "root": "docs/implementation/UP2-01/archive/**",
+      "named_review_or_status_roots": ["docs/implementation/UP2-01/review/**", "docs/implementation/UP2-01/status_sync_*/**"],
+      "proposed_named_files": [
+        "docs/implementation/UP2-01/archive/evidence_index.json",
+        "docs/implementation/UP2-01/archive/command_receipts.json",
+        "docs/implementation/UP2-01/archive/cleanup_inventory.md",
+        "docs/implementation/UP2-01/review/independent_review_r1.md"
+      ],
+      "excluded_from_exact_file_count": true,
+      "evidence_only": true,
+      "forbidden_payloads": ["product_or_contract_deliverable", "source", "test", "fixture", "staticQA", "launcher"],
+      "scope_violation": "fail_closed"
+    },
+    "inputs": ["T2-bound candidate package and identity receipts", "accepted G1/G2/G3 declaration refs/hashes", "operator and closure registry snapshot", "typed coordinate/time/unit/boundary/applicability/capability declarations", "fresh AD-29 environment receipt before execution"],
+    "outputs": ["candidate-bound EquationIRV4", "candidate-bound WeakResidualIRV4", "semantic lowering/compiled residual receipt", "unresolved capability ledger", "negative classification receipt", "exact product hashes", "AD-36 evidence index sidecars"],
+    "negative_controls": ["missing declaration/provider/coordinate/metric/function-space", "unit/time/dimension mismatch", "duplicate or missing boundary", "unclosed interface/exterior ledger", "negative or non-finite coefficient", "pure Neumann without NullspaceRecord", "unknown operator/closure", "label/family/id routing", "fixture/ref-only/synthetic authority", "default registry mutation", "foreign receipt", "coefficient mutation hash", "label erasure"],
+    "negative_classification": {"missing_capability": "terminal_deferred", "structural_contradiction": "fail_closed", "unexpected_fault": "program_exception"},
+    "exit_gates": ["all dedicated source/test/fixture/staticQA/docs exist and hash", "fresh environment receipt before executable follow-up", "non-fixture variable-coefficient lowering", "coefficient changes input hash", "label erasure invariant", "independent checker", "no default registry/shared bridge edit", "independent Luna review", "all provider/mesh/numerical/physical/R credits remain false"]
+  },
+  "execution_policy": {
+    "static_only": true,
+    "julia_run": false,
+    "desc_run": false,
+    "heavy_python_run": false,
+    "provider_run": false,
+    "mesh_run": false,
+    "solver_run": false,
+    "up2_credit": false,
+    "r_credit": false,
+    "physical_claim": false
+  },
+  "read_only_inputs": [
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/v4_multitopology_generation/14_agent_orchestration.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/implementation/AD-29/",
+    "docs/implementation/AD-36/",
+    "docs/implementation/UP1-04A-VNEXT-T0/",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/",
+    "docs/implementation/UP1-04A-VNEXT-T1/",
+    "docs/implementation/UP1-04A-VNEXT-T2/",
+    "src/RuntimeV4/RegionalMHDWeakResidualV4.jl",
+    "src/RuntimeV4/AlgebraicResidual.jl",
+    "src/RuntimeV4/Compiler.jl",
+    "src/RuntimeV4/SpatialMultiRegionV4.jl",
+    "src/RuntimeV4/MultiRegionCouplingContracts.jl",
+    "src/RuntimeV4/MultiRegionDiffusionProvider.jl"
+  ],
+  "blocked_on": [
+    "fresh checked-present T0-owned authority recheck",
+    "T1 dual gate acceptance on T0 plus authority recheck",
+    "T2 acceptance",
+    "UP1-04A-VNEXT aggregate acceptance",
+    "UP2-00 total gate",
+    "UP1-04B formal fresh receipts/checker/two-process replay",
+    "UP1-04 exact V5 candidate-bound G1/G2/G3 package",
+    "fresh AD-29 environment receipt before UP2-01 execution"
+  ],
+  "cleanup_inventory": {
+    "deleted": [],
+    "modified": [],
+    "cleanup_deferred_ambiguous": [],
+    "retained_protected": ["pre-existing dirty", "other-agent files", "historical receipts", "runs", "original AD-38 audit files"]
+  }
+}

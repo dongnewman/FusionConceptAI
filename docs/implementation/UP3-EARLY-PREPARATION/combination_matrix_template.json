@@ -1,0 +1,110 @@
+{
+  "schema": "UP3CombinationMatrixTemplateV1",
+  "status": "pending_review",
+  "claim_ceiling": "contract_only",
+  "execution_allowed": false,
+  "identity_rule": "A fresh candidate-bound identity is required for every declaration, topology, provider, scenario, or numerical configuration that changes solver input.",
+  "placeholder_rule": {
+    "type": "TypedPendingRefV1",
+    "state": "pending",
+    "value": null,
+    "authority": "fresh_candidate_only",
+    "forbidden": ["historical_hash", "synthetic_digest", "display_label", "family_default", "empty_axis", "wildcard_axis"]
+  },
+  "campaign": {
+    "campaign_id": {"type": "CampaignIdentityV1", "state": "pending", "value": null},
+    "candidate": {"type": "CandidateIdentityV1", "state": "pending", "value": null},
+    "mission": {"type": "MissionIdentityV1", "state": "pending", "value": null},
+    "bounds": {"type": "BoundsIdentityV1", "state": "pending", "value": null},
+    "protocol": {"type": "AcceptanceProtocolIdentityV1", "state": "pending", "value": null},
+    "provider_registry": {"type": "ProviderRegistryIdentityV1", "state": "pending", "value": null},
+    "environment": {"type": "EnvironmentReceiptIdentityV1", "state": "pending", "value": null}
+  },
+  "axes": {
+    "G1": ["equation_family", "state_port_shape", "operator_capability", "coefficient_source", "time_semantics", "conservation", "nullspace_constraints", "observables"],
+    "G2": ["dimension_chart", "regions_topology", "function_space", "mesh_quadrature", "boundary_interface", "field_source_placement", "discretization", "applicability"],
+    "G3": ["realization", "resource_network", "thermal_material_structure", "control", "ledger", "scenario", "authority"]
+  },
+  "cells": [
+    {
+      "cell_id": "G1",
+      "layers": ["G1"],
+      "axis_values": {"G1": null, "G2": {"state": "typed_absent", "value": null}, "G3": {"state": "typed_absent", "value": null}},
+      "required_obligations": ["equation_ir", "units", "closure", "analytic_or_mms_oracle", "declared_outputs"],
+      "gates": ["declaration_legal", "oracle_parse", "numerical_result"],
+      "negative_controls": ["invalid_type", "invalid_units", "invalid_closure", "missing_operator_derivative"],
+      "status": "pending",
+      "claim_ceiling": "screen_only"
+    },
+    {
+      "cell_id": "G2",
+      "layers": ["G2"],
+      "axis_values": {"G1": {"state": "typed_absent", "value": null}, "G2": null, "G3": {"state": "typed_absent", "value": null}},
+      "required_obligations": ["chart_metric", "mesh_basis_quadrature", "boundary_ownership", "interface_orientation"],
+      "gates": ["declaration_legal", "mesh_materialization", "oracle_parse"],
+      "negative_controls": ["invalid_boundary", "degenerate_chart", "missing_face_owner", "provider_dropout"],
+      "status": "pending",
+      "claim_ceiling": "screen_only"
+    },
+    {
+      "cell_id": "G3",
+      "layers": ["G3"],
+      "axis_values": {"G1": {"state": "typed_absent", "value": null}, "G2": {"state": "typed_absent", "value": null}, "G3": null},
+      "required_obligations": ["source_return", "resource_network", "thermal_structure", "control_feedback", "ledger"],
+      "gates": ["declaration_legal", "authority_presence", "ledger_parse"],
+      "negative_controls": ["missing_return", "unowned_sink", "feedback_disconnect", "invalid_material"],
+      "status": "pending",
+      "claim_ceiling": "screen_only"
+    },
+    {
+      "cell_id": "G1xG2",
+      "layers": ["G1", "G2"],
+      "axis_values": {"G1": null, "G2": null, "G3": {"state": "typed_absent", "value": null}},
+      "required_obligations": ["typed_equation_lowering", "candidate_bound_source_placement", "region_interface_conservation", "mms_or_independent_discretization"],
+      "gates": ["declaration_legal", "provider_resolvable", "solver_result", "conservation_oracle"],
+      "negative_controls": ["coefficient_shape_change", "boundary_gap", "interface_edge_removed", "label_erasure"],
+      "status": "pending",
+      "claim_ceiling": "pending"
+    },
+    {
+      "cell_id": "G1xG3",
+      "layers": ["G1", "G3"],
+      "axis_values": {"G1": null, "G2": {"state": "typed_absent", "value": null}, "G3": null},
+      "required_obligations": ["source_sink_port_join", "resource_feedback", "per_node_kcl_or_equivalent", "account_closure"],
+      "gates": ["declaration_legal", "provider_resolvable", "solver_result", "conservation_oracle"],
+      "negative_controls": ["return_removed", "source_sign_reversed", "feedback_edge_removed", "foreign_candidate_ref"],
+      "status": "pending",
+      "claim_ceiling": "pending"
+    },
+    {
+      "cell_id": "G2xG3",
+      "layers": ["G2", "G3"],
+      "axis_values": {"G1": {"state": "typed_absent", "value": null}, "G2": null, "G3": null},
+      "required_obligations": ["geometry_source_mapping", "material_thermal_placement", "boundary_control_transfer", "resource_geometry_identity"],
+      "gates": ["declaration_legal", "provider_resolvable", "solver_result", "ledger_oracle"],
+      "negative_controls": ["missing_material", "wrong_face_normal", "cooling_removed", "provider_dropout"],
+      "status": "pending",
+      "claim_ceiling": "pending"
+    },
+    {
+      "cell_id": "G1xG2xG3",
+      "layers": ["G1", "G2", "G3"],
+      "axis_values": {"G1": null, "G2": null, "G3": null},
+      "required_obligations": ["joint_residual", "typed_transfer_maps", "all_required_ledgers", "nominal_and_fault_scenarios", "independent_replay"],
+      "gates": ["declaration_legal", "provider_resolvable", "coupled_solver_result", "mms_or_independent_reference", "conservation_oracle", "scenario_closure"],
+      "negative_controls": ["any_feedback_edge_removed", "duplicate_account", "stale_input_hash", "holdout_leakage", "timeout"],
+      "status": "pending",
+      "claim_ceiling": "pending"
+    }
+  ],
+  "row_contract": {
+    "required_typed_fields": ["candidate", "scenario", "input", "provider", "genome_refs", "axis_values", "split", "oracle_refs", "status", "failure_class", "claim_ceiling"],
+    "candidate": {"type": "CandidateIdentityV1", "state": "pending", "value": null},
+    "scenario": {"type": "ScenarioIdentityV1", "state": "pending", "value": null},
+    "input": {"type": "SolverInputIdentityV1", "state": "pending", "value": null},
+    "provider": {"type": "ProviderManifestIdentityV1", "state": "pending", "value": null},
+    "hashes": {"type": "HashBundleV1", "state": "pending", "value": null},
+    "allowed_status": ["pending", "ready", "terminal_deferred", "fail_closed", "numerical_fail", "physical_fail", "program_exception", "unknown"],
+    "allowed_splits": ["train", "development", "validation", "held_out", "replay"]
+  }
+}

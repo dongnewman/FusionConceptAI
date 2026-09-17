@@ -1,0 +1,217 @@
+{
+  "all_exit_zero": true,
+  "capture_pid": 29804,
+  "ended_at_utc": "2026-09-17T01:42:51.822656Z",
+  "frozen_07_evidence_hashes": {
+    "docs\\implementation\\UP1-EXTERNAL-BLOCKER-CLOSURE-R4\\07-g2-independent-test\\raw\\serial_run_1.raw.txt": "242e5c8dda2f897dae6b4932aaace4b7ee662770607737966a54bf3eb5dfbba3",
+    "docs\\implementation\\UP1-EXTERNAL-BLOCKER-CLOSURE-R4\\07-g2-independent-test\\raw\\serial_run_2.raw.txt": "b960a4c6a7b65eb5d6c71ae6b25ee015fcb30cde0d159d9ca1501f17d89e7fbf",
+    "docs\\implementation\\UP1-EXTERNAL-BLOCKER-CLOSURE-R4\\07-g2-independent-test\\report.md": "78bb5d7046a5cd1ff30e4116e4176ff6342bc101f2ca2fb5c90ca85bffc62ae6"
+  },
+  "frozen_source_hashes": {
+    "test\\up1_external_closure_r4\\g2_mapping\\adversarial_probe.py": "1d9811180c5c45490c890c0684643195fd894fbd32f98d452c60861c3cb66e27",
+    "test\\up1_external_closure_r4\\g2_mapping\\serial_run.py": "f59276b6cf80507d60104271c172178b7660cafce21b2e37517880219bc423c5",
+    "test\\up1_external_closure_r4\\g2_mapping\\test_independent_g2_mapping.py": "105228adab22b8c750066a24d10dee63d95b86f34cd8a7466f94b9699073223c",
+    "tools\\up1_external_closure_r4\\g2_mapping\\g2_mapping.py": "cde09870851512ac8d5e45961387b51ee9cb12dbd07717f51e409aeed9e34dde",
+    "tools\\up1_external_closure_r4\\g2_mapping\\validate_g2_mapping.py": "7d32af36ba0abb1b7d9b53287a124c5a1982224aa97b3f53701c8f4f98fec2a9",
+    "tools\\up1_external_closure_r4\\g2_mapping\\validator.py": "69079110f66c07cf781d473ccc69b251a7b9a4605de8870d659016bf83e26d00"
+  },
+  "raw_sha256_equal": false,
+  "runs": [
+    {
+      "adversarial": {
+        "cases": [
+          {
+            "accepted": false,
+            "case_id": "ADV-GRAPH-DUP-ENDPOINT-TIME",
+            "decision": "fail_closed",
+            "description": "same graph endpoint pair, different issued_at",
+            "error": "evidence_graph:duplicate_endpoint_pair",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-MAPPING-DUP-ENDPOINT-TIME",
+            "decision": "fail_closed",
+            "description": "same mapping endpoint pair, different issued_at",
+            "error": "g2_mapping:duplicate_endpoint_pair",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-UNKNOWN-STATUS",
+            "decision": "fail_closed",
+            "description": "unknown present status token",
+            "error": "profile.status:unknown_status",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-CONFLICTING-ALIASES",
+            "decision": "fail_closed",
+            "description": "R3 g2_mapping and standalone mapping aliases disagree",
+            "error": "profile.mapping:conflicting_aliases:g2_mapping/mapping",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-PROFILE-SOURCE-DIGEST",
+            "decision": "fail_closed",
+            "description": "profile source digest disagrees with source_identity",
+            "error": "profile.source_identity_sha256:mismatch",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          }
+        ],
+        "component": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\g2_mapping",
+        "conservative_decision": "no_gap_observed",
+        "ended_at_utc": "2026-09-17T01:42:51.338740Z",
+        "finding_count": 0,
+        "formal_credit": "none",
+        "no_publish": true,
+        "pid": 113452,
+        "schema": "UP1.g2-independent-mapping-r4.adversarial-probe.v1",
+        "started_at_utc": "2026-09-17T01:42:51.337646Z"
+      },
+      "child_pids": {
+        "adversarial": 113452,
+        "unit": 34548
+      },
+      "ended_at_utc": "2026-09-17T01:42:51.358468Z",
+      "exit": 0,
+      "raw_path": "raw\\run_1.raw.txt",
+      "raw_sha256": "9d9f8acf4439a59ba88292419b165ac0403e7c892eacd3c58f8da86ac7c3106b",
+      "run": 1,
+      "runner_pid": 83668,
+      "started_at_utc": "2026-09-17T01:42:50.906431Z",
+      "stderr_path": "raw\\run_1.stderr.raw.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "raw\\run_1.stdout.raw.txt",
+      "stdout_sha256": "9d9f8acf4439a59ba88292419b165ac0403e7c892eacd3c58f8da86ac7c3106b",
+      "unit_15_tests_ok": true
+    },
+    {
+      "adversarial": {
+        "cases": [
+          {
+            "accepted": false,
+            "case_id": "ADV-GRAPH-DUP-ENDPOINT-TIME",
+            "decision": "fail_closed",
+            "description": "same graph endpoint pair, different issued_at",
+            "error": "evidence_graph:duplicate_endpoint_pair",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-MAPPING-DUP-ENDPOINT-TIME",
+            "decision": "fail_closed",
+            "description": "same mapping endpoint pair, different issued_at",
+            "error": "g2_mapping:duplicate_endpoint_pair",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-UNKNOWN-STATUS",
+            "decision": "fail_closed",
+            "description": "unknown present status token",
+            "error": "profile.status:unknown_status",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-CONFLICTING-ALIASES",
+            "decision": "fail_closed",
+            "description": "R3 g2_mapping and standalone mapping aliases disagree",
+            "error": "profile.mapping:conflicting_aliases:g2_mapping/mapping",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          },
+          {
+            "accepted": false,
+            "case_id": "ADV-PROFILE-SOURCE-DIGEST",
+            "decision": "fail_closed",
+            "description": "profile source digest disagrees with source_identity",
+            "error": "profile.source_identity_sha256:mismatch",
+            "expected": "fail_closed",
+            "finding": false,
+            "formal_credit": "none",
+            "no_publish": true,
+            "observed": "fail_closed",
+            "resolution": "fail_closed"
+          }
+        ],
+        "component": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\up1_external_closure_r4\\g2_mapping",
+        "conservative_decision": "no_gap_observed",
+        "ended_at_utc": "2026-09-17T01:42:51.802609Z",
+        "finding_count": 0,
+        "formal_credit": "none",
+        "no_publish": true,
+        "pid": 106912,
+        "schema": "UP1.g2-independent-mapping-r4.adversarial-probe.v1",
+        "started_at_utc": "2026-09-17T01:42:51.801834Z"
+      },
+      "child_pids": {
+        "adversarial": 106912,
+        "unit": 50328
+      },
+      "ended_at_utc": "2026-09-17T01:42:51.819932Z",
+      "exit": 0,
+      "raw_path": "raw\\run_2.raw.txt",
+      "raw_sha256": "b32fa52fa50cffb2bde9e4e6426306c07518f4d5278a5b005bcf3c916ade82ef",
+      "run": 2,
+      "runner_pid": 64704,
+      "started_at_utc": "2026-09-17T01:42:51.361166Z",
+      "stderr_path": "raw\\run_2.stderr.raw.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "raw\\run_2.stdout.raw.txt",
+      "stdout_sha256": "b32fa52fa50cffb2bde9e4e6426306c07518f4d5278a5b005bcf3c916ade82ef",
+      "unit_15_tests_ok": true
+    }
+  ],
+  "schema": "UP1.g2-repair-independent-retest.v1",
+  "semantic_pass": true,
+  "started_at_utc": "2026-09-17T01:42:50.906411Z",
+  "stdout_sha256_equal": false
+}

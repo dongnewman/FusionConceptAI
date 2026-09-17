@@ -1,0 +1,18 @@
+Test Summary:                  | Pass  Total  Time
+UP2-00 fixture is schema-bound |    7      7  1.5s
+Test Summary:                 | Pass  Total  Time
+UP2-00 real N01 N02 N05 slice |  123    123  5.8s
+UP2-00 A projection entrance is typed and package-bound: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:95
+  Expression: G.UP2AProjectionV1(input.candidate_ref, G.Digest256(repeat("f", 64)), input.state.fields, input.state.flux_pair)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:95 [inlined]
+ [2] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [3] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_00_contract_tests.jl:89
+Test Summary:                                           | Pass  Fail  Total  Time
+UP2-00 A projection entrance is typed and package-bound |    2     1      3  1.0s

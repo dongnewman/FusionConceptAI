@@ -1,0 +1,45 @@
+{
+  "schema": "n06-status-sync-r10-v1",
+  "work_order": "UP2-00E-N06-SOURCE-FIELD-LEDGER",
+  "sol_status": "accepted_limited",
+  "accepted_scope": "actual-A typed projection; five source-derived local mutation classifications; baseline unit/dimension contradiction fail_closed; absent cross-layer mapping terminal_deferred",
+  "changed_files": [
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/acceptance.md",
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/evidence_manifest.json",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md"
+  ],
+  "unchanged_index_files": [
+    "docs/v4_multitopology_generation/README.md",
+    "docs/implementation/README.md"
+  ],
+  "prior_failures": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R9"
+  ],
+  "r10_basis": {
+    "protected_inputs_unchanged": true,
+    "independent_postrun": "pass_limited",
+    "groups": "28/28+3/3+31/31+40/40",
+    "focused_exit": 0
+  },
+  "claims": {
+    "engineering": false,
+    "R01_R10": false,
+    "UP2_total": false,
+    "provider": false,
+    "formal_B04": false,
+    "mesh": false,
+    "physical": false
+  },
+  "before_hashes": "before_hashes.json",
+  "after_hashes": "after_hashes.json",
+  "bounded_diff": "bounded_diff.patch",
+  "artifacts_include_manifest_self": false
+}

@@ -1,0 +1,32 @@
+{
+  "decision_id": "AD-27",
+  "status": "accepted_limited",
+  "review_status": "accepted_limited_architecture_only",
+  "accepted": true,
+  "scope": "H0 candidate-owned dimensioned cross-layer law and independent H1 recomputation boundary",
+  "runtime": "not_run",
+  "h0": {
+    "candidate_owned": true,
+    "versioned": true,
+    "content_hashed": true,
+    "requires_actual_a_and_e0": true,
+    "e1_optional_with_explicit_typed_absent": true,
+    "requires_public_refs_and_component_hashes": true,
+    "requires_four_axes": true,
+    "requires_exact_g1_g2_g3_endpoints": true,
+    "requires_unit_equation_variables_and_conservation": true,
+    "requires_scale_efficiency_calibration_provenance": true
+  },
+  "h1": {"independent_recomputation": true, "reuse_h0_expected_row_helper": false, "requires_fresh_50_receipts": true, "requires_b00_f0_f5": true, "requires_two_process_replay": true},
+  "classification": {"missing_authority": "terminal_deferred", "present_conflict": "fail_closed", "unexpected_exception": "program_exception"},
+  "reviews": {"independent_r1_architecture": "pass_limited", "independent_r2_provenance": "pass_limited", "sol": "accepted_limited"},
+  "credits": {"b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false, "h0_implementation": false, "h1_implementation": false, "dimensioned_physical_law": false},
+  "protected_inputs": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "readme_before": "66681D071A4124CBA0E8E635011FEC8CBFFE0AF1B93A453782D63E251D613A46",
+    "core18_before": "A7BFFC313DFEF35C7E302DD251709491A4A91E15D37A275D92FD6FE9D5ACA28C",
+    "core16_before": "12484C7C88E48B36358EB1CF308A414F9EA7A11E869B813BF391B0638BE0C829",
+    "ad26_acceptance": "8388B9CF831E310F2A8DF800C635082FE408E0544AB8FEA92AB844A512050C07",
+    "n06_unit_gap_audit": "7A437A309EE629D0A8FA97935B836B4650784E119620D30AD19B9A93AF59C891"
+  }
+}

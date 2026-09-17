@@ -1,0 +1,52 @@
+{
+  "schema_version": "G-I1B-source-envelope-repair-r9-owned-hashes-v1",
+  "status": "review_pending",
+  "accepted": false,
+  "julia": "not_run",
+  "desc": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_porcelain_entries_at_freeze": 3708,
+  "allowed_writes": [
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/repair_r9/"
+  ],
+  "changed_file": {
+    "path": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+    "before_sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37",
+    "before_bytes": 25712,
+    "after_sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299",
+    "after_bytes": 25685,
+    "changed_line": 407,
+    "change_kind": "replace_undeclared_free_text_lexical_requirement_with_nonempty_semantic_check"
+  },
+  "protected_unchanged": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12", "bytes": 43037},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6", "bytes": 23906},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5", "bytes": 408}
+  },
+  "focused_r4_evidence": {
+    "exit_code": 1,
+    "input_manifest_sha256": "eb71931bc2c22b9fa35738a03bfa8842d53acbdcb08aa0db2a28a41a7b204bbf",
+    "qa_sha256": "7389d37ce4139fca6465fcf0ca5ac7d2b12068db103644b4b676bb2878702e6c",
+    "stdout_sha256": "8d0409a26d78e8b65a94cad060bfefb41d972f2ab34d6568356be0d9ae494d9c",
+    "stderr_sha256": "25fec85128abe7b380aecdfe1988bbf15e3268ff5dcec1af2bd437eb1c2ac453"
+  },
+  "independent_postrun_r4": {
+    "report_json_sha256": "a52b269ccc52fae4721c4b7ca7556db6c725ef28e2f3d82c8d69446e057066e8",
+    "verdict": "changes_requested",
+    "failure_id": "GI1B-N06-LEXICAL-AUTHORITY-GAP-R4"
+  },
+  "static_qa": {
+    "old_lexical_assertion_absent": true,
+    "new_nonempty_assertion_present": true,
+    "runtime_typed_n06_assertions_present": true,
+    "actual_a_factory_paths_retained": true,
+    "taxonomy_and_schema_testsets_retained": true,
+    "fixture_json_parse": true,
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "mesh_calls": 0,
+    "physical_evidence": false
+  }
+}

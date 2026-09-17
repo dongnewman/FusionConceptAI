@@ -1,0 +1,6 @@
+COMMAND=$raw = '{"mode":"TEST_ONLY","mode":"PRODUCTION"}'; $raw | python -B tools/up1_external_closure_r2/witness_authority/cli.py
+PID=95912
+UTC_STARTED=2026-09-16T18:19:19.298915Z
+UTC_ENDED=2026-09-16T18:19:19.299012Z
+EXIT=2
+{"claim_ceiling":"preparation_only","cli_ended_at_utc":"2026-09-16T18:19:19.299012Z","cli_pid":95912,"cli_started_at_utc":"2026-09-16T18:19:19.298915Z","detail":"duplicate JSON key: mode","error_code":"ERR_INVALID_JSON","no_publish":true,"r01_r10_closed":false,"resolution":"fail_closed","schema":"UP1.external_closure_r2.witness_authority.cli.v1","status":"fail_closed"}

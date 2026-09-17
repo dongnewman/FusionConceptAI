@@ -1,0 +1,51 @@
+{
+  "task_id": "AD48-F0-G3-SOURCE-AUTHORITY-FACTORY-independent-review-r1",
+  "schema_version": "AD48-F0-independent-review-v1",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer": "different gpt-5.6-luna/high independent review",
+  "verdict": "changes_requested",
+  "fresh_s2_permitted": false,
+  "fresh_s2_gate": "blocked_pending_f0_repair_and_fresh_independent_review",
+  "reviewed_files": [
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":16832,"sha256":"b00bc91b07336463d5ee2c9b51058ff052e4cb08acd1423322a5e60c0a857d2f"},
+    {"path":"test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl","bytes":6827,"sha256":"ad62cf6bf15fa14b8f0093f609828898660e31fd25c1d13bd103850cc01d32c6"}
+  ],
+  "contract_checks": {
+    "typed_locator_input": true,
+    "qualified_ref_v5_input": true,
+    "genome_contract_ref_input": true,
+    "g3_version_axes_v2_input": true,
+    "real_g3_contract_binding_constructor_called": true,
+    "present_absent_failed_unions": true,
+    "semantic_view_and_canonical_hash": true,
+    "missing_absent_terminal_deferred": true,
+    "mismatch_failed_fail_closed": true,
+    "source_byte_hash_invalidation": true,
+    "candidate_bound_source_declaration": false,
+    "declaration_hash_created": false,
+    "trusted_attestation_created": false,
+    "registry_not_used": true,
+    "default_registry_modified": false,
+    "provider_mesh_solver_engineering_physics_search": false
+  },
+  "blocking_findings": [
+    "adapter constructs G3ContractBindingV2 only and does not construct a candidate-bound G3 source declaration/content body",
+    "present result has no declaration ref/body/hash for fresh S2 to replay",
+    "factory source invalidation does not independently compare locator observed_head or git status fields",
+    "implementation changed during review before final freeze; final source was rerun, but clean acceptance is withheld"
+  ],
+  "execution": {
+    "focused_julia": {"path":"C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe","version":"1.10.5","pid":33416,"utc":"2026-09-15T14:10:03.187Z","exit_code":0,"pass":157,"total":157,"raw":"review/raw/focused_julia_final.txt"},
+    "g3_regressions": {"pass":302,"total":302,"exit_codes":[0,0,0],"raw":"review/raw/g3_regression_serial.txt"},
+    "plan_validator": {"path":"D:/Users/Newman/anaconda3/python.exe","version":"3.13.5","exit_code":0,"markdown":31,"links":526,"tasks":39,"dag_acyclic":true,"raw":"review/raw/plan_validator_stdout.json"},
+    "scoped_diff_check": {"exit_code":0,"raw":"review/raw/scoped_diff_check.txt"},
+    "source_stability": {"stable":true,"raw":"review/raw/final_source_hash_double_sample.json"}
+  },
+  "raw_failure_history": [
+    "review/raw/failure_history_wrapper_launches.txt",
+    "review/raw/concurrency_replacement.json"
+  ],
+  "claims": {"source_authority":false,"trusted_attestation":false,"candidate_identity":false,"declaration_identity":false,"physical":false,"r01_r10":false,"l4":0},
+  "self_hash_excluded": true
+}

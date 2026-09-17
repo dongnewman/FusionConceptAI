@@ -1,0 +1,124 @@
+{
+  "schema": "UP1.W4.local-input-discovery.absence-delta.v1",
+  "as_of_utc": "2026-09-16T16:00:00Z",
+  "repo_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "changed_inputs": false,
+  "new_real_inputs": [],
+  "no_upstream_register_mutation": true,
+  "recovery_state": "unchanged_typed_absent",
+  "absence_items_unchanged": [
+    {
+      "id": "EXT-WITNESS-IDENTITY",
+      "scope": "W1",
+      "owner": "external witness authority",
+      "authoritative_source": "independent witness identity registry/attestation",
+      "recovery_condition": "receive independently verifiable identity, organization, qualification, role, and issuer chain bound to the frozen source revision",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-WITNESS-INDEPENDENCE-COI",
+      "scope": "W1",
+      "owner": "external witness authority",
+      "authoritative_source": "signed independence and conflict-of-interest attestation",
+      "recovery_condition": "receive fresh signed COI/role-separation attestation with verifier policy and revocation status",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-TRUST-ROOT",
+      "scope": "W1/W3",
+      "owner": "trust-root operator",
+      "authoritative_source": "published trust-root certificate or equivalent authenticated key",
+      "recovery_condition": "receive current trust root with issuer, algorithm, fingerprint, validity, and revocation evidence",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-CERT-CHAIN",
+      "scope": "W1",
+      "owner": "witness authority",
+      "authoritative_source": "root/intermediate/leaf certificate chain",
+      "recovery_condition": "receive complete chain whose signatures verify to the accepted trust root",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-SIGNED-ATTESTATION",
+      "scope": "W1",
+      "owner": "independent witness",
+      "authoritative_source": "signed attestation bytes for frozen source/candidate/evidence",
+      "recovery_condition": "receive canonical payload, signature bytes, algorithm, key fingerprint, and verifier receipt",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-VERIFIER-FRESHNESS-REVOCATION-REPLAY",
+      "scope": "W1",
+      "owner": "witness verifier",
+      "authoritative_source": "verifier policy, trusted time, revocation/OCSP/CRL, nonce/replay ledger",
+      "recovery_condition": "receive current verifier receipt proving freshness, anti-replay, and non-revocation",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-AUTHORITY-ENDPOINT",
+      "scope": "W1/W2",
+      "owner": "authority channel owner",
+      "authoritative_source": "authenticated authority endpoint and owner record",
+      "recovery_condition": "receive endpoint owner, authentication policy, request schema, and accepted namespace/version",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-AUTHORITY-ACK-RECEIPT",
+      "scope": "W1/W2",
+      "owner": "authority channel owner",
+      "authoritative_source": "signed acknowledgement receipt",
+      "recovery_condition": "receive ack bound to request hash, candidate/source hashes, nonce, idempotency key, timestamp, and reject semantics",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-G2-AUTHORITATIVE-MAPPING",
+      "scope": "W2/W3",
+      "owner": "G2 mapping authority",
+      "authoritative_source": "authoritative namespace/version mapping publication",
+      "recovery_condition": "receive signed mapping with effective interval, issuer chain, conflict/ambiguity policy, and revocation/anti-replay evidence",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-FOUR-AXIS-SIGNED-BINDING",
+      "scope": "W2/W3",
+      "owner": "source authority",
+      "authoritative_source": "signed source/four-axis binding package",
+      "recovery_condition": "receive canonical axis material hashes and bidirectional source↔candidate↔evidence edges under the same authority",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-CANDIDATE-SOURCE-EVIDENCE-CLOSURE",
+      "scope": "W1/W2/W3",
+      "owner": "candidate authority",
+      "authoritative_source": "candidate declaration plus independently verified source/evidence closure",
+      "recovery_condition": "receive current candidate identity and inverse hash-checked bindings for all source and evidence artifacts",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-ENVIRONMENT-IMPORT-CLOSURE",
+      "scope": "W3",
+      "owner": "environment/provenance authority",
+      "authoritative_source": "reproducible environment/import manifest with artifact origin",
+      "recovery_condition": "receive OS/arch/runtime/lock/import closure and independently verifiable artifact hashes/origins",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-BINARY-PROVENANCE-SBOM",
+      "scope": "W3",
+      "owner": "binary publisher/build authority",
+      "authoritative_source": "signed binary provenance, SBOM, license, and build recipe",
+      "recovery_condition": "receive per-binary name/version/path/hash/publisher/signature/download origin/build recipe/SBOM/license",
+      "status": "typed_absent"
+    },
+    {
+      "id": "EXT-RAW-ATTESTATION-LINKAGE",
+      "scope": "W1/W2/W3",
+      "owner": "evidence authority",
+      "authoritative_source": "raw request/response/receipt linkage with process identity and UTC",
+      "recovery_condition": "receive immutable raw records bound to canonical input fingerprint and no-repeat ledger",
+      "status": "typed_absent"
+    }
+  ],
+  "interpretation": "The repository contains contracts, preparation manifests, historical local records, and environment locks, but no newly discovered external authority input. These files do not change upstream typed-absence registers and cannot create an AD or gate credit."
+}

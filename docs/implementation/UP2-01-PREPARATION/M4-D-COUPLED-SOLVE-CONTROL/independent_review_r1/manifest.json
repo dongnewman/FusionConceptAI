@@ -1,0 +1,109 @@
+{
+  "schema": "m4-d-coupled-solve-control-independent-review-v1",
+  "task_id": "UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/independent_review_r1",
+  "status": "changes_requested",
+  "reviewer_role": "independent Luna; separate from source, test/oracle, integration, and documentation roles",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "claim_ceiling": ["manufactured_coupled_solve_control", "screen_only"],
+  "input_hashes": {
+    "source_a": {"path": "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl", "sha256": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "source_b": {"path": "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl", "sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "source_c": {"path": "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl", "sha256": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa"},
+    "source_d": {"path": "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl", "sha256": "a26d8dd66ed8d639fddac16590ee398c6a6ff32847f5020ec7c322bdb853b465"},
+    "test_current": {"path": "test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl", "sha256": "92cd4069d97c54a297dd00ab3a85a4fc9a0fc39458b744d57bb046e76dc75d88"},
+    "oracle": {"path": "test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py", "sha256": "9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3"}
+  },
+  "independent_fraction": {
+    "script": "fraction_recompute_v1.py",
+    "script_sha256": "688fcab722d7b63a32e0a2161dceacef04f0a444e161944bd05d79b82b8d6b17",
+    "command": "python docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/independent_review_r1/fraction_recompute_v1.py",
+    "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "pid": 107020,
+    "start_utc": "2026-09-16T09:20:47.7457137Z",
+    "end_utc": "2026-09-16T09:20:48.3680758Z",
+    "exit_code": 0,
+    "determinant": "3",
+    "solution": ["2/3", "1/3"],
+    "cell_count": 8,
+    "all_residuals": ["0", "0"],
+    "raw": "raw/fraction_recompute.combined.raw",
+    "stdout_sha256": "3ad976ef9c5279f0bbadac0a58e0c491f9fca0dac4da6301153f8123d1dd6b95",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined_sha256": "3ad976ef9c5279f0bbadac0a58e0c491f9fca0dac4da6301153f8123d1dd6b95"
+  },
+  "fresh_serial_replay": {
+    "ordering": ["python oracle", "Julia current D test"],
+    "python_oracle": {
+      "command": "python test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 61736,
+      "start_utc": "2026-09-16T09:18:19.1747474Z",
+      "end_utc": "2026-09-16T09:18:19.7767979Z",
+      "exit_code": 0,
+      "stdout": "raw/python_oracle.stdout.raw",
+      "stderr": "raw/python_oracle.stderr.raw",
+      "combined": "raw/python_oracle.combined.raw",
+      "stdout_sha256": "94b4f5a43a37c6fab2bcafeec25bab744be2f359180849f299d59dfaec318615",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "94b4f5a43a37c6fab2bcafeec25bab744be2f359180849f299d59dfaec318615",
+      "artifact_map": {"determinant": "3", "solution": ["2/3", "1/3"], "residual": ["0", "0"], "identity_cell_count": 8}
+    },
+    "julia_tests": {
+      "command": "julia --startup-file=no --history-file=no --color=no test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 104640,
+      "start_utc": "2026-09-16T09:18:38.0849659Z",
+      "end_utc": "2026-09-16T09:18:57.1585385Z",
+      "exit_code": 0,
+      "stdout": "raw/julia_tests.stdout.raw",
+      "stderr": "raw/julia_tests.stderr.raw",
+      "combined": "raw/julia_tests.combined.raw",
+      "stdout_sha256": "e3e931edca7e93929e0421e2acea5538ba18949abc60d8a2fa5fb8d16347dba3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "e3e931edca7e93929e0421e2acea5538ba18949abc60d8a2fa5fb8d16347dba3",
+      "tests": {"passed": 110, "total": 110}
+    }
+  },
+  "binding_gap_probe": {
+    "script": "binding_gap_probe.jl",
+    "script_sha256": "24234ec20b225e2ec162c4d0d50ae9ce2a4e88fa614efa128c1f00495cefd665",
+    "command": "julia --startup-file=no --history-file=no --color=no docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/independent_review_r1/binding_gap_probe.jl",
+    "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "pid": 89492,
+    "start_utc": "2026-09-16T09:23:25.0072391Z",
+    "end_utc": "2026-09-16T09:23:30.9377425Z",
+    "exit_code": 0,
+    "raw": "raw/binding_gap_probe.combined.raw",
+    "stdout_sha256": "db9ed5c212372160ec348066f0424abcb2059c8fadaf8056476dfb2fe6cf529e",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined_sha256": "db9ed5c212372160ec348066f0424abcb2059c8fadaf8056476dfb2fe6cf529e",
+    "observed": "right_source_owner_bypass_valid=true failures=0"
+  },
+  "historical_execution_separation": {
+    "pid_86500": {"exit": 1, "class": "harness_macro_syntax_failure"},
+    "pid_80804": {"exit": 1, "class": "test_expectation_failure", "result": "106 pass, 4 fail, 1 error"},
+    "pid_63524": {"exit": 0, "result": "111/111", "status": "superseded", "test_sha256": "cf303ac006c7f2dd47f73487015a08dd27d376875065114b3b759ab63c828d2e"},
+    "pid_24296": {"exit": 0, "result": "111/111", "status": "old_superseded"},
+    "current_integration": {"result": "110/110 twice", "test_sha256": "92cd4069d97c54a297dd00ab3a85a4fc9a0fc39458b744d57bb046e76dc75d88"},
+    "wrapper_preflight": {"pids": [44132, 52116], "status": "non_counted", "cause": "PowerShell $args automatic variable collision"}
+  },
+  "static_audit": {
+    "isolated_include_only": true,
+    "direct_exact_2x2_only": true,
+    "production_pde_provider_candidate_invocation": false,
+    "claim_boundary": "manufactured_coupled_solve_control/screen_only"
+  },
+  "finding": {
+    "code": "binding_validator_bypass",
+    "severity": "acceptance_blocking",
+    "source_lines": "366-412",
+    "required_repair": ["revalidate both nested M4-C controls", "compare right-side owner bindings", "validate per-cell equation/source/conservation bindings", "verify grid_counts identity", "add direct-constructor regression tests"]
+  },
+  "shared_tree": {"shared_entry_registry_project_manifest_changed_by_review": false, "preexisting_spatial_runtime_dirty_preserved": true},
+  "formal_credit": [],
+  "not_closed_or_credited": ["UP2", "B00", "B04", "R01-R10", "L4", "parent_goal"],
+  "parent_closed": false,
+  "formal_reentry": ["T0", "authority recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"]
+}

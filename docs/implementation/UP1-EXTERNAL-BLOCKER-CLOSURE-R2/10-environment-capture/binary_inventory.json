@@ -1,0 +1,371 @@
+{
+    "schema":  "UP1.R2.binary-inventory.v1",
+    "task_id":  "UP1-EXTERNAL-BLOCKER-CLOSURE-R2/W3-10-environment-capture",
+    "status":  "observed_not_candidate_bound",
+    "observed_utc":  "2026-09-16T17:47:52.4333586Z",
+    "candidate_ref":  null,
+    "authority_ref":  {
+                          "state":  "typed_absent",
+                          "value":  null
+                      },
+    "binaries":  [
+                     {
+                         "name":  "git",
+                         "status":  "observed_not_candidate_bound",
+                         "path":  "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+                         "version":  "2.51.0.windows.2",
+                         "sha256":  "ee3d2a38093c3680745a5c973488f5bb78a16f010145d5cdc7470a7395c9e7e8",
+                         "bytes":  46480,
+                         "last_write_time_utc":  "2025-09-29T13:50:42.0000000Z",
+                         "publisher":  {
+                                           "company_name":  "The Git Development Community",
+                                           "product_name":  "Git",
+                                           "product_version":  "2.51.0.windows.2",
+                                           "file_version":  "2.51.0.windows.2",
+                                           "legal_copyright":  ""
+                                       },
+                         "signature":  {
+                                           "status":  "Valid",
+                                           "status_message":  "Signature verified.",
+                                           "signer_subject":  "CN=Johannes Schindelin, O=Johannes Schindelin, S=Nordrhein-Westfalen, C=DE",
+                                           "signer_issuer":  "CN=Sectigo Public Code Signing CA R36, O=Sectigo Limited, C=GB",
+                                           "signer_thumbprint":  "3EB14A3AEF84B7153E139397F0A49E2FAC662B0E",
+                                           "not_before_utc":  "2023-05-06T00:00:00.0000000Z",
+                                           "not_after_utc":  "2026-05-05T23:59:59.0000000Z"
+                                       },
+                         "download_origin":  null,
+                         "build_recipe":  null,
+                         "sbom":  null,
+                         "license":  null,
+                         "candidate_ref":  null,
+                         "authority_ref":  null,
+                         "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                         "provenance_owner":  "publisher/distributor or environment owner",
+                         "authoritative_source":  "signed publisher provenance ledger",
+                         "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                     },
+                     {
+                         "name":  "julia",
+                         "status":  "observed_not_candidate_bound",
+                         "path":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+                         "version":  "1.10.5",
+                         "sha256":  "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad",
+                         "bytes":  169744,
+                         "last_write_time_utc":  "2024-08-27T12:09:36.0000000Z",
+                         "publisher":  {
+                                           "company_name":  "JuliaLang",
+                                           "product_name":  "Julia",
+                                           "product_version":  "1.10.5",
+                                           "file_version":  "1.10.5",
+                                           "legal_copyright":  "(c) 2009-2021 Julia Language"
+                                       },
+                         "signature":  {
+                                           "status":  "Valid",
+                                           "status_message":  "Signature verified.",
+                                           "signer_subject":  "CN=\"JuliaHub, Inc.\", O=\"JuliaHub, Inc.\", L=CAMBRIDGE, S=Massachusetts, C=US",
+                                           "signer_issuer":  "CN=Microsoft ID Verified CS AOC CA 01, O=Microsoft Corporation, C=US",
+                                           "signer_thumbprint":  "B58709E098C15341582C114565F70C27D64B8CA8",
+                                           "not_before_utc":  "2024-08-27T11:49:08.0000000Z",
+                                           "not_after_utc":  "2024-08-30T11:49:08.0000000Z"
+                                       },
+                         "download_origin":  null,
+                         "build_recipe":  null,
+                         "sbom":  null,
+                         "license":  null,
+                         "candidate_ref":  null,
+                         "authority_ref":  null,
+                         "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                         "provenance_owner":  "publisher/distributor or environment owner",
+                         "authoritative_source":  "signed publisher provenance ledger",
+                         "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                     },
+                     {
+                         "name":  "python",
+                         "status":  "observed_not_candidate_bound",
+                         "path":  "D:\\Users\\Newman\\anaconda3\\python.exe",
+                         "version":  "3.13.5",
+                         "sha256":  "388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a",
+                         "bytes":  104264,
+                         "last_write_time_utc":  "2025-06-12T16:54:22.5045220Z",
+                         "publisher":  {
+                                           "company_name":  "Python Software Foundation",
+                                           "product_name":  "Python",
+                                           "product_version":  "3.13.5",
+                                           "file_version":  "3.13.5",
+                                           "legal_copyright":  "Copyright © 2001-2024 Python Software Foundation. Copyright © 2000 BeOpen.com. Copyright © 1995-2001 CNRI. Copyright © 1991-1995 SMC."
+                                       },
+                         "signature":  {
+                                           "status":  "Valid",
+                                           "status_message":  "Signature verified.",
+                                           "signer_subject":  "CN=\"Anaconda, Inc.\", O=\"Anaconda, Inc.\", L=Austin, S=Texas, C=US, SERIALNUMBER=5073497, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "signer_issuer":  "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O=\"DigiCert, Inc.\", C=US",
+                                           "signer_thumbprint":  "5EC10F389456AEF82F7EC54427FC29D6A7A0128D",
+                                           "not_before_utc":  "2024-03-13T00:00:00.0000000Z",
+                                           "not_after_utc":  "2026-03-12T23:59:59.0000000Z"
+                                       },
+                         "download_origin":  null,
+                         "build_recipe":  null,
+                         "sbom":  null,
+                         "license":  null,
+                         "candidate_ref":  null,
+                         "authority_ref":  null,
+                         "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                         "provenance_owner":  "publisher/distributor or environment owner",
+                         "authoritative_source":  "signed publisher provenance ledger",
+                         "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                     },
+                     {
+                         "name":  "openssl",
+                         "status":  "observed_not_candidate_bound",
+                         "path":  "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe",
+                         "version":  "3.0.18",
+                         "sha256":  "2e081772a6cf076e43cd9a1fda5f26cfe5dd55d3e11dd1019081da4878c8ea5b",
+                         "bytes":  733512,
+                         "last_write_time_utc":  "2025-10-03T11:21:54.4411699Z",
+                         "publisher":  {
+                                           "company_name":  "The OpenSSL Project, https://www.openssl.org/",
+                                           "product_name":  "The OpenSSL Toolkit",
+                                           "product_version":  "3.0.18",
+                                           "file_version":  "3.0.18",
+                                           "legal_copyright":  "Copyright 1998-2025 The OpenSSL Authors. All rights reserved."
+                                       },
+                         "signature":  {
+                                           "status":  "Valid",
+                                           "status_message":  "Signature verified.",
+                                           "signer_subject":  "CN=\"Anaconda, Inc.\", O=\"Anaconda, Inc.\", L=Austin, S=Texas, C=US, SERIALNUMBER=5073497, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "signer_issuer":  "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O=\"DigiCert, Inc.\", C=US",
+                                           "signer_thumbprint":  "5EC10F389456AEF82F7EC54427FC29D6A7A0128D",
+                                           "not_before_utc":  "2024-03-13T00:00:00.0000000Z",
+                                           "not_after_utc":  "2026-03-12T23:59:59.0000000Z"
+                                       },
+                         "download_origin":  null,
+                         "build_recipe":  null,
+                         "sbom":  null,
+                         "license":  null,
+                         "candidate_ref":  null,
+                         "authority_ref":  null,
+                         "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                         "provenance_owner":  "publisher/distributor or environment owner",
+                         "authoritative_source":  "signed publisher provenance ledger",
+                         "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                     }
+                 ],
+    "up1_lightweight_chain_interpreters":  [
+                                               {
+                                                   "name":  "julia",
+                                                   "status":  "observed_not_candidate_bound",
+                                                   "path":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+                                                   "version":  "1.10.5",
+                                                   "sha256":  "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad",
+                                                   "bytes":  169744,
+                                                   "last_write_time_utc":  "2024-08-27T12:09:36.0000000Z",
+                                                   "publisher":  {
+                                                                     "company_name":  "JuliaLang",
+                                                                     "product_name":  "Julia",
+                                                                     "product_version":  "1.10.5",
+                                                                     "file_version":  "1.10.5",
+                                                                     "legal_copyright":  "(c) 2009-2021 Julia Language"
+                                                                 },
+                                                   "signature":  {
+                                                                     "status":  "Valid",
+                                                                     "status_message":  "Signature verified.",
+                                                                     "signer_subject":  "CN=\"JuliaHub, Inc.\", O=\"JuliaHub, Inc.\", L=CAMBRIDGE, S=Massachusetts, C=US",
+                                                                     "signer_issuer":  "CN=Microsoft ID Verified CS AOC CA 01, O=Microsoft Corporation, C=US",
+                                                                     "signer_thumbprint":  "B58709E098C15341582C114565F70C27D64B8CA8",
+                                                                     "not_before_utc":  "2024-08-27T11:49:08.0000000Z",
+                                                                     "not_after_utc":  "2024-08-30T11:49:08.0000000Z"
+                                                                 },
+                                                   "download_origin":  null,
+                                                   "build_recipe":  null,
+                                                   "sbom":  null,
+                                                   "license":  null,
+                                                   "candidate_ref":  null,
+                                                   "authority_ref":  null,
+                                                   "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                                                   "provenance_owner":  "publisher/distributor or environment owner",
+                                                   "authoritative_source":  "signed publisher provenance ledger",
+                                                   "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                                               },
+                                               {
+                                                   "name":  "python",
+                                                   "status":  "observed_not_candidate_bound",
+                                                   "path":  "D:\\Users\\Newman\\anaconda3\\python.exe",
+                                                   "version":  "3.13.5",
+                                                   "sha256":  "388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a",
+                                                   "bytes":  104264,
+                                                   "last_write_time_utc":  "2025-06-12T16:54:22.5045220Z",
+                                                   "publisher":  {
+                                                                     "company_name":  "Python Software Foundation",
+                                                                     "product_name":  "Python",
+                                                                     "product_version":  "3.13.5",
+                                                                     "file_version":  "3.13.5",
+                                                                     "legal_copyright":  "Copyright © 2001-2024 Python Software Foundation. Copyright © 2000 BeOpen.com. Copyright © 1995-2001 CNRI. Copyright © 1991-1995 SMC."
+                                                                 },
+                                                   "signature":  {
+                                                                     "status":  "Valid",
+                                                                     "status_message":  "Signature verified.",
+                                                                     "signer_subject":  "CN=\"Anaconda, Inc.\", O=\"Anaconda, Inc.\", L=Austin, S=Texas, C=US, SERIALNUMBER=5073497, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                                                     "signer_issuer":  "CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O=\"DigiCert, Inc.\", C=US",
+                                                                     "signer_thumbprint":  "5EC10F389456AEF82F7EC54427FC29D6A7A0128D",
+                                                                     "not_before_utc":  "2024-03-13T00:00:00.0000000Z",
+                                                                     "not_after_utc":  "2026-03-12T23:59:59.0000000Z"
+                                                                 },
+                                                   "download_origin":  null,
+                                                   "build_recipe":  null,
+                                                   "sbom":  null,
+                                                   "license":  null,
+                                                   "candidate_ref":  null,
+                                                   "authority_ref":  null,
+                                                   "provenance_absence_code":  "PROVENANCE_ATTESTATION_NOT_SUPPLIED",
+                                                   "provenance_owner":  "publisher/distributor or environment owner",
+                                                   "authoritative_source":  "signed publisher provenance ledger",
+                                                   "recovery_condition":  "Provide independently verifiable origin, build recipe, SBOM, license, signature/trust chain and candidate import binding."
+                                               }
+                                           ],
+    "policy":  {
+                   "local_file_hash_and_authenticode_are_observation_only":  true,
+                   "missing_origin_recipe_sbom_license_or_candidate_binding":  "typed_absent",
+                   "no_download_or_install":  {
+
+                                              }
+               },
+    "command_records":  [
+                            {
+                                "name":  "git_version",
+                                "command":  "D:\\008-RobotMaster\\Git\\cmd\\git.exe --version",
+                                "executable":  "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+                                "arguments":  [
+                                                  "--version"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  88872,
+                                "started_utc":  "2026-09-16T17:47:46.5808011Z",
+                                "ended_utc":  "2026-09-16T17:47:46.6454847Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/git_version.stdout.raw",
+                                            "stderr":  "raw/git_version.stderr.raw",
+                                            "combined":  "raw/git_version.combined.raw",
+                                            "stdout_sha256":  "db917aa2b85fbcb0971f9e4ebaf1b2861b8dc26c1c970a9cf091bd4109346aed",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "db917aa2b85fbcb0971f9e4ebaf1b2861b8dc26c1c970a9cf091bd4109346aed"
+                                        }
+                            },
+                            {
+                                "name":  "julia_version",
+                                "command":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --version",
+                                "executable":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+                                "arguments":  [
+                                                  "--version"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  48032,
+                                "started_utc":  "2026-09-16T17:47:46.6506573Z",
+                                "ended_utc":  "2026-09-16T17:47:46.7100841Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/julia_version.stdout.raw",
+                                            "stderr":  "raw/julia_version.stderr.raw",
+                                            "combined":  "raw/julia_version.combined.raw",
+                                            "stdout_sha256":  "7004c5a9bd8fac6bbb2159a2a859acd38ef1adb0acfbf12f7ff09c9739a5316b",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "7004c5a9bd8fac6bbb2159a2a859acd38ef1adb0acfbf12f7ff09c9739a5316b"
+                                        }
+                            },
+                            {
+                                "name":  "python_version",
+                                "command":  "D:\\Users\\Newman\\anaconda3\\python.exe --version",
+                                "executable":  "D:\\Users\\Newman\\anaconda3\\python.exe",
+                                "arguments":  [
+                                                  "--version"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  61732,
+                                "started_utc":  "2026-09-16T17:47:46.7156531Z",
+                                "ended_utc":  "2026-09-16T17:47:46.7445756Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/python_version.stdout.raw",
+                                            "stderr":  "raw/python_version.stderr.raw",
+                                            "combined":  "raw/python_version.combined.raw",
+                                            "stdout_sha256":  "0fc277c607f29dba0321a8267cd42a095f85069b63c31f1401b6c66b9a30dd16",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "0fc277c607f29dba0321a8267cd42a095f85069b63c31f1401b6c66b9a30dd16"
+                                        }
+                            },
+                            {
+                                "name":  "openssl_version",
+                                "command":  "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe version -a",
+                                "executable":  "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe",
+                                "arguments":  [
+                                                  "version",
+                                                  "-a"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  108196,
+                                "started_utc":  "2026-09-16T17:47:46.7499195Z",
+                                "ended_utc":  "2026-09-16T17:47:46.7873648Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/openssl_version.stdout.raw",
+                                            "stderr":  "raw/openssl_version.stderr.raw",
+                                            "combined":  "raw/openssl_version.combined.raw",
+                                            "stdout_sha256":  "cf89705af6118986fb05080fb50189cb439b41ad6a8ea437ab2ef873ddaec345",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "cf89705af6118986fb05080fb50189cb439b41ad6a8ea437ab2ef873ddaec345"
+                                        }
+                            },
+                            {
+                                "name":  "python_runtime_sys",
+                                "command":  "D:\\Users\\Newman\\anaconda3\\python.exe -c import json,sys,platform; print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"implementation\":platform.python_implementation(),\"sys_path\":sys.path}, sort_keys=True))",
+                                "executable":  "D:\\Users\\Newman\\anaconda3\\python.exe",
+                                "arguments":  [
+                                                  "-c",
+                                                  "import json,sys,platform; print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"implementation\":platform.python_implementation(),\"sys_path\":sys.path}, sort_keys=True))"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  47988,
+                                "started_utc":  "2026-09-16T17:47:49.4398134Z",
+                                "ended_utc":  "2026-09-16T17:47:49.5289209Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/python_runtime_sys.stdout.raw",
+                                            "stderr":  "raw/python_runtime_sys.stderr.raw",
+                                            "combined":  "raw/python_runtime_sys.combined.raw",
+                                            "stdout_sha256":  "7fe763fa01ac738d4addcada951ee2504033ace1b41f2b3a60c4651825ecf9c0",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "7fe763fa01ac738d4addcada951ee2504033ace1b41f2b3a60c4651825ecf9c0"
+                                        }
+                            },
+                            {
+                                "name":  "julia_runtime_sys",
+                                "command":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --project=. -e println(Sys.BINDIR); println(VERSION); println.(LOAD_PATH)",
+                                "executable":  "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+                                "arguments":  [
+                                                  "--startup-file=no",
+                                                  "--project=.",
+                                                  "-e",
+                                                  "println(Sys.BINDIR); println(VERSION); println.(LOAD_PATH)"
+                                              ],
+                                "cwd":  "D:\\006-Programing\\LMC\\FusionConceptAI",
+                                "pid":  89208,
+                                "started_utc":  "2026-09-16T17:47:49.5329222Z",
+                                "ended_utc":  "2026-09-16T17:47:49.9035664Z",
+                                "exit_code":  0,
+                                "failure":  null,
+                                "raw":  {
+                                            "stdout":  "raw/julia_runtime_sys.stdout.raw",
+                                            "stderr":  "raw/julia_runtime_sys.stderr.raw",
+                                            "combined":  "raw/julia_runtime_sys.combined.raw",
+                                            "stdout_sha256":  "c1f72b58048aa7078c41ad6233f3240bb6edf072a8cb885a37160844d332a35e",
+                                            "stderr_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                            "combined_sha256":  "c1f72b58048aa7078c41ad6233f3240bb6edf072a8cb885a37160844d332a35e"
+                                        }
+                            }
+                        ]
+}

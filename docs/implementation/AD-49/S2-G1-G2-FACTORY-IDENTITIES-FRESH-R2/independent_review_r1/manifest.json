@@ -1,0 +1,26 @@
+{
+  "schema_version": "AD49-S2-independent-review-R1-manifest-v1",
+  "verdict": "pass_limited",
+  "review_status": "completed",
+  "root_acceptance_status": "pending",
+  "scope": "fresh S2 five products, serial real G1/G2 factory replay, focused tests, independent Python/hash/plan/scope audit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "baseline": {"temporal_role":"post_run_reconstructed_snapshot", "pre_run_baseline_present":false, "not_acceptance_evidence":true},
+  "replays": {
+    "replay_1_success": {"pid":95792, "exit_code":0, "identity_and_receipt_canonical_hashes_match":true},
+    "replay_2_success": {"pid":81992, "exit_code":0, "identity_and_receipt_canonical_hashes_match":true},
+    "strictly_serial": true
+  },
+  "focused": {"six_serial_tests_exit_0":true, "plan_validator_exit_0":true, "scoped_diff_check_exit_0":true},
+  "formal_status": {"G1":"typed_absent", "G2":"typed_absent", "G2_mapping":"absent", "terminal_deferred":true, "no_publish":true},
+  "authority": {"source_authority":false, "trusted":false, "candidate_identity_created":false, "final_hash_created":false, "physical":false, "R01_R10":false, "L4":0},
+  "negative_controls_all_pass": true,
+  "frozen_five_products_unchanged": true,
+  "failed_history_disclosed": ["archive/failed_attempts/attempt_1_missing_load", "archive/failed_attempts/attempt_2_parse_error", "archive/failed_attempts/attempt_3_validation_pid_binding", "archive/failed_attempts/attempt_4_plan_validator_cwd", "raw/parse_gate_failed_attempt_1.json", "raw/parse_gate_process.json", "raw/parse_gate_v2_process.json", "raw/parse_gate_v3_process.json", "raw/parse_gate_v4_process.json", "raw/parse_gate_v5_process.json", "failed_validation_attempt_1.json"],
+  "independent_audit": {"result":"pass_limited", "checks":271, "exit_code":0, "path":"independent_audit_result.json"},
+  "final_hashes": {"path":"final_hashes.json", "reviewed_five_products_unchanged":true, "self_hash_excluded":true},
+  "cleanup_inventory": {"path":"cleanup_inventory.json", "review_owned_file_count":74, "pycache_residue":0, "staging_residue":0, "temporary_residue":0},
+  "final_json_and_scoped_diff": {"json_files":34, "json_parse_errors":0, "scoped_diff_exit":0},
+  "limits": ["software evidence only", "no trusted attestation", "no candidate/package/T0 identity", "no provider/physics/search/engineering/R01-R10/L4"],
+  "write_scope": "docs/implementation/AD-49/S2-G1-G2-FACTORY-IDENTITIES-FRESH-R2/independent_review_r1/**"
+}

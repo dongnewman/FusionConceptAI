@@ -1,0 +1,28 @@
+{
+  "schema": "UP1.R2.hygiene-audit.manifest.v1",
+  "status": "read_only_audit_complete",
+  "read_only": true,
+  "claim_ceiling": "hygiene_only",
+  "write_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/16-hygiene-audit/",
+  "baseline_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "files": ["audit.md","cleanup_candidates.json","process_snapshot.json","git_scope.json","raw/git_scope_summary.stdout.raw","raw/process_snapshot.stdout.raw","raw/temp_scan.stdout.raw","raw/r2_raw_ownership.stdout.raw","manifest.json","cleanup_inventory.json"],
+  "self_hash_exclusions": ["manifest.json","cleanup_inventory.json"],
+  "artifact_sha256": {
+    "audit.md": "b9690beb847d9b28fa7c45a94ead259abd8002e7652f8f1b07dca29e6fd50c7c",
+    "cleanup_candidates.json": "745472f18c322427049d247867aaa280d373e2ee0a375a740b914a601e369ff9",
+    "git_scope.json": "d05c552189ab150b4846f077a9f1adeea9d6db739c444696e405b97eebd7d45e",
+    "process_snapshot.json": "ebf67bddfe16105582797cf5932f392ffb7e2a49199b703c4bef3cf542da596a",
+    "raw/git_scope_summary.stdout.raw": "350e721d26033cadb072fb8758d6817fc22fb6248c718aa407bf7d54abc5f520",
+    "raw/process_snapshot.stdout.raw": "d8cc1ebd3768f434118d6ce992bbd251abdd1daa636f9e11d2b7873595d615dc",
+    "raw/r2_raw_ownership.stdout.raw": "30f70ba2e9b7ebfcb7b4174f68d68886b591a53dfa2d37e9d98edd453a3af642",
+    "raw/temp_scan.stdout.raw": "8a96cd8bf20a324f8bc106aab5c3b599ec382591404c63a116acc18b4a1e79ad"
+  },
+  "raw_pid_utc_exit_hash": {
+    "git_scope": {"pid":"not captured by read-only shell wrapper","utc":"2026-09-16T17:47:04.0645556Z","exit":0,"hash":"raw/git_scope_summary.stdout.raw"},
+    "process": {"pid":63328,"utc":"2026-09-16T17:44:36.3271574Z","exit":"unknown_for_transient; snapshot command exit=0","hash":"raw/process_snapshot.stdout.raw"},
+    "temp_scan": {"pid":"not captured by read-only shell wrapper","utc":"2026-09-16T17:48:16.1663167Z","exit":0,"hash":"raw/temp_scan.stdout.raw"},
+    "raw_ownership": {"pid":"not captured by read-only shell wrapper","utc":"2026-09-16T17:46:48.1789191Z","exit":0,"hash":"raw/r2_raw_ownership.stdout.raw"}
+  },
+  "no_mutation": true,
+  "no_gate_credit": true
+}

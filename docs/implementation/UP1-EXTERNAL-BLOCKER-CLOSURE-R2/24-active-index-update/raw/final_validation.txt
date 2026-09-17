@@ -1,0 +1,32 @@
+{
+  "task": "UP1 R2 active index update final validation",
+  "pid": 47456,
+  "utc": "2026-09-16T21:30:07.6593804Z",
+  "exit": 0,
+  "readme_sha256": "BBD78A0D3AF2578CA89FB502135E2B2855B203A4CFA017D2B403238F5DE4E349",
+  "decision_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-EXTERNAL-BLOCKER-CLOSURE-R2\\23-root-acceptance\\decision.md",
+  "checks": {
+    "manifest_json_parse": true,
+    "manifest_entries_match": true,
+    "manifest_entry_count": true,
+    "markdown_utf8": true,
+    "readme_up1_row_unique": true,
+    "link_exists": true,
+    "diff_has_one_up1_replacement": true,
+    "scope_status": true
+  },
+  "manifest_checks": [
+    {"path": "acceptance.md", "bytes_ok": true, "sha_ok": true},
+    {"path": "contract.md", "bytes_ok": true, "sha_ok": true},
+    {"path": "raw/after_validation.txt", "bytes_ok": true, "sha_ok": true},
+    {"path": "raw/before_capture.txt", "bytes_ok": true, "sha_ok": true},
+    {"path": "raw/diff.patch", "bytes_ok": true, "sha_ok": true},
+    {"path": "raw/final_validation.txt", "bytes_ok": true, "sha_ok": true},
+    {"path": "run_receipt.json", "bytes_ok": true, "sha_ok": true}
+  ],
+  "scoped_status": [
+    "?? docs/implementation/README.md",
+    "?? docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/",
+    "?? docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/24-active-index-update/"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "checks": {
+    "all_replay_bytes_identical": true,
+    "all_semantics": true,
+    "direct_validation_exit_zero": true,
+    "external_chain_material_missing": true,
+    "formal_product_count": true,
+    "g2_mapping_absent": true,
+    "implementation_atomic_publish_closed": true,
+    "implementation_replays_have_pid_utc_exit": true,
+    "manifest_gate": true,
+    "manifest_status": true,
+    "negative_controls_pass": true,
+    "no_julia_desc": true
+  },
+  "claims": {
+    "candidate_identity": false,
+    "engineering": false,
+    "final_hash": false,
+    "l4_credible_count": 0,
+    "mesh": false,
+    "physics": false,
+    "provider": false,
+    "r01_r10": false,
+    "search": false,
+    "solver": false,
+    "source_authority": false,
+    "trusted_attestation": false
+  },
+  "external_trust_material_candidates": [],
+  "formal_products": [
+    {
+      "bytes": 4554,
+      "path": "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_v1.json",
+      "sha256": "6d1d0971a87a1ffe6fe549affb4ec38b680453dbd7f33ebe94b89db0264c2265"
+    },
+    {
+      "bytes": 4588,
+      "path": "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_receipt.json",
+      "sha256": "8c8d7266ff8535d2d3c9baae7f210c670c04312394758b8b7d3a70a1d39712c5"
+    },
+    {
+      "bytes": 4569,
+      "path": "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_v1.json",
+      "sha256": "542be978caa3fd1286e09363bced9a0be79ea3a7fcbbf583d62f1599e8594df6"
+    },
+    {
+      "bytes": 4603,
+      "path": "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_receipt.json",
+      "sha256": "746c22145fae9f91f69759b6d79ed25498659f8f44cb742b2017ab1318d99e7f"
+    }
+  ],
+  "gate": "blocked_external_trust_root_and_source_closure",
+  "implementation_replay_evidence": [
+    {
+      "atomic_publish": null,
+      "bytes": 620,
+      "exit_code": 0,
+      "path": "docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/archive/raw/replay_1_v4_process.json",
+      "pid": 95244,
+      "sha256": "a60e1ab264cf27a80e5cd93541a5e3c0fa7b120712faa3ce7d4be5215f6e19d3",
+      "utc_end": "2026-09-15T19:15:49.690477Z",
+      "utc_start": "2026-09-15T19:15:49.370838Z"
+    },
+    {
+      "atomic_publish": null,
+      "bytes": 620,
+      "exit_code": 0,
+      "path": "docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/archive/raw/replay_2_v4_process.json",
+      "pid": 99652,
+      "sha256": "4ec7bdfcaf718e3025261df03518940645dff8d79120458bda8d2b7582dcdad7",
+      "utc_end": "2026-09-15T19:15:49.977758Z",
+      "utc_start": "2026-09-15T19:15:49.691361Z"
+    }
+  ],
+  "schema_version": "AD49-S3-independent-review-r1-manifest-v1",
+  "self_hash_excluded": true,
+  "semantic_checks": [
+    {
+      "all_claim_flags_false": true,
+      "axes_bound": true,
+      "external_chain_all_false": true,
+      "forbidden_complete": true,
+      "head_exact": true,
+      "no_publish": true,
+      "path": "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_v1.json",
+      "present_result_permitted_false": true,
+      "reason_exact": true,
+      "result_ok": true,
+      "source_head_absent": true,
+      "terminal_deferred": true,
+      "typed_absent": true
+    },
+    {
+      "all_claim_flags_false": true,
+      "axes_bound": true,
+      "external_chain_all_false": true,
+      "forbidden_complete": true,
+      "head_exact": true,
+      "no_publish": true,
+      "path": "docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_receipt.json",
+      "present_result_permitted_false": true,
+      "reason_exact": true,
+      "result_ok": true,
+      "source_head_absent": true,
+      "terminal_deferred": true,
+      "typed_absent": true
+    },
+    {
+      "all_claim_flags_false": true,
+      "axes_bound": true,
+      "external_chain_all_false": true,
+      "forbidden_complete": true,
+      "head_exact": true,
+      "no_publish": true,
+      "path": "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_v1.json",
+      "present_result_permitted_false": true,
+      "reason_exact": true,
+      "result_ok": true,
+      "source_head_absent": true,
+      "terminal_deferred": true,
+      "typed_absent": true
+    },
+    {
+      "all_claim_flags_false": true,
+      "axes_bound": true,
+      "external_chain_all_false": true,
+      "forbidden_complete": true,
+      "head_exact": true,
+      "no_publish": true,
+      "path": "docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_receipt.json",
+      "present_result_permitted_false": true,
+      "reason_exact": true,
+      "result_ok": true,
+      "source_head_absent": true,
+      "terminal_deferred": true,
+      "typed_absent": true
+    }
+  ],
+  "task_id": "AD49-S3-TRUSTED-G1-G2-SOURCE-IDENTITY",
+  "verdict": "pass_limited",
+  "write_scope": "independent_review_r1/**"
+}

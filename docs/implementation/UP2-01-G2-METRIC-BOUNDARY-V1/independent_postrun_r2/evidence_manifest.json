@@ -1,0 +1,21 @@
+{
+  "manifest_version": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-postrun-r2-evidence-v1",
+  "reviewer": "independent_luna_high_postrun",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "runtime_receipt": {"run_json_sha256": "c0fb8c4681fb2af423b4ba7309dc4f0bef14a60562dc75afca08f726d899881a", "pid": 50816, "exit_code": 0, "dirty_before": 300, "dirty_after": 300, "julia_desc_before": 0, "julia_desc_after": 0},
+  "raw_output_hashes": {"stdout": {"bytes": 980, "sha256": "2fe76c7c6a7264f5449b06174f2d3a18e5f123eab581f5784c5d442e7da84a44"}, "stderr": {"bytes": 0, "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "input_hashes_verified": true,
+  "target_hashes": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 30773, "sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"bytes": 11208, "sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db"},
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": {"bytes": 3974, "sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5"},
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": {"bytes": 7104, "sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31"}
+  },
+  "test_summary": {"chart_metric_determinant": "20/20", "candidate_mesh_face_identity": "10/10", "source_edit_identity": "5/5", "contradictions_deferred": "14/14", "unit_exponent_algebra": "15/15", "total": "64/64"},
+  "marker_semantics": {"raw_marker": "G2_METRIC_BOUNDARY_V1_JULIA_OR_DESC_EXECUTED=false", "is_fixture_or_static_claim": true, "must_not_be_used_as_launcher_nonexecution_proof": true, "launcher_execution_proof": "run.json PID/UTC/exit"},
+  "credit_boundary": {"software_test": true, "compiler": false, "provider": false, "mesh_execution": false, "physical": false, "B00": false, "B04": false, "R01_R10": false},
+  "self_hash_excluded": true
+}
+

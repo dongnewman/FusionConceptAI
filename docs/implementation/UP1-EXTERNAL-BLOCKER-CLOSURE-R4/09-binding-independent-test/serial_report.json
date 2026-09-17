@@ -1,0 +1,51 @@
+{
+  "authority": {
+    "authoritative": false,
+    "status": "local_test_only"
+  },
+  "byte_identical": false,
+  "claim_ceiling": "two serial local test runs; raw/git/hash observations do not establish external authority or close a formal UP1 gate",
+  "formal_credit": "none",
+  "no_publish": true,
+  "normalized_output_identical": true,
+  "record_kind": "up1_external_source_axis_binding_r4_serial_independent_test",
+  "runs": [
+    {
+      "combined_sha256": "543e0d60f833f8ded26b3ff8ab27f7e353bf104b8750259824fbd720996192b1",
+      "ended_utc": "2026-09-17T01:36:46.798Z",
+      "exit_code": 0,
+      "index": 1,
+      "normalized_stderr_sha256": "2843ff6b1415fcb95b7f77ecb3fe46407807f6efd5ad4d35b84e626e8cd467ee",
+      "pid": 86576,
+      "started_utc": "2026-09-17T01:36:45.166Z",
+      "stderr_bytes": 3175,
+      "stderr_sha256": "8543d4c5aa489a7abeaf19142080c4b39fb6f744e96371c4fa2d62e500bf0e23",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "combined_sha256": "d856aa94bbf81a7da2e8c3b6cd683c385997098534cd022ad9545c30c4dba343",
+      "ended_utc": "2026-09-17T01:36:48.469Z",
+      "exit_code": 0,
+      "index": 2,
+      "normalized_stderr_sha256": "2843ff6b1415fcb95b7f77ecb3fe46407807f6efd5ad4d35b84e626e8cd467ee",
+      "pid": 101308,
+      "started_utc": "2026-09-17T01:36:46.801Z",
+      "stderr_bytes": 3175,
+      "stderr_sha256": "b5880eac5b19dba686e8e1cb114f5292203e2eecc6407956bfaa5de22bd769e2",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "schema": "UP1.external-source-axis-binding-r4-serial-test.v1",
+  "scope": [
+    "raw bytes/hash/locator and source identity",
+    "HEAD/tree/dirty/patch/untracked/submodule evidence",
+    "unique four-axis coverage and domain-separated digests",
+    "candidate/run/authority references and reverse-edge joins",
+    "duplicate key, float, canonical preimage, hash/ref/axis drift adversaries",
+    "TEST_ONLY non_evidence, typed absence, formal_credit none, no_publish true"
+  ],
+  "serial": true,
+  "status": "pass_limited"
+}

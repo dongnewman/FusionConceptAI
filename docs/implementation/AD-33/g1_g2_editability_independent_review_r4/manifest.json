@@ -1,0 +1,142 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-independent-review-r4",
+  "record_kind": "independent_repair_review",
+  "decision_id": "AD-33",
+  "review_id": "g1_g2_editability_independent_review_r4",
+  "review_date": "2026-09-15",
+  "reviewer": "different_gpt-5.6-luna_high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "read_only_review": true,
+  "execution": {
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "launcher_added": false
+  },
+  "reviewed_records": {
+    "repair_r3_proposal": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r3/revised_proposal.md",
+      "sha256": "0e2d513ef488ce38836fc81139bfd68e395268e4250683a604d2bd69a406aced"
+    },
+    "repair_r3_manifest": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r3/manifest.json",
+      "sha256": "75f773202d5a9225dd85c926c88acaac3f2b2a7e6577720502f7382f384b8689"
+    },
+    "r3_review_report": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_independent_review_r3/report.md",
+      "sha256": "3ef205e5d033d844c611b4449bb5b25035b7438a78563d126affe30682824625"
+    },
+    "r3_review_manifest": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_independent_review_r3/manifest.json",
+      "sha256": "c9ba265cb44a8bb6c498eaab20337ded4ddc080d8f3a82d363fbc1c86619ebd6"
+    }
+  },
+  "findings": [
+    {
+      "id": "PREREQ",
+      "area": "shared_prerequisite_and_dag",
+      "status": "pass",
+      "detail": "The shared prerequisite is additive, acyclic, parallel with T0, and does not unlock T1/T2 or create machine nodes."
+    },
+    {
+      "id": "PRESENT_PARENT",
+      "area": "present_parent_baseline_binding",
+      "status": "pass",
+      "detail": "Present fields, source-backed factory receipt, candidate binding, fixed parent hash domain and recomputation are explicit."
+    },
+    {
+      "id": "ABSENT_PARENT",
+      "area": "absent_parent_baseline_binding",
+      "status": "pass",
+      "detail": "Absent branch has no parent/ref/hash/baseline/source-locator/factory placeholder and derives a separate identity-bound absence digest."
+    },
+    {
+      "id": "CHILD_KEYS",
+      "area": "present_absent_child_keys",
+      "status": "pass",
+      "detail": "Present keys require present parent binding; absent keys contain only requested identity plus parent absence digest and have no parent/baseline fields."
+    },
+    {
+      "id": "ABSENT_SCAFFOLD",
+      "area": "typed_absent_state_operation",
+      "status": "pass",
+      "detail": "Absent state is terminal_deferred, source replacement is forbidden, and rejected operations preserve bytes/SHA/history."
+    },
+    {
+      "id": "FRESH_PUBLICATION",
+      "area": "absent_to_present",
+      "status": "pass_with_gate",
+      "detail": "Promotion is a fresh source publication and identity review, never CAS; present branch remains blocked without a real V1 receipt."
+    },
+    {
+      "id": "SCOPE",
+      "area": "exact_write_scope",
+      "status": "changes_requested",
+      "detail": "The shared prerequisite uses docs/implementation/AD-33/g1_g2_editability_audit/**, which is broad enough to overwrite historical AD-33 reports and repairs."
+    },
+    {
+      "id": "BOUNDARY",
+      "area": "claim_boundary",
+      "status": "pass",
+      "detail": "Actual, physical, provider, mesh, engineering, B00/B04 and R01-R10 credits remain false; machine nodes remain uncreated/accepted=false."
+    }
+  ],
+  "decision": {
+    "pass_limited_now": false,
+    "pass_limited_after_scope_repair": true,
+    "dispatchable_after_scope_repair": "shared typed-absent baseline-binding scaffold only",
+    "present_child_dispatch": false,
+    "present_child_gate": "real source-backed V1 factory input and declaration receipt, fresh identity evidence, independent review"
+  },
+  "dependency_audit": {
+    "shared_prerequisite_depends_on": ["UP1-01", "UP1-02", "UP1-03", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+    "shared_parallel_with": ["T0"],
+    "shared_must_not_depend_on": ["T0", "T1", "T2", "UP1-04A-VNEXT-G1-MECHANISM-EDIT-PREC", "UP1-04A-VNEXT-G2-GEOMETRY-EDIT-PREC"],
+    "g1_depends_on_shared_and_own_v1": true,
+    "g2_depends_on_shared_and_own_v1": true,
+    "cross_sibling_dependency": false,
+    "t1_unlocked": false,
+    "t2_unlocked": false,
+    "core_modified": false,
+    "task_manifest_modified": false,
+    "source_test_modified": false,
+    "old_receipts_modified": false
+  },
+  "required_scope_repair": {
+    "current_broad_path": "docs/implementation/AD-33/g1_g2_editability_audit/**",
+    "required_dedicated_path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/",
+    "preserve_read_only": ["docs/implementation/AD-33/g1_g2_editability_audit/", "docs/implementation/AD-33/g1_g2_editability_independent_review_r4/"]
+  },
+  "credits": {
+    "shared_prerequisite": false,
+    "g1_child": false,
+    "g2_child": false,
+    "implementation": false,
+    "actual_child": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false
+  },
+  "write_scope": [
+    "docs/implementation/AD-33/g1_g2_editability_independent_review_r4/report.md",
+    "docs/implementation/AD-33/g1_g2_editability_independent_review_r4/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

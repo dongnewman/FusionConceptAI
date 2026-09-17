@@ -1,0 +1,50 @@
+{
+  "schema": "m4-scope-decision-r1-independent-review-r2",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1",
+  "review_kind": "independent_luna_r2_repair_review",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "write_scope": "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r2/**",
+  "checks": {
+    "m1_exact_paths_hashes_review_pending_not_accepted": true,
+    "external_trust_10_typed_absence_owner_recovery_wakeup": true,
+    "unchanged_input_forbids_s3_or_ad_repeat": true,
+    "four_roles_pairwise_distinct": true,
+    "reviewer_non_combining": true,
+    "formal_reentry_required_order": false,
+    "validation_receipt_indexes_final_json_parse_and_scope_git_status": true,
+    "indexed_sidecar_hashes_match_disk": true,
+    "author_product_count_exactly_3": true,
+    "author_product_hashes_match_final_hashes": false,
+    "repair_failure_history_retained": true,
+    "cleanup_exact_scope": true,
+    "julia_solver_not_run": true,
+    "a_not_dispatched": true
+  },
+  "observed_product_hashes": {
+    "decision.md": {"bytes": 10915, "sha256": "0fe6944083fd713b39d47f0fc7fa94196598b61b92c5c4f29250020f6ff3ecdd"},
+    "manifest.json": {"bytes": 6685, "sha256": "110efe971b09c120a7518a37857c134fb44d2a5cc5787b5b483511005dbdfa5d"},
+    "cleanup_inventory.json": {"bytes": 2268, "sha256": "9b18214e82b7c9ae50e06cc2825a8cf31e51d643914e48fe150790267fd84d66"}
+  },
+  "recorded_final_hashes_manifest_entry": {"bytes": 6687, "sha256": "da63ebd54dbae7dfd4f91cbd3308c052d99a4db820df10b094d5df98d86d04df"},
+  "formal_reentry_observed": "fresh G1/G2/G3 -> candidate identity -> T0 -> authority recheck -> T1 -> T2 -> aggregate -> UP2-00 -> UP1-04 -> UP1-04B(50+checker+two-process) -> B00 -> B04 -> solver input hashes -> UP2-01",
+  "formal_reentry_required": "fresh G1/G2/G3 -> candidate identity -> T0 -> authority recheck -> T1 -> T2 -> aggregate -> UP2-00 -> UP1-04B(50+checker+two-process) -> UP1-04 -> UP2-01",
+  "m1_status": "review_pending",
+  "m1_accepted_by_decision": false,
+  "claims": {
+    "manufactured_control": false,
+    "screen_only": true,
+    "candidate_identity": false,
+    "trusted_attestation": false,
+    "provider_mesh_solver_engineering_physics_search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "changes_requested": [
+    "Correct formal_reentry ordering so UP1-04B precedes UP1-04.",
+    "Recompute archive/final_hashes.json for the current manifest.json bytes/hash and preserve the repair receipt."
+  ]
+}

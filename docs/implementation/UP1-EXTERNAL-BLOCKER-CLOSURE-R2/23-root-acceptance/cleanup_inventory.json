@@ -1,0 +1,11 @@
+{
+  "schema":"UP1-R2.root-acceptance.cleanup-inventory.v1",
+  "scope":"UP1 R2 evidence hygiene only",
+  "completed":{"pyc_removed":32,"empty_directories_removed":12},
+  "protected":{"unrelated_dirty_worktree":true,"component_and_review_evidence":true,"old_collection_exit2":true,"out_of_scope_caches":true,"unrelated_processes":true},
+  "not_deleted":["docs evidence outside 23-root-acceptance","historical failure receipts","pre-existing probe.tmp.err/out"],
+  "relocation":{"from":"D:/006-Programing/LMC/docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance","to":"D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance","operation":"Move-Item after target-absent check","source_now_exists":false,"target_exists":true,"recoverability":"reversible by moving the complete directory back; no file deletion performed"},
+  "empty_parent_cleanup":{"checked":true,"removed":[],"reason":"outer R2 parent still contains other directories; no empty parent was deleted"},
+  "ownership":"this acceptance task owns only docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/",
+  "destructive_action":"none"
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "UP1.external-blocker-closure-R2.contract-freeze-independent-review.manifest.v1",
+  "status": "pass_limited",
+  "decision": "pass_limited",
+  "reviewer": {"agent": "/root/up1r2_contract_review", "model": "gpt-5.6-luna", "reasoning_effort": "high", "different_from_owner": true},
+  "claim_ceiling": "contract_software_preparation_only",
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/contract-freeze-independent-review-r1/**",
+  "exact_set": [
+    "findings.json",
+    "review.md",
+    "verification.json",
+    "static_contract_freeze_validator.py",
+    "raw/static_contract_freeze_validator.stdout.raw",
+    "raw/static_contract_freeze_validator.stderr.raw",
+    "raw/static_contract_freeze_validator_r2.stdout.raw",
+    "raw/static_contract_freeze_validator_r2.stderr.raw",
+    "raw/static_contract_freeze_validator_r3.stdout.raw",
+    "raw/static_contract_freeze_validator_r3.stderr.raw",
+    "manifest.json",
+    "cleanup_inventory.json"
+  ],
+  "self_hash_exclusion": ["manifest.json", "cleanup_inventory.json"],
+  "product_hashes": {
+    "findings.json": "998dfee2eabe131177eca464ee90947d69e149853ff14af774eee70cb131285c",
+    "review.md": "900a2e88ffd216ecc87638954f0bf45bff31f7fd25b1e90167507e334e90359f",
+    "verification.json": "3f47daab4326e21597721873077a8132aa03ade67da8205fbb3fbaac6359034d",
+    "static_contract_freeze_validator.py": "a252ccdfcb4bce1d87752939de2af7af17c24e594b477f5555271c39182c64f5",
+    "raw/static_contract_freeze_validator.stdout.raw": "d58baf5d91db6205cc7b780bd9f06925de02ee583aff89dc779ef51917188b8d",
+    "raw/static_contract_freeze_validator.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/static_contract_freeze_validator_r2.stdout.raw": "e86b5ecb71df504ccd6d74d33786096e29876a73ba9019f5b1f96287553e7b8b",
+    "raw/static_contract_freeze_validator_r2.stderr.raw": "cb4077744f554e646f1ab766cf3367ccb8c6f3db180ffbce20e9ef620746d14e",
+    "raw/static_contract_freeze_validator_r3.stdout.raw": "9b7e515a11e7b039990d156122d7d014688c0498a5a39af986f8e3303e9b97b9",
+    "raw/static_contract_freeze_validator_r3.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "formal_credit": false,
+  "external_mutation": false,
+  "new_ad": false,
+  "labels": {"TEST_ONLY": true, "non_evidence": true}
+}

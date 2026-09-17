@@ -1,0 +1,35 @@
+{
+  "record_kind": "up1_r3_local_environment_closure_scan_manifest",
+  "schema": "UP1.local-environment-closure-scan-r3-manifest.v1",
+  "scope": "read-only local environment and binary-source closure observation",
+  "write_boundary": [
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/02-local-environment-closure-scan/**"
+  ],
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "observed_utc": "2026-09-16T21:50:28.8049838Z",
+  "method": "PowerShell and file reads; executable location and static metadata only",
+  "forbidden_actions_confirmed": [
+    "no Julia/DESC/S3/solver/compiler/package-manager launch",
+    "no network or installation",
+    "no source/test/prior-evidence mutation",
+    "no local hash treated as external trust"
+  ],
+  "files": {
+    "README.md": {"bytes": 5096, "sha256": "daf63d7e58dfe6f8d365e7a800d29f30e850fd85415e448c1f6c5e93b6c368c1"},
+    "dirty_closure_summary.md": {"bytes": 1223, "sha256": "0f8e43e61b988c7f92ee3c08850f3763deff5b636b9c7990fcf83f6d0f026581"},
+    "environment_inventory.json": {"bytes": 4003, "sha256": "4b236970315d14b375338ab325a8981ead0497885c5f48a837cf163564c1f98d"},
+    "process.json": {"bytes": 1552, "sha256": "57502fb069fa07aee3c5dfaa9feaf5af284278a7b4d35a4056c82e96275da553"},
+    "raw/static_observation.txt": {"bytes": 2958, "sha256": "8d76c57461699f974a8586d196ea6cdbf03df72c0d92fca4fa07ba0c35db667b"},
+    "raw/process_sweep_initial.json": {"bytes": 202, "sha256": "69daabfbdc4b46e9b84c92773f08fc8911774794aa80790ac1fe0269ef2ad742"},
+    "raw/process_sweep_late.json": {"bytes": 679, "sha256": "e6427adbfb79fa7cf68ab493f78cc2e94fd2c5a03c56c9e8f3b3ed3d111e7b89"}
+  },
+  "self_hash_policy": "manifest self-hash omitted; all other files are byte-hashed",
+  "classifications": {
+    "local-observed": "paths, version resources, bytes, hashes, OS, lock/declaration presence and manager-record counts",
+    "typed_absent": "candidate-bound import closure and exact Python requirements/channel lock",
+    "typed_unverified": "local publisher strings, manager records, WindowsApps aliases, and local hashes as trust",
+    "external-authority-required": "signed publisher/download/build/SBOM/license/trust-root closure"
+  },
+  "credit_ceiling": "No UP1, candidate, source authority, solver, physical, engineering, B00, B04, R01-R10 or parent-goal credit"
+}

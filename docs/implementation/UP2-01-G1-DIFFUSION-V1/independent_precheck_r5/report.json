@@ -1,0 +1,47 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r5-v1",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {
+    "full_status_entry_count": 3670,
+    "status_sha256_utf8_lf": "58d9cb795a60e27d2a149e6ee0d1dc67565c61f7b480534d4dc58baccca7f3b2",
+    "matching_julia_desc_process_count": 0
+  },
+  "r5_erratum": {
+    "target_mutation_in_r5": false,
+    "target_before_equals_after": true,
+    "r4_fixture_before_after_crossover_explained": true,
+    "r4_static_qa_stale_after_explained": true,
+    "json_and_target_hash_assertion_exit": 0,
+    "static_qa_exit": 0,
+    "review_pending": true,
+    "accepted": false
+  },
+  "current_targets": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"},
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {"bytes": 1582, "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {"bytes": 4499, "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"}
+  },
+  "historical_receipt_audit": {
+    "r5_claimed_r3_report": "0956b606e576ad8979fec115fd679f0f6465659f5be51f84e9c07786fbc9d44c2",
+    "r5_claimed_r3_manifest": "0faed4835e7b52a9de28a5964bc30e695fdb99d642fc3710972d56d149ec44c2",
+    "actual_r3_report_path": {"bytes": 3554, "sha256": "7e1ab164339f782a83b7819cca39c5a31276782e5b66ddc0e0262531356f1560"},
+    "actual_r3_manifest_path": {"bytes": 2499, "sha256": "2beb6360023fce345760e618b845d8dca66f0de964c0f1d230e812188f63b813"},
+    "claimed_pair_exists_at_repair_r2": true,
+    "r4_report": "43f793be1e1cc5b895ef7c92312743c5984cfcd44d0cf691d8d308eb37ae09e0",
+    "r4_manifest": "907dbc104f02878b6f600954a33639aefea3bb4c4f98abb8274dad19f8cad28e",
+    "status": "provenance_mismatch"
+  },
+  "blocking_finding": {
+    "id": "R5-HISTORICAL-R3-PATH-HASH-MISMATCH",
+    "narrow_repair": "Additive provenance correction using actual repair_r3 hashes, or restore and attest the intended immutable R3 archive; preserve all target files and old receipts.",
+    "serial_focused_ready": false
+  },
+  "claim_ceiling": ["contract_only_static", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_B00", "no_B04", "no_R01_R10"]
+}
+

@@ -1,0 +1,43 @@
+{
+  "schema_version": "UP2-G-I1A-independent-status-review-r3-evidence-v1",
+  "status": "review_complete",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "scope": "independent review of status_sync_r3 provenance repair",
+  "review_outputs": {
+    "report": "report.md",
+    "report_json": "report.json",
+    "command_receipts": "command_receipts.json"
+  },
+  "reviewed_inputs": {
+    "primary_evidence_manifest_sha256": "a841b3937fa8a5a8f1d7ed612b26245e8b97e123d1ea416fcff99373e49446aa",
+    "status_sync_r3_report_sha256": "897d66e449df3bd04b50f4359536a9f5f5fd1a69077d632c639506325217348a",
+    "status_sync_r3_evidence_sha256": "f22bb78087f06ddbe83c8066c2bd925718fbec0047a4e34098859e671adcb263",
+    "status_sync_r3_receipts_sha256": "1350a7b5b2aabc3bbbf754992ae5d3d3d7f5cf5bacdedb123ca4740ea27df6ce",
+    "focused_r2_input_hashes_sha256": "b84a5c5701ba95b47da1c31316891622eef9889b89e580cfb3da361ca5125a6b",
+    "focused_r2_input_matches": "11/11",
+    "status_sync_r2_acceptance_sha256": "51a3826532ea341bc8df752f5590c138ccf251dfd084a098cdce6b811f459d31",
+    "status_sync_r2_evidence_sha256": "f600b54bd9e1b97d382b04b729c26cfbc07d383a724971219babb21e3dae48fb"
+  },
+  "history": {
+    "r5_test_sha256": "1a4737acf6a7457b95f5b33b689aaf97866f5f7946baabb0116200d9fb7472d6",
+    "r6_executed_test_sha256": "83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af",
+    "r2_old_snapshot_preserved": true
+  },
+  "receipts": {
+    "focused_r2_exit": 0,
+    "gi1a": "79/79",
+    "json_control_plan_diff_exit": 0,
+    "julia_desc": "not started by reviewer"
+  },
+  "claim_ceiling": {
+    "accepted_scope": "provenance repair only",
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  }
+}

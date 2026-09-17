@@ -1,0 +1,29 @@
+{
+  "schema": "UP1.external-handoff-independent-review-evidence-manifest.v1",
+  "review_id": "19-handoff-independent-review-r1",
+  "status": "pass_limited",
+  "scope": "independent read-only audit of 19-external-handoff and declared R1 absence registers",
+  "write_boundary": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/19-handoff-independent-review-r1",
+  "no_target_mutation": true,
+  "no_external_send": true,
+  "no_network": true,
+  "no_install": true,
+  "no_download": true,
+  "no_ad": true,
+  "no_s3": true,
+  "no_privilege_escalation": true,
+  "files": {
+    "review.md": {"bytes": 3701, "sha256": "a97f89829ef0aac44007c7fc1f26b23feaa17f41ab8f00075b7c856146556b0b"},
+    "validation_receipt.json": {"bytes": 2240, "sha256": "42545de1e1682a5a6a5c902d3cc34c63b5694c058138c3c2e26c08a28a78b993"},
+    "raw/baseline_head.txt": {"bytes": 88, "sha256": "f1ff96c32408d8f04f50acfc15ef96516e0cdbc028874d73324f0a84d21198f1"},
+    "raw/cleanup_exact_set.txt": {"bytes": 49, "sha256": "e367cccef613f8afbd145ea04ff0a4d6d0990f9fc3fda0933111f79ee0a07fce"},
+    "raw/literal_scan.txt": {"bytes": 88, "sha256": "659f3d962078462e80bc03ec407bbaf265c85cf6f18a08dd91f525bd85703c69"},
+    "raw/manifest20_hash.txt": {"bytes": 94, "sha256": "483de9a627a1d00feaa3039c8e990635e05540d98d5875061c75f56f8fb5b6cc"},
+    "raw/packet_controls.txt": {"bytes": 300, "sha256": "b866fac466aa6ce452e8a63d9b59cc4a09c1efe928d913a99e185d7dcac22683"},
+    "raw/powershell_ast.txt": {"bytes": 90, "sha256": "81b105f42fd42081e256b64641b36177cbf1518789529119b60acc07ad0e9313"},
+    "raw/raw_hash_check.txt": {"bytes": 29, "sha256": "38c0e3e978b15ff1d80010158f842651cd6267e21c41fdb318e18dafe7aea43a"},
+    "raw/review_metadata.txt": {"bytes": 140, "sha256": "8664f4eaf1e5c48a1dd1b8b387e60fc26fa7bad1554f89bcef46f945b24b0488"},
+    "raw/strict_json_absence.txt": {"bytes": 173, "sha256": "3a44c8e579f51032873aee4e084bc36914cbe4dfd49c4e435ee659e79b680743"}
+  },
+  "self_hash_policy": "evidence_manifest.json self-hash excluded; all other review-owned files listed"
+}

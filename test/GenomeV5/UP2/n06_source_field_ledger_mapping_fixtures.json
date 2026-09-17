@@ -1,0 +1,31 @@
+{
+  "schema_id": "GenomeV5/UP2/N06SourceFieldLedgerMappingV1",
+  "version": "v1",
+  "schema_validation_only": true,
+  "source_package": "actual_A_CandidateStatePackageV5",
+  "e0_source": "actual_UP2CandidatePhysicalBindingV1",
+  "required_mapping_roles": ["source", "field", "return", "heat"],
+  "g1_occurrence_selectors": [
+    {"role":"source", "ledger_id":"energy", "equation_id":"governing-0", "port_side":"output", "port_index":1},
+    {"role":"field", "ledger_id":"energy", "equation_id":"source-0", "port_side":"output", "port_index":1},
+    {"role":"return", "ledger_id":"constraint", "equation_id":"constraint-0", "port_side":"output", "port_index":1},
+    {"role":"heat", "ledger_id":"constraint", "equation_id":"constraint-0", "port_side":"output", "port_index":2}
+  ],
+  "cross_layer_semantics": "unverified_in_actual_A_deferred",
+  "expected_authority_gaps": [
+    "g1_occurrence_to_g2_boundary_exact_join_missing",
+    "g1_source_field_to_g3_return_heat_ledger_join_missing",
+    "owner_scope_mapping_missing_shared_owner_is_legal"
+  ],
+  "mutations": [
+    {"id":"N06-01", "class_id":"N06", "field_path":"/g3/realization/network/resource_ports/0/port_id", "source_locator":"G3ResourcePortV2.port_id::String", "source_type":"text", "mutation_kind":"wrong_resource_port", "expected_status":"fail_closed", "expected_error":"invalid_ref"},
+    {"id":"N06-02", "class_id":"N06", "field_path":"/g3/realization/network/entries/0/account_id", "source_locator":"G3LedgerEntryV2.account_id::String", "source_type":"text", "mutation_kind":"wrong_entry_account", "expected_status":"fail_closed", "expected_error":"invalid_ref"},
+    {"id":"N06-03", "class_id":"N06", "field_path":"/g3/binding/links/0/resource_port_id", "source_locator":"G3ControlResourceLinkV2.resource_port_id::String", "source_type":"text", "mutation_kind":"missing_control_link", "expected_status":"fail_closed", "expected_error":"invalid_ref"},
+    {"id":"N06-04", "class_id":"N06", "field_path":"/g3/realization/network/closures/0/expected_balance", "source_locator":"G3LedgerClosureV2.expected_balance::Rational{Int64}", "source_type":"rational", "mutation_kind":"closure_balance_mismatch", "expected_status":"fail_closed", "expected_error":"invalid_closure"},
+    {"id":"N06-05", "class_id":"N06", "field_path":"/g3/realization/network/resource_ports/0/kind", "source_locator":"G3ResourcePortV2.kind::Symbol", "source_type":"symbol", "mutation_kind":"wrong_resource_kind", "expected_status":"fail_closed", "expected_error":"invalid_kind"}
+  ],
+  "shared_owner_control": {"expected_status":"terminal_deferred", "reason":"owner_scope_mapping_missing_shared_owner_is_legal"},
+  "mapping_negative_controls": ["duplicate_owner_account_scope", "nonzero_derived_conversion_offset", "missing_power_flow_partner", "foreign_valid_flow_link", "detached_g1_occurrence"],
+  "static_negative_controls": ["duplicate_resource_port_id", "forged_source_locator", "forged_source_type", "same_dimension_exponent_mismatch", "missing_power_flow_partner", "foreign_valid_flow_link", "reordered_network_dynamic_path", "wrong_mutation_kind_for_target", "relabeled_mutation_id", "detached_projection", "detached_g1_occurrence", "foreign_e0_binding", "missing_source_selector", "wrong_source_selector"],
+  "execution_claims": {"compile_calls":0, "provider_calls":0, "solver_calls":0, "physical":false, "provider":false, "formal_B04":false}
+}

@@ -1,0 +1,21 @@
+{
+  "fixture_kind":"foreign_axis_binding_negative_valid_shape",
+  "state":"present",
+  "candidate_id":"candidate-a",
+  "layer_refs":{
+    "G1":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/g1/declaration/v1","sha256":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","version":"g1-v1"},
+    "G2":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/g2/declaration/v1","sha256":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","version":"g2-v1"},
+    "G3":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/g3/declaration/v1","sha256":"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd","version":"g3-v1"}
+  },
+  "four_axis_refs":{
+    "schema":{"candidate_id":"candidate-b","ref":"fusion://candidate-b/axis/schema/v1","sha256":"1111111111111111111111111111111111111111111111111111111111111111"},
+    "canonical":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/axis/canonical/v1","sha256":"2222222222222222222222222222222222222222222222222222222222222222"},
+    "profile":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/axis/profile/v1","sha256":"3333333333333333333333333333333333333333333333333333333333333333"},
+    "candidate_binding":{"candidate_id":"candidate-a","ref":"fusion://candidate-a/axis/binding/v1","sha256":"4444444444444444444444444444444444444444444444444444444444444444"}
+  },
+  "canonical_object_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source_revision":"revision-a",
+  "source_version":"source-v1",
+  "nonce":"nonce-a",
+  "requested_at_trusted_time":"2026-09-16T15:00:00Z"
+}

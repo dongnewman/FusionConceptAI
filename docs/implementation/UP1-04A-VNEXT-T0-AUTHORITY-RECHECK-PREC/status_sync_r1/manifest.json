@@ -1,0 +1,30 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC-status-sync-r1-v1",
+  "record_kind": "accepted_limited_local_scaffold_status_sync",
+  "task_id": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+  "status": "accepted_limited",
+  "machine_node": {"status": "planned", "scope_status": "proposal", "accepted": false, "resolution": "review_pending", "claim_ceiling": "contract_only"},
+  "basis": "independent_postrun_r3 pass_limited",
+  "exact_file_count": 7,
+  "current_seven_file_sha256": {
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl": "6e42e5ccc85f22589fdcbdc9a408f902c230bbd8c098c146eb8a7e13ed472aca",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59",
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py": "e25c6435392b594f9a82937f8b07b034524f191921bdf02700e7de36bda09220",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md": "ab52fa45ebbb732b89c05f6a97c73fb76c11a742167071bda5ff718877dbbf29",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json": "d08d796acaf23b94158c4db4ac8a702003042dbadabd6c4c7697126dbaef21c6",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md": "c247452015a70126b97dba8b9d2d2b43c7e5fe266f6eade31b5b43b1f4c3da00"
+  },
+  "execution_evidence": {
+    "static_qa": {"summary": "20 checks", "exit_code": 0, "receipt": "../archive/repair_r6/static_qa_r6.receipt.json", "raw_stdout": "../archive/repair_r6/static_qa_r6.stdout", "raw_stderr": "../archive/repair_r6/static_qa_r6.stderr"},
+    "focused_julia": {"summary": "68/68", "exit_code": 0, "receipt": "../archive/repair_r6/focused_julia_r6.receipt.json", "raw_stdout": "../archive/repair_r6/focused_julia_r6.stdout", "raw_stderr": "../archive/repair_r6/focused_julia_r6.stderr"},
+    "history": "R1-R7 append-only",
+    "foreign_candidate_fix": true,
+    "cleanup_inventory": "../archive/repair_r6/cleanup_inventory.json"
+  },
+  "plan_validation": {"checks": "pass", "task_count": 39, "task_dag_acyclic": true, "relative_links_checked": 461, "markdown_files_checked": 31, "errors": []},
+  "dependencies": {"depends_on": ["UP1-04A-VNEXT-T0"], "t1_depends_on": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"], "t0_changed": false, "dag_acyclic": true, "t1_blocked_without_checked_present": true},
+  "scope_guards": {"feedback_child": false, "binding_present": false, "legacy_authority_promotion": false, "ad35_modified": false, "up3_up6_preparation_modified": false},
+  "credits": {"binding": false, "feedback": false, "control": false, "t0": false, "t1": false, "t2": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "search": false, "b00": false, "b04": false, "r01_r10": false},
+  "cleanup": {"task_owned_scratch_cache_paths": [], "removed_paths": [], "protected_preexisting_dirty_history": true, "julia_desc_run": false}
+}

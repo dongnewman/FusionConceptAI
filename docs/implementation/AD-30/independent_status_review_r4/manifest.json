@@ -1,0 +1,87 @@
+{
+  "manifest_version": "AD-30-independent-status-review-r4-v1",
+  "record_kind": "independent_documentation_status_review",
+  "review_id": "AD-30-independent-status-review-r4",
+  "reviewer": "different Luna/high",
+  "review_date": "2026-09-15",
+  "verdict": "pass_limited",
+  "repository": {
+    "path": "D:/006-Programing/LMC/FusionConceptAI",
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2"
+  },
+  "review_scope": "AD-30 status_repair_r4 documentation-only repair; no source, task manifest, old receipt, Julia, or DESC changes",
+  "repairs_verified": {
+    "ad28_ad29_history_preserved_and_labelled": true,
+    "current_formal_dag_unambiguous": true,
+    "implementation_index_gi1b_synchronized": true,
+    "source_or_old_evidence_modified_by_reviewer": false
+  },
+  "formal_dag": {
+    "expected": "UP1-04A + G1/G2/G3 -> T0 -> T1 -> T2 -> UP1-04A-VNEXT -> UP2-00",
+    "manifest_dependencies": {
+      "UP1-04A": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G1-DIFFUSION-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G2-METRIC-BOUNDARY-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G3-SOURCE-FEEDBACK-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP1-04A-VNEXT-T0": ["UP1-04A", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP2-01-G3-SOURCE-FEEDBACK-V1"],
+      "UP1-04A-VNEXT-T1": ["UP1-04A-VNEXT-T0"],
+      "UP1-04A-VNEXT-T2": ["UP1-04A-VNEXT-T1"],
+      "UP1-04A-VNEXT": ["UP1-04A-VNEXT-T2"],
+      "UP2-00": ["UP1-04A-VNEXT"]
+    },
+    "vnext_is_aggregate_gate": true,
+    "result": "pass"
+  },
+  "status_gates": {
+    "t0": {"status": "planned", "accepted": false},
+    "t1": {"status": "planned", "accepted": false, "no_go_until_real_t0_bundle": true},
+    "t2": {"status": "planned", "accepted": false},
+    "up1_04a_vnext": {"status": "planned", "accepted": false},
+    "up2_00": {"status": "planned", "accepted": false},
+    "gi1b": {
+      "status": "accepted_limited",
+      "accepted_scope": "actual-A source-envelope software behavior and typed authority-gap handling",
+      "software_only": true,
+      "n06_actual_authority": false,
+      "up2": false,
+      "b00": false,
+      "b04": false,
+      "compiler": false,
+      "provider": false,
+      "mesh": false,
+      "solver": false,
+      "engineering": false,
+      "physical": false,
+      "current_a": false,
+      "r01_r10": false
+    }
+  },
+  "static_validation": {
+    "validate_plan_command": "python docs/v4_multitopology_generation/validate_plan.py",
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 370,
+    "task_count": 34,
+    "task_dag_acyclic": true,
+    "task_manifest_json_exit": 0,
+    "repair_manifest_json_exit": 0,
+    "julia_run": false,
+    "desc_run": false,
+    "provider_mesh_physical_run": false
+  },
+  "current_hashes": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 57483, "sha256": "f16d5a00a7a0896138398b77c18eba4769b6f1962406d55f11862b4ef5b76e0b"},
+    "docs/v4_multitopology_generation/README.md": {"bytes": 28055, "sha256": "8c63ab143a3987796e9af82ae0e6b06df54b6e58ecf1782dcab045d9dcee53ce"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 73348, "sha256": "011533c4c174feb77636aab3d96d5b3d05457d7eaae26f3d52db08a622809280"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 63912, "sha256": "b149ffa8a725c2a8e9c62bcd3c81becbca92bae9e3b49b3eef9360aef4a9fab5"},
+    "docs/implementation/README.md": {"bytes": 14379, "sha256": "e84b03bccd59b21dd2c55aa12fb8a50378d42072d5d3fa854c9d4b365802799b"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/acceptance.md": {"bytes": 3030, "sha256": "612cebd62c36da0782c6e08d26e183f1e0df778de7d77eebd36e3795d1ca45a1"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/evidence_manifest.json": {"bytes": 5226, "sha256": "35c71012ba44d98de3426ff008625df1ea35f2e6e62aefcf3304e822aa41904f"}
+  },
+  "output": {
+    "report_path": "docs/implementation/AD-30/independent_status_review_r4/report.md",
+    "report_bytes": 4216,
+    "report_sha256": "7b3793768923eb4bcd66f3940090d31a82ad6b5e14eb80ca42595b2f362df4c0",
+    "self_hash_excluded": true
+  }
+}

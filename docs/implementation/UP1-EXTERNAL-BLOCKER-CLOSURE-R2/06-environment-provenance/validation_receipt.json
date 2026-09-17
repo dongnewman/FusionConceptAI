@@ -1,0 +1,65 @@
+{
+  "record_kind": "up1_environment_provenance_r2_validation_receipt",
+  "schema": "UP1.environment-provenance-validation-receipt.v1",
+  "status": "pass_limited",
+  "claim_ceiling": "environment_provenance_only_typed_absence_or_test_non_evidence",
+  "python": "3.13.5",
+  "pid": 54164,
+  "utc": "2026-09-16T18:38:33.174279Z",
+  "exit_code": 0,
+  "checks": {
+    "fresh_python_B_tests": "16 passed twice",
+    "determinism": "two fresh processes; status/check semantics identical",
+    "local_observation_layers": true,
+    "julia_python_runtime_identity": true,
+    "project_manifest_lock_pair": true,
+    "binary_path_sha256_version_publisher": true,
+    "signed_download_receipt": true,
+    "container_or_build_recipe": true,
+    "sbom_components_dependency_edges": true,
+    "missing_signed_provenance": "typed_absent",
+    "hash_drift": "fail_closed",
+    "illegal_declaration": "fail_closed",
+    "TEST_ONLY": "non_evidence",
+    "network_or_installation": false,
+    "signed_ed25519_chain": true,
+    "expected_context_candidate_bound": true,
+    "binary_signatures_verified": true,
+    "sbom_purl_and_exact_refs": true,
+    "missing_anchor_or_signature_material": "typed_absent",
+    "forged_signature_or_identity_drift": "fail_closed",
+    "external_context_and_anchor_cli": "pass",
+    "bundle_context_rejected": "fail_closed",
+    "frozen_context_and_anchor_hashes": true,
+    "attacker_self_generated_key": "fail_closed",
+    "authenticated_closure_metadata": "authority/origin/time/license/supplier all candidate-bound",
+    "field_mutation_regression": "fail_closed"
+  },
+  "raw": {
+    "pytest.stdout.txt": {
+      "bytes": 99,
+      "sha256": "a619c729d5f62ba3716916a9242d81212c4191a3c68c13669a9c1a32cffc4178",
+      "exit_code": 0
+    },
+    "pytest.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    "cli_negative.stdout.json": {
+      "bytes": 385,
+      "sha256": "e6f4cefac469f8f13e0a8338feb250d62c665e2cd31a4726cef3d16ca0cf5a77",
+      "exit_code": 1
+    },
+    "pytest2.stdout.txt": {
+      "bytes": 99,
+      "sha256": "5d70ed1325623d498edf078b964475cea05816e32204311afd4ac56d25d6c24b",
+      "exit_code": 0
+    },
+    "pytest2.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    }
+  }
+}

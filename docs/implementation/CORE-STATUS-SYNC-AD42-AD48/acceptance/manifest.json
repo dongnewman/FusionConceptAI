@@ -1,0 +1,68 @@
+{
+  "task_id": "CORE-STATUS-SYNC-AD42-AD48-ACCEPTANCE",
+  "reviewed_task": "CORE-STATUS-SYNC-AD42-AD48",
+  "decision": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "core_status_index_synchronization_only",
+  "claim_ceiling": "software_status_and_readiness_only",
+  "point_in_time": true,
+  "independent_review": {
+    "path": "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/independent_review_r1/report.md",
+    "verdict": "pass_limited",
+    "bytes": 5440,
+    "sha256": "b50e71ea7f7ef85316d2698d090f2b1702c896ddf189ddfdca1aa878dda706a0"
+  },
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "task_manifest": {
+    "path": "docs/v4_multitopology_generation/task_manifest.json",
+    "sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39,
+    "dag_acyclic": true,
+    "unchanged": true
+  },
+  "core_products": [
+    {"path":"docs/v4_multitopology_generation/README.md","bytes":43704,"sha256":"7424478f3d6b7710c861613b220b6f7c8cbcb9c7ef3181c935108f89d84f5654"},
+    {"path":"docs/v4_multitopology_generation/14_agent_orchestration.md","bytes":12357,"sha256":"98e4b6b7f4278c98d967e446f604e5b5a0a62be939e5c90f451cc9e497eafeba"},
+    {"path":"docs/v4_multitopology_generation/16_execution_work_orders.md","bytes":97342,"sha256":"6cd886854519ab4f2a47d6975cf55429559fe01d733f910c0cffb418361eaf45"},
+    {"path":"docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","bytes":78596,"sha256":"2be252ae37655a5eb5b9cc040a665e7ac9ad5c38a1c9a4eb68640eff952258d6"},
+    {"path":"docs/implementation/README.md","bytes":25530,"sha256":"b61bb4b4c75e2b3ba14ff4a7a1c6d1f591094f504c4d13c07034632487cf8743"}
+  ],
+  "status": {
+    "ad42_w2r1": "accepted_limited_source_authoring_only",
+    "ad43": "accepted_limited_axis_contract_only",
+    "ad44_w3a": "accepted_limited_untracked_repository_design_source_provenance_only",
+    "ad44_w3b": "blocked",
+    "ad45_a": "accepted_limited_temporary_qualified_ref_handle_only",
+    "ad46": "accepted_limited_three_identity_work_orders_blocked",
+    "ad47_w0": "accepted_limited_additive_g3_axis_contract_only",
+    "ad47_w1": "accepted_limited_eight_typed_absence_products_only",
+    "ad48_s1": "accepted_limited_untracked_working_tree_locators_only",
+    "ad48_s2": "in_progress_pending_unaccepted_at_sync_point",
+    "ad48_f0": "conditional_after_independent_s2_absence_only",
+    "t0_t1_t2": false,
+    "provider_mesh_solver": false,
+    "engineering_physical_search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0,
+    "up3_up6_formal_runs": "pending"
+  },
+  "verification": {
+    "direct_hash_path_control": {"exit":0,"python":"D:/Users/Newman/anaconda3/python.exe","python_version":"3.13.5","pid":32916,"utc_start":"2026-09-15T13:46:20.2443426Z","utc_end":"2026-09-15T13:46:20.9346713Z","stdout":"status/raw/direct_hash_path_control_stdout_r2.json","stderr":"status/raw/direct_hash_path_control_stderr_r2.txt","receipt":"status/raw/direct_hash_path_control_receipt_r2.txt"},
+    "relative_links": {"accepted_sync_links":172,"acceptance_links":2,"acceptance_link_missing":0,"raw":"status/raw/acceptance_link_path_control.json"},
+    "plan_validator": {"exit":0,"python":"D:/Users/Newman/anaconda3/python.exe","python_version":"3.13.5","pid":70420,"utc_start":"2026-09-15T13:46:33.1960005Z","utc_end":"2026-09-15T13:46:34.0771717Z","markdown_files":31,"relative_links":526,"tasks":39,"dag_acyclic":true,"stdout":"status/raw/plan_validator_stdout.json","stderr":"status/raw/plan_validator_stderr.txt","receipt":"status/raw/plan_validator_receipt.txt"},
+    "scoped_git_diff_check": {"exit":0,"stdout":"status/raw/scoped_git_diff_stdout.txt","stderr":"status/raw/scoped_git_diff_stderr.txt","receipt":"status/raw/scoped_git_diff_receipt.txt","warning":"existing LF/CRLF normalization warning only"},
+    "physical_or_engineering_run": false,
+    "provider_mesh_solver_run": false,
+    "search_run": false,
+    "failure_history_preserved": true,
+    "failed_attempt_raw":"status/raw/direct_hash_path_control_stdout.json",
+    "final_manifest_recheck": {"exit":0,"python":"D:/Users/Newman/anaconda3/python.exe","python_version":"3.13.5","pid":89144,"utc_start":"2026-09-15T13:48:12.6935264Z","utc_end":"2026-09-15T13:48:13.3773159Z","stdout":"status/raw/direct_final_r2_stdout.json","stderr":"status/raw/direct_final_r2_stderr.txt","receipt":"status/raw/direct_final_r2_receipt.txt"}
+  },
+  "writable_paths": [
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/acceptance/acceptance.md",
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/acceptance/manifest.json",
+    "docs/implementation/CORE-STATUS-SYNC-AD42-AD48/acceptance/status/raw/**"
+  ],
+  "forbidden_paths": ["docs/v4_multitopology_generation/README.md","docs/v4_multitopology_generation/14_agent_orchestration.md","docs/v4_multitopology_generation/16_execution_work_orders.md","docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","docs/implementation/README.md","docs/implementation/CORE-STATUS-SYNC-AD42-AD48/report.md","docs/implementation/CORE-STATUS-SYNC-AD42-AD48/manifest.json","docs/v4_multitopology_generation/task_manifest.json","src/**","test/**","fixture/**","runs/**"],
+  "self_hash_excluded": true
+}

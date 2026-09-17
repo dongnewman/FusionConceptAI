@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fusionconceptai:m5-inverse-feedback-r2:03:failure-taxonomy",
+  "title": "EngineeringFeedbackFailureTaxonomyV3ContractRepair",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema", "claim_ceiling", "record_schema_uri", "rules", "codes"],
+  "properties": {
+    "schema": {"const": "EngineeringFeedbackFailureTaxonomyV3ContractRepair"}, "claim_ceiling": {"const": "manufactured_inverse_feedback/screen_only"}, "record_schema_uri": {"const": "urn:fusionconceptai:m5-inverse-feedback-r2:03:failure-record"},
+    "rules": {"type": "object", "additionalProperties": false, "required": ["missing_authority", "contradiction_or_foreign_identity", "fixture_failure", "runtime_exception_or_interruption", "unknown_code"], "properties": {"missing_authority": {"const": "unknown+terminal_deferred"}, "contradiction_or_foreign_identity": {"const": "fail_closed"}, "fixture_failure": {"const": "typed_failure"}, "runtime_exception_or_interruption": {"const": "preserve_raw"}, "unknown_code": {"const": "fail_closed"}}},
+    "codes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "object", "additionalProperties": false, "required": ["code", "class", "resolution"], "properties": {"code": {"enum": ["invalid_input", "invalid_upstream", "candidate_unbound", "source_unbound", "scenario_unbound", "foreign_hash", "foreign_owner", "foreign_provenance", "schema_mismatch", "resolver_unknown", "resolver_hash_drift", "unit_or_direction_mismatch", "target_invalid", "nonidentifiable_target", "singular", "non_spd", "impossible_target", "roundtrip", "seed_mismatch", "feedback_deletion_no_effect", "cas_stale", "history_invalid", "numerical_nonfinite", "numerical_fail", "budget_exhausted", "provider_unavailable", "out_of_domain", "real_reference_missing", "hardware_authority_missing", "solver_not_authorized", "program_exception", "human_interruption", "unknown"]}, "class": {"enum": ["contract", "authority", "provenance", "fixture", "determinism", "causal_negative", "numerical", "execution", "external_authority", "scope", "evidence"]}, "resolution": {"enum": ["fail_closed", "unknown+terminal_deferred", "typed_failure", "preserve_raw"]}}}}
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "record_kind": "UP2-00E0-R1-independent-static-control",
+  "verdict": "changes_requested",
+  "blockers": [
+    "author r7 frozen source/test hashes drifted before independent review; current files are a taxonomy-fix snapshot and are not the author r7 snapshot",
+    "historical r2 source exception was misclassified as fail_closed; the current taxonomy fix is unindependently unrun in this review"
+  ],
+  "source_locations": {
+    "historical_catch_all": "author r7 source snapshot; r2 receipt evidence",
+    "current_taxonomy_classifier": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:187-214",
+    "source_join_overload": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:368-390",
+    "standalone_validator": "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl:332-366"
+  },
+  "checks": {
+    "historical_r2_source_exception_exit1": true,
+    "current_taxonomy_fix_returns_program_exception": true,
+    "factory_checks_source_checker": true,
+    "source_join_checks_refs_hashes_axes": true,
+    "bound_input_hash_includes_binding_hash": true,
+    "standalone_validator_is_low_level_only": true,
+    "author_snapshot_match:src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": false,
+    "author_snapshot_match:test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": false,
+    "author_snapshot_match:test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": true,
+    "author_snapshot_match:test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": true,
+    "no_julia_desc_precheck": true
+  },
+  "current_hashes": {
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "1261df1fe2faf0d68414db99b96496bbf29a43f429ec93e5f61a583fefad2323",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": "336dbd637fa63fe8008f7ffa7c96e21e070acd50e184dcfb98b160d4878e4e2d",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+    "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a"
+  },
+  "author_frozen_hashes": {
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "25621a87a005ea37502686ff2f1e5419b8c71fa3cd877ca875f0e6dd397ec321",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": "b82c2a5deabc098253302ef589541dc2627db77d8ba0f3d1fa2745f19311104b",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+    "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a"
+  },
+  "taxonomy_fix_status": "current static source separates unexpected exception as program_exception; no independent runtime proof in R1",
+  "runtime": {
+    "independent_julia_executed": false,
+    "precheck": "no Julia/DESC processes"
+  },
+  "r2_evidence": {
+    "exit": 1,
+    "stdout_contains_source_exception": true
+  },
+  "claim_ceiling": {
+    "contract_only": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

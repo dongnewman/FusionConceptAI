@@ -1,0 +1,148 @@
+{
+  "task_id": "AD-17",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted",
+  "accepted": true,
+  "decision_id": "AD-17",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "accepted_scope": "current_state_ad17_semantic_decision_and_three_core_after_hashes_mtime",
+  "decision_scope": {
+    "version_token": "GenomeContractRef.version is contract revision token; type names are separate; string similarity is not compatibility",
+    "external_versions": "G1/G2/G3 public Genome bundle refs and G3 realization/control external bundle use v5",
+    "child_versions": "G1 payload schema uses v2; G3 CoupledRealizationControlBindingV2 and its schema use v2",
+    "public_ref": "each G1/G2/G3 external surface must use a real public GenomeContractRef with actual schema/canonical hashes",
+    "deferred": "missing schema/provider remains explicit deferred; aliases, nullable hashes and label digests are invalid substitutes",
+    "migration": "UP1-04 must emit full before/after migration receipts and rebuild candidate identity; no silent conversion or old evidence reuse",
+    "b00_b04": "formal fixture/suite version freezes after schema completion and before first execution",
+    "parent_boundary": "R01-R10 unchanged; no physical or engineering acceptance"
+  },
+  "protected_dirty_rule": "Only docs/implementation/AD-17/acceptance.md and evidence_manifest.json were written for this task; all core inputs and other dirty paths remain protected.",
+  "core_file_hash_timeline": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "historical_up0_02_after_sha256": "10c15bc2876b8585ec5f04ba70ae4c962ea1ae769edacb56acf10c20f5aca05c",
+      "ad17_before_sha256": "10c15bc2876b8585ec5f04ba70ae4c962ea1ae769edacb56acf10c20f5aca05c",
+      "ad17_before_captured_at": "unknown",
+      "ad17_after_sha256": "86aaefe5a8d56eaea0f8b77d7407f5962957916ad741a809aa4c64c9d34b8d1f",
+      "ad17_after_mtime": "2026-09-14T04:32:40.4106356+08:00",
+      "ad17_before_source": "docs/implementation/UP0-02/evidence_manifest.json historical after_write_sha256",
+      "ad17_before_bytes_saved": false
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "historical_up0_02_after_sha256": "7b4aeee79073401ec951f44b28daac44b12b947e7a6ec0fd959a2b3d6e8b833f",
+      "ad17_before_sha256": null,
+      "ad17_before_captured_at": "unknown",
+      "ad17_after_sha256": "7c69453f5258cbe428b3ba68de1f334c76c549a9dd270547b82adb218fb01899",
+      "ad17_after_mtime": "2026-09-14T04:33:01.4452342+08:00",
+      "ad17_before_source": "unknown; prior reported hash retained separately but no local snapshot or durable source",
+      "reported_prior_hash_unverified": "470adb76b61fb93366bf3a250023e245cd8d52edf4c2b6c5b7abc24c44ba6c95",
+      "ad17_before_bytes_saved": false
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "historical_up0_02_after_sha256": "53e86bf13b74e62e0e1fa991b0c64d28a2cb1c25a0df94ec06ff8216d645815c",
+      "ad17_before_sha256": null,
+      "ad17_before_captured_at": "unknown",
+      "ad17_after_sha256": "80eb6e54f06b97df3b0c81438e91cab2deba5ca5a87017cd960b6490130ed66c",
+      "ad17_after_mtime": "2026-09-14T04:33:49.3354326+08:00",
+      "ad17_before_source": "unknown; prior reported hash retained separately but no local snapshot or durable source",
+      "reported_prior_hash_unverified": "a771ffdf59a83def5884f5cfa6f8d3c0cabc3ef1db950bc48c214dff839f9a47",
+      "ad17_before_bytes_saved": false
+    }
+  },
+  "historical_reference": {
+    "source": "docs/implementation/UP0-02/evidence_manifest.json",
+    "captured_up0_02_post_revision_at": "2026-09-14T02:49:30.4504876+08:00",
+    "note": "UP0-02 historical captures remain provenance only. 18 before hash is traceable to its old manifest; 16/README reported prior hashes are retained as unverified and are not used as evidence."
+  },
+  "diff_scope": {
+    "18_sources_and_architecture_decisions.md": "AD-17 anchor/section, version-token table, public-ref/hash/deferred constraints, migration receipt and B00/B04 freeze rule.",
+    "16_execution_work_orders.md": "AD-17 link plus UP1-04 version/migration prerequisite, exact receipt fields, fresh B00/B04 suite gate and fail-closed exits.",
+    "README.md": "AD-17 index link and limited acceptance/parent-credit boundary.",
+    "bounded_diff_saved": false,
+    "historical_diff_precision": "unknown; no before byte snapshots or patch artifacts were saved",
+    "interpretation": "The entries describe current after content and intended AD-17 scope; they do not claim a reproducible before-to-after patch."
+  },
+  "commands": [
+    {
+      "argv": [
+        "PowerShell",
+        "Get-FileHash -Algorithm SHA256 <three core files>",
+        "Get-Item LastWriteTime.ToString(yyyy-MM-ddTHH:mm:ss.fffffffzzz)"
+      ],
+      "exit_code": 0,
+      "result": "pass; current after hashes and seven-digit local +08:00 mtime recorded in core_file_hash_timeline"
+    },
+    {
+      "argv": [
+        "python",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "exit_code": 0,
+      "result": "pass; planning links/DAG only; 31 markdown, 244 links, 24 tasks, DAG acyclic"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "result": "pass; existing LF-to-CRLF warnings only"
+    },
+    {
+      "argv": [
+        "python",
+        "JSON parse AD-17 evidence manifest"
+      ],
+      "exit_code": 0,
+      "result": "pass"
+    }
+  ],
+  "execution_boundary": {
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "engineering": false,
+    "r01_r10_credit": false
+  },
+  "reviewer": "different Luna (final independent review: pass)",
+  "self_hash_rule": "evidence_manifest.json final SHA256 is recorded externally to avoid circularity; output_hashes excludes itself",
+  "output_hashes": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "86aaefe5a8d56eaea0f8b77d7407f5962957916ad741a809aa4c64c9d34b8d1f",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "7c69453f5258cbe428b3ba68de1f334c76c549a9dd270547b82adb218fb01899",
+    "docs/v4_multitopology_generation/README.md": "80eb6e54f06b97df3b0c81438e91cab2deba5ca5a87017cd960b6490130ed66c",
+    "docs/implementation/AD-17/acceptance.md": "6f755b94f13b17b79ad3eb31a05af7705766935afdd0beb8aeb7f57cf5b80fc5"
+  },
+  "review_history": [
+    {
+      "review": "independent AD-17 archive review 1",
+      "result": "changes_requested",
+      "reasons": [
+        "16/README before SHA lacked locally verifiable snapshot/source",
+        "three-file before-to-after bounded diff was not saved",
+        "after mtime was recorded below required seven-digit precision"
+      ]
+    },
+    {
+      "review": "current remediation",
+      "result": "pending different Luna",
+      "actions": [
+        "downgraded unverifiable 16/README before SHA and all historical diff precision to unknown",
+        "kept 18 historical manifest provenance",
+        "recorded PowerShell seven-digit after mtime",
+        "kept UP0-02 old evidence unchanged"
+      ]
+    }
+  ],
+  "independent_review": {
+    "reviewer": "different Luna (final independent review)",
+    "result": "pass",
+    "scope": "current-state semantic decision, after hashes/mtime and restricted evidence boundary",
+    "before_and_diff": "unknown; not accepted evidence"
+  },
+  "sol_decision": "accepted with restricted current-state architecture semantic decision and three-core after hashes/mtime only; before/diff unknown; B00/B04/provider/engineering/physical/R01-R10 false"
+}

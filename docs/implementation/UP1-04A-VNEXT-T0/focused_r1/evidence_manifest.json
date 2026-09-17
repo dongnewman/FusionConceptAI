@@ -1,0 +1,58 @@
+{
+  "record_kind": "AD-30_T0_focused_r1",
+  "status": "blocked_by_capture_harness",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+  "julia_execution_evidence": {
+    "process_start_returned": true,
+    "julia_pid": null,
+    "julia_exit_code": null,
+    "stdout_bytes_captured": false,
+    "stderr_bytes_captured": false,
+    "first_real_error": "PowerShell cannot overwrite read-only variable PID while assigning the Julia child PID",
+    "rerun": false
+  },
+  "static_gates_after_attempt": [
+    {
+      "command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-T0/focused_r1/run_metadata.json",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "status": "pass"
+    }
+  ],
+  "capture_records": {
+    "run_metadata.json": {
+      "sha256": "ff1d0868405383e9c5bfc245bbe1a1f1b007a212c69ce37afa78276dbea67953"
+    },
+    "process_capture_error.txt": {
+      "sha256": "4457958a905b579dfacb7e16e2feecf8977b187dcdefb7e1f75fef6c7a627ec4"
+    }
+  },
+  "input_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "333ff3a2976736e13809b603cdcab61524658b7fb20d1b6506ccf188dea3b063",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+  },
+  "worktree_and_process_state": {
+    "pre_run_porcelain_count": 304,
+    "post_attempt_porcelain_count": 304,
+    "pre_run_julia_or_desc_processes": [],
+    "post_attempt_julia_or_desc_processes": []
+  },
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "t1_go": false,
+  "physical_credit": false,
+  "next_gate": "independent_luna_postrun_review_of_harness_failure; no rerun in this task"
+}

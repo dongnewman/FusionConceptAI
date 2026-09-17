@@ -1,0 +1,9 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:failure-taxonomy",
+  "title":"M5InverseFeedbackR2ConcreteFailureTaxonomyV1",
+  "type":"object","additionalProperties":false,
+  "required":["schema","record_schema_uri","claim_ceiling","mapping"],
+  "properties":{"schema":{"const":"M5InverseFeedbackR2ConcreteFailureTaxonomyV1"},"record_schema_uri":{"const":"urn:fusionconceptai:m5-inverse-feedback-r2:r3:failure-record"},"claim_ceiling":{"const":"manufactured_inverse_feedback/screen_only"},"mapping":{"type":"array","minItems":33,"maxItems":33,"uniqueItems":true,"items":{"type":"object","additionalProperties":false,"required":["code","class","resolution"],"properties":{"code":{"$ref":"#/$defs/code"},"class":{"$ref":"#/$defs/class"},"resolution":{"$ref":"#/$defs/resolution"}}}}},
+  "$defs":{"code":{"enum":["invalid_input","invalid_upstream","candidate_unbound","source_unbound","scenario_unbound","foreign_hash","foreign_owner","foreign_provenance","schema_mismatch","resolver_unknown","resolver_hash_drift","unit_or_direction_mismatch","target_invalid","nonidentifiable_target","singular","non_spd","impossible_target","roundtrip","seed_mismatch","feedback_deletion_no_effect","cas_stale","history_invalid","numerical_nonfinite","numerical_fail","budget_exhausted","provider_unavailable","out_of_domain","real_reference_missing","hardware_authority_missing","solver_not_authorized","program_exception","human_interruption","unknown"]},"class":{"enum":["contract","authority","provenance","fixture","determinism","causal_negative","numerical","execution","external_authority","scope","evidence"]},"resolution":{"enum":["fail_closed","unknown+terminal_deferred","typed_failure","preserve_raw"]}}
+}

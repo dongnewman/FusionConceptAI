@@ -1,0 +1,93 @@
+{
+  "schema_version": "G-I1B-independent-static-precheck-r1-v1",
+  "review_id": "UP2-00G-I1B-SOURCE-ENVELOPE-independent-precheck-r1",
+  "reviewer_role": "independent_luna_high_static_reviewer",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "scope": "static Julia API/method review and test-coverage audit only",
+  "runtime": {"julia": "not_run_by_design", "desc": "not_run_by_design"},
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_status_lines": 294,
+    "protected_hash_archive_matches": true,
+    "writes_outside_review_directory": false
+  },
+  "static_observations": {
+    "row_spec_count": 50,
+    "five_per_group": true,
+    "unique_ids_and_paths_in_fixture": true,
+    "source_has_fixture_expected_error_routing": false,
+    "test_invokes_factory": false,
+    "source_aggregate_collects_fail_closed": false,
+    "program_exception_branch_present": true,
+    "zero_downstream_counters_declared": true,
+    "n05_05_repaired_locator": true,
+    "n09_provider_deferred_branch": true,
+    "n10_fresh_receipt_gap_branch": true
+  },
+  "findings": [
+    {
+      "id": "GI1B-R1-01",
+      "severity": "P1",
+      "title": "Focused test never exercises the factory",
+      "evidence": [
+        "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:7-43",
+        "test/GenomeV5/UP2/run_gi1b_source_envelope.jl:5-8"
+      ],
+      "required_fix": "Construct actual CandidateStatePackageV5 plus E0 and G-I1A context; call the factory and assert all 50 rows, source values, refs/hashes/axes/context, E1/E2 branches, mutation hashes, classifications and zero counters."
+    },
+    {
+      "id": "GI1B-R1-02",
+      "severity": "P1",
+      "title": "Aggregate status and errors hide row-level fail_closed",
+      "evidence": [
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:419-431",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:492-496",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:145-150"
+      ],
+      "required_fix": "Accumulate fail_closed separately from terminal_deferred and program_exception, and populate aggregate errors/gaps according to the constructor taxonomy."
+    },
+    {
+      "id": "GI1B-R1-03",
+      "severity": "P2",
+      "title": "Declared source type is not validated",
+      "evidence": [
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:391-393"
+      ],
+      "required_fix": "Validate source value type/shape against the frozen row type before constructing GI1BTypedValueV1 and add a forged/malformed source test."
+    },
+    {
+      "id": "GI1B-R1-04",
+      "severity": "P1",
+      "title": "E1-absent N05 rows fall back to a G3 source identity",
+      "evidence": [
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:263-269",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:352-375",
+        "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:499-502"
+      ],
+      "required_fix": "Bind E1-absent N05 rows to an explicit typed-E1-absence identity or explicitly absent source ref/hash; assert this in a both-absent source-bound test."
+    }
+  ],
+  "qa": {
+    "json_parse": "pass",
+    "row_and_control_scan": "pass",
+    "owned_hash_match": "pass",
+    "git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "plan_validation": "pass",
+    "julia_desc_process_sweep": "zero"
+  },
+  "claim_ceiling": [
+    "static_contract_review_only",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_engineering",
+    "no_physical",
+    "no_R01_R10"
+  ],
+  "input_hash_manifest": "input_hashes.json",
+  "command_receipts": "command_receipts.json",
+  "evidence_manifest": "evidence_manifest.json"
+}

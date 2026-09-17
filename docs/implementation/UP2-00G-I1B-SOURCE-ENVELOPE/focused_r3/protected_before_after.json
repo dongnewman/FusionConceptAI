@@ -1,0 +1,25 @@
+{
+  "schema_version": "G-I1B-source-envelope-focused-r3-protected-v1",
+  "before_source": "command_receipts.json:preflight.protected_inputs",
+  "after_source": "command_receipts.json:postflight.protected_inputs",
+  "all_protected_inputs_match": true,
+  "before_after": [
+    {"path":"src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl","before_sha256":"58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12","after_sha256":"58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12","before_bytes":43037,"after_bytes":43037},
+    {"path":"test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json","before_sha256":"23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6","after_sha256":"23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6","before_bytes":23906,"after_bytes":23906},
+    {"path":"test/GenomeV5/UP2/gi1b_source_envelope_tests.jl","before_sha256":"1b21a2afa6e8c6c11529831868c0fa15b0eeb73ad19b2def94a54530f9e41c36","after_sha256":"1b21a2afa6e8c6c11529831868c0fa15b0eeb73ad19b2def94a54530f9e41c36","before_bytes":25704,"after_bytes":25704},
+    {"path":"test/GenomeV5/UP2/run_gi1b_source_envelope.jl","before_sha256":"54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5","after_sha256":"54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5","before_bytes":408,"after_bytes":408},
+    {"path":"src/FusionConceptAI.jl","before_sha256":"e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783","after_sha256":"e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783","before_bytes":10144,"after_bytes":10144},
+    {"path":"src/GenomeV5/UP2/GI1AuthorityContextV1.jl","before_sha256":"d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9","after_sha256":"d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9","before_bytes":29560,"after_bytes":29560},
+    {"path":"src/GenomeV5/UP2/N03TimeAuthorityProjectionV1.jl","before_sha256":"0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef","after_sha256":"0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef","before_bytes":17588,"after_bytes":17588},
+    {"path":"src/GenomeV5/UP2/N04LedgerAuthorityProjectionV1.jl","before_sha256":"7e47f0ec806fedf2315e847bb0dec7bbfcdb5ec7e6645be79ebc62bbf18b7a3c","after_sha256":"7e47f0ec806fedf2315e847bb0dec7bbfcdb5ec7e6645be79ebc62bbf18b7a3c","before_bytes":11779,"after_bytes":11779},
+    {"path":"src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl","before_sha256":"3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df","after_sha256":"3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df","before_bytes":36290,"after_bytes":36290},
+    {"path":"src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl","before_sha256":"69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c","after_sha256":"69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c","before_bytes":51115,"after_bytes":51115},
+    {"path":"src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl","before_sha256":"3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa","after_sha256":"3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa","before_bytes":13796,"after_bytes":13796},
+    {"path":"src/GenomeV5/UP2/N09ProviderGapProjectionV1.jl","before_sha256":"5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad","after_sha256":"5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad","before_bytes":15547,"after_bytes":15547},
+    {"path":"src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl","before_sha256":"e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67","after_sha256":"e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67","before_bytes":24123,"after_bytes":24123},
+    {"path":"src/Contracts/CandidateStatePackageV5.jl","before_sha256":"c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620","after_sha256":"c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620","before_bytes":13496,"after_bytes":13496},
+    {"path":"test/GenomeV5/UP2/gi1_authority_context_tests.jl","before_sha256":"83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af","after_sha256":"83d765ec5a7ff5867f5e80d1bf4ce2df2cab21f55e82d63e4ba579c219a8b1af","before_bytes":19200,"after_bytes":19200},
+    {"path":"test/GenomeV5/UP1-04/layer_fixture_child.jl","before_sha256":"357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df","after_sha256":"357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df","before_bytes":569,"after_bytes":569}
+  ],
+  "postflight_matching_julia_desc_processes": 0
+}

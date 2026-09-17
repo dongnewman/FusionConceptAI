@@ -1,0 +1,185 @@
+{
+  "schema_id": "UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC",
+  "schema_version": "v1",
+  "kind": "implementation_scaffold_manifest",
+  "status": "planned",
+  "accepted": false,
+  "local_scaffold_status": "accepted_limited",
+  "local_scaffold_acceptance_basis": "independent_postrun_r2_pass_limited",
+  "present_authority": "unavailable",
+  "acceptance_state": "review_pending",
+  "machine_node": {
+    "planned": true,
+    "proposal": true,
+    "accepted": false,
+    "depends_on": ["UP1-01", "UP1-02", "UP1-03"],
+    "read_only_inputs": ["UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1"],
+    "parallel_to": ["T0", "AD-31", "AD-32"],
+    "unlocks": [],
+    "blocked_present_on": [
+      "UP2-01-G1-DIFFUSION-V1 declaration instance and source-backed factory receipt",
+      "UP2-01-G2-METRIC-BOUNDARY-V1 declaration instance and source-backed factory receipt",
+      "fresh candidate identity review for each present child"
+    ]
+  },
+  "scope": {
+    "source": ["src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl"],
+    "test": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl"],
+    "fixture": ["test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json"],
+    "static_qa": ["test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py"],
+    "docs": [
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/manifest.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md"
+    ],
+    "launcher": [],
+    "forbidden_write_surfaces": [
+      "src/FusionConceptAI.jl",
+      "T0/package/registry",
+      "G1/G2 V1 source/test",
+      "core/task manifests",
+      "docs/implementation/AD-33/**"
+    ]
+  },
+  "contract": {
+    "parent_binding": ["PresentParentBaselineBindingV1", "AbsentParentBaselineBindingV1"],
+    "child_key": ["PresentChildKeyV1", "AbsentChildKeyV1"],
+    "production_state": ["typed_absent", "terminal_deferred"],
+    "present_authority": "unavailable",
+    "absence_domains": {
+      "G1_parent": "ad33:G1:parent-baseline-absent:v1",
+      "G2_parent": "ad33:G2:parent-baseline-absent:v1",
+      "G1_child": "ad33:G1:child-key-absent:v1",
+      "G2_child": "ad33:G2:child-key-absent:v1"
+    },
+    "cas": {
+      "replace_source_payload": "forbidden_when_absent",
+      "absent_to_present": "forbidden",
+      "failure_atomic": true
+    }
+  },
+  "credits": {
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "search": false,
+    "actual": false,
+    "R01": false,
+    "R02": false,
+    "R03": false,
+    "R04": false,
+    "R05": false,
+    "R06": false,
+    "R07": false,
+    "R08": false,
+    "R09": false,
+    "R10": false
+  },
+  "local_evidence": {
+    "static_qa": {
+      "result": "38/38",
+      "interpreter_path": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "interpreter_sha256": "388fe2cffda8a134e7d7dc4e978f7c478857ece6b69694daecbed25e51ec633a",
+      "interpreter_version": "Python 3.13.5",
+      "receipt": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r3_final.json"
+    },
+    "julia_focused_r5": {
+      "result": "52/52",
+      "exit_code": 0,
+      "julia_version": "1.10.5",
+      "julia_executable_sha256": "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad",
+      "receipt": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r5.json"
+    },
+    "historical_failures": [
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r1.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r2.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r3_debug.json",
+      "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r4.json"
+    ],
+    "stable_cleanup": {
+      "kept_entries": 20,
+      "removed_entries": 0,
+      "receipt": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.json"
+    }
+  },
+  "receipts": [
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r1.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r2.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r1.json",
+      "result": "failure_retained",
+      "exit_code": 1
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r2.json",
+      "result": "failure_retained",
+      "exit_code": 1
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r3_debug.json",
+      "result": "failure_retained",
+      "exit_code": 1
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r4.json",
+      "result": "failure_retained",
+      "exit_code": 1
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/julia_test_run_r5.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/final_static_report_r1.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_before.json",
+      "result": "kept_and_audited"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_after.json",
+      "result": "kept_and_audited"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/static_qa_run_r3_final.json",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_after_final.json",
+      "result": "kept_and_audited"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/process_cleanup_evidence_r1.json",
+      "result": "inspected_already_absent_no_termination"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.json",
+      "result": "stable_recalculation"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/cleanup_inventory_stable_r1.md",
+      "result": "stable_recalculation"
+    }
+  ],
+  "hashes": {
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/README.md": "4b04e8ebfa4ba39723be644762df83d37b073529d88e510b111ccc3d7e875cd4",
+    "docs/implementation/UP1-04A-VNEXT-PARENT-BASELINE-BIND-PREC/acceptance.md": "2fecd7b33ceeb26b2ced67de964565c63c48f5d14d8db0cc651fa26f50f2293a",
+    "manifest_self_hash": "excluded_from_manifest_hash"
+  }
+}

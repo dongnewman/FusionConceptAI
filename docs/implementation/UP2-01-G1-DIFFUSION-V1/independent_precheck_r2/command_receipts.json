@@ -1,0 +1,14 @@
+{
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "commands": [
+    {"command": "git rev-parse HEAD", "exit": 0, "stdout": "4b69f55f7f80240147a65a22809dc1207824dde2"},
+    {"command": "git status --short | Measure-Object -Line", "exit": 0, "stdout": "297"},
+    {"command": "Get-Process -Name julia,desc", "exit": 0, "stdout": "none at capture"},
+    {"command": "python test/GenomeV5/G1/static_qa_diffusion_v1.py", "exit": 0, "stdout": "static_qa=pass; julia_or_desc_executed=false"}
+  ],
+  "julia_invoked": false,
+  "desc_invoked": false,
+  "review_disposition": "changes_requested",
+  "blocking_findings": ["forward_type_reference", "untyped_fail_closed_controls"]
+}
+

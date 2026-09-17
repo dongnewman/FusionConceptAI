@@ -1,0 +1,16 @@
+{
+  "schema_version":"AD49-S2-negative-controls-v1",
+  "factory_hash_cannot_promote_identity":true,
+  "fixture_or_G3_or_registry_alias_cannot_substitute":true,
+  "controls":[
+    {"layer":"G1","control":"locator_missing","observed":"typed_absent","expected":"typed_absent","pass":true} ,
+    {"layer":"G2","control":"locator_missing","observed":"typed_absent","expected":"typed_absent","pass":true} ,
+    {"layer":"G1","control":"anchor_unavailable","observed":"true","expected":"true","pass":true} ,
+    {"layer":"G2","control":"anchor_unavailable","observed":"true","expected":"true","pass":true} ,
+    {"layer":"G1","control":"foreign_or_conflicting_handle","observed":"fail_closed","expected":"fail_closed","pass":true} ,
+    {"layer":"G2","control":"foreign_or_conflicting_handle","observed":"fail_closed","expected":"fail_closed","pass":true} ,
+    {"layer":"G1/G2","control":"factory_hash_cannot_promote_identity","observed":"typed_absent_with_factory_hash_only","expected":"no_identity_promotion","pass":true} ,
+    {"layer":"G1/G2","control":"fixture_G3_registry_alias_cannot_substitute","observed":"typed_absent_without_alias","expected":"no_alias_substitution","pass":true}
+  ],
+  "all_pass":true
+}

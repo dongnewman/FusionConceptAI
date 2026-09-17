@@ -1,0 +1,44 @@
+{
+  "schema": "UP1.W3.source-g2-environment.independent-findings.r3.v1",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only/screen_only",
+  "formal_credit": false,
+  "resolved_r2_findings": [
+    {"id":"W3-R2-P2-001","status":"closed_for_preparation","evidence":["source_g2_environment/production_g2_evaluator.py","source_g2_environment/static_validator.py","repair_r3/raw/static_validator_r3.stdout.raw"],"note":"Strict schema checks every security field, duplicate and unknown fields fail closed, 24 parameterized negatives plus duplicate-key case reject, TEST_ONLY positive is non_evidence."},
+    {"id":"W3-R2-P3-001","status":"closed_for_preparation","evidence":["source_g2_environment/validation_receipt.json","source_g2_environment/manifest.json","repair_r3/raw/static_validator_r3.stdout.raw"],"note":"Authoritative and fresh rerun both expose input_artifact_hashes/output_artifact_hashes with explicit self exclusions and PID/UTC/exit/raw bindings."}
+  ],
+  "resolved_prior_findings_still_closed": [
+    "W3-P1-001", "W3-P1-002", "W3-P1-003", "W3-P1-004", "W3-P2-001", "W3-P2-002", "W3-P2-003"
+  ],
+  "findings": [
+    {
+      "id": "W3-R3-P2-001",
+      "severity": "P2",
+      "title": "cleanup exact-set cardinality is stale and not independently exact",
+      "status": "open",
+      "evidence": ["source_g2_environment/cleanup_inventory.json#/final_exact_set_source", "source_g2_environment/manifest.json#/input_exact_set"],
+      "observation": "The actual source_g2_environment file set and manifest input_exact_set both contain 47 unique relative paths and match byte-for-byte as sets. cleanup_inventory.json nevertheless declares \"48 exact relative paths\" and does not provide a matching complete per-file final set. This leaves the cleanup receipt's exact-set statement inconsistent with the manifest and current disk.",
+      "required_action": "Refresh cleanup_inventory.json's exact-set cardinality and complete final set/hash cross-check under a new controlled receipt; preserve all historical raw failures and retain self-hash exclusions.",
+      "claim_effect": "No W3 full closure, UP1, B00, B04, R, L4, or parent credit. Preparation/screen-only review remains allowed."
+    },
+    {
+      "id": "W3-R3-P3-001",
+      "severity": "P3",
+      "title": "manifest allowed_files contains duplicate entries",
+      "status": "open",
+      "evidence": ["source_g2_environment/manifest.json#/allowed_files"],
+      "observation": "allowed_files has 52 list entries for 47 actual files; report.md, run_ledger_r2.json, source_four_axis_binding.json, static_validator.py, and validation_receipt.json each occur twice. The set matches actual files, but the non-unique list weakens exact-set determinism and is not represented as a duplicate rejection in the source validator.",
+      "required_action": "Canonicalize allowed_files to a sorted unique list and independently validate list uniqueness on the next repair receipt; do not alter frozen source inputs in this review.",
+      "claim_effect": "No formal credit; preparation_only/screen_only."
+    }
+  ],
+  "preserved_r2_failures": [
+    {"pid":24644,"exit_code":1,"classification":"validator_wrapper_path_error_repo_index_preserved","raw":"source_g2_environment/raw/repair_r2_static_validator.*"},
+    {"pid":111940,"exit_code":1,"classification":"validator_fail_closed_empty_assertion_preserved","raw":"source_g2_environment/raw/repair_r2_retry_static_validator.*"}
+  ],
+  "typed_drift": {
+    "status":"typed_drift_terminal_deferred",
+    "action":"do_not_silently_update_freeze_or_create_AD",
+    "source":"source_g2_environment/repair_r3/raw/targeted_diagnostic.*"
+  }
+}

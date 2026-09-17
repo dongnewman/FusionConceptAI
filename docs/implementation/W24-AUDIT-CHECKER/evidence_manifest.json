@@ -1,0 +1,110 @@
+{
+  "task": "W24-AUDIT-CHECKER",
+  "status": "accepted",
+  "accepted": true,
+  "actual_model": "gpt-5.6-luna",
+  "actual_effort": "high",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "scope": "artifact-byte and execution-ledger checker only; not physical validation",
+  "acceptance_record": "docs/implementation/W24-AUDIT-CHECKER/acceptance.md",
+  "accepted_scope": "ledger predicate and checker artifact semantics only",
+  "claim_ceiling": "software audit only; no W24 physical/engineering or R01-R10 credit",
+  "owner": "gpt-5.6-luna (implementation author)",
+  "reviewer": "different Luna (independent review: pass)",
+  "sol_decision": "accepted limited checker repair; direct immutable parent exit 1 remains a sealed old-checker-hash mismatch; isolated fixture exit 0 cannot replace old formal evidence",
+  "archive_write_before_sha256": {
+    "docs/implementation/W24-AUDIT-CHECKER/acceptance.md": "b45ca8e5600c8ac5fa7fcdd6305b30b3dd5d3c3b3aa32b55c50d8a0e63574380",
+    "docs/implementation/W24-AUDIT-CHECKER/evidence_manifest.json": "9eeeba5c2084d42519b9285ad7931d597932d80414d499962e3fec1309db936f",
+    "docs/implementation/UP0-01/acceptance.md": "aac74c3b29c2595c7bab5e54ad8ec18fe3b5d4faaea98301c182bf8974032e67",
+    "docs/implementation/README.md": "2289104c4d798aec93ea098419af16bb04f1c2708e42a675a1e62bf111b4596b",
+    "docs/v4_multitopology_generation/README.md": "df879608c4c479cf3c37848ca78788367c44cda7e526e24ae9eb7f08a83e96e4"
+  },
+  "allowed_files": [
+    "scripts/verify_v4_spatial_manifest.py",
+    "test/verify_v4_spatial_manifest_tests.py",
+    "docs/implementation/W24-AUDIT-CHECKER/acceptance.md",
+    "docs/implementation/W24-AUDIT-CHECKER/evidence_manifest.json"
+  ],
+  "protected_before_after": {
+    "scripts/verify_v4_spatial_manifest.py": {
+      "before_sha256": "a8f42022a8be19c4a1960678cf41e97cc157f33f429464d17335da4f08ec886b",
+      "after_sha256": "bbf9a7e3fc2f6c611f05194ed9909dc22b9c7f4f9cf0694ea7ef6573813b16d6"
+    },
+    "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/execution_manifest.json": {
+      "before_sha256": "37a0ce12fefc08203793b6ed0270718fecc17ceb88d9d2701e055d732432f0c5",
+      "touched": false
+    },
+    "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/execution_ledger.jsonl": {
+      "before_sha256": "a03f6cb3de5eb1ce7315daf4ee7b989aafc147d86dc10ed3bd2f65e6688bd840",
+      "touched": false
+    }
+  },
+  "artifacts": [
+    {
+      "path": "test/verify_v4_spatial_manifest_tests.py",
+      "sha256": "93e4206e8a8efb4ffa3224211f8339289a7deb7b6a449c01d87df773ca751247"
+    },
+    {
+      "path": "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/result.json",
+      "sha256": "6d0b33373814925bff00d815140f6f569a279d9f9bf77d09397e28fcf8cdf04b"
+    },
+    {
+      "path": "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/execution_manifest.json",
+      "sha256": "37a0ce12fefc08203793b6ed0270718fecc17ceb88d9d2701e055d732432f0c5"
+    },
+    {
+      "path": "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/execution_ledger.jsonl",
+      "sha256": "a03f6cb3de5eb1ce7315daf4ee7b989aafc147d86dc10ed3bd2f65e6688bd840"
+    }
+  ],
+  "commands": [
+    {
+      "argv": ["python", "-m", "unittest", "discover", "-s", "test", "-p", "verify_v4_spatial_manifest_tests.py", "-v"],
+      "exit_code": 0,
+      "result": "3 tests OK"
+    },
+    {
+      "argv": ["python", "scripts/verify_v4_spatial_manifest.py", "<immutable W24 parent>", "<temporary report.json>"],
+      "exit_code": 1,
+      "result": "ledger_recovery_history_ok=true; source checker hash mismatch against immutable parent manifest"
+    },
+    {
+      "argv": ["git", "status", "--short", "--", "runs/goal_recovery_20260913_012528_cst"],
+      "exit_code": 0,
+      "result": "no changes made by this work order; pre-existing dirty artifacts remain protected"
+    }
+  ],
+  "isolated_regression": {
+    "old_checker_exit_code": 1,
+    "old_checker_ledger_recovery_history_ok": false,
+    "old_report_sha256": "bd1d77e33082a20ea4c72fe61f749f0a1f8459dc05f8bf68c89638fd4ea841da",
+    "new_checker_exit_code": 0,
+    "new_checker_ledger_recovery_history_ok": true,
+    "new_report_sha256": "35ff55c825992edbc0781fa04d3b5507254ce9dfa234027c5a1beeb632cb725f"
+  },
+  "ledger_contract": {
+    "required_stages": ["candidate", "upstream_DESC", "physics", "engineering", "verification", "whole", "manifest"],
+    "rule": "every required stage latest event must have execution_state=completed; missing stage fails closed",
+    "program_exception": "historical independent count only; never required for recovery"
+  },
+  "validation_commands": {
+    "plan_validator": {
+      "argv": ["python", "docs/v4_multitopology_generation/validate_plan.py"],
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "exit_code": 0,
+      "result": "checks=pass; task DAG acyclic; 24 tasks; 227 relative links; no errors",
+      "limitation": "planning/document validation only; no Julia/DESC, numerical, physical, engineering, or R01-R10 acceptance"
+    },
+    "json_parse": {
+      "argv": ["python", "-c", "load W24 evidence_manifest.json and task_manifest.json"],
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "exit_code": 0,
+      "result": "JSON_PARSE_OK"
+    }
+  },
+  "review": {
+    "independent_reviewer": "different Luna",
+    "status": "pass",
+    "sol_decision": "accepted limited software checker scope; no physical, engineering, or R01-R10 credit"
+  }
+}

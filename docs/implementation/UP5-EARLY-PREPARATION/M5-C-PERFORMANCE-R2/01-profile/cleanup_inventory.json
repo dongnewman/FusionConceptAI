@@ -1,0 +1,9 @@
+{
+  "schema": "M5CPerformanceCleanupInventoryV1",
+  "status": "retained",
+  "deleted": [],
+  "production_mutation": false,
+  "preserved": ["raw/*.stdout.raw", "raw/*.stderr.raw", "timeout and program_exception outputs", "historical M5-EGRAPH-R1 failure receipts"],
+  "task_owned_scratch": "none",
+  "note": "No Julia process remains. The probe source is the only test-scope file added; no production source or existing test was modified."
+}

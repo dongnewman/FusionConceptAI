@@ -1,0 +1,46 @@
+{
+  "schema_version": "AD48-S3-root-acceptance-R1-manifest-v1",
+  "record_kind": "root_acceptance",
+  "task_id": "AD48-S3-TRUSTED-G3-SOURCE-IDENTITY",
+  "decision": "accepted_limited",
+  "accepted_scope": "four_scope_trusted_source_identity_typed_absence_only",
+  "gate_status": "blocked_external_trust_root",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "only_unlocked": "typed_absence_software_provenance_record_only",
+  "formal_products": {
+    "count": 8,
+    "all_exact_paths": true,
+    "all_bytes_sha256_closed": true,
+    "all_result": "AbsentG3TrustedSourceIdentityV1+AbsentG3TrustedSourceIdentityReceiptV1",
+    "products": {
+      "realization": {"identity":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_v1.json","bytes":2414,"sha256":"d18c3d983c9453a49d7fdeb4ade305f1e2467c980cb99ae981dfb367ddf57f78"},"receipt":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_receipt.json","bytes":1292,"sha256":"b32b832f9965f35eb03c28b393c765116bc1070b7ce05f7d7d69e43b1dcfb3f2"}},
+      "control": {"identity":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_v1.json","bytes":2394,"sha256":"701fc7a253e5e41d2f22f95b1bb1173eca46f76f037fac4407d2343860e05b14"},"receipt":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_receipt.json","bytes":1288,"sha256":"f7072221737f3be9b7d4d417031558bd09c5f2723693d869996f3f73b3f0fa77"}},
+      "binding": {"identity":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_v1.json","bytes":2394,"sha256":"58bd50be0abc470117e8e09f9d14b826ff1d00a31402f48d4511ae0664f4a1d1"},"receipt":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_receipt.json","bytes":1288,"sha256":"46001d6f1d898d12f8f899e2b1b668eaafb162ec804ebc99a43b06da1615b380"}},
+      "bundle": {"identity":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_v1.json","bytes":2389,"sha256":"69822d7b0acfbf612dbaf12f8b4a6ae309eee9981c561e19374c8475f2dbc7e3"},"receipt":{"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_receipt.json","bytes":1287,"sha256":"2d302c6d7ce9f1eaa9e79240d9c0878f4976af0cb386326929b98430f436d8cc"}}
+    }
+  },
+  "independent_review": {
+    "path": "../independent_review_r1/report.md",
+    "sha256": "7f7c1788906fdd14360ae36fd6fd65bb08cb08f34ac72fef6d86c61e7a8dcb4c",
+    "manifest_path": "../independent_review_r1/manifest.json",
+    "manifest_sha256": "6bfdfd1125ad9cde0c5a38e0720f48b7a57c15787803828046e987ef37b7c644",
+    "verdict": "pass_limited",
+    "direct_checks": {"passed":137,"total":137,"exit_code":0},
+    "replay_checks": {"passed":8,"total":8,"exit_code":0},
+    "security_inventory_path": "../independent_review_r1/raw/security_inventory.json",
+    "security_inventory_sha256": "0c4ce89df95392f9fd09811a7b35412f04ad081a6e7debed4bf983a8451b89b2"
+  },
+  "formal_validation": {
+    "direct": {"path":"../archive/direct_validation.json","passed":65,"total":65,"pid":86988,"utc":"2026-09-15T16:41:50.396860Z","exit_code":0},
+    "replay": {"path":"../archive/replay_validation.json","passed":8,"total":8,"pid":90856,"utc":"2026-09-15T16:41:50.468566Z","exit_code":0},
+    "plan_validator": {"path":"../independent_review_r1/raw/plan_scope_validation.json","markdown":31,"links":526,"tasks":39,"dag_acyclic":true,"exit_code":0},
+    "scoped_diff_check": {"path":"../independent_review_r1/raw/plan_scope_validation.json","exit_code":0}
+  },
+  "external_trust_root_requirement": {"independent_attestor": "required_missing","signing_key_or_certificate": "required_missing","signature_verifier": "required_missing","trust_root": "required_missing","revocation_policy_or_source": "required_missing","freshness_or_trusted_time_policy": "required_missing","present_result_permitted": false},
+  "claims": {"trusted_source_identity":false,"candidate":false,"finalhash":false,"t0":false,"physics":false,"r01_r10":false,"l4_credible_count":0,"fresh_w1":false,"w2":false,"ad46_identity":false},
+  "heavy_execution": {"julia":false,"desc":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physics":false,"search":false},
+  "ad49_independent_progress_allowed": true,
+  "product_mutation": false,
+  "self_hash_excluded": true
+}

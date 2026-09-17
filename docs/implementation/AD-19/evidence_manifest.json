@@ -1,0 +1,188 @@
+{
+  "task_id": "AD-19",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted",
+  "accepted": true,
+  "accepted_scope": "v4_to_v5_migration_package_join_architecture_boundary_and_r1_r2_provenance_only",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "owner": "architecture documentation",
+  "reviewer": "different Luna (pass)",
+  "sol_decision": "accepted only for the V4-to-V5 migration/package-join architecture boundary and r1/r2 before/after/patch provenance; no UP1-04 implementation, provider, B00/B04, engineering, physical, or R01-R10 credit",
+  "allowed_write_paths": [
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/implementation/AD-19/"
+  ],
+  "protected_scope": [
+    "src/",
+    "test/",
+    "runs/",
+    "queue",
+    "docs/implementation/UP0-02/",
+    "docs/implementation/UP1-01/",
+    "docs/implementation/UP1-02/",
+    "docs/implementation/UP1-03/",
+    "docs/implementation/UP1-INDEX/",
+    "docs/implementation/AD-17/",
+    "docs/implementation/AD-18/"
+  ],
+  "decision_points": [
+    "complete V4_to_V5 lossless mapping is none",
+    "G1 conditional migration requires declaration-driven field-complete proof",
+    "G2/G3 missing semantics are terminal_deferred",
+    "structural, version, ref, and binding errors are fail_closed",
+    "additive strongly typed CandidateStatePackageV5 plus staged adapter and same-candidate exact join",
+    "V4 package/compiler/campaign boundaries remain read-only",
+    "fresh V5 does not fabricate a legacy migration receipt",
+    "B00/B04 suite is frozen after final schema and before first execution"
+  ],
+  "before_files": [
+    {
+      "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+      "snapshot": "docs/implementation/AD-19/before/18_sources_and_architecture_decisions.md",
+      "sha256": "c910cf900011693fc9d7d01d4bf5f6b4f916d93a02c7b996bdb1e73078003a86",
+      "bytes": 15833,
+      "mtime": "2026-09-14T04:56:52.7159184+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "snapshot": "docs/implementation/AD-19/before/16_execution_work_orders.md",
+      "sha256": "e2c3e66aded11ed92aa7ce657400de96fba115e9947c5c74a8b494a434c3e7c3",
+      "bytes": 43093,
+      "mtime": "2026-09-14T05:20:57.1560226+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/README.md",
+      "snapshot": "docs/implementation/AD-19/before/README.md",
+      "sha256": "69d46e6e81a44669ce29c488dd3b7dd672bce1ab10024c3b1517fb4662434541",
+      "bytes": 11350,
+      "mtime": "2026-09-14T05:20:57.1570216+08:00"
+    }
+  ],
+  "after_files": [
+    {
+      "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+      "snapshot": "docs/implementation/AD-19/after/18_sources_and_architecture_decisions.md",
+      "sha256": "63612061ca4989008103eaf76ec3477788707002270daed6c8dd5e47b7cb6068",
+      "bytes": 17807,
+      "mtime": "2026-09-14T05:32:35.6303195+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "snapshot": "docs/implementation/AD-19/after/16_execution_work_orders.md",
+      "sha256": "98db90fbc46976e9f11c331629d31bce9d807028994377a99d80fd057fcf6e75",
+      "bytes": 44564,
+      "mtime": "2026-09-14T05:32:35.6313254+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/README.md",
+      "snapshot": "docs/implementation/AD-19/after/README.md",
+      "sha256": "0d017609c2796a1025125358af090fb1b070be1ac296d5c6ceb13360ae7f5a35",
+      "bytes": 12227,
+      "mtime": "2026-09-14T05:32:35.6323250+08:00"
+    }
+  ],
+  "bounded_diff": {
+    "path": "docs/implementation/AD-19/bounded_diff.patch",
+    "sha256": "c42408112a25d1c457add1bbf3c1c94180f2603c6deddc9e52c7bf0f9f1df4c0",
+    "bytes": 6470
+  },
+  "commands": [
+    {
+      "command": "PowerShell copy three core documents to AD-19/before and record SHA256/bytes/seven-digit mtime",
+      "exit_code": 0,
+      "purpose": "pre-modification byte provenance"
+    },
+    {
+      "command": "PowerShell copy three core documents to AD-19/after and record SHA256/bytes/seven-digit mtime",
+      "exit_code": 0,
+      "purpose": "post-modification byte provenance"
+    },
+    {
+      "command": "Python difflib unified diff for three before/after snapshots",
+      "exit_code": 0,
+      "purpose": "bounded AD-19 diff"
+    },
+    {
+      "command": "python -c JSON parse task_manifest.json and UP1-INDEX/evidence_manifest.json",
+      "exit_code": 0,
+      "purpose": "JSON validation"
+    },
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "purpose": "planning/link/DAG validation only",
+      "output": "checks=pass; markdown_files_checked=31; relative_links_checked=264; task_count=24; task_dag_acyclic=true; snapshot_files_checked=16; errors=[]"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "purpose": "whitespace validation",
+      "output": "exit 0; existing LF-to-CRLF working-copy warnings only"
+    }
+  ],
+  "execution_boundary": {
+    "julia": false,
+    "DESC": false,
+    "provider": false,
+    "B00": false,
+    "B04": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01-R10": false
+  },
+  "independent_review": {
+    "reviewer": "different Luna",
+    "result": "pass",
+    "scope": "AD-19 semantic decision, provenance, and credit boundaries"
+  },
+  "review_history": [
+    {
+      "revision": "r1",
+      "result": "changes_requested",
+      "archive": "docs/implementation/AD-19/review_failure_r1.md",
+      "finding": "AD-18 integrated table said complete ref four fields although the public GenomeContractRef has URI, version, schema_hash, canonicalization_hash, and compatibility_profile",
+      "disposition": "single table-cell correction in r2; prior AD-19 snapshots and bounded_diff.patch preserved"
+    },
+    {
+      "revision": "r2",
+      "result": "pass",
+      "scope": "single AD-18 table-cell wording correction",
+      "before_files": [
+        {
+          "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+          "snapshot": "docs/implementation/AD-19/r2_before/18_sources_and_architecture_decisions.md",
+          "sha256": "63612061ca4989008103eaf76ec3477788707002270daed6c8dd5e47b7cb6068",
+          "bytes": 17807,
+          "mtime": "2026-09-14T05:32:35.6303195+08:00"
+        }
+      ],
+      "after_files": [
+        {
+          "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+          "snapshot": "docs/implementation/AD-19/r2_after/18_sources_and_architecture_decisions.md",
+          "sha256": "9fe140fc9a829c1bb29a863dd66f7bb1080c0c8ae1a169b16a4acd8c83aaa518",
+          "bytes": 17888,
+          "mtime": "2026-09-14T05:38:59.7007578+08:00"
+        }
+      ],
+      "bounded_diff": {
+        "path": "docs/implementation/AD-19/bounded_diff_r2.patch",
+        "sha256": "e2bfbd1458edba93bc1f2768f31634b6455ddbbd626560c0a1c50d4b2a73937d",
+        "bytes": 926
+      },
+      "review_failure_archive": "docs/implementation/AD-19/review_failure_r1.md"
+    }
+  ],
+  "current_revision": {
+    "revision": "r2",
+    "changed_path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "change": "AD-18 integrated table now explicitly names all five GenomeContractRef fields",
+    "status": "accepted",
+    "accepted": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "qa": "independent_precheck_receipt_r1",
+  "json_parse_exit": 0,
+  "control_scan_exit": 0,
+  "git_diff_check_exit": 0,
+  "hash_recheck_exit": 0,
+  "process_sweep_exit": 0,
+  "process_sweep": [],
+  "julia_desc_execution": false,
+  "checked_paths": [
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+    "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+    "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+    "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+    "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl",
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl",
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl",
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl",
+    "docs/implementation/UP2-00E1-N05-FLUX-AUTHORITY/receipt_export_r1/"
+  ],
+  "verdict": "ready_for_focused_r1",
+  "claim_ceiling": "contract_only; no B00/B04/provider/mesh/engineering/physical/R01-R10"
+}
+

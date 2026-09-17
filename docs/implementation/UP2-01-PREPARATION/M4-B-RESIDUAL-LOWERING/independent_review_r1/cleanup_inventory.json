@@ -1,0 +1,38 @@
+{
+  "schema": "m4-b-residual-lowering-independent-review-cleanup-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/independent_review_r1",
+  "status": "clean_exact_owned_paths_only",
+  "owner": "/root/m4b_review",
+  "removed": [],
+  "task_owned_products_retained": [
+    "report.md",
+    "manifest.json",
+    "validation_receipt.json",
+    "cleanup_inventory.json",
+    "command_01_python_oracle.receipt.json",
+    "command_02_julia_tests.receipt.json",
+    "raw/command_01_python_oracle.stdout.raw",
+    "raw/command_01_python_oracle.stderr.raw",
+    "raw/command_01_python_oracle.combined.raw",
+    "raw/command_02_julia_tests.stdout.raw",
+    "raw/command_02_julia_tests.stderr.raw",
+    "raw/command_02_julia_tests.combined.raw",
+    "raw/command_03_static_audit.stdout.raw"
+  ],
+  "protected_upstream": [
+    "../delivery_r1/**",
+    "../test_execution_r1/**",
+    "../integration_r1/**",
+    "../M4-A-EQUATION-IR/root_acceptance_r1/**",
+    "src/RuntimeV4/RuntimeV4.jl",
+    "Project.toml",
+    "Manifest.toml",
+    "unrelated dirty worktree files"
+  ],
+  "task_owned_scratch_removed": [],
+  "broad_cleanup": false,
+  "global_staging_or_revert": false,
+  "temporary_code_files_created": false,
+  "policy": "retain raw receipts hashes and upstream failure history; delete only explicitly owned scratch"
+}
+

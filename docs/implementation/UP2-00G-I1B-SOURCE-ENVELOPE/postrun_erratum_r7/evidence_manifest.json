@@ -1,0 +1,97 @@
+{
+  "record_kind": "GI1B-postrun-erratum-r7",
+  "schema_version": "GI1B-postrun-erratum-r7-v1",
+  "status": "review_pending",
+  "accepted": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "source_scope": "clean UTF-8 text correction generated from immutable raw R5/R6 evidence",
+  "direct_raw": {
+    "stdout": {
+      "bytes": 2806,
+      "sha256": "22f5b6723c74b3b502100cba753a9b567c09896722f3373ae28d45b579976121"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "focused_r5": {
+    "pid": 14796,
+    "exit_code": 0,
+    "assertions": "2653/2653",
+    "structured_receipts": {
+      "output_hashes.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "command_receipts.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "report.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "structured_receipt_hash_length": 64
+  },
+  "independent_postrun_r5_historical_fields": {
+    "values": {
+      "report.json": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "evidence_manifest.json": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "length": 62,
+    "preserved": true
+  },
+  "r6_replacement": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "r6_report_untouched": true,
+    "r6_json_untouched": true,
+    "r6_archive_outputs": {
+      "report_md": {
+        "bytes": 1438,
+        "sha256": "2aa9590227caf39fa49aedb9c09427205f77f5a9fea55b9a3fb012faed3c7515"
+      },
+      "command_receipts_json": {
+        "bytes": 1349,
+        "sha256": "bee478f03a97811e5b6e015753e71f701ffb6707572bd48a43cb7d1b507e963d"
+      }
+    }
+  },
+  "focused_r4": {
+    "exit_code": 1,
+    "assertions": "2051/2052",
+    "overwritten": false
+  },
+  "protected_inputs": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {
+      "bytes": 43037,
+      "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"
+    },
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {
+      "bytes": 25685,
+      "sha256": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299"
+    },
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {
+      "bytes": 23906,
+      "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"
+    },
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {
+      "bytes": 408,
+      "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"
+    }
+  },
+  "owner_state": {
+    "status": "review_pending",
+    "accepted": false
+  },
+  "claim_ceiling": [
+    "actual_A_source_envelope_software_only",
+    "no_N06_actual_authority",
+    "no_UP2_total",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh_execution",
+    "no_physical",
+    "no_engineering",
+    "no_R01_R10"
+  ],
+  "text_validation": {
+    "utf8": true,
+    "control_chars": false,
+    "unexpanded_placeholders": false
+  }
+}

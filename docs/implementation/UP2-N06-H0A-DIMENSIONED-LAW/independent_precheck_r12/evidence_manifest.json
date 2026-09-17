@@ -1,0 +1,51 @@
+{
+  "schema": "independent_precheck_r12_evidence_manifest",
+  "review_id": "UP2-N06-H0A-DIMENSIONED-LAW-independent-precheck-r12",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "scope": {
+    "static_only": true,
+    "julia_or_desc_executed": false,
+    "production_source_modified_by_review": false,
+    "no_B00_or_B04_credit": true,
+    "no_physical_or_engineering_credit": true,
+    "no_parent_goal_or_R_credit": true
+  },
+  "workspace": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "dirty_status_lines": 303,
+    "dirty_status_sha256_utf8_lf": "759bd0d086c01bcd60968df018fc053d4af2999e9f1ef81f4e0e40db1187f46b",
+    "julia_desc_processes": []
+  },
+  "targets": {
+    "source": {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "bytes": 57046, "sha256": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251", "status": "R12_unchanged_from_R11_after"},
+    "test": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "bytes": 38512, "sha256": "809a745ab0af4add6ba8f33d7f273f4573fe8bbc98ce64e9400d9edf113d667d", "status": "R12_after"},
+    "fixture": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "status": "protected_unchanged"},
+    "runner": {"path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "status": "protected_unchanged"}
+  },
+  "test_review": {
+    "status_assertion_unconditional": true,
+    "counter_assertion_unconditional": true,
+    "typed_absent_assertion_unconditional": false,
+    "dependent_field_access_guarded": true,
+    "validate_call_guarded": true,
+    "program_exception_status_not_downgraded_by_test": true,
+    "coverage_weakening": "terminal_deferred_with_wrong_or_nothing_declaration_can_pass_status_and_counter_checks",
+    "required_repair": "restore @test result.declaration isa G.N06H0ATypedAbsentV1 before guarded field accesses"
+  },
+  "diagnostic_review": {
+    "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/diagnostic_r12/diagnostic_r12.jl",
+    "run_pid": 23916,
+    "exit_code": 1,
+    "failure_class": "diagnostic_harness_failure",
+    "failure": "MechanismGenomeV5 undefined during fixture deserialize",
+    "root_cause": "missing G.load_genome_v5_up2_components! before child fixture deserialize; standalone H0-A source include also absent",
+    "stdout": {"bytes": 272, "sha256": "58ec17309e64723b09d28749543d3a78c526c853b2677cf88aa207c199f03d4e"},
+    "stderr": {"bytes": 2455, "sha256": "d34d59ba7298d335f3141247a2038ce6c9ac461dfa79dcdc88097b7376d8240e"},
+    "julia_desc_before_after": [0, 0],
+    "dirty_rows_before_after": [303, 303]
+  },
+  "next_gate": "repair the missing unconditional typed-absence assertion, independent static recheck, then one corrected loader-plus-H0A-include diagnostic",
+  "claim_ceiling": ["static_only", "no_H0A_acceptance", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R_credit"]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "m4-b-residual-lowering-integration-validation-receipt-v1",
+  "status": "integration_complete_review_pending",
+  "validation_kind": "independent_serial_integration_verification",
+  "command_receipts": [
+    "command_01_python_oracle.receipt.json",
+    "command_02_python_oracle.receipt.json",
+    "command_03_julia_tests.receipt.json",
+    "command_04_julia_tests.receipt.json"
+  ],
+  "input_hashes": {
+    "source_a": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "source_b": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c",
+    "test": "c7032beecfcca29db8a751eec4aaf4797eadfed66b12e8da611c392783740f73",
+    "oracle": "0d89c69ab3689a0cf7cde9756f95a76b8f7e4c8fc93a7a99ed9aa460bd5781fd"
+  },
+  "assertions": {
+    "python_run_01_exit_zero": true,
+    "python_run_02_exit_zero": true,
+    "python_canonical_payload_byte_equal": true,
+    "python_exact_residual_zero": true,
+    "python_exact_divergence_11_over_60": true,
+    "julia_run_01_exit_zero": true,
+    "julia_run_02_exit_zero": true,
+    "julia_run_01_53_of_53": true,
+    "julia_run_02_53_of_53": true,
+    "stderr_empty_all_four_runs": true,
+    "strict_process_order_python_python_julia_julia": true,
+    "isolated_include_boundary": true,
+    "shared_entry_registry_project_manifest_unchanged_by_record": true,
+    "forbidden_execution_not_performed": true
+  },
+  "semantic_comparison_rule": "Python canonical payload bytes and Julia pass/total; ignore PID, timestamps, and human-readable timing",
+  "raw_evidence": {
+    "live_raw": "raw/",
+    "archived_raw": "archive/raw/",
+    "upstream_failure_history": "../test_execution_r1/command_02_julia_tests.*",
+    "harness_capture_abort": "archive/harness_capture_abort_20260916T0718Z/"
+  },
+  "claim_ceiling": "manufactured_residual_lowering/screen_only",
+  "formal_credit": [],
+  "parent_goal_closed": false,
+  "independent_review_required": true,
+  "sol_acceptance_required": true
+}

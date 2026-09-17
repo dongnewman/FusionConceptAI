@@ -1,0 +1,25 @@
+{
+  "manifest_version":"AD-37-acceptance-status-sync-r1",
+  "task_id":"AD-37",
+  "status":"accepted_limited",
+  "accepted_scope":"static_present_baseline_audit_and_future_g1_g2_publication_work_order_boundary_only",
+  "claim_ceiling":"contract_only",
+  "parent_task_count":39,
+  "parent_dag_unchanged":true,
+  "creates_machine_node":false,
+  "credits":{"present_g1":false,"present_g2":false,"implementation":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"search":false,"b00":false,"b04":false,"r01_r10":false,"l4_credible_count":0},
+  "inputs":{
+    "docs/implementation/AD-37/acceptance/acceptance.md":{"bytes":1866,"sha256":"2260f3143d2d3e620ce2221b4783bf6347990ea5d507c28dbb417e184ce148b1"},
+    "docs/implementation/AD-37/acceptance/manifest.json":{"bytes":1952,"sha256":"744213bf91c45c3a6255533b45af01d9989d756d8f6147660ed882e62bbde89f"},
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/manifest.json":{"bytes":10835,"sha256":"99e24ead2cf392239778ff015786f05eb303d3c291502402dc72e3dbb966240a"},
+    "docs/implementation/AD-37/g1_g2_present_baseline_audit/independent_review_r3/manifest.json":{"bytes":9275,"sha256":"dce9ff890ae7824aad53a051b73c9bf8b28a65e68f8502ece310097538526a5c"},
+    "docs/v4_multitopology_generation/task_manifest.json":{"bytes":91208,"sha256":"7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8"}
+  },
+  "commands":[
+    {"kind":"json_and_identity_check","command":"python -c parse/assert four manifests and absence/no-machine-node","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":9012,"started_utc":"2026-09-15T07:17:39.4220011Z","ended_utc":"2026-09-15T07:17:39.4825095Z","exit_code":0,"stdout":"status_sync_r1/json_parse.stdout","stderr":"status_sync_r1/json_parse.stderr"},
+    {"kind":"git_diff_check_scoped","command":"git diff --check -- docs/implementation/AD-37/acceptance","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":3244,"started_utc":"2026-09-15T07:17:47.4366272Z","ended_utc":"2026-09-15T07:17:47.5135631Z","exit_code":0,"stdout":"status_sync_r1/diff_check.stdout","stderr":"status_sync_r1/diff_check.stderr"}
+  ],
+  "raw_receipts":{"json_parse.stdout":{"bytes":171,"sha256":"8123c870ac516fdad0731bf81ed83439340c7e5b92c1c5e0092127d891f1809b"},"json_parse.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"diff_check.stdout":{"bytes":92,"sha256":"1c20cab04c21c10d42fb9e29928e836ab4d8fcb284de8e9a793fdb0b775d6314"},"diff_check.stderr":{"bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}},
+  "cleanup":{"action":"retain","removed_paths":[],"cleanup_deferred_ambiguous":[],"dirty_and_historical_protected":true},
+  "self_hash_excluded":true
+}

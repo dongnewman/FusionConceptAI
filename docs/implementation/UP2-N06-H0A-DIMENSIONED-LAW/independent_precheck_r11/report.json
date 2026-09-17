@@ -1,0 +1,92 @@
+{
+  "schema": "independent_precheck_r11",
+  "status": "precheck_complete",
+  "verdict": "pass_limited",
+  "serial_focused_r5_readiness": "ready_for_serial_focused",
+  "accepted": false,
+  "review_pending": true,
+  "scope_ceiling": [
+    "static_only",
+    "no_julia_or_desc_execution",
+    "no_B00_or_B04_credit",
+    "no_physical_or_engineering_credit",
+    "no_parent_goal_or_R_credit"
+  ],
+  "frozen_workspace": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_status_lines": 303,
+    "dirty_status_sha256_utf8_lf": "e372f472539f77536e07ea47a6d549931251bafa6894c3df77937e721fa6bc1a",
+    "julia_desc_processes": [],
+    "julia_or_desc_executed": false
+  },
+  "repair_review": {
+    "repair": "repair_r11",
+    "dispatch_erratum": "dispatch_hash_erratum_r11",
+    "base_marker_dispatch_present": true,
+    "full_marker_dispatch_present": true,
+    "public_constructor_routes_through_markers": true,
+    "same_signature_recursive_dispatch": false,
+    "full_new_preserves_21_fields": true,
+    "typed_provenance_guard_preserved": true,
+    "defaults_preserved": {
+      "source_fields": "nothing",
+      "payload_fields": "nothing",
+      "closure_relation": "nothing",
+      "role_coefficients": "empty_namedtuple",
+      "role_directions": "empty_namedtuple"
+    },
+    "negative_controls_retained": true,
+    "constructor_testset_present": true,
+    "constructor_test_default_no_source": true,
+    "constructor_test_typed_law_source": true,
+    "constructor_test_closure_relation": true,
+    "constructor_test_fieldcount_21": true,
+    "existing_fail_closed_assertion_occurrences": 30
+  },
+  "targets": [
+    {
+      "path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl",
+      "bytes": 57046,
+      "sha256": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251",
+      "role": "R11_source_change"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl",
+      "bytes": 38431,
+      "sha256": "eadd8c19344a117edeaa5ffad4fbe6f9e1300d3c81388918b00c63876efa10e5",
+      "role": "R11_test_change"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json",
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+      "role": "protected_fixture_unchanged"
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc",
+      "role": "protected_runner_unchanged"
+    }
+  ],
+  "dispatch_hash_erratum": {
+    "full_runner_sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc",
+    "full_runner_sha256_length": 64,
+    "prior_typo_was_63_characters": true,
+    "old_evidence_overwritten": false
+  },
+  "historical_focused_r4": {
+    "exit_code": 1,
+    "report_json_sha256": "52e9729d47ed880ccfdef6947cdafecec5e2b95f46a609acca17e30f5d0c5b26",
+    "independent_postrun_report_json_sha256": "0e1a0598bea0008b0b565713dfbf19ff7d48705558634d6594ff14dc879f651f",
+    "reused_as_r11_result": false
+  },
+  "qa": {
+    "json_reports_parse": true,
+    "fixture_json_parse": true,
+    "marker_scan": true,
+    "hash_and_byte_scan": true,
+    "static_only": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "m4-b-residual-lowering-integration-cleanup-v1",
+  "status": "complete_exact_owned_paths_only",
+  "owner": "integration_validation_owner",
+  "protected": [
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl",
+    "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl",
+    "test/RuntimeV4/M4Isolated/manufactured_residual_lowering_v1_tests.jl",
+    "test/RuntimeV4/M4Isolated/oracles/residual_lowering_oracle_v1.py",
+    "../test_execution_r1/",
+    "shared RuntimeV4 entrypoints, registries, Project.toml, Manifest.toml",
+    "unrelated dirty worktree files"
+  ],
+  "retained_task_owned_paths": [
+    "raw/",
+    "archive/raw/",
+    "archive/harness_capture_abort_20260916T0718Z/",
+    "command_*.receipt.json",
+    "report.md",
+    "manifest.json",
+    "validation_receipt.json",
+    "cleanup_inventory.json"
+  ],
+  "removed": [],
+  "ambiguous_cleanup_deferred": [],
+  "broad_cleanup_or_staging": false,
+  "note": "Only exact integration_r1-owned evidence paths were created; no source, test, oracle, shared module, registry, Project, Manifest, old archive, or run was deleted or edited."
+}

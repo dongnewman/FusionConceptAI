@@ -1,0 +1,66 @@
+{
+  "schema_version": "GI1A-independent-precheck-r4-manifest-v1",
+  "review_kind": "different-Luna static precheck",
+  "verdict": "changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "owned_new_files": [
+    "report.md",
+    "report.json",
+    "evidence_manifest.json",
+    "command_receipts.json"
+  ],
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": {
+      "expected": "c01a27d6cb6a9b8ab688289f6fa012a98e3229fe20cdab8f1ad0f7edbb9e7141",
+      "actual": "c01a27d6cb6a9b8ab688289f6fa012a98e3229fe20cdab8f1ad0f7edbb9e7141",
+      "match": true,
+      "bytes": 28282
+    },
+    "test/GenomeV5/UP2/gi1_authority_context_fixtures.json": {
+      "expected": "fb5c0c216ac9d98d9ebaba631aa6f2a1795b7d18d670018496858d604ffee44f",
+      "actual": "fb5c0c216ac9d98d9ebaba631aa6f2a1795b7d18d670018496858d604ffee44f",
+      "match": true,
+      "bytes": 1474
+    },
+    "test/GenomeV5/UP2/gi1_authority_context_tests.jl": {
+      "expected": "61829c1175e5013840b684a49d4b0fddd01d2427039b4a418722fd49b2f30226",
+      "actual": "61829c1175e5013840b684a49d4b0fddd01d2427039b4a418722fd49b2f30226",
+      "match": true,
+      "bytes": 17122
+    },
+    "test/GenomeV5/UP2/run_gi1_authority_context.jl": {
+      "expected": "20d01f6ee0ceb7a7bf11c160a4257224ceee61c50ff229dca62303efa0658ff6",
+      "actual": "20d01f6ee0ceb7a7bf11c160a4257224ceee61c50ff229dca62303efa0658ff6",
+      "match": true,
+      "bytes": 279
+    }
+  },
+  "prior_archives_preserved": [
+    "independent_precheck_r1",
+    "independent_precheck_r2",
+    "independent_precheck_r3",
+    "repair_r4"
+  ],
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run"
+  },
+  "qa": {
+    "validate_plan_exit": 0,
+    "json_parse_exit": 0,
+    "git_diff_check_exit": 0,
+    "process_sweep_exit": 0
+  },
+  "claim_ceiling": [
+    "no UP2 total",
+    "no B00/B04",
+    "no provider/mesh/engineering/physical credit",
+    "no R01-R10 credit",
+    "no Julia/DESC runtime evidence"
+  ],
+  "blocker_ids": [
+    "GI1A-R4-01",
+    "GI1A-R4-02"
+  ]
+}

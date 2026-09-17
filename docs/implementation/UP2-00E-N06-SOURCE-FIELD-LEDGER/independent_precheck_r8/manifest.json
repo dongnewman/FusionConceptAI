@@ -1,0 +1,66 @@
+{
+  "schema_version": "independent-precheck-v1",
+  "work_order": "E2-N06-SOURCE-FIELD-LEDGER-independent-precheck-r8",
+  "review_round": "R8",
+  "reviewer_role": "different_luna_static_reviewer",
+  "verdict": "ready_for_focused_r6",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "c5c2c59a6d79ac5e225c64cf04b0cf2cdeda3b30791ab5382d4cade4753b3bc6",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "29d96647d5996359c231035c1a4d9a0637cf48777fc03bdc662513e9f426b2d9",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "5dfab6bfc3f5c71e93889181b1f8984cab01114201531ffb252fbc757ebe3ca8",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af"
+  },
+  "verified": {
+    "typed_tuple_preserved": true,
+    "tuple_components": ["String", "String", "Symbol", "Int64"],
+    "string_ids_preserve_old_semantics": true,
+    "duplicate_precheck": true,
+    "dict_collision_precheck": true,
+    "normal_lookup_control": true,
+    "duplicate_lookup_control": true,
+    "r5_raw_receipt_present": true,
+    "r5_history_immutable": true,
+    "fixture_driven_controls_preserved": true,
+    "source_test_runner_frozen": true
+  },
+  "source_locations": {
+    "unique_index": "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl:270-284",
+    "typed_test": "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl:203-211",
+    "string_registry_callers": "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl:318-363",
+    "r5_history": "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/focused_r5/ and r5_failure.md"
+  },
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "status": "not_run",
+    "reason": "independent static precheck; new focused R6 run remains required"
+  },
+  "qa": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "git_diff_check_exit": 0,
+    "validate_plan_exit": 0,
+    "julia_desc_process_sweep_exit": 0,
+    "julia_desc_process_count": 0
+  },
+  "historical_boundary": {
+    "focused_r5_exit": 1,
+    "focused_r5_classification": "program_exception_old_string_tuple_identity",
+    "r5_raw_preserved": true,
+    "r6_replacement_run": false
+  },
+  "credit_boundary": {
+    "formal_B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "owned_write_scope": [
+    "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/independent_precheck_r8/"
+  ]
+}

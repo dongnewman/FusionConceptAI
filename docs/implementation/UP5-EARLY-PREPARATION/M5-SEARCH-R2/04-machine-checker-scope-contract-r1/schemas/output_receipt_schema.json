@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fusionconceptai:m5-search-r2:machine-checker-output-v1",
+  "title": "M5-SEARCH-R2 machine checker output receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_id", "status", "exit_code", "failure_code", "precedence_rank", "input_bundle_sha256", "checks", "operational_receipt", "claim_ceiling"],
+  "properties": {
+    "schema": {"const": "M5SearchR2MachineCheckerOutputV1"},
+    "contract_id": {"const": "M5-SEARCH-R2-04-MACHINE-CHECKER-SCOPE-CONTRACT-R1"},
+    "status": {"enum": ["contract_machine_closure", "fail_closed", "not_executed", "terminal_deferred", "scope_violation"]},
+    "exit_code": {"enum": [0, 10, 11, 12, 13]},
+    "failure_code": {"type": "string"},
+    "precedence_rank": {"type": "integer", "minimum": 1, "maximum": 7},
+    "input_bundle_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "checks": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["check_id", "result", "evidence_refs"], "properties": {"check_id": {"type": "string"}, "result": {"enum": ["pass", "fail", "typed_absent", "not_executed"]}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}}},
+    "operational_receipt": {"$ref": "#/$defs/operational"},
+    "claim_ceiling": {"const": "screen_only"},
+    "implementation_credit": {"const": "none"},
+    "formal_credit": {"const": "none"}
+  },
+  "$defs": {
+    "operational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pid", "utc_start", "utc_end", "command", "cwd", "exit_code", "termination", "stdout", "stderr"],
+      "properties": {
+        "pid": {"type": "integer", "minimum": 1},
+        "utc_start": {"type": "string", "pattern": "Z$"},
+        "utc_end": {"type": "string", "pattern": "Z$"},
+        "command": {"type": "string"},
+        "cwd": {"type": "string"},
+        "exit_code": {"type": "integer"},
+        "termination": {"type": "string"},
+        "stdout": {"$ref": "#/$defs/raw"},
+        "stderr": {"$ref": "#/$defs/raw"}
+      }
+    },
+    "raw": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

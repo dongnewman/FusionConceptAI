@@ -1,0 +1,87 @@
+{
+  "manifest_version": "AD-34-status-sync-r1",
+  "record_kind": "accepted_limited_architecture_work_order_boundary",
+  "status": "accepted_limited",
+  "decision": "repair_r4_and_independent_review_r5_accepted",
+  "acceptance": "docs/implementation/AD-34/acceptance.md",
+  "status_sync": "docs/implementation/AD-34/status_sync_r1/report.md",
+  "repair_basis": "docs/implementation/AD-34/g3_binding_feedback_audit/repair_r4/revised_proposal.md",
+  "independent_review_basis": "docs/implementation/AD-34/g3_binding_feedback_independent_review_r5/",
+  "exact_file_count_scope": "product_and_contract_deliverables_only",
+  "mandatory_evidence_sidecars": {
+    "amendment": "AD-36",
+    "allowed_root_template": "docs/implementation/<task-id>/archive/**",
+    "allowed_named_subdirectories": ["review/**", "status_sync_*/**"],
+    "append_only": true,
+    "excluded_from_exact_file_count": true,
+    "evidence_only": true,
+    "forbidden_payloads": ["product_or_contract_deliverable", "source", "test", "fixture", "staticQA", "launcher"],
+    "scope_violation_action": "fail_closed_and_cleanup_task_owned_out_of_scope_copy_preserving_evidence",
+    "cleanup_protected": true,
+    "temporary_launcher_forbidden": true,
+    "direct_command_tests_required": true
+  },
+  "machine_nodes": {
+    "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"],
+      "claim_ceiling": "contract_only",
+      "exact_file_count": 6,
+      "exact_file_count_scope": "product_and_contract_deliverables_only",
+      "write_scope": {
+        "product_contract_deliverables": "the six listed machine-node files",
+        "mandatory_evidence_sidecars": "task-owned archive/** or named review/**/status_sync_*/** only; append-only, excluded from count, cleanup-protected"
+      },
+      "current_state": "typed_absent_scaffold_only",
+      "feedback_child": false,
+      "link_CAS": "disabled_until_checked_present_recheck"
+    },
+    "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "depends_on": ["UP1-04A-VNEXT-T0"],
+      "claim_ceiling": "contract_only",
+      "exact_file_count": 7,
+      "exact_file_count_scope": "product_and_contract_deliverables_only",
+      "write_scope": {
+        "product_contract_deliverables": "the seven listed machine-node files",
+        "mandatory_evidence_sidecars": "task-owned archive/** or named review/**/status_sync_*/** only; append-only, excluded from count, cleanup-protected"
+      },
+      "launcher": false,
+      "current_state": "typed_absent_only"
+    }
+  },
+  "T0_unchanged": true,
+  "T1_depends_on": ["UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"],
+  "dag_acyclic": true,
+  "actual_binding": false,
+  "actual_feedback": false,
+  "actual_control": false,
+  "T0_authority": false,
+  "T1": false,
+  "T2": false,
+  "provider": false,
+  "mesh": false,
+  "engineering": false,
+  "physical": false,
+  "search": false,
+  "B00": false,
+  "B04": false,
+  "R01-R10": false,
+  "cleanup": {
+    "sync_created_paths": [
+      "docs/implementation/AD-34/acceptance.md",
+      "docs/implementation/AD-34/manifest.json",
+      "docs/implementation/AD-34/status_sync_r1/report.md",
+      "docs/implementation/AD-34/status_sync_r1/manifest.json"
+    ],
+    "removed_paths": [],
+    "preexisting_dirty_and_historical_receipts_protected": true
+  },
+  "implementation_authorized": false
+}

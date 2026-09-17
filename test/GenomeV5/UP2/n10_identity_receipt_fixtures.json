@@ -1,0 +1,82 @@
+{
+  "fixture_id": "UP2-00C-N10-IDENTITY-RECEIPT-001",
+  "schema_id": "GenomeV5/UP2/N10IdentityReceiptProjectionV1",
+  "schema_version": "v1",
+  "schema_validation_only": true,
+  "mutation_count": 5,
+  "candidate_id": "fusionconceptai://candidate/candidate-1",
+  "expected_package_hash": "67bf32d7d55b06eac1f495a50fcb1620babd48d9ebbce14867f854f32b3064a5",
+  "expected_receipt_after": "31f3390f62193e274b781c5e61d15ffd7c6097e5fab160000f36af47106542b0",
+  "mutations": [
+    {
+      "id": "N10-01",
+      "field_path": "/candidate/component_identity/g1_ref/schema_hash",
+      "source_locator": "CandidateStatePackageV5.component_identity.g1_ref.schema_hash::Digest256",
+      "source_type": "Digest256",
+      "mutation_kind": "foreign_g1_schema_hash",
+      "expected_error": "invalid_type",
+      "expected_resolution": "fail_closed",
+      "expected_compile_calls": 0,
+      "expected_provider_calls": 0,
+      "expected_solver_calls": 0
+    },
+    {
+      "id": "N10-02",
+      "field_path": "/candidate/component_identity/g2_ref/canonicalization_hash",
+      "source_locator": "CandidateStatePackageV5.component_identity.g2_ref.canonicalization_hash::Digest256",
+      "source_type": "Digest256",
+      "mutation_kind": "foreign_g2_canonicalization_hash",
+      "expected_error": "invalid_type",
+      "expected_resolution": "fail_closed",
+      "expected_compile_calls": 0,
+      "expected_provider_calls": 0,
+      "expected_solver_calls": 0
+    },
+    {
+      "id": "N10-03",
+      "field_path": "/g3/binding/contract_binding/contract_ref",
+      "source_locator": "CandidateStatePackageV5.g3.binding.contract_binding.contract_ref::GenomeContractRef",
+      "source_type": "GenomeContractRef",
+      "mutation_kind": "wrong_g3_child_ref",
+      "expected_error": "invalid_type",
+      "expected_resolution": "fail_closed",
+      "expected_compile_calls": 0,
+      "expected_provider_calls": 0,
+      "expected_solver_calls": 0
+    },
+    {
+      "id": "N10-04",
+      "field_path": "/candidate/candidate_hash",
+      "source_locator": "CandidateStatePackageV5.candidate_hash::Digest256",
+      "source_type": "Digest256",
+      "mutation_kind": "candidate_hash_recompute",
+      "expected_error": "invalid_type",
+      "expected_resolution": "fail_closed",
+      "expected_compile_calls": 0,
+      "expected_provider_calls": 0,
+      "expected_solver_calls": 0
+    },
+    {
+      "id": "N10-05",
+      "field_path": "/migration_receipt/candidate_identity_after",
+      "source_locator": "GenomeV5MigrationReceipt.candidate_identity_after::String",
+      "source_type": "String",
+      "mutation_kind": "fresh_receipt_identity_after",
+      "expected_error": "invalid_type",
+      "expected_resolution": "fail_closed",
+      "expected_compile_calls": 0,
+      "expected_provider_calls": 0,
+      "expected_solver_calls": 0
+    }
+  ],
+  "negative_controls": [
+    "g2_plan_foreign_candidate_binding",
+    "g3_child_wrong_layer_or_ref",
+    "candidate_hash_recompute_mismatch",
+    "fresh_receipt_identity_after_mismatch"
+  ],
+  "legacy_scope": {
+    "status": "terminal_deferred",
+    "reason": "fresh A receipt has no V4 legacy records or authoritative provenance"
+  }
+}

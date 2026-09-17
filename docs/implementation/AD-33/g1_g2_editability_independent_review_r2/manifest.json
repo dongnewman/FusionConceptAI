@@ -1,0 +1,139 @@
+{
+  "manifest_version": "AD-33-g1-g2-editability-independent-review-r2",
+  "record_kind": "independent_repair_review",
+  "decision_id": "AD-33",
+  "review_id": "g1_g2_editability_independent_review_r2",
+  "review_date": "2026-09-15",
+  "reviewer": "different_gpt-5.6-luna_high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "read_only_review": true,
+  "execution": {
+    "julia": false,
+    "desc": false,
+    "python_heavy": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "launcher_added": false
+  },
+  "reviewed_records": {
+    "r1_report": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_independent_review_r1/report.md",
+      "sha256": "80c156447f03619af69bf9ee83c723580c2fe7b193bb94260462a504e65ac7a9"
+    },
+    "r1_manifest": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_independent_review_r1/manifest.json",
+      "sha256": "6f43d3aef687d9374684bd1dcd6989e5eea7a0dd87593d97265eac0ecc13d33a"
+    },
+    "repair_r1_proposal": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r1/revised_proposal.md",
+      "sha256": "a09c87c2a68816b3edda74f3834712bb678a4a0d1c96b611d65cd35a77396830"
+    },
+    "repair_r1_manifest": {
+      "path": "docs/implementation/AD-33/g1_g2_editability_audit/repair_r1/manifest.json",
+      "sha256": "e7d7cf21a989cf88abf419976da93373824bca04be895511afb93bc7b1b2aef0"
+    }
+  },
+  "observed_v1_inputs": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/README.md": "b8e7fe8b97bddca8a93f1deff2ac2636057a24398db066bd6eb747e9eb356929",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/evidence_manifest.json": "cb1c0fb746e1a8ee5ea45ebc7b30bea75dfa1c2acf1c467d83a4b925decaa421",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/acceptance.md": "154fc87fead97999b9941f44fa64fb456ebb9f2e165c05760f28d50c6b8bd887",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/evidence_manifest.json": "a6930ca150531e6da3cf0dcb4f369fe9b9a975b90a88fc104c32625a615fea17"
+  },
+  "findings": [
+    {
+      "id": "F03",
+      "area": "parent_envelope_and_v1_baseline",
+      "status": "changes_requested",
+      "closed_parts": [
+        "typed parent envelope",
+        "parent/ref/baseline hash domains",
+        "child contract identity hash",
+        "foreign/ref-only/synthetic-authority controls"
+      ],
+      "remaining_gap": "G1 current V1 candidate is QualifiedRefV1 while the new envelope requires GenomeContractRef; no typed projection/equality is specified. Exact source-backed parent declaration instance and semantic-body projection are not obtainable from current V1 source bytes and synthetic fixtures alone."
+    },
+    {
+      "id": "F04",
+      "area": "four_provenance_axes_and_absence",
+      "status": "pass_conditionally",
+      "detail": "Four distinct present slot types and axis-tagged absence hashes are fully specified; actual instances remain blocked by the unresolved parent/baseline binding."
+    },
+    {
+      "id": "F05",
+      "area": "six_hash_layers_and_history",
+      "status": "pass",
+      "detail": "Domain-tagged fixed-order six layers, stored child identity hash, typed zero operation digest and digest-only bounded history are non-recursive."
+    },
+    {
+      "id": "F06",
+      "area": "state_operation_receipt_dual_cas",
+      "status": "changes_requested",
+      "remaining_gap": "Malformed pre-CAS receipt field values and receipt status/error cross-field constraints are unspecified; G2 structural not-executed error name conflicts with the terminal-deferred gap name."
+    },
+    {
+      "id": "F07",
+      "area": "g2_not_executed_guard",
+      "status": "changes_requested",
+      "remaining_gap": "The proposal makes :declared unconstructable but also uses it as an admission negative-control input; the controlled tamper/decoding seam or constructor error classification must be frozen."
+    },
+    {
+      "id": "F08",
+      "area": "no_launcher_exact_scope",
+      "status": "pass",
+      "detail": "Direct commands and exact source/test/fixture/static-QA/archive scopes are explicit; no launcher is added."
+    }
+  ],
+  "minimum_repairs": [
+    "Bind the additive envelope to actual G1 QualifiedRefV1 and G2 GenomeContractRef V1 candidates with a source-backed baseline locator/factory and exact semantic-body projection.",
+    "Define deterministic typed malformed pre-CAS receipts, receipt status/error combinations, and consistent structural versus deferred G2 not-executed codes.",
+    "Define the G2 controlled tamper/decode negative-control seam or use constructor rejection consistently."
+  ],
+  "dependency_audit": {
+    "g1_g2_siblings": true,
+    "cross_sibling_dependency": false,
+    "t0_dependency": false,
+    "t1_dependency": false,
+    "t2_dependency": false,
+    "machine_nodes_created": false,
+    "core_modified": false,
+    "task_manifest_modified": false,
+    "source_test_modified": false,
+    "old_receipts_modified": false,
+    "ad31_ad32_modified": false
+  },
+  "credits": {
+    "g1_child": false,
+    "g2_child": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "up2": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false
+  },
+  "write_scope": [
+    "docs/implementation/AD-33/g1_g2_editability_independent_review_r2/report.md",
+    "docs/implementation/AD-33/g1_g2_editability_independent_review_r2/manifest.json"
+  ],
+  "self_hash_excluded": true
+}

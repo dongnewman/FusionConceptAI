@@ -32,6 +32,7 @@ end
         "SpatialPickupEngineeringV4.jl",
         "SpatialVerificationUQV4.jl",
         "SpatialCandidateV4.jl",
+        "SpatialGeometryEditV4.jl",
         "SpatialWholeDeviceV4.jl",
     )
     @test SpatialLoadProbe.SPATIAL_RUNTIME_V4_LOAD_STATE[] === :unloaded
@@ -73,5 +74,7 @@ end
     @test occursin("SpatialRuntimeV4.jl", example_text)
     @test occursin("load_spatial_runtime_v4!", example_text)
     @test occursin("Base.invokelatest", example_text)
+    @test occursin("runtime_v4_spatial_geometry_edit_candidate.jl", runner_text)
+    @test occursin("spatial.changes.kind === :g2_geometry_edit", runner_text)
     @test !occursin("Base.include(SCV,joinpath(SPATIAL_REPO,\"src\",\"RuntimeV4\",\"SpatialWholeDeviceV4.jl\"))", runner_text)
 end

@@ -1,0 +1,249 @@
+{
+  "task_id": "UP0-02",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted",
+  "accepted": true,
+  "accepted_scope": "pre_result_contract_design",
+  "execution_boundary": {"B00": false, "B04": false, "physical": false, "claim_ceiling": "none", "claim_scope": "contract_only"},
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "live_goal": {
+    "path": "runs/goal_recovery_20260913_012528_cst/goal.json",
+    "sha256": "96d38ae3504f3bc71ed89013d9c32a9eeb9fff45be9bd65fdd5a8821489eb9af",
+    "credible_candidate_count": 0,
+    "platform_ready": false,
+    "discovery_goal_achieved": false
+  },
+  "hash_timeline": {
+    "historical_task_dispatch": {"captured_at": "not_recorded_in_received_payload", "role": "parent-provided historical before-write snapshot", "18_sha256": "2f9a09df8944cb401949199a86e0ef8ca7f36d61bb0f583e2e685353df4ffb70"},
+    "pre_revision_capture": {"captured_at": "2026-09-14T02:27:11.1330842+08:00", "18_sha256": "c482d3694e804e3c551f8b1f8474f8cefc841d8c25e0f6f9d9985fde519cfb9b", "19_sha256": "b05915a0946afe9916a0cd48a46233fbbdf3860dabc0797f216b74649ed7d7a0", "protocol_sha256": "38f894998064207c9a8765cb4a3e310ec395047dd2c94185ac556e47487a8aa0"},
+    "concurrent_integration_observation": {"captured_at": "2026-09-14T02:27:26.1107501+08:00", "README_sha256": "172bdfb42732508e5bf89de6719ad0a08f579e10dd73d983aa8cc1b18ff2d584", "task_manifest_sha256": "60df2d2671b754066d0b77c883d8c32d9040b4791909ca83b8768978e28b72a5", "work_orders_16_sha256": "769db4a46fdf7a7552e00fdde000cb19126ee10a94bdc8968510ca3e968151de", "UP0_01_acceptance_sha256": "04d1d0be22fe08c6ba40868bae12cd22b2c0b1a8f1845befb44581de2a684953", "UP0_01_evidence_sha256": "8485f46dbca4d6c79f57d6fa5d68eb8d769129c08cd5d562b2fd5e249f6edec3"}
+  },
+  "protected_dirty_snapshot": {
+    "captured_at": "2026-09-14T02:27:26.1107501+08:00",
+    "git_status_porcelain_lines": 247,
+    "git_diff_numstat_lines": 24,
+    "rule": "All pre-existing dirty tracked and untracked paths are protected; this task writes only the five declared UP0-02 files."
+  },
+  "input_hashes": [
+    {"path": "AGENTS.md", "sha256": "f7646606c7581bb6ec41daf408062607f42e7a64b7afab0f47d5b4b12823e53c"},
+    {"path": "docs/v4_multitopology_generation/README.md", "sha256": "172bdfb42732508e5bf89de6719ad0a08f579e10dd73d983aa8cc1b18ff2d584"},
+    {"path": "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md", "sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    {"path": "docs/v4_multitopology_generation/10_genome_upgrade_execution.md", "sha256": "952ad6d62198d9007007d121330db66472a694635dd02f44dd7d62f21da3e652"},
+    {"path": "docs/v4_multitopology_generation/11_physics_compilation_and_discretization.md", "sha256": "f31e075f3a7c0d301179af483db14b6b616c0d8c50458850768d41d17bd8bb25"},
+    {"path": "docs/v4_multitopology_generation/12_composition_and_inverse_realization.md", "sha256": "85d35134964a7719298afe8fb8244a2647e8243d7046d20a6c8db98fee6f1595"},
+    {"path": "docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md", "sha256": "82a5929b83af3cc9d0ba979dbeb1193eb9e9f876bae58f0e121058507a11af4d"},
+    {"path": "docs/v4_multitopology_generation/14_agent_orchestration.md", "sha256": "f2a8964ca6bd1395780671f7aab7e86544484ae6b2703ce749d09ec5be0e5a43"},
+    {"path": "docs/v4_multitopology_generation/16_execution_work_orders.md", "sha256": "769db4a46fdf7a7552e00fdde000cb19126ee10a94bdc8968510ca3e968151de"},
+    {"path": "docs/v4_multitopology_generation/17_luna_worker_prompt.md", "sha256": "7e918a97569617111e36eec07cef839eb8d3c723d553b1831ad23140856bc2eb"},
+    {"path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md", "sha256": "c482d3694e804e3c551f8b1f8474f8cefc841d8c25e0f6f9d9985fde519cfb9b"},
+    {"path": "docs/v4_multitopology_generation/task_manifest.json", "sha256": "60df2d2671b754066d0b77c883d8c32d9040b4791909ca83b8768978e28b72a5"},
+    {"path": "docs/implementation/UP0-01/acceptance.md", "sha256": "04d1d0be22fe08c6ba40868bae12cd22b2c0b1a8f1845befb44581de2a684953"},
+    {"path": "docs/implementation/UP0-01/evidence_manifest.json", "sha256": "8485f46dbca4d6c79f57d6fa5d68eb8d769129c08cd5d562b2fd5e249f6edec3"},
+    {"path": "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md", "sha256": "b05915a0946afe9916a0cd48a46233fbbdf3860dabc0797f216b74649ed7d7a0"},
+    {"path": "docs/v4_multitopology_generation/up0_02_protocol.json", "sha256": "38f894998064207c9a8765cb4a3e310ec395047dd2c94185ac556e47487a8aa0"},
+    {"path": "docs/implementation/UP0-02/acceptance.md", "sha256": "419efeb56f862ae570cfccb96fccd25f502849f87b044e7247e46d60f9d4be52"},
+    {"path": "docs/implementation/UP0-02/evidence_manifest.json", "sha256": "a7771127a8685480cc9cf987fc80cc41f54eb33f73919b9f494cdd1dcca5e0de"}
+  ],
+  "contract": {
+    "public_ref": "GenomeContractRef per G1/G2/G3 layer",
+    "candidate_state_package_refs": ["g1_ref", "g2_ref", "g3_ref"],
+    "g3_external_bundle_children": ["RealizationGenomeV5", "ControlGenomeV5", "CoupledRealizationControlBindingV2"],
+    "version_axes": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "grammar_applicability_profile_version",
+      "execution_evidence_receipt_version"
+    ],
+    "types": {
+      "g1_payload": "MechanismGenomePayloadV2",
+      "g1_genome": "MechanismGenomeV5",
+      "g2_genome": "FieldGeometryGenomeV5",
+      "g3_bundle": "RealizationControlGenomeV5",
+      "g3_realization": "RealizationGenomeV5",
+      "g3_control": "ControlGenomeV5",
+      "g3_binding": "CoupledRealizationControlBindingV2"
+    },
+    "legacy_rules": [
+      "V1/V4 bytes, hash, candidate identity, execution receipt and evidence are read-only.",
+      "G1 wire-domain:v2 is an applicability label and does not equal MechanismGenomePayloadV2.",
+      "New operators use candidate-owned additive registries; default_operator_registry() is unchanged.",
+      "ECF unsupported may only map explicitly to an intermediate provider_match gap or resolution=terminal_deferred; it cannot be final authority."
+    ],
+    "unavailable_values": {
+      "schema_hash": null,
+      "canonicalization_hash": null,
+      "profile_hash": null,
+      "provider_manifest_hash": null,
+      "reason": "UP1 implementation/provider registration has not produced these values."
+    }
+  },
+  "pre_result_freeze": [
+    "quantity", "unit", "normalization_scale", "rounding", "analytic_or_mms_oracle", "threshold", "grid_time_sequence", "basis_quadrature", "solver_algorithm", "iteration_and_stop_rules", "resource_budget", "random_seed", "scenario_split", "provider_registry", "environment_lock", "independence_group", "checker_version", "failure_vocabulary", "claim_ceiling"
+  ],
+  "b00_f0_f5": [
+    {"id": "F0", "input": "three payloads, mission/bounds, four axes, complete GenomeContractRef, environment and attempt id", "expected": "complete hashed input manifest; invalid or missing fields rejected before compile", "failure": "invalid_type|invalid_closure|terminal_deferred"},
+    {"id": "F1", "input": "F0 package and frozen canonicalization profile", "expected": "two independent processes produce byte-identical canonical package and equal package, layer and bundle hashes", "failure": "program_exception|numerical_fail; claim_ceiling=none; scope=contract_only"},
+    {"id": "F2", "input": "same F0 input with independent process and attempt receipts", "expected": "same input hashes and routes; distinct attempt receipts; commands, environment and exits recorded", "failure": "human_interruption|not_executed|terminal_deferred"},
+    {"id": "F3", "input": "display/family/name/benchmark erasure and permitted ordering permutations", "expected": "route, canonical hash, applicability, decision and claim ceiling diff equals zero", "failure": "program_exception"},
+    {"id": "F4", "input": "candidate-owned registry, provider signatures and explicit ECF mapping", "expected": "route is determined by full contract/capability/profile; no wildcard; ECF unsupported ends as intermediate gap/deferred", "failure": "terminal_deferred"},
+    {"id": "F5", "input": "F0-F4 manifests, checker, independence and claim ceiling", "expected": "candidate-bound package/route/decision/receipt/evidence envelope and reproducible commands; all field diffs zero", "failure": "unknown|not_executed; status remains review_pending"}
+  ],
+  "b04_negative_classes": [
+    {"id": "N01", "mutation": "rank_or_dimension_mismatch", "expected": "invalid_type; compile/provider_calls=0"},
+    {"id": "N02", "mutation": "unit_or_normalization_mismatch", "expected": "invalid_type; compile/provider_calls=0"},
+    {"id": "N03", "mutation": "time_semantics_mismatch", "expected": "invalid_type; compile/provider_calls=0"},
+    {"id": "N04", "mutation": "duplicate_conservation_or_energy_account_owner_including_double_count_energy", "expected": "invalid_closure; compile/provider_calls=0"},
+    {"id": "N05", "mutation": "unpaired_interface_flux_traction_current", "expected": "invalid_closure; compile/provider_calls=0"},
+    {"id": "N06", "mutation": "missing_source_binding_or_return_path_or_heat_sink", "expected": "invalid_closure; compile/provider_calls=0"},
+    {"id": "N07", "mutation": "nonclosed_or_out_of_bounds_boundary", "expected": "invalid_boundary; compile/provider_calls=0"},
+    {"id": "N08", "mutation": "invalid_geometry_chart_mesh_or_topology", "expected": "invalid_boundary|invalid_closure; compile/provider_calls=0"},
+    {"id": "N09", "mutation": "empty_capability_axis_or_provider_signature_gap", "expected": "provider_match=no_match|invalid_signature; resolution=terminal_deferred"},
+    {"id": "N10", "mutation": "foreign_or_stale_receipt_or_hash_mismatch", "expected": "invalid_type|terminal_deferred; no evidence reuse"}
+  ],
+  "b04_execution_status": "not_executed_until_UP1_validator",
+  "b04_frozen_mutation_template_rule": "illustrative_contract_mutations_pending_schema_binding: each class below has exactly five suggested variants, but field paths are descriptive labels rather than JSON Pointers or runnable suite entries. They are not B04 execution evidence or a pass. UP1 schema/validator must freeze real paths before first run.",
+  "b04_frozen_mutation_templates": {
+    "N01": [
+      {"field_path": "/g1/state/rank", "value": 2, "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/coordinates", "value": ["x", "y"], "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/field_components/0/rank", "value": 2, "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/signal_ports/0/value_rank", "value": 2, "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/candidate_state_package/g2_ref/field_rank", "value": 2, "expected_error": "invalid_type", "expected_compile_provider_calls": 0}
+    ],
+    "N02": [
+      {"field_path": "/mission/unit", "value": "kg", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/state_unit", "value": "m", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/coordinates/x/unit", "value": "s", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/source_effort/unit", "value": "W", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/heat_sink/unit", "value": "1", "expected_error": "invalid_type", "expected_compile_provider_calls": 0}
+    ],
+    "N03": [
+      {"field_path": "/g1/time_semantics", "value": "transient", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/mesh/time_basis", "value": "continuous", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/control/sample_period", "value": 0, "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/operators/0/derivative_time_order", "value": 1, "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/fault/horizon_semantics", "value": "instantaneous", "expected_error": "invalid_type", "expected_compile_provider_calls": 0}
+    ],
+    "N04": [
+      {"field_path": "/g1/conservation_account/owner", "value": "G3", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/interface/account_owner", "value": "G3.scalar_flux", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/load/account_ref", "value": "G3.source_power", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/return/account_ref", "value": "G3.source_power", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/accounts/energy_ledger/entries", "value": ["load_energy_out", "load_energy_out"], "expected_error": "invalid_closure", "expected_compile_provider_calls": 0}
+    ],
+    "N05": [
+      {"field_path": "/g2/interface/condition/flux_left", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/interface/condition/flux_right", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/interface/normal", "value": "-x", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/interface/id", "value": "foreign-interface", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/interfaces", "value": ["x=1", "x=1"], "expected_error": "invalid_closure", "expected_compile_provider_calls": 0}
+    ],
+    "N06": [
+      {"field_path": "/g3/binding/source", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/return", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/resource_ports/heat_sink", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/accounts/return_energy/owner", "value": null, "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g3/binding/source/target", "value": "missing-field-target", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0}
+    ],
+    "N07": [
+      {"field_path": "/g1/boundary/x=0", "value": null, "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/boundary/y=0/normal", "value": "+z", "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/domain/y", "value": [0.0, 1.2], "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g1/boundary/z=1", "value": null, "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/external_domain/closure", "value": "undeclared", "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0}
+    ],
+    "N08": [
+      {"field_path": "/g2/regions/1/box", "value": "overlaps-region-0", "expected_error": "invalid_closure", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/charts/0/jacobian_determinant", "value": 0, "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/mesh/cells_per_region", "value": [0,2,2], "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/illegal_interface/right_face", "value": "x=1.1", "expected_error": "invalid_boundary", "expected_compile_provider_calls": 0},
+      {"field_path": "/g2/topology/edges", "value": [["Omega_left", "Omega_left"]], "expected_error": "invalid_closure", "expected_compile_provider_calls": 0}
+    ],
+    "N09": [
+      {"field_path": "/compatibility_profile/capability_axis", "value": [], "expected_error": "provider_match=no_match", "expected_compile_provider_calls": 0},
+      {"field_path": "/provider/uri", "value": null, "expected_error": "provider_match=no_match", "expected_compile_provider_calls": 0},
+      {"field_path": "/provider/signature/unit", "value": "kg", "expected_error": "provider_match=invalid_signature", "expected_compile_provider_calls": 0},
+      {"field_path": "/provider/version", "value": "V0", "expected_error": "provider_match=invalid_signature", "expected_compile_provider_calls": 0},
+      {"field_path": "/ecf/mapping", "value": null, "expected_error": "resolution=terminal_deferred", "expected_compile_provider_calls": 0}
+    ],
+    "N10": [
+      {"field_path": "/candidate_state_package/g1_ref/schema_hash", "value": "foreign-sha256", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/candidate_state_package/g2_ref/canonicalization_hash", "value": "stale-sha256", "expected_error": "terminal_deferred", "expected_compile_provider_calls": 0},
+      {"field_path": "/candidate_state_package/g3_ref/children/binding_ref/receipt_id", "value": "foreign-receipt", "expected_error": "terminal_deferred", "expected_compile_provider_calls": 0},
+      {"field_path": "/candidate_state_package/candidate_hash", "value": "parent-hash", "expected_error": "invalid_type", "expected_compile_provider_calls": 0},
+      {"field_path": "/receipt/execution_evidence_receipt_version", "value": "V0", "expected_error": "terminal_deferred", "expected_compile_provider_calls": 0}
+    ]
+  },
+  "up1_fixture": {
+    "fixture_id": "UP1-FX-001",
+    "mission": {"name": "contract_smoke", "quantity": "scalar_field", "unit": "1", "coordinate_unit": "m"},
+    "version_axes": {
+      "payload_schema_version": {"g1": "V2", "g2": "V5", "g3": "V5"},
+      "canonicalization_profile_version": "pending",
+      "grammar_applicability_profile_version": "pending",
+      "execution_evidence_receipt_version": "pending"
+    },
+    "candidate_state_package": {
+      "g1_ref": {"uri": "pending://GenomeV5/G1", "version": "MechanismGenomeV5", "payload_type": "MechanismGenomePayloadV2", "schema_hash": null, "schema_hash_pending_reason": "UP1 G1 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "G1 applicability profile pending"},
+      "g2_ref": {"uri": "pending://GenomeV5/G2", "version": "FieldGeometryGenomeV5", "schema_hash": null, "schema_hash_pending_reason": "UP1 G2 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "G2 applicability profile pending"},
+      "g3_ref": {"uri": "pending://GenomeV5/G3", "version": "RealizationControlGenomeV5", "schema_hash": null, "schema_hash_pending_reason": "UP1 G3 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "G3 applicability profile pending", "children": {
+        "realization_ref": {"uri": "pending://GenomeV5/G3/realization", "version": "RealizationGenomeV5", "schema_hash": null, "schema_hash_pending_reason": "UP1 G3 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "realization profile pending"},
+        "control_ref": {"uri": "pending://GenomeV5/G3/control", "version": "ControlGenomeV5", "schema_hash": null, "schema_hash_pending_reason": "UP1 G3 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "control profile pending"},
+        "binding_ref": {"uri": "pending://GenomeV5/G3/binding", "version": "CoupledRealizationControlBindingV2", "schema_hash": null, "schema_hash_pending_reason": "UP1 G3 schema not yet implemented", "canonicalization_hash": null, "canonicalization_hash_pending_reason": "canonicalizer not yet implemented", "compatibility_profile": null, "compatibility_profile_pending_reason": "binding profile pending"}
+      }}
+    },
+    "g1": {"state": "u", "coordinates": ["x", "y", "z"], "domain": "[0,2] x [0,1] x [0,1]", "manufactured_field": "u(x,y,z)=1+x", "equation": "-div(grad(u)) = 0", "boundary": {"x=0": "u=1", "x=2": "u=3", "y=0": "du/dy=0", "y=1": "du/dy=0", "z=0": "du/dz=0", "z=1": "du/dz=0"}, "state_type": "scalar_field", "state_unit": "1", "conservation_account": {"id": "scalar_flux", "unit": "1/m", "owner": "G1"}, "operator_registry": "candidate-owned-additive-only"},
+    "g2": {"regions": ["Omega_left=[0,1] x [0,1] x [0,1]", "Omega_right=[1,2] x [0,1] x [0,1]"], "interface": {"location": "x=1", "normal": "+x", "unit": "m", "condition": "u_left=u_right; flux_left=flux_right", "account_owner": "G1.scalar_flux"}, "mesh": {"cells_per_region": [2,2,2], "basis": "linear", "quadrature": "declared_pending"}, "legal_alternative": {"regions": ["[0,2] x [0,0.5] x [0,1]", "[0,2] x [0.5,1] x [0,1]"], "interface": "y=0.5, normal=+y, same trace/flux continuity"}, "illegal_interface": {"left_face": "x=1", "right_face": "x=1.1", "expected": "invalid_boundary|invalid_closure"}, "external_domain": "none_declared_for_fixture"},
+    "g3": {"realization": {"source_basis": "scalar_boundary_driver", "capacity": "declared_pending"}, "control": {"sensor": "u_boundary", "actuator": "boundary_driver", "fault": "open_circuit"}, "signal_ports": [{"id": "source_signal", "type": "scalar_boundary_driver_signal", "unit": "1", "direction": "out", "account_ref": "G3.field_boundary_signal"}, {"id": "sensor", "type": "boundary_scalar_sensor", "unit": "1", "direction": "in", "account_ref": "G3.field_boundary_signal"}, {"id": "actuator", "type": "boundary_driver_actuator", "unit": "1", "direction": "out", "account_ref": "G3.field_boundary_signal"}, {"id": "fault", "type": "open_circuit_fault", "unit": "1", "direction": "in", "account_ref": "G3.fault_state"}], "resource_ports": [{"id": "source_effort", "type": "electrical_effort", "unit": "V", "direction": "out", "account_ref": "G3.source_power"}, {"id": "source_flow", "type": "electrical_flow", "unit": "A", "direction": "out", "account_ref": "G3.source_power"}, {"id": "load", "type": "power_load", "unit": "W", "direction": "in", "account_ref": "G3.load_power"}, {"id": "return", "type": "return_flow", "unit": "A", "direction": "in", "account_ref": "G3.return_power"}, {"id": "heat_sink", "type": "thermal_sink", "unit": "W", "direction": "out", "account_ref": "G3.heat_rejection"}], "accounts": [{"id": "field_boundary_signal", "unit": "1", "owner": "G3.signal_ledger"}, {"id": "source_power", "unit": "W", "owner": "G3.energy_ledger"}, {"id": "load_power", "unit": "W", "owner": "G3.energy_ledger"}, {"id": "return_power", "unit": "W", "owner": "G3.energy_ledger"}, {"id": "heat_rejection", "unit": "W", "owner": "G3.thermal_ledger"}, {"id": "fault_state", "unit": "1", "owner": "G3.fault_ledger"}], "resource_binding": "source_effort*source_flow -> source_power; load -> load_power; return_flow -> return_power; heat_sink -> heat_rejection; ports reference accounts and never own them", "binding": "source_signal/actuator -> g1.boundary; load -> g1.field; return -> source ledger; heat_sink -> thermal ledger; account owners require UP1-03 validation; g2.interface_ownership_preserved"},
+    "expected_execution": {"structural_admission": "after_schema_available", "owner_uniqueness": "pending_validation", "physical_solver": "not_executed", "claim_ceiling": "none", "scope": "contract_only"}
+  },
+  "pending_b01_b13": {
+    "rule": "Suggested values in benchmark document are not formal gates.",
+    "items": {
+      "B01": "MMS oracle, grids, two implementations, residual/error/order thresholds and stop rule; freeze when UP2-01/02 submits them.",
+      "B02": "nested levels, account definitions, scaled defects, order interval and estimator; freeze with UP2-02/03 ledger.",
+      "B03": "data provenance, candidate-independent split, prior/noise/mask, RMSE and coverage; freeze with UP4-03 data package.",
+      "B04": "mutation payloads, sample count, stable paths and checker schema; freeze with UP1 validators.",
+      "B05": "topology pair, scenarios, interface accounts and independent providers; freeze with UP2-03.",
+      "B06": "B06a domain, B06b basis tail, B06c ROM/OOD/fallback fields; freeze only for selected method.",
+      "B07": "B07A source hardware and B07B reference inverse fields; freeze with UP4 data/providers.",
+      "B08": "engineering scenarios, ledgers, margins and fault matrix; freeze with UP4-02/04.",
+      "B09": "rewrite conditions, checker, saturation, budget and equivalence scope; freeze with UP5-01.",
+      "B10": "paired baseline, capability increment, campaign size, seed and statistical margin; freeze with UP5-02/03.",
+      "B11": "environment, fresh replay count, independence, completeness and recovery recipe; freeze with integration replay package.",
+      "B12": "system boundary, cycle, scenarios, uncertainty/discrepancy and lower-bound confidence; freeze with UP6-02.",
+      "B13": "descriptor scope, external corpus, query/date/coverage and independent reviewers; freeze with UP6-03."
+    }
+  },
+  "up1_parallel_write_paths": [
+    {"id": "UP1-01", "paths": ["src/GenomeV5/G1/", "test/GenomeV5/G1/"], "output": "G1 admission, operator semantics/units/effects, closure diagnostics and B04 negatives", "exit": "deterministic legal/illegal classification; provider gaps remain terminal_deferred"},
+    {"id": "UP1-02", "paths": ["src/GenomeV5/G2/", "test/GenomeV5/G2/"], "output": "region/interface/chart/mesh plan, orientation, topology and B04/B05/B06 negatives", "exit": "deterministic structure plan and bounds rejection; no provider overclaim"},
+    {"id": "UP1-03", "paths": ["src/GenomeV5/G3/", "test/GenomeV5/G3/"], "output": "realization/control/resource/fault binding and B04/B08 negatives", "exit": "unique owners and fault paths; no engineering claim without provider evidence"}
+  ],
+  "blocking_inputs": [
+    "implemented three-layer schema/profile and actual schema hashes",
+    "canonicalizer and migration program/receipts",
+    "candidate-owned registry and provider capability signatures",
+    "unit/closure/discretization implementation and B01-B10 checkers",
+    "real data, engineering ledgers, uncertainty and external review for B03/B07/B08/B12/B13",
+    "locked execution environment, commands, independent replay and recovery receipts"
+  ],
+  "commands": [
+    {"cwd": "D:/006-Programing/LMC/FusionConceptAI", "argv": ["Get-Content -Raw <listed input docs>", "Get-FileHash -Algorithm SHA256 <each listed input>", "git rev-parse HEAD", "git status --porcelain", "git diff --numstat"], "exit_code": 0, "purpose": "read-only contract and dirty-tree audit"},
+    {"cwd": "D:/006-Programing/LMC/FusionConceptAI", "argv": ["Get-Content -Raw docs/v4_multitopology_generation/up0_02_protocol.json | ConvertFrom-Json | Out-Null"], "exit_code": 0, "purpose": "JSON parse check after write"}
+  ],
+  "negative_controls": [
+    "No Julia/DESC startup or recomputation",
+    "No historical task rerun or process termination",
+    "No source/test/shared index/task_manifest/README/16 modification",
+    "No fabricated schema_hash, provider_manifest_hash, receipt, physical result or acceptance claim"
+  ],
+  "independent_review": {"reviewer": "up0_independent Luna(high)", "result": "pass", "checks": ["JSON parse and links", "AD-09..AD-16", "B00 F0-F5 pre-result protocol", "B04 N01-N10 illustrative templates, not execution", "UP1 fixture/protocol structural identity", "B01-B13 triggers", "UP1 path ownership", "hash timeline and dirty protection"]},
+  "sol_decision": "accepted_scope=pre_result_contract_design; B00=false; B04=false; physical=false; no execution or physical credit",
+  "claim_ceiling": "none",
+  "claim_scope": "contract_only",
+  "next_dependency": "UP1-01, UP1-02 and UP1-03 are ready for disjoint implementation; UP1-04 remains planned and owns shared integration and migration."
+}

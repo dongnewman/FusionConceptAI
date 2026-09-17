@@ -1,0 +1,26 @@
+HEAD=b2c04d8339774635aaecd73651efcdb101e01b5d
+INPUT_HASHES
+src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl 0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57
+src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl 0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c
+src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl 20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa
+test/RuntimeV4/M4Isolated/manufactured_discrete_control_v1_tests.jl 14e1e6d81333ad0b4ed4426ebc30d8d7e39b36808ef94acc1103b5f78aa9e2e7
+test/RuntimeV4/M4Isolated/oracles/discrete_control_oracle_v1.py c48d8987477fef82e3a414eaa49f1392d18104440e0ad3ea075d42f83ee3b07d
+SHARED_TRACKED_DIFF
+src/RuntimeV4/SpatialRuntimeV4.jl
+FORBIDDEN_SYMBOL_SCAN
+test/RuntimeV4/M4Isolated\manufactured_discrete_control_v1_tests.jl:192:        forbidden = (:discretize, :assemble, :assemble_matrix, :solve, :couple,
+test/RuntimeV4/M4Isolated\manufactured_discrete_control_v1_tests.jl:193:            :transfer_topology, :bind_candidate, :invoke_provider, :CandidateStatePackageV5)
+test/RuntimeV4/M4Isolated\manufactured_discrete_control_v1_tests.jl:197:        @test !isdefined(@__MODULE__, :RuntimeEvidenceV4)
+test/RuntimeV4/M4Isolated\manufactured_discrete_control_v1_tests.jl:198:        @test !isdefined(@__MODULE__, :ForwardChainContextV4)
+test/RuntimeV4/M4Isolated\manufactured_equation_ir_v1_tests.jl:110:    @test !isdefined(Main, :CandidateStatePackageV5)
+test/RuntimeV4/M4Isolated\manufactured_equation_ir_v1_tests.jl:111:    @test !isdefined(Main, :ForwardChainContextV4)
+test/RuntimeV4/M4Isolated\manufactured_equation_ir_v1_tests.jl:112:    @test !isdefined(Main, :RuntimeEvidenceV4)
+test/RuntimeV4/M4Isolated\manufactured_residual_lowering_v1_tests.jl:128:        forbidden = (:discretize, :assemble, :assemble_matrix, :solve,
+test/RuntimeV4/M4Isolated\manufactured_residual_lowering_v1_tests.jl:129:            :couple, :transfer_topology, :bind_candidate, :invoke_provider)
+test/RuntimeV4/M4Isolated\manufactured_residual_lowering_v1_tests.jl:133:        @test !isdefined(@__MODULE__, :CandidateStatePackageV5)
+test/RuntimeV4/M4Isolated\manufactured_residual_lowering_v1_tests.jl:134:        @test !isdefined(@__MODULE__, :ForwardChainContextV4)
+test/RuntimeV4/M4Isolated\manufactured_residual_lowering_v1_tests.jl:135:        @test !isdefined(@__MODULE__, :RuntimeEvidenceV4)
+ACTIVE_PROCESSES
+REVIEWER_BOUNDARY
+No source/test/oracle/shared file writes; only independent_review_r1 evidence directory is authorized.
+warning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2GrammarBundleV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "grammar_id", "version", "authority_status", "content_path", "content_sha256", "source_authority_receipt_hash", "rule_order", "typed_side_conditions"],
+  "properties": {
+    "schema": {"const": "M5SearchR2GrammarBundleV1"},
+    "grammar_id": {"type": "string"},
+    "version": {"type": "string", "pattern": "^v[0-9]+$"},
+    "authority_status": {"enum": ["authoritative", "typed_absent", "stale", "foreign", "malformed"]},
+    "content_path": {"type": ["string", "null"]},
+    "content_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "source_authority_receipt_hash": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "rule_order": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "typed_side_conditions": {"type": "array", "items": {"enum": ["type", "rank", "domain", "unit", "port", "owner", "interface", "conservation", "applicability"]}, "uniqueItems": true}
+  }
+}

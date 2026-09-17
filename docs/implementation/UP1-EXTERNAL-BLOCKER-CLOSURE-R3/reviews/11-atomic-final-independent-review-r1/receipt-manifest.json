@@ -1,0 +1,23 @@
+{
+  "schema": "UP1.atomic-bundle.r11-independent-review-receipt-manifest.v1",
+  "review_scope": "offline local Python only; no network, external send, AD/S3, Julia/DESC/solver",
+  "frozen_input_manifest": "freeze_manifest.json",
+  "frozen_inputs_unchanged": true,
+  "receipts": [
+    {"name":"focused_run_1.stdout.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","pid":106344,"utc":"2026-09-17T00:44:42.6118565Z -> 2026-09-17T00:44:44.7099073Z","exit":0},
+    {"name":"focused_run_1.stderr.raw","bytes":1287,"sha256":"2c0fbf78e7494428221271eafdd923e2b2f2510d23e06fd8dc7703d638d7f960","pid":106344,"utc":"2026-09-17T00:44:42.6118565Z -> 2026-09-17T00:44:44.7099073Z","exit":0},
+    {"name":"focused_run_2.stdout.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","pid":105896,"utc":"2026-09-17T00:44:44.7099073Z -> 2026-09-17T00:45:00.5086895Z","exit":0},
+    {"name":"focused_run_2.stderr.raw","bytes":1287,"sha256":"c6e6e8c2645a4dd7403cccc6eb4f9487ce0b839d51d9fc9c4fbd6296ce552202","pid":105896,"utc":"2026-09-17T00:44:44.7099073Z -> 2026-09-17T00:45:00.5086895Z","exit":0},
+    {"name":"vector_replay.stdout.raw","bytes":10075,"sha256":"a6ba1dd6b4ad489d88e7bbf141fd50282517a058a4a01bb4e46b4517459d5919","pid":"inline","utc":"2026-09-17T00:45Z","exit":0},
+    {"name":"independent_attack.stdout.raw","bytes":15052,"sha256":"21d810b76cda70a90ad10f4e2d5a85671f5be958a0d644e1abc03a0bc178b8ce","pid":112920,"utc":"2026-09-17T00:50:14.1470076Z -> 2026-09-17T00:50:16.2031659Z","exit":0},
+    {"name":"independent_attack.stderr.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","pid":112920,"utc":"2026-09-17T00:50:14.1470076Z -> 2026-09-17T00:50:16.2031659Z","exit":0}
+  ],
+  "key_source_hashes": {
+    "tools/up1_external_closure_r3/atomic_bundle/__init__.py": "0717ac8be0f390f49aa9edfb220967c7f2d367bc45e8681fa3cbdfdfbb28a84c",
+    "tools/up1_external_closure_r3/atomic_bundle/bundle.py": "c95f8d2a2ec5c24c272264ee5d870e65fefb091b59d296eda5c8da18a5534de8",
+    "tools/up1_external_closure_r3/atomic_bundle/canonical.py": "95402ce98bb3567301df24808f5941abe03d4dc32256d72393c5689ea1e5d51b",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle.py": "c2a5d17ae63d921f4896d45996609eac5791b9e03fe4d340bed48b51ec36a145",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_repair.py": "b6767dfb722787bfdaa4f77f677c2ddebedecb089c2cccf55ad3d8fbc566eaa8",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_vectors.py": "4cc9dff1e2616223dc42697944f764185fc5612a169acef56fb5249ec75e3c37"
+  }
+}

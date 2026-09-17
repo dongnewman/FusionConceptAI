@@ -1,0 +1,23 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r4.manifest.v1",
+  "work_order":"W1 round4",
+  "status":"rework_required",
+  "claim":"preparation_only",
+  "input_root":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/witness_authority/",
+  "requested_exact_file_count":48,
+  "observed_actual_file_count":51,
+  "cleanup_owned_file_count":49,
+  "manifest_product_hash_rows_checked":17,
+  "cleanup_hash_rows_checked":49,
+  "cleanup_hash_mismatches":0,
+  "json_unique_parse":"pass",
+  "unowned_extra_files":["repair_r3/raw/static_validator.stdout.raw","repair_r3/raw/static_validator.stderr.raw"],
+  "unowned_extra_hashes":{"repair_r3/raw/static_validator.stdout.raw":"9b84a52469b25fc513296c9b9fade68aa4096e9d1897c2f4fbd1bd6a20a2cc89","repair_r3/raw/static_validator.stderr.raw":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "r3_decision_closure":{"status":"pass","pid":34140,"foreign_layer":"ERR_FOREIGN_LAYER_CANDIDATE","foreign_axis":"ERR_FOREIGN_AXIS_CANDIDATE","expected_fields_read":0},
+  "actual_files":["archive/static_validation/static_contract_validator.combined.raw","archive/static_validation/static_contract_validator.stderr.raw","archive/static_validation/static_contract_validator.stdout.raw","authority_channel_contract.json","cleanup_inventory.json","contract.md","external_input_register.json","gap_matrix.json","manifest.json","repair_r1/attempt_01_failure.json","repair_r1/attempt_02_failure.json","repair_r1/attempt_03_failure.json","repair_r1/attempt_04_failure.json","repair_r1/fixtures/contract_shape_positive.json","repair_r1/fixtures/foreign_layer_axis_negative.json","repair_r1/fixtures/placeholder_present_negative.json","repair_r1/fixtures/placeholder_retry_present.json","repair_r1/ledger.json","repair_r1/raw/attempt_01.combined.raw","repair_r1/raw/attempt_01.stderr.raw","repair_r1/raw/attempt_01.stdout.raw","repair_r1/raw/attempt_02.combined.raw","repair_r1/raw/attempt_02.stderr.raw","repair_r1/raw/attempt_02.stdout.raw","repair_r1/raw/attempt_03.combined.raw","repair_r1/raw/attempt_03.stderr.raw","repair_r1/raw/attempt_03.stdout.raw","repair_r1/raw/attempt_04.combined.raw","repair_r1/raw/attempt_04.stderr.raw","repair_r1/raw/attempt_04.stdout.raw","repair_r1/raw/static_validator.combined.raw","repair_r1/raw/static_validator.stderr.raw","repair_r1/raw/static_validator.stdout.raw","repair_r1/static_validator.py","repair_r2/ledger.json","repair_r2/raw/static_validator.combined.raw","repair_r2/raw/static_validator.stderr.raw","repair_r2/raw/static_validator.stdout.raw","repair_r3/fixtures/foreign_axis_binding_negative.json","repair_r3/ledger.json","repair_r3/raw/static_validator.stderr.raw","repair_r3/raw/static_validator.stdout.raw","repair_r3/raw/static_validator_r3_run01.combined.raw","repair_r3/raw/static_validator_r3_run01.stderr.raw","repair_r3/raw/static_validator_r3_run01.stdout.raw","repair_r3/raw/static_validator_r3_run02.combined.raw","repair_r3/raw/static_validator_r3_run02.stderr.raw","repair_r3/raw/static_validator_r3_run02.stdout.raw","report.md","validation_receipt.json","witness_attestation_schema.json"],
+  "review_exact_set":["cleanup_inventory.json","findings.json","manifest.json","review.md","validation_receipt.json"],
+  "review_artifact_hashes_excluding_manifest":{"cleanup_inventory.json":"bdf1081d83434d7b4c2c3dd43398b03a6121ded318eb92293096caa31cd3e5ab","findings.json":"20fadbe43258b0cd690208a2e594363a9db82379f81b5bd5a6499e6a039034be","review.md":"27de074b1a5057c33e85868838809b80c60ce8f85c46a8a415d69e22f2ac92d8","validation_receipt.json":"03c76c79b2602e069e36fe36bfa38a2ff4cc45ed630278764a4249c6ac30c7b5"},
+  "self_hash_exclusion":"manifest.json excluded from review_artifact_hashes_excluding_manifest",
+  "outputs":["review.md","findings.json","validation_receipt.json","manifest.json","cleanup_inventory.json"],
+  "status_credit":{"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false}
+}

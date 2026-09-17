@@ -1,0 +1,14 @@
+Historical excerpt transcribed during R1 static inspection of the author r7 source (source bytes were untracked and later overwritten by the taxonomy-fix work; this excerpt is not a replayable source snapshot).
+
+function up2e0_check_package(package::CandidateStatePackageV5,
+                             expected_candidate_ref::QualifiedRefV1=package.candidate_ref,
+                             expected_package_hash::Digest256=package.candidate_hash,
+                             expected_axes::NamedTuple=package.version_axes)
+    errors = try
+        _up2e0_identity_errors(package, expected_candidate_ref, expected_package_hash, expected_axes)
+    catch error
+        ["package_source_exception:" * sprint(showerror, error)]
+    end
+    (status=isempty(errors) ? :valid : :fail_closed, errors=Tuple(errors),
+     compile_calls=0, provider_calls=0, solver_calls=0)
+end

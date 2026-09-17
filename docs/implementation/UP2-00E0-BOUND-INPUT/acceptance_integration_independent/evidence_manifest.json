@@ -1,0 +1,66 @@
+{
+  "record_kind": "UP2-00E0-E0-INT-independent-integration-QA",
+  "verdict": "pass_limited",
+  "reviewer_scope": "read-only documentation/index/provenance integration QA",
+  "captured_at_utc": "2026-09-14T03:00:11.423560+00:00",
+  "commands": [
+    {
+      "argv": ["python", "docs/v4_multitopology_generation/validate_plan.py"],
+      "exit_code": 0,
+      "receipt": "command_receipts.json"
+    },
+    {
+      "argv": ["git", "diff", "--check"],
+      "exit_code": 0,
+      "receipt": "command_receipts.json"
+    },
+    {
+      "argv": ["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc)' } | Select-Object Name,ProcessId,ParentProcessId | ConvertTo-Json -Compress"],
+      "exit_code": 0,
+      "stdout_empty": true,
+      "receipt": "command_receipts.json"
+    }
+  ],
+  "required_manifest_sha256": {
+    "author_r10": "7b5bf78dacf7a7abcbf78639495c4ad4ca2d7d6a4cc5a2f61c52894b93b213e5",
+    "independent_r3": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1"
+  },
+  "frozen_source_test_fixture_runner_sha256": {
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_tests.jl": "856cde12b95b011ca1e3f1e34f5a544ca48ffb9c8de3a94c8ec38bca06ea945e",
+    "test/GenomeV5/UP2/up2_candidate_physical_binding_fixtures.json": "5de4cc133087f4d09bbc8b0334c50486b5f2ba1f479366a81f07c4822597731a",
+    "test/GenomeV5/UP2/run_up2_candidate_physical_binding.jl": "08a6235e37e7c8fc538bf94dc2ef080492610538961b57cfca22c288fb3be92a"
+  },
+  "target_projection": {
+    "acceptance_status_and_addendum": true,
+    "core_readme_status_index_suffix": true,
+    "work_order_status_index_suffix": true,
+    "implementation_readme_status_index_suffix": true,
+    "manifest_unexpected_key_changes": false,
+    "core_readme_line_ending_note": "integrator LF rewrite removed one CR before the original final LF; restoring CRLF makes before_freeze SHA 8f25bec3494b6c5e79c225be3084c3eada13002448aec96c788d94b39514f152"
+  },
+  "claims": {
+    "n05_n06_declarations": false,
+    "UP2_total": false,
+    "UP1_04B": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "artifacts": {
+    "report.md": {"sha256": "ecc226ac036b25af7cda1cb9ddb5ed48c61e5764afdc6642ca11c1b69e8631dd"},
+    "report.json": {"sha256": "66ee1cff92fe34cdd086f52525479cb4b29027e69f883981a0ebea8fd03883f3"},
+    "command_receipts.json": {"sha256": "841ee094f3f44ca280004af335648e2397d6eab4a856e9d69928c59d25b11bbc"},
+    "run_independent_qa.py": {"sha256": "cd7be7c5dc4e0ecdfd9d30dc789ec1cc700c8ab6a3c3e07074819a36a8848ffb"},
+    "initial_false_verdict.md": {"sha256": "af4379a4f2971ace10fbf502cbafe7d259f7d32dd4e6e1553c24fb0e11968521"}
+  },
+  "limitations": [
+    "No Julia or DESC process was started by this reviewer.",
+    "The integrator's before/README.md is the implementation README snapshot; the core v4 README had no content snapshot and was checked by exact hash reconstruction with CRLF restoration.",
+    "This is contract/provenance QA only and does not grant N05/N06, UP2 total, B00/B04, provider, mesh, engineering, physical, or R01-R10 credit."
+  ]
+}

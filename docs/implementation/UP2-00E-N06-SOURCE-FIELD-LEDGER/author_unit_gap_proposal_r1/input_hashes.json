@@ -1,0 +1,33 @@
+{
+  "schema_version": "n06-unit-gap-proposal-inputs-v1",
+  "captured_utc": "2026-09-14",
+  "source_and_test_inputs": {
+    "src/GenomeV5/UP2/N06SourceFieldLedgerMappingV1.jl": "69bd82f040f405e55768e52af64b9b9b6d97272a2ec3988b66b7bdf21ec1128c",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl": "dac8c62e4ba20b45930a119649468659931eca2236cb9c5181aba101392a66ce",
+    "test/GenomeV5/UP2/n06_source_field_ledger_mapping_fixtures.json": "361a1777a765ed6784a1f37c02febc24c2ba5f6eed3c6a15b99333af596736b2",
+    "test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl": "9410e2edbb7afc70599e183f30a2ef9836b7e84a1834296e27d96b881b1f86af",
+    "test/GenomeV5/G1/fixtures.json": "9531b5baa6f45cf71527c882de1fa1fa60bedd2c999498e4147fa81a23451bf0",
+    "test/GenomeV5/G2/fixtures.json": "831d54a696670166e2b912a1e3b6bd1dd97a03bdf33f6c41260c5d604661f84e",
+    "test/GenomeV5/G3/fixtures.json": "f25945083f250f3620e0dc66a003a926df7235e6ce377f5946d85f6d7caa0bb0",
+    "docs/implementation/AD-24/decision.md": "ade7ca5923cfd2ce9cda5e8b7563fdf760a2e123f10f195ec9ac13cc8d66773c",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "a7bffc313dfef35c7e302dd251709491a4a91e15d37a275d92fd6fe9d5aca28c"
+  },
+  "r8_artifacts": {
+    "receipt.json": "d62eecec09d9e9376494f49574a610a83274e2096ac3f88bb1e079fa104c8f5b",
+    "stdout.log": "2c1af4ecbdc49fa85eaae9c0be449badd75dd4d5e0890ee231b3e88390c80b98",
+    "stderr.log": "8ac494a454f7fbc73af737756244bf9d08ad2aebc8e3808d99f982006b52c920",
+    "test_summaries.json": "6d6cb81d0466c992db84cd10d1b37ba889e8ad8cb72a02e526018cfbcca1e7b9",
+    "evidence_manifest.json": "d3374970f1709215bcb204b80c755f4d3c96081f5376223fe8ca02fbf548214e"
+  },
+  "r8_runtime": {
+    "main_pid": 37060,
+    "child_pids": [17324, 75116, 77624],
+    "started_utc": "2026-09-14T05:27:19.355459Z",
+    "ended_utc": "2026-09-14T05:28:23.388901Z",
+    "exit": 1,
+    "classification": "program_exception",
+    "counts": "323 pass / 0 failed / 1 error / 324 total",
+    "postflight_julia_desc": "empty",
+    "protected_before_after_match": true
+  }
+}

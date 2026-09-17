@@ -1,0 +1,72 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-precheck-r9-command-receipts-v1",
+  "reviewer": "independent_luna_high_static",
+  "scope": "read-only static review; Julia/DESC prohibited",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "prewrite_status_entry_count": 297,
+  "prewrite_status_sha256": "d48208778d19477a679037add5899b4a910d0529e9c46f6cd30a0e130a4b5383",
+  "process_sweep": {
+    "command": "Get-Process -Name julia,julia-debug,desc",
+    "count": 0
+  },
+  "commands": [
+    {
+      "operation": "target hashes",
+      "command": "Get-FileHash source/test/fixture/runner and referenced evidence",
+      "result": "recorded in evidence_manifest.json"
+    },
+    {
+      "operation": "helper call scan",
+      "command": "rg -n _h0a_digest\\( test/GenomeV5/UP2/n06_dimensioned_law_tests.jl",
+      "result": "23 calls; labels preserved"
+    },
+    {
+      "operation": "strict Digest256 inspection",
+      "command": "rg -n -C 5 struct Digest256|digest256_text src/IR/PhysicalTypes.jl",
+      "result": "strict 64 lowercase hex constructor preserved; canonical text hash available"
+    },
+    {
+      "operation": "repair QA inspection",
+      "command": "read repair_r9/report.md/evidence_manifest.json/static_qa_repair_r9.py",
+      "result": "helper-only edit; static QA pass; Julia/DESC false"
+    },
+    {
+      "operation": "focused runtime",
+      "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+      "result": "NOT RUN by instruction; pending serial lane"
+    }
+  ],
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "serial_focused_r3": "pending_parent_gate"
+  },
+  "writes": [
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r9/report.md",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r9/report.json",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r9/evidence_manifest.json",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r9/command_receipts.json"
+  ],
+  "post_write_external_process_observation": {
+    "observed_utc": "2026-09-14T19:33:22.5488371Z",
+    "matching_process_count": 2,
+    "processes": [
+      {
+        "pid": 50860,
+        "parent_pid": 50948,
+        "name": "julia.exe",
+        "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "started_by_r9_review": false,
+        "action": "left untouched"
+      },
+      {
+        "pid": 46356,
+        "parent_pid": 50860,
+        "name": "julia.exe",
+        "command_line": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+        "started_by_r9_review": false,
+        "action": "left untouched"
+      }
+    ]
+  }
+}

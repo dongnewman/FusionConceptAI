@@ -1,0 +1,12 @@
+{
+  "schema": "m4-d-coupled-solve-control-delivery-cleanup-v1",
+  "task_id": "UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1",
+  "cleanup_action": "none",
+  "ambiguous_paths": [],
+  "owned_products": ["docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/report.md","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/manifest.json","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/validation_receipt.json","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/cleanup_inventory.json","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/archive/raw/delivery_record.stdout.raw","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/archive/raw/delivery_record.stderr.raw"],
+  "protected_prior_paths": ["docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/d_scope_decision_r1/**","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/test_execution_r1/**","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/integration_r1/**","src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl","test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl","test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py"],
+  "final_exact_owned_set": ["docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/report.md","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/manifest.json","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/validation_receipt.json","docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/delivery_r1/cleanup_inventory.json"],
+  "self_hash_excluded": true,
+  "cleanup_policy": "retain delivery products and all referenced historical raw/failure evidence; no glob deletion, staging, revert, or unrelated cleanup"
+}
+

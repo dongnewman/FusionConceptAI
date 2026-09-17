@@ -1,0 +1,40 @@
+{
+  "schema": "m4-d-coupled-solve-control-repair-independent-cleanup-v2",
+  "task_id": "UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/independent_review_r2",
+  "status": "complete_exact_owned_paths_only",
+  "owner": "independent Luna reviewer",
+  "cleanup_action": "none",
+  "removed": [],
+  "ambiguous_cleanup_deferred": [],
+  "protected": [
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl",
+    "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl",
+    "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl",
+    "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl",
+    "test/RuntimeV4/M4Isolated/manufactured_coupled_solve_control_v1_tests.jl",
+    "test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py",
+    "docs/implementation/UP2-01-PREPARATION/M4-D-COUPLED-SOLVE-CONTROL/integration_r1/repair_r1/**",
+    "all previous M4-D test/integration archives and failure history",
+    "shared entrypoints, registries, Project, Manifest, SpatialRuntime dirty state",
+    "unrelated dirty worktree files"
+  ],
+  "retained_task_owned_paths": [
+    "replay_bypass_probe.jl",
+    "report.md",
+    "manifest.json",
+    "validation_receipt.json",
+    "cleanup_inventory.json",
+    "raw/replay_bypass_probe.stdout.raw",
+    "raw/replay_bypass_probe.stderr.raw",
+    "raw/replay_bypass_probe.combined.raw",
+    "raw/python_oracle.stdout.raw",
+    "raw/python_oracle.stderr.raw",
+    "raw/python_oracle.combined.raw",
+    "raw/julia_tests.stdout.raw",
+    "raw/julia_tests.stderr.raw",
+    "raw/julia_tests.combined.raw",
+    "archive/raw/ (byte-for-byte copies of all review raw streams)"
+  ],
+  "broad_cleanup_or_staging": false,
+  "note": "Only independent_review_r2/** was created. No product, integration, archive, shared, or unrelated path was edited, deleted, staged, or reverted."
+}

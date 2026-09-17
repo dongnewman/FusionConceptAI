@@ -1,0 +1,70 @@
+{
+  "review_id": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-precheck-r2",
+  "status": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_status_rows": 300,
+  "julia_or_desc_processes": [],
+  "claim_ceiling": "contract_only_no_mesh_provider_physical_engineering_or_R01-R10_credit",
+  "r1_findings": {
+    "cofactor_reference_physical_orientation": "closed_static",
+    "positive_determinant_fail_closed": "closed_static",
+    "typed_coordinate_metric_area_volume_fields": "fields_added_but_algebra_unenforced",
+    "public_program_exception_behavior": "closed_static_via_module_owned_controlled_probe",
+    "not_executed_mesh_gap": "closed_static_unconditional_gap",
+    "source_declaration_edit_rehash": "closed_static"
+  },
+  "blocking_findings": [
+    {
+      "id": "F02-unit-algebra",
+      "status": "blocking",
+      "evidence": [
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:261-281",
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:118-134",
+        "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:380-406",
+        "test/GenomeV5/G2/metric_boundary_v1_fixture.json:32-41",
+        "test/GenomeV5/G2/static_qa_metric_boundary_v1.py:66-69"
+      ],
+      "finding": "G2MBUnitContractV1 checks only UnitSignature types; coordinate/J/metric/area/volume exponent relations are not validated. The derived area/volume records do not bind their units to a validated contract.",
+      "required_fix": "Validate the typed geometry-unit algebra during admission and add independent negative controls; bind physical area and volume measures to those validated units."
+    }
+  ],
+  "verified_static": {
+    "cofactor_formula_and_reference_separation": true,
+    "determinant_positive_orientation_gate": true,
+    "six_unique_candidate_owned_faces": true,
+    "dirichlet_neumann_unit_matching": true,
+    "both_mesh_statuses_terminal_gap": true,
+    "bad_input_fail_closed": true,
+    "controlled_program_exception_public_path": true,
+    "source_and_declaration_rehash_edit_path": true,
+    "julia_definition_order_static_doubt": false
+  },
+  "static_qa": {
+    "command": "D:/Users/Newman/anaconda3/python.exe test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+    "exit_code": 0,
+    "result": "static_qa=pass",
+    "julia_or_desc_executed": false,
+    "provider_or_mesh_execution": false,
+    "review_pending": true,
+    "accepted": false
+  },
+  "current_hashes": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "eb9124423628794baf53c1bfab75f99cc606f73883203ff5f69de921e45246dd",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "49784f58298a28e57724111fd40ca4c2c64417c455e3acf12f54b636e9d9dda2",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "4fd029f8e46fcfc473334a27a0531168082f4bb89cb67e2b8d7d838dc69b41c8",
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": "df9f777d5dd8ec38876cb2fa12cceba3f1c6f53cb83fe011d2f366d5b563708d",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/report.md": "9db66349130c3dc3860b16a19680e0bb42e1d596147c1ba19f92db7649f032b0",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/evidence_manifest.json": "ca9e126f292187b33537d62bd731ef44ef6791806f1d358b89e054dc7eec6aa7",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/repair_r2/command_receipts.json": "695dd3336a3da143c705161c2d8cbbada424ab293e19b5fba683940eda42d03a"
+  },
+  "protected_evidence": {
+    "r1_archive_modified": false,
+    "source_test_fixture_static_qa_modified": false,
+    "write_scope": [
+      "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/independent_precheck_r2/"
+    ]
+  },
+  "next_gate": "Different Luna R3 static precheck after F02 unit algebra and area/volume unit binding are corrected."
+}

@@ -1,0 +1,52 @@
+{
+  "manifest_version": "UP5-EARLY-PREPARATION-independent-status-review-r1",
+  "record_kind": "independent_status_sync_review",
+  "task_id": "UP5-EARLY-PREPARATION",
+  "status": "pass_limited",
+  "accepted_scope": "early_preparation_template_only",
+  "claim_ceiling": "contract_only",
+  "current_status": "accepted_limited",
+  "review_basis": "independent_review_r2:pass_limited",
+  "catalog_checks": {
+    "rules": 12,
+    "applicability_conditions": 20,
+    "counterexamples": 18,
+    "typed_edits": 10,
+    "cross_references": "pass_in_prior_independent_evidence",
+    "typed_pending_identity_records": true,
+    "future_candidate_provider_solver_physical_hash": false
+  },
+  "formal_gates": {
+    "UP4": "pending", "T1": "pending", "T2": "pending", "verified_G1_edit": "pending",
+    "verified_G2_edit": "pending", "verified_G3_edit": "pending", "provider": "pending",
+    "UP5_01": "pending", "UP5_02": "pending", "UP5_03": "pending", "R01-R10": "pending"
+  },
+  "execution_policy": {
+    "merge": false, "saturation": false, "search": false, "pruning": false,
+    "evidence_transfer": false, "julia": false, "solver": false, "provider": false, "physical": false, "external_write": false
+  },
+  "credits": {
+    "UP5": false, "e_graph": false, "search": false, "provider": false, "solver": false,
+    "engineering": false, "physical": false, "R01-R10": false
+  },
+  "cleanup_review": {
+    "writable_deliverable_count": 14,
+    "task_local_scratch_cache_found": false,
+    "removed_paths": [],
+    "protected_dirty_and_historical_evidence": true,
+    "review_created_scratch_paths": [],
+    "review_owned_paths": [
+      "docs/implementation/UP5-EARLY-PREPARATION/independent_status_review_r1/report.md",
+      "docs/implementation/UP5-EARLY-PREPARATION/independent_status_review_r1/manifest.json"
+    ]
+  },
+  "reviewed_hashes": {
+    "acceptance.md": "7227b60991051ff76400ec465b8c04afe472b703307730f48d5029b6c5e9b6b3",
+    "manifest.json": "758132ba94ff916fbcc3ec81866f90136f579b79e4d723137c4b76e49796847a",
+    "status_sync_r1/report.md": "0480e70a811ecebc55073a943c5ec7760829536e81f464057bd6559ca1a047ab",
+    "status_sync_r1/manifest.json": "2c91cfbc9da673df98899a5e996de9d1553ebe9feb0689576207d08c39d94ee4"
+  },
+  "julia_desc_or_heavy_execution": "not_run",
+  "source_modified": false,
+  "tests_modified": false
+}

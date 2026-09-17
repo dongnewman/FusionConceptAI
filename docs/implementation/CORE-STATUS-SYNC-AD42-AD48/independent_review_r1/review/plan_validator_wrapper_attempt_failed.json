@@ -1,0 +1,8 @@
+{
+  "record_kind": "reviewer_helper_failure",
+  "command": "python -c wrapper around validate_plan.py",
+  "exit": 1,
+  "error": "AttributeError: CompletedProcess has no attribute pid",
+  "impact": "reviewer wrapper failure only; the direct validate_plan.py invocation passed and no reviewed input was modified",
+  "preserved": true
+}

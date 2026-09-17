@@ -1,0 +1,59 @@
+{
+  "record_kind": "AD-39-independent-review-r1-validation-receipt",
+  "review_round": "r1",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "primary_validation": {
+    "command": "PowerShell concise JSON/hash/path/API/control-character/diff-scope recheck",
+    "pid": 73304,
+    "started_utc": "2026-09-15T07:26:07.4552109Z",
+    "ended_utc": "2026-09-15T07:26:07.6606311Z",
+    "exit_code": 0,
+    "stdout_raw": "json=pass;head=4b69f55f7f80240147a65a22809dc1207824dde2;audited_inputs=20;audited_input_mismatches=1;ad36_current=accepted_limited/accepted=True;ad37_recorded_ad36=review_pending/accepted=False;future_output_dirs=0;control_characters=0;g1_g2_source_backed_present=false;g2_fresh_mapping_receipt=false;present=false;t0=false;t1=false;t2=false;r01_r10=false;git_diff_check=pass;heavy_execution=not_run",
+    "stderr_raw": "",
+    "stdout_sha256": "3a46b3d657a6da2fed2ae7680f7a3f4549785647a04bebec96dad410301e772a"
+  },
+  "rechecked_inputs": {
+    "audited_input_count": 20,
+    "missing_paths": [],
+    "hash_or_byte_mismatches": [
+      {
+        "path": "docs/implementation/AD-36/manifest.json",
+        "expected_bytes": 6021,
+        "actual_bytes": 5928,
+        "expected_sha256": "4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9",
+        "actual_sha256": "4f71a9fc434362f3b37f1f5d7855b6c2e6558a6011b3fbd771bfc089022019e9"
+      }
+    ],
+    "json_parse": "pass",
+    "control_character_count": 0,
+    "git_diff_check": "pass",
+    "future_publication_output_dirs": [],
+    "heavy_execution": "not_run"
+  },
+  "api_and_authority_recheck": {
+    "g1_source_payload_and_receipt": "schema_and_local_recipe_only",
+    "g1_source_backed_present_call": false,
+    "g2_source_declaration_receipt": "schema_and_local_recipe_only",
+    "g2_mapping_type": "present_in_transport_contract",
+    "g2_fresh_mapping_receipt": false,
+    "source_backed_receipt_constructor": "private_seam_only",
+    "present_parent_admission": "source_backed_receipt_unavailable",
+    "fixture_or_synthetic_promotion": false
+  },
+  "execution_boundary": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "candidate_hash_created": false,
+    "machine_node_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "r01_r10": false
+  }
+}

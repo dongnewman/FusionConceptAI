@@ -1,0 +1,50 @@
+AD41-R2 current JSON/hash/control validation
+PID=82376
+UTC_START=2026-09-15T08:29:51.9832917Z
+AD41 report hash match=true
+AD40 repair_r1 report hash match=true
+control_violations=[]
+JSON manifests individually parsed successfully (AD41 manifest, AD40 repair_r1 manifest, task manifest)
+W1 mentions repair_r1 review=false
+W1 mentions conditional repair_r2=false
+UTC_END=2026-09-15T08:29:52.3190069Z
+EXIT=0
+
+AD41-R2 task DAG and work-order validation
+PID=62416
+UTC_START=2026-09-15T08:30:18.0328068Z
+task_count=39
+dag_processed=39
+dag_acyclic=true
+missing_task_dependencies=[]
+W1_mentions_repair_r1_review=false
+W1_mentions_conditional_repair_r2=false
+W1 depends_on=[]
+W2 depends_on=[AD41-W1]
+W3 depends_on=[AD41-W2]
+W4 depends_on=[AD41-W3]
+all_candidate_hash_created=false
+UTC_END=2026-09-15T08:30:18.0924691Z
+EXIT=0
+
+AD41-R2 plan validator
+PID=69920
+UTC_START=2026-09-15T08:30:27.2593286Z
+markdown_files_checked=31
+relative_links_checked=485
+task_count=39
+task_dag_acyclic=true
+errors=[]
+UTC_END=2026-09-15T08:30:27.2593286Z
+EXIT=0
+
+AD41-R2 AD40 repair_r1 output hash validation
+PID=47784
+UTC_START=2026-09-15T08:30:41.9760417Z
+AD40_REPAIR_R1_STATUS=review_pending
+AD40_REPAIR_R1_ACCEPTED=false
+outputs_checked=15
+all_output_hashes_match=true
+issues=[]
+UTC_END=2026-09-15T08:30:42.0029176Z
+EXIT=0

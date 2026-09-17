@@ -1,0 +1,17 @@
+{
+  "all_artifact_refs": "PASS",
+  "artifact_and_raw_fields": [
+    {"file":"archive/failure_history.json","json_path":"validation_receipt.json:artifact_hashes.failure_history.sha256","length":64,"value":"3550c9ee938a8e093e404ba93e2db179e9a89ee4422e54a63c0783482a5bb380"},
+    {"file":"archive/repair_r2/repair_receipt.json","json_path":"validation_receipt.json:artifact_hashes.repair_receipt.sha256","length":64,"value":"fbf0aa4ce245bcd8319ae89785c4d476214e9dccffb0077b6431e89678d9aeee"},
+    {"file":"archive/repair_r3/corrected_static_measurement_receipt.json","json_path":"validation_receipt.json:artifact_hashes.corrected_static_measurement_receipt.sha256","length":64,"value":"ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0"},
+    {"file":"archive/repair_r4/repair_receipt.json","json_path":"validation_receipt.json:artifact_hashes.repair_r4_receipt.sha256","length":64,"value":"cb98109f2f345003d52461a75030c1272ea034e833202d40e102c2527c2649f7"},
+    {"file":"archive/repair_r2/raw/fresh_s3_recheck.stderr.raw","json_path":"validation_receipt.json:repaired_raw.stderr.sha256","length":64,"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"file":"archive/repair_r2/raw/fresh_s3_recheck.stderr.raw","json_path":"archive/repair_r2/repair_receipt.json:raw_bytes.stderr.sha256","length":64,"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"file":"archive/repair_r3/raw/corrected_static_measurement.stderr.raw","json_path":"archive/repair_r3/corrected_static_measurement_receipt.json:raw.stderr.sha256","length":64,"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"file":"archive/repair_r3/validation.stderr.raw","json_path":"archive/repair_r3/validation_receipt.json:raw.stderr.sha256","length":64,"value":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+  ],
+  "json_parse": "PASS",
+  "r3_target": "ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0",
+  "s3_rerun": false,
+  "static_and_fingerprint": "PASS"
+}

@@ -1,0 +1,90 @@
+Test Summary:                                           | Pass  Total  Time
+UP1-01 G1 V2 contract and fixture-driven component core |   47     47  6.8s
+Test Summary:                           | Pass  Total  Time
+UP1-01 G1 fail-closed negative controls |   21     21  0.7s
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  5.9s
+Test Summary:                               | Pass  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   59     59  1.2s
+Test Summary:                                     | Pass  Total  Time
+UP1-02 G2 physical and provider evidence boundary |    8      8  0.1s
+Test Summary:                                  | Pass  Total  Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  9.4s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  4.0s
+Test Summary:                                         | Pass  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   23     23  0.2s
+Test Summary:                                           | Pass  Total   Time
+UP1-01 G1 V2 contract and fixture-driven component core |   47     47  10.2s
+Test Summary:                           | Pass  Total  Time
+UP1-01 G1 fail-closed negative controls |   21     21  0.9s
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  8.5s
+Test Summary:                               | Pass  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   59     59  2.0s
+Test Summary:                                     | Pass  Total  Time
+UP1-02 G2 physical and provider evidence boundary |    8      8  0.1s
+Test Summary:                                  | Pass  Total   Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  14.0s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  3.0s
+Test Summary:                                         | Pass  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   23     23  0.4s
+Test Summary:                                           | Pass  Total  Time
+UP1-01 G1 V2 contract and fixture-driven component core |   47     47  9.7s
+Test Summary:                           | Pass  Total  Time
+UP1-01 G1 fail-closed negative controls |   21     21  0.9s
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  8.8s
+Test Summary:                               | Pass  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   59     59  2.0s
+Test Summary:                                     | Pass  Total  Time
+UP1-02 G2 physical and provider evidence boundary |    8      8  0.1s
+Test Summary:                                  | Pass  Total   Time
+UP1-03 G3 fixture and candidate-bound identity |   49     49  12.0s
+Test Summary:                                          | Pass  Total  Time
+UP1-03 resource, ledger and fault fail-closed controls |   35     35  3.2s
+Test Summary:                                         | Pass  Total  Time
+UP1-03 versioned references and JSON fixture boundary |   23     23  0.3s
+Test Summary:                          | Pass  Total   Time
+UP2-00E0 actual A bound-input envelope |   30     30  50.5s
+UP2-00E0 reusable G2 plan and candidate-owned identity: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:130
+  Test threw exception
+  Expression: (G.up2e0_validate_binding(b1, p2)).status == :fail_closed
+  ArgumentError: cannot convert a value to Union{} for assignment
+  Stacktrace:
+   [1] convert(T::Type{Union{}}, x::String)
+     @ Base .\essentials.jl:315
+   [2] push!(a::Vector{Union{}}, item::String)
+     @ Base .\array.jl:1118
+   [3] up2e0_validate_binding(binding::FusionConceptAI.UP2CandidatePhysicalBindingV1, package::CandidateStatePackageV5{FusionConceptAI.MechanismGenomeV5, FusionConceptAI.FieldGeometryGenomeV5, FusionConceptAI.RealizationControlGenomeV5})
+     @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\UP2CandidatePhysicalBindingV1.jl:364
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:130 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:119
+UP2-00E0 reusable G2 plan and candidate-owned identity: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:131
+  Test threw exception
+  Expression: "source_package_hash_mismatch" in (G.up2e0_validate_binding(b1, p2)).errors
+  ArgumentError: cannot convert a value to Union{} for assignment
+  Stacktrace:
+   [1] convert(T::Type{Union{}}, x::String)
+     @ Base .\essentials.jl:315
+   [2] push!(a::Vector{Union{}}, item::String)
+     @ Base .\array.jl:1118
+   [3] up2e0_validate_binding(binding::FusionConceptAI.UP2CandidatePhysicalBindingV1, package::CandidateStatePackageV5{FusionConceptAI.MechanismGenomeV5, FusionConceptAI.FieldGeometryGenomeV5, FusionConceptAI.RealizationControlGenomeV5})
+     @ FusionConceptAI D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\UP2CandidatePhysicalBindingV1.jl:364
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:131 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\up2_candidate_physical_binding_tests.jl:119
+Test Summary:                                          | Pass  Error  Total     Time
+UP2-00E0 reusable G2 plan and candidate-owned identity |    7      2      9  1m25.3s

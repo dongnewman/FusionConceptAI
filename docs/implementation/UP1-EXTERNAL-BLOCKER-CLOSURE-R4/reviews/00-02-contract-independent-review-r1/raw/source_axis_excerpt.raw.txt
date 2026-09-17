@@ -1,0 +1,17 @@
+source: tools/up1_external_closure_r4/source_axis_binding/source_axis_binding.py
+bytes: 31030
+sha256: e67ccd4af84b75d7ce9984daa45782e6504501ac3db0f987774dc28550ee9546
+excerpt_lines:
+450.     missing = sorted(set(AXES).difference(seen))
+451.     absent = state in _ABSENT
+452.     if absent and materials:
+453.         errors.append(_issue("absence_with_materials", "typed absence cannot contain axis materials", "axis_materials"))
+454.     if not absent and missing:
+455.         errors.append(_issue("missing_axis", f"missing axis material(s): {missing}", "axis_materials"))
+456.     if state == "TEST_ONLY" and provenance != "test_fixture":
+457.         errors.append(_issue("state_profile_mismatch", "TEST_ONLY requires test_fixture", "provenance_class"))
+458.     if absent and provenance != "external_material_absent":
+459.         errors.append(_issue("state_profile_mismatch", "typed absence requires external_material_absent", "provenance_class"))
+460.     if state == "EXTERNAL_ISSUED":
+461.         errors.append(_issue("external_material_not_supported", "this offline prototype cannot publish external authority", "state"))
+462.     if not absent and not missing and materials:

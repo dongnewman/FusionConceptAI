@@ -1,0 +1,43 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-INDEPENDENT-VALIDATION-R1",
+  "status": "pass_limited",
+  "claim_ceiling": "manufactured_auto_composition/screen_only",
+  "formal_credit": "none",
+  "not_up3_01": true,
+  "replay_performed": true,
+  "strict_serial": true,
+  "checks": {
+    "python_once_then_julia_once": true,
+    "python_exit_0": true,
+    "julia_exit_0": true,
+    "julia_110_of_110": true,
+    "permutation_hash_equal": true,
+    "typed_ast_8_roots4_inputs3": true,
+    "hypergraph_7_edges4": true,
+    "stages4_ports7_joins3": true,
+    "all_frozen_source_test_oracle_hashes_match": true,
+    "typed_negative_controls": true,
+    "provider_drop_terminal_deferred_no_provider": true,
+    "registry_and_shared_entry_untouched": true,
+    "R1_R2_not_recorded_preserved": true,
+    "R3_and_integration_failures_non_authoritative": true,
+    "cleanup_no_broad_deletion": true,
+    "roles_pairwise_distinct": true
+  },
+  "authoritative_raw": [
+    "raw/python_oracle.stdout.raw",
+    "raw/python_oracle.stderr.raw",
+    "raw/python_oracle.combined.raw",
+    "raw/python_oracle.process.json",
+    "raw/julia_tests.stdout.raw",
+    "raw/julia_tests.stderr.raw",
+    "raw/julia_tests.combined.raw",
+    "raw/julia_tests.process.json"
+  ],
+  "changes_requested": [],
+  "non_blocking_observations": [
+    "Python oracle negative controls are a strict subset of the Julia controls.",
+    "Stage edges use the existing TypedHyperedge/legacy TypedAST compatibility form.",
+    "Bare standalone M5 include needs _typed_ast_cse_key adapter; package context supplies it and the isolated test defines a deterministic adapter."
+  ]
+}

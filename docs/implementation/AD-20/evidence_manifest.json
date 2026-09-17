@@ -1,0 +1,232 @@
+{
+  "task_id": "AD-20",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "g2_public_ref_authority_and_staged_up1_04_schedule_architecture_only",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "owner": "architecture documentation",
+  "reviewer": "different Luna (pass)",
+  "sol_decision": "accepted_limited only for current AD-20 G2 public-ref authority and staged UP1-04 schedule architecture plus preserved provenance; no UP1-04A/UP2-00/UP1-04B implementation or execution, provider, B00/B04, mesh, engineering, physical, or R01-R10 credit",
+  "allowed_write_paths": [
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/AD-20/"
+  ],
+  "protected_scope": [
+    "src/",
+    "test/",
+    "runs/",
+    "queue",
+    "docs/implementation/UP0-02/",
+    "docs/implementation/UP1-01/",
+    "docs/implementation/UP1-02/",
+    "docs/implementation/UP1-03/",
+    "docs/implementation/UP1-INDEX/",
+    "docs/implementation/AD-17/",
+    "docs/implementation/AD-18/",
+    "docs/implementation/AD-19/",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/19_up0_02_contract_freeze.md",
+    "docs/v4_multitopology_generation/up0_02_protocol.json"
+  ],
+  "decision_points": [
+    "fresh UP1-04A G2 public ref URI is fusionconceptai://GenomeV5/G2/",
+    "historical UP1-02 urn:fusion:g2:* fixture/ref/hash/evidence is immutable and not reused or aliased",
+    "G2 plan may be reused semantically across candidates but package binding and G2/package identity are recomputed per candidate",
+    "UP1-01/02/03 -> UP1-04A -> UP2-00 -> UP1-04B -> UP1-04 -> UP2-01",
+    "UP1-04A current review_pending may unlock UP2-00 only after A-only evidence and independent review at limited scope",
+    "UP2-00 covers real N01-N10 typed precompiler fields/error classes and invocation-count interfaces without solver/mesh/provider/physical credit",
+    "UP1-04B freezes before execution and covers B00 F0-F5 plus 50 formal B04 mutations/receipts/checker/two-process replay",
+    "full UP1-04 requires B completion and independent review; R01-R10 unchanged"
+  ],
+  "before_files": [
+    {
+      "sha256": "9fe140fc9a829c1bb29a863dd66f7bb1080c0c8ae1a169b16a4acd8c83aaa518",
+      "bytes": 17888,
+      "mtime": "2026-09-14T05:38:59.7007578+08:00",
+      "snapshot": "docs/implementation/AD-20/before/18_sources_and_architecture_decisions.md"
+    },
+    {
+      "sha256": "98db90fbc46976e9f11c331629d31bce9d807028994377a99d80fd057fcf6e75",
+      "bytes": 44564,
+      "mtime": "2026-09-14T05:32:35.6313254+08:00",
+      "snapshot": "docs/implementation/AD-20/before/16_execution_work_orders.md"
+    },
+    {
+      "sha256": "0d017609c2796a1025125358af090fb1b070be1ac296d5c6ceb13360ae7f5a35",
+      "bytes": 12227,
+      "mtime": "2026-09-14T05:32:35.6323250+08:00",
+      "snapshot": "docs/implementation/AD-20/before/README.md"
+    },
+    {
+      "sha256": "a5ce9a91fa980e919ace2af6b0d84d4a392981da09fadc16bc4eeb8e2b218cd9",
+      "bytes": 39445,
+      "mtime": "2026-09-14T05:20:57.1550232+08:00",
+      "snapshot": "docs/implementation/AD-20/before/task_manifest.json"
+    }
+  ],
+  "after_files": [
+    {
+      "sha256": "287721784181b0875bcd3a3173ca601095e5d54930e3a01ced7d0d33c7042cc9",
+      "bytes": 20759,
+      "mtime": "2026-09-14T06:12:26.2018629+08:00",
+      "snapshot": "docs/implementation/AD-20/after/18_sources_and_architecture_decisions.md"
+    },
+    {
+      "sha256": "a9bd054a9f4c22d3a14f7d43c4d9ea6b5162db403dcd4986583872907491b36c",
+      "bytes": 50745,
+      "mtime": "2026-09-14T06:12:26.2039671+08:00",
+      "snapshot": "docs/implementation/AD-20/after/16_execution_work_orders.md"
+    },
+    {
+      "sha256": "62d44b615b0d7f61bf1039d00cf328c5fd5321282566050d111c04204e1ea1e8",
+      "bytes": 13054,
+      "mtime": "2026-09-14T06:12:52.5886935+08:00",
+      "snapshot": "docs/implementation/AD-20/after/README.md"
+    },
+    {
+      "sha256": "24ee307b497da0dc74d0b965454be0a1ce83a671d32cf6ed3a2fc4b60d278e42",
+      "bytes": 46028,
+      "mtime": "2026-09-14T06:12:26.2049669+08:00",
+      "snapshot": "docs/implementation/AD-20/after/task_manifest.json"
+    }
+  ],
+  "bounded_diff": {
+    "path": "docs/implementation/AD-20/bounded_diff.patch",
+    "sha256": "a0ce8f1b9a2a9ef1ad8026aad8221710f2d68028e1b5ec152f83e9f804b1b337",
+    "bytes": 30838
+  },
+  "protected_inventory": {
+    "path": "docs/implementation/AD-20/protected_dirty_inventory.json",
+    "sha256": "6ba5a4c56f9a0320bd44b76823a773bebe01d2a77d48d5d377eaf32afdede0ab"
+  },
+  "commands": [
+    {
+      "command": "PowerShell copy four allowed core documents to AD-20/before and record SHA256/bytes/seven-digit mtime",
+      "exit_code": 0,
+      "purpose": "pre-modification byte provenance"
+    },
+    {
+      "command": "PowerShell copy four allowed core documents to AD-20/after and record SHA256/bytes/seven-digit mtime",
+      "exit_code": 0,
+      "purpose": "post-modification byte provenance"
+    },
+    {
+      "command": "Python difflib unified diff for four before/after snapshots",
+      "exit_code": 0,
+      "purpose": "bounded AD-20 diff"
+    },
+    {
+      "command": "python JSON parse task_manifest.json and AD-20 metadata/evidence manifests",
+      "exit_code": 0,
+      "purpose": "JSON validation",
+      "output": "json_parse=pass; task_manifest, before/after metadata, evidence manifest, and protected inventory parsed"
+    },
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py --report docs/implementation/AD-20/validate_plan_output.json",
+      "exit_code": 0,
+      "purpose": "planning/link/DAG validation only",
+      "output": "checks=pass; markdown_files_checked=31; relative_links_checked=275; task_count=27; task_dag_acyclic=true; snapshot_files_checked=16; errors=[]"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "purpose": "whitespace validation",
+      "output": "exit 0; existing LF-to-CRLF working-copy warnings only"
+    }
+  ],
+  "execution_boundary": {
+    "julia": false,
+    "DESC": false,
+    "provider": false,
+    "B00": false,
+    "B04": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01-R10": false
+  },
+  "independent_review": {
+    "reviewer": "different Luna",
+    "result": "pass",
+    "scope": "AD-20 ref authority, staged DAG, provenance, index link, and credit boundaries"
+  },
+  "historical_note": "UP1-04A remains review_pending in the current plan; no source/test/implementation/runs/queue change was made by this task.",
+  "validation_outputs": [
+    {
+      "path": "docs/implementation/AD-20/validate_plan_output.json",
+      "sha256": "cf563083ca90ba33d7625d5cb23d8edac8616b8460d73033a7e7799aa975ae1e",
+      "bytes": 401,
+      "scope": "planning/link/DAG validation only"
+    }
+  ],
+  "review_history": [
+    {
+      "revision": "r1",
+      "result": "changes_requested",
+      "scope": "README AD-20 dependency-chain wording only",
+      "finding": "README omitted the UP1-04 total gate between UP1-04B and UP2-01",
+      "disposition": "corrected one chain string to UP1-04B -> UP1-04 -> UP2-01; initial AD-20 provenance preserved",
+      "before_file": {
+        "path": "docs/v4_multitopology_generation/README.md",
+        "snapshot": "docs/implementation/AD-20/r1_before/README.md",
+        "sha256": "62d44b615b0d7f61bf1039d00cf328c5fd5321282566050d111c04204e1ea1e8",
+        "bytes": 13054,
+        "mtime": "2026-09-14T06:12:52.5886935+08:00"
+      },
+      "after_file": {
+        "path": "docs/v4_multitopology_generation/README.md",
+        "snapshot": "docs/implementation/AD-20/r1_after/README.md",
+        "sha256": "0031cb30155958e3d3def0fa82735d24f46f1ccf3397ead6d80d21bb771d82ee",
+        "bytes": 13065,
+        "mtime": "2026-09-14T06:22:11.2821776+08:00"
+      },
+      "bounded_diff": {
+        "path": "docs/implementation/AD-20/bounded_diff_r1.patch",
+        "sha256": "3797fedb3ad5cdcf12bb34716df17bff9be08b956a7b0413056cf29ca5586394",
+        "bytes": 2651
+      }
+    },
+    {
+      "revision": "r2",
+      "result": "pass",
+      "scope": "AD-20 limited acceptance and implementation-index link",
+      "finding": "independent review confirmed the README total-gate wording and AD-20 DAG/ref boundary",
+      "disposition": "Sol accepted limited architecture/schedule scope; UP1-04A remains review_pending and no implementation or physical credit is granted"
+    }
+  ],
+  "current_revision": {
+    "revision": "r2",
+    "changed_path": "docs/implementation/README.md",
+    "change": "added AD-20 limited-acceptance navigation row; no task implementation status changed",
+    "status": "accepted_limited",
+    "accepted": true
+  },
+  "index_update": {
+    "path": "docs/implementation/README.md",
+    "before": {
+      "path": "docs/implementation/README.md",
+      "snapshot": "docs/implementation/AD-20/index_before/README.md",
+      "sha256": "d9bb871b5bdbd624a6f3b48402f52fcd653ae537dec8cc5ed7a997fe2d8d14d6",
+      "bytes": 6235,
+      "mtime": "2026-09-14T05:21:20.8945075+08:00"
+    },
+    "after": {
+      "path": "docs/implementation/README.md",
+      "snapshot": "docs/implementation/AD-20/index_after/README.md",
+      "sha256": "4b7da77fc03fde05d646a6b3a7e178352000847f98e3354305a5660720916760",
+      "bytes": 6624,
+      "mtime": "2026-09-14T06:24:40.8282729+08:00"
+    },
+    "bounded_diff": {
+      "path": "docs/implementation/AD-20/bounded_diff_index.patch",
+      "sha256": "1fa369ad0133c03b3a094e1f09296e920a09d2a3092f3461a580672f290aeb6e",
+      "bytes": 1623
+    }
+  }
+}

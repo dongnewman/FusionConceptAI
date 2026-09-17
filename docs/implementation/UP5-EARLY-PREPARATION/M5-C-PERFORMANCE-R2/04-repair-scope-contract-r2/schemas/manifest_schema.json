@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5CPerformanceRepairManifestV2",
+  "type": "object",
+  "required": ["schema", "contract_id", "status", "implementation_authorized", "scope", "claim_ceiling", "formal_credit", "write_root", "artifacts", "manifest_self_hash"],
+  "properties": {
+    "schema": {"const": "M5CPerformanceRepairManifestV2"},
+    "contract_id": {"const": "M5-C-PERFORMANCE-R2-REPAIR-SCOPE-CONTRACT-R2"},
+    "status": {"enum": ["review_pending", "not_authorized"]},
+    "implementation_authorized": {"const": false},
+    "not_implemented": {"const": true},
+    "scope": {"const": "manufactured_conditional_egraph/screen_only"},
+    "claim_ceiling": {"const": "synthetic_egraph_equality/screen_only"},
+    "formal_credit": {"const": "none"},
+    "write_root": {"const": "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/04-repair-scope-contract-r2/**"},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}, "minItems": 1},
+    "frozen_inputs": {"type": "array", "items": {"$ref": "#/$defs/artifact"}, "minItems": 1},
+    "manifest_self_hash": {"const": "excluded_by_policy"}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["owner", "relative_path", "creation_utc", "source_run_id", "overwrites", "bytes", "sha256", "role"],
+      "properties": {
+        "owner": {"enum": ["scope_owner", "evidence_owner", "review_owner", "m5c_adapter", "m5c_test", "m5c_oracle", "m5c_probe", "frozen_input", "historical_evidence"]},
+        "relative_path": {"type": "string", "minLength": 1},
+        "creation_utc": {"type": "string", "format": "date-time"},
+        "source_run_id": {"type": "string", "pattern": "^[A-Za-z0-9_.:-]+$"},
+        "overwrites": {"const": []},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

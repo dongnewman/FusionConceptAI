@@ -1,0 +1,20 @@
+{
+  "schema":"UP1.git-hygiene.candidate-cleanup.v1",
+  "read_only":true,
+  "scope":"UP1 directory only",
+  "candidate_count":4,
+  "candidates":[
+    {"path":"reviews/W1-witness-authority-independent-review/raw/review_validation_r2.stderr.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","reason":"historical review raw not referenced by the older manifest ownership fields","recoverability":"repository history or backup only","owned_by_manifest":false,"recommendation":"retain"},
+    {"path":"reviews/W1-witness-authority-independent-review/raw/review_validation_r2.stdout.raw","bytes":152,"sha256":"82f956eb7add7adabf67c00b703f3b0e8afe52c8b345418a1b6703b3d5ab4307","reason":"historical review raw not referenced by the older manifest ownership fields","recoverability":"repository history or backup only","owned_by_manifest":false,"recommendation":"retain"},
+    {"path":"reviews/W1-witness-authority-independent-review/raw/review_validation.stderr.raw","bytes":108,"sha256":"77182cc10049408d668d402f6aac682bc6bc3c884239d4157b9a04baf29d6076","reason":"historical review raw not referenced by the older manifest ownership fields","recoverability":"repository history or backup only","owned_by_manifest":false,"recommendation":"retain"},
+    {"path":"reviews/W1-witness-authority-independent-review/raw/review_validation.stdout.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","reason":"historical review raw not referenced by the older manifest ownership fields","recoverability":"repository history or backup only","owned_by_manifest":false,"recommendation":"retain"}
+  ],
+  "zero_byte_observations":{
+    "count":22,
+    "interpretation":"expected empty stdout/stderr raw streams; not deletion candidates",
+    "recommendation":"retain",
+    "all_owned_except_unowned_candidates":true
+  },
+  "temporary_name_scan":{"pyc":0,"pycache":0,"tmp":0,"bak":0,"editor_backup":0,"ds_store":0},
+  "no_deletions_performed":true
+}

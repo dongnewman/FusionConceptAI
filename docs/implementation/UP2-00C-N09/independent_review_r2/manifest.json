@@ -1,0 +1,119 @@
+{
+  "manifest_id": "UP2-00C-N09-independent-review-r2",
+  "captured_at": "2026-09-14T08:43:21+08:00",
+  "reviewer": "independent Luna/high",
+  "verdict": "pass_limited",
+  "scope": "actual-A contract-only provider-gap projection",
+  "author_status": {
+    "status": "review_pending",
+    "accepted": false,
+    "accepted_scope": "contract_only_provider_gap_projection"
+  },
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n09_provider_gap.jl",
+  "runtime": {
+    "julia": "1.10.5",
+    "pid": 63304,
+    "started": "2026-09-14T08:39:40.6487305+08:00",
+    "ended": "2026-09-14T08:41:40.6732149+08:00",
+    "exit": 0,
+    "stdout": {
+      "path": "focused_test.stdout.log",
+      "bytes": 3850,
+      "sha256": "215ade810de1e20918d6283a5938155206a3a485b84e5d85e69e584d81d63d0f"
+    },
+    "stderr": {
+      "path": "focused_test.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_artifact": {
+      "path": "focused_test.exit.txt",
+      "value": 0
+    },
+    "process_artifact": "focused_test.process.json",
+    "post_processes": {
+      "path": "post_processes.json",
+      "value": []
+    },
+    "summaries": {
+      "projection": "7/7",
+      "declarations": "24/24",
+      "mutations": "144/144",
+      "metadata": "2/2",
+      "compile_calls": 0,
+      "provider_calls": 0,
+      "solver_calls": 0
+    },
+    "provider_resolution_executed": false,
+    "desc_invoked": false
+  },
+  "author_history": {
+    "r1": {
+      "classification": "unknown/program_exception",
+      "reason": "asynchronous Start-Process lost exact exit; baseline mismatch preserved"
+    },
+    "r2": {
+      "pid": 19840,
+      "exit": 0,
+      "stdout_sha256": "82402c8b44f12ab573e2c0478ecc739f6cc043b3526b7ead5e83659506d750b9",
+      "stderr_bytes": 0,
+      "summaries": "144/144, 24/24, 2/2"
+    }
+  },
+  "input_hashes": {
+    "source": "5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad",
+    "fixture": "d3ee86ed2ca967228e6cacbe61006cfb8c34f99cc28f039a9f9eeb2073f57876",
+    "test": "c1463855fb97fb9010b804065ed6de02a32338de2b857a5c4affcdd03f28b778",
+    "runner": "82437433fecb81d5cd5a2eab74b79475f85fd7a6a422bee9e9d19889f7b3f760",
+    "acceptance": "f3af74fb58f51c2220e7fcf5be62f528be86663e6161ff17bd097217bf86de5b",
+    "author_manifest": "14299e21707e5c412d07344fd041bcf5cc8375328a0273cc44902833ca17273d"
+  },
+  "source_projection": {
+    "declarations": 5,
+    "mutation_rows": 11,
+    "baseline_counts": {
+      "unique_match": 7,
+      "no_match": 4
+    },
+    "mutated_counts": {
+      "no_match": 1,
+      "out_of_domain": 5,
+      "invalid_signature": 5
+    },
+    "unchanged_no_match_counted": false,
+    "source_backed_paths": [
+      "g1.payload.grammar_profile.operators[0].provider_match",
+      "g2.grammar_profile.provider_match",
+      "g2.plan.exterior.provider_match",
+      "g3.realization.provider_match",
+      "g3.control.provider_match"
+    ],
+    "identity_checks": "candidate_ref, public GenomeContractRef, component_hash checked against actual A package"
+  },
+  "credits": {
+    "provider_resolution": false,
+    "B04": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "limitations": [
+    "low-level projection constructor is not A provenance and is not B04-admissible",
+    "validator fixed N09 provider_match/terminal_deferred domain; no expected_error reversal negative control",
+    "no broader package admission, provider, mesh, engineering, physical, or R credit"
+  ],
+  "review_artifacts": {
+    "before_hashes": {
+      "path": "before_hashes.json",
+      "sha256": "06480e280573003358ba99d95bffb4251e8327cee56d0d052048399a023df30f"
+    },
+    "report": {
+      "path": "report.md",
+      "sha256": "883436b942d89575ce77629e81cdd17a150358b94177cbb6ef41da398d897c63"
+    }
+  },
+  "write_boundary": "only docs/implementation/UP2-00C-N09/independent_review_r2/",
+  "no_further_julia": true
+}

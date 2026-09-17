@@ -1,0 +1,58 @@
+{
+  "review_id": "UP2-00G-I1B-independent-precheck-r8",
+  "verdict": "ready_for_serial_focused",
+  "scope": "R8 N10-03 test-only expected-manifest repair; static review only",
+  "repository": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries": 297,
+    "status_snapshot_sha256": "4fc481ba691dab125a587f47b32b93e6054719d9b152043e152802b5b509952b"
+  },
+  "repair": {
+    "file": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl",
+    "line": 160,
+    "expected_expression": "package.g3.binding.contract_binding.contract_ref",
+    "production_field_path": "/g3/binding/contract_binding/contract_ref",
+    "source_type": "GenomeContractRef",
+    "identity_target": "component_identity.g3_child_refs.binding",
+    "outer_source_owner": "envelope.outer_refs.g3 plus envelope.component_hashes.g3",
+    "source_fixture_runner_core_untouched": true
+  },
+  "protected_current": {
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl": {"bytes": 43037, "sha256": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl": {"bytes": 25712, "sha256": "45948253ba490bb4bf7e163bbdc272ed8f2a4d1eb0dd098002a7c90db308ce37"},
+    "test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json": {"bytes": 23906, "sha256": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6"},
+    "test/GenomeV5/UP2/run_gi1b_source_envelope.jl": {"bytes": 408, "sha256": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"},
+    "src/FusionConceptAI.jl": {"bytes": 10144, "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"}
+  },
+  "focused_r3_preservation": {
+    "exit_code": 1,
+    "stdout_sha256": "2373551bd9e9d4912e21cc071160e15ddb10fdd4b34181481b12a51f57ffbeab",
+    "stderr_sha256": "9251849de1822ef0cead669fc006d37ff183502d865c4cf9c3b59cd989e3d86f",
+    "input_manifest_sha256": "f53ce3fc44e8cef2db9d390b35eaef80df472a52ebd2e7b76cc99d7c8ef0cdf5",
+    "protected_before_after_sha256": "f8746d2c0916296695f8e00b841aeb7f02f5e23523689546431486c7283b2a39",
+    "failure_status": "preserved; no rerun by this review"
+  },
+  "coverage": {
+    "actual_a_paths": ["E1-present", "E1/E2-absent"],
+    "expected_manifest_independent": true,
+    "attempted_rule_is_test_local": true,
+    "production_attempt_helper_called_by_test": false,
+    "production_hash_helper_called_by_test": false,
+    "rows_per_group": 5,
+    "groups": ["N01","N02","N03","N04","N05","N06","N07","N08","N09","N10"],
+    "row_count_assertions": ["expected=50","expected_mutations=50","envelope.rows=50","unique IDs=50","unique field paths=50"],
+    "typed_original_attempted_and_hash_assertions": true,
+    "classification_and_error_path_assertions": true,
+    "aggregate_precedence_asserted": "program_exception > fail_closed > terminal_deferred > declared_consistent",
+    "zero_downstream_assertions": true,
+    "n05_absent_identity_metadata_asserted": ["content_hash","schema_hash","canonicalization_hash","profile_hash","compatibility_profile_hash"],
+    "n06_gap_asserted": true,
+    "n09_provider_gap_asserted": true,
+    "n10_fresh_receipt_gap_asserted": true,
+    "public_row_builder_rejection_asserted": true,
+    "internal_fault_seam_only": true
+  },
+  "process_qa": {"julia_processes": 0, "desc_processes": 0, "julia_desc_invoked_by_review": false},
+  "claim_ceiling": ["software-static-gate-only","no-formal-B00","no-formal-B04","no-physical-credit","no-engineering-credit","no-parent-goal-credit"]
+}

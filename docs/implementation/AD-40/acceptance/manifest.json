@@ -1,0 +1,103 @@
+{
+  "schema_version": "AD-40-acceptance-v1",
+  "record_kind": "architecture_acceptance_record",
+  "task_id": "AD-40",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "repository_design_source_authority_architecture_and_seven_finite_work_order_boundaries",
+  "claim_ceiling": "software_source_provenance_only",
+  "architecture_only": true,
+  "implementation_dispatched": false,
+  "candidate_payload_created": false,
+  "candidate_hash_created": false,
+  "authority_record_created": false,
+  "candidate_binding_created": false,
+  "factory_receipt_created": false,
+  "identity_review_created": false,
+  "present": false,
+  "t0": false,
+  "t1": false,
+  "t2": false,
+  "provider": false,
+  "mesh": false,
+  "solver": false,
+  "engineering": false,
+  "physical": false,
+  "r01_r10": false,
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T08:20:36.3762568Z",
+  "authority": {
+    "authority_class": "repository_design_source",
+    "claim_ceiling": "software_source_provenance_only",
+    "fresh_candidate_specific_payload_required": true,
+    "fresh_public_contract_required": true,
+    "fresh_candidate_binding_required": true,
+    "four_axes_required": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "grammar_applicability_profile_version",
+      "execution_evidence_receipt_version"
+    ],
+    "schema_factory_source_separate_from_payload": true,
+    "external_reference_experiment_provider_mesh_solver_engineering_physical_substituted": false
+  },
+  "frozen_inputs": [
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/proposal.md","bytes":10074,"sha256":"bdb2e90009bb6fd4650c9eeb521f5edce7fe596f04347c7de89170f84d94d016"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/manifest.json","bytes":16953,"sha256":"8a0e6ddb57edf726bad49cccb340dd4ee3c2a04daf2d5d5c3955babe64261ed8"},
+    {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/cleanup_inventory.md","bytes":1207,"sha256":"20b8057e11c619d20ecf651a094634948ee9e88d4393ba06e051a32ca0a3dc35"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","bytes":8352,"sha256":"6687eaae7518e697f1e4d3e5eb98ca8eb022d6409ba106a449dce58aec8cbcd7"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/manifest.json","bytes":17817,"sha256":"47017d32163a9866806621a12c35a7b7021012422116def5037ad1da22de7dd2"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/report.md","bytes":4413,"sha256":"ef792e6db348a2ffc36052fd50f493ef7fc0a6e8ee95fae03232a3a93caef640"},
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl","bytes":26420,"sha256":"feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"},
+    {"path":"src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl","bytes":14684,"sha256":"e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"},
+    {"path":"docs/implementation/AD-30/acceptance_r2/acceptance.md","bytes":3976,"sha256":"2de172dae2485b8a69f9c45a303cb483dfc178abc578fc1abf127f057d0fd8bf"},
+    {"path":"docs/implementation/AD-33/acceptance.md","bytes":3551,"sha256":"e6d6b039a3772680bb3178cc1e10e50dbf3e05c77f1208bc548b5139a7db156e"},
+    {"path":"docs/implementation/AD-34/acceptance.md","bytes":3217,"sha256":"00ef542ddcf14388bf7d928ca9b7b12a6a02d4f7319fc6f480a27a0b5ccd1e0d"},
+    {"path":"docs/implementation/AD-36/status_sync_r3/report.md","bytes":1689,"sha256":"a9b751e785dbd17c79bd8975e610e2f383426d88fab0a01231734fb4c2975f32"},
+    {"path":"docs/implementation/AD-37/acceptance/acceptance.md","bytes":1866,"sha256":"2260f3143d2d3e620ce2221b4783bf6347990ea5d507c28dbb417e184ce148b1"}
+  ],
+  "repair_and_independent_review": {
+    "repair_r1_manifest": {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/repair_r1/manifest.json","bytes":18239,"sha256":"2a1fec84afd6a68175af3cb96a7515634f350c7abcfe61cefc651a9261cad666"},
+    "independent_review_r2_report": {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/report.md","bytes":4506,"sha256":"18d7d903092e3fff0eeebd64aa6fc9384ac704aa8ba832a0af2475fb28c01ebd"},
+    "independent_review_r2_manifest": {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/manifest.json","bytes":9653,"sha256":"self_hash_excluded"},
+    "independent_review_r2_receipt": {"path":"docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r2/review/validation_receipt_r2.json","bytes":7611,"sha256":"96602a09f19e6987fb5b6c2f5f040ee029f27569335a9ccd999b7aadce5d7c0a"},
+    "review_verdict": "pass_limited"
+  },
+  "work_orders": [
+    {"id":"AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","status":"proposed","products":["docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json"],"depends_on":["UP1-01","UP1-02","UP1-03"],"forbidden_edges":["AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"]},
+    {"id":"AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING","status":"proposed","products":["docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json"],"depends_on":["UP1-01","UP1-02","UP1-03"],"forbidden_edges":["AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"]},
+    {"id":"AD40-RSDA-SOURCE-AUTHORITY-RECORDS","status":"proposed","products":["docs/implementation/AD-40/RSDA-G1-SOURCE-AUTHORITY-RECORD/repository_source_authority_record.json","docs/implementation/AD-40/RSDA-G1-SOURCE-AUTHORITY-RECORD/authority_receipt.json","docs/implementation/AD-40/RSDA-G2-SOURCE-AUTHORITY-RECORD/repository_source_authority_record.json","docs/implementation/AD-40/RSDA-G2-SOURCE-AUTHORITY-RECORD/authority_receipt.json"],"depends_on":["AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING"],"forbidden_edges":["AD40-RSDA-CANDIDATE-BINDING-PROVENANCE","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","AD37-G1-PRESENT-BASELINE-PUBLISH","AD37-G2-PRESENT-BASELINE-PUBLISH"]},
+    {"id":"AD40-RSDA-CANDIDATE-BINDING-PROVENANCE","status":"proposed","products":["docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json","docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json","docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json","docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json","docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json","docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/g2_candidate_mapping_receipt.json","docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json"],"depends_on":["AD40-RSDA-SOURCE-AUTHORITY-RECORDS"],"forbidden_edges":["AD40-RSDA-G1-FACTORY-RECEIPT","AD40-RSDA-G2-FACTORY-RECEIPT","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"]},
+    {"id":"AD40-RSDA-FACTORY-RECEIPTS","status":"proposed","products":["docs/implementation/AD-40/RSDA-G1-FACTORY-RECEIPT/factory_receipt.json","docs/implementation/AD-40/RSDA-G1-FACTORY-RECEIPT/declaration_receipt.json","docs/implementation/AD-40/RSDA-G2-FACTORY-RECEIPT/factory_receipt.json","docs/implementation/AD-40/RSDA-G2-FACTORY-RECEIPT/declaration_receipt.json"],"depends_on":["AD40-RSDA-CANDIDATE-BINDING-PROVENANCE"],"forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical"]},
+    {"id":"AD40-RSDA-FRESH-IDENTITY-REVIEWS","status":"proposed","products":["docs/implementation/AD-40/RSDA-G1-FRESH-IDENTITY-REVIEW/fresh_candidate_identity_review.json","docs/implementation/AD-40/RSDA-G2-FRESH-IDENTITY-REVIEW/fresh_candidate_identity_review.json","docs/implementation/AD-40/RSDA-SAME-CANDIDATE-JOIN/cross_layer_join_receipt.json"],"depends_on":["AD40-RSDA-FACTORY-RECEIPTS"],"forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","provider","mesh","solver","physical"]},
+    {"id":"AD40-RSDA-AD37-PUBLICATION-INPUT","status":"proposed_blocked_until_identity_reviews","products":["docs/implementation/AD-40/RSDA-AD37-PUBLICATION/G1/source_backed_publication_input.json","docs/implementation/AD-40/RSDA-AD37-PUBLICATION/G2/source_backed_publication_input.json","docs/implementation/AD-40/RSDA-AD37-PUBLICATION/publication_input_join_receipt.json"],"depends_on":["AD40-RSDA-FRESH-IDENTITY-REVIEWS"],"forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical","R01-R10"]}
+  ],
+  "global_forbidden": ["core README/task_manifest mutation","machine node creation","candidate hash without fresh binding","fixture/synthetic/legacy/historical receipt reuse","T0/T1/T2","provider","mesh","solver","physical","R01-R10 promotion"],
+  "parallel_outputs_ignored_at_acceptance": [
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","observed_but_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","observed_but_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","observed_but_excluded":true},
+    {"path":"docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","observed_but_excluded":true}
+  ],
+  "parallel_outputs_included_in_decision": false,
+  "parallel_outputs_grant_authority": false,
+  "cleanup": {"scope":"task-owned acceptance temporary files only","removed":[],"ambiguous_deferred":[],"historical_evidence_preserved":true,"parallel_work_preserved":true,"sidecars_allowed":["archive/**","review/**","status_sync_*/**"],"sidecars_must_not_contain_product_payload":true},
+  "validation": {
+    "status": "pass_limited",
+    "manifest_self_hash_excluded": true,
+    "runs": [
+      {"id":"AD40-ACCEPTANCE-R1-JSON-HASH-PATH-CONTROL","interpreter":"PowerShell 7","command":"inline JSON parse, 15 frozen-input hashes, repair/R2 hashes, path and control-character validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":80188,"utc_start":"2026-09-15T08:31:54.7585845Z","utc_end":"2026-09-15T08:31:54.8008291Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r1_json_hash_path_control.stdout.txt","stdout_bytes":238,"stdout_sha256":"5da6df141712857f92470a681afb44823cee567775e5b588744857f8c86e5e70","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r1_json_hash_path_control.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"id":"AD40-ACCEPTANCE-R2-PLAN-DAG","interpreter":"python","command":"python docs/v4_multitopology_generation/validate_plan.py","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":80876,"utc_start":"2026-09-15T08:32:05.2475430Z","utc_end":"2026-09-15T08:32:05.6947087Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r2_plan_dag.stdout.txt","stdout_bytes":258,"stdout_sha256":"04bf1849569234e5bca4ce43131c35b22b1f20d8166170e00eed2f0e46f059f1","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r2_plan_dag.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"id":"AD40-ACCEPTANCE-R3-SCOPE-CLAIM-DIFF","interpreter":"PowerShell 7","command":"acceptance-owned scope, parallel-output exclusion and false-claim validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":82160,"utc_start":"2026-09-15T08:33:48.0653655Z","utc_end":"2026-09-15T08:33:48.0728644Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r3_scope_claim_diff.stdout.txt","stdout_bytes":286,"stdout_sha256":"e0640bb8a181c456efa20fd2068fd3d13e5c07ce1c813f56aec166bd3485268d","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r3_scope_claim_diff.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"id":"AD40-ACCEPTANCE-R4-WORKORDER-DIFF","interpreter":"PowerShell 7","command":"exact seven-work-order product/dependency/forbidden-edge diff against original manifest","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":77780,"utc_start":"2026-09-15T08:34:00.6530492Z","utc_end":"2026-09-15T08:34:00.6770108Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r4_workorder_diff.stdout.txt","stdout_bytes":196,"stdout_sha256":"e228c7cc786ad7bb17bc4c900df41b4b39c5f89d4357164c48d84715efd824f0","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r4_workorder_diff.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"id":"AD40-ACCEPTANCE-R5-SIDECAR-CLOSURE","interpreter":"PowerShell 7","command":"acceptance manifest parse, raw stream hash closure and control-character validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":29092,"utc_start":"2026-09-15T08:35:22.8688375Z","utc_end":"2026-09-15T08:35:22.9232132Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r5_sidecar_closure.stdout.txt","stdout_bytes":307,"stdout_sha256":"d882701e5fc74296b4589055da30aede289277b93663490e2c96d61652ccdfce","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r5_sidecar_closure.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      {"id":"AD40-ACCEPTANCE-R6-FINAL-CLOSURE","interpreter":"PowerShell 7","command":"final acceptance manifest parse, raw stream hash closure and control-character validation","cwd":"D:/006-Programing/LMC/FusionConceptAI","pid":33376,"utc_start":"2026-09-15T08:36:10.1656513Z","utc_end":"2026-09-15T08:36:10.2178423Z","exit_code":0,"stdout_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r6_final_closure.stdout.txt","stdout_bytes":305,"stdout_sha256":"285332c9413ffe9bdf849a5d72e87f378e26a3b5356f4ba9f5f1c9bcf6c369cd","stderr_path":"docs/implementation/AD-40/acceptance/status_sync_r1/r6_final_closure.stderr.txt","stderr_bytes":0,"stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    ],
+    "all_exit_code_zero": true,
+    "json_hash_path_control_diff_checks": true,
+    "julia_desc_provider_mesh_solver_physical": "not_run"
+  }
+}

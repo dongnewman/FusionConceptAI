@@ -1,0 +1,30 @@
+{
+  "record_kind": "AD48_R2_python_direct_replay",
+  "python": "D:/Users/Newman/anaconda3/python.exe",
+  "python_version": "3.13.5",
+  "pid": 89684,
+  "utc_start": "2026-09-15T13:01:23.286673+00:00",
+  "utc_end": "2026-09-15T13:01:23.294664+00:00",
+  "exit_code": 0,
+  "checks": {
+    "freeze": true,
+    "all_eight_source_rows_bytes_and_sha": true,
+    "all_source_sha_lengths_64": true,
+    "ad47_w1_eight_products": true,
+    "three_work_orders_each_eight_products": true,
+    "four_scopes": true,
+    "negative_credit": true,
+    "factory_paths_absent": true
+  },
+  "realization_sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+  "source_rows": {
+    "realization": {"bytes": 33751, "sha_length": 64, "match": true},
+    "control": {"bytes": 10297, "sha_length": 64, "match": true},
+    "binding": {"bytes": 10904, "sha_length": 64, "match": true},
+    "bundle_genome": {"bytes": 6704, "sha_length": 64, "match": true},
+    "bundle_feedback": {"bytes": 27969, "sha_length": 64, "match": true},
+    "child_realization": {"bytes": 54819, "sha_length": 64, "match": true},
+    "child_control": {"bytes": 64083, "sha_length": 64, "match": true},
+    "child_binding": {"bytes": 24578, "sha_length": 64, "match": true}
+  }
+}

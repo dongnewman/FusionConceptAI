@@ -1,0 +1,19 @@
+{
+  "schema_id": "GenomeV5/G3/G3BindingChildEditabilityV1",
+  "version": "v1",
+  "current_slot": "AbsentChildBindingV1",
+  "absence_reasons": ["authority_recheck_not_published", "binding_authority_typed_absent"],
+  "operations": ["insert_link", "replace_link", "delete_link"],
+  "pairing_errors": [
+    "duplicate_upstream_authority_layer",
+    "missing_upstream_authority_layer",
+    "unknown_upstream_authority_layer",
+    "upstream_authority_candidate_mismatch",
+    "unknown_target_layer",
+    "legacy_target_authority_layer_or_candidate_mismatch",
+    "legacy_target_upstream_projection_mismatch",
+    "duplicate_or_ambiguous_feedback_target",
+    "duplicate_feedback_target_id"
+  ],
+  "credits": {"actual": false, "provider": false, "mesh": false, "physical": false, "R01_R10": false}
+}

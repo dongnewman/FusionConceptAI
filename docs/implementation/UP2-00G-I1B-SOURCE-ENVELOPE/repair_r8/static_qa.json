@@ -1,0 +1,21 @@
+{
+  "schema_version": "G-I1B-source-envelope-repair-r8-static-qa-v1",
+  "status": "pass_limited",
+  "accepted": false,
+  "julia": "not_run",
+  "desc": "not_run",
+  "checks": {
+    "focused_r3_failure_evidence_preserved": "pass",
+    "r8_before_hashes_frozen": "pass",
+    "n10_03_expected_locator_matches_production_path": "pass_static_presence",
+    "only_allowed_test_line_changed": "pass_static_scope",
+    "source_fixture_runner_core_untouched": "pass",
+    "actual_a_factory_paths_retained": "pass_static_presence",
+    "independent_attempted_hash_and_zero_counter_assertions_retained": "pass_static_presence",
+    "50_row_and_classification_assertions_retained": "pass_static_presence",
+    "repair_r8_json_parse": "pass",
+    "git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "julia_desc_process_sweep": "not_run_by_design"
+  },
+  "scope": "static QA only; focused_r3 rerun, B00/B04, compiler/provider/solver, mesh, physical, and parent-goal credit remain pending"
+}

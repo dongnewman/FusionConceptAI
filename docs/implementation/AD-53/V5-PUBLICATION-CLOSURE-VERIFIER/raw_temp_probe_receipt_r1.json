@@ -1,0 +1,41 @@
+{
+  "schema": "AD53.V5PublicationClosureVerifier.raw_temp_probe_r1.v1",
+  "temporary_validation_status": "complete",
+  "probe": {
+    "pid": 95628,
+    "exit": 0,
+    "command": [
+      "julia",
+      "--startup-file=no",
+      "--project=.",
+      "-e",
+      "using FusionConceptAI\nFusionConceptAI.load_genome_v5_components!()\n@assert FusionConceptAI.genome_v5_component_layer_order() == (:G1, :G2, :G3)\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G1\", \"DiffusionDeclarationV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G1\", \"G1SourceAuthorityFactoryV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G2\", \"MetricBoundaryDeclarationV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G2\", \"G2SourceAuthorityFactoryV1.jl\"))\nBase.include(FusionConceptAI, joinpath(pwd(), \"src\", \"GenomeV5\", \"G3\", \"G3SourceAuthorityFactoryV1.jl\"))\n@assert FusionConceptAI.g1_source_factory_result_status(FusionConceptAI.g1_source_authority_factory_v1(nothing, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\n@assert FusionConceptAI.g2_source_factory_result_status(FusionConceptAI.g2_source_authority_factory_v1(nothing, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\n@assert FusionConceptAI.g3_factory_result_status(FusionConceptAI.g3_source_authority_factory_v1(:bundle, nothing, nothing, nothing, nothing, nothing)) == :typed_absent\nprintln(\"V5_CLOSURE_PROBE=pass\")\n"
+    ],
+    "stdout": "V5_CLOSURE_PROBE=pass\n",
+    "stderr": "",
+    "stdout_sha256": "0258dc2e2121f09a4f813745d584092753a7d4565c5db4943522faba879e20a4",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timed_out": false
+  },
+  "temporary_checkout_cleaned": true,
+  "cleanup": {
+    "cleaned": true
+  },
+  "original_repo_protection": {
+    "before": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "after": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "unchanged": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "G-I1B-source-envelope-focused-r1-qa-v1",
+  "run_status": "failed",
+  "exit_code": 1,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+  "failure_class": "julia_load_parse_error",
+  "failure_location": "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:293:148",
+  "failure_message": "ParseError: `:` expected in `?` expression",
+  "stacktrace_preserved_in": "stderr.txt",
+  "stacktrace_excerpt": [
+    "ERROR: LoadError: ParseError:",
+    "src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:293:148",
+    "head==\"n05\" && context.e1 isa GI1N05PresentAuthoritySlotV1 ? return context.e1.authority.declaration,join(seg[2:end],\"/\") : return nothing,rest",
+    "└── `:` expected in `?` expression",
+    "Stacktrace [1] top-level scope at GI1BSourceMutationEnvelopeV1.jl:293",
+    "[2] include(mod::Module, _path::String) at run_gi1b_source_envelope.jl:7"
+  ],
+  "stdout": {"path": "stdout.txt", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "stderr": {"path": "stderr.txt", "bytes": 1078, "sha256": "b240b5d933e86f61b72adc3c87fe88e93554bb84529d56c1cb17b9d439c76313"},
+  "group_counts": {
+    "runner_reached_testsets": false,
+    "observed_test_groups": 0,
+    "observed_rows": 0,
+    "fixture_static_rows": 50,
+    "fixture_static_rows_per_group": {"N01": 5, "N02": 5, "N03": 5, "N04": 5, "N05": 5, "N06": 5, "N07": 5, "N08": 5, "N09": 5, "N10": 5}
+  },
+  "process_qa": {
+    "preflight_matching_julia_desc": 0,
+    "postflight_matching_julia_desc": 0,
+    "root_pid": 4384,
+    "observed_child_pids": [],
+    "observed_julia_pid_count": 1
+  },
+  "claim_ceiling": ["software-run-failure-only", "no-formal-B04", "no-physical-or-engineering-credit", "no-parent-goal-credit"],
+  "repair_policy": "Failure evidence is preserved without source/test/core modification or local repair."
+}

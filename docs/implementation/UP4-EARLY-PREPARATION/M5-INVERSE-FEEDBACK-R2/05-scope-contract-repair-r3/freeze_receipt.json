@@ -1,0 +1,16 @@
+{
+  "schema":"M5InverseFeedbackR2FreshFreezeReceiptV1",
+  "status":"pending_independent_review",
+  "current_authority":"unknown_until_fresh_refreeze",
+  "historical_scope":"historical_only",
+  "review_start":"2026-09-17T03:27:05.0798986Z",
+  "review_end":"pending_independent_handoff",
+  "dirty_end_receipt":"raw/dirty_inventory_end.json",
+  "dependency_closure_sha256":"a3463dfe339219c5a78ff611a2fd1d0444bdda9aefcccd54d899a6b9ab0a21ad",
+  "package_hash_manifest":"hash_manifest.json",
+  "external_authority":{"status":"typed_absent","resolution":"not_implemented"},
+  "fresh_refreeze_required":true,
+  "two_serial_replays_required":true,
+  "different_role_review_required":true,
+  "note":"This receipt intentionally does not claim a completed fresh freeze or replay."
+}

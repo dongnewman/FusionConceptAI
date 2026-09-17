@@ -1,0 +1,3 @@
+# Receipt export R2 repair note
+
+The initial R1 preparation is preserved under `pre_repair/`. Static review identified two defects before any runtime: the absent-authority mutation hash formula differs from the authored formula, and an envelope-only checker could accept a self-consistent forged source locator. R2 branches the exact production absent formula `(id, original, mutated)` and adds a trusted actual-A/E0/authority recomputation path comparing every receipt field by typed `field_path` plus `mutation_kind`. Authored source-hash and absent mutation-hash forgery tests are included. No frozen E1 R4 file was edited and no Julia/DESC was run.

@@ -1,0 +1,37 @@
+{
+  "schema": "CORE-SOURCE-S3-CURRENT-HEAD-R1.manifest.v1",
+  "task_id": "M2-fresh-S3",
+  "status": "execution_complete_review_pending",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "existing_task_family": "AD48/AD49 S3 trusted source identity",
+  "new_ad_created": false,
+  "source_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "index_sha256": "6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0",
+  "input_fingerprint": "840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5",
+  "input_fingerprint_rule": "sha256(canonical JSON of source commit, branch, index, six owner working/head hashes and OIDs, three dirty factory working/head OIDs, probe/loader/module hashes)",
+  "source_owner_policy": "six owners are HEAD provenance; three AD56 factories are dirty working-tree executioners only",
+  "historical_inputs": {
+    "m1_root_acceptance": {"path":"docs/implementation/UP0-01/m1_execution_closure_r1/root_acceptance_r1/manifest.json","status":"accepted_limited","claim_ceiling":"execution_input_reproducibility_preparation"},
+    "m1_independent_review": {"path":"docs/implementation/UP0-01/m1_execution_closure_r1/independent_review_r3/manifest.json","decision":"pass_limited"},
+    "ad48_s3": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/manifest.json","status":"review_pending","observed_head":"4b69f55f7f80240147a65a22809dc1207824dde2"},
+    "ad49_s3": {"path":"docs/implementation/AD-49/S3-TRUSTED-SOURCE-IDENTITY/manifest.json","verdict":"pass_limited","observed_head":"4b69f55f7f80240147a65a22809dc1207824dde2"}
+  },
+  "result": {
+    "branch": "blocked_external_trust_root_and_source_closure",
+    "g1": "typed_absent",
+    "g2": "typed_absent",
+    "g3": "typed_absent",
+    "resolution": "terminal_deferred",
+    "no_publish": true,
+    "claim_ceiling": "typed_absence_recheck_only"
+  },
+  "static_closure_count_vector": {"vector":[4,5,12,1,47,0],"semantics":["probe import declarations","probe explicit include targets","loader component file entries","loader Base.include directive sites","enclosing module include directives","factory include directives"]},
+  "current_static_measurement_receipt":"archive/repair_r3/corrected_static_measurement_receipt.json",
+  "historical_failed_measurement":{"vector":[0,0,0,0,0,0],"paths":["archive/repair_r2/raw/fresh_s3_recheck.stdout.raw","archive/repair_r2/raw/fresh_s3_recheck.combined.raw"],"classification":"historical_failed_measurement","current_evidence":false},
+  "repair_r4":{"receipt":"archive/repair_r4/repair_receipt.json","scanner":"archive/repair_r4/scan_current_stderr.py","wrong_string_count":0,"current_stderr_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+  "repair_r5":{"patch":"archive/repair_r5/repair_patch.json","validation":"archive/repair_r5/validation_receipt.json","target_sha256":"ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0","s3_rerun":false},
+  "formal_gates": {"task_count":39,"dag_unchanged":true,"T0":"open","T1":"open","T2":"open","aggregate":"open","UP2":"open","B00":"open","B04":"open","R01_R10":"open","L4":0},
+  "execution_policy": {"julia":false,"desc":false,"mesh":false,"solver":false,"physical_recompute":false,"heavy_recompute":false,"input_unchanged_no_repeat":true}
+}

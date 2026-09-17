@@ -1,0 +1,65 @@
+{
+  "manifest_version": "AD-31-g3-control-editability-independent-review-r5",
+  "record_kind": "independent_read_only_proposal_review",
+  "review_id": "AD-31-g3-control-editability-independent-review-r5",
+  "reviewer": "different gpt-5.6-luna/high",
+  "review_date": "2026-09-15",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "R5 control-only immutable source payload, exact provenance refs, typed editable state and executable failure-byte invariance",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "pre_write_dirty_porcelain_rows": 306,
+  "read_only_core_source_test_review": true,
+  "julia_run": false,
+  "desc_run": false,
+  "provider_mesh_solver_physical_run": false,
+  "written_files": [
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r5/report.md",
+    "docs/implementation/AD-31/g3_control_editability_independent_review_r5/manifest.json"
+  ],
+  "report_sha256": "b96f73014ec0751a7307f0aec9ed0231db15191b511130f2c4f6f04bbbf66b28",
+  "reviewed_inputs": {
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r5/revised_proposal.md": "86662a362109b3060f08c1b5065db2c28a162f934de1b4cb07cfb37eab2149ed",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r5/manifest.json": "3df8b80d5966275fbc6961dc7e9f171eee3aca29c4cf55692401300a08f5e892",
+    "docs/implementation/AD-31/g3_control_editability_audit/repair_r4/revised_proposal.md": "467211d8a05f6a7e22820300f1f9f630fa4eca35a61a5bef34f53330301e8cb9",
+    "src/GenomeV5/G3/ControlGenomeV5.jl": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": "0034f0c494df9a61f6f753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"
+  },
+  "closed_checks": [
+    "source record URI/version/ref byte-match fields",
+    "parent binding and child identity recipes",
+    "payload ref complete source identity",
+    "slot/state absence hashes and typed physical reason",
+    "operation prior/replacement body hashes and no result-hash recursion",
+    "canonical failure bytes and old-state preservation",
+    "single existing fault.mode edit with immutable source and control-only no-T0 boundary"
+  ],
+  "required_repairs": [
+    "include key in present and typed-absent initial_state_hash recipes",
+    "enforce parent binding/direct payload/ref equality and recomputation",
+    "enforce last_operation_hash=ZERO or latest operation hash during state transition",
+    "test repaired key-bound initial identities and both first/second operation transitions"
+  ],
+  "claim_ceiling": {
+    "contract_proposal": false,
+    "software_implementation": false,
+    "actual_child_authority": false,
+    "T0_authority": false,
+    "T1_mapping": false,
+    "provider": false,
+    "engineering": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "self_hash_excluded": true
+}

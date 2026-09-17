@@ -1,0 +1,51 @@
+{
+  "schema": "UP1.W1.witness-authority-independent-review-r2.v1",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": "none",
+  "original_findings": {
+    "W1-F001": "closed",
+    "W1-F002": "closed",
+    "W1-F003": "closed",
+    "W1-F004": "closed",
+    "W1-F005": "closed",
+    "W1-F006": "closed_at_contract_fixture_expectation_level"
+  },
+  "findings": [
+    {
+      "id": "W1-R1-P1-001",
+      "severity": "P1",
+      "title": "manifest product hash for report.md is stale",
+      "evidence": {
+        "manifest_recorded": "d6b46b931e4369047b69b79548d94ee4628bcce8a2cca0253860cfa0794e80f3",
+        "current_report_and_cleanup": "346432a0d872fb64606e2ddaaed4ddefcbc0d915c0dc3f309f7207b6a7c6ad48",
+        "path": "witness_authority/report.md"
+      },
+      "impact": "The manifest product-hash ledger cannot authenticate the current 37-file package; a changed report could be accepted under an old hash.",
+      "required_action": "Update the manifest/post-repair hash ledger and dependent receipt hashes, then independently recompute every product hash."
+    },
+    {
+      "id": "W1-R1-P2-002",
+      "severity": "P2",
+      "title": "negative fixtures are label assertions, not executable rejection behavior",
+      "evidence": [
+        "repair_r1/static_validator.py checks fixture expected == reject_fail_closed and selected marker fields",
+        "repair_r1/fixtures/placeholder_present_negative.json",
+        "repair_r1/fixtures/placeholder_retry_present.json",
+        "repair_r1/fixtures/foreign_layer_axis_negative.json"
+      ],
+      "impact": "The static receipt proves the fixture metadata and contract shape, but does not prove an evaluator would reject a present placeholder/retry/foreign edge.",
+      "required_action": "Add an independent fixture evaluator with explicit reject outcomes for all three negative classes and retain its raw/PID/UTC/exit/hash; keep production and authority states typed absent."
+    }
+  ],
+  "positive_checks": [
+    "37-file exact set equals cleanup inventory",
+    "cleanup row hashes and validation receipt maps recompute",
+    "10 typed-absence register IDs agree with gap responsibility and recovery fields",
+    "verifier_ref and idempotency_key contracts are present",
+    "canonical digest/signature equality and source/candidate/four-axis request bindings are explicit",
+    "freshness, revocation and trusted-time fields are explicit",
+    "four prior failure records retain non-guessed PID/UTC markers",
+    "successful PID 93696 raw/exit/hash evidence is retained"
+  ]
+}

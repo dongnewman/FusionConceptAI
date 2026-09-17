@@ -1,0 +1,119 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-independent-precheck-r5",
+  "record_kind": "independent_static_repair_precheck",
+  "date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer": {
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
+    "independent_of_implementation_worker": true
+  },
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "Static precheck of the two-reference R5 source repair, R3/R4 contract preservation and focused_r1/r2 history. No Julia, focused test or DESC execution.",
+  "dirty_worktree": {
+    "porcelain_rows_observed": 306,
+    "preserve_existing_dirty_work": true,
+    "owned_mutations": false
+  },
+  "written_files": [
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_precheck_r5/report.md",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_precheck_r5/manifest.json"
+  ],
+  "repair_r5_inputs": {
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+      "bytes": 54330,
+      "sha256": "1181b53b3c438ffe7fa1f0181551a36f0da5f44312a74547c1ace4f3f9bae962"
+    },
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": {
+      "bytes": 14394,
+      "sha256": "8850aebc57eaba3e405ed8669b6b07881a436a8549fb34359a3a5b8a7dae6e7e",
+      "unchanged_from_r3_r4": true
+    },
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r5/report.md": {
+      "bytes": 1431,
+      "sha256": "d81fb20c2b99ecc36cadd08ca55c0d5d14d3cf72852777d83d187bba06f68517"
+    },
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r5/manifest.json": {
+      "bytes": 3470,
+      "sha256": "c5abb6a08fba58bf1f25968f5c253f56ea21ec8a82aa567792db955c24352d3e"
+    }
+  },
+  "scope_scan": {
+    "constructor": "G3RealizationSourcePayloadV1",
+    "standalone_record_tokens_in_constructor": 0,
+    "source_record_tokens_in_constructor": 4,
+    "line_331_exact_form": "all(c -> (sum(e.coefficient for e in entries if e.account_id in c.account_ids) == c.expected_balance), closures)",
+    "other_unresolved_record_in_same_scope": false,
+    "r3_r4_contracts_changed": false,
+    "test_file_changed": false
+  },
+  "focused_history": {
+    "focused_r1_run_manifest_sha256": "f26cc3940e6e3f98d26c3e74998f72f2f084eb35d1a1b4f12a6f6cf58c3c2c49",
+    "focused_r2_run_manifest_sha256": "17986149348c22a6581c05b8dba57bdbe4de8e411ca6e004680b02742451909a",
+    "focused_r1_preserved": true,
+    "focused_r2_preserved": true,
+    "focused_r1_postrun_manifest_sha256": "734ef277e8898431264f05a40dd1b33b6f7366c04464d77f14b10461635ebbce",
+    "focused_r2_postrun_manifest_sha256": "bade5ed23dca48fb605f9ad6f0efce1baf5122ed6f5aea000a7d7609d9e7ce99"
+  },
+  "protected_path_observations": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+    "src/GenomeV5/G3/ControlGenomeV5.jl": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4",
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+    "src/Contracts/GenomeContractRegistry.jl": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c",
+    "tracked_before_after_diff_available": false,
+    "untracked_baseline_limitation": true
+  },
+  "static_checks": {
+    "base_manifest_json_exit": 0,
+    "repair_r5_manifest_json_exit": 0,
+    "plan_validator_exit": 0,
+    "plan_markdown_files_checked": 31,
+    "plan_relative_links_checked": 391,
+    "plan_task_count": 35,
+    "plan_task_dag_acyclic": true,
+    "scoped_diff_check_exit": 0,
+    "scoped_diff_check_output_bytes": 0,
+    "utf8_control_bytes_exit": 0,
+    "utf8_control_bytes": 0,
+    "constructor_scope_scan_exit": 0,
+    "julia_run": false,
+    "focused_test_run": false,
+    "desc_run": false
+  },
+  "claim_ceiling": {
+    "static_precheck": "pass_limited",
+    "implementation_accepted": false,
+    "focused_runtime_verified": false,
+    "actual_child_population": false,
+    "t0_t1_t2_credit": false,
+    "provider_mesh_solver_evidence": false,
+    "engineering_evidence": false,
+    "physical_evidence": false,
+    "search_credit": false,
+    "b00_b04_credit": false,
+    "r01_r10_credit": false
+  },
+  "exit_gate": {
+    "serial_focused_run_allowed": true,
+    "implementation_acceptance": false,
+    "required_before_focused_run": [
+      "record fresh source/test/input hashes",
+      "execute exactly one serial authorized focused Julia command",
+      "require exit 0 and zero test errors",
+      "preserve raw stdout/stderr bytes and assertion summary",
+      "obtain a fresh independent postrun review"
+    ],
+    "physical_or_engineering_promotion": false
+  },
+  "review_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_precheck_r5/report.md": "362400e26397ed1ca6b006c1d511ddfbefb4ba6c9e4bec0fa301c88eb3e7576e"
+  },
+  "self_hash_excluded": true
+}

@@ -1,0 +1,11 @@
+{
+  "record_kind": "UP2-00E0-R3-static-control-precheck-failure",
+  "verdict": "changes_requested",
+  "reason": "Reviewer script initially sliced from the public delegating method instead of the private source-join helper; two checks were false due to the script boundary, not source behavior.",
+  "false_checks": [
+    "source_join_preserves_program_exception",
+    "source_join_compares_refs_hashes_axes"
+  ],
+  "repair": "Slice _up2e0_validate_binding_with_checker and assert public method delegates to it; corrected receipt is adversarial_control.json.",
+  "julia": "not_started_during_precheck"
+}

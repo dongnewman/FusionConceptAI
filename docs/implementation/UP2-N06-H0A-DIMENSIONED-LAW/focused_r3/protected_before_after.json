@@ -1,0 +1,13 @@
+{
+  "schema_version": "H0A-focused-r3-protected-v1",
+  "before_source": "input_manifest.json:inputs",
+  "after_source": "post-run SHA256 recheck",
+  "all_protected_inputs_match": true,
+  "before_after": [
+    {"path":"src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl","before_sha256":"03aa28636626efa4a5fdcb2f806e23bfc3e166f0d6fcabe72ebb0e7c6001e8dc","after_sha256":"03aa28636626efa4a5fdcb2f806e23bfc3e166f0d6fcabe72ebb0e7c6001e8dc","before_bytes":56213,"after_bytes":56213},
+    {"path":"test/GenomeV5/UP2/n06_dimensioned_law_tests.jl","before_sha256":"1c2066a0fad0a324db263619d822e0e2d0422f73b23f6b702d74686a46383fdb","after_sha256":"1c2066a0fad0a324db263619d822e0e2d0422f73b23f6b702d74686a46383fdb","before_bytes":37453,"after_bytes":37453},
+    {"path":"test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json","before_sha256":"779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99","after_sha256":"779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99","before_bytes":1451,"after_bytes":1451},
+    {"path":"test/GenomeV5/UP2/run_n06_dimensioned_law.jl","before_sha256":"da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","after_sha256":"da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc","before_bytes":299,"after_bytes":299}
+  ],
+  "postflight_matching_julia_desc_processes": 0
+}

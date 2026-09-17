@@ -1,0 +1,13 @@
+{
+  "schema": "UP1.atomic-bundle.repair-execution-receipts.v1",
+  "command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+  "tests": 14,
+  "vectors_executed": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "D01"],
+  "runs": [
+    {"run": 1, "utc": "2026-09-16T23:35:08.4845367Z", "pid": 102468, "exit": 0, "stdout_sha256": "22cd02b41b5dddcad5ef86edd928391180abeede81a08701d44c0b3948abe8c4", "failure": null},
+    {"run": 2, "utc": "2026-09-16T23:35:18.3988216Z", "pid": 21268, "exit": 0, "stdout_sha256": "56e39d69ff2c4e2c693bd8b875c8ac3a3e5ecfd2cf43cd03d28f0168f3a5f6f3", "failure": null}
+  ],
+  "raw_output_note": "Hashes cover the captured UTF-8 command output including the unittest summary and local jsonschema deprecation warning.",
+  "heavy_lane": false,
+  "network": false
+}

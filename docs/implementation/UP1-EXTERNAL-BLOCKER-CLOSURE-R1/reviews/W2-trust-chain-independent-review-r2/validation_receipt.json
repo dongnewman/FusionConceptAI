@@ -1,0 +1,25 @@
+{
+  "schema": "UP1.W2.trust-chain-independent-review-r2.validation-receipt.v1",
+  "review_scope": "read_only_adversarial_repair_review",
+  "review_utc": "2026-09-16",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": {"T0":false,"B00":false,"B04":false,"UP1":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks": {
+    "json_unique_parse": "pass",
+    "actual_file_count": 9,
+    "declared_manifest_outputs_count": 8,
+    "declared_cleanup_owned_count": 8,
+    "exact_set": "fail_final_raw_omitted_from_manifest_and_cleanup",
+    "absence_ids": {"count":11,"expected_absence_lossless":true,"status":"pass"},
+    "canonical_fingerprint": {"algorithm":"SHA-256","preimage_bytes":5250,"computed":"46bdf639a83f158307dfa0e1abb304c907449025f3e5ca8cc645c5aad763e5cd","recorded":"46bdf639a83f158307dfa0e1abb304c907449025f3e5ca8cc645c5aad763e5cd","status":"pass"},
+    "revocation_semantics": {"unavailable":"revocation_status_unavailable/typed_absence/terminal_deferred/no_publish","revoked_unknown_expired_invalid":"fail_closed","status":"pass"},
+    "validation_order": {"stages":"0..8","canonical_scope_before_root":true,"status":"pass"},
+    "source_inventory": {"head_owners":6,"dirty_ad56_executors":3,"paths_sha_oids":"all_match","status":"pass"},
+    "profiles": {"test_only_production_use":false,"production_state":"typed_absent","unknown_missing":"fail_closed","status":"pass"},
+    "authority_enum": ["unknown","unavailable","rejected","accepted_for_declared_scope"],
+    "raw_receipts": {"paths":["raw/static_json_validation_r1.stdout.raw","raw/static_json_validation_r1_final.stdout.raw"],"byte_counts_and_sha256":"pass"},
+    "independent_checker": {"pid":30136,"utc_start":"2026-09-16T15:32:42.675845+00:00","utc_end":"2026-09-16T15:32:43.926266+00:00","exit":0,"raw_sha256":"069d1f1b89dcdbd0e8005217c152d4baa38410eb8368545b5fc6662e3df9803c","raw":"JSON_UNIQUE_PARSE=PASS; ABSENCE_IDS=11_EXACT=PASS; CANONICAL_FP=PASS bytes=5250 sha256=46bdf639a83f158307dfa0e1abb304c907449025f3e5ca8cc645c5aad763e5cd; REVOCATION_SEMANTICS=PASS; VALIDATION_ORDER=0..8=PASS; SOURCE_INVENTORY=6_HEAD_3_DIRTY_PATH_SHA_OID=PASS; PROFILE_AUTHORITY_ENUM=PASS; RAW_RECEIPTS=PASS; EXIT_CODE=0"}
+  },
+  "limitations": ["No trust root, certificate, signature, OCSP/CRL, RFC3161 token, production verifier, S3, Julia, solver or authority operation was run.","The exact-set mismatch is a package bookkeeping defect, not evidence of trusted material.","All prior failures and raw streams remain retained."]
+}

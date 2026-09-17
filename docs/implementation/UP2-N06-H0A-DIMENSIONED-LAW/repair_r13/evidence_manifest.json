@@ -1,0 +1,16 @@
+{
+  "manifest_kind": "H0A-repair-r13-evidence",
+  "status": "diagnostic_completed_changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "diagnostic": {"status": "program_exception", "declaration": "nothing", "gaps": [], "wrapped_error": "source_projection_exception / MethodError first(generator, ::Nothing)", "compile_calls": 0, "provider_calls": 0, "solver_calls": 0},
+  "modified": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {"before": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251", "after": "f40e626bcdb8c981bb9355db558a0e758fdcc5b98681b251"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {"before": "809a745ab0af4add6ba8f33d7f273f4573fe8bbc98ce64e9400d9edf113d667d", "after": "b262eb32818666abf1a5a070ddd543d47078fadb7763b29e5f1b16659192a144"}
+  },
+  "protected_inputs": {
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+  },
+  "julia_desc_run_after_diagnostic": false
+}

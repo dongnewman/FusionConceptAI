@@ -1,0 +1,42 @@
+{
+  "schema_version": "AD50-independent-review-r1-manifest-v1",
+  "task_id": "CORE-STATUS-SYNC-AD49-AD50",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "claim_ceiling": "status_sync_engineering_evidence_only",
+  "write_scope": "docs/implementation/CORE-STATUS-SYNC-AD49-AD50/independent_review_r1/**",
+  "frozen_inputs": "input_hashes.json",
+  "checks": {
+    "ad50_status_completed_review_pending_pending_pending_review_pending_false": true,
+    "core_text_does_not_claim_ad50_accepted": true,
+    "ad48_ad49_limited_acceptance_preserved": true,
+    "typed_absent_terminal_deferred_no_publish_and_external_blockers_accurate": true,
+    "g2_mapping_w3b_ad46_up1_04b_up2_00_b00_b04_pending_or_blocked": true,
+    "t0_t1_t2_provider_mesh_solver_engineering_physical_search_r01_r10_false": true,
+    "l4_zero": true,
+    "task_manifest_sha_exact": true,
+    "task_count_39_dag_unchanged": true,
+    "plan_validator_exit_zero_31_534_39_acyclic": true,
+    "new_relative_links_all_exist": true,
+    "json_parse_errors_zero": true,
+    "scoped_diff_check_exit_zero": true,
+    "failed_history_preserved": true,
+    "no_fabricated_pid": true,
+    "dirty_tree_and_frozen_inputs_protected": true,
+    "no_julia_desc_or_process_touch": true,
+    "review_scope_no_pycache_or_temp": true
+  },
+  "raw_receipts": [
+    "raw/plan_validator_stdout.txt",
+    "raw/plan_validator_stderr.txt",
+    "raw/plan_validator_receipt.json",
+    "raw/scoped_diff_stdout.txt",
+    "raw/scoped_diff_stderr.txt",
+    "raw/scoped_diff_receipt.json"
+  ],
+  "outputs": ["report.md", "review_manifest.json", "input_hashes.json", "static_audit.json", "cleanup_inventory.json", "output_hashes.json"],
+  "status_before": {"lines":336,"sha256":"d1f625bcf24de1a605571e1a1b4b8fcdedcb18cae18dcf8c56ec5eb1e11b45da"},
+  "self_hash_excluded": true
+}

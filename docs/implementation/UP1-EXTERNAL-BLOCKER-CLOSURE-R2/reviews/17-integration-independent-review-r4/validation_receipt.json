@@ -1,0 +1,67 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "17-integration-independent-review-r4",
+  "component": "integration-slice",
+  "verdict": "pass_limited_with_test_scope_deferred",
+  "reviewer": "independent Luna worker",
+  "source_revision": "working-tree snapshot; no commit/ref claimed",
+  "source_paths": [
+    "tools/up1_external_closure_r2/integration/__init__.py",
+    "tools/up1_external_closure_r2/integration/runner.py",
+    "tools/up1_external_closure_r2/integration/cli.py",
+    "test/up1_external_closure_r2/integration/__init__.py",
+    "test/up1_external_closure_r2/integration/test_integration.py"
+  ],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/integration/__init__.py": "f8d0ac72bb94157f15b57a7004444ba8c9b91ee0765b093924ed9041453a3a1b",
+    "tools/up1_external_closure_r2/integration/runner.py": "0c63f013a866c40ec76a83a8b147bc0d4b653a5d3f925c4d2b1d792b2bc32a26",
+    "tools/up1_external_closure_r2/integration/cli.py": "0e75449d51412193c7f5b3780a13b2deaa441918a155627b0b76d00fb89ed95c",
+    "test/up1_external_closure_r2/integration/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "test/up1_external_closure_r2/integration/test_integration.py": "d296a6d2898e47b861560f2e46bd198ab0d6380b0fab14462f78649a4e9eba61"
+  },
+  "checks": {
+    "focused_pytest_run_1": "11 passed",
+    "focused_pytest_run_2": "11 passed",
+    "py_compile": "pass",
+    "r1_r3_attack_replay": "all fail_closed/deferred as required",
+    "receipt_and_state_recompute": "pass fresh and deterministic noop",
+    "noop_sequence_and_new_ad": "pass: sequence=2, new_ad=false",
+    "hmac_tamper_and_rollback": "pass: fail_closed",
+    "two_process_cas": "pass: one commit, one conflict",
+    "candidate_source_anchor_recompute": "pass; mutation rejected",
+    "strict64hex_anchor": "pass; non-hex rejected",
+    "aggregate_public_api": "pass: verified/eligible, T0=false, ad_created=false",
+    "pipeline_positive_reachability": "pass: aggregate=verified, eligible_for_authority_recheck",
+    "prior_complete_canonical_equality": "pass: mutation rejected",
+    "injected_reparse_acl_paths": "pass: fail_closed or typed storage unavailable",
+    "real_symlink_fixture": "test_scope_deferred: WinError 1314",
+    "test_only_non_evidence": "pass",
+    "production_missing_inputs": "pass: terminal_deferred/no_publish"
+  },
+  "findings": [],
+  "dependencies": {
+    "06-environment-independent-review-r5": "pass_limited",
+    "03-revocation-independent-review-r5": "pass_limited_with_test_scope_deferred",
+    "dependency_scope_inherited": "dynamic_windows_owner_symlink_fixture_deferred"
+  },
+  "claim_ceiling": "pass_limited_with_test_scope_deferred",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true,
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true,
+  "raw": {
+    "attack_matrix": "raw/attack_matrix.txt",
+    "pytest_1": "raw/pytest.stdout.txt",
+    "pytest_2": "raw/pytest2.stdout.txt",
+    "py_compile": "raw/py_compile.stdout.txt",
+    "determinism": "raw/determinism.txt",
+    "receipt_state_noop": "raw/receipt_state_noop.txt",
+    "cas_concurrency": "raw/cas_concurrency.txt",
+    "aggregate_anchor_prior": "raw/aggregate_anchor_prior.txt",
+    "platform_capability": "raw/platform_capability.txt",
+    "manifest_capture_check": "raw/manifest_capture_check.txt"
+  }
+}

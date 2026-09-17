@@ -1,0 +1,13 @@
+{
+  "schema":"UP1.W1.independent-review-validation-receipt.v1",
+  "status":"pass",
+  "decision":"rework_required",
+  "command":"python -c <read-only JSON unique-set/hash and adversarial assertions>",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid":103032,"started_utc":"2026-09-16T15:23:53.9887983Z","ended_utc":"2026-09-16T15:23:55.0326434Z","exit_code":0,
+  "stdout_raw":{"path":"raw/review_validation_r2.stdout.raw","sha256":"82f956eb7add7adabf67c00b703f3b0e8afe52c8b345418a1b6703b3d5ab4307"},
+  "stderr_raw":{"path":"raw/review_validation_r2.stderr.raw","sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "prior_wrapper_failure":{"pid":13760,"started_utc":"2026-09-16T15:23:17.4643305Z","ended_utc":"2026-09-16T15:23:18.4986091Z","exit_code":1,"stdout_raw":"raw/review_validation.stdout.raw","stdout_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","stderr_raw":"raw/review_validation.stderr.raw","stderr_sha256":"77182cc10049408d668d402f6aac682bc6bc3c884239d4157b9a04baf29d6076","classification":"wrapper_collection_failure_python_argument_truncated"},
+  "checks":["JSON unique parse","required absence set","hash equality","placeholder non-evidence","role/binding gap assertions","exact write scope"],
+  "forbidden_execution":{"Julia":false,"DESC":false,"mesh":false,"solver":false}
+}

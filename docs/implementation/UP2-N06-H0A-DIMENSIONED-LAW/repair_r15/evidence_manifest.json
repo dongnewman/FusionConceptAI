@@ -1,0 +1,21 @@
+{
+  "manifest_kind": "H0A-repair-r15-evidence",
+  "status": "repair_static_complete",
+  "accepted": false,
+  "review_pending": true,
+  "source_before": "2d38d9fc7ae42c8bf7a77bea7ad99557e390a321e26f5d918be1996443a629ff",
+  "source_after": "5b6e23508d7facd3b50802214dfdd0087d63de7252b32ebf4dd4bc4b2142904a",
+  "test_before": "b0e626d73c7246c9308c1ff8b315866e9c95dea4dd50aba796959d4092b31756",
+  "test_after": "9c5ecf8f2f212b2298eff5a8129a618114185867c21b83dcd4e3ff1982b36599",
+  "fixture_sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+  "runner_sha256": "da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc",
+  "negative_controls": {
+    "source_port_missing_gap": true,
+    "role_port_missing_gap": true,
+    "source_port_ambiguous_error": true,
+    "g1_source_missing_gap": true,
+    "g1_source_ambiguous_error": true,
+    "unexpected_exception_program": true
+  },
+  "julia_desc_run": false
+}

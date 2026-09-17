@@ -1,0 +1,39 @@
+{
+  "schema": "UP1ExternalClosureR2AggregateIndependentReviewManifestV3",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "08-aggregate-independent-review-r3",
+  "status": "pass_limited",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "source_ref": "working-tree",
+  "reviewer": {"role": "independent_attack_reviewer", "model": "gpt-5.6-luna", "reasoning_effort": "high", "author_conflict": "component author excluded; Sol adjudication required"},
+  "owned_write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/08-aggregate-independent-review-r3/**",
+  "inputs": {
+    "tools/up1_external_closure_r2/aggregate_gate/aggregate_gate.py": {"bytes": 35653, "sha256": "1d89fc9d31fb31f8d223f595bb2b9f7c66c7b54bb8db42b6db38b162c4d2854d"},
+    "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py": {"bytes": 14356, "sha256": "33fde502cdd7c12c0879bdc81fffadd621efb6d30c67f89fdcfadac8db5a1a5b"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/manifest.json": {"bytes": 1491, "sha256": "a077f8b4c9760689742bdcd2f93f275952d2ef0e95f23075d198b6cfd3614aaa"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/review_protocol.md": {"bytes": 16277, "sha256": "650a8dfc292088c7db7a33ef608035815a3b34fc0570faeddbbcd669354c6cf2"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/interface_contracts.json": {"bytes": 3526, "sha256": "857dc027eb53569a5fd3233f8fe113ac9498a37e7a63579685c2ca4e7487a85e"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/gate_ceiling.json": {"bytes": 1901, "sha256": "81cae273c2395dda210df53cecd2435561676c9ee21d34817894383d96035df6"}
+  },
+  "commands": [
+    {"argv": ["python", "-B", "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py"], "fresh_process": true, "exit_code": 0, "result": "22/22"},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "independent R3 ledger and R1/R2 attack matrix", "exit_code": 0},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "two independent ledger-backed baseline replay children", "exit_code": 0, "semantic_equal": true}
+  ],
+  "raw": {
+    "raw/focused_test.stdout.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/focused_test.stderr.raw": {"bytes": 1358, "sha256": "8719ddb758ad3d8eed921c03230b74edd1005a4db69a2cde3fb0484aca06291a"},
+    "raw/attack_summary.stdout.raw": {"bytes": 1085, "sha256": "f05770f3f6f3dd61e2c008d2e3b68495aa0a3f71ec3723e62b04b02938840278"},
+    "raw/attack_summary.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/two_process_replay.stdout.raw": {"bytes": 298, "sha256": "744fe1160010ea4f13c72d942324d8b7f2407d1763faddad430cc3f6bde72705"},
+    "raw/two_process_replay.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/process_metadata.stdout.raw": {"bytes": 506, "sha256": "41b23c552b49820269838a462857f6d4e06750dfd3ab90d7d566eeb0549c5bec"}
+  },
+  "findings": [],
+  "claim_ceiling": {"T0": false, "T1": false, "T2": false, "B00": false, "B04": false, "L4": 0, "parent": false, "AD": false},
+  "ledger": {"schema": "UP1-EXTERNAL-CLOSURE-R2-STATE-LEDGER-V1", "code_version": "aggregate-gate-r2.2", "role": "software_bookkeeping_only", "tamper_fail_closed": true, "cas_concurrency_checked": true},
+  "heavy_lane": {"julia": false, "desc": false, "solver": false, "mesh": false, "provider": false, "external": false},
+  "protected_dirty_snapshot": {"before_status_sha256": "901add68a5be771fa5325a044f6738f501377fb90f5b0d5fd1a8a6130f453ec4", "out_of_scope_mutation": false},
+  "self_hash_exclusions": ["manifest.json", "cleanup_inventory.json"]
+}

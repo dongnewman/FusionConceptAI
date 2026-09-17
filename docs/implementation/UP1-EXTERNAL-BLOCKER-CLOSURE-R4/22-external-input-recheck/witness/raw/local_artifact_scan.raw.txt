@@ -1,0 +1,19 @@
+command=PowerShell read-only targeted scan of workspace-local declaration/proof/identity/attestation artifacts
+pid=34904
+utc_start=2026-09-17T03:54:41.7243322Z
+head=b2c04d8339774635aaecd73651efcdb101e01b5d
+scope=FusionConceptAI workspace, excluding archived UP1 R2/R3/R4 evidence when searching for additional artifacts; existing local docs/fixtures were inspected as non-external context
+found_untrusted:
+  docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json -> status=terminal_deferred,result=AbsentDeclarationSourceV1
+  docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json -> status=terminal_deferred,result=AbsentDeclarationSourceV1
+  docs/implementation/AD-47/G3-SOURCE-AUTHORITY-RECORDS/realization/source_authority_record_v1.json -> result=AbsentG3SourceAuthorityRecordV1; trusted_attestation=false; source_identity=typed_absent
+  docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_v1.json -> status=typed_absent; trusted_attestation_created=false; candidate_identity_created=false; no_publish=true
+  docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_receipt.json -> status=typed_absent; trusted_attestation_created=false; no_publish=true
+  docs/implementation/AD-49/G1-TRUSTED-SOURCE-IDENTITY/g1_trusted_source_identity_v1.json -> status=typed_absent; trusted_attestation_created=false; no_publish=true
+  docs/implementation/AD-49/G2-TRUSTED-SOURCE-IDENTITY/g2_trusted_source_identity_v1.json -> status=typed_absent; trusted_attestation_created=false; no_publish=true
+  docs/implementation/AD-52/G3-SOURCE-AUTHORITY-FACTORY-HARDENING/raw/up2_external_authority.receipt.json -> local Julia test receipt (passed=9,total=9), not external attestation or signed authority
+  src/RuntimeV4/DESCGeometryCompatibilityProofV4.jl -> source proof/compatibility code, not an externally issued witness package
+classification=found_untrusted_only; no local artifact has a verifiable external witness signature, pinned trust root, trusted time, revocation, authenticated channel ACK, or independent reviewer receipt
+external_expected_paths=absent_in_path_scan; found_usable=0
+utc_end=2026-09-17T03:54:43.0004732Z
+exit_code=0

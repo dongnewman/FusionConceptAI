@@ -1,0 +1,145 @@
+{
+  "schema": "UP4SourceCoilActuatorConstraintContractV1",
+  "status": "review_pending",
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending",
+  "authority_rule": "a typed declaration is not a provider, a solved source, a manufactured component, or an engineering pass",
+  "binding_rule": {
+    "candidate_ref": {"state": "pending", "value": null, "reason": "fresh T1 package required"},
+    "scenario_ref": {"state": "pending", "value": null, "reason": "all required scenarios must be explicit"},
+    "physical_subject_hash": {"state": "pending", "value": null, "reason": "must be rebuilt after any source, geometry, material, network, control or fault edit"},
+    "future_hash_policy": "no future candidate or solver hash is written in this preparation"
+  },
+  "observed_legacy_slice": {
+    "source": "src/RuntimeV4/SpatialPickupEngineeringV4.jl",
+    "status": "observed_context_only",
+    "geometry": {
+      "shape": "circular finite disk",
+      "radius_m": 0.005,
+      "center_rule": "analytic_R_upper_plus_offset",
+      "normal_xyz": [0.0, 0.0, 1.0],
+      "turns": 10,
+      "wire_radius_m": 0.0001,
+      "scope": "stationary pickup declaration; exact declaration hash is required by the legacy entry"
+    },
+    "circuit": {
+      "resistivity_ohm_m": 1.72e-8,
+      "inductance_H": 0.001,
+      "load_resistance_ohm": 10.0,
+      "short_resistance_ohm": 0.01,
+      "dump_resistance_ohm": 100.0,
+      "trip_current_A": 0.02,
+      "detection_cadence_s": 1.0e-5,
+      "ramp_duration_s": 0.002,
+      "duration_s": 0.004,
+      "scope": "ideal lumped conditional RL with prescribed fractional flux ramp"
+    },
+    "physical_boundary": {
+      "external_coils": "unknown",
+      "outer_sheet_current": "unknown",
+      "return_path": "must_be_propagated",
+      "total_external_field": false,
+      "static_induced_emf_V": 0.0,
+      "physical_validation": "unsupported",
+      "engineering_qualified": false
+    },
+    "data_provenance": {
+      "parameter_source": "exploratory spatial pickup design specification 2026-09-12 revision 1; not measured or a probability distribution",
+      "mu0_source": "NIST CODATA 2022 nominal URL is written in source; uncertainty is not propagated",
+      "license_version_hash": {"state": "pending", "value": null, "reason": "not a future hardware evidence source"}
+    }
+  },
+  "future_constraint_records": [
+    {
+      "constraint_id": "geometry_support_and_clearance",
+      "domain": "source_coil",
+      "variables": ["centerline", "cross_section", "turn_count", "pitch", "bend_radius", "support_clearance", "interface_location"],
+      "bounds": {"state": "pending", "value": null, "reason": "must come from G3 manufacturing/material domains and candidate geometry"},
+      "units": "m, dimensionless counts, radians where applicable",
+      "hard_gate": "finite geometry, non-self-intersection, declared support and clearance, coordinate transform round-trip",
+      "negative_control": "zero clearance, self-intersection, wrong frame or wrong normal",
+      "required_authority": ["G2 geometry ref", "G3 realization ref", "manufacturing dataset", "independent geometry checker"]
+    },
+    {
+      "constraint_id": "source_current_and_density",
+      "domain": "source_coil",
+      "variables": ["I_A", "J_A_per_m2", "K_A_per_m", "ramp_rate_A_per_s", "duty_cycle"],
+      "bounds": {"state": "pending", "value": null, "reason": "no finite current or density limit may be invented"},
+      "units": "A, A/m^2, A/m, A/s, dimensionless",
+      "hard_gate": "declared conductor support, finite current density, finite slew/ramp and current return closure",
+      "negative_control": "infinite current, source basis rank deficiency, passive source owning unbalanced source entry",
+      "required_authority": ["G3 component capacity", "source/material dataset", "circuit provider", "per-node KCL checker"]
+    },
+    {
+      "constraint_id": "voltage_power_and_energy",
+      "domain": "driver_resource_network",
+      "variables": ["V_V", "P_W", "E_J", "source_capacity", "return_capacity", "stored_energy_J"],
+      "bounds": {"state": "pending", "value": null, "reason": "supply and return capacities are not available in current slice"},
+      "units": "V, W, J",
+      "hard_gate": "KVL/KCL per node, source/return ledger closure, finite voltage/current/power, no duplicate storage or loss accounting",
+      "negative_control": "disconnected return, power supplied without resource entry, double-counted Joule and input energy",
+      "required_authority": ["G3 resource ports", "power provider manifest", "energy ledger checker", "scenario protocol"]
+    },
+    {
+      "constraint_id": "thermal_and_cooling",
+      "domain": "thermal_feedback",
+      "variables": ["q_J_W_per_m3", "eddy_loss_W", "radiative_loss_W", "temperature_K", "cooling_flux_W_per_m2", "thermal_storage_J"],
+      "bounds": {"state": "pending", "value": null, "reason": "current pickup implementation has no thermal provider or cooling boundary"},
+      "units": "W/m^3, W, K, W/m^2, J",
+      "hard_gate": "loss source and cooling boundary are candidate-bound; temperature remains within material domain and feedback is iterated",
+      "negative_control": "zero cooling substituted for missing boundary, temperature silently clipped, circuit energy treated as heat without model",
+      "required_authority": ["thermal provider", "cooling boundary", "material property dataset", "coupled residual receipt"]
+    },
+    {
+      "constraint_id": "material_and_structural",
+      "domain": "material_structure",
+      "variables": ["conductivity", "resistivity", "density", "strength", "stress_Pa", "strain", "displacement_m", "fatigue_margin", "clearance_m"],
+      "bounds": {"state": "pending", "value": null, "reason": "G3 domains exist structurally but verified material/structure providers are not admitted here"},
+      "units": "S/m, ohm m, kg/m^3, Pa, dimensionless, m",
+      "hard_gate": "source material property and operating domain valid; stress/strain/displacement equilibrium and positive declared margin",
+      "negative_control": "property outside data domain, missing support reaction, pressure/Lorentz load omitted, negative margin accepted",
+      "required_authority": ["versioned material dataset", "structure provider", "load transfer map", "independent checker"]
+    },
+    {
+      "constraint_id": "manufacturing_and_maintenance",
+      "domain": "manufacturing",
+      "variables": ["thickness_m", "tolerance_m", "bend_radius_m", "joint_resistance_ohm", "temperature_K", "assembly_sequence", "maintenance_access_m"],
+      "bounds": {"state": "pending", "value": null, "reason": "no manufacturing process domain is verified for a future candidate"},
+      "units": "m, ohm, K and typed sequence identifiers",
+      "hard_gate": "declared process, tolerance and assembly path are finite and compatible with geometry/material/network",
+      "negative_control": "perfect fabrication default, omitted tolerance, inaccessible repair path, unknown joint treated as zero resistance",
+      "required_authority": ["G3 manufacturing domain", "process dataset", "geometry checker", "engineering review"]
+    },
+    {
+      "constraint_id": "actuator_dynamics_and_control",
+      "domain": "control",
+      "variables": ["input_signal", "output_current", "sample_period_s", "latency_s", "slew_limit", "saturation", "dropout", "fault_deadline_s"],
+      "bounds": {"state": "pending", "value": null, "reason": "current V5 control type has typed links/faults but no UP4 dynamic provider"},
+      "units": "typed signal units, s, A/s or declared actuator units",
+      "hard_gate": "sensor/estimator/policy/actuator/resource/fault links resolve; finite bandwidth, delay, saturation and safe action remain in coupled residual",
+      "negative_control": "instantaneous infinite actuator, post-solve control overlay, unobserved sensor, removed fault path, score masking source mismatch",
+      "required_authority": ["ControlGenomeV5", "CoupledRealizationControlBindingV2", "control provider", "fault scenario receipt"]
+    },
+    {
+      "constraint_id": "safety_and_fault_boundary",
+      "domain": "protection",
+      "variables": ["trip_threshold", "dump_path", "independent_power", "detection_deadline_s", "safe_action", "recovery_condition"],
+      "bounds": {"state": "pending", "value": null, "reason": "fault paths are declarations until provider and scenario evidence exist"},
+      "units": "typed signal units, s, and explicit enum values",
+      "hard_gate": "all required fault, overtemperature, short, dropout, stuck-actuator, start/stop and recovery scenarios execute with finite outputs and safe state",
+      "negative_control": "shared failed power for both detector and protection, missing dump/return path, threshold without deadline",
+      "required_authority": ["G3 fault paths", "independent protection provider", "scenario manifest", "fresh replay"]
+    }
+  ],
+  "authority_gaps": [
+    "UP3-02 candidate-bound target and forward model",
+    "UP1-04A-VNEXT-T1 fresh package/integrator",
+    "UP1-04A-VNEXT-T2 identity and receipt rebinding",
+    "UP2-05 provider capability manifests",
+    "external coils and outer sheet/return closure",
+    "material, thermal, structure, manufacturing and control providers",
+    "B07A/B07B frozen protocol and independent checker",
+    "measurement/reference provenance, licensing, uncertainty and held-out authority"
+  ],
+  "resolution_policy": "missing authority is unknown plus terminal_deferred; structural contradiction is fail_closed; an applicable hard-limit violation is physical_fail only after a valid provider executes"
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "AD44-RSDA-W3-independent-review-r1-v1",
+  "record_kind": "independent_static_readiness_review",
+  "task_id": "AD-44",
+  "review_id": "AD-44-INDEPENDENT-REVIEW-R1",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "static_readiness_audit_only",
+  "claim_ceiling": "architecture_readiness_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T10:58:29.708724Z",
+  "product_file_count": 2,
+  "product_files": [
+    "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/report.md",
+    "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/manifest.json"
+  ],
+  "report_closure": {
+    "path": "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/report.md",
+    "bytes": 5641,
+    "sha256": "32bde20c083ddba1d22037fc4c5ebebf302959b8120bf0d97eb897904ca78fae"
+  },
+  "evidence_sidecars_only": true,
+  "review_sidecar_directory": "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/review",
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 15008,
+    "utc_start": "2026-09-15T10:58:29.707649Z",
+    "utc_end": "2026-09-15T10:58:29.708724Z",
+    "exit_code": 0,
+    "stdout": {
+      "path": "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/review/validation_stdout.json",
+      "bytes": 5743,
+      "sha256": "ecd250dd2bb097e1cdbac8d5636a45a022cce28e09568a4f45553419d39bf481"
+    },
+    "stderr": {
+      "path": "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/review/validation_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "checks": "all final validation checks true",
+    "plan_validator": {
+      "pid": 82224,
+      "utc_start": "2026-09-15T10:57:43.331946Z",
+      "utc_end": "2026-09-15T10:57:43.787899Z",
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-44/rsda_w3_readiness_audit/independent_review_r1/review/plan_validator_r2_stdout.txt",
+      "stdout_bytes": 401,
+      "stdout_sha256": "cf4058eae2fcca17ca5cdfa4207f0caf0451e9299254edf56fe875f4fe283bf7",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "git_diff_check_exit_code": 0,
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39,
+    "dirty_status_lines_observed": 329
+  },
+  "frozen_w2r1_products": [
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":6180,"sha256":"f4841efa7e872a57e05c8eda687d951dd7775802ad3d07330947df72c5c97449"},
+    {"path":"docs/implementation/AD-42/W2R1-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":13968,"sha256":"46d7329bd83188c280208b65ac58afc571c813c9d48e3732707dcf4d4bcb4210"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json","bytes":7086,"sha256":"7244861fa4c640035c06ac7b69623f048c17b86f9deeda71de8406c452bbcacf"},
+    {"path":"docs/implementation/AD-42/W2R1-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json","bytes":14337,"sha256":"7a68be8d2e24b6a15364800cb3855c6a3d80b6d03bed6e2f9eb59d1b29cd988c"}
+  ],
+  "upstream_review_gates": {
+    "ad42_w2r1": {"status":"pass_limited","checks":"47/47"},
+    "ad43_axis_contracts": {"status":"pass_limited","checks":"90/90"}
+  },
+  "w3a_verdict": {
+    "work_order_id": "AD44-RSDA-W3-SOURCE-AUTHORITY-RECORDS",
+    "status": "proposed_ready_after_parent_review",
+    "product_file_count": 4,
+    "result_union": ["RepositoryDesignSourceAuthorityRecordV1","AbsentRepositoryDesignSourceAuthorityV1","FailedRepositoryDesignSourceAuthorityV1"],
+    "dispatchable_after_parent_review": true,
+    "products_present": false,
+    "cycle_check": "acyclic",
+    "physical_or_present_credit": false
+  },
+  "w3b_verdict": {
+    "work_order_id": "AD44-RSDA-W3-CANDIDATE-BINDING-PROVENANCE",
+    "status": "proposed_blocked_common_candidate_identity_and_axis_attestation",
+    "product_file_count": 8,
+    "result_union": ["CandidateBoundRepositorySourceProvenanceV1","AbsentCandidateBoundRepositorySourceProvenanceV1","FailedCandidateBoundRepositorySourceProvenanceV1"],
+    "products_present": false,
+    "blocked_on": ["fresh common candidate binding envelope absent","candidate-bound axis attestations absent","final candidate identity/hash outside this work order"],
+    "seed_payload_or_axis_hash_derivation_allowed": false,
+    "physical_or_present_credit": false
+  },
+  "all_claims_false": {
+    "candidate_hash_created": false,
+    "declaration_hash_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "self_hash_excluded": true
+}

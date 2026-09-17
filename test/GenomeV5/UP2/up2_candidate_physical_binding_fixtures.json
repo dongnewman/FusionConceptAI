@@ -1,0 +1,57 @@
+{
+  "schema_id": "GenomeV5/UP2/UP2CandidatePhysicalBindingV1",
+  "schema_version": "v1",
+  "schema_validation_only": true,
+  "mutation_count": 5,
+  "physical_declarations": {
+    "N05": "N05_terminal_deferred:no_authoritative_typed_flux_binding",
+    "N06": "N06_terminal_deferred:no_authoritative_typed_source_field_return_heat_ledger_binding"
+  },
+  "mutations": [
+    {
+      "id": "E0-01-foreign-candidate-ref",
+      "field_path": "/candidate_ref",
+      "source_locator": "CandidateStatePackageV5.candidate_ref::QualifiedRefV1",
+      "source_type": "QualifiedRefV1",
+      "mutation_kind": "foreign_candidate_ref",
+      "expected_error": "candidate_ref_mismatch",
+      "expected_status": "fail_closed"
+    },
+    {
+      "id": "E0-02-stale-package-hash",
+      "field_path": "/package_hash",
+      "source_locator": "CandidateStatePackageV5.candidate_hash::Digest256",
+      "source_type": "Digest256",
+      "mutation_kind": "stale_package_hash",
+      "expected_error": "package_hash_mismatch",
+      "expected_status": "fail_closed"
+    },
+    {
+      "id": "E0-03-foreign-g2-binding",
+      "field_path": "/component_identity/g2_ref",
+      "source_locator": "CandidateStatePackageV5.component_identity.g2_ref::GenomeContractRef",
+      "source_type": "GenomeContractRef",
+      "mutation_kind": "foreign_g2_ref",
+      "expected_error": "candidate_or_package_identity_mismatch",
+      "expected_status": "fail_closed"
+    },
+    {
+      "id": "E0-04-stale-component-hash",
+      "field_path": "/component_identity/g2_genome_hash",
+      "source_locator": "CandidateStatePackageV5.component_identity.g2_genome_hash::Digest256",
+      "source_type": "Digest256",
+      "mutation_kind": "stale_component_hash",
+      "expected_error": "candidate_or_package_identity_mismatch",
+      "expected_status": "fail_closed"
+    },
+    {
+      "id": "E0-05-foreign-version-axes",
+      "field_path": "/version_axes/g2",
+      "source_locator": "CandidateStatePackageV5.version_axes.g2::G2VersionAxesV2",
+      "source_type": "G2VersionAxesV2",
+      "mutation_kind": "foreign_version_axes",
+      "expected_error": "version_axes_mismatch",
+      "expected_status": "fail_closed"
+    }
+  ]
+}

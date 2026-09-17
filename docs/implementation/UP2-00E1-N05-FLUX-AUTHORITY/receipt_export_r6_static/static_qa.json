@@ -1,0 +1,26 @@
+{
+  "schema": "author-static-repair-v1",
+  "repair_round": "R6-json3-roundtrip",
+  "status": "ready_for_independent_precheck",
+  "json_parse": true,
+  "checks": {
+    "json3_namedtuple_conversion": true,
+    "json3_roundtrip": true,
+    "valid_file_read_trusted": true,
+    "forged_controls_roundtrip": true,
+    "r4_inputs": {
+      "r4_source": true,
+      "r4_test": true,
+      "r2_failure": true,
+      "r2_envelope": true
+    },
+    "process_sweep_zero": true
+  },
+  "git_diff_check_exit": 0,
+  "git_diff_check_output": [],
+  "julia": "not_run",
+  "desc": "not_run",
+  "claim_ceiling": "contract_only",
+  "focused_retry": "blocked_until_independent_precheck",
+  "history_preserved": true
+}

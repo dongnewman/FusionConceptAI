@@ -1,0 +1,40 @@
+{
+  "schema": "UP1.W2.trust-chain-independent-review-r2.v1",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": "none",
+  "original_findings": {
+    "W2-P1-001": "closed",
+    "W2-P1-002": "closed",
+    "W2-P1-003": "closed",
+    "W2-P2-004": "closed",
+    "W2-P2-005": "closed",
+    "W2-P2-006": "closed",
+    "W2-P3-007": "closed"
+  },
+  "findings": [
+    {
+      "id": "W2-R1-P2-001",
+      "severity": "P2",
+      "title": "manifest and cleanup exact set omit retained final raw stream",
+      "evidence": [
+        "trust_chain/manifest.json outputs has raw/static_json_validation_r1.stdout.raw but not raw/static_json_validation_r1_final.stdout.raw",
+        "trust_chain/cleanup_inventory.json owned_products/final_exact_owned_set name only the first raw",
+        "trust_chain/validation_receipt.json raw and current_artifact_sha256 include both raw streams",
+        "trust_chain/ directory actual file count is 9"
+      ],
+      "impact": "The final validator evidence is not losslessly represented by the declared handoff/cleanup set; manifest-driven cleanup or ingestion could omit it.",
+      "required_action": "Add raw/static_json_validation_r1_final.stdout.raw to outputs, owned_products and final_exact_owned_set, then recompute dependent hashes and rerun independent review."
+    }
+  ],
+  "positive_checks": [
+    "11 absence IDs are exact and lossless",
+    "canonical fingerprint recomputes exactly over the complete register",
+    "revocation unavailable is typed_absence/terminal_deferred/no_publish and distinct from fail_closed",
+    "Stage 0/1 digest and scope/source binding precede path construction",
+    "six HEAD owners and three AD56 dirty executors have exact paths, SHA-256 and OIDs",
+    "TEST_ONLY profile cannot be production and production profile remains typed_absent",
+    "authority enum is closed and unknown values fail_closed",
+    "raw byte counts and SHA-256 values match receipts"
+  ]
+}

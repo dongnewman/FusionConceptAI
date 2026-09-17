@@ -1,0 +1,47 @@
+{
+  "schema": "m4-b-test-execution-manifest-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING",
+  "role": "test_oracle_owner",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "status": "pass_limited_after_repair",
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "owned_products": [
+    "test/RuntimeV4/M4Isolated/manufactured_residual_lowering_v1_tests.jl",
+    "test/RuntimeV4/M4Isolated/oracles/residual_lowering_oracle_v1.py"
+  ],
+  "not_owned_products_no_write_by_this_role": [
+    "src/RuntimeV4/RuntimeV4.jl", "Project.toml", "Manifest.toml",
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl",
+    "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl"
+  ],
+  "source_b_repair_by": "separate B source implementer; test/oracle role did not edit it",
+  "input_hashes_final": {
+    "test": "c7032beecfcca29db8a751eec4aaf4797eadfed66b12e8da611c392783740f73",
+    "oracle": "0d89c69ab3689a0cf7cde9756f95a76b8f7e4c8fc93a7a99ed9aa460bd5781fd",
+    "source_a": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "source_b_after_repair": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"
+  },
+  "execution_order": [
+    "command_01_python_oracle",
+    "command_02_julia_tests_initial_failure",
+    "command_03_python_oracle_repair_r1",
+    "command_04_julia_tests_repair_r1"
+  ],
+  "final_counts": {"python_exit": 0, "julia_pass": 53, "julia_total": 53},
+  "initial_failure": {
+    "receipt": "command_02_julia_tests.receipt.json",
+    "exit_code": 1,
+    "pass": 51,
+    "errors": 2,
+    "cause": "empty result.failures collected as Vector{Union{}} before owner-binding push"
+  },
+  "repair": {
+    "cause": "source type materialization only",
+    "source_sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c",
+    "receipts": ["command_03_python_oracle_repair_r1.receipt.json", "command_04_julia_tests_repair_r1.receipt.json"],
+    "exit_codes": [0, 0]
+  },
+  "formal_credit": [],
+  "parent_closed": false
+}

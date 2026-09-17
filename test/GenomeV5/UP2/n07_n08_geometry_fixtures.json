@@ -1,0 +1,19 @@
+{
+  "fixture_id": "UP2-00B-N07-N08-001",
+  "schema_id": "GenomeV5/UP2/N07N08GeometryProjectionV1",
+  "schema_version": "v1",
+  "schema_validation_only": true,
+  "mutation_count": 10,
+  "mutations": [
+    {"id":"N07-01","class_id":"N07","field_path":"/g2/contract/regions/0/lower","source_locator":"G2RegionV2.lower::NTuple{3,Rational{Int64}}","source_type":"rational3","mutation_kind":"lower_out_of_domain","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N07-02","class_id":"N07","field_path":"/g2/contract/regions/0/upper","source_locator":"G2RegionV2.upper::NTuple{3,Rational{Int64}}","source_type":"rational3","mutation_kind":"upper_out_of_domain","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N07-03","class_id":"N07","field_path":"/g2/plan/exterior/boundary_faces","source_locator":"G2ExteriorPlanV2.boundary_faces::Tuple[Symbol]","source_type":"symbol_tuple","mutation_kind":"drop_face","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N07-04","class_id":"N07","field_path":"/g2/plan/exterior/boundary_patches/0/lower","source_locator":"G2BoundaryFacePatchV2.lower::NTuple{2,Rational{Int64}}","source_type":"rational2","mutation_kind":"patch_out_of_domain","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N07-05","class_id":"N07","field_path":"/g2/plan/exterior/boundary_condition","source_locator":"G2ExteriorPlanV2.boundary_condition::Symbol","source_type":"symbol","mutation_kind":"none_condition","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N08-01","class_id":"N08","field_path":"/g2/plan/chart/axes","source_locator":"G2ChartPlanV2.axes::NTuple{3,Symbol}","source_type":"symbol_tuple","mutation_kind":"axes_invalid","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N08-02","class_id":"N08","field_path":"/g2/plan/chart/map_kind","source_locator":"G2ChartPlanV2.map_kind::Symbol","source_type":"symbol","mutation_kind":"map_invalid","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N08-03","class_id":"N08","field_path":"/g2/plan/mesh/cells_per_region","source_locator":"G2MeshPlanV2.cells_per_region::NTuple{3,Int}","source_type":"int3","mutation_kind":"cells_nonpositive","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N08-04","class_id":"N08","field_path":"/g2/plan/mesh/basis","source_locator":"G2MeshPlanV2.basis::Symbol","source_type":"symbol","mutation_kind":"basis_invalid","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0},
+    {"id":"N08-05","class_id":"N08","field_path":"/g2/contract/interfaces","source_locator":"RegionInterfaceContractV2.interfaces::Tuple","source_type":"interface_refs","mutation_kind":"duplicate_interface","expected_error":"invalid_boundary","expected_resolution":"terminal_deferred","expected_provider_calls":0}
+  ]
+}

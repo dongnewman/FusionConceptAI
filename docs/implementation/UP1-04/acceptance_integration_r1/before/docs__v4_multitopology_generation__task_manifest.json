@@ -1,0 +1,1009 @@
+{
+  "schema_version": "v4-upgrade-plan-20260914.1",
+  "record_kind": "implementation_plan_not_execution_evidence",
+  "updated_at": "2026-09-14",
+  "base_head": "4b69f55",
+  "primary": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high"
+  },
+  "workers": {
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "high"
+  },
+  "goal": {
+    "requirements": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10"
+    ],
+    "credible_candidate_count": 0,
+    "discovery_goal_achieved": false
+  },
+  "tasks": [
+    {
+      "id": "UP0-01",
+      "phase": "UP0",
+      "title": "刷新基线与中断运行审计",
+      "status": "accepted",
+      "depends_on": [],
+      "optional": false,
+      "technical_doc": "13_acceptance_benchmarks_and_evidence.md",
+      "work_order_ref": "16_execution_work_orders.md#up0-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP0-01 author)",
+      "reviewer": "different Luna (independent review: pass)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "当前 HEAD、git diff/status；W22–W24 task_queue 与实际 checkpoints；旧验收 ledger。",
+      "write_scope": "只读源码、历史 runs；新建 docs/implementation/UP0-01/，不修改旧队列。",
+      "steps": [
+        "记录 tracked/untracked 脏文件的路径与 SHA256；逐项区分当前源码与历史报告。",
+        "核对 W24 子任务检查点和日志，按实际进程命令/启动时间识别运行状态；不以旧 PID 为准，不自动重跑或终止。",
+        "建立 R01–R10 当前状态、剩余义务和 source/artifact 索引，报告引用失效及程序中断。"
+      ],
+      "acceptance": [
+        "保护清单可复算；没有用测试/runner exit 0覆盖物理失败；每项事实能定位 artifact。",
+        "输出基线和可继续工单，独立复核者抽查 W24 身份与退出码。"
+      ],
+      "benchmarks": [
+        "B00"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": "docs/implementation/UP0-01/acceptance.md"
+    },
+    {
+      "id": "UP0-02",
+      "phase": "UP0",
+      "title": "冻结跨层合同与验收协议",
+      "status": "accepted",
+      "depends_on": [
+        "UP0-01"
+      ],
+      "optional": false,
+      "technical_doc": "00_normative_contracts_and_state_model.md",
+      "work_order_ref": "16_execution_work_orders.md#up0-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP0-02 author)",
+      "reviewer": "up0_independent Luna(high)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "00、10–13、旧构造器/注册表、原 R01–R10；UP0-01 基线。",
+      "write_scope": "当前规划的版本/协议文件；拟建受版本控制的 schema/fixture 文件，文件清单先由 Sol 冻结。",
+      "steps": [
+        "定义 G1 方程/G2 空间/G3 资源的单一所有权；将各章拟议类型名整理成同一命名和版本表。",
+        "冻结 capability axes、状态映射、lowering 接口、迁移失效规则与最小测试配置。",
+        "预注册基准量纲、归一化、解析/MMS oracle、阈值、留出集、数值预算与 claim ceiling；评审后再实现。"
+      ],
+      "acceptance": [
+        "三层无重复方程/账本所有权；旧 hash 域不变；目标范围不缩减。",
+        "每个 UP1/UP2 工单都有精确输入输出与合法/非法例；阈值并非看结果后选择。"
+      ],
+      "benchmarks": [
+        "B00",
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": "docs/implementation/UP0-02/acceptance.md"
+    },
+    {
+      "id": "UP1-01",
+      "phase": "UP1",
+      "title": "G1 可组合机制和闭合",
+      "status": "accepted",
+      "depends_on": [
+        "UP0-02"
+      ],
+      "optional": false,
+      "technical_doc": "10_genome_upgrade_execution.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP1-01 author)",
+      "reviewer": "different Luna (r13 independent review: pass)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "G1 文档；TypedAST、OperatorHypergraph、MechanismGenomePayload；冻结算子配置。",
+      "write_scope": "G1 语义/构造器及专属测试；不写 G2/G3 或公共入口。",
+      "steps": [
+        "把算子签名、state/parameter 区分、单位、时间、效应、导数和 closure 条件编成可检查结构。",
+        "将旧有限上限保留为旧 profile；新有限 GrammarProfile 管理可扩展组合规模与成本。",
+        "实现选定组合核和缺闭合/单位错误/效应重复记账负例；导出可供 equation lowering 的数学语义。"
+      ],
+      "acceptance": [
+        "增加 AST/机制组合能改变可执行方程；缺 closure 不会默认为通过。",
+        "多根/MIMO 与守恒 occurrence 绑定保持正确；基因字段规模与网格 DOF 分开。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": "docs/implementation/UP1-01/acceptance.md",
+      "accepted_scope": "g1_typed_mechanism_mimo_closure_candidate_owned_structural_contract",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-02",
+      "phase": "UP1",
+      "title": "G2 一般空间和场合同",
+      "status": "accepted",
+      "depends_on": [
+        "UP0-02"
+      ],
+      "optional": false,
+      "technical_doc": "10_genome_upgrade_execution.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP1-02 author)",
+      "reviewer": "different Luna (final independent review: pass)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "G2 文档；FieldGeometrySpatialSupport/FieldPrograms；旧固定两区域网格声明。",
+      "write_scope": "G2 空间合同、构造器、几何合法性与专属测试；不写共享入口。",
+      "steps": [
+        "定义 region/interface/boundary/chart/embedding/field space 与外域闭合选择。",
+        "实现最小可物化组合的几何/拓扑检查和离散需求输出；将不可嵌入、非定向、退化网格等判为具体失败/缺口。",
+        "定义静态设计拓扑编辑与时间物理拓扑事件的差异、传递量及物理模型义务。"
+      ],
+      "acceptance": [
+        "至少两种不同合法域连接声明通过同一验证入口，非法接口负例拒绝。",
+        "抽象合法性、几何可实现性、网格质量和物理模型可解性分开记录。"
+      ],
+      "benchmarks": [
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": "docs/implementation/UP1-02/acceptance.md",
+      "accepted_scope": "axis_aligned_rational_3d_g2_structural_contract",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-03",
+      "phase": "UP1",
+      "title": "G3 资源与实现控制合同",
+      "status": "accepted",
+      "depends_on": [
+        "UP0-02"
+      ],
+      "optional": false,
+      "technical_doc": "10_genome_upgrade_execution.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP1-03 author)",
+      "reviewer": "different Luna (r12 independent review: pass)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "G3 文档；RealizationControlGenomeV4；既有拾取/RL与控制故障切片。",
+      "write_scope": "G3 资源、组件、材料和控制合同及专属测试。",
+      "steps": [
+        "定义 effort/flow 端口、能源物质账本、回流、源逆设计变量、材料数据域和制造边界。",
+        "补最小电路/热阻容量/材料核及初值、事件、故障的合同和组件验证。",
+        "定义实现误差/损耗/热/形变向 G1/G2 回传的 typed 接口，暂不宣称完整逆设计完成。"
+      ],
+      "acceptance": [
+        "缺电源/回流/热沉、单位不配和重复计能均能拒绝；被动组件不能无源产能。",
+        "目标场不能自动生成无成本硬件；UP4 有明确可消费的逆问题合同。"
+      ],
+      "benchmarks": [
+        "B04",
+        "B08"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": "docs/implementation/UP1-03/acceptance.md",
+      "accepted_scope": "g3_structural_resource_control_fault_and_standalone_feedback_contract",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-04A",
+      "phase": "UP1",
+      "title": "共享入口迁移与 G2 ref 重建",
+      "status": "review_pending",
+      "depends_on": [
+        "UP1-01",
+        "UP1-02",
+        "UP1-03"
+      ],
+      "optional": false,
+      "technical_doc": "10_genome_upgrade_execution.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-04a",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": "gpt-5.6-luna (UP1-04A author)",
+      "reviewer": "independent Luna (pending)",
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "已接受 UP1-01/02/03 有限合同、UP0-02/AD-20、现行入口与 protected dirty inventory。",
+      "write_scope": "仅 UP1-04A integration-owned shared entry/package adapter and its tests/archive; no UP1-04B suite, source outside assigned paths, or old evidence.",
+      "steps": [
+        "从已接受 G2 plan 内容构造新的 fusionconceptai://GenomeV5/G2/ public ref，并重算 G2 与 typed package identity。",
+        "将真实新 G2 ref 传入 G3 feedback/三层 package join；历史 UP1-02 urn:fusion:g2:* fixture/ref/hash 不改、不复用、不 alias。",
+        "完成 shared-entry structural admission and migration receipt wiring; keep provider/mesh/physical gaps explicit。"
+      ],
+      "acceptance": [
+        "UP1-04A 仅证明共享入口和 contract-only identity wiring；当前状态保持 review_pending，不能写成完整 UP1-04 acceptance。",
+        "新旧 ref/hash/evidence 隔离且 G2 ref URI、schema/canonical/profile、four axes、candidate binding exact-bound；错误映射 fail_closed，缺 authority/provider 为独立 terminal_deferred。"
+      ],
+      "benchmarks": [
+        "B00",
+        "B04",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-00",
+      "phase": "UP2",
+      "title": "contract-only typed precompiler schema/validator",
+      "status": "planned",
+      "depends_on": [
+        "UP1-04A"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-00",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "UP1-04A candidate-bound package、B04 N01–N10 真实 typed precompiler 字段和预注册错误分类。",
+      "write_scope": "仅 UP2-00 schema/validator/fixture/checker 与 invocation-count interface；不写 solver、mesh、provider 或物理后端。",
+      "steps": [
+        "把 B04 N01–N10 绑定到实际 typed precompiler 字段与预注册错误分类。",
+        "提供 compile-before-provider and provider invocation count interfaces；结构 invalid 必须 fail_closed，provider gap 单独保留。",
+        "在 UP1-04B 执行前冻结 schema-bound formal inputs/version/hash recipe；不执行 solver、mesh、provider 或 physical run。"
+      ],
+      "acceptance": [
+        "validator covers N01–N10 actual fields/error classifications and exposes invocation counters without invoking provider。",
+        "UP2-00 is contract-only and grants no solver/mesh/provider/physical or B00/B04 execution credit。"
+      ],
+      "benchmarks": [
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP1-04B",
+      "phase": "UP1",
+      "title": "B00/B04 正式冻结、checker 与双进程复放",
+      "status": "planned",
+      "depends_on": [
+        "UP2-00"
+      ],
+      "optional": false,
+      "technical_doc": "13_acceptance_benchmarks_and_evidence.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-04b",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "最终 schema、UP2-00 validator、三层新 candidate refs、B00 F0–F5 和 B04 N01–N10 mutation receipt 规范。",
+      "write_scope": "仅正式 fixture、checker、two-process replay recipe、ledger 和专属归档；重计算按串行 lane 执行。",
+      "steps": [
+        "在最终 schema 后、首次执行前冻结 B00 F0–F5 与 B04 50 formal mutations/receipts/checker version and input hashes。",
+        "串行执行 fresh candidate-bound suite with checker and two-process replay；保留 stdout/stderr/exit 与 ledger。",
+        "由不同 Luna 独立复核 formal mutation coverage、receipt identity 和 checker provenance。"
+      ],
+      "acceptance": [
+        "All B00 F0–F5 and 50 B04 mutations must have fresh candidate-bound receipts, checker evidence, and two-process replay before UP1-04 can be accepted。",
+        "UP1-04B cannot be accepted from runner exit alone；provider、mesh、engineering、physical 和 R01–R10 credit remain separately gated。"
+      ],
+      "benchmarks": [
+        "B00",
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP1-04",
+      "phase": "UP1",
+      "title": "Genome 迁移与入口集成",
+      "status": "planned",
+      "depends_on": [
+        "UP1-04B"
+      ],
+      "optional": false,
+      "technical_doc": "10_genome_upgrade_execution.md",
+      "work_order_ref": "16_execution_work_orders.md#up1-04",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "UP1-04A shared-entry output、UP2-00 validator receipt、UP1-04B fresh B00/B04 evidence、三层新 candidate refs。",
+      "write_scope": "集成者独占 Genomes 注册/包入口/相关测试清单；不得改 unrelated dirty 文件。",
+      "steps": [
+        "汇入 UP1-04A 的共享入口与 UP2-00 的 contract-only schema/validator 输出。",
+        "只在 UP1-04B 的 B00/B04 receipts、checker 与 two-process replay 完成且独立复核后接受完整 migration/package join。",
+        "保留 provider、mesh、工程、物理和 R01–R10 的独立证据边界。"
+      ],
+      "acceptance": [
+        "完整 UP1-04 只能在 B 阶段完成并经不同 Luna 独立复核后接受；UP1-04A 的共享入口结果不能替代总门。",
+        "新 candidate 的三层公共 refs、四轴、candidate binding 和 identity exact-bound；历史 UP1-02 urn:fusion:g2:* ref/hash/evidence 不复用。"
+      ],
+      "benchmarks": [
+        "B00",
+        "B04",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-01",
+      "phase": "UP2",
+      "title": "声明驱动的物理方程编译",
+      "status": "planned",
+      "depends_on": [
+        "UP1-04"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "typed bundle、算子/closure 注册、已有 Compiler/FieldProgramEvaluation/FieldResidualPipeline。",
+      "write_scope": "编译器、专属 equation/lowering 模块和测试；共享入口由集成任务修改。",
+      "steps": [
+        "将状态/参数/端口与 region 绑定为 equation IR，输出所有闭合和边界义务。",
+        "逐算子组合 lowering，支持变系数与各向异性扩散、时间项和多场项；保留固定公式为回归 fixture。",
+        "生成结构稀疏关系及 AD/解析/数值导数的适用性元数据；拒绝未经声明的替代闭合。"
+      ],
+      "acceptance": [
+        "未知合法组合能编成真实残差；不检查整棵 AST 是否等于 fixture。",
+        "缺算子执行器、闭合或边界明确延期；无 name/family/ID 路由。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-02",
+      "phase": "UP2",
+      "title": "空间物化、离散组装与一般入口",
+      "status": "planned",
+      "depends_on": [
+        "UP2-01"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "equation IR、G2 域/场空间、离散 profile、边界和材料数据。",
+      "write_scope": "空间 mesh/assembly 模块及专属测试；拟建通用 candidate-input 入口接口。",
+      "steps": [
+        "实现经过验证的几何→网格/基空间→弱式或数值通量装配。",
+        "以完整能力合法性检查取代 _smr_declaration 的固定模型身份守卫；守卫替换须与真实执行支持同批落地。",
+        "支持不靠修改源码的候选数据输入；旧固定示例走该入口的兼容适配。"
+      ],
+      "acceptance": [
+        "变系数/边界/区域连接变化无需改代码；至少一项留出声明执行。",
+        "MMS 的解误差、残差、积分守恒、网格/时间细化各自通过冻结门。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B02",
+        "B04"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-03",
+      "phase": "UP2",
+      "title": "拓扑传递与外部区域闭合",
+      "status": "planned",
+      "depends_on": [
+        "UP2-02"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "网格/场空间、G1 守恒账户、接口条件、外域/源/回流声明。",
+      "write_scope": "传递、接口和外域模块及专属测试。",
+      "steps": [
+        "实现重网格/分裂合并后的守恒投影，约束 divB、正性和规范条件，无法同时满足时返回诊断。",
+        "实现一条明确适用的外域路径，如真空/导体域加远场截断；源/电路回流由 G3 明确给出。",
+        "对静态设计拓扑编辑和物理拓扑事件分别验证，禁止把数值重映射当磁重联物理。"
+      ],
+      "acceptance": [
+        "转移前后总量差在冻结容差内；场约束与局部误差通过。",
+        "远场截断/外域网格细化敏感性通过；删外域或漏回流负控不得获信用。"
+      ],
+      "benchmarks": [
+        "B02",
+        "B05",
+        "B06"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-04",
+      "phase": "UP2",
+      "title": "耦合求解、约束与集成",
+      "status": "planned",
+      "depends_on": [
+        "UP2-03"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-04",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "离散残差/稀疏结构、端口依赖、初值与约束、现有求解器停滞诊断。",
+      "write_scope": "耦合求解器及集成者独占的公共入口/测试清单/运行器。",
+      "steps": [
+        "依据依赖图识别强耦合块/DAE和约束，采用经过验证的 Newton/Krylov/ODE-DAE 等算法。",
+        "处理规范零空间、初值一致性、约束方向和全局化；保留真实失败信息，不靠增大迭代数掩盖病态。",
+        "集成同一 candidate-bound 入口，串行运行组件和相邻整体回归。"
+      ],
+      "acceptance": [
+        "所有强耦合残差和守恒同时通过；一轮顺序后处理不能算闭环。",
+        "故意错误 Jacobian、缺初值、停滞与约束失败被正确识别。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B02",
+        "B08",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP2-05",
+      "phase": "UP2",
+      "title": "成熟物理模块及 backend 能力登记",
+      "status": "planned",
+      "depends_on": [
+        "UP2-04"
+      ],
+      "optional": false,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up2-05",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "已运行的组件核、成熟库官方文档/锁定版本、完整 capability schema。",
+      "write_scope": "独立 provider adapters、隔离 manifest、协议测试；不随意扩默认 operator registry。",
+      "steps": [
+        "先接可验证的扩散/电磁/电路/热/弹性模块，逐项登记输入输出、边界、时间、材料及误差范围。",
+        "FreeGS/DESC 保留适用域适配器；FUSE 可作为集成参考/后端而非任意拓扑总入口。",
+        "为 transport/kinetic/burn/loss 等尚缺模块列出明确模型、接口、数据/资源与 UP6 拆单触发条件。"
+      ],
+      "acceptance": [
+        "每个 claimed module 有组件执行与负例；仅安装包或 bridge_ready 不能记 provider 证据。",
+        "删除某 provider 后完整路由返回具体缺口，不能降级到隐藏族模板。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B04",
+        "B06"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP3-01",
+      "phase": "UP3",
+      "title": "自动组合执行矩阵",
+      "status": "planned",
+      "depends_on": [
+        "UP2-05"
+      ],
+      "optional": false,
+      "technical_doc": "12_composition_and_inverse_realization.md",
+      "work_order_ref": "16_execution_work_orders.md#up3-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "模块注册、统一编译入口、冻结组合矩阵及各组件 oracle。",
+      "write_scope": "组合 fixtures、独立基准运行器/检查器；不改物理模块以识别候选。",
+      "steps": [
+        "按12中的递进组合从变系数扩散扩展到电磁-电路-热-结构，组合关系由 typed 端口和方程生成。",
+        "冻结构建集与组合留出集；计算耦合解并与解析/独立离散基准比较。",
+        "逐一拆掉耦合回传边作负控，确认相关输出真的响应反馈。"
+      ],
+      "acceptance": [
+        "同一入口自动生成联合系统，无专门手写候选驱动或完整方程模板。",
+        "每个声明支持组合有真实结果与守恒账本；未支持组合明确延期。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B02",
+        "B04",
+        "B08"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP3-02",
+      "phase": "UP3",
+      "title": "留出组合与通用性反证测试",
+      "status": "planned",
+      "depends_on": [
+        "UP3-01"
+      ],
+      "optional": false,
+      "technical_doc": "13_acceptance_benchmarks_and_evidence.md",
+      "work_order_ref": "16_execution_work_orders.md#up3-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "冻结后隐藏的合法组合、非法配置、label/ordering 变换、组合执行产物。",
+      "write_scope": "独立 reviewer 测试/审计文件，不改被测实现绕过失败。",
+      "steps": [
+        "评审者生成未在实现分支出现的合法组合；至少变化系数结构、边界或区域连接之一。",
+        "做标签擦除/排列不变、量纲错误/边界缺口/不支持导数拒绝以及 provider-dropout。",
+        "汇总能力矩阵，区分声明合法、可物化、可求解、数值通过、物理适用。"
+      ],
+      "acceptance": [
+        "通过配置无 candidate-specific 源码补丁；拒绝负例的原因可追溯。",
+        "UP3 acceptance 对准确 capability scope 生效，未覆盖域保持开放。"
+      ],
+      "benchmarks": [
+        "B00",
+        "B04",
+        "B05",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP3-03",
+      "phase": "UP3",
+      "title": "可选的受验证基降维",
+      "status": "planned",
+      "depends_on": [
+        "UP3-02"
+      ],
+      "optional": true,
+      "technical_doc": "11_physics_compilation_and_discretization.md",
+      "work_order_ref": "16_execution_work_orders.md#up3-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "已经收敛的高维系统、训练/验证/留出样本、约束和量纲。",
+      "write_scope": "ROM/POD/投影适配器及独立误差检查器；可选，不是后续必需依赖。",
+      "steps": [
+        "先分析规范零空间和可识别性，再选择谱基/POD/约束投影，报告离线与在线成本。",
+        "加入守恒/约束保留、误差估计、OOD 和拓扑变化失效协议。",
+        "与未参与构基的高维解比较；不收敛或新拓扑时回退完整执行。"
+      ],
+      "acceptance": [
+        "精度和守恒达到冻结误差门，速度收益扣除构基成本。",
+        "ROM 不能填补闭合/provider缺口，不能单独授予最终证据。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B02",
+        "B03",
+        "B06"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP4-01",
+      "phase": "UP4",
+      "title": "源与硬件的逆向 realization",
+      "status": "planned",
+      "depends_on": [
+        "UP3-02"
+      ],
+      "optional": false,
+      "technical_doc": "12_composition_and_inverse_realization.md",
+      "work_order_ref": "16_execution_work_orders.md#up4-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "G3 有限合法设计域、目标场/源需求及精度、实际 forward model、制造/电源限制。",
+      "write_scope": "源/线圈/执行器逆设计模块、约束优化接口与专属测试。",
+      "steps": [
+        "定义设计自由度与可制造参数化、目标函数、端口电源和回流约束。",
+        "通过受约束多起点优化拟合目标，并报告不可识别方向、局部极小与不可达残差。",
+        "将实现源替代目标源生成新输入，重跑主物理；静态场不得产生无时变依据的 EMF。"
+      ],
+      "acceptance": [
+        "至少一项候选绑定逆设计实际执行并形成硬件参数与误差证据。",
+        "故意不可实现的目标不能被免费源/无限电流等默认值通过。"
+      ],
+      "benchmarks": [
+        "B03",
+        "B07",
+        "B08"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP4-02",
+      "phase": "UP4",
+      "title": "热、材料、结构与控制回代",
+      "status": "planned",
+      "depends_on": [
+        "UP4-01"
+      ],
+      "optional": false,
+      "technical_doc": "12_composition_and_inverse_realization.md",
+      "work_order_ref": "16_execution_work_orders.md#up4-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "实际源/硬件参数、材料数据、供能周期、热沉/冷却/结构边界、控制故障场景。",
+      "write_scope": "工程反馈组合及专属测试；不在独立后处理报告中伪造反馈。",
+      "steps": [
+        "联合求电路损耗、热传输和结构响应，把温度材料变化/位移重新传入源与场计算。",
+        "扩展控制饱和、故障和启停场景，同一硬件设计跨 required scenarios 使用。",
+        "逐项核对能量与物质账本，检查长期储能透支和热积累。"
+      ],
+      "acceptance": [
+        "闭环误差、耦合残差、守恒和材料/温度/应力门同时成立。",
+        "去掉冷却/电源限制/反馈边的负例能触发失败；未验证数据不默认安全。"
+      ],
+      "benchmarks": [
+        "B02",
+        "B08",
+        "B12"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP4-03",
+      "phase": "UP4",
+      "title": "真实参考表示与隐参逆恢复",
+      "status": "planned",
+      "depends_on": [
+        "UP4-02"
+      ],
+      "optional": false,
+      "technical_doc": "13_acceptance_benchmarks_and_evidence.md",
+      "work_order_ref": "16_execution_work_orders.md#up4-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "有来源和适用域的参考装置/实验或设计数据；校准与留出协议。",
+      "write_scope": "reference data adapters、inverse benchmark、独立识别/UQ检查器。",
+      "steps": [
+        "先 round-trip 表示真实参考的已知属性并记录无法表示部分，不把自生成 MMS 称真实参考。",
+        "隐藏可识别变量、从多个初值反演，计算灵敏度秩/条件与参数不确定性。",
+        "用未参与拟合的场景/观测验证预测，并测试 grammar 可达恢复；ITER 设计Q不等于净电输出。"
+      ],
+      "acceptance": [
+        "真实来源、模型适用性、识别和留出全部有实证；参数回收不靠答案泄漏。",
+        "非唯一时报告可辨识组合/区间，不宣称精确恢复全部参数。"
+      ],
+      "benchmarks": [
+        "B03",
+        "B06",
+        "B07"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP4-04",
+      "phase": "UP4",
+      "title": "逆实现闭环集成验收",
+      "status": "planned",
+      "depends_on": [
+        "UP4-03"
+      ],
+      "optional": false,
+      "technical_doc": "12_composition_and_inverse_realization.md",
+      "work_order_ref": "16_execution_work_orders.md#up4-04",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "源逆设计、工程反馈、真实参考逆恢复交付及 UP3 组合证据。",
+      "write_scope": "集成者独占完整路径运行器/测试清单；独立审计包。",
+      "steps": [
+        "将需求→设计→实际源→主物理→工程回代串入同一版本化执行计划和检查点。",
+        "新鲜运行并检查各阶段 candidate/scenario/input/provider 哈希贯通。",
+        "审查外域、控制、热和实现误差是否真正回传，记录剩余整装物理义务。"
+      ],
+      "acceptance": [
+        "不是只存在多个独立脚本；同一输入可重建闭环及其失败恢复。",
+        "有限模块闭环验收不抵消尚缺 transport/burn/稳定性或完整整装义务。"
+      ],
+      "benchmarks": [
+        "B08",
+        "B11",
+        "B12"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP5-01",
+      "phase": "UP5",
+      "title": "条件 e-graph 接入",
+      "status": "planned",
+      "depends_on": [
+        "UP4-04"
+      ],
+      "optional": false,
+      "technical_doc": "typed AST、operator hypergraph 或 e-graph.md",
+      "work_order_ref": "16_execution_work_orders.md#up5-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "现有有限整程序 egraph、已验证算子语义与条件规则、运行缓存身份规则。",
+      "write_scope": "egraph adapter/typed rewrites/重放检查器；不更改 evidence authority。",
+      "steps": [
+        "先连接保守规范化和有限条件等价去重；子表达式 congruence 扩展需逐条规则验证。",
+        "条件包含单位、域、边界、时序、效应和闭合；浮点/连续/离散等价作用域分开。",
+        "记录 ruleset/order/budget/trace 与 incomplete 状态，禁止未饱和即宣称不等价。"
+      ],
+      "acceptance": [
+        "每条合并可独立重放，条件不成立不合并；表达式改写不自动转移求解证据。",
+        "同配置确定性重放；有限预算不同顺序不强求同闭包。"
+      ],
+      "benchmarks": [
+        "B04",
+        "B09",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP5-02",
+      "phase": "UP5",
+      "title": "丰富 typed edits 与物理反馈",
+      "status": "planned",
+      "depends_on": [
+        "UP5-01"
+      ],
+      "optional": false,
+      "technical_doc": "03_open_ended_evolution_and_quality_diversity.md",
+      "work_order_ref": "16_execution_work_orders.md#up5-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "完整能力矩阵、真实求解/工程反馈、旧0D screen emitter、失败与休眠档案。",
+      "write_scope": "typed mutation/crossover、search/archive模块与专属测试。",
+      "steps": [
+        "实现 G1算子/closure、G2域连接/基阶/几何、G3源网络/材料/控制的合法编辑；每个新物理对象重建身份。",
+        "把残差定位、约束敏感度、实现误差、热/供能瓶颈作为编辑/预算反馈；缺provider单列执行工作。",
+        "实现可恢复 QD、失败前沿和渐进 MCTS，先有界真实循环，再考虑代理/GFlowNet。"
+      ],
+      "acceptance": [
+        "至少分别有 G1/G2/G3 编辑引起可观察的执行/反馈变化，非只改常数或标签。",
+        "搜索提议与物理/晋升 authority 隔离，失败不被无证据永久剪枝。"
+      ],
+      "benchmarks": [
+        "B05",
+        "B08",
+        "B09",
+        "B10"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP5-03",
+      "phase": "UP5",
+      "title": "有界比较 campaign 后扩容",
+      "status": "planned",
+      "depends_on": [
+        "UP5-02"
+      ],
+      "optional": false,
+      "technical_doc": "06_multifidelity_hard_physics_frontier.md",
+      "work_order_ref": "16_execution_work_orders.md#up5-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "冻结成对预算/种子/能力范围、baseline与新emitter、执行成本和剪枝审计协议。",
+      "write_scope": "campaign manifests、只增 run 输出、审计/统计和档案更新器。",
+      "steps": [
+        "执行同预算基线/增强搜索，分别计 proposal、语义结构、可执行输入和硬门通过数。",
+        "比较新可达能力域、单位实际计算成本收益与假阴性，审计休眠恢复和严格合并。",
+        "若缺provider或数值失败主导，暂停扩容转派相应执行修复；可用结果达门后逐档增预算。"
+      ],
+      "acceptance": [
+        "规模由实际能力收益和资源批准驱动；不把预设50–100cells当无条件先跑要求。",
+        "真实物理反馈闭环、证据身份、复放均通过，原父目标仍独立记账。"
+      ],
+      "benchmarks": [
+        "B09",
+        "B10",
+        "B11"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP6-01",
+      "phase": "UP6",
+      "title": "补齐整装必需物理和工程覆盖",
+      "status": "planned",
+      "depends_on": [
+        "UP5-03"
+      ],
+      "optional": false,
+      "technical_doc": "08_high_fidelity_whole_device_vvuq.md",
+      "work_order_ref": "16_execution_work_orders.md#up6-01",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "冻结 mission、完整 obligation ledger、各provider适用域、尚缺模型/数据清单。",
+      "write_scope": "按缺口拆成有限子工单的物理/工程适配器；集成入口单独拥有。",
+      "steps": [
+        "对每个候选枚举平衡、动态稳定性、轨道/损失、输运、燃烧/粒子、辐射及适用动理学义务。",
+        "枚举外域、加热/电源、冷却、材料/结构、控制故障、燃料循环、转换和厂用电；每个缺口分配具体模型/数据/provider/测试子单。",
+        "逐项实现并验证后重走已有组合与闭环协议，不能跳过无法做的项或以新文档代替。"
+      ],
+      "acceptance": [
+        "所有required模型和工程义务候选绑定执行且满足预注册门；不适用项有证据。",
+        "若需外部验证资源，具体blocked项保持开放；不得把有限UP4闭环称整装完成。"
+      ],
+      "benchmarks": [
+        "B01",
+        "B02",
+        "B06",
+        "B08",
+        "B12"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP6-02",
+      "phase": "UP6",
+      "title": "独立 VVUQ 与整装净输出",
+      "status": "planned",
+      "depends_on": [
+        "UP6-01"
+      ],
+      "optional": false,
+      "technical_doc": "13_acceptance_benchmarks_and_evidence.md",
+      "work_order_ref": "16_execution_work_orders.md#up6-02",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "收敛整装解、独立数值/物理验证数据、站级全周期账本、UQ协议。",
+      "write_scope": "独立检查器/验证与UQ适配器/整装账本；不编辑被审候选填缺项。",
+      "steps": [
+        "区分verification、validation、model discrepancy与参数不确定性；与独立实现/数据比较并传播。",
+        "计算周期净输出及预注册保守界，包含储能变化、所有供能和辅助损耗，无漏算或重复计能。",
+        "对全部required场景核验，来源不足或区间跨零保持unknown/失败。"
+      ],
+      "acceptance": [
+        "有效独立证据及数值协议实际通过；更换线性求解算法不算独立物理验证。",
+        "候选净输出在冻结不确定性协议下满足正值门。"
+      ],
+      "benchmarks": [
+        "B06",
+        "B08",
+        "B11",
+        "B12"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    },
+    {
+      "id": "UP6-03",
+      "phase": "UP6",
+      "title": "原创性、独立复放与父目标关账",
+      "status": "planned",
+      "depends_on": [
+        "UP6-02"
+      ],
+      "optional": false,
+      "technical_doc": "09_evidence_authority_campaign_and_v4_roadmap.md",
+      "work_order_ref": "16_execution_work_orders.md#up6-03",
+      "implementation_model": "gpt-5.6-luna",
+      "reasoning_effort": "high",
+      "owner": null,
+      "reviewer": null,
+      "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
+      "inputs": "新候选完整证据、外部文献/先例审查、R01–R10及完整复现包。",
+      "write_scope": "独立原创性/复放报告和最终authority交付；原始evidence只读。",
+      "steps": [
+        "独立审查机制/结构/行为及外部文献相似性，记录检索日期、范围和局限。",
+        "由不同执行者在新鲜环境复放全部关键命令并审查数据/身份/退出码。",
+        "逐条R01–R10关账，最终authority判定claim ceiling与候选数；未过则返回明确开放项。"
+      ],
+      "acceptance": [
+        "至少一个新候选同时通过所有适用最终物理、工程、净输出、验证与原创性门。",
+        "只有此时可关父目标；L4不声称已建造并实测正净输出。"
+      ],
+      "benchmarks": [
+        "B11",
+        "B12",
+        "B13"
+      ],
+      "execution_recipe_status": "freeze_exact_commands_before_execution",
+      "acceptance_record": null
+    }
+  ]
+}

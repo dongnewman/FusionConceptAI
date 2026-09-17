@@ -1,0 +1,90 @@
+{
+  "work_order": "UP2-00E1-N05-FLUX-AUTHORITY-independent-precheck-receipt-r1",
+  "verdict": "ready_for_focused_r1",
+  "accepted": false,
+  "accepted_scope": "contract_only_static_precheck",
+  "reviewer_role": "different_luna_independent_static_reviewer",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "status": "not_run",
+    "reason": "static precheck only; focused serial run remains required"
+  },
+  "frozen_inputs": {
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+    "test/GenomeV5/UP2/n05_flux_authority_tests.jl": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "test/GenomeV5/UP2/run_n05_flux_authority.jl": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+    "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "b4d62e9ddf806809889225d704929593357145e38ed840df7c705446bdb1f331",
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "0e348f3cd475fd76e1dbf2527b3e14b625dad204ff70762af992d6e382f1852c",
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "pass_with_gate",
+      "text": "Trusted overload reconstructs ten rows from actual package/E0/authorities/specs and compares full identity, source, typed value, classification, and counter fields."
+    },
+    {
+      "id": "F2",
+      "severity": "boundary",
+      "text": "n05_check_receipt_file(path) is envelope-only serialization validation; the archive documents this accurately and it is not source-bound evidence."
+    },
+    {
+      "id": "F3",
+      "severity": "required_focused_gate",
+      "text": "No test currently re-reads JSON and invokes the trusted overload, nor instantiates candidate/E0/ref/row-shape serialized mutations."
+    },
+    {
+      "id": "F4",
+      "severity": "required_focused_gate",
+      "text": "JSON3.write structural comparison across NamedTuple and JSON3.Object is statically plausible but runtime-unverified."
+    }
+  ],
+  "current_negative_controls": [
+    "authored source_hash forgery",
+    "absent mutation_hash forgery",
+    "existing output path rejection",
+    "trusted key-set rejection for missing or extra rows (static path)"
+  ],
+  "required_serialized_controls": [
+    "candidate ref mutation",
+    "package hash mutation",
+    "E0 binding and bound-input hash mutation",
+    "source ref/hash/path/type mutation",
+    "declaration hash mutation",
+    "missing row and duplicate row"
+  ],
+  "receipt_contract": {
+    "authored_rows": 5,
+    "absent_rows": 5,
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0
+  },
+  "claim_ceiling": {
+    "contract_only": true,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "qa": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "git_diff_check_exit": 0,
+    "current_process_sweep": [],
+    "julia_run_exit": null
+  },
+  "protected_history": [
+    "receipt_export_r1/pre_repair/ remains immutable",
+    "receipt_export_r1/repair_r2.md and evidence_manifest.json remain immutable",
+    "no author/source/test/runs files were modified"
+  ]
+}
+

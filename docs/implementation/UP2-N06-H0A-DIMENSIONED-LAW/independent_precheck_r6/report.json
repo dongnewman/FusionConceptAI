@@ -1,0 +1,19 @@
+{
+  "schema_version":"UP2-N06-H0A-independent-precheck-r6",
+  "reviewer":"independent_luna_high_static",
+  "verdict":"ready_for_serial_focused",
+  "ready_for_serial_focused":true,
+  "frozen_head":"4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime":{"julia":"not_run","desc":"not_run","process_sweep":"zero_julia_desc"},
+  "worktree":{"status_entry_count":3483,"unrelated_dirty_files_modified":false},
+  "inputs":{"r5_report":"docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r5/report.md","repair_r6":"docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r6/report.md"},
+  "findings":[
+    {"id":"F05","severity":"closed_static","status":"pass","summary":"Correctly rehashed malformed calibration and closure payloads reach both public trusted APIs as program_exception with declaration nothing; public conflict also asserts declaration nothing; known gap and malformed relation remain distinct.","evidence":["src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:552-592,689-715","test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:412-419,545-585"],"runtime_boundary":"focused Julia runtime still required"},
+    {"id":"F02","severity":"clear_static","status":"no_regression","summary":"Both public trusted routes retain identity and correctly rehashed wrong-law controls.","evidence":["test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:224-292"]},
+    {"id":"F03","severity":"clear_static","status":"no_regression","summary":"Structured closure, four-role sign/direction, unit algebra, and public negative controls remain present.","evidence":["src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:523-625","test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:322-476"]},
+    {"id":"F04","severity":"clear_static","status":"no_regression","summary":"G2 and law payload hash revalidation remains reachable through public validate/admit; provenance remains contract-only.","evidence":["src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:383-419,511-519","test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:322-430"]},
+    {"id":"F06","severity":"clear_static","status":"no_regression","summary":"Pending exact-ref, upstream foreign package rejection, and valid-package foreign E0 contradiction remain separated.","evidence":["test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:187-213,303-320"]}
+  ],
+  "taxonomy":{"known_gap":"terminal_deferred","conflict":"fail_closed","program_exception":"program_exception","fail_closed_declaration":"nothing","runtime_required":true},
+  "claim_ceiling":["contract_only","synthetic_schema_only","actual_a_terminal_deferred","accepted_false","no_physical_positive","no_B00","no_B04","no_provider","no_mesh","no_engineering","no_R_credit"]
+}

@@ -1,0 +1,10 @@
+WriteError:
+Line |
+  20 |  $pid = $p.Id
+     |  ~~~~~~~~~~~~
+     | Cannot overwrite variable PID because it is read-only or constant.
+
+The Julia process had returned successfully from Process.Start() before this
+PowerShell capture error. The child PID, stdout bytes, stderr bytes, and Julia
+exit code were not recoverable after the capture script aborted. The command
+was not rerun under this task, per the focused-run contract.

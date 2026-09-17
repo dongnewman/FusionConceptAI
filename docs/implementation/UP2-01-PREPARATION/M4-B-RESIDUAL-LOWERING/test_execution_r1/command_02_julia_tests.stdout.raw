@@ -1,0 +1,52 @@
+typed identity and binding controls: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:88
+  Test threw exception
+  Expression: :owner_mismatch in failure_codes(validate_manufactured_residual(clone_residual(d; source_owner = "foreign-source-owner"), ir))
+  ArgumentError: cannot convert a value to Union{} for assignment
+  Stacktrace:
+   [1] convert(T::Core.TypeofBottom, x::ManufacturedResidualLoweringFailureV1)
+     @ Base .\essentials.jl:315
+   [2] push!(a::Vector{Union{}}, item::ManufacturedResidualLoweringFailureV1)
+     @ Base .\array.jl:1118
+   [3] validate_manufactured_residual(d::ManufacturedResidualDeclarationV1, ir::ManufacturedEquationIRV1)
+     @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\M4Isolated\ManufacturedResidualLoweringV1.jl:188
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:88 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:76 [inlined]
+   [8] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [9] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:46
+typed identity and binding controls: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:90
+  Test threw exception
+  Expression: :owner_mismatch in failure_codes(validate_manufactured_residual(clone_residual(d; conservation_owner = "foreign-conservation-owner"), ir))
+  ArgumentError: cannot convert a value to Union{} for assignment
+  Stacktrace:
+   [1] convert(T::Core.TypeofBottom, x::ManufacturedResidualLoweringFailureV1)
+     @ Base .\essentials.jl:315
+   [2] push!(a::Vector{Union{}}, item::ManufacturedResidualLoweringFailureV1)
+     @ Base .\array.jl:1118
+   [3] validate_manufactured_residual(d::ManufacturedResidualDeclarationV1, ir::ManufacturedEquationIRV1)
+     @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\M4Isolated\ManufacturedResidualLoweringV1.jl:190
+   [4] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:669 [inlined]
+   [5] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:90 [inlined]
+   [6] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [7] macro expansion
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:76 [inlined]
+   [8] macro expansion
+     @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+   [9] top-level scope
+     @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_residual_lowering_v1_tests.jl:46
+Test Summary:                                      | Pass  Error  Total  Time
+M4-B manufactured residual lowering v1             |   51      2     53  1.8s
+  typed identity and binding controls              |    7      2      9  1.0s
+  typed units, sign, and exact arithmetic controls |   10            10  0.0s
+  deferred scopes and API ceiling                  |   13            13  0.0s
+  failure determinism                              |    1             1  0.1s

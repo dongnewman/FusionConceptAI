@@ -1,0 +1,51 @@
+{
+  "schema": "UP1.atomic-bundle.independent-review-r1.evidence-manifest.v1",
+  "decision": "fail_limited",
+  "formal_credit": "none",
+  "authority_credit": false,
+  "no_publish": true,
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "reviewed_inputs": [
+    "tools/up1_external_closure_r3/atomic_bundle/canonical.py",
+    "tools/up1_external_closure_r3/atomic_bundle/bundle.py",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle.py",
+    "test/up1_external_closure_r3/atomic_bundle/test_atomic_bundle_repair.py",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/04-atomic-contract-repair-r1",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/05-atomic-bundle-prototype",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/07-atomic-prototype-repair-r1",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/reviews/05-atomic-prototype-independent-review-r1"
+  ],
+  "commands": [
+    {
+      "name": "adversarial_probe",
+      "command": "python -B -c <stdlib/cryptography direct adversarial probe>",
+      "pid": 90204,
+      "utc": "2026-09-16T23:44:10.783701Z",
+      "exit": 0,
+      "stdout": "raw/adversarial_probe.stdout.raw",
+      "stdout_sha256": "d5af95407e72f0748da0d75b754dd3b623613bb2767570b20778039e6f2a722d"
+    },
+    {
+      "name": "focused_tests",
+      "command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+      "wrapper_pid": 112260,
+      "utc": "2026-09-16T23:44:48.086670Z",
+      "exit": 0,
+      "tests": 14,
+      "stdout": "raw/focused_tests.stdout.raw",
+      "stdout_sha256": "3fa0bf5f0079b90a0b4add93a43ccb6617e35ac028088a04f8c448a86fcbd191"
+    }
+  ],
+  "raw_files": [
+    {"path":"review.md","bytes":9631,"sha256":"c39145284180427698e24c069a30308fffa457faea090a8dee7c6f23b1fef5fc"},
+    {"path":"raw/adversarial_probe.stdout.raw","bytes":1179,"sha256":"d5af95407e72f0748da0d75b754dd3b623613bb2767570b20778039e6f2a722d"},
+    {"path":"raw/adversarial_probe.pid.txt","bytes":6,"sha256":"7cf072dac965a541aeb8db21448ca73a1d9b2d540464d50b755640ccb76fcc9d"},
+    {"path":"raw/adversarial_probe.utc.txt","bytes":28,"sha256":"9b39af23282ed617cbd4f09bfd47d126d51e29692008a0212ee93b7ea3aa236d"},
+    {"path":"raw/adversarial_probe.exit.txt","bytes":2,"sha256":"9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"},
+    {"path":"raw/focused_tests.stdout.raw","bytes":292,"sha256":"3fa0bf5f0079b90a0b4add93a43ccb6617e35ac028088a04f8c448a86fcbd191"},
+    {"path":"raw/focused_tests.pid.txt","bytes":7,"sha256":"c9e0663bc0104a910468d6d7e2212c603461bc5805623bd03c74dd54cc1b4569"},
+    {"path":"raw/focused_tests.utc.txt","bytes":28,"sha256":"cb74ca6a122629d757b60a3f8abd34df5227a2055bd7a679b8aa0cf526012409"},
+    {"path":"raw/focused_tests.exit.txt","bytes":2,"sha256":"9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"}
+  ],
+  "self_hash_exclusion": ["evidence_manifest.json"]
+}

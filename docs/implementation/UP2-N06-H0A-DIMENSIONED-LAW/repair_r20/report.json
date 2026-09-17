@@ -1,0 +1,97 @@
+{
+  "schema_version": "H0A-repair-r20",
+  "status": "repair_static_complete",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "focused": "not_run"
+  },
+  "change": {
+    "file": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl",
+    "old_line": "row.coefficient==expected_rule.sign || push!(errors,\"role_sign_mismatch:$(role)\")",
+    "new_line": "_n06_h0a_sign(row.coefficient)==expected_rule.sign || push!(errors,\"role_sign_mismatch:$(role)\")",
+    "reason": "actual G3 coefficients 10/-8/-2/-1 carry magnitude; sign rules are +/-1 sentinels",
+    "zero_policy": "existing row.coefficient==0//1 rejection retained",
+    "full_coefficient_policy": "existing coeff==row.coefficient equality retained"
+  },
+  "before_after": {
+    "source": {
+      "before_bytes": 59570,
+      "before_sha256": "9bdf3919666611f7bf7c679ed2fb6d2630d692ccca46de183dccbb5bef98ee4c",
+      "after": {
+        "bytes": 59585,
+        "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+      }
+    },
+    "test": {
+      "before_bytes": 48902,
+      "before_sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8",
+      "after": {
+        "bytes": 48902,
+        "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+      }
+    }
+  },
+  "protected_inputs": {
+    "fixture": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "runner": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "static_qa": {
+    "source_after_matches_program_hash": true,
+    "source_before_matches_r19_after": true,
+    "test_unchanged_from_r19": true,
+    "fixture_unchanged": true,
+    "runner_unchanged": true,
+    "role_sign_projection_exactly_one": true,
+    "magnitude_sentinel_comparison_removed": true,
+    "full_coefficient_equality_preserved": true,
+    "zero_rejection_preserved": true,
+    "source_role_sign_check_preserved": true,
+    "no_other_role_sign_magnitude_comparison": true,
+    "r7_stdout_hash_verified": true,
+    "r7_stderr_hash_verified": true,
+    "r7_exit_preserved": true,
+    "r7_receipt_present": true,
+    "r7_failure_line_preserved": true,
+    "julia_desc_focused_run": false
+  },
+  "r7_failure": {
+    "group": "H0-A trusted semantic and G2 provenance controls",
+    "file": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl",
+    "line": 551,
+    "expression": "isempty(G._n06_h0a_validate_law(good, endpoints; law_id = law_id).errors)",
+    "evaluated": "(\"role_sign_mismatch:source\", \"role_sign_mismatch:load\", \"role_sign_mismatch:return\")",
+    "summary": "38 passed, 1 failed, 39 total"
+  },
+  "r7_raw": {
+    "stdout": {
+      "bytes": 9857,
+      "sha256": "c114cc2c4fced2acadbb5c822227daf1fff954e4e784150e0c213dafec5320bc"
+    },
+    "stderr": {
+      "bytes": 311,
+      "sha256": "73824bf33e176701c1e568a6af07c77665bad3bc89f6d60125ffc493efa8de45"
+    }
+  },
+  "claim_ceiling": [
+    "contract_only",
+    "schema_validation_only",
+    "actual_A_deferred_or_fail_closed_by_runtime_classification",
+    "no_UP2_total",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_physical",
+    "no_engineering",
+    "no_R_credit"
+  ]
+}

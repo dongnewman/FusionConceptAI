@@ -1,0 +1,66 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r4-v1",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {
+    "full_status_entry_count": 3656,
+    "status_sha256_utf8_lf": "762a759f6911eb3434bf68b0f3322eba011b1070a6a67cdd16d46c96b43049f0",
+    "matching_julia_desc_process_count": 0
+  },
+  "static_qa": {
+    "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G1/static_qa_diffusion_v1.py",
+    "exit_code": 0,
+    "status": "pass",
+    "julia_or_desc_executed": false,
+    "reported_source_sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "reported_test_sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "reported_fixture_sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"
+  },
+  "current_inputs": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"},
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {"bytes": 1582, "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {"bytes": 4499, "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"}
+  },
+  "semantic_checks": {
+    "source_payload_before_typed_users": true,
+    "candidate_owned_typed_u_K_f": true,
+    "K_positive_bounded_affine": true,
+    "K_exact_enclosure": {"lower": "2", "upper": "121/30", "midpoint_first_diagonal": "41/20"},
+    "equation": "-DIV(K(x)*GRAD(u(x)))=f(x)",
+    "typed_residual_sign": -1,
+    "unit_and_binding_checks": true,
+    "u_K_f_edit_identity_rebuild": true,
+    "public_validator_fixed_to_production": true,
+    "internal_fault_probe_shared_catch": true,
+    "public_checker_injection": false,
+    "program_exception_typed": true,
+    "known_gap_typed_terminal_deferred": true,
+    "contradictions_typed_fail_closed": true,
+    "malformed_probe_point_fail_closed": true,
+    "source_hash_unexpected_exception_separate": true,
+    "exception_message_substring_classification": false
+  },
+  "r3_erratum": {
+    "historical_repair_report_sha256": "0956b606e576ad8979fec115fd679f0f6465659f5be51f84e9c07786fbc9d44c",
+    "historical_repair_manifest_sha256": "0faed4835e7b52a9de28a5964bc30e695fdb99d642fc3710972d56d149ec44c2",
+    "historical_archive_overwritten": false,
+    "r4_review_pending": true,
+    "r4_accepted": false
+  },
+  "blocking_finding": {
+    "id": "R4-HASH-MANIFEST-FIXTURE-QA-CROSSOVER",
+    "status": "changes_requested",
+    "file": "docs/implementation/UP2-01-G1-DIFFUSION-V1/repair_r4/evidence_manifest.json",
+    "fixture": {"manifest_before": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641", "required_before": "1dba965964c8d9b4792ebb8f5dae68bb6fdb85b6f8d315d83a73a2bc5ae9a152", "manifest_after": "1dba965964c8d9b4792ebb8f5dae68bb6fdb85b6f8d315d83a73a2bc5ae9a152", "required_after": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+    "static_qa": {"manifest_before": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066", "required_before": "eb9f9587bfa745bbf31d9b135881cd9fbd4fef0efb442dd8ef3b8d5164002d33", "manifest_after": "b8fe5945558fefb22d6ec08c5ad7a5861f9e87d8dc50dea51a6ad8335bd36626", "required_after": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"},
+    "narrow_repair": "Add a hash-correction erratum or repair-r5 receipt; preserve R3 archive and do not change source/test/fixture.",
+    "serial_focused_ready": false
+  },
+  "claim_ceiling": ["contract_only_static", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_B00", "no_B04", "no_R01_R10"]
+}
+

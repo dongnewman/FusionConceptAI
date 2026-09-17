@@ -1,0 +1,64 @@
+{
+  "review_id": "AD-28-status-sync-r3-independent-review-r3",
+  "subject": "docs/implementation/AD-28/status_sync_r3/",
+  "revision_of": "docs/implementation/AD-28/independent_review_r2/report.json",
+  "verdict": "pass_limited",
+  "pass_scope": "accepted architecture, acyclic scheduling and evidence-boundary semantics only",
+  "claim_ceiling": "architecture_and_preparation_boundary_only_no_execution_no_provider_mesh_physical_or_R01-R10_credit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "baseline": {
+    "status_rows_current": 295,
+    "julia_desc_processes_initial": 0,
+    "julia_desc_processes_final": 0,
+    "julia_desc_invoked": false,
+    "r2_independent_review_verdict": "pass_limited",
+    "sol_verdict": "accepted_limited",
+    "status_sync_runtime": "not_run"
+  },
+  "status_sync_consistency": {
+    "accepted_scope_architecture_dag_evidence_only": true,
+    "status_sync_acceptance_true_limited_only": true,
+    "upstream_work_orders_unaccepted": true,
+    "up1_04a_vnext_unaccepted": true,
+    "up2_00_total_unaccepted": true,
+    "formal_b00_b04_unaccepted": true,
+    "complete_up1_04_unaccepted": true,
+    "up2_01_execution_unreleased": true,
+    "compiler_provider_mesh_engineering_physical_false": true,
+    "R01_R10_false": true,
+    "old_receipt_reuse_forbidden": true,
+    "actual_a_gaps_preserved": true
+  },
+  "task_manifest": {
+    "task_count": 31,
+    "dag_acyclic": true,
+    "new_nodes": {
+      "UP2-01-G1-DIFFUSION-V1": {"status": "planned", "scope_status": "proposal", "accepted": false},
+      "UP2-01-G2-METRIC-BOUNDARY-V1": {"status": "planned", "scope_status": "proposal", "accepted": false},
+      "UP2-01-G3-SOURCE-FEEDBACK-V1": {"status": "planned", "scope_status": "proposal", "accepted": false},
+      "UP1-04A-VNEXT": {"status": "planned", "scope_status": "proposal", "accepted": false},
+      "UP2-00": {"status": "planned", "scope_status": "accepted_limited", "accepted": false, "total_gate": "open"}
+    },
+    "gate_route": ["UP1-04A-VNEXT", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+    "up2_00_local_slice_not_total_acceptance": true
+  },
+  "actual_a": {
+    "G1": "no candidate-owned u/K(x)/f or typed GRAD/DIV law",
+    "G2": "no executable metric/mesh/basis/quadrature/face ownership",
+    "G3": "no external source/feedback authority",
+    "missing_authority": "terminal_deferred",
+    "n06_fixture_sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "V4_manufactured_screen_promoted": false
+  },
+  "qa": {
+    "validate_plan_exit": 0,
+    "task_dag_acyclic": true,
+    "json_parse": "pass",
+    "git_diff_check_exit": 0,
+    "protected_dirty_hash_recheck": "pass",
+    "status_sync_hash_recheck": "pass",
+    "julia_desc_execution": "not_run",
+    "write_scope": "docs/implementation/AD-28/independent_status_review_r3/ only"
+  }
+}

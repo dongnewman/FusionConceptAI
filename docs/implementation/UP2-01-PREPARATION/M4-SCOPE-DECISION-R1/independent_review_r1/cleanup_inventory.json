@@ -1,0 +1,22 @@
+{
+  "schema": "m4-scope-decision-r1-independent-review-cleanup",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1",
+  "inventory_status": "complete_no_cleanup",
+  "cleanup_action": "none",
+  "protected_author_scope": "all three author products, archive sidecars, AD55/AD56, dirty source/test files, old evidence and runs retained",
+  "ambiguous_paths": [],
+  "rows": [
+    {"path":"independent_review_r1/report.md","owner":"independent_review_r1","category":"review_delivery","existed_before":false,"before_sha256":null,"action":"retain","reason":"required independent review","existed_after":true,"after_sha256":"b7ee9eaa3e48633126e6846a3d2893700d4897496686edc2f89ad9fed4a2bf32"},
+    {"path":"independent_review_r1/manifest.json","owner":"independent_review_r1","category":"review_manifest","existed_before":false,"before_sha256":null,"action":"retain","reason":"review scope and verdict","existed_after":true,"after_sha256":"51fbcb174f4af8eda4faa3e6e1d305e252f06c24646769ad916604ced238ecc9"},
+    {"path":"independent_review_r1/validation_receipt.json","owner":"independent_review_r1","category":"validation_receipt","existed_before":false,"before_sha256":null,"action":"retain","reason":"static review receipts","existed_after":true,"after_sha256":"db0ed149294fa610df7ff4d3809b46c3c430894fa67df30f1d44bce15ec4a9c0"},
+    {"path":"independent_review_r1/cleanup_inventory.json","owner":"independent_review_r1","category":"cleanup_inventory","existed_before":false,"before_sha256":null,"action":"retain","reason":"self inventory; self hash excluded","existed_after":true,"after_sha256":"self_hash_excluded","self_hash_excluded":true},
+    {"path":"independent_review_r1/raw/**","owner":"independent_review_r1","category":"raw_sidecars","existed_before":false,"before_sha256":null,"action":"retain","reason":"append-only raw stdout/stderr evidence","existed_after":true,"after_sha256":"see validation_receipt.json"}
+  ],
+  "final_exact_owned_set": [
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r1/report.md",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r1/manifest.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r1/validation_receipt.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r1/cleanup_inventory.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/independent_review_r1/raw/**"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "UP2-G-I2-entry-audit-v1",
+  "audit_id": "UP2-00G-I2-PREPARATION-entry-audit-r2",
+  "supersedes": "entry_audit_r1",
+  "verdict": "changes_requested",
+  "status": "review_pending",
+  "accepted": false,
+  "ready_for_focused": false,
+  "read_only": true,
+  "runtime": {"julia": false, "desc": false, "postflight_repository_processes": 0},
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "status_lines_at_r1": 288, "r1_status_utf8_sha256": "9677C5034EA791CB1998E0F23D48651FE4EC51CC2DD16AB69926696B375F914F"},
+  "corrected_inputs": {
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": {"bytes": 29560, "sha256": "D84DB10E6332E5F0919F2E4D1F8BA1B910DC3C39D74CFBC7869E579FF5718FD9", "r1_sha256": "C01A27D6CB6A9B8AB688289F6FA012A98E3229FE20CDAB8F1AD0F7EDBB9E7141", "drift": "current source changed after R1; not independently accepted"},
+    "docs/implementation/UP2-00G-I1A-AUTHORITY-CONTEXT/evidence_manifest.json": {"bytes": 5545, "sha256": "F1BA10B4E5192C2F58D95F2E54BE397424F8E0DB3E33441C8EB11F0563F8F5FB"},
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": {"bytes": 577, "sha256": "E6C122CE7A0CA410A243C1F2D790FD0D9F0B0DBABB00BECDC7D092E7E3FCD9EC"},
+    "docs/implementation/UP1-04/independent_review_r12/acceptance.md": {"bytes": 3840, "sha256": "08D35ED3C64F3E087279EE7A1110ADD5C44BA504D9A614C4EA86D206C0646C9F"},
+    "docs/implementation/UP1-04/independent_review_r12/evidence_manifest.json": {"bytes": 4775, "sha256": "2F584705C46A3066469D8C2F78525B0D8F4379A50D8FA0D444CAC24672C00692"}
+  },
+  "unchanged_relevant_inputs": {
+    "docs/v4_multitopology_generation/README.md": "66681D071A4124CBA0E8E635011FEC8CBFFE0AF1B93A453782D63E251D613A46",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "12484C7C88E48B36358EB1CF308A414F9EA7A11E869B813BF391B0638BE0C829",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "A7BFFC313DFEF35C7E302DD251709491A4A91E15D37A275D92FD6FE9D5ACA28C",
+    "docs/v4_multitopology_generation/up0_02_protocol.json": "6904EA161A27FF007A071697F7740AD923CE79D05E23433D356460546ECD7BFB",
+    "docs/implementation/AD-26/acceptance.md": "8388B9CF831E310F2A8DF800C635082FE408E0544AB8FEA92AB844A512050C07",
+    "docs/implementation/AD-26/evidence_manifest.json": "515C2B59C9C5B2C936E46E80C27589156A265595851F970221FEC23DCAFD7B38",
+    "docs/implementation/UP2-00G-I1B-PREPARATION/source_matrix_r1/source_matrix.json": "EC980F1DAB8E87BB453A06C9FFD304B7514A3F8B4B05C6969C8C00142A53134A",
+    "docs/implementation/UP1-04/acceptance.md": "012B7DD7D84D97254A788AD2F322A0829D8E9F10D74E2B947A944408AC5E3245",
+    "docs/implementation/UP1-04/evidence_manifest.json": "47F4F8A578954358A2CD9AD6C105A5CBBBDEA10312A68B4A982697EDF8FA7237"
+  },
+  "qa": {"json_parse": "pending_final_receipt", "control_scan": "pending_final_receipt", "validate_plan": "pending_final_receipt", "git_diff_check": "pending_final_receipt"},
+  "claim_ceiling": ["schema_validation_only", "contract_only"],
+  "credits": {"b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false}
+}

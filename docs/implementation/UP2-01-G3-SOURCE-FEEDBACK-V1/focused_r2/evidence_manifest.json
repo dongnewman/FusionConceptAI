@@ -1,0 +1,19 @@
+{
+  "manifest_kind": "up2_01_g3_source_feedback_v1_focused_r2",
+  "status": "executor_launcher_failed",
+  "accepted": false,
+  "review_pending": true,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "started_once": true,
+  "exit_code": null,
+  "raw_outputs": {"stdout": {"captured": false}, "stderr": {"captured": false}},
+  "launcher_error": "launcher_error.txt",
+  "input_hashes": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "111d5a2ceb9f0364c1cc7efda26d1bb9013577862ac30bd00ff9f3321c5c2642"
+  },
+  "postflight": {"julia_desc_after": 0, "target_hashes_unchanged": true},
+  "write_scope": ["docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/focused_r2/"]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "H0A-repair-r14",
+  "status": "repair_static_complete",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": {"julia": "not_run", "desc": "not_run", "focused": "not_run"},
+  "changes": {
+    "source": ["added bounded _n06_h0a_exact_match helper", "repaired flow entry, role port, G1 source occurrence, and source-direction port joins"],
+    "test": ["added single/missing/ambiguous helper controls", "added zero/multiple G1 source validator controls"]
+  },
+  "classification": {"zero_match": "existing gap/terminal_deferred semantics", "single_match": "source-derived item only", "multiple_match": "typed contradiction/fail_closed", "unexpected_exception": "program_exception"},
+  "before_after": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {"before_bytes": 57046, "before_sha256": "f40e626bcdb8c981bb9355dbde49dc7f9302f5db558a0e758fdcc5b98681b251", "after_bytes": 57924, "after_sha256": "2d38d9fc7ae42c8bf7a77bea7ad99557e390a321e26f5d918be1996443a629ff"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {"before_bytes": 38567, "before_sha256": "b262eb32818666abf1a5a070ddd543d47078fadb7763b29e5f1b16659192a144", "after_bytes": 39270, "after_sha256": "b0e626d73c7246c9308c1ff8b315866e9c95dea4dd50aba796959d4092b31756"}
+  },
+  "protected_inputs": {
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"},
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": {"bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"}
+  },
+  "static_qa": {"json_fixture_parse": true, "protected_hashes_match": true, "forbidden_first_generator_pattern": false, "negative_controls_present": true},
+  "claim_ceiling": ["contract_only", "schema_validation_only", "actual_A_deferred_or_fail_closed_by_runtime_classification", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R_credit"],
+  "next_gate": "Different Luna R14 static precheck, then separately authorized focused runtime."
+}

@@ -1,0 +1,47 @@
+{
+  "task_id": "AD48-F0-G3-SOURCE-AUTHORITY-FACTORY-root-acceptance-r3",
+  "schema_version": "AD48-F0-root-acceptance-r3-v1",
+  "decision": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "g3_source_stage_factory_software_contract_only",
+  "review_verdicts": {
+    "independent_review_r1": "changes_requested",
+    "independent_review_r2": "changes_requested",
+    "independent_review_r3": "pass_limited"
+  },
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "products": [
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":31581,"sha256":"1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4"},
+    {"path":"test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl","bytes":14904,"sha256":"02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"}
+  ],
+  "checks": {
+    "focused_julia": {"passed":320,"total":320,"exit_code":0},
+    "exact_real_input_probe": {"passed":99,"total":99,"exit_code":0},
+    "g3_regressions": {"passed":302,"total":302,"exit_codes":[0,0,0]},
+    "r3_product_hash_double_sample": true,
+    "r3_json_parse": {"checked":14,"bad":0},
+    "julia_or_desc_run_by_root_acceptance": false
+  },
+  "gate_effect": {
+    "fresh_s2_unlocked": true,
+    "old_s2_absence_history_overwritten": false,
+    "s3_locked": true,
+    "fresh_w1_locked": true,
+    "w2_locked": true,
+    "ad46_identity_input_freeze_join_materialization_locked": true
+  },
+  "claims": {
+    "trusted_identity": false,
+    "final_candidate": false,
+    "final_candidate_package": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "physics": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "self_hash_excluded": true
+}

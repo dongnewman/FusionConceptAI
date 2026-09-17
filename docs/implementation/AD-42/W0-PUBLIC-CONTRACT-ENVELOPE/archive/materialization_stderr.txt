@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "D:\006-Programing\LMC\FusionConceptAI\.ad42_w0_materialize_tmp.py", line 221, in <module>
+    "frozen_inputs": [file_record(registry_path, "five_field_GenomeContractRef"), file_record(qualified_path, "QualifiedRefV1"), file_record(g1_path, "G1 V1 schema/profile source"), file_record(g2_path, "G2MB V1 schema/profile source"), file_record(ad36_path, "AD-36 evidence-sidecar policy")],
+                                                                                                                                                                                                                                             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\006-Programing\LMC\FusionConceptAI\.ad42_w0_materialize_tmp.py", line 54, in file_record
+    raw = path.read_bytes()
+  File "D:\Users\Newman\anaconda3\Lib\pathlib\_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "D:\Users\Newman\anaconda3\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\AD-36\\acceptance\\acceptance.md'

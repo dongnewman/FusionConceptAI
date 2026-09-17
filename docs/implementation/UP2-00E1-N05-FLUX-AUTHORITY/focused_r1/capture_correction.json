@@ -1,0 +1,18 @@
+{
+  "record_kind": "r1_capture_correction",
+  "reason": "PowerShell automatic variable PID is read-only; original process_receipt.pid=38172 identifies wrapper, not Julia",
+  "wrapper_pid": 38172,
+  "julia_main_pid": 61360,
+  "julia_main_creation_observed": "2026-09-14T11:01:23+08:00",
+  "julia_child_pids_observed": [
+    17604,
+    66712
+  ],
+  "start": "2026-09-14T11:01:23.3229082+08:00",
+  "end": "2026-09-14T11:02:17.5665542+08:00",
+  "real_exit": 1,
+  "classification": "program_exception/test_harness_field_mismatch",
+  "stdout_sha256": "852078e62f0116e797869cb9e2ed865bd4717aa12ca8c67f5fe3ab99dff1fc5e",
+  "stderr_sha256": "4c131bf7eb3cf87d2ab3df21b418fd2465246ef245c0a7da76606907e2297cf0",
+  "historical_process_receipt_preserved": true
+}

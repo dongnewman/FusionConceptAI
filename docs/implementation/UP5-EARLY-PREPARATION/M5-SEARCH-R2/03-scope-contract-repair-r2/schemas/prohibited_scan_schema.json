@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5SearchR2ProhibitedScanV2",
+  "title": "M5SearchR2ProhibitedScanV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "registry_version", "tokens_sha256", "tokens", "tokenization", "scan_scope", "excluded_scope", "input_refs", "input_bundle_sha256", "algorithm_sha256", "scan_status", "matches", "scan_receipt_sha256", "action"],
+  "properties": {
+    "schema": {"const": "M5SearchR2ProhibitedScanV2"}, "registry_version": {"const": "v2"}, "tokens_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "tokens": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "tokenization": {"const": "case_insensitive_exact_token_or_claim_boundary_v2"}, "scan_scope": {"const": ["structured_execution_claim_fields", "publication_claim_fields", "raw_claim_metadata"]}, "excluded_scope": {"const": ["contract_prose", "review_prose", "schema_descriptions", "explanatory_nonclaim_text"]}, "input_refs": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["path", "sha256", "bytes"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "bytes": {"type": "integer", "minimum": 0}}}}, "input_bundle_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "algorithm_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "scan_status": {"enum": ["not_executed", "pass", "reject", "incomplete"]}, "matches": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["token", "path", "field", "offset"], "properties": {"token": {"type": "string"}, "path": {"type": "string"}, "field": {"type": "string"}, "offset": {"type": "integer", "minimum": 0}}}}, "scan_receipt_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}, "action": {"const": "missing_or_reject_claim_and_set_review_pending_no_publish"}
+  },
+  "allOf": [{"if": {"properties": {"scan_status": {"const": "not_executed"}}}, "then": {"properties": {"input_bundle_sha256": {"type": "null"}, "algorithm_sha256": {"type": "null"}, "scan_receipt_sha256": {"type": "null"}, "matches": {"maxItems": 0}}}}, {"if": {"properties": {"scan_status": {"enum": ["pass", "reject"]}}}, "then": {"properties": {"input_bundle_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "algorithm_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "scan_receipt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}}}]
+}

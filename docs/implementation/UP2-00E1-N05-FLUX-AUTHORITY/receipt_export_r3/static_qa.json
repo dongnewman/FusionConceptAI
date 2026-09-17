@@ -1,0 +1,28 @@
+{
+  "schema": "static-repair-qa-v1",
+  "repair_round": "R3",
+  "json_parse": true,
+  "checks": {
+    "file_read_json3": true,
+    "trusted_file_overload": true,
+    "candidate_forgery": true,
+    "package_forgery": true,
+    "e0_forgery": true,
+    "declaration_forgery": true,
+    "source_forgery": true,
+    "absent_hash_forgery": true,
+    "missing_row_forgery": true,
+    "checker_rebuilds_actual": true,
+    "checker_no_expected_error": true,
+    "frozen_r4_source": true,
+    "frozen_r4_test": true,
+    "old_r1_archive": true
+  },
+  "git_diff_check_exit": 0,
+  "git_diff_check_output": [],
+  "exact_julia_desc_process_name_sweep": 0,
+  "julia_execution": "not_run",
+  "desc_execution": "not_run",
+  "claim_ceiling": "contract_only",
+  "independent_precheck": "required_before_focused_run"
+}

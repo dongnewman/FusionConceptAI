@@ -1,0 +1,146 @@
+{
+  "fixture_id": "UP1-FX-G3-001",
+  "candidate_refs": {
+    "bundle": {"uri": "fusionconceptai://candidate/UP1-FX-G3-001", "version": "v5"},
+    "realization": {"uri": "fusionconceptai://candidate/UP1-FX-G3-001", "version": "v5"},
+    "control": {"uri": "fusionconceptai://candidate/UP1-FX-G3-001", "version": "v5"},
+    "binding": {"uri": "fusionconceptai://candidate/UP1-FX-G3-001", "version": "v5"}
+  },
+  "version_axes": {
+    "bundle": {
+      "payload_schema": {"uri":"fusionconceptai://GenomeV5/G3/bundle/payload-schema","version":"v5"},
+      "canonicalization_profile": {"uri":"fusionconceptai://GenomeV5/G3/bundle/canonicalization-profile","version":"v5"},
+      "applicability_profile": {"uri":"fusionconceptai://GenomeV5/G3/bundle/applicability-profile","version":"v5"},
+      "evidence_receipt": {"uri":"fusionconceptai://GenomeV5/G3/bundle/evidence-receipt","version":"v2"}
+    },
+    "realization": {
+      "payload_schema": {"uri":"fusionconceptai://GenomeV5/G3/realization/payload-schema","version":"v5"},
+      "canonicalization_profile": {"uri":"fusionconceptai://GenomeV5/G3/realization/canonicalization-profile","version":"v5"},
+      "applicability_profile": {"uri":"fusionconceptai://GenomeV5/G3/realization/applicability-profile","version":"v5"},
+      "evidence_receipt": {"uri":"fusionconceptai://GenomeV5/G3/realization/evidence-receipt","version":"v2"}
+    },
+    "control": {
+      "payload_schema": {"uri":"fusionconceptai://GenomeV5/G3/control/payload-schema","version":"v5"},
+      "canonicalization_profile": {"uri":"fusionconceptai://GenomeV5/G3/control/canonicalization-profile","version":"v5"},
+      "applicability_profile": {"uri":"fusionconceptai://GenomeV5/G3/control/applicability-profile","version":"v5"},
+      "evidence_receipt": {"uri":"fusionconceptai://GenomeV5/G3/control/evidence-receipt","version":"v2"}
+    },
+    "binding": {
+      "payload_schema": {"uri":"fusionconceptai://GenomeV5/G3/binding/payload-schema","version":"v2"},
+      "canonicalization_profile": {"uri":"fusionconceptai://GenomeV5/G3/binding/canonicalization-profile","version":"v5"},
+      "applicability_profile": {"uri":"fusionconceptai://GenomeV5/G3/binding/applicability-profile","version":"v5"},
+      "evidence_receipt": {"uri":"fusionconceptai://GenomeV5/G3/binding/evidence-receipt","version":"v2"}
+    }
+  },
+  "resource_port_kinds": ["effort", "flow", "load", "return", "heat_sink", "material"],
+  "required_resource_paths": ["source_power", "load_power", "return_power", "heat_rejection"],
+  "signal_port_kinds": ["sensor", "actuator", "fault_detection"],
+  "ledger_domains": ["energy", "material", "thermal"],
+  "fault_modes": ["open_circuit", "sensor_dropout", "actuator_stuck"],
+  "feedback_targets": ["G1", "G2"],
+  "construction": {
+    "resources": [
+      {"id":"source_effort","kind":"effort","direction":"out","unit":[1,2,-3,-1,0,0,0],"account_id":"source_effort"},
+      {"id":"source_flow","kind":"flow","direction":"out","unit":[0,0,0,1,0,0,0],"account_id":"source_power"},
+      {"id":"load","kind":"load","direction":"in","unit":[1,2,-3,0,0,0,0],"account_id":"load_power"},
+      {"id":"return","kind":"return","direction":"in","unit":[0,0,0,1,0,0,0],"account_id":"return_power"},
+      {"id":"heat_sink","kind":"heat_sink","direction":"out","unit":[1,2,-3,0,0,0,0],"account_id":"heat_rejection"},
+      {"id":"material","kind":"material","direction":"out","unit":[0,0,0,0,0,1,0],"account_id":"material_flow"}
+    ],
+    "accounts": [
+      {"id":"source_effort","domain":"energy","unit":[1,2,-3,-1,0,0,0],"owner":"source_owner"},
+      {"id":"source_power","domain":"energy","unit":[1,2,-3,0,0,0,0],"owner":"source_owner"},
+      {"id":"load_power","domain":"energy","unit":[1,2,-3,0,0,0,0],"owner":"load_owner"},
+      {"id":"return_power","domain":"energy","unit":[1,2,-3,0,0,0,0],"owner":"return_owner"},
+      {"id":"heat_rejection","domain":"thermal","unit":[1,2,-3,0,0,0,0],"owner":"heat_owner"},
+      {"id":"material_flow","domain":"material","unit":[0,0,0,0,0,1,0],"owner":"material_owner"}
+    ],
+    "entries": [
+      {"id":"effort-entry","account_id":"source_effort","port_id":"source_effort","component_id":"source","coefficient":"1/1","unit":[1,2,-3,-1,0,0,0],"effect":"source"},
+      {"id":"source-entry","account_id":"source_power","port_id":"source_flow","component_id":"source","coefficient":"10/1","unit":[1,2,-3,0,0,0,0],"effect":"source"},
+      {"id":"load-entry","account_id":"load_power","port_id":"load","component_id":"load","coefficient":"-8/1","unit":[1,2,-3,0,0,0,0],"effect":"load"},
+      {"id":"return-entry","account_id":"return_power","port_id":"return","component_id":"source","coefficient":"-2/1","unit":[1,2,-3,0,0,0,0],"effect":"return"},
+      {"id":"heat-entry","account_id":"heat_rejection","port_id":"heat_sink","component_id":"load","coefficient":"-1/1","unit":[1,2,-3,0,0,0,0],"effect":"heat_rejection"},
+      {"id":"material-in","account_id":"material_flow","port_id":"material","component_id":"load","coefficient":"1/1","unit":[0,0,0,0,0,1,0],"effect":"material_in"},
+      {"id":"material-out","account_id":"material_flow","port_id":"material","component_id":"load","coefficient":"-1/1","unit":[0,0,0,0,0,1,0],"effect":"material_out"}
+    ],
+    "closures": [
+      {"id":"effort-balance","domain":"energy","account_ids":["source_effort"],"expected_balance":"1/1"},
+      {"id":"energy-balance","domain":"energy","account_ids":["source_power","load_power","return_power"],"expected_balance":"0/1"},
+      {"id":"thermal-sink","domain":"thermal","account_ids":["heat_rejection"],"expected_balance":"-1/1"},
+      {"id":"material-balance","domain":"material","account_ids":["material_flow"],"expected_balance":"0/1"}
+    ],
+    "components": [
+      {"id":"source","kind":"power_source","resource_port_ids":["source_effort","source_flow","return"],"capacity":"10/1","capacity_unit":[1,2,-3,0,0,0,0],"material_id":"copper","manufacturing_process_id":"winding","passive":false,
+       "initial_states":[{"id":"source_current","unit":[0,0,0,1,0,0,0],"value":"0/1"}],
+       "events":[{"id":"source_init","trigger":"initial","time":"0/1","action":"enable"}]},
+      {"id":"load","kind":"thermal_load","resource_port_ids":["load","heat_sink","material"],"capacity":"8/1","capacity_unit":[1,2,-3,0,0,0,0],"material_id":"copper","manufacturing_process_id":"machining","passive":true,
+       "initial_states":[{"id":"load_temperature","unit":[0,0,0,0,0,0,0],"value":"0/1"}],
+       "events":[{"id":"load_init","trigger":"initial","time":"0/1","action":"enable"}]}
+    ],
+    "materials": [
+      {"id":"copper","property":"conductivity","lower":"1/1","upper":"2/1","unit":[1,2,-3,0,0,0,0]}
+    ],
+    "manufacturing": [
+      {"id":"winding","parameter":"thickness","lower":"1/10","upper":"1/2","unit":[0,0,0,0,0,0,0]},
+      {"id":"machining","parameter":"tolerance","lower":"1/100","upper":"1/10","unit":[0,0,0,0,0,0,0]}
+    ],
+    "signals": [
+      {"id":"field_sensor","kind":"sensor","direction":"in","unit":[0,0,0,0,0,0,0],"account_id":"field_signal"},
+      {"id":"source_command","kind":"actuator","direction":"out","unit":[0,0,0,0,0,0,0],"account_id":"control_signal"},
+      {"id":"fault_detect","kind":"fault_detection","direction":"in","unit":[0,0,0,0,0,0,0],"account_id":"fault_signal"}
+    ],
+    "faults": [
+      {"id":"open_fault","target_id":"controller","mode":"open_circuit","safe_action":"trip","detection_signal_id":"fault_detect","deadline":"1/1"}
+    ],
+    "controllers": [
+      {"id":"controller","sensor_port_ids":["field_sensor"],"actuator_port_ids":["source_command"],"actuator_resource_port_ids":["source_flow"],"fault_ids":["open_fault"],
+       "initial_states":[{"id":"controller_state","unit":[0,0,0,0,0,0,0],"value":"0/1"}],
+       "events":[{"id":"controller_init","trigger":"initial","time":"0/1","action":"enable"}]}
+    ],
+    "control_plan": {"controller_ids":["controller"],"signal_port_ids":["field_sensor","source_command","fault_detect"],"fault_ids":["open_fault"]},
+    "links": [
+      {"id":"source-loop","controller_id":"controller","sensor_port_id":"field_sensor","actuator_port_id":"source_command","resource_port_id":"source_flow","fault_id":"open_fault"}
+    ],
+    "feedback": [
+      {"id":"g1-loss","target_layer":"G1","target_contract":{"uri":"fusionconceptai://GenomeV5/G1/feedback-target","version":"v5","schema_hash":null,"canonicalization_hash":null,"compatibility_profile":null,"authority_status":"external_ref_required"},"channel":"loss","unit":[1,2,-3,0,0,0,0],"kind":"loss","source_id":"source_flow"},
+      {"id":"g2-thermal","target_layer":"G2","target_contract":{"uri":"fusionconceptai://GenomeV5/G2/feedback-target","version":"v5","schema_hash":null,"canonicalization_hash":null,"compatibility_profile":null,"authority_status":"external_ref_required"},"channel":"heat","unit":[1,2,-3,0,0,0,0],"kind":"thermal_load","source_id":"heat_sink"}
+    ]
+  },
+  "negative_cases": [
+    "missing_source_effort_or_flow",
+    "missing_return_path",
+    "missing_heat_sink",
+    "capacity_exceeded",
+    "unit_mismatch",
+    "shared_owner_multiple_accounts_allowed",
+    "passive_component_source",
+    "open_loop_control",
+    "fault_target_or_detection_missing",
+    "duplicate_control_plan_ids",
+    "provider_no_match_terminal_deferred",
+    "foreign_schema_or_axis_ref_rejected",
+    "wrong_candidate_ref_fail_closed",
+    "wrong_version_axis_fail_closed",
+    "feedback_target_role_mismatch_fail_closed",
+    "feedback_target_authority_required",
+    "synthetic_equality_only"
+  ],
+  "negative_mutations": [
+    {"id":"missing_source_effort_or_flow","kind":"remove_resource","target":"source_flow"},
+    {"id":"missing_account_entry","kind":"replace_entry_and_closure_account","entry_target":"source-entry","closure_target":"energy-balance","account_id":"missing_account","replace_account_id":"source_power"},
+    {"id":"missing_heat_sink","kind":"remove_resource","target":"heat_sink"},
+    {"id":"missing_return_path","kind":"remove_entry","target":"return"},
+    {"id":"capacity_exceeded","kind":"replace_coefficient","target":"source-entry","value":"11/1"},
+    {"id":"unit_mismatch","kind":"replace_port_unit","target":"load","unit":[1,2,-3,-1,0,0,0]},
+    {"id":"passive_component_source","kind":"make_passive","target":"source"},
+    {"id":"open_loop_control","kind":"remove_links","target":"source-loop"},
+    {"id":"fault_target_or_detection_missing","kind":"replace_fault_refs","target":"open_fault"},
+    {"id":"duplicate_control_plan_ids","kind":"duplicate_plan_ids","target":"controller"},
+    {"id":"wrong_candidate_ref_fail_closed","kind":"replace_candidate_ref","target":"realization","value":"fusionconceptai://candidate/FORGED"},
+    {"id":"wrong_version_axis_fail_closed","kind":"replace_axis_ref","target":"realization.payload_schema","value":"fusionconceptai://GenomeV5/G3/realization/payload-schema/forged"},
+    {"id":"feedback_target_role_mismatch_fail_closed","kind":"replace_feedback_target","target":"g1-loss","value":"fusionconceptai://GenomeV5/G2/other-role"},
+    {"id":"feedback_target_authority_required","kind":"external_authority_missing","target":"g1-loss"},
+    {"id":"synthetic_equality_only","kind":"matching_supplied_ref","target":"g1-loss","expected":"authority_gap_retained"}
+  ]
+}

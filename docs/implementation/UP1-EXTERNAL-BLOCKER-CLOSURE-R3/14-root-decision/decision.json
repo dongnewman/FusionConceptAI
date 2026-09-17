@@ -1,0 +1,112 @@
+{
+  "schema": "UP1.external-blocker-closure-r3.root-decision-draft.v1",
+  "decision_status": "decision_draft_pending_root_review",
+  "proposed_verdict": "fail_limited",
+  "claim_ceiling": "offline_non_authoritative_software_capability_increment_only",
+  "root_signature": null,
+  "root_reviewer": null,
+  "parent_goal_closed": false,
+  "dag_mutated": false,
+  "r01_r10_mutated": false,
+  "new_ad_created": false,
+  "external": {
+    "usable_external_inputs": 0,
+    "typed_absent": "26/26",
+    "new_ad": false,
+    "s3_rerun": false,
+    "state": "typed_absent -> terminal_deferred -> no_publish"
+  },
+  "software_increment": {
+    "scope": "offline_local_software_prototype",
+    "focused_runs": 2,
+    "focused_tests_per_run": 24,
+    "focused_exit_codes": [0, 0],
+    "host_capability_skips_per_run": 1,
+    "vector_rows": 26,
+    "vector_replay_exact": true,
+    "formal_credit": "none",
+    "authority_credit": false,
+    "no_publish": true
+  },
+  "remaining_blockers": [
+    {
+      "id": "G-EXT-26",
+      "severity": "P0",
+      "status": "blocked",
+      "fact": "26/26 external inputs, owners, or authoritative responses remain typed_absent"
+    },
+    {
+      "id": "P1-01",
+      "severity": "P1",
+      "status": "open",
+      "vectors": ["R02", "R03", "R04", "R05", "R06", "R07", "R24", "R25", "D01"],
+      "fact": "claimed production-predicate coverage is not established for these rows"
+    },
+    {
+      "id": "P2-01",
+      "severity": "P2",
+      "status": "open",
+      "vector": "R22",
+      "fact": "predicate call uses a reconstructed clean deferred fixture, not the original mutated wire envelope"
+    },
+    {
+      "id": "G-WIN-LINK",
+      "severity": "P2",
+      "status": "test_scope_deferred",
+      "fact": "Windows symlink/reparse fixture remains skipped under host privilege limitation"
+    },
+    {
+      "id": "G-EXT-AUTH",
+      "severity": "P0",
+      "status": "blocked",
+      "fact": "no external authority, authenticated trust/channel material, or independent authority receipt"
+    },
+    {
+      "id": "G-PUBLISH",
+      "severity": "P0",
+      "status": "blocked",
+      "fact": "no authority or publication lane; no_publish remains true"
+    }
+  ],
+  "required_next_steps": [
+    "Keep 26/26 typed_absent and no_publish until real external inputs and owners exist.",
+    "Repair or replace the semantic harness so R02-R07, R24, R25, and D01 reach owning production predicates.",
+    "Replay R22 against its original mutated wire envelope and production result layer.",
+    "Rerun the Windows symlink/reparse case with required privilege and preserve skip/pass distinction.",
+    "Obtain a separate root-level authority review before any promotion, DAG change, R01-R10 change, AD creation, or publication claim."
+  ],
+  "evidence": [
+    {
+      "path": "../00-external-delta-scan/scan_summary.md",
+      "sha256": "828c7d0184c131ff1b51908eaa1e1c96c130329779090b715dcfd617100c9fa2"
+    },
+    {
+      "path": "../13-vector-harness-repair-r1/README.md",
+      "sha256": "de3b419e8be740df0ec290f3958b65b890c345201d919efb950798070de44751"
+    },
+    {
+      "path": "../13-vector-harness-repair-r1/run-receipt.md",
+      "sha256": "73b3da4ba29980ca4d651a1e91a162c4a20611787882268c947c754f3d49c972"
+    },
+    {
+      "path": "../13-vector-harness-repair-r1/vector-receipt.json",
+      "sha256": "6fcd6e390274e75f9e18bcdc24f9535373f47430bd4547cca35697b325a1a389"
+    },
+    {
+      "path": "../reviews/13-vector-harness-independent-review-r1/review.md",
+      "sha256": "ea75862046ea560c8ba6b7f2077bc33a208c80273c16a9c0058bef30a3e9e70d"
+    },
+    {
+      "path": "../reviews/13-vector-harness-independent-review-r1/freeze_manifest.json",
+      "sha256": "af920a3a5ad3cdf0806473e935d6407a4445b9cc53c07c178054f9ba0d048c37"
+    },
+    {
+      "path": "../reviews/13-vector-harness-independent-review-r1/receipt-manifest.json",
+      "sha256": "e3a086130db47c5cf376bbfe9b1cb7d722e5a2a2f63429aba7dd8a754ed65208"
+    }
+  ],
+  "hash_policy": {
+    "algorithm": "SHA-256",
+    "self_hash_excluded": ["manifest.json", "hashes.sha256"]
+  }
+}

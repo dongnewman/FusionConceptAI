@@ -1,0 +1,80 @@
+{
+  "record_kind": "AD-29_command_receipts",
+  "status": "proposal",
+  "resolution": "review_pending",
+  "generated_at": "2026-09-14T19:41:29.7212085Z",
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "worktree": {
+    "command": "git status --short --untracked-files=all",
+    "exit_code": 0,
+    "output_sha256": "6b5ae355a8736a786a1375dbad6b2e1f3c47e1c4d2826af1dec2251b398321c9",
+    "entry_count": 3607,
+    "note": "pre-existing dirty worktree preserved; no unrelated files changed by this archive"
+  },
+  "commands": [
+    {
+      "command": "git rev-parse HEAD",
+      "exit_code": 0,
+      "stdout": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "stdout_sha256": "dad7e36e050bedcd7f9d218f0103a7c62834028ef0858ea2d8cb7e48182a3a0b"
+    },
+    {
+      "command": "Get-FileHash on three environment audit reports and replay command receipts",
+      "exit_code": 0,
+      "result": "hashes recorded in evidence_manifest.json"
+    },
+    {
+      "command": "Get-Content task_manifest.json | ConvertFrom-Json",
+      "exit_code": 0,
+      "task_count": 31,
+      "requirements": "R01,R02,R03,R04,R05,R06,R07,R08,R09,R10",
+      "dag_fields": "unchanged"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 1,
+      "stdout_sha256": "9ef4e9e376b815d41844a56f3362d3cc8ad7a80f02516ad3de185b60f10ac15a",
+      "stderr_sha256": "e3b0c44298fc1c1499b934ca495991b7852b855",
+      "classification": "expected transient missing-link failure before evidence_manifest.json was created"
+    },
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "stdout_sha256": "ab335e38200bc441891c7229545f395ea657e665026fea013b7b38523d3ce6a5",
+      "stderr_sha256": "e3b0c44298fc1c1499b934ca495991b7852b855",
+      "checks": "pass",
+      "task_count": 31,
+      "task_dag_acyclic": true,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 354,
+      "snapshot_files_checked": 16
+    },
+    {
+      "command": "Get-Process julia,juliaup,desc,freegs,vmec,vmex,cql3d,python",
+      "exit_code": 0,
+      "output": "[]",
+      "output_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "result": "no matching process observed after documentation validation"
+    }
+  ],
+  "no_execution": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false,
+    "environment_mutation": false
+  },
+  "claim_ceiling": [
+    "contract_only_static",
+    "historical_receipts_only",
+    "no_current_provider",
+    "no_mesh",
+    "no_physics",
+    "no_engineering",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "self_hash_excluded": true
+}

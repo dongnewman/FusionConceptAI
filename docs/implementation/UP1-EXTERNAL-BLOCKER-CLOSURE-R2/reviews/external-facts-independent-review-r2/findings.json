@@ -1,0 +1,43 @@
+{
+  "schema": "UP1.R2.external-facts-independent-review-r2.findings.v1",
+  "verdict": "pass_limited",
+  "claim_ceiling": "preparation_only/screen_only",
+  "findings": [],
+  "closed_observations": [
+    {
+      "id": "F1",
+      "resolution": "closed",
+      "summary": "10 dirty patch digest now equals exact raw git diff bytes; cached diff is separately recorded and no normalization is claimed"
+    },
+    {
+      "id": "F2",
+      "resolution": "closed",
+      "summary": "AD-56 locator is corrected to an exact file with bytes/SHA; bookkeeping-only boundary is preserved"
+    }
+  ],
+  "false_authority_admission_found": false,
+  "confirmed": {
+    "crosswalk_rows": 26,
+    "crosswalk_all_typed_absent": true,
+    "crosswalk_production_usable_count": 0,
+    "scan_records": 5468,
+    "scan_all_nonusable": true,
+    "scan_content_emitted": 0,
+    "scan_sensitive_unopened": 0,
+    "new_real_inputs": [],
+    "changed_inputs": false,
+    "no_new_ad": true,
+    "no_s3_rerun": true,
+    "binary_hashes": "4/4",
+    "lock_hashes": "4/4",
+    "unique_certificates": 301,
+    "store_entries": 590,
+    "project_candidate_count": 0,
+    "ad56_locator_kind": "file",
+    "ad56_authority_status": "bookkeeping_only_not_authority",
+    "network_accessed": false,
+    "credentials_accessed": false,
+    "private_key_material_read": false,
+    "store_mutation_performed": false
+  }
+}

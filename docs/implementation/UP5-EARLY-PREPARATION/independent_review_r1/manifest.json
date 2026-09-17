@@ -1,0 +1,37 @@
+{
+  "manifest_version": "UP5-EARLY-PREPARATION-independent-review-r1-v1",
+  "record_kind": "independent_preparation_review",
+  "task_id": "UP5-EARLY-PREPARATION",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "verdict": "changes_requested",
+  "early_preparation_only": true,
+  "claim_ceiling": "contract_only",
+  "up5_status": "pending",
+  "credits": {"up5": false, "search": false, "provider": false, "solver": false, "engineering": false, "physical": false, "r01_r10": false},
+  "execution_policy_verified": {"merge": false, "saturation": false, "qd": false, "mcts": false, "search_expansion": false, "julia": false, "desc": false, "provider": false, "mesh": false, "solver": false, "physical": false, "registry_edit": false, "task_manifest_edit": false},
+  "json_catalog_counts": {"rules": 12, "conditions": 18, "counterexamples": 10, "typed_edits": 10, "search_budget_templates": 1, "manifest": 1},
+  "checks": {"json_valid": true, "unique_ids": true, "rule_condition_ids_exist": true, "counterexample_rule_ids_exist": true, "counterexample_condition_ids_exist": true, "manifest_input_paths_exist": true, "deliverable_paths_exist": true, "relative_link_errors": 0, "task_scratch_cache": false, "scoped_diff_check": true, "no_concrete_identity_or_provider_hash": true, "no_execution_run": true},
+  "blocking_findings": [
+    {"id": "CX04-CONDITION-GAP", "path": "rewrite_counterexamples.json", "rule": "RW-EFFECTFUL-NO-CSE", "counterexample": "CX-04", "violated_condition": "C-PURE-LOCAL", "declared_rule_conditions": ["C-NEVER-AUTOMATIC"], "repair": "bind the counterexample to the declared guard or add an explicit effect/purity gate with guard semantics"},
+    {"id": "CX07-CONDITION-GAP", "path": "rewrite_counterexamples.json", "rule": "RW-EXACT-NEG-SUB", "counterexample": "CX-07", "violated_condition": "C-SAME-METRIC-CHART", "declared_rule_conditions": ["C-TYPE-SAME-SHAPE", "C-UNIT-EXACT", "C-PURE-LOCAL", "C-TIME-EFFECT-CLOSED"], "repair": "add metric/frame/orientation applicability or change the counterexample to a declared condition"},
+    {"id": "PROOF-GATE-COVERAGE", "path": "rewrite_rule_catalog.json", "rules": ["RW-EXACT-ADD-ZERO", "RW-EXACT-MUL-ONE", "RW-EXACT-ADD-COMMUTE", "RW-EXACT-NEG-SUB"], "repair": "make boundary, closure, ownership and orientation proof obligations explicit applicability conditions or narrow the obligations"},
+    {"id": "UNTYPED-PENDING-ARCHIVE", "path": "search_budget_archive_template.json", "fields": ["identity_fields", "candidate_or_prefix_ref", "proposal_record", "execution_record"], "repair": "replace bare pending strings with typed state=pending/value=null/reason records before campaign freeze"}
+  ],
+  "package_hashes": {
+    "architecture_audit.md": {"bytes": 6898, "sha256": "bd2bcd7f134c680aeed382e24a79d2cf6fcc9292f3a838f4c8feadf734f5d673"},
+    "cleanup_inventory.md": {"bytes": 1424, "sha256": "a7e355b92369135a5c7c88cf3687b4a2f78d4602db0ba4a66cded3974f24596a"},
+    "manifest.json": {"bytes": 4570, "sha256": "b04e0be2500d01d25e8386ea047a40cf32ab0adc5720b0fdc87c8cb51bbd0ede", "self_hash_excluded": true},
+    "rewrite_applicability_conditions.json": {"bytes": 5236, "sha256": "cc488a95d1cf9c8ea5e5b58728c5fd24d0bf61bb891a104bb7bc30b271381879"},
+    "rewrite_counterexamples.json": {"bytes": 3896, "sha256": "5a25600ec63874a808c779f40e76e218015775df76bde5de10172ddf1e98c400"},
+    "rewrite_rule_catalog.json": {"bytes": 9210, "sha256": "89dbdb6cac956843a8c9207c761b4b0226278d13b8b59b9a51abfd06b25c8e04"},
+    "search_budget_archive_template.json": {"bytes": 3869, "sha256": "105608bd9d024ac536e935dca94ce46141554fda81dd879bbb3b1fe1e4205c71"},
+    "typed_edit_catalog.json": {"bytes": 7643, "sha256": "607e206cefbc2d59cf8b03d25123d0f3a938aaa6d088e7c0f3b50cc655e416c9"},
+    "validation_report.md": {"bytes": 2499, "sha256": "c694028a139e3e452b649f55fa76915986f75d6c31af65b1a9cbdce22832d065"}
+  },
+  "repair_scope": ["docs/implementation/UP5-EARLY-PREPARATION/rewrite_rule_catalog.json", "docs/implementation/UP5-EARLY-PREPARATION/rewrite_counterexamples.json", "docs/implementation/UP5-EARLY-PREPARATION/search_budget_archive_template.json"],
+  "write_scope": ["docs/implementation/UP5-EARLY-PREPARATION/independent_review_r1/report.md", "docs/implementation/UP5-EARLY-PREPARATION/independent_review_r1/manifest.json"],
+  "review_notes": ["No Julia, DESC, search, saturation, provider, mesh or solver command was run.", "No reviewed package, source, test, core file, run, or unrelated artifact was modified."]
+}

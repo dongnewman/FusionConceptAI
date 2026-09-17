@@ -1,0 +1,48 @@
+PID 88100
+UTC 2026-09-16T22:27:26.712956Z
+HEAD b2c04d8339774635aaecd73651efcdb101e01b5d
+NETWORK_EXTERNAL_AD_S3_JULIA_DESC_SOLVER NOT_RUN
+PRODUCTION_TESTS NOT_RUN
+SOURCE_TEST_MUTATION FALSE
+INPUT_HASHES
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/01-collection-readiness-audit/audit.md 8849 54d5fae0e15ce4a9c60374d5001847056ee5855b71748613f904cf9ae534322a
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/01-collection-readiness-audit/field_matrix.json 15275 7e7bc4b2fb27294dabde876b6eb7d91b56525e038ffc763fb7abe09fbaf36ff3
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/01-collection-readiness-audit/manifest.json 3091 e74ab2123262d500d57d0d8e5ee50617ceb046078b146d24c443e7b74a58ab93
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/bundle.schema.json 11630 60ad24c332c11517e56af0297a6c0f9afb2d6b4e7f4eac57573dcba03b7c455d
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-01.schema.json 3671 43116eb4c3f74319f05a5de63ed52660bbbd7b2ea8e542b642375b83b83fc14b
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-02.schema.json 6452 8ea8dc470ff130fde63227f2e4161fa782bb4ea71e5c426f781a0eb726ae5302
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-03.schema.json 5162 d4228c8ad667a36711b43a19cd0bcb4fa2f16a1c5537e740a6d391db54a60b35
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/ehp-04.schema.json 5743 b595a707aab06c7fcb0a46f29436043069cb7237c112872c366fa8ed30c284a6
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/manifest.json 4130 49d3bbfbf8dc12168a069172aa73f450979f02c064637fb913d92aa7562a2357
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/README.md 7232 207b9d365053c29531b96e06bde481e741f496f2068061ba63df567a9c3b3d55
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/test-matrix.md 2528 d9e210f142ba4b860ed6d1836e1bae69ce0a5078f43682cd5390cb8d6e6dfc03
+docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/03-atomic-response-bundle-contract/verifier-contract.md 5421 636272d9facc22b5458cc72c1908143ad1749c8604de88f430d409123dece3ed
+SCHEMA_CHECKS
+bundle.schema.json PASS
+ehp-01.schema.json PASS
+ehp-02.schema.json PASS
+ehp-03.schema.json PASS
+ehp-04.schema.json PASS
+CLOSED_OBJECT_AUDIT
+bundle.schema.json objects 24 nonclosed ['/properties/packets/prefixItems[0]/allOf[1]', '/properties/packets/prefixItems[1]/allOf[1]', '/properties/packets/prefixItems[2]/allOf[1]', '/properties/packets/prefixItems[3]/allOf[1]']
+ehp-01.schema.json objects 9 nonclosed NONE
+ehp-02.schema.json objects 11 nonclosed NONE
+ehp-03.schema.json objects 11 nonclosed NONE
+ehp-04.schema.json objects 13 nonclosed NONE
+FIXED_ORDER [{'const': 'EHP-01'}, {'const': 'EHP-02'}, {'const': 'EHP-03'}, {'const': 'EHP-04'}]
+PACKET_COUNT 4 4
+DIGEST_COUNT 4 4
+SET_RECEIPT_BUNDLE_ID_SCHEMA_EQUALITY False
+SET_RECEIPT_REQUEST_ID_SCHEMA_EQUALITY False
+SET_RECEIPT_DURABLE_QUARANTINE_ONLY_DIGEST ['receipt_id', 'channel', 'bundle_id', 'request_id', 'packet_digests', 'shared_binding', 'durable_quarantine_sha256', 'received_time', 'decision', 'set_signature']
+EHP03_CLOSURE_PRESENT {'const': True}
+EHP04_RUNTIME_NAMES {'enum': ['Julia', 'Python']}
+EHP04_IDENTITY_MAP_KEYS ['name', 'version', 'locator', 'sha256']
+EHP04_SBOM_DEP_EDGE_UNIQUE None
+TEXT_TERM signature_digest 1
+TEXT_TERM payload_digest 1
+TEXT_TERM bundle_canonical_sha256 4
+TEXT_TERM all signature bytes 1
+TEXT_TERM durably quarantine 1
+TEXT_TERM strictly valid next sequence 0
+STATUS review_pending not_implemented

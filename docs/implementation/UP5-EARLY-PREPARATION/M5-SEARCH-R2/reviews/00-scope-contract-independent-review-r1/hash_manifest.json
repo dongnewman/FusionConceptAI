@@ -1,0 +1,25 @@
+{
+  "schema": "M5SearchR2IndependentReviewHashManifestV1",
+  "hash_algorithm": "SHA-256",
+  "reviewed_scope_contract": {
+    "report.md": "686056a934e465ffe42879dc82dbf0646c7bdd1937f73ea73ec72a5ddfa2ee70",
+    "manifest.json": "8210a2291a1189e05b20144fe98b12f8d8e504f2402d73af964fdd55b0edd501",
+    "input_hashes.json": "0ffb39e36cef8b0c08f2f6f596bdfab9670435af68ddd87b334184fa1bd745b6",
+    "HEAD.txt": "2429396b5f91d830c2fb2459ef4e7ee9c4f898ec5eeeb14243c7ff7029d4bf48",
+    "execution_receipt.json": "2453c8ce396fdf7ce643c36a25343d8b61fd5550762f0ff7f7262f4ef0b37be6",
+    "raw/audit.stdout.raw": "b6eaad1c9f44016f8c8bc4a034fe9f0d583dd870768bacbcbc090bd461f4825e",
+    "raw/audit.stderr.raw": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "raw/audit.combined.raw": "b6eaad1c9f44016f8c8bc4a034fe9f0d583dd870768bacbcbc090bd461f4825e"
+  },
+  "review_artifacts": {
+    "review.md": "4e65eea8df88360fe92a73ed0f676aa49a5f35470590031ae44d3c677755f7ef",
+    "review_receipt.json": "bc0d1bdd17084616a6f062417a711854a96819fe8b1681ed48dd5e1eb7f8e6f1",
+    "raw/audit.stdout.raw": "9c62367aec34427873eadf8fa24f34722cabbaad9c6d0695228dfcba24855f4f",
+    "raw/audit.stderr.raw": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "raw/audit.combined.raw": "9c62367aec34427873eadf8fa24f34722cabbaad9c6d0695228dfcba24855f4f"
+  },
+  "source_input_manifest": "00-scope-contract/input_hashes.json",
+  "source_input_manifest_sha256": "0ffb39e36cef8b0c08f2f6f596bdfab9670435af68ddd87b334184fa1bd745b6",
+  "source_input_mismatch_count": 0,
+  "note": "The reviewed contract's own input manifest reports four missing_or_unfrozen_inputs; this hash manifest records observation, not execution authorization."
+}

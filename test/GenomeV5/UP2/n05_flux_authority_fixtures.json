@@ -1,0 +1,12 @@
+{
+  "schema_id": "GenomeV5/UP2/N05FluxAuthorityProjectionV1",
+  "schema_version": "v1",
+  "schema_validation_only": true,
+  "mutations": [
+    {"id":"N05-01","field_path":"/n05/left_endpoint/endpoint_ref","mutation_kind":"foreign_left_endpoint_ref","source_type":"ref","expected_error":"invalid_closure","expected_resolution":"fail_closed"},
+    {"id":"N05-02","field_path":"/n05/right_endpoint/endpoint_ref","mutation_kind":"foreign_right_endpoint_ref","source_type":"ref","expected_error":"invalid_closure","expected_resolution":"fail_closed"},
+    {"id":"N05-03","field_path":"/n05/left_endpoint/sign","mutation_kind":"left_sign_zero","source_type":"int8","expected_error":"invalid_closure","expected_resolution":"fail_closed"},
+    {"id":"N05-04","field_path":"/n05/right_endpoint/sign","mutation_kind":"same_endpoint_sign","source_type":"int8","expected_error":"invalid_closure","expected_resolution":"fail_closed"},
+    {"id":"N05-05","field_path":"/n05/right_endpoint/unit","mutation_kind":"right_unit_mismatch","source_type":"unit","expected_error":"invalid_type","expected_resolution":"fail_closed"}
+  ]
+}

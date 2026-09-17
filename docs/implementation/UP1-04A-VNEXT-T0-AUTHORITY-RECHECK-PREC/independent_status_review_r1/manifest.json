@@ -1,0 +1,227 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC-independent-status-review-r1",
+  "record_kind": "independent_status_review",
+  "task_id": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+  "date": "2026-09-15",
+  "reviewer": "/root/g2_metric_boundary_v1_author",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "read_only_review": true,
+  "julia_or_desc_run_this_review": false,
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "current_seven_file_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": {
+      "bytes": 14684,
+      "sha256": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_tests.jl": {
+      "bytes": 11153,
+      "sha256": "6e42e5ccc85f22589fdcbdc9a408f902c230bbd8c098c146eb8a7e13ed472aca"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_v1_fixture.json": {
+      "bytes": 1953,
+      "sha256": "cdf9095c15dd082c5c374b03742575301087906962617023090ae6b0db4deb59"
+    },
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_v1.py": {
+      "bytes": 1998,
+      "sha256": "e25c6435392b594f9a82937f8b07b034524f191921bdf02700e7de36bda09220"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md": {
+      "bytes": 2940,
+      "sha256": "ab52fa45ebbb732b89c05f6a97c73fb76c11a742167071bda5ff718877dbbf29"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/manifest.json": {
+      "bytes": 19383,
+      "sha256": "d08d796acaf23b94158c4db4ac8a702003042dbadabd6c4c7697126dbaef21c6"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md": {
+      "bytes": 2478,
+      "sha256": "c247452015a70126b97dba8b9d2d2b43c7e5fe266f6eade31b5b43b1f4c3da00"
+    }
+  },
+  "status_sync_inputs": {
+    "report": {
+      "bytes": 2290,
+      "sha256": "40414eed50bbd5e9324aa39f82e000f3b2d31e1de8b91c26ab68a8dd64f84d49"
+    },
+    "manifest": {
+      "bytes": 3143,
+      "sha256": "3389ad12734bdde6b05431fafc342f9d8f2cc9110d1d12eea6bdd44f23d73c61"
+    }
+  },
+  "evidence_refs": {
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/static_qa_r6.receipt.json": {
+      "bytes": 1194,
+      "sha256": "a061fc3612cea4daba57184483833440f7fd81d93664324606f506dfc49503ee"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/focused_julia_r6.receipt.json": {
+      "bytes": 1306,
+      "sha256": "3752bf70033e4ff9f0c4334095c5e73f83b28703f7c9a805ab60220c8b7ef349"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/static_qa_r6.stdout": {
+      "bytes": 34,
+      "sha256": "b8e203558bf893cb23e7f83646f35f168c320ce0e826f45606a9871ebdc1f4eb"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/focused_julia_r6.stdout": {
+      "bytes": 975,
+      "sha256": "e1016ca0503632bde7d44620c275b71d2bca9e6f3c1639f7dc113f0bd7c5dcbd"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/static_qa_r6.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/focused_julia_r6.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/../archive/repair_r6/cleanup_inventory.json": {
+      "bytes": 464,
+      "sha256": "c50e4127e215bd825a6b379e565af222ece69be05bda3f6407090aa392fa5c43"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/archive/repair_r7/report.md": {
+      "bytes": 781,
+      "sha256": "2995c5ce769f5cc22f18ece41410da30da25b7c4f3db07c0253b29645c0b6d4e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/archive/repair_r7/manifest.json": {
+      "bytes": 3209,
+      "sha256": "616fdb8f837e05ffb4fab806335f35bf6d02d965aa901c14f09705cecf421a58"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/report.md": {
+      "bytes": 2290,
+      "sha256": "40414eed50bbd5e9324aa39f82e000f3b2d31e1de8b91c26ab68a8dd64f84d49"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/status_sync_r1/manifest.json": {
+      "bytes": 3143,
+      "sha256": "3389ad12734bdde6b05431fafc342f9d8f2cc9110d1d12eea6bdd44f23d73c61"
+    },
+    "docs/implementation/AD-34/acceptance.md": {
+      "bytes": 2465,
+      "sha256": "8fc1d6e3b947a42ee1d4932c1825fe449ee0f5bb486df45c6a816f783d562ce5"
+    },
+    "docs/implementation/AD-34/status_sync_r1/report.md": {
+      "bytes": 3962,
+      "sha256": "0b1350653d94a47a20a7918244c458ae91beaaa76e3aab0dd76795dc0d7811af"
+    },
+    "docs/implementation/AD-34/status_sync_r1/manifest.json": {
+      "bytes": 4172,
+      "sha256": "6b4fb7bcf41ed3154b738b6f1fc3905ff9a7d098790952634ffd3878a845ee07"
+    },
+    "docs/implementation/AD-35/acceptance.md": {
+      "bytes": 6009,
+      "sha256": "d1c67f9f1b2d22541da5263ce833b07aebd84314c19edf01bb76e62ef109bfa6"
+    },
+    "docs/implementation/AD-35/manifest.json": {
+      "bytes": 4171,
+      "sha256": "a7afb2898595c84aaec53b4600b22e4bcb0babe3ae4c5ba016597ca3baf098f9"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 90089,
+      "sha256": "64ed7441070674df4a91c754dcafe2709503108f730744dbfb49d8bc37e1a056"
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 36324,
+      "sha256": "8e7869dd5a306f10f3ca87c91e54482abbabdfd6ecaad8d69f88cb38be8b6643"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 92445,
+      "sha256": "0a6e85c29f99530afbb58d986e3cfa088e7b9514cacd9e754a396f16a8fa10bd"
+    }
+  },
+  "preparation_archives": {
+    "docs/implementation/UP3-EARLY-PREPARATION": {
+      "exists": true,
+      "file_count": 13
+    },
+    "docs/implementation/UP4-EARLY-PREPARATION": {
+      "exists": true,
+      "file_count": 17
+    },
+    "docs/implementation/UP5-EARLY-PREPARATION": {
+      "exists": true,
+      "file_count": 15
+    },
+    "docs/implementation/UP6-EARLY-PREPARATION": {
+      "exists": true,
+      "file_count": 20
+    }
+  },
+  "status_checks": {
+    "local_scaffold_status": "accepted_limited",
+    "machine_status": "planned",
+    "machine_scope_status": "proposal",
+    "machine_accepted": false,
+    "machine_resolution": "review_pending",
+    "claim_ceiling": "contract_only",
+    "static_checks": 20,
+    "focused_checks": "68/68",
+    "r6_raw_hashes_verified": true,
+    "r7_fixture_hash_fix_verified": true,
+    "foreign_candidate_negative": true,
+    "current_task_count": 39,
+    "recorded_plan_validation": {
+      "checks": "pass",
+      "task_count": 39,
+      "task_dag_acyclic": true,
+      "relative_links_checked": 461,
+      "markdown_files_checked": 31,
+      "errors": []
+    },
+    "dag_acyclic": true,
+    "t1_blocked_without_checked_present": true,
+    "ad35_modified": false,
+    "up3_up6_preparation_modified": false,
+    "all_credits_false": true
+  },
+  "dependencies": {
+    "depends_on": [
+      "UP1-04A-VNEXT-T0"
+    ],
+    "t1_depends_on": [
+      "UP1-04A-VNEXT-T0",
+      "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"
+    ],
+    "t0_changed": false,
+    "dag_acyclic": true,
+    "t1_blocked_without_checked_present": true
+  },
+  "scope_guards": {
+    "feedback_child": false,
+    "binding_present": false,
+    "legacy_authority_promotion": false,
+    "ad35_modified": false,
+    "up3_up6_preparation_modified": false
+  },
+  "credits": {
+    "binding": false,
+    "feedback": false,
+    "control": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "b00": false,
+    "b04": false,
+    "r01_r10": false
+  },
+  "cleanup": {
+    "task_owned_scratch_cache_paths": [],
+    "removed_paths": [],
+    "protected_preexisting_dirty_history": true,
+    "julia_desc_run": false
+  },
+  "governance": {
+    "AD34_acceptance": "accepted_limited_boundary_only",
+    "AD35": "accepted_limited_collaboration_contract_only",
+    "UP3_UP6": "protected_preparation_archives_only"
+  },
+  "self_hash_excluded": true,
+  "report_sha256": "4ae5ca4b867087ad45c58eaaafb6735a083556e080f757fdf6e190e9cc1fa25b",
+  "report_bytes": 4583
+}

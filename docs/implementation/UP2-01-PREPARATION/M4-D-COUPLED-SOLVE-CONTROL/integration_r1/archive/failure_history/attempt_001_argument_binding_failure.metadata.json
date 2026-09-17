@@ -1,0 +1,13 @@
+{
+  "schema": "m4-d-integration-preflight-failure-v1",
+  "attempt": "wrapper_argument_binding_failure",
+  "status": "preserved_non_counted",
+  "cause": "PowerShell automatic $args variable was accidentally used as a function parameter; child argument list was empty",
+  "intended_command": "python test/RuntimeV4/M4Isolated/oracles/coupled_solve_oracle_v1.py",
+  "child_pids": [44132, 52116],
+  "termination": "stopped_by_integration_owner_after_no_argument_interpreter_launch",
+  "child_exit_codes": "not_observed",
+  "child_stdout_stderr": "not_captured",
+  "raw_event_record": "archive/failure_history/attempt_001_argument_binding_failure.combined.raw",
+  "authoritative_replay": ["command_01_python_oracle.receipt.json", "command_02_python_oracle.receipt.json", "command_03_julia_tests.receipt.json", "command_04_julia_tests.receipt.json"]
+}

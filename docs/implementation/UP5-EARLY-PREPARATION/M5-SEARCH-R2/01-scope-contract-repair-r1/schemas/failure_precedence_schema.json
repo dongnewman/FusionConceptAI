@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2FailurePrecedenceV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "ordered_classes", "mapping", "exclusive_rule"],
+  "properties": {
+    "schema": {"const": "M5SearchR2FailurePrecedenceV1"},
+    "ordered_classes": {"const": ["fail_closed", "contradiction", "operational_interruption", "budget_exhausted", "numerical_fail", "not_applicable", "complete"]},
+    "mapping": {"type": "object", "additionalProperties": false, "required": ["malformed", "foreign", "identity_mismatch", "contradiction", "timeout", "human_interruption", "budget_exhausted", "nonfinite", "typed_unmet", "complete"], "properties": {"malformed": {"const": "fail_closed"}, "foreign": {"const": "fail_closed"}, "identity_mismatch": {"const": "fail_closed"}, "contradiction": {"const": "fail_closed"}, "timeout": {"const": "terminal_deferred"}, "human_interruption": {"const": "not_executed"}, "budget_exhausted": {"const": "saturation_incomplete_or_terminal_deferred"}, "nonfinite": {"const": "numerical_fail"}, "typed_unmet": {"const": "not_applicable_zero_merge"}, "complete": {"const": "screen_only"}}},
+    "exclusive_rule": {"const": "highest_precedence_observation_wins_and_secondary_codes_are_metadata_only"}
+  }
+}

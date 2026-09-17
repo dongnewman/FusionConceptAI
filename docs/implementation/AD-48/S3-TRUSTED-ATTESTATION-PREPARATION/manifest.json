@@ -1,0 +1,175 @@
+{
+  "task_id": "AD48-S3-TRUSTED-ATTESTATION-PREPARATION",
+  "schema_version": "AD48-S3-trusted-attestation-preparation-v1",
+  "status": "pending",
+  "accepted": false,
+  "claim_ceiling": "preparation_and_static_readiness_only",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T15:43:01.830788Z",
+  "write_scope": {
+    "current_products": 3,
+    "current_product_paths": [
+      "docs/implementation/AD-48/S3-TRUSTED-ATTESTATION-PREPARATION/report.md",
+      "docs/implementation/AD-48/S3-TRUSTED-ATTESTATION-PREPARATION/manifest.json",
+      "docs/implementation/AD-48/S3-TRUSTED-ATTESTATION-PREPARATION/cleanup_inventory.md"
+    ],
+    "archive_directory": "docs/implementation/AD-48/S3-TRUSTED-ATTESTATION-PREPARATION/archive",
+    "formal_s3_products_materialized": false,
+    "formal_s3_product_count": 8
+  },
+  "formal_s3_product_contract": {
+    "scopes": ["realization", "control", "binding", "bundle"],
+    "identity_union": [
+      "PresentG3TrustedSourceIdentityV1",
+      "AbsentG3TrustedSourceIdentityV1",
+      "FailedG3TrustedSourceIdentityV1"
+    ],
+    "receipt_union": [
+      "PresentG3TrustedSourceIdentityReceiptV1",
+      "AbsentG3TrustedSourceIdentityReceiptV1",
+      "FailedG3TrustedSourceIdentityReceiptV1"
+    ],
+    "planned_products": {
+      "realization": {
+        "source_anchor": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+        "identity": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_v1.json","materialized":false},
+        "receipt": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/realization/trusted_source_identity_receipt.json","materialized":false}
+      },
+      "control": {
+        "source_anchor": "src/GenomeV5/G3/ControlGenomeV5.jl",
+        "identity": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_v1.json","materialized":false},
+        "receipt": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/control/trusted_source_identity_receipt.json","materialized":false}
+      },
+      "binding": {
+        "source_anchor": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+        "identity": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_v1.json","materialized":false},
+        "receipt": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/binding/trusted_source_identity_receipt.json","materialized":false}
+      },
+      "bundle": {
+        "source_anchor": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+        "identity": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_v1.json","materialized":false},
+        "receipt": {"path":"docs/implementation/AD-48/S3-TRUSTED-SOURCE-IDENTITY/bundle/trusted_source_identity_receipt.json","materialized":false}
+      }
+    }
+  },
+  "upstream_inputs": {
+    "s1": {
+      "acceptance": "accepted_limited",
+      "claim_ceiling": "repository_local_software_source_locator_only",
+      "products": {
+        "realization": [
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/realization/source_locator_v1.json","bytes":3764,"sha256":"bfb7a4f2cd4e128078b38dd3f47c2e11d6a85a5350662cda400054eeec8ba029"},
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/realization/source_locator_receipt.json","bytes":6613,"sha256":"fa042cdc32954d38f2c55c4204593cbbae32b309c291267841dda07a0f85408a"}
+        ],
+        "control": [
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/control/source_locator_v1.json","bytes":3722,"sha256":"e0d3c8468210c85a3ed66a22ddee1be4d86ed3052d6a09884619d5af374490c4"},
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/control/source_locator_receipt.json","bytes":6571,"sha256":"40c223e302a2263657150d1eba088db1b21825d0db4730403719b563acdfe845"}
+        ],
+        "binding": [
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/binding/source_locator_v1.json","bytes":4451,"sha256":"07b4de5bc4b290ce60a3f5a9158c315a795a6b013db286d5c563adcbb3543eaa"},
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/binding/source_locator_receipt.json","bytes":7300,"sha256":"407387f7f1e3a5e76102a3e9234d446b39a96e1bf276336584af2e02374ffd78"}
+        ],
+        "bundle": [
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/bundle/source_locator_v1.json","bytes":5773,"sha256":"fb826aa4d32bd6284f3fca7ec9f21b66e3f06d1fc13d4fc678793442ccf8e361"},
+          {"path":"docs/implementation/AD-48/S1-SOURCE-LOCATORS/bundle/source_locator_receipt.json","bytes":8622,"sha256":"bb3b187bbfc77dd55434e56c13e53793052fb61e07e4ff559c6806f1aff77772"}
+        ]
+      }
+    },
+    "f0": {
+      "acceptance": "accepted_limited",
+      "claim_ceiling": "g3_source_stage_factory_software_contract_only",
+      "source_factory": {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":31581,"sha256":"1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4"},
+      "test": {"path":"test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl","bytes":14904,"sha256":"02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"},
+      "trusted_attestation_created": false
+    },
+    "ad45": {
+      "acceptance": "accepted_limited",
+      "handle_id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+      "handle_version": "v5",
+      "envelope_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json",
+      "envelope_bytes": 9612,
+      "envelope_sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc",
+      "candidate_identity_created": false
+    },
+    "fresh_s2": {
+      "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2",
+      "manifest_status": "review_pending",
+      "accepted": false,
+      "eligible_as_s3_input": false,
+      "products": {
+        "realization": [
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/factory_identity_v1.json","bytes":5054,"sha256":"a2062990891bc8152cf5b9cff3dd0b264f6c54e81c0adbf8e535996be25ffcd2"},
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/construction_receipt.json","bytes":8985,"sha256":"e9575af7caa04425ef1976894399d308408cec992aea96c204a5726ed646c497"}
+        ],
+        "control": [
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/factory_identity_v1.json","bytes":4998,"sha256":"0ca704332016b0aece8f175a8516a7811625238d47c0791d79e68f511f77c66e"},
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/construction_receipt.json","bytes":8849,"sha256":"d26d68c13cad410e33989cf862b4dfe41bedc5d191988ecf38e6722e46bef217"}
+        ],
+        "binding": [
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/factory_identity_v1.json","bytes":5017,"sha256":"5b46247a961d4c457b3f73bf138d8c376a6fa163c90b09e85eb6ff6d7294e176"},
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/construction_receipt.json","bytes":8906,"sha256":"d3d09c789afbdfefc48e9adc1ed5732e7965318853d57608a3fcb4c9b1be0f1b"}
+        ],
+        "bundle": [
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/factory_identity_v1.json","bytes":4994,"sha256":"a9b999447766723e0c3c3a2b3b3f3b9644b1db15de63a819913d842409f8c251"},
+          {"path":"docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/construction_receipt.json","bytes":8848,"sha256":"2b56b5d55010e4a2656bf3c85fb19c962534d412eaa65672ca741507c28a9edb"}
+        ]
+      }
+    }
+  },
+  "attestor_inventory": {
+    "independent_attestor_mechanism": "absent",
+    "repository_key_or_certificate_files": 0,
+    "repository_detached_signatures": 0,
+    "repository_trust_root_manifest": 0,
+    "python": {"path":"D:/Users/Newman/anaconda3/python.exe","version":"3.13.5"},
+    "crypto_libraries": {"cryptography":"44.0.1","PyNaCl":"1.5.0","PyJWT":"2.10.1","pyOpenSSL":"25.0.0","sigstore":null,"securesystemslib":null,"signify":null},
+    "executables": {"openssl":"3.0.18","gpg":"2.4.8","ssh-keygen":"available","cosign":"absent","minisign":"absent","sigstore":"absent","signtool":"absent"},
+    "git_signing_configured": false,
+    "os_certificate_stores": {"CurrentUser/My":2,"CurrentUser/Root":280,"LocalMachine/My":0,"LocalMachine/Root":280},
+    "os_stores_bound_to_ad48_attestor": false,
+    "key_or_credential_contents_read": false
+  },
+  "negative_controls": {
+    "unsigned_self_authored_json": "AbsentG3TrustedSourceIdentityV1_terminal_deferred",
+    "trusted_receipt_enum_only": "AbsentG3TrustedSourceIdentityV1_terminal_deferred",
+    "factory_or_test_exit_as_attestation": "AbsentG3TrustedSourceIdentityV1_terminal_deferred",
+    "missing_signer_key_cert_verifier_trust_root_policy": "AbsentG3TrustedSourceIdentityV1_terminal_deferred",
+    "source_or_upstream_hash_path_scope_mutation": "FailedG3TrustedSourceIdentityV1_fail_closed",
+    "signature_preimage_algorithm_profile_chain_tamper": "FailedG3TrustedSourceIdentityV1_fail_closed",
+    "foreign_revoked_expired_future_replayed_nonce_or_duplicate": "FailedG3TrustedSourceIdentityV1_fail_closed",
+    "self_reference_seed_fixture_uri_runner_or_own_hash": "FailedG3TrustedSourceIdentityV1_fail_closed"
+  },
+  "claims": {
+    "trusted_source_identity": false,
+    "trusted_attestation": false,
+    "candidate_identity": false,
+    "declaration_hash_created": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "validation": {
+    "static_audit": {"interpreter":"D:/Users/Newman/anaconda3/python.exe","python_version":"3.13.5","pid":95108,"utc":"2026-09-15T15:42:00.510606Z","exit_code":0,"status":"recorded_in_archive/static_audit.json"},
+    "product_json_parse": {"pid":96036,"utc":"2026-09-15T15:42:37.160677Z","exit_code":0,"passed":15,"total":15,"status":"recorded_in_archive/validation.json"},
+    "scoped_diff_check": {"pid":94044,"utc":"2026-09-15T15:43:01.830788Z","exit_code":0,"status_line_count":7,"status_paths_scope_ok":true,"stdout":"archive/scoped_diff.stdout.txt","stderr":"archive/scoped_diff.stderr.txt"},
+    "final_validation": {"pid":93460,"utc":"2026-09-15T15:43:48.047656Z","exit_code":0,"passed":20,"total":20,"stdout":"archive/final_validation.json","stderr":"archive/final_validation.stderr.txt"},
+    "closure_validation": {"pid":94116,"utc":"2026-09-15T15:44:26.896550Z","exit_code":0,"stdout":"archive/closure_validation.json","stderr":"archive/closure_validation.stderr.txt"},
+    "post_path_validation": {"pid":90116,"utc":"2026-09-15T15:45:37.055900Z","exit_code":0,"stdout":"archive/post_path_validation.json","stderr":"archive/post_path_validation.stderr.txt"},
+    "julia_desc_provider_mesh_solver_physics_runs": 0
+  },
+  "archive": {
+    "raw_only": true,
+    "files": ["archive/static_audit.json","archive/static_audit.stderr.txt","archive/validation.json","archive/validation.stderr.txt","archive/final_validation.json","archive/final_validation.stderr.txt","archive/closure_validation.json","archive/closure_validation.stderr.txt","archive/post_path_validation.json","archive/post_path_validation.stderr.txt","archive/scoped_diff.stdout.txt","archive/scoped_diff.stderr.txt"]
+  },
+  "self_hash_excluded": true,
+  "formal_attestation_issued": false
+}

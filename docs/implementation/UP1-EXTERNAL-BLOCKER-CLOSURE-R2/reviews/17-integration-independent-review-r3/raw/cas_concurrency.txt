@@ -1,0 +1,4 @@
+fresh two-child Python -B race with authenticated key/ledger/spool:
+child_1 exit=0 {"error_code":"integration_ledger_compare_and_swap_conflict","event":"rejected","new_ad":false,"status":"fail_closed"}
+child_2 exit=0 {"error_code":null,"event":"intake","new_ad":false,"status":"terminal_deferred"}
+CAS result: exactly one commit, one stale-writer conflict

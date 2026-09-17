@@ -1,0 +1,11 @@
+{
+  "fixture_id": "UP1-FX-UP1-04A-001",
+  "candidate_ref": {"id": "fusionconceptai://candidate/candidate-1", "version": "v5"},
+  "construction": "actual_G1_G2_G3_constructors",
+  "legacy_refs": ["legacy://GenomeV4/mechanism", "legacy://GenomeV4/field_geometry", "legacy://GenomeV4/realization_control"],
+  "negative_cases": [
+    {"id": "feedback_target_ref_mismatch", "mutation": "G3.feedback[0].target_contract_ref", "expected": "fail_closed"},
+    {"id": "candidate_ref_mismatch", "mutation": "package.candidate_ref", "expected": "fail_closed"},
+    {"id": "legacy_mapping_without_receipt", "mutation": "migration_receipt.foreign_after", "expected": "reject_input"}
+  ]
+}

@@ -1,0 +1,67 @@
+Test Summary:                              | Pass  Total  Time
+UP1-02 G2 V5 fixture-driven legal 3D plans |   57     57  7.4s
+interface_nonoverlap: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215
+  Expression: expected in genome.admission.errors || (expected in genome.admission.structural_errors || expected in genome.admission.geometry_errors)
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:208 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:205
+interface_wrong_orientation: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215
+  Expression: expected in genome.admission.errors || (expected in genome.admission.structural_errors || expected in genome.admission.geometry_errors)
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:208 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:205
+missing_provider: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215
+  Expression: expected in genome.admission.errors || (expected in genome.admission.structural_errors || expected in genome.admission.geometry_errors)
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:215 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:208 [inlined]
+ [5] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [6] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\up1_g2_contract_tests.jl:205
+Test Summary:                               | Pass  Fail  Total  Time
+UP1-02 G2 fixture-driven negative mutations |   33     3     36  2.0s
+  interface_nonoverlap                      |    2     1      3  0.9s
+  interface_wrong_orientation               |    2     1      3  0.0s
+  region_volume_overlap                     |    3            3  0.1s
+  interface_tangential_coverage             |    3            3  0.1s
+  missing_interface                         |    3            3  0.2s
+  repeated_interface                        |    3            3  0.3s
+  open_exterior                             |    3            3  0.3s
+  exterior_patch_gap                        |    3            3  0.0s
+  duplicate_exterior_owner                  |    1            1  0.0s
+  wrong_external_schema                     |    1            1  0.0s
+  wrong_external_canonicalization           |    1            1  0.0s
+  wrong_external_profile                    |    1            1  0.0s
+  wrong_version_axis_id                     |    1            1  0.0s
+  wrong_internal_profile_ref                |    1            1  0.0s
+  missing_provider                          |    4     1      5  0.1s

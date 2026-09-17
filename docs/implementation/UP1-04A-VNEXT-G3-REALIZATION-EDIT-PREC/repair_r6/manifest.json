@@ -1,0 +1,78 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-repair-r6-v1",
+  "record_kind": "implementation_precheck_repair",
+  "work_order_id": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+  "decision_id": "AD-31",
+  "status": "planned",
+  "scope_status": "proposal",
+  "accepted": false,
+  "parent_focused_receipts": [
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/run_manifest.json",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/run_manifest.json",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r3/run_manifest.json"
+  ],
+  "repair_scope": "state hash domain assertions plus explicit zero/one/multiple absence-reason classification",
+  "owned_files": [
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r6/"
+  ],
+  "r3_r5_contracts_unchanged": true,
+  "static_validation": {
+    "status": "executed_static_only",
+    "utf8_control_bytes": {
+      "command": "python -c \"from pathlib import Path; ps=[Path('src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl'),Path('test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl'),Path('docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r6/report.md')]; bs=[p.read_bytes() for p in ps]; [b.decode('utf-8') for b in bs]; bad=[(str(p),i+1) for p,b in zip(ps,bs) for i,x in enumerate(b.splitlines()) if b'\\x00' in x or any(c<32 and c not in (9,10,13) for c in x)]; assert not bad, bad; print({'files':len(ps),'bytes':sum(len(b) for b in bs),'control_violations':len(bad)})\"",
+      "exit_code": 0,
+      "files_checked": 3,
+      "bytes_checked": 72019,
+      "control_violations": 0
+    },
+    "owned_file_sha256": {
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+        "bytes": 54819,
+        "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+      },
+      "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": {
+        "bytes": 15544,
+        "sha256": "ee2d3fcf80844b5ba26c983eed9810b6f7ac33ddce3403f052a3b0791143127b"
+      },
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r6/report.md": {
+        "bytes": 1656,
+        "sha256": "fac62d557963bc5799b0eae008d87f4fe304c9e5277632cb7db3a168e664766f"
+      }
+    },
+    "first_generator_nothing_scan": {
+      "command": "python -c \"from pathlib import Path; ps=[Path('src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl'),Path('test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl')]; hits=[(str(p),i+1,line) for p in ps for i,line in enumerate(p.read_text(encoding='utf-8').splitlines()) if 'first(' in line and 'for' in line and 'nothing' in line]; assert not hits, hits; print({'files':len(ps),'matching_lines':0,'unrelated_required_source_port_lookup':True})\"",
+      "exit_code": 0,
+      "matching_lines": 0,
+      "unrelated_required_source_port_lookup": true
+    },
+    "json_validation": {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/manifest.json && python -m json.tool docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r6/manifest.json",
+      "exit_code": 0
+    },
+    "plan_and_link_validator": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 391,
+      "task_count": 35,
+      "task_dag_acyclic": true,
+      "errors": []
+    },
+    "scoped_diff_check": {
+      "command": "git diff --check -- src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/",
+      "exit_code": 0,
+      "blocking_output_bytes": 0
+    },
+    "julia_run": false,
+    "focused_test_run": false,
+    "desc_run": false,
+    "provider_mesh_engineering_physical_run": false,
+    "manifest_sha256_excluded": true
+  },
+  "review": {
+    "different_luna_required": true,
+    "implementation_acceptance": false
+  }
+}

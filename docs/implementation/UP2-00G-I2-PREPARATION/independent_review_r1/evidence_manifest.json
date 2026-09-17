@@ -1,0 +1,36 @@
+{
+  "schema_version": "UP2-G-I2-independent-review-evidence-v1",
+  "review_id": "UP2-00G-I2-PREPARATION-independent-review-r1",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "ready_for_focused": false,
+  "review_scope": "static independent review of G-I2/B04 entry audit; no Julia/DESC",
+  "repository": {"head": "4b69f55f7f80240147a65a22809dc1207824dde2", "julia_processes": 0, "desc_processes": 0},
+  "reviewed_audit_files": {
+    "report.md": "6572231031B955F78B95F07DE99FAD36A318D16B7D90656D58D4085F3278F707",
+    "report.json": "30D3874F3381CD103A3C52984294B7DD25C4B7F0DA9247DDFEC51EDE03308E08",
+    "evidence_manifest.json": "A647C355F01485F6C83BBDC3A8F73BA9850007A99753E8E2DA11783627A0323D",
+    "command_receipts.json": "7B426C088C02D546325327F46A20500C02606F13BB84A1822841C4621053A03F"
+  },
+  "protocol_sources": {
+    "up0_02_protocol.json": "6904EA161A27FF007A071697F7740AD923CE79D05E23433D356460546ECD7BFB",
+    "19_up0_02_contract_freeze.md": "not_hash_recorded_in_author_audit"
+  },
+  "positive_checks": {
+    "b00_f0_f5_contract_alignment": true,
+    "b04_10_classes_x_5_rows": true,
+    "checker_must_not_reuse_exporter_expected_helper": true,
+    "two_independent_process_replay": true,
+    "g_i1a_unresolved": true,
+    "g_i1b_inventory_not_receipts": true,
+    "up1_04a_limited": true
+  },
+  "manifest_reconciliation": {
+    "listed_inputs": 27,
+    "matching_inputs": 23,
+    "mismatches_or_missing": 4,
+    "mismatch_codes": ["GI2-R1-MANIFEST-HASH-I1A", "GI2-R2-MANIFEST-HASH-N05-RUNNER", "GI2-R3-MISSING-UP1-04-REVIEW-PATH", "GI2-R4-MISSING-UP1-04-MANIFEST-PATH"]
+  },
+  "claim_ceiling": ["audit_review_only", "contract_only"],
+  "credits": {"b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false}
+}

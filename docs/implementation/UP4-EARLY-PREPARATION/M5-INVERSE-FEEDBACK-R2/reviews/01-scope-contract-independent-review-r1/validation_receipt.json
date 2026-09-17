@@ -1,0 +1,28 @@
+{
+  "schema": "M5InverseFeedbackR2ScopeContractIndependentReviewValidationV1",
+  "status": "fail_limited",
+  "recommendation": "changes_requested",
+  "checks": {
+    "json_parse": true,
+    "review_path_confined": true,
+    "forbidden_runtime_not_invoked": true,
+    "claim_ceiling_screen_only": true,
+    "formal_credit_none": true,
+    "candidate_source_complete_join": false,
+    "machine_valid_typed_schemas": false,
+    "current_source_bound_to_r1_acceptance": false,
+    "replay_parameters_frozen": false,
+    "feedback_operation_history_typed": false,
+    "architecture_and_dirty_diff_closure": false
+  },
+  "verdict": "fail_limited",
+  "raw_process": "process.json",
+  "raw_stdout": "raw/static_review.stdout.raw",
+  "raw_stderr": "raw/static_review.stderr.raw",
+  "pid": 29160,
+  "utc": "2026-09-16T21:58:51.7574597Z",
+  "exit": 0,
+  "stdout_sha256": "60ac4e2a772f1a940ffa61fa148bed906c9118b6d9815d5d25ac03a7b1131d67",
+  "stderr_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "not_granted": ["UP4/B07A/B07B/B08/provider/solver/engineering/physical/candidate/R01-R10/formal credit"]
+}

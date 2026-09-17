@@ -1,0 +1,258 @@
+{
+  "schema_version": "g-i0-independent-postrun-r3-v1",
+  "work_order": "UP2-00G-I0-MODULE-SEAM-independent-postrun-r3",
+  "reviewer_role": "different_luna_independent_postrun",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "checks": {
+    "frozen_entry_test_runner_probe_hashes": {
+      "pass": true,
+      "detail": {
+        "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+        "test/GenomeV5/UP2/up2_module_entry_tests.jl": "3d595b399f8e9681881f61fa2e25590dd6646986385af72021a33672c96b4cb5",
+        "test/GenomeV5/UP2/run_up2_module_entry.jl": "2847d1b98455a2fb4186be491cc00c09e5f475f83e14e1b26b7a246bf4b19cab",
+        "test/GenomeV5/UP2/up2_module_entry_failure_probe.jl": "59204f1b24d6c03c1a6097e748c42808d06858a6197f49254c6ff28580c21591"
+      }
+    },
+    "focused_r3_input_manifest_hash": {
+      "pass": true,
+      "detail": "04b9e5f202e48cc3347a85b41c03434de996ff9d9da18af1dd5af7f046c66e05"
+    },
+    "r5_inputs_unchanged_except_external_n06_test": {
+      "pass": true,
+      "detail": {
+        "mismatches": {},
+        "n06_r5": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+        "n06_current": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b",
+        "n06_expected_current": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b"
+      }
+    },
+    "receipt_and_raw_stream_hashes": {
+      "pass": true,
+      "detail": {
+        "receipt_sha256": "b7d612fc265c335572cc768d91c0d1a074a80f1f8be7830928d2ebe116255d38",
+        "real_exit": 0,
+        "stdout": {
+          "path": "docs/implementation/UP2-00G-I0-MODULE-SEAM/focused_r3/stdout.log",
+          "bytes": 92,
+          "sha256": "95100dba52a45182383b52a1db23ae67dd1de04c0f8f0bee8fecdfc185c02d70"
+        },
+        "stderr": {
+          "path": "docs/implementation/UP2-00G-I0-MODULE-SEAM/focused_r3/stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "main_summary_and_clean_stderr": {
+      "pass": true,
+      "detail": {
+        "stdout": "Test Summary:             | Pass  Total  Time\nUP2 additive module entry |   26     26  0.0s\n",
+        "stderr_bytes": 0
+      }
+    },
+    "child_failure_probe_observed": {
+      "pass": true,
+      "detail": {
+        "main_pid": 54568,
+        "child_pids": [
+          42460
+        ],
+        "snapshots": [
+          {
+            "utc": "2026-09-14T05:57:19.9643151Z",
+            "main_pid": 54568,
+            "processes": [
+              {
+                "ProcessId": 54568,
+                "ParentProcessId": 10324,
+                "Name": "julia.exe",
+                "CreationDate": "2026-09-14T13:57:18.891916+08:00",
+                "CommandLine": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe"
+              }
+            ]
+          },
+          {
+            "utc": "2026-09-14T05:57:21.8653315Z",
+            "main_pid": 54568,
+            "processes": [
+              {
+                "ProcessId": 54568,
+                "ParentProcessId": 10324,
+                "Name": "julia.exe",
+                "CreationDate": "2026-09-14T13:57:18.891916+08:00",
+                "CommandLine": null
+              },
+              {
+                "ProcessId": 42460,
+                "ParentProcessId": 54568,
+                "Name": "julia.exe",
+                "CreationDate": "2026-09-14T13:57:21.050726+08:00",
+                "CommandLine": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "probe_and_runner_static_path": {
+      "pass": true,
+      "detail": "runner passes the defined probe path; probe checks partial sentinel, terminal failed state, and retry refusal"
+    },
+    "entry_order_idempotence_and_terminal_state": {
+      "pass": true,
+      "detail": {
+        "positions": [
+          1967,
+          2067,
+          2162,
+          2255,
+          2361,
+          2465,
+          2564,
+          2657,
+          2763,
+          2855,
+          2955
+        ],
+        "state_guards": true
+      }
+    },
+    "failure_probe_partial_include_order": {
+      "pass": true,
+      "detail": "counter include precedes contract failure and probe checks its sentinel after first error"
+    },
+    "no_execution_calls_or_spy_overclaim": {
+      "pass": true,
+      "detail": {
+        "receipt_zero_counters": {
+          "compile_calls": 0,
+          "provider_calls": 0,
+          "solver_calls": 0,
+          "mesh_calls": 0,
+          "physical_calls": 0
+        },
+        "entry_has_no_execution_calls": true
+      }
+    },
+    "n06_external_test_not_loader_dependency": {
+      "pass": true,
+      "detail": {
+        "detected_utc": "2026-09-14T05:59:52.5450665Z",
+        "path": "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl",
+        "r5_preflight_sha256": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+        "r5_preflight_bytes": 22536,
+        "current_sha256": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b",
+        "current_bytes": 23325,
+        "classification": "external_owned_test_only_mutation_after_focused_r3; not loaded by UP2ModuleEntryV1",
+        "runtime_impact": "none_to_focused_r3_loader_entry",
+        "action": "preserved immediate post-run receipt; no rerun"
+      }
+    },
+    "immediate_post_hashes_and_protected_dirty": {
+      "pass": true,
+      "detail": {
+        "immediate_mismatches": [],
+        "protected_mismatches": [],
+        "current_mismatches": [
+          "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl"
+        ]
+      }
+    },
+    "postflight_empty_and_prior_r2_preserved": {
+      "pass": true,
+      "detail": {
+        "postflight": [],
+        "r2_hold": true,
+        "r1_receipt": true
+      }
+    },
+    "claim_ceiling_review_pending": {
+      "pass": true,
+      "detail": {
+        "status": "review_pending",
+        "accepted": false,
+        "claim_ceiling": "no UP2-total/B00/B04/provider/mesh/engineering/physical/R01-R10 credit"
+      }
+    },
+    "static_qa_commands": {
+      "pass": true,
+      "detail": {
+        "json_parse": 0,
+        "validate_plan": 0,
+        "git_diff_check": 0,
+        "julia_desc_process_sweep": 0
+      }
+    },
+    "no_julia_desc_run_by_audit": {
+      "pass": true,
+      "detail": {
+        "current_sweep_stdout": "",
+        "interpretation": "audit did not start Julia/DESC; focused R3 postflight evidence is checked separately"
+      }
+    }
+  },
+  "command_receipts": [
+    {
+      "name": "json_parse",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json, pathlib; [json.loads(p.read_text(encoding='utf-8')) for p in pathlib.Path('docs/implementation/UP2-00G-I0-MODULE-SEAM').rglob('*.json') if p.stat().st_size]; print('json_parse_ok')"
+      ],
+      "started_utc": "2026-09-14T06:22:50.539962Z",
+      "ended_utc": "2026-09-14T06:22:50.651421Z",
+      "exit": 0,
+      "stdout": "json_parse_ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "validate_plan",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "docs/v4_multitopology_generation/validate_plan.py"
+      ],
+      "started_utc": "2026-09-14T06:22:50.651440Z",
+      "ended_utc": "2026-09-14T06:22:50.847106Z",
+      "exit": 0,
+      "stdout": "{\n  \"record_kind\": \"planning_document_validation_not_physics_or_implementation_acceptance\",\n  \"plan_version\": \"v4-upgrade-plan-20260914.1\",\n  \"checks\": \"pass\",\n  \"markdown_files_checked\": 31,\n  \"relative_links_checked\": 329,\n  \"task_count\": 27,\n  \"task_dag_acyclic\": true,\n  \"sol_prompt_characters\": 493,\n  \"snapshot_files_checked\": 16,\n  \"preexisting_files_checked\": 0,\n  \"errors\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "git_diff_check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-14T06:22:50.847122Z",
+      "ended_utc": "2026-09-14T06:22:50.916847Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "name": "julia_desc_process_sweep",
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-Process | Where-Object { $_.ProcessName -match 'julia|desc' } | Select-Object Id,ProcessName | ConvertTo-Json -Compress"
+      ],
+      "started_utc": "2026-09-14T06:22:50.916862Z",
+      "ended_utc": "2026-09-14T06:22:51.182620Z",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "claim_ceiling": "module wiring/idempotence/failure-state only; no UP2-total/B00/B04/provider/mesh/engineering/physical/R01-R10 credit",
+  "runtime": {
+    "julia": false,
+    "desc": false,
+    "auditor_started_runtime": false
+  },
+  "owned_write_scope": [
+    "docs/implementation/UP2-00G-I0-MODULE-SEAM/independent_postrun_r3/"
+  ]
+}

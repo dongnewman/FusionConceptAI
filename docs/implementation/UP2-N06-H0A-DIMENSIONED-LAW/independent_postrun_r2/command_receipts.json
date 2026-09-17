@@ -1,0 +1,33 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-postrun-r2-command-receipts-v1",
+  "reviewer": "independent_luna_high_third_party",
+  "scope": "read-only static and captured-postrun review; no Julia/DESC",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_status_entry_count": 297,
+  "prewrite_status_sha256_utf8_lf": "4fc481ba691dab125a587f47b32b93e6054719d9b152043e152802b5b509952b",
+  "preflight_matching_julia_desc_process_count": 0,
+  "commands": [
+    {"operation": "HEAD and branch", "command": "git rev-parse HEAD; git branch --show-current", "result": "HEAD and main recorded"},
+    {"operation": "current dirty snapshot", "command": "git status --porcelain=v1", "result": "297 entries; SHA-256 recorded as UTF-8 LF"},
+    {"operation": "process sweep", "command": "Get-Process -Name julia,julia-debug,desc -ErrorAction SilentlyContinue", "result": "zero matching processes"},
+    {"operation": "focused receipt read", "command": "Get-Content focused_r2/command_receipts.json qa.json protected_before_after.json", "result": "PID 45976; exit 1; five pass, one error; protected inputs match"},
+    {"operation": "captured stdout/stderr read", "command": "Get-Content focused_r2/stdout.txt stderr.txt", "result": "Digest256 lowercase-hex ArgumentError at _h0a_digest(\"z\")"},
+    {"operation": "source/test static read", "command": "Get-Content source/test; rg _h0a_digest and Digest256(repeat)", "result": "strict production constructor; one H0-A helper; z plus four latent invalid labels"},
+    {"operation": "canonical helper check", "command": "rg digest256_text src/IR/PhysicalTypes.jl src/FusionConceptAI.jl", "result": "canonical text SHA-256 helper exists and is exported"},
+    {"operation": "Julia focused rerun", "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "result": "NOT RUN by instruction; captured exit 1 retained"}
+  ],
+  "writes": [
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r2/report.md",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r2/report.json",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r2/evidence_manifest.json",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r2/command_receipts.json"
+  ],
+  "postwrite_outputs": {
+    "report.md": {"bytes": 3256, "sha256": "d29a70aa460124bcf46cfc2da1c53b0e35484da818ce44038994179d2ee80468"},
+    "report.json": {"bytes": 3016, "sha256": "9b9105981ebc4606cd8b8a748bfb33dd31c4eb270ecc903dc02950357a463e47"},
+    "evidence_manifest.json": {"bytes": 3490, "sha256": "2ed98912be9b9222b7207575f017f621c2a2ef8e1f449ac144bdede0eb600aae"}
+  },
+  "postwrite_status_entry_count": 297,
+  "claim_ceiling": ["exit_1_preserved", "no_positive", "no_dimensioned_law", "no_B00", "no_B04", "no_physics", "no_engineering", "no_provider", "no_mesh", "no_R_credit"]
+}

@@ -1,0 +1,52 @@
+{
+  "record_kind": "H0A-independent-precheck-r10-evidence",
+  "status": "proposal",
+  "verdict": "pass_limited",
+  "ready_for_serial_focused_r4": true,
+  "review_pending": true,
+  "accepted": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_porcelain_entries": 3695,
+  "matching_julia_desc_processes": 0,
+  "files_sha256": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": "02a53521aaa85f7880448da60c924b0afd548f55d87d0490fcf17bb727f0f18e",
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": "51d5a34b7da01b5f2e8c757939c1ba391306b08b9aaa1b62eb0fcc4b6dea302a",
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": "da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc"
+  },
+  "repair_r10_before_after": {
+    "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {
+      "before": "03aa28636626efa4a5fdcb2f806e23bfc3e166f0d6fcabe72ebb0e7c6001e8dc",
+      "after": "02a53521aaa85f7880448da60c924b0afd548f55d87d0490fcf17bb727f0f18e"
+    },
+    "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {
+      "before": "1c2066a0fad0a324db263619d822e0e2d0422f73b23f6b702d74686a46383fdb",
+      "after": "51d5a34b7da01b5f2e8c757939c1ba391306b08b9aaa1b62eb0fcc4b6dea302a"
+    },
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {
+      "before": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+      "after": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": {
+      "before": "da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc",
+      "after": "da4c41517badd8c99f5f10e55c9219e2450af223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "static_qa": {
+    "repair_r9_static_qa_exit_code": 0,
+    "additional_r10_scan": "pass",
+    "julia_run": false,
+    "desc_run": false,
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false
+  },
+  "protected_evidence": {
+    "focused_r3_stdout_sha256": "2c2440192446c975acd05859413361a3d568d048d8f530be379d31ef82678bd3",
+    "focused_r3_stderr_sha256": "a64e6d35d8d86249f2a54bdce3dc19890943cbc320899aa1ce2a73dcb15f1225",
+    "focused_r3_protected_before_after_sha256": "f9506fe2cf6c0729989e3947d5e705642a7c1a75c2c272bed374b19eb5a8ad7e"
+  },
+  "boundary": "Syntax-only repair review; no focused runtime or stronger H0-A/actual-A claim"
+}

@@ -1,0 +1,85 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-repair-r3-v1",
+  "record_kind": "implementation_precheck_repair",
+  "work_order_id": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC",
+  "decision_id": "AD-31",
+  "status": "planned",
+  "scope_status": "proposal",
+  "accepted": false,
+  "parent_precheck": "changes_requested",
+  "repair_scope": [
+    "immutable initial source identity and frozen initial state hash",
+    "unique four port IDs and explicit map/reference checks",
+    "private program_exception result path",
+    "ledger unit/reference/closure-domain and physical-promotion negative controls"
+  ],
+  "owned_files": [
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/"
+  ],
+  "excluded": {
+    "old_g3_v5_v1": true,
+    "t0": true,
+    "package_registry_core_and_old_receipts": true,
+    "control_binding_feedback": true,
+    "julia_desc_provider_mesh_engineering_physical": true
+  },
+  "static_validation": {
+    "status": "executed_static_only",
+    "utf8_control_bytes": {
+      "command": "python -c \"from pathlib import Path; ps=[Path('src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl'),Path('test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl'),Path('docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/report.md')]; bs=[p.read_bytes() for p in ps]; [b.decode('utf-8') for b in bs]; bad=[(str(p),i+1) for p,b in zip(ps,bs) for i,x in enumerate(b.splitlines()) if b'\\\\x00' in x or any(c<32 and c not in (9,10,13) for c in x)]; assert not bad, bad; print({'files':len(ps),'bytes':sum(len(b) for b in bs),'control_violations':len(bad)})\"",
+      "exit_code": 0,
+      "files_checked": 3,
+      "bytes_checked": 70693,
+      "control_violations": 0
+    },
+    "owned_file_sha256": {
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+        "bytes": 54330,
+        "sha256": "5146e7c36a740509648c3e43387a31c12c8fe1e20e606de7f95a1abaeeebd1d0"
+      },
+      "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": {
+        "bytes": 14394,
+        "sha256": "8850aebc57eaba3e405ed8669b6b07881a436a8549fb34359a3a5b8a7dae6e7e"
+      },
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/report.md": {
+        "bytes": 1969,
+        "sha256": "69047a5461140e8c57e140707da1bc893d4805b03e655a00c597d11e1d1040ac"
+      }
+    },
+    "base_manifest_json": {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/manifest.json",
+      "exit_code": 0
+    },
+    "repair_r3_manifest_json": {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/manifest.json",
+      "exit_code": 0,
+      "self_hash_excluded": true
+    },
+    "plan_and_link_validator": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 391,
+      "task_count": 35,
+      "task_dag_acyclic": true,
+      "sol_prompt_characters": 493,
+      "errors": []
+    },
+    "scoped_diff_check": {
+      "command": "git diff --check -- src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/",
+      "exit_code": 0,
+      "blocking_output_bytes": 0
+    },
+    "julia_run": false,
+    "focused_test_run": false,
+    "desc_run": false,
+    "provider_mesh_engineering_physical_run": false,
+    "manifest_sha256_excluded": true
+  },
+  "review": {
+    "different_luna_required": true,
+    "implementation_acceptance": false
+  }
+}

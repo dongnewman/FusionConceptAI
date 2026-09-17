@@ -1,0 +1,104 @@
+{
+  "manifest_version": "UP2-01-G1-DIFFUSION-V1-postrun-erratum-r2",
+  "status": "changes_requested",
+  "review_pending": true,
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "scope": [
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/postrun_erratum_r2/"
+  ],
+  "old_receipts_untouched": true,
+  "raw_outputs": {
+    "focused_r1/stdout.txt": {
+      "bytes": 454,
+      "sha256": "685826d01c1257313467060d3c7268b3ea5825aad17d630aeebe9593cad40152"
+    },
+    "focused_r1/stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "old_independent_postrun_r1_receipts": {
+    "independent_postrun_r1/command_receipts.json": {
+      "bytes": 2727,
+      "sha256": "c874ef5731ccab306de699b067373e409c798301f8835c296b51d0fa19159b1a"
+    },
+    "independent_postrun_r1/report.json": {
+      "bytes": 4376,
+      "sha256": "a3317770d988e683c68cfd72f2ea7e5ff87c65ebd19f369a331346d05f874dad"
+    },
+    "independent_postrun_r1/evidence_manifest.json": {
+      "bytes": 4694,
+      "sha256": "bcb99befda39064db7891872d80a2696c3660adfaa2ae4700c3a38e3c1e3a16d"
+    },
+    "independent_postrun_r1/report.md": {
+      "bytes": 5008,
+      "sha256": "cc0a2f89cb93b3263b35940a514e70b2c8c277f98100cdfdfceee44af570ead5"
+    }
+  },
+  "focused_r1_archive_files": {
+    "focused_r1/command_receipts.json": {"bytes": 2690, "sha256": "cfd6505c0638d0d13f1649aecb46c499e4485c0ae2a1828c31ad38a5d62ab3f9"},
+    "focused_r1/evidence_manifest.json": {"bytes": 1981, "sha256": "47bcb506fa09decfe3373a13c41d918d91f95edca0ae21d80a60bbee3cf14a9d"},
+    "focused_r1/report.json": {"bytes": 2018, "sha256": "6feb284ec10044b1542c5086177c8e83cf627b73080a52f8093074f348c5fd31"},
+    "focused_r1/report.md": {"bytes": 1477, "sha256": "9f5e50824b03bcf8459d9597d9ff00b62a534b6462cd09f7d0f40d3bd097739b"}
+  },
+  "receipt_defect": {
+    "short_stderr_sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "short_length": 62,
+    "correct_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "correct_length": 64,
+    "corrected_receipt_match": true,
+    "report_md_also_repeated_short_value": true
+  },
+  "replacement_fields": {
+    "raw_outputs.stderr.actual.bytes": 0,
+    "raw_outputs.stderr.actual.sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_outputs.stderr.claimed.bytes": 0,
+    "raw_outputs.stderr.claimed.path": "stderr.txt",
+    "raw_outputs.stderr.claimed.sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_outputs.stderr.claimed_sha256_length": 64,
+    "raw_outputs.stderr.receipt_match": true
+  },
+  "execution": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G1/diffusion_v1_contract_tests.jl",
+    "pid": 51988,
+    "runtime": "julia_1.10.5",
+    "exit_code": 0,
+    "positive": "32/32",
+    "fail_closed_negative_controls": "34/34",
+    "source_edit_identity": "5/5",
+    "reported_total": "71/71",
+    "pre_run_dirty_entry_count": 3692,
+    "pre_run_dirty_status_sha256_utf8_lf": null,
+    "post_run_dirty_entry_count": 3697,
+    "post_run_dirty_status_sha256_utf8_lf": "5a5377c953e753d7a84f540ecb0a10322a12d245f89c788ca5c9fc6356a4366d",
+    "postwrite_receipt_entry_count": 3704,
+    "matching_julia_desc_processes": 0
+  },
+  "erratum_write_dirty_state": {
+    "prewrite_entry_count": 3734,
+    "prewrite_status_sha256_utf8_lf": "773911cae58a66688e58a181167e09d8e6a9776906dae1aa09f1b2cdb86e1855",
+    "postwrite_entry_count": 3746,
+    "postwrite_status_sha256_utf8_lf": "ac91cb84ecebf07c67da2c9e2923edc9e99d54b78c6ceb6bb2ce88f89a16024e"
+  },
+  "verification": {
+    "raw_hash_json_check_exit": 0,
+    "raw_hash_json_check_status": "pass",
+    "julia": "not_run",
+    "desc": "not_run",
+    "self_hash_excluded": true
+  },
+  "credit_boundary": {
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "engineering": false,
+    "current_A": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "G-I1B-SOURCE-ENVELOPE-focused-r5-command-receipts-v1",
+  "reviewer": "independent_luna_high_serial_executor",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 14796,
+  "exit_code": 0,
+  "utc_observed": {"before": "2026-09-14T21:10:05.4292512Z", "after": "2026-09-14T21:12:22.1171014Z"},
+  "preflight": {"matching_julia_desc_process_count": 0, "dirty_entry_count": 301, "target_sha256_verified": true},
+  "postflight": {"matching_julia_desc_process_count": 0, "dirty_entry_count": 301, "target_sha256_unchanged": true},
+  "target_sha256": {"source": "58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12", "test": "2de750b05cfea77ad7fc2dac0d0c8f8862c60028bba38e95b887e23a4bcc0299", "fixture": "23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6", "runner": "54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5"},
+  "raw_outputs": {"stdout": {"path": "stdout.txt", "bytes": 2806, "sha256": "22f5b6723c74b3b502100cba753a9b567c09896722f3373ae28d45b579976121"}, "stderr": {"path": "stderr.txt", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+  "test_summary": {"total": "2653/2653", "GI1B_actual_A_factories": "2024/2024", "GI1B_schema_frozen_matrix": "14/14", "GI1B_production_boundary": "6/6"},
+  "claim_ceiling": ["software_test_only", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_parent_goal"]
+}

@@ -1,0 +1,20 @@
+Test Summary:                                                                 | Pass  Total  Time
+G2 metric-boundary V1 has executable chart metric and determinant orientation |   20     20  4.4s
+Test Summary:                                                    | Pass  Total  Time
+G2 candidate-owned mesh and face declarations are hash-addressed |   10     10  1.7s
+Test Summary:                                                  | Pass  Total  Time
+editing source fields rebuilds source and declaration identity |    5      5  0.5s
+contradictions fail closed and missing authority is deferred: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\metric_boundary_v1_contract_tests.jl:143
+  Expression: any(occursin("boundary_value_unit_mismatch"), (G.g2mb_admit(unit_source)).errors)
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\metric_boundary_v1_contract_tests.jl:143 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\G2\metric_boundary_v1_contract_tests.jl:115
+Test Summary:                                                | Pass  Fail  Total  Time
+contradictions fail closed and missing authority is deferred |   13     1     14  1.2s

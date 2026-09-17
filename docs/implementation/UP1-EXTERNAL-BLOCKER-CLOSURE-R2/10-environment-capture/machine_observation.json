@@ -1,0 +1,406 @@
+{
+  "schema": "UP1.R2.machine-observation.v1",
+  "task_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2/W3-10-environment-capture",
+  "observation_status": "local_observation_only",
+  "claim_ceiling": "preparation_only/screen_only",
+  "observed_utc": "2026-09-16T17:47:50.2916582Z",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "os": {
+    "caption": "Microsoft Windows 11 专业版",
+    "version": "10.0.26200.0",
+    "build": "26200",
+    "platform": "Win32NT",
+    "architecture": "AMD64",
+    "process_architecture": null,
+    "computer_name": "NEWORLDS-LAPTOP"
+  },
+  "locale": "zh-CN",
+  "timezone": "China Standard Time",
+  "git": {
+    "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "raw_command_record": "raw/git_head.*",
+    "status_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b5",
+    "dirty_patch_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+    "note": "status and raw patch receipts are recorded; patch digest is finalized in manifest from raw outputs.",
+    "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "dirty_patch_digest": {
+      "algorithm": "SHA-256",
+      "input_path": "raw/git_diff_binary.stdout.raw",
+      "input_bytes": "exact raw bytes as captured; no text decoding or newline normalization",
+      "raw_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+      "normalized_sha256": null,
+      "normalization": "none",
+      "purpose": "authoritative local dirty-patch receipt for this observation only"
+    }
+  },
+  "interpreters": {
+    "julia": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "python": "D:\\Users\\Newman\\anaconda3\\python.exe"
+  },
+  "command_records": [
+    {
+      "name": "git_root",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe rev-parse --show-toplevel",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "rev-parse",
+        "--show-toplevel"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 59716,
+      "started_utc": "2026-09-16T17:47:46.0040942Z",
+      "ended_utc": "2026-09-16T17:47:46.0960458Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_root.stdout.raw",
+        "stderr": "raw/git_root.stderr.raw",
+        "combined": "raw/git_root.combined.raw",
+        "stdout_sha256": "1ab3b40e2e2dd7a1ed132a8fde60fab6ae7d6f74f742409cd00b6572a03153d5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "1ab3b40e2e2dd7a1ed132a8fde60fab6ae7d6f74f742409cd00b6572a03153d5"
+      }
+    },
+    {
+      "name": "git_head",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe rev-parse HEAD",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 81976,
+      "started_utc": "2026-09-16T17:47:46.1583718Z",
+      "ended_utc": "2026-09-16T17:47:46.2296167Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_head.stdout.raw",
+        "stderr": "raw/git_head.stderr.raw",
+        "combined": "raw/git_head.combined.raw",
+        "stdout_sha256": "7c42a54d012dba67fe8126bb78e099db26c26a703787654247f0aed216472a80",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "7c42a54d012dba67fe8126bb78e099db26c26a703787654247f0aed216472a80"
+      }
+    },
+    {
+      "name": "git_status_short",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe status --short",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "status",
+        "--short"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 99968,
+      "started_utc": "2026-09-16T17:47:46.2365620Z",
+      "ended_utc": "2026-09-16T17:47:46.3860982Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_status_short.stdout.raw",
+        "stderr": "raw/git_status_short.stderr.raw",
+        "combined": "raw/git_status_short.combined.raw",
+        "stdout_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "1ec732a19d2ea2f3ce32d0eab2b9b7137b02641208cfbbbc622da0a0b18d02b5"
+      }
+    },
+    {
+      "name": "git_diff_binary",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe diff --binary",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "diff",
+        "--binary"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 103556,
+      "started_utc": "2026-09-16T17:47:46.3913508Z",
+      "ended_utc": "2026-09-16T17:47:46.4997865Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_diff_binary.stdout.raw",
+        "stderr": "raw/git_diff_binary.stderr.raw",
+        "combined": "raw/git_diff_binary.combined.raw",
+        "stdout_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+        "stderr_sha256": "c511c32526b0565e9bd4b55a25cb749bc8d063f98ee2acee024e1b55933de6fb",
+        "combined_sha256": "0b8a78d0c0dc3788a15b9487a87c9c33819f662f2b2a1ee31aa2c9d59c45f8be"
+      }
+    },
+    {
+      "name": "git_diff_cached_binary",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe diff --cached --binary",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "diff",
+        "--cached",
+        "--binary"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 67540,
+      "started_utc": "2026-09-16T17:47:46.5073122Z",
+      "ended_utc": "2026-09-16T17:47:46.5761479Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_diff_cached_binary.stdout.raw",
+        "stderr": "raw/git_diff_cached_binary.stderr.raw",
+        "combined": "raw/git_diff_cached_binary.combined.raw",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "git_version",
+      "command": "D:\\008-RobotMaster\\Git\\cmd\\git.exe --version",
+      "executable": "D:\\008-RobotMaster\\Git\\cmd\\git.exe",
+      "arguments": [
+        "--version"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 88872,
+      "started_utc": "2026-09-16T17:47:46.5808011Z",
+      "ended_utc": "2026-09-16T17:47:46.6454847Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/git_version.stdout.raw",
+        "stderr": "raw/git_version.stderr.raw",
+        "combined": "raw/git_version.combined.raw",
+        "stdout_sha256": "db917aa2b85fbcb0971f9e4ebaf1b2861b8dc26c1c970a9cf091bd4109346aed",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "db917aa2b85fbcb0971f9e4ebaf1b2861b8dc26c1c970a9cf091bd4109346aed"
+      }
+    },
+    {
+      "name": "julia_version",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --version",
+      "executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+      "arguments": [
+        "--version"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 48032,
+      "started_utc": "2026-09-16T17:47:46.6506573Z",
+      "ended_utc": "2026-09-16T17:47:46.7100841Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/julia_version.stdout.raw",
+        "stderr": "raw/julia_version.stderr.raw",
+        "combined": "raw/julia_version.combined.raw",
+        "stdout_sha256": "7004c5a9bd8fac6bbb2159a2a859acd38ef1adb0acfbf12f7ff09c9739a5316b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "7004c5a9bd8fac6bbb2159a2a859acd38ef1adb0acfbf12f7ff09c9739a5316b"
+      }
+    },
+    {
+      "name": "python_version",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe --version",
+      "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "arguments": [
+        "--version"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 61732,
+      "started_utc": "2026-09-16T17:47:46.7156531Z",
+      "ended_utc": "2026-09-16T17:47:46.7445756Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/python_version.stdout.raw",
+        "stderr": "raw/python_version.stderr.raw",
+        "combined": "raw/python_version.combined.raw",
+        "stdout_sha256": "0fc277c607f29dba0321a8267cd42a095f85069b63c31f1401b6c66b9a30dd16",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "0fc277c607f29dba0321a8267cd42a095f85069b63c31f1401b6c66b9a30dd16"
+      }
+    },
+    {
+      "name": "openssl_version",
+      "command": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe version -a",
+      "executable": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\openssl.exe",
+      "arguments": [
+        "version",
+        "-a"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 108196,
+      "started_utc": "2026-09-16T17:47:46.7499195Z",
+      "ended_utc": "2026-09-16T17:47:46.7873648Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/openssl_version.stdout.raw",
+        "stderr": "raw/openssl_version.stderr.raw",
+        "combined": "raw/openssl_version.combined.raw",
+        "stdout_sha256": "cf89705af6118986fb05080fb50189cb439b41ad6a8ea437ab2ef873ddaec345",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "cf89705af6118986fb05080fb50189cb439b41ad6a8ea437ab2ef873ddaec345"
+      }
+    },
+    {
+      "name": "lock_file_discovery",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\OpenAI\\Codex\\bin\\4fe45441001f7a41\\rg.exe --files -g Project.toml -g Manifest.toml -g *.lock -g poetry.lock -g Pipfile.lock -g environment*.yml -g environment*.yaml -g requirements*.txt",
+      "executable": "C:\\Users\\Newman\\AppData\\Local\\OpenAI\\Codex\\bin\\4fe45441001f7a41\\rg.exe",
+      "arguments": [
+        "--files",
+        "-g",
+        "Project.toml",
+        "-g",
+        "Manifest.toml",
+        "-g",
+        "*.lock",
+        "-g",
+        "poetry.lock",
+        "-g",
+        "Pipfile.lock",
+        "-g",
+        "environment*.yml",
+        "-g",
+        "environment*.yaml",
+        "-g",
+        "requirements*.txt"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 98488,
+      "started_utc": "2026-09-16T17:47:46.7922153Z",
+      "ended_utc": "2026-09-16T17:47:46.9000318Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/lock_file_discovery.stdout.raw",
+        "stderr": "raw/lock_file_discovery.stderr.raw",
+        "combined": "raw/lock_file_discovery.combined.raw",
+        "stdout_sha256": "b3fb381e9e3ecc5fa19ad2b25f77ea5d3bdf3419a9e35d5ed2aece69fe50f4d5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "b3fb381e9e3ecc5fa19ad2b25f77ea5d3bdf3419a9e35d5ed2aece69fe50f4d5"
+      }
+    },
+    {
+      "name": "julia_pkg_status_manifest",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --project=. -e using Pkg; Pkg.status(; mode=Pkg.PKGMODE_MANIFEST)",
+      "executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+      "arguments": [
+        "--startup-file=no",
+        "--project=.",
+        "-e",
+        "using Pkg; Pkg.status(; mode=Pkg.PKGMODE_MANIFEST)"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 55060,
+      "started_utc": "2026-09-16T17:47:46.9053442Z",
+      "ended_utc": "2026-09-16T17:47:48.6428541Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/julia_pkg_status_manifest.stdout.raw",
+        "stderr": "raw/julia_pkg_status_manifest.stderr.raw",
+        "combined": "raw/julia_pkg_status_manifest.combined.raw",
+        "stdout_sha256": "a5d1ad7da134cd9cd88c408a2ce2f682eaa6bbbbf00a7050dd59d35e02d1395a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "a5d1ad7da134cd9cd88c408a2ce2f682eaa6bbbbf00a7050dd59d35e02d1395a"
+      }
+    },
+    {
+      "name": "python_pip_list_json",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -m pip list --format=json",
+      "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "arguments": [
+        "-m",
+        "pip",
+        "list",
+        "--format=json"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 88892,
+      "started_utc": "2026-09-16T17:47:48.6484931Z",
+      "ended_utc": "2026-09-16T17:47:49.4350462Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/python_pip_list_json.stdout.raw",
+        "stderr": "raw/python_pip_list_json.stderr.raw",
+        "combined": "raw/python_pip_list_json.combined.raw",
+        "stdout_sha256": "c7dd8306628e3a7d76d326c7f23e284a2f653ee33671ee649bde7bae406a75f6",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "c7dd8306628e3a7d76d326c7f23e284a2f653ee33671ee649bde7bae406a75f6"
+      }
+    },
+    {
+      "name": "python_runtime_sys",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -c import json,sys,platform; print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"implementation\":platform.python_implementation(),\"sys_path\":sys.path}, sort_keys=True))",
+      "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "arguments": [
+        "-c",
+        "import json,sys,platform; print(json.dumps({\"executable\":sys.executable,\"version\":sys.version,\"implementation\":platform.python_implementation(),\"sys_path\":sys.path}, sort_keys=True))"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 47988,
+      "started_utc": "2026-09-16T17:47:49.4398134Z",
+      "ended_utc": "2026-09-16T17:47:49.5289209Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/python_runtime_sys.stdout.raw",
+        "stderr": "raw/python_runtime_sys.stderr.raw",
+        "combined": "raw/python_runtime_sys.combined.raw",
+        "stdout_sha256": "7fe763fa01ac738d4addcada951ee2504033ace1b41f2b3a60c4651825ecf9c0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "7fe763fa01ac738d4addcada951ee2504033ace1b41f2b3a60c4651825ecf9c0"
+      }
+    },
+    {
+      "name": "julia_runtime_sys",
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --startup-file=no --project=. -e println(Sys.BINDIR); println(VERSION); println.(LOAD_PATH)",
+      "executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+      "arguments": [
+        "--startup-file=no",
+        "--project=.",
+        "-e",
+        "println(Sys.BINDIR); println(VERSION); println.(LOAD_PATH)"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 89208,
+      "started_utc": "2026-09-16T17:47:49.5329222Z",
+      "ended_utc": "2026-09-16T17:47:49.9035664Z",
+      "exit_code": 0,
+      "failure": null,
+      "raw": {
+        "stdout": "raw/julia_runtime_sys.stdout.raw",
+        "stderr": "raw/julia_runtime_sys.stderr.raw",
+        "combined": "raw/julia_runtime_sys.combined.raw",
+        "stdout_sha256": "c1f72b58048aa7078c41ad6233f3240bb6edf072a8cb885a37160844d332a35e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "combined_sha256": "c1f72b58048aa7078c41ad6233f3240bb6edf072a8cb885a37160844d332a35e"
+      }
+    }
+  ],
+  "historical_failures": [
+    {
+      "id": "F1-environment-dirty-patch-digest-r1",
+      "state": "historical_failure_preserved",
+      "recorded_sha256": "e6b42d07d326be263a19509faddeece612f0e42495b8980de0e55f60f282fb99",
+      "raw_and_fresh_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+      "source": "reviews/external-facts-independent-review-r1/findings.json",
+      "reason": "prior receipt used a digest over concatenated decoded stdout values instead of exact raw receipt bytes",
+      "superseded_by": "exact raw byte SHA-256 below"
+    }
+  ],
+  "repair_receipt": {
+    "name": "repair_dirty_patch_receipt_r1",
+    "pid": 69160,
+    "started_utc": "2026-09-16T18:21:31.735514Z",
+    "input_raw": "raw/git_diff_binary.stdout.raw",
+    "input_raw_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+    "input_cached_raw": "raw/git_diff_cached_binary.stdout.raw",
+    "input_cached_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "old_inconsistent_sha256": "3665717b31dbd8224f29185a86446997c9c500ef406df0e4288fd57a4e60ecc1",
+    "status": "repaired_exact_raw_byte_digest"
+  }
+}

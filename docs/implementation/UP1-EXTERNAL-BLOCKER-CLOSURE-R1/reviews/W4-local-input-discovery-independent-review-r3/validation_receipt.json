@@ -1,0 +1,40 @@
+{
+  "schema":"UP1.W4.local-input-discovery.independent-review-r3.validation-receipt.v1",
+  "status":"pass_limited",
+  "conclusion":"pass_limited",
+  "claim":"discovery_only/preparation_only",
+  "source_root":"D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/local_input_discovery",
+  "scope":"repository-only; .git, reviews/**, and local_input_discovery/** excluded from scan universe; W1/W2/W3 main packages included",
+  "scan":{
+    "pid":103592,
+    "start_utc":"2026-09-16T16:37:49.421279Z",
+    "end_utc":"2026-09-16T16:37:53.426310Z",
+    "exit_code":0,
+    "raw":"local_input_discovery/raw/metadata_scan_r2.jsonl",
+    "raw_lines":2810,
+    "raw_sha256":"e4da31030c88f3c9490687dd2650bae6d820dbf68524b77feef9741b57835a07",
+    "reviews_hit_count":0,
+    "partition":{"candidate_count":1864,"excluded_count":946,"identity":"1864+946=2810"}
+  },
+  "validator":{
+    "pid":46848,
+    "start_utc":"2026-09-16T16:38:36.597077Z",
+    "end_utc":"2026-09-16T16:38:41.469568Z",
+    "exit_code":0,
+    "raw_stdout":"local_input_discovery/repair_r2/raw/static_discovery_validator.stdout.raw",
+    "raw_stderr":"local_input_discovery/repair_r2/raw/static_discovery_validator.stderr.raw",
+    "combined_raw":"local_input_discovery/repair_r2/raw/static_discovery_validator.combined.raw",
+    "raw_stdout_sha256":"bed8397e50984f236164fedb1285acbb6234eb8d8f93c2ea2a49913abe19adac",
+    "raw_stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined_raw_sha256":"e79c6120b533aef46404e2121943d82d6852d7ed5c046133a94bbd5480918787"
+  },
+  "independent_results":{
+    "all_paths_exist":true,"all_paths_inside_repo":true,"bytes_match":true,"hashes_match":true,"duplicate_paths":0,
+    "candidate_schema_failures":0,"excluded_schema_failures":0,"promotion_true_count":0,"sensitive_hits":0,
+    "crosswalk_count":26,"crosswalk_lossless":true,"changed_inputs":false,"new_real_inputs":[],"no_upstream_register_mutation":true,"new_ad":false,"no_s3":true,
+    "source_exact_set_count":54,"source_exact_set_matches":true,"archive_files_preserved":25,"pycache_count":0,"json_unique_parse":true
+  },
+  "upstream_main_packages":{"W1":{"candidate_count":51,"register_sha256":"87c9257016e8b5323566c2d2e84bca774da28ed77891026afa39b6fb8684015c"},"W2":{"candidate_count":9,"register_sha256":"9b1c1b2a701e8637fa94e4ae1a619fd9d79ff9d4d269e54a9be9b9645443e08b"},"W3":{"candidate_count":47,"register_sha256":"de861b64970f9182112055c4959b90967f31a9ab8b1b377941e3bf78f9409b9f"}},
+  "self_hash_exclusion":["manifest.json","cleanup_inventory.json"],
+  "formal_credit":false
+}

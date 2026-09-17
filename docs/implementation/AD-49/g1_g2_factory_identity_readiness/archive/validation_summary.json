@@ -1,0 +1,29 @@
+{
+  "schema_version": "AD49-validation-summary-v1",
+  "record_kind": "raw_static_validation_summary",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_status_lines": 334,
+  "direct_python": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "version": "3.13.5",
+    "pid": 87732,
+    "utc_start": "2026-09-15T14:21:14.909155+00:00",
+    "utc_end": "2026-09-15T14:21:14.914362+00:00",
+    "exit_code": 0,
+    "checks": {"g1_constructor":true,"g2_constructor":true,"g1_locator_factory":false,"g2_locator_factory":false,"g2_explicit_mapping":false,"registry_alias_absent":true,"g1_common_type":true,"g2_public_type":true,"g1_receipt_no_source_authority":true,"g2_receipt_no_source_authority":true},
+    "source_rows": [
+      {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","head_tracked":false},
+      {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","head_tracked":false},
+      {"path":"src/Contracts/GenomeContractRegistry.jl","bytes":2389,"sha256":"ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c","head_tracked":true},
+      {"path":"src/IR/PhysicalTypes.jl","bytes":11801,"sha256":"dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4","head_tracked":true}
+    ]
+  },
+  "planning_validation":{"command":"python docs/v4_multitopology_generation/validate_plan.py","exit_code":0,"summary":"31 markdown; 526 relative links; 39 tasks; DAG acyclic"},
+  "scoped_diff_check":{"command":"git diff --check","exit_code":0,"stderr":"pre-existing LF/CRLF warnings observed by git"},
+  "process_probe":{"julia_desc_mesh_solver_found":false,"python_processes_observed":3,"other_processes_untouched":true},
+  "api_search":{"g1_locator_factory":false,"g2_locator_factory":false,"g2_explicit_mapping":false,"registry_cross_type_alias":false},
+  "claims":{"source_authority":false,"factory_authority":false,"mapping":false,"candidate_identity":false,"declaration_hash":false,"t0":false,"t1":false,"t2":false,"provider":false,"mesh":false,"solver":false,"engineering":false,"physical":false,"search":false,"r01_r10":false,"l4_credible_count":0},
+  "failure_history":"none_created_by_AD49; pre-existing upstream failures remain immutable",
+  "cleanup":"no_task_owned_scratch"
+}

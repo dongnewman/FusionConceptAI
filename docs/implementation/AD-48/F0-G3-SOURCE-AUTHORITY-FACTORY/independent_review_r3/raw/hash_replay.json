@@ -1,0 +1,16 @@
+{
+  "utc": "2026-09-15T15:04:51.3759583Z",
+  "two_samples_identical": true,
+  "product_files": [
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":31581,"sha256":"1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4"},
+    {"path":"test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl","bytes":14904,"sha256":"02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"}
+  ],
+  "ad45_envelope": {"path":"docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json","bytes":9612,"sha256":"17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc"},
+  "s1_frozen_source_inputs": {
+    "realization": {"bytes":33751,"sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    "control": {"bytes":10297,"sha256":"eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"},
+    "binding": {"bytes":10904,"sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"},
+    "bundle": {"bytes":6704,"sha256":"8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"}
+  },
+  "semantic_replay": "ad45_real_input_probe.jl asserted canonical_hash(binding), canonical_hash(content), and canonical_hash(declaration) equal their stored digests for all four Present results"
+}

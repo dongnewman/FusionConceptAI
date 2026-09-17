@@ -1,0 +1,134 @@
+{
+  "checks": [
+    {
+      "detail": "reviews/W1-witness-authority-independent-review-r7/review.md",
+      "name": "latest_W1_pass_limited",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W2-trust-chain-independent-review-r3/review.md",
+      "name": "latest_W2_pass_limited",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W3-source-g2-environment-independent-review-r4/review.md",
+      "name": "latest_W3_pass_limited",
+      "passed": true
+    },
+    {
+      "detail": "reviews/W4-local-input-discovery-independent-review-r3/review.md",
+      "name": "latest_W4_pass_limited",
+      "passed": true
+    },
+    {
+      "detail": "decision=0; gate=0",
+      "name": "zero_usable_external_inputs",
+      "passed": true
+    },
+    {
+      "detail": "fresh S3 G1/G2/G3 typed_absent, terminal_deferred, no_publish",
+      "name": "fresh_s3_absence",
+      "passed": true
+    },
+    {
+      "detail": "root credit fields",
+      "name": "root_no_formal_credit",
+      "passed": true
+    },
+    {
+      "detail": "39-node DAG and HEAD",
+      "name": "dag_head_preserved",
+      "passed": true
+    },
+    {
+      "detail": "not_sent/no mutation/no credentials/no AD",
+      "name": "handoff_controls",
+      "passed": true
+    },
+    {
+      "detail": "endpoint-like literals absent from packet JSON",
+      "name": "no_invented_endpoints",
+      "passed": true
+    },
+    {
+      "detail": "missing=[] count=26",
+      "name": "lossless_absence_coverage",
+      "passed": true
+    },
+    {
+      "detail": "packet IDs",
+      "name": "four_packets",
+      "passed": true
+    },
+    {
+      "detail": "route=['T0', 'authority_recheck', 'T1', 'T2', 'aggregate', 'UP2-00', 'UP1-04B', 'UP1-04', 'UP2-01']; stages=['T0', 'authority_recheck', 'T1', 'T2', 'aggregate', 'UP2-00', 'UP1-04B', 'UP1-04', 'UP2-01']",
+      "name": "full_route",
+      "passed": true
+    },
+    {
+      "detail": "count=8; transitions=True",
+      "name": "eight_adjacent_transitions",
+      "passed": true
+    },
+    {
+      "detail": "requires=True; success=True; failure=True; receipt_driven=True",
+      "name": "stage_requires_receipt_driven",
+      "passed": true
+    },
+    {
+      "detail": "no fixed dates/no gate credit",
+      "name": "schedule_boundaries",
+      "passed": true
+    },
+    {
+      "detail": "actual_count=27 declared_count=27",
+      "name": "handoff_exact_set",
+      "passed": true
+    },
+    {
+      "detail": "mismatches=[]",
+      "name": "manifest_hashes",
+      "passed": true
+    },
+    {
+      "detail": "mismatches=[]",
+      "name": "cleanup_hashes",
+      "passed": true
+    },
+    {
+      "detail": "map=7 dynamic_raw=18 actual=27",
+      "name": "cleanup_hash_key_set",
+      "passed": true
+    },
+    {
+      "detail": "handoff package temporary scan",
+      "name": "no_pycache_or_temp",
+      "passed": true
+    },
+    {
+      "detail": "hygiene controls",
+      "name": "hygiene_read_only",
+      "passed": true
+    },
+    {
+      "detail": "raw retain",
+      "name": "four_historical_raw_retain",
+      "passed": true
+    },
+    {
+      "detail": "HEAD",
+      "name": "hygiene_head",
+      "passed": true
+    }
+  ],
+  "decision": "pass_limited",
+  "findings": [],
+  "summary": {
+    "adjacent_transitions": 8,
+    "formal_credit": false,
+    "fresh_s3": "typed_absent/terminal_deferred/no_publish",
+    "julia_s3_desc_solver_executed": false,
+    "read_only": true,
+    "usable_external_inputs": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema":"UP1.W4.local-input-discovery.independent-validation-receipt.v1",
+  "review_scope":"read_only_metadata_and_safety_review",
+  "review_utc":"2026-09-16",
+  "conclusion":"rework_required",
+  "claim_ceiling":"discovery_only/preparation_only",
+  "formal_credit":{"T0":false,"B00":false,"B04":false,"UP1":false,"R":false,"L4":false,"parent_goal":false},
+  "source_validator":{"command_id":"W4-STATIC-VALIDATOR-R1","pid":87756,"start_utc":"2026-09-16T15:51:38.3657914Z","end_utc":"2026-09-16T15:51:39.0141806Z","exit_code":0,"stdout_sha256":"f87f43ee6c9bc794ef68bebedd3c69c20404c669b25524077dc01b2bb468fcb0","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"f87f43ee6c9bc794ef68bebedd3c69c20404c669b25524077dc01b2bb468fcb0","raw_hashes_match":true},
+  "checks":{
+    "discovery_exact_file_set":{"status":"pass","count":11},
+    "discovery_json_unique_parse":"pass",
+    "candidate_count":25,
+    "listed_candidate_paths_exist":"pass",
+    "listed_candidate_bytes_and_hashes":"pass",
+    "listed_usable_production_count":0,
+    "sensitive_path_extension_scan":{"status":"pass_bounded","matches":[],"content_opened":false},
+    "fixture_self_signed_local_only_historical_promotion":"pass_none_promoted",
+    "absence_delta_changed_inputs":false,
+    "upstream_register_mutated":false,
+    "global_candidate_completeness":"not_proven",
+    "absence_crosswalk":"not_proven"
+  },
+  "limitations":["W4 metadata scan has no PID/raw/full path listing.","Known authority-looking local/history artifacts are not in an explicit exclusion ledger.","Validator does not independently compare candidate path existence, byte count, or SHA-256.","No secret/private-key/token contents were read.","No Julia/DESC/solver/mesh/recompute/network execution."]
+}

@@ -1,0 +1,99 @@
+{
+  "fixture_id": "UP1-FX-G2-001",
+  "contract_version": "FieldGeometryGenomeV5",
+  "payload_schema_version": "V5",
+  "ambient_dimension": 3,
+  "version_axes": {
+    "payload_schema": {"id": "fusion.g2.payload-schema", "version": "v5"},
+    "canonicalization": {"id": "fusion.g2.canonicalization", "version": "v5"},
+    "applicability": {"id": "fusion.g2.applicability", "version": "v5"},
+    "receipt": {"id": "fusion.g2.receipt", "version": "v5"}
+  },
+  "legal_cases": [
+    {
+      "case_id": "split_x_1",
+      "contract": {"uri": "urn:fusion:g2:split-x-1", "version": "v5"},
+      "regions": [
+        {"id": "left", "lower": [0, 0, 0], "upper": [1, 1, 1], "chart_ref": "g2.chart", "embedding_ref": "g2.embedding", "field_space_ref": "g2.scalar-space", "boundary_kinds": ["dirichlet", "neumann"]},
+        {"id": "right", "lower": [1, 0, 0], "upper": [2, 1, 1], "chart_ref": "g2.chart", "embedding_ref": "g2.embedding", "field_space_ref": "g2.scalar-space", "boundary_kinds": ["dirichlet", "neumann"]}
+      ],
+      "interface": {"id": "g2.interface.x1", "left_region_id": "left", "right_region_id": "right", "axis": "x", "coordinate": "1", "normal": 1, "continuity": "trace_flux", "transfer": "conservative"},
+      "plan": {
+        "plan_ref": "g2.plan.x1",
+        "chart": {"chart_ref": "g2.chart", "frame_ref": "g2.frame", "axes": ["x", "y", "z"], "map_kind": "identity"},
+        "embedding": {"embedding_ref": "g2.embedding", "chart_ref": "g2.chart", "kind": "cartesian_identity"},
+        "field_space": {"ref": "g2.scalar-space", "value_shape": "scalar", "continuity": "H1", "state_unit": "1"},
+        "mesh": {"ref": "g2.mesh", "region_ids": ["left", "right"], "cells": [2, 2, 2], "basis": "linear", "quadrature": "declared_pending"},
+        "exterior": {"ref": "g2.exterior", "boundary_region_ids": ["left", "right"], "condition": "mixed", "faces": ["x_min", "x_max", "y_min", "y_max", "z_min", "z_max"], "patches": [
+          {"face": "x_min", "region_id": "left", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "x_max", "region_id": "right", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "y_min", "region_id": "left", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "y_min", "region_id": "right", "lower": [1, 0], "upper": [2, 1]},
+          {"face": "y_max", "region_id": "left", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "y_max", "region_id": "right", "lower": [1, 0], "upper": [2, 1]},
+          {"face": "z_min", "region_id": "left", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "z_min", "region_id": "right", "lower": [1, 0], "upper": [2, 1]},
+          {"face": "z_max", "region_id": "left", "lower": [0, 0], "upper": [1, 1]},
+          {"face": "z_max", "region_id": "right", "lower": [1, 0], "upper": [2, 1]}
+        ]}
+      },
+      "profile": {"profile_ref": "fusion.g2.grammar-profile", "canonicalization_ref": "fusion.g2.canonicalization-profile", "applicability_ref": "fusion.g2.applicability-profile", "topologies": ["cartesian"], "mesh_families": ["linear"], "provider_match": "unique_match"}
+    },
+    {
+      "case_id": "split_y_half",
+      "contract": {"uri": "urn:fusion:g2:split-y-half", "version": "v5"},
+      "regions": [
+        {"id": "left", "lower": [0, 0, 0], "upper": [2, "1/2", 1], "chart_ref": "g2.chart", "embedding_ref": "g2.embedding", "field_space_ref": "g2.scalar-space", "boundary_kinds": ["dirichlet", "neumann"]},
+        {"id": "right", "lower": [0, "1/2", 0], "upper": [2, 1, 1], "chart_ref": "g2.chart", "embedding_ref": "g2.embedding", "field_space_ref": "g2.scalar-space", "boundary_kinds": ["dirichlet", "neumann"]}
+      ],
+      "interface": {"id": "g2.interface.yhalf", "left_region_id": "left", "right_region_id": "right", "axis": "y", "coordinate": "1/2", "normal": 1, "continuity": "trace_flux", "transfer": "conservative"},
+      "plan": {
+        "plan_ref": "g2.plan.yhalf",
+        "chart": {"chart_ref": "g2.chart", "frame_ref": "g2.frame", "axes": ["x", "y", "z"], "map_kind": "identity"},
+        "embedding": {"embedding_ref": "g2.embedding", "chart_ref": "g2.chart", "kind": "cartesian_identity"},
+        "field_space": {"ref": "g2.scalar-space", "value_shape": "scalar", "continuity": "H1", "state_unit": "1"},
+        "mesh": {"ref": "g2.mesh", "region_ids": ["left", "right"], "cells": [2, 2, 2], "basis": "linear", "quadrature": "declared_pending"},
+        "exterior": {"ref": "g2.exterior", "boundary_region_ids": ["left", "right"], "condition": "mixed", "faces": ["x_min", "x_max", "y_min", "y_max", "z_min", "z_max"], "patches": [
+          {"face": "x_min", "region_id": "left", "lower": [0, 0], "upper": ["1/2", 1]},
+          {"face": "x_min", "region_id": "right", "lower": ["1/2", 0], "upper": [1, 1]},
+          {"face": "x_max", "region_id": "left", "lower": [0, 0], "upper": ["1/2", 1]},
+          {"face": "x_max", "region_id": "right", "lower": ["1/2", 0], "upper": [1, 1]},
+          {"face": "y_min", "region_id": "left", "lower": [0, 0], "upper": [2, 1]},
+          {"face": "y_max", "region_id": "right", "lower": [0, 0], "upper": [2, 1]},
+          {"face": "z_min", "region_id": "left", "lower": [0, 0], "upper": [2, "1/2"]},
+          {"face": "z_min", "region_id": "right", "lower": [0, "1/2"], "upper": [2, 1]},
+          {"face": "z_max", "region_id": "left", "lower": [0, 0], "upper": [2, "1/2"]},
+          {"face": "z_max", "region_id": "right", "lower": [0, "1/2"], "upper": [2, 1]}
+        ]}
+      },
+      "profile": {"profile_ref": "fusion.g2.grammar-profile", "canonicalization_ref": "fusion.g2.canonicalization-profile", "applicability_ref": "fusion.g2.applicability-profile", "topologies": ["cartesian"], "mesh_families": ["linear"], "provider_match": "unique_match"}
+    }
+  ],
+  "negative_cases": [
+    {"case_id": "interface_nonoverlap", "base_case": "split_x_1", "mutation": {"kind": "interface_coordinate", "value": "3"}, "expected": "invalid_boundary|invalid_closure", "expected_detail": "interface_faces_do_not_coincide:g2.interface.x1", "solver_calls": 0},
+    {"case_id": "interface_wrong_orientation", "base_case": "split_x_1", "mutation": {"kind": "interface_normal", "value": -1}, "expected": "invalid_closure", "expected_detail": "interface_orientation_mismatch:g2.interface.x1", "solver_calls": 0},
+    {"case_id": "region_volume_overlap", "base_case": "split_x_1", "mutation": {"kind": "region_lower", "region_id": "right", "axis": 1, "value": "1/2"}, "expected": "invalid_closure", "expected_detail": "region_volume_overlap:left:right", "solver_calls": 0},
+    {"case_id": "interface_tangential_coverage", "base_case": "split_x_1", "mutation": {"kind": "region_lower", "region_id": "right", "axis": 2, "value": "1/2"}, "expected": "invalid_closure", "expected_detail": "interface_tangential_coverage_incomplete:g2.interface.x1", "solver_calls": 0},
+    {"case_id": "missing_interface", "base_case": "split_x_1", "mutation": {"kind": "drop_interface"}, "expected": "invalid_closure", "expected_detail": "missing_interface", "solver_calls": 0},
+    {"case_id": "repeated_interface", "base_case": "split_x_1", "mutation": {"kind": "duplicate_interface"}, "expected": "invalid_closure", "expected_detail": "duplicate_interface:g2.interface.x1.duplicate", "solver_calls": 0},
+    {"case_id": "open_exterior", "base_case": "split_x_1", "mutation": {"kind": "drop_boundary_face", "face": "z_max"}, "expected": "invalid_boundary", "expected_detail": "exterior_boundary_not_closed", "solver_calls": 0},
+    {"case_id": "exterior_patch_gap", "base_case": "split_y_half", "mutation": {"kind": "patch_lower", "face": "z_min", "region_id": "right", "lower": [1, "1/2"]}, "expected": "invalid_boundary", "expected_detail": "exterior_face_patch_gap:z_min", "solver_calls": 0},
+    {"case_id": "exterior_patch_overlap", "base_case": "split_y_half", "mutation": {"kind": "duplicate_boundary_patch", "face": "z_min", "region_id": "left"}, "expected": "invalid_boundary", "expected_detail": "exterior_face_patch_overlap:z_min", "solver_calls": 0},
+    {"case_id": "duplicate_exterior_owner", "base_case": "split_x_1", "mutation": {"kind": "duplicate_exterior_owner"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "wrong_external_schema", "base_case": "split_x_1", "mutation": {"kind": "wrong_external_schema"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "wrong_external_canonicalization", "base_case": "split_x_1", "mutation": {"kind": "wrong_external_canonicalization"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "wrong_external_profile", "base_case": "split_x_1", "mutation": {"kind": "wrong_external_profile"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "wrong_version_axis_id", "base_case": "split_x_1", "mutation": {"kind": "wrong_version_axis_id"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "wrong_internal_profile_ref", "base_case": "split_x_1", "mutation": {"kind": "wrong_internal_profile_ref"}, "expected": "constructor_reject", "solver_calls": 0},
+    {"case_id": "missing_provider", "base_case": "split_x_1", "mutation": {"kind": "profile_provider_match", "value": "no_match"}, "expected": "terminal_deferred", "solver_calls": 0}
+  ],
+  "evidence_boundary": {
+    "structural_admission": "testable by focused contract tests",
+    "geometry_validation": "exact region/interface and multi-region exterior patch checks; not a mesh or physical proof",
+    "mesh_execution": "not executed in this work order; provider invocation counter belongs to UP1-04",
+    "b04_compile_before_provider": "pending UP1-04; no provider invocation evidence in UP1-02",
+    "physical_solver": "not_executed",
+    "claim_ceiling": "none",
+    "scope": "contract_only"
+  }
+}

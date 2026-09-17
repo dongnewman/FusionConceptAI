@@ -1,0 +1,26 @@
+{
+  "schema_version": "G-I1B-source-envelope-repair-r7-static-qa-v1",
+  "status": "pass_limited",
+  "accepted": false,
+  "julia": "not_run",
+  "desc": "not_run",
+  "review_basis": "focused_r2 exit-1 field-access errors at tests.jl:234,237,255",
+  "checks": {
+    "focused_r2_failure_evidence_preserved": "pass",
+    "r7_before_hashes_frozen": "pass",
+    "row_contract_field_audit": "pass_row_binding_original",
+    "no_remaining_row_original_dot_access": "pass",
+    "row_original_hash_direct_field_retained": "pass_static_presence",
+    "50_row_assertions_retained": "pass_static_presence",
+    "independent_attempted_and_hash_assertions_retained": "pass_static_presence",
+    "classification_assertions_retained": "pass_static_presence",
+    "zero_compile_provider_solver_assertions_retained": "pass_static_presence",
+    "source_fixture_runner_core_untouched": "pass",
+    "fixture_json_parse": "pass",
+    "fixture_50_rows_unique_ids_paths_and_five_groups": "pass",
+    "repair_r7_json_parse": "pass",
+    "git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "julia_desc_process_sweep": "not_run_by_design"
+  },
+  "scope": "static QA only; focused_r2 rerun, compiler/provider/solver, mesh, B00, B04, physical, and parent-goal credit remain pending"
+}

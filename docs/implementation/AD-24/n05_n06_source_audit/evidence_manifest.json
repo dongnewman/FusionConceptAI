@@ -1,0 +1,72 @@
+{
+  "audit_id": "AD-24-N05-N06-SOURCE-AUDIT-20260914",
+  "status": "review_pending",
+  "decision": "changes_requested",
+  "scope": "read_only_source_and_authority_audit",
+  "generated_at": "2026-09-14T09:03:26+08:00",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "process_audit": {
+    "pre_audit_command": "Get-Process julia,DESC -ErrorAction SilentlyContinue",
+    "pre_audit_julia_count": 0,
+    "pre_audit_desc_count": 0,
+    "julia_or_desc_started": false,
+    "execution_evidence": "none; no Julia/DESC was run by this audit"
+  },
+  "worktree": {
+    "preexisting_dirty_or_untracked": true,
+    "initial_status_observation": "git status --short showed extensive unrelated dirty and untracked paths before the audit",
+    "post_write_status_line_count": 275,
+    "write_scope_only": "docs/implementation/AD-24/n05_n06_source_audit/",
+    "unrelated_files_modified_by_audit": false,
+    "old_rows_or_runs_modified": false
+  },
+  "inspected_files": [
+    {"path":"docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md","bytes":12626,"mtime":"2026-09-14T00:58:29.8414432+08:00","sha256":"0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab","role":"normative contract"},
+    {"path":"docs/v4_multitopology_generation/11_physics_compilation_and_discretization.md","bytes":28542,"mtime":"2026-09-14T01:05:08.7631068+08:00","sha256":"f31e075f3a7c0d301179af483db14b6b616c0d8c50458850768d41d17bd8bb25","role":"physics/compiler boundary"},
+    {"path":"docs/v4_multitopology_generation/16_execution_work_orders.md","bytes":51853,"mtime":"2026-09-14T08:57:30.8158456+08:00","sha256":"43703a4a89a43e92b6c689bdc3b3e004048c8ed9e6ee5ce8e2c92629852537e3","role":"work order and DAG"},
+    {"path":"docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","bytes":31055,"mtime":"2026-09-14T08:14:04.9062533+08:00","sha256":"30976b4d0b89e676f16f4402197200bc56c0d61e6f1a96245529c2bce94eab03","role":"AD-22/AD-23 authority boundary"},
+    {"path":"docs/v4_multitopology_generation/19_up0_02_contract_freeze.md","bytes":24433,"mtime":"2026-09-14T02:56:47.3055799+08:00","sha256":"5332f0c7a5c215948254a536c93e945caa019143dfd5ab3c595af9b0091b9efb","role":"frozen N05/N06 contract"},
+    {"path":"docs/v4_multitopology_generation/up0_02_protocol.json","bytes":28771,"mtime":"2026-09-14T02:56:23.1232937+08:00","sha256":"6904ea161a27ff007a071697f7740ad923ce79d05e23433d356460546ecd7bfb","role":"frozen mutation protocol"},
+    {"path":"src/Contracts/CandidateStatePackageV5.jl","bytes":13496,"mtime":"2026-09-14T06:27:51.0731577+08:00","sha256":"c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620","role":"package type and receipt"},
+    {"path":"src/GenomeV5/Integration/GenomeV5Integration.jl","bytes":16322,"mtime":"2026-09-14T06:34:10.8268299+08:00","sha256":"243b272df7e481b2578c1f95c49bcd2582fa7468eade81eebea86ce2d079fb78","role":"actual package integration and identity"},
+    {"path":"src/GenomeV5/G1/EquationPlanV2.jl","bytes":15159,"mtime":"2026-09-14T04:59:33.9492722+08:00","sha256":"b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99","role":"G1 equation and occurrence types"},
+    {"path":"src/GenomeV5/G1/MechanismGenomePayloadV2.jl","bytes":16572,"mtime":"2026-09-14T04:49:43.6458422+08:00","sha256":"ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18","role":"G1 occurrence and closure admission"},
+    {"path":"src/GenomeV5/G1/GrammarProfileV2.jl","bytes":22812,"mtime":"2026-09-14T04:39:23.5829526+08:00","sha256":"96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c","role":"G1 schema profile dependency"},
+    {"path":"src/GenomeV5/G2/RegionInterfaceContractV2.jl","bytes":5333,"mtime":"2026-09-14T03:36:32.4879035+08:00","sha256":"683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7","role":"G2 region/interface types"},
+    {"path":"src/GenomeV5/G2/FieldGeometryGenomeV5.jl","bytes":18646,"mtime":"2026-09-14T03:52:54.3513076+08:00","sha256":"7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32","role":"G2 admission and candidate hash"},
+    {"path":"src/GenomeV5/G2/FieldSpacePlanV2.jl","bytes":9905,"mtime":"2026-09-14T03:53:27.3795489+08:00","sha256":"7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6","role":"G2 plan dependency"},
+    {"path":"src/GenomeV5/G3/RealizationGenomeV5.jl","bytes":33751,"mtime":"2026-09-14T04:51:29.5597540+08:00","sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb","role":"G3 network, ledger and local validator"},
+    {"path":"src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl","bytes":10904,"mtime":"2026-09-14T05:06:29.3976208+08:00","sha256":"21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4","role":"G3 links, feedback and binding validator"},
+    {"path":"src/GenomeV5/UP2/TypedPrecompilerValidatorV1.jl","bytes":24351,"mtime":"2026-09-14T07:36:15.6152103+08:00","sha256":"0557532f9921afabbd6cdcc190e216496807227ef802b3898bd0292b1e98150b","role":"old N05/N06 provisional rows and local wrapper"},
+    {"path":"src/GenomeV5/UP2/TypedPrecompilerContractV1.jl","bytes":15746,"mtime":"2026-09-14T07:28:26.5249002+08:00","sha256":"b63258ee4c26bb686c7c8fc711449b9f22af0a8234dc5e1a33ff271849cae1e0","role":"UP2 typed wrapper definitions"},
+    {"path":"test/GenomeV5/UP2/fixtures.json","bytes":22674,"mtime":"2026-09-14T07:13:08.5760880+08:00","sha256":"8b8b48395b4d087e1eb1b4fe3d7d8267fb10f58bf69458d99ebdf39acd555de0","role":"old provisional fixture rows"},
+    {"path":"test/GenomeV5/UP2/n04_ledger_authority_fixtures.json","bytes":2289,"mtime":"2026-09-14T08:21:06.2878716+08:00","sha256":"b568aeb721f5a883ba769cae9df34f0a601f9bb1ffa6860b38112c19e9b2a209","role":"actual-A shape and N04 historical fixture"},
+    {"path":"test/GenomeV5/UP2/n04_ledger_authority_tests.jl","bytes":6601,"mtime":"2026-09-14T08:21:58.3525522+08:00","sha256":"49de0cb90561cfaaaebc89da091f9f00615231b936a8c4d0bf0e1af69ae8e252","role":"actual CandidateStatePackageV5 factory reference"},
+    {"path":"test/GenomeV5/UP1-04/layer_fixture_child.jl","bytes":569,"mtime":"2026-09-14T06:15:51.7749627+08:00","sha256":"357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df","role":"G1/G2/G3 child fixture producer"},
+    {"path":"test/GenomeV5/UP1-04/fixtures.json","bytes":675,"mtime":"2026-09-14T06:34:10.8288323+08:00","sha256":"1fe5faedc1072dc328451aeb891683bfa60aae7b20321c243b3cde17a599b1b1","role":"UP1-04 actual-A fixture contract"},
+    {"path":"test/GenomeV5/UP2/n10_identity_receipt_tests.jl","bytes":7760,"mtime":"2026-09-14T08:46:14.0817200+08:00","sha256":"34023701f056f4b07af88b83bc4e18931a1a923bdd2a86002d45046e97760889","role":"independent actual-A factory corroboration"}
+  ],
+  "audit_artifacts": [
+    {"path":"docs/implementation/AD-24/n05_n06_source_audit/source_audit.md","bytes":15464,"mtime":"2026-09-14T09:03:26.1731016+08:00","sha256":"96a86fa55bedc6bc827545774734eb45704f1ca1957d4294ad0f873128f844ef"},
+    {"path":"docs/implementation/AD-24/n05_n06_source_audit/acceptance.md","bytes":1655,"mtime":"2026-09-14T09:02:17.6588493+08:00","sha256":"8b9ed859fb6469f38545cc7e3ee50095d3279dcc4e2c38a6f720aae3efe3a6fa"}
+  ],
+  "read_only_checks": {
+    "hash_command": "Get-FileHash -Algorithm SHA256",
+    "json_parse_command": "python -c \"import json; json.load(open('docs/implementation/AD-24/n05_n06_source_audit/evidence_manifest.json', encoding='utf-8'))\"",
+    "diff_check_command": "git diff --check -- docs/implementation/AD-24/n05_n06_source_audit",
+    "validate_plan": "not run; this audit did not alter execution plan or core files"
+  },
+  "credit_ceiling": {
+    "implementation_acceptance": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "independent_review_required": true,
+  "lane": "left to N03 independent review"
+}

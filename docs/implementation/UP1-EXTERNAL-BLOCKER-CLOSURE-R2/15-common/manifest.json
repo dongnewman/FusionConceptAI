@@ -1,0 +1,26 @@
+{
+  "schema": "UP1-R2-common-manifest-v1",
+  "exact_set": [
+    "report.md",
+    "manifest.json",
+    "run.json",
+    "input_hashes.json",
+    "raw/stderr.raw",
+    "raw/stdout.raw",
+    "raw/rework_review.stdout.raw",
+    "raw/rework_review.stderr.raw",
+    "rework_review_run.json"
+  ],
+  "hash_policy": "SHA-256 over exact file bytes; manifest self-hash is excluded from preimage",
+  "files": {
+    "report.md": "4e90ccc6655236160bbde56f8492d78bf7174f6e5f3532fe18917da16661cd1c",
+    "run.json": "88a24c612ef2986c28b1c435d9ecc39f6167c489a3021399a6df4c3b9cb75c73",
+    "input_hashes.json": "87b7adb86b6432bec99036b755b3387a5bb9787dd59bc7d2b89aa6e43a891e8c",
+    "raw/stderr.raw": "33e419f215230bc9485d3232b2fbcabfb433e15a14526d4993b576ddb2177af4",
+    "raw/stdout.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/rework_review.stdout.raw": "4c1e2580e8c0626ac74a5cf517e5945aeb1717e2cc6e8ce0935ab47b4ee48a9d",
+    "raw/rework_review.stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rework_review_run.json": "b675d2b6b306986c56ce1a73b5047c450c7032393197c8c5dd142e2bd2ba4bf3"
+  },
+  "self_excluded": ["manifest.json"]
+}

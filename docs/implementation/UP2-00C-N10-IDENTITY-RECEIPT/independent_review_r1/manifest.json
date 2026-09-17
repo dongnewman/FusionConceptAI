@@ -1,0 +1,58 @@
+{
+  "manifest_id": "UP2-00C-N10-IDENTITY-RECEIPT-independent-review-r1",
+  "captured_at": "2026-09-14T09:10:00+08:00",
+  "reviewer": "independent Luna/high",
+  "verdict": "pass_limited",
+  "scope": "actual-A candidate-bound contract-only identity and receipt projection",
+  "status": "review_pending",
+  "accepted": false,
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n10_identity_receipt.jl",
+  "runtime": {
+    "julia": "1.10.5",
+    "pid": 18116,
+    "started_at": "2026-09-14T09:03:29.9232236+08:00",
+    "ended_at": "2026-09-14T09:05:48.3677782+08:00",
+    "exit": 0,
+    "stdout": {"path":"focused_test.stdout.log","bytes":4296,"sha256":"f34f86243c95536bb3ca520bf65eee48106292858ed6fb5416137041cc2e6461"},
+    "stderr": {"path":"focused_test.stderr.log","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "exit_artifact": {"path":"focused_test.exit.txt","value":0,"sha256":"13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"},
+    "process_artifact": {"path":"focused_test.process.json","sha256":"74aa9ff0ff85a1937b9b41451f6ead758845910a725cbfc7bc06bbb629815355"},
+    "prerun_artifact": {"path":"focused_test_prerun.json","sha256":"14a260697f7ce130dc8425a909788714d70e0e90b473e7dad8a45c28742a30b0"},
+    "post_processes": {"path":"post_processes.json","value":[],"sha256":"a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"},
+    "summaries": {"actual_a_identity_receipt":"80/80","foreign_candidate_receipt_controls":"7/7","compile_calls":0,"provider_calls":0,"solver_calls":0},
+    "provider_resolution_executed": false,
+    "desc_invoked": false
+  },
+  "input_hashes": {
+    "source":"e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67",
+    "fixture":"19d1e2051bf104e306b7b663fd9ff6b5f9ff861cb924573a697f8c1c2489ce63",
+    "test":"34023701f056f4b07af88b83bc4e18931a1a923bdd2a86002d45046e97760889",
+    "runner":"4703862287a7c95b91eaef6c62a0d0e125c2d7043196201782facb2cb3b2f498",
+    "author_acceptance":"c4fd466cd2a2472edee7e86e394f0d8728117bd82fccdb5a67384f8db3b4f157",
+    "author_manifest":"1737a4720295e02b4db284eabe48dd12b164f88dedbcac77c47c52b2fb9792a1",
+    "source_audit":"c952d5afb4fc5fb16ffb73cd3d0df19466b6cdd8ce5eabb6bd3a63aeea9cb622",
+    "before_hashes":"075c9eab98eb0c11e5b97d4dd0d7ba3b73c13eea9dcff5af477d1cfe979c274b",
+    "dirty_inventory":"c1578dce79f5f95884279441e3d1a50757c86b8c0aa83a23a9ab6d422fc58356"
+  },
+  "source_projection": {
+    "fields": 5,
+    "mutations": ["N10-01","N10-02","N10-03","N10-04","N10-05"],
+    "identity_checks": "G1/G2/G3 refs, typed G3 binding child, five-field identity, candidate hash and fresh receipt identity-after",
+    "g2_cross_candidate": "same plan allowed; candidate-specific ref, component hash and package hash required",
+    "legacy": "no actual V4 source/provenance; terminal_deferred",
+    "synthetic_limits": "N10-04 attempted hash and N10-05 fresh receipt mismatch are not legacy evidence"
+  },
+  "credits": {"B00":false,"B04":false,"provider":false,"mesh":false,"engineering":false,"physical":false,"R01_R10":false},
+  "limitations": [
+    "low-level projection constructor is not independent A provenance and is not B04-admissible",
+    "legacy V4 source refs, before/after mappings, axes and provenance remain unverified terminal_deferred",
+    "focused run validates the actual-A factory path and does not establish provider, solver, mesh, engineering or physical behavior"
+  ],
+  "review_artifacts": {
+    "report": {"path":"report.md","sha256":"d3f094b2bd28e5c6cde25e7ccc50288e4fbe0b8a1c640f874712fce56772cc86"},
+    "before_hashes": {"path":"before_hashes.json","sha256":"075c9eab98eb0c11e5b97d4dd0d7ba3b73c13eea9dcff5af477d1cfe979c274b"},
+    "dirty_inventory": {"path":"dirty_inventory.txt","sha256":"c1578dce79f5f95884279441e3d1a50757c86b8c0aa83a23a9ab6d422fc58356"}
+  },
+  "write_boundary": "only docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/independent_review_r1/"
+}

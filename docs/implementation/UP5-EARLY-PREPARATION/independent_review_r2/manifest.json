@@ -1,0 +1,30 @@
+{
+  "manifest_version": "UP5-EARLY-PREPARATION-independent-review-r2-v1",
+  "record_kind": "independent_preparation_review",
+  "task_id": "UP5-EARLY-PREPARATION",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "verdict": "pass_limited",
+  "early_preparation_only": true,
+  "claim_ceiling": "contract_only",
+  "up5_status": "pending",
+  "credits": {"up5": false, "search": false, "provider": false, "solver": false, "engineering": false, "physical": false, "r01_r10": false},
+  "execution_policy_verified": {"merge": false, "saturation": false, "qd": false, "mcts": false, "search_expansion": false, "julia": false, "desc": false, "provider": false, "mesh": false, "solver": false, "physical": false, "registry_edit": false, "task_manifest_edit": false},
+  "json_catalog_counts": {"review_inputs": 7, "rules": 12, "conditions": 20, "counterexamples": 18, "typed_edits": 10, "search_budget_templates": 1},
+  "checks": {"json_valid": true, "unique_ids": true, "rule_condition_ids_exist": true, "counterexample_rule_ids_exist": true, "counterexample_condition_ids_exist": true, "cx11_cx18_rule_condition_bindings": true, "four_rule_proof_gate_coverage": true, "typed_pending_records": true, "manifest_input_paths_exist": true, "manifest_writable_paths_exist": true, "task_scratch_cache": false, "package_whitespace_check": true, "no_future_candidate_provider_solver_physical_hash": true, "no_execution_run": true},
+  "repair_findings_closed": ["RW-EFFECTFUL-NO-CSE includes C-PURE-LOCAL", "RW-EXACT-NEG-SUB includes C-SAME-METRIC-CHART", "four audited algebraic rules include closure/boundary/ownership/orientation gates", "CX11-CX18 are bound to declared rule conditions", "identity/proposal/execution/archive/budget pending values are typed"],
+  "input_hashes": {
+    "manifest.json": {"bytes": 4836, "sha256": "18721ee57209b92f6d273de4d5d62f7baf3d58838f0e133aa74a36b0c6b47827"},
+    "rewrite_rule_catalog.json": {"bytes": 10367, "sha256": "66442aa839a3372616c6886c025b4bb11745e5e455993236b845cd826bab79d1"},
+    "rewrite_applicability_conditions.json": {"bytes": 5804, "sha256": "7e92436647b248e84cfef83dee2886994e68709a6783838d1ab531a0f85785cc"},
+    "rewrite_counterexamples.json": {"bytes": 6815, "sha256": "69b5b3b44694270d5612395dc63e6ad4b5d8d2a290a0e4618fba7949a69816af"},
+    "typed_edit_catalog.json": {"bytes": 7643, "sha256": "607e206cefbc2d59cf8b03d25123d0f3a938aaa6d088e7c0f3b50cc655e416c9"},
+    "search_budget_archive_template.json": {"bytes": 5961, "sha256": "60a180df5df12d7143d46741ef9aa7802134a0ec6ebbdeec9c315fc357e5c5ac"},
+    "repair_r1/manifest.json": {"bytes": 1752, "sha256": "dafbc8241bf2d7dd724b6238d2921eb002c3a66a11bd941566e86fc775107a0a"}
+  },
+  "protected_scope": ["src/", "test/", "scripts/", "runs/", "benchmarks/", "README.md", "docs/v4_multitopology_generation/", "task manifests", "historical implementation archives"],
+  "write_scope": ["docs/implementation/UP5-EARLY-PREPARATION/independent_review_r2/report.md", "docs/implementation/UP5-EARLY-PREPARATION/independent_review_r2/manifest.json"],
+  "review_notes": ["No Julia, DESC, search, saturation, provider, mesh, solver or external write was run.", "Only the two R2 receipt files are written by this review; reviewed package, source, test, core files and prior receipts remain unchanged."]
+}

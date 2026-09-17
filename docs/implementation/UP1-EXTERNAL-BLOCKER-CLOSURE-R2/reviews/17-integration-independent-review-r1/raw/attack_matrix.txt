@@ -1,0 +1,71 @@
+UP1 R2 integration independent attack matrix r1
+environment: Windows, Python 3.13.5, fresh python -B; no network/install/download
+
+case=adapter_result_all_verified
+mutation=all seven stage values are {_adapter_result:true,status:verified,authority_verified:true} with forged schema/pipeline/fingerprint/receipt fields
+observed=eligible_for_authority_recheck; aggregate=verified; no_publish=true; new_ad=false
+expected=fail_closed or typed_absence because the runner must not trust a precomputed stage status
+result=FAIL (P1)
+
+case=unknown_package_field
+mutation=add unknown_field=true to the same production package
+observed=eligible_for_authority_recheck
+expected=fail_closed for unknown/foreign package schema
+result=FAIL (P1)
+
+case=duplicate_stage_alias
+mutation=add witness_authority alongside witness, with conflicting fail_closed result
+observed=eligible_for_authority_recheck; witness=verified (witness silently wins)
+expected=fail_closed for duplicate/ambiguous stage input
+result=FAIL (P1)
+
+case=nested_candidate_source_drift
+mutation=add foreign candidate_id/source_ref to the witness adapter result
+observed=eligible_for_authority_recheck
+expected=fail_closed for candidate/source binding drift
+result=FAIL (P1)
+
+case=bogus_schema_receipts
+mutation=all adapter results carry FOREIGN schema, forged pipeline_version and receipt hashes
+observed=eligible_for_authority_recheck
+expected=fail_closed; interface/version/receipt chain must be checked
+result=FAIL (P1)
+
+case=external_anchors_missing
+mutation=production adapter chain with no expected_context, trust anchor, observed source or replay key
+observed=eligible_for_authority_recheck
+expected=typed_absence/terminal_deferred until independent inputs exist
+result=FAIL (P1)
+
+case=intake_unmarked_verified
+mutation=intake is a bare mapping {status:verified,authority_verified:true}, without adapter marker or spool/path
+observed=eligible_for_authority_recheck
+expected=typed_absence or actual AuthorityIntakeAdapter invocation
+result=FAIL (P1)
+
+case=adapter_invalid_replayed_foreign_unknown
+mutation=witness adapter status respectively invalid, replayed, foreign, bogus
+observed=fail_closed for all four; replayed maps to fail_closed at pipeline level
+expected=fail_closed
+result=PASS (negative reduction only; bypass remains above)
+
+case=test_only_all_verified
+mutation=fixture_role=TEST_ONLY with verified adapter observations
+observed=terminal_deferred, non_evidence=true, TEST_ONLY=true
+expected=terminal_deferred/non_evidence
+result=PASS
+
+case=missing_production
+mutation=only schema and fixture_role=PRODUCTION
+observed=terminal_deferred, no_publish=true
+expected=typed absence/deferred/no publish
+result=PASS
+
+case=forged_prior_same_fp
+mutation=caller supplies matching input_fingerprint but arbitrary status=eligible, receipt_sha256=forged, new_ad=true, empty stages
+observed=deterministic_noop, status=eligible_for_authority_recheck, receipt_sha256=forged, new_ad=true, no_publish=true
+expected=validate authenticated prior receipt and force new_ad=false/no promotion
+result=FAIL (P1)
+
+boundary=changed_prior
+observed=existing test passes: changed input is intake_changed and downstream stages are skipped; this does not repair forged same-fingerprint prior.

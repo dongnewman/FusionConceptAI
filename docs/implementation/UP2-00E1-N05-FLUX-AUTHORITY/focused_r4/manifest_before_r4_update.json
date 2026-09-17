@@ -1,0 +1,109 @@
+{
+  "schema_version": "UP2-00E1-N05-v1",
+  "status": "review_pending",
+  "accepted": false,
+  "scope": "contract_only",
+  "old_rows_immutable": true,
+  "inputs": {
+    "E0_manifest_sha256": "de4937a6c4c80b8640c39a593872d86592b1862c689fa894b0c0d726b00be5c1",
+    "E0_source_sha256": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d",
+    "actual_A_factory": "CandidateStatePackageV5 + UP2 E0 source-bound binding",
+    "G1_occurrence_fields": "equation_id,port_side,port_index,ledger_id,unit",
+    "G2_interface_fields": "interface_ref,left_region_id,right_region_id,axis,coordinate,normal,continuity,transfer_kind",
+    "flux_law_fields": "law_ref,kind,typed_expression(operator/ports/relation),left_sign,right_sign,authored_unit,source_locator,law_hash",
+    "provenance_boundary": "G1 occurrence locator is source provenance only; N05 authored law/unit source is separate and content hashed"
+  },
+  "snapshot": {
+    "source_path": "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl",
+    "source_sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test_path": "test/GenomeV5/UP2/n05_flux_authority_tests.jl",
+    "test_sha256": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "runner_path": "test/GenomeV5/UP2/run_n05_flux_authority.jl",
+    "runner_sha256": "3d51de1a65d6c48afae0aa57877d63c29600d061799f324fcf48a436b8cebca3",
+    "fixture_path": "test/GenomeV5/UP2/n05_flux_authority_fixtures.json",
+    "fixture_sha256": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81",
+    "pre_execution_status_sha256": "1af2033bad7813ab13f36e4f819163dfa042a7189a9ae15ec5becd12600066d0"
+  },
+  "claims": {
+    "missing_authority": "terminal_deferred",
+    "typed_conflict": "fail_closed",
+    "unexpected_exception": "program_exception",
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "run_history": [
+    {
+      "run_id": "E1-N05-R1",
+      "status": "failed",
+      "classification": "program_exception/test_harness_field_mismatch",
+      "real_exit": 1,
+      "focused_archive": "focused_r1",
+      "summary": "8 assertions passed; deferred authority test accessed nonexistent .status instead of authority.resolution; preserved as historical failure"
+    },
+    {
+      "run_id": "E1-N05-R2",
+      "status": "failed",
+      "classification": "program_exception_authored_declaration_interface_lookup",
+      "real_exit": 1,
+      "focused_archive": "focused_r2",
+      "summary": "19 pass and 2 fail; Julia 1.10 first(generator,nothing) interface lookup was caught as program_exception; raw stdout/stderr/exit/process receipts preserved"
+    },
+    {
+      "run_id": "E1-N05-R3",
+      "status": "failed",
+      "classification": "fixture_oracle_error_code_mismatch",
+      "real_exit": 1,
+      "focused_archive": "focused_r3",
+      "summary": "Authored declaration 22/22; mutation set 57 pass/2 fail. Endpoint-ref mutations were classified invalid_type by broad unit-error scan; frozen expected class invalid_closure; raw artifacts preserved."
+    }
+  ],
+  "run_receipt": {
+    "run_id": "E1-N05-R3",
+    "real_exit": 1,
+    "focused_archive": "focused_r3",
+    "stdout_sha256": "b8082aac83c8e48072b82efd3512e3b2a44125b8dfc7b2a2a0c91b1caa6dd2ee",
+    "stderr_sha256": "c6332722e88ee34de121113886c53c94d21192eefcbedc76b47802d9b94be18a",
+    "postprocess": "empty"
+  },
+  "review": "independent Luna pending",
+  "static_repair_r2": {
+    "status": "awaiting_independent_precheck_r3",
+    "source_sha256": "fe9ced33c91df612f1bab4b024d40efdad6831a187d6181d8fccd7da62ffa799",
+    "test_sha256": "b843a7f7ff69282cbbf5c2a7355dd09c56c8415c25efb4b716ebe58c75fab363",
+    "summary": "Mutation receipts require a valid actual-package/E0 baseline; G1 occurrence joins use the full four-field key and actual G1LedgerOccurrenceV2 type; duplicate keys fail_closed.",
+    "julia_invoked": false,
+    "physical_or_engineering_credit": false
+  },
+  "static_repair_r3": {
+    "status": "awaiting_independent_precheck_r4",
+    "source_sha256": "6b40811f85bb0eb9ff0dbc669818878ef867a9c676613fc33919946f3c95771a",
+    "test_sha256": "666ba168425102b31089bd450e191b27b559286387a317570f2d42f1049166a1",
+    "summary": "Replaced incompatible first(generator,nothing) with cardinality-aware interface lookup; added duplicate lookup regression and String(Symbol) fail-closed diagnostic safety.",
+    "julia_invoked": false,
+    "physical_or_engineering_credit": false
+  },
+  "static_repair_r4": {
+    "status": "awaiting_independent_precheck_r5",
+    "source_sha256": "1ad742e704009708ed81bf0a731dd09e068ff576a1344ccb5223c7ae58996151",
+    "test_sha256": "666ba168425102b31089bd450e191b27b559286387a317570f2d42f1049166a1",
+    "summary": "Mutation error class now follows typed mutation target; secondary unit provenance errors no longer override endpoint-ref closure class.",
+    "julia_invoked": false,
+    "physical_or_engineering_credit": false
+  },
+  "static_repair_r5": {
+    "status": "awaiting_independent_precheck_r5",
+    "source_sha256": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test_sha256": "57b83ca321cf61b284656cd238356943b2521b4d80029e8a8424706117d42543",
+    "summary": "Observed-error classification gives closure precedence over secondary unit provenance; genuine unit mutation remains invalid_type; unknown error sets program_exception. Targeted endpoint-ref and unit regressions added.",
+    "julia_invoked": false,
+    "physical_or_engineering_credit": false
+  }
+}

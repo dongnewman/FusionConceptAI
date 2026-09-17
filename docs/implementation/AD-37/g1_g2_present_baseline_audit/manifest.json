@@ -1,0 +1,172 @@
+{
+  "schema_version": "AD-37-g1-g2-present-baseline-audit-v1",
+  "record_kind": "read_only_external_blocker_audit",
+  "decision_id": "AD-37",
+  "decision_date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "read_only_audit": true,
+  "execution_policy": {
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "candidate_hash_created": false,
+    "core_source_test_modified": false,
+    "old_receipts_modified": false
+  },
+  "decision": {
+    "g1_present_source_backed_instance": "not_found_terminal_deferred",
+    "g1_factory_construction_receipt": "not_found_terminal_deferred",
+    "g1_candidate_public_contract_binding": "not_found_terminal_deferred",
+    "g1_four_axis_source_receipts": "not_found_terminal_deferred",
+    "g2_present_source_backed_instance": "not_found_terminal_deferred",
+    "g2_factory_construction_receipt": "not_found_terminal_deferred",
+    "g2_candidate_public_contract_mapping": "not_found_terminal_deferred",
+    "g2_four_axis_source_receipts": "not_found_terminal_deferred",
+    "baseline_scaffold": "typed_absent_only",
+    "t0_authority_recheck": "typed_absent_or_fail_closed_present_false",
+    "t1": "planned_review_pending_blocked",
+    "dispatch": "blocked_external"
+  },
+  "absence_evidence": {
+    "present_receipt_constructor_call_sites": 0,
+    "present_parent_binding_constructor_call_sites": 0,
+    "baseline_public_source_backed_admission": "throws_source_backed_receipt_unavailable",
+    "fixture_authority": false,
+    "uri_only_authority": false,
+    "synthetic_authority": false,
+    "historical_receipt_reuse": false
+  },
+  "observed_hashes": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31",
+    "src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl": "feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_tests.jl": "6b90804eb7e973995291fe56c7419af6a52697cea54d66b347a7ea3beeedeb0a",
+    "test/GenomeV5/Integration/vnext_parent_baseline_binding_v1_fixture.json": "59aef733a1e140c9906a123cebe96fce1790418d6b17ee33de4b7db6d45d115b",
+    "test/GenomeV5/Integration/static_qa_vnext_parent_baseline_binding_v1.py": "81141251e7f5780776a1b2fd87ad77287de824d28871d0089df00b9317979aac",
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "9cf9563b2e3b16b4c9111492a147581945809ccd982ec4e711f85682659ab716",
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl": "e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"
+  },
+  "source_contract_observations": {
+    "g1": {
+      "candidate_type": "QualifiedRefV1",
+      "factory": "g1_diffusion_declaration_v1",
+      "source_hash_recipe": "g1_diffusion_source_hash_v1(G1DiffusionSourcePayloadV1)",
+      "declaration_hash_recipe": "canonical_hash(_g1d_declaration_body)",
+      "authority_status": "terminal_deferred",
+      "fixture_candidate": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture@v5"
+    },
+    "g2": {
+      "candidate_type": "GenomeContractRef",
+      "factory": "g2mb_declaration_v1",
+      "source_hash_recipe": "canonical_hash(G2MBSourceV1 source body)",
+      "declaration_hash_recipe": "canonical_hash(contract_ref,source,schema_hash,canonicalization_hash,profile_hash)",
+      "authority_status": "terminal_deferred",
+      "fixture_candidate": "fusionconceptai://GenomeV5/candidate/up2-01-g2-metric-boundary-fixture@v5",
+      "mesh_authority": "no_match",
+      "boundary_authority": "no_match",
+      "mesh_execution": "not_executed"
+    }
+  },
+  "future_work_orders": [
+    {
+      "id": "AD37-G1-PRESENT-BASELINE-PUBLISH",
+      "layer": "G1",
+      "semantic_owner": "diffusion mechanism/source body only",
+      "status": "proposed_blocked_external",
+      "parallel_to": ["AD-33 typed-absence baseline scaffold", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "G2 publication"],
+      "product_files": [
+        "src/GenomeV5/Integration/G1PresentBaselinePublicationV1.jl",
+        "test/GenomeV5/Integration/g1_present_baseline_publication_v1_contract_tests.jl",
+        "test/GenomeV5/Integration/g1_present_baseline_publication_v1_fixture.json",
+        "test/GenomeV5/Integration/static_qa_g1_present_baseline_publication_v1.py",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/README.md",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/manifest.json",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/acceptance.md"
+      ],
+      "actual_input_files": [
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/source_record.json",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/source_bytes.bin",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/candidate_binding.json",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/provenance_axes.json",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/factory_receipt.json",
+        "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/input/fresh_candidate_identity_review.json"
+      ],
+      "evidence_sidecars": "docs/implementation/AD-37/G1-PRESENT-BASELINE-PUBLISH/archive/**",
+      "required_binding": ["fresh QualifiedRefV1 candidate", "exact GenomeContractRef public contract", "child contract schema identity", "source locator", "source_backed_present factory receipt", "declaration_hash_recomputed=true"],
+      "required_hashes": ["raw_source_sha256", "semantic_body_sha256", "source_content_sha256", "declaration_sha256", "parent_binding_sha256", "child_key_sha256", "state_sha256", "receipt_sha256"],
+      "required_axes": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+      "absence_rule": "any missing authority/axis/input yields typed_absent plus terminal_deferred and no present publication",
+      "credit_boundary": {"implementation": false, "actual": false, "physical": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "search": false, "R01_R10": false, "B00": false, "B04": false}
+    },
+    {
+      "id": "AD37-G2-PRESENT-BASELINE-PUBLISH",
+      "layer": "G2",
+      "semantic_owner": "chart/metric/boundary/discretization body only",
+      "status": "proposed_blocked_external",
+      "parallel_to": ["AD-33 typed-absence baseline scaffold", "UP1-04A-VNEXT-T0", "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "G1 publication"],
+      "product_files": [
+        "src/GenomeV5/Integration/G2PresentBaselinePublicationV1.jl",
+        "test/GenomeV5/Integration/g2_present_baseline_publication_v1_contract_tests.jl",
+        "test/GenomeV5/Integration/g2_present_baseline_publication_v1_fixture.json",
+        "test/GenomeV5/Integration/static_qa_g2_present_baseline_publication_v1.py",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/README.md",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/manifest.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/acceptance.md"
+      ],
+      "actual_input_files": [
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/source_record.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/source_bytes.bin",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/candidate_binding.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/g2_candidate_mapping_receipt.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/provenance_axes.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/factory_receipt.json",
+        "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/input/fresh_candidate_identity_review.json"
+      ],
+      "evidence_sidecars": "docs/implementation/AD-37/G2-PRESENT-BASELINE-PUBLISH/archive/**",
+      "required_binding": ["fresh common QualifiedRefV1 candidate", "exact source GenomeContractRef", "five-field G2 mapping receipt", "child contract schema identity", "source locator", "source_backed_present factory receipt", "declaration_hash_recomputed=true"],
+      "required_hashes": ["raw_source_sha256", "semantic_body_sha256", "source_content_sha256", "declaration_sha256", "parent_binding_sha256", "child_key_sha256", "state_sha256", "receipt_sha256"],
+      "required_axes": ["payload_schema_version", "canonicalization_profile_version", "applicability_profile_version", "evidence_receipt_version"],
+      "absence_rule": "missing mapping/authority/axis/input yields typed_absent plus terminal_deferred; structural mesh no_match remains a separate gap",
+      "credit_boundary": {"implementation": false, "actual": false, "physical": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "search": false, "R01_R10": false, "B00": false, "B04": false}
+    }
+  ],
+  "validation": {
+    "manifest_self_hash": "excluded_by_design",
+    "new_files": [
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/report.md",
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/manifest.json",
+      "docs/implementation/AD-37/g1_g2_present_baseline_audit/cleanup_inventory.md"
+    ],
+    "cleanup": "no scratch/cache/debug files created; no removals",
+    "code_tests": "not_applicable_read_only_audit"
+  },
+  "credits": {
+    "implementation": false,
+    "actual_g1": false,
+    "actual_g2": false,
+    "physical": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "search": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  }
+}

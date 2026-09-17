@@ -1,0 +1,13 @@
+{
+  "schema": "UP1-R4.source-axis-recheck.hash-manifest.v1",
+  "hash_algorithm": "SHA-256",
+  "self_excluded": ["hash_manifest.json"],
+  "files": [
+    {"path":"raw/scan_command.raw.txt","bytes":714,"sha256":"70a819c757fad6814328bda76366c231ea6d8460e498942df6fb02f540360da0"},
+    {"path":"raw/scan.raw.json","bytes":5069,"sha256":"0a452d3dcf50cce560ff4bb95c592b5798b0c3d1ca504402c54a7e703471d93f"},
+    {"path":"receipt.json","bytes":2376,"sha256":"903ff355e2132a83d0b33f6c586d802b5cb1a9fec76eb42ee01b4247a9b2f22e"},
+    {"path":"report.md","bytes":6592,"sha256":"53fec9af75c9d9701516040ffb587dfe8608ab1540f162c537b851dd85fdb511"}
+  ],
+  "source_observation_raw": "raw/scan.raw.json",
+  "receipt_policy": "PID/UTC/exit and raw observations retained; this manifest is bookkeeping and does not establish external authority or formal credit."
+}

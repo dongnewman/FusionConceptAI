@@ -1,0 +1,13 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.failure-history.v1",
+  "prior_history":[
+    {"task":"AD48 S3","observed_head":"4b69f55f7f80240147a65a22809dc1207824dde2","result":"typed_absent","gate":"blocked_external_trust_root_and_source_closure","preserved_by_reference":true},
+    {"task":"AD49 S3","observed_head":"4b69f55f7f80240147a65a22809dc1207824dde2","result":"typed_absent","gate":"blocked_external_trust_root_and_source_closure","preserved_by_reference":true},
+    {"task":"M1","result":"no fresh S3 executed","reason":"scoped closure freeze","preserved_by_reference":true}
+  ],
+  "current_attempt":{"result":"typed_absent","reason":"missing independent trust chain and external source closure","exit_code":0,"scientific_status":"not_executed_due_to_terminal_deferred_input"},
+  "validation_history":[
+    {"attempt":"static_json_hash_validation_1","classification":"program_exception","exit_code":1,"reason":"Python default GBK decode while reading UTF-8 product; no product mutation","recovery":"reran with explicit UTF-8 decoding"},
+    {"attempt":"static_json_hash_validation_2","classification":"completed","exit_code":0,"result":"JSON_PARSE_PASS_RAW_HASH_LINKS_PASS_SCOPE_ASSERTIONS_PASS"}
+  ]
+}

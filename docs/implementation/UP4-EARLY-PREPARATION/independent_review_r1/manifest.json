@@ -1,0 +1,108 @@
+{
+  "schema": "UP4EarlyPreparationIndependentReviewV1",
+  "task_id": "UP4-EARLY-PREPARATION",
+  "reviewer": "different-luna-high",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "changes_requested",
+  "review_pending": true,
+  "accepted": false,
+  "scope_status": "preparation_only",
+  "claim_ceiling": "contract_only",
+  "write_scope": [
+    "docs/implementation/UP4-EARLY-PREPARATION/independent_review_r1/report.md",
+    "docs/implementation/UP4-EARLY-PREPARATION/independent_review_r1/manifest.json"
+  ],
+  "package_status": {
+    "all_conclusions": "pending",
+    "inverse_solve": false,
+    "engineering_back_substitution": false,
+    "closed_loop": false,
+    "julia": false,
+    "desc": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physical": false,
+    "download_or_external_data": false,
+    "shared_registry_edit": false,
+    "final_package_edit": false,
+    "UP4": false,
+    "actual_engineering": false,
+    "B07A": false,
+    "B07B": false,
+    "R02": false,
+    "R04": false,
+    "R05": false,
+    "R01_R10": false
+  },
+  "structure_checks": {
+    "json_files_parsed": "5/5",
+    "pending_value_null_and_reason": true,
+    "deliverables_declared": 8,
+    "deliverables_present": "8/8",
+    "input_documents_declared": 30,
+    "input_documents_present": "30/30",
+    "writable_paths_present": "8/8",
+    "cross_file_vocabulary": true,
+    "b07a_b07b_separation": true,
+    "candidate_scenario_provider_binding": true,
+    "units_coordinate_transform_contract": true,
+    "source_engineering_constraint_coverage": true,
+    "future_hashes_invented": false
+  },
+  "package_file_hashes": {
+    "architecture_audit.md": {"bytes": 9803, "sha256": "8122dafe3688642fe353ebdf3a7197853f7508bea8911ba4033cd8b6bc5af4b8"},
+    "cleanup_inventory.md": {"bytes": 1951, "sha256": "6650d088b709b8753baa48c126de93ce4667f3b8c444de01bcaa2e920e7aeb99"},
+    "inverse_problem_input_template.json": {"bytes": 9788, "sha256": "2850d7fd39be64c974a2f68876b4eb90698d02c49de2da4e38343f5367daf62c"},
+    "manifest.json": {"bytes": 5688, "sha256": "fdf1076c61d4cd343dd3b030bd6e3da152dc9380887762d383f00eb78ca755d3"},
+    "reference_data_catalog_template.json": {"bytes": 10985, "sha256": "8fa11d5913d30d32516cd6b3cbc43115703342b66cb33136ff488ee71b6fc825"},
+    "source_coil_actuator_constraints.json": {"bytes": 9659, "sha256": "aa2be2d58420209f4f5adc51633e327a4eaf3ea69fe8de088a49e2e8a6f82db6"},
+    "units_coordinate_transform_contract.json": {"bytes": 8280, "sha256": "4da6451031065f7898e76e247a73ed6e6ee2ec97f65d281f892aea9bbc5b312c"},
+    "validation_report.md": {"bytes": 3295, "sha256": "fbf8ac19195cbe01bf58f3e70366514619bb66521087114b2bb41ffb56d87944"}
+  },
+  "reference_hash_audit": {
+    "benchmarks/desc_heliotron_v0173/HELIOTRON_output.h5": {
+      "recorded_sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+      "actual_sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe",
+      "recorded_length": 64,
+      "match": true
+    },
+    "runs/goal_recovery_20260913_012528_cst/n2_desc_heliotron_normalize_r3/result.json": {
+      "recorded_sha256": "2f4aa65c01a05634c86f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+      "actual_sha256": "2f4aa65c01a05634c86c8f50cf15f5e5688a0548b51166b32ab90547b5096e25",
+      "recorded_length": 62,
+      "actual_length": 64,
+      "match": false,
+      "blocking_issue": "observed catalog digest is malformed and does not identify current bytes"
+    }
+  },
+  "semantic_review": {
+    "reference_source_license_version_hash_uncertainty_pending": true,
+    "si_dimensions_and_unit_signatures": true,
+    "axis_basis_handedness_direction_inverse_rules": true,
+    "normal_inverse_transpose_and_negative_parity_control": true,
+    "source_coil_actuator_geometry_electrical_power_thermal_material_manufacturing_control_safety": true,
+    "authority_gaps_explicit": true,
+    "candidate_scenario_input_provider_exact_binding": true,
+    "B07A_synthetic_source_hardware_separate": true,
+    "B07B_true_reference_hidden_parameter_separate": true,
+    "future_reference_answer_leakage_blocked": true,
+    "static_flux_nonzero_emf_blocked": true,
+    "missing_authority_unknown_terminal_deferred": true,
+    "typed_contradiction_fail_closed": true,
+    "program_exception_separate": true
+  },
+  "cleanup_audit": {
+    "declared_owned_deliverables": 8,
+    "declared_owned_deliverables_present": true,
+    "scratch_cache": [],
+    "removed": [],
+    "protected_dirty_and_historical": true,
+    "review_time_julia_desc_processes": [],
+    "download_performed": false,
+    "external_write_performed": false,
+    "review_output_excluded_from_package_owned_set": true
+  },
+  "minimum_repair": "correct the malformed observed normalized-result SHA, refresh affected package-local hashes/validation references, and obtain a fresh independent review; do not execute or download",
+  "self_hash_excluded": true
+}

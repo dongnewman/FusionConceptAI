@@ -1,0 +1,71 @@
+{
+  "manifest_version": "AD-28-independent-review-r1",
+  "review_id": "AD-28-independent-review-r1",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "verdict": "changes_requested",
+  "accepted_scope_if_corrected": "architecture and preparation boundary only",
+  "claim_ceiling": "architecture_and_preparation_boundary_only_no_execution_no_provider_mesh_physical_or_R01-R10_credit",
+  "write_scope": "docs/implementation/AD-28/independent_review_r1/ only",
+  "protected_dirty_hashes": {
+    "runs/goal_recovery_20260913_012528_cst/task_queue.json": {"bytes": 16762, "sha256": "dbc57e7e44677cfd4b5d950a37d3d9063fde61fc7e4cec9b8cc44c9a9c3c84c0"},
+    "scripts/run_v4_spatial_chain.jl": {"bytes": 12890, "sha256": "ad5f7864da35bcd355ac256a20574648bab1372055954a71596bb631348d1520"},
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {"bytes": 1757, "sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb"},
+    "test/runtime_v4_spatial_entrypoint_tests.jl": {"bytes": 3522, "sha256": "673b29e372f4ba2d841630d2e37b01371653c032046002b3c60bf693e2335532"},
+    "test/runtime_v4_test_manifest.json": {"bytes": 2928, "sha256": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"},
+    "test/runtime_v4_validation_uq_execution_request_tests.jl": {"bytes": 10738, "sha256": "df1a67c20c528fed9012067a45640a58c6dede3e45f042a26a9cae056e757ed2"}
+  },
+  "ad28_archive_hashes": {
+    "docs/implementation/AD-28/proposal.md": {"bytes": 2899, "sha256": "800e16ec8b8cb7d9192345898c5c36187178cca4353e067d12c571fb48d97164"},
+    "docs/implementation/AD-28/manifest.json": {"bytes": 7048, "sha256": "776b25695ece03fc4516f9cb5dcb2f38ad885a27bd6f8ec77012ac7adbbd27ab"},
+    "docs/implementation/AD-28/qa.json": {"bytes": 1350, "sha256": "d561b9b06cbc63274dd5a602ab74c94d5a39b009d510a11a6964967ccc2ab8ad"},
+    "docs/implementation/AD-28/command_receipts.json": {"bytes": 2364, "sha256": "1ebcee3f1decf617189d24c9f7c6f0510934ea331f39fc25ef9229d98da47e94"}
+  },
+  "core_inputs_before_ad28": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 21150, "sha256": "82cf8cabf4b4fc16ed5d4bd78a4a8f95cef909ce8df23a799267d8f7a8af1b79"},
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": {"bytes": 12626, "sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes": 6598, "sha256": "f2a8964ca6bd1395780671f7aab7e86544484ae6b2703ce749d09ec5be0e5a43"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 59255, "sha256": "7d1d81ada7d3cf56cadab11a038ee2eba5aceb6f6ea4607bcf71cdf2d751a350"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 43916, "sha256": "820abd804bc72d3237ad23cd8711a36563acb9fca9a9b7c559744ec06cbb0d42"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 47524, "sha256": "a36213635acf8897e16549696b0c1dbbc56e72a6e13d0dd5a898b8eeae1c95a1"},
+    "docs/implementation/AD-27/decision.md": {"bytes": 1963, "sha256": "31aeff6a0fd6745e74452929f8c606985f69bbe15bb7efc0e05253fd5c6db721"},
+    "docs/implementation/AD-27/decision_manifest.json": {"bytes": 1934, "sha256": "17ca5b399ec688cde44d75408de3331554b9f4f2c9e1523c96fdf85402155912"}
+  },
+  "core_outputs_after_ad28": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 23103, "sha256": "94c6cc10a9c5085bf3da301e0f547120698721fa92f9997053addc09b4b6c83c"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 65791, "sha256": "061877451c91da3e8f6d107971f2cc6c382d47ad571d8244c50829e87732bd9b"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 45918, "sha256": "4e0845545a6b246eeb786f8d1ec7bb07ec487f1a18fb6b9998e0773a32bcee0a"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 55259, "sha256": "37713fa0e49fd1256e28e8cc71188886dd834517f1f7475ae6198b45d6d0f209"}
+  },
+  "r4_and_review_inputs": {
+    "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/report.md": {"bytes": 9503, "sha256": "b95b863bcc62230304b034d8b15bac58d56fe5298f524a5f76f10548198f16fc"},
+    "docs/implementation/UP2-01-PREPARATION/entry_audit_r4/report.json": {"bytes": 8138, "sha256": "117a9bdf998b0e65716e9935102e7311328ca01ecac554a917b78b8df4f6d1a8"},
+    "docs/implementation/UP2-01-PREPARATION/independent_review_r3/report.json": {"bytes": 5002, "sha256": "6dfb6878be10207ff9aeb793d207e7eee1850bddadd90cfc421cbccaea843992"},
+    "docs/implementation/UP2-01-PREPARATION/independent_review_r4/report.json": {"bytes": 6271, "sha256": "a2958750df50be25fb62b6ff1597047d8b2804da4e680b8ef3ab6c6623f2fbbc"},
+    "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"}
+  },
+  "consistency_checks": {
+    "three_work_orders_have_input_output_scope_exit": true,
+    "vnext_rebuilds_full_identity_chain": true,
+    "machine_dag_acyclic": true,
+    "new_nodes_planned_or_proposal": true,
+    "new_nodes_accepted_false": true,
+    "old_accepted_limited_receipts_not_rewritten": true,
+    "readme_legacy_chain_omits_vnext": true,
+    "core16_up2_00_ready_wording_conflicts_with_manifest_status": true
+  },
+  "negative_controls": {
+    "no_Julia_DESC": true,
+    "no_source_or_core_write_by_review": true,
+    "actual_A_gaps_retained": true,
+    "V4_manufactured_not_promoted": true,
+    "R01_R10_not_shrunk": true,
+    "physical_provider_mesh_credit": false
+  },
+  "output_artifacts_excluding_manifest": {
+    "report.md": {"bytes": 5637, "sha256": "7416370aae565218d24e72e50ab6003503f3379c72f3a37756941baf15cdd7f4"},
+    "report.json": {"bytes": 3844, "sha256": "d54d5df21733d0a3fabb95841dc281a530d07e3f270131823c9d90736add78e0"},
+    "command_receipts.json": {"bytes": 2655, "sha256": "8f07723254a00acde0b91c80375b06fb6a894cf99b4600d757412b9eff05a025"}
+  },
+  "manifest_self_hash": "omitted_by_design; manifest inventories its own evidence"
+}

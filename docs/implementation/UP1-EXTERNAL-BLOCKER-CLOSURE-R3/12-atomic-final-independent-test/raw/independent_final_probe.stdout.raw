@@ -1,0 +1,470 @@
+{
+  "pass_count": 12,
+  "pid": 112144,
+  "record_count": 13,
+  "records": [
+    {
+      "binary_sha256": "eb7892dffcd8488335b707aa055f8dc3bfd78168bc153a1a0c7da54bfd0260ae",
+      "download_receipt_sha256": "1cd7a31a7b8e48b529d48ce8c677b9c039fea845dd1250362eb13d2616fdad10",
+      "expected": {
+        "codes": [],
+        "status": "not_executed"
+      },
+      "name": "ehp04_root_contained_local_bytes_and_recomputed_hashes",
+      "observed": {
+        "codes": [],
+        "status": "not_executed"
+      },
+      "pass": true,
+      "sbom_sha256": "0e70f4ce969361022ad31e91469b38c525a2c9c715d9cee17bc3d7cdce95903f"
+    },
+    {
+      "codes": [
+        "EHP04_RUNTIME_ARTIFACT_UNAVAILABLE"
+      ],
+      "expected": true,
+      "name": "ehp04_root_containment_rejects_outside_runtime",
+      "observed": true,
+      "pass": true
+    },
+    {
+      "codes": [
+        "EHP04_ARTIFACT_ROOT_REQUIRED",
+        "EHP04_BINARY_ARTIFACT_UNAVAILABLE",
+        "EHP04_DOWNLOAD_RECEIPT_UNAVAILABLE",
+        "EHP04_DOWNLOAD_REF_MISMATCH",
+        "EHP04_RUNTIME_ARTIFACT_UNAVAILABLE",
+        "EHP04_SBOM_ARTIFACT_UNAVAILABLE",
+        "EHP04_SBOM_DIGEST_MISMATCH"
+      ],
+      "expected": {
+        "download_unavailable": true,
+        "root_required": true,
+        "sbom_unavailable": true
+      },
+      "name": "ehp04_missing_root_rejects_claims",
+      "observed": {
+        "download_unavailable": true,
+        "root_required": true,
+        "sbom_unavailable": true
+      },
+      "pass": true
+    },
+    {
+      "expected": "CAS_HARDLINK_REJECTED",
+      "name": "cas_existing_hardlink_rejected",
+      "observed": "CAS_HARDLINK_REJECTED",
+      "pass": true,
+      "samefile": true
+    },
+    {
+      "expected": "CAS_COLLISION_FAIL_CLOSED",
+      "name": "cas_different_bytes_collision_fail_closed",
+      "observed": "CAS_COLLISION_FAIL_CLOSED",
+      "pass": true
+    },
+    {
+      "cas_path": "C:\\Users\\Newman\\AppData\\Local\\Temp\\up1-r3-cas-qctl99d2\\collision\\cas\\59e704a4dc014cad75bbe11ececa343bf7fb2d7ad804f70441119230f82f8b92",
+      "expected": true,
+      "name": "cas_equal_bytes_replay_idempotent",
+      "observed": true,
+      "pass": true
+    },
+    {
+      "expected": [],
+      "name": "g2_directional_rows_recompute_and_inverse_bind",
+      "observed": [],
+      "pass": true,
+      "row_hashes_distinct": true
+    },
+    {
+      "codes": [
+        "EHP03_G2_MAPPING_MISMATCH",
+        "EHP03_G2_REF_MISMATCH",
+        "EHP03_G2_ROW_DIGEST_MISMATCH"
+      ],
+      "expected": true,
+      "name": "g2_inverse_authority_tamper_rejected",
+      "observed": true,
+      "pass": true
+    },
+    {
+      "expected": {
+        "all_expected_code_hit": true,
+        "all_expected_decision": true,
+        "count": 26,
+        "unique_paths": 26,
+        "unique_raw_hashes": 26
+      },
+      "name": "all_26_named_builders_unique_paths_and_matrix_bound",
+      "observed": {
+        "all_expected_code_hit": false,
+        "all_expected_decision": false,
+        "count": 26,
+        "unique_paths": 26,
+        "unique_raw_hashes": 26
+      },
+      "pass": false,
+      "rows": [
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": true,
+          "expected": "SCHEMA_INVALID",
+          "expected_decision": "rejected_all",
+          "id": "R01",
+          "mutation_path": "/unknown_nested_key",
+          "raw_sha256": "1613b8d7dcd45d3e1dbe9c83584d2d77b3632f57f0932b31a4aa7a6462303d53"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "PACKET_ORDER_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R02",
+          "mutation_path": "/packets",
+          "raw_sha256": "23b2833a5325f6fe36108233d2211a2627dce67173aa82c010452fb6d3040a6e"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "CANONICAL_EXCLUSION_NAME_INVALID",
+          "expected_decision": "rejected_all",
+          "id": "R03",
+          "mutation_path": "/canonical_exclusions/0",
+          "raw_sha256": "a1cd6d0ccf6a663ee35dfa0ce3fe034a37446c84c79bf513746e67e0cb6ba844"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "SET_BUNDLE_ID_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R04",
+          "mutation_path": "/set_receipt/bundle_id",
+          "raw_sha256": "302f9045fcefe5be4fbd9d0bf869703553c2e3b2ec453c6655947429102d4d7a"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "SET_REQUEST_ID_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R05",
+          "mutation_path": "/set_receipt/request_id",
+          "raw_sha256": "3df4f899d026b2fe8fcfce60841e6163ede7be5cb5c7fc3555aeb9064601295b"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "SET_PACKET_DIGESTS_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R06",
+          "mutation_path": "/set_receipt/packet_digests/0/packet_id",
+          "raw_sha256": "a0d6c9503ab24459988f2464985c12e85afcc37bd17756bced1cbc4d76553a86"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "PACKET_SHARED_BINDING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R07",
+          "mutation_path": "/packets/0/shared_binding/candidate_id",
+          "raw_sha256": "96c992e634b6818ec9bc20e47922b6ec703ddcf7b2f0cd5e4b177ff50ec50f0e"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "QUARANTINE_RECEIPT_INCOMPLETE",
+          "expected_decision": "rejected_all",
+          "id": "R08",
+          "mutation_path": "/set_receipt/quarantine_receipt",
+          "raw_sha256": "e980f93f1d107f082bbc61faf79720b825dcaa17631d4f422d395cbeb2ee5d77"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "QUARANTINE_NOT_BEFORE_VERIFY",
+          "expected_decision": "rejected_all",
+          "id": "R09",
+          "mutation_path": "/set_receipt/quarantine_receipt/verification_started_utc",
+          "raw_sha256": "709b26232c3a8833acdb22e2b7723fad75184d0f81683c32c1a58b5827c73764"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "QUARANTINE_RAW_DIGEST_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R10",
+          "mutation_path": "/set_receipt/quarantine_receipt/raw_object_sha256",
+          "raw_sha256": "30ec9344d75671de08c675067e32affb9dddc83eee64e807cce33b8fbcb8034e"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "DECISION_NOT_BOUND_TO_QUARANTINE",
+          "expected_decision": "rejected_all",
+          "id": "R11",
+          "mutation_path": "/set_receipt/quarantine_receipt/cas_transaction_id",
+          "raw_sha256": "e8814cbef95846c593e616d4f490af0e05c60753ff3727c87dbecd1e1cce6fb8"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP03_CANDIDATE_BINDING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R12",
+          "mutation_path": "/packets/2/payload/source_identity/candidate_id",
+          "raw_sha256": "381f81cac2973b7f33bf098028599a38ad781d37f82222156ac0730153578620"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP03_SOURCE_BINDING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R13",
+          "mutation_path": "/packets/2/payload/source_identity/source_bytes_sha256",
+          "raw_sha256": "69ae2d19b68820086d14bb77f4337596724968125631016c3d9595b5d3da941e"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP03_AXIS_SET_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R14",
+          "mutation_path": "/packets/2/payload/axis_materials",
+          "raw_sha256": "a646618b3ea9adc8efbd44d2c315ae0fec5bcf5a385451ab5d75c805b52e6819"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP03_GRAPH_BIJECTION_FAILURE",
+          "expected_decision": "rejected_all",
+          "id": "R15",
+          "mutation_path": "/packets/2/payload/evidence_graph/forward_edges/0/edge_id",
+          "raw_sha256": "816c0482765423374a7a3b486fa13da37d6589128a7617708c70fdb6a80edab8"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP03_G2_MAPPING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R16",
+          "mutation_path": "/packets/2/payload/g2_mapping/mapping_rows",
+          "raw_sha256": "abc6c89b6729a38eb60bb9790de5a9b21df795b07d655cd4b579b0c1601ea7e8"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP04_CONTEXT_BINDING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R17",
+          "mutation_path": "/packets/3/payload/expected_context_sha256",
+          "raw_sha256": "352f8170c731cf2a5833c9b46be08415fd100f6ac6a5a188e795a89b98da5e6c"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP04_RUNTIME_SET_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R18",
+          "mutation_path": "/packets/3/payload/runtime_and_imports/runtimes",
+          "raw_sha256": "44536614a955a00bbf9b0de6b1902f865cc2f24896f6233f50f0d8debb0c940e"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP04_IDENTITY_MAP_DUPLICATE",
+          "expected_decision": "rejected_all",
+          "id": "R19",
+          "mutation_path": "/packets/3/payload/runtime_and_imports/imports/1",
+          "raw_sha256": "2a5484b7642eb69a6e09dfa996fc9016498e2792e0584b6df9f7fd51313bf9a2"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP04_SBOM_COMPONENT_DUPLICATE",
+          "expected_decision": "rejected_all",
+          "id": "R20",
+          "mutation_path": "/packets/3/payload/sbom_documents/0/components/0/component_id",
+          "raw_sha256": "fab005dc26e93f61dce25c0641dbee7bd5063a99f3a84abb2d27e75d021724e2"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "EHP04_BINARY_BINDING_MISMATCH",
+          "expected_decision": "rejected_all",
+          "id": "R21",
+          "mutation_path": "/packets/3/payload/binaries/0/candidate_id",
+          "raw_sha256": "d279e2a62ed02a66399263b4b8ba88c5c845e5a80c4aea09f78bf1b10959a424"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": true,
+          "expected": "no_failure_code",
+          "expected_decision": "terminal_deferred",
+          "id": "R22",
+          "mutation_path": "/packets/3/payload/foreign_owner_fixture/fixture_status",
+          "raw_sha256": "72bc701982426fb4238a22374fa0632fcc63b328f0b9b19906fa65129c52392c"
+        },
+        {
+          "actual_codes": [
+            "RAW_DUPLICATE_KEY"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": true,
+          "expected": "RAW_DUPLICATE_KEY",
+          "expected_decision": "rejected_all",
+          "id": "R23",
+          "mutation_path": "/raw",
+          "raw_sha256": "1c53ee0df7b12fd4d65b976120c7fa6b847dc41dffd7f0331c3237a1ceab1756"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": true,
+          "expected": "no_failure_code",
+          "expected_decision": "terminal_deferred",
+          "id": "R24",
+          "mutation_path": "/security/trusted_public_keys",
+          "raw_sha256": "a0830e09cef5f82ffacf22ac2d7e11e514cfb2663da38f9f659742d95300df46"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "internal accepted_all only",
+          "expected_decision": "accepted_all",
+          "id": "R25",
+          "mutation_path": "/security/security_ok",
+          "raw_sha256": "594a1fde4702e62765b77e615113f4b51203a83d7b2a404d1ba45781ffe8c0f9"
+        },
+        {
+          "actual_codes": [
+            "SCHEMA_INVALID"
+          ],
+          "actual_decision": "rejected_all",
+          "code_hit": false,
+          "expected": "DECISION_DISAGREEMENT",
+          "expected_decision": "rejected_all",
+          "id": "D01",
+          "mutation_path": "/set_receipt/decision",
+          "raw_sha256": "d381443db019ecb508258fc5cef59b173d38c187064cf53fedbb5b8eea274905"
+        }
+      ]
+    },
+    {
+      "contains_decision_code": true,
+      "expected": true,
+      "name": "error_registry_exactly_matches_implementation",
+      "observed": true,
+      "pass": true,
+      "registry_count": 82,
+      "source_count": 82
+    },
+    {
+      "expected": {
+        "decision": "rejected_all",
+        "no_publish": true,
+        "preserved": "UNKNOWN_FINAL_INTERNAL_CODE"
+      },
+      "name": "unknown_internal_code_preserved_and_fail_closed",
+      "observed": {
+        "decision": "rejected_all",
+        "no_publish": true,
+        "preserved": "UNKNOWN_FINAL_INTERNAL_CODE"
+      },
+      "pass": true
+    },
+    {
+      "expected": {
+        "clean": "terminal_deferred",
+        "error": "rejected_all"
+      },
+      "name": "decision_error_precedes_not_executed_defer",
+      "observed": {
+        "clean": "terminal_deferred",
+        "error": "rejected_all"
+      },
+      "pass": true
+    },
+    {
+      "codes": [
+        "TEST_ONLY_NON_EVIDENCE"
+      ],
+      "expected": true,
+      "name": "test_only_receiver_receipt_is_non_evidence",
+      "observed": true,
+      "pass": true
+    }
+  ],
+  "schema": "UP1.atomic-final-independent-test.r3.v1",
+  "utc": "2026-09-17T00:49:07.306042Z"
+}

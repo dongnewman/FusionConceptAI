@@ -1,0 +1,17 @@
+{
+  "schema": "CORE-SOURCE-S3-CURRENT-HEAD-R1.independent-review-cleanup.v1",
+  "status": "complete_exact_path_only",
+  "write_root": "docs/implementation/CORE-SOURCE-S3-CURRENT-HEAD-R1/independent_review_r1",
+  "glob_cleanup_used": false,
+  "removed_paths": [],
+  "created_paths": [
+    "report.md",
+    "manifest.json",
+    "validation_receipt.json",
+    "cleanup_inventory.json",
+    "raw/audit.stdout.raw",
+    "raw/audit.stderr.raw"
+  ],
+  "preserved_paths": ["all candidate CORE-SOURCE-S3-CURRENT-HEAD-R1 products", "all AD48/AD49/M1 products", "all dirty AD56 factories", "all src/test/shared/runs paths"],
+  "cleanup_rule": "No path outside this independent review directory was changed, deleted, reverted, staged, or cleaned; no scratch files were created."
+}

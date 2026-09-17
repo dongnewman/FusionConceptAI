@@ -1,0 +1,29 @@
+{
+  "schema": "UP1.W1.witness-authority-independent-review-r3.validation-receipt.v1",
+  "review_scope": "read_only_round3_closure_and_regression_review",
+  "review_utc": "2026-09-16",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": {"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks": {
+    "actual_file_count": 41,
+    "cleanup_exact_set": true,
+    "cleanup_hash_rows": {"count":41,"mismatch_count":0,"self_excluded_paths":["manifest.json","cleanup_inventory.json"],"status":"pass"},
+    "manifest_current_product_hashes": {"count":17,"mismatch_count":0,"status":"pass"},
+    "validation_receipt_hash_maps": {"count":13,"mismatch_count":0,"status":"pass"},
+    "json_unique_parse": "pass",
+    "four_failure_records": {"count":4,"exit_code_all_one":true,"pid_utc":"explicit_collection_failure_not_guessed","raw_paths_present":true},
+    "historical_success": {"pid":93696,"exit":0,"stdout_sha256":"bb7e84929c34460cca4017360472c315927a0dcfbdc485bed0b6066ec8ab0ff1","combined_sha256":"bb7e84929c34460cca4017360472c315927a0dcfbdc485bed0b6066ec8ab0ff1"},
+    "repair_r2_success": {"pid":100080,"exit":0,"stdout_sha256":"2072ff70effc854fc86d5f35743770d1d1385ab7df004e4cc709c33b4cdd94f4","combined_sha256":"2072ff70effc854fc86d5f35743770d1d1385ab7df004e4cc709c33b4cdd94f4"},
+    "python_B_rerun": {"pid":27876,"utc_start":"2026-09-16T15:55:57.363971+00:00","utc_end":"2026-09-16T15:55:57.466484+00:00","exit":0,"stdout_sha256":"0899d9954345669ab6b7911b0a76bfda44c1f0279e5d3489f1f227e8178262ed","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"0899d9954345669ab6b7911b0a76bfda44c1f0279e5d3489f1f227e8178262ed"},
+    "evaluator_expected_fields_read": 0,
+    "observed_decisions": {
+      "contract_shape_positive": "typed_absence|ERR_NOT_PRESENT|non_evidence",
+      "placeholder_present_negative": "fail_closed|ERR_PLACEHOLDER_PRESENT",
+      "placeholder_retry_negative": "fail_closed|ERR_RETRY_BUDGET_PLACEHOLDER_OR_INVALID",
+      "foreign_layer_axis_negative": "fail_closed|ERR_PLACEHOLDER_PRESENT"
+    },
+    "independent_checker": {"pid":105712,"utc_start":"2026-09-16T15:56:22.850622+00:00","utc_end":"2026-09-16T15:56:22.876477+00:00","exit":0,"raw_sha256":"57b37465d6312d22ca2cd5449fbb219fbd052666a501d5f5f38ea39798b02ad8","raw":"JSON_UNIQUE_PARSE=PASS; EXACT_41_FILE_CLEANUP=PASS; MANIFEST_CURRENT_HASHES=PASS; VALIDATION_MAP_HASHES=PASS; FOUR_FAILURES_PID_UTC_NOT_GUESSED=PASS; EVALUATOR_EXPECTED_FIELDS_READ=0; FOREIGN_OBSERVED_ERR_PLACEHOLDER_PRESENT_BEFORE_LAYER_CHECK; EXIT_CODE=0"}
+  },
+  "limitations": ["No external witness, authority, trust root, production verifier, S3, Julia, DESC, mesh or solver was run.","Foreign independent binding rejection remains unproven because the current fixture is placeholder-marked.","All prior failures and raw streams remain retained."]
+}

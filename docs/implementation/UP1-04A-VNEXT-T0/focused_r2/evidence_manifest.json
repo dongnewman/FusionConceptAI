@@ -1,0 +1,65 @@
+{
+  "record_kind": "AD-30_T0_focused_r2",
+  "status": "julia_test_failed",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "process": {
+    "pid": 43044,
+    "started_utc": "2026-09-14T23:17:00.1036158+00:00",
+    "ended_utc": "2026-09-14T23:17:10.3812580+00:00",
+    "julia_exit_code": 1,
+    "post_run_julia_or_desc_processes": []
+  },
+  "raw_streams": {
+    "stdout_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/stdout.bin",
+    "stdout_sha256": "4c16f41ff5e49859753a7491f61e4109bd590504108cd830b4737e8331081acc",
+    "stderr_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/stderr.bin",
+    "stderr_sha256": "312005495a46b8448fd9d31071a642b9ad86edcb1be6b87ec4be3e11ae333289",
+    "capture_metadata_path": "docs/implementation/UP1-04A-VNEXT-T0/focused_r2/process_capture.json",
+    "capture_metadata_sha256": "680e6994064ee4a1b8f1dbc92ede38ae65e301ad8fe4af7bc6017a2819a85063"
+  },
+  "assertions": {
+    "first_group": "AD-30 T0 preserves complete bodies and typed gaps",
+    "first_failure_line": 139,
+    "first_failure_expression": "all((occursin(\"terminal_deferred\", gap) for gap = admission.gaps))",
+    "passed": 9,
+    "failed": 1,
+    "errored": 0,
+    "broken": 0,
+    "total": 10,
+    "later_groups_executed": false,
+    "rerun": false
+  },
+  "input_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": "333ff3a2976736e13809b603cdcab61524658b7fb20d1b6506ccf188dea3b063",
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0"
+  },
+  "worktree": {
+    "pre_run_porcelain_count": 304,
+    "post_run_porcelain_count": 304
+  },
+  "post_run_static_gates": {
+    "static_qa": {
+      "exit_code": 0,
+      "status": "pass"
+    },
+    "json_validation": {
+      "exit_code": 0,
+      "status": "pass"
+    },
+    "diff_check": {
+      "exit_code": 0,
+      "status": "pass"
+    }
+  },
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "t1_go": false,
+  "external_receipt_credit": false,
+  "provider_mesh_physical_credit": false,
+  "next_action": "independent_luna_postrun_review_of_first_focused_test_failure; no repair or rerun in this task"
+}

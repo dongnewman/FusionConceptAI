@@ -1,0 +1,43 @@
+{
+  "schema": "UP1.W4.local-input-discovery.run-ledger.v2",
+  "status": "validator_complete",
+  "claim": "discovery_only/preparation_only",
+  "repo_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "scan_scope": "repository_only; reviews/** and local_input_discovery/** excluded assessor/self artifacts; W1/W2/W3 main packages included; no user home; no credential stores; no network; metadata/hash only",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "commands": [
+    {
+      "id": "W4-METADATA-SCAN-R2",
+      "purpose": "fresh full repository-only path/extension metadata and SHA-256 scan with reviews/self artifacts excluded",
+      "status": "completed_read_only",
+      "pid": 103592,
+      "start_utc": "2026-09-16T16:37:49.421279Z",
+      "end_utc": "2026-09-16T16:37:53.426310Z",
+      "exit_code": 0,
+      "raw_stdout": "raw/metadata_scan_r2.jsonl",
+      "raw_stderr": null,
+      "raw_sha256": "e4da31030c88f3c9490687dd2650bae6d820dbf68524b77feef9741b57835a07",
+      "hit_count": 2810,
+      "candidate_count": 1864,
+      "excluded_count": 946
+    },
+    {
+      "id": "W4-STATIC-VALIDATOR-R2",
+      "purpose": "independent candidate/excluded existence/hash/types/crosswalk/manifest validator",
+      "status": "completed",
+      "pid": 46848,
+      "start_utc": "2026-09-16T16:38:36.597077Z",
+      "end_utc": "2026-09-16T16:38:41.469568Z",
+      "exit_code": 0,
+      "raw_stdout": "repair_r2/raw/static_discovery_validator.stdout.raw",
+      "raw_stderr": "repair_r2/raw/static_discovery_validator.stderr.raw",
+      "combined_raw": "repair_r2/raw/static_discovery_validator.combined.raw",
+      "raw_stdout_sha256": "bed8397e50984f236164fedb1285acbb6234eb8d8f93c2ea2a49913abe19adac",
+      "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_raw_sha256": "e79c6120b533aef46404e2121943d82d6852d7ed5c046133a94bbd5480918787"
+    }
+  ],
+  "sensitive_unopened": [],
+  "no_authoritative_external_input_found": true,
+  "historical_pre_repair_ledger": "archive/pre_repair_r1/run_ledger.json"
+}

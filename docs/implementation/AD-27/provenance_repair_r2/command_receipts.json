@@ -1,0 +1,18 @@
+{
+  "schema_version": "AD-27-provenance-repair-command-receipts-r2",
+  "read_only": true,
+  "started_utc": "2026-09-14T07:44:23Z",
+  "repository": {"cwd": "D:\\006-Programing\\LMC\\FusionConceptAI", "head": "4b69f55f7f80240147a65a22809dc1207824dde2", "status_lines_before": 290, "status_sha256_before": "A7DDFA270908670436014147A9449FA5C01EB0EEA098B397BDAF240072161585"},
+  "commands": [
+    {"command": "Get-Content docs/implementation/AD-27/decision_manifest.json | ConvertFrom-Json", "exit": 0, "purpose": "read protected before hashes"},
+    {"command": "Get-FileHash -Algorithm SHA256 README.md,16_execution_work_orders.md,18_sources_and_architecture_decisions.md", "exit": 0, "purpose": "freeze current after bytes"},
+    {"command": "python docs/implementation/AD-27/provenance_repair_r2/verify_append.py", "exit": 0, "purpose": "read-only exact splice/reconstruction verifier", "result": "three cases pass; rebuilt before hashes match decision manifest"},
+    {"command": "Get-Content -Raw provenance_repair_r2/*.json | ConvertFrom-Json", "exit": 0, "purpose": "JSON parse QA"},
+    {"command": "Select-String provenance_repair_r2 files for control characters", "exit": 0, "purpose": "control scan QA"},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "purpose": "planning QA; checks pass; DAG acyclic; 332 links"},
+    {"command": "git diff --check", "exit": 0, "purpose": "diff QA; line-ending warnings only"},
+    {"command": "Get-CimInstance Win32_Process | filter Julia/DESC repository processes", "exit": 0, "purpose": "no-runtime gate", "result": "empty"}
+  ],
+  "runtime": {"julia": false, "desc": false, "postflight_repository_processes": 0},
+  "notes": ["No core, source, test, run, old archive, or AD-27 R1 file was modified.", "The verifier is read-only and writes no reconstructed snapshot."]
+}

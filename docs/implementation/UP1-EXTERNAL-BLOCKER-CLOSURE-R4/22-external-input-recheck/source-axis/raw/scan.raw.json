@@ -1,0 +1,74 @@
+{
+  "schema": "UP1-R4.source-axis-recheck.raw.v1",
+  "observer_pid": 72928,
+  "observed_utc_start": "2026-09-17T04:01:36.6401025Z",
+  "observed_utc_end": "2026-09-17T04:01:38.5214212Z",
+  "exit_code": 0,
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "fixed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "current_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "head_tree": "e28da2ff057201c2257f6b879d3860b7a49cb428",
+  "current_head_matches_fixed": true,
+  "commit": {
+    "parent": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "author": "dongnewman <137603473+dongnewman@users.noreply.github.com>",
+    "author_utc": "2026-09-16T06:29:02+08:00",
+    "committer_utc": "2026-09-16T06:29:02+08:00",
+    "subject": "feat: publish Genome V5 source closure"
+  },
+  "dirty_closure": {
+    "status_line_count": 10694,
+    "status_untracked_count": 10667,
+    "status_modified_count": 27,
+    "status_sha256": "6428818edcca60130d4f81b81c42d5f6da79bf5c3139358b691fcda36c3b698b",
+    "unstaged_diff_sha256": "2b26a485e4fa57e456125ea705bc8cbf4b8312ee5ff43174e621e59a050f170f",
+    "staged_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "untracked_paths_sha256": "d046ea7086a0d860d6210670630e6a1cfe310a4e675ad6678ad91a0b4a4b307f",
+    "submodule_status": "empty",
+    "interpretation": "dirty local worktree; not an externally signed source closure"
+  },
+  "six_source_records": [
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"raw_sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","working_oid":"b94dd095815eed66917aa2f43b5350db587fa232","head_blob_oid":"b94dd095815eed66917aa2f43b5350db587fa232","working_matches_head_blob":true},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"raw_sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","working_oid":"53de699f6fe3c5f3fea19459ed3d681a0f66a046","head_blob_oid":"53de699f6fe3c5f3fea19459ed3d681a0f66a046","working_matches_head_blob":true},
+    {"path":"src/GenomeV5/G3/RealizationGenomeV5.jl","bytes":33751,"raw_sha256":"0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb","working_oid":"58274e1912737e7bab9c8ddd430fa17cac523b16","head_blob_oid":"58274e1912737e7bab9c8ddd430fa17cac523b16","working_matches_head_blob":true},
+    {"path":"src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl","bytes":31396,"raw_sha256":"de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2","working_oid":"9fab079f8c60a088653ef5bdde03e2ac2205029d","head_blob_oid":"0a78e7c279b394345b8b6923b225bf3eb7fbc6d4","working_matches_head_blob":false},
+    {"path":"src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl","bytes":27640,"raw_sha256":"2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc","working_oid":"8edc6c3233c99873a68190b6a159449dd75dae84","head_blob_oid":"50a9135a77fd4fbad450755abfe761a296386ec8","working_matches_head_blob":false},
+    {"path":"src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl","bytes":35485,"raw_sha256":"d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e","working_oid":"85e15aaa7c21854f64f71e7b4d34dfefd3de7266","head_blob_oid":"84a4b5e264dc77c81d88d704028dc12a490f6454","working_matches_head_blob":false}
+  ],
+  "external_observation_scope": {
+    "roots": ["D:/006-Programing/LMC","D:/006-Programing/LMC/FusionConceptAI"],
+    "relative_paths": ["local_spool","local_spool/incoming","response","anchors","local_receipts","incoming","intake"],
+    "root_path_pairs": 14,
+    "all_paths_absent": true,
+    "files_observed": 0,
+    "remote_or_unlisted_channels_queried": false
+  },
+  "four_axis_contract_names": [
+    "payload_schema_version",
+    "canonicalization_profile_version",
+    "applicability_profile_version",
+    "evidence_receipt_version"
+  ],
+  "four_axis_expected_locations": [
+    {"root":"D:/006-Programing/LMC","path":"response/ehp03-source.json","exists":false,"bytes":null,"sha256":null},
+    {"root":"D:/006-Programing/LMC","path":"response/ehp03-four-axis.json","exists":false,"bytes":null,"sha256":null},
+    {"root":"D:/006-Programing/LMC/FusionConceptAI","path":"response/ehp03-source.json","exists":false,"bytes":null,"sha256":null},
+    {"root":"D:/006-Programing/LMC/FusionConceptAI","path":"response/ehp03-four-axis.json","exists":false,"bytes":null,"sha256":null}
+  ],
+  "local_non_evidence": {
+    "r4_source_axis_prototype": "tools/up1_external_closure_r4/source_axis_binding/",
+    "r4_independent_test": "test/up1_external_closure_r4/source_axis_binding/",
+    "classification": "TEST_ONLY/local software material; not external, not signed authority"
+  },
+  "controls": {
+    "network_accessed": false,
+    "external_request_sent": false,
+    "intake_executed": false,
+    "source_or_test_modified_by_scan": false,
+    "julia_started": false,
+    "desc_started": false,
+    "s3_started": false,
+    "certificate_or_private_key_material_read": false,
+    "only_write_scope_after_scan": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/22-external-input-recheck/source-axis/"
+  }
+}

@@ -1,0 +1,14 @@
+ERROR: LoadError: ParseError:
+# Error @ D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\GI1BSourceMutationEnvelopeV1.jl:293:148
+    head=="migration_receipt" && return package.migration_receipt,rest
+    head=="n05" && context.e1 isa GI1N05PresentAuthoritySlotV1 ? return context.e1.authority.declaration,join(seg[2:end],"/") : return nothing,rest
+#                                                                                                                                                  └ ── `:` expected in `?` expression
+Stacktrace:
+ [1] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\GI1BSourceMutationEnvelopeV1.jl:293
+ [2] include(mod::Module, _path::String)
+   @ Base .\Base.jl:495
+ [3] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_gi1b_source_envelope.jl:7
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\src\GenomeV5\UP2\GI1BSourceMutationEnvelopeV1.jl:293
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\UP2\run_gi1b_source_envelope.jl:7

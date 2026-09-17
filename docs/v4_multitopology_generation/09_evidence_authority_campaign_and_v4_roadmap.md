@@ -1,5 +1,7 @@
 # v4 最终证据 authority、campaign 与实施路线图
 
+> 2026-09-14 路线更新：UP6 最终关账，authority 约束贯穿全部阶段。新的实施顺序为 UP0–UP6，历史 V4-P0–P6 顺序已被本次授权替代。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 最终 authority 的职责
 
 `FinalWholeDeviceAuthorityV4` 是唯一可以发出终局 candidate disposition 的模块。它不重新运行搜索或修改物理结果，只审计全部义务是否闭合、证据是否在适用域内、状态是否一致，并生成受限声明。
@@ -68,7 +70,7 @@ required 数值协议未满足，例如不收敛、网格不一致或双代码�
 | L2 | candidate-bound 平衡/稳定/输运义务达到声明深度 |
 | L3 | integrated numerical whole-device closure + numerical VVUQ |
 | L4 | 工程场景、独立验证证据达到声明协议 |
-| L5 | 更高外部评审、实验或工程 qualification；不由 v4 搜索自动产生 |
+| L5 | 与具体声明匹配的实验/工程 qualification；声称建成且实测正净输出必须有相应装置测量证据，不由搜索自动产生 |
 
 “最简可信候选”必须同时写明 L 等级和 scope，不能只写 `pass`。
 
@@ -130,72 +132,23 @@ required 数值协议未满足，例如不收敛、网格不一致或双代码�
 
 这些数量不可相加后称为“装置数”。
 
-## 9. v4 分阶段实施
+## 9. 新实施路线与进入条件
 
-### V4-P0：合同与不可变状态
+唯一当前路线是 [README 的 UP0–UP6](README.md)，具体依赖见 [16 工作单](16_execution_work_orders.md) 和 [task_manifest.json](task_manifest.json)。旧版 V4-P0–P6 搜索优先顺序已归入 [历史快照](../implementation/history/20260914_planning_baseline/09_evidence_authority_campaign_and_v4_roadmap.md)，不得用于现行派单。
 
-1. 实现本目录 00 的 schema 和 registry；
-2. 接入三个既有 Genome refs，不修改其内部文档；
-3. 建立分层哈希、状态维度和 authority；
-4. 完成标签擦除、置换和 legacy migration 测试。
+1. UP0 审计当前源码、脏文件、运行恢复和版本合同。
+2. UP1 补齐三 Genome 的语义/适用性和最小组件核，采用显式版本迁移。
+3. UP2 将声明编成方程、离散与耦合系统，复用成熟数值算法。
+4. UP3 验证不同合法模块组合可自动执行，并有留出组合与负控制。
+5. UP4 实际逆设计源/硬件，把实现误差、供能、热、结构和控制回代主物理；完成真实参考隐参逆恢复。
+6. UP5 接入条件 e-graph、丰富结构编辑和物理反馈；比较有界 campaign 后再扩规模。
+7. UP6 完成全部适用物理/工程、整装净输出、VVUQ、原创性和独立复放，按原 R01–R10 关账。
 
-退出条件：相同三 Genome bundle 可稳定编译为同一 canonical package；中间模块无法发出终局 disposition。
-
-### V4-P1：部分编译与证明式剪枝
-
-1. 实现 partial Genome compiler；
-2. 实现 schema/type/unit/conservation proof checker；
-3. 建立 no-good、failure frontier、dormant/revival；
-4. 做永久剪枝独立 replay 和假阴性审计。
-
-退出条件：所有永久剪枝有证书；软不利候选仍可产生后代。
-
-### V4-P2：Deep-QD 与开放式演化
-
-1. 用 family-free behavior descriptor 替换现有单赢家结构档案；
-2. 实现 K-deep cells、双种群、typed mutation/crossover；
-3. 实现 multi-emitter 和预算下限；
-4. 证明多步低分踏脚石可以产生更深候选。
-
-### V4-P3：MCTS 与独立求解纵切片
-
-1. progressive-widening prefix DAG；
-2. exact solver-input compiler/cache；
-3. capability-routed independent executor；
-4. 一个闭合、多区域混合边界和开放边界纵切片进入同一合同链。
-
-退出条件：无 family 路由；provider 缺口 terminal-deferred；proposal 与 evidence 权限隔离。
-
-### V4-P4：多保真 frontier 与 Pareto
-
-1. stage freeze/merge/promote；
-2. 低/高保真假阴性与 rank-reversal audit；
-3. 失败机理驱动基阶升级；
-4. 结构基和数学基的依赖闭合消融；
-5. scoped Pareto。
-
-### V4-P5：高保真整装与终局 authority
-
-1. candidate-bound coupled whole-device solve；
-2. engineering/control/fault scenarios；
-3. numerical VVUQ、双代码和 validation evidence；
-4. terminal authority 与 claim ladder；
-5. sentinel 和负控制统一回归。
-
-### V4-P6：中等 campaign 后再规模化
-
-先执行约 50–100 个不同 semantic/capability topology cells、500–1,000 个 unique physical inputs 的中等 campaign。只有在以下条件成立后扩大：
-
-- 多个结构不同 cell 有真实 hard-gate survivors；
-- exact solver-input cache 和 strict merge 稳定；
-- 假阴性和模型校准达标；
-- provider gap 不再主导；
-- integrated evidence 数量非零；
-- 数量和 claim 报告通过 firewall 审计。
+每个阶段的 accepted 只覆盖其协议声明的能力域。阶段完成不隐含装置可信；最终 authority 不能因排期已结束而填补 evidence 缺口。扩大搜索前要求组合执行、逆实现回代和真实反馈已通过；软件/模型问题占主导时先修复能力。
 
 ## 10. v4 正式验收
 
-1. 三种既有 Genome 被引用而未复制或重新定义。
+1. 三种 Genome 以明确版本引用；新增语义经过迁移与独立验收，历史候选、哈希和 evidence 未被原地重解释。
 2. 无 family/name/ID 路由、门控和晋升。
 3. 永久剪枝 100% 有独立可复放证书。
 4. Deep-QD、失败前沿、休眠复活和 multi-emitter 可恢复。

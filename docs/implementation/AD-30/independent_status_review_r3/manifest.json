@@ -1,0 +1,100 @@
+{
+  "manifest_version": "AD-30-independent-status-review-r3-v1",
+  "record_kind": "independent_status_and_dag_review",
+  "review_id": "AD-30-independent-status-review-r3",
+  "reviewer": "different Luna/high",
+  "review_date": "2026-09-15",
+  "verdict": "changes_requested",
+  "scope": "read-only review of AD-30 R2 acceptance, active dependencies, core indexes, GI1B limited scope, and static evidence",
+  "repository": {
+    "path": "D:/006-Programing/LMC/FusionConceptAI",
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2"
+  },
+  "validation": {
+    "task_manifest_json_tool_exit": 0,
+    "ad30_acceptance_manifest_json_tool_exit": 0,
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 367,
+    "task_count": 34,
+    "task_dag_acyclic": true,
+    "julia_run": false,
+    "desc_run": false,
+    "provider_run": false,
+    "mesh_run": false,
+    "physical_run": false,
+    "diff_check_exit": 2,
+    "diff_check_note": "Existing README EOF blank-line warning; no source or core file was edited by this review."
+  },
+  "active_dependency_check": {
+    "expected": "UP1-04A + G1/G2/G3 -> T0 -> T1 -> T2 -> UP1-04A-VNEXT -> UP2-00",
+    "manifest_rows": {
+      "UP1-04A": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G1-DIFFUSION-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G2-METRIC-BOUNDARY-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP2-01-G3-SOURCE-FEEDBACK-V1": ["UP1-01", "UP1-02", "UP1-03"],
+      "UP1-04A-VNEXT-T0": ["UP1-04A", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP2-01-G3-SOURCE-FEEDBACK-V1"],
+      "UP1-04A-VNEXT-T1": ["UP1-04A-VNEXT-T0"],
+      "UP1-04A-VNEXT-T2": ["UP1-04A-VNEXT-T1"],
+      "UP1-04A-VNEXT": ["UP1-04A-VNEXT-T2"],
+      "UP2-00": ["UP1-04A-VNEXT"]
+    },
+    "result": "pass",
+    "vnext_is_aggregate_gate": true,
+    "t0_source_implementation_accepted": false,
+    "t1_no_go_until_real_bundle": true
+  },
+  "status_checks": {
+    "ad30": {
+      "status": "accepted_limited",
+      "accepted_scope": "lossless VNEXT declaration transport contract, T0-T2 scheduling and evidence boundaries only",
+      "execution_authorized": false,
+      "implementation_credit": false
+    },
+    "t0": {"status": "planned", "accepted": false},
+    "t1": {"status": "planned", "accepted": false},
+    "t2": {"status": "planned", "accepted": false},
+    "vnext": {"status": "planned", "accepted": false},
+    "up2_00": {"status": "planned", "accepted": false},
+    "gi1b": {
+      "status": "accepted_limited",
+      "accepted_scope": "actual-A source-envelope software behavior and typed authority-gap handling",
+      "n06_actual_authority": false,
+      "up2_total": false,
+      "b00": false,
+      "b04": false,
+      "compiler": false,
+      "provider": false,
+      "mesh": false,
+      "solver": false,
+      "engineering": false,
+      "physical": false,
+      "current_a": false,
+      "r01_r10": false
+    }
+  },
+  "findings": {
+    "stale_direct_dag_text_in_architecture_decisions": true,
+    "stale_direct_dag_text_in_readme_history_sections": true,
+    "implementation_index_gi1b_pending_wording": true,
+    "core_contract_or_source_edit_by_reviewer": false,
+    "required_action": "status-sync core architecture/index text, then independent recheck"
+  },
+  "current_input_hashes": {
+    "docs/v4_multitopology_generation/README.md": {"bytes": 27830, "sha256": "8d76d1ade5963574b572dc3fcd6a726383b6a879658a396eaca1a05a28d1d367"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 73348, "sha256": "011533c4c174feb77636aab3d96d5b3d05457d7eaae26f3d52db08a622809280"},
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {"bytes": 57032, "sha256": "8e40f19055512661c991408fa33d1c2f27f1b24a087cd44cd306ced8ec907f4f"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 63912, "sha256": "b149ffa8a725c2a8e9c62bcd3c81becbca92bae9e3b49b3eef9360aef4a9fab5"},
+    "docs/implementation/README.md": {"bytes": 14387, "sha256": "d21c82db64c4aff0679f93a51843ec1e326ea49ba126f81667a776d74192cd67"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/acceptance.md": {"bytes": 3030, "sha256": "612cebd62c36da0782c6e08d26e183f1e0df778de7d77eebd36e3795d1ca45a1"},
+    "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/evidence_manifest.json": {"bytes": 5226, "sha256": "35c71012ba44d98de3426ff008625df1ea35f2e6e62aefcf3304e822aa41904f"}
+  },
+  "outputs": {
+    "report": {
+      "path": "docs/implementation/AD-30/independent_status_review_r3/report.md",
+      "bytes": 6425,
+      "sha256": "44b283acf81480c6c513bc32d0975347b394e9d90f847aad5f3f1a81cd303d59"
+    },
+    "manifest_self_hash_excluded": true
+  }
+}

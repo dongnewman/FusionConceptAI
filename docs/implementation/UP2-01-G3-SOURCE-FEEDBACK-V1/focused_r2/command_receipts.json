@@ -1,0 +1,12 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-focused-r2-command-receipts-v1",
+  "reviewer": "independent_luna_high_serial_executor",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "started_once": true,
+  "exit_code": null,
+  "capture_status": "interrupted_before_pid_and_stream_drain",
+  "launcher_error": "launcher_error.txt",
+  "preflight": {"matching_julia_desc_process_count": 0, "dirty_entry_count": 301, "target_sha256_verified": true},
+  "postflight": {"matching_julia_desc_process_count": 0, "target_sha256_unchanged": true, "matching_julia_desc_process_count_after": 0},
+  "claim_ceiling": ["no_focused_result", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"]
+}

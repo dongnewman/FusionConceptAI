@@ -1,0 +1,16 @@
+{
+  "schema_version": "UP2-G-I1A-status-independent-review-receipts-v2",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-status-review-r2",
+  "runtime_policy": "No Julia or DESC was run by this status review.",
+  "commands": [
+    {"command": "Get-Content status_sync_r2, primary acceptance/evidence, postrun_r2, core indexes", "exit": 0, "result": "scope and historical links inspected", "runtime": false},
+    {"command": "Get-FileHash inspected status/archive/index files", "exit": 0, "result": "hashes recorded in report/evidence", "runtime": false},
+    {"command": "Compare primary/status-sync test hash with focused_r2/R6 actual test hash", "exit": 0, "result": "mismatch: old 1A4737... versus executed 83D765...", "runtime": false},
+    {"command": "Get-Process julia/desc", "exit": 0, "result": "zero processes", "runtime": false},
+    {"command": "ConvertFrom-Json review files", "exit": 0, "result": "pass", "runtime": false},
+    {"command": "control-character scan review files", "exit": 0, "result": "zero matches", "runtime": false},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "result": "checks=pass", "runtime": false},
+    {"command": "git diff --check", "exit": 0, "result": "pass; pre-existing line-ending warnings only", "runtime": false}
+  ],
+  "claim_ceiling": "archive_review_only"
+}

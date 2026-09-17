@@ -1,0 +1,34 @@
+{
+  "schema": "m4-b-residual-lowering-delivery-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/delivery_r1",
+  "status": "delivery_complete_review_pending",
+  "recorder": "Luna m4_scope_record",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "scope_basis": "../b_scope_decision_r1/",
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "inputs": {
+    "source_a": {"path":"src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl","sha256":"0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "source_b": {"path":"src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl","sha256":"0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "test": {"path":"test/RuntimeV4/M4Isolated/manufactured_residual_lowering_v1_tests.jl","sha256":"c7032beecfcca29db8a751eec4aaf4797eadfed66b12e8da611c392783740f73"},
+    "oracle": {"path":"test/RuntimeV4/M4Isolated/oracles/residual_lowering_oracle_v1.py","sha256":"0d89c69ab3689a0cf7cde9756f95a76b8f7e4c8fc93a7a99ed9aa460bd5781fd"}
+  },
+  "math": {"components":["1/10","1/20","1/30"],"divergence":"11/60","source":"-11/60","exact_residual":"0"},
+  "causal_repair": {"initial":{"julia_exit":1,"pass":51,"errors":2,"source_b_sha256":"82e1294eccb9a5e3e3145ee694e44ff71d3afec52786f5221f48311d4bf7ec62","combined_sha256":"32babe9221dfca94e7875310252362bf261a3f103c30ecc085cf72a4f9dbe4e6"},"cause":"empty failures collected as Vector{Union{}} before owner-binding push","repair":"ManufacturedResidualLoweringFailureV1 typed vector comprehension","final_source_b_sha256":"0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+  "test_execution": {"initial_python":{"pid":100532,"exit":0,"combined_sha256":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3"},"initial_julia":{"pid":38524,"exit":1,"combined_sha256":"32babe9221dfca94e7875310252362bf261a3f103c30ecc085cf72a4f9dbe4e6"},"repair_python":{"pid":109792,"exit":0,"combined_sha256":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3"},"repair_julia":{"pid":2012,"exit":0,"passed":53,"total":53,"combined_sha256":"1994f192d90c1767e10bfea8b77b216d803787f90b4f5942c23f5e93fce8786e"}},
+  "integration_replay": {"strictly_serial":true,"order":["python_01","python_02","julia_01","julia_02"],"runs":[{"pid":110172,"exit":0,"combined_sha256":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3"},{"pid":104420,"exit":0,"combined_sha256":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3"},{"pid":97276,"exit":0,"passed":53,"total":53,"combined_sha256":"dcf65a06f4a3132cc813564f62d2b82090aa7df6853c0791b8edca0d405691d7"},{"pid":2400,"exit":0,"passed":53,"total":53,"combined_sha256":"1994f192d90c1767e10bfea8b77b216d803787f90b4f5942c23f5e93fce8786e"}],"stderr_empty":true},
+  "raw_receipt_roots": ["../test_execution_r1/", "../integration_r1/", "archive/raw/"],
+  "preflight_capture_abort": {"path":"../integration_r1/archive/harness_capture_abort_20260916T0718Z/","classification":"historical_non_counted","cause":"PowerShell variable collision"},
+  "roles_pairwise_distinct": true,
+  "shared_entry_unchanged": true,
+  "hard_exclusions": ["mesh","discretization","assembly","solver","coupling","candidate","provider","physics","engineering"],
+  "not_closed_or_credited": ["UP2-01","UP2","B00","B04","provider","mesh","engineering","physical","R01-R10","L4"],
+  "C": "unauthorized",
+  "D": "unauthorized",
+  "formal_reentry": ["T0","authority recheck","T1","T2","aggregate","UP2-00","UP1-04B","UP1-04","UP2-01"],
+  "failure_history_retained": true,
+  "parent_closed": false,
+  "formal_credit": []
+}
+

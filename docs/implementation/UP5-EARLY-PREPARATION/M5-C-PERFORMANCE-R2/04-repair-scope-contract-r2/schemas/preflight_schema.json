@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5CPreflightReceiptV2",
+  "type": "object",
+  "required": ["receipt_id", "schema", "derivation_input_hash", "candidate_id", "m5a_source_hash", "m5b_inverse_hash", "n", "rule_count", "projected_members", "projected_trace_steps", "projected_provenance_bytes", "factorial_order_upper_bound", "projected_canonical_bytes", "max_bytes", "requested_budget", "effective_budget", "arithmetic", "decision", "result_status", "reason", "guard_phase", "canonical_writer_called", "rewrite_set_constructor_called", "utc", "producer_owner"],
+  "properties": {
+    "receipt_id": {"type": "string", "minLength": 1}, "schema": {"const": "M5CPreflightReceiptV2"},
+    "derivation_input_hash": {"$ref": "#/$defs/hash"}, "candidate_id": {"type": "string", "minLength": 1},
+    "m5a_source_hash": {"$ref": "#/$defs/hash"}, "m5b_inverse_hash": {"$ref": "#/$defs/hash"},
+    "n": {"type": "integer", "minimum": 0}, "rule_count": {"type": "integer", "minimum": 0},
+    "projected_members": {"type": "integer", "minimum": 0}, "projected_trace_steps": {"type": "integer", "minimum": 0},
+    "projected_provenance_bytes": {"type": "integer", "minimum": 0}, "factorial_order_upper_bound": {"type": "integer", "minimum": 0},
+    "projected_canonical_bytes": {"type": "integer", "minimum": 0}, "max_bytes": {"type": "integer", "minimum": 1},
+    "requested_budget": {"type": "integer", "minimum": 0}, "effective_budget": {"type": "integer", "minimum": 0},
+    "arithmetic": {"$ref": "#/$defs/arithmetic"}, "decision": {"enum": ["admit", "defer"]},
+    "result_status": {"enum": ["admitted", "terminal_deferred"]},
+    "reason": {"enum": ["within_limits", "over_limit", "overflow", "nonfinite", "estimate_unavailable", "incomplete_input"]},
+    "guard_phase": {"const": "before_rewrite_set_and_canonical"}, "canonical_writer_called": {"const": false},
+    "rewrite_set_constructor_called": {"const": false}, "utc": {"type": "string", "format": "date-time"},
+    "producer_owner": {"const": "m5c_adapter"}
+  },
+  "$defs": {"hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "arithmetic": {"type": "object", "required": ["base", "cap", "saturated_fields", "overflow", "nonfinite"], "properties": {"base": {"const": "UInt128"}, "cap": {"type": "integer", "minimum": 1}, "saturated_fields": {"type": "array", "items": {"type": "string"}}, "overflow": {"type": "boolean"}, "nonfinite": {"type": "boolean"}}, "additionalProperties": false}},
+  "additionalProperties": false
+}

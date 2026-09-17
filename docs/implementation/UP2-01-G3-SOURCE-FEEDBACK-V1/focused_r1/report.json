@@ -1,0 +1,79 @@
+{
+  "review_id": "UP2-01-G3-SOURCE-FEEDBACK-V1-focused-r1",
+  "status": "focused_test_failed",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": "executed_once",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 49960,
+  "utc_before": "2026-09-14T20:40:54.9211201Z",
+  "utc_after": "2026-09-14T20:40:56.8643649Z",
+  "exit_code": 1,
+  "preflight": {
+    "independent_precheck_r3": "pass_limited",
+    "serial_readiness": "ready_for_serial_focused",
+    "julia_desc_process_count": 0,
+    "dirty_rows": 300,
+    "target_hashes_verified": true
+  },
+  "postflight": {
+    "julia_desc_process_count": 0,
+    "dirty_rows": 300,
+    "target_hashes_unchanged": true
+  },
+  "test_summary": {
+    "passed": 1,
+    "errored": 1,
+    "total": 2,
+    "failure": "UndefVarError: G3SFEndpointV1 not defined",
+    "failure_path": "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:22",
+    "reached_later_testsets": false
+  },
+  "target_artifacts": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+      "bytes": 27969
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {
+      "sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+      "bytes": 2332
+    },
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {
+      "sha256": "37a66fcee910b123183df0f6c8eec568f617e5702b6e62875a4d7e6f4d5c5838",
+      "bytes": 8302
+    },
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {
+      "sha256": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0",
+      "bytes": 5247
+    }
+  },
+  "raw_outputs": {
+    "stdout": {"path": "stdout.txt", "bytes": 2266, "sha256": "2828ff9be9aff6b09b42ba32621a5d194b511af0770d09778cdb6ca7b4be1abd"},
+    "stderr": {"path": "stderr.txt", "bytes": 203, "sha256": "42e397436d4057def496a22ee6b6baf48a97c0f80034726c53ee9fa3d65aa165"}
+  },
+  "protected_scope": {
+    "source_modified": false,
+    "test_modified": false,
+    "fixture_modified": false,
+    "static_qa_modified": false,
+    "old_evidence_modified": false,
+    "write_scope": ["docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/focused_r1/"]
+  },
+  "claim_ceiling": [
+    "software_test_only",
+    "accepted_false",
+    "no_compiler_acceptance",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_physics",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_R01_R10"
+  ],
+  "next_gate": "Different Luna postrun diagnosis of G3SFEndpointV1 missing binding before any repair or rerun."
+}

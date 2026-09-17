@@ -1,0 +1,27 @@
+{
+  "schema": "up1_r2_threat_protocol_independent_review_evidence_manifest_v1",
+  "status": "rework",
+  "claim_ceiling": "preparation_only",
+  "labels": {"TEST_ONLY": true, "non_evidence": true},
+  "write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/threat-protocol-independent-review-r1/",
+  "self_hash_excluded": true,
+  "exact_set": [
+    {"path":"review.md","bytes":8185,"sha256":"f3c1f7c2d14a2c4863cca30b80a4042ad52f26d2aa24c75a7e6104beeca59718"},
+    {"path":"validation_receipt.json","bytes":2645,"sha256":"79227dfb0f0518ef01a772f6f2e12c9dfa353e02d982cd1349b532520a403450"},
+    {"path":"raw/independent_json_exact_hash_audit.command.raw","bytes":69,"sha256":"3ea684dd32934a0c34ca4f0f1ab2eb97baf45e4c965f6a11677ced2af18c920c"},
+    {"path":"raw/independent_json_exact_hash_audit.process.raw","bytes":325,"sha256":"354a61a53a148de043b363d6d3afd31cd47e1a5193b8347ba57f6175a4fefaf7"},
+    {"path":"raw/independent_json_exact_hash_audit.stderr.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"path":"raw/independent_json_exact_hash_audit.stdout.raw","bytes":352,"sha256":"1a70171f37c1c37a4b499b1547d55397bcd52b0c61b4068a8a43e8b289429613"},
+    {"path":"raw/r2_13_static_validator.command.raw","bytes":98,"sha256":"d674db36a32b2da89ad1a57a6a480ba4760cca5629adf56b5e751a122fd53a5d"},
+    {"path":"raw/r2_13_static_validator.process.raw","bytes":368,"sha256":"724b0cd40eff033c30664b8b1bb9636953b40d8944d48eba4a387efd5c26edd7"},
+    {"path":"raw/r2_13_static_validator.stderr.raw","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"path":"raw/r2_13_static_validator.stdout.raw","bytes":199,"sha256":"0b5c224529b1e20022344120c1acc38780a747ed57b5b862c593aac867282fed"}
+  ],
+  "excluded": ["evidence_manifest.json"],
+  "source_inputs": [
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/interface_contracts.json",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/13-threat-model/",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/"
+  ],
+  "retention": "retain all listed raw streams and receipts; no cleanup/deletion performed"
+}

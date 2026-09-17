@@ -1,0 +1,190 @@
+{
+  "schema_version": "AD-30-t0-readiness-audit-v1",
+  "record_kind": "T0_source_readiness_audit",
+  "date": "2026-09-15",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "decision": {
+    "contract_only_t0_implementation": "conditional_go",
+    "current_fixture_three_layer_exact_join": "no_go",
+    "t1": "no_go",
+    "old_v5_package_or_registry": "no_go",
+    "provider_mesh_physical_credit": false,
+    "r01_r10_credit": false
+  },
+  "audit_scope": {
+    "read_only_source_audit": true,
+    "julia_executed": false,
+    "desc_executed": false,
+    "provider_executed": false,
+    "mesh_executed": false,
+    "physical_executed": false,
+    "environment_mutated": false
+  },
+  "worktree": {
+    "porcelain_rows_observed": 303,
+    "representative_existing_rows": [
+      "M docs/v4_multitopology_generation/README.md",
+      "M docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+      "M scripts/run_v4_spatial_chain.jl",
+      "M src/FusionConceptAI.jl",
+      "M src/RuntimeV4/SpatialRuntimeV4.jl",
+      "?? docs/implementation/AD-28/",
+      "?? docs/implementation/AD-29/",
+      "?? docs/implementation/AD-30/",
+      "?? runs/goal_recovery_20260913_012528_cst/task_queue.json"
+    ],
+    "protected_scope": "all pre-existing rows; T0 may add only its new source, focused test and implementation archive"
+  },
+  "process_probe": {
+    "commands": [
+      "Get-Process julia -ErrorAction SilentlyContinue",
+      "Get-Process desc -ErrorAction SilentlyContinue"
+    ],
+    "julia_rows": 0,
+    "desc_rows": 0,
+    "interpretation": "no Julia or DESC process was present in this read-only snapshot"
+  },
+  "source_hashes": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641",
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db",
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40"
+  },
+  "source_locations": {
+    "contracts": [
+      "docs/v4_multitopology_generation/README.md:121-123",
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md:AD-30",
+      "docs/v4_multitopology_generation/16_execution_work_orders.md:292-311",
+      "docs/v4_multitopology_generation/task_manifest.json:446-482"
+    ],
+    "g1_complete_body": [
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl:269-325",
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl:350-373"
+    ],
+    "g2_complete_source_and_body": [
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:354-401",
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl:513-552"
+    ],
+    "g3_complete_body": [
+      "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:267-330",
+      "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:349-423"
+    ],
+    "candidate_ref_type": [
+      "src/IR/PhysicalTypes.jl:47-55",
+      "src/Contracts/GenomeContractRegistry.jl:3-23"
+    ]
+  },
+  "candidate_binding": {
+    "g1": {
+      "type": "QualifiedRefV1",
+      "fixture": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture@v5",
+      "source_bound": true,
+      "authority": "missing_external_source"
+    },
+    "g2": {
+      "type": "GenomeContractRef inside G2MBSourceV1 plus GenomeContractRef declaration contract_ref",
+      "fixture": "fusionconceptai://GenomeV5/candidate/up2-01-g2-metric-boundary-fixture@v5",
+      "source_bound": true,
+      "qualified_ref_envelope": "absent",
+      "gap": "no lossless source-backed QualifiedRefV1 mapping from URI/hash seeds"
+    },
+    "g3": {
+      "type": "QualifiedRefV1",
+      "fixture": "fusionconceptai://candidate/up2-01-g3-source-feedback-v1-proposal-001@v5",
+      "source_bound": true,
+      "authority": "G1/G2 upstream status missing by default"
+    },
+    "exact_join": "not available across current fixture instances; a fresh same-candidate envelope is required"
+  },
+  "axis_audit": {
+    "required_axes": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "applicability_profile_version",
+      "evidence_receipt_version"
+    ],
+    "g1": {
+      "source_literals": ["G1_DIFFUSION_SCHEMA_VERSION_V1", "G1_DIFFUSION_CANONICALIZATION_ID_V1", "G1_DIFFUSION_APPLICABILITY_ID_V1", "G1_DIFFUSION_PROFILE_ID_V1"],
+      "declaration_fields": ["closure_ref", "applicability_ref"],
+      "missing": ["evidence_receipt_version"],
+      "t0_status": "source-backed values only where exact mapping is proven; missing axis remains typed terminal_deferred"
+    },
+    "g2": {
+      "source_literals": ["G2MB_SCHEMA_VERSION_V1", "G2MB_PROFILE_ID_V1", "G2MB_SCHEMA_DESCRIPTOR_V1", "G2MB_CANONICALIZATION_DESCRIPTOR_V1"],
+      "declaration_fields": ["schema_hash", "canonicalization_hash", "profile_hash"],
+      "missing": ["applicability_profile_version", "evidence_receipt_version"],
+      "t0_status": "do not alias profile or authority to applicability; missing axes remain typed terminal_deferred"
+    },
+    "g3": {
+      "source_literals": ["G3_SF_V1_VERSION", "_G3_SF_V1_CANONICAL_SOURCE", "_G3_SF_V1_PROFILE_SOURCE"],
+      "declaration_fields": ["declaration_hash"],
+      "missing": ["applicability_profile_version", "evidence_receipt_version", "declaration-level schema/canonical/profile hash fields"],
+      "t0_status": "retain source-backed complete declaration body; missing axis/source records remain typed terminal_deferred"
+    }
+  },
+  "g3_child_feedback_hash_status": {
+    "children": {
+      "realization": "no field in G3SFDeclarationV1; typed absent terminal_deferred",
+      "control": "no field in G3SFDeclarationV1; typed absent terminal_deferred",
+      "binding": "no field in G3SFDeclarationV1; typed absent terminal_deferred"
+    },
+    "feedback": "typed G3SFFeedbackTargetV1 and G3SFAuthorityV1 retained in complete declaration body; default upstream G1/G2 statuses are missing",
+    "declaration_hash": "present and computed over _g3sf_body",
+    "source_content_hash": "absent; must not be derived from declaration_hash",
+    "foreign_actual_authority": "fixture/test constructs foreign GenomeContractRef; cannot become same-candidate authority"
+  },
+  "t0_ownership": {
+    "new_source": "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl",
+    "new_test": "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "new_archive": "docs/implementation/UP1-04A-VNEXT-T0/",
+    "forbidden_edits": [
+      "old V5 Genome files",
+      "src/Contracts/CandidateStatePackageV5.jl",
+      "old shared entry",
+      "default_operator_registry()",
+      "old receipts/hashes/candidate identities",
+      "core planning documents"
+    ]
+  },
+  "hash_recipe": {
+    "g1": "canonical_hash(_g1d_declaration_body(declaration)); preserve g1_diffusion_source_hash_v1(source_payload)",
+    "g2": "canonical_hash((contract_ref, source, schema_hash, canonicalization_hash, profile_hash)); preserve source.source_hash",
+    "g3": "canonical_hash(_g3sf_body(declaration)); preserve declaration_hash and represent source-content hash as typed absent",
+    "bundle": "canonical_hash(full immutable named tuple of complete three bodies, stored source/declaration hashes, exact candidate envelope, four-axis records, G3 feedback/authority and typed child states); never hash refs or fixture labels alone"
+  },
+  "verification_gate": {
+    "static": [
+      "python -m json.tool docs/implementation/AD-30/t0_readiness_audit/evidence_manifest.json",
+      "python docs/v4_multitopology_generation/validate_plan.py",
+      "git diff --check -- docs/implementation/AD-30/t0_readiness_audit/"
+    ],
+    "focused_future": "julia --startup-file=no --project=. test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl",
+    "required_receipt": "raw stdout/stderr bytes, SHA-256, exit code, actual Julia process identity, and different-Luna independent review",
+    "promotion": "T1 remains blocked until T0 exact join, G2 envelope, four-axis provenance, complete G3 body hash and all negative controls pass independent review"
+  },
+  "read_only_validation": {
+    "json_tool": {
+      "command": "python -m json.tool docs/implementation/AD-30/t0_readiness_audit/evidence_manifest.json",
+      "exit_code": 0
+    },
+    "plan_validator": {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 367,
+      "task_count": 34,
+      "task_dag_acyclic": true,
+      "errors": []
+    }
+  },
+  "audit_artifact": {
+    "report": "docs/implementation/AD-30/t0_readiness_audit/report.md",
+    "report_sha256": "8712d4ec56330a647175c30e3470c24b6b5d2e344294fd88c5e20573351c3723"
+  }
+}

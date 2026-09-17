@@ -1,0 +1,62 @@
+{
+  "schema": "UP1-R2.system-trust-gaps.v1",
+  "status": "typed_absence_terminal_deferred",
+  "claim_ceiling": "preparation_only",
+  "observed_capabilities": [
+    "Windows certificate-store enumeration",
+    "public X.509 metadata parsing",
+    "OpenSSL command-line presence/help",
+    "Python cryptography import/OpenSSL backend presence"
+  ],
+  "gaps": [
+    {
+      "id": "project_trust_root",
+      "state": "typed_absence",
+      "recovery": "external owner supplies pinned public-key fingerprint, scope, validity, rotation and revocation policy",
+      "validation": "independent path verifier"
+    },
+    {
+      "id": "production_policy_oid",
+      "state": "typed_absence",
+      "recovery": "versioned project profile supplies exact policy OID",
+      "validation": "profile-aware verifier"
+    },
+    {
+      "id": "production_attestation_eku",
+      "state": "typed_absence",
+      "recovery": "versioned project profile supplies exact attestation EKU OID",
+      "validation": "leaf EKU check"
+    },
+    {
+      "id": "project_name_constraints",
+      "state": "typed_absence",
+      "recovery": "authoritative identity/scope name constraints supplied",
+      "validation": "chain name-constraints check"
+    },
+    {
+      "id": "authorized_scope_binding",
+      "state": "typed_absence",
+      "recovery": "signed scope/source-version binding supplied",
+      "validation": "canonical receipt binding"
+    },
+    {
+      "id": "signed_receipt_and_chain",
+      "state": "typed_absence",
+      "recovery": "independent attestor supplies public chain and signature over canonical receipt",
+      "validation": "digest then signature/path verification"
+    },
+    {
+      "id": "revocation_and_trusted_time",
+      "state": "typed_absence",
+      "recovery": "signed CRL/OCSP and independent signed time token supplied",
+      "validation": "as-of/freshness and TSA checks"
+    },
+    {
+      "id": "replay_policy",
+      "state": "typed_absence",
+      "recovery": "nonce/sequence/idempotency/replay-window policy supplied",
+      "validation": "replay ledger check"
+    }
+  ],
+  "nonusable_rule": "Every observed certificate remains nonusable for this project until all exact project bindings are externally authorized and independently verified; system roots never satisfy this rule."
+}

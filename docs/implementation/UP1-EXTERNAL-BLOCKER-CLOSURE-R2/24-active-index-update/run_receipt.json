@@ -1,0 +1,57 @@
+{
+  "schema": "UP1-R2.active-index-update.v1",
+  "task": "UP1 R2 active implementation index update",
+  "repo": "D:/006-Programing/LMC/FusionConceptAI",
+  "pid": 31332,
+  "utc": "2026-09-16T21:25:21.6004936Z",
+  "exit": 0,
+  "scope": {
+    "modified_existing": [
+      "docs/implementation/README.md"
+    ],
+    "new_evidence_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/24-active-index-update/",
+    "out_of_scope": [
+      "v4 core",
+      "component implementation",
+      "23-root-acceptance evidence",
+      "unrelated dirty files"
+    ]
+  },
+  "readme": {
+    "before_sha256": "0A5F6214C9AAB3228EC298DF9436AA39EADC900C3DBDBF5BF850B066AC45D87B",
+    "after_sha256": "BBD78A0D3AF2578CA89FB502135E2B2855B203A4CFA017D2B403238F5DE4E349",
+    "change": "One UP1 navigation-row replacement: added 23-root-acceptance/decision.md and explicit non-closure boundaries; global 39-node count unchanged.",
+    "diff_artifact": "raw/diff.patch"
+  },
+  "checks": {
+    "markdown_utf8": true,
+    "link_exists": true,
+    "up1_row_unique": true,
+    "ceiling_present": true,
+    "zero_usable_inputs_present": true,
+    "typed_absent_26_present": true,
+    "up1_blockers_unresolved_present": true,
+    "t0_following_gates_and_global_boundaries_open": true,
+    "global_count_preserved": true,
+    "no_trust_no_publish_boundary_preserved": true,
+    "exit_code": 0
+  },
+  "boundary": {
+    "status": "accepted_limited_with_test_scope_deferred",
+    "usable_external_inputs": 0,
+    "typed_absent": "26/26",
+    "up1_blockers": "not_resolved",
+    "trust": "no trust",
+    "publish": "no_publish",
+    "closed_nodes": 0,
+    "formal_sequence": "T0 -> authority_recheck -> T1 -> T2 -> aggregate -> UP2-00 -> UP1-04B -> UP1-04 -> UP2-01",
+    "open": ["B00", "B04", "R01-R10", "39-node DAG", "L4", "frozen parent goal"]
+  },
+  "evidence": {
+    "before_capture": "raw/before_capture.txt",
+    "after_validation": "raw/after_validation.txt",
+    "final_validation": "raw/final_validation.txt",
+    "diff": "raw/diff.patch",
+    "manifest": "evidence_manifest.json"
+  }
+}

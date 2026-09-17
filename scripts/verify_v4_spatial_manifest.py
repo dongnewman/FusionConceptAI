@@ -74,13 +74,15 @@ def main() -> int:
     latest = {}
     for event in events:
         latest[event["stage"]] = event
+    required_stages = (
+        "candidate", "upstream_DESC", "physics", "engineering",
+        "verification", "whole", "manifest")
+    # A complete execution is established by the terminal event of every
+    # required stage.  Historical program_exception events are retained as
+    # an independent count below; they are not evidence that recovery occurred.
     ledger_ok = all(
-        latest[name]["execution_state"] == "completed"
-        for name in ("candidate", "upstream_DESC", "physics", "engineering",
-                     "verification", "whole", "manifest")
-    ) and any(
-        event["stage"] == "whole" and event["classification"] == "program_exception"
-        for event in events
+        latest.get(name, {}).get("execution_state") == "completed"
+        for name in required_stages
     )
     initial_head_ok = manifest["starting_head"] == (
         run_dir / "initial_head.txt").read_text(encoding="utf-8").strip()

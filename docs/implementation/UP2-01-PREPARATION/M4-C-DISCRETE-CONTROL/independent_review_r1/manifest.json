@@ -1,0 +1,49 @@
+{
+  "schema": "m4-c-discrete-control-independent-review-v1",
+  "task_id": "UP2-01-PREPARATION/M4-C-DISCRETE-CONTROL/independent_review_r1",
+  "status": "pass_limited",
+  "reviewer_role": "independent Luna review; separate from source, test/oracle, integration, and documentation roles",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "frozen_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "claim_ceiling": ["manufactured_discrete_control", "screen_only"],
+  "input_hashes": {
+    "source_a": {"path": "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl", "sha256": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57"},
+    "source_b": {"path": "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl", "sha256": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c"},
+    "source_c": {"path": "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl", "sha256": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa"},
+    "tests": {"path": "test/RuntimeV4/M4Isolated/manufactured_discrete_control_v1_tests.jl", "sha256": "14e1e6d81333ad0b4ed4426ebc30d8d7e39b36808ef94acc1103b5f78aa9e2e7"},
+    "oracle": {"path": "test/RuntimeV4/M4Isolated/oracles/discrete_control_oracle_v1.py", "sha256": "c48d8987477fef82e3a414eaa49f1392d18104440e0ad3ea075d42f83ee3b07d"}
+  },
+  "independent_fraction": {
+    "script": "fraction_recompute_v1.py",
+    "grids": [[2, 2, 2], [3, 4, 5]],
+    "cells": [8, 60],
+    "faces": [48, 360],
+    "directional_terms": ["1/10", "1/20", "1/30"],
+    "divergence": "11/60",
+    "source": "-11/60",
+    "residual": "0",
+    "receipt": "raw/review_command_00_independent_fraction_recompute.receipt.json",
+    "exit_code": 0
+  },
+  "fresh_serial_replay": {
+    "ordering": ["independent Fraction recomputation", "production Python oracle", "Julia A+B+C tests"],
+    "python_oracle": {"pid": 7200, "exit_code": 0, "started_utc": "2026-09-16T08:17:45.4962624Z", "ended_utc": "2026-09-16T08:17:46.1805785Z", "combined_sha256": "330c8d4ac277afa8e34f001d0c8e5500a56c64e47a3489aed5ef9be84c01636f"},
+    "julia_tests": {"pid": 72084, "exit_code": 0, "started_utc": "2026-09-16T08:17:46.2116104Z", "ended_utc": "2026-09-16T08:20:17.3705531Z", "tests": "537/537", "combined_sha256": "31feda288e5876bf94cf1796116e8fa6d2b8001f8c88bdc3ec7fd98a1a403f83"},
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_root": "raw/"
+  },
+  "static_audit": {"receipt": "raw/review_command_03_static_audit.receipt.json", "exit_code": 0, "forbidden_api_invocation": false, "shared_entry_change_attributed": false},
+  "historical_failures": [
+    "failure_history/attempt_001_harness_argument_capture_failure.stderr.raw",
+    "failure_history/attempt_001_harness_argument_capture_failure.stdout.raw",
+    "failure_history/attempt_002_static_audit_getfilehash_missing.stdout.raw",
+    "failure_history/attempt_002_static_audit_getfilehash_missing.stderr.raw",
+    "failure_history/attempt_002_static_audit_getfilehash_missing.combined.raw",
+    "failure_history/attempt_002_static_audit_getfilehash_missing.receipt.json"
+  ],
+  "formal_credit": [],
+  "not_closed_or_credited": ["UP2-01", "UP2", "B00", "B04", "R01-R10", "L4", "M4-D"],
+  "parent_closed": false,
+  "formal_reentry": ["T0", "authority recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"]
+}

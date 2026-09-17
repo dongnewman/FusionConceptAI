@@ -1,0 +1,113 @@
+{
+  "schema_version": "AD-40-independent-review-v1",
+  "record_kind": "independent_review_manifest",
+  "task_id": "AD-40",
+  "review_round": "independent_review_r1",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning": "high",
+  "status": "changes_requested",
+  "accepted": false,
+  "accepted_scope": "none_pending_ad35_receipt_closure_repair",
+  "claim_ceiling": "architecture_review_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T07:56:39.9271451Z",
+  "reviewed_products": [
+    {
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/proposal.md",
+      "bytes": 10074,
+      "sha256": "bdb2e90009bb6fd4650c9eeb521f5edce7fe596f04347c7de89170f84d94d016"
+    },
+    {
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/manifest.json",
+      "bytes": 16953,
+      "sha256": "8a0e6ddb57edf726bad49cccb340dd4ee3c2a04daf2d5d5c3955babe64261ed8"
+    },
+    {
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/cleanup_inventory.md",
+      "bytes": 1207,
+      "sha256": "20b8057e11c619d20ecf651a094634948ee9e88d4393ba06e051a32ca0a3dc35"
+    }
+  ],
+  "review_outputs": [
+    {
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/report.md",
+      "bytes": 5903,
+      "sha256": "0fca304c863e0efec58acf6eae67e227c73436cc2b35d0807cb833702c5b961a"
+    },
+    {
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/validation_receipt_r1.json",
+      "bytes": 8572,
+      "sha256": "6b5ebd57f8149ace3ccbf0d7e66edd29a0dfe16f48d4ee8c5106bac7be393c7d"
+    }
+  ],
+  "checks": {
+    "repository_head_match": true,
+    "json_parse": true,
+    "seven_work_orders": true,
+    "all_work_orders_have_exact_products_inputs_outputs_union_dependencies_forbidden_edges_exit_gates_cleanup_sidecars": true,
+    "local_work_order_dag_acyclic": true,
+    "future_product_paths_absent": true,
+    "observed_source_artifact_bytes_and_sha256_match": true,
+    "fixture_synthetic_legacy_historical_reuse_forbidden": true,
+    "source_change_requires_new_candidate_and_upstream_rebuild": true,
+    "no_candidate_hash_created": true,
+    "no_machine_node_created": true,
+    "task_manifest_unmodified": true,
+    "present_t0_t1_t2_provider_mesh_solver_engineering_physical_r01_r10_false": true,
+    "plan_validator_exit_0": true,
+    "control_characters": false,
+    "ad35_raw_receipt_closure": false
+  },
+  "source_artifact_rechecks": [
+    {"path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+    {"path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61"},
+    {"path":"src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl","bytes":26420,"sha256":"feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232"},
+    {"path":"src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl","bytes":14684,"sha256":"e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061"}
+  ],
+  "findings": [
+    {
+      "id": "AD40-R1-AD35-RECEIPT-CLOSURE",
+      "severity": "blocking_for_pass_limited_acceptance",
+      "status": "changes_requested",
+      "path": "docs/implementation/AD-40/repository_design_source_authority_architecture/archive/validation_receipt_r2.json",
+      "detail": "PID/UTC/exit and raw paths exist, but stdout/stderr/combined SHA-256 and explicit input/output artifact hashes are absent",
+      "required_action": "append-only receipt repair with complete raw-stream hashes, combined hash, frozen input/output hashes, command/cwd/PID/UTC/exit and final scoped recheck",
+      "prior_receipts_must_remain": [
+        "docs/implementation/AD-40/repository_design_source_authority_architecture/archive/validation_scope_attempt1.json",
+        "docs/implementation/AD-40/repository_design_source_authority_architecture/archive/validation_receipt.json",
+        "docs/implementation/AD-40/repository_design_source_authority_architecture/archive/validation_receipt_r2.json"
+      ]
+    }
+  ],
+  "claims": {
+    "software_source_provenance_only": true,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false,
+    "machine_node_created": false,
+    "candidate_hash_created": false
+  },
+  "cleanup": {
+    "final_exact_owned_set": [
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/report.md",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/manifest.json",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/validation_receipt_r1.json",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/plan_validator.stdout.txt",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/manifest_scope.stdout.txt",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/dag.stdout.txt",
+      "docs/implementation/AD-40/repository_design_source_authority_architecture/independent_review_r1/review/receipt_closure.stdout.txt"
+    ],
+    "removed": [],
+    "ambiguous_deferred": [],
+    "historical_receipts_preserved": true,
+    "unrelated_dirty_files_preserved": true
+  }
+}

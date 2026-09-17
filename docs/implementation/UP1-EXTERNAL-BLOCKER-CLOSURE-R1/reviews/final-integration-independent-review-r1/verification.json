@@ -1,0 +1,59 @@
+{
+  "schema": "UP1.final-integration-independent-review.verification.v1",
+  "decision": "rework",
+  "read_only": true,
+  "scope": "Only final-integration-independent-review-r1 was written; all source packages and prior reviews were read-only.",
+  "fresh_process": {
+    "command": "python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/final-integration-independent-review-r1/static_integration_validator.py",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "pid": 93544,
+    "started_utc": "2026-09-16T16:54:30.1491674Z",
+    "ended_utc": "2026-09-16T16:54:30.7873315Z",
+    "exit": 1,
+    "stdout": {
+      "path": "raw/static_integration_validator_r2.stdout.raw",
+      "bytes": 4480,
+      "sha256": "64374fe2c00d86d96b6d1d46dd442ebeb75719737638f2a22c20d7f75de794ee"
+    },
+    "stderr": {
+      "path": "raw/static_integration_validator_r2.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "result": "rework due strict_formal_route; all other validator checks passed"
+  },
+  "preserved_launcher_failure": {
+    "pid": 55820,
+    "started_utc": "2026-09-16T16:53:35.1406347Z",
+    "ended_utc": "2026-09-16T16:53:35.2880146Z",
+    "failure": "PowerShell wrapper used reserved read-only variable PID; wait and exit collection failed.",
+    "raw_stdout_path": "raw/static_integration_validator.stdout.raw",
+    "raw_stdout_sha256": "020e83a4982ba8f4d63caa3d038dac485ac67ccd9b47c28cb13c7c383b4b1c4f",
+    "raw_stderr_path": "raw/static_integration_validator.stderr.raw",
+    "raw_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "passed_assertions": {
+    "latest_reviews": ["W1-r7", "W2-r3", "W3-r4", "W4-r3"],
+    "usable_external_inputs": 0,
+    "fresh_s3": "typed_absent/terminal_deferred/no_publish",
+    "formal_credit": false,
+    "node_count": 39,
+    "topology_modified": false,
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "handoff_not_sent": true,
+    "credentials_requested": false,
+    "external_mutation": false,
+    "new_ad": false,
+    "lossless_absence_ids_missing": [],
+    "handoff_hash_mismatches": [],
+    "hygiene_read_only": true,
+    "unowned_historical_raw_count": 4,
+    "unowned_historical_raw_disposition": "retain",
+    "julia_s3_desc_solver_executed": false
+  },
+  "route_failure": {
+    "required": ["T0", "recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+    "observed_ordering": "T0 -> recheck -> T1 -> T2 -> B00/B04; no stage may be skipped or inferred from local preparation",
+    "observed_stages": ["S0", "S1", "T0", "recheck", "T1", "T2", "B00_or_B04_review"]
+  }
+}

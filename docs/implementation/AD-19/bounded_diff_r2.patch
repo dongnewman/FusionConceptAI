@@ -1,0 +1,11 @@
+--- r2_before/18_sources_and_architecture_decisions.md
++++ r2_after/18_sources_and_architecture_decisions.md
+@@ -105,7 +105,7 @@
+ | 阶段 | 可检查 | 必须保留的边界 |
+ |---|---|---|
+ | G3 standalone | target layer namespace、`v5` token、公共 ref 基本形状 | 无同 candidate G1/G2 外层 ref 即 `feedback_authority_gap` + `terminal_deferred`；seed/synthetic ref 不具 authority |
+-| UP1-04 integrated | 完整 ref 四字段、四轴、candidate binding 的逐字段相等性及 identity rebuild | wrong layer/version/ref fail-closed；provider gap 独立；没有执行/物理信用 |
++| UP1-04 integrated | 完整 ref 五字段（URI、version、schema_hash、canonicalization_hash、compatibility_profile）、四轴、candidate binding 的逐字段相等性及 identity rebuild | wrong layer/version/ref fail-closed；provider gap 独立；没有执行/物理信用 |
+ 
+ <a id="ad-19"></a>
+ 

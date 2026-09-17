@@ -1,0 +1,30 @@
+{
+  "review_id": "UP2-01-G2-METRIC-BOUNDARY-V1-independent-precheck-r1",
+  "status": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "findings": {
+    "source_definition_order": "no_forward_custom_field_type_found_static",
+    "affine_map_J_JtJ_metric": "verified_static_and_tested",
+    "metric_positive_definite_non_degenerate": "verified_static",
+    "bounded_cells_Q1_quadrature": "verified_as_contract_declarations",
+    "face_kind_value_unique_owner_reference_normals": "verified_static_and_tested",
+    "source_hash_not_caller_filled": "canonical_body_check_verified",
+    "edit_source_and_declaration_rehash": "verified_static_and_tested",
+    "typed_admission_taxonomy": "source_present; program_exception_behavior_test_missing",
+    "physical_face_orientation": "blocking_reference_normal_not_transformed_by_J_inverse_transpose_or_cofactor",
+    "coordinate_units": "blocking_missing_typed_unit_contract",
+    "volume_orientation_measure": "blocking_missing_explicit_detJ_semantics",
+    "not_executed_mesh_status": "blocking_gap_only_added_for_declared_status",
+    "actual_a": "metric_mesh_boundary_authority_absent_terminal_deferred"
+  },
+  "blocking_actions": [
+    "Distinguish reference-face normals from physical affine-map normals using cofactor/J-inverse-transpose and det(J) orientation, or explicitly defer physical boundary admission.",
+    "Add typed coordinate units and explicit volume orientation/measure semantics or a typed deferred gap.",
+    "Add a public malformed-input behavior test for program_exception with exception_type and no raw error-text taxonomy.",
+    "Keep mesh execution status :not_executed terminal-deferred or otherwise non-promotable when mesh authority is absent."
+  ],
+  "claim_ceiling": "contract_only_no_mesh_provider_physical_engineering_or_R01-R10_credit",
+  "credit_boundary": {"compiler": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "B00": false, "B04": false, "R01-R10": false}
+}

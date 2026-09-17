@@ -1,0 +1,67 @@
+{
+  "schema_version": "AD49-F0-independent-review-R2-v1",
+  "record_kind": "independent_review",
+  "task_id": "AD49-F0-G1-G2-SOURCE-AUTHORITY-FACTORIES-INDEPENDENT-REVIEW-R2",
+  "reviewer_model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "verdict": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "factory_software_capability_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "direct_validation": {
+    "path": "direct_validation.json",
+    "exit_code": 0,
+    "all_checks_passed": true,
+    "plan_validator_exit": 0,
+    "scoped_diff_check_exit": 0
+  },
+  "focused_and_regression_runs": {
+    "g1_focused_r2": {"passed": 31, "total": 31, "pid": 95000, "exit": 0, "raw": "raw/g1_focused_r2_stdout.txt"},
+    "g2_focused_r2": {"passed": 31, "total": 31, "pid": 95028, "exit": 0, "raw": "raw/g2_focused_r2_stdout.txt"},
+    "g1_diffusion_regression_r2": {"summary": "32/32 + 34/34 + 5/5", "pid": 79940, "exit": 0, "raw": "raw/g1_diffusion_regression_r2_stdout.txt"},
+    "g1_up1_regression_r2": {"summary": "47/47 + 21/21", "pid": 67024, "exit": 0, "raw": "raw/g1_up1_regression_r2_stdout.txt"},
+    "g2_metric_regression_r2": {"summary": "20/20 + 10/10 + 5/5 + 14/14 + 15/15", "pid": 96780, "exit": 0, "raw": "raw/g2_metric_regression_r2_stdout.txt"},
+    "g2_up1_regression_r2": {"summary": "57/57 + 59/59 + 8/8", "pid": 94308, "exit": 0, "raw": "raw/g2_up1_regression_r2_stdout.txt"}
+  },
+  "adversarial_controls": {
+    "repository_head_must_match_factory_module_anchor": true,
+    "anchor_unavailable_fail_closed": true,
+    "fixture_relabelled_repository_head_fail_closed": true,
+    "assume_unchanged_mutation_fail_closed": true,
+    "skip_worktree_mutation_fail_closed": true,
+    "head_blob_mismatch_fail_closed": true,
+    "independent_working_show_cat_file_bytes_compared": true,
+    "main_repository_locator_typed_absence": true,
+    "isolated_fixture_present_synthetic_true": true,
+    "invalid_provenance_fail_closed": true
+  },
+  "closure": {
+    "g1_g2_source_stage_binding": true,
+    "ad45_common_handle_and_envelope": true,
+    "public_contract_and_four_axes": true,
+    "binding_source_content_declaration_identity_receipt_digests": true,
+    "trusted": false,
+    "candidate_identity_created": false,
+    "final_hash_created": false,
+    "g2_mapping": false,
+    "registry_old_schema_entrypoint_unchanged": true,
+    "r1_history_preserved": true
+  },
+  "credit_ceiling": {
+    "source_authority": false,
+    "trusted_source_identity": false,
+    "t0": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physics": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "follow_up": "root_fresh_s2_probe_allowed",
+  "heavy_runtime": {"desc": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physics": false},
+  "scope_protection": {"four_products_untouched": true, "protected_inputs_unchanged": true, "only_r2_directory_written": true},
+  "self_hash_excluded": true
+}

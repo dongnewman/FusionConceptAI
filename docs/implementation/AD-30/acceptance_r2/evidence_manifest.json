@@ -1,0 +1,124 @@
+{
+  "manifest_version": "AD-30-acceptance-r2-evidence-v1",
+  "record_kind": "accepted_limited_architecture_boundary",
+  "decision_id": "AD-30",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "lossless VNEXT declaration transport contract, T0-T2 scheduling and evidence boundaries only",
+  "execution_authorized": false,
+  "base_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "independent_review": {
+    "review_id": "AD-30-independent-review-r2",
+    "status": "pass_limited",
+    "path": "docs/implementation/AD-30/independent_review_r2/report.json"
+  },
+  "decision_owner": "Sol/root",
+  "decision_date": "2026-09-15",
+  "reviewer_conditions": [
+    "typed G2 GenomeContractRef to fresh candidate QualifiedRefV1 envelope; no ref reinterpretation",
+    "real source for all four axes with exact equality; missing deferred and conflict fail_closed",
+    "preserve G3 complete declaration-body hash as declaration/content evidence; no fabricated source hash"
+  ],
+  "protected_inputs_before": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "bytes": 56742,
+      "sha256": "d913df0b895764d5d31e5c5d81acf06aeb5acef5d01e6c9f941b14f93416ccd6"
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 25870,
+      "sha256": "feb820d5085a8f11e96a0e77a9fd204084a4c527ddd611fae53c2736336020f5"
+    },
+    "docs/implementation/README.md": {
+      "bytes": 13859,
+      "sha256": "3eb556501a9e28f5745fca7c82c1e410cb98d4dc5e4751358fc2db6f51f2a87e"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 67702,
+      "sha256": "887cf584f81a96d52fbeb24249f8c80e6f5b5e0e810d98e4a4f9053470a8ff8f"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 57578,
+      "sha256": "2fd25e63397a06da4d77de204a62ab686bfc464bf3bf9f4549dd5d0ce73d39fc"
+    },
+    "docs/implementation/AD-30/independent_review_r2/report.md": {
+      "bytes": 8221,
+      "sha256": "a041373109ec5b77adaaba24c295ff9f2037ff084b9cfbc3a054930965394e95"
+    },
+    "docs/implementation/AD-30/independent_review_r2/report.json": {
+      "bytes": 2519,
+      "sha256": "745733a5b9229f3430cd601b7b6647f9782ce5c4d5ae06653e721deed7af76c3"
+    },
+    "docs/implementation/AD-30/independent_review_r2/evidence_manifest.json": {
+      "bytes": 3923,
+      "sha256": "31a0499598bf90426d669c31a822178c7500ec02c1b65cea38c669de12113157"
+    }
+  },
+  "protected_inputs_after": {
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "bytes": 57032,
+      "sha256": "8e40f19055512661c991408fa33d1c2f27f1b24a087cd44cd306ced8ec907f4f"
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 27830,
+      "sha256": "8d76d1ade5963574b572dc3fcd6a726383b6a879658a396eaca1a05a28d1d367"
+    },
+    "docs/implementation/README.md": {
+      "bytes": 14387,
+      "sha256": "d21c82db64c4aff0679f93a51843ec1e326ea49ba126f81667a776d74192cd67"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 73348,
+      "sha256": "011533c4c174feb77636aab3d96d5b3d05457d7eaae26f3d52db08a622809280"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 63912,
+      "sha256": "b149ffa8a725c2a8e9c62bcd3c81becbca92bae9e3b49b3eef9360aef4a9fab5"
+    }
+  },
+  "scope": {
+    "written": [
+      "docs/implementation/AD-30/acceptance_r2/acceptance.md",
+      "docs/implementation/AD-30/acceptance_r2/evidence_manifest.json",
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+      "docs/v4_multitopology_generation/README.md",
+      "docs/implementation/README.md",
+      "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "docs/v4_multitopology_generation/task_manifest.json"
+    ],
+    "source_implementation_written": false,
+    "old_v5_package_registry_or_receipt_modified": false
+  },
+  "validation": {
+    "json_tool_exit": 0,
+    "validate_plan_exit": 0,
+    "markdown_files_checked": 31,
+    "relative_links_checked": 367,
+    "task_count": 34,
+    "task_dag_acyclic": true,
+    "julia_run": false,
+    "desc_run": false,
+    "provider_mesh_physical_run": false
+  },
+  "credits": {
+    "B00": false,
+    "B04": false,
+    "UP2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "R01_R10": false
+  },
+  "dirty_protection_before": {
+    "status_sha256_utf8_lf": "c0f2b87efd79900c8009c4156d30ec897da2ab05bd22001b275118e913d9757d",
+    "bytes": 310256,
+    "entries": 3948
+  },
+  "dirty_protection_after": {
+    "status_sha256_utf8_lf": "72a7f154ff18938732d27007a87f2727251fb32704647d7ba6e60e6329886a88",
+    "bytes": 312078,
+    "entries": 3971
+  },
+  "self_hash_excluded": true
+}

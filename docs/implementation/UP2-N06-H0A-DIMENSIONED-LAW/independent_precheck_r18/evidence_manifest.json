@@ -1,0 +1,80 @@
+{
+  "schema": "independent_precheck_r18_evidence_manifest",
+  "review_id": "UP2-N06-H0A-DIMENSIONED-LAW-independent-precheck-r18",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "scope": {
+    "static_only": true,
+    "lightweight_json_parse": true,
+    "julia_or_desc_executed_by_reviewer": false,
+    "focused_run_allowed": false,
+    "reviewer_started_runtime": false,
+    "final_process_snapshot": {
+      "julia_process_present": true,
+      "julia_pid": 55428,
+      "command_line_exposed": false,
+      "interrupted": false,
+      "interpretation": "external_or_concurrent_runtime; must finish before any focused gate"
+    },
+    "h0a_acceptance": false,
+    "credit_ceiling": ["contract_only", "no_UP2_total", "no_B00", "no_B04", "no_provider", "no_mesh", "no_engineering", "no_physical", "no_R01_R10_credit"]
+  },
+  "live_hashes": {
+    "source": {"path": "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl", "bytes": 59570, "sha256": "9bdf3919666611f7bf7c679ed2fb6d2630d692ccca46de183dccbb5bef98ee4c", "status": "R18_after"},
+    "test": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl", "bytes": 46087, "sha256": "cc8e8087d14fbf626b914972dcbe1e1633ed833af12288146e77c23a5405d4d2", "status": "R18_after"},
+    "fixture": {"path": "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json", "bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99", "status": "protected_unchanged"},
+    "runner": {"path": "test/GenomeV5/UP2/run_n06_dimensioned_law.jl", "bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc", "status": "protected_unchanged"}
+  },
+  "r6_protected_receipt": {
+    "path": "focused_r6/receipt.json",
+    "pid": 48048,
+    "exit_code": 1,
+    "stdout": {"path": "focused_r6/stdout.raw", "bytes": 8091, "sha256": "7607f6d7200b30e2018e1d349e514a3c25e332a727b88c7f06bb2fe5d8131c2b"},
+    "stderr": {"path": "focused_r6/stderr.raw", "bytes": 311, "sha256": "71eddcba500bf2c1b4dfe1bf9dfe53461f13e51faced6547744fdcae54d4d565"},
+    "assertion_group_summary_count": 46,
+    "overwritten": false
+  },
+  "append_only_erratum_r18": {
+    "path": "receipt_erratum_r18/report.json",
+    "status": "append_only_correction",
+    "preserves_r17_typo": true,
+    "runner_bytes": 299,
+    "correct_runner_sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc",
+    "old_evidence_overwritten": false
+  },
+  "registry_seam": {
+    "default_source_owned_registry_unchanged": true,
+    "private_explicit_registry_overload": true,
+    "global_mutation": false,
+    "nothing_registry_outcome": ":registry_missing",
+    "validator_gap": "source_binding_missing",
+    "fallback_to_fixture_or_position": false,
+    "four_selector_endpoint_contract_preserved": true
+  },
+  "public_controls": {
+    "legal_four_endpoint_no_source_ambiguity": true,
+    "r16_dimensionless_unit_contradiction": true,
+    "r16_typed_external_ref_gap": true,
+    "sign_public_validation": true,
+    "input_unit_public_validation": true,
+    "source_occurrence_unit_hash_public_validation": true,
+    "sign_public_admission_error_assertion": false,
+    "source_unit_hash_public_admission_error_assertion": false,
+    "reorder_public_validation": false,
+    "registry_unavailable_private_control": true,
+    "duplicate_private_seam_control": true
+  },
+  "judgment": {
+    "source_matcher_static": "pass_limited",
+    "identity_hash_provenance_boundary": "preserved",
+    "public_admission_coverage": "incomplete",
+    "runtime_behavior": "unproven",
+    "overall": "changes_requested"
+  },
+  "next_gate": {
+    "required": ["complete or explicitly bound public admission controls", "add public reorder assertion", "independent pass_limited review", "T0 completion"],
+    "runtime": "one serialized focused run only after all requirements and fresh input freeze",
+    "accepted": false
+  }
+}

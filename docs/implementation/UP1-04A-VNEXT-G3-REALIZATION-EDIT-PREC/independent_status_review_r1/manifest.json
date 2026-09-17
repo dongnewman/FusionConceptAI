@@ -1,0 +1,172 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-independent-status-review-r1-v1",
+  "record_kind": "independent_status_sync_review",
+  "date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "reviewer": {
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
+    "different_from_implementation_worker": true,
+    "read_only": true,
+    "julia_run": false,
+    "desc_run": false
+  },
+  "verdict": "pass_limited",
+  "scope": {
+    "decision": "AD-31",
+    "reviewed": [
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/software_precursor_acceptance.md",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/status_sync_r1/",
+      "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+      "docs/v4_multitopology_generation/README.md",
+      "docs/v4_multitopology_generation/task_manifest.json",
+      "docs/implementation/README.md",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r4/",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_postrun_r4/"
+    ],
+    "decision": "accepted_limited_local_software_only",
+    "machine_node": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending"
+    },
+    "local_source_test_slice": {
+      "status": "accepted_limited",
+      "claim_ceiling": "software_contract_editability_only",
+      "physical_resolution": "unknown"
+    }
+  },
+  "frozen_r4_receipt": {
+    "pid": 15468,
+    "start_utc": "2026-09-15T02:20:48.9783709Z",
+    "end_utc": "2026-09-15T02:20:59.4391247Z",
+    "exit_code": 0,
+    "assertions": {
+      "passed": 65,
+      "failed": 0,
+      "errored": 0,
+      "broken": 0,
+      "total": 65
+    },
+    "raw_streams": {
+      "stdout_bytes": 130,
+      "stdout_sha256": "3cb363b0e53ff26ca9a632a9838c394d95a97e65a6cad453c750a0dcc6803d3f",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "frozen_input_count": 13,
+    "dirty_rows_before": 306,
+    "dirty_rows_after": 306,
+    "process_before": [],
+    "process_after": [],
+    "source_sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf",
+    "test_sha256": "ee2d3fcf80844b5ba26c983eed9810b6f7ac33ddce3403f052a3b0791143127b",
+    "historical_failures_preserved": ["focused_r1", "focused_r2", "focused_r3"]
+  },
+  "status_consistency": {
+    "task_manifest_node": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "local_software_precursor_status": "accepted_limited",
+      "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"]
+    },
+    "ad31_architecture": {
+      "status": "accepted_limited",
+      "accepted_scope": "realization-only candidate-owned closed source body and fixed replace_source_payload work-order boundary"
+    },
+    "ad32_sibling": {
+      "status": "planned",
+      "scope_status": "proposal",
+      "accepted": false,
+      "resolution": "review_pending",
+      "depends_on": ["UP2-01-G3-SOURCE-FEEDBACK-V1"],
+      "parallel_to": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"],
+      "must_not_depend_on": ["UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC", "UP1-04A-VNEXT-T0"]
+    },
+    "t0": {
+      "status": "planned",
+      "accepted": false,
+      "depends_on": ["UP1-04A", "UP2-01-G1-DIFFUSION-V1", "UP2-01-G2-METRIC-BOUNDARY-V1", "UP2-01-G3-SOURCE-FEEDBACK-V1"]
+    },
+    "dag_check": {
+      "current_task_count": 36,
+      "task_dag_acyclic": true,
+      "ad32_realization_cycle": false,
+      "ad32_t0_cycle": false
+    }
+  },
+  "planning_drift": {
+    "classification": "concurrent_postrun_planning_drift_not_back_attributed_to_R6_source_test_slice",
+    "frozen_hashes": {
+      "docs/v4_multitopology_generation/16_execution_work_orders.md": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61",
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "9f415c71936979c71757b31070c78d43c1d4ccebabe68211ef100b444ba13493",
+      "docs/v4_multitopology_generation/task_manifest.json": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+    },
+    "current_hashes_observed": {
+      "docs/v4_multitopology_generation/16_execution_work_orders.md": "d0c2c0d8af0599f1c88e70515386e7d74051d0e98e4e7868c516671fd7857091",
+      "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "3a78665e2509ea23d0710f1cc78d616d7a9de1def0c82e592ab9d7f014232f48",
+      "docs/v4_multitopology_generation/task_manifest.json": "51d992e1ac4882c7ab3380e505104efdcdac5caad74245c10c527ecb93f80a19"
+    },
+    "receipt_reuse_rule": "reuse_focused_r4_only_against_frozen_input_manifest",
+    "run_snapshot_plan_state": {
+      "task_count": 35,
+      "relative_links_checked": 391
+    },
+    "current_plan_state": {
+      "task_count": 36,
+      "relative_links_checked": 408
+    }
+  },
+  "validation": {
+    "json_parse": {
+      "status": "pass",
+      "files": 7,
+      "command": "python -c <json.load task, AD-31, status-sync, focused-r4, independent-r4 manifests>"
+    },
+    "validate_plan": {
+      "status": "pass",
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "markdown_files_checked": 31,
+      "relative_links_checked": 408,
+      "task_count": 36,
+      "task_dag_acyclic": true,
+      "errors": []
+    },
+    "git_diff_check": {
+      "status": "pass",
+      "command": "git diff --check -- <core and status-sync paths>",
+      "exit_code": 0,
+      "blocking_output_bytes": 0
+    }
+  },
+  "credit_boundary": {
+    "actual_child": false,
+    "T0": false,
+    "T1": false,
+    "T2": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "B00": false,
+    "B04": false,
+    "R01-R10": false
+  },
+  "protected_scope": {
+    "source_and_test_modified_by_review": false,
+    "core_planning_modified_by_review": false,
+    "focused_receipts_modified_by_review": false,
+    "old_g3_v1_v5_package_registry": "read_only_unaccepted",
+    "t0_authority": "read_only_unaccepted"
+  },
+  "review_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_status_review_r1/report.md": "82c571ba0c067407628cac2272c4718031aeb033d96eb51ea779c52d4522ded3"
+  },
+  "self_hash_excluded": true
+}

@@ -1,5 +1,7 @@
 # v4 成活者稀疏化、最简性与 Pareto
 
+> 2026-09-14 路线更新：UP5–UP6。硬门和同作用域比较始终成立；ROM/换基与改变物理拓扑不同，须遵守 [11](11_physics_compilation_and_discretization.md) 的误差和守恒验收。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 职责
 
 本模块只处理已经通过声明硬门的候选。它回答“在相同 grammar、bounds、mission、evidence level 和 comparison scope 内，哪些实现非支配、哪些部件或数学基可以删除”，不回答全局最简单装置是什么。

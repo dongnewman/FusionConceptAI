@@ -1,0 +1,23 @@
+{
+  "schema": "UP1ExternalBlockerClosureR2OwnershipV1",
+  "status": "frozen",
+  "root_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/**",
+  "owner": "/root/up1r2_contract_freeze",
+  "reviewer": "different Luna agent; concrete identity to be recorded by Sol/root before review",
+  "production_code_write": false,
+  "file_owners": {
+    "work_orders.json": "R2 contract freeze",
+    "frozen_inputs.json": "R2 contract freeze",
+    "interface_contracts.json": "R2 contract freeze",
+    "ownership.json": "R2 contract freeze",
+    "gate_ceiling.json": "R2 contract freeze",
+    "manifest.json": "R2 contract freeze",
+    "cleanup_inventory.json": "R2 contract freeze",
+    "raw/static_validation.stdout.raw": "R2 validation receipt",
+    "raw/static_validation.stderr.raw": "R2 validation receipt"
+  },
+  "reserved_external_owners": {"W1": "typed_absent", "W2": "typed_absent", "W3": "typed_absent", "W4": "typed_absent"},
+  "protected_paths": ["src/**", "test/**", "shared entries", "registries", "runs/**", "historical UP1 R1 archives", "39-node task_manifest.json", "AD55/**", "AD56/**"],
+  "scope_violation": "fail_closed; stop and preserve evidence; do not delete or overwrite out-of-scope material",
+  "handoff": "Only this directory is handed to parent; no production implementation or formal gate is implied."
+}

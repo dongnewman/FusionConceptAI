@@ -1,0 +1,15 @@
+{
+  "schema": "M5ConditionalEGraphDiagnosticReceiptV1",
+  "status": "completed_precise_failure_output",
+  "command": "julia --project=. docs/implementation/UP5-EARLY-PREPARATION/M5-EGRAPH-R1/test_execution_r3/diagnostic_probe.jl",
+  "pid": 68264,
+  "start": "2026-09-16T21:57:15.4183704+08:00",
+  "end": "2026-09-16T21:58:50.5059780+08:00",
+  "exit": 1,
+  "stdout_raw": "diagnostic_raw/probe.stdout.raw",
+  "stderr_raw": "diagnostic_raw/probe.stderr.raw",
+  "stdout_sha256": "2395ED4E61E15CEA92113A4FEE7C1CE9AB51C96D532611CBBB9BAE6BB0D7D19A",
+  "stderr_sha256": "04CA271079D031435C5EC74E84DFAAF937F250A265C2223592B07F11BF0A9D79",
+  "failure": {"code": "invalid_upstream", "path": "upstream", "detail_prefix": "MethodError: no method matching canonical_hash(::NamedTuple)"},
+  "note": "The probe printed the exact inverse-join failure before its optional hash print hit the same missing fallback method; it is diagnostic only, not a full replay."
+}

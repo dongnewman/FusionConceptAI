@@ -1,0 +1,40 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-CLEANUP-INVENTORY-R2",
+  "policy": "No cleanup or deletion was performed. Exact paths only; no glob, recursive delete, or broad target was used.",
+  "actions": [],
+  "preserved_existing_files": [
+    "python.stdout.raw",
+    "python.stderr.raw",
+    "julia.stdout.raw",
+    "julia.stderr.raw",
+    "python.pid",
+    "python.exit",
+    "julia.pid",
+    "julia.exit",
+    "execution_manifest.json"
+  ],
+  "repair_r2_created_files": [
+    "repair_r2/observed_artifacts.json",
+    "repair_r2/archive/raw/python.stdout.raw",
+    "repair_r2/archive/raw/python.stderr.raw",
+    "repair_r2/archive/raw/julia.stdout.raw",
+    "repair_r2/archive/raw/julia.stderr.raw",
+    "repair_r2/archive/raw/python.pid",
+    "repair_r2/archive/raw/python.exit",
+    "repair_r2/archive/raw/julia.pid",
+    "repair_r2/archive/raw/julia.exit"
+  ],
+  "archive_copy_verification": {
+    "python.stdout.raw": {"bytes": 1598, "sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7"},
+    "python.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "julia.stdout.raw": {"bytes": 176, "sha256": "72f5ebbdcca167b31d18f6a5af50cb47da38a9a43285b8679ecec41904c12863"},
+    "julia.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "python.pid": {"bytes": 8, "sha256": "not_recomputed_in_r2"},
+    "python.exit": {"bytes": 3, "sha256": "not_recomputed_in_r2"},
+    "julia.pid": {"bytes": 7, "sha256": "not_recomputed_in_r2"},
+    "julia.exit": {"bytes": 3, "sha256": "not_recomputed_in_r2"}
+  },
+  "changes_needed": [
+    "Fresh replay only if exact process-time provenance is required; no cleanup is needed."
+  ]
+}

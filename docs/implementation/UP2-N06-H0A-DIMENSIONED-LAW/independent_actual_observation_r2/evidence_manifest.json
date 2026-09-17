@@ -1,0 +1,94 @@
+{
+  "manifest_version": "UP2-N06-H0A-independent-actual-A-review-r2-v1",
+  "record_kind": "independent_review_of_actual_a_observation_r2",
+  "status": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "review_scope": "Read-only audit; no Julia, DESC, provider, mesh, solver, or physics execution.",
+  "source_r1_erratum": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/actual_a_observation_r1/receipt_erratum_r2",
+  "source_r2_observation": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/actual_a_observation_r2",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "input_audit": {
+    "copied_from_r1_exactly": true,
+    "input_hashes_sha256": "3d0c18e50c9bd0f45b60298aab0ef72ec846bece185c23cf4d6d1e69f92d479a",
+    "all_recorded_inputs_recomputed_match": true,
+    "primary_inputs": {
+      "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl": {"bytes": 59585, "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"},
+      "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl": {"bytes": 48902, "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"},
+      "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json": {"bytes": 1451, "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"},
+      "test/GenomeV5/UP2/run_n06_dimensioned_law.jl": {"bytes": 299, "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"}
+    }
+  },
+  "path_contract": {
+    "diagnostic_script": "../actual_a_observation_r1/actual_a_observation_r1.jl",
+    "loader_calls": 1,
+    "source_include_calls": 1,
+    "fixture_helper_calls": {"G1": 1, "G2": 1, "G3": 1},
+    "formal_n06_test_suite_included": false,
+    "formal_runner_prefix_reproduced": true
+  },
+  "raw_outputs": {
+    "stdout.txt": {"bytes": 1580, "sha256": "59919c2358623477645b0fa1b85f83a2b527c43f900d757517a268482471efd6", "matches_manifest": true},
+    "stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "matches_manifest": true},
+    "result.json": {"bytes": 1623, "sha256": "1b092b02aa4656291c46e734e9b536bf81fb4ab7892cf1ec2c4ed31c22b5bdd0", "matches_manifest": true},
+    "output_hashes.json_sha256": "719937de24265f055dda26a9b9eb7d42c0ca672885ceabe4a7af5a1874c421a3"
+  },
+  "observed_result": {
+    "status": "terminal_deferred",
+    "declaration_type": "FusionConceptAI.N06H0ATypedAbsentV1",
+    "declaration_is_nothing": false,
+    "declaration_gap_code": "external_ref_required",
+    "errors": [],
+    "gaps": ["g1_endpoint_provenance_missing", "external_ref_required:g1-loss:G1", "external_ref_required:g2-thermal:G2"],
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "candidate_hash": "0cfe748c66121a69bf818778a92a6bce1f14bf2892f4159326c426bbc1c3a16a",
+    "e0_package_hash": "0cfe748c66121a69bf818778a92a6bce1f14bf2892f4159326c426bbc1c3a16a",
+    "e0_bound_input_hash": "5dc008c66d37f7f810f08ea3b30f8eafd6ca7e5fda2f128a6dd2525e2ff4cd97"
+  },
+  "execution_audit": {
+    "top_level_julia_runs": 1,
+    "child_fixture_processes": 3,
+    "pid": 55732,
+    "child_pid_variable": "$childPid",
+    "wait_for_exit": true,
+    "exit_code": 0,
+    "utc_before": "2026-09-15T01:01:39.6139442Z",
+    "utc_after": "2026-09-15T01:02:56.3173059Z",
+    "process_launch": {
+      "process_id": 55732,
+      "parent_process_id": 42440,
+      "name": "julia.exe",
+      "command_line_executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+      "arguments_in_run_json": true,
+      "full_os_command_line_independently_captured": false,
+      "creation_date": "2026-09-15T09:01:39.652803+08:00"
+    },
+    "process_before_empty": true,
+    "process_after_empty": true,
+    "r1_os_provenance_remains_uncertain": true
+  },
+  "dirty_audit": {
+    "before_rows": 306,
+    "after_rows": 306,
+    "before_sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411",
+    "after_sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411",
+    "equal": true,
+    "residual_julia_desc": 0
+  },
+  "credits": {
+    "source_path_software_observation_only": true,
+    "actual_authority": false,
+    "H0A_total": false,
+    "UP2": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "DESC": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

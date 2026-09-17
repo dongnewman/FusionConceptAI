@@ -1,0 +1,25 @@
+{
+  "record_kind": "focused_r1_first_failure_summary",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+  "pid": 43332,
+  "exit_code": 1,
+  "testset": "G3 realization child editability V1 contract",
+  "passed": 3,
+  "failed": 0,
+  "errors": 1,
+  "total": 4,
+  "first_error": {
+    "source": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+    "line": 331,
+    "exception": "TypeError",
+    "message": "non-boolean (FusionConceptAI.var#1035#1075{NTuple{4, FusionConceptAI.G3RealizationLedgerEntryV1}}) used in boolean context",
+    "context": "G3RealizationSourceBodyV1 ledger closure validation",
+    "raw_stdout": "stdout.raw",
+    "raw_stderr": "stderr.raw"
+  },
+  "retry": false,
+  "repair": false,
+  "claim_ceiling": "software_contract_editability_only",
+  "accepted": false,
+  "physical_resolution": "unknown"
+}

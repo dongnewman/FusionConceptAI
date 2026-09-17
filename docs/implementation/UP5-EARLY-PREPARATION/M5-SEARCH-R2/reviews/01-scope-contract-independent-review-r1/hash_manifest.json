@@ -1,0 +1,23 @@
+{
+  "schema": "M5SearchR2IndependentRepairReviewHashManifestV1",
+  "status": "no_go_for_implementation_and_execution",
+  "review_mode": "read_only_static_contract_schema_audit",
+  "hash_algorithm": "SHA-256",
+  "path_root": "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/reviews/01-scope-contract-independent-review-r1",
+  "manifest_self_hash": "excluded_by_policy",
+  "hashes": [
+    {"path":"raw/static_review.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"path":"raw/static_review.stdout.raw","bytes":490,"sha256":"e61868e6b9bf6155d1211eae50da7b332d3bdee8b24228c11d6c904072555877"},
+    {"path":"review_receipt.json","bytes":1745,"sha256":"fefb72f52811dfc31b7a2a138c2a9b859316b4698dc47c3ce89662347fb02c22"},
+    {"path":"review.md","bytes":13267,"sha256":"d84613b8c54a167f39ed722757d95bbe93d3f7f2fc676cd4b41387eebfb53822"}
+  ],
+  "source_inputs_to_bind_in_next_review": [
+    "M5-SEARCH-R2/00-scope-contract/report.md",
+    "M5-SEARCH-R2/00-scope-contract/manifest.json",
+    "M5-SEARCH-R2/00-scope-contract/input_hashes.json",
+    "M5-SEARCH-R2/reviews/00-scope-contract-independent-review-r1/review.md",
+    "M5-SEARCH-R2/02-implementation-readiness-audit-r1/report.md",
+    "M5-SEARCH-R2/02-implementation-readiness-audit-r1/source_hashes.json"
+  ],
+  "interpretation": "These hashes cover this review package only. They are not source authority, M5-C performance evidence, search evidence, or implementation/execution proof."
+}

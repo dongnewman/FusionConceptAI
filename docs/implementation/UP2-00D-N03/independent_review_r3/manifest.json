@@ -1,0 +1,65 @@
+{
+  "manifest_id": "UP2-00D-N03-independent-review-r3",
+  "captured_at": "2026-09-14T08:58:00+08:00",
+  "reviewer": "independent Luna/high",
+  "verdict": "pass_limited",
+  "scope": "actual-A candidate-bound contract-only time-authority projection",
+  "author_status": {"status":"review_pending","accepted":false,"accepted_scope":"candidate_bound_n03_time_authority_projection_contract_only"},
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n03_time_authority.jl",
+  "runtime": {
+    "julia": "1.10.5",
+    "pid": 68860,
+    "started_at": "2026-09-14T08:56:18.4206749+08:00",
+    "ended_at": "2026-09-14T08:56:47.3423727+08:00",
+    "exit": 0,
+    "stdout": {"path":"focused_test.stdout.log","bytes":1718,"sha256":"b8a98bc4a29ae82c925b1efd5178b804b84b6952f92d3b52fb5e8f2b78f13903"},
+    "stderr": {"path":"focused_test.stderr.log","bytes":908,"sha256":"d3d13b4b499ca2efa642eff997461decf04c8b1b25c1ae985b47f55b5db42af0"},
+    "stderr_interpretation": "Julia documentation replacement warnings only",
+    "exit_artifact": {"path":"focused_test.exit.txt","value":0,"sha256":"13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"},
+    "process_artifact": {"path":"focused_test.process.json","sha256":"1e1363dc48adf0ff2ef41a9f58b6eaac949aeac5a654e44ead16c278f9dbd54b"},
+    "pre_run_artifact": {"path":"focused_test_prerun.json","sha256":"3ef58dea8bd36ecd53fa517728a9538f5e73aadecc5cd1d1a908f46fc948c618"},
+    "post_processes": {"path":"post_processes.json","value":[],"sha256":"a5338d955b09046ec0b16f3a9625b7955c763aaE07dc722e474e6078745f932f"},
+    "summaries": {"fixture_protocol":"8/8","actual_fields":"9/9","mutations":"50/50","forged_metadata_counter":"2/2","compile_calls":0,"provider_calls":0,"solver_calls":0},
+    "provider_resolution_executed": false,
+    "desc_invoked": false
+  },
+  "author_history": {
+    "r1": {"classification":"unknown","reason":"interrupted by N04 serialization collision before exact exit; bytes preserved"},
+    "r2": {"exit_file":0,"process_exit":1,"classification":"program_exception_child_process_orphaned","reason":"conflicting receipts; not promoted"},
+    "r3": {"pid":2480,"exit":0,"classification":"serial_only","summary":"8/8, 9/9, 50/50, 2/2; child warnings only"}
+  },
+  "input_hashes": {
+    "projection_source":"0402bd1c99caf55115c16fbf74e644f1c485b2fe8e86bd45a9ef5009bd4056ef",
+    "fixture":"cba61d1167502fc8c02bc2d1f1f93b5b856794defcbab563fb432f7f843ddd89",
+    "test":"f8743e3c4d1585c4288ad556a899e187572df972a322cf561052b5e0635375fe",
+    "runner":"915573937eb23ebd92cf0c8889b51c6aea0cc6b7a25e09b26cccee47df3981c8",
+    "layer_fixture_child":"357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df",
+    "g3_fixture":"f25945083f250f3620e0dc66a003a926df7235e6ce377f5946d85f6d7caa0bb0",
+    "author_acceptance":"54165ef9e72cb61c60f814f638bd3f6c71847bfd26c0bf8d2a4c569beaacc070",
+    "author_manifest":"78f11e5c6bd790952ea7fe9a316dd762a9ecbfa01d65d5581ec68a62344d1b55",
+    "before_hashes":"58af967aacd8fb46c63ec0f4129dd5f4a458c498a69be0b58560e0c8e4208948"
+  },
+  "source_projection": {
+    "fields": 5,
+    "actual_fields": ["G1EquationV2.temporal_kind","G1EquationV2.derivative_order","G1OperatorSpecV2.temporal_kinds","G3EventV2.trigger","G3EventV2.time"],
+    "local_g1_mutations": 3,
+    "local_g3_mutations": 1,
+    "cross_layer_policy_mutations": 1,
+    "g3_time_basis": "missing_candidate_bound_g3_event_time_basis_policy retained as terminal_deferred",
+    "classification": "source-backed typed values and actual projection context; expected_error is not routing input"
+  },
+  "credits": {"B00":false,"B04":false,"provider":false,"mesh":false,"engineering":false,"physical":false,"R01_R10":false},
+  "limitations": [
+    "G3 trigger/time checks are local and no exact candidate-bound G1-to-G3 time-basis join exists",
+    "selection is first actual equation/operator/controller event of the frozen fixture",
+    "child fixture suites and low-level projection construction do not establish provider, solver, geometry, engineering, physical, or B04 evidence"
+  ],
+  "review_artifacts": {
+    "report": {"path":"report.md","sha256":"049e9b53eb2a3523450241bbea772832ce64ea38d9d984f67d5c229cf280789f"},
+    "before_hashes": {"path":"before_hashes.json","sha256":"58af967aacd8fb46c63ec0f4129dd5f4a458c498a69be0b58560e0c8e4208948"}
+  },
+  "write_boundary": "only docs/implementation/UP2-00D-N03/independent_review_r3/"
+}
+
+

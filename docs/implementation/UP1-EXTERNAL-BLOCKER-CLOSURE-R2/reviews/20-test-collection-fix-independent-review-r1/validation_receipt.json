@@ -1,0 +1,46 @@
+{
+  "schema": "UP1-R2.test-collection-fix.independent-review-receipt.v1",
+  "status": "pass_limited",
+  "non_evidence": true,
+  "claim_ceiling": "collection_infrastructure_only_no_authority",
+  "scope": "20-test-collection-fix",
+  "acceptance_command": "python -B -m pytest -q test/up1_external_closure_r2",
+  "environment": {
+    "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "python": "Python 3.13.5",
+    "pytest": "pytest 8.3.4",
+    "PYTHONPATH": "",
+    "PYTEST_ADDOPTS": ""
+  },
+  "top_level_runs": [
+    {
+      "run": "independent_fresh_r1",
+      "process_receipt": "raw/independent_fresh_r1.process.json",
+      "stdout": "raw/independent_fresh_r1.stdout.txt",
+      "stderr": "raw/independent_fresh_r1.stderr.txt",
+      "exit_code": 0,
+      "summary": "148 passed, 3 skipped"
+    },
+    {
+      "run": "independent_fresh_r2",
+      "process_receipt": "raw/independent_fresh_r2.process.json",
+      "stdout": "raw/independent_fresh_r2.stdout.txt",
+      "stderr": "raw/independent_fresh_r2.stderr.txt",
+      "exit_code": 0,
+      "summary": "148 passed, 3 skipped"
+    }
+  ],
+  "component_matrix": {
+    "component_count": 10,
+    "all_exit_zero": true,
+    "passed_total": 148,
+    "skipped_total": 3,
+    "skip_scope": "test_scope_deferred_only"
+  },
+  "skip_reasons": "raw/skip_reasons.stdout.txt",
+  "manifest_check": "raw/manifest_capture.txt",
+  "source_scope_check": "raw/source_scope.txt",
+  "pre_fix_failure_retained": true,
+  "production_logic_modified": false,
+  "heavy_or_external_lane": false
+}

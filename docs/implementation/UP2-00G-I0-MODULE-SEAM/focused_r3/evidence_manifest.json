@@ -1,0 +1,103 @@
+{
+  "work_order": "UP2-00G-I0-MODULE-SEAM",
+  "attempt": "focused_r3",
+  "status": "review_pending",
+  "accepted": false,
+  "verdict": "runtime_exit0_contract_wiring_only_pending_independent_review",
+  "claim_ceiling": "no UP2-total/B00/B04/provider/mesh/engineering/physical/R01-R10 credit",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_up2_module_entry.jl",
+  "real_exit": 0,
+  "main_pid": 54568,
+  "child_pids_observed": [
+    42460
+  ],
+  "test_summary": "26/26",
+  "failure_probe": "child observed; terminal partial-failure/retry checks passed under parent exit0",
+  "compile_calls": 0,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "postflight_process_count": 0,
+  "input_freeze": "independent_precheck_r5",
+  "input_hashes": "input_hashes.json",
+  "preflight": "preflight.json",
+  "post_hashes": "post_hashes.json",
+  "receipt": "receipt.json",
+  "report": "report.md",
+  "historical_r2_hold_preserved": true,
+  "runtime_artifacts": {
+    "command.txt": {
+      "bytes": 77,
+      "sha256": "73916d7249ae5dc8f533c2efda938777295e066d1545cc8fd6d2457662df806c"
+    },
+    "end_time.txt": {
+      "bytes": 28,
+      "sha256": "f11d66943d0b4bd76516f5d8864e3a6f2a46a5bde88ca9621b0877309fe9de5a"
+    },
+    "exit.txt": {
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    "input_hashes.json": {
+      "bytes": 6670,
+      "sha256": "04b9e5f202e48cc3347a85b41c03434de996ff9d9da18af1dd5af7f046c66e05"
+    },
+    "main_pid.txt": {
+      "bytes": 5,
+      "sha256": "dc5626bbdaaa25b2ce8df0970ef6233677f9b9f19369d526feae0e21356aaa49"
+    },
+    "postflight_processes.json": {
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    "post_hashes.json": {
+      "bytes": 4934,
+      "sha256": "84f6de1b770cdf69d949fad5f8ab1e01897b9aadee45a0d695da75b08dde80b7"
+    },
+    "preflight.json": {
+      "bytes": 5115,
+      "sha256": "6849bfb92f5220fa93ba1fe5f20f1dd0603700ddd3d3e7ad25961e2d984fbf20"
+    },
+    "process_snapshots.jsonl": {
+      "bytes": 609,
+      "sha256": "9ce5d4cd8c516e669add1d2000e20c29284c95bebaf6eea36ae1ac8a728392b5"
+    },
+    "receipt.json": {
+      "bytes": 2137,
+      "sha256": "b7d612fc265c335572cc768d91c0d1a074a80f1f8be7830928d2ebe116255d38"
+    },
+    "report.md": {
+      "bytes": 2168,
+      "sha256": "7368f20e18576d144fe95016de220c7755fbdc6d44b60bd784b7b963c408d149"
+    },
+    "start_time.txt": {
+      "bytes": 28,
+      "sha256": "742289d7cbf9110eb4199617b7bed457c794579078b8132368c3c68c8af95f3c"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 92,
+      "sha256": "95100dba52a45182383b52a1db23ae67dd1de04c0f8f0bee8fecdfc185c02d70"
+    },
+    "external_mutation.json": {
+      "bytes": 587,
+      "sha256": "653e1646e3f835d2e7ba70e78b5114d99bae7b03a4ff779982ce7b5d9f048947"
+    },
+    "post_hashes_current.json": {
+      "bytes": 6857,
+      "sha256": "51472991abef7070f1e44317578e76f54b2101737f05529312d891dbdd2a7f30"
+    }
+  },
+  "post_run_hash_status": "immediate_post_hashes_match_r5; later_external_n06_test_only_drift_recorded",
+  "external_mutation": "external_mutation.json",
+  "post_hashes_current": "post_hashes_current.json",
+  "external_test_only_drift": {
+    "path": "test/GenomeV5/UP2/n06_source_field_ledger_mapping_tests.jl",
+    "r5_sha256": "d88a1ed7965716eb4210c09fd5b89b3e4e27e8677c15ff8dcbe0721b8a373ca1",
+    "current_sha256": "87b5375a2f33df3acaad503bfd5685c54187e95308139e68e15ac491af43b63b",
+    "loader_dependency": false,
+    "rerun": false
+  }
+}

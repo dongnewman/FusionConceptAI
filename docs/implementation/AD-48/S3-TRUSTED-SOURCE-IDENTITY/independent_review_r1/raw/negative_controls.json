@@ -1,0 +1,25 @@
+{
+  "record_kind": "AD48S3IndependentReviewR1NegativeControlBoundary",
+  "task_id": "AD48-S3-TRUSTED-G3-SOURCE-IDENTITY",
+  "unsigned_self_authored_json_reviewer_name_factory_receipt_test_exit_runner_exit": {
+    "expected_result": "AbsentG3TrustedSourceIdentityV1",
+    "failure_semantics": "terminal_deferred",
+    "no_publish": true
+  },
+  "wrong_scope_hash_handle_or_upstream_input": {
+    "expected_result": "FailedG3TrustedSourceIdentityV1",
+    "failure_semantics": "fail_closed",
+    "no_publish": true
+  },
+  "signature_or_preimage_tamper": {
+    "expected_result": "FailedG3TrustedSourceIdentityV1",
+    "failure_semantics": "fail_closed",
+    "no_publish": true
+  },
+  "replay_stale_revoked_or_unknown_signer": {
+    "expected_result": "FailedG3TrustedSourceIdentityV1",
+    "failure_semantics": "fail_closed",
+    "no_publish": true
+  },
+  "source": "formal S3 manifest negative_controls, independently parsed; no key or credential contents read"
+}

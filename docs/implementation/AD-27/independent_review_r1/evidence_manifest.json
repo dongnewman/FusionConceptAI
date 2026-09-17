@@ -1,0 +1,39 @@
+{
+  "schema_version": "AD-27-independent-review-v1",
+  "review_id": "AD-27-independent-review-r1",
+  "verdict": "changes_requested",
+  "accepted_scope": "architecture semantics only, pending archive append-only proof",
+  "runtime": "not_run",
+  "protected_author_files_unchanged": true,
+  "protected_author_files": [
+    "docs/implementation/AD-27/decision.md",
+    "docs/implementation/AD-27/decision_manifest.json",
+    "docs/implementation/AD-27/evidence_manifest.json",
+    "docs/implementation/AD-27/review_pending.md",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md"
+  ],
+  "required_archive_fix": "Add after hashes and bounded before-to-after append-only receipt; preserve AD-27 proposal/review_pending and all false credits.",
+  "input_hashes": {
+    "core18": "9d5d32feda8320db05bd2b9b7ecc3fcb5d82c0a832ec27d2a39222da0960cead",
+    "readme": "e208d32ed2febd635dd416dc221ecb01992b67f363287caf8ee11485ee03d8c0",
+    "core16": "9c1dc8107ffb299f423084410b12e84a7ee58450da7262c18bd34f0bd8b12c63",
+    "ad27_decision": "c02340a8850844d6f1d3b0f0cea162300b3d03edffd990ca38345949f32a9fe8",
+    "ad27_decision_manifest": "4f70969a4e4aae5689df24d6c7254323717f41c77d911d186efdd11b19e3d171",
+    "ad27_evidence_manifest": "0134fcbc6d09deaeeb4cb151320db7a840c70d20045c50658ddb723c3cb8b042",
+    "n06_author_audit": "4580b9f7d612fb1d449b3621b29664207d2b9dc3be9eb9f0f3589a88a3cf534c",
+    "n06_independent_audit": "d56bcc325d41524745ec0a5563277bf04b066aaa5b916d9499fa1017da63fb4c",
+    "ad24": "ade7ca5923cfd2ce9cda5e8b7563fdf760a2e123f10f195ec9ac13cc8d66773c",
+    "ad26": "a3564e3fcfafe557373990ceb526d351a83f2848c74e441a7b02158fbb49b9a5"
+  },
+  "credits": {
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10": false
+  }
+}

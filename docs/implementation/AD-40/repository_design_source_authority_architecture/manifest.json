@@ -1,0 +1,212 @@
+{
+  "schema_version": "AD-40-repository-design-source-authority-architecture-v1",
+  "record_kind": "architecture_proposal",
+  "task_id": "AD-40",
+  "status": "proposal",
+  "accepted": false,
+  "accepted_scope": "none_architecture_proposal_pending_independent_review",
+  "claim_ceiling": "architecture_only",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T07:48:50.6826939Z",
+  "implementation_dispatched": false,
+  "machine_node_created": false,
+  "task_manifest_modified": false,
+  "candidate_hash_created": false,
+  "present": false,
+  "t0": false,
+  "t1": false,
+  "t2": false,
+  "provider": false,
+  "mesh": false,
+  "solver": false,
+  "engineering": false,
+  "physical": false,
+  "r01_r10": false,
+  "authority_class": "repository_design_source",
+  "authority_claim_ceiling": "software_source_provenance_only",
+  "authority_properties": {
+    "candidate_specific_payload_required": true,
+    "public_contract_required": true,
+    "fresh_candidate_binding_required": true,
+    "four_axes_required": [
+      "payload_schema_version",
+      "canonicalization_profile_version",
+      "grammar_applicability_profile_version",
+      "execution_evidence_receipt_version"
+    ],
+    "schema_factory_source_separate_from_payload": true,
+    "exact_repository_head_path_bytes_required": true,
+    "exact_schema_canonicalization_applicability_receipts_required": true,
+    "fixture_reuse_forbidden": true,
+    "synthetic_reuse_forbidden": true,
+    "legacy_reuse_forbidden": true,
+    "historical_receipt_reuse_forbidden": true,
+    "source_change_requires_new_candidate_identity": true,
+    "external_experiment_authority_substituted": false
+  },
+  "observed_source_artifacts": [
+    {"role":"schema_factory_source","layer":"G1","path":"src/GenomeV5/G1/DiffusionDeclarationV1.jl","bytes":31743,"sha256":"14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a","authority_for_candidate":false},
+    {"role":"schema_factory_source","layer":"G2","path":"src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","bytes":30773,"sha256":"261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61","authority_for_candidate":false},
+    {"role":"binding_factory_source","layer":"integration","path":"src/GenomeV5/Integration/VNextParentBaselineBindingV1.jl","bytes":26420,"sha256":"feaa25406350f76c785fa02094af8744397874a94cfbd694360f310df41cb232","authority_for_candidate":false},
+    {"role":"authority_recheck_source","layer":"integration","path":"src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckV1.jl","bytes":14684,"sha256":"e942e3553b1a5f78eea719a57c8475f5cb72bf81df8f69df7955471fd985f061","authority_for_candidate":false}
+  ],
+  "architecture_inputs": [
+    {"path":"docs/v4_multitopology_generation/README.md","role":"current_plan"},
+    {"path":"docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md","role":"common_contract"},
+    {"path":"docs/v4_multitopology_generation/10_genome_upgrade_execution.md","role":"genome_upgrade_contract"},
+    {"path":"docs/v4_multitopology_generation/14_agent_orchestration.md","role":"collaboration_contract"},
+    {"path":"docs/v4_multitopology_generation/16_execution_work_orders.md","role":"work_order_contract"},
+    {"path":"docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md","role":"architecture_decisions"},
+    {"path":"docs/implementation/AD-30/acceptance_r2/acceptance.md","role":"VNEXT_and_four_axes_boundary"},
+    {"path":"docs/implementation/AD-33/acceptance.md","role":"typed_absent_parent_binding_boundary"},
+    {"path":"docs/implementation/AD-34/acceptance.md","role":"T0_and_G3_binding_authority_boundary"},
+    {"path":"docs/implementation/AD-36/status_sync_r3/report.md","role":"sidecar_scope_contract"},
+    {"path":"docs/implementation/AD-37/acceptance/acceptance.md","role":"present_baseline_absence_boundary"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/repair_r1/revised_report.md","role":"external_source_blocker_and_publication_inputs"},
+    {"path":"docs/implementation/AD-39/g1_g2_publication_input_recovery_audit/independent_review_r2/report.md","role":"independent_absence_review"}
+  ],
+  "work_orders": [
+    {
+      "id":"AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING",
+      "stage":"source_payload_authoring",
+      "parallel_group":"G1_G2_payload",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json",
+        "docs/implementation/AD-40/RSDA-G1-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json"
+      ],
+      "inputs":["src/GenomeV5/G1/DiffusionDeclarationV1.jl","fresh_public_GenomeContractRef","fresh_candidate_authoring_seed","four_axis_version_records"],
+      "outputs":["CanonicalDeclarationSourceV1","AuthoringReceiptV1","typed_absence_or_failure_record"],
+      "result_union":["CanonicalDeclarationSourceV1","AbsentDeclarationSourceV1","FailedDeclarationSourceV1"],
+      "depends_on":["UP1-01","UP1-02","UP1-03"],
+      "forbidden_edges":["AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"],
+      "exit_gates":["fresh public contract exact equality","candidate-specific canonical payload","schema/source role separation","JSON/schema/path/API/static validation","no fixture/synthetic/legacy/historical inputs","raw direct validation receipt","different-Luna review before acceptance"],
+      "cleanup":"task-owned temporary files only; preserve historical evidence and unrelated dirty files",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; evidence metadata/raw receipts only"
+    },
+    {
+      "id":"AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING",
+      "stage":"source_payload_authoring",
+      "parallel_group":"G1_G2_payload",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/candidate_declaration_payload.json",
+        "docs/implementation/AD-40/RSDA-G2-SOURCE-PAYLOAD-AUTHORING/authoring_receipt.json"
+      ],
+      "inputs":["src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl","fresh_public_GenomeContractRef","fresh_candidate_authoring_seed","four_axis_version_records"],
+      "outputs":["CanonicalDeclarationSourceV1","AuthoringReceiptV1","typed_absence_or_failure_record"],
+      "result_union":["CanonicalDeclarationSourceV1","AbsentDeclarationSourceV1","FailedDeclarationSourceV1"],
+      "depends_on":["UP1-01","UP1-02","UP1-03"],
+      "forbidden_edges":["AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"],
+      "exit_gates":["fresh public contract exact equality","G2 GenomeContractRef to candidate envelope kept typed","candidate-specific canonical payload","schema/source role separation","JSON/schema/path/API/static validation","no fixture/synthetic/legacy/historical inputs","raw direct validation receipt","different-Luna review before acceptance"],
+      "cleanup":"task-owned temporary files only; preserve historical evidence and unrelated dirty files",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; evidence metadata/raw receipts only"
+    },
+    {
+      "id":"AD40-RSDA-SOURCE-AUTHORITY-RECORDS",
+      "stage":"source_authority_record",
+      "parallel_group":"G1_G2_authority",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G1-SOURCE-AUTHORITY-RECORD/repository_source_authority_record.json",
+        "docs/implementation/AD-40/RSDA-G1-SOURCE-AUTHORITY-RECORD/authority_receipt.json",
+        "docs/implementation/AD-40/RSDA-G2-SOURCE-AUTHORITY-RECORD/repository_source_authority_record.json",
+        "docs/implementation/AD-40/RSDA-G2-SOURCE-AUTHORITY-RECORD/authority_receipt.json"
+      ],
+      "inputs":["AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING","schema/factory source byte receipts","repository HEAD/path/exact payload bytes"],
+      "outputs":["RepositoryDesignSourceAuthorityRecordV1[G1,G2]","separate schema_factory_source receipts","software_source_receipts"],
+      "result_union":["RepositoryDesignSourceAuthorityRecordV1","AbsentRepositoryDesignSourceAuthorityV1","FailedRepositoryDesignSourceAuthorityV1"],
+      "depends_on":["AD40-RSDA-G1-SOURCE-PAYLOAD-AUTHORING","AD40-RSDA-G2-SOURCE-PAYLOAD-AUTHORING"],
+      "forbidden_edges":["AD40-RSDA-CANDIDATE-BINDING-PROVENANCE","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","AD37-G1-PRESENT-BASELINE-PUBLISH","AD37-G2-PRESENT-BASELINE-PUBLISH"],
+      "exit_gates":["authority_class exactly repository_design_source","HEAD/path/byte length/exact-byte SHA receipt","payload/source/schema/factory byte roles separated","schema/canonicalization/applicability receipts present","no candidate hash or present promotion","JSON/path/API/static/diff scope validation","different-Luna record review"],
+      "cleanup":"task-owned temporary files only; append-only old receipts",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; never product payload"
+    },
+    {
+      "id":"AD40-RSDA-CANDIDATE-BINDING-PROVENANCE",
+      "stage":"candidate_binding_and_provenance",
+      "parallel_group":"G1_G2_binding",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json",
+        "docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json",
+        "docs/implementation/AD-40/RSDA-G1-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json",
+        "docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/candidate_binding.json",
+        "docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/provenance_axes.json",
+        "docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/g2_candidate_mapping_receipt.json",
+        "docs/implementation/AD-40/RSDA-G2-CANDIDATE-BINDING-PROVENANCE/binding_receipt.json"
+      ],
+      "inputs":["AD40-RSDA-SOURCE-AUTHORITY-RECORDS","fresh public GenomeContractRef","fresh candidate binding envelope","four independent provenance axis records"],
+      "outputs":["CandidateBindingV1[G1,G2]","GenomeProvenanceAxesV1[G1,G2]","GenomeContractToQualifiedRefMappingReceiptV1[G2]","same_candidate_join_receipt"],
+      "result_union":["CandidateBoundRepositorySourceProvenanceV1","AbsentCandidateBoundRepositorySourceProvenanceV1","FailedCandidateBoundRepositorySourceProvenanceV1"],
+      "depends_on":["AD40-RSDA-SOURCE-AUTHORITY-RECORDS"],
+      "forbidden_edges":["AD40-RSDA-G1-FACTORY-RECEIPT","AD40-RSDA-G2-FACTORY-RECEIPT","UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00"],
+      "exit_gates":["exact candidate/public contract equality","all four axes independently sourced","G2 mapping keeps GenomeContractRef typed","same-candidate cross-layer join explicit","missing=terminal_deferred, conflict=fail_closed","no candidate hash finalization in architecture slice","different-Luna identity input freeze"],
+      "cleanup":"task-owned temporary files only; preserve all receipts",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; raw process/evidence metadata"
+    },
+    {
+      "id":"AD40-RSDA-FACTORY-RECEIPTS",
+      "stage":"factory_receipt",
+      "parallel_group":"G1_G2_factory",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G1-FACTORY-RECEIPT/factory_receipt.json",
+        "docs/implementation/AD-40/RSDA-G1-FACTORY-RECEIPT/declaration_receipt.json",
+        "docs/implementation/AD-40/RSDA-G2-FACTORY-RECEIPT/factory_receipt.json",
+        "docs/implementation/AD-40/RSDA-G2-FACTORY-RECEIPT/declaration_receipt.json"
+      ],
+      "inputs":["AD40-RSDA-CANDIDATE-BINDING-PROVENANCE","frozen source authority records","direct typed G1/G2 factory APIs","exact schema/factory and payload bytes"],
+      "outputs":["SourceBackedFactoryReceiptV1[G1,G2]","recomputed declaration receipts","software-only admission union"],
+      "result_union":["SourceBackedFactoryReceiptV1","AbsentSourceBackedFactoryReceiptV1","FailedSourceBackedFactoryReceiptV1"],
+      "depends_on":["AD40-RSDA-CANDIDATE-BINDING-PROVENANCE"],
+      "forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical"],
+      "exit_gates":["direct command only","payload to typed declaration round-trip","source/declaration hash recomputed from exact bytes","schema factory source hash distinct from payload hash","provider/mesh/solver/physical call counts zero","all raw stdout/stderr/PID/UTC/exit/input-output hashes","different-Luna receipt review"],
+      "cleanup":"task-owned temporary files only; no broad glob or global revert",
+      "sidecars":"archive/**, review/**, status_sync_*/** only; raw execution receipts"
+    },
+    {
+      "id":"AD40-RSDA-FRESH-IDENTITY-REVIEWS",
+      "stage":"different_luna_identity_review",
+      "parallel_group":"G1_G2_identity_review",
+      "status":"proposed",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-G1-FRESH-IDENTITY-REVIEW/fresh_candidate_identity_review.json",
+        "docs/implementation/AD-40/RSDA-G2-FRESH-IDENTITY-REVIEW/fresh_candidate_identity_review.json",
+        "docs/implementation/AD-40/RSDA-SAME-CANDIDATE-JOIN/cross_layer_join_receipt.json"
+      ],
+      "inputs":["AD40-RSDA-FACTORY-RECEIPTS","all frozen G1/G2 authority/binding/provenance receipts","fresh candidate/public contract","same-candidate join inputs"],
+      "outputs":["FreshCandidateIdentityReviewV1[G1,G2]","same_candidate_join_receipt","identity-change rejection receipts"],
+      "result_union":["FreshCandidateIdentityReviewV1","DeferredCandidateIdentityReviewV1","FailedCandidateIdentityReviewV1"],
+      "depends_on":["AD40-RSDA-FACTORY-RECEIPTS"],
+      "forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","provider","mesh","solver","physical"],
+      "exit_gates":["different Luna from author/implementer","rebuild identities from frozen inputs","reject stale/reused/foreign receipt","source change implies new identity","G1/G2 same-candidate join exact","raw review evidence and hashes","independent status pass before AD37"],
+      "cleanup":"review evidence append-only; remove only task-owned temporary files",
+      "sidecars":"archive/**, review/**, status_sync_*/** only"
+    },
+    {
+      "id":"AD40-RSDA-AD37-PUBLICATION-INPUT",
+      "stage":"AD37_publication_input",
+      "parallel_group":"G1_G2_publication",
+      "status":"proposed_blocked_until_identity_reviews",
+      "product_files":[
+        "docs/implementation/AD-40/RSDA-AD37-PUBLICATION/G1/source_backed_publication_input.json",
+        "docs/implementation/AD-40/RSDA-AD37-PUBLICATION/G2/source_backed_publication_input.json",
+        "docs/implementation/AD-40/RSDA-AD37-PUBLICATION/publication_input_join_receipt.json"
+      ],
+      "inputs":["AD40-RSDA-FRESH-IDENTITY-REVIEWS","AD-37 publication contract","AD-39 result union","AD-36 sidecar policy"],
+      "outputs":["AD37 publication input records with explicit repository_design_source ceiling","publication input result union"],
+      "result_union":["PresentBaselinePublicationV1","AbsentBaselinePublicationV1","FailedBaselinePublicationV1"],
+      "depends_on":["AD40-RSDA-FRESH-IDENTITY-REVIEWS"],
+      "forbidden_edges":["UP1-04A-VNEXT-T0","UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC","UP1-04A-VNEXT-T1","UP1-04A-VNEXT-T2","UP2-00","provider","mesh","solver","physical","R01-R10"],
+      "exit_gates":["AD37 contract-compatible input record","authority_class and claim ceiling explicit","same-candidate G1/G2 join verified","present only after all required receipts/reviews","missing typed absent and conflict fail closed","no T0/T1/T2 or physical promotion","different-Luna publication review"],
+      "cleanup":"task-owned temporary files only; preserve AD37/AD39 history",
+      "sidecars":"archive/**, review/**, status_sync_*/** only"
+    }
+  ],
+  "global_forbidden_edges":["RSDA->T0_without_same_candidate_join","RSDA->T1","RSDA->T2","RSDA->UP2","RSDA->provider","RSDA->mesh","RSDA->solver","RSDA->physical","RSDA->R01-R10"],
+  "current_claims": {"software_present": false,"external_source_blocker": true,"external_experiment_blocker": true,"candidate_identity": "not_created","t0_authority": "typed_absent"},
+  "validation_policy": {"json":true,"path_scope":true,"api_symbol_scan":true,"control_character_scan":true,"git_diff_scope":true,"real_pid_utc_exit":true,"julia":false,"desc":false,"provider":false,"mesh":false,"solver":false,"physical":false},
+  "cleanup": {"allowed_root":"docs/implementation/AD-40/repository_design_source_authority_architecture","preserve_historical_receipts":true,"remove_ambiguous":false,"new_product_files":["proposal.md","manifest.json","cleanup_inventory.md"],"sidecar_root":"archive"}
+}

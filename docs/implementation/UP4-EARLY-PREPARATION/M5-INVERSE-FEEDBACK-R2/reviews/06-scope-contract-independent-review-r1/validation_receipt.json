@@ -1,0 +1,52 @@
+{
+  "schema": "M5InverseFeedbackR2R4ScopeContractIndependentReviewR1",
+  "status": "changes_requested",
+  "implementation_authorized": false,
+  "claim_ceiling": "manufactured_inverse_feedback/screen_only",
+  "formal_credit": "none",
+  "p0_count": 0,
+  "p1_findings": [
+    "dependency_closure_serialization_hash_mismatch",
+    "source_content_bytes_projection_missing",
+    "failure_taxonomy_record_schema_uri_mismatch"
+  ],
+  "p2_findings": [
+    "cas_history_fail_atomic_checker_evidence_deferred"
+  ],
+  "static_checks": {
+    "json_parse": "17/17_package_json_pass",
+    "draft2020_12_schema_shape": "7/7_pass",
+    "d12_pointer": "present_candidate_binding_canonical_bundle_bytes",
+    "d12_canonical_bytes_negative_vectors": "2_present_not_executed",
+    "negative_vectors": "36/36_unique_exact_checker_control_set",
+    "dependency_entries": "17/17_individual_bytes_sha_match",
+    "dependency_closure_sha256": {
+      "declared": "a3463dfe339219c5a78ff611a2fd1d0444bdda9aefcccd54d899a6b9ab0a21ad",
+      "actual_tab_lf": "5c0aaed8d7be419b731f7559c4fad4d30a7cae21c437957d93d430aa2a0f353b",
+      "status": "mismatch"
+    },
+    "local_urn_registry": "7/7_path_bytes_sha_match",
+    "failure_mapping": "33/33_unique_rows_but_taxonomy_schema_validation_fail",
+    "taxonomy_schema_error": "record_schema_uri expects r3 but document is r4",
+    "dirty_start_end": "baseline_status_bytes_sha_unchanged_plus_24_package_only_new_paths",
+    "dirty_start_utc": "2026-09-17T04:44:09.8329233Z",
+    "dirty_end_utc": "2026-09-17T05:04:09.0000000Z",
+    "package_hash_manifest": "26/26_match_current_bytes",
+    "runtime_execution": "not_executed",
+    "resolver_runtime_audit": "not_executed",
+    "dual_replay": "not_executed",
+    "cas_history_checker": "not_executed"
+  },
+  "forbidden_runtime_not_invoked": [
+    "Julia",
+    "DESC",
+    "provider",
+    "solver",
+    "mesh",
+    "S3",
+    "hardware",
+    "network/download",
+    "source/test execution"
+  ],
+  "write_scope": "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/reviews/06-scope-contract-independent-review-r1/**"
+}

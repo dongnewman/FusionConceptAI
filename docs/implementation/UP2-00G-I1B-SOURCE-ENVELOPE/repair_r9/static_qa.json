@@ -1,0 +1,27 @@
+{
+  "schema_version": "G-I1B-source-envelope-repair-r9-static-qa-v1",
+  "status": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "julia": "not_run",
+  "desc": "not_run",
+  "scope": "test-only lexical assertion repair",
+  "checks": {
+    "old_lexical_authority_substring_assertion_removed": "pass",
+    "semantic_nonempty_n06_authority_gap_assertion_present": "pass",
+    "typed_n06_terminal_deferred_authority_gap_assertions_retained": "pass",
+    "typed_absent_binding_and_runtime_n06_gap_retained": "pass",
+    "actual_a_e1_present_factory_path_retained": "pass_static_presence",
+    "both_absent_factory_path_retained": "pass_static_presence",
+    "50_row_independent_manifest_assertions_retained": "pass_static_presence",
+    "aggregate_taxonomy_testset_retained": "pass_static_presence",
+    "schema_matrix_testset_retained": "pass_static_presence",
+    "fixture_json_parse": "pass",
+    "source_unchanged": "pass_hash",
+    "fixture_unchanged": "pass_hash",
+    "runner_unchanged": "pass_hash",
+    "focused_r4_failure_evidence_preserved": "pass_hash",
+    "julia_desc_execution": "not_run_by_design"
+  },
+  "decision": "different_luna_static_review_required_before_focused_rerun"
+}

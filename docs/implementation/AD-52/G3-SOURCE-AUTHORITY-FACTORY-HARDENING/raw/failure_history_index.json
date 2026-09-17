@@ -1,0 +1,10 @@
+{
+  "task_id": "AD-52-G3-SOURCE-AUTHORITY-FACTORY-HARDENING",
+  "preserved_failures": [
+    {"attempt": 1, "lane": "focused_g3_factory", "exit_code": 1, "summary": "new closure checks initially exposed missing _g3s_git_bytes and source_read_failed; output retained in parent turn history"},
+    {"attempt": 2, "lane": "focused_g3_factory", "exit_code": 1, "summary": "fixture CRLF conversion and index debug flag parsing exposed; output retained in parent turn history"},
+    {"attempt": 3, "lane": "focused_g3_factory", "exit_code": 1, "summary": "all substantive closure checks passed; old tests used incorrect positive fixture status and skip-worktree detection was incomplete"}
+  ],
+  "resolution": "focused rerun passed 356/356",
+  "failed_outputs_not_overwritten": true
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "G-I1B-source-envelope-repair-r4-static-qa-v1",
+  "status": "pass_limited",
+  "accepted": false,
+  "julia": "not_run",
+  "desc": "not_run",
+  "review_basis": "independent_precheck_r3 changes_requested",
+  "checks": {
+    "r3_owned_hashes_frozen": "pass",
+    "fixture_json_parse": "pass",
+    "repair_r4_json_parse": "pass",
+    "fixture_50_rows": "pass",
+    "fixture_unique_ids_and_paths": "pass",
+    "fixture_five_rows_per_group": "pass",
+    "envelope_zero_counter_assertions_present": "pass_static_presence",
+    "independent_attempted_manifest_present": "pass_static_presence",
+    "independent_mutation_payload_hash_present": "pass_static_presence",
+    "public_factory_program_exception_negative_control_present": "pass_static_presence",
+    "fail_closed_and_program_exception_errors_present": "pass_static_presence",
+    "source_no_fixture_error_routing": "pass",
+    "git_diff_check": "pass_with_preexisting_line_ending_warnings",
+    "julia_desc_process_sweep": "not_run_by_design"
+  },
+  "scope": "static QA only; focused Julia, compiler, provider, solver, mesh, B00, B04, physical, and parent-goal credit remain pending"
+}

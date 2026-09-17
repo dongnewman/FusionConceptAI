@@ -1,0 +1,64 @@
+{
+  "schema": "AD53.scoped_diff_r1.v1",
+  "status": "pass",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "head_matches_report": true,
+  "cached_diff_empty": true,
+  "original_repo_protection": {
+    "before": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "after": {
+      "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "index_sha256": "624083c0614b9b5b2d76b2421bdfc29a1359f70045d7dfe976ad115f158c8dd7",
+      "index_debug_sha256": "5b452481119125974892d2b336af0bea9ac1d092e5249bd85dd0ea78c11f8818",
+      "cached_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status_sha256": "c912e2c22160eac24c1b4af7c1d1dc9453cf1dc9da816b047f1aa8ea5c2481a1"
+    },
+    "unchanged": true
+  },
+  "protected_paths_preexisting_or_frozen": [
+    "src/FusionConceptAI.jl",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "src/Contracts/CandidateStatePackageV5.jl",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl",
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl"
+  ],
+  "owned_write_scope": [
+    "scripts/verify_v5_publication_closure.py",
+    "test/GenomeV5/Integration/verify_v5_publication_closure_tests.py",
+    "docs/implementation/AD-53/V5-PUBLICATION-CLOSURE-VERIFIER/**"
+  ],
+  "tracked_diff_observed": [
+    "README.md",
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md",
+    "docs/v4_multitopology_generation/01_candidate_integration_and_abstract_compilation.md",
+    "docs/v4_multitopology_generation/02_proof_pruning_and_failure_semantics.md",
+    "docs/v4_multitopology_generation/03_open_ended_evolution_and_quality_diversity.md",
+    "docs/v4_multitopology_generation/04_mcts_and_generative_proposal.md",
+    "docs/v4_multitopology_generation/05_realization_and_independent_physics_execution.md",
+    "docs/v4_multitopology_generation/06_multifidelity_hard_physics_frontier.md",
+    "docs/v4_multitopology_generation/07_survivor_sparsification_and_pareto.md",
+    "docs/v4_multitopology_generation/08_high_fidelity_whole_device_vvuq.md",
+    "docs/v4_multitopology_generation/09_evidence_authority_campaign_and_v4_roadmap.md",
+    "\"docs/v4_multitopology_generation/G1 \\346\\234\\272\\345\\210\\266\\345\\237\\272\\345\\233\\240\\347\\273\\204.md\"",
+    "\"docs/v4_multitopology_generation/G2 \\345\\234\\272\\342\\200\\224\\345\\207\\240\\344\\275\\225\\345\\237\\272\\345\\233\\240\\347\\273\\204.md\"",
+    "\"docs/v4_multitopology_generation/G3 \\345\\256\\236\\347\\216\\260\\342\\200\\224\\346\\216\\247\\345\\210\\266Genome.md\"",
+    "docs/v4_multitopology_generation/Genome V3.md",
+    "docs/v4_multitopology_generation/README.md",
+    "\"docs/v4_multitopology_generation/typed AST\\343\\200\\201operator hypergraph \\346\\210\\226 e-graph.md\"",
+    "runs/goal_recovery_20260913_012528_cst/task_queue.json",
+    "scripts/run_v4_spatial_chain.jl",
+    "scripts/verify_v4_spatial_manifest.py",
+    "src/FusionConceptAI.jl",
+    "src/RuntimeV4/SpatialRuntimeV4.jl",
+    "test/runtime_v4_spatial_entrypoint_tests.jl",
+    "test/runtime_v4_test_manifest.json",
+    "test/runtime_v4_validation_uq_execution_request_tests.jl"
+  ],
+  "task_manifest_modified_by_verifier": false
+}

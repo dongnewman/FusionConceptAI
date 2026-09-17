@@ -1,0 +1,44 @@
+{
+  "schema": "UP1.W3.repair-r2.run-ledger.v1",
+  "status": "failed_validator_unresolved",
+  "claim_ceiling": "preparation_only/screen_only",
+  "write_root": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/source_g2_environment/",
+  "commands": [
+    {
+      "id": "W3-R2-STATIC-VALIDATOR",
+      "status": "failed_wrapper_path",
+      "command": "python -B static_validator.py",
+      "pid": 24644,
+      "started_utc": "2026-09-16T16:03:32.3186655Z",
+      "ended_utc": "2026-09-16T16:03:33.0553369Z",
+      "exit_code": 1,
+      "stdout_raw": "raw/repair_r2_static_validator.stdout.raw",
+      "stderr_raw": "raw/repair_r2_static_validator.stderr.raw",
+      "combined_raw": "raw/repair_r2_static_validator.combined.raw",
+      "start_receipt": "raw/repair_r2_static_validator.start_receipt.json",
+      "stdout_sha256": "ff4bdb5d028f34bd244cadc525059d6b7dd5013d4cca167951a81484f6aa3c60",
+      "stderr_sha256": "d2b35cacadc66b7fad8dedd1be5244e17150a6625978c9330f831bd7a9cd6b1e",
+      "combined_sha256": "589657be7fa27c6a14fd76e00c041027de6ca2b511e0f103b293ea3e53745cea",
+      "classification": "validator_wrapper_path_error_repo_index_preserved"
+    },
+    {
+      "id": "W3-R2-STATIC-VALIDATOR-RETRY",
+      "status": "failed_fail_closed_empty_assertion",
+      "command": "python -B static_validator.py",
+      "pid": 111940,
+      "started_utc": "2026-09-16T16:05:19.3092729Z",
+      "ended_utc": "2026-09-16T16:05:20.2236028Z",
+      "exit_code": 1,
+      "stdout_raw": "raw/repair_r2_retry_static_validator.stdout.raw",
+      "stderr_raw": "raw/repair_r2_retry_static_validator.stderr.raw",
+      "combined_raw": "raw/repair_r2_retry_static_validator.combined.raw",
+      "start_receipt": "raw/repair_r2_retry_static_validator.start_receipt.json",
+      "stdout_sha256": "fbd58695af42084bb4035b670561780541a0555fb500d9081ff1f072b3a0f030",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_sha256": "fbd58695af42084bb4035b670561780541a0555fb500d9081ff1f072b3a0f030",
+      "classification": "validator_fail_closed_empty_assertion_preserved"
+    }
+  ],
+  "preserve_prior_raw": true,
+  "forbidden": ["Julia", "DESC", "mesh", "solver", "recompute"]
+}

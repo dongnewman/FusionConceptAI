@@ -1,0 +1,46 @@
+{
+  "audit_utc": "2026-09-17T01:21:05.3390098Z",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "read_only": true,
+  "deleted_files": 0,
+  "terminated_processes": 0,
+  "scope_manifest_sha256_before_report": "06442114ac241ae6393079d883d27d9e0e7288c8f65f95607f5e688189f90bb1",
+  "raw_manifest_sha256": "9d3e47068427f1c4ae9d8f082df38b785b5eb03649bfca5e9ff0d2ecd0d4bee7",
+  "scope": [
+    {"path": "tools/up1_external_closure_r3", "exists": true, "files": 8, "directories": 3},
+    {"path": "test/up1_external_closure_r3", "exists": true, "files": 5, "directories": 3},
+    {"path": "tools/up1_external_closure_r4", "exists": true, "files": 5, "directories": 2},
+    {"path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3", "exists": true, "files": 288, "directories": 45},
+    {"path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4", "exists": false, "files": 0, "directories": 0}
+  ],
+  "findings": {
+    "pycache_files": [
+      {"path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/__init__.cpython-313.pyc", "bytes": 871, "last_write_utc": "2026-09-17T00:59:30.5409531Z", "sha256": "d0cb79b820a49d22017ee6b87415531567299fa2a30da4d8de1ff8ecb8749834"},
+      {"path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/bundle.cpython-313.pyc", "bytes": 75433, "last_write_utc": "2026-09-17T00:59:30.5597413Z", "sha256": "edcaa9fa487d8c4f3f7c8daf6589200a09f97377d2a4031cdbef7c8c77e6d5fd"},
+      {"path": "tools/up1_external_closure_r3/atomic_bundle/__pycache__/canonical.cpython-313.pyc", "bytes": 8788, "last_write_utc": "2026-09-17T00:59:30.5743830Z", "sha256": "003a692d122d9ff9e9d85f86108b2069210835b902776c82edd19401efd9cb0c"},
+      {"path": "tools/up1_external_closure_r3/__pycache__/__init__.cpython-313.pyc", "bytes": 234, "last_write_utc": "2026-09-16T23:29:13.8392283Z", "sha256": "dbdf8d92e46252c1b77eddf9306533d36712d100186a56b110b9f17fdd48cd5e"},
+      {"path": "test/up1_external_closure_r3/atomic_bundle/__pycache__/test_atomic_bundle_vectors.cpython-313.pyc", "bytes": 32761, "last_write_utc": "2026-09-17T01:00:23.0711870Z", "sha256": "e8f9d0aedaf3a15b758d53a4ef16b2649335cb67d786964019b6307b9eb42ced"},
+      {"path": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/reviews/09-atomic-r2-independent-review-r1/__pycache__/adversarial_probe.cpython-313.pyc", "bytes": 18125, "last_write_utc": "2026-09-17T00:13:56.9752461Z", "sha256": "c5333d802f37846be148a53471e7468c01442b62a0aedf14d992519080f7b40e"}
+    ],
+    "raw_evidence": {
+      "count": 185,
+      "disposition": "retain; evidence/raw, not cleanup candidates",
+      "roots": [
+        "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/**/raw/",
+        "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R3/**/*.raw"
+      ],
+      "manifest_sha256": "9d3e47068427f1c4ae9d8f082df38b785b5eb03649bfca5e9ff0d2ecd0d4bee7"
+    },
+    "temporary_candidates": [],
+    "residual_processes": []
+  },
+  "follow_up_snapshot": {
+    "utc": "2026-09-17T01:23:31.3389948Z",
+    "pycache_count_observed": 24,
+    "process_count": 0,
+    "non_quiescent_note": "Parallel workers changed cache contents/count during the audit; take a fresh snapshot before any approved cleanup.",
+    "detail_file": "follow-up-pyc.tsv"
+  },
+  "out_of_scope": "No cleanup or process termination outside the requested scope."
+}

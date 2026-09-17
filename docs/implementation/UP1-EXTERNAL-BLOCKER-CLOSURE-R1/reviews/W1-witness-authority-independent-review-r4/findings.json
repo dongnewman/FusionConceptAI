@@ -1,0 +1,42 @@
+{
+  "schema":"UP1.W1.witness-authority-independent-review-r4.findings.v1",
+  "conclusion":"rework_required",
+  "claim_ceiling":"preparation_only",
+  "formal_credit":false,
+  "target_scope":"W1-R2-P2-001 closure plus no-regression and exact-set verification",
+  "prior_finding_disposition":{
+    "W1-R2-P2-001":"closed",
+    "W1-F001":"no_regression",
+    "W1-F002":"no_regression",
+    "W1-F003":"no_regression",
+    "W1-F004":"no_regression",
+    "W1-F005":"no_regression",
+    "W1-F006":"no_regression"
+  },
+  "positive_checks":[
+    "layer and axis fixtures are complete valid-shape records",
+    "layer fixture isolates foreign layer candidate IDs",
+    "axis fixture isolates foreign schema-axis candidate ID",
+    "PID34140 returns ERR_FOREIGN_LAYER_CANDIDATE and ERR_FOREIGN_AXIS_CANDIDATE",
+    "evaluator reads zero expected fields",
+    "prior placeholder/retry/typed-absence controls remain present",
+    "49 cleanup-row hashes match",
+    "all JSON parses uniquely"
+  ],
+  "findings":[
+    {
+      "id":"W1-R4-P2-001",
+      "severity":"P2",
+      "title":"witness package exact set is inconsistent and not the requested 48 files",
+      "status":"open",
+      "evidence":["witness_authority actual recursive set: 51 files","witness_authority/cleanup_inventory.json: final_exact_owned_set has 49 rows","witness_authority/repair_r3/raw/static_validator.stdout.raw","witness_authority/repair_r3/raw/static_validator.stderr.raw"],
+      "observation":"The two repair_r3/raw/static_validator.* files are present but absent from final_exact_owned_set. Cleanup rows otherwise hash-match. The implementer manifest has no 48-file exact-set declaration, while the requested review contract requires 48 exact files/manifest/cleanup/hashes.",
+      "required_action":"Reconcile exact paths to the authorized 48-file set or explicitly revise the set contract, then update cleanup and all dependent hash ledgers. Preserve run02 PID34140 and historical raw evidence; do not delete by glob."
+    }
+  ],
+  "unowned_extra_files":{
+    "repair_r3/raw/static_validator.stdout.raw":"9b84a52469b25fc513296c9b9fade68aa4096e9d1897c2f4fbd1bd6a20a2cc89",
+    "repair_r3/raw/static_validator.stderr.raw":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prohibited_actions":["do not modify witness_authority","do not delete unowned files","do not read production secrets or create trust material","do not create AD or open a formal gate"]
+}

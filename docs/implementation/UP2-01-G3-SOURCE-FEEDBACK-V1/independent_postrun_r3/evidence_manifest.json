@@ -1,0 +1,67 @@
+{
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-postrun-r3-evidence",
+  "status": "proposal",
+  "disposition": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "focused_result": "45/45",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "execution": {
+    "pid": 51704,
+    "exit_code": 0,
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+    "stdout_bytes": 392,
+    "stdout_sha256": "d128334555045139ee24f9f1c5ba36d8ee1b8e92147597d594e885670e497f12",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "test_summary": {
+    "source_feedback_typed_law": "9/9",
+    "external_authority_resolution_ceiling": "9/9",
+    "typed_contradiction_edit_identity": "27/27",
+    "total": "45/45"
+  },
+  "input_hashes": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "111d5a2ceb9f0364c1cc7efda26d1bb9013577862ac30bd00ff9f3321c5c2642"
+  },
+  "pre_post": {
+    "dirty_rows_before": 301,
+    "dirty_rows_after": 301,
+    "dirty_snapshots_equal": true,
+    "process_before_entries": 0,
+    "process_after_entries": 0,
+    "current_julia_desc_processes_at_audit": 1,
+    "current_audit_process_pid": 14796,
+    "current_audit_process_started_by_review": false,
+    "target_hashes_unchanged": true
+  },
+  "authority_boundary": {
+    "fixture_g1_status": "missing",
+    "fixture_g2_status": "missing",
+    "ordinary_resolution": "terminal_deferred",
+    "real_external_authority_present": false,
+    "physical_or_provider_evidence": false
+  },
+  "protected_prior_receipt": {
+    "focused_r2_status": "not_executed",
+    "focused_r2_run_json_sha256": "234005e2df04c396ab9d7ca2d28e23417a4279f25be5d0e111556c22d2149061",
+    "focused_r2_launcher_error_sha256": "b816f60b876a9a7f1a934253907622ab21dd6809b83d13d52487c85b73a84266",
+    "overwritten": false
+  },
+  "credit": {
+    "software_test": true,
+    "compiler": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "current_A": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  }
+}

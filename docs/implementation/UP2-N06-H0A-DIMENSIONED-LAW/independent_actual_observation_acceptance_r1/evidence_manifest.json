@@ -1,0 +1,98 @@
+{
+  "manifest_version": "UP2-N06-H0A-independent-actual-A-acceptance-review-r1-v1",
+  "record_kind": "independent_review_of_limited_software_observation_acceptance",
+  "status": "pass_limited",
+  "accepted": false,
+  "review_pending": true,
+  "review_scope": "Lightweight read-only JSON/link/hash audit; no Julia or DESC execution; no old evidence modified.",
+  "acceptance_record": {
+    "report_path": "../actual_a_observation_acceptance_r1.md",
+    "manifest_path": "../actual_a_observation_acceptance_r1_manifest.json",
+    "declared_status": "accepted_limited",
+    "declared_accepted_limited": true,
+    "declared_accepted": false,
+    "scope": "one candidate-bound actual-A source-path software observation"
+  },
+  "evidence_chain_hash_audit": {
+    "actual_a_observation_r1_receipt_erratum_report": {
+      "path": "../actual_a_observation_r1/receipt_erratum_r2/report.md",
+      "sha256": "11439af0c32b62b16133b0753b6420d67b38fde3d8f6b0d550b0605474e9a640",
+      "matches": true
+    },
+    "actual_a_observation_r1_receipt_erratum_manifest": {
+      "path": "../actual_a_observation_r1/receipt_erratum_r2/evidence_manifest.json",
+      "sha256": "46f209c3d0cfb537a60dbd01c6a56ade368b3967cab691c145b5c3035a221bd2",
+      "matches": true
+    },
+    "actual_a_observation_r2_report": {
+      "path": "../actual_a_observation_r2/report.md",
+      "sha256": "86d4871eee1d08d1d3cb392377ef49c1bc589868e9d05a3b3764e5ae0f99362c",
+      "matches": true
+    },
+    "actual_a_observation_r2_manifest": {
+      "path": "../actual_a_observation_r2/evidence_manifest.json",
+      "sha256": "1b8104fae4a4e6ba0e2c701b66b041480ae08d5c121d685363a039feba02fa2b",
+      "matches": true
+    },
+    "actual_a_observation_r2_run": {
+      "path": "../actual_a_observation_r2/run.json",
+      "sha256": "adead66ce4d3bc9b778b79921dbf469cf67936f85730e8e1eaed0d8c09b64649",
+      "matches": true
+    },
+    "actual_a_observation_r2_result": {
+      "path": "../actual_a_observation_r2/result.json",
+      "sha256": "1b092b02aa4656291c46e734e9b536bf81fb4ab7892cf1ec2c4ed31c22b5bdd0",
+      "matches": true
+    },
+    "actual_a_observation_r2_raw_hashes": {
+      "path": "../actual_a_observation_r2/output_hashes.json",
+      "sha256": "719937de24265f055dda26a9b9eb7d42c0ca672885ceabe4a7af5a1874c421a3",
+      "matches": true
+    },
+    "independent_actual_observation_r2_review": {
+      "path": "../independent_actual_observation_r2/evidence_manifest.json",
+      "sha256": "d97b01e5b61d00529a23a2dd019ed47f0b7cd958618520b1a1e4293ced761725",
+      "matches": true,
+      "verdict": "pass_limited"
+    }
+  },
+  "acceptance_semantics_audit": {
+    "observed_status": "terminal_deferred",
+    "declaration_type": "FusionConceptAI.N06H0ATypedAbsentV1",
+    "declaration_is_nothing": false,
+    "gap_code": "external_ref_required",
+    "errors": [],
+    "gaps": ["g1_endpoint_provenance_missing", "external_ref_required:g1-loss:G1", "external_ref_required:g2-thermal:G2"],
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "candidate_hash": "0cfe748c66121a69bf818778a92a6bce1f14bf2892f4159326c426bbc1c3a16a",
+    "e0_package_hash": "0cfe748c66121a69bf818778a92a6bce1f14bf2892f4159326c426bbc1c3a16a",
+    "e0_bound_input_hash": "5dc008c66d37f7f810f08ea3b30f8eafd6ca7e5fda2f128a6dd2525e2ff4cd97",
+    "r1_os_provenance_uncertain_preserved": true,
+    "r2_pid": 55732,
+    "r2_exit_code": 0,
+    "r2_full_command_args_source": "actual_a_observation_r2/run.json",
+    "r2_commandline_limitation_preserved": true
+  },
+  "credit_ceiling_audit": {
+    "source_path_software_observation_only": true,
+    "actual_authority": false,
+    "H0A_total": false,
+    "UP2": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "DESC": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "old_evidence_preservation": {
+    "old_files_modified_by_this_review": false,
+    "r1_and_r2_receipts_preserved": true,
+    "r1_erratum_preserved": true,
+    "core_index_or_parent_gate_changed_by_this_review": false
+  }
+}

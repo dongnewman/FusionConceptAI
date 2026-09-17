@@ -1,0 +1,11 @@
+COMMAND=Get-Content test/up1_external_closure_r2/witness_authority/fixtures/test_only_shape.json | python -B tools/up1_external_closure_r2/witness_authority/cli.py
+CLI_PID=63636
+CLI_STARTED_AT_UTC=2026-09-16T18:13:26.163276Z
+CLI_EXIT=0
+status=non_evidence|resolution=typed_absence|error_code=ERR_INDEPENDENCE_EXTERNAL_ABSENT|terminal_deferred=false|no_publish=true|r01_r10_closed=false
+
+COMMAND=Get-Content test/up1_external_closure_r2/witness_authority/fixtures/production_witness_absent.json | python -B tools/up1_external_closure_r2/witness_authority/cli.py
+CLI_PID=85476
+CLI_STARTED_AT_UTC=2026-09-16T18:13:26.243978Z
+CLI_EXIT=0
+status=typed_absence|resolution=typed_absence|error_code=ERR_WITNESS_EXTERNAL_ABSENT|terminal_deferred=true|no_publish=true|r01_r10_closed=false

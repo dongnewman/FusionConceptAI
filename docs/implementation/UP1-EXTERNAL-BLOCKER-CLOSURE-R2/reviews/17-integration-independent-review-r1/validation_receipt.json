@@ -1,0 +1,62 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "17-integration-independent-review-r1",
+  "component": "integration-slice",
+  "verdict": "rework_pending_dependencies",
+  "reviewer": "independent Luna worker",
+  "source_revision": "working-tree snapshot; no commit/ref claimed",
+  "source_paths": [
+    "tools/up1_external_closure_r2/integration/__init__.py",
+    "tools/up1_external_closure_r2/integration/runner.py",
+    "tools/up1_external_closure_r2/integration/cli.py",
+    "test/up1_external_closure_r2/integration/__init__.py",
+    "test/up1_external_closure_r2/integration/test_integration.py"
+  ],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/integration/__init__.py": "ff9cde85309147fd84cda51f7e34e98270a1a3c6e4eb75cf7f12b3dff523d144",
+    "tools/up1_external_closure_r2/integration/runner.py": "9202d9798ff1f89f8b97d3aef2b50e3ed59777e2e88db369e891a5d47c505f46",
+    "tools/up1_external_closure_r2/integration/cli.py": "6f9e062d9aab00b7a7d47ec1d9970bacf07bcf839039af4535d2054377dd6da5",
+    "test/up1_external_closure_r2/integration/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "test/up1_external_closure_r2/integration/test_integration.py": "5bfee858eee7f6f2765b6b331c25ba0cc59535e9758a19220e5fc71630b06925"
+  },
+  "checks": {
+    "focused_pytest_run_1": "6 passed",
+    "focused_pytest_run_2": "6 passed",
+    "py_compile": "pass",
+    "two_process_semantic_determinism": true,
+    "17_manifest_files": "8/8 listed bytes and SHA match",
+    "test_only_non_evidence": "pass",
+    "production_missing_inputs": "pass: terminal_deferred/no_publish",
+    "adapter_status_negative_mapping": "pass for invalid/replayed/foreign/unknown",
+    "adapter_result_production_promotion": "FAIL: eligible_for_authority_recheck",
+    "unknown_duplicate_cross_binding": "FAIL: promotion through adapter path",
+    "forged_prior_same_fingerprint": "FAIL: forged eligible/noop/new_ad preserved",
+    "external_inputs_enforced_globally": "FAIL: adapter path promotes without anchors"
+  },
+  "findings": [
+    {"id": "F1", "priority": "P1", "summary": "_adapter_result and bare intake status bypass component validation and can promote production"},
+    {"id": "F2", "priority": "P1", "summary": "package schema, aliases, component receipt versions and candidate/source/input bindings are not strictly chained"},
+    {"id": "F3", "priority": "P1", "summary": "matching caller prior_state is copied without receipt/state validation and can preserve promotion or new_ad"}
+  ],
+  "dependencies": {
+    "03-revocation-independent-review-r3": "rework",
+    "06-environment-independent-review-r4": "rework",
+    "integration_claim_capped_by_dependencies": true
+  },
+  "claim_ceiling": "review_only_no_up1_or_parent_goal_credit",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "no_publish": true,
+  "no_install": true,
+  "no_download": true,
+  "no_target_mutation": true,
+  "raw": {
+    "attack_matrix": "raw/attack_matrix.txt",
+    "pytest_1": "raw/pytest.stdout.txt",
+    "pytest_2": "raw/pytest2.stdout.txt",
+    "py_compile": "raw/py_compile.stdout.txt",
+    "determinism": "raw/determinism.txt",
+    "manifest_capture_check": "raw/manifest_capture_check.txt"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "authority": {
+    "authoritative": false,
+    "status": "local_test_only"
+  },
+  "checks": {
+    "existing_eight_regressions": {
+      "deferred": true,
+      "detail": {
+        "deferred": [
+          "reparse_rejected"
+        ],
+        "hard_failed": [],
+        "legacy_failed": [
+          "reparse_rejected"
+        ],
+        "legacy_passed": [
+          "read_only",
+          "no_shell_network_install_env_leak",
+          "no_overwrite",
+          "hash_pid_utc_exit",
+          "missing_provenance_typed_absent",
+          "version_not_reproducible_closure",
+          "malicious_paths_and_args"
+        ],
+        "legacy_status": "fail_limited"
+      },
+      "ok": true
+    },
+    "oserror_fail_closed": {
+      "detail": {
+        "reason": "path_inspection_failed:PermissionError",
+        "status": "fail_closed"
+      },
+      "ok": true
+    },
+    "regular_hash_and_toctou_identity_size_mtime": {
+      "detail": {
+        "mutations_rejected": {
+          "identity": true,
+          "mtime": true,
+          "size": true
+        },
+        "regular_hash_match": true,
+        "sha256": "576eae715df05ec88d24361cacc60c3afe05ae85b4ce91a94f02dd8c21291ab6"
+      },
+      "ok": true
+    },
+    "root_escape_rejected": {
+      "detail": {
+        "reason": "path_escapes_root",
+        "status": "fail_closed"
+      },
+      "ok": true
+    },
+    "static_lexical_lstat_before_resolve": {
+      "detail": {
+        "collector_sha256": "ce6450babcf10ad8e227d146c3fd41795596edde3d22eae315d57d3e855055e4",
+        "lexical_lstat_before_resolve": true,
+        "lexical_lstat_line_numbers": [
+          131,
+          137
+        ],
+        "lstat_oserror_raises_collector_error": true,
+        "resolve_line_numbers": [
+          148,
+          153
+        ]
+      },
+      "ok": true
+    },
+    "symlink_if_permitted": {
+      "deferred": true,
+      "detail": {
+        "error": "OSError",
+        "reason": "symlink_creation_unavailable",
+        "status": "test_scope_deferred"
+      },
+      "ok": true
+    }
+  },
+  "claim_ceiling": "independent local behavior evidence only; no external authority, no reproducible closure, and no formal UP1 gate",
+  "ended_utc": "2026-09-17T02:30:32.578Z",
+  "failed": [],
+  "implementation_frozen": {
+    "path": "tools\\up1_external_closure_r4\\environment_closure\\collector.py",
+    "sha256": "ce6450babcf10ad8e227d146c3fd41795596edde3d22eae315d57d3e855055e4"
+  },
+  "pid": 103796,
+  "record_kind": "up1_external_environment_closure_r4_repair_independent_retest",
+  "schema": "UP1.external-environment-closure-r4-repair-independent-retest.v1",
+  "started_utc": "2026-09-17T02:30:31.761Z",
+  "status": "pass_limited",
+  "test_scope_deferred": [
+    "symlink_if_permitted",
+    "existing_eight_regressions"
+  ]
+}

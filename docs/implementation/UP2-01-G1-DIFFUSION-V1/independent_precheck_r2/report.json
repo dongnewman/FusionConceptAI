@@ -1,0 +1,28 @@
+{
+  "review_id": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r2",
+  "revision_of": "independent_precheck_r1",
+  "status": "changes_requested",
+  "accepted": false,
+  "runtime": "not_run",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "findings": {
+    "source_payload_typed_u_K_f": "verified_static",
+    "source_hash_recomputed_from_payload": "verified_static",
+    "forged_hash_rejected": "control_present_but_raw_ArgumentError_not_typed_fail_closed",
+    "diagonal_affine_nonconstant_K": "verified_static",
+    "bounded_domain_exact_positive_enclosure": "verified_static",
+    "K_out_of_domain_and_nonpositive_controls": "controls_present_but_raw_ArgumentError_not_typed_fail_closed",
+    "u_K_f_edit_source_and_declaration_rehash": "verified_static",
+    "residual_sign_minus_one": "verified_static",
+    "unit_and_field_binding": "verified_static",
+    "load_order": "blocking_forward_reference_to_G1DiffusionSourcePayloadV1",
+    "authority": "missing_external_source_terminal_deferred"
+  },
+  "blocking_actions": [
+    "Define G1DiffusionSourcePayloadV1 before G1DiffusionDeclarationV1 is evaluated, or remove the forward struct-field reference while preserving typing.",
+    "Expose typed fail_closed classification for forged source hash and contradiction controls, with declaration empty on failure."
+  ],
+  "claim_ceiling": "contract_only_no_compiler_provider_mesh_physical_or_R01-R10_credit",
+  "credit_boundary": {"compiler": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "B00": false, "B04": false, "R01-R10": false}
+}
+

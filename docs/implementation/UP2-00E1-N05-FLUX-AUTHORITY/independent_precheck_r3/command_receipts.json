@@ -1,0 +1,46 @@
+{
+  "schema_version": "UP2-00E1-independent-precheck-r3-command-receipts-v1",
+  "captured_at_utc": "2026-09-14T03:33:49.512441+00:00",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-09-14T03:33:49.514630+00:00",
+      "finished_utc": "2026-09-14T03:33:49.584671+00:00",
+      "real_exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G1 机制基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G2 场—几何基因组.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/G3 实现—控制Genome.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/v4_multitopology_generation/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'runs/goal_recovery_20260913_012528_cst/task_queue.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/run_v4_spatial_chain.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'scripts/verify_v4_spatial_manifest.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/FusionConceptAI.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/RuntimeV4/SpatialRuntimeV4.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_spatial_entrypoint_tests.jl', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_test_manifest.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'test/runtime_v4_validation_uq_execution_request_tests.jl', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "command": [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance Win32_Process | Where-Object { $_.Name -match '^(julia|desc|mpiexec|mpirun)(\\.exe)?$' } | Select-Object Name,ProcessId,CommandLine | ConvertTo-Json -Compress"
+      ],
+      "started_utc": "2026-09-14T03:33:49.584689+00:00",
+      "finished_utc": "2026-09-14T03:33:50.922523+00:00",
+      "real_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-c",
+        "import json,sys; [json.load(open(p,encoding='utf-8')) for p in sys.argv[1:]]; print('json_parse_ok='+str(len(sys.argv)-1))",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\UP2\\n05_flux_authority_fixtures.json",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-00E1-N05-FLUX-AUTHORITY\\evidence_manifest.json"
+      ],
+      "started_utc": "2026-09-14T03:33:50.922551+00:00",
+      "finished_utc": "2026-09-14T03:33:51.011205+00:00",
+      "real_exit": 0,
+      "stdout": "json_parse_ok=2\n",
+      "stderr": ""
+    }
+  ],
+  "note": "Read-only commands only; no Julia/DESC invocation."
+}

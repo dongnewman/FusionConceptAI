@@ -1,0 +1,69 @@
+{
+  "schema_version": "n06-independent-postrun-evidence-v2",
+  "task": "UP2-00E-N06-SOURCE-FIELD-LEDGER",
+  "review_round": "postrun-R10",
+  "reviewer": "different Luna, non-author/non-executor",
+  "verdict": "pass_limited",
+  "status": "review_pending",
+  "accepted": false,
+  "focused_run": "docs/implementation/UP2-00E-N06-SOURCE-FIELD-LEDGER/focused_r10",
+  "real_exit": 0,
+  "test_groups": [
+    "28/28",
+    "3/3",
+    "31/31",
+    "40/40"
+  ],
+  "frozen_input_count": 11,
+  "protected_inputs_unchanged": true,
+  "selector_controls": {
+    "production_path": "G.n06_projection_from_a(package,e0)",
+    "ids": [
+      "missing_source_selector",
+      "wrong_source_selector"
+    ],
+    "count": 2,
+    "finally_restore": true
+  },
+  "mutation_controls": {
+    "unconditional_loop": true,
+    "source_derived": true,
+    "count": 5,
+    "expected_error_oracle_only": true
+  },
+  "baseline": {
+    "dimension_mismatch": "fail_closed",
+    "no_authored_mapping": "terminal_deferred"
+  },
+  "history": {
+    "r8_preserved": true,
+    "r9_exit1_preserved": true,
+    "prior_evidence_untouched": true
+  },
+  "claim_ceiling": "software_contract_test_only; no dimensioned_G1_to_G3_law/formal_B04/provider/mesh/engineering/physical/R01_R10",
+  "qa": "qa.json",
+  "hash_recheck": "hash_recheck.json",
+  "artifacts": [
+    {
+      "path": "commands.md",
+      "bytes": 714,
+      "sha256": "f3417a16c9428e7b5b2804cc6c3ef57f50f4c667a861cf60502105a841263c3e"
+    },
+    {
+      "path": "hash_recheck.json",
+      "bytes": 4020,
+      "sha256": "d3cabe95b85e1b36132227147453a650ce153f9fa6932b3ec416bd827fe7bcc8"
+    },
+    {
+      "path": "qa.json",
+      "bytes": 862,
+      "sha256": "3e8c8fa0c726a9a9cd43a106c8bcb56cf47ae13520bbdebc667844f13eb7cff7"
+    },
+    {
+      "path": "report.md",
+      "bytes": 6488,
+      "sha256": "c878e45099d115a556af1e97fa22ff49d7024d756fe178dad3e5b39bac6fbd37"
+    }
+  ],
+  "artifacts_include_manifest_self": false
+}

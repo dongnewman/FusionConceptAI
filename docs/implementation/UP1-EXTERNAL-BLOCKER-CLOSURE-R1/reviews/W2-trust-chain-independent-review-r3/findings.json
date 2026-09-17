@@ -1,0 +1,26 @@
+{
+  "schema": "UP1.W2.trust-chain-independent-review-r3.v1",
+  "conclusion": "pass_limited",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": "none",
+  "round2_finding": {"id":"W2-R1-P2-001","status":"closed","closure":"nine-file exact set now agrees across manifest and cleanup; final raw is listed"},
+  "prior_security_findings_no_regression": {
+    "W2-P1-001":"closed",
+    "W2-P1-002":"closed",
+    "W2-P1-003":"closed",
+    "W2-P2-004":"closed",
+    "W2-P2-005":"closed",
+    "W2-P2-006":"closed",
+    "W2-P3-007":"closed"
+  },
+  "findings": [],
+  "positive_checks": [
+    "actual nine-file set equals manifest.outputs and manifest.owned_exact_set",
+    "actual nine-file set equals cleanup.owned_products and cleanup.final_exact_owned_set",
+    "manifest and cleanup exclude only manifest.json and cleanup_inventory.json from non-self hash maps",
+    "all seven non-excluded artifact hashes recompute and match in both maps",
+    "JSON unique parse passes",
+    "retained raw byte counts and hashes match",
+    "all seven prior security findings remain closed"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema": "up1_external_blocker_review_assignments_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "status": "pending_actual_worker_assignment",
+  "assignment_rules": {
+    "worker_model": "gpt-5.6-luna",
+    "required_reasoning_effort": "high",
+    "reviewer_must_differ_from_author": true,
+    "fresh_process_per_group": true,
+    "separate_output_directory_per_group": true,
+    "no_same_group_author_and_reviewer": true,
+    "threat_crosswalk_required": "every TM-01..TM-20 and AR-01..AR-12 must appear in at least one assigned matrix row",
+    "determinism_replay_rule": "every row marked determinism=true, including Python static/security rows, uses at least two independent OS processes and replays=2",
+    "program_exception_rule": "observed runtime fault is not a verdict; preserve traceback/raw and reduce to rework unless independently proven external unavailability reduces to block_external",
+    "heavy_lane": "forbidden_this_round",
+    "actual_worker_fields_to_fill": ["task_id", "worker_name", "model", "reasoning_effort", "start_utc", "end_utc", "source_revision", "conflict_check"]
+  },
+  "groups": [
+    {
+      "group_id": "R2-G1",
+      "role": "component_independent_review",
+      "component": "G1",
+      "owner": "Luna-G1-author (implementation author; cannot review)",
+      "reviewer_slot": "Luna-G1-reviewer-actual",
+      "matrix_rows": ["G1-POS-BASELINE", "G1-NEG-FIELDS", "G1-NEG-IDENTITY"],
+      "parallel_with": ["R2-G2", "R2-G3", "R2-V5", "R2-STATIC"],
+      "must_prove": ["fresh_process", "parameterized_omission/type/unit/closure_negatives", "duplicate_and_unknown_field_rejection", "determinism_two_processes", "source_and_hash_ownership", "raw_pid_utc_exit"],
+      "output_subdir": "review_r2_g1",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-G2",
+      "role": "component_independent_review",
+      "component": "G2",
+      "owner": "Luna-G2-author (implementation author; cannot review)",
+      "reviewer_slot": "Luna-G2-reviewer-actual",
+      "matrix_rows": ["G2-POS-BASELINE", "G2-NEG-FIELDS", "G2-NEG-OWNERSHIP"],
+      "parallel_with": ["R2-G1", "R2-G3", "R2-V5", "R2-STATIC"],
+      "must_prove": ["fresh_process", "dimension/metric/boundary negatives", "duplicate_and_unknown_field_rejection", "canonical permutation invariance", "source_and_hash_ownership", "raw_pid_utc_exit"],
+      "output_subdir": "review_r2_g2",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-G3",
+      "role": "component_independent_review",
+      "component": "G3",
+      "owner": "Luna-G3-author (implementation author; cannot review)",
+      "reviewer_slot": "Luna-G3-reviewer-actual",
+      "matrix_rows": ["G3-POS-BASELINE", "G3-NEG-FIELDS", "G3-NEG-OWNERSHIP"],
+      "parallel_with": ["R2-G1", "R2-G2", "R2-V5", "R2-STATIC"],
+      "must_prove": ["fresh_process", "typed_absent_and_terminal_deferred boundary", "duplicate account/entry/child rejection", "unknown field rejection", "exact child/account ownership", "raw_pid_utc_exit"],
+      "output_subdir": "review_r2_g3",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-V5",
+      "role": "cross_layer_schema_review",
+      "component": "V5-shared-entry-and-UP2-00",
+      "owner": "Luna-integration-author (cannot review)",
+      "reviewer_slot": "Luna-V5-reviewer-actual",
+      "matrix_rows": ["V5-JOIN-EXACT", "V5-JOIN-NEG", "UP2-PRECOMPILER-SCHEMA", "UP2-PRECOMPILER-MUTATIONS"],
+      "parallel_with": ["R2-G1", "R2-G2", "R2-G3", "R2-STATIC"],
+      "must_prove": ["exact URI/version/schema/canonical/profile/axes/candidate join", "identity rebuild", "fail_atomic_mismatch_controls", "source-derived classification", "expected_error_non_driving", "zero downstream counters"],
+      "output_subdir": "review_r2_v5_up2",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-STATIC",
+      "role": "read_only_protocol_and_manifest_review",
+      "component": "protocol-static",
+      "owner": "protocol author (cannot be sole reviewer)",
+      "reviewer_slot": "Luna-static-reviewer-actual",
+      "matrix_rows": ["PYTHON-STATIC-JSON"],
+      "parallel_with": ["R2-G1", "R2-G2", "R2-G3", "R2-V5"],
+      "must_prove": ["all JSON parse", "unique IDs", "allowlisted paths", "TEST_ONLY/non_evidence labels", "heavy lane remains forbidden", "two independent Python processes with replays=2"],
+      "output_subdir": "review_r2_static",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-THREAT-CROSSWALK",
+      "role": "W1-W2-W3-W4-and-authority-intake-threat-review",
+      "component": "W1/W2/W3/W4/R2-06/R2-07/R2-10",
+      "owner": "external-boundary implementation authors (all excluded)",
+      "reviewer_slot": "Luna-threat-reviewer-actual",
+      "matrix_rows": ["SEC-TM-01-W1-IDENTITY", "SEC-TM-02-CANDIDATE-SUBSTITUTION", "SEC-TM-03-SOURCE-SUBSTITUTION", "SEC-TM-04-LAYER-AXIS-CONFUSION", "SEC-TM-05-PKI-CHAIN", "SEC-TM-06-PKI-PROFILE-DOWNGRADE", "SEC-TM-07-CRL-OCSP", "SEC-TM-08-TSA-TRUSTED-TIME", "SEC-TM-09-NONCE-REPLAY", "SEC-TM-10-SEQUENCE-ROLLBACK", "SEC-TM-11-IDEMPOTENCY", "SEC-TM-12-TOCTOU", "SEC-TM-13-W4-PATH-REPARSE", "SEC-TM-14-MANIFEST-CLOSURE", "SEC-TM-15-STRICT-CANONICAL", "SEC-TM-16-SBOM-LICENSE", "SEC-TM-17-BINARY-PROVENANCE", "SEC-TM-18-ENVIRONMENT-DRIFT", "SEC-TM-19-TYPED-ABSENCE", "SEC-TM-20-RECEIPT-TAMPER"],
+      "parallel_with": ["R2-G1", "R2-G2", "R2-G3", "R2-V5", "R2-STATIC"],
+      "must_prove": ["TM-01..TM-20 exact crosswalk", "AR-01..AR-12 coverage", "PKI/root/algorithm", "CRL_OCSP", "TSA trusted time", "nonce_sequence_idempotency replay", "source/G2/environment", "TOCTOU", "path traversal/symlink/junction/reparse", "manifest exact-set", "SBOM/license", "binary provenance", "environment drift", "R2-07 authority intake typed_absence boundary", "two independent processes per determinism row", "raw input/stdout/stderr/PID/UTC/exit/hash"],
+      "output_subdir": "review_r2_threat_crosswalk",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-CROSS-CHALLENGE",
+      "role": "independent_cross_group_challenge",
+      "component": "G1+G2+G3+V5+UP2",
+      "owner": "all component authors excluded",
+      "reviewer_slot": "Luna-cross-challenger-actual",
+      "matrix_rows": ["G1-NEG-IDENTITY", "G2-NEG-OWNERSHIP", "G3-NEG-OWNERSHIP", "V5-JOIN-NEG", "UP2-PRECOMPILER-MUTATIONS"],
+      "depends_on": ["R2-G1", "R2-G2", "R2-G3", "R2-V5", "R2-STATIC", "R2-THREAT-CROSSWALK"],
+      "must_prove": ["recompute selected hashes without implementation expected-row helper", "challenge stale/foreign/legacy receipts", "confirm raw/PID/UTC/exit completeness", "confirm no external/heavy run"],
+      "output_subdir": "review_r2_cross_challenge",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    },
+    {
+      "group_id": "R2-FINAL-INTEGRATION",
+      "role": "final_integration_adjudication",
+      "component": "UP1 external-blocker closure R2",
+      "owner": "Sol adjudicator; no component implementation ownership",
+      "reviewer_slot": "Luna-final-integrator-actual",
+      "depends_on": ["R2-G1", "R2-G2", "R2-G3", "R2-V5", "R2-STATIC", "R2-CROSS-CHALLENGE"],
+      "matrix_rows": ["PYTHON-STATIC-JSON", "V5-JOIN-EXACT", "V5-JOIN-NEG"],
+      "lane": "serial_adjudication",
+      "must_prove": ["manifest and protected-dirty verification", "all group verdicts and receipt hashes", "exact three-layer join", "TM/AR crosswalk closure", "TEST_ONLY isolation", "heavy lane forbidden compliance", "program_exception independent classification", "claim ceiling and reduction rule"],
+      "output_subdir": "review_r2_final_integration",
+      "verdict_set": ["pass_limited", "rework", "block_external"]
+    }
+  ],
+  "future_formal_lane_assignments": {
+    "B00": "not assigned; requires separate Sol unlock and serial queue owner",
+    "B04": "not assigned; requires separate formal protocol, 50 fresh receipts, checker and two-process replay",
+    "DESC_solver_provider": "not assigned and forbidden by this R2 protocol"
+  }
+}

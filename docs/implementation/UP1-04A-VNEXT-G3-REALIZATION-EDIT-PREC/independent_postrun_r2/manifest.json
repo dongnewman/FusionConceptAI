@@ -1,0 +1,161 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-independent-postrun-r2",
+  "record_kind": "independent_focused_postrun_failure_review",
+  "date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer": {
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
+    "independent_of_implementation_worker": true
+  },
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "Read-only independent audit of focused_r2 raw evidence and first production failure. No source or test repair.",
+  "focused_run": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+    "pid": 52016,
+    "start_utc": "2026-09-15T01:51:03.1634288Z",
+    "end_utc": "2026-09-15T01:51:10.2752761Z",
+    "exit_code": 1,
+    "retry": false,
+    "repair_during_run": false,
+    "assertions": {
+      "passed": 3,
+      "failed": 0,
+      "errors": 1,
+      "total": 4
+    },
+    "first_error": {
+      "file": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "line": 487,
+      "exception": "UndefVarError",
+      "message": "record not defined",
+      "constructor": "G3RealizationSourcePayloadV1",
+      "classification": "production_implementation_defect",
+      "fixture_or_environment_defect": false,
+      "second_unbound_reference": "line 491 new(..., body, record, source_content_hash)"
+    }
+  },
+  "raw_streams": {
+    "stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/stdout.raw",
+      "bytes": 2530,
+      "sha256": "92dd8aec63e8682896baa1a46961220781767b3a7ed66bf29d0edde769786130",
+      "manifest_match": true
+    },
+    "stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/stderr.raw",
+      "bytes": 213,
+      "sha256": "11a0cf9944d44e4bfe2d5b58408e216c885451e37bfe64bb9d7dd70aa5665416",
+      "manifest_match": true
+    }
+  },
+  "receipt_hashes": {
+    "run_manifest": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/run_manifest.json",
+      "sha256": "17986149348c22a6581c05b8dba57bdbe4de8e411ca6e004680b02742451909a"
+    },
+    "assertion_summary": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/assertion_summary.json",
+      "sha256": "29d87a72dc57502cdd6e232e0bc6a703de2380523628805db2f7263a8c3fa6eb"
+    },
+    "input_hashes": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/input_hashes.json",
+      "sha256": "cf2db6693651abd212f024da49f54b349d6f95d1753ddd06581c219165cbd157"
+    },
+    "dirty_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/dirty_before.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "dirty_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/dirty_after.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "process_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/process_before.json",
+      "sha256": "0a2d67fa5929378d3e42b6e5b31ac0ccb8ed0c95673074f07f11983c20bdcc16"
+    },
+    "process_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r2/process_after.json",
+      "sha256": "7d90c42b9de4dbdca3468b324ed86d9623e18c8c5b1280d2697e3c95d447f10d"
+    }
+  },
+  "frozen_input_hashes_verified": {
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": "2af819a4d6da40d72323ea6aa3e9d70e909c42db399153302df3f90a04061abb",
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": "8850aebc57eaba3e405ed8669b6b07881a436a8549fb34359a3a5b8a7dae6e7e",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/implementation/AD-31/manifest.json": "e8906bf8a44ebc8e363d5ea18176005fb9345dcdd43877d4148d8ba2a2552cf0",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/manifest.json": "e8e10108f72e0b1d4500b146fd27bf5c51104f6a71ea372bf10afe2a64850690",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/manifest.json": "81ceabf2aaeb5a0c1f5369e68d057c965f068914b5722c8c3bb7019c89da75ba",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r4/manifest.json": "058c1ef2968cde584c9a4d9f63cef7af651d95e131d1ae81898bcb6834b5da36",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "9f415c71936979c71757b31070c78d43c1d4ccebabe68211ef100b444ba13493",
+    "docs/v4_multitopology_generation/task_manifest.json": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+  },
+  "dirty_process": {
+    "dirty_before_rows": 306,
+    "dirty_after_rows": 306,
+    "process_before_julia": [],
+    "process_after_julia": [],
+    "input_hashes_match": true
+  },
+  "failure_analysis": {
+    "constructor_argument": "source_record",
+    "undefined_name_at_line_487": "record",
+    "undefined_name_at_line_491": "record",
+    "lexical_scope_cause": "record is not locally bound in G3RealizationSourcePayloadV1 and is not imported from another function scope",
+    "production_defect": true,
+    "fixture_defect": false,
+    "minimal_source_repair": "replace both record references with source_record or bind one local alias before validation",
+    "contract_or_hash_scope_change_required": false
+  },
+  "repair_r5": {
+    "status": "required",
+    "owned_files": [
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r5/"
+    ],
+    "minimal_change": "fix the two unbound record references in G3RealizationSourcePayloadV1 only; keep test unchanged unless adding a narrow regression assertion",
+    "preserve": [
+      "R3/R4 hash recipes",
+      "operation history and stale guards",
+      "closed public status and physical enums",
+      "focused_r1 and focused_r2 raw receipts"
+    ],
+    "excluded_paths": [
+      "old G3 V1/V5",
+      "T0",
+      "package/registry",
+      "control/binding/feedback",
+      "provider/mesh/solver/engineering/physical"
+    ],
+    "exit_gate": [
+      "recompute source/test/input hashes",
+      "pass JSON, plan/link, UTF-8/control-byte and scoped diff checks",
+      "run exactly one serial authorized focused Julia command",
+      "require exit 0 and zero test errors",
+      "preserve raw stdout/stderr bytes and assertion summary",
+      "obtain a fresh independent postrun review"
+    ]
+  },
+  "claim_ceiling": {
+    "software_contract_editability_only": true,
+    "implementation_accepted": false,
+    "physical_resolution": "unknown",
+    "t0_t1_t2_credit": false,
+    "provider_mesh_solver_credit": false,
+    "engineering_credit": false,
+    "physical_credit": false,
+    "search_credit": false,
+    "b00_b04_credit": false,
+    "r01_r10_credit": false
+  },
+  "review_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_postrun_r2/report.md": "13f0761486561bdc384adb16bb0c06602ceedfcfdbae36a547b84e309662d7cc"
+  },
+  "self_hash_excluded": true
+}

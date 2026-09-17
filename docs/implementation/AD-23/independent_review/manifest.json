@@ -1,0 +1,89 @@
+{
+  "manifest_id": "AD-23-independent-review-001",
+  "reviewer_role": "independent Luna/high",
+  "captured_at": "2026-09-14T08:30:00+08:00",
+  "verdict": "pass_limited",
+  "scope": "AD-23 architecture/schema consistency and provenance only",
+  "author_status": {
+    "status": "review_pending",
+    "accepted": false
+  },
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "author_archive": {
+    "acceptance_sha256": "53f9622e5d63f911ab369d0a618fc5823e2cb7caea4f0aacd97512afa2406bb4",
+    "evidence_manifest_sha256": "e7a20a9410676c1ee6f5f54b6695543fe03075c2095640f7b2fcdcf675306186",
+    "before_core_sha256": "fc191125bbcc72accc168a20568b13f6d2401ab9ce58e85da725fa54f08583e8",
+    "after_core_sha256": "30976b4d0b89e676f16f4402197200bc56c0d61e6f1a96245529c2bce94eab03",
+    "bounded_diff_sha256": "640987a0cdc85e7e4a0e2880b1c9a4c2aae67182e8a68b1ebc1160d6b276d2bf",
+    "bounded_diff_exit": 1,
+    "validate_plan_exit": 0,
+    "author_git_diff_check_exit": 0
+  },
+  "independent_checks": {
+    "validate_plan_exit": 0,
+    "bounded_diff_check_no_index_exit": 1,
+    "historical_n10_fixture_git_diff_exit": 0,
+    "julia": "not run",
+    "desc": "not run",
+    "n10_history": "test/GenomeV5/UP2/fixtures.json unchanged; SHA256 8b8b48395b4d087e1eb1b4fe3d7d8267fb10f58bf69458d99ebdf39acd555de0",
+    "process_observation": "No Julia/DESC command run; post-review check observed unrelated Julia PIDs 67836, 62896, 19284, 55912 started 08:27:25-08:27:53; no process was started or terminated by this review."
+  },
+  "source_evidence": {
+    "package_struct": "src/Contracts/CandidateStatePackageV5.jl:159-226",
+    "ref_identity_and_child_projection": "src/GenomeV5/Integration/GenomeV5Integration.jl:62-85",
+    "identity_verifier": "src/GenomeV5/Integration/GenomeV5Integration.jl:146-189",
+    "receipt_and_status_join": "src/GenomeV5/Integration/GenomeV5Integration.jl:274-337",
+    "deferred_legacy_factory": "src/Contracts/CandidateStatePackageV5.jl:128-156",
+    "ad23_core": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md:163-184"
+  },
+  "classification_boundary": {
+    "present_foreign_or_stale_comparable_value": "invalid_type + fail_closed in the future candidate-bound N10 schema",
+    "missing_mapping_authority_or_provenance": "terminal_deferred",
+    "fresh_receipt": "pending with no legacy records; not migration evidence",
+    "legacy_receipt": "terminal_deferred unless complete non-placeholder V4 provenance and lossless mapping are supplied"
+  },
+  "credit_ceiling": {
+    "up2_implementation": false,
+    "n10_execution": false,
+    "b00": false,
+    "b04": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  },
+  "review_artifacts": {
+    "before_hashes": {
+      "path": "before_hashes.json",
+      "sha256": "783ef1f7ea4ac1506b597f4be6e6ef36ddcd5f1b3c80309b25f4e7f05337245b"
+    },
+    "report": {
+      "path": "report.md",
+      "sha256": "0f5b681f006faeab7d8c6d5aeddaefff7d9abdeeb487dbb9697fc82222dc229a"
+    },
+    "validate_plan_stdout": {
+      "path": "validate_plan.stdout.txt"
+    },
+    "validate_plan_stderr": {
+      "path": "validate_plan.stderr.txt"
+    },
+    "validate_plan_exit": {
+      "path": "validate_plan.exit.txt"
+    },
+    "bounded_diff_check_stdout": {
+      "path": "bounded_diff_check.stdout.txt"
+    },
+    "bounded_diff_check_stderr": {
+      "path": "bounded_diff_check.stderr.txt"
+    },
+    "bounded_diff_check_exit": {
+      "path": "bounded_diff_check.exit.txt"
+    },
+    "historical_n10_diff_exit": {
+      "path": "historical_n10_diff.exit.txt"
+    }
+  },
+  "write_boundary": "Only docs/implementation/AD-23/independent_review/ was written"
+}

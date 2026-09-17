@@ -1,0 +1,82 @@
+{
+  "schema_version": "AD48-g3-source-authority-gap-decomposition-independent-review-r2-v1",
+  "record_kind": "independent_readiness_audit_review",
+  "task_id": "AD-48-G3-SOURCE-AUTHORITY-GAP-DECOMPOSITION",
+  "review_id": "AD-48-G3-SOURCE-AUTHORITY-GAP-DECOMPOSITION-INDEPENDENT-REVIEW-R2",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "repaired_hash_closure_and_finite_software_gap_decomposition_only",
+  "claim_ceiling": "no_g3_authority_no_candidate_no_physical_credit",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "review_product_files": [
+    "docs/implementation/AD-48/g3_source_authority_gap_decomposition/independent_review_r2/report.md",
+    "docs/implementation/AD-48/g3_source_authority_gap_decomposition/independent_review_r2/manifest.json"
+  ],
+  "review_sidecar_directory": "docs/implementation/AD-48/g3_source_authority_gap_decomposition/independent_review_r2/review",
+  "frozen_inputs": {
+    "report": {"bytes": 14214, "sha256": "7037300a6207518bf6c1369e1f2642aa9e71eeecb818aeb95e469dc80a2c360f"},
+    "manifest": {"bytes": 7228, "sha256": "31986f6f401c2b47455f3e287c18247c702cc4b6c0152714c180051fd2f9f2ba"},
+    "cleanup_inventory": {"bytes": 827, "sha256": "4a17966bd6318b900fa11b6c45bb8e1219606cabb13790c53c385b54026dc801"}
+  },
+  "checks": {
+    "frozen_input_hashes": true,
+    "realization_sha_64_and_exact": true,
+    "all_eight_source_rows_bytes_sha_and_length": true,
+    "ad47_w1_eight_products_preserved": true,
+    "four_scope_boundary": true,
+    "s1_exact_eight_products_and_unions": true,
+    "s2_exact_eight_products_and_unions": true,
+    "s3_exact_eight_products_and_unions": true,
+    "f0_exact_two_files_conditional": true,
+    "s2_before_f0_and_fresh_s2_after_f0": true,
+    "dependency_order_acyclic": true,
+    "no_real_g3_factory_found": true,
+    "generic_parent_scaffold_not_misclassified": true,
+    "default_operator_registry_unchanged": true,
+    "attestor_scope_local_software_only": true,
+    "negative_credit_preserved": true,
+    "plan_validator": true,
+    "scoped_diff_check": true
+  },
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 89684,
+    "utc": "2026-09-15T13:01:23.286673+00:00",
+    "direct_replay_exit_code": 0,
+    "direct_replay_raw": "review/python_direct_replay.json",
+    "plan_validator_exit_code": 0,
+    "plan_validator_summary": "31 markdown; 497 relative links; 39 tasks; DAG acyclic",
+    "plan_validator_raw": "review/plan_validator_stdout.json",
+    "scoped_diff_check_exit_code": 0,
+    "scoped_diff_check_raw": "review/scoped_diff_check_stdout.txt"
+  },
+  "negative_credit": {
+    "g3_source_authority": false,
+    "factory_identity": false,
+    "trusted_source_identity": false,
+    "candidate_identity": false,
+    "candidate_bound_axes": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "review_owned_temp_removed": 0,
+    "preexisting_dirty_preserved": true,
+    "source_test_fixture_core_task_manifest_modified": false,
+    "julia_desc_provider_mesh_solver_physics_search_runs": 0
+  },
+  "self_hash_excluded": true
+}

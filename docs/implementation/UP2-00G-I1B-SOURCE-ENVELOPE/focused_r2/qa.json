@@ -1,0 +1,30 @@
+{
+  "schema_version": "G-I1B-source-envelope-focused-r2-qa-v1",
+  "run_status": "failed",
+  "exit_code": 1,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1b_source_envelope.jl",
+  "start_utc": "2026-09-14T18:05:26.0805448Z",
+  "end_utc": "2026-09-14T18:06:57.0592073Z",
+  "root_pid": 29680,
+  "failure_class": "focused_test_errors",
+  "failure_location": "test/GenomeV5/UP2/gi1b_source_envelope_tests.jl:234,237,255",
+  "failure_message": "GI1BMutationEnvelopeRowV1 has no field original; implementation stores the typed original at row.binding.original",
+  "stdout": {"path": "stdout.txt", "bytes": 4510, "sha256": "1e242d58318c3e91fe4a7b4fe249fa1acd5896c1f344c07b16a1e521b34dbcde"},
+  "stderr": {"path": "stderr.txt", "bytes": 313, "sha256": "02c4a4e6ace82998222e054d9b17b0bcafd8d9d42faa2c96249e049e482171d7"},
+  "testset_summary": {
+    "up1_up2_up3_prior_testsets": {"pass": 299, "total": 299, "errors": 0},
+    "gi1b_actual_a_e1_present_and_both_absent_factory": {"pass": 18, "total": 21, "errors": 3},
+    "runner_reached_gi1b_testset": true,
+    "runner_reached_later_gi1b_testsets": false
+  },
+  "error_excerpts": [
+    "Test threw exception: Expression row.original.source_type === spec.source_type",
+    "type GI1BMutationEnvelopeRowV1 has no field original",
+    "Test threw exception: Expression row.original.value == expected[row.id]",
+    "Got exception outside of a @test: type GI1BMutationEnvelopeRowV1 has no field original"
+  ],
+  "required_fix": "Update focused test accesses from row.original.* to row.binding.original.* (or add a deliberate public row.original field only if that is the intended contract), then rerun serially.",
+  "process_qa": {"preflight_matching_julia_desc": 0, "postflight_matching_julia_desc": 0, "observed_child_pids": [], "distinct_julia_pids": [29680], "observed_julia_process_samples": 150},
+  "claim_ceiling": ["software-run-failure-only", "no-formal-B04", "no-physical-or-engineering-credit", "no-parent-goal-credit"],
+  "repair_policy": "Failure evidence is preserved without source/test/core modification or local repair."
+}

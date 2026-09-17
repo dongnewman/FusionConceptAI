@@ -1,0 +1,28 @@
+{
+  "schema_version": "AD53-independent-review-r1-static-audit-v1",
+  "pid": 99392,
+  "source_sha256": "f3193c843417cdb6cff60b0e658586a693bff8611390117c762bb070cb962475",
+  "test_sha256": "0e0133c58c1ea56e974803d50cccccf404b7ff40ba9528ce55014df7e5a8733d",
+  "source_hash_exact": true,
+  "test_hash_exact": true,
+  "checks": {
+    "literal_include_regex": true,
+    "no_directory_glob_in_parser": true,
+    "core_paths_whitelist": true,
+    "optional_groups_separate": true,
+    "feedback_not_core": true,
+    "max_three": true,
+    "self_evidence_excluded": true,
+    "clone_no_local": true,
+    "temp_checkout_add_commit": true,
+    "original_snapshot_before_after": true,
+    "g3_factory_optional": true,
+    "false_claims": true,
+    "python_negative_tests": true
+  },
+  "all_checks_pass": true,
+  "historical_attempt1_pid_96060_preserved": true,
+  "historical_report_r3_preserved": true,
+  "manifest_acceptance_false": true,
+  "manifest_fresh_s2_s3_required": true
+}

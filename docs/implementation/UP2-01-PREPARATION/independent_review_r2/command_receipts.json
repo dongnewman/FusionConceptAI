@@ -1,0 +1,101 @@
+[
+  {
+    "name": "git_head_and_branch",
+    "argv": ["git", "rev-parse", "HEAD"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "4b69f55f7f80240147a65a22809dc1207824dde2\n",
+    "stderr": ""
+  },
+  {
+    "name": "git_status_before_review",
+    "argv": ["git", "status", "--porcelain=v1"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "status_rows": 294,
+    "stdout": "294 rows; pre-existing dirty/untracked inventory observed before independent-review writes",
+    "stderr": ""
+  },
+  {
+    "name": "julia_desc_process_sweep_initial",
+    "argv": ["powershell", "Get-CimInstance Win32_Process | filter julia|desc"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "interpretation": "zero Julia/DESC processes; review did not launch either"
+  },
+  {
+    "name": "protected_hash_recheck",
+    "argv": ["Get-FileHash", "-Algorithm", "SHA256", "AD-20 six protected dirty files"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "all six observed hashes match entry_audit_r2/evidence_manifest.json",
+    "stderr": ""
+  },
+  {
+    "name": "generic_ir_symbol_scan",
+    "argv": ["rg", "-n", "struct EquationIRV4|struct WeakResidualIRV4|struct DiscreteResidualV4|struct SolverPlanV4", "src"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 1,
+    "stdout": "no exact generic IR struct declarations found",
+    "stderr": ""
+  },
+  {
+    "name": "v5_compile_entry_scan",
+    "argv": ["rg", "-n", "compile_candidate\\(candidate::CandidateStatePackageV5", "src"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 1,
+    "stdout": "no V5 compile_candidate method found",
+    "stderr": ""
+  },
+  {
+    "name": "actual_a_static_fixture_scan",
+    "argv": ["rg", "temperature|auxiliary|spatial_dimension|actual_a_positive|dimensioned_law_missing|feedback", "test/GenomeV5/G1/fixtures.json", "test/GenomeV5/G2/fixtures.json", "test/GenomeV5/G3/fixtures.json", "test/GenomeV5/UP2"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "G1 actual-A fixture has temperature/auxiliary spatial_dimension=0; G2 has 3-D chart and boundary declarations; G3 feedback is authority-gap; N06 actual_a_positive=false and dimensioned_law_missing",
+    "stderr": ""
+  },
+  {
+    "name": "plan_validation",
+    "argv": ["python", "docs/v4_multitopology_generation/validate_plan.py"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "record_kind=planning_document_validation_not_physics_or_implementation_acceptance; plan_version=v4-upgrade-plan-20260914.1; checks=pass; markdown_files_checked=31; relative_links_checked=337; task_count=27; task_dag_acyclic=true; errors=[]",
+    "stderr": ""
+  },
+  {
+    "name": "json_parse_review_outputs",
+    "argv": ["python", "json.loads(report.json,evidence_manifest.json,command_receipts.json)"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "JSON_PARSE_OK 3",
+    "stderr": ""
+  },
+  {
+    "name": "git_diff_check",
+    "argv": ["git", "diff", "--check"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "pre-existing LF/CRLF line-ending warnings only"
+  },
+  {
+    "name": "inspected_source_hash_recheck",
+    "argv": ["Get-FileHash", "-Algorithm", "SHA256", "33 inspected files"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "HASH_RECHECK count=33 mismatches=0",
+    "stderr": ""
+  },
+  {
+    "name": "julia_desc_process_sweep_final",
+    "argv": ["powershell", "Get-CimInstance Win32_Process | filter julia|desc"],
+    "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "interpretation": "zero Julia/DESC processes after review writes"
+  }
+]

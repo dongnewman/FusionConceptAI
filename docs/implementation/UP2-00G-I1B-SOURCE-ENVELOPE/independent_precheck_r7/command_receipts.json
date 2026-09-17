@@ -1,0 +1,31 @@
+{
+  "schema_version": "G-I1B-source-envelope-independent-precheck-r7-receipts-v1",
+  "policy": {
+    "julia_or_desc_started_in_r7": false,
+    "focused_r2_evidence_modified": false,
+    "source_test_core_modified_by_review": false,
+    "writes_outside_review_directory": false,
+    "formal_b04_claimed": false
+  },
+  "freeze": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "branch": "main",
+    "dirty_porcelain_entries": 3518,
+    "status_snapshot_sha256": "10de92a1b5092eb2327cb0f5069cb62dce9a6a4b484bcbc11b8ac6c7f980e19c",
+    "matching_julia_desc_processes": 0
+  },
+  "receipts": [
+    {"id": "focused-r2-fact-check", "result": "pass", "detail": "Preserved run has 18/21 pass and 3 errors at row.original field accesses; raw stdout/stderr hashes match focused_r2 QA."},
+    {"id": "actual-test-file", "result": "pass", "detail": "The owned test is test/GenomeV5/UP2/gi1b_source_envelope_tests.jl; no case-variant duplicate was found."},
+    {"id": "r7-hash-freeze", "result": "pass", "detail": "Current tests hash 1b21a2... matches repair_r7 files_after_r7 hash; source, fixture, runner and core remain protected."},
+    {"id": "field-access-audit", "result": "pass", "detail": "No row.original. access remains; three repaired assertions use row.binding.original.* and row.original_hash remains direct."},
+    {"id": "50-row-and-identity-audit", "result": "pass_static_presence", "detail": "50-row IDs/paths/groups, independent manifests/hashes, source identity and classification assertions remain."},
+    {"id": "zero-counter-audit", "result": "pass_static_presence", "detail": "Row and envelope compile/provider/solver zero assertions remain for ordinary and faulted results."},
+    {"id": "gap-and-negative-controls", "result": "pass_static_presence", "detail": "N05 absence metadata, N06/N09/N10 gaps, public row_builder rejection and internal fault aggregation remain."},
+    {"id": "focused-r2-preservation", "result": "pass", "detail": "focused_r2 artifacts remain unchanged and its failed run is not reclassified as success."},
+    {"id": "fixture-shape", "result": "pass", "detail": "Fixture remains 50 unique rows, five rows per N01-N10 group."},
+    {"id": "json-parse", "result": "pass", "detail": "repair_r7 JSON evidence and this review JSON parse successfully."},
+    {"id": "process-sweep", "result": "pass_zero_matching_processes", "detail": "No Julia/DESC process was present at final R7 freeze."}
+  ],
+  "qa_status": "pass_limited_ready_for_serial_focused"
+}

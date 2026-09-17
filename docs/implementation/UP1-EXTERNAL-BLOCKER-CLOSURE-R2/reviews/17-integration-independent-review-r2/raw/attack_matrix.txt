@@ -1,0 +1,21 @@
+UP1 R2 integration independent attack matrix r2
+environment: Windows, Python 3.13.5, fresh python -B; no network/install/download
+
+R1 bypass replays (each with fresh temporary ledger/key/spool):
+adapter_result: real validator called; forged adapter object -> fail_closed
+bare_intake_status: AuthorityIntakeAdapter called; bare status mapping -> fail_closed
+unknown_root_field: strict root -> fail_closed/rejected
+duplicate_stage_alias: witness_authority is unknown root -> fail_closed/rejected
+candidate_source_drift: real witness validator -> fail_closed
+foreign_schema/receipt_hash: real validator path -> fail_closed
+missing_external_context/anchors/key/ledger/spool: terminal_deferred, no_publish=true
+TEST_ONLY without stage material: terminal_deferred, TEST_ONLY=true, non_evidence=true
+
+remaining findings:
+receipt_recompute: first persisted output receipt_sha256 does not equal canonical_digest(_semantic(output)); deterministic_noop output also does not recompute (P1)
+forged_prior_same_receipt: prior status/new_ad mutations are not compared field-for-field with authenticated ledger; current output stays deferred, but supplied prior is silently accepted by receipt hash alone (P2 integrity gap)
+fingerprint_self_supply: _package_fingerprint accepts candidate_fingerprint=64*a and source_fingerprint=64*b without deriving/checking them against candidate/source (P1 binding gap)
+aggregate_path: after all stage calls, runner unconditionally records aggregate=terminal_deferred/upstream_not_authority_verified; no code path invokes aggregate_gate or returns eligible_for_authority_recheck (P1 functional/contract gap)
+ledger_hmac: authenticated ledger mutation and key replacement -> fail_closed/integration_ledger_auth_invalid (PASS)
+ledger_cas: two concurrent delayed calls both committed event=intake/status=fail_closed; both_commit_success=true; no compare-and-swap/precondition (P1)
+ledger_lock: O_EXCL lock serializes writes (PASS), but ledger path/reparse/ACL ownership is not independently checked (P2 platform integrity gap)

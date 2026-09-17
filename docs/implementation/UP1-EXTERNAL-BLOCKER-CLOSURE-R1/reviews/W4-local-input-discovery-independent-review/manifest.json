@@ -1,0 +1,18 @@
+{
+  "schema":"UP1.W4.local-input-discovery.independent-review.manifest.v1",
+  "work_order":"W4",
+  "status":"rework_required",
+  "claim":"discovery_only/preparation_only",
+  "write_root":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/W4-local-input-discovery-independent-review/",
+  "source_bundle":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/local_input_discovery/",
+  "source_exact_set_count":11,
+  "source_exact_set":["absence_delta.json","candidate_inventory.json","cleanup_inventory.json","discovery_report.md","manifest.json","raw/static_validator.start_receipt.json","raw/static_validator.stderr.txt","raw/static_validator.stdout.txt","run_ledger.json","static_discovery_validator.py","validation_receipt.json"],
+  "source_sha256":{"absence_delta.json":"69cec1f1705951f7ecaa9b93bf5335fd3bd46f49b87a3f28a3041b3932239503","candidate_inventory.json":"4b8b91174772912fcd503280cc1dfd2df849d130bd0e399da56c9fe37167bfbc","cleanup_inventory.json":"aeccbeb290fe59f01bd7dc1545798d01c34b06dde6e07c1d22b0ffd9634dcde8","discovery_report.md":"bb15f4ea1668f693f2c777ac8084284637e1071692cddcd847ffeb7a834cb752","manifest.json":"a451838a9537389d01326527cef0a32a007807370255f17b7899e37fc1eb7779","raw/static_validator.start_receipt.json":"47c48af5e27b7c85add5a55aed3f3fbfae17e1da4bc719bc04b4ac7ffabe1f16","raw/static_validator.stderr.txt":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","raw/static_validator.stdout.txt":"f87f43ee6c9bc794ef68bebedd3c69c20404c669b25524077dc01b2bb468fcb0","run_ledger.json":"06b64d1ccacd04dce9f80418b59d7bd99bd351a4f7a7f3be4b1229fd60f948f6","static_discovery_validator.py":"02de0ae98d0ecc9661fe03c1941d768a94b382873e3ead8e674c425091cf7f78","validation_receipt.json":"9a0e082130cc5baecf6817efcabc61cf58d7b77a59e326203b05cec60ae74d50"},
+  "source_manifest_self_hash_note":"source manifest hash recorded for audit; recursive acceptance self-hash excluded",
+  "review_exact_set":["cleanup_inventory.json","findings.json","manifest.json","review.md","validation_receipt.json"],
+  "review_artifact_hashes_excluding_manifest":{"cleanup_inventory.json":"13513eebe3a2657e140db3dd0a6a3f886236f7510b50efe7fd84714f2497c2d5","findings.json":"77e338784ed106656ea04e69566b67d9ab52b72e3dfa40bfae0fc685cd2949b3","review.md":"5a6c6f0de90b957196933a25d03909ff33e1b43fd10cfc9500a41838acfdad7e","validation_receipt.json":"ce267a6b1bad65c403b1f7992a4880fa84e6bd0f30853b99605ee6f4a87bb33c"},
+  "self_hash_exclusion":"manifest.json excluded from review_artifact_hashes_excluding_manifest",
+  "candidate_summary":{"listed_candidates":25,"listed_usable_production":0,"global_completeness":"not_proven","sensitive_unopened":[]},
+  "outputs":["review.md","findings.json","validation_receipt.json","manifest.json","cleanup_inventory.json"],
+  "status_credit":{"discovery_only":true,"preparation_only":true,"T0":false,"B00":false,"B04":false,"UP1":false,"R":false,"L4":false,"parent_goal":false}
+}

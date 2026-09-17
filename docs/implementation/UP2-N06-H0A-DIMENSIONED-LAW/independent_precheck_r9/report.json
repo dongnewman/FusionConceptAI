@@ -1,0 +1,97 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-precheck-r9",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "ready_for_serial_focused",
+  "ready_for_serial_focused": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {
+    "status_entry_count": 297,
+    "status_sha256": "d48208778d19477a679037add5899b4a910d0529e9c46f6cd30a0e130a4b5383",
+    "matching_julia_desc_process_count": 0
+  },
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "focused_r2_historical_exit": 1,
+    "serial_focused_r3": "pending_parent_gate"
+  },
+  "helper": {
+    "definition": "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:9",
+    "current": "_h0a_digest(ch) = G.digest256_text(String(ch))",
+    "canonical_api": "src/IR/PhysicalTypes.jl:33; src/FusionConceptAI.jl:54",
+    "raw_digest_constructor_bypassed": true,
+    "production_digest_validation_unchanged": true,
+    "calls_preserved": 23,
+    "labels": [
+      "z",
+      "foreign-schema",
+      "foreign-canonical",
+      "stale",
+      "stale-g3",
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "findings": [
+    {
+      "id": "R9-HELPER",
+      "severity": "closed_static",
+      "status": "pass",
+      "summary": "The only helper now hashes text through digest256_text; all prior invalid labels remain routed through it and no production Digest256 validation is weakened.",
+      "evidence": [
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:9,15-19,119,167,207,229,245,546",
+        "src/IR/PhysicalTypes.jl:10-33",
+        "src/FusionConceptAI.jl:54"
+      ]
+    },
+    {
+      "id": "NEGATIVE-CONTROLS",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "Identity, component, stale, foreign, payload, unit, closure, role, taxonomy, and actual-A assertions remain in the same test file and use the repaired helper only for digest values.",
+      "evidence": [
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:215-292",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:294-516",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:518-588"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "Fixture remains schema-only with actual_a_positive=false; historical focused_r2 failure and all claim ceilings remain.",
+      "evidence": [
+        "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json",
+        "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/qa.json"
+      ]
+    }
+  ],
+  "claim_ceiling": [
+    "contract_only",
+    "synthetic_schema_only",
+    "actual_a_terminal_deferred",
+    "runtime_required",
+    "accepted_false",
+    "no_B00",
+    "no_B04",
+    "no_physics",
+    "no_engineering",
+    "no_provider",
+    "no_mesh",
+    "no_R_credit"
+  ],
+  "scope": "R9 helper-only test repair; independent static review",
+  "old_archives": [
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r9/",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_postrun_r2/"
+  ]
+}

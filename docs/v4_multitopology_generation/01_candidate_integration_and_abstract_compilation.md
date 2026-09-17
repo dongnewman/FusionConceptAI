@@ -1,5 +1,7 @@
 # v4 候选集成、抽象拓扑与一致性编译
 
+> 2026-09-14 路线更新：UP1–UP3。本文定义前缀/结构编译；可执行方程、离散装配和耦合的新增要求见 [11](11_physics_compilation_and_discretization.md)，不能仅返回 obligation 就算完成。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 职责
 
 本模块对应现有链路的“抽象拓扑生成 + 抽象一致性筛选”，但输入不再是一个扁平 topology record，而是三个既有 Genome 的版本化引用或部分前缀。

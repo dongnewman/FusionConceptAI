@@ -1,0 +1,62 @@
+{
+  "manifest_version": "UP2-01-entry-audit-r2",
+  "status": "ready_for_future_dispatch",
+  "accepted": false,
+  "claim_ceiling": "preparation_static_audit_no_Julia_DESC_no_core_change_no_physical_credit",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "dirty_status_rows": 294,
+  "process_state": {"initial": "no Julia/DESC", "final": "no Julia/DESC", "julia_desc_run_by_audit": false},
+  "write_scope": "docs/implementation/UP2-01-PREPARATION/entry_audit_r2/ only",
+  "dependency_snapshot": {
+    "UP1-04A": "accepted_limited_contract_only",
+    "UP2-00": "review_pending_actual_A_N01_N02_only_40_of_50_pending",
+    "UP1-04B": "planned_B00_B04_checker_two_process_replay_pending",
+    "UP1-04": "planned",
+    "UP2-01": "planned_dependency_UP1-04"
+  },
+  "protected_dirty_hashes": {
+    "runs/goal_recovery_20260913_012528_cst/task_queue.json": {"bytes": 16762, "sha256": "dbc57e7e44677cfd4b5d950a37d3d9063fde61fc7e4cec9b8cc44c9a9c3c84c0"},
+    "scripts/run_v4_spatial_chain.jl": {"bytes": 12890, "sha256": "ad5f7864da35bcd355ac256a20574648bab1372055954a71596bb631348d1520"},
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {"bytes": 1757, "sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb"},
+    "test/runtime_v4_spatial_entrypoint_tests.jl": {"bytes": 3522, "sha256": "673b29e372f4ba2d841630d2e37b01371653c032046002b3c60bf693e2335532"},
+    "test/runtime_v4_test_manifest.json": {"bytes": 2928, "sha256": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"},
+    "test/runtime_v4_validation_uq_execution_request_tests.jl": {"bytes": 10738, "sha256": "df1a67c20c528fed9012067a45640a58c6dede3e45f042a26a9cae056e757ed2"}
+  },
+  "inspected_inputs": {
+    "src/RuntimeV4/Compiler.jl": {"bytes": 14428, "sha256": "7a550e2b9ac27693f7e7008f3562ef6d5f52795997bc89c676440cb2e4bab4aa"},
+    "src/RuntimeV4/FieldProgramEvaluation.jl": {"bytes": 44975, "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86"},
+    "src/RuntimeV4/FieldResidualPipeline.jl": {"bytes": 45405, "sha256": "f928607e232e5667b27e3dc82365a376a93de830c36ec47ce2d2e767e9159856"},
+    "src/RuntimeV4/MultiRegionDiffusionProvider.jl": {"bytes": 19060, "sha256": "9daacfaf47ea9031290ccf57ff31e24c8458b79f15fa43cae9e2eb596f41a7b5"},
+    "src/RuntimeV4/SpatialMultiRegionV4.jl": {"bytes": 56867, "sha256": "cac5b47beeee2fbab7de6f171f7f155ff5534bc51edec0e66ee8caf711d6b932"},
+    "src/Contracts/CandidateStatePackageV5.jl": {"bytes": 13496, "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"},
+    "src/GenomeV5/G1/EquationPlanV2.jl": {"bytes": 15159, "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"},
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {"bytes": 16572, "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"},
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": {"bytes": 3887, "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"},
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {"bytes": 18646, "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"},
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": {"bytes": 9905, "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"},
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {"bytes": 5333, "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"},
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {"bytes": 33751, "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"},
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {"bytes": 10904, "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"},
+    "src/GenomeV5/UP2/UP2CandidatePhysicalBindingV1.jl": {"bytes": 24064, "sha256": "804cf2cb3522eceefe37664737934bcffdad15ba2d5d2a28c0a70bcf1fca1f6d"},
+    "src/GenomeV5/UP2/GI1AuthorityContextV1.jl": {"bytes": 29560, "sha256": "d84db10e6332e5f0919f2e4d1f8ba1b910dc3c39d74cfbc7869e579ff5718fd9"},
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {"bytes": 3155, "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"},
+    "docs/v4_multitopology_generation/README.md": {"bytes": 21150, "sha256": "82cf8cabf4b4fc16ed5d4bd78a4a8f95cef909ce8df23a799267d8f7a8af1b79"},
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": {"bytes": 12626, "sha256": "0b29c6f75c81f3f3bd25568c60547bbe94ccba547a3ecca83493eb90b422d2ab"},
+    "docs/v4_multitopology_generation/01_candidate_integration_and_abstract_compilation.md": {"bytes": 6337, "sha256": "0a458ec935597912c24d687062a62554d3f3c23a4aabeef33d320a2555a5cd33"},
+    "docs/v4_multitopology_generation/11_physics_compilation_and_discretization.md": {"bytes": 28542, "sha256": "f31e075f3a7c0d301179af483db14b6b616c0d8c50458850768d41d17bd8bb25"},
+    "docs/v4_multitopology_generation/14_agent_orchestration.md": {"bytes": 6598, "sha256": "f2a8964ca6bd1395780671f7aab7e86544484ae6b2703ce749d09ec5be0e5a43"},
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {"bytes": 59255, "sha256": "7d1d81ada7d3cf56cadab11a038ee2eba5aceb6f6ea4607bcf71cdf2d751a350"},
+    "docs/v4_multitopology_generation/task_manifest.json": {"bytes": 47524, "sha256": "a36213635acf8897e16549696b0c1dbbc56e72a6e13d0dd5a898b8eeae1c95a1"},
+    "docs/implementation/UP1-04/acceptance.md": {"bytes": 5727, "sha256": "012b7dd7d84d97254a788ad2f322a0829d8e9f10d74e2b947a944408ac5e3245"},
+    "docs/implementation/UP2-00/acceptance.md": {"bytes": 3833, "sha256": "62fd028cec0b3cab13557061dc9563aa44cfb339a19f4323675e2e69730d5c25"},
+    "docs/implementation/UP2-00G-I1A-AUTHORITY-CONTEXT/acceptance.md": {"bytes": 2666, "sha256": "c27943f1f45a049490042ea203748e77b67f088255450f9ebc0bb184cd610793"},
+    "docs/implementation/UP2-00E0-BOUND-INPUT/acceptance.md": {"bytes": 2694, "sha256": "f3958a9d5baa8e19c53b5f3f55066083d60cc1b92f12e2dedf39b0338faefea0"},
+    "docs/implementation/UP2-01-PREPARATION/current_spatial_evidence_audit/source_audit.md": {"bytes": 10925, "sha256": "ddcfaf24d124977e0b734b28a5970cf6254e547494a2d482e4ad0f017a80ba91"}
+  },
+  "outputs": ["report.md", "report.json", "evidence_manifest.json", "command_receipts.json"],
+  "output_artifacts_before_manifest_rehash": {
+    "report.md": {"bytes": 12036, "sha256": "6c3e6ea10114b73fc46e0bf9ae97a6c9e91a8d87aec28ba340557240a7dcb704"},
+    "report.json": {"bytes": 7589, "sha256": "908b010ab26a2c29ddec491d0f3afb6b41fc8a7c1b9129bfe660e37bd3defc46"},
+    "command_receipts.json": {"bytes": 3006, "sha256": "a3de6467d192d7c222c513302ba9a394140f02a2ed336a656a00b9e2be382a3f"}
+  }
+}

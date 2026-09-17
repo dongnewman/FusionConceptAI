@@ -1,0 +1,40 @@
+{
+  "schema": "UP1ExternalClosureR2AggregateIndependentReviewManifestV1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "08-aggregate-independent-review-r1",
+  "status": "rework",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "source_ref": "working-tree",
+  "reviewer": {"role": "independent_attack_reviewer", "model": "gpt-5.6-luna", "reasoning_effort": "high", "author_conflict": "not independently identified; review is source-only and must be adjudicated by Sol"},
+  "owned_write_scope": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/reviews/08-aggregate-independent-review-r1/**",
+  "inputs": {
+    "tools/up1_external_closure_r2/aggregate_gate/aggregate_gate.py": {"bytes": 18043, "sha256": "913fc37358193ab24aeba59a63f27ed4889d8a43b8a44052440d243c1cd2aefd"},
+    "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py": {"bytes": 4877, "sha256": "bfe45620f0c1e6e41e489861ba7cdbec1431a4769d4c66e33fdb32c5787d67da"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/08-aggregate-gate/input_verified.json": {"bytes": 1322, "sha256": "81e5b0cd15452bc726b85ce23bb19f06a0dd3a5ea2052126c6eaaba655aebf30"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/review_protocol.md": {"sha256": "4c68091cfc7448795e4671b7ed37069b0a54e0df279a04563e9c84bfb6d1ac33"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/test_matrix.json": {"sha256": "53f19ea7fb95ea6461189be573a12e1ee12c7fe3451cc49f8dce2b6828f04305"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/14-review-protocol/review_assignments.json": {"sha256": "94d889cdd5f078659d4779c66db35443e42cc3dfa44c21fd80d2f607f6da4259"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/interface_contracts.json": {"sha256": "857dc027eb53569a5fd3233f8fe113ac9498a37e7a63579685c2ca4e7487a85e"},
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/00-contract-freeze/gate_ceiling.json": {"sha256": "81cae273c2395dda210df53cecd2435561676c9ee21d34817894383d96035df6"}
+  },
+  "commands": [
+    {"argv": ["python", "-B", "test/up1_external_closure_r2/aggregate_gate/test_aggregate_gate.py"], "fresh_process": true, "exit_code": 0, "result": "9/9"},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "independent attack matrix", "exit_code": 0},
+    {"argv": ["python", "-B", "-"], "fresh_process": true, "purpose": "two separate child-process baseline replay", "exit_code": 0, "semantic_equal": true, "semantic_hash": "4c491c98692979ca7a5446134cfcff689f843ab575bc7b4ff215387050108ce6"}
+  ],
+  "raw": {
+    "raw/focused_test.stdout.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/focused_test.stderr.raw": {"bytes": 1277, "sha256": "1d2781beef41aea14e6cd4b57ae68b93d52e3978361ea560a7c28667f828c8ce"},
+    "raw/attack_summary.stdout.raw": {"bytes": 1823, "sha256": "90e06e08be61dcd5e93351ba644da10f4c4eea5e2599f795fe2d0e7541daa291"},
+    "raw/attack_summary.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/two_process_replay.stdout.raw": {"bytes": 532, "sha256": "c8cf31a01ecd17778c0e994726d51b67567152b7ca9c31d5fc77edef5d19b01c"},
+    "raw/two_process_replay.stderr.raw": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "raw/process_metadata.stdout.raw": {"bytes": 1282, "sha256": "22dfae8b4334cd973d55469515c46e7d398f2d5d00e0df22514a5283241019a5"}
+  },
+  "findings": ["F-01", "F-02", "F-03", "F-04", "F-05", "F-06", "F-07"],
+  "claim_ceiling": {"T0": false, "T1": false, "T2": false, "B00": false, "B04": false, "L4": 0, "parent": false, "AD": false},
+  "heavy_lane": {"julia": false, "desc": false, "solver": false, "mesh": false, "provider": false, "external": false},
+  "protected_dirty_snapshot": {"before_status_sha256": "901add68a5be771fa5325a044f6738f501377fb90f5b0d5fd1a8a6130f453ec4", "before_status_line_count": 377, "out_of_scope_mutation": false},
+  "self_hash_exclusions": ["manifest.json", "cleanup_inventory.json"]
+}

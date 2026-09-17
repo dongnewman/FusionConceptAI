@@ -1,0 +1,17 @@
+{
+  "schema": "UP5EarlyPreparationStatusSyncManifestV1",
+  "task_id": "UP5-EARLY-PREPARATION",
+  "sync_id": "status_sync_r1",
+  "status": "accepted_limited",
+  "review_basis": {"review_id":"independent_review_r2","result":"pass_limited","accepted_scope":"early_preparation_template_only"},
+  "accepted": true,
+  "claim_ceiling": "contract_only",
+  "all_conclusions": "pending_outside_accepted_scope",
+  "source_of_truth": "root manifest plus acceptance.md",
+  "changed_scope": ["target package only","root manifest/validation/cleanup and status records"],
+  "forbidden_scope": ["core/source","registry","task manifest","old review records","evidence","future candidate hashes","merge","saturation","search","pruning","evidence transfer"],
+  "formal_gates": {"UP4":"pending","T1":"pending","T2":"pending","verified_G1_edit":"pending","verified_G2_edit":"pending","verified_G3_edit":"pending","provider":"pending","UP5_01":"pending","UP5_02":"pending","UP5_03":"pending","R01_R10":"pending"},
+  "execution_policy": {"merge":false,"saturation":false,"search":false,"pruning":false,"evidence_transfer":false,"julia":false,"solver":false,"provider":false,"physical":false,"external_write":false},
+  "validation": {"json":"static_only","diff":"static_only","cleanup":"recorded_only","execution":"not_executed"},
+  "conclusion": "Accepted limited early-preparation template only; no UP5 or R credit."
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "up1_external_blocker_review_evidence_contract_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "status": "frozen_preparation_only",
+  "labels": {
+    "TEST_ONLY": true,
+    "non_evidence": true,
+    "claim_ceiling": "contract_software_preparation_only"
+  },
+  "threat_crosswalk": {
+    "source": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/13-threat-model/",
+    "required_attack_ids": ["TM-01", "TM-02", "TM-03", "TM-04", "TM-05", "TM-06", "TM-07", "TM-08", "TM-09", "TM-10", "TM-11", "TM-12", "TM-13", "TM-14", "TM-15", "TM-16", "TM-17", "TM-18", "TM-19", "TM-20"],
+    "required_acceptance_ids": ["AR-01", "AR-02", "AR-03", "AR-04", "AR-05", "AR-06", "AR-07", "AR-08", "AR-09", "AR-10", "AR-11", "AR-12"],
+    "required_domains": ["W1-witness-authority", "W2-trust-chain", "W3-source-g2-environment", "W4-local-input-discovery", "R2-06-environment-provenance", "R2-07-authority-intake", "R2-10-environment-capture"],
+    "normalized_codes": {"TM-07": "revocation_status_unavailable"},
+    "closure_rule": "no attack or acceptance requirement may be reported covered unless its matrix row contains component, oracle, contradiction/unavailable outcome, evidence paths and two-process replay fields"
+  },
+  "replay_contract": {
+    "replays_definition": "number of independent OS processes consuming identical frozen input",
+    "determinism_required": true,
+    "minimum_process_count": 2,
+    "minimum_replays": 2,
+    "applies_to": ["all component rows", "all threat/security rows", "PYTHON-STATIC-JSON"],
+    "in_process_repetition_is_insufficient": true,
+    "semantic_compare_excludes": ["started_at_utc", "ended_at_utc", "pid", "parent_pid"]
+  },
+  "hash_algorithm": "SHA-256",
+  "time_requirement": {
+    "timezone": "UTC",
+    "format": "RFC3339 with Z or +00:00",
+    "required": ["started_at_utc", "ended_at_utc", "receipt_created_at_utc", "cleanup_at_utc"]
+  },
+  "receipt_required_fields": {
+    "identity": ["protocol_id", "review_revision", "group_id", "component", "case_id", "verdict", "reviewer_task_id", "reviewer_model", "reviewer_reasoning_effort"],
+    "source_and_input": ["source_revision", "source_paths", "source_hashes", "fixture_paths", "fixture_hashes", "input_canonical_bytes_or_hash", "candidate_binding", "four_version_axes"],
+    "mutation": ["mutation_id", "path_or_json_pointer", "original_typed_value", "attempted_mutated_typed_value", "mutated_input_hash", "mutation_kind", "derived_classification", "derived_reason", "derived_error_path"],
+    "process": ["command_argv", "cwd", "environment_profile", "interpreter_path", "interpreter_version", "module_paths", "module_versions", "started_at_utc", "ended_at_utc", "pid", "parent_pid", "numeric_exit_code"],
+    "raw_streams": ["stdout_path", "stdout_sha256", "stderr_path", "stderr_sha256", "exit_artifact_path", "exit_artifact_sha256", "output_path", "output_sha256"],
+    "replay": ["replay_index", "replay_process_id", "semantic_output_sha256", "canonical_output_sha256", "semantic_row_count", "replay_comparison"],
+    "counters": ["compile_calls", "provider_calls", "solver_calls", "mesh_calls", "external_calls"],
+    "cleanup": ["retained_paths", "disposable_paths", "cleanup_policy_ref"]
+  },
+  "field_rules": {
+    "source_paths": "absolute or repository-relative paths resolved against frozen cwd; every path must exist at capture time",
+    "source_hashes": "reviewer recomputes bytes; implementation-printed hashes are not authoritative",
+    "candidate_binding": "exact candidate URI/ref and identity; absent authority is typed_absent/terminal_deferred, never synthetic present",
+    "four_version_axes": ["payload_schema_version", "canonicalization_profile_version", "grammar_or_capability_applicability_profile_version", "execution_or_evidence_receipt_version"],
+    "derived_classification": "must be calculated from mutated typed input and source/invariant rules; expected_error is assertion-only",
+    "numeric_exit_code": "required even for nonzero or interrupted runs; missing exit artifact is inadmissible",
+    "raw_streams": "raw bytes retained; empty stderr is represented by a real empty file and hash, not omitted",
+    "semantic_output": "must exclude process metadata but include case rows, diagnosis, canonical bytes and hashes",
+    "test_labels": "every fixture/output/receipt in this protocol has TEST_ONLY=true and non_evidence=true"
+  },
+  "admissibility": {
+    "must_hold": ["all required fields present", "all hashes independently recomputed", "fresh process proven", "UTC timestamps valid and ordered", "numeric exit present", "source and input exact-owned", "no reused receipt", "no external/heavy invocation", "test-only labels preserved"],
+    "fail_closed_on": ["URI/version/schema/canonical/profile/axis/candidate mismatch", "duplicate or unknown public field", "foreign owner/child/account/occurrence", "tampered source or input", "stale receipt", "identity published from missing authority", "expected_error-driven routing"],
+    "terminal_deferred_on": ["missing external source authority", "provider unavailable where contract declares an external gap", "typed absent source/input with no contradiction"],
+    "inadmissible_on": ["document-only claim", "in-process-only replay", "determinism row with fewer than two independent processes", "runner exit without raw streams", "PID/UTC/exit missing", "synthetic low-level input presented as formal B04 input", "TEST_ONLY material cited as evidence"]
+  },
+  "verdict_schema": {
+    "allowed": ["pass_limited", "rework", "block_external"],
+    "precedence": ["block_external", "rework", "pass_limited"],
+    "observed_states": ["pass", "fail_closed", "terminal_deferred", "program_exception", "not_applicable"],
+    "program_exception": {
+      "is_verdict": false,
+      "meaning": "unexpected runtime/transport fault, distinct from contract fail_closed and external terminal_deferred",
+      "required_evidence": ["raw_stdout", "raw_stderr", "traceback_or_exception_text", "pid", "utc", "numeric_exit", "input_hash", "source_hash"],
+      "reduction": "force at least rework; only a separately proven unavailable external root may reduce it to block_external; never pass_limited"
+    },
+    "not_applicable": {
+      "is_verdict": false,
+      "meaning": "row intentionally excluded from this R2 scope",
+      "reduction": "not_applicable cannot satisfy a mandatory row; allowed only for rows explicitly future_locked/forbidden_this_round"
+    },
+    "reduction_context": {
+      "pass": "pass_limited only when the expected positive oracle matches",
+      "fail_closed": "pass_limited for an expected contradiction/tamper negative; rework for an unexpected rejection or missing negative",
+      "terminal_deferred": "pass_limited for an expected typed-absence software boundary; block_external when required external authority remains unavailable at the integration gate",
+      "program_exception": "rework_or_block_external_by_root_cause",
+      "not_applicable": "no_verdict"
+    },
+    "pass_limited_scope": "bounded contract/software preparation only; no full UP1, B00/B04, provider, mesh, solver, engineering, physical or R01-R10 credit",
+    "rework_scope": "local implementation, test, or receipt defect; rerun from a new revision after repair",
+    "block_external_scope": "required external authority/source/provider or provenance is unavailable or cannot be established"
+  },
+  "formal_B00_B04_addendum": {
+    "status": "future_locked_not_run_in_R2",
+    "required": ["B00 F0-F5 fresh receipts", "50 candidate-bound B04 receipts", "independent checker", "two separate OS processes", "baseline/source/ref/hash/typed value for every row", "checker raw/PID/UTC/exit evidence"],
+    "prohibited_in_R2": ["B00 execution", "B04 execution", "Julia/DESC/solver/provider/mesh heavy lane"]
+  }
+}

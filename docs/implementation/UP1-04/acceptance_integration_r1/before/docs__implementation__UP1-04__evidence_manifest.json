@@ -1,0 +1,132 @@
+{
+  "record_kind": "implementation_evidence_manifest",
+  "work_order": "UP1-04A",
+  "status": "review_pending",
+  "accepted": false,
+  "accepted_scope": "additive_v5_shared_entry_and_structural_same_candidate_join",
+  "claim_ceiling": "none",
+  "model": "gpt-5.6-luna",
+  "effort": "high",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "input_hashes": {
+    "UP1-01_evidence_manifest.json": "5814aa999ba039b6d5206272a8649fed281289f9d649ed0a0d20a6417bf807c9",
+    "UP1-02_evidence_manifest.json": "f623dda17e3b773c23acf679fc6e636358e8fa2db7743a5f9133108c902f0f78",
+    "UP1-03_evidence_manifest.json": "dd5bc0b48c526dea8e59e3d643a9fc83c1c231d2e36b31a435b828a8d62f0dfa",
+    "src/FusionConceptAI.jl_before": "a7ad18c87f0f8c8ac324cfe90c0cb7616bdd22277b4f6e926557c01195c507ef",
+    "test/runtime_v4_test_manifest.json_before_dirty_protected": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"
+  },
+  "output_hashes": {
+    "src/FusionConceptAI.jl": "aada5bca0ce68c605826ee57fe357a552336869503b5dcd21383112649a1d4d8",
+    "src/Contracts/CandidateStatePackageV5.jl": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": "243b272df7e481b2578c1f95c49bcd2582fa7468eade81eebea86ce2d079fb78",
+    "test/GenomeV5/UP1-04/fixtures.json": "1fe5faedc1072dc328451aeb891683bfa60aae7b20321c243b3cde17a599b1b1",
+    "test/GenomeV5/UP1-04/up1_04a_integration_tests.jl": "518c59da3c5535a0fee66323d933447276d54169fc17666bd610caa0d1a431d8",
+    "test/GenomeV5/UP1-04/layer_fixture_child.jl": "357e6386b40d04768766bb6cae9238bc1b022615a072c0434276ef2453acc6df",
+    "docs/implementation/UP1-04/acceptance.md": "4c86028c893a109c3686b4b5da6e18d90aa22fc0526fcb0987855f5065491496",
+    "logs/import_r1.stdout.txt": "27f965beeaf1219412dfd92c751e1bc91745df2ed41956d0b9c00dadd424a768",
+    "logs/import_r1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/import_r1.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/parse_r1.stdout.txt": "fd41f0ee5789125d4a8093f8dba976ed428db486c944ee22934d755c2d58a04c",
+    "logs/parse_r1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/parse_r1.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/component_load_r1.stdout.txt": "2b0b28149a6f7f118dd9207e541602470778061a962852045984171191bd1975",
+    "logs/component_load_r1.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/component_load_r1.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/component_load_r2.stdout.txt": "4c6a01bdd9affe28b29e68468c497c1db4532d6760b28a70087e0cd9e34a1898",
+    "logs/component_load_r2.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/component_load_r2.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/component_load_r3.stdout.txt": "9259b2910510d0a4db91c3893645fdb381ce482d56a05c21b63045103f431383",
+    "logs/component_load_r3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/component_load_r3.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/parse_r3.stdout.txt": "fd41f0ee5789125d4a8093f8dba976ed428db486c944ee22934d755c2d58a04c",
+    "logs/parse_r3.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/parse_r3.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/component_load_r4.stdout.txt": "172bfea2f420aebb510ab89f02a3364207074eb9ac8d72ce1a1208a269f301c6",
+    "logs/component_load_r4.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/component_load_r4.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/parse_r4.stdout.txt": "fd41f0ee5789125d4a8093f8dba976ed428db486c944ee22934d755c2d58a04c",
+    "logs/parse_r4.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/parse_r4.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r3.stdout.txt": "853a0856cadd5ca53679f133ec86087615e093307970005e7e574a47d55f81f4",
+    "logs/up1_04a_r3.stderr.txt": "c8fce16094e1d082c2aea2c442282327cf19e21d652d7cb9584196e6508cc7d0",
+    "logs/up1_04a_r3.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r4.command.txt": "e104357174826436fa9d516f16352d2c8072dd33b155b85546b2b659c8f0e7c9",
+    "logs/up1_04a_r4.stdout.txt": "f32f7a4c9568ead8d9883be94e9898655c6bbbd628c0f033e372649ca16645ff",
+    "logs/up1_04a_r4.stderr.txt": "d3d13b4b499ca2efa642eff997461decf04c8b1b25c1ae985b47f55b5db42af0",
+    "logs/up1_04a_r4.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r5.command.txt": "46f731e66ec0ab75c46ca2f378d2b60491d83305ac60898a995c34efb926e0db",
+    "logs/up1_04a_r5.stdout.txt": "8ee50a07ba4f1949f7799fe2356309154b4e4a30729441d080df1e54b75c4197",
+    "logs/up1_04a_r5.stderr.txt": "d3d13b4b499ca2efa642eff997461decf04c8b1b25c1ae985b47f55b5db42af0",
+    "logs/up1_04a_r5.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r6.command.txt": "3980e86e29bbfd1d2b756a8ab250155e9b9b4ab4b38e27fa87130150bf87c5d2",
+    "logs/up1_04a_r6.stdout.txt": "3c0aafd9578e5895533955f771b1d7003ff89c721f143dcc5d693e9badd4d764",
+    "logs/up1_04a_r6.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/up1_04a_r6.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r9.command.txt": "4e63db6f6f127b1115ce9dedb6cdcbd20ca6072a20b9b9ad3d7f20fe9384a567",
+    "logs/up1_04a_r9.stdout.txt": "e07af1957e886f20c17b7af962164612e6c2405e26e4b870c43efc0819d0b2f5",
+    "logs/up1_04a_r9.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/up1_04a_r9.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r8.stdout.txt": "05d458a41deb31e094bd221739e972e19cfd5cf9e558ed210db76c8f8a802de9",
+    "logs/up1_04a_r8.stderr.txt": "77f575857c7ca8e093b58ba2a2930b0c1e8988c680523c9d58062caad0d157f6",
+    "logs/up1_04a_r8.exit.txt": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "logs/up1_04a_r12.command.txt": "bfb9e63575e13fb9e0445475535d80840e5cb225f1641e12f739984f5639e846",
+    "logs/up1_04a_r12.stdout.txt": "1188ee28d4196612d465429539c9408ab5a205c4934b1667aaa4a24f1061b9fe",
+    "logs/up1_04a_r12.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/up1_04a_r12.exit.txt": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+    "logs/up1_04a_r10.stdout.txt": "7bd0933a208e61e05e50275212f867bdc01266ed2039176243bc2e60e5d59c90",
+    "logs/up1_04a_r10.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/up1_04a_r11.stdout.txt": "e9ca3655bc6ae488ceebeb60c726f199d56688214306f68bad544b4d87d00f60",
+    "logs/up1_04a_r11.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "allowed_write_paths": [
+    "src/FusionConceptAI.jl",
+    "src/Contracts/CandidateStatePackageV5.jl",
+    "src/GenomeV5/Integration/GenomeV5Integration.jl",
+    "test/GenomeV5/UP1-04/fixtures.json",
+    "test/GenomeV5/UP1-04/up1_04a_integration_tests.jl",
+    "docs/implementation/UP1-04/"
+  ],
+  "not_run": [
+    "B00",
+    "B04",
+    "Julia/DESC heavy lane",
+    "engineering and physical validation"
+  ],
+  "limitations": [
+    "Existing G1/G2/G3 focused tests manually include layer source after using FusionConceptAI; automatic module inclusion would redefine structs.",
+    "The shared entry therefore requires owning layer constructors to have loaded the concrete V5 types before integration.",
+    "UP1-04B must recheck provenance and candidate identity against actual three-layer receipts before any execution claim."
+  ],
+  "execution": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/UP1-04/up1_04a_integration_tests.jl",
+    "run": "r12",
+    "start": "2026-09-14T06:36:50+08:00",
+    "parent_pid": 31060,
+    "exit": 0,
+    "tests": "45/45",
+    "package_hash": "67bf32d7d55b06eac1f495a50fcb1620babd48d9ebbce14867f854f32b3064a5",
+    "receipt_hash": "aeae42aee6a3720b0e8434340ff57f199a4d8bd4767d0fd29d314bb426ec19a0",
+    "receipt_after": "31f3390f62193e274b781c5e61d15ffd7c6097e5fab160000f36af47106542b0",
+    "lane": "A-only isolated child fixture processes; no B00/B04 or Julia/DESC heavy execution"
+  },
+  "protected_after_hashes": {
+    "test/runtime_v4_test_manifest.json": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"
+  },
+  "intermediate_runs": {
+    "r8": {
+      "status": "program_exception",
+      "exit": 1,
+      "evidence": "logs/up1_04a_r8.exit.txt"
+    },
+    "r10": {
+      "status": "unknown",
+      "exit": "artifact_missing",
+      "evidence": "stdout/stderr only"
+    },
+    "r11": {
+      "status": "unknown",
+      "exit": "artifact_missing",
+      "evidence": "stdout/stderr only"
+    }
+  }
+}

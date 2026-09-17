@@ -1,0 +1,200 @@
+{
+  "manifest_id": "UP2-00C-N10-IDENTITY-RECEIPT-runtime-r1-001",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "actual_a_identity_receipt_projection_limited",
+  "claim_ceiling": "contract_only",
+  "work_order": "UP2-00C-N10-IDENTITY-RECEIPT",
+  "schema_contract": {
+    "schema_id": "GenomeV5/UP2/N10IdentityReceiptProjectionV1",
+    "version": "v1",
+    "mutation_count": 5,
+    "source_backed_rows": 5,
+    "classification": "available foreign/stale value mismatch => invalid_type + fail_closed",
+    "legacy": "fresh receipt records empty; V4 legacy provenance absent => independent terminal_deferred",
+    "historical_rows": "old UP2 N10 rows preserved; new versioned schema/fixture"
+  },
+  "actual_a_evidence": {
+    "candidate_ref": "fusionconceptai://candidate/candidate-1",
+    "package_hash": "67bf32d7d55b06eac1f495a50fcb1620babd48d9ebbce14867f854f32b3064a5",
+    "receipt_after": "31f3390f62193e274b781c5e61d15ffd7c6097e5fab160000f36af47106542b0",
+    "source": "UP1-04A r12 archived stdout; matched by r1 actual-A factory"
+  },
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n10_identity_receipt.jl",
+  "environment": {
+    "julia": "1.10.5",
+    "desc": "not invoked",
+    "provider": "not invoked",
+    "threads": "single focused runner with child-fixture Julia invocations",
+    "blas": "LBTConfig([ILP64] libopenblas64_.dll)",
+    "resources": "pre/post external Julia/DESC count zero"
+  },
+  "evidence": {
+    "runtime_exit": 0,
+    "actual_a_identity_receipt": "80/80",
+    "foreign_candidate_receipt_controls": "7/7",
+    "stdout_bytes": 4294,
+    "stderr_bytes": 0,
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "legacy_v4": "terminal_deferred, not exercised",
+    "b00": false,
+    "b04": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10_credit": false,
+    "claim_ceiling": "schema_validation_only"
+  },
+  "attempt": {
+    "id": "r1",
+    "pid": 24168,
+    "wrapper_start_cst": "2026-09-14T08:52:34.9144085+08:00",
+    "process_start_cst": "2026-09-14T08:52:34.9350195+08:00",
+    "process_end_cst": "2026-09-14T08:54:45.6496764+08:00",
+    "exit": 0,
+    "precheck": {
+      "julia": 0,
+      "desc": 0
+    },
+    "postcheck": {
+      "julia": 0,
+      "desc": 0
+    },
+    "child_processes": "short-lived Julia child-fixture invocations recorded in focused_test_r1_process.log"
+  },
+  "allowed_write_paths": [
+    "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl",
+    "test/GenomeV5/UP2/n10_identity_receipt_fixtures.json",
+    "test/GenomeV5/UP2/n10_identity_receipt_tests.jl",
+    "test/GenomeV5/UP2/run_n10_identity_receipt.jl",
+    "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/"
+  ],
+  "review_gate": "r1 runtime exit0 archived; independent Luna review and Sol acceptance required; no B00/B04/physical credit",
+  "artifacts": [
+    {
+      "path": "src/GenomeV5/UP2/N10IdentityReceiptProjectionV1.jl",
+      "sha256": "e372b88e6b52b1ab72235be37c386b03e7bf629e0b998b68ea7869e00d7bec67",
+      "bytes": 24123,
+      "mtime": "2026-09-14T08:46:03.2231852+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n10_identity_receipt_fixtures.json",
+      "sha256": "19d1e2051bf104e306b7b663fd9ff6b5f9ff861cb924573a697f8c1c2489ce63",
+      "bytes": 3176,
+      "mtime": "2026-09-14T08:42:32.935344+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n10_identity_receipt_tests.jl",
+      "sha256": "34023701f056f4b07af88b83bc4e18931a1a923bdd2a86002d45046e97760889",
+      "bytes": 7760,
+      "mtime": "2026-09-14T08:46:14.08172+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n10_identity_receipt.jl",
+      "sha256": "4703862287a7c95b91eaef6c62a0d0e125c2d7043196201782facb2cb3b2f498",
+      "bytes": 283,
+      "mtime": "2026-09-14T08:42:32.9366871+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/acceptance.md",
+      "sha256": "c4fd466cd2a2472edee7e86e394f0d8728117bd82fccdb5a67384f8db3b4f157",
+      "bytes": 3317,
+      "mtime": "2026-09-14T08:55:21.6914986+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/source_audit.md",
+      "sha256": "c952d5afb4fc5fb16ffb73cd3d0df19466b6cdd8ce5eabb6bd3a63aeea9cb622",
+      "bytes": 1780,
+      "mtime": "2026-09-14T08:47:14.8365229+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/focused_test_r1.stdout.log",
+      "sha256": "210c7839b25cb6e23d139aca800eb50c57569cf655a6d52590d18827c8e0cbd8",
+      "bytes": 4294,
+      "mtime": "2026-09-14T08:54:41.1476881+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/focused_test_r1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mtime": "2026-09-14T08:52:34.9309963+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/focused_test_r1.exit",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "bytes": 1,
+      "mtime": "2026-09-14T08:54:45.6568625+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/focused_test_r1_prerun.json",
+      "sha256": "b497948d517d9b71fd81c6b90affcf9ca56d5a1f603005378f2524874398fe15",
+      "bytes": 1360,
+      "mtime": "2026-09-14T08:52:34.9141017+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/focused_test_r1_process.log",
+      "sha256": "eaa1f73302467abcb3f3215ba2123b51a487ec97ce6ec1793206a2cd9d6df339",
+      "bytes": 3388,
+      "mtime": "2026-09-14T08:54:45.6747753+08:00"
+    }
+  ],
+  "pre_execution": {
+    "source_fixture_test_runner_frozen": true,
+    "command_exact": true,
+    "input_snapshot": "focused_test_r1_prerun.json",
+    "no_overwrite": true
+  },
+  "integration_record": {
+    "accepted_scope": "five actual-A identity/receipt fields plus same-G2-plan candidate-specific rebinding",
+    "accepted_by": "Sol",
+    "reviewer": "independent Luna/high",
+    "review_verdict": "pass_limited",
+    "review_manifest": "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/independent_review_r1/manifest.json",
+    "review_manifest_sha256": "ea1a548b6aeadd3c65159b043f3da203d0654c9757dea194f59dab0297cea2d0",
+    "runtime": {
+      "exit": 0,
+      "actual_a_identity_receipt": "80/80",
+      "foreign_candidate_receipt_controls": "7/7",
+      "compile_calls": 0,
+      "provider_calls": 0,
+      "solver_calls": 0,
+      "post_processes": "none"
+    },
+    "boundaries": {
+      "n10_04": "synthetic attempted hash only",
+      "n10_05": "fresh receipt identity-after only",
+      "legacy_v4": "terminal_deferred_missing_authoritative_provenance",
+      "b00": false,
+      "b04": false,
+      "provider": false,
+      "mesh": false,
+      "engineering": false,
+      "physical": false,
+      "r01_r10_credit": false
+    },
+    "aborted_artifact": "acceptance_integration/x.txt",
+    "aborted_artifact_status": "hash recorded then removed; not evidence",
+    "task_manifest_total": "review_pending",
+    "current_hashes": {
+      "docs/implementation/UP2-00C-N10-IDENTITY-RECEIPT/acceptance.md": {
+        "sha256": "0cd118ef4b278ed4a49ee00e8b30363123bfd10f613788dcaa708c753826acb9",
+        "bytes": 4522
+      },
+      "docs/implementation/README.md": {
+        "sha256": "0f62c5145aacc4a21c2814d988552e9e16c10bba5a753a526ce3a2af061221ca",
+        "bytes": 11855
+      },
+      "docs/v4_multitopology_generation/README.md": {
+        "sha256": "6c8e6329b58b7207d88e1b931d2c57a28685107da9181977bcb213c353d3d5d8",
+        "bytes": 18041
+      },
+      "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+        "sha256": "2fd578cdee3f05d65d681bcf00d97f497540f7bf14ad731217d2c449d5104ed2",
+        "bytes": 54552
+      }
+    },
+    "manifest_self_hash": "excluded_from_current_hashes_self_reference"
+  }
+}

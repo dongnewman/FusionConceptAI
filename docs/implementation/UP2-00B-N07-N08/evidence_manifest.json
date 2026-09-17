@@ -1,0 +1,196 @@
+{
+  "manifest_id": "UP2-00B-N07-N08-preexecution-001",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "actual_a_current_admitted_g2_n07_n08_frozen_schema_projection",
+  "schema_contract": {
+    "schema_id": "GenomeV5/UP2/N07N08GeometryProjectionV1",
+    "version": "v1",
+    "mutation_count": 10,
+    "classes": {
+      "N07": 5,
+      "N08": 5
+    },
+    "runtime_status": "r1_failed_runner_path_r2_failed_missing_semantic_views_r3_exit0"
+  },
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n07_n08_geometry.jl",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "environment": {
+    "julia": "1.10.5",
+    "desc": "not invoked",
+    "provider": "not invoked",
+    "python": "3.13.5",
+    "blas": "LBTConfig([ILP64] libopenblas64_.dll)"
+  },
+  "evidence": {
+    "runtime_exit": "0",
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "b00": false,
+    "b04": false,
+    "engineering": false,
+    "physical": false,
+    "r01_r10_credit": false,
+    "claim_ceiling": "contract_only",
+    "actual_a_candidate_bound_rows": 10,
+    "supplemental_rows": 10,
+    "supplemental_in_acceptance_count": false,
+    "accepted_scope": "actual_a_current_admitted_g2_n07_n08_frozen_schema_projection",
+    "general_geometry": false,
+    "up2_total": false
+  },
+  "artifacts": [
+    {
+      "path": "src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl",
+      "sha256": "3b17b9681a27c426e6f8530ad7922e347d497d0630999aad5f0a16a631ebf1aa",
+      "bytes": 13796,
+      "mtime": "2026-09-14T08:04:20.601611+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n07_n08_geometry_fixtures.json",
+      "sha256": "1934c5c1509168ca5e2c92b19f86d8623c8ffe51d49bca596444543b3cbed430",
+      "bytes": 3292,
+      "mtime": "2026-09-14T07:57:16.9052721+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/n07_n08_geometry_tests.jl",
+      "sha256": "83319ee8ff6d0f399f643840b252984011c4424fccc3d2bb525ce3b05d58fac4",
+      "bytes": 8850,
+      "mtime": "2026-09-14T08:04:20.6031833+08:00"
+    },
+    {
+      "path": "test/GenomeV5/UP2/run_n07_n08_geometry.jl",
+      "sha256": "d0d00e25e5e975fc9debfe060a397a4a53fb0568e57c75a578e598e53c5f6d05",
+      "bytes": 275,
+      "mtime": "2026-09-14T07:59:37.0503778+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/acceptance.md",
+      "sha256": "dd2e975f3f226f44715bc2a50c03e1b29904875ab00eaf20521f48617e88cb47",
+      "bytes": 2562,
+      "mtime": "2026-09-14T08:07:48.1345345+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r1.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mtime": "2026-09-14T07:59:30.364389+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r1.stderr.log",
+      "sha256": "fc089ea0cf213756b307ee140aa2218e8df4c19c0e5f69c7805a9a6da1768a5c",
+      "bytes": 1087,
+      "mtime": "2026-09-14T07:59:32.0745591+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r1.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2,
+      "mtime": "2026-09-14T07:59:32.1080716+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r2.stdout.log",
+      "sha256": "89f61f2844adc4c9ab89948a1633356951862464ddb6f91346e489ae80888c34",
+      "bytes": 5489,
+      "mtime": "2026-09-14T08:01:28.3135645+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r2.stderr.log",
+      "sha256": "7f520e9b8472742190f3f06149923cd5fcfbcc5f68f5733a9fc248564f5fb95c",
+      "bytes": 307,
+      "mtime": "2026-09-14T08:01:28.3280859+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r2.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2,
+      "mtime": "2026-09-14T08:01:28.3822388+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r3.stdout.log",
+      "sha256": "d9e46fb2b4edee1faee6044f3afa36c51730ae871fa0512481c837d77df09762",
+      "bytes": 1362,
+      "mtime": "2026-09-14T08:06:08.2216555+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r3.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mtime": "2026-09-14T08:05:21.6170341+08:00"
+    },
+    {
+      "path": "docs/implementation/UP2-00B-N07-N08/focused_test_r3.exit",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "bytes": 3,
+      "mtime": "2026-09-14T08:06:08.2895121+08:00"
+    }
+  ],
+  "allowed_write_paths": [
+    "src/GenomeV5/UP2/N07N08GeometryProjectionV1.jl",
+    "test/GenomeV5/UP2/n07_n08_geometry_fixtures.json",
+    "test/GenomeV5/UP2/n07_n08_geometry_tests.jl",
+    "test/GenomeV5/UP2/run_n07_n08_geometry.jl",
+    "docs/implementation/UP2-00B-N07-N08/"
+  ],
+  "review_gate": "independent review and lane release required; no runtime or physical acceptance",
+  "pre_execution": {
+    "julia_processes": 0,
+    "command_frozen": true,
+    "source_semantic_views_added": true,
+    "package_bound_factory": true,
+    "n08_error_code": "invalid_boundary",
+    "n08_interface_scope": "current_G2_admission_only",
+    "mesh_provider_solver_calls": 0
+  },
+  "post_execution": {
+    "julia_processes": 0,
+    "focused_summary": "108/108 plus 2/2",
+    "stderr_bytes": 0,
+    "actual_a_factory_consumed": true,
+    "compile_provider_solver_calls": 0,
+    "heavy_lane_released": true
+  },
+  "independent_review": {
+    "verdict": "pass_limited",
+    "reviewer": "different Luna/high",
+    "report": "docs/implementation/UP2-00B-N07-N08/independent_review_r3/report.md",
+    "report_sha256": "11a45411185053d2e414363204efb0fb3713ceb30eceec44ed33c8f063cd2cd8",
+    "manifest": "docs/implementation/UP2-00B-N07-N08/independent_review_r3/evidence_manifest.json",
+    "manifest_sha256": "7a0fbf56ae6aaebb0b7d3617fa5533ce7d4503077245822a7129ff11e5605550"
+  },
+  "architecture_decision": "Sol accepted only ten actual-A/current-admitted-G2 frozen schema mutations; global-envelope/regions[1], required-face inclusion, and none_declared are explicit limits.",
+  "integration_scope": "accepted_limited actual-A/current-admitted-G2 ten frozen schema projection only",
+  "integration_review": {
+    "sol_decision": "accepted_limited",
+    "independent_reviewer": "different Luna/high",
+    "review_report": "docs/implementation/UP2-00B-N07-N08/independent_review_r3/report.md",
+    "review_report_sha256": "11a45411185053d2e414363204efb0fb3713ceb30eceec44ed33c8f063cd2cd8",
+    "review_manifest_sha256": "7a0fbf56ae6aaebb0b7d3617fa5533ce7d4503077245822a7129ff11e5605550",
+    "limitations": [
+      "global-envelope/regions[1]",
+      "required-face inclusion only",
+      "none_declared rule is current-G2 scoped"
+    ],
+    "no_credit": [
+      "UP2 total",
+      "B00",
+      "B04",
+      "mesh",
+      "provider",
+      "physical",
+      "engineering",
+      "R01-R10"
+    ]
+  },
+  "integration_archive": "docs/implementation/UP2-00B-N07-N08/acceptance_integration/",
+  "integration_final": {
+    "acceptance_sha256": "faa8f31dc2cea7f7e1ef4c4aa53aa44066ea8a69b7829a436fe7fc3b8e1bb1d7",
+    "manifest_sha256": "self_hash_external_after_write",
+    "implementation_readme_sha256": "1360dd39fac3586e179c01973206e4ac55ae98b4f56f3f2c8f26a5167264c25c",
+    "core_readme_sha256": "4542cd8ef94c6e5767c7d2b142e134d1883c02e8a87308fc32917f016746fa9d",
+    "validate_plan_exit": 0,
+    "git_diff_check_exit": 0,
+    "control_scan_exit": 0
+  }
+}

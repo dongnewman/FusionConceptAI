@@ -1,0 +1,27 @@
+{
+  "review_id": "UP2-01-G3-SOURCE-FEEDBACK-V1-focused-r2",
+  "status": "executor_launcher_failed",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": "started_once_capture_interrupted",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": null,
+  "exit_code": null,
+  "capture_status": "interrupted_before_pid_and_stream_drain",
+  "raw_stdout_captured": false,
+  "raw_stderr_captured": false,
+  "launcher_error": "launcher_error.txt",
+  "preflight": {"julia_desc_process_count": 0, "dirty_rows": 301, "target_hashes_verified": true},
+  "postflight": {"julia_desc_process_count": 0, "target_hashes_unchanged": true, "julia_desc_process_count_after": 0},
+  "target_artifacts": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {"sha256": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0", "bytes": 27969},
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": {"sha256": "a5c2874dbcccefd78bae245e8e79e1448f5a712d843699f5fe1d5ad21d3e142e", "bytes": 8412},
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": {"sha256": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40", "bytes": 2332},
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": {"sha256": "111d5a2ceb9f0364c1cc7efda26d1bb9013577862ac30bd00ff9f3321c5c2642", "bytes": 5251}
+  },
+  "protected_scope": {"source_modified": false, "test_modified": false, "fixture_modified": false, "static_qa_modified": false, "old_evidence_modified": false, "write_scope": ["docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/focused_r2/"]},
+  "claim_ceiling": ["no_focused_result", "accepted_false", "review_pending", "no_compiler_acceptance", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"],
+  "next_gate": "Parent review of the launcher interruption; do not infer a Julia test result from this receipt."
+}

@@ -1,0 +1,46 @@
+{
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "classification": {
+    "R01_R10": false,
+    "bare_actual_authority": "fail_closed:unattested_authority",
+    "hash_tamper": "fail_closed",
+    "missing_authority": "terminal_deferred",
+    "trusted_receipt": "terminal_deferred:same_candidate_authority_gate:VNEXT",
+    "typed_contradiction": "fail_closed",
+    "unexpected_internal_fault": "program_exception"
+  },
+  "files_sha256": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "37a66fcee910b123183df0f6c8eec568f617e5702b6e62875a4d7e6f4d5c5838"
+  },
+  "r2_reviewed_hashes": {
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "d1dfc51ba0c82ae5f7a7e35bff304926a29024e33fb6a9a72bdf88cb49cbd11a",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70be33201ed053223a3b4ccf80e90ee6338a4db47bc933212861ba415a953a00",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "e9302fa2aaeff261c8d0a442468a9497541c0956051a59499c1ba40fabdeeefa"
+  },
+  "r2_verdict": "changes_requested",
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-repair-r3",
+  "repair_scope": [
+    "remove public fault_seam keyword from g3_sf_admit_v1",
+    "retain unexported internal fault seam for controlled classification test",
+    "assert edited return/heat/coefficient/residual closure"
+  ],
+  "review_pending": true,
+  "scope_status": "proposal",
+  "static_qa": {
+    "command": "D:\\Users\\Newman\\anaconda3\\python.exe docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+    "compiler_calls": 0,
+    "desc_run": false,
+    "exit_code": 0,
+    "julia_run": false,
+    "mesh_calls": 0,
+    "physical_evidence": false,
+    "provider_calls": 0,
+    "solver_calls": 0
+  },
+  "status": "proposal"
+}

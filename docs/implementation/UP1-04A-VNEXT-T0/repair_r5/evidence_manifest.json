@@ -1,0 +1,65 @@
+{
+  "record_kind": "AD-30_T0_R5_repair",
+  "decision": "conditional_go_independent_static_precheck",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "runtime_executed": {
+    "julia": false,
+    "desc": false,
+    "focused_test": false,
+    "t1": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false
+  },
+  "static_gates": [
+    {
+      "command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+      "exit_code": 0,
+      "status": "pass",
+      "julia_executed": false,
+      "desc_executed": false
+    },
+    {
+      "command": "python -m json.tool docs/implementation/UP1-04A-VNEXT-T0/repair_r5/evidence_manifest.json",
+      "exit_code": 0,
+      "status": "pass"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "status": "pass"
+    }
+  ],
+  "files": {
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": {
+      "sha256": "333ff3a2976736e13809b603cdcab61524658b7fb20d1b6506ccf188dea3b063",
+      "pre_r5_sha256": "d0463fab22450199e9a84f58753fe1255bdda70962f766da751d85e54c4ddbf7"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": {
+      "sha256": "30406b183ba45f740fa8c41dd5ceb1c5d2fd390b19da1c978fcff9e11501504e",
+      "unchanged_in_r5": true
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": {
+      "sha256": "cd57913db629333d8a000834a2153a779393f2a1cea0ba67c7dd5699f7d97e78",
+      "unchanged_in_r5": true
+    }
+  },
+  "negative_control": {
+    "name": "isolated_g2_mapping_source_hash_mismatch",
+    "same_source": true,
+    "same_source_candidate": true,
+    "same_candidate_envelope": true,
+    "only_mutated_field": "receipt.source_hash",
+    "expected_status": "fail_closed",
+    "expected_errors": ["G2_mapping_source_hash_mismatch"]
+  },
+  "known_gaps": [
+    "no_independently_readable_g2_mapping_evidence_receipt",
+    "evidence_ref_is_opaque_and_external_verification_pending",
+    "no_independently_readable_applicability_or_evidence_axis_record",
+    "g3_source_content_hash_typed_absent",
+    "g3_realization_control_binding_children_typed_absent"
+  ],
+  "next_gate": "different_luna_independent_static_precheck_then_root_decides_focused_julia_gate"
+}

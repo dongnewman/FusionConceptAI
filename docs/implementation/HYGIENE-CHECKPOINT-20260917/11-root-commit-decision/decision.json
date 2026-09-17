@@ -1,0 +1,77 @@
+{
+  "schema": "FusionConceptAI.RootCommitDecision.V1",
+  "decision_id": "HYGIENE-CHECKPOINT-20260917-ROOT-COMMIT-DECISION",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "branch": "main",
+  "commit_authorized": "yes",
+  "local_checkpoint_only": true,
+  "push_authorized": false,
+  "parent_goal_status": "active",
+  "gates_and_credit_unchanged": true,
+  "staged_path_count": 9413,
+  "staged_path_count_note": "After the corrected files are staged again the count remains 9413 because this repair changes only already-staged files.",
+  "staged_allowlist": ["AGENTS.md", "README.md", "docs", "src", "test", "tools", "scripts", "benchmarks", "examples"],
+  "staged_forbidden_counts": {
+    "runs": 0,
+    "cache_or_bytecode": 0,
+    "temp_or_unknown_root": 0
+  },
+  "cached_diff_check": {
+    "command": "git -c core.quotePath=false diff --cached --check -- <scope>",
+    "current_wave_package_scope_count": 16,
+    "current_wave_package_scope_exit": 0,
+    "current_wave_package_scope_diagnostics": 0,
+    "hygiene_scope": "docs/implementation/HYGIENE-CHECKPOINT-20260917",
+    "hygiene_scope_exit": 0,
+    "hygiene_scope_diagnostics": 0,
+    "broad_allowed_scope_exit": 0,
+    "broad_allowed_scope_diagnostics": 0
+  },
+  "current_wave_package_scopes": [
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/22-external-input-recheck",
+    "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/23-root-acceptance-external-recheck",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/06-repair-scope-contract-r3",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/07-repair-scope-contract-r4",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/reviews/06-repair-scope-independent-review-r1",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-C-PERFORMANCE-R2/reviews/07-repair-scope-independent-review-r1",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/03-scope-contract-repair-r2",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/04-machine-checker-scope-contract-r1",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/05-machine-checker-scope-contract-r2",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/reviews/03-scope-contract-independent-review-r1",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/reviews/04-machine-checker-scope-independent-review-r1",
+    "docs/implementation/UP5-EARLY-PREPARATION/M5-SEARCH-R2/reviews/05-machine-checker-scope-independent-review-r1",
+    "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/05-scope-contract-repair-r3",
+    "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/06-scope-contract-repair-r4",
+    "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/reviews/05-scope-contract-independent-review-r1",
+    "docs/implementation/UP4-EARLY-PREPARATION/M5-INVERSE-FEEDBACK-R2/reviews/06-scope-contract-independent-review-r1"
+  ],
+  "broad_allowed_scopes": ["AGENTS.md", "README.md", "docs/v4_multitopology_generation", "docs/reports", "src", "test", "tools", "scripts", "benchmarks", "examples"],
+  "hard_secret_hits": 0,
+  "max_changed_staged_blob_bytes": 96429727,
+  "max_blob_limit_bytes": 100000000,
+  "tracked_queue": {
+    "path": "runs/goal_recovery_20260913_012528_cst/task_queue.json",
+    "status": "unstaged"
+  },
+  "historical_exception": {
+    "scope": "earlier docs/implementation evidence only",
+    "basis": "immutable-byte/hash",
+    "current_wave_waived": false
+  },
+  "untracked_preserved_outside_commit": ["runs", "tmp", "root failure/transient outputs"],
+  "cleanup": {
+    "target_count": 109,
+    "preflight_safe": 109,
+    "result_count": 109,
+    "failure_count": 0,
+    "recoverable_quarantine": true
+  },
+  "prior_final_review": {
+    "path": "docs/implementation/HYGIENE-CHECKPOINT-20260917/10-final-staged-review/report.md",
+    "decision": "commit_authorized: no",
+    "must_remain_unchanged": true
+  },
+  "write_scope": "docs/implementation/HYGIENE-CHECKPOINT-20260917/11-root-commit-decision",
+  "stage_or_commit_performed": false
+}

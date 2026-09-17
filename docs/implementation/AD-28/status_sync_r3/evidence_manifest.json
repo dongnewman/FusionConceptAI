@@ -1,0 +1,77 @@
+{
+  "record_kind": "ad28_status_sync_evidence_manifest",
+  "schema_version": "status-sync-r3",
+  "status": "accepted_limited",
+  "accepted_scope": "architecture_boundary_acyclic_schedule_and_evidence_boundary_only",
+  "accepted": true,
+  "review": {
+    "different_luna_r2": "pass_limited",
+    "sol": "accepted_limited",
+    "independent_status_review_pending": true
+  },
+  "runtime": {
+    "julia_or_desc_executed": false,
+    "process_sweep": "empty",
+    "physics_or_compiler_acceptance": false
+  },
+  "capture": {
+    "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+    "status_rows_before": 295,
+    "status_rows_after": 295,
+    "drift_note": "The working tree was already dirty at capture. The pre-existing dirty set was preserved; this sync owns only the listed AD-28 status artifacts and narrow state/link/pointer edits."
+  },
+  "allowed_narrow_changes": {
+    "README.md": {
+      "before": {"bytes": 23407, "sha256": "ed41002712df38952da8bc2fe294396f7e6e11255c211685562cb63fd5a3e366"},
+      "after": {"bytes": 6235, "sha256": "4133a9e53e020fcfc0d92eedc0394cf29a6fdeddacfe27c197fc97f3cf208fef"}
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "before": {"bytes": 65884, "sha256": "279335e4142a41c964d94d160d661d4eb424370f33fb9e90d95d9ee82a8a9744"},
+      "after": {"bytes": 66131, "sha256": "f79b008cc46f3d105b60459ce14856fc57993b2cc5e5800ad79e28d06c6506c9"}
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "before": {"bytes": 45918, "sha256": "4e0845545a6b246eeb786f8d1ec7bb07ec487f1a18fb6b9998e0773a32bcee0a"},
+      "after": {"bytes": 46106, "sha256": "074344b5dc1c1e643e7eb91d05eed7c113bc3b876c90b796c737f0e419f26ede"}
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "before": {"bytes": 55259, "sha256": "37713fa0e49fd1256e28e8cc71188886dd834517f1f7475ae6198b45d6d0f209"},
+      "after": {"bytes": 55631, "sha256": "71bbbb760697729e005789436715235737da7b65b9733c7dbaa9dca4c23904e4"}
+    },
+    "docs/implementation/AD-28/proposal.md": {
+      "before": {"bytes": 2899, "sha256": "800e16ec8b8cb7d9192345898c5c36187178cca4353e067d12c571fb48d97164"},
+      "after": {"bytes": 3153, "sha256": "4324faef2f53cb3d62c79a85082c8c4086ab5b02f40d79e1df37947da7fc02fe"}
+    },
+    "docs/implementation/AD-28/manifest.json": {
+      "before": {"bytes": 7048, "sha256": "776b25695ece03fc4516f9cb5dcb2f38ad885a27bd6f8ec77012ac7adbbd27ab"},
+      "after": {"bytes": 7379, "sha256": "b13cf452d8dae1b45d8c36441cb2ba6f28da8b20f94804ed117a0902041b2d27"}
+    },
+    "docs/implementation/AD-28/status_sync_r3/acceptance.md": {
+      "after": {"bytes": 1702, "sha256": "eaedf3655eb82bd28eacf10ac321d952b8fc10db33c3181758a19f7ef71dc511"}
+    }
+  },
+  "protected_dirty_files": {
+    "runs/goal_recovery_20260913_012528_cst/task_queue.json": {"bytes": 16762, "sha256": "dbc57e7e44677cfd4b5d950a37d3d9063fde61fc7e4cec9b8cc44c9a9c3c84c0"},
+    "scripts/run_v4_spatial_chain.jl": {"bytes": 12890, "sha256": "ad5f7864da35bcd355ac256a20574648bab1372055954a71596bb631348d1520"},
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {"bytes": 1757, "sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb"},
+    "test/runtime_v4_spatial_entrypoint_tests.jl": {"bytes": 3522, "sha256": "673b29e372f4ba2d841630d2e37b01371653c032046002b3c60bf693e2335532"},
+    "test/runtime_v4_test_manifest.json": {"bytes": 2928, "sha256": "3221a99a3ea135324206e5b2c47ebc23a38514af57f6a51ecd8e8797e8da7f6a"},
+    "test/runtime_v4_validation_uq_execution_request_tests.jl": {"bytes": 10738, "sha256": "df1a67c20c528fed9012067a45640a58c6dede3e45f042a26a9cae056e757ed2"}
+  },
+  "retained_review_evidence": {
+    "docs/implementation/AD-28/repair_r2/report.md": {"bytes": 1567, "sha256": "400cd39dbf9aefc35ec4d96d444cabb90b2659f7e7d948ceb6a1a5f521bb7db0"},
+    "docs/implementation/AD-28/repair_r2/report.json": {"bytes": 3455, "sha256": "d1edfcdf76bd9c8c51def4181a6dfcdb14d58f1d5c80b4708de19b2a6f3a34e0"},
+    "docs/implementation/AD-28/repair_r2/evidence_manifest.json": {"bytes": 3114, "sha256": "b2a30494c383563db99d880d0f4f1587cbdbe73383f706f2b478606731e7227d"},
+    "docs/implementation/AD-28/repair_r2/command_receipts.json": {"bytes": 2295, "sha256": "281190ef73efdf55e31322394a5a28e634634e8761cc0647395b099692520292"},
+    "docs/implementation/AD-28/independent_review_r2/report.md": {"bytes": 2916, "sha256": "4173c623261e94474c9d720a46293d9cb60e0f39baf42d7bac8a24bd98b4921e"},
+    "docs/implementation/AD-28/independent_review_r2/report.json": {"bytes": 2593, "sha256": "ec47de7535eca74681eefac433b305cca59ee4015e1409e097750ab2a1ba97a4"},
+    "docs/implementation/AD-28/independent_review_r2/evidence_manifest.json": {"bytes": 4064, "sha256": "ed47c4282bad66987e3839a1cc12a01ac01c9d3c270780c7cf45c18c290745da"},
+    "docs/implementation/AD-28/independent_review_r2/command_receipts.json": {"bytes": 2686, "sha256": "8727ac55ca77f8e37ad21bc1f8eb5f5b36efe75aae7674d6317f97e1c2630329"}
+  },
+  "current_upstream_gap": {
+    "G1": "actual-A has no candidate-owned u/K(x)/f or typed GRAD/DIV law",
+    "G2": "actual-A has no executable metric/mesh/basis/quadrature/face ownership",
+    "G3": "actual-A has no external source/feedback authority",
+    "classification": "terminal_deferred"
+  },
+  "receipt_reuse": "Old candidate, G-I1A, N05/N06, UP2 local and earlier AD-28 receipts remain historical and cannot serve as formal evidence for a new candidate."
+}

@@ -1,0 +1,54 @@
+{
+  "record_kind": "AD-30_T0_R2_repair",
+  "decision": "conditional_go_independent_static_precheck",
+  "claim_ceiling": "contract_only",
+  "runtime_executed": {
+    "julia": false,
+    "desc": false,
+    "focused_test": false,
+    "t1": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false
+  },
+  "static_gate": {
+    "command": "python docs/implementation/UP1-04A-VNEXT-T0/static_qa.py",
+    "exit_code": 0,
+    "status": "pass",
+    "julia_executed": false,
+    "desc_executed": false
+  },
+  "files": {
+    "src/GenomeV5/Integration/VNextDeclarationTransportV1.jl": {
+      "sha256": "30031df3aaf59165ece5e3b667cb93b30c31af1c84bbc9a0be9c39f8bb42838b",
+      "pre_r2_sha256": "fa093c4ba87c27ab528fd9c3582c377545193212de8198b19bff976bf3947f2b"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_transport_v1_tests.jl": {
+      "sha256": "350bee3b0dbf31785e8adf8ef6e90219a2487ffef443a8a982509324af87f04a",
+      "pre_r2_sha256": "01aaf8f14311bd9ec9915dabe99bddcf4882cceaae2c0a2ce946c64fafe12413"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T0/static_qa.py": {
+      "sha256": "3249587e2f9fbdfdff66981e1736e5e0a72fc1abbf075345d9f859f09907d80e",
+      "pre_r2_sha256": "b200571dc4b0913a9a40cee51ed31612cd1f4487aeb2f258bfad20fe96706cc5"
+    }
+  },
+  "negative_controls": [
+    "fake_or_stale_g2_mapping_receipt",
+    "forged_source_bound_axis_record_hash",
+    "synthetic_oracle_axis_is_deferred",
+    "g3_feedback_actual_unattested_fail_closed",
+    "g3_upstream_actual_unattested_fail_closed",
+    "stale_g3_declaration_hash",
+    "candidate_and_axis_contradictions",
+    "g1_edit_changes_source_declaration_body_and_bundle_hashes",
+    "g2_edit_changes_source_declaration_body_and_bundle_hashes"
+  ],
+  "known_gaps": [
+    "no_current_independently_verifiable_g2_candidate_mapping_receipt",
+    "no_current_independently_verifiable_applicability_or_evidence_axis_receipt",
+    "g3_source_content_hash_typed_absent",
+    "g3_realization_control_binding_children_typed_absent",
+    "external_receipt_verification_pending"
+  ],
+  "next_gate": "different_luna_independent_static_precheck_then_root_decides_focused_julia_gate"
+}

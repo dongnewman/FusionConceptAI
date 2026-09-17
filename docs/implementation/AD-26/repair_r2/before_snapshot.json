@@ -1,0 +1,10 @@
+{
+  "path": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md",
+  "sha256_before": "8eef18b3a9c56681dae317109aa19089fd76097c951072ee4a73118bf94bbc9f",
+  "bytes_before": 40098,
+  "mtime_before": "2026-09-14T05:12:34.6441622Z",
+  "scope": "AD-26 first decision paragraph sentence-level clarification only",
+  "target_text": "Sol 裁决：E1 的 typed authored N05 declaration 与 E2 的 typed authored N06 mapping 只能在 actual A + accepted-limited E0 bound-input identity 之后作为 additive、candidate-owned、content-hashed extensions 产生。E0 v1 的 `n05`/`n06` 字段仍必须为 `nothing`；原 `CandidateStatePackageV5.candidate_hash`、E0 `binding_hash` 与 E0 `bound_input_hash` 不回写、不重算、不就地补字段。G-I1 可以定义独立、版本化的 authority-context hash；其输入必须显式包含完整 same-candidate A/E0 refs 与 hashes，以及 E1/E2 extension hashes，或带 schema/canonical/profile hash 的 typed absent marker。任何 ref、hash、extension、absent marker、schema、canonicalization 或 profile 变化都必须重建 context identity。",
+  "r1_report_sha256": "80431ce5334874b8fe4fb6e8caf50c265455211fafd9d2093204c02dfc209dae",
+  "r1_manifest_sha256": "e731140b39df05057c672c23257c65af6c060f31743dae246d1eaf81f6f8cef8"
+}

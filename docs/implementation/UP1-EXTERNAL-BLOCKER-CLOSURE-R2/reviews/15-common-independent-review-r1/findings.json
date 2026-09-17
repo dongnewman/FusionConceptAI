@@ -1,0 +1,14 @@
+{
+  "schema": "UP1-R2-common-independent-review-v1",
+  "verdict": "rework",
+  "findings": [
+    {"id": "C-R1-01", "severity": "high", "area": "canonical", "status": "open", "location": "tools/up1_external_closure_r2/common/canonical.py:50-64,93-119", "summary": "numeric subclasses can emit NaN instead of canonical JSON"},
+    {"id": "C-R1-02", "severity": "high", "area": "fingerprint", "status": "open", "location": "tools/up1_external_closure_r2/common/fingerprint.py:18-30,50-63", "summary": "nested self-reference bypass and cyclic payload leaks RecursionError"},
+    {"id": "C-R1-03", "severity": "high", "area": "receipt", "status": "open", "location": "tools/up1_external_closure_r2/common/receipt.py:41-54,124-125", "summary": "fingerprint mapping domain and digest aliases are not validated"},
+    {"id": "C-R1-04", "severity": "medium", "area": "receipt", "status": "open", "location": "tools/up1_external_closure_r2/common/receipt.py:92-97,128-131", "summary": "unknown status and malformed error vocabulary accepted"},
+    {"id": "C-R1-05", "severity": "high", "area": "files", "status": "open", "location": "tools/up1_external_closure_r2/common/files.py:37-66; manifest.py:78-110", "summary": "pathname checks and open/hash have a TOCTOU race"},
+    {"id": "C-R1-06", "severity": "low", "area": "manifest-api", "status": "open", "location": "tools/up1_external_closure_r2/common/manifest.py:101-110", "summary": "bare string expected input is treated as character iterable"},
+    {"id": "C-R1-07", "severity": "medium", "area": "taxonomy", "status": "open", "location": "tools/up1_external_closure_r2/common/files.py:69-81", "summary": "dedicated JSON error codes are collapsed to invalid_field"}
+  ],
+  "checks": {"baseline_unittest": "pass_8", "attack_driver": "pass_with_findings", "compileall": "pass", "implementation_manifest": "pass", "input_hashes": "all_match"}
+}

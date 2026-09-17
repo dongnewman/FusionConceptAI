@@ -1,0 +1,53 @@
+{
+  "record_kind": "GI1B-postrun-erratum-r7-command-receipts",
+  "status": "review_pending",
+  "accepted": false,
+  "generator": {
+    "path": "generate_r7.py",
+    "bytes": 8799,
+    "sha256": "bd69a173c1221a5acbedefe8397e4c0a018c5bf6e2048ff8ea89e4037db54f3d",
+    "exit_code": 0
+  },
+  "operations": [
+    {
+      "operation": "raw-byte SHA-256 extraction",
+      "result": "stdout/stderr direct values recorded",
+      "exit_code": 0
+    },
+    {
+      "operation": "structured receipt cross-check",
+      "result": "focused three correct; postrun two old 62-character fields preserved",
+      "exit_code": 0
+    },
+    {
+      "operation": "R6 replacement cross-check",
+      "result": "correct 64-character empty-stderr value extracted from R6 JSON",
+      "exit_code": 0
+    },
+    {
+      "operation": "clean UTF-8 report validation",
+      "result": "no control characters or unexpanded placeholders",
+      "exit_code": 0
+    },
+    {
+      "operation": "execution boundary",
+      "result": "no Julia/DESC command",
+      "exit_code": 0
+    }
+  ],
+  "outputs": {
+    "report_md": {
+      "bytes": 2061,
+      "sha256": "be82d7004d5c20f4930018d0f7ea367d13e0b15e0699452ebadc5700d32d43cb"
+    },
+    "evidence_manifest_json": {
+      "bytes": 3084,
+      "sha256": "30f4c5e68dfcbcd6d62d8a3d84a894f0eab73f483933a0c70a2ecb4bfa177fea"
+    }
+  },
+  "scope_protection": {
+    "r6_untouched": true,
+    "old_evidence_untouched": true,
+    "source_test_fixture_untouched": true
+  }
+}

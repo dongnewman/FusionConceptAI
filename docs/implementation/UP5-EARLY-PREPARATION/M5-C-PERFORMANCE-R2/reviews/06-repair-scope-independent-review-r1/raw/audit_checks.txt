@@ -1,0 +1,56 @@
+audit=M5C_R2_R3_REPAIR_SCOPE_INDEPENDENT_REVIEW_R1
+mode=read_only_independent_schema_contract_review
+utc_start=2026-09-17T04:37:31.7225905Z
+utc_end=2026-09-17T04:37:31.7538841Z
+powershell_pid=63576
+head=b2c04d8339774635aaecd73651efcdb101e01b5d
+branch=main
+working_tree_status=dirty_existing_changes;git_status_entry_count=10758
+julia_process_count=0
+forbidden_processes_started=false
+implementation_started=false
+
+command_1=python 06-repair-scope-contract-r3/self_tests/validate_contract.py
+command_1_exit=0
+command_1_status=pass
+command_1_test_count=24
+command_1_schema_count=11
+command_1_negative_assertions_in_script=8
+
+command_2=independent in-memory replay of negative_vectors/negative_vectors.json against target schemas
+command_2_exit=0
+command_2_vector_count=18
+command_2_schema_rejected=15
+command_2_schema_gaps=condition-required-closure,cache-owner
+command_2_no_schema_gap=baseline-typed-absent
+command_2_failed_expectations=3
+
+hash_manifest_check=21/21 records bytes+sha256 match
+independent_review_hash_manifest_check=36/36 records bytes+sha256 match (review outputs plus reviewed inputs)
+hash_manifest_self_hash=excluded_by_policy
+manifest_frozen_inputs_check=4/4 current owner inputs bytes+sha256 match
+freeze_current_path_count=10
+freeze_current_path_set=expected_paths_present;schema_exact_set=false
+freeze_current_input_hash_check=9/10 match
+freeze_hash_failure=src/RuntimeV4/M4Isolated/ManufacturedAutoCompositionV1.jl declared_sha256=284094e7781f41075915af0f3b930e17e099e1fa45853218f2f639ea57e1a209 actual_sha256=284094e7781f41075915ab0f3b930e17e099e1fa45853218f2f639ea57e1a209
+freeze_hash_failure_delta=hex_index_21 declared=f actual=b
+baseline_status=contract_only_not_captured
+baseline_typed_status=typed_absent
+baseline_source_run_id=null
+baseline_receipt_path=null
+baseline_receipt_sha256=null
+run_authorized=false
+
+review04_P1_01_manifest=partial;required four frozen inputs and contains closure now present, but artifact relative_path has no write-root containment and artifacts are not exact required set
+review04_P1_02_preflight=partial;R/limits and guard branches present, but admit does not machine-relate projected values/effective budget to limits
+review04_P1_03_condition=partial;positional tuple and aggregate branches present, but required_all_met does not machine-relate all required fact_status values; vector accepted
+review04_P1_04_binding=partial;positional nine layers present, but fields are not linked to expected_field_names and owner/object/hash relations are not fully machine-linked
+review04_P1_05_budget=partial;relation branches/ranks present, but requested-vs-sealed inequality and mismatch-before-overlimit multi-reason closure are absent
+review04_P1_06_collision=partial;protocol/domains/hostile receipt present, but bytes-to-hash and injection/full-key equality relations are not schema-enforced
+review04_P1_07_supervisor=partial;post_process and status branches present, but PID parent, UTC ordering, raw/hash and child/supervisor exit relations are not machine-enforced
+review04_P2_01_freeze=blocked;actual AutoComposition current hash mismatch and freeze schema does not enforce exact ten-path set or input hash-to-file closure
+review04_P2_02_stage=partial;dedicated stage schema blocks zero substitution, but raw line existence and count/hash receipt equality are not machine-enforced
+review04_P2_03_baseline=blocked;baseline_capture_contract.json has no schema and typed_absent mutation has no machine rejection
+review04_P2_04_cache=partial;full bytes fields/additionalProperties false present, but owner relation, entry_count equality and bytes-to-hash relations are not enforced
+
+exit=0

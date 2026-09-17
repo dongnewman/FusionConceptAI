@@ -3,11 +3,21 @@
 This repository contains the typed three Genome contracts used by
 FusionConceptAI: G1 mechanism, G2 field and geometry, and G3 realization and
 control.  The source package entrypoint is
-[`src/FusionConceptAI.jl`](src/FusionConceptAI.jl).  The frozen v4 contract and
-Genome documents are under
-[`docs/v4_multitopology_generation`](docs/v4_multitopology_generation), with
-the implementation plan in
-[`docs/implementation/sol_runtime_plan.md`](docs/implementation/sol_runtime_plan.md).
+[`src/FusionConceptAI.jl`](src/FusionConceptAI.jl).  The current architecture, Genome upgrades, execution roadmap and work orders live in
+[`docs/v4_multitopology_generation/README.md`](docs/v4_multitopology_generation/README.md).
+Start there for project guidance. Completed implementation records and explicitly labelled
+historical plans live in [`docs/implementation/README.md`](docs/implementation/README.md).
+Every delegated subtask follows the AD-35 closeout contract: implementation tasks
+must retain dedicated positive and negative test receipts, while architecture,
+audit and documentation tasks retain applicable static validation; cleanup is
+path-owned, hash-recorded and independently reviewed. Static command receipts
+include stdout/stderr/combined content hashes, UTC/exit and input/output/artifact
+hashes. AD-35 is a collaboration contract, and AD-36 clarifies that mandatory
+append-only evidence sidecars live only in task-owned archive/review/status subdirectories
+and do not count as product deliverables. Neither contract adds a mainline task or grants physical/R01–R10 credit.
+The 2026-09-14 roadmap uses Sol (high) for architecture and delegation, with Luna (high)
+for implementation, integration and independent review. The technical descriptions below
+cover bounded existing slices; they do not establish full physics or device readiness.
 
 G1 revision 2 binds each conservation occurrence to its exact invariant owner.
 The seven-argument `InvariantV1` constructor requires explicit occurrence refs;

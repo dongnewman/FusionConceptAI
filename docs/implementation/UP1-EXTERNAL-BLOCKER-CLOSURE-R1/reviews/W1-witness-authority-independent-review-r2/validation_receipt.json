@@ -1,0 +1,26 @@
+{
+  "schema": "UP1.W1.witness-authority-independent-review-r2.validation-receipt.v1",
+  "review_scope": "read_only_repair_r1_round2_adversarial_review",
+  "review_utc": "2026-09-16",
+  "conclusion": "rework_required",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": {"UP1":false,"T0":false,"T1":false,"T2":false,"B00":false,"B04":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks": {
+    "actual_file_count": 37,
+    "cleanup_exact_set": true,
+    "cleanup_hash_rows_recomputed": {"count":37,"mismatch_count":0,"cleanup_self_hash_marker_only":true,"status":"pass"},
+    "json_unique_parse": "pass",
+    "validation_receipt_hash_map": {"count":14,"missing":0,"mismatch":0,"status":"pass"},
+    "manifest_product_hashes_at_manifest_preimage": {"count":10,"mismatch_count":1,"mismatches":{"report.md":{"recorded":"d6b46b931e4369047b69b79548d94ee4628bcce8a2cca0253860cfa0794e80f3","observed":"346432a0d872fb64606e2ddaaed4ddefcbc0d915c0dc3f309f7207b6a7c6ad48"}},"status":"fail"},
+    "typed_absence_register": {"count":10,"gap_consistency":"pass"},
+    "field_contracts": {"required_equals_contracts":true,"verifier_ref":true,"idempotency_key":true,"status":"pass"},
+    "canonical_and_request_binding": "pass",
+    "freshness_revocation_trusted_time": "pass_contract_level",
+    "negative_fixtures": {"placeholder": "expected_reject_label_pass", "retry": "expected_reject_label_pass", "foreign_edge":"expected_reject_label_pass", "executable_behavior":"not_proven"},
+    "failure_records": {"count":4,"exit_code_all_one":true,"pid_utc":"explicit_collection_failure_not_guessed","raw_paths_present":true},
+    "successful_static_run": {"pid":93696,"exit":0,"stdout_sha256":"bb7e84929c34460cca4017360472c315927a0dcfbdc485bed0b6066ec8ab0ff1","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"bb7e84929c34460cca4017360472c315927a0dcfbdc485bed0b6066ec8ab0ff1","utc_start":"2026-09-16T15:33:27.540529Z","utc_end":"2026-09-16T15:33:27.543658Z"},
+    "independent_checker": {"pid":108788,"utc_start":"2026-09-16T15:45:37.433425+00:00","utc_end":"2026-09-16T15:45:37.458587+00:00","exit":0,"raw_sha256":"108c5e074c200c703e27912ae15f228d05f76466c0a50e7270923f86288279d1","raw":"JSON_UNIQUE_PARSE=PASS; EXACT_37_FILE_CLEANUP=PASS; ALL_CLEANUP_HASHES=PASS; PRIOR_6_FINDINGS_NO_REGRESSION=PASS; FINAL_SUCCESS_93696_RECEIPT_PRESENT=PASS; STATIC_NEGATIVE_EXPECTATIONS=PASS; EXIT_CODE=0; MANIFEST_HASH_MISMATCHES=report.md"},
+    "independent_static_validator_rerun": {"pid":79076,"utc_start":"2026-09-16T15:45:09.549705+00:00","utc_end":"2026-09-16T15:45:09.682952+00:00","exit":0,"stdout_sha256":"e89e9b25fb778f7c0f6d96e1ef23be7acf077855b4ee25dfc9e53381915499b5","stderr_sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","combined_sha256":"e89e9b25fb778f7c0f6d96e1ef23be7acf077855b4ee25dfc9e53381915499b5"}
+  },
+  "limitations": ["No external witness, authority, trust root, production verifier, S3, Julia, DESC, mesh or solver was run.","Static negative fixtures establish contract expectations, not production authority behavior.","All four prior failures and raw material remain retained."]
+}

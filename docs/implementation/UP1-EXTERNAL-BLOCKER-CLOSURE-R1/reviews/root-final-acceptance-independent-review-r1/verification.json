@@ -1,0 +1,44 @@
+{
+  "schema": "UP1.root-final-acceptance-independent-review.verification.v1",
+  "decision": "pass_limited",
+  "read_only": true,
+  "scope": "Only root-final-acceptance-independent-review-r1 was written; root-final acceptance, final integration R2 and all source packages were read-only.",
+  "fresh_process": {
+    "command": "python -B docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/reviews/root-final-acceptance-independent-review-r1/static_root_final_validator.py",
+    "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+    "pid": 78704,
+    "started_utc": "2026-09-16T17:27:51.7757481Z",
+    "ended_utc": "2026-09-16T17:27:52.4245551Z",
+    "exit": 0,
+    "stdout": {"path": "raw/static_root_final_validator_r2.stdout.raw", "bytes": 2602, "sha256": "719b43227c4eedf2a2b1fda9dadb681ee7f95dac468541a2d554eb17c508f6cc"},
+    "stderr": {"path": "raw/static_root_final_validator_r2.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "checks_passed": 17
+  },
+  "preserved_first_attempt": {
+    "pid": 80932,
+    "started_utc": "2026-09-16T17:27:06.7401437Z",
+    "ended_utc": "2026-09-16T17:27:07.4023394Z",
+    "exit": 1,
+    "reason": "reviewer predicate required an absent literal; package contains the semantically equivalent 'no S3 rerun'",
+    "stdout": {"path": "raw/static_root_final_validator.stdout.raw", "bytes": 2720, "sha256": "ebce18b2857edb44399833e603e6b2da1ef4195d320ad3bfbf3adc579737d9cc"},
+    "stderr": {"path": "raw/static_root_final_validator.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "root_final": {
+    "actual_owned_declared_files": "8/8/8",
+    "stable_hash_mismatches": [],
+    "cleanup_hash_mismatches": [],
+    "self_hash_exclusions": ["acceptance_manifest.json", "cleanup_inventory.json"],
+    "usable_external_inputs": 0,
+    "up1_blockers_resolved": false,
+    "fresh_s3": "typed_absent/terminal_deferred/no_publish",
+    "owners_and_channels": "typed_absent",
+    "handoff_sent": false,
+    "formal_credit": false,
+    "route_transition_count": 8,
+    "node_count": 39,
+    "dag_changed": false,
+    "m5_c": "deferred_performance_blocked",
+    "m5_c_formal_credit": false,
+    "runtime": {"julia": "not_run", "S3": "not_run", "DESC": "not_run", "solver": "not_run"}
+  }
+}

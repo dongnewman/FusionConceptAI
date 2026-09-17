@@ -1,0 +1,8 @@
+--- docs/implementation/AD-20/index_before/README.md
++++ docs/implementation/AD-20/index_after/README.md
+@@ -16,4 +16,5 @@
+ | UP1-02 G2 空间与场合同 | [UP1-02 acceptance](UP1-02/acceptance.md)、[evidence manifest](UP1-02/evidence_manifest.json) | 仅接受 `axis_aligned_rational_3d_g2_structural_contract`；`claim_ceiling=contract_only`，B00/B04/provider/mesh/engineering/physical/R01–R10 均未通过 |
+ | UP1-03 G3 资源/控制/反馈合同 | [UP1-03 acceptance](UP1-03/acceptance.md)、[evidence manifest](UP1-03/evidence_manifest.json) | 仅接受 `g3_structural_resource_control_fault_and_standalone_feedback_contract`；`claim_ceiling=contract_only`，真实跨层 provenance/UP1-04 join 与 B00/B04/provider/工程/物理/R01–R10 均未通过 |
++| AD-20 G2 ref authority 与 UP1-04 staged schedule | [AD-20 acceptance](AD-20/acceptance.md)、[evidence manifest](AD-20/evidence_manifest.json) | `accepted_limited` 仅覆盖新 G2 public-ref namespace 与 UP1-04A→UP2-00→UP1-04B→UP1-04→UP2-01 排期；实现、provider、B00/B04、mesh、工程、物理、R01–R10 均未通过 |
+ | UP1-INDEX 三层有限接受汇总 | [UP1-INDEX acceptance](UP1-INDEX/acceptance.md)、[evidence manifest](UP1-INDEX/evidence_manifest.json) | 仅汇总三层各自有限 structural contract；不代表 UP1 整体、UP1-04 或父目标通过 |
+ | W24-AUDIT-CHECKER | [acceptance](W24-AUDIT-CHECKER/acceptance.md)、[evidence manifest](W24-AUDIT-CHECKER/evidence_manifest.json) | 仅接受 execution-ledger predicate 与 checker artifact 语义修复；不提供 W24 物理/工程或 R01–R10 信用 |

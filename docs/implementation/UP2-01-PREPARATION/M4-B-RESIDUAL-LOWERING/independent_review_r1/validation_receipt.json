@@ -1,0 +1,49 @@
+{
+  "schema": "m4-b-residual-lowering-independent-review-validation-v1",
+  "task_id": "UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/independent_review_r1",
+  "status": "pass_limited",
+  "reviewer_execution": "fresh_serial_python_then_julia",
+  "command_receipts": ["command_01_python_oracle.receipt.json","command_02_julia_tests.receipt.json"],
+  "assertions": {
+    "python_exit_zero": true,
+    "python_fraction_terms_exact": true,
+    "python_divergence_11_over_60": true,
+    "python_source_negative_11_over_60": true,
+    "python_residual_zero": true,
+    "julia_exit_zero": true,
+    "julia_53_of_53": true,
+    "stderr_empty": true,
+    "strict_serial_order": true,
+    "final_input_hashes_match_delivery_and_integration": true,
+    "typed_failure_repair_is_single_causal_source_change": true,
+    "initial_51_plus_2_failure_preserved": true,
+    "foreign_owner_binding_controls_present": true,
+    "source_owner_and_conservation_owner_binding_present": true,
+    "deferred_time_multifield_controls_present": true,
+    "forbidden_api_controls_present": true,
+    "shared_entry_registry_project_manifest_unchanged": true,
+    "roles_pairwise_distinct": true,
+    "upstream_preflight_raw_retained_non_counted": true,
+    "cleanup_exact_owned_paths_only": true
+  },
+  "upstream_failure_history": {
+    "test_execution_initial": "../test_execution_r1/command_02_julia_tests.*",
+    "integration_preflight": "../integration_r1/archive/harness_capture_abort_20260916T0718Z/"
+  },
+  "raw": {
+    "directory": "raw/",
+    "static_audit": "raw/command_03_static_audit.stdout.raw",
+    "sha256": {
+      "python_stdout":"4e1d41a4704d27f9809f458e973672bd9b743127a01b958fa5cba8f4531a80b3",
+      "python_stderr":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "julia_stdout":"11f8ac5615e49c620a822fda6ab497709a9b33a695abdcd4227d0bca4cabe10f",
+      "julia_stderr":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "static_audit":"0e7042c661817b6aed8efdb5cc60ce3181def0ed0dad7ae963ff713e8b119bf5"
+    }
+  },
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "formal_credit": [],
+  "parent_goal_closed": false,
+  "sol_acceptance_required": true
+}
+

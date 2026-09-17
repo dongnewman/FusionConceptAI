@@ -1,0 +1,40 @@
+{
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-postrun-r1-evidence",
+  "status": "proposal",
+  "verdict": "changes_requested",
+  "accepted": false,
+  "ready_for_serial_focused": false,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "focused_r1_exit_code": 1,
+  "files_sha256": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "37a66fcee910b123183df0f6c8eec568f617e5702b6e62875a4d7e6f4d5c5838",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "ff1ae5e48c83f6240a38ed1c16f39c24d141572d63e8544447313e59cb5f01f0"
+  },
+  "diagnosis": {
+    "source_type_definition": "present",
+    "include_path": "present",
+    "module_qualified_name": "FusionConceptAI.G3SFEndpointV1",
+    "public_export": "absent",
+    "test_call": "unqualified G3SFEndpointV1",
+    "classification": "test_namespace_error"
+  },
+  "protected_raw_evidence": {
+    "stdout_sha256": "2828ff9be9aff6b09b42ba32621a5d194b511af0770d09778cdb6ca7b4be1abd",
+    "stderr_sha256": "42e397436d4057def496a22ee6b6baf48a97c0f80034726c53ee9fa3d65aa165",
+    "run_json_sha256": "f37604ca1445a2703c713d1a811a1067ac837fdca92a71a2e53d56720260623f",
+    "input_hashes_sha256": "e4a59d5fb598d5c48366895ad2968b2734567577f93396edf8c1a32251a8ba4d",
+    "dirty_before_after_sha256": "0a8f7b002636d4ac19778bbd1176e6137fbd1247a2fc584da0a4f34d860d1480"
+  },
+  "runtime_boundary": {
+    "julia_run_by_review": false,
+    "desc_run_by_review": false,
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false
+  },
+  "exit_gate": "qualified test names plus complete focused exit 0"
+}

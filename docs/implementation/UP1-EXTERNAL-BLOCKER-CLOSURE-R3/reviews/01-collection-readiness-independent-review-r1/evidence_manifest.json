@@ -1,0 +1,53 @@
+{
+  "schema": "UP1.external-handoff.collection-readiness-independent-review-r1.v1",
+  "status": "audit_facts_confirmed_proposal_has_p1_p2",
+  "decision": "not_ready_for_one_shot_external_delivery",
+  "claim_ceiling": "independent_read_only_contract_review_no_external_authority_no_up1_credit",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "reviewed_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "command": "python -B - (in-memory JSON parse/count/type/key/hash checks)",
+  "pid": 102192,
+  "utc": "2026-09-16T22:01:35.733860Z",
+  "exit_code": 0,
+  "network": false,
+  "external_send": false,
+  "ad_s3_julia_desc_solver": "not_run",
+  "production_tests": "not_run",
+  "source_or_test_mutation": false,
+  "files": {
+    "review.md": {"bytes": 11390, "sha256": "6114cfc24fcfc1fc441d414ad8742736331c1592d0303b6d19e031ba91b3435d"},
+    "raw/independent_static.stdout.raw": {"bytes": 855, "sha256": "ac14c4c89fe4dbb257b30e9d74a7bd59406f31514f20dcfbfa507cda16182a66"},
+    "raw/independent_static.exit.txt": {"bytes": 2, "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"},
+    "raw/independent_static.pid.txt": {"bytes": 7, "sha256": "eaf43fed26d859b897451f72d8b16c768c6762195c346f5226571edf4b81cae0"},
+    "raw/independent_static.utc.txt": {"bytes": 28, "sha256": "22391041a7b31330a13b5b05abf038d52ffae706541fdb224b36b7303b69aae2"},
+    "raw/schema_gap_check.stdout.raw": {"bytes": 797, "sha256": "dfd5060cab5147fb9501b2e94140db491105c1c7f0be0ca8dc1fc551213781da"},
+    "raw/manifest_validation.stdout.raw": {"bytes": 193, "sha256": "a3e28af2517493c02c11c5e8aa5e454e24f4a3328c0d9983fec8ba1c88929757"},
+    "raw/template_endpoint_check.stdout.raw": {"bytes": 331, "sha256": "7c32b12113990a2a9c0fe8092532d7340829d6609e4b4572088ecb6b22a16df4"}
+  },
+  "frozen_inputs": {
+    "r3/01-collection-readiness-audit/audit.md": "54d5fae0e15ca4c9a60374d5001847056ee5855b71748613f904cf9ae534322a",
+    "r3/01-collection-readiness-audit/contract_patch_proposal.md": "4ffa4c21571fcc948b261736e6e8aa3ebb05a2bc060baf5453be454dfa59db92",
+    "r3/01-collection-readiness-audit/field_matrix.json": "7e7bc4b2fb27294dabde876b6eb7d91b56525e038ffc763fb7abe09fbaf36ff3",
+    "r3/01-collection-readiness-audit/manifest.json": "see target manifest; self excluded there",
+    "r2/19-external-handoff/manifest.json": "1be882c364b4e584df9bfdb5247779739f33d96500d695c57037a0b3307bc3f",
+    "r2/19-external-handoff/request_packets.json": "e446748234423626303e1eaac5970a86b10a74069cd03b7e115e398eead8a536",
+    "r2/19-external-handoff/responsibility_matrix.json": "3e2f7a9e7fbb2c8e48b3728447f024f74f243e0118b30037e27da2d7391c978c",
+    "r2/19-external-handoff/recovery_matrix.json": "110f41f2765e7973690c8f879d47620ec0cc8d94cbaafdabb9b3f358728d642c",
+    "r2/19-external-handoff/input_templates/ehp02_pki_security.json": "9fd594bab2f9b338b5ae6956a00f1526b7eac5d9d94a4c08f724eb51aaf88281",
+    "r2/19-external-handoff/input_templates/ehp03_source_g2.json": "c0c5f45b4f2aa099a0929ce7cfdfc96d37b9a1ce3f5640843b3784a6fdcb6445",
+    "r2/19-external-handoff/input_templates/ehp04_environment_provenance.json": "852957d1979437ba32941fbc6d7a26b92603c2a563d7f4739bb69dc27a2f8915",
+    "r2/01-witness-authority/contract.md": "6e946872c19d7a8ee179d6bd3c9e1f7440942f17bb4eec3eed537ea608dfc411",
+    "r2/04-source-axis-binding/contract.json": "377d6c766f5d16980fbb5782a04a69ced6dc438d5159c426efb3870acdf94a5f",
+    "r2/06-environment-provenance/schema.json": "db4f81215668a5b53b1d255ece8bc6f903e3cf040f2e8f1af253afdcc8881f18"
+  },
+  "raw_evidence": [
+    "raw/independent_static.stdout.raw",
+    "raw/independent_static.exit.txt",
+    "raw/independent_static.pid.txt",
+    "raw/independent_static.utc.txt",
+    "raw/schema_gap_check.stdout.raw",
+    "raw/manifest_validation.stdout.raw",
+    "raw/template_endpoint_check.stdout.raw"
+  ],
+  "self_hash_exclusion": ["evidence_manifest.json"]
+}

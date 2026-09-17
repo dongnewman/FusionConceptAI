@@ -1,0 +1,72 @@
+{
+  "schema_version": "UP2-N06-H0A-dimensioned-law-focused-r2-evidence-manifest-v1",
+  "status": "runtime_failed_after_first_testset_error",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "pid": 45976,
+    "exit_code": 1,
+    "end_utc": "2026-09-14T19:17:39.0484304Z",
+    "start_utc": null,
+    "groups_observed": 1,
+    "pass": 5,
+    "fail": 0,
+    "error": 1,
+    "total": 6,
+    "postflight_julia_desc_count": 0
+  },
+  "target_hashes": {
+    "source": "03aa28636626efa4a5fdcb2f806e23bfc3e166f0d6fcabe72ebb0e7c6001e8dc",
+    "tests": "70662390ac46a781ebf0c2e01e910ed640943b3e98c08c5d224a3e12705672dc",
+    "fixture": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99",
+    "runner": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+  },
+  "evidence": [
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/input_manifest.json",
+      "bytes": 1897,
+      "sha256": "b280c1590fd0e449d3cb8b5331ebcdeb896667db7a25c966749195bc874f5f74"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/status_snapshot.txt",
+      "bytes": 14487,
+      "sha256": "d48208778d19477a679037add5899b4a910d0529e9c46f6cd30a0e130a4b5383"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/stdout.txt",
+      "bytes": 1678,
+      "sha256": "d5a7aa93f0dc73a3374cdd7f86e0eda6568d6fe4c06cfae3d9744a1028a01748"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/stderr.txt",
+      "bytes": 310,
+      "sha256": "a64e6d35d8d86249f2a54bdce3dc19890943cbc320899aa1ce2a73dcb15f1225"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/protected_before_after.json",
+      "bytes": 3037,
+      "sha256": "0ddcf13ba5f6fbaa612a3fd0afa09c517d624e0846c99a953eea281e449a8c42"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/command_receipts.json",
+      "bytes": 2511,
+      "sha256": "835ef9adf2e4cab7b113c015ba50b9144fbdfec91133ff465303baa4d0604495"
+    },
+    {
+      "path": "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r2/qa.json",
+      "bytes": 1896,
+      "sha256": "488bbd640de69982bb870a2796f3bdad34f91ec8e69c5d6d2403f94fade4ac59"
+    }
+  ],
+  "claims_ceiling": [
+    "no full-suite pass",
+    "no dimensioned-law positive",
+    "no B00",
+    "no B04",
+    "no physics",
+    "no engineering",
+    "no provider",
+    "no mesh",
+    "no R credit"
+  ],
+  "self_hash_excluded": "evidence_manifest.json"
+}

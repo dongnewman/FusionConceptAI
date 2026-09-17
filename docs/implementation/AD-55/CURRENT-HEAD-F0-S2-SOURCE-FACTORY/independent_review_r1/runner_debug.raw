@@ -1,0 +1,11 @@
+Set-Content : Cannot bind parameter 'Encoding'. Cannot convert value "utf8NoBOM" to type "Microsoft.PowerShell.Commands
+.FileSystemCmdletProviderEncoding". Error: "Unable to match the identifier name utf8NoBOM to a valid enumerator name. S
+pecify one of the following enumerator names and try again:
+Unknown, String, Unicode, Byte, BigEndianUnicode, UTF8, UTF7, UTF32, Ascii, Default, Oem, BigEndianUTF32"
+At D:\006-Programing\LMC\FusionConceptAI\docs\implementation\AD-55\CURRENT-HEAD-F0-S2-SOURCE-FACTORY\independent_review
+_r1\run_independent.ps1:22 char:111
++ ... t -LiteralPath (Join-Path $outdir 'receipt.json') -Encoding utf8NoBOM
++                                                                 ~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Content], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.SetContentCommand
+ 

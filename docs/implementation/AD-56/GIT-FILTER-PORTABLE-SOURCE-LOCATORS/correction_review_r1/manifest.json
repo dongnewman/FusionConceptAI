@@ -1,0 +1,38 @@
+{
+  "schema": "AD56.correction_review_r1.manifest.v1",
+  "task": "AD-56 git-filter portable source locators correction",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "baseline_head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "checks": {
+    "task_manifest_raw_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_manifest_git_blob_oid_separate": "f514c155e2004378a61ee3efc4d0be9085eeb017",
+    "plan_31_markdown_534_links_39_tasks_acyclic": true,
+    "correction_receipt_after_hashes_match_current": true,
+    "correction_scope_excludes_source_tests_and_18_sources": true,
+    "no_runtime_tests": true,
+    "task_owned_probe_builder_scripts_cleared": true,
+    "stdout_stderr_receipts_retained": true,
+    "pycache_and_temp_dirs_clear": true,
+    "dirty_protection_preserved": true
+  },
+  "claim_ceiling": {
+    "provenance_portability_software_only": true,
+    "source_authority": false,
+    "trusted_source_identity": false,
+    "candidate_identity": false,
+    "final_identity": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "physics": false,
+    "search": false,
+    "R01_R10": false,
+    "L4": 0
+  },
+  "evidence": [
+    "report.md",
+    "hash_inventory.json",
+    "cleanup_inventory.json"
+  ]
+}

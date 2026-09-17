@@ -1,0 +1,14 @@
+{
+  "schema": "n06_dimensioned_law_audit_receipts_v1",
+  "commands": [
+    {"purpose": "source/hash/process preflight", "command": "PowerShell Get-FileHash over frozen inputs and process sweep", "exit": 0, "julia_count": 0, "desc_count": 0},
+    {"purpose": "matrix/source inspection", "command": "PowerShell/rg static inspection of G1/G3 fixtures, N06/N05/E0 source and archives", "exit": 0},
+    {"purpose": "json_parse", "command": "PowerShell ConvertFrom-Json over audit JSON", "exit": 0},
+    {"purpose": "control_scan", "command": "PowerShell scan of entry_audit_r1 excluding CR/LF/TAB", "exit": 0},
+    {"purpose": "plan_validation", "command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0},
+    {"purpose": "diff_check", "command": "git diff --check", "exit": 0},
+    {"purpose": "runtime", "command": "Julia/DESC", "exit": null, "status": "not_run"}
+  ],
+  "process_sweep_final": {"julia": 0, "desc": 0},
+  "protected_scope": "no source/test/core/run files written by this audit"
+}

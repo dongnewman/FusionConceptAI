@@ -1,0 +1,48 @@
+{
+  "schema": "m4-scope-decision-r1-root-acceptance-v1",
+  "task_id": "UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/root_acceptance_r1",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "scope_decision_only",
+  "claim_ceiling": "scope_decision_only",
+  "decision_authority": "Sol/root",
+  "recorder": "Luna m4_scope_record",
+  "review_basis": "independent_review_r3",
+  "review_verdict": "pass_limited",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "base_commit": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "parent_task_count": 39,
+  "parent_dag_unchanged": true,
+  "products": [
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/root_acceptance_r1/report.md",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/root_acceptance_r1/manifest.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/root_acceptance_r1/validation_receipt.json",
+    "docs/implementation/UP2-01-PREPARATION/M4-SCOPE-DECISION-R1/root_acceptance_r1/cleanup_inventory.json"
+  ],
+  "m4_lane": {
+    "slice_A": "accepted_limited_scope_contract_only; not_dispatched",
+    "input": "explicit manufactured_or_analytic_only",
+    "underlying_claim_ceiling": ["manufactured_control", "screen_only"],
+    "B": "unauthorized until M1 independent Luna pass_limited and separate Sol accepted_limited",
+    "C_topology_transfer": "unauthorized",
+    "D_coupled_solve": "unauthorized"
+  },
+  "m1_gate": {
+    "path": "docs/implementation/UP0-01/m1_execution_closure_r1/",
+    "current_status": "review_pending",
+    "required_before_A": "independent Luna pass_limited plus separate Sol accepted_limited",
+    "accepted_by_this_record": false
+  },
+  "formal_reentry": ["T0", "authority recheck", "T1", "T2", "aggregate", "UP2-00", "UP1-04B", "UP1-04", "UP2-01"],
+  "up1_04b_receipts": "50 fresh receipts + checker + two-process replay",
+  "external_trust": {
+    "state": "typed_absence",
+    "no_repeat_rule": "unchanged input forbids repeat S3 or new AD",
+    "recovery": "real external material change, fresh freeze, independent verification"
+  },
+  "not_closed": ["UP2-01", "UP2", "B00", "B04", "provider", "mesh", "engineering", "physical", "R01-R10"],
+  "runtime": {"julia": "not_run", "solver": "not_run", "A": "not_dispatched", "B": "not_dispatched", "C": "not_dispatched", "D": "not_dispatched"},
+  "validation": {"kind": "documentation_validation", "code_tests": "not_applicable"},
+  "sol_decision": "accepted_limited_scope_decision_only"
+}

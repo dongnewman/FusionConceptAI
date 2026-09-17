@@ -1,0 +1,162 @@
+{
+  "schema": "H0A-focused-r8-execution-manifest",
+  "status": "executed_exit0",
+  "accepted": false,
+  "review_pending": true,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_dimensioned_law.jl",
+  "pid": 25164,
+  "start_utc": "2026-09-15T00:01:45.3282274Z",
+  "end_utc": "2026-09-15T00:07:20.0290209Z",
+  "exit_code": 0,
+  "inputs_before": {
+    "src\\GenomeV5\\UP2\\N06DimensionedLedgerLawV1.jl": {
+      "bytes": 59585,
+      "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+    },
+    "test\\GenomeV5\\UP2\\n06_dimensioned_law_tests.jl": {
+      "bytes": 48902,
+      "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+    },
+    "test\\GenomeV5\\UP2\\n06_dimensioned_law_fixtures.json": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "test\\GenomeV5\\UP2\\run_n06_dimensioned_law.jl": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "inputs_after": {
+    "src\\GenomeV5\\UP2\\N06DimensionedLedgerLawV1.jl": {
+      "bytes": 59585,
+      "sha256": "c317ce62e8ec1252491bfbf195daccda6ba05cc2a847bcfd311f391916cc8d1d"
+    },
+    "test\\GenomeV5\\UP2\\n06_dimensioned_law_tests.jl": {
+      "bytes": 48902,
+      "sha256": "58e1293fe7f7504cbb1f63a5fa9cd11734704e5ad742ce30607a00825d6b15f8"
+    },
+    "test\\GenomeV5\\UP2\\n06_dimensioned_law_fixtures.json": {
+      "bytes": 1451,
+      "sha256": "779e29bac0a71c5072896301e24e74c9686c293609b89e250d0b0aff5bf0cc99"
+    },
+    "test\\GenomeV5\\UP2\\run_n06_dimensioned_law.jl": {
+      "bytes": 299,
+      "sha256": "da4c41517badd8c99f5f10e55c9219e2450afb223798eb7f7b4db2048ce293dc"
+    }
+  },
+  "raw_outputs": {
+    "stdout": {
+      "path": "stdout.raw",
+      "bytes": 10342,
+      "sha256": "9c97f086a3b5f9dadce1be39656b84c949b7ba494f63630ac9f405363b06d820"
+    },
+    "stderr": {
+      "path": "stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "group_summary_blocks_observed": 75,
+  "h0a_groups": [
+    {
+      "name": "H0-A unit equation constructor dispatch",
+      "pass": 9,
+      "total": 9,
+      "time": "1.7s"
+    },
+    {
+      "name": "H0-A exact source match classification",
+      "pass": 22,
+      "total": 22,
+      "time": "2.3s"
+    },
+    {
+      "name": "H0-A fixture and contract schema",
+      "pass": 10,
+      "total": 10,
+      "time": "1.6s"
+    },
+    {
+      "name": "H0-A contradiction, absent, and exception taxonomy",
+      "pass": 4,
+      "total": 4,
+      "time": "0.2s"
+    },
+    {
+      "name": "H0-A actual-A source binding remains deferred",
+      "pass": 7,
+      "total": 7,
+      "time": "57.7s"
+    },
+    {
+      "name": "H0-A F06 actual pending authority and foreign-target controls",
+      "pass": 9,
+      "total": 9,
+      "time": "1m56.0s"
+    },
+    {
+      "name": "H0-A trusted package/E0 admission revalidates every identity field",
+      "pass": 22,
+      "total": 22,
+      "time": "36.1s"
+    },
+    {
+      "name": "H0-A source-derived endpoint identity and mutation controls",
+      "pass": 29,
+      "total": 29,
+      "time": "38.4s"
+    },
+    {
+      "name": "H0-A trusted semantic and G2 provenance controls",
+      "pass": 39,
+      "total": 39,
+      "time": "39.5s"
+    },
+    {
+      "name": "H0-A typed input mismatch is fail-closed",
+      "pass": 3,
+      "total": 3,
+      "time": "0.0s"
+    },
+    {
+      "name": "H0-A upstream taxonomy is typed before public admission",
+      "pass": 23,
+      "total": 23,
+      "time": "39.1s"
+    }
+  ],
+  "actual_a": {
+    "group": "H0-A actual-A source binding remains deferred",
+    "passed": 7,
+    "total": 7,
+    "status": "not_printed_by_runner",
+    "declaration_type": "not_printed_by_runner"
+  },
+  "compile_provider_solver_counters": "not_printed_by_runner",
+  "processes_before": [],
+  "processes_after": [],
+  "dirty_snapshots": {
+    "before": "pre_dirty.txt",
+    "after": "post_dirty.txt"
+  },
+  "julia_desc_run": true,
+  "rerun": false,
+  "code_modified_after_run": false,
+  "prior_failures_preserved": [
+    "focused_r6",
+    "focused_r7"
+  ],
+  "claim_ceiling": [
+    "software_contract_only",
+    "actual_A_deferred_or_fail_closed_by_runtime_classification",
+    "no_N06_authority",
+    "no_UP2_total",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_physical",
+    "no_engineering",
+    "no_R_credit"
+  ]
+}

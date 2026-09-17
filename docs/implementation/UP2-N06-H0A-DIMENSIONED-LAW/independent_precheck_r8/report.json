@@ -1,0 +1,81 @@
+{
+  "schema_version": "UP2-N06-H0A-independent-precheck-r8",
+  "reviewer": "independent_luna_high_static",
+  "verdict": "ready_for_serial_focused",
+  "ready_for_serial_focused": true,
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_worktree": {
+    "status_entry_count": 296,
+    "status_sha256": "6945312fe759b7784ddc8b9c3ec15994dc515fb0e7aff903b5d307ca668bb07e",
+    "matching_julia_desc_process_count": 0
+  },
+  "runtime": {
+    "julia": "not_run",
+    "desc": "not_run",
+    "serial_focused_lane": "pending_parent_gate"
+  },
+  "findings": [
+    {
+      "id": "PARSE-R7-R8",
+      "severity": "closed_static",
+      "status": "pass",
+      "summary": "Three source and two test reserved-word assignments are removed; explicit NamedTuple field tuples preserve the :return role and NamedTuple field types.",
+      "evidence": [
+        "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:507,521,614",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:359,362"
+      ]
+    },
+    {
+      "id": "SEMANTICS",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "Unit algebra, calibration/closure/law payload identity, energy and thermal closure, four-role sign/direction, owner scope, and negative controls remain in the repaired combination.",
+      "evidence": [
+        "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:531-639",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:324-516"
+      ]
+    },
+    {
+      "id": "TAXONOMY",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "Known gaps, conflicts, and unexpected program exceptions remain typed and separated; public results keep declaration empty for fail-closed and program-exception outcomes.",
+      "evidence": [
+        "src/GenomeV5/UP2/N06DimensionedLedgerLawV1.jl:642-752",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:518-588"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "severity": "clear_static",
+      "status": "pass",
+      "summary": "Synthetic present remains schema-only and actual A remains terminal_deferred with zero downstream counters; no physical or parent-goal credit.",
+      "evidence": [
+        "test/GenomeV5/UP2/n06_dimensioned_law_fixtures.json",
+        "test/GenomeV5/UP2/n06_dimensioned_law_tests.jl:141-213"
+      ]
+    }
+  ],
+  "claim_ceiling": [
+    "contract_only",
+    "synthetic_schema_only",
+    "actual_a_terminal_deferred",
+    "runtime_required",
+    "accepted_false",
+    "no_physical_positive",
+    "no_B00",
+    "no_B04",
+    "no_provider",
+    "no_mesh",
+    "no_engineering",
+    "no_R_credit"
+  ],
+  "review_scope": "R7 source repair plus R8 test repair; read-only static review",
+  "old_archives": [
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r7/",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/repair_r8/",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/focused_r1/",
+    "docs/implementation/UP2-N06-H0A-DIMENSIONED-LAW/independent_precheck_r6/"
+  ]
+}

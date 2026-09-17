@@ -1,0 +1,11 @@
+COMMAND=python -m unittest discover -s test/up1_external_closure_r4/trust_chain -p "test_*.py" -v
+PID=71500
+UTC_START=2026-09-17T01:32:53.6066681Z
+UTC_END=2026-09-17T01:33:01.3335300Z
+EXIT=1
+PASS=12
+FAIL=1
+FAILURE=test_validity_uses_explicit_trusted_time_and_rejects_naive_time
+EXPECTED=typed_absence/EVALUATION_TIME_ABSENT
+OBSERVED=unverified/none
+NO_PUBLISH=true

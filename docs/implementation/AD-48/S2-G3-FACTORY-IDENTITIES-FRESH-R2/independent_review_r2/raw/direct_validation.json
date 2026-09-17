@@ -1,0 +1,856 @@
+{
+  "checks": {
+    "AD45_envelope_actual": {
+      "observed": {
+        "bytes": 9612,
+        "sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc"
+      },
+      "pass": true
+    },
+    "F0_source_test_actual": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_ad45_exact_handle": {
+      "observed": {
+        "id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "binding_axes_four_way": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_claim_ceiling_flags": {
+      "observed": {
+        "candidate_identity_created": false,
+        "final_candidate_or_package_declaration_hash_created": false,
+        "no_publish": true,
+        "trusted_attestation_created": false
+      },
+      "pass": true
+    },
+    "binding_contract_ref_exact": {
+      "observed": {
+        "canonicalization_hash": {
+          "value": "980241643c6e17182db2197cb61b1a353983f7b0e0b4f32c0030a09c5adce290"
+        },
+        "compatibility_profile": "g3-v5-binding-candidate-owned-profile-178e8f9bece2a29227736c17c3d502d2219348e4dd27b44ab3a6581b23e001fe",
+        "schema_hash": {
+          "value": "eb3c3946ea740ca46c5e2007707c0d6a2183dbc000e3e952130f97cdecd41af3"
+        },
+        "uri": "fusionconceptai://GenomeV5/G3/binding",
+        "version": "v2"
+      },
+      "pass": true
+    },
+    "binding_f0_input_hashes": {
+      "observed": {
+        "root_acceptance_manifest": {
+          "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+          "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae"
+        },
+        "source_factory_path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "source_factory_sha256": "1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4",
+        "test_path": "test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl",
+        "test_sha256": "02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"
+      },
+      "pass": true
+    },
+    "binding_git_freshness_fields": {
+      "observed": {
+        "head_path_status": "absent_untracked",
+        "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "working_tree_path_status": "absent_untracked",
+        "working_tree_status": "untracked"
+      },
+      "pass": true
+    },
+    "binding_identity_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_identity_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 5017,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/factory_identity_v1.json",
+        "sha256": "5b46247a961d4c457b3f73bf138d8c376a6fa163c90b09e85eb6ff6d7294e176"
+      },
+      "pass": true
+    },
+    "binding_identity_receipt_hash_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_local_hashes_present": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_locator_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_present_union": {
+      "observed": {
+        "identity": "PresentG3FactoryIdentityV1",
+        "receipt": "PresentG3FactoryConstructionReceiptV1"
+      },
+      "pass": true
+    },
+    "binding_receipt_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_receipt_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 8906,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/construction_receipt.json",
+        "sha256": "d3d09c789afbdfefc48e9adc1ed5732e7965318853d57608a3fcb4c9b1be0f1b"
+      },
+      "pass": true
+    },
+    "binding_s1_locator_hash": {
+      "observed": {
+        "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/binding/source_locator_v1.json",
+        "sha256": "07b4de5bc4b290ce60a3f5a9158c315a795a6b013db286d5c563adcbb3543eaa"
+      },
+      "pass": true
+    },
+    "binding_semantic_hash_recompute": {
+      "observed": {
+        "identity": "492f505646ad15aec81d5c1db0038068a9ad74df6be85c0664151cf72c693684",
+        "receipt": "d6899bba85c9cd1ff02cca2b6389a916b4e0c25dd51bd27763ea8e529ef06c21"
+      },
+      "pass": true
+    },
+    "binding_snapshot_result": {
+      "observed": "PresentG3FactoryIdentityV1+PresentG3FactoryConstructionReceiptV1",
+      "pass": true
+    },
+    "binding_source_length_hash": {
+      "observed": {
+        "exists": true,
+        "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl"
+      },
+      "pass": true
+    },
+    "binding_source_stage_binding_present": {
+      "observed": true,
+      "pass": true
+    },
+    "binding_task_schema": {
+      "observed": {
+        "identity": "AD48-G3-factory-identity-v1",
+        "receipt": "AD48-G3-factory-construction-receipt-v1"
+      },
+      "pass": true
+    },
+    "bundle_ad45_exact_handle": {
+      "observed": {
+        "id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "bundle_axes_four_way": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_claim_ceiling_flags": {
+      "observed": {
+        "candidate_identity_created": false,
+        "final_candidate_or_package_declaration_hash_created": false,
+        "no_publish": true,
+        "trusted_attestation_created": false
+      },
+      "pass": true
+    },
+    "bundle_contract_ref_exact": {
+      "observed": {
+        "canonicalization_hash": {
+          "value": "980241643c6e17182db2197cb61b1a353983f7b0e0b4f32c0030a09c5adce290"
+        },
+        "compatibility_profile": "g3-v5-bundle-candidate-owned-profile-178e8f9bece2a29227736c17c3d502d2219348e4dd27b44ab3a6581b23e001fe",
+        "schema_hash": {
+          "value": "14b4e60a96fa4b368581377c93cb2feeeb8df84dd3d993c34da3c15f6cec9760"
+        },
+        "uri": "fusionconceptai://GenomeV5/G3/bundle",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "bundle_f0_input_hashes": {
+      "observed": {
+        "root_acceptance_manifest": {
+          "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+          "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae"
+        },
+        "source_factory_path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "source_factory_sha256": "1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4",
+        "test_path": "test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl",
+        "test_sha256": "02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"
+      },
+      "pass": true
+    },
+    "bundle_git_freshness_fields": {
+      "observed": {
+        "head_path_status": "absent_untracked",
+        "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "working_tree_path_status": "absent_untracked",
+        "working_tree_status": "untracked"
+      },
+      "pass": true
+    },
+    "bundle_identity_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_identity_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 4994,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/factory_identity_v1.json",
+        "sha256": "a9b999447766723e0c3c3a2b3b3f3b9644b1db15de63a819913d842409f8c251"
+      },
+      "pass": true
+    },
+    "bundle_identity_receipt_hash_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_local_hashes_present": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_locator_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_present_union": {
+      "observed": {
+        "identity": "PresentG3FactoryIdentityV1",
+        "receipt": "PresentG3FactoryConstructionReceiptV1"
+      },
+      "pass": true
+    },
+    "bundle_receipt_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_receipt_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 8848,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/construction_receipt.json",
+        "sha256": "2b56b5d55010e4a2656bf3c85fb19c962534d412eaa65672ca741507c28a9edb"
+      },
+      "pass": true
+    },
+    "bundle_s1_locator_hash": {
+      "observed": {
+        "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/bundle/source_locator_v1.json",
+        "sha256": "fb826aa4d32bd6284f3fca7ec9f21b66e3f06d1fc13d4fc678793442ccf8e361"
+      },
+      "pass": true
+    },
+    "bundle_semantic_hash_recompute": {
+      "observed": {
+        "identity": "1749c9549e663688ae587d3774c160da08071cef26158d358d98f85e2d406e74",
+        "receipt": "d92321ccad723c5700f12a998d92a843ccf7a5e99f992d9dcc4334feafbe4cdf"
+      },
+      "pass": true
+    },
+    "bundle_snapshot_result": {
+      "observed": "PresentG3FactoryIdentityV1+PresentG3FactoryConstructionReceiptV1",
+      "pass": true
+    },
+    "bundle_source_length_hash": {
+      "observed": {
+        "exists": true,
+        "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl"
+      },
+      "pass": true
+    },
+    "bundle_source_stage_binding_present": {
+      "observed": true,
+      "pass": true
+    },
+    "bundle_task_schema": {
+      "observed": {
+        "identity": "AD48-G3-factory-identity-v1",
+        "receipt": "AD48-G3-factory-construction-receipt-v1"
+      },
+      "pass": true
+    },
+    "control_ad45_exact_handle": {
+      "observed": {
+        "id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "control_axes_four_way": {
+      "observed": true,
+      "pass": true
+    },
+    "control_claim_ceiling_flags": {
+      "observed": {
+        "candidate_identity_created": false,
+        "final_candidate_or_package_declaration_hash_created": false,
+        "no_publish": true,
+        "trusted_attestation_created": false
+      },
+      "pass": true
+    },
+    "control_contract_ref_exact": {
+      "observed": {
+        "canonicalization_hash": {
+          "value": "980241643c6e17182db2197cb61b1a353983f7b0e0b4f32c0030a09c5adce290"
+        },
+        "compatibility_profile": "g3-v5-control-candidate-owned-profile-178e8f9bece2a29227736c17c3d502d2219348e4dd27b44ab3a6581b23e001fe",
+        "schema_hash": {
+          "value": "7453ccbd874bcc1a7ecc0ab1f9131c2026bf6a0421786b25dfcff10fc7a1057a"
+        },
+        "uri": "fusionconceptai://GenomeV5/G3/control",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "control_f0_input_hashes": {
+      "observed": {
+        "root_acceptance_manifest": {
+          "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+          "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae"
+        },
+        "source_factory_path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "source_factory_sha256": "1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4",
+        "test_path": "test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl",
+        "test_sha256": "02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"
+      },
+      "pass": true
+    },
+    "control_git_freshness_fields": {
+      "observed": {
+        "head_path_status": "absent_untracked",
+        "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "working_tree_path_status": "absent_untracked",
+        "working_tree_status": "untracked"
+      },
+      "pass": true
+    },
+    "control_identity_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "control_identity_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 4998,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/factory_identity_v1.json",
+        "sha256": "0ca704332016b0aece8f175a8516a7811625238d47c0791d79e68f511f77c66e"
+      },
+      "pass": true
+    },
+    "control_identity_receipt_hash_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "control_local_hashes_present": {
+      "observed": true,
+      "pass": true
+    },
+    "control_locator_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "control_present_union": {
+      "observed": {
+        "identity": "PresentG3FactoryIdentityV1",
+        "receipt": "PresentG3FactoryConstructionReceiptV1"
+      },
+      "pass": true
+    },
+    "control_receipt_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "control_receipt_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 8849,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/construction_receipt.json",
+        "sha256": "d26d68c13cad410e33989cf862b4dfe41bedc5d191988ecf38e6722e46bef217"
+      },
+      "pass": true
+    },
+    "control_s1_locator_hash": {
+      "observed": {
+        "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/control/source_locator_v1.json",
+        "sha256": "e0d3c8468210c85a3ed66a22ddee1be4d86ed3052d6a09884619d5af374490c4"
+      },
+      "pass": true
+    },
+    "control_semantic_hash_recompute": {
+      "observed": {
+        "identity": "7b88c6c5ae5aa25b1245d1dd58e0d1d848beaf341cbdeb2a7a45ac30ef147491",
+        "receipt": "4cd06883247879ed5e942796423c13232e995d27d3478efb181edba57578d714"
+      },
+      "pass": true
+    },
+    "control_snapshot_result": {
+      "observed": "PresentG3FactoryIdentityV1+PresentG3FactoryConstructionReceiptV1",
+      "pass": true
+    },
+    "control_source_length_hash": {
+      "observed": {
+        "exists": true,
+        "path": "src/GenomeV5/G3/ControlGenomeV5.jl"
+      },
+      "pass": true
+    },
+    "control_source_stage_binding_present": {
+      "observed": true,
+      "pass": true
+    },
+    "control_task_schema": {
+      "observed": {
+        "identity": "AD48-G3-factory-identity-v1",
+        "receipt": "AD48-G3-factory-construction-receipt-v1"
+      },
+      "pass": true
+    },
+    "fresh_integrity_126_of_126": {
+      "observed": {
+        "archive_repair_snapshot_present": true,
+        "checks": 126,
+        "exit_code": 0,
+        "failed": 0,
+        "issues": [],
+        "passed": 126,
+        "pid": 94800,
+        "product_count": 8,
+        "scopes": [
+          "realization",
+          "control",
+          "binding",
+          "bundle"
+        ],
+        "status": "pass",
+        "utc": "2026-09-15T16:08:32.295444+00:00",
+        "utc_end": "2026-09-15T16:08:32.306821Z",
+        "utc_start": "2026-09-15T16:08:31.527755Z"
+      },
+      "pass": true
+    },
+    "manifest_claim_ceiling": {
+      "observed": {
+        "candidate_identity": false,
+        "engineering": false,
+        "factory_identity": true,
+        "final_candidate_or_package_declaration_hash": false,
+        "g3_source_declaration": true,
+        "l4_credible_count": 0,
+        "mesh": false,
+        "physical": false,
+        "provider": false,
+        "r01_r10": false,
+        "search": false,
+        "solver": false,
+        "t0": false,
+        "t1": false,
+        "t2": false,
+        "trusted_attestation": false
+      },
+      "pass": true
+    },
+    "manifest_four_scopes": {
+      "observed": [
+        "realization",
+        "control",
+        "binding",
+        "bundle"
+      ],
+      "pass": true
+    },
+    "manifest_negative_controls": {
+      "observed": {
+        "AD45_envelope_hash_mutation": "fail_closed",
+        "AD45_handle_or_version_mutation": "fail_closed",
+        "HEAD_mutation": "fail_closed",
+        "contract_ref_mismatch": "fail_closed",
+        "missing_typed_input": "typed_absent_terminal_deferred",
+        "path_status_mutation": "fail_closed",
+        "replay_conflict": "fail_closed",
+        "source_bytes_mutation": "fail_closed",
+        "source_hash_mutation": "fail_closed",
+        "version_axes_mismatch": "fail_closed",
+        "wrong_locator_scope": "fail_closed"
+      },
+      "pass": true
+    },
+    "manifest_observed_head": {
+      "observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+      "pass": true
+    },
+    "manifest_snapshot_reference": {
+      "observed": {
+        "bytes": 6299,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/archive/repair_r2_final_snapshot.json",
+        "self_hash_excluded": true,
+        "sha256": "ddafe940d8f7ed2d9c5f3083bec85284312de6acd824d8f3e997d5575e37db3b"
+      },
+      "pass": true
+    },
+    "manifest_status_scope": {
+      "observed": {
+        "accepted": false,
+        "accepted_scope": "four_scope_present_factory_identity_and_construction_receipts_software_only",
+        "status": "review_pending"
+      },
+      "pass": true
+    },
+    "old_r1_raw_unchanged": {
+      "observed": {
+        "after_count": 28,
+        "before_count": 28
+      },
+      "pass": true
+    },
+    "old_s2_products_unchanged": {
+      "observed": {
+        "after_count": 67,
+        "before_count": 67
+      },
+      "pass": true
+    },
+    "plan_validator_exit_zero": {
+      "observed": {
+        "command": [
+          "D:\\Users\\Newman\\anaconda3\\python.exe",
+          "docs/v4_multitopology_generation/validate_plan.py"
+        ],
+        "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+        "exit_code": 0,
+        "pid": 94800,
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 401,
+        "stdout_sha256": "979fcacfc9ca0d6a5bbd4e2415ae3a8a06a40524c250194eb60f6ec613f8941c",
+        "utc_end": "2026-09-15T16:08:32.712349Z",
+        "utc_start": "2026-09-15T16:08:32.308498Z"
+      },
+      "pass": true
+    },
+    "realization_ad45_exact_handle": {
+      "observed": {
+        "id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "realization_axes_four_way": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_claim_ceiling_flags": {
+      "observed": {
+        "candidate_identity_created": false,
+        "final_candidate_or_package_declaration_hash_created": false,
+        "no_publish": true,
+        "trusted_attestation_created": false
+      },
+      "pass": true
+    },
+    "realization_contract_ref_exact": {
+      "observed": {
+        "canonicalization_hash": {
+          "value": "980241643c6e17182db2197cb61b1a353983f7b0e0b4f32c0030a09c5adce290"
+        },
+        "compatibility_profile": "g3-v5-realization-candidate-owned-profile-178e8f9bece2a29227736c17c3d502d2219348e4dd27b44ab3a6581b23e001fe",
+        "schema_hash": {
+          "value": "fb9801d71c0499a42bb9406fc584579b0d5b6254359d3ed48f9a6ef994899920"
+        },
+        "uri": "fusionconceptai://GenomeV5/G3/realization",
+        "version": "v5"
+      },
+      "pass": true
+    },
+    "realization_f0_input_hashes": {
+      "observed": {
+        "root_acceptance_manifest": {
+          "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+          "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae"
+        },
+        "source_factory_path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "source_factory_sha256": "1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4",
+        "test_path": "test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl",
+        "test_sha256": "02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"
+      },
+      "pass": true
+    },
+    "realization_git_freshness_fields": {
+      "observed": {
+        "head_path_status": "absent_untracked",
+        "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+        "working_tree_path_status": "absent_untracked",
+        "working_tree_status": "untracked"
+      },
+      "pass": true
+    },
+    "realization_identity_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_identity_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 5054,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/factory_identity_v1.json",
+        "sha256": "a2062990891bc8152cf5b9cff3dd0b264f6c54e81c0adbf8e535996be25ffcd2"
+      },
+      "pass": true
+    },
+    "realization_identity_receipt_hash_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_local_hashes_present": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_locator_closure": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_present_union": {
+      "observed": {
+        "identity": "PresentG3FactoryIdentityV1",
+        "receipt": "PresentG3FactoryConstructionReceiptV1"
+      },
+      "pass": true
+    },
+    "realization_receipt_canonical_no_lf": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_receipt_manifest_snapshot_hash": {
+      "observed": {
+        "bytes": 8985,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/construction_receipt.json",
+        "sha256": "e9575af7caa04425ef1976894399d308408cec992aea96c204a5726ed646c497"
+      },
+      "pass": true
+    },
+    "realization_s1_locator_hash": {
+      "observed": {
+        "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/realization/source_locator_v1.json",
+        "sha256": "bfb7a4f2cd4e128078b38dd3f47c2e11d6a85a5350662cda400054eeec8ba029"
+      },
+      "pass": true
+    },
+    "realization_semantic_hash_recompute": {
+      "observed": {
+        "identity": "db407190c0833f4ff56fd3c82d462902e0fe5cfd0e3b2a9624a8c3206573c22c",
+        "receipt": "5cea11e5aa8f529579875dadb7ae290db9d743b18a4d9cfdd1beb6890d6c0fcc"
+      },
+      "pass": true
+    },
+    "realization_snapshot_result": {
+      "observed": "PresentG3FactoryIdentityV1+PresentG3FactoryConstructionReceiptV1",
+      "pass": true
+    },
+    "realization_source_length_hash": {
+      "observed": {
+        "exists": true,
+        "path": "src/GenomeV5/G3/RealizationGenomeV5.jl"
+      },
+      "pass": true
+    },
+    "realization_source_stage_binding_present": {
+      "observed": true,
+      "pass": true
+    },
+    "realization_task_schema": {
+      "observed": {
+        "identity": "AD48-G3-factory-identity-v1",
+        "receipt": "AD48-G3-factory-construction-receipt-v1"
+      },
+      "pass": true
+    },
+    "repair_snapshot_contract": {
+      "observed": {
+        "schema_version": "AD48-S2-fresh-r2-repair-snapshot-v1",
+        "self_hash_excluded": true,
+        "task_id": "AD48-S2-G3-FACTORY-IDENTITY-FRESH-R2"
+      },
+      "pass": true
+    },
+    "repair_snapshot_frozen_hash": {
+      "observed": {
+        "bytes": 6299,
+        "sha256": "ddafe940d8f7ed2d9c5f3083bec85284312de6acd824d8f3e997d5575e37db3b"
+      },
+      "pass": true
+    },
+    "repair_snapshot_present": {
+      "observed": null,
+      "pass": true
+    },
+    "root_acceptance_actual": {
+      "observed": true,
+      "pass": true
+    },
+    "scope_only_review_outputs": {
+      "observed": [],
+      "pass": true
+    },
+    "scoped_diff_exit_zero": {
+      "observed": {
+        "command": [
+          "git",
+          "diff",
+          "--check",
+          "--",
+          "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2"
+        ],
+        "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+        "exit_code": 0,
+        "pid": 94800,
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utc_end": "2026-09-15T16:08:32.753544Z",
+        "utc_start": "2026-09-15T16:08:32.713326Z"
+      },
+      "pass": true
+    },
+    "snapshot_inputs_exact": {
+      "observed": {
+        "ad45": {
+          "envelope": {
+            "bytes": 9612,
+            "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json",
+            "sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc"
+          },
+          "handle_id": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+          "handle_version": "v5"
+        },
+        "f0": {
+          "factory_source": {
+            "bytes": 31581,
+            "path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+            "sha256": "1002676652c44aed81caaf9599ebf9ca62b0a4aab2fa32afe1e3d8c8edf8c0f4"
+          },
+          "factory_test": {
+            "bytes": 14904,
+            "path": "test/GenomeV5/G3/g3_source_authority_factory_v1_tests.jl",
+            "sha256": "02540e91aded97267161af1f02a48b721aaacbb0b187751249f61603d8cd0e9f"
+          },
+          "root_acceptance": {
+            "bytes": 1742,
+            "path": "docs/implementation/AD-48/F0-G3-SOURCE-AUTHORITY-FACTORY/root_acceptance_r3/manifest.json",
+            "sha256": "08e677522d27fc1c1de56712429bae2966c5df08d8ac3d336c7eb08b397355ae"
+          }
+        },
+        "s1_locators": {
+          "binding": {
+            "bytes": 4451,
+            "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/binding/source_locator_v1.json",
+            "sha256": "07b4de5bc4b290ce60a3f5a9158c315a795a6b013db286d5c563adcbb3543eaa"
+          },
+          "bundle": {
+            "bytes": 5773,
+            "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/bundle/source_locator_v1.json",
+            "sha256": "fb826aa4d32bd6284f3fca7ec9f21b66e3f06d1fc13d4fc678793442ccf8e361"
+          },
+          "control": {
+            "bytes": 3722,
+            "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/control/source_locator_v1.json",
+            "sha256": "e0d3c8468210c85a3ed66a22ddee1be4d86ed3052d6a09884619d5af374490c4"
+          },
+          "realization": {
+            "bytes": 3764,
+            "path": "docs/implementation/AD-48/S1-SOURCE-LOCATORS/realization/source_locator_v1.json",
+            "sha256": "bfb7a4f2cd4e128078b38dd3f47c2e11d6a85a5350662cda400054eeec8ba029"
+          }
+        }
+      },
+      "pass": true
+    },
+    "snapshot_old_s2_hashes_exact": {
+      "observed": true,
+      "pass": true
+    }
+  },
+  "failed": [],
+  "heavy_runtime": {
+    "desc": false,
+    "engineering": false,
+    "julia": false,
+    "mesh": false,
+    "physics": false,
+    "provider": false,
+    "search": false,
+    "solver": false
+  },
+  "old_r1_file_count": 28,
+  "old_s2_file_count": 67,
+  "pid": 94800,
+  "product_hashes": {
+    "binding": {
+      "identity": {
+        "bytes": 5017,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/factory_identity_v1.json",
+        "sha256": "5b46247a961d4c457b3f73bf138d8c376a6fa163c90b09e85eb6ff6d7294e176"
+      },
+      "receipt": {
+        "bytes": 8906,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/binding/construction_receipt.json",
+        "sha256": "d3d09c789afbdfefc48e9adc1ed5732e7965318853d57608a3fcb4c9b1be0f1b"
+      }
+    },
+    "bundle": {
+      "identity": {
+        "bytes": 4994,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/factory_identity_v1.json",
+        "sha256": "a9b999447766723e0c3c3a2b3b3f3b9644b1db15de63a819913d842409f8c251"
+      },
+      "receipt": {
+        "bytes": 8848,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/bundle/construction_receipt.json",
+        "sha256": "2b56b5d55010e4a2656bf3c85fb19c962534d412eaa65672ca741507c28a9edb"
+      }
+    },
+    "control": {
+      "identity": {
+        "bytes": 4998,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/factory_identity_v1.json",
+        "sha256": "0ca704332016b0aece8f175a8516a7811625238d47c0791d79e68f511f77c66e"
+      },
+      "receipt": {
+        "bytes": 8849,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/control/construction_receipt.json",
+        "sha256": "d26d68c13cad410e33989cf862b4dfe41bedc5d191988ecf38e6722e46bef217"
+      }
+    },
+    "realization": {
+      "identity": {
+        "bytes": 5054,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/factory_identity_v1.json",
+        "sha256": "a2062990891bc8152cf5b9cff3dd0b264f6c54e81c0adbf8e535996be25ffcd2"
+      },
+      "receipt": {
+        "bytes": 8985,
+        "path": "docs/implementation/AD-48/S2-G3-FACTORY-IDENTITIES-FRESH-R2/realization/construction_receipt.json",
+        "sha256": "e9575af7caa04425ef1976894399d308408cec992aea96c204a5726ed646c497"
+      }
+    }
+  },
+  "python": "D:/Users/Newman/anaconda3/python.exe",
+  "python_version": "3.13.5",
+  "repair_snapshot": {
+    "bytes": 6299,
+    "sha256": "ddafe940d8f7ed2d9c5f3083bec85284312de6acd824d8f3e997d5575e37db3b"
+  },
+  "reviewer": "different gpt-5.6-luna/high",
+  "schema_version": "AD48-S2-fresh-r2-independent-review-R2-direct-v1",
+  "task_id": "AD48-S2-G3-FACTORY-IDENTITY-FRESH-R2",
+  "utc": "2026-09-15T16:08:32.992755Z"
+}

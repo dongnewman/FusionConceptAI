@@ -1,0 +1,21 @@
+{
+  "schema_version": "AD48-S2-fresh-r2-review-verdict-contradiction-history-v1",
+  "record_kind": "superseded_review_attempt",
+  "task_id": "AD48-S2-G3-FACTORY-IDENTITY-FRESH-R2",
+  "historical_verdict": "changes_requested",
+  "historical_check_count": 100,
+  "historical_failed_checks": [
+    "realization_source_stage_binding_present",
+    "control_source_stage_binding_present",
+    "binding_source_stage_binding_present",
+    "bundle_source_stage_binding_present",
+    "snapshot_inputs_exact"
+  ],
+  "supersession_reason": "first review wrapper used incorrect JSON paths for the binding-role field and repair-snapshot input shape; these were checker defects, not product findings",
+  "superseded_by": "../../report.md",
+  "final_authoritative_verdict": "pass_limited",
+  "product_mutation": false,
+  "source_mutation": false,
+  "old_s2_or_r1_mutation": false,
+  "no_acceptance_credit": true
+}

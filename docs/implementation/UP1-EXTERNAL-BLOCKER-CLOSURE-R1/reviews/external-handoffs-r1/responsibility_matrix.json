@@ -1,0 +1,15 @@
+{
+  "schema":"UP1.external-handoff-responsibility-matrix.v1",
+  "status":"preparation_only",
+  "roles":[
+    {"role_id":"R-WITNESS-INTAKE","packet_ids":["EHP-01"],"owner":"typed_absence:unspecified","accountability":"receive and acknowledge only; no source/PKI/environment authority","must_provide":["identity","qualification","independence/conflict","scope","channel ack"],"cannot_close":"signature/trust root/source/environment gaps"},
+    {"role_id":"R-PKI-SECURITY","packet_ids":["EHP-02"],"owner":"typed_absence:unspecified","accountability":"trust-root, certificate, revocation, time, signature and replay evidence","must_provide":["chain","policy","fresh revocation","trusted time","verifier receipt"],"cannot_close":"independent witness identity or candidate source ownership"},
+    {"role_id":"R-SOURCE-G2","packet_ids":["EHP-03"],"owner":"typed_absence:unspecified","accountability":"candidate-bound G1/G2/G3/four-axis/G2 mapping declaration","must_provide":["exact refs/hashes/versions","candidate equality","signed mapping","source revision"],"cannot_close":"external PKI or environment provenance"},
+    {"role_id":"R-ENV-PROVENANCE","packet_ids":["EHP-04"],"owner":"typed_absence:unspecified","accountability":"reproducible import/package/binary/SBOM closure","must_provide":["runtime and import closure","binary signatures/origin","SBOM/license","redacted environment receipt"],"cannot_close":"source authority or trust-root decision"},
+    {"role_id":"R-INDEPENDENT-REVIEW","packet_ids":["EHP-01","EHP-02","EHP-03","EHP-04"],"owner":"Luna reviewer distinct from implementers; identity typed_absent","accountability":"verify raw receipt, canonical digest, role separation and all hashes","must_provide":["review receipt","accepted/rejected decision","failure codes"],"cannot_close":"missing external facts"},
+    {"role_id":"R-SOL-ARCHITECT","packet_ids":["EHP-01","EHP-02","EHP-03","EHP-04"],"owner":"parent architecture owner","accountability":"scope/sequence/contract decision only","must_provide":["gate decision after independent review"],"cannot_close":"unreceived or unverified external package"}
+  ],
+  "segregation_rules":["no role may self-attest its own authority","reviewer must not be packet implementer","raw receipt owner and verifier must be distinct","source changes require candidate identity rebinding","unchanged input fingerprint forbids new AD or repeated acceptance"],
+  "all_external_owner_names":"typed_absence",
+  "all_authority_endpoints":"typed_absence"
+}

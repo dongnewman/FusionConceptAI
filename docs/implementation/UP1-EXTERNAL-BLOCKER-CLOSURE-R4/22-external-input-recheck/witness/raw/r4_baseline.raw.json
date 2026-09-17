@@ -1,0 +1,29 @@
+{
+  "schema": "UP1.external-input-recheck.witness.r4-baseline.raw.v1",
+  "command": "PowerShell read-only parse/hash of R4 inventory, contract, and root acceptance",
+  "pid": 70584,
+  "utc_start": "2026-09-17T03:56:33.7792410Z",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "inventory": {"status":"all_typed_absent","count":26,"typed_absent_count":26,"usable_count":0},
+  "witness_relevant_records": [
+    {"id":"EXT-WITNESS-IDENTITY","packet":"EHP-01","status":"typed_absent","owner":"independent witness/intake owner (external)","paths":["response/ehp01.json","local_spool/incoming/ehp01.json"]},
+    {"id":"EXT-WITNESS-INDEPENDENCE","packet":"EHP-01","status":"typed_absent","owner":"independent witness plus governance owner (external)","paths":["response/ehp01.json","local_spool/incoming/ehp01.json"]},
+    {"id":"EXT-SIGNED-ATTESTATION","packet":"EHP-01","status":"typed_absent","owner":"independent witness with trusted-time/PKI support (external)","paths":["response/ehp01.json","local_spool/incoming/ehp01.json"]},
+    {"id":"EXT-CANDIDATE-LINEAGE","packet":"EHP-03","status":"typed_absent","owner":"candidate/source authority (external)","paths":["response/ehp03-source.json","response/ehp03-g2.json"]},
+    {"id":"leaf_attestor","packet":"EHP-01","status":"typed_absent","owner":"independent attestor (external)","paths":["response/leaf.pem","response/ehp01.json"]},
+    {"id":"signature_profile","packet":"EHP-02","status":"typed_absent","owner":"contract and verifier owner (external)","paths":["anchors/profile.json","response/ehp02.json"]},
+    {"id":"signed_receipt","packet":"EHP-02","status":"typed_absent","owner":"external attestor/authority (external)","paths":["response/ehp02.json","local_receipts/ehp02.receipt.json"]},
+    {"id":"independent_attestation_scope","packet":"EHP-01","status":"typed_absent","owner":"attestor and governance owner (external)","paths":["response/ehp01.json"]},
+    {"id":"g2_authoritative_mapping","packet":"EHP-03","status":"typed_absent","owner":"G2 mapping authority/attestor (external)","paths":["response/ehp03-g2.json"]},
+    {"id":"four_axis_materials","packet":"EHP-03","status":"typed_absent","owner":"G1/G2/G3 axis owners plus independent authority (external)","paths":["response/ehp03-source.json","response/ehp03-four-axis.json"]}
+  ],
+  "contract_snapshot": {"usable_external_inputs":0,"typed_absent_count":26,"terminal_state":"terminal_deferred","formal_credit":"none","authority_credit":false},
+  "root_acceptance": {"new_ad":false,"s3_rerun":false,"formal_credit":false,"authority_credit":false,"publication":false,"dag_39_changed":false,"r01_r10_changed":false},
+  "input_hashes": [
+    {"path":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/00-external-delta-scan/external_material_inventory.json","bytes":9939,"sha256":"642bea6650370acc8c5a3052abcb7264540ba9fd1bf831df163be216cc0b2421"},
+    {"path":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/01-external-input-contract/external_input_contract_r4.json","bytes":36200,"sha256":"a60a16bb82ac325764cab1f3a72619ebc1065c9ea82053e7961d622e37d1e9a0"},
+    {"path":"docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R4/21-root-acceptance/decision.json","bytes":2758,"sha256":"83475e7159e887203944c43aa0f39c1d97bf734fc71123c68dcac135284c4dac"}
+  ],
+  "utc_end": "2026-09-17T03:56:33.9186986Z",
+  "exit_code": 0
+}

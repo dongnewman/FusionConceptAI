@@ -1,0 +1,159 @@
+{
+  "review_id": "UP2-01-entry-audit-r1",
+  "verdict": "evidence_gap_with_exact_missing_path",
+  "claim_ceiling": "preparation_static_audit_no_Julia_DESC_no_implementation_no_recomputation",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "julia_desc_invoked": false,
+  "evidence_files": {
+    "report.json": {
+      "sha256": "a899076a64f780baf4e8aeb54af7fe9dfb151b134345c62850d19ebce2ed1e0b",
+      "bytes": 51059
+    },
+    "report.md": {
+      "sha256": "8dc2bb8feda60f091ca93b467d3875f0f958f9179fe8c1fa2a2fe4e6f990734c",
+      "bytes": 4425
+    },
+    "run_audit.py": {
+      "sha256": "862dc3edf1a61fb791a351a5906e83020d504a6d5dc25020d5652e9b81ba2c22",
+      "bytes": 20716
+    },
+    "git_status_porcelain.txt": {
+      "sha256": "96ae4de0a2c7712b010f657551330ba9e2c7dedd87c7cd99183f384e3d6f9499",
+      "bytes": 14175
+    },
+    "command_receipts.json": {
+      "sha256": "7c2573801dae87470cca97dd4d0d98fa3a836be215746d682e5667e926c2bc0f",
+      "bytes": 18905
+    }
+  },
+  "source_hashes": {
+    "src/RuntimeV4/Compiler.jl": {
+      "bytes": 14428,
+      "sha256": "7a550e2b9ac27693f7e7008f3562ef6d5f52795997bc89c676440cb2e4bab4aa",
+      "exists": true
+    },
+    "src/RuntimeV4/FieldProgramEvaluation.jl": {
+      "bytes": 44975,
+      "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86",
+      "exists": true
+    },
+    "src/RuntimeV4/FieldResidualPipeline.jl": {
+      "bytes": 45405,
+      "sha256": "f928607e232e5667b27e3dc82365a376a93de830c36ec47ce2d2e767e9159856",
+      "exists": true
+    },
+    "src/RuntimeV4/SpatialRuntimeV4.jl": {
+      "bytes": 1757,
+      "sha256": "c71c90090c5401c1e71cc13b319dff45b7a70d273e17f4687be1a91a8be310bb",
+      "exists": true
+    },
+    "src/RuntimeV4/SpatialMultiRegionV4.jl": {
+      "bytes": 56867,
+      "sha256": "cac5b47beeee2fbab7de6f171f7f155ff5534bc51edec0e66ee8caf711d6b932",
+      "exists": true
+    },
+    "src/Contracts/CandidateStatePackageV5.jl": {
+      "bytes": 13496,
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+      "exists": true
+    },
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": {
+      "bytes": 3887,
+      "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884",
+      "exists": true
+    },
+    "src/GenomeV5/G1/EquationPlanV2.jl": {
+      "bytes": 15159,
+      "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99",
+      "exists": true
+    },
+    "src/GenomeV5/G1/GrammarProfileV2.jl": {
+      "bytes": 22812,
+      "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c",
+      "exists": true
+    },
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {
+      "bytes": 18646,
+      "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32",
+      "exists": true
+    },
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": {
+      "bytes": 9905,
+      "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6",
+      "exists": true
+    },
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {
+      "bytes": 5333,
+      "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7",
+      "exists": true
+    },
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+      "bytes": 33751,
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+      "exists": true
+    },
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {
+      "bytes": 10904,
+      "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4",
+      "exists": true
+    },
+    "src/GenomeV5/G3/ControlGenomeV5.jl": {
+      "bytes": 10297,
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+      "exists": true
+    },
+    "src/FusionConceptAI.jl": {
+      "bytes": 10144,
+      "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783",
+      "exists": true
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 19536,
+      "sha256": "5973a415e59eaeee3dee4c641ec1a68032e845f77c0758bc53db73c7cdd3b963",
+      "exists": true
+    },
+    "docs/v4_multitopology_generation/11_physics_compilation_and_discretization.md": {
+      "bytes": 28542,
+      "sha256": "f31e075f3a7c0d301179af483db14b6b616c0d8c50458850768d41d17bd8bb25",
+      "exists": true
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 56459,
+      "sha256": "d756c7cd2f4456d6a14f02cc698bfef6958057a4828b7121d70eecffebf3114d",
+      "exists": true
+    },
+    "docs/implementation/W24-G2-CHILD-R2/acceptance.md": {
+      "bytes": 6736,
+      "sha256": "419361192bf08ab7a38ff692a7f6c2f3e718daf8674de57c9853b60a8e6e41a7",
+      "exists": true
+    },
+    "docs/implementation/W24-G2-CHILD-R2/evidence_manifest.json": {
+      "bytes": 11492,
+      "sha256": "c365ebd295ebb40bf863b4d2514c7b49cccb1bd8175b4ef37c1d4a6c9c63dad1",
+      "exists": true
+    },
+    "runs/goal_recovery_20260913_012528_cst/w24_spatial_parent_r1/result.json": {
+      "bytes": 817942,
+      "sha256": "6d0b33373814925bff00d815140f6f569a279d9f9bf77d09397e28fcf8cdf04b",
+      "exists": true
+    },
+    "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/result.json": {
+      "bytes": 819141,
+      "sha256": "1aca626e12b9538760b494537ce8487ba2199816e27de72d1ffed6000932ee67",
+      "exists": true
+    },
+    "runs/goal_recovery_20260913_012528_cst/w24_spatial_g2_child_r2/verification.json": {
+      "bytes": 3911630,
+      "sha256": "600b01f434299db40e818cbc189756476704d88756efb5b47c6220128a64a4a4",
+      "exists": true
+    }
+  },
+  "command_exits": {
+    "git_head": 0,
+    "git_status_porcelain": 0,
+    "julia_desc_process_sweep": 0,
+    "json_parse": 0,
+    "validate_plan": 0,
+    "git_diff_check": 0
+  }
+}

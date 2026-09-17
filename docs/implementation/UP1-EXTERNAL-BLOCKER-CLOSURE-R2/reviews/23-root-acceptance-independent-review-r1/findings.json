@@ -1,0 +1,30 @@
+{
+  "schema": "UP1-R2.root-acceptance-independent-review-r1.findings.v1",
+  "verdict": "pass_limited_with_test_scope_deferred",
+  "accepted": false,
+  "claim_ceiling": "software_contract_evidence_packaging_and_hygiene_only",
+  "no_authority": true,
+  "no_publish": true,
+  "no_formal_credit": true,
+  "findings": [],
+  "deferred_scope": [
+    "03 revocation/time foreign-owner dynamic Windows fixture",
+    "03 revocation/time symlink/Junction dynamic Windows fixture",
+    "17 integration dependency fixtures with the same test-scope boundary"
+  ],
+  "external_state": {
+    "usable_inputs": 0,
+    "expected_items": 26,
+    "typed_absent": 26,
+    "status": "NOT_RESOLVED",
+    "four_packets_not_sent": true
+  },
+  "formal_boundary": {
+    "s3": "no_publish",
+    "new_ad": false,
+    "ad55": "no_trust",
+    "ad56": "bookkeeping_only",
+    "m5_c_credit": false,
+    "parent_goal_open": true
+  }
+}

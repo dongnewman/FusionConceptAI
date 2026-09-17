@@ -1,0 +1,21 @@
+{
+  "schema_version": "UP2-00G-B00-independent-review-command-receipts-v1",
+  "audit_id": "UP2-00G-B00-PREPARATION-independent-review-r1",
+  "read_only": true,
+  "started_utc": "2026-09-14T07:44:23Z",
+  "repository": {"cwd": "D:\\006-Programing\\LMC\\FusionConceptAI", "head": "4b69f55f7f80240147a65a22809dc1207824dde2", "status_lines": 292, "status_sha256": "39E9106701D4AE5A6148BB2AD31E8739C7B03BA59FD7A02EE0E9C6966CDB5017"},
+  "commands": [
+    {"command": "git rev-parse HEAD; git status --short", "exit": 0, "purpose": "freeze current dirty state", "observed": "HEAD and current status digest recorded; dirty work protected"},
+    {"command": "Get-CimInstance Win32_Process | filter Julia/DESC repository processes", "exit": 0, "purpose": "no-runtime gate", "observed": "empty"},
+    {"command": "Get-Content entry_audit_r1/{report,manifest,receipts} and ConvertFrom-Json", "exit": 0, "purpose": "review original B00 audit records", "observed": "R1 verdict evidence_gap_with_exact_missing_path; no runtime"},
+    {"command": "Get-FileHash -Algorithm SHA256 for every R1 frozen_input", "exit": 0, "purpose": "snapshot drift check", "observed": "README and core16 drifted after AD-27; other checked inputs matched"},
+    {"command": "rg --files test src docs/implementation | rg B00|F0|F1|F2|F3|F4|F5|UP1-04B|checker|replay", "exit": 0, "purpose": "formal asset inventory", "observed": "no formal B00 F0-F5 archive/checker/replay; only prior audit and local N05 checker assets"},
+    {"command": "rg -n b00_f0_f5 in docs/v4_multitopology_generation/up0_02_protocol.json", "exit": 0, "purpose": "normative F0-F5 comparison", "observed": "F0-F5 fields and expected failure boundaries captured"},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "purpose": "current planning QA", "observed": "checks pass; 31 markdown files; 332 relative links; task DAG acyclic"},
+    {"command": "git diff --check", "exit": 0, "purpose": "current diff QA", "observed": "line-ending warnings only; no whitespace errors"},
+    {"command": "Get-Content -Raw independent_review_r1/*.json | ConvertFrom-Json", "exit": 0, "purpose": "new archive JSON QA", "observed": "three JSON documents parse"},
+    {"command": "Select-String independent_review_r1 files for control characters", "exit": 0, "purpose": "new archive control scan", "observed": "zero matches"}
+  ],
+  "runtime": {"julia": false, "desc": false, "b00": false, "b04": false, "postflight_repository_processes": 0},
+  "notes": ["Current validate_plan has 332 links; original R1 receipt reported 329 at its capture time.", "No source, test, core document, run, old archive, or original B00 entry audit was modified."]
+}

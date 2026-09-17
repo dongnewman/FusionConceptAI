@@ -1,0 +1,16 @@
+{
+  "schema_version": "UP2-G-I1A-independent-precheck-receipts-v6",
+  "review_id": "UP2-00G-I1A-AUTHORITY-CONTEXT-independent-precheck-r6",
+  "runtime_policy": "No Julia or DESC was run by this static review.",
+  "commands": [
+    {"command": "Get-FileHash on R6 source, fixture, test, runner", "exit": 0, "result": "source/fixture/runner match R5; repaired test hash is 83D765...", "runtime": false},
+    {"command": "Read focused_r1/stdout_r2.txt, stderr_r2.txt, process_r2.json", "exit": 0, "result": "original real exit 1 LoadError preserved; G1 47/47 and 21/21 precede G-I1A UndefVarError", "runtime": false},
+    {"command": "rg stale G1GenomeContractRef token in owned UP2 source/test/fixture/runner", "exit": 0, "result": "zero stale-token matches; test uses G.G1GenomeContractRefV2", "runtime": false},
+    {"command": "rg/Get-Content R5 shared admission, E2, program_exception, fail_closed, physical boundary", "exit": 0, "result": "all R5 coverage retained", "runtime": false},
+    {"command": "Get-Process julia/desc", "exit": 0, "result": "zero julia and zero desc processes", "runtime": false},
+    {"command": "python docs/v4_multitopology_generation/validate_plan.py", "exit": 0, "result": "checks=pass", "runtime": false},
+    {"command": "git diff --check", "exit": 0, "result": "pass; pre-existing line-ending warnings only", "runtime": false},
+    {"command": "control-character scan and JSON parse of four new review files", "exit": 0, "result": "pass_zero_matches", "runtime": false},
+    {"command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_gi1_authority_context.jl", "exit": null, "result": "not run; next serial focused gate", "runtime": false}
+  ]
+}

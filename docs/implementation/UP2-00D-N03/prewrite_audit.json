@@ -1,0 +1,80 @@
+{
+  "record_kind": "UP2-00D-N03 prewrite read-only audit",
+  "captured_at": "2026-09-14T08:18:48.9512330+08:00",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "processes": [],
+  "protected_files": {
+    "src/GenomeV5/UP2/N09ProviderGapProjectionV1.jl": {
+      "sha256": "5e77381fdbb10c95c05c249d6e95d01e756219f2ebae2b58bb33e4857ecca6ad",
+      "bytes": 15547,
+      "mtime": "2026-09-14T07:57:09.5093603+08:00"
+    },
+    "test/GenomeV5/UP2/n09_provider_gap_fixtures.json": {
+      "sha256": "d3ee86ed2ca967228e6cacbe61006cfb8c34f99cc28f039a9f9eeb2073f57876",
+      "bytes": 4772,
+      "mtime": "2026-09-14T08:11:42.6604865+08:00"
+    },
+    "test/GenomeV5/UP2/n09_provider_gap_tests.jl": {
+      "sha256": "c1463855fb97fb9010b804065ed6de02a32338de2b857a5c4affcdd03f28b778",
+      "bytes": 7895,
+      "mtime": "2026-09-14T07:57:09.5117568+08:00"
+    },
+    "test/GenomeV5/UP2/run_n09_provider_gap.jl": {
+      "sha256": "82437433fecb81d5cd5a2eab74b79475f85fd7a6a422bee9e9d19889f7b3f760",
+      "bytes": 378,
+      "mtime": "2026-09-14T07:47:21.9037169+08:00"
+    },
+    "src/GenomeV5/G1/EquationPlanV2.jl": {
+      "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99",
+      "bytes": 15159,
+      "mtime": "2026-09-14T04:59:33.9492722+08:00"
+    },
+    "src/GenomeV5/G1/GrammarProfileV2.jl": {
+      "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c",
+      "bytes": 22812,
+      "mtime": "2026-09-14T04:39:23.5829526+08:00"
+    },
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {
+      "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18",
+      "bytes": 16572,
+      "mtime": "2026-09-14T04:49:43.6458422+08:00"
+    },
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+      "bytes": 33751,
+      "mtime": "2026-09-14T04:51:29.5597540+08:00"
+    },
+    "src/GenomeV5/G3/ControlGenomeV5.jl": {
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+      "bytes": 10297,
+      "mtime": "2026-09-14T04:23:18.2243130+08:00"
+    },
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+      "sha256": "243b272df7e481b2578c1f95c49bcd2582fa7468eade81eebea86ce2d079fb78",
+      "bytes": 16322,
+      "mtime": "2026-09-14T06:34:10.8268299+08:00"
+    },
+    "src/Contracts/CandidateStatePackageV5.jl": {
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+      "bytes": 13496,
+      "mtime": "2026-09-14T06:27:51.0731577+08:00"
+    },
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": {
+      "sha256": "30976b4d0b89e676f16f4402197200bc56c0d61e6f1a96245529c2bce94eab03",
+      "bytes": 31055,
+      "mtime": "2026-09-14T08:14:04.9062533+08:00"
+    },
+    "docs/v4_multitopology_generation/up0_02_protocol.json": {
+      "sha256": "6904ea161a27ff007a071697f7740ad923ce79d05e23433d356460546ecd7bfb",
+      "bytes": 28771,
+      "mtime": "2026-09-14T02:56:23.1232937+08:00"
+    }
+  },
+  "source_findings": [
+    "G1EquationV2.temporal_kind and derivative_order are real fields",
+    "G1OperatorSpecV2.temporal_kinds and max_derivative_order are real fields",
+    "G3EventV2.trigger and time are real fields",
+    "G3 controller events are typed; no cross-layer time-basis field",
+    "UP2 N03 remains pending in existing validator"
+  ]
+}

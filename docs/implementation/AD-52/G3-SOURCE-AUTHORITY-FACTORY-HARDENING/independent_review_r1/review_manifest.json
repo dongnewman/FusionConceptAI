@@ -1,0 +1,39 @@
+{
+  "schema_version": "AD52-independent-review-r1-manifest-v1",
+  "task_id": "AD-52-G3-SOURCE-AUTHORITY-FACTORY-HARDENING",
+  "repository_root": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "verdict": "pass_limited",
+  "accepted": false,
+  "claim_ceiling": "g3_source_factory_fail_closed_software_only",
+  "write_scope": "docs/implementation/AD-52/G3-SOURCE-AUTHORITY-FACTORY-HARDENING/independent_review_r1/**",
+  "frozen_inputs": "input_hashes.json",
+  "checks": {
+    "source_and_test_hashes_exact": true,
+    "ad52_status_completed_review_pending_accepted_false": true,
+    "four_scope_exact_source_mapping": true,
+    "repository_root_and_head_anchor": true,
+    "stage_zero_tracked_index_and_no_assume_or_skip_flags": true,
+    "ls_tree_40hex_show_cat_file_worktree_byte_hash_closure": true,
+    "all_repository_path_status_blob_byte_hash_mismatches_fail_closed": true,
+    "current_repo_sources_typed_absent_no_publish": true,
+    "temporary_fixture_four_scope_present_trusted_candidate_final_false": true,
+    "default_registry_unchanged": true,
+    "old_ad48_receipts_unmodified_fresh_s2_s3_required": true,
+    "independent_adversarial_probe_4_scopes_5_controls": true,
+    "focused_julia_356_of_356_exit_zero": true,
+    "plan_validator_31_534_39_acyclic_exit_zero": true,
+    "scoped_diff_exit_zero": true,
+    "json_links_hash_cleanup_checks": true,
+    "failed_history_preserved_no_fabricated_pid": true,
+    "no_julia_desc_remainder_or_process_touch": true,
+    "accepted_false_and_l4_zero": true
+  },
+  "raw_receipts": [
+    "raw/focused.receipt.json",
+    "raw/adversarial_git_probe.receipt.json",
+    "raw/plan_validator.receipt.json",
+    "raw/scoped_diff.receipt.json"
+  ],
+  "self_hash_excluded": true
+}

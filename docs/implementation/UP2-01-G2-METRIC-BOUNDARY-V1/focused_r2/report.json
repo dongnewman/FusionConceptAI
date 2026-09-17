@@ -1,0 +1,54 @@
+{
+  "review_id": "UP2-01-G2-METRIC-BOUNDARY-V1-focused-r2",
+  "status": "focused_test_passed",
+  "accepted": false,
+  "review_pending": true,
+  "runtime": "executed_once",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "command": "julia --startup-file=no --project=. test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "pid": 50816,
+  "utc_before": "2026-09-14T20:53:04.6034925Z",
+  "utc_after": "2026-09-14T20:53:12.0300209Z",
+  "exit_code": 0,
+  "preflight": {
+    "julia_desc_process_count": 0,
+    "dirty_rows": 300,
+    "target_hashes_verified": true
+  },
+  "postflight": {
+    "julia_desc_process_count": 0,
+    "dirty_rows": 300,
+    "target_hashes_unchanged": true
+  },
+  "test_summary": {
+    "chart_metric_determinant": "20/20",
+    "candidate_mesh_face_identity": "10/10",
+    "source_edit_identity": "5/5",
+    "contradictions_deferred": "14/14",
+    "unit_exponent_algebra": "15/15",
+    "total": "64/64",
+    "static_test_defined": true,
+    "julia_or_desc_executed_reported_by_test": false
+  },
+  "target_artifacts": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"sha256": "261516671151647bccb71f2fefd5f71cd2ed444f5eeba0bf90b29687d3a78f61", "bytes": 30773},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"sha256": "1647d7f72a4d1f2a8e9ff93543058ee6a7c9799d3988911d6b8ec7d8a65121db", "bytes": 11208},
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": {"sha256": "1721eebb16ec4a4895e2f6a71c943daf1514fb4798565c44b548d8d8f22ef5d5", "bytes": 3974},
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": {"sha256": "cf7bf40446929c8d28b21da0da61c159c0d0cdff979e042c115802fb20dd1f31", "bytes": 7104}
+  },
+  "raw_outputs": {
+    "stdout": {"path": "stdout.txt", "bytes": 980, "sha256": "2fe76c7c6a7264f5449b06174f2d3a18e5f123eab581f5784c5d442e7da84a44"},
+    "stderr": {"path": "stderr.txt", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "protected_scope": {
+    "source_modified": false,
+    "test_modified": false,
+    "fixture_modified": false,
+    "static_qa_modified": false,
+    "old_evidence_modified": false,
+    "write_scope": ["docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/focused_r2/"]
+  },
+  "claim_ceiling": ["software_test_only", "accepted_false", "review_pending", "no_compiler_acceptance", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"],
+  "next_gate": "Different Luna postrun review of this focused_r2 receipt before any acceptance decision."
+}

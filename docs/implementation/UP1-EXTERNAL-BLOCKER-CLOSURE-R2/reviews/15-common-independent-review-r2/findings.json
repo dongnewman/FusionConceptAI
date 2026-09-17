@@ -1,0 +1,20 @@
+{
+  "schema": "UP1-R2-common-independent-review-v2",
+  "verdict": "rework",
+  "source_revision": "common-rework-present-at-review-time",
+  "findings": [
+    {"id": "C-R2-01", "severity": "medium", "priority": "P2", "area": "identity-receipt", "status": "open", "location": "tools/up1_external_closure_r2/common/identity.py:58-73; receipt.py:41-72", "summary": "forged Fingerprint digest is accepted without sha256(preimage) invariant"},
+    {"id": "C-R2-02", "severity": "medium", "priority": "P2", "area": "receipt-taxonomy", "status": "open", "location": "tools/up1_external_closure_r2/common/receipt.py:85-116", "summary": "error details/path shape is not validated"},
+    {"id": "C-R2-03", "severity": "low", "priority": "P3", "area": "canonical-taxonomy", "status": "open", "location": "tools/up1_external_closure_r2/common/canonical.py:193-205", "summary": "oversized JSON integer maps to invalid_json_syntax instead of non_canonical_number"}
+  ],
+  "checks": {
+    "focused_unittest": "pass_11",
+    "attack_driver": "exit_0_with_findings",
+    "compileall": "pass",
+    "two_process_determinism": "pass",
+    "windows_replacement_pressure": "256_of_256_rejected_no_leak",
+    "implementation_manifest": "pass",
+    "implementation_input_hashes": "all_match",
+    "windows_symlink_control": "unavailable_winerror_1314"
+  }
+}

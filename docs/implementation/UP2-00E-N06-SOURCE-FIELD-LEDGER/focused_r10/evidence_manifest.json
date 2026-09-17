@@ -1,0 +1,23 @@
+{
+  "schema": "focused_execution_manifest_v1",
+  "task": "UP2-00E-N06 R10",
+  "status": "executed_exit0",
+  "accepted": false,
+  "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_n06_source_field_ledger_mapping.jl",
+  "process_receipt": "process_receipt.json",
+  "real_exit": 0,
+  "main_pid": 33836,
+  "utc_start": "2026-09-14T06:17:04.9578748Z",
+  "utc_end": "2026-09-14T06:19:52.5473688Z",
+  "stdout": {"path": "stdout.log", "bytes": 3852, "sha256": "d6975da0772b9945c73aa70e46237c4ce27372cb02e20d9419b50ac7c5e9bec3"},
+  "stderr": {"path": "stderr.log", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+  "test_groups": {"g1": ["47/47", "21/21"], "g2": ["57/57", "59/59", "8/8"], "g3": ["49/49", "35/35", "23/23"], "n06": ["28/28", "3/3", "31/31", "40/40"]},
+  "control_reachability": {
+    "mutations": {"count": 5, "loop": "unconditional fixture loop", "group": "31/31"},
+    "selectors": {"count": 2, "ids": ["missing_source_selector", "wrong_source_selector"], "path": "G.n06_projection_from_a(package,e0)", "test_lines": "342-381", "restored_in_finally": true, "group": "40/40"}
+  },
+  "protected_hash_comparison": "protected_hash_comparison.json",
+  "postflight": {"julia": 0, "desc": 0},
+  "claim_ceiling": {"contract_only": true, "formal_b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false},
+  "history": {"r9_exit1_preserved": true, "r9_receipt": "../focused_r9/receipt.json"}
+}

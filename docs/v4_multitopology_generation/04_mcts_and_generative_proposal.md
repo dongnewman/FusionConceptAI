@@ -1,5 +1,7 @@
 # v4 MCTS 多步探索与生成式候选提议
 
+> 2026-09-14 路线更新：UP5。MCTS/生成提议依赖先前组合执行和逆 realization 的真实反馈；不得因已有前缀队列就宣称 MCTS 已实现。GFlowNet/LLM 为可选提议器。 共同规范以 [00](00_normative_contracts_and_state_model.md)、[总纲](README.md) 和 [16 工作单](16_execution_work_orders.md) 为准。本文是设计合同，非实现状态报告。
+
 ## 1. 职责边界
 
 本模块用于探索“单步看起来无利、完成多步组合后才形成新机制”的候选。MCTS、代理模型、GFlowNet 或 LLM 都只有生成 `ProposalEnvelopeV4` 的权限；它们不能产生 evidence、跳过编译、修改 hard gate 或授予晋升。

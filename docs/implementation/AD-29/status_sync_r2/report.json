@@ -1,0 +1,32 @@
+{
+  "schema_version": "AD-29-status-sync-r2-v1",
+  "record_kind": "AD-29_status_sync",
+  "status": "accepted_limited",
+  "resolution": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "environment evidence gate and contract_only static planning boundary",
+  "execution_authorized": false,
+  "sol_decision": "accepted_limited",
+  "independent_review": {
+    "path": "docs/implementation/AD-29/independent_review_r1/report.json",
+    "verdict": "pass_limited"
+  },
+  "task_count": 31,
+  "requirements": ["R01","R02","R03","R04","R05","R06","R07","R08","R09","R10"],
+  "dag_unchanged": true,
+  "downstream_nodes_accepted": false,
+  "up2_01_accepted": false,
+  "provider_mesh_physical_engineering_accepted": false,
+  "claim_ceiling": ["contract_only_static", "historical_receipts_only", "no_current_provider", "no_mesh", "no_physics", "no_engineering", "no_B00", "no_B04", "no_R01_R10"],
+  "environment_gate": {
+    "fresh_receipt_required_before": ["UP2-01 provider execution", "mesh execution", "physical execution", "related combination replay"],
+    "desc_jax_finufft": "missing in fixed-boundary Windows profile; NUFFT remains unsupported/terminal_deferred; installation not required",
+    "freegs": "record include-system-site-packages inherited base packages",
+    "vmex": "bind external source tree identity and complete digest",
+    "pleiades": "bind external source tree identity and complete digest",
+    "cql3d": "record C/Fortran/NetCDF/HDF5 build toolchain; no Python substitution",
+    "historical_receipts": "original environment/source/input/run scope only"
+  },
+  "preserved_originals": ["docs/implementation/AD-29/proposal.md", "docs/implementation/AD-29/independent_review_r1/"],
+  "archive": "docs/implementation/AD-29/status_sync_r2"
+}

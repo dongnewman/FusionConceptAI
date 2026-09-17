@@ -1,0 +1,90 @@
+{
+  "fixture_id": "UP2-01-G2-METRIC-BOUNDARY-V1-FX-001",
+  "candidate_ref": {
+    "uri": "fusionconceptai://GenomeV5/candidate/up2-01-g2-metric-boundary-fixture",
+    "version": "v5",
+    "schema_seed": "candidate-schema-up2-01-g2-metric-boundary",
+    "canonicalization_seed": "candidate-canonicalization-up2-01-g2-metric-boundary"
+  },
+  "contract": {
+    "uri": "fusionconceptai://GenomeV5/G2/metric-boundary/up2-01-fixture",
+    "version": "v5"
+  },
+  "source": {
+    "source_ref": {"id": "fusionconceptai://source/up2-01-g2-metric-boundary-fixture", "version": "v1"},
+    "source_version": "g2-metric-boundary-source-v1",
+    "chart": {
+      "chart_ref": {"id": "fusion.g2.metric-boundary.chart", "version": "v1"},
+      "domain_lower": ["0/1", "0/1", "0/1"],
+      "domain_upper": ["1/1", "1/1", "1/1"],
+      "jacobian_rows": [["2/1", "0/1", "0/1"], ["0/1", "3/1", "0/1"], ["0/1", "0/1", "4/1"]],
+      "offset": ["1/2", "1/3", "1/4"],
+      "map_kind": "affine"
+    },
+    "mesh": {
+      "mesh_ref": {"id": "fusion.g2.metric-boundary.mesh", "version": "v1"},
+      "cells": [2, 3, 4],
+      "basis": "Q1",
+      "quadrature_points": [["1/2", "1/2", "1/2"], ["1/4", "1/4", "1/4"]],
+      "quadrature_weights": ["1/1", "1/2"],
+      "execution_status": "not_executed"
+    },
+    "units": {
+      "reference_coordinate": [0, 0, 0, 0, 0, 0, 0],
+      "coordinate": [1, 0, 0, 0, 0, 0, 0],
+      "jacobian": [1, 0, 0, 0, 0, 0, 0],
+      "metric": [2, 0, 0, 0, 0, 0, 0],
+      "area": [2, 0, 0, 0, 0, 0, 0],
+      "volume": [3, 0, 0, 0, 0, 0, 0],
+      "field_value": [0, 0, 0, 0, 0, 0, 1],
+      "flux_value": [0, 0, 0, 0, 0, 1, 0]
+    },
+    "domain_owner": "candidate-domain",
+    "faces": [
+      {"face_id": "face-x-min", "face": "x_min", "normal": [-1, 0, 0], "kind": "dirichlet", "value": "0/1", "unit_role": "field_value", "unit_exponents": [0, 0, 0, 0, 0, 0, 1]},
+      {"face_id": "face-x-max", "face": "x_max", "normal": [1, 0, 0], "kind": "neumann", "value": "1/1", "unit_role": "flux_value", "unit_exponents": [0, 0, 0, 0, 0, 1, 0]},
+      {"face_id": "face-y-min", "face": "y_min", "normal": [0, -1, 0], "kind": "dirichlet", "value": "0/1", "unit_role": "field_value", "unit_exponents": [0, 0, 0, 0, 0, 0, 1]},
+      {"face_id": "face-y-max", "face": "y_max", "normal": [0, 1, 0], "kind": "neumann", "value": "1/1", "unit_role": "flux_value", "unit_exponents": [0, 0, 0, 0, 0, 1, 0]},
+      {"face_id": "face-z-min", "face": "z_min", "normal": [0, 0, -1], "kind": "dirichlet", "value": "0/1", "unit_role": "field_value", "unit_exponents": [0, 0, 0, 0, 0, 0, 1]},
+      {"face_id": "face-z-max", "face": "z_max", "normal": [0, 0, 1], "kind": "neumann", "value": "1/1", "unit_role": "flux_value", "unit_exponents": [0, 0, 0, 0, 0, 1, 0]}
+    ],
+    "profile": {
+      "profile_id": "fusion.g2.metric-boundary.profile.fixture",
+      "dimension": 3,
+      "topology": "cartesian",
+      "basis_family": "tensor_product",
+      "claim_ceiling": "contract_only"
+    },
+    "authority": {"metric": "unique_match", "mesh": "no_match", "boundary": "no_match"}
+  },
+  "negative_controls": [
+    "source_hash_mismatch",
+    "jacobian_singular_or_metric_non_positive_definite",
+    "mesh_chart_ref_mismatch",
+    "duplicate_face_id",
+    "duplicate_face_owner",
+    "boundary_orientation_mismatch",
+    "boundary_faces_not_closed",
+    "missing_metric_authority",
+    "missing_mesh_authority",
+    "missing_boundary_authority",
+    "reference_coordinate_unit_mismatch",
+    "coordinate_unit_mismatch",
+    "jacobian_unit_mismatch",
+    "metric_unit_mismatch",
+    "area_unit_mismatch",
+    "volume_unit_mismatch",
+    "derived_area_unit_binding",
+    "derived_volume_unit_binding",
+    "unexpected_program_exception_is_separate"
+  ],
+  "claim_ceiling": "contract_only",
+  "review_pending": true,
+  "accepted": false,
+  "compile_calls": 0,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls": 0,
+  "physical_evidence": false,
+  "julia_or_desc_executed": false
+}

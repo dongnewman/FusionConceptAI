@@ -1,0 +1,228 @@
+{
+  "task_id": "UP1-INDEX",
+  "plan_version": "v4-upgrade-plan-20260914.1",
+  "status": "accepted",
+  "accepted": true,
+  "accepted_scope": "index_only_limited_three_layer_contract_status_and_provenance",
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "owner": "documentation integration",
+  "reviewer": "different Luna (pass)",
+  "sol_decision": "accepted for index and limited three-layer contract-status summary only; no B00/B04/provider/mesh/engineering/physical/R01-R10 credit",
+  "allowed_write_paths": [
+    "docs/implementation/README.md",
+    "docs/v4_multitopology_generation/README.md",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/v4_multitopology_generation/task_manifest.json",
+    "docs/implementation/UP1-INDEX/"
+  ],
+  "protected_scope": [
+    "src/",
+    "test/",
+    "runs/",
+    "queue",
+    "docs/implementation/UP0-02/",
+    "docs/implementation/UP1-01/",
+    "docs/implementation/UP1-02/",
+    "docs/implementation/UP1-03/",
+    "docs/implementation/AD-17/",
+    "docs/implementation/AD-18/"
+  ],
+  "integrated_tasks": [
+    {
+      "id": "UP1-01",
+      "status": "accepted",
+      "accepted_scope": "g1_typed_mechanism_mimo_closure_candidate_owned_structural_contract",
+      "archive": "docs/implementation/UP1-01/acceptance.md",
+      "review": "different Luna pass",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-02",
+      "status": "accepted",
+      "accepted_scope": "axis_aligned_rational_3d_g2_structural_contract",
+      "archive": "docs/implementation/UP1-02/acceptance.md",
+      "review": "different Luna pass",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-03",
+      "status": "accepted",
+      "accepted_scope": "g3_structural_resource_control_fault_and_standalone_feedback_contract",
+      "archive": "docs/implementation/UP1-03/acceptance.md",
+      "review": "different Luna pass",
+      "claim_ceiling": "contract_only",
+      "credit_boundary": {
+        "B00": false,
+        "B04": false,
+        "provider": false,
+        "mesh": false,
+        "engineering": false,
+        "physical": false,
+        "R01-R10": false
+      }
+    },
+    {
+      "id": "UP1-04",
+      "status": "ready",
+      "depends_on": [
+        "UP1-01",
+        "UP1-02",
+        "UP1-03"
+      ],
+      "accepted": false,
+      "reason": "all three limited prerequisites accepted; migration/integration and B00/B04 receipt remain pending"
+    }
+  ],
+  "architecture_links": {
+    "AD-17": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md#ad-17",
+    "AD-18": "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md#ad-18"
+  },
+  "W24_G2_CHILD_R2": {
+    "accepted_scope": "sealed_execution_status_snapshot",
+    "comparability_status": "changes_requested",
+    "credit_boundary": "no comparable execution/provider/engineering/physical/credible-candidate/R01-R10 credit",
+    "archive": "docs/implementation/W24-G2-CHILD-R2/acceptance.md"
+  },
+  "before_files": [
+    {
+      "path": "docs/implementation/UP1-INDEX/before/implementation_README.md",
+      "source": "docs/implementation/README.md",
+      "sha256": "b6d157dda0f34310eca3ddc8e7f0d98d87c2831bc7710977e534204a3e4e1626",
+      "bytes": 5039,
+      "mtime": "2026-09-14T04:27:13.8078426+08:00"
+    },
+    {
+      "path": "docs/implementation/UP1-INDEX/before/v4_README.md",
+      "source": "docs/v4_multitopology_generation/README.md",
+      "sha256": "fff8c68c08bd2c4bc65530ca2e01649e8120759b65a754b0ed284d2458ee6d69",
+      "bytes": 10682,
+      "mtime": "2026-09-14T04:56:52.7169106+08:00"
+    },
+    {
+      "path": "docs/implementation/UP1-INDEX/before/16_execution_work_orders.md",
+      "source": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "sha256": "0d01f2711af5c7351fdade0ce72b44946409b06b943d01b41ef1c7178ef209d2",
+      "bytes": 41789,
+      "mtime": "2026-09-14T04:56:52.7159184+08:00"
+    },
+    {
+      "path": "docs/implementation/UP1-INDEX/before/task_manifest.json",
+      "source": "docs/v4_multitopology_generation/task_manifest.json",
+      "sha256": "53be76c5562077021cad89923df6325cd436bc916c761ed654a93533f4d94c0e",
+      "bytes": 39078,
+      "mtime": "2026-09-14T04:27:55.1930824+08:00"
+    }
+  ],
+  "after_files": [
+    {
+      "path": "docs/implementation/README.md",
+      "snapshot": "docs/implementation/UP1-INDEX/after/implementation_README.md",
+      "sha256": "d9bb871b5bdbd624a6f3b48402f52fcd653ae537dec8cc5ed7a997fe2d8d14d6",
+      "bytes": 6235,
+      "mtime": "2026-09-14T05:21:20.8945075+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/README.md",
+      "snapshot": "docs/implementation/UP1-INDEX/after/v4_README.md",
+      "sha256": "69d46e6e81a44669ce29c488dd3b7dd672bce1ab10024c3b1517fb4662434541",
+      "bytes": 11350,
+      "mtime": "2026-09-14T05:20:57.1570216+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "snapshot": "docs/implementation/UP1-INDEX/after/16_execution_work_orders.md",
+      "sha256": "e2c3e66aded11ed92aa7ce657400de96fba115e9947c5c74a8b494a434c3e7c3",
+      "bytes": 43093,
+      "mtime": "2026-09-14T05:20:57.1560226+08:00"
+    },
+    {
+      "path": "docs/v4_multitopology_generation/task_manifest.json",
+      "snapshot": "docs/implementation/UP1-INDEX/after/task_manifest.json",
+      "sha256": "a5ce9a91fa980e919ace2af6b0d84d4a392981da09fadc16bc4eeb8e2b218cd9",
+      "bytes": 39445,
+      "mtime": "2026-09-14T05:20:57.1550232+08:00"
+    }
+  ],
+  "bounded_diff": {
+    "path": "docs/implementation/UP1-INDEX/up1_index_bounded_diff.patch",
+    "sha256": "cd7cc1067a6a7c3bee3a7780f06b747820dc8912b3856dfdb67947cf2b2cf725",
+    "bytes": 16570
+  },
+  "commands": [
+    {
+      "command": "PowerShell copy four allowed files to UP1-INDEX/before and record SHA256/mtime",
+      "exit_code": 0,
+      "purpose": "pre-modification provenance"
+    },
+    {
+      "command": "PowerShell copy four allowed files to UP1-INDEX/after and record SHA256/mtime",
+      "exit_code": 0,
+      "purpose": "after snapshot provenance"
+    },
+    {
+      "command": "Python difflib unified diff for four before/after snapshots",
+      "exit_code": 0,
+      "purpose": "bounded diff"
+    },
+    {
+      "command": "python -c JSON parse docs/v4_multitopology_generation/task_manifest.json and docs/implementation/UP1-INDEX/evidence_manifest.json",
+      "exit_code": 0,
+      "purpose": "final JSON validation",
+      "output": "JSON_OK (task_manifest and evidence_manifest)"
+    },
+    {
+      "command": "python docs/v4_multitopology_generation/validate_plan.py",
+      "exit_code": 0,
+      "purpose": "final planning/link/DAG validation",
+      "output": "checks=pass; markdown_files_checked=31; relative_links_checked=262; task_count=24; task_dag_acyclic=true; snapshot_files_checked=16; errors=[]"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "purpose": "final whitespace validation",
+      "output": "exit 0; existing LF-to-CRLF working-copy warnings only"
+    }
+  ],
+  "execution_boundary": {
+    "julia": false,
+    "DESC": false,
+    "provider": false,
+    "B00": false,
+    "B04": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01-R10": false
+  },
+  "independent_review": {
+    "reviewer": "different Luna",
+    "result": "pass",
+    "scope": "index links/status/provenance only"
+  },
+  "self_hash_rule": "Manifest hash excluded from output hashes to avoid circularity; acceptance and manifest hashes recorded externally after final write.",
+  "validation_result": {
+    "json_parse": "pass",
+    "validate_plan": "pass (planning/link/DAG only)",
+    "git_diff_check": "pass_with_existing_line_ending_warnings"
+  }
+}

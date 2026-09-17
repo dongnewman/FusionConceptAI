@@ -1,0 +1,46 @@
+{
+  "schema_version": "E1-N05-repair-v1",
+  "repair_id": "R4-trusted-serialized-negative-controls",
+  "status": "review_pending",
+  "full_gate": "changes_requested",
+  "accepted": false,
+  "scope": "trusted file-read source-bound overload and serialized negative-control test repair",
+  "input_hashes_before": {
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "b4d62e9ddf806809889225d704929593357145e38ed840df7c705446bdb1f331",
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "373ba3d631cdf40a68d472b915e5814247e245f16ba765a3f23cdb231aff90da",
+    "test/GenomeV5/UP2/n05_flux_receipt_exporter.jl": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+    "test/GenomeV5/UP2/run_n05_flux_receipt_export.jl": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+    "src/GenomeV5/UP2/N05FluxAuthorityProjectionV1.jl": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "test/GenomeV5/UP2/n05_flux_authority_fixtures.json": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81"
+  },
+  "output_hashes": {
+    "test/GenomeV5/UP2/n05_flux_receipt_checker.jl": "0025916b83e05e9c8a5558d35f4ee515459031178602a86a082a5f2f387e66dc",
+    "test/GenomeV5/UP2/n05_flux_receipt_export_tests.jl": "66386c675144175d61786ad5f884706bf12a426808e19dd3b124ab1674b99be8"
+  },
+  "unchanged_inputs": {
+    "exporter": "615de2be1898bda9f8e388b9282cf54344a6411f5b7bb3a7709615f18af3ca5e",
+    "runner": "e6c122ce7a0ca410a243c1f2d790fd0d9f0b0dbabb00becdc7d092e7e3fcd9ec",
+    "production": "3697d0db47adb339d7ae11cced4c4cc2eed1e1bc2f8b314c3001d479fae0c9df",
+    "fixture": "049fcc585f97245a745737733dd9aae6904e80b4cc09067dbc37a9528ab81d81"
+  },
+  "negative_control_matrix": "rejection_matrix.json",
+  "qa": {
+    "json_parse_exit": 0,
+    "git_diff_check_exit": 0,
+    "control_scan_exit": 0,
+    "julia_desc_process_sweep_exit": 0,
+    "julia_execution": "not_run"
+  },
+  "independence_boundary": "checker and exporter still share _n05e_row; formal independent checker/two-process replay remains open",
+  "claims": {
+    "full_receipt_export": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}
+

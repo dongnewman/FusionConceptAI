@@ -1,0 +1,67 @@
+{
+  "record_kind": "AD47_W0_G3_axis_schema_extension_independent_review",
+  "review_id": "independent_review_r1",
+  "reviewed_task": "AD-47-W0-G3-AXIS-SCHEMA-VERSIONED-EXTENSION",
+  "verdict": "changes_requested",
+  "claim_ceiling": "software_contract_only",
+  "root": "D:/006-Programing/LMC/FusionConceptAI",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "runtime": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 88696,
+    "utc": "2026-09-15T12:36:27.646932+00:00",
+    "exit_code": 0
+  },
+  "write_scope": [
+    "docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/independent_review_r1/report.md",
+    "docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/independent_review_r1/manifest.json",
+    "docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/independent_review_r1/review/**"
+  ],
+  "product_freeze": [
+    {"path":"docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/g3_axis_schema_v1.json","bytes":7328,"sha256":"9dc0bb10ceb4f586e746b9fd2862604a34731f2a06d5617ae3ae20e31dad657d","canonical_no_lf":true},
+    {"path":"docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/g3_axis_scope_contract_v1.json","bytes":3441,"sha256":"0f36038be9918d3e64e7a024314b8d0fa990d3d245f275d32d77a508dcbc2d28","canonical_no_lf":true},
+    {"path":"docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/g3_axis_migration_receipt.json","bytes":2873,"sha256":"6ec15e91027917a3be2b0df80b677701135426e3613e951b22155993676949fe","canonical_no_lf":true},
+    {"path":"docs/implementation/AD-47/G3-AXIS-SCHEMA-VERSIONED-EXTENSION/g3_axis_validation_receipt.json","bytes":3767,"sha256":"6e4abc6ab5ceac4e1158b580a26e2f01d557ad7314063d6dacc8fa8fb2be313c","canonical_no_lf":true}
+  ],
+  "ad43_immutability": {
+    "all_four_exact": true,
+    "paths": [
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json",
+      "docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json"
+    ],
+    "layer_enum": ["G1", "G2"]
+  },
+  "semantic_checks": {
+    "adapter_ref": "fusionconceptai://GenomeV5/G3/axis-contract",
+    "adapter_version": "v1",
+    "layer": "G3",
+    "scopes": ["realization", "control", "binding", "bundle"],
+    "axes": ["payload_schema", "canonicalization_profile", "applicability_profile", "evidence_receipt"],
+    "axis_cardinality": 4,
+    "negative_control_counts": {"schema_policy": 9, "scope_cases": 7, "validation_cases": 6},
+    "claims_all_false": true,
+    "runtime_all_zero": true,
+    "default_operator_registry_modified": false,
+    "result_union": ["PresentG3AxisSchemaExtensionV1", "AbsentG3AxisSchemaExtensionV1", "FailedG3AxisSchemaExtensionV1"]
+  },
+  "blocking_mismatch": {
+    "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+    "bytes": 6704,
+    "declared_sha256": "8e9d4f1505098b745048a5f741e0cb1edccdcf70a395c212f0a8649a73d62a4",
+    "actual_sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4",
+    "declared_length": 63,
+    "actual_length": 64,
+    "resolution": "terminal_deferred_until_w0_schema_reauthored"
+  },
+  "raw_receipts": [
+    "review/validation_stdout.json",
+    "review/validation_stderr.txt",
+    "review/plan_validator_stdout.json",
+    "review/plan_validator_stderr.txt",
+    "review/git_diff_check_stdout.txt",
+    "review/git_diff_check_stderr.txt"
+  ]
+}

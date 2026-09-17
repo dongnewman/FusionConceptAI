@@ -1,0 +1,29 @@
+{
+  "schema": "UP1-R2.integration-slice.receipt.v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "component": "integration-slice",
+  "review_revision": "r1",
+  "status": "pass_limited",
+  "observed_state": "terminal_deferred",
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "claim_ceiling": "contract_software_preparation_only",
+  "review_pending": true,
+  "external_calls": 0,
+  "heavy_lane": "forbidden",
+  "commands": [
+    "python -B -m pytest -q test/up1_external_closure_r2/integration/test_integration.py",
+    "python -B -m py_compile tools/up1_external_closure_r2/integration/__init__.py tools/up1_external_closure_r2/integration/runner.py tools/up1_external_closure_r2/integration/cli.py"
+  ],
+  "pytest_exit": 0,
+  "pytest_summary": "6 passed",
+  "compile_exit": 0,
+  "process_count": 2,
+  "replay_count": 2,
+  "semantic_determinism": true,
+  "network_access": false,
+  "new_ad": false,
+  "started_at_utc": "2026-09-17T00:00:00Z",
+  "ended_at_utc": "2026-09-17T00:00:00Z",
+  "cleanup_at_utc": "2026-09-17T00:00:00Z"
+}

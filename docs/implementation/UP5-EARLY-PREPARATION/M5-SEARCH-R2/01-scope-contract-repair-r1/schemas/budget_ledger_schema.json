@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "M5SearchR2BudgetLedgerV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "ledger_id", "config_sha256", "scope", "counters", "events", "stop"],
+  "properties": {
+    "schema": {"const": "M5SearchR2BudgetLedgerV1"}, "ledger_id": {"type": "string"}, "config_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "scope": {"enum": ["per_seed", "global"]},
+    "counters": {"type": "object", "additionalProperties": false, "required": ["eclass_created", "enode_created", "rewrite_applied", "trace_rows", "qd_proposals", "qd_cells", "qd_members", "mcts_roots", "mcts_expansions", "mcts_proposals", "unique_prefixes", "screen_evaluations", "proposal_receipts", "global_trace_rows"], "patternProperties": {".*": {"type": "integer", "minimum": 0}}},
+    "events": {"type": "array", "items": {"$ref": "budget_event_schema.json"}},
+    "stop": {"type": "object", "additionalProperties": false, "required": ["status", "reason", "precedence_rank", "terminal_deferred"], "properties": {"status": {"enum": ["complete", "saturation_incomplete", "terminal_deferred", "screen_fail", "fail_closed", "not_executed"]}, "reason": {"type": "string"}, "precedence_rank": {"type": "integer", "minimum": 1, "maximum": 7}, "terminal_deferred": {"type": "boolean"}}}
+  }
+}

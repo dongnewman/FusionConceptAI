@@ -1,0 +1,16 @@
+{
+  "schema":"UP1.W1.repair_r1.failure_receipt.v1",
+  "attempt":"attempt_01",
+  "command":"python docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R1/witness_authority/repair_r1/static_validator.py",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid_or_in_process":"collection_failure:pid_not_exposed_by_exec_capture",
+  "started_utc":"collection_failure:timestamp_not_exposed_by_exec_capture",
+  "ended_utc":"collection_failure:timestamp_not_exposed_by_exec_capture",
+  "exit_code":1,
+  "stdout_raw":"repair_r1/raw/attempt_01.stdout.raw",
+  "stderr_raw":"repair_r1/raw/attempt_01.stderr.raw",
+  "combined_raw":"repair_r1/raw/attempt_01.combined.raw",
+  "failure":"KeyError authoritative_source in initial validator implementation",
+  "collection_note":"Exec returned the traceback but did not expose child PID; no PID was inferred. This failed attempt is retained and superseded by the corrected rerun.",
+  "superseded_by":"repair_r1/static_validator.py corrected field alias"
+}

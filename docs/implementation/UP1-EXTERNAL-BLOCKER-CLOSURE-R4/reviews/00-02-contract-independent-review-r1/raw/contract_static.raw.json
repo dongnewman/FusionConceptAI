@@ -1,0 +1,25 @@
+{
+  "observed_utc": "2026-09-17T01:39:03.4296938Z",
+  "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+  "current_status_line_count": 384,
+  "r4_scan_status_line_count": 382,
+  "r4_scan_status_sha256": "cbfe327afe0506327cbf0023179f8b05b9c9cc3675ef368dfc4656d0e7080689",
+  "external_input_contract": {
+    "item_count": 26,
+    "unique_id_count": 26,
+    "packet_counts": {"EHP-01": 7, "EHP-02": 11, "EHP-03": 6, "EHP-04": 2},
+    "current_typed_state_counts": {"typed_absent": 26},
+    "authoritative_channel_fields": "all 26 records have state/owner/endpoint/transport/authentication/ack = typed_absent",
+    "snapshot": "usable_external_inputs=0; g1/g2/g3=typed_absent; terminal_deferred; publish=false; formal_credit=none; authority_credit=false"
+  },
+  "delta_scan": {
+    "observed_utc": "2026-09-17T01:20:56.4378769Z",
+    "head": "b2c04d8339774635aaecd73651efcdb101e01b5d",
+    "typed_absent": "26/26",
+    "new_ad": false,
+    "s3_rerun": false,
+    "network_accessed": false,
+    "source_or_test_modified": false
+  },
+  "interpretation": "The R4 scan is time-scoped; the later +2 status lines are dirty-worktree drift. This does not prove external presence and does not invalidate the nine separately frozen project-input checks, but a future recheck needs a fresh snapshot."
+}

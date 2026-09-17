@@ -1,0 +1,15 @@
+ERROR: LoadError: ParseError:
+# Error @ D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\M4Isolated\ManufacturedConditionalEGraphV1.jl:378:5
+        push!(fs, _m5ceg_failure(:foreign_provenance, "scope", "claim ceiling is not synthetic/screen_only"))
+    try
+        _ceg_digest_equal(x.source_program_hash, _ceg_program_hash(x.source_program)) ||
+            x.graph.complete ? (x.status == :valid) : (x.status == :terminal_deferred)
+                || push!(fs, _m5ceg_failure(:status_mismatch, "status", "incomplete saturation must be terminal_deferred"))
+#───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ ── try without catch or finally
+Stacktrace:
+ [1] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\M4Isolated\ManufacturedConditionalEGraphV1.jl:394
+ [2] include(fname::String)
+   @ D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_conditional_egraph_v1_tests.jl:7
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\M4Isolated\ManufacturedConditionalEGraphV1.jl:394
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\M4Isolated\manufactured_conditional_egraph_v1_tests.jl:7

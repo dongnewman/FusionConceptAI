@@ -1,0 +1,151 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC-independent-postrun-r1",
+  "record_kind": "independent_focused_postrun_failure_review",
+  "date": "2026-09-15",
+  "repository": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "head_observed": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "reviewer": {
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
+    "independent_of_implementation_worker": true
+  },
+  "verdict": "changes_requested",
+  "accepted": false,
+  "review_pending": true,
+  "decision_scope": "Read-only independent audit of the single focused R1 raw receipt and its first production failure.",
+  "focused_run": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+    "pid": 43332,
+    "start_utc": "2026-09-15T01:37:32.4052621Z",
+    "end_utc": "2026-09-15T01:37:36.2578507Z",
+    "exit_code": 1,
+    "retry": false,
+    "repair_during_run": false,
+    "assertions": {
+      "passed": 3,
+      "failed": 0,
+      "errors": 1,
+      "total": 4
+    },
+    "first_error": {
+      "file": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "line": 331,
+      "exception": "TypeError",
+      "message": "non-boolean (FusionConceptAI.var#1035#1075{NTuple{4, FusionConceptAI.G3RealizationLedgerEntryV1}}) used in boolean context",
+      "classification": "production_implementation_defect",
+      "fixture_or_environment_defect": false
+    }
+  },
+  "raw_streams": {
+    "stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/stdout.raw",
+      "bytes": 3266,
+      "sha256": "0fa86d6f76d284a6cde669d69ab81dfa4f7b023e099b27f4aaa94417d825cdf3",
+      "manifest_match": true
+    },
+    "stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/stderr.raw",
+      "bytes": 213,
+      "sha256": "11a0cf9944d44e4bfe2d5b58408e216c885451e37bfe64bb9d7dd70aa5665416",
+      "manifest_match": true
+    }
+  },
+  "frozen_receipts": {
+    "run_manifest": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/run_manifest.json",
+      "sha256": "f26cc3940e6e3f98d26c3e74998f72f2f084eb35d1a1b4f12a6f6cf58c3c2c49"
+    },
+    "assertion_summary": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/assertion_summary.json",
+      "sha256": "19cef78b45e21667c0c0b9138e348711ab7b610915bd97eb015667ff3f0d81ad"
+    },
+    "input_hashes": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/input_hashes.json",
+      "sha256": "c800f29d802bed759b44313276b06207ffee813b66c96a87c5b1196e1693c2ce"
+    },
+    "dirty_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/dirty_before.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "dirty_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/dirty_after.txt",
+      "sha256": "4391b518d16631943a0153e828b1994daa328c400d3ef460078458fb00816411"
+    },
+    "process_before": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/process_before.json",
+      "sha256": "427d07d1443a1d934e10437319e358032857a316a7381d35a48a2cb586308958"
+    },
+    "process_after": {
+      "path": "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/focused_r1/process_after.json",
+      "sha256": "6ea49db9c0860132206e45d46335d6e2459a097f706869e1b215434646b466b9"
+    }
+  },
+  "input_hashes_verified": {
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": "5146e7c36a740509648c3e43387a31c12c8fe1e20e606de7f95a1abaeeebd1d0",
+    "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl": "8850aebc57eaba3e405ed8669b6b07881a436a8549fb34359a3a5b8a7dae6e7e",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "70b045dd3a1fcbfc60f58e0b742c296507343ffc3736aaefd8c2a40e212750d0",
+    "docs/implementation/AD-31/acceptance.md": "08789c596ea52d02070defa2473634ca339221b500b520f74b1dc08696c96ba7",
+    "docs/implementation/AD-31/manifest.json": "e8906bf8a44ebc8e363d5ea18176005fb9345dcdd43877d4148d8ba2a2552cf0",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/manifest.json": "e8e10108f72e0b1d4500b146fd27bf5c51104f6a71ea372bf10afe2a64850690",
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r3/manifest.json": "81ceabf2aaeb5a0c1f5369e68d057c965f068914b5722c8c3bb7019c89da75ba",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": "7dfb31d718ff24dcac5554dcc388f8c947bbd70fd23b219e17596cd79dac5e61",
+    "docs/v4_multitopology_generation/18_sources_and_architecture_decisions.md": "9f415c71936979c71757b31070c78d43c1d4ccebabe68211ef100b444ba13493",
+    "docs/v4_multitopology_generation/task_manifest.json": "e05ffba7ac21b8aec2485e25e06aa60acd5e2e6543798826ac63aa5f7ce4b25a"
+  },
+  "dirty_and_process_evidence": {
+    "dirty_before_rows": 306,
+    "dirty_after_rows": 306,
+    "process_before_julia": [],
+    "process_after_julia": [],
+    "input_hashes_match": true
+  },
+  "failure_analysis": {
+    "expression": "all(c -> sum(e.coefficient for e in entries if e.account_id in c.account_ids) == c.expected_balance for c in closures)",
+    "line": 331,
+    "root_cause": "Julia parses the generator element as the arrow function, so all receives functions instead of booleans",
+    "production_defect": true,
+    "fixture_defect": false,
+    "minimal_source_repair": "Use two-argument all(predicate, closures) or parenthesize the predicate so each closure returns a Bool",
+    "hash_or_status_scope_change_required": false
+  },
+  "repair_r4": {
+    "status": "required",
+    "owned_files": [
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "test/GenomeV5/G3/g3_realization_child_editability_v1_tests.jl",
+      "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/repair_r4/"
+    ],
+    "minimal_change": "source line 331 predicate only; add a regression assertion only if needed",
+    "excluded_paths": [
+      "old G3 V1/V5",
+      "T0",
+      "package/registry",
+      "control/binding/feedback",
+      "provider/mesh/solver/engineering/physical"
+    ],
+    "exit_gate": [
+      "recompute source/test/input hashes",
+      "pass JSON, plan/link, UTF-8/control-byte and scoped diff checks",
+      "run exactly one serial focused Julia command",
+      "require exit 0 with zero test errors",
+      "preserve raw stdout/stderr bytes and hashes",
+      "obtain a fresh independent postrun review"
+    ]
+  },
+  "claim_ceiling": {
+    "software_contract_editability_only": true,
+    "implementation_accepted": false,
+    "physical_resolution": "unknown",
+    "t0_t1_t2_credit": false,
+    "provider_mesh_solver_credit": false,
+    "engineering_credit": false,
+    "physical_credit": false,
+    "search_credit": false,
+    "b00_b04_credit": false,
+    "r01_r10_credit": false
+  },
+  "review_artifact_hashes": {
+    "docs/implementation/UP1-04A-VNEXT-G3-REALIZATION-EDIT-PREC/independent_postrun_r1/report.md": "b61aef0c297970a46cb46dd8038807613e676c110ef7e95e438e4ad18f0ead2c"
+  },
+  "self_hash_excluded": true
+}

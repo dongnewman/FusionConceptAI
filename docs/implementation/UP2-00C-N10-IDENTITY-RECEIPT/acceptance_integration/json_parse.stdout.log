@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Users\Newman\anaconda3\Lib\json\tool.py", line 87, in <module>
+    main()
+    ~~~~^^
+  File "D:\Users\Newman\anaconda3\Lib\json\tool.py", line 63, in main
+    infile = open(options.infile, encoding='utf-8')
+FileNotFoundError: [Errno 2] No such file or directory: '../UP2-00C-N10-IDENTITY-RECEIPT/evidence_manifest.json'

@@ -1,0 +1,28 @@
+{
+  "schema": "m4-b-residual-lowering-scope-decision-v1",
+  "task_id": "UP2-01-PREPARATION/M4-A-EQUATION-IR/b_scope_decision_r1",
+  "status": "authorized_not_started",
+  "decision_authority": "Sol/root",
+  "recorder": "Luna m4_scope_record",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "scope_basis": "../root_acceptance_r1/manifest.json; independent_review_r1/pass_limited",
+  "claim_ceiling": ["manufactured_residual_lowering", "screen_only"],
+  "objective": "analytic residual declaration only",
+  "frozen_math": {"components":["1/10","1/20","1/30"],"div_k_grad_u":"11/60","source":"-11/60","residual":"-div-f=0"},
+  "required_bindings": ["units","equation identity","source identity","conservation_owner","provenance"],
+  "owner_rule": {"source.owner":"explicit and distinct field","conservation_owner":"explicit conservation binding","foreign_or_mismatch":"typed_failure"},
+  "future_paths": {"source":"src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl","test":"test/RuntimeV4/M4Isolated/manufactured_residual_lowering_v1_tests.jl","oracle":"test/RuntimeV4/M4Isolated/oracles/residual_lowering_oracle_v1.py","evidence":"docs/implementation/UP2-01-PREPARATION/M4-B-RESIDUAL-LOWERING/**"},
+  "roles_pairwise_distinct": {"source_implementer":"distinct Luna","test_oracle_owner":"distinct Luna","integration_owner":"distinct Luna","documentation_owner":"Luna m4_scope_record","independent_reviewer":"distinct Luna"},
+  "hard_exclusions": ["mesh","discretization","matrix_assembly","vector_assembly","solver","topology_transfer","coupling","candidate","provider","physics","engineering"],
+  "C": "unauthorized",
+  "D": "unauthorized",
+  "not_closed_or_credited": ["UP2-01","UP2","B00","B04","provider","mesh","engineering","physical","R01-R10","L4"],
+  "formal_reentry": ["T0","authority recheck","T1","T2","aggregate","UP2-00","UP1-04B","UP1-04","UP2-01"],
+  "runtime": {"Julia":"not_run","Python":"not_run","solver":"not_run"},
+  "execution": {"started":false,"strict_serial_required":true,"raw_pid_utc_exit_hashes_required":true},
+  "review": {"independent_review_required":true,"sol_acceptance_required":true,"acceptance_ceiling":"manufactured_residual_lowering/screen_only"},
+  "parent_closed": false,
+  "formal_credit": []
+}
+

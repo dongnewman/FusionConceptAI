@@ -1,0 +1,27 @@
+{
+  "schema_version": "G-I1B-SOURCE-ENVELOPE-independent-postrun-r5-command-receipts-v1",
+  "reviewer": "independent_luna_high_postrun",
+  "scope": "read-only postrun review; no Julia/DESC",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "review_dirty_entry_count": 3855,
+  "review_dirty_status_sha256_utf8_lf": "358bd1a0031b1011857333a7e0d82130aba4443593f98635e2c2318c6f056272",
+  "review_process_sweep": "zero matching Julia/DESC processes",
+  "commands": [
+    {"operation": "raw output hash/byte recomputation", "command": "Get-FileHash -Algorithm SHA256 focused_r5/stdout.txt focused_r5/stderr.txt; Get-Item .Length", "result": "stdout 2806 bytes SHA 22f5b672...; stderr 0 bytes SHA e3b0c442..."},
+    {"operation": "run metadata audit", "command": "ConvertFrom-Json focused_r5/run.json", "result": "PID 14796; exit 0; UTC, dirty and process fields consistent"},
+    {"operation": "input hash audit", "command": "ConvertFrom-Json input_hashes.json; Get-FileHash current four inputs", "result": "all four input hashes and bytes match"},
+    {"operation": "focused output audit", "command": "Read focused_r5/report.json/evidence_manifest.json/command_receipts.json", "result": "2653/2653; actual-A 2024/2024; taxonomy 8/8; schema 14/14; production 6/6"},
+    {"operation": "R9 typed authority-gap audit", "command": "Read repair_r9 static QA/note and source/test N06 assertions", "result": "test-only nonempty check; typed terminal_deferred/authority_gap/typed_absent/N06 assertions retained"},
+    {"operation": "focused-R4 preservation audit", "command": "Hash focused_r4 raw evidence and qa.json", "result": "exit 1 lexical line-407 receipt preserved; hashes match R9"},
+    {"operation": "Julia/DESC execution", "command": "julia ...", "result": "NOT RUN by independent postrun review"}
+  ],
+  "writes": ["docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r5/report.md", "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r5/report.json", "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r5/evidence_manifest.json", "docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/independent_postrun_r5/command_receipts.json"],
+  "postwrite_outputs": {
+    "report.md": {"bytes": 2435, "sha256": "7f3662bfaf03bba3029f5efaf48e38932fff719c001e89d85ca50a8fd29429a6"},
+    "report.json": {"bytes": 1972, "sha256": "7265a3e669b8f5471783ae8ff1f505f94c59c21164a05ef98bca237c0bcdc6cb"},
+    "evidence_manifest.json": {"bytes": 2316, "sha256": "a5f7f571b157705c53458b069169c5149f49cdf4fbb402a35b706ad10f2e26b7"}
+  },
+  "postwrite_full_status_entry_count": 3871,
+  "claim_ceiling": ["pass_limited", "software_test_only", "accepted_false", "review_pending", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_engineering", "no_physics", "no_current_A", "no_B00", "no_B04", "no_parent_goal"]
+}

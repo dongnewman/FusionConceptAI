@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "M5SearchR2FailurePrecedenceV2",
+  "title": "M5SearchR2FailurePrecedenceV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "ordered_classes", "rules", "exclusive_rule", "rank_rule"],
+  "properties": {
+    "schema": {"const": "M5SearchR2FailurePrecedenceV2"},
+    "ordered_classes": {"const": ["fail_closed", "contradiction", "operational_interruption", "budget_exhausted", "numerical_fail", "not_applicable", "complete"]},
+    "rules": {"type": "array", "minItems": 14, "items": {"type": "object", "additionalProperties": false, "required": ["observation", "stage", "class", "status", "failure_code", "resolution", "precedence_rank"], "properties": {"observation": {"type": "string", "minLength": 1}, "stage": {"enum": ["admit", "canonicalize", "egraph", "qd", "mcts", "screen", "replay", "any"]}, "class": {"enum": ["fail_closed", "contradiction", "operational_interruption", "budget_exhausted", "numerical_fail", "not_applicable", "complete"]}, "status": {"enum": ["not_executed", "fail_closed", "terminal_deferred", "budget_stop", "numerical_fail", "rejected", "complete"]}, "failure_code": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]+$"}, "resolution": {"enum": ["fail_closed", "terminal_deferred", "no_publish", "zero_merge", "screen_only"]}, "precedence_rank": {"type": "integer", "minimum": 1, "maximum": 7}}}},
+    "exclusive_rule": {"const": "highest_precedence_observation_wins; secondary_codes_are_metadata_only"},
+    "rank_rule": {"const": "precedence_rank_is_one_based_index_in_ordered_classes_and_is_checker_derived"}
+  }
+}

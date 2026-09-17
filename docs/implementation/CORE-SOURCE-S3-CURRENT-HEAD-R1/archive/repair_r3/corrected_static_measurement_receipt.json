@@ -1,0 +1,23 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.corrected-static-measurement.v1",
+  "status":"completed_review_pending",
+  "measurement_kind":"read_only_static_source_closure",
+  "s3_rerun":false,
+  "command_path":"archive/repair_r3/corrected_static_measurement_exact_command.txt",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid_or_in_process":"in_process",
+  "started_utc":"2026-09-16T05:56:40.9986566Z",
+  "ended_utc":"2026-09-16T05:56:41.0183347Z",
+  "exit_code":0,
+  "raw":{"stdout":{"path":"raw/corrected_static_measurement.stdout.raw","bytes":299,"sha256":"63fe7fbfc976292fe313cdfd6b86bd1af79269a995b3d0ba2fe0663b93367f96"},"stderr":{"path":"raw/corrected_static_measurement.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"combined":{"path":"raw/corrected_static_measurement.combined.raw","bytes":300,"sha256":"b62da63b0a44b3ee4792ed6b06fcde2a3e5b8c9becb5bfb84d78746d6f51de4b","rule":"stdout || stderr, exact bytes, no separator"}},
+  "input_hashes":{"input_fingerprint":"840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5","probe_sha256":"b90e7c9574f3f0afad11261b37240b6fa16652724017d732736fe6e6c1252f37","loader_sha256":"391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4","module_sha256":"e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783","head":"b2c04d8339774635aaecd73651efcdb101e01b5d","index_sha256":"6fb570961008194812a3c260d0c2be840800271fe82a1820d7760459bfddb8e0"},
+  "output_hashes":{"measurement_receipt":"self_hash_excluded","source_closure":"top-level source_closure.json updated to reference this receipt"},
+  "artifact_hashes":{"command":"f07e5418ebe7f3bde1fece185e30e37ff525aabca335acdfe3970694f90febcb","stdout":"63fe7fbfc976292fe313cdfd6b86bd1af79269a995b3d0ba2fe0663b93367f96","stderr":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","combined":"b62da63b0a44b3ee4792ed6b06fcde2a3e5b8c9becb5bfb84d78746d6f51de4b"},
+  "count_vector":[4,5,12,1,47,0],
+  "count_semantics":["probe import declarations","probe explicit include targets","loader component file entries","loader Base.include directive sites","enclosing module include directives","factory include directives"],
+  "current_evidence":true,
+  "historical_failed_measurement":{"vector":[0,0,0,0,0,0],"classification":"historical_failed_measurement","paths":["archive/repair_r2/raw/fresh_s3_recheck.stdout.raw","archive/repair_r2/raw/fresh_s3_recheck.combined.raw"],"current_evidence":false,"reason":"original fresh command regex undercount; retained immutable history"},
+  "result_boundary":{"branch":"blocked_external_trust_root_and_source_closure","typed_absence":true,"resolution":"terminal_deferred","no_publish":true,"claim_ceiling":"typed_absence_recheck_only"},
+  "stderr_hash_discrepancy":{"user_supplied_string":"omitted_in_current_candidate_receipt_due_to_invalid_length","supplied_length":65,"supplied_error":"extra 9 in the ...ece9649e09... fragment","file_recomputed_sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b","file_recomputed_length":64,"resolution":"use independently recomputed file hash; all current candidate/R2/R3 receipt fields use 64-hex value"},
+  "forbidden_execution":{"Julia":false,"S3":false,"DESC":false,"mesh":false,"solver":false}
+}

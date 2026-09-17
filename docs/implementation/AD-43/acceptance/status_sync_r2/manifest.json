@@ -1,0 +1,72 @@
+{
+  "manifest_version": "AD-43-acceptance-status-sync-r2-v1",
+  "record_kind": "acceptance_status_sync",
+  "task_id": "AD-43",
+  "status": "accepted_limited",
+  "accepted_scope": "source_only_axis_contract_record_definitions_and_three_typed_absences",
+  "claim_ceiling": "software_contract_record_only",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T10:36:09.399578Z",
+  "decision": {
+    "authority": "Sol/root",
+    "axis_result": "PresentAxisContractRecordV1",
+    "present_semantics": "contract_definition_and_exact_source_product_bytes_closed_only",
+    "candidate_bound_axis_present": false,
+    "future_candidate_fields": {
+      "candidate_ref": null,
+      "public_contract_ref": null,
+      "source_record_hash": null,
+      "source_identity_hash": null,
+      "candidate_identity_hash": null,
+      "attestation_ref": null,
+      "fresh_w2r1_receipt_hash": null,
+      "status": "typed_absent",
+      "missing_policy": "terminal_deferred"
+    },
+    "w2r1_parallel_outputs": "point_in_time_excluded",
+    "t0_t1_t2": false,
+    "provider_mesh_solver": false,
+    "engineering_physical": false,
+    "r01_r10": false
+  },
+  "products": [
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/evidence_receipt_axis_schema_v1.json","bytes":4237,"sha256":"f16a518f886c31726725e18b9b317caecb2666e9905d718c60ef35b611ad1993"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g1_evidence_receipt_contract_v1.json","bytes":5446,"sha256":"0b68dd638641990b16a88cc3fd5a7268bd0d1fe675bf0e76e695631b61954d5a"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_applicability_profile_contract_v1.json","bytes":4968,"sha256":"1ca17e3ac7414d3a3817f3cf98436484a002f7a0d780e824f5c7a72fb2902d19"},
+    {"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/g2_evidence_receipt_contract_v1.json","bytes":5764,"sha256":"699291a5f5478977fb4aab92b0d101126096da97a0bb989fd600d61ed92a5a98"}
+  ],
+  "independent_reviews": {
+    "axis_products_90_of_90": {"review_path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/report.md","review_manifest_path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/manifest.json","review_sha256":"95bf4e6712cc59af6a63cf3f4754fb97d15d61328433fecae6ad4d03a4927c7e","pid":28864,"utc_start":"2026-09-15T10:17:45.206445Z","utc_end":"2026-09-15T10:17:45.252759Z","exit_code":0,"checks_passed":90,"checks_total":90,"raw_stdout":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stdout.json","bytes":1532,"sha256":"c0517e6a0a41ea105a9ca0cb0ecf47784b3cf751ae906d711ad69a90ba20de80"},"raw_stderr":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/independent_review_r1/review/validation_r3_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "axis_products_direct_38_of_38": {"receipt_path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/archive/validation_receipt_r4.json","pid":75732,"utc_start":"2026-09-15T10:08:20.088684Z","utc_end":"2026-09-15T10:08:47.804914Z","exit_code":0,"checks_passed":38,"checks_total":38,"raw_stdout":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/archive/validation_r4_stdout.json","bytes":1859,"sha256":"c0c50204d0a55b810d95776c9a18ef0d7537eb577e9215d2999a066ef67d6b04"},"raw_stderr":{"path":"docs/implementation/AD-43/AXIS-CONTRACT-RECORDS/archive/validation_r4_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}},
+    "acceptance_repair_r2_19_of_19": {"review_path":"docs/implementation/AD-43/acceptance/independent_review_r2/report.md","review_manifest_path":"docs/implementation/AD-43/acceptance/independent_review_r2/manifest.json","review_sha256":"466b4553cfb9cb92fd45d9a93b14a897210aeecabd37850ee7f6b7aef4be83e2","pid":9900,"utc_start":"2026-09-15T10:24:39.636492Z","utc_end":"2026-09-15T10:24:39.638369Z","exit_code":0,"checks_passed":19,"checks_total":19,"raw_stdout":{"path":"docs/implementation/AD-43/acceptance/independent_review_r2/review/validation_summary.json","bytes":559,"sha256":"d8d684e0ff3269b5ea16044304ff980be11c66dc1b25c4de459eb412d10f2abc"},"raw_stderr":{"path":"docs/implementation/AD-43/acceptance/independent_review_r2/review/validation_stderr.txt","bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}}
+  },
+  "status_sync_runs": {
+    "json_hash_path_control_24_of_24": {"pid":59748,"utc_start":"2026-09-15T10:35:45.297187Z","utc_end":"2026-09-15T10:35:45.303884Z","exit_code":0,"checks_passed":24,"checks_total":24,"raw_stdout":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stdout.json","bytes":3076,"sha256":"16791815750f2e214ede16b11d41216ebe7ed6593574b2e53235b9f60527ca62"},"raw_stderr":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}},
+    "plan_dag_39_tasks": {"command":"python docs/v4_multitopology_generation/validate_plan.py","pid":77496,"utc_start":"2026-09-15T10:35:57.067520Z","utc_end":"2026-09-15T10:35:57.536208Z","exit_code":0,"task_count":39,"task_dag_acyclic":true,"raw_stdout":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/plan_dag_stdout.json","bytes":735,"sha256":"233e8d9f514d74ac3a2e5ca6500a55b2dc027eec6b6b3c2ee36d5068bd177d42"},"raw_stderr":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/plan_dag_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}},
+    "git_diff_check": {"command":"git diff --check -- AD-43 acceptance and axis contract paths","pid":28668,"utc_start":"2026-09-15T10:36:09.332061Z","utc_end":"2026-09-15T10:36:09.399578Z","exit_code":0,"warnings_only":true,"raw_stdout":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/git_diff_check_stdout.json","bytes":326,"sha256":"f58782b73faa6788278ec141976f5dc81a711896a4bf8986daa1008b3ba1f7b5"},"raw_stderr":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/git_diff_check_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}}
+  },
+  "acceptance_inputs": {
+    "acceptance_path":"docs/implementation/AD-43/acceptance/acceptance.md",
+    "acceptance_bytes":4931,
+    "acceptance_sha256":"ddaf8dedfec444076cc296a716882f4ad1a9954a14e50dda8ca348c468342eb3",
+    "acceptance_manifest_path":"docs/implementation/AD-43/acceptance/manifest.json",
+    "acceptance_manifest_snapshot_policy":"snapshot_before_status_sync_manifest_output_registration; cross-file hash cycle excluded",
+    "acceptance_manifest_bytes":22719,
+    "acceptance_manifest_sha256":"145046a9a8472f8d5b0b9545de578808f612b2d619e4691a3f2ac5f7ca2a3474"
+  },
+  "outputs": {
+    "report":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/report.md","bytes":3469,"sha256":"260a73db034e04d464f77493902b3ae6598dbb1477c24b6f299c6cda6aa73f98"},
+    "manifest":{"path":"docs/implementation/AD-43/acceptance/status_sync_r2/manifest.json","self_hash_excluded":true},
+    "raw_sidecars": [
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stdout.json","bytes":3076,"sha256":"16791815750f2e214ede16b11d41216ebe7ed6593574b2e53235b9f60527ca62"},
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/acceptance_validator_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/plan_dag_stdout.json","bytes":735,"sha256":"233e8d9f514d74ac3a2e5ca6500a55b2dc027eec6b6b3c2ee36d5068bd177d42"},
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/plan_dag_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/git_diff_check_stdout.json","bytes":326,"sha256":"f58782b73faa6788278ec141976f5dc81a711896a4bf8986daa1008b3ba1f7b5"},
+      {"path":"docs/implementation/AD-43/acceptance/status_sync_r2/git_diff_check_stderr.txt","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"}
+    ]
+  },
+  "cleanup": {"status":"closed","owned_temporary_or_unrelated_files_found":[],"removed_paths":[],"historical_receipts_preserved":true,"parallel_work_preserved":true,"sidecars_evidence_only":true,"source_test_fixture_staticqa_launcher_product_under_sidecars":false},
+  "self_hash_excluded": true,
+  "self_hash_rule": "manifest records closure fields but excludes recursive self SHA256"
+}

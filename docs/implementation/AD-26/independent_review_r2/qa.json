@@ -1,0 +1,23 @@
+{
+  "verdict": "pass_limited",
+  "scope": "AD-26 architecture/protocol clarification only",
+  "checks": {
+    "json_parse_exit": 0,
+    "control_scan_exit": 0,
+    "snapshot_after_text_occurrences": 1,
+    "snapshot_before_text_occurrences_current": 0,
+    "validate_plan_exit": 0,
+    "git_diff_check_exit": 0,
+    "julia_desc_process_count": 0
+  },
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "no UP2/B00/B04/provider/mesh/engineering/physical/R01-R10 credit",
+  "r1_failure_preserved": true,
+  "notes": [
+    "R2 closes the R1 ambiguity: both present E1/E2 extension payloads and typed absent markers explicitly carry schema_hash, canonicalization_hash, and compatibility_profile_hash.",
+    "E1/E2 extension content hashes remain explicitly independent context inputs; the original A/E0 references and hashes, CandidateStatePackageV5 candidate_hash, E0 binding_hash, and E0 bound_input_hash remain immutable by this decision.",
+    "The repair manifest reports an acceptance before hash without preserving an acceptance before-bytes snapshot; that historical value is treated as author-reported metadata, while the current acceptance after hash is verified.",
+    "README and execution work-order each retain exactly one AD-26 index link and preserve the formal B04, provider, physical, and R01-R10 boundaries."
+  ]
+}

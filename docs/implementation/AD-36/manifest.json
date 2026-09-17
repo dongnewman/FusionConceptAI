@@ -1,0 +1,86 @@
+{
+  "manifest_version": "AD-36-status-sync-r3",
+  "record_kind": "mandatory_evidence_sidecar_scope_amendment",
+  "task_id": "AD-36",
+  "status": "accepted_limited",
+  "accepted": true,
+  "accepted_scope": "mandatory_evidence_sidecar_scope_contract_only",
+  "decision": "accepted_limited_by_sol_after_independent_review_r3_pass_limited",
+  "status_sync_rounds": {
+    "status_sync_r1": {
+      "path": "docs/implementation/AD-36/status_sync_r1/",
+      "role": "historical_receipt",
+      "superseded_by": "docs/implementation/AD-36/status_sync_r2/"
+    },
+    "status_sync_r2": {
+      "path": "docs/implementation/AD-36/status_sync_r2/",
+      "role": "append_only_current_status_refresh",
+      "predeclared": true
+    },
+    "status_sync_r3": {
+      "path": "docs/implementation/AD-36/status_sync_r3/",
+      "role": "append_only_acceptance_status_receipt",
+      "predeclared": true
+    }
+  },
+  "base_commit": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "parent_task_count": 39,
+  "parent_dag_acyclic": true,
+  "parent_dag_unchanged": true,
+  "creates_mainline_task": false,
+  "physical_credit": false,
+  "r01_r10_credit": false,
+  "exact_file_count_scope": "product_and_contract_deliverables_only",
+  "mandatory_evidence_sidecars": {
+    "status": "required_append_only",
+    "allowed_root_template": "docs/implementation/<task-id>/archive/**",
+    "allowed_named_subdirectories": ["review/**", "status_sync_*/**"],
+    "required_content": ["raw_stdout", "raw_stderr", "exit", "pid_utc", "interpreter", "input_hashes", "output_hashes", "artifact_hashes", "repair_reports", "cleanup_inventory", "independent_reviews", "status_sync"],
+    "excluded_from_exact_file_count": true,
+    "must_not_overwrite_prior_round": true,
+    "cleanup_protected": true,
+    "evidence_only": true,
+    "forbidden_payloads": ["product_or_contract_deliverable", "source", "test", "fixture", "staticQA", "launcher"],
+    "scope_violation_action": "fail_closed_and_cleanup_task_owned_out_of_scope_copy_preserving_evidence",
+    "temporary_launcher_forbidden": true,
+    "direct_command_tests_required": true,
+    "applies_to": ["AD-34 binding6", "AD-34 recheck7", "future exact-scope workorders"]
+  },
+  "affected_records": [
+    "docs/implementation/AD-34/acceptance.md",
+    "docs/implementation/AD-34/manifest.json",
+    "docs/v4_multitopology_generation/16_execution_work_orders.md",
+    "docs/implementation/AD-35/acceptance.md",
+    "docs/implementation/AD-35/manifest.json"
+  ],
+  "validation": {
+    "code_tests": "not_applicable_for_contract_documentation",
+    "julia_desc_or_heavy_recompute": "not_run",
+    "commands": []
+  },
+  "cleanup_inventory": [
+    {"path":"docs/implementation/AD-36/acceptance.md","owner":"AD-36","category":"frozen_delivery","existed_before":false,"before_sha256":null,"action":"retain","reason":"requested amendment acceptance record","existed_after":true,"after_sha256":"e21389af1bfeb8b9973f6671e0c0c401e5fb677bda67816b3333375df56aa070","after_bytes":2595,"classification":"protected_delivery"},
+    {"path":"docs/implementation/AD-36/manifest.json","owner":"AD-36","category":"frozen_delivery_manifest","existed_before":false,"before_sha256":null,"action":"retain_with_self_hash_excluded_rule","reason":"requested amendment manifest; recursive self hash excluded","existed_after":true,"after_sha256":"self_hash_excluded","after_bytes":"self_hash_excluded","classification":"protected_delivery_self_hash_excluded","self_hash_excluded":true},
+    {"path":"docs/implementation/AD-36/status_sync_r1/report.md","owner":"AD-36","category":"frozen_delivery","existed_before":false,"before_sha256":null,"action":"retain","reason":"requested status synchronization report","existed_after":true,"after_sha256":"b789834ada24ab5f9ee57610166a9f3b8c01364275c76f0688ab12b0ebba3d2f","after_bytes":1793,"classification":"protected_delivery"},
+    {"path":"docs/implementation/AD-36/status_sync_r1/manifest.json","owner":"AD-36","category":"frozen_delivery_manifest","existed_before":false,"before_sha256":null,"action":"retain_with_self_hash_excluded_rule","reason":"requested status synchronization manifest; recursive self hash excluded","existed_after":true,"after_sha256":"self_hash_excluded","after_bytes":"self_hash_excluded","classification":"protected_delivery_self_hash_excluded","self_hash_excluded":true},
+    {"path":"docs/implementation/AD-36/repair_r1/report.md","owner":"AD-36 repair_r1","category":"frozen_delivery","existed_before":false,"before_sha256":null,"action":"retain","reason":"requested repair report","existed_after":true,"after_sha256":"9daeed5e98ec25278b3b6714b4a2bdebb9a8716e9a423c71e6e4267bbef3fd18","after_bytes":1099,"classification":"protected_delivery"},
+    {"path":"docs/implementation/AD-36/repair_r1/manifest.json","owner":"AD-36 repair_r1","category":"frozen_delivery_manifest","existed_before":false,"before_sha256":null,"action":"retain_with_self_hash_excluded_rule","reason":"requested repair manifest; recursive self hash excluded","existed_after":true,"after_sha256":"self_hash_excluded","after_bytes":"self_hash_excluded","classification":"protected_delivery_self_hash_excluded","self_hash_excluded":true}
+  ],
+  "protected_inventory": [],
+  "final_exact_owned_set": [
+    "docs/implementation/AD-36/acceptance.md",
+    "docs/implementation/AD-36/manifest.json",
+    "docs/implementation/AD-36/status_sync_r1/report.md",
+    "docs/implementation/AD-36/status_sync_r1/manifest.json",
+    "docs/implementation/AD-36/repair_r1/report.md",
+    "docs/implementation/AD-36/repair_r1/manifest.json"
+  ],
+  "removed_paths": [],
+  "deferred_paths": [],
+  "cleanup_action": "none",
+  "cleanup_deferred_ambiguous": [],
+  "sol_decision": "accepted_limited",
+  "independent_review": {"reviewer":"different Luna/high","result":"pass_limited","report":"docs/implementation/AD-36/independent_review_r3/report.md"}
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "03-revocation-independent-review-r4",
+  "group_id": "W2-R2-03-revocation-time-replay",
+  "component": "revocation_time_replay",
+  "case_id": "R1-R3 replay, authenticated ledger, Windows ACL/Junction, CRL/OCSP and concurrency",
+  "verdict": "rework",
+  "reviewer_task_id": "delegated-independent-review-worker",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "source_revision": "working-tree snapshot; no commit/ref claimed",
+  "source_paths": ["tools/up1_external_closure_r2/revocation_time_replay/core.py", "tools/up1_external_closure_r2/revocation_time_replay/cli.py", "tools/up1_external_closure_r2/revocation_time_replay/__init__.py", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py", "test/up1_external_closure_r2/revocation_time_replay/two_process_driver.py"],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/revocation_time_replay/core.py": "1F134AB454A7E763BC90CA5FCC25F55F6E417185CB63D3E4309A0D7ED4F37F83",
+    "tools/up1_external_closure_r2/revocation_time_replay/cli.py": "FEC3DAA658757B9FE22FC5CBAE32C395BF06C92965339E2CDAF561E99E8CBD21",
+    "tools/up1_external_closure_r2/revocation_time_replay/__init__.py": "A657EE0E6F29DB3F91774D93879A30D6E25504C13D51D26BEDD9938A30C546AD",
+    "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py": "821D830C21EA16EE2AEB7CCF05875EA9B3B0FEA6689790141CAFC7B7C3507A5F",
+    "test/up1_external_closure_r2/revocation_time_replay/two_process_driver.py": "75205CC5518977471BEF06BFB2EC4D55B183A08DE52C7EA23D831DC4C735F9E2"
+  },
+  "fixture_paths": ["attack_harness.py"],
+  "fixture_hashes": {"attack_harness.py": "88A5E16EB465788C707AAC292B25E6CA56F90C400398DAC00B85B81058BF4CC5"},
+  "input_canonical_bytes_or_hash": "independently constructed synthetic TEST_ONLY fixture; no external authority",
+  "candidate_binding": "synthetic TEST_ONLY c-001; no production identity",
+  "four_version_axes": {"payload_schema_version": "UP1-R2.revocation-time-replay.v1", "canonicalization_profile_version": "TEST_ONLY deterministic JSON", "grammar_or_capability_applicability_profile_version": "not_applicable TEST_ONLY", "execution_or_evidence_receipt_version": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1"},
+  "mutation_summary": {"mutation_ids": ["R4-replay-and-sequence", "R4-hmac-valid-duplicate-idempotency", "R4-hmac-valid-duplicate-nonce", "R4-hmac-valid-index-mismatch", "R4-key-absence-generation-replacement", "R4-duplicate-nonfinite-type", "R4-revoked-stale-unknown-signature", "R4-acl-restricted-wide-unavailable", "R4-junction-key-ledger-lock", "R4-two-process-cas"], "derived_classification": "source/invariant-derived; observed rows retained in raw attack output"},
+  "processes": [
+    {"command_argv": ["python", "-B", "-m", "pytest", "-q", "-rs", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"], "cwd": "D:/006-Programing/LMC/FusionConceptAI", "environment_profile": "Windows; Python 3.13.5; pytest 8.3.4", "interpreter_version": "Python 3.13.5", "started_at_utc": "2026-09-16T19:26:00Z", "numeric_exit_code": 0, "stdout_path": "raw/pytest.stdout.raw", "stdout_sha256": "651E17C2D5A43E85C72F9A6AABA57773D0C882BBC5A1CE9187AD3A1B76C597FB", "stderr_path": "raw/pytest.stderr.raw", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"},
+    {"command_argv": ["python", "-B", "-c", "compile all revocation_time_replay/*.py"], "cwd": "D:/006-Programing/LMC/FusionConceptAI", "environment_profile": "Windows; Python 3.13.5", "numeric_exit_code": 0, "stdout_path": "raw/compile.stdout.raw", "stdout_sha256": "15157072E52D3E60328F758EA868F1E6F8E1AFBC9A19E31A436C6481CBF4F939", "stderr_path": "raw/compile.stderr.raw", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"},
+    {"command_argv": ["python", "-B", "reviews/03-revocation-independent-review-r4/attack_harness.py"], "cwd": "D:/006-Programing/LMC/FusionConceptAI", "environment_profile": "Windows; Python 3.13.5; child CLI processes Python -B", "interpreter_version": "Python 3.13.5", "started_at_utc": "2026-09-16T19:25:00Z", "pid": 110188, "parent_pid": 12488, "numeric_exit_code": 0, "stdout_path": "raw/attack_harness.stdout.raw", "stdout_sha256": "43F3559831ABECEF4EFEE239666A9A11996CB8850E0532436941A751F128DAEE", "stderr_path": "raw/attack_harness.stderr.raw", "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"}
+  ],
+  "replay": {"replay_index": 1, "replay_process_id": "two child CLI processes in attack_harness", "semantic_output_sha256": "43F3559831ABECEF4EFEE239666A9A11996CB8850E0532436941A751F128DAEE", "semantic_row_count": 28, "replay_comparison": "atomic CAS produced one valid commit and one replay rejection; all corruption, key, parser, revocation and reparse rows were fail-closed or typed-absent as shown"},
+  "evidence_closure": {"main_manifest": "docs/implementation/UP1-EXTERNAL-BLOCKER-CLOSURE-R2/03-revocation-time-replay/evidence_manifest.json", "repair_receipt": "repair_r2/run_receipt.json", "repair_raw_stream_count": 8, "repair_source_and_raw_hashes_recomputed": true},
+  "findings": [{"id": "R4-P2-01", "severity": "P2", "title": "foreign-owner rejection lacks a live receipt", "observed": "icacls /setowner *S-1-5-20 returned error 1307 under the current unprivileged token", "required_fix": "re-run the disposable owner-mismatch negative under a controlled Windows fixture with SeRestorePrivilege and retain raw trusted_key_acl_invalid/exit-2 output"}],
+  "counters": {"compile_calls": 1, "provider_calls": 0, "solver_calls": 0, "mesh_calls": 0, "external_calls": 0},
+  "cleanup": {"retained_paths": ["attack_harness.py", "review_report.md", "run_receipt.json", "manifest.json", "cleanup_inventory.json", "raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw", "raw/compile.stdout.raw", "raw/compile.stderr.raw"], "disposable_paths": [], "removed_paths": [], "cleanup_policy_ref": "cleanup_inventory.json"},
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "claim_ceiling": "contract_software_preparation_only",
+  "no_publish": true
+}

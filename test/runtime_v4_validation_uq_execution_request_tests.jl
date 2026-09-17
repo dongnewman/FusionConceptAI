@@ -179,4 +179,19 @@ end
         trusted_freegs_receipt, vuq_evidence_requirements)
 end
 
+@testset "dedicated G3 engineering receipt remains an explicit integration gap" begin
+    include(joinpath(@__DIR__, "..", "examples",
+        "runtime_v4_trusted_engineering_control_fault_provider.jl"))
+    @test tecfe_receipt.status === :operational_screen
+    @test tecfe_receipt.context_hash == ecfgo_context.context_hash
+    @test tecfe_receipt.physical_subject_hash ==
+        ecfgo_context.subject.physical_subject_hash
+    @test !tecfe_receipt.emits_evidence
+    @test !tecfe_receipt.validation_evidence
+    @test tecfe_receipt.credible_device_count == 0
+    @test_throws MethodError R.build_validation_uq_execution_request(
+        trusted_freegs_registry, freegs_context, trusted_freegs_request,
+        tecfe_receipt, vuq_evidence_requirements)
+end
+
 println("VALIDATION_UQ_EXECUTION_REQUEST_FOCUSED_EXIT_CODE=0")

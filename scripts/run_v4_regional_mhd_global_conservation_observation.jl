@@ -1,0 +1,7 @@
+include(joinpath(@__DIR__, "..", "examples", "runtime_v4_regional_mhd_global_conservation_observation.jl"))
+println("region_volume_force_total_N=", rmgco_observation.region_volume_force_total)
+println("region_volume_force_total_norm_N=", sqrt(sum(x^2 for x in rmgco_observation.region_volume_force_total)))
+println("internal_interface_pair_sum_N=", rmgco_observation.internal_interface_pair_sum)
+println("global_residual_N=", rmgco_observation.global_residual)
+println("global_residual_norm_N=", rmgco_observation.global_residual_norm)
+println("REGIONAL_MHD_GLOBAL_CONSERVATION_OBSERVATION_EXIT_CODE=0")

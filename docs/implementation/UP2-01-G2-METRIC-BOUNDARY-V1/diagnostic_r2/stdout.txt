@@ -1,0 +1,9 @@
+diagnostic=unit_source_boundary_value
+status=fail_closed
+error_code=structural_contradiction
+errors=("boundary_value_unit_mismatch:face-x-min",)
+gaps=("mesh_execution_not_executed", "mesh_authority=no_match", "boundary_authority=no_match")
+face_value_unit=UnitSignature((0//1, 0//1, 0//1, 0//1, 0//1, 1//1, 0//1))
+field_value_unit=UnitSignature((0//1, 0//1, 0//1, 0//1, 0//1, 0//1, 1//1))
+flux_value_unit=UnitSignature((0//1, 0//1, 0//1, 0//1, 0//1, 1//1, 0//1))
+source_hash=454d9de134a0c09a5161400baae63c40be9bd54bd6c0a3158ecca0a729ddf25a

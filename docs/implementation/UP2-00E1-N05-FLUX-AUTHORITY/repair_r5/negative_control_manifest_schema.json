@@ -1,0 +1,30 @@
+{
+  "schema_version": "UP2-00E1-N05-negative-control-manifest-v1",
+  "positive_envelope": {
+    "path": "absolute path",
+    "bytes": "integer",
+    "sha256": "hex digest"
+  },
+  "negative_controls": [
+    {
+      "id": "stable control id",
+      "path": "absolute path",
+      "bytes": "integer",
+      "sha256": "hex digest",
+      "changed_field": "source field path",
+      "expected_targeted_rejection": "registered expected message",
+      "actual_error_message": "observed ArgumentError message"
+    }
+  ],
+  "claims": {
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "physical": false
+  }
+}
+

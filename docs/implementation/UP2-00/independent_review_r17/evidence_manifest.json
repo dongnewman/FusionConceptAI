@@ -1,0 +1,54 @@
+{
+  "review_id": "UP2-00-independent-review-r17",
+  "verdict": "changes_requested",
+  "scope": "schema_validation_only_partial",
+  "accepted": false,
+  "reviewer": "gpt-5.6-luna/high",
+  "head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "author_frozen_inputs": {
+    "contract": "b63258ee4c26bb686c7c8fc711449b9f22af0a8234dc5e1a33ff271849cae1e0",
+    "validator": "0557532f9921afabbd6cdcc190e216496807227ef802b3898bd0292b1e98150b",
+    "test": "749fcb5bb1d6e3af85ee500df1febd341135dd982c6d55bbfbe4106715f07354",
+    "manifest": "4e054674381660f725176cf8cc1cfcff06f29f44b20fce4367a895adf4b809db",
+    "acceptance": "2ea8555368931aca8e59067943c4f8d168fdfaef6bedf49e83935ddea2aa83d7"
+  },
+  "independent_run": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/UP2/run_up2_00_contract.jl",
+    "julia": "1.10.5",
+    "pid": 62640,
+    "started_at": "2026-09-14T07:41:54.6267400+08:00",
+    "exit": 0,
+    "desc_invoked": false,
+    "provider_invoked": false,
+    "post_run_processes": "no julia or desc"
+  },
+  "independent_artifacts": {
+    "focused_test.command.txt": "076903ec5ea68949a210dc84e624b0962d238331b2be7a4088824373f200f0a1",
+    "focused_test.environment.json": "ac4da14c3a3bdd807659d639d80bc3d7bc9ce17019fa106e45a2bc3bd13dde19",
+    "focused_test.process.json": "161945f82cc192feac3cf4c37f14b43403e905089b14f3f9bce0bfd1238a35f1",
+    "focused_test.exit.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+    "focused_test.stdout.log": "1b6446e01ede86dd2ac134cb33691700353598ce15561342d5b7a84079d263ae",
+    "focused_test.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "acceptance.md": "6165c0ee66e49695a3117da9c155a46b78d65dea5e8318a972bcdb80b74668fe"
+  },
+  "observed": {
+    "actual_a_projection": true,
+    "n01_n02_source_accessors": 10,
+    "n01_n02_actual_package_assertions": "status_and_counters_only",
+    "n01_n02_full_code_path_assertions": "synthetic_reference_input",
+    "n05": "terminal_deferred_unverified_flux_port_unit_provenance",
+    "pending_rows": 40,
+    "compile_calls": 0,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "b00": false,
+    "b04": false,
+    "physical": false,
+    "r01_r10_credit": false
+  },
+  "required_followup": [
+    "Run code/path/mutated-hash assertions for every N01/N02 mutation against the actual A package input.",
+    "Keep N05 and 40 pending rows deferred until flux endpoint and unit provenance have real accessors.",
+    "Treat UP2 typed-wrapper mutation as schema-only; B04 requires candidate-bound receipts and compile/provider gate evidence."
+  ]
+}

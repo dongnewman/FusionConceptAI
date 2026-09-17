@@ -1,0 +1,22 @@
+{
+  "schema": "AD54.V5SourcePublicationCommit.plan.v1",
+  "scope": "selective local publication of exactly AD53 closure.overlay_publication_paths",
+  "steps": [
+    "read AD53 accepted_limited closure",
+    "capture branch/HEAD/origin/index/dirty inventory and hashes",
+    "stage exactly 21 explicit paths",
+    "commit with fixed message and gpg signing disabled per command",
+    "verify exact commit tree, clean targets, empty index",
+    "probe fresh no-local clone with serial Julia typed-absent G1/G2/G3 factories",
+    "verify HEAD blobs and unrelated dirty protection"
+  ],
+  "excluded": [
+    "optional G3 feedback/editability",
+    "runs",
+    "tests",
+    "DESC/provider/mesh/solver/physics/search",
+    "push",
+    "tag",
+    "external trust attestation"
+  ]
+}

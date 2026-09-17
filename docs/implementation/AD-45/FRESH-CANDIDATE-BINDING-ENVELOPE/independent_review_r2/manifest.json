@@ -1,0 +1,136 @@
+{
+  "schema_version": "AD45-fresh-candidate-binding-envelope-independent-review-r2-v1",
+  "record_kind": "independent_implementation_review",
+  "task_id": "AD-45",
+  "review_id": "AD-45-FRESH-CANDIDATE-BINDING-ENVELOPE-INDEPENDENT-REVIEW-R2",
+  "status": "pass_limited",
+  "accepted": true,
+  "accepted_scope": "software_binding_handle_and_final_negative_control_receipts_only",
+  "claim_ceiling": "software_contract_review_only",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "observed_at_utc": "2026-09-15T11:59:29.680322+00:00",
+  "product_file_count": 2,
+  "product_files": [
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/report.md",
+    "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/manifest.json"
+  ],
+  "report_closure": {
+    "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/report.md",
+    "bytes": 5336,
+    "sha256": "08ecebfbe4ac275cc474c09e63cc44477a5a9edd4f02185b07635f1d69305eef"
+  },
+  "evidence_sidecars_only": true,
+  "review_sidecar_directory": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review",
+  "frozen_inputs": {
+    "envelope": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json",
+      "bytes": 9612,
+      "sha256": "17901aa6e1be326b95e56fbbbd5148bd02b7c3ea43bd0c451336cd297e2950dc"
+    },
+    "receipt": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/envelope_receipt.json",
+      "bytes": 5776,
+      "sha256": "adf9caefb31398c4cf4fd04dc443fb8f409d7485e1ee04f125a28e3b427a9b64"
+    },
+    "task_manifest_sha256": "7d1700038f78dd1ea872cbc3fd6da29c5071596dae40d0c43b598b501195bae8",
+    "task_count": 39
+  },
+  "identity_continuity": {
+    "common_ref": "fusionconceptai://candidate-binding/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/3da169fa-2376-4b36-b794-ac5a32161aa7",
+    "common_ref_type": "QualifiedRefV1",
+    "common_ref_version": "v5",
+    "namespace": "fusionconceptai://namespace/AD45-FRESH-CANDIDATE-BINDING-ENVELOPE/v1",
+    "allocation_uuid": "3da169fa-2376-4b36-b794-ac5a32161aa7",
+    "nonce_hex": "376a3690659da64761be8b6a1ba3daf1df28c65deee4898a6b8a6bd32560aabc",
+    "r1_unchanged": true
+  },
+  "validation": {
+    "interpreter": "D:/Users/Newman/anaconda3/python.exe",
+    "python_version": "3.13.5",
+    "pid": 48072,
+    "utc_start": "2026-09-15T11:59:29.680322+00:00",
+    "utc_end": "2026-09-15T11:59:29.703237+00:00",
+    "exit_code": 0,
+    "checks": "59/59 pass",
+    "stdout": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/direct_validation_stdout.json",
+      "bytes": 768,
+      "sha256": "e17d5fc7762ea89ae592967d5cb02ed3f10b6350768b44ff6678467031a44c74"
+    },
+    "stderr": {
+      "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/direct_validation_stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "plan_validator": {
+      "pid": 86828,
+      "wrapper_pid": 69348,
+      "utc_start": "2026-09-15T11:59:40.607812+00:00",
+      "utc_end": "2026-09-15T11:59:41.075644+00:00",
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/plan_validator_stdout.json",
+      "stdout_bytes": 388,
+      "stdout_sha256": "f248e7a033616549a02cb62f0c1429a56b9078f1a0f6adb7af79a3e50a9a13d6",
+      "stderr_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/plan_validator_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "summary": "31 markdown; 497 links; 39 tasks; DAG acyclic"
+    },
+    "scoped_git_diff_check": {
+      "pid": 85116,
+      "wrapper_pid": 87856,
+      "utc_start": "2026-09-15T11:59:49.839570+00:00",
+      "utc_end": "2026-09-15T11:59:49.900020+00:00",
+      "exit_code": 0,
+      "stdout_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/scoped_git_diff_stdout.txt",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/independent_review_r2/review/scoped_git_diff_stderr.txt",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "final_raw_receipts": [
+    {"case": "uuid_nonce_collision", "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls/uuid_nonce_collision_r2.json", "bytes": 1392, "sha256": "8107444636d0f729bf74309760e6d126d59e73b4d6c7db4c8f771b947a8023d4", "result": "FailedFreshCandidateBindingEnvelopeV1", "failure_semantics": "fail_closed", "published_candidate_ref": false},
+    {"case": "envelope_replay_nonce_reuse", "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls/envelope_replay_nonce_reuse_r2.json", "bytes": 1418, "sha256": "c6fb218728cd7e6aa0e3ab955d1243db6e8c7b0fa955bd1c4d553e282ca5e196", "result": "FailedFreshCandidateBindingEnvelopeV1", "failure_semantics": "fail_closed", "published_candidate_ref": false},
+    {"case": "concurrent_dual_write_cas_conflict", "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls/concurrent_dual_write_cas_conflict_r2.json", "bytes": 1577, "sha256": "106463a7fa66c10800fe29924115e3f84e7ca6ab70bbd4299837b44ff4e6d112", "result": "FailedFreshCandidateBindingEnvelopeV1", "failure_semantics": "fail_closed", "published_candidate_ref": false},
+    {"case": "wall_clock_rollback_future_skew", "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls/wall_clock_rollback_future_skew_r2.json", "bytes": 1601, "sha256": "5ad097919bb70cef40483f603e8eda978a75a5f80c73f39f4873496b370c4fba", "result": "AbsentFreshCandidateBindingEnvelopeV1", "failure_semantics": "terminal_deferred", "published_candidate_ref": false},
+    {"case": "ad42_seed_misuse", "path": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls/ad42_seed_misuse_r2.json", "bytes": 1502, "sha256": "b57f5c614e9476bd2ada54099a6f0f32cabca3c3754824fb8897bdfeded8e9dc", "result": "FailedFreshCandidateBindingEnvelopeV1", "failure_semantics": "fail_closed", "published_candidate_ref": false}
+  ],
+  "attempt1_history": {
+    "preserved": true,
+    "count": 5,
+    "directory": "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/archive/negative_controls"
+  },
+  "r1_closure_preserved": {
+    "report_sha256": "b3d2fa8c5f27849def95c70b6f5dabd58d668449835127b23442ac8cdb9c989c",
+    "manifest_sha256": "5934284eb0ce4a33c659674e346ad3c1a8ff85b2b47a0f090f8d76feb853a331"
+  },
+  "claims": {
+    "envelope_created": true,
+    "axis_attestations_created": false,
+    "candidate_hash_created": false,
+    "declaration_hash_created": false,
+    "present": false,
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "provider": false,
+    "mesh": false,
+    "solver": false,
+    "engineering": false,
+    "physical": false,
+    "search": false,
+    "r01_r10": false,
+    "l4_credible_count": 0
+  },
+  "cleanup": {
+    "task_owned_temp_removed": 0,
+    "preexisting_dirty_work_preserved": true,
+    "review_sidecars_only": true
+  },
+  "self_hash_excluded": true
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "E1-N05-focused-r5-qa-v1",
+  "checks": {
+    "positive_json": true,
+    "negative_manifest_json": true,
+    "authored_count": true,
+    "absent_count": true,
+    "negative_count": true,
+    "all_negative_refs": true,
+    "stderr_empty": true,
+    "post_process_empty": true,
+    "protected_inputs_unchanged": true,
+    "exit_recorded": true
+  },
+  "negative_rows": [
+    {
+      "id": "source_hash",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "authored_receipts[0].source_locator.source_hash",
+      "expected_targeted_rejection": "N05 authored receipt differs from actual source recomputation",
+      "actual_error_message": "ArgumentError: N05 authored receipt differs from actual source recomputation"
+    },
+    {
+      "id": "absent_mutation_hash",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "absent_authority_receipts[0].mutation_hash",
+      "expected_targeted_rejection": "N05 mutation hash mismatch",
+      "actual_error_message": "ArgumentError: N05 mutation hash mismatch"
+    },
+    {
+      "id": "candidate_ref",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "candidate_ref.id",
+      "expected_targeted_rejection": "N05 receipt candidate ref mismatch",
+      "actual_error_message": "ArgumentError: N05 receipt candidate ref mismatch"
+    },
+    {
+      "id": "package_hash",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "package_hash",
+      "expected_targeted_rejection": "N05 receipt package hash mismatch",
+      "actual_error_message": "ArgumentError: N05 receipt package hash mismatch"
+    },
+    {
+      "id": "e0_binding_hash",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "e0.binding_hash",
+      "expected_targeted_rejection": "N05 receipt E0 binding hash mismatch",
+      "actual_error_message": "ArgumentError: N05 receipt E0 binding hash mismatch"
+    },
+    {
+      "id": "declaration_hash",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "declaration.authored_hash",
+      "expected_targeted_rejection": "N05 receipt declaration hash mismatch",
+      "actual_error_message": "ArgumentError: N05 receipt declaration hash mismatch"
+    },
+    {
+      "id": "missing_authored_row",
+      "exists": true,
+      "bytes_match": true,
+      "sha_match": true,
+      "targeted_error_recorded": true,
+      "changed_field": "authored_receipts[1:5]",
+      "expected_targeted_rejection": "N05 authored receipt count is not five",
+      "actual_error_message": "ArgumentError: N05 authored receipt count is not five"
+    }
+  ],
+  "errors": [],
+  "scope": "local serialized source-bound receipt/export evidence only; formal B04 independent checker/two-process, provider, mesh, engineering, physical and R01-R10 remain unaccepted"
+}

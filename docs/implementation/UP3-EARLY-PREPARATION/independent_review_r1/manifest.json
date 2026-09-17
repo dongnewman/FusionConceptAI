@@ -1,0 +1,42 @@
+{
+  "manifest_version": "UP3-EARLY-PREPARATION-independent-review-r1-v1",
+  "record_kind": "independent_preparation_review",
+  "task_id": "UP3-EARLY-PREPARATION",
+  "reviewer": "different Luna",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "repository": "D:/006-Programing/LMC/FusionConceptAI",
+  "verdict": "pass_limited",
+  "accepted_scope": "early-preparation-template-only",
+  "up3_status": "pending",
+  "claim_ceiling": "contract_only",
+  "credits": {"up3": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physical": false, "search": false, "r01_r10": false},
+  "execution_policy_verified": {"candidate_runs": false, "julia": false, "desc": false, "provider": false, "mesh": false, "solver": false, "physical": false, "heavy_lane": "not_requested"},
+  "dependencies_verified_pending": ["UP2-05", "UP1-04A-VNEXT-T1", "UP1-04A-VNEXT-T2", "fresh_candidate", "environment_receipt"],
+  "matrix": {"cell_count": 7, "cells": ["G1", "G2", "G3", "G1xG2", "G1xG3", "G2xG3", "G1xG2xG3"], "g1_axis_count": 8, "g2_axis_count": 8, "g3_axis_count": 7, "all_cells_pending": true, "typed_absent_layers": true},
+  "holdout": {"combination_level_disjointness": true, "required_axis_variation": ["coefficient_structure", "boundary", "region_connection", "topology", "source_resource", "scenario"], "leakage_control_count": 7, "answers_hidden_until_terminal": true, "fresh_replay_required": true},
+  "negative_taxonomy": {"category_count": 15, "typed_status_and_stage_present": true, "provider_gap_deferred": true, "negative_not_physical_credit": true},
+  "oracle_and_budget": {"oracle_interfaces": ["parser", "analytic_mms", "conservation"], "units_fields_preregistered": true, "tolerance_dimensions_preregistered": true, "concrete_values_pending": true, "budget_dimensions_preregistered": true, "stop_condition_count": 7, "heavy_lane_serialized": true, "cross_campaign_cache_forbidden": true},
+  "placeholders": {"candidate": "pending/null", "scenario": "pending/null", "input": "pending/null", "provider": "pending/null", "hashes": "pending/null", "no_historical_or_synthetic_authority": true},
+  "package_files": {
+    "architecture_audit.md": {"bytes": 12808, "sha256": "2b175dcee7080c84aa09bae3a77464d425f6f05ba257e93a7368c377fa8a9bc3"},
+    "budget_and_oracle_template.json": {"bytes": 5821, "sha256": "9e7552a0d0b71f2a7543dbaadebac050a396edb6cb9c8d1175d93ec99528e35b"},
+    "cleanup_inventory.md": {"bytes": 1279, "sha256": "d609d72c7a58815128ab7c1d373208a62067db399d5e410abf8a15efe29f62aa"},
+    "combination_matrix_template.json": {"bytes": 6639, "sha256": "687bda7c1dc0db157603a3440b3cc9d7917c85391e59193731729a8e42a26cd0"},
+    "holdout_set_template.json": {"bytes": 4566, "sha256": "d2292cff223cd7c13738f89e38d46f64544ad893e61acc55b75b67c3ed71bb3f"},
+    "manifest.json": {"bytes": 3695, "sha256": "eac9295e7ffd6ad39b5883648026625e7e9d5138987b19445401a9fdcaa864bb", "self_hash_excluded": true},
+    "negative_cases.json": {"bytes": 5801, "sha256": "0fb0e692d00ca0e3ed4dd51ca1c7e4af3d2171b07cfcc89add78d68739b2b06a"},
+    "validation_report.md": {"bytes": 3689, "sha256": "f0fda55546ebb4ef08aba5f5d4d5565c0814c7f9fa2460e96274ad72a0af3f49"}
+  },
+  "reusable_reference_hashes": {
+    "src/RuntimeV4/MultiRegionCouplingContracts.jl": "2fed6f0a575c031e0e984a6dbabd9e872b1417c1da71a446ca98e1fba60eb398",
+    "src/RuntimeV4/MultiRegionDiffusionProvider.jl": "9daacfaf47ea9031290ccf57ff31e24c8458b79f15fa43cae9e2eb596f41a7b5",
+    "test/runtime_v4_multiregion_coupling_contract_tests.jl": "5831f7e320e346cdcbdc206eaff43bb1411abcec3520b3e9a99111c1acb94865",
+    "test/runtime_v4_multiregion_diffusion_provider_tests.jl": "0a787cdc019489ac50f1dae1f791723b1c06235f00ef0618739c8541f982356b",
+    "docs/v4_multitopology_generation/task_manifest.json": "444ec3e622a3f0f838c97b07ebb21f8fe7c7a37f5bac9e737cee1c96a2a1d2a9"
+  },
+  "path_and_cleanup_checks": {"json_files_valid": true, "input_paths_exist": true, "writable_paths_exist": true, "deliverables_exist": true, "relative_link_errors": 0, "original_package_file_count": 8, "task_scratch_or_cache": false, "unrelated_cleanup": false, "scoped_diff_check": true},
+  "plan_boundary": {"up3_01": "pending", "up3_02": "pending", "up3_03": "pending", "no_physical_or_generality_claim": true},
+  "write_scope": ["docs/implementation/UP3-EARLY-PREPARATION/independent_review_r1/report.md", "docs/implementation/UP3-EARLY-PREPARATION/independent_review_r1/manifest.json"],
+  "review_notes": ["No Julia, DESC, provider, mesh, solver or candidate execution was run.", "No reviewed package, core file, source, test, run, or unrelated artifact was modified."]
+}

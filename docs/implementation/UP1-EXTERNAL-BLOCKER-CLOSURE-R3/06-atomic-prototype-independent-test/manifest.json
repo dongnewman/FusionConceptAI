@@ -1,0 +1,26 @@
+{
+  "schema": "UP1.atomic-bundle.independent-test.v1",
+  "status": "pass_limited",
+  "scope": "tools/up1_external_closure_r3/atomic_bundle and test/up1_external_closure_r3/atomic_bundle",
+  "focused_command": "python -B -m unittest discover -s test/up1_external_closure_r3/atomic_bundle -p test_*.py",
+  "focused_runs": [
+    {"run": 1, "pid": 21104, "utc": "2026-09-16T23:11:30.2052582Z", "exit": 0, "tests": 9},
+    {"run": 2, "pid": 34116, "utc": "2026-09-16T23:11:40.8239701Z", "exit": 0, "tests": 9}
+  ],
+  "independent_audit": {"pid": 15704, "utc": "2026-09-16T23:13:25.946512+00:00", "exit": 0, "assertions": 18, "passed": 18, "failed": 0},
+  "harness_setup_failure_corrected": {"pid": 55568, "utc": "2026-09-16T23:12:44.876632+00:00", "exit": 1, "assertions": 18, "passed": 16, "failed": 2, "classification": "stale hand-built EHP03/EHP04 vector; corrected before pass"},
+  "formal_credit": "none",
+  "authority_credit": false,
+  "no_publish": true,
+  "external_send": false,
+  "heavy_lane": "forbidden",
+  "implementation_test_schema_mutated": false,
+  "python_process_after_runs": false,
+  "owned_temp_directories_after_runs": false,
+  "unowned_temp_observation_left_untouched": true,
+  "raw_outputs": [
+    "raw/focused_test_1.output.raw",
+    "raw/focused_test_2.output.raw",
+    "raw/independent_audit.output.raw"
+  ]
+}

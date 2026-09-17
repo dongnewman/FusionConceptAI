@@ -1,0 +1,14 @@
+AD-30 T0 preserves complete bodies and typed gaps: Test Failed at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\Integration\vnext_declaration_transport_v1_tests.jl:139
+  Expression: all((occursin("terminal_deferred", gap) for gap = admission.gaps))
+
+Stacktrace:
+ [1] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:672 [inlined]
+ [2] macro expansion
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\Integration\vnext_declaration_transport_v1_tests.jl:139 [inlined]
+ [3] macro expansion
+   @ C:\Users\Newman\AppData\Local\Programs\Julia-1.10.5\share\julia\stdlib\v1.10\Test\src\Test.jl:1577 [inlined]
+ [4] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\Integration\vnext_declaration_transport_v1_tests.jl:131
+Test Summary:                                     | Pass  Fail  Total  Time
+AD-30 T0 preserves complete bodies and typed gaps |    9     1     10  8.8s

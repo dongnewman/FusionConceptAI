@@ -1,0 +1,81 @@
+{
+  "schema": "M5-A-AUTOCOMPOSITION-REPAIR-R2-OBSERVED-ARTIFACTS",
+  "source_of_truth": "existing raw/pid/exit files; no replay performed",
+  "runs": {
+    "python_oracle": {
+      "command": "python test\\RuntimeV4\\M4Isolated\\oracles\\auto_composition_oracle_v1.py",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 109248,
+      "process_start_utc": "not_recorded",
+      "process_end_utc": "not_recorded",
+      "observed_file_times_utc": {
+        "pid": "2026-09-16T10:31:19.0996568Z",
+        "stdout": "2026-09-16T10:31:19.7098376Z",
+        "stderr": "2026-09-16T10:31:19.0700660Z",
+        "exit": "2026-09-16T10:31:19.7188385Z"
+      },
+      "exit_code": 0,
+      "stdout": {"path": "archive/raw/python.stdout.raw", "bytes": 1598, "sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7"},
+      "stderr": {"path": "archive/raw/python.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "combined_definition": "stdout bytes concatenated with stderr bytes",
+      "combined": {"bytes": 1598, "sha256": "bd23dd1e0b5ec3254cee7cfc6e15efebde553c85f3a01876205b3175a32e4ae7"}
+    },
+    "julia_tests": {
+      "command": "julia --startup-file=no --history-file=no test\\RuntimeV4\\M4Isolated\\manufactured_auto_composition_v1_tests.jl",
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "pid": 80904,
+      "process_start_utc": "not_recorded",
+      "process_end_utc": "not_recorded",
+      "observed_file_times_utc": {
+        "pid": "2026-09-16T10:31:32.9174192Z",
+        "stdout": "2026-09-16T10:32:12.3639943Z",
+        "stderr": "2026-09-16T10:31:32.8870597Z",
+        "exit": "2026-09-16T10:32:12.4302188Z"
+      },
+      "exit_code": 0,
+      "stdout": {"path": "archive/raw/julia.stdout.raw", "bytes": 176, "sha256": "72f5ebbdcca167b31d18f6a5af50cb47da38a9a43285b8679ecec41904c12863"},
+      "stderr": {"path": "archive/raw/julia.stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "combined_definition": "stdout bytes concatenated with stderr bytes",
+      "combined": {"bytes": 176, "sha256": "72f5ebbdcca167b31d18f6a5af50cb47da38a9a43285b8679ecec41904c12863"},
+      "test_summary": "110 passed / 110 total; M5-A-TESTS PASS manufactured_auto_composition/screen_only"
+    }
+  },
+  "input_artifact_sha256": {
+    "src/RuntimeV4/M4Isolated/ManufacturedEquationIRV1.jl": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "src/RuntimeV4/M4Isolated/ManufacturedResidualLoweringV1.jl": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c",
+    "src/RuntimeV4/M4Isolated/ManufacturedDiscreteControlV1.jl": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa",
+    "src/RuntimeV4/M4Isolated/ManufacturedCoupledSolveControlV1.jl": "ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785",
+    "test/RuntimeV4/M4Isolated/manufactured_auto_composition_v1_tests.jl": "42562f02370f8f2e32c8e0254e0f480d69e598be747aae9898c3fc4d013b2a08",
+    "test/RuntimeV4/M4Isolated/oracles/auto_composition_oracle_v1.py": "e9f13fc57a59efa78dd131dfc3fde7433c21d6172dc2d81f03c034c4be13084c"
+  },
+  "frozen_ad_hashes": {
+    "A": "0b456dcc0df3bd13a1941aa502a9cc5347912b2fa86cda6c65900449299b8e57",
+    "B": "0445ec58f35ebbf5e34ae032611befab7050a0a65d2a376ccd37b71a0e9a936c",
+    "C": "20804bafb5d42152d220a1d25897f6b460c7056b0c695dbaa5153c0d113710fa",
+    "D": "ec7e82e282f1d1292ddd4b7902e4ced641d926af82119298267011d304a55785",
+    "D_test": "1eb0e26e79b9899cc5a3cb2742545cbaa811fa6683fdcfa1ee4dd31dff081686",
+    "D_oracle": "9ca3c1c012690c7c06579d0ab5ffd274666e340c900c59e49f7a93408a0fcbe3"
+  },
+  "oracle_result": {
+    "canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe",
+    "permuted_canonical_hash": "a0823a76ddac17bd193a03c8ed86945d06c4637649611f248a53383dd0d6f6fe",
+    "stage_count": 4,
+    "port_count": 7,
+    "owner_interface_join_count": 3,
+    "invalid_controls": {
+      "invalid_unit": "typed_failure/unit_mismatch",
+      "invalid_port": "typed_failure/port_mismatch",
+      "invalid_owner": "typed_failure/owner_mismatch",
+      "foreign_hash": "typed_failure/foreign_hash",
+      "foreign_identity": "typed_failure/foreign_identity",
+      "provider_drop": "terminal_deferred/provider_drop/no_provider_constructed"
+    }
+  },
+  "julia_declared_negative_controls": [
+    "invalid A/B/C/D input", "foreign input", "invalid unit", "invalid rank", "invalid port",
+    "invalid domain", "invalid conservation/interface owner", "foreign hashes", "foreign identities",
+    "provider drop", "missing capability", "invalid label/order"
+  ],
+  "claim_ceiling": "manufactured_auto_composition/screen_only",
+  "formal_credit": "none"
+}

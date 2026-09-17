@@ -1,0 +1,12 @@
+{
+  "schema":"CORE-SOURCE-S3-CURRENT-HEAD-R1.repair-r5-validation.v1",
+  "status":"completed_review_pending",
+  "command":"python archive/repair_r5/verify_r5.py",
+  "cwd":"D:/006-Programing/LMC/FusionConceptAI",
+  "pid_or_in_process":"in_process",
+  "exit_code":0,
+  "raw":{"stdout":{"path":"validation.stdout.raw","bytes":2061,"sha256":"a41ee1e60ff385b890e22143a0bd72efd8e6fdf946f57a3288017f4c87d1f35f"},"stderr":{"path":"validation.stderr.raw","bytes":1,"sha256":"01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},"combined":{"path":"validation.combined.raw","bytes":2062,"sha256":"cf1e26ffcbe7c45fb963dc6c0d87105df5488d8d5eb07e16007182485d929f4f","rule":"stdout || stderr"}},
+  "checks":{"json_parse":true,"all_artifact_references_recomputed":true,"r3_target_sha256":"ffa2a9958151d1112b37ab0588a60fa08182bb3441aff307323a9a41aab22ac0","static_vector":[4,5,12,1,47,0],"fingerprint":"840922caac204df3d66ce3419868390c2fda8e79c3792cc4e074af2887edd9a5","s3_rerun":false,"forbidden_tools":false},
+  "scope":{"single_top_level_field_repair":true,"other_products_changed":false,"conclusion_changed":false},
+  "cleanup":"archive/repair_r5/cleanup_inventory.json"
+}

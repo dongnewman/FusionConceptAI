@@ -1,0 +1,19 @@
+Independent hostile mutation matrix (fresh Python 3.13.5, 2026-09-17)
+Fixture: synthetic document() from test/up1_external_closure_r2/environment_provenance/test_environment_provenance.py with signed=True.
+
+root_status_claim_mismatch: status=present decision=admissible errors=[]
+runtime_version_drift: status=present decision=admissible errors=[]
+binary_version_drift: status=present decision=admissible errors=[]
+missing_binary_path: status=present decision=admissible errors=[]
+missing_download_receipt: status=fail_closed decision=reject errors=['invalid_document:missing_fields:binaries[0]:download_receipt']
+unverified_signature: status=fail_closed decision=reject errors=['invalid_document:signature_not_verified:binaries[0].signature']
+missing_build_recipe: status=fail_closed decision=reject errors=['invalid_document:missing_fields:binaries[0]:build_recipe']
+duplicate_lock_name: status=present decision=admissible errors=[]
+duplicate_binary_name: status=present decision=admissible errors=[]
+orphan_sbom_component: status=present decision=admissible errors=[]
+empty_sbom_edges: status=present decision=admissible errors=[]
+sbom_cycle: status=present decision=admissible errors=[]
+unknown_runtime_path_shape: status=present decision=admissible errors=[]
+
+Additional parser probe: duplicate JSON key {"a":1,"a":2} -> rejected duplicate_key:a.
+Additional layer probe: local_observation.evidence_class=authority_proof -> fail_closed observation_layer_mislabelled.

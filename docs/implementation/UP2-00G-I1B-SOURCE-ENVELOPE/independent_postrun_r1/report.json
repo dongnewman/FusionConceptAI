@@ -1,0 +1,49 @@
+{
+  "schema_version":"G-I1B-source-envelope-independent-postrun-r1",
+  "reviewer":"independent_luna_high_static_postrun",
+  "verdict":"program_exception",
+  "disposition":"repair_required",
+  "frozen_head":"4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch":"main",
+  "runtime_audit":{"julia":"run_recorded_failed","desc":"not_run","postflight_matching_julia_desc":0},
+  "focused_r1":{
+    "input_manifest":"docs/implementation/UP2-00G-I1B-SOURCE-ENVELOPE/focused_r1/input_manifest.json",
+    "freeze_utc":"2026-09-14T17:53:23.8080844Z",
+    "start_utc":"2026-09-14T17:53:24.3878104Z",
+    "end_utc":"2026-09-14T17:53:30.7569804Z",
+    "postflight_utc":"2026-09-14T17:53:30.7812916Z",
+    "root_pid":4384,
+    "exit_code":1,
+    "failure_class":"julia_load_parse_error",
+    "failure_location":"src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl:293:148",
+    "failure":"ParseError: ':' expected in '?' expression",
+    "stdout":{"bytes":0,"sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "stderr":{"bytes":1078,"sha256":"b240b5d933e86f61b72adc3c87fe88e93554bb84529d56c1cb17b9d439c76313"},
+    "runner_reached_testsets":false,
+    "observed_test_groups":0,
+    "observed_rows":0,
+    "preflight_matching_julia_desc":0,
+    "observed_julia_process_count":1,
+    "postflight_matching_julia_desc":0
+  },
+  "protected_input_verification":{
+    "input_manifest_sha256":"a36d92b6e6f9686daa651bb696c4d11bb12bb4e4084c42a4e96553fc66cfbd50",
+    "protected_before_after_sha256":"5e759b563d4a9c12c84678bb85c982aea2e3b9515ded3cc2c993e955cefab70e",
+    "all_before_after_match":true,
+    "focused_r1_protected_run_isolated":true
+  },
+  "frozen_primary_inputs":{
+    "source":{"path":"src/GenomeV5/UP2/GI1BSourceMutationEnvelopeV1.jl","sha256":"e07e140130ce1299b70aff84f9d97a3d8cf6749d423e06f22f2822fd7de051e8","bytes":42985},
+    "fixture":{"path":"test/GenomeV5/UP2/gi1b_source_envelope_fixtures.json","sha256":"23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6","bytes":23906},
+    "tests":{"path":"test/GenomeV5/UP2/gi1b_source_envelope_tests.jl","sha256":"5b5ffc8d0c5c0a28c64294e5d6cdef48d4b5a6dfba2d1c83ce51c8fa6b2a896e","bytes":25255},
+    "runner":{"path":"test/GenomeV5/UP2/run_gi1b_source_envelope.jl","sha256":"54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5","bytes":408}
+  },
+  "current_after_later_repair":{
+    "source":{"sha256":"58e5f3aa24da64e4ca9c843fc35bba79d8089206a6b49fd56966784051a31e12","bytes":43037,"matches_focused_input":false},
+    "tests":{"sha256":"2b2280b5c75714501d3cface473cfbf7f6de8dde6034a51ff773ad904e2da0c1","bytes":25672,"matches_focused_input":false},
+    "fixture":{"sha256":"23794ed2e7958ccd21b26418428e06279150d380e4710c77050bf8b4fe3da1c6","matches_focused_input":true},
+    "runner":{"sha256":"54132f1415faba369807857c1175c317757339b1f3451af902a5f525b0f067b5","matches_focused_input":true},
+    "interpretation":"repair_r6 changes occurred after focused_r1; they cannot upgrade the earlier failed run"
+  },
+  "claim_ceiling":["software_run_failure_only","repair_required","no_B00","no_B04","no_physical_credit","no_engineering_credit","no_parent_goal_credit"]
+}

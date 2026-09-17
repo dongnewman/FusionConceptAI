@@ -1,0 +1,85 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC-status-sync-r1-v1",
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "round": "status_sync_r1",
+  "status": "accepted_limited",
+  "accepted_scope": "local_typed_absence_software_precursor_only",
+  "claim_ceiling": "contract_only_typed_absence",
+  "observed_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "decision_refs": [
+    "docs/implementation/AD-34/acceptance.md",
+    "docs/implementation/AD-36/acceptance.md",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/archive/r5/receipt_r5_final.json",
+    "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/independent_review_r3/manifest.json"
+  ],
+  "machine_node": {"status": "planned", "scope_status": "proposal", "accepted": false, "resolution": "review_pending"},
+  "product_contract": {
+    "exact_file_count": 6,
+    "paths": [
+      {"path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl", "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4", "bytes": 24578},
+      {"path": "test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl", "sha256": "3db401be2f529f7d2a4b98fa42380b2964805d87ae3b85a57b1cc506fb7bf24b", "bytes": 11729},
+      {"path": "test/GenomeV5/G3/g3_binding_child_editability_v1_fixture.json", "sha256": "1c52682d1cb3844646d1301337e2995c0ed308ca5cdae1ce04428b86699d0b75", "bytes": 793},
+      {"path": "test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py", "sha256": "d8ef7467209162d7e20286a8433691b00c16c881ee02fed8df79be836c4dd266", "bytes": 2730},
+      {"path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md", "sha256": "79834954018e946196187c096db638d41643e20363640ef97ef7ffa66a38baa1", "bytes": 2048},
+      {"path": "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json", "sha256": "9300c074aff1b6ba50c7e4f615162fd783cd07634af97837f6cd9d35601ba55c", "bytes": 3398}
+    ],
+    "source_test_fixture_staticqa_frozen": true,
+    "sidecars_excluded_from_exact_count": true
+  },
+  "interpreter_identity": {
+    "python": "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "python_version": "Python 3.13.5",
+    "julia": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "julia_version": "julia version 1.10.5"
+  },
+  "validation": {
+    "static_qa": {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G3/static_qa_g3_binding_child_editability_v1.py",
+      "pid": 78144,
+      "utc_start": "2026-09-15T07:53:27.8569508Z",
+      "utc_end": "2026-09-15T07:53:27.9710737Z",
+      "exit_code": 0,
+      "result": "PASS",
+      "stdout": {"path": "status_sync_r1/static_qa.stdout", "sha256": "ea5184a08ce941d92c1cf7cc8173401f2f020681c66b496d6d100f43839afa1e", "bytes": 49},
+      "stderr": {"path": "status_sync_r1/static_qa.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "bytes": 0}
+    },
+    "focused_julia": {
+      "command": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe --project=. test/GenomeV5/G3/g3_binding_child_editability_v1_tests.jl",
+      "pid": 65368,
+      "utc_start": "2026-09-15T07:53:39.7522479Z",
+      "utc_end": "2026-09-15T07:53:51.1940367Z",
+      "exit_code": 0,
+      "result": "70/70",
+      "stdout": {"path": "status_sync_r1/focused_julia.stdout", "sha256": "1da1e1bc5dcfbef5a299c1ca9666b11b0eda4771c6876924a2018f7db18d07ab", "bytes": 134},
+      "stderr": {"path": "status_sync_r1/focused_julia.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "bytes": 0}
+    },
+    "direct_present_constructor_probe": {
+      "command": "julia --project=. -e <module-qualified PresentChildBindingV1 probe>",
+      "pid": "unavailable_by_desktop_exec_wrapper",
+      "utc_start": "2026-09-15T07:54:39.7817007Z",
+      "utc_end": "2026-09-15T07:54:41.6766946Z",
+      "exit_code": 0,
+      "result": "ArgumentError: binding_authority_typed_absent",
+      "stdout": {"path": "status_sync_r1/direct_constructor_probe_retry.stdout", "sha256": "5af8686405d5c78b86d8138d6aaf1a7207e6d6d66f37a8acbd80f9d0b3676e9a", "bytes": 47},
+      "stderr": {"path": "status_sync_r1/direct_constructor_probe_retry.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "bytes": 0}
+    }
+  },
+  "historical_failure": {
+    "path": "status_sync_r1/direct_constructor_probe.stdout",
+    "classification": "program_exception_invalid_probe_constructor_arity",
+    "exit_code": 1,
+    "sha256": "c842cce727e675feebca9e9ec08f2bbe483d20837dd595363243b08d94b74f3c",
+    "bytes": 458,
+    "preserved": true
+  },
+  "sidecars": {
+    "report": {"path": "status_sync_r1/report.md", "sha256": "a37cbd3ec21a17e8cbc32aeb266c5e325f2fc753792247e264d32d109e22e3fb", "bytes": 3775},
+    "cleanup_inventory": {"path": "status_sync_r1/cleanup_inventory.json", "sha256": "4eb9ba59a613d44ee029e1160171b9974a0d7c696c66d88091721179c20c3dda", "bytes": 1426},
+    "manifest_self_hash_excluded": true
+  },
+  "cleanup": {"inventory": "status_sync_r1/cleanup_inventory.json", "removed": [], "ambiguous_cleanup_deferred": []},
+  "write_scope": {"modified_product_docs_only": ["docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/README.md", "docs/implementation/UP1-04A-VNEXT-G3-BINDING-EDIT-PREC/manifest.json"], "source_modified": false, "test_modified": false, "fixture_modified": false, "staticqa_modified": false, "core_modified": false, "registry_modified": false, "broad_cleanup": false},
+  "credits": {"actual": false, "binding": false, "feedback": false, "control": false, "T0": false, "T1": false, "T2": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "search": false, "B00": false, "B04": false, "R01_R10": false},
+  "self_hash_excluded": true,
+  "self_hash_rule": "manifest records its own path and existence but excludes recursive self SHA256"
+}

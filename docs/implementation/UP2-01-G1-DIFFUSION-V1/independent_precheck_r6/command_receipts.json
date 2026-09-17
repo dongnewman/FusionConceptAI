@@ -1,0 +1,26 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-precheck-r6-command-receipts-v1",
+  "reviewer": "independent_luna_high_static_and_serial_executor",
+  "scope": "read-only provenance precheck; serial focused execution authorized; no Julia/DESC yet",
+  "frozen_head": "4b69f55f7f80240147a65a22809dc1207824dde2",
+  "branch": "main",
+  "prewrite_full_status_entry_count": 3685,
+  "prewrite_status_sha256_utf8_lf": "82c0228ed98c2bf80448f424823e9a349f45ce2706914ab69aa8e6951da3fbe5",
+  "preflight_matching_julia_desc_process_count": 0,
+  "commands": [
+    {"operation": "HEAD and dirty freeze", "command": "git rev-parse HEAD; git branch --show-current; git status --short --untracked-files=all", "result": "HEAD/main; 3685 entries; status SHA-256 recorded"},
+    {"operation": "R2-R6 receipt path/hash audit", "command": "Get-ChildItem repair_r2..repair_r6; Get-FileHash -Algorithm SHA256; Get-Item .Length", "result": "R2/R3/R4/R5/R6 actual paths and hashes verified; R5 misreference is repaired by R6"},
+    {"operation": "four target hash/byte gate", "command": "Get-FileHash -Algorithm SHA256; Get-Item .Length", "result": "all required hashes/bytes match and before=after"},
+    {"operation": "R6 JSON and target assertion", "command": "ConvertFrom-Json plus target hash assertion", "result": "exit 0; hash_and_json_check=pass"},
+    {"operation": "static QA", "command": "D:\\Users\\Newman\\anaconda3\\python.exe test/GenomeV5/G1/static_qa_diffusion_v1.py", "result": "exit 0; static_qa=pass; julia_or_desc_executed=false"},
+    {"operation": "process sweep", "command": "Get-Process -Name julia,julia-debug,desc -ErrorAction SilentlyContinue", "result": "zero matching processes"},
+    {"operation": "serial focused Julia lane", "command": "julia --startup-file=no --project=. test/GenomeV5/G1/diffusion_v1_contract_tests.jl", "result": "deferred until focused_r1 receipt directory is created"}
+  ],
+  "writes": [
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_precheck_r6/report.md",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_precheck_r6/report.json",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_precheck_r6/evidence_manifest.json",
+    "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_precheck_r6/command_receipts.json"
+  ],
+  "claim_ceiling": ["pass_limited", "software_focused_only", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_physics", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_R01_R10"]
+}

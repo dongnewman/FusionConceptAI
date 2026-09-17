@@ -1,0 +1,102 @@
+{
+  "schema": "up1_external_blocker_independent_review_receipt_v1",
+  "protocol_id": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1",
+  "review_revision": "03-revocation-independent-review-r1",
+  "group_id": "W2-R2-03-revocation-time-replay",
+  "component": "revocation_time_replay",
+  "case_id": "TM-07..TM-11, TM-15, TM-19, plus typed-boundary probes",
+  "verdict": "rework",
+  "reviewer_task_id": "delegated-independent-review-worker",
+  "reviewer_model": "gpt-5.6-luna",
+  "reviewer_reasoning_effort": "high",
+  "source_revision": "working-tree snapshot at review time; no commit/ref claimed",
+  "source_paths": [
+    "tools/up1_external_closure_r2/revocation_time_replay/__init__.py",
+    "tools/up1_external_closure_r2/revocation_time_replay/core.py",
+    "tools/up1_external_closure_r2/revocation_time_replay/cli.py",
+    "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"
+  ],
+  "source_hashes": {
+    "tools/up1_external_closure_r2/revocation_time_replay/__init__.py": "cd337461354d41c4a5c23f0fab50292d5d740e7fb09a5407b9e34f94e3f17d22",
+    "tools/up1_external_closure_r2/revocation_time_replay/core.py": "80f47b47ea68187ed49c61239580af9864ac5384a0931ae4c310450bb40c28e6",
+    "tools/up1_external_closure_r2/revocation_time_replay/cli.py": "5cced407dcb8ed4685b4fb4b65e649fa8444e73b7ae33f53e05126b36fdf0618",
+    "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py": "03a6e285e959bb8c2dd5103931a5dfa0cf3a427a7dd9f43e981a5d20d699adb7"
+  },
+  "fixture_paths": ["attack_harness.py"],
+  "fixture_hashes": {"attack_harness.py": "d68dae989d6346e977a0fcab77336469fc4acc6898035f064a117f1a56551cc7"},
+  "input_canonical_bytes_or_hash": "harness constructs deterministic synthetic_TEST_ONLY fixture in-process; no external authority",
+  "candidate_binding": "synthetic_TEST_ONLY_c-001; no production candidate identity",
+  "four_version_axes": {
+    "payload_schema_version": "TEST_ONLY fixture schema UP1-R2.revocation-time-replay.v1",
+    "canonicalization_profile_version": "TEST_ONLY json.dumps sort_keys/separators",
+    "grammar_or_capability_applicability_profile_version": "not_applicable_TEST_ONLY",
+    "execution_or_evidence_receipt_version": "UP1-EXTERNAL-BLOCKER-CLOSURE-R2-REVIEW-V1"
+  },
+  "mutation_summary": {
+    "harness_sha256": "d68dae989d6346e977a0fcab77336469fc4acc6898035f064a117f1a56551cc7",
+    "mutations": "unknown/duplicate fields; TEST_ONLY gate; NaN/Infinity; malformed optional time; wrong source/source_version types; inconsistent entries; sequence gap; reset replay snapshot",
+    "derived_classification": "independently observed from source and mutated typed inputs; see review_report.md"
+  },
+  "processes": [
+    {
+      "command_argv": ["D:/Users/Newman/anaconda3/python.exe", "-B", "-m", "pytest", "-q", "test/up1_external_closure_r2/revocation_time_replay/test_revocation_time_replay.py"],
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "environment_profile": "Windows; Python 3.13.5; pytest 8.3.4; PYTHONDONTWRITEBYTECODE=1",
+      "interpreter_path": "D:/Users/Newman/anaconda3/python.exe",
+      "interpreter_version": "Python 3.13.5",
+      "module_paths": ["pytest", "tools/up1_external_closure_r2/revocation_time_replay/core.py"],
+      "module_versions": {"pytest": "8.3.4"},
+      "started_at_utc": "2026-09-16T18:01:05.902210Z",
+      "ended_at_utc": "2026-09-16T18:01:06.610570Z",
+      "pid": 5488,
+      "parent_pid": 59252,
+      "numeric_exit_code": 0,
+      "stdout_path": "raw/pytest.stdout.raw",
+      "stdout_sha256": "d0d01de59c5c7e1f92c1ce4304c821a5336a981420918b884138939cbffb7a59",
+      "stderr_path": "raw/pytest.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command_argv": ["D:/Users/Newman/anaconda3/python.exe", "-B", "attack_harness.py"],
+      "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+      "environment_profile": "Windows; Python 3.13.5; child CLI processes Python -B",
+      "interpreter_path": "D:/Users/Newman/anaconda3/python.exe",
+      "interpreter_version": "Python 3.13.5",
+      "module_paths": ["core.py", "cli.py"],
+      "module_versions": {},
+      "started_at_utc": "2026-09-16T18:00:10.770468Z",
+      "ended_at_utc": "2026-09-16T18:00:11.139415Z",
+      "pid": 93852,
+      "parent_pid": 84724,
+      "numeric_exit_code": 0,
+      "stdout_path": "raw/attack_harness.stdout.raw",
+      "stdout_sha256": "4f999ea59453d2370f50655b7463d9ef1891549f9a8af1b2b3fb25fa80980812",
+      "stderr_path": "raw/attack_harness.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "replay": {
+    "replay_index": 1,
+    "replay_process_id": "child CLI processes spawned by attack_harness",
+    "semantic_output_sha256": "4f999ea59453d2370f50655b7463d9ef1891549f9a8af1b2b3fb25fa80980812",
+    "canonical_output_sha256": "not_applicable_for_negative review rows",
+    "semantic_row_count": 12,
+    "replay_comparison": "same empty snapshot in two separate CLI processes both returned valid_for_declared_scope; this is the R1-01 finding, not acceptance"
+  },
+  "counters": {"compile_calls": 0, "provider_calls": 0, "solver_calls": 0, "mesh_calls": 0, "external_calls": 0},
+  "raw_streams": {
+    "attack_stdout_sha256": "4f999ea59453d2370f50655b7463d9ef1891549f9a8af1b2b3fb25fa80980812",
+    "attack_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "cleanup": {
+    "retained_paths": ["attack_harness.py", "review_report.md", "run_receipt.json", "cleanup_inventory.json", "raw/pytest.stdout.raw", "raw/pytest.stderr.raw", "raw/attack_harness.stdout.raw", "raw/attack_harness.stderr.raw"],
+    "disposable_paths": [],
+    "cleanup_policy_ref": "cleanup_inventory.json",
+    "cleanup_at_utc": "2026-09-16T18:01:30Z",
+    "removed_paths": []
+  },
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "claim_ceiling": "contract_software_preparation_only",
+  "no_publish": true
+}

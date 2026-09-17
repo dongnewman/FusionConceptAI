@@ -1,0 +1,65 @@
+{
+  "schema": "UP1.external-blocker-closure-r2.witness-independent-review-r1.findings.v1",
+  "decision": "rework",
+  "accepted": false,
+  "claim_ceiling": "contract_software_preparation_only",
+  "no_publish": true,
+  "TEST_ONLY": true,
+  "non_evidence": true,
+  "findings": [
+    {
+      "id": "WA-R1-001",
+      "severity": "P1",
+      "title": "Unknown fields are silently accepted at public boundaries",
+      "evidence": "The validator has no allow-list for root, witness, authority, signature, ack, or nested binding objects. An unversioned root extension and an unknown nested field both returned present_admissible_shape/OK_SHAPE_ONLY; CLI exit was 0.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:81-96,221-290,294-329",
+      "contract": "AR-01; review protocol section 3 and section 4: unknown fields must be rejected or explicitly versioned.",
+      "required_fix": "Reject unknown keys at every public object boundary, with an explicitly versioned extension point if one is intentionally supported. Preserve the attempted path in the receipt."
+    },
+    {
+      "id": "WA-R1-002",
+      "severity": "P1",
+      "title": "Witness scope uses substring matching instead of exact candidate binding",
+      "evidence": "independence_declaration.scope=attacker/candidate-r2-demo/other returned present_admissible_shape/OK_SHAPE_ONLY. The check is candidate_id not in str(scope), so a foreign scope containing the candidate id is admitted.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:246",
+      "contract": "01-witness-authority/contract.md requires exact candidate scope; AR-03 and AR-04 require exact candidate binding.",
+      "required_fix": "Require the canonical scope identifier to equal candidate_id (or compare a typed canonical scope object), never substring containment."
+    },
+    {
+      "id": "WA-R1-003",
+      "severity": "P1",
+      "title": "Signature and evidence binding are not checked against the candidate binding",
+      "evidence": "A signature_material.digest of f*64, an evidence full binding with missing sha256/version and foreign refs, and signature=123 plus ack_id=123 all returned present_admissible_shape/OK_SHAPE_ONLY. Full evidence rows check only candidate_id and key-set, not ref/hash/version values; signature digest is format-checked only; several ack fields have no type check.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:271-291,313-328",
+      "contract": "AR-03/AR-04 and 01-witness-authority/contract.md require exact candidate/source/layer/axis binding and malformed structural values to fail_closed.",
+      "required_fix": "Validate every supplied evidence binding against the canonical candidate layer/axis refs, hashes and versions; require signature material digest/payload binding; enforce scalar types for signature and acknowledgement fields."
+    },
+    {
+      "id": "WA-R1-004",
+      "severity": "P1",
+      "title": "Replay ledger does not consume typed-absence requests",
+      "evidence": "Two identical production records with absent witness returned ERR_WITNESS_EXTERNAL_ABSENT/typed_absence on both calls in one AuthorityLedger. No idempotency entry is recorded before the absence return.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:371-380",
+      "contract": "01-witness-authority/contract.md states the in-memory ledger rejects repeated idempotency keys; AR-06 requires replay-safe key handling.",
+      "required_fix": "Record the first request fingerprint before any typed-absence return, or explicitly define and receipt a different retry policy. Same key+same bytes may be idempotent; changed bytes must conflict."
+    },
+    {
+      "id": "WA-R1-005",
+      "severity": "P1",
+      "title": "Idempotency compares only candidate object digest, not request bytes",
+      "evidence": "After a complete accepted shape, changing source_revision and the matching evidence source_revision while retaining candidate canonical_object_sha256 returned ERR_DUPLICATE_IDEMPOTENCY rather than ERR_IDEMPOTENCY_CONFLICT.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:371-374",
+      "contract": "AR-06: same key+same bytes is idempotent only; same key+changed bytes conflicts.",
+      "required_fix": "Store a canonical request-byte/fingerprint digest (including candidate/source/witness/authority material) per idempotency key and compare that digest."
+    },
+    {
+      "id": "WA-R1-006",
+      "severity": "P2",
+      "title": "Independence declaration is accepted when merely self-asserted",
+      "evidence": "independence_declaration.statement=self-certified independent with conflict_disclosure=false returned present_admissible_shape/OK_SHAPE_ONLY. The result remains typed_absence/no_publish, so this is a shape-admission gap rather than external authority credit.",
+      "source": "tools/up1_external_closure_r2/witness_authority/validator.py:232-249",
+      "contract": "AR-02 and AR-03 require an independence/conflict boundary; a self-assertion is not independent identity evidence.",
+      "required_fix": "Require a typed external independence attestation/reference, or classify self-attested declarations as typed_absence with an explicit missing-independent-proof code before shape admission."
+    }
+  ]
+}

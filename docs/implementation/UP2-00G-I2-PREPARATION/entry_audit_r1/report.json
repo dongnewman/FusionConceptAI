@@ -1,0 +1,43 @@
+{
+  "audit_id": "UP2-00G-I2-PREPARATION-entry-audit-r1",
+  "verdict": "changes_requested",
+  "ready_for_focused": false,
+  "status": "review_pending",
+  "accepted": false,
+  "runtime_performed": false,
+  "julia_or_desc_started": false,
+  "scope": "read_only formal B04 receipt, independent checker, and two-process entry audit",
+  "blockers": [
+    {"code": "GI2-R1-GI1A-INDEPENDENT-GATE", "detail": "Current G-I1A bytes postdate the frozen independent R3 changes_requested review; no current independent review or focused runtime."},
+    {"code": "GI2-R2-UP2-TOTAL-NOT-ACCEPTED", "detail": "UP2 remains review_pending; the G-I1B R2 matrix is source inventory, not formal receipt evidence."},
+    {"code": "GI2-R3-FRESH-RECEIPTS-ABSENT", "detail": "No fresh candidate-bound five-by-ten B04 receipts exist."},
+    {"code": "GI2-R4-INDEPENDENT-CHECKER-MISSING", "detail": "Existing N05 trusted checking reuses exporter _n05e_row and is only local 5+5 scope."},
+    {"code": "GI2-R5-TWO-PROCESS-MISSING", "detail": "No formal two-fresh-process replay and canonical comparison exists."},
+    {"code": "GI2-R6-B00-NOT-EXECUTED", "detail": "B00 F0-F5 has not been executed with fresh receipts."},
+    {"code": "GI2-R7-PHYSICAL-PROVIDER-SEPARATE", "detail": "Provider, mesh, engineering, physical, and R gates remain false and separate."}
+  ],
+  "fresh_receipt_contract": {
+    "rows": 50,
+    "rows_per_class": 5,
+    "classes": ["N01", "N02", "N03", "N04", "N05", "N06", "N07", "N08", "N09", "N10"],
+    "required_fields": ["candidate_ref", "package_hash", "g1_g2_g3_public_refs", "component_hashes", "version_axes", "e0_bound_input_hash", "gi1_context_hash", "slot_source_type", "slot_field_path", "slot_source_ref_or_owner", "slot_source_hash", "original_typed_value", "attempted_typed_value", "mutation_hash", "error_code", "error_path", "resolution", "invocation_counters", "input_manifest_hash", "receipt_schema_version"],
+    "expected_labels_are_oracle_only": true,
+    "program_exception_separate": true
+  },
+  "checker_contract": {
+    "independent_from_exporter_expected_row_helper": true,
+    "must_read_serialized_json": true,
+    "must_rebuild_actual_sources": true,
+    "must_reject_foreign_stale_forged_identity": true,
+    "must_check_50_rows_and_b00": true
+  },
+  "two_process_contract": {
+    "fresh_processes": 2,
+    "same_frozen_input_manifest": true,
+    "disjoint_output_directories": true,
+    "canonical_row_comparison": true,
+    "pid_and_log_metadata_may_differ": true
+  },
+  "claim_ceiling": ["schema_validation_only", "contract_only"],
+  "credits": {"b00": false, "b04": false, "provider": false, "mesh": false, "engineering": false, "physical": false, "r01_r10": false}
+}

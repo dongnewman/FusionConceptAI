@@ -1,0 +1,21 @@
+UP1 R2 integration independent attack matrix r4
+environment: Windows, Python 3.13.5, fresh Python -B; no network/install/download
+
+R1-R3 bypass replay (fresh temporary ledger/key/spool):
+adapter_result forged stage -> real validator -> fail_closed
+bare intake status -> AuthorityIntakeAdapter -> terminal_deferred/no promotion
+unknown root and duplicate alias -> fail_closed/rejected
+candidate/source drift and foreign schema/receipt -> fail_closed
+missing context/anchors/key/ledger/spool -> terminal_deferred/no_publish
+TEST_ONLY absent material -> terminal_deferred, TEST_ONLY=true, non_evidence=true
+
+receipt/state/noop: fresh receipt_digest/state_digest=true; noop sequence=2 and both=true; new_ad=false
+ledger tamper/rollback: fail_closed with integration_ledger_auth_invalid or state/receipt invalid
+CAS: two child Python -B processes yield one intake commit and one compare_and_swap conflict
+anchor canonical: valid candidate/source contexts recompute matching digests; changed context -> candidate_context_digest_mismatch fail_closed
+anchor strictness: non-hex 64-char candidate/source -> candidate_fingerprint_anchor_invalid fail_closed
+aggregate public API: verified, eligible_for_authority_recheck, T0=false, ad_created=false
+run positive reachability: monkeypatched component receipts -> status=eligible_for_authority_recheck, aggregate=verified
+prior equality: mutated status with same receipt -> fail_closed
+platform injected symlink -> replay_key_reparse_or_symlink; injected reparse -> replay_key_reparse_point; injected icacls denial -> _StorageUnavailable/replay_key_owner_acl_unavailable
+actual symlink fixture -> WinError 1314 (privilege unavailable), retained as test-scope unavailable

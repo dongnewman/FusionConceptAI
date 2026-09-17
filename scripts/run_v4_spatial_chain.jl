@@ -1,9 +1,10 @@
-# julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl RUN_DIR [--resume] [--upstream-only] [--physics-only]
+# julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl RUN_DIR [--g2-child] [--resume] [--upstream-only] [--physics-only]
 using FusionConceptAI,SHA,Serialization,Test,Dates,LinearAlgebra
 const SPATIAL_REPO=dirname(@__DIR__)
 isempty(ARGS) && error("new spatial run directory required")
 const SPATIAL_RUN=abspath(first(ARGS))
 const SPATIAL_RESUME="--resume" in ARGS
+const SPATIAL_G2_CHILD="--g2-child" in ARGS
 mkpath(SPATIAL_RUN)
 !SPATIAL_RESUME && !isempty(readdir(SPATIAL_RUN)) && error("refusing nonempty run directory")
 file_record(p)=(path=abspath(p),sha256=Digest256(bytes2hex(SHA.sha256(read(p)))))
@@ -64,9 +65,23 @@ if !SPATIAL_RESUME
 end
 println("SPATIAL_RUN=",SPATIAL_RUN);flush(stdout)
 spatial_recorded(:candidate) do
-    include(joinpath(SPATIAL_REPO,"examples","runtime_v4_spatial_candidate.jl"))
+    example=SPATIAL_G2_CHILD ? "runtime_v4_spatial_geometry_edit_candidate.jl" :
+        "runtime_v4_spatial_candidate.jl"
+    include(joinpath(SPATIAL_REPO,"examples",example))
 end
 const ctx=spatial_context
+if SPATIAL_G2_CHILD
+    spatial.changes.kind === :g2_geometry_edit || error("--g2-child did not construct a G2 edit")
+    spatial_parent.context.candidate_hash == spatial.parent_hash || error("G2 parent candidate mismatch")
+    ctx.candidate_hash != spatial.parent_hash || error("G2 child candidate identity was reused")
+    old_input=only(filter(x->x isa SCV.ThreeDPhysicalProviderInputV4,
+        spatial_parent.context.candidate.field_geometry_genome_ref.fields))
+    new_input=only(filter(x->x isa SCV.ThreeDPhysicalProviderInputV4,
+        ctx.candidate.field_geometry_genome_ref.fields))
+    canonical_hash(old_input)==spatial.changes.old_declaration_hash || error("G2 old declaration mismatch")
+    canonical_hash(new_input)==spatial.changes.new_declaration_hash || error("G2 new declaration mismatch")
+    canonical_hash(old_input)!=canonical_hash(new_input) || error("G2 declaration was not edited")
+end
 const candidate_record=canonical_json((candidate=semantic_view(ctx.candidate),candidate_hash=ctx.candidate_hash,
     context_hash=ctx.context_hash,parent_hash=spatial.parent_hash,changes=spatial.changes,provenance=spatial.provenance))*"\n"
 const candidate_path=joinpath(SPATIAL_RUN,"candidate.json")
@@ -164,13 +179,17 @@ spatial_ledger_event(:manifest,:completed;classification=:completed,program_exit
     solver_exit_code=0,scientific_status=whole.status,
     detail=(scope="manifest inputs sealed; runner.exit is written after the manifest",))
 const manifest=(candidate_hash=ctx.candidate_hash,context_hash=ctx.context_hash,result_hash=whole.result_hash,
+    candidate_kind=SPATIAL_G2_CHILD ? :g2_geometry_edit_child : :spatial_fixture_parent,
+    candidate_parent_hash=spatial.parent_hash,
     starting_head=strip(read(joinpath(SPATIAL_RUN,"initial_head.txt"),String)),julia_version=string(VERSION),
     julia_executable=file_record(joinpath(Sys.BINDIR,Base.julia_exename())),project=file_record(joinpath(SPATIAL_REPO,"Project.toml")),
     manifest=file_record(joinpath(SPATIAL_REPO,"Manifest.toml")),environment=file_record(SPATIAL_ENVIRONMENT),
     execution_ledger=file_record(SPATIAL_LEDGER),sources=sources,artifacts=artifacts,
     command=(executable=joinpath(Sys.BINDIR,Base.julia_exename()),arguments=("--startup-file=no","--project=.",abspath(@__FILE__),ARGS...),working_directory=pwd()),
     resume=SPATIAL_RESUME,reused_checkpoints=reused,
-    fresh_reproduction_command="julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl <new-run-dir>",
+    fresh_reproduction_command=SPATIAL_G2_CHILD ?
+        "julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl <new-run-dir> --g2-child" :
+        "julia --startup-file=no --project=. scripts/run_v4_spatial_chain.jl <new-run-dir>",
     process_exit_code=0,physical_solver_exit_code=physics.solver_exit_code,engineering_solver_exit_code=engineering.solver_exit_code,
     verification_exit_code=verification.solver_exit_code,outcome=whole.status,physical_validation=:unsupported,p5_ready=false,credible_device_count=0)
 write(joinpath(SPATIAL_RUN,"execution_manifest.json"),canonical_json(manifest)*"\n")

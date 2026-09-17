@@ -1,0 +1,22 @@
+{
+  "schema": "g_i0_status_sync_r3_qa_v1",
+  "scope": "acceptance/index status only",
+  "json_parse_exit": 0,
+  "control_scan_exit": 0,
+  "git_diff_check_exit": 0,
+  "validate_plan_exit": 0,
+  "protected_check": "protected_check.json all_task_inputs_unchanged=true",
+  "runtime": "not_run by status sync",
+  "historical_r1_r2_preserved": true,
+  "claim_ceiling": {
+    "accepted_scope": "additive loader wiring/idempotence/failure-state software only",
+    "UP2_total": false,
+    "B00": false,
+    "B04": false,
+    "provider": false,
+    "mesh": false,
+    "engineering": false,
+    "physical": false,
+    "R01_R10": false
+  }
+}

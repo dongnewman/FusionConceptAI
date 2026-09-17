@@ -1,0 +1,23 @@
+review_command=python jsonschema parse + negative vectors + SHA-256 recompute (read-only)
+pid=30244
+start_utc=2026-09-17T04:24:00.3248932Z
+end_utc=2026-09-17T04:24:00.6955875Z
+exit=0
+JSON_PARSE_OK=13
+MANIFEST_SCHEMA_VALID=True
+NEG_AUTH_TYPED_ABSENT_NONNULL_REJECTED=True
+NEG_TYPED_ABSENT_CHILD_MIX_REJECTED=False
+NEG_BUDGET_ARITH_REJECTED=False
+NEG_FAILURE_WRONG_RANK_REJECTED=False
+NEG_EMPTY_PROHIBITED_INPUT_REJECTED=False
+EXPECTED_NEGATIVE_SCHEMA_GAPS=4
+
+hash_command=PowerShell SHA-256 recompute of repair hash manifest and upstream provenance (read-only)
+hash_pid=89076
+hash_start_utc=2026-09-17T04:24:19.1711774Z
+hash_end_utc=2026-09-17T04:24:19.2461688Z
+hash_exit=0
+HASH_PACKAGE_ENTRIES=14 HASH_PACKAGE_BAD=0 UPSTREAM_ENTRIES=7 UPSTREAM_BAD=0
+
+runtime_execution={"julia":false,"search":false,"solver":false,"provider":false,"mesh":false,"physical":false}
+scope_write_target=reviews/03-scope-contract-independent-review-r1/**

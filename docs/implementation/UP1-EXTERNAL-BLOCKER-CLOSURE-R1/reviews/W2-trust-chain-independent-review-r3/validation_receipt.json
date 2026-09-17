@@ -1,0 +1,22 @@
+{
+  "schema": "UP1.W2.trust-chain-independent-review-r3.validation-receipt.v1",
+  "review_scope": "read_only_round3_closure_and_regression_review",
+  "review_utc": "2026-09-16",
+  "conclusion": "pass_limited",
+  "claim_ceiling": "preparation_only",
+  "formal_credit": {"T0":false,"B00":false,"B04":false,"UP1":false,"R01_R10":false,"L4":false,"parent_goal":false},
+  "checks": {
+    "actual_file_count": 9,
+    "manifest_outputs_exact": true,
+    "manifest_owned_exact_set_exact": true,
+    "cleanup_owned_products_exact": true,
+    "cleanup_final_exact_set_exact": true,
+    "self_hash_exclusion": {"excluded_exactly":["manifest.json","cleanup_inventory.json"],"status":"pass"},
+    "all_nonexcluded_hashes": {"manifest_map_keys":7,"cleanup_map_keys":7,"all_match":true,"status":"pass"},
+    "json_unique_parse": "pass",
+    "raw_receipts": "byte_count_and_sha256_pass",
+    "prior_security_regression": "seven_findings_remain_closed",
+    "independent_checker": {"pid":23572,"utc_start":"2026-09-16T15:40:05.045324+00:00","utc_end":"2026-09-16T15:40:05.051428+00:00","exit":0,"raw_sha256":"042937c39dfc5598bbc2bc94ab6fea8446e5b23ce13ba4b4dc564204ea3aff0d","raw":"JSON_UNIQUE_PARSE=PASS; EXACT_SET_9=PASS; SELF_HASH_EXCLUSION_ONLY_MANIFEST_CLEANUP=PASS; ALL_NONEXCLUDED_HASHES=PASS; SEVEN_PRIOR_SECURITY_FINDINGS=NO_REGRESSION; EXIT_CODE=0"}
+  },
+  "limitations": ["No trust root, certificate, signature, OCSP/CRL, RFC3161 token, production verifier, S3, Julia, solver or authority operation was run.","pass_limited is not formal-gate or trusted-attestation credit.","All prior failures and raw streams remain retained."]
+}

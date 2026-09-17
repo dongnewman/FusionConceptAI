@@ -1,0 +1,9 @@
+check=readme_utf8; result=PASS
+check=before_after_hash_recomputation; result=PASS; before=5523/0A5F6214C9AAB3228EC298DF9436AA39EADC900C3DBDBF5BF850B066AC45D87B; after=5714/BBD78A0D3AF2578CA89FB502135E2B2855B203A4CFA017D2B403238F5DE4E349
+check=diff_semantics; result=PASS; changed_lines=1; changed_line=16; active_diff_paths=docs/implementation/README.md only
+check=links; result=PASS; five UP1-row relative targets exist
+check=boundary; result=PASS; 0 usable inputs; 26/26 typed_absent; NOT_RESOLVED; accepted_limited_with_test_scope_deferred; T0/following gates/B00/B04/R01-R10/39DAG/L4/parent open
+check=test_scope; result=PASS; 03 foreign-owner and symlink/Junction dynamic fixtures plus 17 dependency scope remain deferred
+check=global_count; result=PASS; before and after both contain exactly one 39-node 6 accepted 33 planned phrase
+check=v4_core; result=PASS; no v4-core path occurs in the active update diff; unrelated dirty paths protected
+check=external_actions; result=PASS; no network/install/privilege/heavy-lane operation
