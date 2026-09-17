@@ -1,0 +1,65 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-agent-local-r1-v1",
+  "review_id": "UP2-01-G1-DIFFUSION-V1-independent-agent-local-r1",
+  "verdict": "fail",
+  "accepted": false,
+  "review_pending": true,
+  "base_commit": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "reviewer_execution": {
+    "julia_run": false,
+    "desc_run": false,
+    "python_static_qa": {
+      "command": "python -B test/GenomeV5/G1/static_qa_diffusion_v1.py",
+      "exit_code": 0,
+      "result": "static_qa=pass",
+      "reported_source_sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a",
+      "reported_test_sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6",
+      "reported_fixture_sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"
+    }
+  },
+  "agent_receipt_review": {
+    "agent_directory": "docs/implementation/UP2-01-G1-DIFFUSION-V1/agent_local_r1",
+    "focused_summary": {"positive": "32/32", "negative": "34/34", "source_edit": "5/5", "derived_total": "71/71"},
+    "inputs": {
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 31743, "sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a"},
+      "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 9655, "sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6"},
+      "test/GenomeV5/G1/diffusion_v1_fixture.json": {"bytes": 1582, "sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641"},
+      "test/GenomeV5/G1/static_qa_diffusion_v1.py": {"bytes": 4499, "sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066"}
+    },
+    "raw_outputs": {
+      "static_qa_stdout.txt": {"bytes": 285, "sha256": "1f7ffd785a353b032d907da28da79bf502cb52d020bc6e6a69942f994df9f6b3"},
+      "static_qa_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"},
+      "focused_stdout.txt": {"bytes": 454, "sha256": "82f38e560e9b58e58d1a1617491bfea2a476e0746453fcff0b7384f5054615f6"},
+      "focused_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"}
+    }
+  },
+  "findings": [
+    {"id": "F1", "severity": "P1", "summary": "candidate/source cross-binding is not enforced"},
+    {"id": "F2", "severity": "P1", "summary": "operator IDs and full PhysicalType endpoints are not closed"},
+    {"id": "F3", "severity": "P2", "summary": "closure/applicability refs are not pinned to the profile"},
+    {"id": "F4", "severity": "P2", "summary": "cleanup inventory lacks AD-35 final_exact_owned_set and per-path ledger"},
+    {"id": "F5", "severity": "P2", "summary": "zero counters and receipt hashes lack direct focused assertions"}
+  ],
+  "review_state": {
+    "current_status_rows": 1400,
+    "current_status_sha256_utf8_lf": "7f26c894a4a60856786ef070041198272d992bca976278710d1a40b63cbbee9c",
+    "julia_processes_at_review": 0,
+    "product_files_modified_by_review": false,
+    "write_scope": ["docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_agent_local_r1/report.md", "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_agent_local_r1/manifest.json"]
+  },
+  "credit_ceiling": [
+    "software_test_only",
+    "accepted_false",
+    "no_compiler",
+    "no_provider",
+    "no_mesh",
+    "no_solver",
+    "no_numerical_or_physical",
+    "no_engineering",
+    "no_current_A",
+    "no_B00",
+    "no_B04",
+    "no_UP2_execution",
+    "no_R01_R10"
+  ]
+}

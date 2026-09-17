@@ -1,0 +1,29 @@
+{
+  "schema_version": "fusion-independent-agent-local-replay-v1",
+  "task_id": "UP2-01-G3-SOURCE-FEEDBACK-V1",
+  "replay_id": "independent_agent_local_r3_wrapper",
+  "profile": "agent_local",
+  "credit": "contract_only",
+  "accepted": false,
+  "r01_r10_changed": false,
+  "wrapper_run": {
+    "path": "run.json",
+    "status": "command_completed",
+    "exit_code": 0,
+    "started_utc": "2026-09-17T11:58:47.214162+00:00",
+    "finished_utc": "2026-09-17T11:58:55.157583+00:00",
+    "julia_pid": "not_captured",
+    "pre_post_julia_desc_processes": "none",
+    "untouched_preexisting_phase5_pids": [8636, 36512]
+  },
+  "test_parse": {
+    "pass": 63,
+    "total": 63,
+    "groups": [9, 9, 27, 18],
+    "stdout_sha256": "49e44ef89e869be23666f05715cb6ca455e54dd251b8f72749fe41c0fc892b82",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "claim_scope": "contract_only; local execution receipt; no scientific or physical acceptance",
+  "source_state_or_manifest_modified": false,
+  "run_json_stdout_stderr_modified": false
+}

@@ -1,0 +1,50 @@
+{
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-agent-local-r2",
+  "baseline_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "status": "proposal",
+  "scope_status": "proposal",
+  "review_pending": true,
+  "accepted": false,
+  "claim_ceiling": "contract_only_static",
+  "julia_run": true,
+  "desc_run": false,
+  "heavy_execution": false,
+  "focused_julia": {
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+    "pid": 35728,
+    "started_utc": "2026-09-17T11:31:22.314601+00:00",
+    "finished_utc": "2026-09-17T11:31:27.772258+00:00",
+    "exit_code": 0,
+    "stdout_bytes": 516,
+    "stdout_sha256": "29077f5762ca1f0994d5d33dc05ca16cbce6c59133cc837cef1e2b5cebb67c38",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_stdout": "focused_stdout.txt",
+    "raw_stderr": "focused_stderr.txt",
+    "testsets": 4,
+    "assertions": "63/63"
+  },
+  "files_sha256": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "2569086821d04a2a1a77584cf07fbc27a06278e3eef37a31591c5f34fcea9f31",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "9e6ba50e0fdeded00abcb2f13a46a7e0c835227e6b7b87cc6054519015554875"
+  },
+  "repair_summary": [
+    "authority contract/source URIs must use the declared G1/G2 namespace",
+    "actual authority binds contract_hash to candidate, contract ref, source identity, source byte count, and source SHA-256",
+    "half-pair and status/body contradictions are rejected",
+    "missing authority remains typed terminal_deferred; Julia remains pending"
+  ],
+  "classification": {
+    "typed_contradiction": "fail_closed",
+    "unexpected_exception": "program_exception",
+    "missing_authority": "terminal_deferred",
+    "provider": "not_executed",
+    "mesh": "not_executed",
+    "solver": "not_executed",
+    "physics": "not_executed",
+    "engineering": "not_executed",
+    "R01_R10": false
+  }
+}

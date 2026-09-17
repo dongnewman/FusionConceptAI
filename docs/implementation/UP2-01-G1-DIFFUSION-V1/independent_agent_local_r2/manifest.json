@@ -1,0 +1,57 @@
+{
+  "schema_version": "UP2-01-G1-DIFFUSION-V1-independent-agent-local-r2-v1",
+  "review_id": "UP2-01-G1-DIFFUSION-V1-independent-agent-local-r2",
+  "verdict": "fail",
+  "accepted": false,
+  "review_pending": true,
+  "base_commit": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "julia_run": false,
+  "desc_run": false,
+  "static_qa": {"command": "python -B test/GenomeV5/G1/static_qa_diffusion_v1.py", "exit_code": 0, "result": "static_qa=pass", "julia_or_desc_executed": false},
+  "focused_receipt_recomputed": {
+    "positive": "41/41",
+    "negative": "42/42",
+    "source_edit": "5/5",
+    "derived_total": "88/88",
+    "focused_stdout_bytes": 454,
+    "focused_stdout_sha256": "ddce1ee8d42db5871173d20fef7e760b3d1406d638a39b5eb0bb1a2cc30d5d29",
+    "focused_stderr_bytes": 0,
+    "actual_empty_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agent_claimed_empty_stderr_sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agent_claimed_empty_stderr_sha256_length": 62,
+    "actual_empty_stderr_sha256_length": 64,
+    "receipt_hash_match": false
+  },
+  "inputs": {
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {"bytes": 37919, "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"},
+    "test/GenomeV5/G1/diffusion_v1_contract_tests.jl": {"bytes": 12037, "sha256": "51ce669cd1c9d6c4d2dd6e3f48f742755c23501ce65801695df4c3247f82cd8b"},
+    "test/GenomeV5/G1/diffusion_v1_fixture.json": {"bytes": 2011, "sha256": "47eab33a4d360bc8577aa55be5694840982561e29bd4dfbe1f42efcf85afba19"},
+    "test/GenomeV5/G1/static_qa_diffusion_v1.py": {"bytes": 5284, "sha256": "4677ac7f9ba353594e7ca14bd1a2ccc2135ace1435e1685a3731fee098072790"}
+  },
+  "raw_outputs": {
+    "static_qa_stdout.txt": {"bytes": 285, "sha256": "2ef998093ca5a8d5217e32d3c259d31c115b93e5b1cc55127500d4b5c0494931"},
+    "static_qa_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "focused_stdout.txt": {"bytes": 454, "sha256": "ddce1ee8d42db5871173d20fef7e760b3d1406d638a39b5eb0bb1a2cc30d5d29"},
+    "focused_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "contract_checks": {
+    "candidate_source_exact_binding": "pass_static",
+    "operator_ids_and_full_PhysicalType": "pass_static",
+    "closure_applicability_profile_hash": "pass_static",
+    "zero_downstream_counters_and_receipt_hash": "pass_static_and_tested",
+    "AD35_cleanup_inventory": "pass_structure_but_digest_error"
+  },
+  "blocking_findings": [
+    {"id": "R2-F1", "severity": "P1", "summary": "empty stderr SHA is truncated to 62 characters in all R2 evidence records", "replay_gate": "corrected_additive_receipt_required"}
+  ],
+  "replay_gate": {"eligible_for_agent_local_wrapper_r3": false, "reason": "R2 manifest/raw hash inconsistency must be corrected first"},
+  "review_state": {
+    "status_rows": 1483,
+    "status_sha256_utf8_lf": "e7360d708c3734c30fc960b5035660c587d6db6f1b09104ab66ceebe740076bf",
+    "julia_processes_at_review": 0,
+    "protected_phase5_pids_observed": [8636, 36512],
+    "product_files_modified_by_review": false,
+    "write_scope": ["docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_agent_local_r2/report.md", "docs/implementation/UP2-01-G1-DIFFUSION-V1/independent_agent_local_r2/manifest.json"]
+  },
+  "credit_ceiling": ["software_test_only", "accepted_false", "no_compiler", "no_provider", "no_mesh", "no_solver", "no_numerical_or_physical", "no_engineering", "no_current_A", "no_B00", "no_B04", "no_UP2_execution", "no_R01_R10"]
+}

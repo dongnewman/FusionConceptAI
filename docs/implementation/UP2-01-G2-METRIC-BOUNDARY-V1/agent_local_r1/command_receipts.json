@@ -1,0 +1,49 @@
+{
+  "record_kind": "up2_01_g2_metric_boundary_v1_agent_local_r1",
+  "task_id": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "actual_model": "gpt-5.6-luna",
+  "actual_reasoning_effort": "high",
+  "runtime_policy": "static_qa_then_single_focused_julia_only_no_desc_mesh_provider_full_regression",
+  "receipts": [
+    {
+      "id": "static_qa_after_repair",
+      "command": "python -B test/GenomeV5/G2/static_qa_metric_boundary_v1.py",
+      "utc": "2026-09-17T11:09:00Z (observed before focused lane)",
+      "exit_code": 0,
+      "result": "static_qa=pass; julia_or_desc_executed=false; provider_or_mesh_execution=false"
+    },
+    {
+      "id": "focused_julia_r1_failed_assertion",
+      "command": "julia --startup-file=no --project=. test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+      "pid": 17776,
+      "utc_start": "2026-09-17T11:09:00.3293565Z",
+      "utc_end": "2026-09-17T11:09:08.8778772Z",
+      "exit_code": 1,
+      "result": "11/12 in added mesh guard set; test expectation corrected; no source defect inferred"
+    },
+    {
+      "id": "focused_julia_r1_repair_rerun",
+      "command": "julia --startup-file=no --project=. test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl",
+      "pid": 21656,
+      "utc_start": "2026-09-17T11:09:40.2029358Z",
+      "utc_end": "2026-09-17T11:09:47.3521001Z",
+      "exit_code": 0,
+      "result": "7 testsets; 82/82 assertions; stderr empty"
+    },
+    {
+      "id": "postrun_process_sweep",
+      "command": "Get-Process -Name julia,julia-debug,dask,desc",
+      "utc": "2026-09-17T11:09:47Z (post focused run)",
+      "exit_code": 0,
+      "result": "empty"
+    },
+    {
+      "id": "diff_check",
+      "command": "git diff --check -- <four authorized artifacts>",
+      "exit_code": 0,
+      "result": "clean; only line-ending warnings"
+    }
+  ],
+  "non_execution_statement": "No DESC, mesh backend, provider, solver, full-package regression or physical execution was run."
+}

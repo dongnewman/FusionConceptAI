@@ -59,7 +59,7 @@ flowchart LR
 
 从 [21 当前执行批次](21_next_execution_batches.md) 和 [16 工作单](16_execution_work_orders.md) 推进本地完整声明、组合执行、数值验证及逆实现。不要继续补外部责任人表或无变化地重跑 S3/R4。实际缺失的模型、输入、离散能力和数值失败仍逐项修复。
 
-本次变更起点 HEAD 为 `cfc745939a02fd023854dd04e9bb6d04ccadf9ee`；接手时刷新工作树和运行证据。任务清单仍有 39 项、6 项按既有范围 accepted，不能把清单的旧状态当作所有近期数值切片的完整盘点。本次不自动接受任何节点、不关闭 R01–R10、不增加 L4 数量。DAG 可按实际技术依赖版本化修改，39 不是硬性要求。
+本次变更起点 HEAD 为 `cfc745939a02fd023854dd04e9bb6d04ccadf9ee`；当前产品 HEAD 为 `8dbbb68b065c3ccd9a9f0f97a879aae8665eb2e9`，接手时仍须刷新工作树和运行证据。当前 G1/G2/G3 V1 仅按 [status_sync_g123_r1](../implementation/AGENT-LOCAL-EXECUTION-20260917/status_sync_g123_r1/report.md) 接受为 `accepted_local_contract`：三层 declaration schema 与 candidate/source metadata contract 已有本地软件复放，G3 source bytes/authority 仍 `terminal_deferred`。T0、parent binding、T1/T2、UP2-01 总任务及所有数值/物理/工程门仍未接受；R01–R10 不关闭、不增加 L4 数量。DAG 可按实际技术依赖版本化修改，39 不是硬性要求。
 
 ## 5. 状态、历史和档案
 

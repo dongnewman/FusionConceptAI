@@ -82,7 +82,7 @@ end
     @test declaration.source.source_hash == G.canonical_hash((
         source_ref=declaration.source.source_ref, source_version=declaration.source.source_version,
         candidate_ref=declaration.source.candidate_ref, chart_map=declaration.source.chart_map,
-        mesh=declaration.source.mesh, faces=declaration.source.faces, profile=declaration.source.profile,
+        mesh=declaration.source.mesh, faces=G._g2mb_canonical_faces(declaration.source.faces), profile=declaration.source.profile,
         units=declaration.source.units,
         authority=declaration.source.authority))
     @test declaration.source.mesh.cells == (2, 3, 4)
@@ -95,6 +95,74 @@ end
     @test receipt.resolution === :terminal_deferred
     @test receipt.compile_calls == receipt.provider_calls == receipt.mesh_calls == receipt.solver_calls == 0
     @test !receipt.physical_evidence
+end
+
+@testset "mesh guards, chart binding, canonical face ordering and classification order invariant" begin
+    # Negative-control ids: mesh_chart_ref_mismatch, mesh_basis_unsupported,
+    # quadrature_point_out_of_domain, quadrature_weight_arity_mismatch,
+    # quadrature_weight_nonpositive, candidate_binding_change_rehash,
+    # source_hash_tamper_rejected, declaration_hash_tamper_rejected,
+    # duplicate_face_same_key_different_normal_value, classification_order_invariant.
+    source = _fixture_source()
+    reversed_faces = reverse(source.faces)
+    reordered = G.g2mb_source_v1(source.source_ref, source.source_version, source.candidate_ref,
+        source.chart_map, source.mesh, reversed_faces, source.profile, source.units, source.authority)
+    @test reordered.source_hash == source.source_hash
+    @test G.g2mb_declaration_v1(_fixture_declaration(source).contract_ref, reordered).declaration_hash ==
+        _fixture_declaration(source).declaration_hash
+
+    candidate_changed = G.GenomeContractRef(
+        "fusionconceptai://GenomeV5/candidate/up2-01-g2-metric-boundary-fixture-2", "v5",
+        G.digest256_text("candidate-schema-up2-01-g2-metric-boundary-2"),
+        G.digest256_text("candidate-canonicalization-up2-01-g2-metric-boundary-2"), "candidate-profile")
+    changed = G.g2mb_source_v1(source.source_ref, source.source_version, candidate_changed,
+        source.chart_map, source.mesh, source.faces, source.profile, source.units, source.authority)
+    @test changed.source_hash != source.source_hash
+    @test_throws ArgumentError G.G2MBSourceV1(source.source_ref, source.source_version,
+        source.candidate_ref, source.chart_map, source.mesh, source.faces, source.profile,
+        source.units, source.authority, G.digest256_text("tampered-source"))
+    declaration = _fixture_declaration(source)
+    @test_throws ArgumentError G.G2MBDeclarationV1(declaration.contract_ref, declaration.source,
+        declaration.schema_hash, declaration.canonicalization_hash, declaration.profile_hash,
+        G.digest256_text("tampered-declaration"))
+
+    bad_mesh_ref = G.QualifiedRefV1("fusion.g2.metric-boundary.other-mesh", "v1")
+    bad_mesh = G.G2MBMeshPlanV1(bad_mesh_ref, bad_mesh_ref, (2, 3, 4), :Q1,
+        ((_r(1, 2), _r(1, 2), _r(1, 2)),), (1,); execution_status=:not_executed)
+    bad_mesh_source = G.g2mb_source_v1(source.source_ref, source.source_version, source.candidate_ref,
+        source.chart_map, bad_mesh, source.faces, source.profile, source.units, source.authority)
+    bad_mesh_admission = G.g2mb_admit(bad_mesh_source)
+    @test bad_mesh_admission.status === :fail_closed
+    @test "mesh_chart_ref_mismatch" in bad_mesh_admission.errors
+
+    @test_throws ArgumentError G.G2MBMeshPlanV1(_mesh_ref, _chart_ref, (2, 3, 4), :Q3,
+        ((_r(1, 2), _r(1, 2), _r(1, 2)),), (1,))
+    @test_throws ArgumentError G.G2MBMeshPlanV1(_mesh_ref, _chart_ref, (2, 3, 4), :Q1,
+        ((_r(3, 2), _r(1, 2), _r(1, 2)),), (1,))
+    @test_throws ArgumentError G.G2MBMeshPlanV1(_mesh_ref, _chart_ref, (2, 3, 4), :Q1,
+        ((_r(1, 2), _r(1, 2), _r(1, 2)),), ())
+    @test_throws ArgumentError G.G2MBMeshPlanV1(_mesh_ref, _chart_ref, (2, 3, 4), :Q1,
+        ((_r(1, 2), _r(1, 2), _r(1, 2)),), (0,))
+    bad_orientation = G.G2MBFaceOwnerV1("bad", :x_min, "candidate-domain", (0, 1, 0),
+        G.G2MBFaceValueV1(:dirichlet, 0, _field_u))
+    orientation_source = G.g2mb_source_v1(source.source_ref, source.source_version,
+        source.candidate_ref, source.chart_map, source.mesh,
+        (bad_orientation, source.faces[2:end]...), source.profile, source.units, source.authority)
+    orientation_admission = G.g2mb_admit(orientation_source)
+    @test orientation_admission.status === :fail_closed
+    @test "reference_face_orientation_mismatch:x_min" in orientation_admission.errors
+
+    duplicate_variant = G.G2MBFaceOwnerV1("face-x-min", :x_min, "candidate-domain", (0, 1, 0),
+        G.G2MBFaceValueV1(:neumann, 2, _flux_u))
+    duplicate_faces_a = (source.faces[1], duplicate_variant, source.faces[2:end]...)
+    duplicate_faces_b = (duplicate_variant, source.faces[1], source.faces[2:end]...)
+    duplicate_a = G.g2mb_source_v1(source.source_ref, source.source_version, source.candidate_ref,
+        source.chart_map, source.mesh, duplicate_faces_a, source.profile, source.units, source.authority)
+    duplicate_b = G.g2mb_source_v1(source.source_ref, source.source_version, source.candidate_ref,
+        source.chart_map, source.mesh, duplicate_faces_b, source.profile, source.units, source.authority)
+    @test duplicate_a.source_hash == duplicate_b.source_hash
+    @test G.g2mb_admit(duplicate_a).status === :fail_closed
+    @test G.g2mb_admit(duplicate_a).errors == G.g2mb_admit(duplicate_b).errors
 end
 
 @testset "editing source fields rebuilds source and declaration identity" begin
@@ -171,6 +239,15 @@ end
         @test admission.status === :fail_closed
         @test token in admission.errors
     end
+end
+
+@testset "label erasure boundary is explicit and non-semantic" begin
+    @test String(_FIXTURE.label_erasure.status) == "not_applicable"
+    @test isempty(_FIXTURE.label_erasure.display_fields)
+    @test Set(String(x) for x in _FIXTURE.label_erasure.semantic_fields) >=
+        Set(("candidate_ref", "face_id", "face", "owner_region_id", "value", "reference_normal"))
+    @test occursin("semantic owner", String(_FIXTURE.label_erasure.reason))
+    @test G.G2MB_LABEL_ERASURE_SCOPE_V1 === :display_metadata_only
 end
 
 println("G2_METRIC_BOUNDARY_V1_STATIC_TEST_DEFINED=true")

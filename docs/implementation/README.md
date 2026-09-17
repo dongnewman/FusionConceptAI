@@ -16,7 +16,7 @@
 |---|---|---|
 | UP0 | [UP0-01](UP0-01/acceptance.md)、[UP0-02](UP0-02/acceptance.md)、[本轮快照](MIDTERM-AUDIT-20260916/before_inventory.json) | 历史基线/合同已建立；每次执行仍需刷新 |
 | UP1 | [R2根裁决](UP1-EXTERNAL-BLOCKER-CLOSURE-R2/23-root-acceptance/decision.md)、[三层合同索引](UP1-INDEX/acceptance.md)、[UP1-04A有限接受](UP1-04/acceptance.md)、[AD30](AD-30/acceptance_r2/acceptance.md)、[AD34](AD-34/acceptance.md) | 外部证据验证/离线intake/聚合软件能力为 `accepted_limited_with_test_scope_deferred`；0 usable inputs、26 typed_absent，UP1 blockers未解除；T0及后续、B00/B04、R01-R10、39DAG、L4及parent均未关闭 |
-| UP2 | [UP2-00](UP2-00/)、[UP2-01准备](UP2-01-PREPARATION/)、[N06 H0A](UP2-N06-H0A-DIMENSIONED-LAW/)、[AD38](AD-38/acceptance/acceptance.md) | 投影、缺口检查、部分软件核；不表示通用方程/空间/耦合已实现 |
+| UP2 | [G1 diffusion](UP2-01-G1-DIFFUSION-V1/agent_local_acceptance_r1/acceptance.md)、[G2 metric/boundary](UP2-01-G2-METRIC-BOUNDARY-V1/agent_local_acceptance_r1/acceptance.md)、[G3 source/feedback](UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_acceptance_r1/acceptance.md)、[UP2-00](UP2-00/)、[UP2-01准备](UP2-01-PREPARATION/)、[N06 H0A](UP2-N06-H0A-DIMENSIONED-LAW/)、[AD38](AD-38/acceptance/acceptance.md) | G1/G2/G3 仅接受本地 declaration schema/candidate-source metadata contract；不表示 source authority、通用方程、空间/耦合或 UP2-01 总任务已实现 |
 | UP3 | [组合准备](UP3-EARLY-PREPARATION/acceptance.md) | 模板/协议有限接受；实际组合矩阵、留出和降维验证待执行 |
 | UP4 | [逆实现准备](UP4-EARLY-PREPARATION/acceptance.md) | 输入/参考合同；通用硬件逆设计和工程闭环未完成 |
 | UP5 | [搜索准备](UP5-EARLY-PREPARATION/acceptance.md) | 改写/编辑/预算准备；没有完整跨三层真实反馈搜索验收 |

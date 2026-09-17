@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 from fractions import Fraction
 
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SRC = ROOT / "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"
 FIXTURE = ROOT / "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json"
 TEST = ROOT / "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl"
-MANIFEST = ROOT / "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/repair_r5/evidence_manifest.json"
+MANIFEST = ROOT / "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_r2/evidence_manifest.json"
 
 
 def sha256(path: Path) -> str:
@@ -66,6 +67,23 @@ def main() -> int:
         "authority_gap_api_present": "external_authority_gap" in source and "terminal_deferred" in source,
         "unattested_actual_gate_present": "unattested_authority" in source and "authority_status=:actual" in test,
         "classification_split_present": "program_exception" in source and "fail_closed" in source,
+        "endpoint_role_closure_present": "endpoint_role_count_mismatch" in source and '(:source, :field, :return, :heat, :ledger)' in source,
+        "duplicate_upstream_rejection_present": "duplicate_upstream_authority_layer" in source and "duplicate_upstream_authority_layer" in test,
+        "duplicate_feedback_rejection_present": all(token in source and token in test for token in (
+            "duplicate_feedback_target_id", "duplicate_or_ambiguous_feedback_target")),
+        "duplicate_closure_rejection_present": "duplicate_ledger_closure_entry_id" in source and "duplicate_ledger_closure_entry_id" in test,
+        "feedback_authority_pairing_present": "feedback_authority_mismatch" in source and "feedback_authority_mismatch:g1-field-residual" in test,
+        "authority_ref_hash_pairing_present": "authority contract_ref and contract_hash must be paired" in source,
+        "authority_source_material_fields_present": all(token in source for token in (
+            "source_ref::Union{Nothing,QualifiedRefV1}", "source_bytes::Union{Nothing,Int}",
+            "source_sha256::Union{Nothing,Digest256}")) and "source_ref=source_ref" in test,
+        "authority_namespace_gate_present": all(token in source and token in test for token in (
+            "authority_contract_namespace_mismatch", "authority_source_namespace_mismatch")),
+        "authority_hash_source_binding_present": "authority_contract_hash_source_binding_mismatch" in source and "wrong-bound-hash" in test,
+        "authority_half_pair_negative_present": test.count("@test_throws ArgumentError G.G3SFAuthorityV1") >= 2 and
+            "actual_ref, nothing" in test and "nothing, actual_hash" in test,
+        "authority_status_body_negative_present": "authority_status_body_mismatch" in source and
+            "authority_status_body_mismatch:G1" in test,
         "no_julia_or_desc_invocation": all(x not in source.lower() for x in ("run(`julia", "subprocess", "desc run")),
         "test_fixture_is_candidate_owned": fixture["candidate_ref"]["id"].startswith("fusionconceptai://candidate/") and "candidate_ref" in test,
     }
@@ -75,6 +93,7 @@ def main() -> int:
     result = {
         "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-static-QA",
         "command": r"D:\Users\Newman\anaconda3\python.exe docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+        "pid": os.getpid(),
         "exit_code": 0 if all(checks.values()) else 1,
         "checks": checks,
         "files_sha256": files,

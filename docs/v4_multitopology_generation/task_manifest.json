@@ -383,15 +383,15 @@
       "acceptance_record": "docs/implementation/UP1-04/acceptance.md",
       "independent_review": "docs/implementation/UP1-04/independent_review_r12/acceptance.md"
     },
-    {
-      "id": "UP2-01-G1-DIFFUSION-V1",
+  {
+    "id": "UP2-01-G1-DIFFUSION-V1",
       "phase": "UP2",
       "title": "G1 actual-candidate variable-coefficient diffusion schema",
-      "status": "planned",
-      "scope_status": "proposal",
-      "accepted": false,
-      "claim_ceiling": "none",
-      "resolution": "review_pending",
+    "status": "accepted",
+    "scope_status": "accepted_local_contract",
+    "accepted": true,
+    "claim_ceiling": "contract_only",
+    "resolution": "accepted_local_contract",
       "depends_on": [
         "UP1-01",
         "UP1-02",
@@ -402,8 +402,8 @@
       "work_order_ref": "16_execution_work_orders.md#up2-01-g1-diffusion-v1",
       "implementation_model": "gpt-5.6-luna",
       "reasoning_effort": "high",
-      "owner": null,
-      "reviewer": null,
+      "owner": "gpt-5.6-luna-high-implementation",
+      "reviewer": "different-luna-high-independent-replay",
       "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
       "inputs": "UP1-01/02/03 accepted contract scope plus versioned G1 declarations for candidate-owned 3-D u, K(x), f, typed GRAD/DIV, units, closure and negative controls.",
       "write_scope": "仅 G1-DIFFUSION-V1 schema/profile、typed receipt contract、fixture/QA/archive；不写旧 V4、旧 evidence、UP1-04B suite 或物理后端。",
@@ -413,25 +413,25 @@
         "Keep missing authority terminal_deferred and contradictions fail_closed; emit no compiler or physical credit."
       ],
       "acceptance": [
-        "Proposal/review_pending only; accepted=false and no UP2-01 execution dispatch.",
-        "G1 declaration is independently reviewable and can be bound only after all three upstream declarations freeze."
+        "已由不同 Luna 审查与独立 agent-local wrapper replay 接受为 `accepted_local_contract`；实现和 replay 仍仅为 contract/software evidence，未取得 UP2-01 执行信用。",
+        "G1 declaration 可以进入 T0 的实际来源/声明绑定，但 T0 必须重新读取 bytes、核对 candidate/source/receipt 并独立复算；source authority、compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。"
       ],
       "benchmarks": [
         "B04"
       ],
       "execution_recipe_status": "freeze_exact_commands_before_execution",
-      "acceptance_record": null,
+    "acceptance_record": "docs/implementation/UP2-01-G1-DIFFUSION-V1/agent_local_acceptance_r1/acceptance.md",
       "architecture_decision_ref": "docs/implementation/AD-28/status_sync_r3/acceptance.md"
     },
-    {
-      "id": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  {
+    "id": "UP2-01-G2-METRIC-BOUNDARY-V1",
       "phase": "UP2",
       "title": "G2 chart-to-metric mesh and executable face ownership schema",
-      "status": "planned",
-      "scope_status": "proposal",
-      "accepted": false,
-      "claim_ceiling": "none",
-      "resolution": "review_pending",
+    "status": "accepted",
+    "scope_status": "accepted_local_contract",
+    "accepted": true,
+    "claim_ceiling": "contract_only",
+    "resolution": "accepted_local_contract",
       "depends_on": [
         "UP1-01",
         "UP1-02",
@@ -442,8 +442,8 @@
       "work_order_ref": "16_execution_work_orders.md#up2-01-g2-metric-boundary-v1",
       "implementation_model": "gpt-5.6-luna",
       "reasoning_effort": "high",
-      "owner": null,
-      "reviewer": null,
+      "owner": "gpt-5.6-luna-high-implementation",
+      "reviewer": "different-luna-high-independent-replay",
       "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
       "inputs": "UP1-01/02/03 accepted contract scope plus G2 chart, metric, mesh, basis, quadrature and executable face ownership/value declarations.",
       "write_scope": "仅 G2-METRIC-BOUNDARY-V1 schema/profile、typed receipt contract、fixture/QA/archive；不写旧 V4、旧 evidence、UP1-04B suite 或 mesh backend implementation。",
@@ -453,25 +453,25 @@
         "Keep missing metric/mesh/boundary authority terminal_deferred and structural contradictions fail_closed."
       ],
       "acceptance": [
-        "Proposal/review_pending only; accepted=false and no mesh or physical credit.",
-        "G2 declaration is independently reviewable and can be bound only after all three upstream declarations freeze."
+        "已由不同 Luna 独立审查与 agent-local wrapper replay 接受为 `accepted_local_contract`；`85/85` 只证明软件合同测试，不授予 mesh、守恒或物理信用。",
+        "G2 declaration 可以进入 T0 的实际来源/声明绑定；T0 必须逐项核对真实 bytes、candidate envelope、四轴和 receipt。compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。"
       ],
       "benchmarks": [
         "B04"
       ],
       "execution_recipe_status": "freeze_exact_commands_before_execution",
-      "acceptance_record": null,
+    "acceptance_record": "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/agent_local_acceptance_r1/acceptance.md",
       "architecture_decision_ref": "docs/implementation/AD-28/status_sync_r3/acceptance.md"
     },
-    {
-      "id": "UP2-01-G3-SOURCE-FEEDBACK-V1",
+  {
+    "id": "UP2-01-G3-SOURCE-FEEDBACK-V1",
       "phase": "UP2",
       "title": "G3 same-candidate source and feedback authority schema",
-      "status": "planned",
-      "scope_status": "proposal",
-      "accepted": false,
-      "claim_ceiling": "none",
-      "resolution": "review_pending",
+    "status": "accepted",
+    "scope_status": "accepted_local_contract",
+    "accepted": true,
+    "claim_ceiling": "contract_only",
+    "resolution": "accepted_local_contract",
       "depends_on": [
         "UP1-01",
         "UP1-02",
@@ -482,8 +482,8 @@
       "work_order_ref": "16_execution_work_orders.md#up2-01-g3-source-feedback-v1",
       "implementation_model": "gpt-5.6-luna",
       "reasoning_effort": "high",
-      "owner": null,
-      "reviewer": null,
+      "owner": "gpt-5.6-luna-high-implementation",
+      "reviewer": "different-luna-high-independent-replay",
       "resource_policy": "parallel_reads_and_disjoint_edits_serial_heavy_execution",
       "inputs": "UP1-01/02/03 accepted contract scope plus G3 source/return/heat/ledger law, feedback target, source ID, units, owner scope and agent-owned local source/declaration records.",
       "write_scope": "仅 G3-SOURCE-FEEDBACK-V1 schema/profile、typed receipt contract、fixture/QA/archive；不写旧 V4、旧 evidence、UP1-04B suite 或 physical backend。",
@@ -493,14 +493,14 @@
         "Keep missing local source/declaration records terminal_deferred and contradictions fail_closed; do not convert structural feedback into physical evidence."
       ],
       "acceptance": [
-        "Proposal/review_pending only; accepted=false and no feedback or physical credit.",
-        "G3 declaration is independently reviewable and can be bound only after all three upstream declarations freeze."
+        "已由不同 Luna 独立审查与 agent-local wrapper replay 接受为 `accepted_local_contract`；`63/63` 只证明软件合同测试。该切片没有读取/重算 source bytes，实际 source authority 明确保持 `terminal_deferred`，由 T0/recheck 完成。",
+        "G3 declaration 可以进入 T0 的实际来源/声明绑定；compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。"
       ],
       "benchmarks": [
         "B04"
       ],
       "execution_recipe_status": "freeze_exact_commands_before_execution",
-      "acceptance_record": null,
+    "acceptance_record": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_acceptance_r1/acceptance.md",
       "architecture_decision_ref": "docs/implementation/AD-28/status_sync_r3/acceptance.md"
     },
     {

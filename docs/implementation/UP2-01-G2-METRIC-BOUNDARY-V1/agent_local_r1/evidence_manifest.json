@@ -1,0 +1,37 @@
+{
+  "task_id": "UP2-01-G2-METRIC-BOUNDARY-V1",
+  "status": "review_pending",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "base_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "target_hashes_after_focused_run": {
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {"bytes": 31390, "sha256": "bdce1d86f28f5a096178e560117c1a66cb9fc749c2d7d72f41a3d4b3f6e71b9e"},
+    "test/GenomeV5/G2/metric_boundary_v1_contract_tests.jl": {"bytes": 15448, "sha256": "24b1143e1522286f81ea14b8fa7f1b929b7200d9bca9d252060f74adccddbabf"},
+    "test/GenomeV5/G2/metric_boundary_v1_fixture.json": {"bytes": 4537, "sha256": "dc11803baa62892380ffbb2de9b07a953d580b826e900210c540535c60480937"},
+    "test/GenomeV5/G2/static_qa_metric_boundary_v1.py": {"bytes": 8499, "sha256": "8be7ba7db2921ff359d89b2450e92d96e1b0d2a4440ce33286b87e12231882e9"}
+  },
+  "static_qa": {
+    "python": "D:/Users/Newman/anaconda3/python.exe",
+    "version": "3.13.5",
+    "exit_code": 0,
+    "julia_or_desc_executed": false,
+    "provider_or_mesh_execution": false
+  },
+  "focused_julia": {
+    "pid": 21656,
+    "utc_start": "2026-09-17T11:09:40.2029358Z",
+    "utc_end": "2026-09-17T11:09:47.3521001Z",
+    "exit_code": 0,
+    "testsets": 7,
+    "assertions": "82/82",
+    "stdout": {"path": "stdout.txt", "bytes": 1274, "sha256": "ce011c7b09a401a3ada963d44b19dd063027335846be448406a27dbeed03e635"},
+    "stderr": {"path": "stderr.txt", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "process_sweep": {"julia_desc_before": 0, "julia_desc_after": 0},
+  "cleanup_inventory": {
+    "tmp/g2mb_agent_local_r1_runtime/": "failed-attempt raw runtime scratch retained for audit",
+    "tmp/g2mb_agent_local_r1_runtime_r2/": "passing raw runtime scratch retained for audit",
+    "docs/implementation/UP2-01-G2-METRIC-BOUNDARY-V1/agent_local_r1/": "authorized archived evidence"
+  },
+  "credit": {"software_contract_test": true, "compiler": false, "provider": false, "mesh": false, "solver": false, "engineering": false, "physical": false, "B00": false, "B04": false, "R01_R10": false}
+}

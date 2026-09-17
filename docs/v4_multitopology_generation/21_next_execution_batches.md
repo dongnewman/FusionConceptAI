@@ -15,6 +15,8 @@ Sol 负责最高层安排、架构补充及项目内验收；Luna 实现、测�
 3. 完成 T0 的完整 transport 与 bundle。将 recheck 实现为版本化本地来源/声明一致性路径，检查实际 bytes/hash/candidate/layer/receipt 绑定、反馈投影与重复/缺失/篡改反例。不能只把旧 `trusted_receipt` 判断替换成恒真；旧外部验证器继续保留原含义。
 4. 用验证通过的本地记录完成 T1/T2 package/edit/round-trip 和受影响 identity 重建，再进入 aggregate、UP2-00、UP1-04B 等实际技术验收。检查 B00/B04 的冻结输入与原退出要求，不把改政策或历史工厂复放当成这些验证已通过。
 
+当前状态同步（2026-09-17 R1）：G1 diffusion、G2 metric/boundary、G3 source/feedback 三个 V1 节点已分别以 `accepted_local_contract` 接受，接受记录和 wrapper 输入/输出哈希见 [status_sync_g123_r1](../implementation/AGENT-LOCAL-EXECUTION-20260917/status_sync_g123_r1/report.md)。这只接受三层 declaration schema 与 candidate/source metadata contract；G3 实际 source bytes/authority 仍为 `terminal_deferred`，须由 T0/recheck 读取并重算。机器入口在 manifest 同步后可将 T0 暴露为 ready（若其余技术前置满足），但 ready 不等于执行或验收。UP2-01 总任务、parent binding、T1/T2、UP2-00、B00/B04、编译/mesh/provider/solver、数值/物理/工程/search 及 R01–R10 均未接受。
+
 UP1 的结束条件是可执行三层合同、合法/非法构造、迁移、标签擦除及最小组件数值验证。外部认证缺失不再是结束条件之一。任务未完成则保持原状态，验收有证据后再更新机器清单。
 
 ## 3. 第二批：增强实际编译与求解

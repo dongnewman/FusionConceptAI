@@ -217,7 +217,7 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 ### UP2-01-G1-DIFFUSION-V1 G1 actual-candidate variable-coefficient diffusion schema
 
-当前状态：`planned`，`scope_status=proposal`，`accepted=false`；AD-28 已 `accepted_limited`，仅覆盖架构/无环排期/证据边界；这是 UP1/UP2-00 schema-extension preparation，不是 UP2-01 执行。
+当前状态：`accepted`，`scope_status=accepted_local_contract`，`accepted=true`，`resolution=accepted_local_contract`；接受记录：[agent-local acceptance R1](../implementation/UP2-01-G1-DIFFUSION-V1/agent_local_acceptance_r1/acceptance.md)。这只接受 G1 declaration schema 与 candidate/source metadata contract，不是 UP2-01 执行。
 
 - 前置：UP1-01、UP1-02、UP1-03；三者可与本单及另外两张 upstream 单并行读取。
 - 输入：UP1-01/02/03 accepted contract scope plus versioned G1 declarations for candidate-owned 3-D u, K(x), f, typed GRAD/DIV, units, closure and negative controls.
@@ -231,14 +231,14 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 退出门：
 
-- Proposal/review_pending only; accepted=false and no UP2-01 execution dispatch.
-- G1 declaration is independently reviewable and can be bound only after all three upstream declarations freeze.
+- 已由不同 Luna 审查与独立 agent-local wrapper replay 接受为 `accepted_local_contract`；实现和 replay 仍仅为 contract/software evidence，未取得 UP2-01 执行信用。
+- G1 declaration 可以进入 T0 的实际来源/声明绑定，但 T0 必须重新读取 bytes、核对 candidate/source/receipt 并独立复算；source authority、compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。
 
 <a id="up2-01-g2-metric-boundary-v1"></a>
 
 ### UP2-01-G2-METRIC-BOUNDARY-V1 G2 chart-to-metric mesh and executable face ownership schema
 
-当前状态：`planned`，`scope_status=proposal`，`accepted=false`；AD-28 已 `accepted_limited`，仅覆盖架构/无环排期/证据边界；结构 chart/patch 不等于 metric、mesh 或 boundary execution。
+当前状态：`accepted`，`scope_status=accepted_local_contract`，`accepted=true`，`resolution=accepted_local_contract`；接受记录：[agent-local acceptance R1](../implementation/UP2-01-G2-METRIC-BOUNDARY-V1/agent_local_acceptance_r1/acceptance.md)。这只接受 G2 declaration schema 与 candidate/source metadata contract，不是 mesh execution。
 
 - 前置：UP1-01、UP1-02、UP1-03；三者可与本单及另外两张 upstream 单并行读取。
 - 输入：UP1-01/02/03 accepted contract scope plus G2 chart, metric, mesh, basis, quadrature and executable face ownership/value declarations.
@@ -252,14 +252,14 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 退出门：
 
-- Proposal/review_pending only; accepted=false and no mesh or physical credit.
-- G2 declaration is independently reviewable and can be bound only after all three upstream declarations freeze.
+- 已由不同 Luna 独立审查与 agent-local wrapper replay 接受为 `accepted_local_contract`；`85/85` 只证明软件合同测试，不授予 mesh、守恒或物理信用。
+- G2 declaration 可以进入 T0 的实际来源/声明绑定；T0 必须逐项核对真实 bytes、candidate envelope、四轴和 receipt。compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。
 
 <a id="up2-01-g3-source-feedback-v1"></a>
 
 ### UP2-01-G3-SOURCE-FEEDBACK-V1 G3 same-candidate source and feedback authority schema
 
-当前状态：`planned`，`scope_status=proposal`，`accepted=false`；AD-28 已 `accepted_limited`，仅覆盖架构/无环排期/证据边界；结构反馈通道不提供 source/return/heat/ledger authority。
+当前状态：`accepted`，`scope_status=accepted_local_contract`，`accepted=true`，`resolution=accepted_local_contract`；接受记录：[agent-local acceptance R1](../implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_acceptance_r1/acceptance.md)。这只接受 G3 declaration schema 与 candidate/source metadata contract，不是 source authority 或 physical feedback execution。
 
 - 前置：UP1-01、UP1-02、UP1-03；三者可与本单及另外两张 upstream 单并行读取。
 - 输入：UP1-01/02/03 accepted contract scope plus G3 source/return/heat/ledger law, feedback target, source ID, units, owner scope and agent-owned local source/declaration records.
@@ -273,8 +273,8 @@ UP1-01/02/03 可以在共同合同冻结后并行；其余有依赖的编辑顺�
 
 退出门：
 
-- Proposal/review_pending only; accepted=false and no feedback or physical credit.
-- G3 declaration is independently reviewable and can be bound only after all three upstream declarations freeze.
+- 已由不同 Luna 独立审查与 agent-local wrapper replay 接受为 `accepted_local_contract`；`63/63` 只证明软件合同测试。该切片没有读取/重算 source bytes，实际 source authority 明确保持 `terminal_deferred`，由 T0/recheck 完成。
+- G3 declaration 可以进入 T0 的实际来源/声明绑定；compiler、mesh、provider、solver、numerical、physical、engineering、search、B00/B04 与 R01–R10 均保持未接受。
 
 <a id="up1-04a-vnext"></a>
 

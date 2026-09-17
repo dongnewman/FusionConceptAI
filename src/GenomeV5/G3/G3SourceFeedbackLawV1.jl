@@ -74,10 +74,14 @@ struct G3SFAuthorityV1
     candidate_ref::QualifiedRefV1
     contract_ref::Union{Nothing,GenomeContractRef}
     contract_hash::Union{Nothing,Digest256}
+    source_ref::Union{Nothing,QualifiedRefV1}
+    source_bytes::Union{Nothing,Int}
+    source_sha256::Union{Nothing,Digest256}
     status::Symbol
     attestation::Symbol
     function G3SFAuthorityV1(layer::Any, candidate_ref::Any, contract_ref::Any,
-            contract_hash::Any, status::Any; attestation=:unattested)
+            contract_hash::Any, status::Any; attestation=:unattested,
+            source_ref=nothing, source_bytes=nothing, source_sha256=nothing)
         l = layer isa Symbol ? layer : Symbol(layer)
         l in G3_SF_V1_FEEDBACK_LAYERS || throw(ArgumentError("authority layer must be G1 or G2"))
         c = _g3sf_ref(candidate_ref, "authority candidate_ref")
@@ -96,8 +100,36 @@ struct G3SFAuthorityV1
             contract_hash === nothing || contract_hash isa Digest256 ||
                 throw(ArgumentError("authority contract_hash must be nothing or Digest256"))
         end
-        new(l, c, contract_ref, contract_hash, s, a)
+        (contract_ref === nothing) == (contract_hash === nothing) ||
+            throw(ArgumentError("authority contract_ref and contract_hash must be paired"))
+        source_ref === nothing || source_ref isa QualifiedRefV1 ||
+            throw(ArgumentError("authority source_ref must be nothing or QualifiedRefV1"))
+        source_bytes === nothing || (source_bytes isa Integer && !(source_bytes isa Bool) && source_bytes >= 0) ||
+            throw(ArgumentError("authority source_bytes must be nothing or a non-negative integer"))
+        source_sha256 === nothing || source_sha256 isa Digest256 ||
+            throw(ArgumentError("authority source_sha256 must be nothing or Digest256"))
+        source_material = (source_ref === nothing, source_bytes === nothing, source_sha256 === nothing)
+        all(source_material) || all(!x for x in source_material) ||
+            throw(ArgumentError("authority source identity, bytes, and hash must be paired"))
+        new(l, c, contract_ref, contract_hash, source_ref,
+            source_bytes === nothing ? nothing : Int(source_bytes), source_sha256, s, a)
     end
+end
+
+function g3_sf_authority_content_hash_v1(layer::Any, candidate_ref::Any,
+        contract_ref::Any, source_ref::Any, source_bytes::Any, source_sha256::Any)
+    l = layer isa Symbol ? layer : Symbol(layer)
+    l in G3_SF_V1_FEEDBACK_LAYERS || throw(ArgumentError("authority layer must be G1 or G2"))
+    c = _g3sf_ref(candidate_ref, "authority candidate_ref")
+    contract = contract_ref isa GenomeContractRef ? contract_ref :
+        throw(ArgumentError("authority contract_ref must be GenomeContractRef"))
+    source = source_ref isa QualifiedRefV1 ? source_ref :
+        throw(ArgumentError("authority source_ref must be QualifiedRefV1"))
+    bytes = source_bytes isa Integer && !(source_bytes isa Bool) && source_bytes >= 0 ? Int(source_bytes) :
+        throw(ArgumentError("authority source_bytes must be non-negative integer"))
+    digest = _g3sf_digest(source_sha256, "authority source_sha256")
+    canonical_hash((domain="G3SF-authority-content-v1", layer=l, candidate_ref=c,
+        contract_ref=contract, source_ref=source, source_bytes=bytes, source_sha256=digest))
 end
 
 struct G3SFConservativeSplitV1
@@ -278,7 +310,8 @@ struct G3SFDeclarationV1
 end
 
 semantic_view(x::G3SFAuthorityV1) = (layer=x.layer, candidate_ref=x.candidate_ref,
-    contract_ref=x.contract_ref, contract_hash=x.contract_hash, status=x.status, attestation=x.attestation)
+    contract_ref=x.contract_ref, contract_hash=x.contract_hash, source_ref=x.source_ref,
+    source_bytes=x.source_bytes, source_sha256=x.source_sha256, status=x.status, attestation=x.attestation)
 semantic_view(x::G3SFEndpointV1) = (endpoint_id=x.endpoint_id, role=x.role, unit=x.unit,
     direction=x.direction, sign=x.sign, owner_scope=x.owner_scope)
 semantic_view(x::G3SFLawV1) = (law_id=x.law_id, source_endpoint_id=x.source_endpoint_id,
@@ -352,6 +385,11 @@ function g3_sf_validate_v1(x::G3SFDeclarationV1)
     ids = Tuple(e.endpoint_id for e in x.endpoints)
     length(unique(ids)) == length(ids) || push!(errors, "duplicate_endpoint_id")
     endpoint_map = Dict(e.endpoint_id => e for e in x.endpoints)
+    endpoint_roles = Tuple(e.role for e in x.endpoints)
+    for role in (:source, :field, :return, :heat, :ledger)
+        count(==(role), endpoint_roles) == 1 ||
+            push!(errors, "endpoint_role_count_mismatch:" * String(role))
+    end
     required = ((:source, x.law.source_endpoint_id), (:field, x.law.field_endpoint_id),
                 (:return, x.law.return_endpoint_id), (:heat, x.law.heat_endpoint_id))
     for (role, id) in required
@@ -370,6 +408,7 @@ function g3_sf_validate_v1(x::G3SFDeclarationV1)
         heat = endpoint_map[x.law.heat_endpoint_id]
         all(e.unit == src.unit for e in (field, ret, heat)) || push!(errors, "source_output_unit_mismatch")
         src.direction in (:out, :bidirectional) || push!(errors, "source_direction_invalid")
+        all(e.direction === :out for e in (field, ret, heat)) || push!(errors, "output_direction_invalid")
         all(e.sign == -1 for e in (field, ret, heat)) || push!(errors, "output_sign_invalid")
         src.sign == 1 || push!(errors, "source_sign_invalid")
     end
@@ -378,6 +417,8 @@ function g3_sf_validate_v1(x::G3SFDeclarationV1)
     effects = Tuple(e.effect for e in x.ledger_entries)
     length(unique(effects)) == length(effects) || push!(errors, "duplicate_ledger_effect")
     Set(effects) == Set((:source, :field, :return, :heat)) || push!(errors, "ledger_effect_set_mismatch")
+    length(unique(x.ledger_closure.entry_ids)) == length(x.ledger_closure.entry_ids) ||
+        push!(errors, "duplicate_ledger_closure_entry_id")
     closure_ids = Set(x.ledger_closure.entry_ids)
     closure_ids == Set(entry_ids) || push!(errors, "ledger_closure_entry_set_mismatch")
     x.ledger_closure.expected_residual == 0 || push!(errors, "ledger_expected_residual_not_zero")
@@ -402,20 +443,72 @@ function g3_sf_validate_v1(x::G3SFDeclarationV1)
         end
         e.owner_scope == x.owner_scope || push!(errors, "ledger_owner_scope_mismatch:" * e.entry_id)
     end
+    authority_layers = Tuple(a.layer for a in x.upstream_authority)
+    length(unique(authority_layers)) == length(authority_layers) ||
+        push!(errors, "duplicate_upstream_authority_layer")
+    for layer in G3_SF_V1_FEEDBACK_LAYERS
+        count(==(layer), authority_layers) == 1 ||
+            push!(errors, count(==(layer), authority_layers) == 0 ?
+                "missing_upstream_authority_layer:" * String(layer) :
+                "ambiguous_upstream_authority_layer:" * String(layer))
+    end
     all(a.candidate_ref == x.candidate_ref for a in x.upstream_authority) ||
         push!(errors, "upstream_candidate_binding_mismatch")
     Set(a.layer for a in x.upstream_authority) == Set(G3_SF_V1_FEEDBACK_LAYERS) ||
         push!(errors, "upstream_authority_layer_set_mismatch")
     for authority in x.upstream_authority
+        prefix = "fusionconceptai://GenomeV5/" * String(authority.layer) * "/"
+        has_material = authority.contract_ref !== nothing || authority.contract_hash !== nothing ||
+            authority.source_ref !== nothing || authority.source_bytes !== nothing || authority.source_sha256 !== nothing
+        if authority.status !== :actual && has_material
+            push!(errors, "authority_status_body_mismatch:" * String(authority.layer))
+        end
+        if authority.contract_ref !== nothing
+            startswith(authority.contract_ref.uri, prefix) ||
+                push!(errors, "authority_contract_namespace_mismatch:" * String(authority.layer))
+        end
+        if authority.source_ref !== nothing
+            startswith(authority.source_ref.id, prefix) ||
+                push!(errors, "authority_source_namespace_mismatch:" * String(authority.layer))
+            authority.source_ref.version == "v1" ||
+                push!(errors, "authority_source_version_mismatch:" * String(authority.layer))
+        end
+        if authority.status === :actual
+            authority.contract_ref !== nothing && authority.contract_hash !== nothing &&
+                authority.source_ref !== nothing && authority.source_bytes !== nothing &&
+                authority.source_sha256 !== nothing ||
+                push!(errors, "actual_authority_source_material_missing:" * String(authority.layer))
+            if authority.contract_ref !== nothing && authority.contract_hash !== nothing &&
+                    authority.source_ref !== nothing && authority.source_bytes !== nothing &&
+                    authority.source_sha256 !== nothing
+                expected_hash = g3_sf_authority_content_hash_v1(authority.layer, authority.candidate_ref,
+                    authority.contract_ref, authority.source_ref, authority.source_bytes,
+                    authority.source_sha256)
+                authority.contract_hash == expected_hash ||
+                    push!(errors, "authority_contract_hash_source_binding_mismatch:" * String(authority.layer))
+            end
+        end
         authority.status === :contradictory &&
             push!(errors, "authority_contradiction:" * String(authority.layer))
         authority.status === :actual && authority.attestation !== :trusted_receipt &&
             push!(errors, "unattested_authority:" * String(authority.layer))
     end
+    target_ids = Tuple(target.target_id for target in x.feedback_targets)
+    length(unique(target_ids)) == length(target_ids) || push!(errors, "duplicate_feedback_target_id")
+    target_keys = Tuple((target.target_layer, target.target_path, target.quantity, target.unit,
+        target.direction, target.sign, target.source_id, target.owner_scope) for target in x.feedback_targets)
+    length(unique(target_keys)) == length(target_keys) ||
+        push!(errors, "duplicate_or_ambiguous_feedback_target")
+    authority_by_layer = Dict(a.layer => a for a in x.upstream_authority)
     for target in x.feedback_targets
         target.source_id == x.source_id || push!(errors, "feedback_source_id_mismatch:" * target.target_id)
         target.owner_scope == x.owner_scope || push!(errors, "feedback_owner_scope_mismatch:" * target.target_id)
         target.authority.candidate_ref == x.candidate_ref || push!(errors, "feedback_candidate_binding_mismatch:" * target.target_id)
+        if haskey(authority_by_layer, target.target_layer)
+            canonical_json(semantic_view(target.authority)) ==
+                canonical_json(semantic_view(authority_by_layer[target.target_layer])) ||
+                push!(errors, "feedback_authority_mismatch:" * target.target_id)
+        end
         target.authority.status === :contradictory &&
             push!(errors, "feedback_authority_contradiction:" * target.target_id)
     end

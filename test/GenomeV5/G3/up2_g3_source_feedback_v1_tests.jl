@@ -48,8 +48,14 @@ function _g3sf_build(; field_unit=nothing, source_unit=nothing, authority_status
         if authority_status === :actual
             ref = GenomeContractRef("fusionconceptai://GenomeV5/" * String(layer) * "/foreign",
                 "v5", digest256_text("foreign-schema"), digest256_text("foreign-canonical"), "foreign-profile")
-            G.G3SFAuthorityV1(layer, _g3sf_candidate(), ref, digest256_text("foreign-content"), authority_status;
-                attestation=authority_attestation)
+            source_ref = QualifiedRefV1("fusionconceptai://GenomeV5/" * String(layer) * "/source-foreign", "v1")
+            source_bytes = 1234
+            source_sha256 = digest256_text("foreign-source-bytes-" * String(layer))
+            content_hash = G.g3_sf_authority_content_hash_v1(layer, _g3sf_candidate(), ref,
+                source_ref, source_bytes, source_sha256)
+            G.G3SFAuthorityV1(layer, _g3sf_candidate(), ref, content_hash, authority_status;
+                attestation=authority_attestation, source_ref=source_ref,
+                source_bytes=source_bytes, source_sha256=source_sha256)
         else
             G.G3SFAuthorityV1(layer, _g3sf_candidate(), nothing, nothing, authority_status)
         end
@@ -142,4 +148,135 @@ end
         :return => 0 // 1, :heat => -1 // 8)
     @test G.g3_sf_admit_v1(nothing).status == :fail_closed
     @test G.g3_sf_admit_v1(nothing).resolution == :fail_closed
+end
+
+@testset "UP2-01 G3 duplicate and pairing rejection" begin
+    declaration = _g3sf_build()
+    actual_ref = G.GenomeContractRef("fusionconceptai://GenomeV5/G1/foreign", "v5",
+        digest256_text("foreign-schema"), digest256_text("foreign-canonical"), "foreign-profile")
+    actual_source_ref = QualifiedRefV1("fusionconceptai://GenomeV5/G1/source-foreign", "v1")
+    actual_source_bytes = 1234
+    actual_source_sha256 = digest256_text("foreign-source-bytes-G1")
+    actual_hash = G.g3_sf_authority_content_hash_v1(:G1, declaration.candidate_ref,
+        actual_ref, actual_source_ref, actual_source_bytes, actual_source_sha256)
+    @test_throws ArgumentError G.G3SFAuthorityV1(:G1, declaration.candidate_ref,
+        actual_ref, nothing, :actual; attestation=:trusted_receipt,
+        source_ref=actual_source_ref, source_bytes=actual_source_bytes,
+        source_sha256=actual_source_sha256)
+    @test_throws ArgumentError G.G3SFAuthorityV1(:G1, declaration.candidate_ref,
+        nothing, actual_hash, :actual; attestation=:trusted_receipt,
+        source_ref=actual_source_ref, source_bytes=actual_source_bytes,
+        source_sha256=actual_source_sha256)
+
+    status_body_authority = G.G3SFAuthorityV1(:G1, declaration.candidate_ref,
+        actual_ref, actual_hash, :missing; source_ref=actual_source_ref,
+        source_bytes=actual_source_bytes, source_sha256=actual_source_sha256)
+    status_body = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, declaration.feedback_targets,
+        (status_body_authority, declaration.upstream_authority[2]))
+    status_body_receipt = G.g3_sf_admit_v1(status_body)
+    @test status_body_receipt.status == :fail_closed
+    @test "authority_status_body_mismatch:G1" in status_body_receipt.errors
+
+    wrong_layer_ref = G.GenomeContractRef("fusionconceptai://GenomeV5/G2/foreign", "v5",
+        digest256_text("foreign-schema"), digest256_text("foreign-canonical"), "foreign-profile")
+    wrong_layer_source_ref = QualifiedRefV1("fusionconceptai://GenomeV5/G2/source-foreign", "v1")
+    wrong_layer_hash = G.g3_sf_authority_content_hash_v1(:G1, declaration.candidate_ref,
+        wrong_layer_ref, wrong_layer_source_ref, actual_source_bytes, actual_source_sha256)
+    wrong_layer_authority = G.G3SFAuthorityV1(:G1, declaration.candidate_ref,
+        wrong_layer_ref, wrong_layer_hash, :actual; attestation=:trusted_receipt,
+        source_ref=wrong_layer_source_ref, source_bytes=actual_source_bytes,
+        source_sha256=actual_source_sha256)
+    wrong_layer_target = G.G3SFFeedbackTargetV1(
+        declaration.feedback_targets[1].target_id,
+        declaration.feedback_targets[1].target_layer,
+        declaration.feedback_targets[1].target_path,
+        declaration.feedback_targets[1].quantity,
+        declaration.feedback_targets[1].unit,
+        declaration.feedback_targets[1].direction,
+        declaration.feedback_targets[1].sign,
+        declaration.feedback_targets[1].source_id,
+        declaration.feedback_targets[1].owner_scope,
+        wrong_layer_authority)
+    wrong_layer = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, (wrong_layer_target, declaration.feedback_targets[2]),
+        (wrong_layer_authority, declaration.upstream_authority[2]))
+    wrong_layer_receipt = G.g3_sf_admit_v1(wrong_layer)
+    @test wrong_layer_receipt.status == :fail_closed
+    @test "authority_contract_namespace_mismatch:G1" in wrong_layer_receipt.errors
+    @test "authority_source_namespace_mismatch:G1" in wrong_layer_receipt.errors
+
+    wrong_hash_authority = G.G3SFAuthorityV1(:G1, declaration.candidate_ref,
+        actual_ref, digest256_text("wrong-bound-hash"), :actual; attestation=:trusted_receipt,
+        source_ref=actual_source_ref, source_bytes=actual_source_bytes,
+        source_sha256=actual_source_sha256)
+    wrong_hash_target = G.G3SFFeedbackTargetV1(
+        declaration.feedback_targets[1].target_id,
+        declaration.feedback_targets[1].target_layer,
+        declaration.feedback_targets[1].target_path,
+        declaration.feedback_targets[1].quantity,
+        declaration.feedback_targets[1].unit,
+        declaration.feedback_targets[1].direction,
+        declaration.feedback_targets[1].sign,
+        declaration.feedback_targets[1].source_id,
+        declaration.feedback_targets[1].owner_scope,
+        wrong_hash_authority)
+    wrong_hash = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, (wrong_hash_target, declaration.feedback_targets[2]),
+        (wrong_hash_authority, declaration.upstream_authority[2]))
+    wrong_hash_receipt = G.g3_sf_admit_v1(wrong_hash)
+    @test wrong_hash_receipt.status == :fail_closed
+    @test "authority_contract_hash_source_binding_mismatch:G1" in wrong_hash_receipt.errors
+
+    duplicate_authority = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, declaration.feedback_targets,
+        (declaration.upstream_authority[1], declaration.upstream_authority[1], declaration.upstream_authority[2]))
+    duplicate_authority_receipt = G.g3_sf_admit_v1(duplicate_authority)
+    @test duplicate_authority_receipt.status == :fail_closed
+    @test "duplicate_upstream_authority_layer" in duplicate_authority_receipt.errors
+
+    duplicate_target = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, (declaration.feedback_targets[1], declaration.feedback_targets[1]),
+        declaration.upstream_authority)
+    duplicate_target_receipt = G.g3_sf_admit_v1(duplicate_target)
+    @test duplicate_target_receipt.status == :fail_closed
+    @test "duplicate_feedback_target_id" in duplicate_target_receipt.errors
+    @test "duplicate_or_ambiguous_feedback_target" in duplicate_target_receipt.errors
+
+    duplicate_closure = G.G3SFLedgerClosureV1(declaration.ledger_closure.closure_id,
+        (declaration.ledger_closure.entry_ids[1], declaration.ledger_closure.entry_ids[1],
+         declaration.ledger_closure.entry_ids[2], declaration.ledger_closure.entry_ids[3],
+         declaration.ledger_closure.entry_ids[4]), declaration.ledger_closure.expected_residual,
+        declaration.ledger_closure.unit, declaration.ledger_closure.owner_scope)
+    duplicate_closure_declaration = G.g3_sf_declaration_v1(declaration.candidate_ref,
+        declaration.source_id, declaration.owner_scope, declaration.endpoints, declaration.law,
+        declaration.ledger_entries, duplicate_closure, declaration.feedback_targets,
+        declaration.upstream_authority)
+    duplicate_closure_receipt = G.g3_sf_admit_v1(duplicate_closure_declaration)
+    @test duplicate_closure_receipt.status == :fail_closed
+    @test "duplicate_ledger_closure_entry_id" in duplicate_closure_receipt.errors
+
+    mismatched_feedback_authority = G.G3SFFeedbackTargetV1(
+        declaration.feedback_targets[1].target_id,
+        declaration.feedback_targets[1].target_layer,
+        declaration.feedback_targets[1].target_path,
+        declaration.feedback_targets[1].quantity,
+        declaration.feedback_targets[1].unit,
+        declaration.feedback_targets[1].direction,
+        declaration.feedback_targets[1].sign,
+        declaration.feedback_targets[1].source_id,
+        declaration.feedback_targets[1].owner_scope,
+        G.G3SFAuthorityV1(:G1, declaration.candidate_ref, nothing, nothing, :stale))
+    mismatched_feedback = G.g3_sf_declaration_v1(declaration.candidate_ref, declaration.source_id,
+        declaration.owner_scope, declaration.endpoints, declaration.law, declaration.ledger_entries,
+        declaration.ledger_closure, (mismatched_feedback_authority, declaration.feedback_targets[2]),
+        declaration.upstream_authority)
+    mismatched_feedback_receipt = G.g3_sf_admit_v1(mismatched_feedback)
+    @test mismatched_feedback_receipt.status == :fail_closed
+    @test "feedback_authority_mismatch:g1-field-residual" in mismatched_feedback_receipt.errors
 end

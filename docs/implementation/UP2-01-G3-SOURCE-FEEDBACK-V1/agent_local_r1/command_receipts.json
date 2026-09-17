@@ -1,0 +1,60 @@
+{
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-agent-local-r1-commands",
+  "baseline_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "commands": [
+    {
+      "name": "python_static_qa",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+      "started_utc": "2026-09-17T11:09:19.0539881Z",
+      "finished_utc": "2026-09-17T11:09:19.1379923Z",
+      "pid": 1040,
+      "exit_code": 0,
+      "stdout_json_sha256": "5c4d976c2952d6fda6a5e94194d47c58aeff621c1714cfbf818f24842f65fd52",
+      "result": "all static checks true; manifest hashes matched; Julia/DESC not invoked"
+    },
+    {
+      "name": "python_ast_parse",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B -c \"import ast; from pathlib import Path; ast.parse(Path('docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py').read_text(encoding='utf-8'))\"",
+      "exit_code": 0,
+      "result": "python_ast_parse=pass; no pycache created"
+    },
+    {
+      "name": "git_diff_check",
+      "command": "git diff --check -- scoped work-order files",
+      "exit_code": 0,
+      "result": "no whitespace errors; existing line-ending warnings only"
+    },
+    {
+      "name": "focused_g3_julia",
+      "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+      "started_utc": "2026-09-17T11:10:57.060428+00:00",
+      "finished_utc": "2026-09-17T11:11:02.053030+00:00",
+      "pid": 38376,
+      "exit_code": 0,
+      "stdout_bytes": 516,
+      "stdout_sha256": "d86ac7607390b2c7e0544cf6195bde674118ca0f68c3304e9576ddf6f9475d85",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "four focused testsets passed; 54/54 assertions; no Julia or DESC process remained"
+    },
+    {
+      "name": "post_focused_process_sweep",
+      "command": "Get-CimInstance Win32_Process exact Julia/DESC name/argv filter",
+      "exit_code": 0,
+      "result": "julia_count=0; desc_count=0"
+    }
+  ],
+  "protected_processes": [
+    {"pid": 8636, "kind": "phase5_remote_session.py launcher", "action": "observed_only"},
+    {"pid": 36512, "kind": "phase5_remote_session.py worker", "action": "observed_only"}
+  ],
+  "claims": {
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false,
+    "engineering_evidence": false,
+    "R01_R10": false
+  }
+}

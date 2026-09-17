@@ -1,0 +1,21 @@
+{
+  "record_kind": "UP2-01-G1-DIFFUSION-V1-agent-local-r2",
+  "accepted": false,
+  "review_pending": true,
+  "head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "target_mutation": true,
+  "test_summaries": {"positive": "41/41", "negative": "42/42", "source_edit": "5/5", "total": "88/88"},
+  "target_files": [
+    {"path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl", "before_sha256": "14d26ee556029bd1fcf2477f3dbe9599622d37a3f5704d1c0bb1dd9ea31dbf1a", "after_sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756", "after_bytes": 37919},
+    {"path": "test/GenomeV5/G1/diffusion_v1_contract_tests.jl", "before_sha256": "34bfaf76f30d5fe2684035d810b36a5c3bc045a0d8d278e3f0af5dc5b888c4a6", "after_sha256": "51ce669cd1c9d6c4d2dd6e3f48f742755c23501ce65801695df4c3247f82cd8b", "after_bytes": 12037},
+    {"path": "test/GenomeV5/G1/diffusion_v1_fixture.json", "before_sha256": "7b580bf9ad875ed70ffc3aa0ee2e27cbe124c413ec7dad0a8fcd3410c6864641", "after_sha256": "47eab33a4d360bc8577aa55be5694840982561e29bd4dfbe1f42efcf85afba19", "after_bytes": 2011},
+    {"path": "test/GenomeV5/G1/static_qa_diffusion_v1.py", "before_sha256": "87f511f5402224df06928a9e78c0d3213d2330da5b91021b628acd51d7536066", "after_sha256": "4677ac7f9ba353594e7ca14bd1a2ccc2135ace1435e1685a3731fee098072790", "after_bytes": 5284}
+  ],
+  "raw_outputs": {
+    "static_qa_stdout.txt": {"bytes": 285, "sha256": "2ef998093ca5a8d5217e32d3c259d31c115b93e5b1cc55127500d4b5c0494931"},
+    "static_qa_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    "focused_stdout.txt": {"bytes": 454, "sha256": "ddce1ee8d42db5871173d20fef7e760b3d1406d638a39b5eb0bb1a2cc30d5d29"},
+    "focused_stderr.txt": {"bytes": 0, "sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "scope": "software contract repair only; no physical or UP2 compilation evidence"
+}

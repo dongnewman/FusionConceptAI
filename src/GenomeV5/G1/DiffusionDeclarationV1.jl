@@ -12,6 +12,9 @@ const G1_DIFFUSION_CANONICALIZATION_ID_V1 =
     "fusionconceptai://GenomeV5/G1/diffusion/canonicalization/v1"
 const G1_DIFFUSION_APPLICABILITY_ID_V1 =
     "fusionconceptai://GenomeV5/G1/diffusion/applicability/v1"
+const G1_DIFFUSION_CLOSURE_ID_V1 =
+    "fusionconceptai://GenomeV5/G1/closure/diffusion"
+const G1_DIFFUSION_PROFILE_VERSION_V1 = "v1"
 const G1_DIFFUSION_PROFILE_ID_V1 =
     "fusionconceptai://GenomeV5/G1/diffusion/profile/v1"
 const G1_DIFFUSION_CLAIM_CEILING_V1 = :contract_only
@@ -21,7 +24,7 @@ const G1_DIFFUSION_REQUIRED_GAPS_V1 =
 const _G1_DIFFUSION_SCHEMA_SOURCE_V1 = """
 schema_id=GenomeV5/G1/DiffusionDeclarationV1
 version=v1
-fields=candidate_ref,source_ref,source_version,source_payload,source_hash,u,K,f,grad,K_apply,div,closure,applicability,negative_controls
+fields=candidate_ref,source_ref,source_version,source_payload(candidate_bound),source_hash,u,K,f,grad,K_apply,div,closure(profile_bound),applicability(profile_bound),negative_controls
 equation=-DIV(K(x)*GRAD(u(x)))=f(x); residual_sign=-1
 u=3-D scalar candidate-owned source field; K=editable diagonal-affine 3x3 source field; f=3-D scalar candidate-owned source field
 ownership=all field declarations are candidate-owned; no manufactured value is an authority
@@ -38,17 +41,31 @@ requires=positive-definite bounded K(x), unit closure, typed GRAD/K_APPLY/DIV, s
 missing_authority=terminal_deferred;contradiction=fail_closed
 provider_calls=0;compiler_calls=0;mesh_calls=0;solver_calls=0;physical_evidence=false
 """
+const _G1_DIFFUSION_CLOSURE_SOURCE_V1 = """
+closure_id=fusionconceptai://GenomeV5/G1/closure/diffusion
+version=v1; equation=-DIV(K(x)*GRAD(u(x)))=f(x); residual_sign=-1
+profile_binding=G1_DIFFUSION_PROFILE_VERSION_V1
+"""
 
 g1_diffusion_schema_hash_v1() = digest256_text(_G1_DIFFUSION_SCHEMA_SOURCE_V1)
 g1_diffusion_canonicalization_hash_v1() = digest256_text(_G1_DIFFUSION_CANONICALIZATION_SOURCE_V1)
 g1_diffusion_applicability_hash_v1() = digest256_text(_G1_DIFFUSION_APPLICABILITY_SOURCE_V1)
+g1_diffusion_closure_hash_v1() = digest256_text(_G1_DIFFUSION_CLOSURE_SOURCE_V1)
 g1_diffusion_profile_hash_v1() = canonical_hash((
     profile_ref=G1_DIFFUSION_PROFILE_ID_V1,
+    profile_version=G1_DIFFUSION_PROFILE_VERSION_V1,
     schema_version=G1_DIFFUSION_SCHEMA_VERSION_V1,
     schema_hash=g1_diffusion_schema_hash_v1(),
     canonicalization_hash=g1_diffusion_canonicalization_hash_v1(),
     applicability_hash=g1_diffusion_applicability_hash_v1(),
+    applicability_ref=G1_DIFFUSION_APPLICABILITY_ID_V1,
+    closure_ref=G1_DIFFUSION_CLOSURE_ID_V1,
+    closure_hash=g1_diffusion_closure_hash_v1(),
     claim_ceiling=G1_DIFFUSION_CLAIM_CEILING_V1))
+
+const G1_DIFFUSION_GRAD_OPERATOR_ID_V1 = "fusionconceptai://GenomeV5/G1/operator/GRAD"
+const G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 = "fusionconceptai://GenomeV5/G1/operator/K_APPLY"
+const G1_DIFFUSION_DIV_OPERATOR_ID_V1 = "fusionconceptai://GenomeV5/G1/operator/DIV"
 
 _g1d_text(x, field) = begin
     value = String(x)
@@ -126,7 +143,8 @@ struct G1DiffusionScalarFieldV1
                                       source_expression=field_id)
         id = _g1d_text(field_id, "scalar field_id")
         ty = physical_type isa PhysicalType ? physical_type : throw(ArgumentError("scalar physical_type must be PhysicalType"))
-        ty.tensor_rank == 0 && ty.spatial_dimension == 3 && ty.value_kind == :scalar_field ||
+        ty.tensor_rank == 0 && ty.spatial_dimension == 3 && ty.value_kind == :scalar_field &&
+            ty.temporal_type == TemporalTypeV1(static_time) ||
             throw(ArgumentError("u/f must be 3-D scalar fields"))
         new(id, ty, _g1d_ref(source_ref, "scalar source_ref"), _g1d_text(source_expression, "scalar source_expression"))
     end
@@ -148,7 +166,8 @@ struct G1DiffusionCoefficientFieldV1
                                             upper_bound=1000 // 1, expression=nothing)
         id = _g1d_text(field_id, "K field_id")
         ty = physical_type isa PhysicalType ? physical_type : throw(ArgumentError("K physical_type must be PhysicalType"))
-        ty.tensor_rank == 2 && ty.spatial_dimension == 3 && ty.value_kind == :tensor_field ||
+        ty.tensor_rank == 2 && ty.spatial_dimension == 3 && ty.value_kind == :tensor_field &&
+            ty.temporal_type == TemporalTypeV1(static_time) ||
             throw(ArgumentError("K must be a 3-D rank-2 tensor field"))
         spatial_dependency === :spatial || throw(ArgumentError("K must declare spatial dependency"))
         symmetry === :symmetric || throw(ArgumentError("K must declare symmetric structure"))
@@ -173,11 +192,14 @@ struct G1TypedGradV1
     function G1TypedGradV1(operator_ref::Any, input_field_id::Any, output_field_id::Any,
                            input_type::Any, output_type::Any)
         ref = _g1d_ref(operator_ref, "GRAD operator_ref")
+        ref.id == G1_DIFFUSION_GRAD_OPERATOR_ID_V1 || throw(ArgumentError("GRAD operator id must be the diffusion GRAD id"))
         ref.version == "v1" || throw(ArgumentError("GRAD operator version must be v1"))
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("GRAD input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("GRAD output type must be PhysicalType"))
-        i.tensor_rank == 0 && i.spatial_dimension == 3 || throw(ArgumentError("GRAD input must be 3-D scalar"))
-        o.tensor_rank == 1 && o.spatial_dimension == 3 || throw(ArgumentError("GRAD output must be 3-D vector"))
+        i.tensor_rank == 0 && i.spatial_dimension == 3 && i.value_kind == :scalar_field &&
+            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("GRAD input must be a static 3-D scalar"))
+        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field &&
+            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("GRAD output must be a static 3-D vector"))
         o.units == _g1d_sub(i.units, _g1d_length_unit()) || throw(ArgumentError("GRAD unit closure failed"))
         new(ref, _g1d_text(input_field_id, "GRAD input_field_id"), _g1d_text(output_field_id, "GRAD output_field_id"), i, o)
     end
@@ -195,13 +217,17 @@ struct G1TypedKApplyV1
                              input_type::Any, output_type::Any, coefficient_field_id::Any;
                              coefficient_units=UnitSignature())
         ref = _g1d_ref(operator_ref, "K_APPLY operator_ref")
+        ref.id == G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 || throw(ArgumentError("K_APPLY operator id must be the diffusion K_APPLY id"))
         ref.version == "v1" || throw(ArgumentError("K_APPLY operator version must be v1"))
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("K_APPLY input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("K_APPLY output type must be PhysicalType"))
-        i.tensor_rank == 1 && i.spatial_dimension == 3 || throw(ArgumentError("K_APPLY input must be 3-D vector"))
-        o.tensor_rank == 1 && o.spatial_dimension == 3 || throw(ArgumentError("K_APPLY output must be 3-D vector"))
+        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field &&
+            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("K_APPLY input must be a static 3-D vector"))
+        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field &&
+            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("K_APPLY output must be a static 3-D vector"))
         cu = _g1d_unit(coefficient_units, "K_APPLY coefficient_units")
-        o.units == _g1d_add(i.units, cu) || throw(ArgumentError("K_APPLY output units must include coefficient units"))
+        o.units == _g1d_add(i.units, cu) && o.temporal_type == i.temporal_type ||
+            throw(ArgumentError("K_APPLY output type closure failed"))
         new(ref, _g1d_text(input_field_id, "K_APPLY input_field_id"), _g1d_text(output_field_id, "K_APPLY output_field_id"), i, o,
             _g1d_text(coefficient_field_id, "K_APPLY coefficient_field_id"), cu)
     end
@@ -216,36 +242,48 @@ struct G1TypedDivV1
     function G1TypedDivV1(operator_ref::Any, input_field_id::Any, output_field_id::Any,
                           input_type::Any, output_type::Any)
         ref = _g1d_ref(operator_ref, "DIV operator_ref")
+        ref.id == G1_DIFFUSION_DIV_OPERATOR_ID_V1 || throw(ArgumentError("DIV operator id must be the diffusion DIV id"))
         ref.version == "v1" || throw(ArgumentError("DIV operator version must be v1"))
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("DIV input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("DIV output type must be PhysicalType"))
-        i.tensor_rank == 1 && i.spatial_dimension == 3 || throw(ArgumentError("DIV input must be 3-D vector"))
-        o.tensor_rank == 0 && o.spatial_dimension == 3 || throw(ArgumentError("DIV output must be 3-D scalar"))
-        o.units == _g1d_sub(i.units, _g1d_length_unit()) || throw(ArgumentError("DIV unit closure failed"))
+        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field &&
+            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("DIV input must be a static 3-D vector"))
+        o.tensor_rank == 0 && o.spatial_dimension == 3 && o.value_kind == :scalar_field &&
+            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("DIV output must be a static 3-D scalar"))
+        o.units == _g1d_sub(i.units, _g1d_length_unit()) && o.temporal_type == i.temporal_type ||
+            throw(ArgumentError("DIV output type closure failed"))
         new(ref, _g1d_text(input_field_id, "DIV input_field_id"), _g1d_text(output_field_id, "DIV output_field_id"), i, o)
     end
 end
 
 struct G1DiffusionSourcePayloadV1
+    candidate_ref::QualifiedRefV1
     source_ref::QualifiedRefV1
     source_version::String
     u::G1DiffusionScalarFieldV1
     K::G1DiffusionCoefficientFieldV1
     f::G1DiffusionScalarFieldV1
-    function G1DiffusionSourcePayloadV1(source_ref::Any, source_version::Any,
+    function G1DiffusionSourcePayloadV1(candidate_ref::Any, source_ref::Any, source_version::Any,
                                         u::G1DiffusionScalarFieldV1,
                                         K::G1DiffusionCoefficientFieldV1,
                                         f::G1DiffusionScalarFieldV1)
+        candidate = _g1d_ref(candidate_ref, "source payload candidate_ref")
+        candidate.version == "v5" || throw(ArgumentError("source payload candidate_ref must use v5"))
         src = _g1d_ref(source_ref, "source payload source_ref")
         u.source_ref == src && K.source_ref == src && f.source_ref == src ||
             throw(ArgumentError("source payload field identities must match source_ref"))
-        new(src, _g1d_text(source_version, "source payload source_version"), u, K, f)
+        new(candidate, src, _g1d_text(source_version, "source payload source_version"), u, K, f)
     end
 end
 
+G1DiffusionSourcePayloadV1(::Any, ::Any, ::G1DiffusionScalarFieldV1,
+                           ::G1DiffusionCoefficientFieldV1, ::G1DiffusionScalarFieldV1) =
+    throw(ArgumentError("candidate_ref is required for a candidate-bound source payload"))
+
 semantic_view(x::G1DiffusionSourcePayloadV1) =
     (schema_id="GenomeV5/G1/DiffusionSourcePayloadV1", version="v1",
-     source_ref=x.source_ref, source_version=x.source_version, u=x.u, K=x.K, f=x.f)
+     candidate_ref=x.candidate_ref, source_ref=x.source_ref, source_version=x.source_version,
+     u=x.u, K=x.K, f=x.f)
 canonical_json(x::G1DiffusionSourcePayloadV1) = canonical_json(semantic_view(x))
 g1_diffusion_source_hash_v1(x::G1DiffusionSourcePayloadV1) = canonical_hash(x)
 
@@ -295,6 +333,8 @@ struct G1DiffusionDeclarationV1
         sh = _g1d_digest(source_hash, "source_hash")
         source_payload isa G1DiffusionSourcePayloadV1 ||
             throw(ArgumentError("candidate-owned source_payload is required"))
+        source_payload.candidate_ref == candidate ||
+            throw(ArgumentError("source payload candidate_ref does not match declaration candidate_ref"))
         source_payload.source_ref == src || throw(ArgumentError("source payload ref mismatch"))
         source_payload.source_version == String(source_version) || throw(ArgumentError("source payload version mismatch"))
         canonical_hash(source_payload.u) == canonical_hash(u) &&
@@ -316,6 +356,26 @@ struct G1DiffusionDeclarationV1
         operators.coefficient_apply.output_type.units ==
             _g1d_add(operators.coefficient_apply.input_type.units, K.physical_type.units) ||
             throw(ArgumentError("K_APPLY unit closure failed"))
+        operators.grad.operator_ref.id == G1_DIFFUSION_GRAD_OPERATOR_ID_V1 ||
+            throw(ArgumentError("GRAD operator id is not the diffusion operator"))
+        operators.coefficient_apply.operator_ref.id == G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 ||
+            throw(ArgumentError("K_APPLY operator id is not the diffusion operator"))
+        operators.div.operator_ref.id == G1_DIFFUSION_DIV_OPERATOR_ID_V1 ||
+            throw(ArgumentError("DIV operator id is not the diffusion operator"))
+        operators.grad.input_type == u.physical_type ||
+            throw(ArgumentError("GRAD input PhysicalType does not equal u PhysicalType"))
+        operators.grad.output_type == operators.coefficient_apply.input_type ||
+            throw(ArgumentError("GRAD output PhysicalType does not equal K_APPLY input PhysicalType"))
+        operators.coefficient_apply.output_type == operators.div.input_type ||
+            throw(ArgumentError("K_APPLY output PhysicalType does not equal DIV input PhysicalType"))
+        operators.div.output_type == f.physical_type ||
+            throw(ArgumentError("DIV output PhysicalType does not equal f PhysicalType"))
+        closure = _g1d_ref(closure_ref, "closure_ref")
+        closure.id == G1_DIFFUSION_CLOSURE_ID_V1 && closure.version == G1_DIFFUSION_PROFILE_VERSION_V1 ||
+            throw(ArgumentError("closure_ref is not bound to the diffusion profile"))
+        applicability = _g1d_ref(applicability_ref, "applicability_ref")
+        applicability.id == G1_DIFFUSION_APPLICABILITY_ID_V1 && applicability.version == G1_DIFFUSION_PROFILE_VERSION_V1 ||
+            throw(ArgumentError("applicability_ref is not bound to the diffusion profile"))
         ownership === :candidate_owned || throw(ArgumentError("diffusion fields must be candidate-owned"))
         isempty(negative_controls) || all(x -> x isa Symbol, Tuple(negative_controls)) ||
             throw(ArgumentError("negative_controls must be symbols"))
@@ -350,9 +410,12 @@ semantic_view(x::G1DiffusionOperatorChainV1) =
 function _g1d_declaration_body(x::G1DiffusionDeclarationV1)
     (schema_id=G1_DIFFUSION_SCHEMA_ID_V1, schema_version=G1_DIFFUSION_SCHEMA_VERSION_V1,
      candidate_ref=x.candidate_ref, source_ref=x.source_ref, source_version=x.source_version,
-     source_payload=x.source_payload, source_hash=x.source_hash, u=x.u, K=x.K, f=x.f, operators=x.operators,
-     closure_ref=x.closure_ref, applicability_ref=x.applicability_ref,
-     applicability_domain=x.applicability_domain, ownership=x.ownership,
+      source_payload=x.source_payload, source_hash=x.source_hash, u=x.u, K=x.K, f=x.f, operators=x.operators,
+      closure_ref=x.closure_ref, applicability_ref=x.applicability_ref,
+      profile_version=G1_DIFFUSION_PROFILE_VERSION_V1,
+      closure_profile_hash=g1_diffusion_closure_hash_v1(),
+      applicability_profile_hash=g1_diffusion_applicability_hash_v1(),
+      applicability_domain=x.applicability_domain, ownership=x.ownership,
      negative_controls=x.negative_controls)
 end
 semantic_view(x::G1DiffusionDeclarationV1) =
@@ -501,12 +564,23 @@ end
 function g1_diffusion_validate(x::G1DiffusionDeclarationV1)
     errors = String[]
     x.candidate_ref.version == "v5" || push!(errors, "candidate_ref_version_not_v5")
+    x.source_payload.candidate_ref == x.candidate_ref || push!(errors, "source_payload_candidate_binding_mismatch")
+    x.source_payload.source_ref == x.source_ref || push!(errors, "source_payload_source_binding_mismatch")
     x.K.lower_bound > 0 && x.K.upper_bound >= x.K.lower_bound || push!(errors, "K_bounds_not_positive_ordered")
     x.K.spatial_dependency === :spatial || push!(errors, "K_not_spatially_dependent")
     x.K.positive_definite || push!(errors, "K_not_positive_definite")
     x.ownership === :candidate_owned || push!(errors, "field_ownership_not_candidate_owned")
     x.operators.grad.input_field_id == x.u.field_id || push!(errors, "GRAD_u_binding_mismatch")
     x.operators.div.output_field_id == x.f.field_id || push!(errors, "DIV_f_binding_mismatch")
+    x.operators.grad.operator_ref.id == G1_DIFFUSION_GRAD_OPERATOR_ID_V1 || push!(errors, "GRAD_operator_id_mismatch")
+    x.operators.coefficient_apply.operator_ref.id == G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 || push!(errors, "K_APPLY_operator_id_mismatch")
+    x.operators.div.operator_ref.id == G1_DIFFUSION_DIV_OPERATOR_ID_V1 || push!(errors, "DIV_operator_id_mismatch")
+    x.operators.grad.input_type == x.u.physical_type || push!(errors, "GRAD_input_type_mismatch")
+    x.operators.grad.output_type == x.operators.coefficient_apply.input_type || push!(errors, "GRAD_K_APPLY_type_mismatch")
+    x.operators.coefficient_apply.output_type == x.operators.div.input_type || push!(errors, "K_APPLY_DIV_type_mismatch")
+    x.operators.div.output_type == x.f.physical_type || push!(errors, "DIV_f_type_mismatch")
+    x.closure_ref.id == G1_DIFFUSION_CLOSURE_ID_V1 && x.closure_ref.version == G1_DIFFUSION_PROFILE_VERSION_V1 || push!(errors, "closure_profile_binding_mismatch")
+    x.applicability_ref.id == G1_DIFFUSION_APPLICABILITY_ID_V1 && x.applicability_ref.version == G1_DIFFUSION_PROFILE_VERSION_V1 || push!(errors, "applicability_profile_binding_mismatch")
     x.operators.residual_sign == -1 || push!(errors, "diffusion_residual_sign_not_negative")
     x.declaration_hash == canonical_hash(_g1d_declaration_body(x)) || push!(errors, "declaration_hash_mismatch")
     isempty(x.source_version) && push!(errors, "source_version_missing")
@@ -517,7 +591,7 @@ end
 function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, value)
     field === :u && value isa G1DiffusionScalarFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.source_ref, x.source_version, value, x.K, x.f)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, value, x.K, x.f)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), value, x.K, x.f, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;
@@ -525,7 +599,7 @@ function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, va
         end
     field === :K && value isa G1DiffusionCoefficientFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.source_ref, x.source_version, x.u, value, x.f)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, value, x.f)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), x.u, value, x.f, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;
@@ -533,7 +607,7 @@ function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, va
         end
     field === :f && value isa G1DiffusionScalarFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.source_ref, x.source_version, x.u, x.K, value)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, x.K, value)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), x.u, x.K, value, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;

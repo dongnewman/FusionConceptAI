@@ -10,6 +10,7 @@ const G2MB_SCHEMA_ID_V1 = "fusion.g2.metric-boundary.schema"
 const G2MB_SCHEMA_VERSION_V1 = "v1"
 const G2MB_PROFILE_ID_V1 = "fusion.g2.metric-boundary.profile"
 const G2MB_CLAIM_CEILING_V1 = :contract_only
+const G2MB_LABEL_ERASURE_SCOPE_V1 = :display_metadata_only
 
 struct G2MBChartMapV1
     chart_ref::QualifiedRefV1
@@ -278,6 +279,26 @@ semantic_view(x::G2MBUnitContractV1) =
      field_value=x.field_value, flux_value=x.flux_value)
 canonical_json(x::G2MBUnitContractV1) = canonical_json(semantic_view(x))
 
+# Face order is a canonicalization concern, not an execution-order concern.
+# `face`/owner/value are semantic fields; an input tuple permutation must not
+# create a new source or declaration identity.  The complete key includes the
+# fields needed to distinguish duplicate/contradictory owners, so even an
+# invalid source has deterministic bytes and classification.  Opaque face_id
+# remains part of the owner contract and is therefore not erased as display
+# metadata.
+function _g2mb_canonical_faces(faces)
+    Tuple(sort(collect(faces); by=f -> (String(f.face), f.face_id, f.owner_region_id,
+        String(f.ownership), Tuple(f.reference_normal), String(f.value.kind),
+        f.value.value, Tuple(f.value.unit.exponents))))
+end
+
+function _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
+                            mesh, faces, profile, units, authority)
+    (source_ref=source_ref, source_version=source_version, candidate_ref=candidate_ref,
+     chart_map=chart_map, mesh=mesh, faces=_g2mb_canonical_faces(faces), profile=profile,
+     units=units, authority=authority)
+end
+
 _g2mb_unit_add(a::UnitSignature, b::UnitSignature) =
     UnitSignature(ntuple(i -> a.exponents[i] + b.exponents[i], 7))
 _g2mb_unit_zero() = UnitSignature((0, 0, 0, 0, 0, 0, 0))
@@ -377,27 +398,25 @@ struct G2MBSourceV1
         units isa G2MBUnitContractV1 || throw(ArgumentError("units must be typed"))
         authority isa G2MBAuthorityV1 || throw(ArgumentError("authority must be typed"))
         source_hash isa Digest256 || throw(ArgumentError("source_hash must be Digest256"))
-        body = (source_ref=source_ref, source_version=source_version, candidate_ref=candidate_ref,
-                chart_map=chart_map, mesh=mesh, faces=Tuple(faces), profile=profile,
-                units=units, authority=authority)
+        body = _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
+            mesh, faces, profile, units, authority)
         source_hash == canonical_hash(body) || throw(ArgumentError("source_hash does not match source body"))
-        new(source_ref, source_version, candidate_ref, chart_map, mesh, Tuple(faces), profile,
+        new(source_ref, source_version, candidate_ref, chart_map, mesh, _g2mb_canonical_faces(faces), profile,
             units, authority, source_hash)
     end
 end
 
 function g2mb_source_v1(source_ref, source_version, candidate_ref, chart_map, mesh, faces,
                         profile, units, authority)
-    body = (source_ref=source_ref, source_version=source_version, candidate_ref=candidate_ref,
-            chart_map=chart_map, mesh=mesh, faces=Tuple(faces), profile=profile,
-            units=units, authority=authority)
+    body = _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
+        mesh, faces, profile, units, authority)
     G2MBSourceV1(source_ref, source_version, candidate_ref, chart_map, mesh, faces, profile,
                  units, authority, canonical_hash(body))
 end
 
 semantic_view(x::G2MBSourceV1) =
     (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
-     chart_map=x.chart_map, mesh=x.mesh, faces=x.faces, profile=x.profile,
+     chart_map=x.chart_map, mesh=x.mesh, faces=_g2mb_canonical_faces(x.faces), profile=x.profile,
      units=x.units, authority=x.authority, source_hash=x.source_hash)
 canonical_json(x::G2MBSourceV1) = canonical_json(semantic_view(x))
 
@@ -435,9 +454,8 @@ end
 function _g2mb_validate_source(x::G2MBSourceV1)
     errors = String[]
     gaps = String[]
-    body = (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
-            chart_map=x.chart_map, mesh=x.mesh, faces=x.faces, profile=x.profile,
-            units=x.units, authority=x.authority)
+    body = _g2mb_source_body(x.source_ref, x.source_version, x.candidate_ref, x.chart_map,
+        x.mesh, x.faces, x.profile, x.units, x.authority)
     x.source_hash == canonical_hash(body) || push!(errors, "source_hash_mismatch")
     x.mesh.chart_ref == x.chart_map.chart_ref || push!(errors, "mesh_chart_ref_mismatch")
     append!(errors, g2mb_unit_algebra_errors(x.units))

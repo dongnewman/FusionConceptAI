@@ -3,6 +3,7 @@
   "candidate_ref": {"id": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture", "version": "v5"},
   "source_ref": {"id": "fusionconceptai://source/candidate-up2-01-g1-fixture", "version": "v1"},
   "source_version": "candidate-source-v1",
+  "source_payload_candidate_ref": {"id": "fusionconceptai://GenomeV5/candidate/up2-01-g1-fixture", "version": "v5"},
   "equation": "-DIV(K(x)*GRAD(u(x)))=f(x)",
   "residual_sign": -1,
   "source_payload": {
@@ -35,7 +36,14 @@
     "grad_unit_mismatch",
     "program_exception_internal_fault_seam",
     "manufactured_solution_as_authority",
-    "string_only_source_edit"
+    "string_only_source_edit",
+    "cross_candidate_source_payload_rejected",
+    "wrong_operator_id_rejected",
+    "wrong_temporal_or_value_kind_rejected",
+    "foreign_closure_profile_ref_rejected",
+    "foreign_applicability_profile_version_rejected",
+    "receipt_zero_downstream_counters",
+    "receipt_profile_hashes_directly_asserted"
   ],
   "claim_ceiling": "contract_only",
   "resolution_without_provider": "terminal_deferred",

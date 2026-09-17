@@ -1,0 +1,78 @@
+{
+  "schema_version": "UP2-01-G3-SOURCE-FEEDBACK-V1-independent-agent-local-r2-v1",
+  "reviewer": "different_luna_high",
+  "baseline_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "disposition": "pass_with_findings",
+  "status": "proposal",
+  "review_pending": true,
+  "accepted": false,
+  "independent_focused_replay_ready": true,
+  "claim_ceiling": "contract_only",
+  "execution": {
+    "python_static_qa": "rerun_exit_0_all_checks_true_manifest_hashes_match",
+    "julia": "not_run_by_reviewer",
+    "desc": "not_run",
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false,
+    "engineering_evidence": false,
+    "B00": false,
+    "B04": false,
+    "R01_R10": false
+  },
+  "audited_imported_receipt": {
+    "path": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_r2",
+    "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+    "pid": 35728,
+    "exit_code": 0,
+    "testsets": 4,
+    "assertions": "63/63",
+    "stdout_bytes": 516,
+    "stdout_sha256": "29077f5762ca1f0994d5d33dc05ca16cbce6c59133cc837cef1e2b5cebb67c38",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independently_rehashed": true,
+    "rerun_by_this_reviewer": false
+  },
+  "findings": [
+    {
+      "id": "G3SF-R2-SOURCE-BYTES-DEFERRED",
+      "severity": "boundary",
+      "status": "documented_deferred",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:119-133",
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:476-489",
+        "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_r2/report.md:25-27"
+      ],
+      "summary": "source_ref/bytes/SHA are canonically bound but source bytes are not read or independently recomputed in this contract-only slice.",
+      "required_boundary": "Keep source authority and checked-present claims terminal_deferred until a later source-backed receipt/factory gate."
+    },
+    {
+      "id": "G3SF-R2-SOURCE-MISMATCH-COVERAGE",
+      "severity": "minor",
+      "status": "coverage_gap",
+      "evidence": [
+        "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl:504-510",
+        "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl:182-232"
+      ],
+      "summary": "source_id and source metadata mismatch paths exist, but no dedicated negative assertion names those paths.",
+      "required_followup": "Add source-ID and source_ref/bytes/SHA mismatch controls in a later test refresh."
+    }
+  ],
+  "input_hashes_sha256": {
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl": "2569086821d04a2a1a77584cf07fbc27a06278e3eef37a31591c5f34fcea9f31",
+    "test/GenomeV5/G3/up2_g3_source_feedback_v1_fixture.json": "7a09ec15949e148c87c2772319e6c018d767d23bacf131147c34b3e6ce63fc40",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py": "9e6ba50e0fdeded00abcb2f13a46a7e0c835227e6b7b87cc6054519015554875"
+  },
+  "raw_hashes_sha256": {
+    "agent_local_r2/focused_stdout.txt": "29077f5762ca1f0994d5d33dc05ca16cbce6c59133cc837cef1e2b5cebb67c38",
+    "agent_local_r2/focused_stderr.txt": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "write_scope": [
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_agent_local_r2/report.md",
+    "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_agent_local_r2/manifest.json"
+  ]
+}

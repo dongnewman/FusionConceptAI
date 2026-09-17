@@ -1,0 +1,19 @@
+{
+  "schema_version": "fusion-agent-local-contract-acceptance-v1",
+  "task_id": "UP2-01-G3-SOURCE-FEEDBACK-V1",
+  "product_head": "8dbbb68b065c3ccd9a9f0f97a879aae8665eb2e9",
+  "status": "accepted",
+  "scope_status": "accepted_local_contract",
+  "accepted": true,
+  "resolution": "accepted_local_contract",
+  "claim_ceiling": "contract_only",
+  "acceptance_record": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_acceptance_r1/acceptance.md",
+  "implementation_receipt": {"path": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/agent_local_r2/", "head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee", "static_qa_exit": 0, "focused_julia_exit": 0, "testsets": 4, "tests": "63/63"},
+  "independent_reviews": [
+    {"path": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_agent_local_r2/", "verdict": "pass_with_findings", "blocking": false, "findings": ["source bytes read/recomputed deferred to T0/recheck", "dedicated source-ID/source-metadata negative assertions deferred"]},
+    {"path": "docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/independent_agent_local_r3_wrapper/", "verdict": "pass", "wrapper_exit": 0, "tests": "63/63"}
+  ],
+  "wrapper": {"input_policy_sha256": "4c148ca007b30431856ddf6fd5217eea23071ed80f8920742eea18b362dc4015", "input_task_manifest_sha256": "3223f122e90385568997b3057fad7122fc7daafb86fc2fa2440e00dd2a33f2de", "output_stdout_sha256": "49e44ef89e869be23666f05715cb6ca455e54dd251b8f72749fe41c0fc892b82", "output_stderr_sha256": "e3b0c44298fc1c149af4c8996fb92427ae41e4649b934ca495991b7852b855", "output_stdout_bytes": 516, "output_stderr_bytes": 0},
+  "source_authority": "terminal_deferred_until_T0_recheck",
+  "credit_boundary": {"compiler": false, "mesh": false, "provider": false, "solver": false, "numerical": false, "physical": false, "engineering": false, "search": false, "B00": false, "B04": false, "UP2_01_total": false, "R01_R10": false}
+}

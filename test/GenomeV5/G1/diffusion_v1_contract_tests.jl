@@ -33,7 +33,7 @@ function _declaration(; K_lower=1 // 1000, K_upper=1000 // 1, source=_SOURCE)
     div = G.G1TypedDivV1(G.QualifiedRefV1("fusionconceptai://GenomeV5/G1/operator/DIV", "v1"),
         "flux_u", "f_candidate", _GRAD, _F)
     chain = G.G1DiffusionOperatorChainV1(grad, k_apply, div, "f_candidate")
-    payload = G.G1DiffusionSourcePayloadV1(source, "candidate-source-v1", u, k, f)
+    payload = G.G1DiffusionSourcePayloadV1(_CANDIDATE, source, "candidate-source-v1", u, k, f)
     G.g1_diffusion_declaration_v1(_CANDIDATE, source, "candidate-source-v1",
         G.g1_diffusion_source_hash_v1(payload),
         u, k, f, chain, G.QualifiedRefV1("fusionconceptai://GenomeV5/G1/closure/diffusion", "v1"),
@@ -57,6 +57,7 @@ end
     @test G.g1_diffusion_k_enclosure(d.K.expression).upper == 121 // 30
     @test_throws ArgumentError G.g1_diffusion_k_eval(d.K.expression, (2 // 1, 0 // 1, 0 // 1))
     @test d.source_hash == G.g1_diffusion_source_hash_v1(d.source_payload)
+    @test d.source_payload.candidate_ref == d.candidate_ref
     @test d.operators.grad.input_field_id == d.u.field_id
     @test d.operators.div.output_field_id == d.f.field_id
     @test d.operators.residual_sign == -1
@@ -64,7 +65,16 @@ end
     @test !G.g1_diffusion_receipt_v1(d).accepted
     @test G.g1_diffusion_receipt_v1(d).claim_ceiling == :contract_only
     @test G.g1_diffusion_receipt_v1(d).physical_evidence == false
-    @test G.g1_diffusion_receipt_hash_v1(G.g1_diffusion_receipt_v1(d)) isa G.Digest256
+    receipt = G.g1_diffusion_receipt_v1(d)
+    @test receipt.schema_hash == G.g1_diffusion_schema_hash_v1()
+    @test receipt.canonicalization_hash == G.g1_diffusion_canonicalization_hash_v1()
+    @test receipt.profile_hash == G.g1_diffusion_profile_hash_v1()
+    @test receipt.gaps == G.G1_DIFFUSION_REQUIRED_GAPS_V1
+    @test receipt.compile_calls == 0
+    @test receipt.provider_calls == 0
+    @test receipt.mesh_calls == 0
+    @test receipt.solver_calls == 0
+    @test G.g1_diffusion_receipt_hash_v1(receipt) == G.canonical_hash(receipt)
     @test G.g1_diffusion_authority_check(d).status == :terminal_deferred
     admitted = G.g1_diffusion_admit_v1(d)
     @test admitted.status == :terminal_deferred
@@ -87,6 +97,12 @@ end
     @test_throws ArgumentError G.G1DiffusionDiagonalAffineKFieldV1("negative"; base_diag=(-1 // 1, 2 // 1, 3 // 1))
     @test_throws ArgumentError G.G1TypedGradV1(G.QualifiedRefV1("grad", "v1"), "u_candidate", "grad_u", _SCALAR,
         G.PhysicalType(:vector_field, 1, 3, G.TemporalTypeV1(G.static_time), _U))
+    @test_throws ArgumentError G.G1TypedGradV1(G.QualifiedRefV1(G.G1_DIFFUSION_GRAD_OPERATOR_ID_V1, "v1"), "u_candidate", "grad_u",
+        G.PhysicalType(:scalar_field, 0, 3, G.TemporalTypeV1(G.algebraic_time), _U), _GRAD)
+    @test_throws ArgumentError G.G1TypedGradV1(G.QualifiedRefV1(G.G1_DIFFUSION_GRAD_OPERATOR_ID_V1, "v1"), "u_candidate", "grad_u", _SCALAR,
+        G.PhysicalType(:wrong_vector_kind, 1, 3, G.TemporalTypeV1(G.static_time), _GRAD_U))
+    @test_throws ArgumentError G.G1TypedKApplyV1(G.QualifiedRefV1("K_APPLY_WRONG", "v1"), "grad_u", "flux_u", _GRAD, _GRAD, "K_candidate_x")
+    @test_throws ArgumentError G.G1TypedDivV1(G.QualifiedRefV1("DIV_WRONG", "v1"), "flux_u", "f_candidate", _GRAD, _F)
     @test_throws ArgumentError G.G1DiffusionOperatorChainV1(d.operators.grad, d.operators.coefficient_apply,
         G.G1TypedDivV1(G.QualifiedRefV1("div", "v1"), "flux_u", "wrong_f", _GRAD, _F), "f_candidate")
     @test_throws ArgumentError G.G1DiffusionOperatorChainV1(d.operators.grad, d.operators.coefficient_apply,
@@ -94,6 +110,19 @@ end
     @test_throws ArgumentError G.g1_diffusion_edit_source(d, :K, "K_candidate_x")
     @test_throws ArgumentError G.g1_diffusion_declaration_v1(_CANDIDATE, _SOURCE, "candidate-source-v1",
         G.digest256_text("forged"), d.u, d.K, d.f, d.operators, d.closure_ref, d.applicability_ref,
+        d.applicability_domain, d.negative_controls; source_payload=d.source_payload)
+    foreign_candidate = G.QualifiedRefV1("fusionconceptai://GenomeV5/candidate/foreign", "v5")
+    @test_throws ArgumentError G.g1_diffusion_declaration_v1(foreign_candidate, d.source_ref, d.source_version,
+        d.source_hash, d.u, d.K, d.f, d.operators, d.closure_ref, d.applicability_ref,
+        d.applicability_domain, d.negative_controls; source_payload=d.source_payload)
+    @test_throws ArgumentError G.G1DiffusionSourcePayloadV1(d.source_ref, d.source_version, d.u, d.K, d.f)
+    @test_throws ArgumentError G.g1_diffusion_declaration_v1(d.candidate_ref, d.source_ref, d.source_version,
+        d.source_hash, d.u, d.K, d.f, d.operators,
+        G.QualifiedRefV1("foreign://closure", "v1"), d.applicability_ref,
+        d.applicability_domain, d.negative_controls; source_payload=d.source_payload)
+    @test_throws ArgumentError G.g1_diffusion_declaration_v1(d.candidate_ref, d.source_ref, d.source_version,
+        d.source_hash, d.u, d.K, d.f, d.operators, d.closure_ref,
+        G.QualifiedRefV1(G.G1_DIFFUSION_APPLICABILITY_ID_V1, "v2"),
         d.applicability_domain, d.negative_controls; source_payload=d.source_payload)
     forged = G.g1_diffusion_admit_source_v1(d.source_payload, G.digest256_text("forged"))
     @test forged.status == :fail_closed

@@ -45,7 +45,9 @@ def main() -> int:
         "accepted", "terminal_deferred", "fail_closed", "program_exception",
         "unexpected_exception", "physical_evidence", "g2mb_schema_hash_v1",
         "g2mb_canonicalization_hash_v1", "g2mb_profile_hash_v1", "_G2MBFaultProbeV1",
-        "_G2MBControlledFaultV1", "_g2mb_fault_probe",
+        "_G2MBControlledFaultV1", "_g2mb_fault_probe", "_g2mb_canonical_faces",
+        "G2MB_LABEL_ERASURE_SCOPE_V1", "display_metadata_only", "reference_normal",
+        "value.kind", "value.unit.exponents",
     )
     missing = [token for token in required_source if token not in source]
     if missing:
@@ -55,6 +57,8 @@ def main() -> int:
         fail("source contains a forbidden backend/provider execution hook")
     if "Base.include" in source or "include(" in source:
         fail("source must remain an additive include target, not include other modules")
+    if "Tuple(sort(collect(faces)" not in source or "Tuple(f.reference_normal)" not in source:
+        fail("source does not implement complete lexical face canonicalization")
 
     chart = fixture["source"]["chart"]
     rows = chart["jacobian_rows"]
@@ -96,13 +100,26 @@ def main() -> int:
         expected_role = "field_value" if face["kind"] == "dirichlet" else "flux_value"
         if face["unit_role"] != expected_role:
             fail("fixture boundary value unit role does not match boundary kind")
+    label_erasure = fixture["label_erasure"]
+    if label_erasure["status"] != "not_applicable" or label_erasure["display_fields"] != []:
+        fail("label-erasure boundary must remain explicit and display-only")
+    required_semantic_fields = {
+        "candidate_ref", "face_id", "face", "owner_region_id", "value", "reference_normal"
+    }
+    if not required_semantic_fields.issubset(set(label_erasure["semantic_fields"])):
+        fail("label-erasure boundary omitted semantic owner fields")
     if fixture["review_pending"] is not True or fixture["accepted"] is not False:
         fail("fixture state boundary is not review_pending=true/accepted=false")
     if any(fixture[key] != 0 for key in ("compile_calls", "provider_calls", "mesh_calls", "solver_calls")):
         fail("fixture claims an execution call")
     if fixture["physical_evidence"] is not False or fixture["julia_or_desc_executed"] is not False:
         fail("fixture claims forbidden execution or physical evidence")
-    for token in ("reference_coordinate_unit_mismatch", "coordinate_unit_mismatch",
+    for token in ("mesh_chart_ref_mismatch", "mesh_basis_unsupported",
+                  "quadrature_point_out_of_domain", "quadrature_weight_arity_mismatch",
+                  "quadrature_weight_nonpositive", "candidate_binding_change_rehash",
+                  "source_hash_tamper_rejected", "declaration_hash_tamper_rejected",
+                  "duplicate_face_same_key_different_normal_value", "classification_order_invariant",
+                  "reference_coordinate_unit_mismatch", "coordinate_unit_mismatch",
                   "jacobian_unit_mismatch", "metric_unit_mismatch", "area_unit_mismatch",
                   "volume_unit_mismatch", "derived_area_unit_binding", "derived_volume_unit_binding"):
         if token not in fixture["negative_controls"]:
@@ -111,14 +128,20 @@ def main() -> int:
     required_test = (
         "executable chart metric", "source and declaration identity", "contradictions fail closed",
         "terminal_deferred", "program_exception", "determinant", "physical_oriented_area_vector",
-        "G2_METRIC_BOUNDARY_V1_JULIA_OR_DESC_EXECUTED=false",
+        "G2_METRIC_BOUNDARY_V1_JULIA_OR_DESC_EXECUTED=false", "mesh guards",
+        "canonical face ordering", "label erasure boundary", "classification order invariant",
     )
     for token in required_test:
         if token not in test:
             fail(f"missing focused test marker: {token}")
-    for token in ("reference_coordinate_unit_mismatch", "coordinate_unit_mismatch",
+    for token in ("mesh_chart_ref_mismatch", "quadrature_point_out_of_domain",
+                  "candidate_binding_change_rehash", "source_hash_tamper_rejected",
+                  "declaration_hash_tamper_rejected", "reference_coordinate_unit_mismatch",
+                  "duplicate_face_same_key_different_normal_value", "classification_order_invariant",
+                  "coordinate_unit_mismatch",
                   "jacobian_unit_mismatch", "metric_unit_mismatch", "area_unit_mismatch",
-                  "volume_unit_mismatch", "g2mb_physical_oriented_area_measure"):
+                  "volume_unit_mismatch", "g2mb_physical_oriented_area_measure",
+                  "G2MB_LABEL_ERASURE_SCOPE_V1"):
         if token not in test:
             fail(f"missing unit algebra negative/control marker: {token}")
 

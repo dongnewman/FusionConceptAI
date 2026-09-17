@@ -1,0 +1,52 @@
+{
+  "record_kind": "UP2-01-G3-SOURCE-FEEDBACK-V1-agent-local-r2-commands",
+  "baseline_head": "cfc745939a02fd023854dd04e9bb6d04ccadf9ee",
+  "commands": [
+    {
+      "name": "python_static_qa",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py",
+      "started_utc": "2026-09-17T11:26:44.0069709Z",
+      "finished_utc": "2026-09-17T11:26:44.0998926Z",
+      "pid": 40888,
+      "exit_code": 0,
+      "stdout_json_sha256": "33a24793d850d4e12f702d72fb87aada9d47ae010b987120bf1c80b262619a82",
+      "result": "all static checks true; manifest hashes matched; Julia/DESC not invoked"
+    },
+    {
+      "name": "python_ast_parse",
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B -c \"import ast; from pathlib import Path; ast.parse(Path('docs/implementation/UP2-01-G3-SOURCE-FEEDBACK-V1/static_qa.py').read_text(encoding='utf-8'))\"",
+      "exit_code": 0,
+      "result": "python_ast_parse=pass; no pycache created"
+    },
+    {
+      "name": "julia_focused",
+      "command": "julia --startup-file=no --project=. test/GenomeV5/G3/up2_g3_source_feedback_v1_tests.jl",
+      "started_utc": "2026-09-17T11:31:22.314601+00:00",
+      "finished_utc": "2026-09-17T11:31:27.772258+00:00",
+      "pid": 35728,
+      "exit_code": 0,
+      "stdout_bytes": 516,
+      "stdout_sha256": "29077f5762ca1f0994d5d33dc05ca16cbce6c59133cc837cef1e2b5cebb67c38",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_stdout": "agent_local_r2/focused_stdout.txt",
+      "raw_stderr": "agent_local_r2/focused_stderr.txt",
+      "result": "four focused testsets passed; 63/63 assertions"
+    },
+    {
+      "name": "post_focused_process_sweep",
+      "command": "Get-CimInstance Win32_Process exact Julia/DESC name/argv filter",
+      "exit_code": 0,
+      "result": "julia_count=0; desc_count=0"
+    }
+  ],
+  "claims": {
+    "compiler_calls": 0,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 0,
+    "physical_evidence": false,
+    "engineering_evidence": false,
+    "R01_R10": false
+  }
+}

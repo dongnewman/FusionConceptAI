@@ -32,6 +32,10 @@ def main() -> int:
         "g1_diffusion_admit_chain_v1", ":program_exception",
         ":unexpected_exception", "error_path", "_g1d_admit_v1_impl",
         "_g1d_admit_v1_fault_probe", "K_probe_point_malformed",
+        "candidate_ref", "source payload candidate_ref does not match declaration candidate_ref",
+        "G1_DIFFUSION_GRAD_OPERATOR_ID_V1", "G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1",
+        "G1_DIFFUSION_DIV_OPERATOR_ID_V1", "closure_profile_binding_mismatch",
+        "applicability_profile_binding_mismatch", "g1_diffusion_closure_hash_v1",
     )
     missing = [token for token in required if token not in source]
     if missing:
@@ -61,13 +65,18 @@ def main() -> int:
             raise SystemExit(f"forward typed field reference: {owner}::{field_type}")
     for token in ("positive declaration", "fail-closed", "source edit changes identity",
                   "program_fault", "program_exception", "unexpected_exception",
-                  "K_probe_point_malformed"):
+                  "K_probe_point_malformed", "foreign_candidate", "receipt.schema_hash",
+                  "receipt.compile_calls"):
         if token not in test:
             raise SystemExit(f"missing test coverage marker: {token}")
     for token in ("missing_authoritative_source", "manufactured_solution_as_authority", "contract_only",
                   "source_hash_mismatch", "K_lower_bound_mismatch", "K_domain_out_of_bounds",
                   "malformed_K_probe_point_fail_closed", "expected_residual_sign_not_negative",
-                  "grad_unit_mismatch", "program_exception_internal_fault_seam"):
+                  "grad_unit_mismatch", "program_exception_internal_fault_seam",
+                  "cross_candidate_source_payload_rejected", "wrong_operator_id_rejected",
+                  "wrong_temporal_or_value_kind_rejected", "foreign_closure_profile_ref_rejected",
+                  "foreign_applicability_profile_version_rejected", "receipt_zero_downstream_counters",
+                  "receipt_profile_hashes_directly_asserted"):
         if token not in fixture:
             raise SystemExit(f"missing fixture negative/control token: {token}")
     print("static_qa=pass")
