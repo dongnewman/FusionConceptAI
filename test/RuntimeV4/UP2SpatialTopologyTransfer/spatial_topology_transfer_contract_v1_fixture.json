@@ -1,0 +1,45 @@
+{
+  "schema": "FusionConceptAI/RuntimeV4/SpatialTopologyTransferContractV1",
+  "revision": "spatial-topology-transfer-v1",
+  "scope": "contract_only",
+  "evidence_scope": "screen_only",
+  "source_target_identity": [
+    "candidate_ref",
+    "space_ref",
+    "topology_ref",
+    "mesh_ref",
+    "basis_ref",
+    "quadrature_ref",
+    "dof_ref",
+    "order_ref"
+  ],
+  "ownership": ["region", "interface", "exterior", "external"],
+  "typed_transfer": ["account_ref", "unit", "orientation", "signed_value"],
+  "unit_policy": {
+    "canonical_per_transfer": "first_account_unit",
+    "compatible_dimensions": "convert_to_canonical_scale",
+    "incompatible_dimensions": "fail_closed",
+    "effect_unit_validation": "every_effect_uses_complete_unit_validator"
+  },
+  "canonical_effect_order": [
+    "transfer_ref", "account_ref", "orientation", "signed_value",
+    "unit.name", "unit.exponents", "unit.scale_to_si"
+  ],
+  "owner_binding": {
+    "interface": "exact_interface_owner_ref",
+    "external": "exact_external_owner"
+  },
+  "ref_policy": {
+    "required_nonempty": ["interface_ref", "account_ref", "owner_ref", "region_ref", "topology_ref", "mesh_ref", "basis_ref", "quadrature_ref", "dof_ref", "order_ref"],
+    "wildcard_rejected": true
+  },
+  "defect_scopes": ["local", "region", "interface", "exterior", "global", "external"],
+  "diagnostics": ["divB", "positivity", "gauge", "nullspace"],
+  "external_closure": "explicit external:* receipt reference",
+  "vector_counts": {
+    "r3_added_positive": 1,
+    "r3_added_negative": 1,
+    "r3_total": 2
+  },
+  "execution": {"provider_calls": 0, "mesh_calls": 0, "solver_calls": 0}
+}
