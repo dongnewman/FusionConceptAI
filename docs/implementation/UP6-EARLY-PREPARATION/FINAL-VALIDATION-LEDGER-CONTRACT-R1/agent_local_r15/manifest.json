@@ -1,0 +1,54 @@
+{
+  "schema": "FinalValidationLedgerContractAgentLocalR15V1",
+  "status": "static_repair_complete",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "publish": "no_publish",
+  "evidence_credit": 0,
+  "l4_credible_count": 0,
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_executed": false,
+  "solver_executed": false,
+  "archived_lineage": {
+    "r13": {
+      "classification": "program_exception",
+      "decision": "unknown",
+      "runtime_credit": false
+    },
+    "r14": {
+      "pass": 120,
+      "fail": 1,
+      "error": 0,
+      "failure": "pending ledger with missing identity/evidence was classified unknown instead of terminal_deferred",
+      "runtime_credit": false
+    }
+  },
+  "repair": {
+    "source": "missing evidence is terminal_deferred when identity is missing or ledger is pending; complete observed process with missing terminal artifact remains unknown",
+    "test": "pending decision now asserts identity_pending and evidence_missing reasons",
+    "qa": "both static checkers require the evidence/deferred boundary",
+    "runtime_rerun": "pending independent serial Julia execution"
+  },
+  "qa": [
+    {
+      "path": "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/static_qa.py",
+      "exit_code": 0,
+      "julia_executed": false
+    },
+    {
+      "path": "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/independent_r5/static_qa.py",
+      "exit_code": 0,
+      "julia_executed": false
+    }
+  ],
+  "input_sha256": {
+    "src/RuntimeV4/FinalValidationLedgerContractV1.jl": "25ca4c6f72a026567c5b63345742e5c0a27514610458bf87bd579f2c6691d1d7",
+    "test/RuntimeV4/final_validation_ledger_contract_v1_tests.jl": "268653e5b8068b1ac2d175aa6cd503d15a769ac60b1237d4ce9e4848d311b90a",
+    "test/RuntimeV4/fixtures/final_validation_ledger_contract_v1.json": "851ee6c541f64133abfd9628878397d6d96c6e250b44ceefb3b1f3f35071ca4e",
+    "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/static_qa.py": "e8592356690d068afa97fea0921f3f3181d96377ec29b646aadf650aba831957",
+    "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/independent_r5/static_qa.py": "814bd69fec54718c6e3c121c28cb9acd36308f0f2913fb226f2d90aa23094e4d"
+  },
+  "r01_r10_credit": false,
+  "commit_created": false
+}

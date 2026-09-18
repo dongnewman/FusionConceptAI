@@ -1,0 +1,78 @@
+{
+  "schema": "FinalValidationLedgerContractAgentLocalR17RuntimeV1",
+  "status": "runtime_pass_contract_only",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "publish": "no_publish",
+  "evidence_credit": 0,
+  "l4_credible_count": 0,
+  "working_directory": "D:/006-Programing/LMC/FusionConceptAI",
+  "direct_foreground": true,
+  "start_process_used": false,
+  "commands": {
+    "parse_only": "& 'C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe' --startup-file=no --history-file=no --project=. -e 'Meta.parseall(read(\"test/RuntimeV4/final_validation_ledger_contract_v1_tests.jl\", String)); println(\"parse-only-ok\")'",
+    "focused": "& 'C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe' --startup-file=no --history-file=no --project=. test/RuntimeV4/final_validation_ledger_contract_v1_tests.jl"
+  },
+  "parse_only": {
+    "exit_code": 0,
+    "stdout": "parse-only-ok",
+    "stderr": ""
+  },
+  "focused": {
+    "exit_code": 0,
+    "passed": 123,
+    "total": 123,
+    "elapsed_seconds": 22.1,
+    "stdout_summary": "UP6 final validation ledger contract-only v1 |  123    123  22.1s",
+    "last_exit_code_line": "LASTEXITCODE=0",
+    "stderr": ""
+  },
+  "execution_scope": {
+    "julia_executed": true,
+    "provider_executed": false,
+    "solver_executed": false,
+    "desc_executed": false,
+    "physical_validation": false,
+    "engineering_validation": false,
+    "telemetry_executed": false,
+    "active_julia_dsc_desc_after": false
+  },
+  "r15_input_sha256": {
+    "src/RuntimeV4/FinalValidationLedgerContractV1.jl": "25ca4c6f72a026567c5b63345742e5c0a27514610458bf87bd579f2c6691d1d7",
+    "test/RuntimeV4/final_validation_ledger_contract_v1_tests.jl": "268653e5b8068b1ac2d175aa6cd503d15a769ac60b1237d4ce9e4848d311b90a",
+    "test/RuntimeV4/fixtures/final_validation_ledger_contract_v1.json": "851ee6c541f64133abfd9628878397d6d96c6e250b44ceefb3b1f3f35071ca4e",
+    "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/static_qa.py": "e8592356690d068afa97fea0921f3f3181d96377ec29b646aadf650aba831957",
+    "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/independent_r5/static_qa.py": "814bd69fec54718c6e3c121c28cb9acd36308f0f2913fb226f2d90aa23094e4d"
+  },
+  "r15_hashes_match": true,
+  "preserved_lineage": {
+    "r13": {
+      "classification": "program_exception",
+      "decision": "unknown",
+      "runtime_credit": false
+    },
+    "r14": {
+      "pass": 120,
+      "fail": 1,
+      "error": 0,
+      "failure": "pending ledger missing identity/evidence classified unknown instead of terminal_deferred",
+      "runtime_credit": false
+    },
+    "r16": {
+      "status": "parse_only_program_exception",
+      "parse_only_exit": 1,
+      "focused_started": false,
+      "source_evidence": false,
+      "no_julia_desc_after": true
+    }
+  },
+  "mutation_boundary": {
+    "source_edited": false,
+    "test_edited": false,
+    "commit_created": false,
+    "evidence_files_added": [
+      "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/agent_local_r17_runtime/report.md",
+      "docs/implementation/UP6-EARLY-PREPARATION/FINAL-VALIDATION-LEDGER-CONTRACT-R1/agent_local_r17_runtime/manifest.json"
+    ]
+  }
+}

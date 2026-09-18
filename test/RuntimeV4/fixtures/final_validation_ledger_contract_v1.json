@@ -1,0 +1,38 @@
+{
+  "schema": "FinalValidationLedgerContractFixtureV1",
+  "claim_ceiling": "contract_only",
+  "publish": "no_publish",
+  "accepted": false,
+  "evidence_credit": 0,
+  "l4_credible_count": 0,
+  "authority": "FinalWholeDeviceAuthorityV4",
+  "authority_status": "reserved_not_implemented",
+  "all_obligations_required": true,
+  "required_r_ids": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10"],
+  "engineering_families": [
+    "ENG-BALANCE", "ENG-STABILITY", "ENG-ORBIT-TRANSPORT", "ENG-BURN", "ENG-RADIATION",
+    "ENG-EXTERNAL-DOMAIN", "ENG-POWER", "ENG-COOLING", "ENG-MATERIAL", "ENG-STRUCTURE",
+    "ENG-CONTROL-FAULT", "ENG-FUEL-CYCLE", "ENG-CONVERSION", "ENG-AUXILIARY", "ENG-NET-LEDGER"
+  ],
+  "dimensions": [
+    "applicability", "provider_match", "resolution", "execution_classification",
+    "numerical_status", "physical_status", "lifecycle", "claim_ceiling",
+    "conservation", "convergence", "error", "vvuq", "engineering",
+    "net_output", "replay", "originality"
+  ],
+  "negative": [
+    {"id": "identity_mismatch", "expected_status": "fail_closed"},
+    {"id": "provider_out_of_domain", "expected_status": "terminal_deferred"},
+    {"id": "exit_zero_missing_terminal_artifact", "expected_status": "unknown"},
+    {"id": "iteration_limit", "expected_status": "numerical_fail"},
+    {"id": "negative_engineering_margin", "expected_status": "physical_fail"},
+    {"id": "net_output_interval_crosses_zero", "expected_status": "unknown"},
+    {"id": "calibration_reused_as_held_out", "expected_status": "fail_closed"},
+    {"id": "not_applicable_without_proof", "expected_status": "terminal_deferred"},
+    {"id": "historical_receipt_as_fresh", "expected_status": "terminal_deferred"},
+    {"id": "missing_required_scenario", "expected_status": "terminal_deferred"},
+    {"id": "evidence_binding_mismatch", "expected_status": "fail_closed"},
+    {"id": "required_false", "expected_status": "fail_closed"}
+  ],
+  "credit": {"evidence_credit": 0, "l4_credible_count": 0, "r01_r10": false}
+}
