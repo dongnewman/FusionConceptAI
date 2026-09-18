@@ -1,28 +1,29 @@
 # Core index sync change report — 2026-09-18
 
 Status: documentation-only working-tree update; no commit created. Root-agent
-review is required before staging or committing. No additional Julia/DESC
-runtime was run by this synchronization; existing receipts were read-only
-inputs.
+review is required before staging or committing. The R22 Julia receipt and the
+DCCE Python receipts were read-only inputs to this synchronization; no
+additional Julia/DESC runtime was run by the index update itself.
 
 ## Baseline and scope
 
-The synchronized baseline is the existing checkout at HEAD
-`94e4598d209c2d424c2e7affaeef0df171dd67da`. Only status/index sections of
-these eight files were changed:
+The synchronized baseline is the existing checkout at HEAD `345bafb`. Only
+status/index sections of these six files plus this change report were
+changed:
 
-- `docs/implementation/README.md`: refreshed the HEAD/date banner and replaced
-  the stale four-row contract-only block with the ten-record wave index.
-- `docs/reports/current_progress_index.md`: refreshed the HEAD/date banner and
-  replaced the stale current-repository block with the ten-record wave index.
+- `docs/implementation/README.md`: refreshed the baseline and inserted the R22
+  runtime and DCCE screen boundaries.
+- `docs/v4_multitopology_generation/README.md`: synchronized the core planning
+  index with the same R22 and DCCE boundaries.
 - `docs/v4_multitopology_generation/16_execution_work_orders.md`: refreshed
   the non-runtime index-sync block with the ten-record wave index.
 - `docs/v4_multitopology_generation/21_next_execution_batches.md`: synchronized
   the current T0/T1/G1-G2-G3/EngineeringFeedback execution boundary.
 - `docs/implementation/INDEX-SYNC-20260918-change-report.md`: recorded this
-  eight-file synchronization and its verification boundary.
+  synchronization and its verification boundary.
 - `docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md` and
-  `acceptance.md`: recorded the R21 interrupted/incomplete receipt and preserved
+  `acceptance.md`: recorded the R22 runtime receipt, preserved the R21
+  interrupted/incomplete history, and retained
   the typed-absent/accepted-false boundary.
 
 The existing historical spatial narrative, navigation, work orders, and other
@@ -35,7 +36,8 @@ UP label. No completion percentage is inferred.
 | Record | Commit | Receipt/status boundary |
 |---|---|---|
 | T0 LocalV1 | `87f0263` (`87f02636347a5d65d309f256b2d10914f39cc25a`) | committed |
-| T0 authority recheck | `94e4598` / R21 | `interrupted_incomplete`; negative dispatch `0/25`, negative-object snapshots `0/100`; no retry; no authority published |
+| T0 authority recheck | `94e4598` / R21 | historical `interrupted_incomplete`; negative dispatch `0/25`; no retry; no authority published |
+| T0 authority recheck | `345bafb` / R22 | `runtime_complete`; Julia `310/310`; `25` runtime negative dispatches; `accepted=false`; `contract_only`; no T1/T2 credit; `100 snapshots` static-only derivation |
 | T1 package/edit/round-trip | `62d9a61` / R5 | static `16`; `prepared_not_executed`; no runtime receipt |
 | Spatial composition | `e5e44bd` / R9 | `54/54`; `screen_only`; `accepted=false`; no formal credit |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative: `39/39 + 13/13`; package manifest `preflight_only`; `screen_only`; no formal credit |
@@ -47,15 +49,20 @@ UP label. No completion percentage is inferred.
 | UP5 bounded structure | `f9612bd` (`f9612bdef6752895363f0f5041df9192f667cf85`) | 94/94 `contract_only` |
 | UP6 final ledger | `67a4e87` (`67a4e879ffc7e3d8956fd0fef11fc8865fed36d9`) | 123/123 `contract_only`; no final authority |
 | UP2 executable screen | `348b061` (`348b0611b9c8afd20bab0fb706528733c3fa0d7d`) | 68/68 `manufactured_numerical_screen` |
+| DCCE declared diffusion compile-execute | `09cf7d1` | Python static QA/oracle pass; `screen_only`; `accepted=false`; Julia not run; no UP2-01/R credit |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code; R15 runtime `77/77`; `screen_only`; `accepted=false`; `component_load=false`; no formal credits |
 
-The latest T0 authority recheck R21 is `interrupted_incomplete`: it reached
-negative dispatch `0/25` and negative-object snapshots `0/100`, published no
-`Test Summary` or authority, and was not retried. T1 R5 is static `16` and
-`prepared_not_executed`. Spatial R9 is `54/54` but `screen_only`. G1/G2/G3 R22
-has an authoritative nested `39/39 + 13/13` receipt, while the package
-manifest remains `preflight_only`; it grants no formal credit. EngineeringFeedback
-R14 code/R15 runtime `77/77` remains `screen_only`, `accepted=false`,
+The latest T0 authority recheck R22 is `runtime_complete`: direct Julia
+`310/310`, `25` runtime negative dispatches, `accepted=false`, `contract_only`,
+and no T1/T2 credit. The `100 snapshots` value is only the static 25×4
+derivation; it is not an independent runtime count. R21 remains preserved as
+historical interruption. T1 R5 is static `16` and `prepared_not_executed`.
+Spatial R9 is `54/54` but `screen_only`. G1/G2/G3 R22 has an authoritative
+nested `39/39 + 13/13` receipt, while the package manifest remains
+`preflight_only`; it grants no formal credit. DCCE `09cf7d1` has only Python
+static QA/oracle evidence, remains `screen_only` and `accepted=false`, and was
+not run under Julia; it grants no UP2-01 or R credit. EngineeringFeedback R14
+code/R15 runtime `77/77` remains `screen_only`, `accepted=false`,
 `component_load=false`, with no formal credits. The records above provide no
 provider/physics Julia/DESC runtime, physical, engineering, or final-authority
 credit. R01–R10 remain `pending`, `L4=0`, and the parent goal is open. Five
@@ -69,13 +76,12 @@ change-report; the change-report file is intentionally excluded from this
 self-referential list.
 
 ```text
-6f638d472d2cd9f09556a124955f1c3b15996fe44b32833c978b2e5c04ca3d49  docs/implementation/README.md
-70243dfa752a9d62f477b41a1b758131fbff0c586524fb1922edb7f4e3e12567  docs/reports/current_progress_index.md
-67acf43447b92ef27120043bf7481c88c6d9a3c93d19b71ff9be2875d38a2e2d  docs/v4_multitopology_generation/README.md
-2c85ca7667a7538283d00650dd882593d234853db1ce7a9a080ae955d847c71a  docs/v4_multitopology_generation/16_execution_work_orders.md
-e5102279f97ad9be01e45c95e713ffa1d2c824eec3a9e605d02f3e903cbd6940  docs/v4_multitopology_generation/21_next_execution_batches.md
-4280725fac42d2dbff33bcefacbee41cf0931bf37153ccb5f15857abad00c950  docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md
-8336304bf63f635ce2bef3ccbd4b45e29cc4bb67533aaf56ea1408598f52adbb  docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md
+7f7c32a900bb59818e5134f33005f8267eb785b10444629062e95c8f733aefa3  docs/implementation/README.md
+cd6a22a48b78fa7339a2a9fc08722ebace15d1b6139031ed769ce3791b45d6e2  docs/v4_multitopology_generation/README.md
+ed474415b6365d1a88405a50b6c80ffef91d873ac2cb45760182d6207b9bcf9d  docs/v4_multitopology_generation/16_execution_work_orders.md
+1869c750bfa123e28a4a87f3187565a93f28d6153ad960cd0ad8667938a2eb7a  docs/v4_multitopology_generation/21_next_execution_batches.md
+afb6a7eee5425e8812be4ffbfcc9e33cdca102ef70d63c42542c0d08a8e593ca  docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/README.md
+ff6bab3cd1754e250cbc4a0e1010f30fb548f762513bf8c938780b6247bcfd45  docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/acceptance.md
 ```
 
 ## Verification and exclusions

@@ -6,12 +6,13 @@ AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result fo
 
 ## 2026-09-18 索引同步状态（非运行验收）
 
-本工作单当前索引基线为 HEAD `94e4598d209c2d424c2e7affaeef0df171dd67da`；后续提交会再刷新。下列记录是静态、合同或屏幕记录，不是完成百分比，也不得替代原始工单的退出门或关闭 UP 标签：
+本工作单当前索引基线为 R22 runtime receipt（工作树基于 `345bafb`）；后续提交会再刷新。下列记录是静态、合同或屏幕记录，不是完成百分比，也不得替代原始工单的退出门或关闭 UP 标签：
 
 | 记录 | 提交 | 当前边界 |
 |---|---|---|
 | T0 LocalV1 | `87f0263` | committed |
-| T0 authority recheck | `94e4598` / R21 | `interrupted_incomplete`；negative dispatch `0/25`、negative-object snapshots `0/100`；no retry；no authority |
+| T0 authority recheck | `94e4598` / R21 | historical `interrupted_incomplete`；negative dispatch `0/25`；no retry；no authority |
+| T0 authority recheck | `345bafb` / R22 | `runtime_complete`；Julia `310/310`；negative dispatch `25/25`；`accepted=false`；`contract_only`；no T1/T2 credit；100 snapshots仅静态推导 |
 | T1 package/edit/round-trip | `62d9a61` / R5 | static `16`；`prepared_not_executed`；无 runtime receipt |
 | Spatial composition | `e5e44bd` / R9 | `54/54`；`screen_only`；`accepted=false`；no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`；package `preflight_only`；`screen_only`；no formal credits |
@@ -23,9 +24,10 @@ AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result fo
 | UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
 | UP6 final ledger | `67a4e87` | 123/123 `contract_only`；no final authority |
 | UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+| DCCE declared diffusion compile-execute | `09cf7d1` | Python static QA/oracle pass；`screen_only`；`accepted=false`；Julia未运行；无 UP2-01/R credit |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code；R15 runtime `77/77`；`screen_only`，`accepted=false`，`component_load=false`；no formal credits |
 
-T0 authority recheck 最新 R21 为 `interrupted_incomplete`，negative dispatch 为 `0/25`、negative-object snapshots 为 `0/100`，未输出 `Test Summary` 或 authority，且 no retry；T1 R5 仅 static `16`、`prepared_not_executed`。Spatial R9 `54/54` 仍为 `screen_only`。G1/G2/G3 R22 的 nested receipt authoritative，计数 `39/39 + 13/13`，但 package manifest 仍为 `preflight_only`，不授 formal credits。EngineeringFeedback R14 code/R15 runtime `77/77` 仍是 `screen_only`、`accepted=false`、`component_load=false`，无 formal credits。上述记录没有 provider/physics Julia/DESC runtime credit、物理、工程或 final authority 信用。`R01–R10` 仍 `pending`，`L4=0`，parent goal 仍 open，UP labels 未由这些 receipts 关闭。清理备注：五个未跟踪 `pyc` 已移除；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未运行的切片不得写成完成，旧 runs 和工作树 dirty 文件不属于本状态同步。
+T0 authority recheck 最新 R22 已有独立 runtime receipt：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`、`contract_only`，无 T1/T2 credit；`100 snapshots` 仅为静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。上述新记录仍不提供 provider/physics Julia/DESC runtime、物理、工程或 final authority 信用。
 
 ## 读取与派单合同
 

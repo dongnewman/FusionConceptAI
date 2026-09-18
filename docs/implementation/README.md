@@ -1,8 +1,8 @@
 # 实现档案入口：按阶段和验收范围查阅
 
-**2026-09-18 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。当前索引同步基线 HEAD 为 `94e4598d209c2d424c2e7affaeef0df171dd67da`；后续提交会再刷新。以下 2026-09-16 阶段表、旧 HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
+**2026-09-18 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。当前索引同步基线为 R22 runtime receipt（工作树基于 `345bafb`）；后续提交会再刷新。以下 2026-09-16 阶段表、旧 HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
 
-更新：2026-09-18索引同步（基于 `94e4598d209c2d424c2e7affaeef0df171dd67da` 及本批提交 `62d9a61`、`e5e44bd`、`7c82e95`、`94e4598`）。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** R01–R10全部未关闭（`pending`），L4=0；parent goal 仍 open。
+更新：2026-09-18索引同步（R22 T0 runtime receipt；DCCE `09cf7d1` 仅 Python screen）。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** R01–R10全部未关闭（`pending`），L4=0；parent goal 仍 open。
 
 ### 最近已提交切片的状态上限
 
@@ -11,7 +11,8 @@
 | 记录 | 提交 | 状态上限 |
 |---|---|---|
 | T0 LocalV1 | `87f0263` | committed |
-| T0 authority recheck | `94e4598` / R21 | `interrupted_incomplete`；negative dispatch `0/25`、negative-object snapshots `0/100`；no retry；no authority |
+| T0 authority recheck | `94e4598` / R21 | historical `interrupted_incomplete`；negative dispatch `0/25`；no retry；no authority |
+| T0 authority recheck | `345bafb` / R22 | `runtime_complete`；Julia `310/310`；negative dispatch `25/25`；`accepted=false`；`contract_only`；no T1/T2 credit；100 snapshots仅静态推导 |
 | T1 package/edit/round-trip | `62d9a61` / R5 | static `16`；`prepared_not_executed`；无 runtime receipt |
 | Spatial composition | `e5e44bd` / R9 | `54/54`；`screen_only`；`accepted=false`；no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`；package `preflight_only`；`screen_only`；no formal credits |
@@ -23,9 +24,10 @@
 | UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
 | UP6 final ledger | `67a4e87` | 123/123 `contract_only`；no final authority |
 | UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+| DCCE declared diffusion compile-execute | `09cf7d1` | Python static QA/oracle pass；`screen_only`；`accepted=false`；Julia未运行；无 UP2-01/R credit |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code；R15 runtime `77/77`；`screen_only`，`accepted=false`，`component_load=false`；no formal credits |
 
-T0 authority recheck 最新 R21 为 `interrupted_incomplete`，negative dispatch 为 `0/25`、negative-object snapshots 为 `0/100`，未发布 `Test Summary` 或 authority，且 no retry；T1 R5 仅 static `16`、`prepared_not_executed`。Spatial R9 `54/54` 仍为 `screen_only`。G1/G2/G3 R22 的 nested receipt authoritative，计数 `39/39 + 13/13`，但 package manifest 仍为 `preflight_only`，不授 formal credits。EngineeringFeedback R14 code/R15 runtime `77/77` 仍是 `screen_only`、`accepted=false`、`component_load=false`，无 formal credits。本波次记录不构成 provider/physics Julia/DESC runtime credit、物理、工程或终局 authority。`R01–R10=pending`，`L4=0`，parent goal=open，UP labels 仍未由这些 receipts 关闭。清理备注：已移除五个未跟踪 `pyc`；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片不得提前宣称完成。
+T0 authority recheck 最新 R22 为 `runtime_complete`：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`，`contract_only`，无 T1/T2 credit；所谓 `100 snapshots` 仅由静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。T1 R5 仍仅 static `16`、`prepared_not_executed`。Spatial R9 `54/54` 仍为 `screen_only`。G1/G2/G3 R22 的 nested receipt authoritative，计数 `39/39 + 13/13`，但 package manifest 仍为 `preflight_only`，不授 formal credits。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。EngineeringFeedback R14 code/R15 runtime `77/77` 仍是 `screen_only`、`accepted=false`、`component_load=false`，无 formal credits。本波次记录不构成 provider/physics Julia/DESC runtime credit、物理、工程或终局 authority。`R01–R10=pending`，`L4=0`，parent goal=open，UP labels 仍未由这些 receipts 关闭。清理备注：已移除五个未跟踪 `pyc`；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片不得提前宣称完成。
 
 ## 接手入口
 

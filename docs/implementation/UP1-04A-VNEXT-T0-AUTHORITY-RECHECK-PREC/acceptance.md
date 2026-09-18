@@ -15,7 +15,7 @@ Sol accepts the local typed-absent software scaffold as `accepted_limited` under
 
 The lightweight static QA runs before the single focused Julia test and records the actual Python executable, executable hash, version, raw output, PID, exit code, input/output hashes, and process guard. The focused test is invoked directly with Julia and no launcher. DESC and unrelated heavy Python are prohibited. Any repair is append-only, minimal, and serial.
 
-The preserved R6 evidence is static QA `20` checks and direct focused Julia `68/68`; R1-R7 receipts, the foreign declaration candidate repair, and cleanup inventory remain append-only. The latest R21 receipt is `interrupted_incomplete`, reached negative dispatch `0/25` and negative-object snapshots `0/100`, emitted no `Test Summary`, produced no checked-present authority, and was not retried. These are local software contract/runtime-boundary results, not authority or readiness receipts.
+The preserved R6 evidence is static QA `20` checks and direct focused Julia `68/68`; R1-R7 receipts, the foreign declaration candidate repair, and cleanup inventory remain append-only. R21 remains a historical `interrupted_incomplete` receipt and was not retried. The latest R22 receipt is `runtime_complete`: direct Julia `310/310`, exit `0`, `25` runtime negative dispatches, `accepted=false`, `contract_only`, and no T1/T2 credit. `100 snapshots` is only a static 25×4 derivation, not an independently runtime-counted result. These are local software contract/runtime-boundary results, not authority or readiness receipts.
 
 ## Non-claims
 
