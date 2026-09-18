@@ -1,8 +1,27 @@
 # 实现档案入口：按阶段和验收范围查阅
 
-**2026-09-17 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。以下 2026-09-16 阶段表、HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
+**2026-09-18 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。当前索引同步基线 HEAD 为 `348b061`（`348b0611b9c8afd20bab0fb706528733c3fa0d7d`）；后续提交会再刷新。以下 2026-09-16 阶段表、旧 HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
 
-更新：2026-09-16中期审计。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** R01–R10全部未关闭，L4=0。
+更新：2026-09-18索引同步（基于 `348b061`）。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** R01–R10全部未关闭（`pending`），L4=0；parent goal 仍 open。
+
+### 最近已提交切片的状态上限
+
+下列记录构成本波次的提交索引；计数是各自静态/合同/屏幕记录，不是完成百分比。它们不关闭相应 UP 标签、R01–R10 或 parent goal。后续提交会刷新本表：
+
+| 记录 | 提交 | 状态上限 |
+|---|---|---|
+| T0 LocalV1 | `87f0263` | committed |
+| T0 authority recheck | `a7b6362` | static 125/125；R12 `performance_gate_timeout`，0/25；`NO-GO`，T1 not started |
+| UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
+| UP3 composition solve plan | `a1ad8cc` | 161/161 `contract_only` |
+| UP4 SHIR | `5d9d651` | 547/547 `prepared_not_measured` |
+| UP4 engineering bridge | `5ea78c0` | 189/189 `contract_only` |
+| UP5 conditional egraph | `cd52ee3` | `contract_only` conditional egraph；不关闭标签 |
+| UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
+| UP6 final ledger | `67a4e87` | 123/123 `contract_only`；no final authority |
+| UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+
+T0 authority recheck 的 R12 已 `performance_gate_timeout`，因此为 `NO-GO`，T1 尚未开始；本波次 focused Julia contract tests 已运行，仅证明合同/静态行为，不构成 provider/physics Julia/DESC runtime credit、物理、工程或终局 authority。`R01–R10=pending`，`L4=0`，parent goal=open，UP labels 仍未由这些 receipts 关闭。清理备注：已移除五个未跟踪 `pyc`；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片不得提前宣称完成。
 
 ## 接手入口
 

@@ -4,6 +4,25 @@
 
 AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result for actual-A N01/N02 schema/value projection; N07/N08 and N09 have separate local accepted_limited contract archives that do not count as formal B04 receipts; the total gate remains review_pending/accepted=false with all 50 formal B04 receipts pending; UP1-04B remains planned and still owns B00 F0-F5, formal B04 mutations, receipts, checker, and two-process replay.
 
+## 2026-09-18 索引同步状态（非运行验收）
+
+本工作单当前索引基线为 HEAD `348b061`（`348b0611b9c8afd20bab0fb706528733c3fa0d7d`）；后续提交会再刷新。下列记录是静态、合同或屏幕记录，不是完成百分比，也不得替代原始工单的退出门或关闭 UP 标签：
+
+| 记录 | 提交 | 当前边界 |
+|---|---|---|
+| T0 LocalV1 | `87f0263` | committed |
+| T0 authority recheck | `a7b6362` | static 125/125；R12 `performance_gate_timeout`，0/25；`NO-GO`，T1 not started |
+| UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
+| UP3 composition solve plan | `a1ad8cc` | 161/161 `contract_only` |
+| UP4 SHIR | `5d9d651` | 547/547 `prepared_not_measured` |
+| UP4 engineering bridge | `5ea78c0` | 189/189 `contract_only` |
+| UP5 conditional egraph | `cd52ee3` | `contract_only` conditional egraph；不关闭标签 |
+| UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
+| UP6 final ledger | `67a4e87` | 123/123 `contract_only`；no final authority |
+| UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+
+T0 authority recheck 因 R12 `performance_gate_timeout` 为 `NO-GO`，T1 尚未开始。上述记录没有 provider/physics Julia/DESC runtime credit、物理、工程或 final authority 信用；本波次 focused Julia contract tests 已运行，仅作合同证据。`R01–R10` 仍 `pending`，`L4=0`，parent goal 仍 open，UP labels 未由这些 receipts 关闭。清理备注：五个未跟踪 `pyc` 已移除；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未运行的切片不得写成完成，旧 runs 和工作树 dirty 文件不属于本状态同步。
+
 ## 读取与派单合同
 
 先读 00、README、14 和该任务的技术章。下文写入范围是组件归属建议，正式派单必须展开为精确文件列表并冻结，禁止两人重叠写入。新类型、脚本和模块是拟建；现有文件路径由 UP0 核对。所有任务都由 Luna（high）执行，不同 Luna 复核，Sol 只作最高层安排和决策。

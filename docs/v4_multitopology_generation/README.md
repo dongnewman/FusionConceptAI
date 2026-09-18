@@ -53,13 +53,28 @@ flowchart LR
   E -->|新的机制 空间 实现| A
 ```
 
-## 4. 当前执行政策与下一步（2026-09-17）
+## 4. 当前执行政策与下一步（2026-09-18）
 
 **默认由智能体自主负责，取消外部认证对主线的阻塞。** Sol 决策与验收，Luna 实现并交叉复核；不再等待 CA、证明人、TSA、OCSP/CRL、签名 ACK、权威 G2 或发布方证明。科学与工程要求保持，项目内候选身份不等于物理正确。具体替换规则和实际命令见 [22](22_agent_local_execution.md)。
 
 从 [21 当前执行批次](21_next_execution_batches.md) 和 [16 工作单](16_execution_work_orders.md) 推进本地完整声明、组合执行、数值验证及逆实现。不要继续补外部责任人表或无变化地重跑 S3/R4。实际缺失的模型、输入、离散能力和数值失败仍逐项修复。
 
-本次变更起点 HEAD 为 `cfc745939a02fd023854dd04e9bb6d04ccadf9ee`；当前产品 HEAD 为 `8dbbb68b065c3ccd9a9f0f97a879aae8665eb2e9`，接手时仍须刷新工作树和运行证据。当前 G1/G2/G3 V1 仅按 [status_sync_g123_r1](../implementation/AGENT-LOCAL-EXECUTION-20260917/status_sync_g123_r1/report.md) 接受为 `accepted_local_contract`：三层 declaration schema 与 candidate/source metadata contract 已有本地软件复放，G3 source bytes/authority 仍 `terminal_deferred`。T0、parent binding、T1/T2、UP2-01 总任务及所有数值/物理/工程门仍未接受；R01–R10 不关闭、不增加 L4 数量。DAG 可按实际技术依赖版本化修改，39 不是硬性要求。
+当前索引同步基线 HEAD 为 `348b061`（`348b0611b9c8afd20bab0fb706528733c3fa0d7d`）；后续提交会再刷新本索引。下列记录是静态、合同或屏幕记录，不是完成百分比；不代表相应 UP 标签、R01–R10 或 parent goal 已关闭：
+
+| 记录 | 提交 | 状态上限 |
+|---|---|---|
+| T0 LocalV1 | `87f0263` | committed |
+| T0 authority recheck | `a7b6362` | static 125/125；R12 `performance_gate_timeout`，0/25；`NO-GO`，T1 not started |
+| UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
+| UP3 composition solve plan | `a1ad8cc` | 161/161 `contract_only` |
+| UP4 SHIR | `5d9d651` | 547/547 `prepared_not_measured` |
+| UP4 engineering bridge | `5ea78c0` | 189/189 `contract_only` |
+| UP5 conditional egraph | `cd52ee3` | `contract_only` conditional egraph；不关闭标签 |
+| UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
+| UP6 final ledger | `67a4e87` | 123/123 `contract_only`；no final authority |
+| UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+
+T0 authority recheck 因 R12 `performance_gate_timeout` 为 `NO-GO`，T1 尚未开始。上述记录不提供 provider/physics Julia/DESC runtime credit、物理、工程或 final authority 信用；本波次 focused Julia contract tests 已运行，仅作合同证据。`R01–R10` 仍 `pending`，`L4=0`，parent goal 仍 open，UP labels 未由这些 receipts 关闭。清理备注：五个未跟踪 `pyc` 已移除；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片、未跟踪实现和未完成的数值/物理/工程门不得提前写成完成。
 
 ## 5. 状态、历史和档案
 

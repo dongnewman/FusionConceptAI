@@ -1,18 +1,48 @@
 # FusionConceptAI Runtime V4 current progress index
 
-Last updated: 2026-09-13
+Last updated: 2026-09-18 (index sync at `348b061`; subsequent commits require refresh)
 
-The full spatial implementation is promoted and its first complete declared
-execution is recorded in `runs/spatial_chain_20260912_r1`. This supersedes the
-interrupted preflight handoff. The reduced milestone `51b5540` remains historical
-and is not treated as spatial evidence.
+The following spatial material is a historical milestone snapshot, not the
+current repository execution state. Its first complete declared execution is
+recorded in `runs/spatial_chain_20260912_r1`; the interrupted preflight handoff
+was superseded within that historical snapshot. The reduced milestone `51b5540`
+remains historical and is not treated as spatial evidence.
 
-Source implementation was pushed at
+Historical source implementation was pushed at
 `c2352f2943a9c4477144d8b5c9e79a00c371b6a8`; resumable whole-stage closeout and
 independent manifest audit were pushed at
 `91dc908dbcbcf7761a8984cbba2b68d4435805a6`.
 
-## Current spatial-candidate execution
+## Current repository status (2026-09-18)
+
+The current index baseline is HEAD `348b061`
+(`348b0611b9c8afd20bab0fb706528733c3fa0d7d`); subsequent commits require a
+fresh index sync. The entries below are static/contract/screen records, not
+completion percentages, and do not close their UP labels, R01–R10, or the open
+parent goal:
+
+| Record | Commit | Status ceiling |
+|---|---|---|
+| T0 LocalV1 | `87f0263` | committed |
+| T0 authority recheck | `a7b6362` | static 125/125; R12 `performance_gate_timeout`, 0/25; `NO-GO`, T1 not started |
+| UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
+| UP3 composition solve plan | `a1ad8cc` | 161/161 `contract_only` |
+| UP4 SHIR | `5d9d651` | 547/547 `prepared_not_measured` |
+| UP4 engineering bridge | `5ea78c0` | 189/189 `contract_only` |
+| UP5 conditional egraph | `cd52ee3` | `contract_only` conditional egraph; label not closed |
+| UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
+| UP6 final ledger | `67a4e87` | 123/123 `contract_only`; no final authority |
+| UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+
+The authority recheck is `NO-GO` because R12 timed out; T1 has not started.
+These records carry no provider/physics Julia/DESC runtime credit, physical,
+engineering, or final-authority credit; focused Julia contract tests ran for
+contract evidence only. `R01–R10` remain `pending`, `L4=0`, and the parent goal
+is open. Five untracked `pyc` files were removed during cleanup; dirty `runs`,
+`tmp`, evidence, and protected state were preserved. Unrun slices and
+untracked implementations must not be reported as complete.
+
+## Historical spatial-candidate execution (2026-09-13)
 
 Parent candidate: `7b44ba518eb7e7fdede814c1fccb94bd540f41c8b5e4fd3130e6971465c35548`.
 Spatial candidate: `3de9cf49553e4f2ceaa0aa93330388f8b5c740f1706df9352a71229fe459502e`.
@@ -93,7 +123,7 @@ are not the current candidate's engineering, validation, or whole-device evidenc
 | scoped simplest feasible-device search | search infrastructure exists | not admissible at physical-device level | zero L4 credible candidates; closure path incomplete |
 | W23 bounded typed G1 generation slice | additive 0D screen-only search-mechanics loop; see `docs/implementation/runtime_v4_algebraic_generation_slice.md` | focused 30/30; scoped 59/59; archive 35/35; independent runner r4 and full package entrypoint exit 0 in separate runs, seed plus two distinct AST descendants, exact typed feedback and queue/archive reimport; package entrypoint does not include W23 opt-in test | Not fusion-physics discovery: no G2/G3 generation, spatial solver feedback, measurement, net electricity, originality or L4 candidate; R08 and R01–R10 remain unaccepted |
 
-## Active chain-unblocking queue
+## Historical spatial follow-up queue (not the current contract-slice queue)
 
 1. Diagnose the four spatial iteration-limit stops using the persisted sparse-QR,
    line-search, block-residual and accepted-update histories. Any state-changing
@@ -113,7 +143,7 @@ Adding semantic G1/G2/G3 declarations changes identity. A missing implementation
 for already-owned declarations can preserve identity; old-candidate receipts
 must never be attached to a changed candidate. No legacy authority/family routing.
 
-## Protected working state and reproducibility
+## Historical spatial protected working state and reproducibility
 
 The initial modification in `test/runtime_v4_validation_uq_execution_request_tests.jl`
 and unrelated untracked prototypes/reports are protected and excluded from this
@@ -125,7 +155,7 @@ artifacts remain local. Their manifest records command/arguments, recovery ledge
 checkpoint identities, external raw dependencies, source, Project/Manifest,
 executable, environment and output hashes.
 
-## Current authority statement
+## Historical spatial milestone authority statement
 
 `p5_ready=false`; credible physical device candidates: **0**. This milestone
 executes the complete declared spatial model for four cases and the actual
