@@ -28,3 +28,20 @@ wire integrity. A foreign identity carrying a missing wire therefore remains
 ids are opaque identities: `/a/../b` is not normalized to `/b`. Combining an
 id from one reference with a version from another is likewise rejected rather
 than treated as a candidate alias.
+
+## R1 runtime receipt
+
+The serialized R1 attempt is preserved byte-for-byte under
+`local_profile_r1_runtime/` (the original preflight directory remains intact).
+It exited `1` after `2.1441962` seconds and is classified as
+`program_exception`: the package load reached `CanonicalJSON.jl` before the
+`ConservationAccountRefV1` definition (`UndefVarError: `ConservationAccountRefV1`
+not defined`). All `19/19` protected files were unchanged and both postflight
+observations had no Julia/DESC residual process. R1 grants no runtime, T1, or
+UP1 credit.
+
+The minimal test-loader repair uses `using FusionConceptAI`, includes the two
+V2 definition files into the package module, and keeps the test definition-only;
+it does not manually include `CanonicalJSON.jl` or `PhysicalTypes.jl`. Only the
+Python static/oracle checks and `git diff --check` are run after this repair;
+Julia is not rerun.

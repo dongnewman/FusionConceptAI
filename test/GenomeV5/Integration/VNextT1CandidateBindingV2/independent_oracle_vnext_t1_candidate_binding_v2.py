@@ -71,6 +71,16 @@ def main() -> int:
         "receipt_hash_golden": receipt_hash == fixture["bound_receipt_hash"],
         "receipt_wire_separate": receipt_hash != wire_hash,
         "no_runtime_credit": fixture["accepted"] is False and fixture["runtime"] == "not_run",
+        "r1_failure_receipt": fixture["r1_runtime"] == {
+            "classification": "program_exception",
+            "exit_code": 1,
+            "duration_seconds": 2.1441962,
+            "exception": "UndefVarError: `ConservationAccountRefV1` not defined",
+            "protected_files_unchanged": "19/19",
+            "postflight_julia_desc_processes": [0, 0],
+            "credit": "none",
+            "evidence": "local_profile_r1_runtime",
+        },
     }
     failed = [name for name, ok in checks.items() if not ok]
     print(json.dumps({"status": "FAIL" if failed else "PASS", "failed": failed,

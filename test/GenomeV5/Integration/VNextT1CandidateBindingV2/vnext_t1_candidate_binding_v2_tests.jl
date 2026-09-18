@@ -1,14 +1,20 @@
 using Test
 using SHA
 using Base64
+using FusionConceptAI
 
-module _V2_BINDING
-using SHA
-using Base64
-include(joinpath(@__DIR__, "..", "..", "..", "..", "src", "IR", "PhysicalTypes.jl"))
-include(joinpath(@__DIR__, "..", "..", "..", "..", "src", "Canonical", "CanonicalJSON.jl"))
-include(joinpath(@__DIR__, "..", "..", "..", "..", "src", "Contracts", "VNextT1CanonicalBytesV2.jl"))
-include(joinpath(@__DIR__, "..", "..", "..", "..", "src", "Contracts", "VNextT1CandidateBindingV2.jl"))
+const _V2_BINDING_ROOT = joinpath(@__DIR__, "..", "..", "..", "..")
+const _V2_BINDING = FusionConceptAI
+
+# Additive definition-only loading: these files remain outside the shared
+# package entrypoint and do not register or connect the V2 binding path.
+if !isdefined(_V2_BINDING, :VNextT1CanonicalBytesV2)
+    Base.include(FusionConceptAI, joinpath(_V2_BINDING_ROOT, "src", "Contracts",
+        "VNextT1CanonicalBytesV2.jl"))
+end
+if !isdefined(_V2_BINDING, :VNextT1CandidateBindingV2)
+    Base.include(FusionConceptAI, joinpath(_V2_BINDING_ROOT, "src", "Contracts",
+        "VNextT1CandidateBindingV2.jl"))
 end
 
 const B = _V2_BINDING

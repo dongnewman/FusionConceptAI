@@ -1,9 +1,24 @@
 {
   "schema": "FusionConceptAI/ImplementationManifest",
   "slice": "UP1-04A-VNEXT-T1-CANDIDATE-BINDING-V2",
-  "status": "static_contract_slice",
+  "status": "r1_program_exception_repaired_static_only",
   "integration": "not_connected",
   "runtime": "not_run",
+  "r1_runtime": {
+    "accepted": false,
+    "classification": "program_exception",
+    "exception": "UndefVarError: `ConservationAccountRefV1` not defined",
+    "exit_code": 1,
+    "duration_seconds": 2.1441962,
+    "protected_files_unchanged": "19/19",
+    "postflight_julia_desc_processes": [0, 0],
+    "evidence": "local_profile_r1_runtime",
+    "credit": "none"
+  },
+  "post_r1_validation": {
+    "julia_rerun": false,
+    "scope": "python_static_oracle_and_diffcheck_only"
+  },
   "accepted": false,
   "claim_ceiling": "contract_only",
   "source_files": ["src/Contracts/VNextT1CandidateBindingV2.jl"],

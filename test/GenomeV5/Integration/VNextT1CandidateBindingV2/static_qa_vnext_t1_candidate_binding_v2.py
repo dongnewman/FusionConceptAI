@@ -72,12 +72,29 @@ def main() -> int:
         "stable_replay_fields": all(x in test for x in (
             "VNEXT_T1_CANDIDATE_BINDING_V2_REPLAY", '" schema="', '" version="',
             '" status="', '" candidate_digest="', '" wire_hash="', '" receipt_hash="')),
+        "complete_package_load_graph": all(x in test for x in (
+            "using FusionConceptAI", "const _V2_BINDING = FusionConceptAI",
+            "Base.include(FusionConceptAI",
+            '"VNextT1CanonicalBytesV2.jl"', '"VNextT1CandidateBindingV2.jl"'))
+            and all(token not in test for token in (
+                '"src", "IR", "PhysicalTypes.jl"',
+                '"src", "Canonical", "CanonicalJSON.jl"')),
+        "duplicate_definition_guard": all(x in test for x in (
+            "isdefined(_V2_BINDING, :VNextT1CanonicalBytesV2)",
+            "isdefined(_V2_BINDING, :VNextT1CandidateBindingV2)")),
         "receipt_golden": fixture["bound_receipt_hash"] ==
             "f03d93a582a6f4f48443bbe68f7eced2c16933d43556b43a48565bcf6b34ecc7",
         "no_v1_package_construction": "CandidateStatePackageV5Next" not in source and "VNextT1CanonicalBytesV1" not in source,
         "independent_oracle": all(x in oracle for x in ("hashlib", "fixture.json", "does not import Julia")),
         "fixture_boundary": fixture["accepted"] is False and fixture["claim_ceiling"] == "contract_only"
             and fixture["integration"] == "not_connected" and fixture["runtime"] == "not_run",
+        "r1_failure_recorded": fixture["r1_runtime"]["classification"] == "program_exception"
+            and fixture["r1_runtime"]["exit_code"] == 1
+            and fixture["r1_runtime"]["duration_seconds"] == 2.1441962
+            and "ConservationAccountRefV1" in fixture["r1_runtime"]["exception"]
+            and fixture["r1_runtime"]["protected_files_unchanged"] == "19/19"
+            and fixture["r1_runtime"]["postflight_julia_desc_processes"] == [0, 0]
+            and fixture["r1_runtime"]["credit"] == "none",
         "docs_present": all((DOCS / name).is_file() for name in ("README.md", "manifest.json", "report.md")),
         "protected_unchanged": all(unchanged(path, expected) for path, expected in PROTECTED.items()),
     }

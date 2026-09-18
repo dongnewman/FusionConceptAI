@@ -27,5 +27,15 @@
   "accepted": false,
   "claim_ceiling": "contract_only",
   "integration": "not_connected",
-  "runtime": "not_run"
+  "runtime": "not_run",
+  "r1_runtime": {
+    "classification": "program_exception",
+    "exit_code": 1,
+    "duration_seconds": 2.1441962,
+    "exception": "UndefVarError: `ConservationAccountRefV1` not defined",
+    "protected_files_unchanged": "19/19",
+    "postflight_julia_desc_processes": [0, 0],
+    "credit": "none",
+    "evidence": "local_profile_r1_runtime"
+  }
 }

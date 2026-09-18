@@ -19,3 +19,15 @@ classification matrix without importing Julia.
 No Julia or DESC process was started. Production integration, a verified-package
 adapter, independent Julia replay, T1 admission, and UP1 credit remain absent.
 The claim ceiling is `contract_only`, `accepted=false`.
+
+The first serialized R1 attempt is retained as a real runtime failure: exit 1
+after `2.1441962` seconds, `program_exception`, with
+`UndefVarError: `ConservationAccountRefV1` not defined`. Its `19/19` protected
+files were unchanged and both postflight process observations were zero; it
+grants no runtime/T1/UP1 credit. The lock and run receipt are copied
+byte-for-byte to `local_profile_r1_runtime/` without overwriting the preflight
+receipt. The test loader was then narrowed to `using FusionConceptAI` plus
+definition-only includes of the two V2 files; it does not manually include
+`CanonicalJSON.jl` or `PhysicalTypes.jl`. Post-repair validation is Python
+static QA, the independent oracle, and `git diff --check` only; Julia is not
+rerun.
