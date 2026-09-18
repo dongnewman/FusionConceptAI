@@ -60,3 +60,14 @@ The minimal R2 repair retains immutable test state by storing the four goldens
 in a NamedTuple and resolving the explicit `n<length>` property. Static QA now
 rejects the former Pair-tuple and payload-length-index forms. Only Python
 static/oracle checks were run after this repair; Julia was not rerun.
+
+The subsequent serialized R3 Julia process passed 77/77 assertions, exited 0
+after 155.2198949 seconds, used one start and no retry, preserved all 18
+protected files, and left no Julia/DESC process in either postflight
+observation. Its exact lock/run receipt is archived under
+`local_profile_r3_runtime/`. The large Vector produced the frozen raw and
+base64-text digests. This raises the evidence only to local definition-only
+runtime pass; V2 is still not connected, so T1 and UP1 remain incomplete.
+
+An independent replay script and exactly-once runner are frozen under
+`local_profile_r4_replay_preflight/`. R4 has not been executed.

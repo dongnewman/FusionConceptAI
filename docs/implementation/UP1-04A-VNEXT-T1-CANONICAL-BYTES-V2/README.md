@@ -24,8 +24,8 @@ is over the original bytes.
 
 ## Evidence boundary
 
-Static QA and an independent Python hashlib/base64 oracle remain the only
-passing checks for this slice. The serialized R1 Julia attempt started once and
+Static QA, an independent Python hashlib/base64 oracle, and the serialized R3
+local Julia process pass for this slice. The serialized R1 Julia attempt started once and
 ended as `program_exception` / exit 1 after 2.886777 seconds because the package
 project had not declared the Base64 standard-library dependency. It changed
 none of its 18 protected files and left no Julia/DESC process after either of
@@ -54,3 +54,12 @@ postflight observations. The byte-for-byte archive is
 `local_profile_r2_runtime/`; it grants no runtime or T1 credit. The test-only
 repair replaces that lookup with an immutable NamedTuple and explicit
 `n<length>` property resolution. No Julia rerun is claimed after this repair.
+
+The serialized R3 process then passed all 77/77 assertions with exit 0 after
+155.2198949 seconds. It started once without retry, changed none of 18
+protected files, and left zero Julia/DESC processes in both postflight
+observations. Its lock and run receipt are archived byte-for-byte in
+`local_profile_r3_runtime/`. This is local definition-only runtime evidence:
+V2 remains disconnected from production admission, and R3 grants no T1 or
+UP1 completion credit. An independent second-process replay is prepared but
+not run in `local_profile_r4_replay_preflight/`.
