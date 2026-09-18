@@ -100,6 +100,10 @@ end
     @test package.t0_gate.output_bytes.sha256 ==
         G._vnext_t1_sha(package.t0_gate.output_bytes.bytes)
     for declaration in package.declarations
+        # Regression guard: the T0 declaration has no contract_identity field;
+        # the factory result contract is joined through its factory receipt.
+        @test declaration.factory_receipt.factory_result.contract_ref ==
+            declaration.contract_identity.contract_ref
         @test declaration.source_bytes.sha256 ==
             G._vnext_t1_sha(declaration.source_bytes.bytes)
         @test declaration.declaration_bytes.sha256 ==

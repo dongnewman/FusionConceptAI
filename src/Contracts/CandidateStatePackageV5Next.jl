@@ -593,7 +593,7 @@ function _vnext_t1_validate_factory_result(result::VNextT0LocalFactoryResultV1,
     result.contract_ref == _vnext_t1_expected_contract_ref(
         declaration.layer, result.factory_api) ||
         throw(ArgumentError("factory result contract is not frozen"))
-    result.contract_ref == declaration.contract_identity.contract_ref ||
+    result.contract_ref == declaration.factory_receipt.factory_result.contract_ref ||
         throw(ArgumentError("factory result contract mismatch"))
     result.axes == _vnext_t1_expected_factory_axes(result) ||
         throw(ArgumentError("factory result layer axes mismatch"))

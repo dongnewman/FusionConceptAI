@@ -47,6 +47,8 @@ def main() -> int:
         "_vnext_t1_validate_feedback_order",
         "_vnext_t1_validate_no_legacy_receipt",
         "_vnext_t1_validate_factory_result",
+        "declaration.factory_receipt.factory_result.contract_ref",
+        "factory result contract mismatch",
         "_vnext_t1_validate_present_child_body",
         "_vnext_t1_label_erased_identity",
         "status=:prepared_not_executed",
@@ -56,6 +58,11 @@ def main() -> int:
     )
     for needle in required_contract:
         require(contract, needle, "contract feature", checks)
+    checks.append("factory result contract projection path")
+    if "declaration.contract_identity.contract_ref" in contract:
+        raise AssertionError(
+            "factory result validator must not read contract_identity from the T0 declaration"
+        )
 
     required_admission = (
         "VNextT1AdmissionInputV1",

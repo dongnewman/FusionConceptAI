@@ -56,3 +56,22 @@ pwsh -NoProfile -File .\docs\implementation\UP1-04A-VNEXT-T1\local_profile_r2_pr
 
 The profile remains `status=preflight_only`, `accepted=false`, and
 `claim_ceiling=contract_only`. No T1 runtime or T2 credit is claimed.
+
+## R2 runtime failure receipt
+
+The single R2 execution was captured under
+`run_20260918_163305_215_7d1b9b3871ad405fa9ba9ea0d52e16ef/`. It is a failed
+diagnostic receipt, not acceptance evidence:
+
+| Result | Value |
+|---|---|
+| Julia exit | `1` |
+| Test summary | 11 pass / 3 fail / 14 error |
+| Failure class | `core program_exception` |
+| Root cause | projection bug: T1 validator read `declaration.contract_identity.contract_ref`, but the T0 declaration has no such field; the contract is available at `declaration.factory_receipt.factory_result.contract_ref` |
+| Protected files | 15/15 unchanged |
+| Retry | none; exactly one start |
+| Credit | no T1/T2/UP1 credit; `accepted=false`, `claim_ceiling=contract_only` |
+
+The source/test correction is prepared after this receipt. The R2 receipt
+remains immutable evidence of the pre-fix failure and is not rewritten.
