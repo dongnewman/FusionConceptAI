@@ -1,0 +1,48 @@
+{
+  "revision": "agent_local_r10_runtime",
+  "task": "UP2-EXEC-01",
+  "phase": "post-run",
+  "start_utc": "2026-09-18T04:32:19.8653267Z",
+  "end_utc": "2026-09-18T04:32:24.0019170Z",
+  "host_pid": 45980,
+  "host_session_id": 1,
+  "julia_pid": "unavailable_from_direct_foreground_invocation",
+  "command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl .",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "exit_code": 0,
+  "test_summary": {
+    "passed": 68,
+    "failed": 0,
+    "errored": 0,
+    "broken": 0,
+    "total": 68
+  },
+  "process_check_after": [],
+  "hashes_pre": {
+    "src/RuntimeV4/ExecutableDiffusionTransferCompositionV1.jl": "171ac2a4629f76023d18a6746744a20c85cfb244938d227325306c5dddfcb00b",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl": "601a002dd21e506c63c9bac7103c23cefecb6c29d4307f2e6210662ff4cab866",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_fixture.json": "d4ff1a0add19451948973011341e3f3def13be5101e0c8150501d349438e8b17",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_oracle.py": "a7af9dcac99403767ebe5719c86b6e2e1e2d5789c16ae3dee495fd8039994f21",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/static_qa_up2_executable_diffusion_transfer_composition_v1.py": "603ded8ea1aca8cf7e75dc8a75f80166a98712b44766c86e13a8f6f7d3341bde"
+  },
+  "hashes_post": {
+    "src/RuntimeV4/ExecutableDiffusionTransferCompositionV1.jl": "171ac2a4629f76023d18a6746744a20c85cfb244938d227325306c5dddfcb00b",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl": "601a002dd21e506c63c9bac7103c23cefecb6c29d4307f2e6210662ff4cab866",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_fixture.json": "d4ff1a0add19451948973011341e3f3def13be5101e0c8150501d349438e8b17",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_oracle.py": "a7af9dcac99403767ebe5719c86b6e2e1e2d5789c16ae3dee495fd8039994f21",
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/static_qa_up2_executable_diffusion_transfer_composition_v1.py": "603ded8ea1aca8cf7e75dc8a75f80166a98712b44766c86e13a8f6f7d3341bde"
+  },
+  "hashes_unchanged": true,
+  "streams": {
+    "stdout": {"path": "stdout.raw", "bytes": 172, "sha256": "c15a892675b5c56627e43ad715cdb8e6dd2f33ed3ba12f25ec8fce665b0f5e6c"},
+    "stderr": {"path": "stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "prior_failure_lineage": "agent_local_r8_runtime: 32 passed, 16 failed, 7 errored, exit 1; preserved unchanged",
+  "strict_boundary": [
+    "claim_ceiling=manufactured_numerical_screen",
+    "evidence_scope=screen_only",
+    "accepted=false",
+    "no UP/R/L4 credit",
+    "no physics or engineering credit"
+  ]
+}

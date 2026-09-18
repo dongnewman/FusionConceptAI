@@ -1,0 +1,92 @@
+{
+  "schema": "ExecutableDiffusionTransferCompositionAgentLocalManifestV6",
+  "task": "UP2-EXEC-01",
+  "revision": "agent_local_r6",
+  "status": "runtime_error",
+  "claim_ceiling": "manufactured_numerical_screen",
+  "evidence_scope": "screen_only",
+  "accepted": false,
+  "julia_executed": true,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_invocation_count": 0,
+  "command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl .",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "runtime": {
+    "julia_version": "1.10.5",
+    "start_utc": "2026-09-18T02:58:24.6871360Z",
+    "end_utc": "2026-09-18T02:58:26.8406584Z",
+    "elapsed_seconds": 2.1535224,
+    "exit_code": 1,
+    "host_pid": 48428,
+    "julia_pid": "unavailable_from_direct_foreground_invocation"
+  },
+  "test_summary": {
+    "passed": 0,
+    "failed": 0,
+    "errored": 1,
+    "broken": 0,
+    "total": 1
+  },
+  "failure": {
+    "exception": "StackOverflowError",
+    "source": "src/RuntimeV4/ExecutableDiffusionTransferCompositionV1.jl",
+    "recursive_lines": [206, 207],
+    "detail": "ExecutableTopologyTransferV1 recursively dispatches from the transfer_ref normalization call while constructing the manufactured case"
+  },
+  "preflight": {
+    "julia_processes": 0,
+    "desc_processes": 0,
+    "host_pid": 52600,
+    "utc": "2026-09-18T02:58:03.5844571Z"
+  },
+  "postflight": {
+    "julia_processes": 0,
+    "desc_processes": 0,
+    "hashes_match_preflight": true,
+    "utc": "2026-09-18T02:58:51.0197687Z"
+  },
+  "frozen_hashes": {
+    "src/RuntimeV4/ExecutableDiffusionTransferCompositionV1.jl": {
+      "pre": "2b42a2673d03072d2fe0ff72a6110ea5881538500776bd1a916594e43056574f",
+      "post": "2b42a2673d03072d2fe0ff72a6110ea5881538500776bd1a916594e43056574f"
+    },
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl": {
+      "pre": "83977671e088bb2f68d45d2ec76eefda21b845356e1edac60605022dfc831d9f",
+      "post": "83977671e088bb2f68d45d2ec76eefda21b845356e1edac60605022dfc831d9f"
+    },
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_fixture.json": {
+      "pre": "d4ff1a0add19451948973011341e3f3def13be5101e0c8150501d349438e8b17",
+      "post": "d4ff1a0add19451948973011341e3f3def13be5101e0c8150501d349438e8b17"
+    },
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_oracle.py": {
+      "pre": "a7af9dcac99403767ebe5719c86b6e2e1e2d5789c16ae3dee495fd8039994f21",
+      "post": "a7af9dcac99403767ebe5719c86b6e2e1e2d5789c16ae3dee495fd8039994f21"
+    },
+    "test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/static_qa_up2_executable_diffusion_transfer_composition_v1.py": {
+      "pre": "e308fd7346a2c55bba220c22e79f39338e95e592026db341755e2e93d6130c92",
+      "post": "e308fd7346a2c55bba220c22e79f39338e95e592026db341755e2e93d6130c92"
+    }
+  },
+  "raw_artifacts": {
+    "stdout": {
+      "path": "stdout.raw",
+      "sha256": "58224523be6357ea1bd77cadaed88ad5b1f4d19ed051f6dbd19968bab74e1ad5"
+    },
+    "stderr": {
+      "path": "stderr.raw",
+      "sha256": "2eed8db2e3552272211aea75c38891c4b7e907d7d90fd75985c051b54ca5e00b"
+    },
+    "source_temp_directory": "C:\\Users\\Newman\\AppData\\Local\\Temp\\up2_exec_r6_fa1d9c3137b54089af0f94af848d2342"
+  },
+  "strict_boundary": [
+    "manufactured_numerical_screen",
+    "screen_only",
+    "accepted=false",
+    "no UP/R/L4 credit",
+    "no physics or engineering credit"
+  ],
+  "no_product_or_test_edits": true,
+  "no_retry_or_relaunch": true
+}

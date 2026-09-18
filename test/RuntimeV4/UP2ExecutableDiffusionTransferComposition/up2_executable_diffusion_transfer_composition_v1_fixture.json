@@ -1,0 +1,62 @@
+{
+  "schema": "fusionconceptai:runtime-v4:executable-diffusion-transfer-composition-v1",
+  "revision": "up2-exec-01",
+  "claim_ceiling": "manufactured_numerical_screen",
+  "evidence_scope": "screen_only",
+  "accepted": false,
+  "candidate_mission_scenario": [
+    "candidate:manufactured-up2-exec-01",
+    "mission:manufactured-screen",
+    "scenario:two-dof-diffusion"
+  ],
+  "source_declarations": ["g1", "g2", "g3"],
+  "topology": {
+    "old_ref": "topology:old",
+    "new_ref": "topology:new",
+    "space_ref": "space:manufactured",
+    "dof_count": 2,
+    "overlap": [0.0, 1.0],
+    "transfer_weights": [0.25, 0.75],
+    "old_state": [0.25, 0.75],
+    "transferred_new_state": [0.625, 0.625],
+    "old_state_semantics": "pre_transfer",
+    "new_state_semantics": "expected_post_transfer"
+  },
+  "positive": {
+    "k_faces": [1.0, 2.0, 1.5],
+    "source": [1.0, -0.5],
+    "boundary": [0.0, 1.0],
+    "matrix": [[27.0, -18.0], [-18.0, 31.5]],
+    "rhs": [1.0, 13.0],
+    "solution": [0.5042735042735043, 0.7008547008547008],
+    "status": "ready",
+    "code": "joint_linear_solved",
+    "provider_call_count": 0,
+    "mesh_call_count": 0,
+    "solver_invocation_count": 1
+  },
+  "negative_expectations": {
+    "binding_malformed": {"status": "fail_closed", "code": "binding_malformed"},
+    "binding_mismatch": {"status": "fail_closed", "code": "binding_mismatch"},
+    "topology_identity_mismatch": {"status": "fail_closed", "code": "topology_identity_mismatch"},
+    "equation_unit_mismatch": {"status": "fail_closed", "code": "equation_unit_mismatch"},
+    "duplicate_producer": {"status": "fail_closed", "code": "duplicate_producer"},
+    "unit_mismatch": {"status": "fail_closed", "code": "unit_mismatch"},
+    "missing_closure": {"status": "fail_closed", "code": "missing_closure"},
+    "invalid_overlap": {"status": "terminal_deferred", "code": "invalid_overlap"},
+    "singular_matrix": {"status": "numerical_fail", "code": "singular_matrix"},
+    "nonfinite_derived": {"status": "numerical_fail", "code": "nonfinite_derived"}
+  },
+  "invariance": {
+    "label_erasure": true,
+    "component_permutation": true,
+    "assembly_hash_drivers": ["K", "source", "boundary"]
+    ,"transfer_receipt_drivers": ["old_state", "new_state", "overlap", "weights"]
+  },
+  "execution": {
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "desc_executed": false,
+    "julia_executed": false
+  }
+}

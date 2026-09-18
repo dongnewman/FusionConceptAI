@@ -1,0 +1,39 @@
+{
+  "schema": "ExecutableDiffusionTransferCompositionAgentLocalRuntimeManifestV10",
+  "task": "UP2-EXEC-01",
+  "revision": "agent_local_r10_runtime",
+  "status": "pass_limited",
+  "claim_ceiling": "manufactured_numerical_screen",
+  "evidence_scope": "screen_only",
+  "accepted": false,
+  "julia_executed": true,
+  "desc_executed": false,
+  "direct_foreground": true,
+  "run_count": 1,
+  "command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP2ExecutableDiffusionTransferComposition/up2_executable_diffusion_transfer_composition_v1_tests.jl .",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "julia": {
+    "path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "version": "1.10.5",
+    "pid": "unavailable_from_direct_foreground_invocation"
+  },
+  "runtime": {
+    "host_pid": 45980,
+    "host_session_id": 1,
+    "utc_start": "2026-09-18T04:32:19.8653267Z",
+    "utc_end": "2026-09-18T04:32:24.0019170Z",
+    "exit_code": 0
+  },
+  "test_summary": {"passed": 68, "failed": 0, "errored": 0, "broken": 0, "total": 68},
+  "process_guard": {"julia_before": 0, "desc_before": 0, "julia_after": 0, "desc_after": 0},
+  "hashes_unchanged": true,
+  "raw_artifacts": {
+    "stdout": {"path": "stdout.raw", "bytes": 172, "sha256": "c15a892675b5c56627e43ad715cdb8e6dd2f33ed3ba12f25ec8fce665b0f5e6c"},
+    "stderr": {"path": "stderr.raw", "bytes": 0, "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}
+  },
+  "prior_runtime_artifact": "agent_local_r8_runtime/stdout.raw",
+  "prior_runtime_result": {"passed": 32, "failed": 16, "errored": 7, "broken": 0, "exit_code": 1},
+  "no_source_or_test_edits": true,
+  "no_relaunch": true,
+  "no_desc_or_physics_or_engineering_claim": true
+}

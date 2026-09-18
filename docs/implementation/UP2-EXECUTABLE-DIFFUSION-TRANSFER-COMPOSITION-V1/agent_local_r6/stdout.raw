@@ -1,0 +1,44 @@
+UP2-EXEC-01 manufactured diffusion/transfer/composition screen R2: Error During Test at D:\006-Programing\LMC\FusionConceptAI\test\RuntimeV4\UP2ExecutableDiffusionTransferComposition\up2_executable_diffusion_transfer_composition_v1_tests.jl:15
+  Got exception outside of a @test
+  StackOverflowError:
+  Stacktrace:
+    [1] _nextind_str(s::SubString{String}, i::Int64)
+      @ Base .\strings\string.jl:174
+    [2] nextind(s::SubString{String}, i::Int64)
+      @ Base .\strings\substring.jl:104
+    [3] iterate (repeats 2 times)
+      @ .\strings\basic.jl:579 [inlined]
+    [4] _zip_iterate_some
+      @ .\iterators.jl:428 [inlined]
+    [5] _zip_iterate_all
+      @ .\iterators.jl:420 [inlined]
+    [6] iterate
+      @ .\iterators.jl:410 [inlined]
+    [7] iterate
+      @ .\generator.jl:44 [inlined]
+    [8] lstrip(f::typeof(isspace), s::SubString{String})
+      @ Base .\strings\util.jl:365
+    [9] lstrip
+      @ .\strings\util.jl:370 [inlined]
+   [10] strip
+      @ .\strings\util.jl:433 [inlined]
+   [11] _edc_text(x::SubString{String}, field::String)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:28
+   [12] ExecutableTopologyTransferV1(old::ExecutableTopologyIdentityV1, new_topology::ExecutableTopologyIdentityV1, overlap::Tuple{Float64, Float64}, weights::Tuple{Float64, Float64}, transfer_ref::SubString{String})
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:206
+   [13] ExecutableTopologyTransferV1(old::ExecutableTopologyIdentityV1, new_topology::ExecutableTopologyIdentityV1, overlap::Tuple{Float64, Float64}, weights::Tuple{Float64, Float64}, transfer_ref::SubString{String}) (repeats 32528 times)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:207
+   [14] ExecutableTopologyTransferV1(old::ExecutableTopologyIdentityV1, new_topology::ExecutableTopologyIdentityV1, overlap::Tuple{Float64, Float64}, weights::Tuple{Float64, Float64}, transfer_ref::String)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:207
+   [15] manufactured_executable_diffusion_case(; candidate_ref::String, mission_ref::String, scenario_ref::String, inputs::ExecutableDiffusionInputsV1, plan::Nothing, transfer::Nothing)
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:584
+   [16] manufactured_executable_diffusion_case()
+      @ Main D:\006-Programing\LMC\FusionConceptAI\src\RuntimeV4\ExecutableDiffusionTransferCompositionV1.jl:576
+   [17] include(mod::Module, _path::String)
+      @ Base .\Base.jl:495
+   [18] exec_options(opts::Base.JLOptions)
+      @ Base .\client.jl:318
+   [19] _start()
+      @ Base .\client.jl:552
+Test Summary:                                                     | Error  Total  Time
+UP2-EXEC-01 manufactured diffusion/transfer/composition screen R2 |     1      1  1.0s
