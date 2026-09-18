@@ -1,6 +1,6 @@
 # FusionConceptAI Runtime V4 current progress index
 
-Last updated: 2026-09-19 (index sync at `f418c6e`; subsequent commits require refresh)
+Last updated: 2026-09-19 (index sync at `096752b`; subsequent commits require refresh)
 
 The following spatial material is a historical milestone snapshot, not the
 current repository execution state. Its first complete declared execution is
@@ -15,7 +15,7 @@ independent manifest audit were pushed at
 
 ## Current repository status (2026-09-19)
 
-The current index baseline is HEAD `f418c6e`;
+The current index baseline is HEAD `096752b`;
 subsequent commits require a fresh index sync. The entries below are static/contract/screen records, not
 completion percentages, and do not close their UP labels, R01–R10, or the open
 parent goal:
@@ -29,6 +29,7 @@ parent goal:
 | T1 focused runtime | `d37ef44` / R1 | `program_exception`; 2 pass / 1 error; no retry; no T1/T2/UP1 credit |
 | T1 focused runtime | `f5c9328` / R2 | `fail_closed` projection; 11 pass / 3 fail / 14 error; 15/15 unchanged; no retry; no T1/T2/UP1 credit |
 | T1 focused runtime | `f418c6e` / R3 | `fail_closed` projection; 11 pass / 3 fail / 14 error; 15/15 unchanged; no retry; bare catch did not expose underlying exception; no T1/T2/UP1 credit |
+| T1 candidate-binding V2 | `096752b` / R2/R3 | R2 `24/24`, exit 0, `3.425417s`; R3 `24/24`, exit 0, `3.3223064s`, `replayExact`; protected unchanged (`19/19`, `35/35`); zero residual; `accepted=false`, `contract_only`, integration `not_connected`; no T1/T2/UP1 credit |
 | Spatial composition | `e5e44bd` / R9 | `54/54`; `screen_only`; `accepted=false`; no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`; package `preflight_only`; `screen_only`; no formal credits |
 | UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
