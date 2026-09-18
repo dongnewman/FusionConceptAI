@@ -1,0 +1,60 @@
+{
+  "schema": "fusionconceptai:runtime-v4:declared-diffusion-compile-execute-v1",
+  "revision": "up2-declared-diffusion-compile-execute-v1-r1",
+  "expression_subset": "diagonal_affine_static",
+  "dimension": 1,
+  "field_count": 1,
+  "candidate_ref": "local://candidate/up1-04a",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "execution": {
+    "julia_executed": false,
+    "desc_executed": false,
+    "provider_calls": 0,
+    "mesh_calls": 0,
+    "solver_calls": 2,
+    "formal_physical_evidence": false
+  },
+  "positive": {
+    "compile_status": "ready",
+    "lowering_status": "ready",
+    "composition_status": "terminal_deferred",
+    "numerical_status": "ready",
+    "aggregate_status": "terminal_deferred",
+    "matrix": [[9.1125, -4.6125], [-4.6125, 9.3375]],
+    "rhs": [1.1666666666666667, 2.666666666666667],
+    "solution": [0.36346540908222763, 0.4651299454948799],
+    "spatial_holdout": {
+      "matrix": [[13.333333333333332, -5.333333333333333, 0.0, 0.0], [-5.333333333333333, 12.19047619047619, -6.857142857142858, 0.0], [0.0, -6.857142857142858, 11.03105590062112, -4.173913043478261], [0.0, 0.0, -4.173913043478261, 10.57391304347826]],
+      "rhs": [0.25, 0.0, -0.125, 6.5875],
+      "solution": [0.17006478658536586, 0.3782869664634147, 0.5402375508130082, 0.8362471417682927],
+      "residual_norm": 0.0,
+      "transfer_old_state": [0.25, 0.75],
+      "transfer_new_state": [0.25, 0.25, 0.75, 0.75],
+      "transfer_conservation_residual": 0.0,
+      "semantic_plan_hash_invariant": true
+    },
+    "residual_tolerance": 1e-12
+  },
+  "semantic_invariance": {
+    "component_order": true,
+    "component_labels": true,
+    "port_labels": true,
+    "geometry_labels": true,
+    "expected": "same semantic plan/result hashes"
+  },
+  "negative_gates": {
+    "candidate_mismatch": ["fail_closed", "candidate_mismatch"],
+    "missing_boundary": ["fail_closed", "missing_boundary"],
+    "pure_neumann": ["numerical_fail", "pure_neumann_singular"]
+  },
+  "negative_dispatched": 3,
+  "negative_pending": [
+    "source_hash_mismatch", "declaration_hash_mismatch", "body_hash_mismatch",
+    "bundle_hash_mismatch", "units_dimension_mismatch", "duplicate_edge",
+    "ambiguous_edge", "missing_return", "ledger_contradiction",
+    "unsupported_nonlinear", "unsupported_time", "unsupported_multifield",
+    "unsupported_anisotropic", "singular_matrix", "nonfinite_derived",
+    "residual_failure"
+  ]
+}
