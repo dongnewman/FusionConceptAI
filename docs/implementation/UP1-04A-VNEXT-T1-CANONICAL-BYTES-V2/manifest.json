@@ -1,13 +1,31 @@
 {
   "schema": "FusionConceptAI/ImplementationManifest",
   "slice": "UP1-04A-VNEXT-T1-CANONICAL-BYTES-V2",
-  "status": "static_checked_not_runtime",
+  "status": "r1_program_exception_dependency_repaired_not_rerun",
   "integration": "not_connected",
   "production_admission": "unchanged_v1",
   "runtime": {
-    "julia": "not_run",
+    "julia": "r1_exit_1_program_exception",
     "desc": "not_run",
     "heavy_lane": "not_applicable"
+  },
+  "r1_runtime": {
+    "accepted": false,
+    "classification": "program_exception",
+    "exit_code": 1,
+    "duration_seconds": 2.886777,
+    "start_count": 1,
+    "automatic_retry": false,
+    "protected_files_unchanged": "18/18",
+    "postflight_julia_desc_processes": [0, 0],
+    "evidence": "local_profile_r1_runtime",
+    "credit": "none"
+  },
+  "dependency_repair": {
+    "project_dependency": "Base64",
+    "uuid": "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f",
+    "manifest_resolved": true,
+    "julia_test_rerun": false
   },
   "contract": {
     "schema": "GenomeV5/Contracts/VNextT1CanonicalBytes",

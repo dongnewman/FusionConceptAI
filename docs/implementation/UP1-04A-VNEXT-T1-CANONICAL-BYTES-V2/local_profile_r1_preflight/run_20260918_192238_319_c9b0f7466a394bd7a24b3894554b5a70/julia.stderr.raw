@@ -1,0 +1,26 @@
+ERROR: LoadError: ArgumentError: Package FusionConceptAI does not have Base64 in its dependencies:
+- You may have a partially installed environment. Try `Pkg.instantiate()`
+  to ensure all packages in the environment are installed.
+- Or, if you have FusionConceptAI checked out for development and have
+  added Base64 as a dependency but haven't updated your primary
+  environment's manifest file, try `Pkg.resolve()`.
+- Otherwise you may need to report an issue with FusionConceptAI
+Stacktrace:
+ [1] macro expansion
+   @ .\loading.jl:1776 [inlined]
+ [2] macro expansion
+   @ .\lock.jl:267 [inlined]
+ [3] __require(into::Module, mod::Symbol)
+   @ Base .\loading.jl:1753
+ [4] #invoke_in_world#3
+   @ .\essentials.jl:926 [inlined]
+ [5] invoke_in_world
+   @ .\essentials.jl:923 [inlined]
+ [6] require(into::Module, mod::Symbol)
+   @ Base .\loading.jl:1746
+ [7] include(mod::Module, _path::String)
+   @ Base .\Base.jl:495
+ [8] top-level scope
+   @ D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\Integration\VNextT1CanonicalBytesV2\vnext_t1_canonical_bytes_v2_tests.jl:11
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\src\Contracts\VNextT1CanonicalBytesV2.jl:10
+in expression starting at D:\006-Programing\LMC\FusionConceptAI\test\GenomeV5\Integration\VNextT1CanonicalBytesV2\vnext_t1_canonical_bytes_v2_tests.jl:11

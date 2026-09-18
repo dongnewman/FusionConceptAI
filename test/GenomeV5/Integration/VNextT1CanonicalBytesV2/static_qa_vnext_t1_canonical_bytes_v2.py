@@ -13,6 +13,8 @@ TEST = Path(__file__).with_name("vnext_t1_canonical_bytes_v2_tests.jl")
 ORACLE = Path(__file__).with_name("independent_oracle_vnext_t1_canonical_bytes_v2.py")
 FIXTURE = Path(__file__).with_name("fixture.json")
 DOCS = ROOT / "docs" / "implementation" / "UP1-04A-VNEXT-T1-CANONICAL-BYTES-V2"
+PROJECT = ROOT / "Project.toml"
+R1_RUNTIME = DOCS / "local_profile_r1_runtime"
 PROTECTED = {
     ROOT / "src" / "Contracts" / "CandidateStatePackageV5Next.jl":
         (53197, "14e8f519dd4ffe56ca5678ae8e4b82009ced12616e05de11165e36c3b4adae73"),
@@ -32,6 +34,7 @@ def main() -> int:
     test = TEST.read_text(encoding="utf-8")
     oracle = ORACLE.read_text(encoding="utf-8")
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    project = PROJECT.read_text(encoding="utf-8")
     report = {}
 
     report["source_exists"] = SOURCE.is_file()
@@ -41,6 +44,8 @@ def main() -> int:
     report["copy_before_string"] = source.index("owned = copy(bytes)") < source.index("raw = String(owned)")
     report["exact_hash_codeunits"] = "codeunits(raw)" in source and "SHA.sha256" in source
     report["base64_stdlib"] = "using Base64" in source and "Base64.base64encode" in source
+    report["base64_project_dependency"] = (
+        'Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"' in project)
     report["stable_semantic_fields"] = all(token in source for token in (
         "schema=", "version=", "encoding=", "base64=", "length=", "sha256="))
     report["byte_helpers"] = all(token in source for token in (
@@ -65,8 +70,13 @@ def main() -> int:
     report["independent_python"] = all(token in oracle for token in (
         "hashlib", "base64", "does not import Julia", "fixture.json"))
     report["fixture_boundary"] = fixture["large"]["length"] == 8_269_445
-    report["fixture_not_runtime_claim"] = fixture["runtime"] == "not_run" and fixture["integration"] == "not_connected"
+    report["fixture_no_runtime_credit"] = (
+        fixture["runtime"] == "r1_program_exception_base64_dependency_repaired_not_rerun"
+        and fixture["integration"] == "not_connected")
     report["docs_present"] = all((DOCS / name).is_file() for name in ("README.md", "manifest.json", "report.md"))
+    report["r1_program_exception_archived"] = (
+        (R1_RUNTIME / "runtime.lock").is_file()
+        and any(R1_RUNTIME.glob("run_*/run_metadata.json")))
 
     failed = [name for name, ok in report.items() if not ok]
     if failed:

@@ -24,9 +24,15 @@ is over the original bytes.
 
 ## Evidence boundary
 
-Static QA and an independent Python hashlib/base64 oracle are the only checks
-run for this slice in the current batch. Julia was not executed. Therefore this
-record grants no T1, UP1, provider, numerical, physical, or engineering credit.
+Static QA and an independent Python hashlib/base64 oracle remain the only
+passing checks for this slice. The serialized R1 Julia attempt started once and
+ended as `program_exception` / exit 1 after 2.886777 seconds because the package
+project had not declared the Base64 standard-library dependency. It changed
+none of its 18 protected files and left no Julia/DESC process after either of
+the two postflight observations. The evidence is copied without overwrite to
+`local_profile_r1_runtime/`; the original preflight runner and receipt remain
+in place. R1 grants no T1, UP1, provider, numerical, physical, or engineering
+credit.
 The large 8,269,445-byte case is specified as a `Vector{UInt8}` replay and no
 large tuple is constructed.
 
@@ -36,3 +42,5 @@ current production admission file and module include/export boundary were not
 changed by this definition-only slice. The Julia test contains a deterministic
 single-line `VNEXT_T1_CANONICAL_BYTES_V2_REPLAY` record for a later independent
 second process, but it is not runtime evidence until that process is run.
+`Project.toml` now declares Base64 and the manifest was resolved, but no Julia
+test rerun is claimed by this repair.
