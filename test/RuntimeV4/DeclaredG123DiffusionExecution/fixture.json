@@ -1,7 +1,7 @@
 {
   "schema": "fusionconceptai:runtime-v4:declared-g123-diffusion-execution-v1",
-  "revision": "up2-exec-declared-g123-diffusion-v1-r4",
-  "candidate_ref": "fusionconceptai://candidate/up2-exec-declared-g123-r4",
+  "revision": "up2-exec-declared-g123-diffusion-v1-r21",
+  "candidate_ref": "local://candidate/up1-04a",
   "claim_ceiling": "screen_only",
   "accepted": false,
   "formal_up_credit": false,
@@ -17,12 +17,14 @@
   "transfer": {"old_state": [0.25, 0.75], "overlap": [0.5, 2.5], "weights": [1.0, 1.0], "new_state": [0.25, 0.75], "conservation_residual": 0.0},
   "positive": {
     "k_faces": [2.0, 2.05, 2.1],
+    "k_evaluation_api": "diagonal_matrix_tuple_scalar_extraction",
     "source": [1.0, 1.0],
     "boundary": [0.0, 1.0],
     "matrix": [[9.1125, -4.6125], [-4.6125, 9.3375]],
     "rhs": [1.1666666666666667, 2.666666666666667],
     "solution": [0.36346540908222763, 0.4651299454948799],
-    "residual_norm": 0.0,
+    "residual_norm": 8.005932084973442e-16,
+    "residual_tolerance": 1e-13,
     "source_power": 120.0,
     "field_power": 90.0,
     "return_power": 15.0,
@@ -58,6 +60,10 @@
     "singular_sparse_system": ["numerical_fail", "singular_or_nonfinite_sparse_system"],
     "nonfinite_derived": ["numerical_fail", "singular_or_nonfinite_sparse_system"],
     "ledger_contradiction": ["fail_closed", "ledger_contradiction"]
+  },
+  "negative_dispatch": {
+    "invalid_overlap": {"entry": "dgd_execute_v1", "overlap": [3.0, 3.0]},
+    "nonfinite_derived": {"entry": "dgd_numerical_solve_v1", "hash_body": "spacing_status=nonfinite"}
   },
   "execution": {"julia_executed": false, "desc_executed": false, "provider_calls": 0, "mesh_calls": 0, "formal_physical_evidence": false}
 }

@@ -1,11 +1,11 @@
-"""Fixture constructors/documentation for the declared G1/G2/G3 R4 slice.
+"""Fixture constructors/documentation for the declared G1/G2/G3 R21 slice.
 
 The focused Julia test is an independent command supplied for a controlled
 lane.  This file keeps the numeric fixture in one place without creating a
 provider, mesh backend or solver process.
 """
 
-const DGD_FIXTURE_CANDIDATE_V1 = "fusionconceptai://candidate/up2-exec-declared-g123-r4"
+const DGD_FIXTURE_CANDIDATE_V1 = "local://candidate/up1-04a"
 const DGD_FIXTURE_EXPRESSION_SUBSET_V1 = :diagonal_affine_static
 
 function dgd_fixture_numeric_v1()
@@ -15,13 +15,15 @@ function dgd_fixture_numeric_v1()
      g2_mesh_execution_status=:not_executed,
      old_state=(0.25, 0.75),
      overlap=(0.5, 2.5), transfer_weights=(1.0, 1.0),
-     transferred_state=(0.25, 0.75),
+     transferred_state=(0.25, 0.75), conservation_residual=0.0,
      k_faces=(2.0, 2.05, 2.1),
+     k_evaluation_api=:diagonal_matrix_tuple_scalar_extraction,
      source=(1.0, 1.0),
      boundary=(0.0, 1.0),
      matrix=((9.1125, -4.6125), (-4.6125, 9.3375)),
      rhs=(1.1666666666666667, 2.666666666666667),
      solution=(0.36346540908222763, 0.4651299454948799),
+     residual_norm=8.005932084973442e-16, residual_tolerance=1.0e-13,
      source_power=120.0, field_power=90.0, return_power=15.0, heat_power=15.0,
      provider_calls=0, mesh_calls=0, solver_calls=1,
      compile_status=:ready, g2_admission_status=:terminal_deferred,

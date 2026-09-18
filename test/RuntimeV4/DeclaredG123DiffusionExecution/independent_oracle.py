@@ -1,4 +1,4 @@
-"""Independent arithmetic oracle for declared G1/G2/G3 R4.
+"""Independent arithmetic oracle for declared G1/G2/G3 R21.
 
 It reads only fixture.json and does not import Julia or the product source.
 """
@@ -45,7 +45,9 @@ def main() -> int:
     assert all(math.isclose(matrix[i][j], p["matrix"][i][j], abs_tol=1e-12) for i in range(2) for j in range(2))
     assert all(math.isclose(rhs[i], p["rhs"][i], abs_tol=1e-12) for i in range(2))
     assert all(math.isclose(solution[i], p["solution"][i], abs_tol=1e-12) for i in range(2))
-    assert math.isclose(residual, p["residual_norm"], abs_tol=1e-12)
+    assert p["residual_norm"] > 0.0 and math.isfinite(p["residual_norm"])
+    assert 0.0 < p["residual_tolerance"] <= 1e-13
+    assert math.isclose(residual, p["residual_norm"], abs_tol=p["residual_tolerance"])
     old = fixture["transfer"]["old_state"]
     overlap = fixture["transfer"]["overlap"]
     old_bounds = [0.5, 2.5]
@@ -64,6 +66,8 @@ def main() -> int:
     altered_heat = 120.0 * (1.0 / 8.0)
     assert altered_field != p["field_power"] and altered_heat == p["heat_power"]
     assert fixture["expression_subset"] == "diagonal_affine_static"
+    assert fixture["candidate_ref"] == "local://candidate/up1-04a"
+    assert p["k_evaluation_api"] == "diagonal_matrix_tuple_scalar_extraction"
     assert fixture["g2_mesh_execution_status"] in {"declared", "not_executed"}
     assert fixture["g2_mesh_execution_status"] != "executed"
     assert fixture["positive"]["status"] == "ready"
@@ -76,6 +80,10 @@ def main() -> int:
     # literals.  The focused Julia runner observes every tuple from dispatch.
     assert fixture["negative_gates"] == EXPECTED_NEGATIVE_GATES
     assert set(fixture["negative_gates"]) == set(EXPECTED_NEGATIVE_GATES)
+    assert fixture["negative_dispatch"] == {
+        "invalid_overlap": {"entry": "dgd_execute_v1", "overlap": [3.0, 3.0]},
+        "nonfinite_derived": {"entry": "dgd_numerical_solve_v1", "hash_body": "spacing_status=nonfinite"},
+    }
     for name, expected in EXPECTED_NEGATIVE_GATES.items():
         assert len(expected) == 2 and expected[0] in {"fail_closed", "terminal_deferred", "numerical_fail"}, name
     assert fixture["execution"] == {"julia_executed": False, "desc_executed": False, "provider_calls": 0, "mesh_calls": 0, "formal_physical_evidence": False}

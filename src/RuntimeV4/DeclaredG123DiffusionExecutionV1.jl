@@ -14,7 +14,7 @@ system is never promoted to physical, UP or R credit.
 using SparseArrays
 
 const DGD_SCHEMA_V1 = "fusionconceptai:runtime-v4:declared-g123-diffusion-execution-v1"
-const DGD_REVISION_V1 = "up2-exec-declared-g123-diffusion-v1-r4"
+const DGD_REVISION_V1 = "up2-exec-declared-g123-diffusion-v1-r21"
 const DGD_CLAIM_CEILING_V1 = :screen_only
 const DGD_STATUSES_V1 = (:ready, :fail_closed, :terminal_deferred, :numerical_fail)
 const DGD_ALLOWED_U_EXPRESSIONS_V1 = (
@@ -292,6 +292,68 @@ struct DGDAggregateReceiptV1
     receipt_hash::Digest256
 end
 
+# Every DGD identity-bearing struct has an explicit non-recursive semantic
+# view.  Computed identity fields are deliberately excluded from their own
+# canonical body; nested DGD receipts then hash through these views rather
+# than falling back to an undefined generic serializer.
+semantic_view(x::DeclaredG123HashSetV1) =
+    (candidate_ref=x.candidate_ref, g1_body_hash=x.g1_body_hash,
+     g2_body_hash=x.g2_body_hash, g3_body_hash=x.g3_body_hash,
+     bundle_hash=x.bundle_hash)
+canonical_json(x::DeclaredG123HashSetV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DeclaredG123InputV1) =
+    (candidate_ref=x.candidate_ref, g1=x.g1, g2=x.g2, g3=x.g3,
+     bundle=x.bundle, hashes=x.hashes)
+canonical_json(x::DeclaredG123InputV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDCompileReceiptV1) =
+    (status=x.status, code=x.code, candidate_ref=x.candidate_ref,
+     g1_body_hash=x.g1_body_hash, g2_body_hash=x.g2_body_hash,
+     g3_body_hash=x.g3_body_hash, bundle_hash=x.bundle_hash,
+     expression_subset=x.expression_subset, g2_admission_status=x.g2_admission_status,
+     g2_resolution=x.g2_resolution, g3_admission_status=x.g3_admission_status,
+     g3_resolution=x.g3_resolution, provider_calls=x.provider_calls,
+     mesh_calls=x.mesh_calls)
+canonical_json(x::DGDCompileReceiptV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDLocalMeshV1) =
+    (chart_ref=x.chart_ref, mesh_ref=x.mesh_ref, cells=x.cells, basis=x.basis,
+     quadrature_points=x.quadrature_points, quadrature_weights=x.quadrature_weights,
+     faces=x.faces, execution_status=x.execution_status, bounds=x.bounds,
+     reference_nodes=x.reference_nodes, physical_nodes=x.physical_nodes,
+     spacing=x.spacing)
+canonical_json(x::DGDLocalMeshV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDTransferReceiptV1) =
+    (status=x.status, code=x.code, source_mesh_hash=x.source_mesh_hash,
+     target_mesh_hash=x.target_mesh_hash, old_state=x.old_state, new_state=x.new_state,
+     overlap=x.overlap, weights=x.weights, conservation_residual=x.conservation_residual)
+canonical_json(x::DGDTransferReceiptV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDCompositionReceiptV1) =
+    (status=x.status, code=x.code, candidate_ref=x.candidate_ref,
+     g1_body_hash=x.g1_body_hash, g2_body_hash=x.g2_body_hash,
+     g3_body_hash=x.g3_body_hash, source_power=x.source_power,
+     field_power=x.field_power, return_power=x.return_power, heat_power=x.heat_power,
+     energy_residual=x.energy_residual, ledger_residual=x.ledger_residual,
+     provider_calls=x.provider_calls, mesh_calls=x.mesh_calls)
+canonical_json(x::DGDCompositionReceiptV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDNumericalReceiptV1) =
+    (status=x.status, code=x.code, matrix=x.matrix, rhs=x.rhs, solution=x.solution,
+     residual_norm=x.residual_norm, solver_calls=x.solver_calls)
+canonical_json(x::DGDNumericalReceiptV1) = canonical_json(semantic_view(x))
+
+semantic_view(x::DGDAggregateReceiptV1) =
+    (status=x.status, resolution=x.resolution, accepted=x.accepted,
+     claim_ceiling=x.claim_ceiling, screen_only=x.screen_only,
+     formal_up_credit=x.formal_up_credit, formal_r_credit=x.formal_r_credit,
+     candidate_ref=x.candidate_ref, compile=x.compile, transfer=x.transfer,
+     composition=x.composition, numerical=x.numerical, provider_calls=x.provider_calls,
+     mesh_calls=x.mesh_calls, solver_calls=x.solver_calls)
+canonical_json(x::DGDAggregateReceiptV1) = canonical_json(semantic_view(x))
+
 _dgd_compile_receipt(status, code, input, subset;
         g2_status=:unknown, g2_resolution=:unknown, g3_status=:unknown, g3_resolution=:unknown) = begin
     body = (status=status, code=code, candidate_ref=input.candidate_ref,
@@ -499,6 +561,22 @@ function _dgd_rhs_from_g2_faces(input::DeclaredG123InputV1, mesh::DGDLocalMeshV1
     (source_values[1] + side_load + left, source_values[2] + side_load + right)
 end
 
+"""Extract one finite scalar from the declared diagonal-matrix K API result."""
+function _dgd_k_scalar_sample_v1(value, label::Symbol)
+    value isa Tuple && length(value) == 3 || return nothing
+    all(row -> row isa Tuple && length(row) == 3, value) || return nothing
+    entries = try
+        Tuple(Float64(entry) for row in value for entry in row)
+    catch
+        return nothing
+    end
+    all(isfinite, entries) || return nothing
+    all(iszero(value[i][j]) for i in 1:3 for j in 1:3 if i != j) || return nothing
+    scalar = try Float64(value[1][1]) catch; return nothing end
+    isfinite(scalar) || return nothing
+    scalar
+end
+
 function dgd_numerical_solve_v1(input::DeclaredG123InputV1, mesh::DGDLocalMeshV1,
         transfer::DGDTransferReceiptV1)
     transfer.status === :ready || return nothing
@@ -509,11 +587,21 @@ function dgd_numerical_solve_v1(input::DeclaredG123InputV1, mesh::DGDLocalMeshV1
     k = input.g1.K.expression
     p1 = (0 // 1, 1 // 2, 1 // 2); pm = (1 // 2, 1 // 2, 1 // 2); p2 = (1 // 1, 1 // 2, 1 // 2)
     kval = (g1_diffusion_k_eval(k, p1), g1_diffusion_k_eval(k, pm), g1_diffusion_k_eval(k, p2))
-    k1, k2, k3 = Float64(kval[1][1]), Float64(kval[2][1]), Float64(kval[3][1])
+    k1 = _dgd_k_scalar_sample_v1(kval[1], :x_min)
+    k2 = _dgd_k_scalar_sample_v1(kval[2], :x_mid)
+    k3 = _dgd_k_scalar_sample_v1(kval[3], :x_max)
+    all(x -> x !== nothing, (k1, k2, k3)) || return DGDNumericalReceiptV1(
+        :numerical_fail, :non_scalar_or_nonfinite_k_evaluation, ((0.0,0.0),(0.0,0.0)),
+        (0.0,0.0), nothing, Inf, 0,
+        _dgd_hash((code=:non_scalar_or_nonfinite_k_evaluation, samples=(k1,k2,k3))))
     isfinite(mesh.spacing) && mesh.spacing > 0 || return DGDNumericalReceiptV1(
         :numerical_fail, :singular_or_nonfinite_sparse_system, ((0.0,0.0),(0.0,0.0)),
         (0.0,0.0), nothing, Inf, 0,
-        _dgd_hash((code=:singular_or_nonfinite_sparse_system, spacing=mesh.spacing)))
+        # Preserve a typed numerical failure without feeding NaN/Inf into the
+        # canonical serializer.  The derived value is represented by a finite
+        # status tag in the receipt identity body.
+        _dgd_hash((code=:singular_or_nonfinite_sparse_system,
+            spacing_status=:nonfinite, mesh_hash=mesh.mesh_hash)))
     h2 = mesh.spacing^2
     a = (k1 + k2) / h2; b = -k2 / h2; d = (k2 + k3) / h2
     rhs = _dgd_rhs_from_g2_faces(input, mesh, k1, k3, source_values)
