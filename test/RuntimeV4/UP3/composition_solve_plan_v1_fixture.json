@@ -1,0 +1,79 @@
+{
+  "schema": "fusionconceptai:composition-solve-plan-v1",
+  "revision": "composition-solve-plan-v1",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "provider_invocation_count": 0,
+  "solver_invocation_count": 0,
+  "positive": {
+    "status": "ready",
+    "edges": 2,
+    "outcome_code": "ready",
+    "stage_spaces": ["chain-space-a", "chain-space-b"]
+  },
+  "mimo": {
+    "status": "ready",
+    "edges": 2,
+    "parallel_component_pairs": 1
+  },
+  "deferred": [
+    "missing_binding",
+    "binding_missing_matrix",
+    "provider_missing",
+    "code_missing",
+    "backend_missing",
+    "singular_preclassified",
+    "nonconvergent_preclassified"
+  ],
+  "fail_closed": [
+    "unit_mismatch",
+    "space_mismatch",
+    "direction_mismatch",
+    "provider_poisoning",
+    "code_poisoning",
+    "backend_poisoning",
+    "protocol_mismatch",
+    "ambiguous_match",
+    "ambiguous_with_deferred",
+    "unmatched_port",
+    "cycle",
+    "duplicate_component",
+    "duplicate_port",
+    "missing_ledger",
+    "invalid_input"
+  ],
+  "constructor_rejected": [
+    "invalid_port_direction",
+    "invalid_preclassification_bool"
+  ],
+  "preclassified": {
+    "singular": "terminal_deferred",
+    "nonconvergent": "terminal_deferred"
+  },
+  "negative_expectations": {
+    "missing_binding": {"status": "terminal_deferred", "code": "binding_missing"},
+    "binding_missing_matrix": {"status": "terminal_deferred", "code": "binding_missing"},
+    "provider_missing": {"status": "terminal_deferred", "code": "provider_missing"},
+    "code_missing": {"status": "terminal_deferred", "code": "code_missing"},
+    "backend_missing": {"status": "terminal_deferred", "code": "backend_missing"},
+    "singular_preclassified": {"status": "terminal_deferred", "code": "singular_preclassified"},
+    "nonconvergent_preclassified": {"status": "terminal_deferred", "code": "nonconvergent_preclassified"},
+    "unit_mismatch": {"status": "fail_closed", "code": "unmatched_port"},
+    "space_mismatch": {"status": "fail_closed", "code": "unmatched_port"},
+    "direction_mismatch": {"status": "fail_closed", "code": "direction_mismatch"},
+    "provider_poisoning": {"status": "fail_closed", "code": "provider_poisoning"},
+    "code_poisoning": {"status": "fail_closed", "code": "code_poisoning"},
+    "backend_poisoning": {"status": "fail_closed", "code": "backend_poisoning"},
+    "protocol_mismatch": {"status": "fail_closed", "code": "protocol_mismatch"},
+    "ambiguous_match": {"status": "fail_closed", "code": "ambiguous_match"},
+    "ambiguous_with_deferred": {"status": "fail_closed", "code": "ambiguous_match"},
+    "unmatched_port": {"status": "fail_closed", "code": "unmatched_port"},
+    "cycle": {"status": "fail_closed", "code": "cycle"},
+    "duplicate_component": {"status": "fail_closed", "code": "duplicate_component"},
+    "duplicate_port": {"status": "fail_closed", "code": "duplicate_port"},
+    "missing_ledger": {"status": "fail_closed", "code": "missing_ledger"},
+    "invalid_input": {"status": "fail_closed", "code": "invalid_input"},
+    "invalid_port_direction": {"status": "constructor_rejected", "code": "invalid_port_direction"},
+    "invalid_preclassification_bool": {"status": "constructor_rejected", "code": "invalid_preclassification_bool"}
+  }
+}

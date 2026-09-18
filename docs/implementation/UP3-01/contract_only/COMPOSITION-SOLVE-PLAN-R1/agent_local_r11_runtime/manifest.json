@@ -1,0 +1,72 @@
+{
+  "schema_version": "fusion-up3-composition-solve-plan-agent-local-r11-runtime-v1",
+  "record_kind": "serialized_focused_runtime_archive",
+  "task_id": "UP3-01-COMPOSITION-SOLVE-PLAN-R1",
+  "revision": "R11",
+  "status": "contract_only",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "formal_credit": "none",
+  "lineage": {
+    "prior_revision": "R10",
+    "failed_runtime_predecessors": ["R7", "R9"],
+    "r9_prior_marker": "51/25/1",
+    "failure_history_preserved": true
+  },
+  "r10_repairs_carried": {
+    "stage_specific_chain_spaces": true,
+    "typed_routes_do_not_use_labels_or_first_producer": true,
+    "structural_ambiguity_precedes_deferred": true,
+    "deferred_reasons_retained_on_plan": true,
+    "canonical_receipt_outcome_constructor_retained": true,
+    "named_wire_deserialization_factories": true,
+    "ordinary_eight_field_receipt_constructor_opened": false,
+    "receipt_validator_forces_contract_only_zero_counts_hash_recompute": true,
+    "physics_status_forgery_rejected": true
+  },
+  "runtime": {
+    "command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP3/composition_solve_plan_v1_contract_tests.jl",
+    "utc_execution_date": "2026-09-18",
+    "pid": 41644,
+    "exit_code": 0,
+    "test_pass": 161,
+    "test_total": 161,
+    "elapsed_seconds": 11.9,
+    "stderr": "empty",
+    "julia_executed": true,
+    "desc_executed": false,
+    "provider_invocation_count": 0,
+    "solver_invocation_count": 0
+  },
+  "reviewed_sha256": {
+    "src/RuntimeV4/CompositionSolvePlanV1.jl": {
+      "bytes": 29712,
+      "sha256": "24518a477f1272df59732fd876b75d576dca6c6f16219e772f9321d809223ccc"
+    },
+    "test/RuntimeV4/UP3/composition_solve_plan_v1_contract_tests.jl": {
+      "bytes": 18503,
+      "sha256": "9bcd8480b243576bbfca52e8e42bf3ae74cadc0b29eab1cccc01e899397cb274"
+    },
+    "test/RuntimeV4/UP3/composition_solve_plan_v1_fixture.json": {
+      "bytes": 3265,
+      "sha256": "0e8ae68dc0e3e236e1244075564bc15f96c656c0f02234b4c4fe7840456ac0cd"
+    },
+    "test/RuntimeV4/UP3/composition_solve_plan_v1_oracle.py": {
+      "bytes": 3237,
+      "sha256": "d7e4de2648ca28e4983bc50619dd52fd51394064674dfc310a99126cfde093d6"
+    },
+    "test/RuntimeV4/UP3/static_qa_composition_solve_plan_v1.py": {
+      "bytes": 6408,
+      "sha256": "1e262a0271bcee90565aaae7bcb9737a686b04206c335c514c153079b1a81f2f"
+    }
+  },
+  "credit_boundary": {
+    "up3_credit": "none",
+    "numerical_evidence": false,
+    "physical_evidence": false,
+    "engineering_evidence": false,
+    "r01_r10_credit": "none"
+  },
+  "no_source_test_fixture_oracle_qa_index_changes": true,
+  "no_commit": true
+}
