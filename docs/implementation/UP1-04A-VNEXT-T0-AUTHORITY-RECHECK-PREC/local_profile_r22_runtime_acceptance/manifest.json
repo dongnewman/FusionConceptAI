@@ -1,0 +1,58 @@
+{
+  "schema": "T0AuthorityRecheckR22LocalRuntimeAcceptanceManifestV1",
+  "task": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+  "revision": "local_profile_r22_runtime_acceptance",
+  "status": "limited_runtime_integrity_only",
+  "accepted": false,
+  "t1_t2_credit": false,
+  "claim_ceiling": "contract_only",
+  "source_receipt": "../local_profile_r22_preflight/run_20260918_150219_852_24a21155b88549b1a17acf75fefc8948",
+  "command": "julia --startup-file=no --history-file=no --project=. test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl .",
+  "environment": {
+    "JULIA_NUM_THREADS": "1",
+    "timeout_seconds": 300
+  },
+  "runtime": {
+    "wrapper_status": "runtime_complete",
+    "julia_exit_code": 0,
+    "tests_passed": 310,
+    "tests_total": 310,
+    "test_elapsed_text": "4m22.6s",
+    "duration_ms": 266669.1015,
+    "negative_dispatch": 25,
+    "start_count": 1,
+    "auto_retry": false,
+    "timeout": false,
+    "failure": null,
+    "kill_record": null,
+    "stderr_bytes": 0
+  },
+  "integrity": {
+    "owned_file_count": 74,
+    "hashes_comparable": true,
+    "owned_files_unchanged": true,
+    "owned_hash_changes": {},
+    "processes_before": 0,
+    "processes_after_first": 0,
+    "processes_after_second": 0,
+    "postflight_zero_julia_desc": true
+  },
+  "authority": {
+    "local_status": "local_checked_present_or_typed_absent",
+    "accepted": false,
+    "t1_t2_credit": false,
+    "authority_credit": false,
+    "provider_evidence": false,
+    "mesh_solver_physical_engineering_search_credit": false
+  },
+  "snapshot_statement": {
+    "static_derived_snapshot_count": 100,
+    "runtime_snapshot_counter_present": false,
+    "interpretation": "100 is only 25 negative dispatches multiplied by four expected receipt objects per call; it must not be reported as a runtime snapshot count."
+  },
+  "required_followups": [
+    "independently reviewed T1 focused runtime",
+    "T2 identity rebinding and integration",
+    "independent two-process replay"
+  ]
+}
