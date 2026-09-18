@@ -52,10 +52,10 @@ vnext_t1_package_profile_hash_v1() = digest256_text(
     VNEXT_T1_PACKAGE_SCHEMA_ID_V1 * ":" * VNEXT_T1_PACKAGE_PROFILE_VERSION_V1)
 
 function _vnext_t1_sha(bytes::NTuple{N,UInt8}) where {N}
-    Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(bytes))))
+    Digest256(bytes2hex(invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)))
 end
-_vnext_t1_sha(bytes::AbstractVector{UInt8}) =
-    _vnext_t1_sha(Tuple(UInt8.(bytes)))
+_vnext_t1_sha(bytes::AbstractVector{UInt8}) = Digest256(bytes2hex(
+    invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)))
 
 """Immutable canonical bytes with a hash recomputed from those exact bytes."""
 struct VNextT1CanonicalBytesV1{N}

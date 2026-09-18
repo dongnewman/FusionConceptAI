@@ -45,6 +45,7 @@ def main() -> int:
         "vnext_t1_package_schema_hash_v1",
         "vnext_t1_package_canonicalization_hash_v1",
         "vnext_t1_package_profile_hash_v1",
+        "invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)",
         "_vnext_t1_validate_locator",
         "_vnext_t1_validate_feedback_order",
         "_vnext_t1_validate_no_legacy_receipt",
@@ -65,6 +66,16 @@ def main() -> int:
         raise AssertionError(
             "factory result validator must not read contract_identity from the T0 declaration"
         )
+    checks.append("direct SHA dispatch has no huge tuple materialization")
+    hash_start = contract.index("function _vnext_t1_sha")
+    hash_end = contract.index('"""Immutable canonical bytes', hash_start)
+    hash_section = contract[hash_start:hash_end]
+    for forbidden in (
+        "Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(bytes))))",
+        "_vnext_t1_sha(Tuple(UInt8.(bytes)))",
+    ):
+        if forbidden in hash_section:
+            raise AssertionError(f"T1 hash path retains forbidden conversion: {forbidden}")
 
     required_admission = (
         "VNextT1AdmissionInputV1",
@@ -103,6 +114,10 @@ def main() -> int:
         "t1_projection_invalid",
         "@test_throws ArgumentError",
         "T2_UP2_R_CREDIT=false",
+        "_T1_HASH_DISPATCH_LENGTHS",
+        "_T1_EXISTING_LARGE_PAYLOAD_LENGTH = 8_269_445",
+        "_t1_assert_digest_dispatch",
+        "owned.bytes == tuple_bytes",
     )
     for needle in required_test:
         require(test, needle, "focused test feature", checks)
@@ -120,10 +135,13 @@ def main() -> int:
         "stage=stage",
         "exception_type=exception_type",
         "message_digest=message_digest",
-        "string(err)",
+        "exception object is never",
     )
     for needle in required_diagnostic:
         require(diagnostic, needle, "first-failure diagnostic feature", checks)
+    checks.append("diagnostic does not stringify exception")
+    if "string(err)" in diagnostic or "message=string(err)" in diagnostic:
+        raise AssertionError("diagnostic must not retain exception text")
     checks.append("diagnostic is additive and not exported")
     if "\nexport " in diagnostic or "\ninclude(" in diagnostic:
         raise AssertionError("diagnostic must not alter the production module")
@@ -170,6 +188,17 @@ def main() -> int:
     checks.append("fixture oracle digest")
     if len(fixture.get("oracle_expected_sha256", "")) != 64:
         raise AssertionError("fixture oracle digest missing")
+    checks.append("fixture fixed vector digest table")
+    vector_table = fixture.get("sha256_vector_pattern", {})
+    expected_vectors = vector_table.get("expected")
+    if vector_table.get("pattern") != "byte_i_mod_251_for_i_zero_based":
+        raise AssertionError("fixture fixed vector pattern drifted")
+    if (not isinstance(expected_vectors, dict) or
+            set(expected_vectors) != {"0", "1", "63", "64", "65", "1024"}):
+        raise AssertionError("fixture fixed vector lengths drifted")
+    if any(not isinstance(value, str) or len(value) != 64
+           for value in expected_vectors.values()):
+        raise AssertionError("fixture fixed vector digest is not SHA-256")
 
     negative_cases = fixture.get("negative_cases", [])
     checks.append("negative dispatch arity")
@@ -194,9 +223,13 @@ def main() -> int:
     checks.append("independent oracle digest")
     if oracle.expected_digest() != fixture["oracle_expected_sha256"]:
         raise AssertionError("independent oracle digest mismatch")
+    checks.append("independent fixed vector digests")
+    if oracle.fixed_pattern_digests() != expected_vectors:
+        raise AssertionError("independent fixed vector digest mismatch")
 
     print("STATIC_QA=PASS")
     print(f"CHECKS={len(checks)}")
+    print("FIXED_VECTOR_DIGESTS=6")
     print("NEGATIVE_CASES=9")
     print("RUNTIME=NOT_RUN")
     print("T1=PREPARED_NOT_EXECUTED")

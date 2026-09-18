@@ -23,14 +23,30 @@ def expected_digest() -> str:
     return hashlib.sha256(canonical_bytes(fixture["oracle_payload"])).hexdigest()
 
 
+def fixed_pattern_digests() -> dict[str, str]:
+    fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    expected = fixture["sha256_vector_pattern"]["expected"]
+    actual = {
+        str(length): hashlib.sha256(bytes(i % 251 for i in range(int(length)))).hexdigest()
+        for length in expected
+    }
+    if actual != expected:
+        raise AssertionError(
+            f"fixed vector digest mismatch: expected {expected}, got {actual}"
+        )
+    return actual
+
+
 def main() -> int:
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
     actual = expected_digest()
     expected = fixture["oracle_expected_sha256"]
     if actual != expected:
         raise AssertionError(f"oracle digest mismatch: expected {expected}, got {actual}")
+    fixed = fixed_pattern_digests()
     print(f"ORACLE_CANONICAL_BYTES_SHA256={actual}")
     print("ORACLE_INPUT=fixture.oracle_payload")
+    print(f"ORACLE_FIXED_VECTOR_DIGESTS={len(fixed)}")
     print("ORACLE_RUNTIME=NOT_RUN")
     return 0
 

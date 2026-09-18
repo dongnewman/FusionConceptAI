@@ -21,6 +21,17 @@
     "accepted": false
   },
   "oracle_expected_sha256": "a412adebcf25f2ddb83a79dccaef8ae4cafcd3dde8ff1400cd37f9a2a756419e",
+  "sha256_vector_pattern": {
+    "pattern": "byte_i_mod_251_for_i_zero_based",
+    "expected": {
+      "0": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "1": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "63": "29af2686fd53374a36b0846694cc342177e428d1647515f078784d69cdb9e488",
+      "64": "fdeab9acf3710362bd2658cdc9a29e8f9c757fcf9811603a8c447cd1d9151108",
+      "65": "4bfd2c8b6f1eec7a2afeb48b934ee4b2694182027e6d0fc075074f2fabb31781",
+      "1024": "2bce1ba628720664be4b9fdd77aae0678e5f0f3f02fc6ff641ec879094f6a404"
+    }
+  },
   "negative_cases": [
     {"name": "t0_recheck_missing", "expected": "terminal_deferred"},
     {"name": "t0_transport_missing", "expected": "terminal_deferred"},

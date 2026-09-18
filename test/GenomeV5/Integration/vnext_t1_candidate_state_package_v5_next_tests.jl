@@ -57,6 +57,42 @@ end
 _t1_input(x; candidate=_T1_CANDIDATE, t0=x.recheck, no_legacy=nothing) =
     G.VNextT1AdmissionInputV1(candidate, t0, x.transport, no_legacy)
 
+const _T1_HASH_DISPATCH_LENGTHS = (0, 1, 63, 64, 65, 1024)
+const _T1_EXISTING_LARGE_PAYLOAD_LENGTH = 8_269_445
+
+function _t1_fixed_pattern_vector(n::Int)
+    UInt8[mod(i - 1, 251) for i in 1:n]
+end
+
+function _t1_assert_digest_dispatch(n::Int)
+    vector_bytes = _t1_fixed_pattern_vector(n)
+    tuple_bytes = Tuple(vector_bytes)
+    tuple_hash = G._vnext_t1_sha(tuple_bytes)
+    vector_hash = G._vnext_t1_sha(vector_bytes)
+    @test tuple_hash == vector_hash
+    owned = G.VNextT1CanonicalBytesV1(vector_bytes)
+    @test owned.bytes == tuple_bytes
+    @test typeof(owned.bytes) === typeof(tuple_bytes)
+    @test owned.sha256 == vector_hash
+    if !isempty(vector_bytes)
+        before = owned.bytes
+        vector_bytes[1] = xor(vector_bytes[1], UInt8(0xff))
+        @test owned.bytes == before
+        @test owned.sha256 == tuple_hash
+    end
+end
+
+@testset "T1 direct SHA dispatch and owned bytes" begin
+    for n in _T1_HASH_DISPATCH_LENGTHS
+        _t1_assert_digest_dispatch(n)
+    end
+
+    # This is the fixed-pattern size that previously failed in the existing
+    # T1 snapshot/projection path.  Keep it as a direct tuple/vector parity
+    # check so the regression cannot be hidden by a smaller fixture.
+    _t1_assert_digest_dispatch(_T1_EXISTING_LARGE_PAYLOAD_LENGTH)
+end
+
 function _t1_rebuild_transport(x; candidate=x.transport.candidate_ref,
         declarations=x.transport.declarations, children=x.transport.children,
         feedback=x.transport.feedback, bundle_hash=x.transport.bundle_hash,

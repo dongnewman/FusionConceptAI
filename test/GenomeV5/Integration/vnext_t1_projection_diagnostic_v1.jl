@@ -12,8 +12,9 @@ const _VNEXT_T1_DIAGNOSTIC_G = FusionConceptAI
 """Return only the closed diagnostic tuple for one T1 admission input.
 
 The returned named tuple has exactly four fields: ``status``, ``stage``,
-``exception_type``, and ``message_digest``.  The exception message is hashed
-immediately and is not returned or written to a receipt.
+``exception_type``, and ``message_digest``.  The exception object is never
+stringified: the digest uses only the fixed status, stage, and exception type
+fields.
 """
 function vnext_t1_projection_diagnostic_v1(input)
     G = _VNEXT_T1_DIAGNOSTIC_G
@@ -73,7 +74,7 @@ function vnext_t1_projection_diagnostic_v1(input)
     catch err
         exception_type = nameof(typeof(err))
         message_digest = G.canonical_hash((status=:internal_failure, stage=stage,
-            exception_type=exception_type, message=string(err)))
+            exception_type=exception_type))
         return (status=:internal_failure, stage=stage,
             exception_type=exception_type, message_digest=message_digest)
     end
