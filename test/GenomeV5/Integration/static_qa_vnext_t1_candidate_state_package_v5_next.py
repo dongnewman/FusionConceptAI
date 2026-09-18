@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 TEST = Path(__file__).resolve()
+DIAGNOSTIC = TEST.with_name("vnext_t1_projection_diagnostic_v1.jl")
 CONTRACT = ROOT / "src" / "Contracts" / "CandidateStatePackageV5Next.jl"
 ADMISSION = ROOT / "src" / "GenomeV5" / "Integration" / "VNextGenomeV5Integration.jl"
 FIXTURE = TEST.with_name("vnext_t1_candidate_state_package_v5_next_fixture.json")
@@ -30,6 +31,7 @@ def main() -> int:
     test = TEST.with_name("vnext_t1_candidate_state_package_v5_next_tests.jl").read_text(
         encoding="utf-8"
     )
+    diagnostic = DIAGNOSTIC.read_text(encoding="utf-8")
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
     checks: list[str] = []
 
@@ -104,6 +106,37 @@ def main() -> int:
     )
     for needle in required_test:
         require(test, needle, "focused test feature", checks)
+
+    required_diagnostic = (
+        "vnext_t1_projection_diagnostic_v1",
+        "_vnext_t1_snapshot",
+        "_vnext_t1_declaration_tuple",
+        "_vnext_t1_child_tuple",
+        "_vnext_t1_validate_feedback_order",
+        "_vnext_t1_feedback_tuple",
+        "_vnext_t1_output_gate",
+        "_vnext_t1_package",
+        "status=:internal_failure",
+        "stage=stage",
+        "exception_type=exception_type",
+        "message_digest=message_digest",
+        "string(err)",
+    )
+    for needle in required_diagnostic:
+        require(diagnostic, needle, "first-failure diagnostic feature", checks)
+    checks.append("diagnostic is additive and not exported")
+    if "\nexport " in diagnostic or "\ninclude(" in diagnostic:
+        raise AssertionError("diagnostic must not alter the production module")
+    checks.append("focused test includes diagnostic")
+    require(test, "vnext_t1_projection_diagnostic_v1.jl",
+            "focused test diagnostic include", checks)
+    checks.append("diagnostic fields are asserted without frozen internals")
+    for needle in (
+        "diagnostic.stage isa Symbol",
+        "diagnostic.exception_type isa Symbol",
+        "diagnostic.message_digest isa G.Digest256",
+    ):
+        require(test, needle, "diagnostic field assertion", checks)
 
     checks.append("no second main-module include")
     if "include(G, joinpath(_T1_ROOT, \"src\", \"FusionConceptAI.jl\"))" in test:

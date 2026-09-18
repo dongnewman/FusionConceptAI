@@ -15,6 +15,7 @@ Base.include(G, joinpath(_T1_ROOT, "src", "Contracts",
     "CandidateStatePackageV5Next.jl"))
 Base.include(G, joinpath(_T1_ROOT, "src", "GenomeV5", "Integration",
     "VNextGenomeV5Integration.jl"))
+Base.include(Main, joinpath(@__DIR__, "vnext_t1_projection_diagnostic_v1.jl"))
 
 const _T1_CANDIDATE = Main._T0L_CANDIDATE
 
@@ -74,6 +75,15 @@ end
     @test fixture.transport.gaps == (:g3_child_terminal_deferred,)
 
     admitted = G.vnext_t1_admit_skeleton_v1(_t1_input(fixture))
+    diagnostic = Main.vnext_t1_projection_diagnostic_v1(_t1_input(fixture))
+    @test diagnostic.status === :internal_failure
+    @test diagnostic.stage isa Symbol
+    @test diagnostic.exception_type isa Symbol
+    @test diagnostic.message_digest isa G.Digest256
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_STATUS=$(diagnostic.status)")
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_STAGE=$(diagnostic.stage)")
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_EXCEPTION_TYPE=$(diagnostic.exception_type)")
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_MESSAGE_DIGEST=$(diagnostic.message_digest)")
     @test admitted.status === :prepared_not_executed
     @test admitted.resolution === :terminal_deferred
     @test admitted.accepted === false
