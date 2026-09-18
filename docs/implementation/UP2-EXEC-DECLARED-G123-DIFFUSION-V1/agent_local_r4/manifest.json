@@ -1,0 +1,51 @@
+{
+  "schema": "DeclaredG123DiffusionExecutionAgentLocalManifestV4",
+  "task": "UP2-EXEC-DECLARED-G123-DIFFUSION-V1",
+  "revision": "agent_local_r4",
+  "status": "pass_limited",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "formal_up_credit": false,
+  "formal_r_credit": false,
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "mesh_calls": 0,
+  "solver_calls_in_oracle": 1,
+  "commands": [
+    "python -B test/RuntimeV4/DeclaredG123DiffusionExecution/independent_oracle.py",
+    "python -B test/RuntimeV4/DeclaredG123DiffusionExecution/static_qa.py"
+  ],
+  "results": {
+    "oracle": "pass",
+    "static_qa": "pass",
+    "exit_codes": {"oracle": 0, "static_qa": 0},
+    "negative_gate_vectors": 10,
+    "aggregate_status": "terminal_deferred",
+    "composition_status": "terminal_deferred",
+    "numerical_status": "ready",
+    "matrix": [[9.1125, -4.6125], [-4.6125, 9.3375]],
+    "rhs": [1.1666666666666667, 2.666666666666667],
+    "solution": [0.36346540908222763, 0.4651299454948799],
+    "overlap": [0.5, 2.5],
+    "transfer": [0.25, 0.75]
+  },
+  "owned_files_sha256": {
+    "src/RuntimeV4/DeclaredG123DiffusionExecutionV1.jl": "9cdfe79ece3507ca638a70c6853d618455d92148a92bbef12d1ecd4e52656fdd",
+    "test/RuntimeV4/DeclaredG123DiffusionExecution/fixture.jl": "f80a70c16df0fcd158bbac0cc29aa545e29d3f3eed90dad573d09d905878a7c6",
+    "test/RuntimeV4/DeclaredG123DiffusionExecution/focused_tests.jl": "885323e578befa7841ccca03accef6d9fca44781ed3afac6bf462bc92e8333af",
+    "test/RuntimeV4/DeclaredG123DiffusionExecution/fixture.json": "681a7491e3ab807417e6054ce30ee187073072c370ad9e846e16dd81ec850b44",
+    "test/RuntimeV4/DeclaredG123DiffusionExecution/independent_oracle.py": "ee79d41b7be160f1bc9372a2cd4147cf69daf9c55406ea620b05710bafc0b361",
+    "test/RuntimeV4/DeclaredG123DiffusionExecution/static_qa.py": "d0f5fb7826ef89a2eb4922a4fca11df585dce62438b494834c804f6bc3193142"
+  },
+  "boundary": {
+    "legal_g2_mesh_status_only": true,
+    "mesh_authority_modelled_by_admission_resolution": true,
+    "g2_and_g3_admission_product_dispatch": true,
+    "ten_negative_cases_constructed_and_dispatched": true,
+    "receipt_envelope_bytes_exact": true,
+    "factory_result_source_and_declaration_bytes_exact": true,
+    "no_existing_runtime_or_contract_edits": true,
+    "parent_up_r01_r10_status": "unchanged"
+  }
+}
