@@ -1,0 +1,50 @@
+{
+  "schema": "UP4SourceHardwareInverseAgentLocalR7ManifestV1",
+  "task_id": "UP4-01A-SOURCE-HARDWARE-INVERSE-R7",
+  "agent_local_run": "agent_local_r7",
+  "status": "contract_only",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "runtime_blocker_repaired": "typed alternative constructor value erasure",
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "checker_calls": 0,
+  "negative_coverage": {
+    "fixture_count": 37,
+    "fixture_unique_count": 37,
+    "test_registry_exact_set": true,
+    "hash_join_and_provenance_preserved": true
+  },
+  "alternative_constructor": {
+    "positive_type": "SourceHardwareRefV1",
+    "positive_kind": "design_alternative",
+    "bool_rejected": true,
+    "wrong_kind_rejected": true,
+    "constructor_preserves_original_value": true
+  },
+  "static_qa": {
+    "command": "python -B docs/implementation/UP4-EARLY-PREPARATION/UP4-01-SOURCE-HARDWARE-INVERSE-R1/agent_local_r7/static_qa.py",
+    "exit_code": 0,
+    "status": "pass",
+    "checks": 73,
+    "failed_checks": [],
+    "julia_executed": false,
+    "desc_executed": false
+  },
+  "input_sha256": {
+    "src/RuntimeV4/SourceHardwareInverseRealizationContractV1.jl": "9b8f794a27d011a675a663606ae4bae59081bb3562b7a55c37f7aa04b16bbbe1",
+    "test/RuntimeV4/source_hardware_inverse_realization_contract_v1_tests.jl": "49d8343e5767aba4547a82a34368ae914d9279265b9687e0565ec781b8198639",
+    "test/RuntimeV4/fixtures/source_hardware_inverse_realization_contract_v1.json": "3708b78a23977090e7dd386edb247f8cad4adda3e9be3deb3aab1649406a84a8",
+    "docs/implementation/UP4-EARLY-PREPARATION/UP4-01-SOURCE-HARDWARE-INVERSE-R1/agent_local_r7/static_qa.py": "4061ab08617644fe58c36c53dba755f089741d85d8357b93a7fdadd91a8c1bfb"
+  },
+  "residual_structural_limits": [
+    "contract_only_no_runtime_execution",
+    "candidate_provenance_is_hash_join_not_independent_signature_or_trust_root",
+    "no_geometry_material_manufacturing_cooling_control_or_physical_evidence",
+    "no_numerical_solver_provider_checker_or_hardware_readiness"
+  ],
+  "no_commit": true,
+  "self_hash_excluded": true
+}

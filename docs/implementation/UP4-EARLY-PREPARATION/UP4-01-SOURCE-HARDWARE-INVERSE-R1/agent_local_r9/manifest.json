@@ -1,0 +1,56 @@
+{
+  "schema": "UP4SourceHardwareInverseAgentLocalR9ManifestV1",
+  "task_id": "UP4-01A-SOURCE-HARDWARE-INVERSE-R9",
+  "agent_local_run": "agent_local_r9",
+  "status": "contract_only",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "scope": [
+    "focused_test_constructor_guard_fixture_path",
+    "agent_local_r7_static_qa",
+    "agent_local_r9_archive"
+  ],
+  "r8_lineage": {
+    "pass": 23,
+    "failed": 0,
+    "error": 1,
+    "total": 24,
+    "error_class": "test_fixture_path_error",
+    "error_path": "fixture.constructor_guards",
+    "historical_only": true
+  },
+  "r9_repair": {
+    "test_line": 225,
+    "correct_path": "positive.constructor_guards",
+    "forbidden_path": "fixture.constructor_guards",
+    "product_source_changed": false,
+    "fixture_changed": false,
+    "commit_created": false,
+    "julia_executed": false,
+    "desc_executed": false,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "checker_calls": 0
+  },
+  "static_qa": {
+    "script": "docs/implementation/UP4-EARLY-PREPARATION/UP4-01-SOURCE-HARDWARE-INVERSE-R1/agent_local_r7/static_qa.py",
+    "command": "python -B docs/implementation/UP4-EARLY-PREPARATION/UP4-01-SOURCE-HARDWARE-INVERSE-R1/agent_local_r7/static_qa.py",
+    "exit_code": 0,
+    "status": "pass",
+    "checks": 75,
+    "failed_checks": [],
+    "negative_count": 37,
+    "unique_negative_count": 37,
+    "registry_exact_set": true,
+    "julia_executed": false,
+    "desc_executed": false
+  },
+  "hashes": {
+    "src/RuntimeV4/SourceHardwareInverseRealizationContractV1.jl": "9b8f794a27d011a675a663606ae4bae59081bb3562b7a55c37f7aa04b16bbbe1",
+    "test/RuntimeV4/source_hardware_inverse_realization_contract_v1_tests.jl": "bf4c2b10d9eee05840133bec616e28d6a5d0c20610a60d1071f7cd2ad430a47e",
+    "test/RuntimeV4/fixtures/source_hardware_inverse_realization_contract_v1.json": "3708b78a23977090e7dd386edb247f8cad4adda3e9be3deb3aab1649406a84a8",
+    "docs/implementation/UP4-EARLY-PREPARATION/UP4-01-SOURCE-HARDWARE-INVERSE-R1/agent_local_r7/static_qa.py": "94c7c3a9710ef566a84d63e5b8f273d31c46cac16e6cb92ca334484cdb3ea02a"
+  },
+  "next_unique_julia_command": "julia --startup-file=no --project=. test/RuntimeV4/source_hardware_inverse_realization_contract_v1_tests.jl",
+  "self_hash_excluded": true
+}
