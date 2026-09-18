@@ -1,61 +1,62 @@
-# Static handoff report (R3)
+# Static handoff report — UP1-04A VNext T1 skeleton (R5)
 
 Date: 2026-09-18 (Asia/Shanghai)
 
-## Scope and status
+## Result
 
 | Item | Result |
 | --- | --- |
-| T0 runtime | unresolved dependency; not run |
+| T0 runtime | unresolved; not run |
 | T1 | `prepared_not_executed` |
 | Claim ceiling | `contract_only` |
 | Package/runtime credit | none |
-| Existing dirty worktree | preserved; no unrelated paths edited |
+| Julia/DESC/provider/mesh/solver | not invoked |
+| Source files changed | none |
 | Commit | none |
 
-Only the two additive source declarations, this directory's documentation, and
-the static-QA script are owned by this handoff. The files are excluded from the
-main module, so this change does not alter current runtime behavior.
+Only the designated documentation/static-QA surface was changed. The two
+additive Julia declarations remain excluded from the main module and do not
+alter current runtime behavior.
+
+## R5 contract alignment
+
+The documentation and static check now match the current R5 source:
+
+* `VNextT1NoLegacyReceiptV1` is the only accepted receipt shape; it is
+  candidate-bound, hash-checked, and has `legacy_refs::NTuple{0,...}`.
+* T0 admission allows only the known gap
+  `(:g3_child_terminal_deferred,)`; it requires all three typed-absent
+  children for that gap and all three typed-present children for no gap.
+* Package-owned schema/canonicalization/profile versions and hashes are part
+  of `package_hash`, independent of layer-derived hashes.
+* `VNextT1CanonicalBytesV1` owns immutable tuple bytes and verifies their
+  hashes; mutable T0 byte-vector fields are not retained by T1 projections.
+* Frozen factory IDs/versions and G1/G2/G3 plus G3-child contract references
+  are checked before projection.
 
 ## Static evidence
 
-`static_qa.ps1` completed with:
+Command:
 
-```
+```text
+pwsh -NoProfile -File docs/implementation/UP1-04A-VNEXT-T1-SKELETON/static_qa.ps1
+exit=0
+STATIC_NEGATIVE_MATRIX=16
 STATIC_QA=PASS
-STATIC_NEGATIVE_MATRIX=12
-SCOPED_TRAILING_WHITESPACE=PASS
 RUNTIME=NOT_RUN
 T0=UNRESOLVED
 T1=PREPARED_NOT_EXECUTED
 ```
 
-SHA-256 (captured after the final static-QA pass):
+The 16-case matrix is assertion-only. It fabricates no valid package and
+provides no runtime, authority, engineering, provider, mesh, solver, or
+physical evidence.
 
-| Path | SHA-256 |
-| --- | --- |
-| `src/Contracts/CandidateStatePackageV5Next.jl` | `9CB2ECF3D301B0DACE4AB043323BE109D36C64B98A35D6699674730CC43A455D` |
-| `src/GenomeV5/Integration/VNextGenomeV5Integration.jl` | `A33DE469580EA4B6376BFF00AD827E2F0750B99E06BAC572F7C21193EA7123FC` |
-| `README.md` | `8A285E51352262D88CE06D34D1C92042274BF1EF8C4F6EB7006E46B9D4949114` |
-| `static_qa.ps1` | `5C76057AF04A70DF38E6FEEB2946B9DD63ECEB7AFD4EAF595DFD1F0754BEF932` |
+## Review boundary
 
-R3 specifically closes the six independent rejection classes: factory-axis
-projection confused with outer axes, package-owned schema/canonical/profile
-hash omission, transitive open T0 body/output retention, receipt self-hash
-without canonical-envelope reconstruction, incomplete feedback/child joins,
-and label-erased identity that dropped absent-child metadata. The matrix is
-executable as a static PowerShell assertion set only; it fabricates no runtime
-success.
-
-## Review plan
-
-Before any T1 runtime inclusion, independently verify the concrete T0 result
-type, its prior bundle bytes/hash and closed output projection, exact G1/G2/G3
-and G3 child arity, outer/local versus per-layer factory axes, four-axis order,
-source/declaration byte/hash/locator joins, reconstructed receipt envelopes,
-feedback body target joins, label-erased semantic identity including absent
-metadata, and fresh migration receipt equality. Re-run all 12 negative cases
-with no recheck, stale/contradictory gates, mismatched bundle/candidate,
-mutated envelopes, and every projection/hash mismatch; every case must return
-without a package. Keep T0 unresolved and T1 unexecuted until that review and
-fresh runtime evidence exist.
+Before any runtime inclusion, independently recheck the concrete T0 result
+identity, prior bytes/hash, known-gap child semantics, declaration and
+feedback joins, frozen factory/contract identities, immutable byte/hash joins,
+label-erased identity, and package-owned hash participation. Preserve
+`prepared_not_executed`, `terminal_deferred`, `accepted=false`, and
+`contract_only` until that review and fresh runtime evidence exist.

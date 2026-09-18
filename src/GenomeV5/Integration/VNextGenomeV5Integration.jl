@@ -13,7 +13,7 @@ struct VNextT1AdmissionInputV1
     candidate_ref::QualifiedRefV1
     t0_recheck::Union{Nothing,VNextT1ExpectedRecheckV1}
     transport::Union{Nothing,VNextT0LocalTransportV1}
-    migration_receipt::Union{Nothing,GenomeV5MigrationReceipt}
+    no_legacy_receipt::Union{Nothing,VNextT1NoLegacyReceiptV1}
 end
 VNextT1AdmissionInputV1(candidate_ref::QualifiedRefV1,
         t0_recheck::Union{Nothing,VNextT1ExpectedRecheckV1},
@@ -27,7 +27,7 @@ struct VNextT1AdmissionResultV1{P,C,E,G}
     claim_ceiling::Symbol
     package::P
     component_count_receipt::C
-    migration_receipt::Union{Nothing,GenomeV5MigrationReceipt}
+    no_legacy_receipt::Union{Nothing,VNextT1NoLegacyReceiptV1}
     errors::NTuple{E,Symbol}
     gaps::NTuple{G,Symbol}
 end
@@ -37,7 +37,7 @@ semantic_view(x::VNextT1AdmissionResultV1) = (
     status=x.status, resolution=x.resolution, accepted=x.accepted,
     claim_ceiling=x.claim_ceiling, package=x.package,
     component_count_receipt=x.component_count_receipt,
-    migration_receipt=x.migration_receipt, errors=x.errors, gaps=x.gaps)
+    no_legacy_receipt=x.no_legacy_receipt, errors=x.errors, gaps=x.gaps)
 
 function _vnext_t1_reject(status::Symbol, resolution::Symbol,
         errors::NTuple{E,Symbol}, gaps::NTuple{G,Symbol}) where {E,G}
@@ -59,11 +59,30 @@ function _vnext_t1_snapshot(input::VNextT1AdmissionInputV1)
     recheck.resolution === :resolved || throw(ArgumentError("T0 is not resolved"))
     recheck.accepted == false || throw(ArgumentError("T0 accepted=true"))
     recheck.claim_ceiling === :contract_only || throw(ArgumentError("T0 claim ceiling invalid"))
+    isempty(recheck.errors) || throw(ArgumentError("T0 recheck errors present"))
+    isempty(recheck.reasons) || throw(ArgumentError("T0 recheck reasons present"))
     transport.candidate_ref == input.candidate_ref ||
         throw(ArgumentError("transport candidate mismatch"))
     transport.status === :valid || throw(ArgumentError("transport is not valid"))
     isempty(transport.errors) || throw(ArgumentError("transport errors present"))
-    isempty(transport.gaps) || throw(ArgumentError("transport gaps present"))
+    transport.gaps in ((), (:g3_child_terminal_deferred,)) ||
+        throw(ArgumentError("unknown or multiple T0 gaps"))
+    Tuple(child.kind for child in transport.children) == VNEXT_T1_REQUIRED_CHILDREN_V1 ||
+        throw(ArgumentError("T0 child kind/order mismatch"))
+    has_absent_child = any(child -> child isa VNextT0LocalChildAbsentV1,
+        transport.children)
+    has_absent_child == (transport.gaps == (:g3_child_terminal_deferred,)) ||
+        throw(ArgumentError("T0 child/gap semantic mismatch"))
+    if transport.gaps == (:g3_child_terminal_deferred,)
+        all(child -> child isa VNextT0LocalChildAbsentV1, transport.children) ||
+            throw(ArgumentError("T0 child gap must be all typed absent"))
+        all(child -> child.status in (:terminal_deferred, :typed_absent),
+            transport.children) || throw(ArgumentError("T0 absent child status invalid"))
+    else
+        all(child -> child isa VNextT0LocalChildPresentV1, transport.children) ||
+            throw(ArgumentError("T0 no-gap state must be all present"))
+    end
+    _vnext_t1_validate_feedback_order(transport.feedback)
     recomputed_bundle_hash = vnext_t0_local_bundle_hash_recompute_v1(transport)
     recomputed_bundle_hash == transport.bundle_hash ||
         throw(ArgumentError("transport bundle hash recomputation mismatch"))
@@ -156,8 +175,7 @@ function vnext_t1_admit_skeleton_v1(input::VNextT1AdmissionInputV1)
         raw_declarations = ntuple(i ->
             input.transport.declarations[i]::VNextT0LocalPresentDeclarationV1, 3)
         raw_feedback = input.transport.feedback
-        all(item -> item isa VNextT0LocalFeedbackV1, raw_feedback) ||
-            throw(ArgumentError("feedback type mismatch"))
+        _vnext_t1_validate_feedback_order(raw_feedback)
         typed_feedback = ntuple(i -> raw_feedback[i]::VNextT0LocalFeedbackV1,
             length(raw_feedback))
         feedback = _vnext_t1_feedback_tuple(typed_feedback, raw_declarations,
@@ -165,17 +183,16 @@ function vnext_t1_admit_skeleton_v1(input::VNextT1AdmissionInputV1)
         axes = ntuple(i -> declarations[i].axes, 3)
         source_hashes = ntuple(i -> declarations[i].source_bytes.sha256, 3)
         declaration_hashes = ntuple(i -> declarations[i].declaration_bytes.sha256, 3)
-        migration = input.migration_receipt === nothing ?
-            vnext_t1_fresh_migration_receipt_v1(input.candidate_ref) :
-            input.migration_receipt
-        migration == vnext_t1_fresh_migration_receipt_v1(input.candidate_ref) ||
-            return _vnext_t1_fail(:fresh_migration_receipt_required)
+        no_legacy = input.no_legacy_receipt === nothing ?
+            vnext_t1_no_legacy_receipt_v1(input.candidate_ref) :
+            input.no_legacy_receipt
+        _vnext_t1_validate_no_legacy_receipt(no_legacy, input.candidate_ref)
         gate = _vnext_t1_output_gate(input, prior, declarations, children, feedback)
         package = _vnext_t1_package(input.candidate_ref, declarations, children,
-            axes, feedback, source_hashes, declaration_hashes, gate, migration)
+            axes, feedback, source_hashes, declaration_hashes, gate, no_legacy)
         VNextT1AdmissionResultV1{typeof(package),typeof(package.component_count_receipt),0,1}(
             :prepared_not_executed, :terminal_deferred, false, :contract_only,
-            package, package.component_count_receipt, migration, (),
+            package, package.component_count_receipt, no_legacy, (),
             (:t1_runtime_unresolved,))
     catch
         _vnext_t1_fail(:t1_projection_invalid)

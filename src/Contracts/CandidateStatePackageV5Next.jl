@@ -9,6 +9,33 @@ Julia/DESC run, provider admission, or physical claim.
 const VNEXT_T1_PACKAGE_SCHEMA_ID_V1 =
     "GenomeV5/Contracts/CandidateStatePackageV5Next"
 const VNEXT_T1_PACKAGE_SCHEMA_VERSION_V1 = "v1"
+const VNEXT_T1_PACKAGE_CANONICALIZATION_VERSION_V1 = "canonical-json-v1"
+const VNEXT_T1_PACKAGE_PROFILE_VERSION_V1 = "closed-no-legacy-v1"
+const VNEXT_T1_NO_LEGACY_RECEIPT_ID_V1 =
+    "fusionconceptai://GenomeV5Next/T1/no-legacy"
+const VNEXT_T1_G1_FACTORY_ID_V1 = QualifiedRefV1(
+    "fusionconceptai://GenomeV5/G1/source-authority-factory", "v1")
+const VNEXT_T1_G2_FACTORY_ID_V1 = QualifiedRefV1(
+    "fusionconceptai://GenomeV5/G2/source-authority-factory", "v1")
+const VNEXT_T1_G3_FACTORY_ID_V1 = QualifiedRefV1(
+    "fusionconceptai://GenomeV5/G3/source-authority-factory", "v1")
+const VNEXT_T1_G3_FEEDBACK_FACTORY_ID_V1 = QualifiedRefV1(
+    "fusionconceptai://GenomeV5/G3/source-feedback-declaration-factory", "v1")
+const VNEXT_T1_FACTORY_VERSION_V1 = "v1"
+const VNEXT_T1_FROZEN_G1_CONTRACT_REF_V1 = _g1sf_expected_contract()
+const VNEXT_T1_FROZEN_G2_CONTRACT_REF_V1 = _g2sf_expected_contract()
+const VNEXT_T1_FROZEN_G3_CONTRACT_REF_V1 = g3_contract_ref(:realization)
+const VNEXT_T1_FROZEN_G3_FEEDBACK_CONTRACT_REF_V1 =
+    vnext_t0_local_g3_feedback_contract_v1()
+const VNEXT_T1_FROZEN_G3_REALIZATION_CONTRACT_REF_V1 = g3_contract_ref(:realization)
+const VNEXT_T1_FROZEN_G3_CONTROL_CONTRACT_REF_V1 = g3_contract_ref(:control)
+const VNEXT_T1_FROZEN_G3_BINDING_CONTRACT_REF_V1 = g3_contract_ref(:binding)
+const VNEXT_T1_FACTORY_IDS_V1 = (
+    VNEXT_T1_G1_FACTORY_ID_V1, VNEXT_T1_G2_FACTORY_ID_V1,
+    VNEXT_T1_G3_FACTORY_ID_V1, VNEXT_T1_G3_FEEDBACK_FACTORY_ID_V1)
+const VNEXT_T1_FACTORY_VERSIONS_V1 = (
+    VNEXT_T1_FACTORY_VERSION_V1, VNEXT_T1_FACTORY_VERSION_V1,
+    VNEXT_T1_FACTORY_VERSION_V1, VNEXT_T1_FACTORY_VERSION_V1)
 const VNEXT_T1_REQUIRED_LAYERS_V1 = (:G1, :G2, :G3)
 const VNEXT_T1_REQUIRED_CHILDREN_V1 = (:realization, :control, :binding)
 const VNEXT_T1_AXIS_IDS_V1 = (
@@ -16,6 +43,13 @@ const VNEXT_T1_AXIS_IDS_V1 = (
     "fusion.t0.local/applicability", "fusion.t0.local/evidence-receipt")
 const VNEXT_T1_AXIS_VERSION_V1 = "v1"
 const VNEXT_T1_REQUIRED_COMPONENT_COUNT_V1 = 3
+
+vnext_t1_package_schema_hash_v1() = digest256_text(
+    VNEXT_T1_PACKAGE_SCHEMA_ID_V1 * ":" * VNEXT_T1_PACKAGE_SCHEMA_VERSION_V1)
+vnext_t1_package_canonicalization_hash_v1() = digest256_text(
+    VNEXT_T1_PACKAGE_SCHEMA_ID_V1 * ":" * VNEXT_T1_PACKAGE_CANONICALIZATION_VERSION_V1)
+vnext_t1_package_profile_hash_v1() = digest256_text(
+    VNEXT_T1_PACKAGE_SCHEMA_ID_V1 * ":" * VNEXT_T1_PACKAGE_PROFILE_VERSION_V1)
 
 function _vnext_t1_sha(bytes::NTuple{N,UInt8}) where {N}
     Digest256(bytes2hex(SHA.sha256(Vector{UInt8}(bytes))))
@@ -33,6 +67,8 @@ struct VNextT1CanonicalBytesV1{N}
 end
 VNextT1CanonicalBytesV1(bytes::AbstractVector{UInt8}) =
     VNextT1CanonicalBytesV1(Tuple(UInt8.(bytes)))
+_vnext_t1_owned_bytes(bytes::VNextT0LocalBytesV1) =
+    VNextT1CanonicalBytesV1(bytes.bytes)
 semantic_view(x::VNextT1CanonicalBytesV1) =
     (bytes=x.bytes, sha256=x.sha256)
 
@@ -72,7 +108,7 @@ semantic_view(x::VNextT1LayerContractIdentityV1) = (
 """Closed receipt projection; the open T0 result is retained only by the caller."""
 struct VNextT1ReceiptProjectionV1
     kind::Symbol
-    bytes::VNextT0LocalBytesV1
+    bytes::VNextT1CanonicalBytesV1
     candidate_ref::QualifiedRefV1
     layer::Symbol
     source_ref::QualifiedRefV1
@@ -89,6 +125,56 @@ semantic_view(x::VNextT1ReceiptProjectionV1) = (
     axes=x.axes, factory_axes=x.factory_axes, status=x.status,
     factory_api=x.factory_api, factory_result_hash=x.factory_result_hash)
 
+"""Closed VNext receipt proving that no legacy mapping was supplied."""
+struct VNextT1NoLegacyReceiptV1
+    receipt_id::QualifiedRefV1
+    candidate_ref::QualifiedRefV1
+    legacy_refs::NTuple{0,QualifiedRefV1}
+    status::Symbol
+    candidate_identity_hash::Digest256
+    receipt_hash::Digest256
+    function VNextT1NoLegacyReceiptV1(receipt_id::QualifiedRefV1,
+            candidate_ref::QualifiedRefV1,
+            legacy_refs::NTuple{0,QualifiedRefV1}, status::Symbol,
+            candidate_identity_hash::Digest256)
+        candidate_ref.version == "v5" ||
+            throw(ArgumentError("VNext candidate must carry v5 version"))
+        status === :no_legacy_mapping ||
+            throw(ArgumentError("VNext receipt status must be no_legacy_mapping"))
+        candidate_identity_hash == canonical_hash((kind=:candidate_identity,
+            candidate_ref=candidate_ref)) ||
+            throw(ArgumentError("VNext candidate identity hash mismatch"))
+        payload = (receipt_id=receipt_id, candidate_ref=candidate_ref,
+            legacy_refs=legacy_refs, status=status,
+            candidate_identity_hash=candidate_identity_hash)
+        new(receipt_id, candidate_ref, legacy_refs, status,
+            candidate_identity_hash, canonical_hash(payload))
+    end
+end
+semantic_view(x::VNextT1NoLegacyReceiptV1) = (
+    receipt_id=x.receipt_id, candidate_ref=x.candidate_ref,
+    legacy_refs=x.legacy_refs, status=x.status,
+    candidate_identity_hash=x.candidate_identity_hash, receipt_hash=x.receipt_hash)
+_vnext_t1_no_legacy_payload(x::VNextT1NoLegacyReceiptV1) = (
+    receipt_id=x.receipt_id, candidate_ref=x.candidate_ref,
+    legacy_refs=x.legacy_refs, status=x.status,
+    candidate_identity_hash=x.candidate_identity_hash)
+function vnext_t1_no_legacy_receipt_v1(candidate_ref::QualifiedRefV1)
+    identity_hash = canonical_hash((kind=:candidate_identity,
+        candidate_ref=candidate_ref))
+    VNextT1NoLegacyReceiptV1(
+        QualifiedRefV1(VNEXT_T1_NO_LEGACY_RECEIPT_ID_V1, "v1"),
+        candidate_ref, (), :no_legacy_mapping, identity_hash)
+end
+function _vnext_t1_validate_no_legacy_receipt(
+        receipt::VNextT1NoLegacyReceiptV1, candidate_ref::QualifiedRefV1)
+    receipt == vnext_t1_no_legacy_receipt_v1(candidate_ref) ||
+        throw(ArgumentError("VNext no-legacy receipt/candidate join mismatch"))
+    receipt.receipt_hash == canonical_hash(_vnext_t1_no_legacy_payload(receipt)) ||
+        throw(ArgumentError("VNext no-legacy receipt hash mismatch"))
+    receipt
+end
+
 """A present declaration projection with no untyped/open package field."""
 struct VNextT1DeclarationRecordV1
     layer::Symbol
@@ -98,9 +184,9 @@ struct VNextT1DeclarationRecordV1
     source_identity_hash::Digest256
     declaration_identity_hash::Digest256
     axes::NTuple{4,QualifiedRefV1}
-    source_bytes::VNextT0LocalBytesV1
-    declaration_bytes::VNextT0LocalBytesV1
-    semantic_body_bytes::VNextT0LocalBytesV1
+    source_bytes::VNextT1CanonicalBytesV1
+    declaration_bytes::VNextT1CanonicalBytesV1
+    semantic_body_bytes::VNextT1CanonicalBytesV1
     source_locator::VNextT0LocalSourceLocatorV1
     factory_receipt::VNextT1ReceiptProjectionV1
     declaration_receipt::VNextT1ReceiptProjectionV1
@@ -123,7 +209,7 @@ struct VNextT1PresentChildRecordV1 <: VNextT1ChildRecordV1
     child_id::String
     child_ref::QualifiedRefV1
     source_ref::QualifiedRefV1
-    source_bytes::VNextT0LocalBytesV1
+    source_bytes::VNextT1CanonicalBytesV1
     source_locator::VNextT0LocalSourceLocatorV1
     body_hash::Digest256
     child_identity_hash::Digest256
@@ -137,7 +223,7 @@ struct VNextT1AbsentChildRecordV1 <: VNextT1ChildRecordV1
     reason::String
     candidate_identity_created::Bool
     factory_api::Symbol
-    factory_receipt_bytes::VNextT0LocalBytesV1
+    factory_receipt_bytes::VNextT1CanonicalBytesV1
     factory_receipt_hash::Digest256
     source_path::String
 end
@@ -182,7 +268,7 @@ struct VNextT1DeclarationIdentityV1
     source_identity_hash::Digest256
     declaration_identity_hash::Digest256
     axes::NTuple{4,QualifiedRefV1}
-    semantic_body_bytes::VNextT0LocalBytesV1
+    semantic_body_bytes::VNextT1CanonicalBytesV1
 end
 semantic_view(x::VNextT1DeclarationIdentityV1) = (
     layer=x.layer, candidate_ref=x.candidate_ref, source_ref=x.source_ref,
@@ -372,12 +458,18 @@ struct CandidateStatePackageV5Next{N,M,K}
     component_identity::VNextT1ComponentIdentityV1{N}
     component_count_receipt::VNextT1ComponentCountReceiptV1{N}
     semantic_identity::Digest256
-    migration_receipt::GenomeV5MigrationReceipt
+    no_legacy_receipt::VNextT1NoLegacyReceiptV1
     t0_gate::VNextT1T0GateV1{M,K,N}
     status::Symbol
     resolution::Symbol
     accepted::Bool
     claim_ceiling::Symbol
+    package_schema_version::String
+    package_schema_hash::Digest256
+    package_canonicalization_version::String
+    package_canonicalization_hash::Digest256
+    package_profile_version::String
+    package_profile_hash::Digest256
     package_hash::Digest256
 end
 semantic_view(x::CandidateStatePackageV5Next) = (
@@ -391,13 +483,16 @@ semantic_view(x::CandidateStatePackageV5Next) = (
     canonicalization_hashes=x.canonicalization_hashes,
     profile_hashes=x.profile_hashes,
     component_count_receipt=x.component_count_receipt,
-    semantic_identity=x.semantic_identity, migration_receipt=x.migration_receipt,
+    semantic_identity=x.semantic_identity, no_legacy_receipt=x.no_legacy_receipt,
     t0_gate=x.t0_gate, status=x.status, resolution=x.resolution,
     accepted=x.accepted, claim_ceiling=x.claim_ceiling,
+    package_schema_version=x.package_schema_version,
+    package_schema_hash=x.package_schema_hash,
+    package_canonicalization_version=x.package_canonicalization_version,
+    package_canonicalization_hash=x.package_canonicalization_hash,
+    package_profile_version=x.package_profile_version,
+    package_profile_hash=x.package_profile_hash,
     package_hash=x.package_hash)
-
-vnext_t1_fresh_migration_receipt_v1(candidate_ref::QualifiedRefV1) =
-    v5_fresh_migration_receipt(candidate_ref)
 
 function _vnext_t1_validate_axes(axes::NTuple{4,QualifiedRefV1})
     Tuple(axis.id for axis in axes) == VNEXT_T1_AXIS_IDS_V1 ||
@@ -414,6 +509,35 @@ function _vnext_t1_validate_bytes(bytes::VNextT0LocalBytesV1)
         throw(ArgumentError("T0 byte/hash join mismatch"))
     bytes
 end
+function _vnext_t1_validate_bytes(bytes::VNextT1CanonicalBytesV1)
+    bytes.sha256 == _vnext_t1_sha(bytes.bytes) ||
+        throw(ArgumentError("owned byte/hash join mismatch"))
+    bytes
+end
+
+function _vnext_t1_expected_factory_identity(api::Symbol)
+    api === :G1 && return (VNEXT_T1_G1_FACTORY_ID_V1, VNEXT_T1_FACTORY_VERSION_V1)
+    api === :G2 && return (VNEXT_T1_G2_FACTORY_ID_V1, VNEXT_T1_FACTORY_VERSION_V1)
+    api === :G3 && return (VNEXT_T1_G3_FACTORY_ID_V1, VNEXT_T1_FACTORY_VERSION_V1)
+    api === :G3_FEEDBACK &&
+        return (VNEXT_T1_G3_FEEDBACK_FACTORY_ID_V1, VNEXT_T1_FACTORY_VERSION_V1)
+    throw(ArgumentError("unknown factory API"))
+end
+
+function _vnext_t1_expected_contract_ref(layer::Symbol, api::Symbol)
+    layer === :G1 && api === :G1 && return VNEXT_T1_FROZEN_G1_CONTRACT_REF_V1
+    layer === :G2 && api === :G2 && return VNEXT_T1_FROZEN_G2_CONTRACT_REF_V1
+    layer === :G3 && api === :G3 && return VNEXT_T1_FROZEN_G3_CONTRACT_REF_V1
+    layer === :G3 && api === :G3_FEEDBACK &&
+        return VNEXT_T1_FROZEN_G3_FEEDBACK_CONTRACT_REF_V1
+    throw(ArgumentError("factory API/layer contract pair is not frozen"))
+end
+function _vnext_t1_expected_child_contract_ref(kind::Symbol)
+    kind === :realization && return VNEXT_T1_FROZEN_G3_REALIZATION_CONTRACT_REF_V1
+    kind === :control && return VNEXT_T1_FROZEN_G3_CONTROL_CONTRACT_REF_V1
+    kind === :binding && return VNEXT_T1_FROZEN_G3_BINDING_CONTRACT_REF_V1
+    throw(ArgumentError("unknown G3 child contract kind"))
+end
 
 function _vnext_t1_validate_locator(locator::VNextT0LocalSourceLocatorV1,
         candidate_source::QualifiedRefV1, bytes::VNextT0LocalBytesV1)
@@ -428,9 +552,26 @@ function _vnext_t1_validate_locator(locator::VNextT0LocalSourceLocatorV1,
     locator
 end
 
+function _vnext_t1_validate_feedback_order(items::Tuple)
+    all(item -> item isa VNextT0LocalFeedbackV1, items) ||
+        throw(ArgumentError("feedback type mismatch"))
+    ids = Tuple(item.target_id for item in items)
+    length(unique(ids)) == length(ids) ||
+        throw(ArgumentError("feedback target IDs must be unique"))
+    canonical = Tuple(sort!(collect(items), by=item -> item.target_id))
+    items == canonical || throw(ArgumentError("feedback canonical order mismatch"))
+    items
+end
+
 function _vnext_t1_validate_factory_result(result::VNextT0LocalFactoryResultV1,
         declaration::VNextT0LocalPresentDeclarationV1,
         candidate::QualifiedRefV1, axes::NTuple{4,QualifiedRefV1})
+    expected_factory_id, expected_factory_version =
+        _vnext_t1_expected_factory_identity(result.factory_api)
+    result.factory_id == expected_factory_id ||
+        throw(ArgumentError("factory result factory ID mismatch"))
+    result.factory_version == expected_factory_version ||
+        throw(ArgumentError("factory result factory version mismatch"))
     result.candidate_ref == candidate || throw(ArgumentError("factory result candidate mismatch"))
     result.layer == declaration.layer || throw(ArgumentError("factory result layer mismatch"))
     result.source_ref == declaration.source_ref || throw(ArgumentError("factory result source ref mismatch"))
@@ -449,6 +590,9 @@ function _vnext_t1_validate_factory_result(result::VNextT0LocalFactoryResultV1,
         throw(ArgumentError("factory result declaration bytes mismatch"))
     result.declaration_hash == declaration.declaration_bytes.sha256 ||
         throw(ArgumentError("factory result declaration hash mismatch"))
+    result.contract_ref == _vnext_t1_expected_contract_ref(
+        declaration.layer, result.factory_api) ||
+        throw(ArgumentError("factory result contract is not frozen"))
     result.contract_ref == declaration.contract_identity.contract_ref ||
         throw(ArgumentError("factory result contract mismatch"))
     result.axes == _vnext_t1_expected_factory_axes(result) ||
@@ -545,14 +689,14 @@ end
 
 function _vnext_t1_receipt_projection(receipt::VNextT0LocalFactoryReceiptV1,
         kind::Symbol)
-    VNextT1ReceiptProjectionV1(kind, receipt.bytes, receipt.candidate_ref,
+    VNextT1ReceiptProjectionV1(kind, _vnext_t1_owned_bytes(receipt.bytes), receipt.candidate_ref,
         receipt.layer, receipt.source_ref, receipt.declaration_ref, receipt.axes,
         receipt.factory_axes, receipt.status, receipt.factory_api,
         receipt.factory_result_hash)
 end
 function _vnext_t1_receipt_projection(receipt::VNextT0LocalDeclarationReceiptV1,
         kind::Symbol)
-    VNextT1ReceiptProjectionV1(kind, receipt.bytes, receipt.candidate_ref,
+    VNextT1ReceiptProjectionV1(kind, _vnext_t1_owned_bytes(receipt.bytes), receipt.candidate_ref,
         receipt.layer, receipt.source_ref, receipt.declaration_ref, receipt.axes,
         receipt.factory_axes, receipt.status, receipt.factory_api,
         receipt.factory_result_hash)
@@ -583,11 +727,16 @@ function _vnext_t1_declaration_record(d::VNextT0LocalPresentDeclarationV1,
     _vnext_t1_validate_receipt(d.factory_receipt, d, candidate, d.axes)
     _vnext_t1_validate_receipt(d.declaration_receipt, d, candidate, d.axes)
     contract_ref = d.factory_receipt.factory_result.contract_ref
+    contract_ref == _vnext_t1_expected_contract_ref(
+        d.layer, d.factory_receipt.factory_result.factory_api) ||
+        throw(ArgumentError("declaration contract is not frozen"))
     d.declaration_receipt.factory_result.contract_ref == contract_ref ||
         throw(ArgumentError("declaration/factory contract ref mismatch"))
     VNextT1DeclarationRecordV1(d.layer, candidate, d.source_ref,
         d.declaration_ref, d.source_identity_hash, d.declaration_identity_hash,
-        d.axes, d.source_bytes, d.declaration_bytes, d.semantic_body.bytes,
+        d.axes, _vnext_t1_owned_bytes(d.source_bytes),
+        _vnext_t1_owned_bytes(d.declaration_bytes),
+        _vnext_t1_owned_bytes(d.semantic_body.bytes),
         d.source_locator, _vnext_t1_receipt_projection(d.factory_receipt, :factory),
         _vnext_t1_receipt_projection(d.declaration_receipt, :declaration),
         VNextT1LayerContractIdentityV1(d.layer, contract_ref))
@@ -602,6 +751,7 @@ function _vnext_t1_child_record(child::VNextT0LocalChildPresentV1,
     isempty(child.child_ref.id) && throw(ArgumentError("present child ref missing"))
     _vnext_t1_validate_bytes(child.source_bytes)
     _vnext_t1_validate_locator(child.source_locator, child.source_ref, child.source_bytes)
+    _vnext_t1_validate_present_child_body(child.body, child, candidate)
     child.body_hash == canonical_hash(child.body) ||
         throw(ArgumentError("present child body hash mismatch"))
     expected_identity = canonical_hash((candidate_ref=child.candidate_ref,
@@ -611,8 +761,37 @@ function _vnext_t1_child_record(child::VNextT0LocalChildPresentV1,
     child.child_identity_hash == expected_identity ||
         throw(ArgumentError("present child identity hash mismatch"))
     VNextT1PresentChildRecordV1(child.kind, candidate, child.layer,
-        child.child_id, child.child_ref, child.source_ref, child.source_bytes,
+        child.child_id, child.child_ref, child.source_ref,
+        _vnext_t1_owned_bytes(child.source_bytes),
         child.source_locator, child.body_hash, child.child_identity_hash)
+end
+
+"""Validate closed joins exposed by a present child envelope when present."""
+function _vnext_t1_validate_present_child_body(body, child::VNextT0LocalChildPresentV1,
+        candidate::QualifiedRefV1)
+    hasproperty(body, :kind) || throw(ArgumentError("child envelope kind missing"))
+    body.kind == child.kind || throw(ArgumentError("child envelope kind mismatch"))
+    hasproperty(body, :source_ref) || throw(ArgumentError("child envelope source missing"))
+    body.source_ref == child.source_ref || throw(ArgumentError("child envelope source mismatch"))
+    hasproperty(body, :source_sha256) ||
+        throw(ArgumentError("child envelope source hash missing"))
+    body.source_sha256 == child.source_bytes.sha256 ||
+        throw(ArgumentError("child envelope source hash mismatch"))
+    if hasproperty(body, :contract_ref)
+        body.contract_ref == _vnext_t1_expected_child_contract_ref(child.kind) ||
+            throw(ArgumentError("child envelope frozen contract mismatch"))
+    end
+    for (field, expected) in ((:candidate_ref, candidate), (:child_ref, child.child_ref),
+            (:declaration_ref, nothing))
+        if hasproperty(body, field)
+            actual = getproperty(body, field)
+            expected === nothing || actual == expected ||
+                throw(ArgumentError("child envelope $field mismatch"))
+            actual isa QualifiedRefV1 ||
+                throw(ArgumentError("child envelope $field is not typed"))
+        end
+    end
+    nothing
 end
 
 function _vnext_t1_child_record(child::VNextT0LocalChildAbsentV1,
@@ -631,10 +810,26 @@ function _vnext_t1_child_record(child::VNextT0LocalChildAbsentV1,
     child.factory_receipt_hash == child.factory_receipt_bytes.sha256 ||
         throw(ArgumentError("absent child receipt hash mismatch"))
     isempty(child.source_path) && throw(ArgumentError("absent child source path missing"))
+    isempty(child.factory_receipt_bytes.bytes) &&
+        throw(ArgumentError("absent child receipt envelope missing"))
+    _vnext_t1_validate_absent_child_envelope(child, candidate, expected_kind)
     VNextT1AbsentChildRecordV1(child.kind, candidate, child.layer, child.child_id,
         child.status, child.reason, child.candidate_identity_created,
-        child.factory_api, child.factory_receipt_bytes,
+        child.factory_api, _vnext_t1_owned_bytes(child.factory_receipt_bytes),
         child.factory_receipt_hash, child.source_path)
+end
+
+"""The absent path has no child identity; retain only typed envelope joins."""
+function _vnext_t1_validate_absent_child_envelope(child::VNextT0LocalChildAbsentV1,
+        candidate::QualifiedRefV1, expected_kind::Symbol)
+    child.candidate_ref == candidate || throw(ArgumentError("absent envelope candidate mismatch"))
+    child.kind === expected_kind || throw(ArgumentError("absent envelope kind mismatch"))
+    child.factory_api === :G3 || throw(ArgumentError("absent envelope factory mismatch"))
+    child.factory_receipt_hash == _vnext_t1_sha(child.factory_receipt_bytes.bytes) ||
+        throw(ArgumentError("absent envelope hash mismatch"))
+    child.source_path isa String && isvalid(child.source_path) ||
+        throw(ArgumentError("absent envelope source path invalid"))
+    nothing
 end
 
 function _vnext_t1_feedback_record(item::VNextT0LocalFeedbackV1,
@@ -752,7 +947,7 @@ function _vnext_t1_package(candidate::QualifiedRefV1,
     feedback::NTuple{N,VNextT1FeedbackRecordV1},
         source_hashes::NTuple{3,Digest256},
         declaration_hashes::NTuple{3,Digest256}, gate::VNextT1T0GateV1{M,K,N},
-        migration::GenomeV5MigrationReceipt) where {N,M,K}
+        no_legacy::VNextT1NoLegacyReceiptV1) where {N,M,K}
     axes == ntuple(i -> declarations[i].axes, 3) ||
         throw(ArgumentError("package/declaration axis join mismatch"))
     source_hashes == ntuple(i -> declarations[i].source_bytes.sha256, 3) ||
@@ -781,10 +976,19 @@ function _vnext_t1_package(candidate::QualifiedRefV1,
         _vnext_t1_label_erased_identity(candidate, declarations, children,
             axes, feedback, source_hashes, declaration_hashes)) ||
         throw(ArgumentError("label-erased component identity mismatch"))
-    migration == vnext_t1_fresh_migration_receipt_v1(candidate) ||
-        throw(ArgumentError("fresh migration receipt required"))
+    _vnext_t1_validate_no_legacy_receipt(no_legacy, candidate)
+    package_schema_version = VNEXT_T1_PACKAGE_SCHEMA_VERSION_V1
+    package_schema_hash = vnext_t1_package_schema_hash_v1()
+    package_canonicalization_version = VNEXT_T1_PACKAGE_CANONICALIZATION_VERSION_V1
+    package_canonicalization_hash = vnext_t1_package_canonicalization_hash_v1()
+    package_profile_version = VNEXT_T1_PACKAGE_PROFILE_VERSION_V1
+    package_profile_hash = vnext_t1_package_profile_hash_v1()
     package_hash = canonical_hash((schema=VNEXT_T1_PACKAGE_SCHEMA_ID_V1,
-        schema_version=VNEXT_T1_PACKAGE_SCHEMA_VERSION_V1,
+        schema_version=package_schema_version, package_schema_hash=package_schema_hash,
+        package_canonicalization_version=package_canonicalization_version,
+        package_canonicalization_hash=package_canonicalization_hash,
+        package_profile_version=package_profile_version,
+        package_profile_hash=package_profile_hash,
         candidate_ref=candidate, declarations=declarations, children=children,
         axes=axes, feedback=feedback, source_hashes=source_hashes,
         declaration_hashes=declaration_hashes, layer_contracts=identity.layer_contracts,
@@ -793,7 +997,7 @@ function _vnext_t1_package(candidate::QualifiedRefV1,
         profile_hashes=ntuple(i -> identity.layer_contracts[i].compatibility_profile_hash, 3),
         component_identity=identity, component_count_receipt=count,
         semantic_identity=identity.semantic_identity,
-        migration_receipt=migration, t0_gate=gate,
+        no_legacy_receipt=no_legacy, t0_gate=gate,
         prior_bundle=gate.prior_bundle, output_hash=gate.output_hash,
         status=:prepared_not_executed, resolution=:terminal_deferred,
         accepted=false, claim_ceiling=:contract_only))
@@ -802,7 +1006,10 @@ function _vnext_t1_package(candidate::QualifiedRefV1,
         ntuple(i -> identity.layer_contracts[i].schema_hash, 3),
         ntuple(i -> identity.layer_contracts[i].canonicalization_hash, 3),
         ntuple(i -> identity.layer_contracts[i].compatibility_profile_hash, 3),
-        identity, count, identity.semantic_identity, migration, gate,
+        identity, count, identity.semantic_identity, no_legacy, gate,
         :prepared_not_executed, :terminal_deferred, false, :contract_only,
+        package_schema_version, package_schema_hash,
+        package_canonicalization_version, package_canonicalization_hash,
+        package_profile_version, package_profile_hash,
         package_hash)
 end

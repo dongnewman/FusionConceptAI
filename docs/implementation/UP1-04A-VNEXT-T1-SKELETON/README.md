@@ -1,28 +1,27 @@
-# UP1-04A VNext T1 skeleton (R3)
+# UP1-04A VNext T1 skeleton (R5)
 
-Status: `prepared_not_executed` (2026-09-18 CST)
+Status: `prepared_not_executed` (2026-09-18 CST); claim ceiling:
+`contract_only`.
 
-This is a static-only T1 contract skeleton. It does not run Julia, read a
-source file, call a factory, build a provider/mesh/solver result, or modify the
-existing v5 integration entry point. The T0 source-backed runtime and its
-authority recheck remain an unresolved dependency.
+This is a static-only T1 contract boundary. It does not run Julia or DESC,
+invoke a factory/provider/mesh/solver, perform source I/O, or modify the
+existing v5 integration entry point. T0 remains an unresolved dependency for
+runtime use.
 
 ## Scope
 
-Owned additions are limited to:
+The owned surface is limited to:
 
 * `src/Contracts/CandidateStatePackageV5Next.jl`
 * `src/GenomeV5/Integration/VNextGenomeV5Integration.jl`
-* this documentation and `static_qa.ps1`
+* this directory's documentation and `static_qa.ps1`
 
-The two Julia files are intentionally not included by `src/FusionConceptAI.jl`.
-When a future implementation includes them, it must load the existing local T0
-transport and local authority-recheck declarations first.
+The two additive Julia files remain excluded from `src/FusionConceptAI.jl`.
+No source file outside that additive pair is part of this T1 skeleton.
 
-## Admission boundary
+## Admission and known-gap boundary
 
-`vnext_t1_admit_skeleton_v1` requires an explicit
-`VNextAuthorityRecheckLocalResultV1` whose four gate fields are exactly:
+`vnext_t1_admit_skeleton_v1` accepts only the closed checked-present T0 result:
 
 ```
 status        = :local_checked_present
@@ -31,67 +30,58 @@ accepted      = false
 claim_ceiling = :contract_only
 ```
 
-No object, a structural look-alike, a typed-absent result, a stale result, or a
-contradictory result produces a package. Missing input is `terminal_deferred`;
-invalid/contradictory input is `fail_closed`. The valid projection remains
+The transport must have the same candidate and recomputed prior bundle hash,
+canonical prior bytes, valid status, empty errors, and canonical feedback
+order. Its only permitted gap tuple is `()` or
+`(:g3_child_terminal_deferred,)`. Children are exactly
+`(:realization, :control, :binding)` in that order. A known gap requires all
+three children to be typed absent with `:terminal_deferred` or
+`:typed_absent` status; no gap requires all three children to be typed present.
+Unknown, multiple, mixed, or reordered gap/child states fail closed.
+
+An absent or invalid T0 input produces no package. Missing input is
+`terminal_deferred`; invalid, contradictory, or mismatched input is
+`fail_closed`. The accepted projection is still
 `prepared_not_executed`, `terminal_deferred`, `accepted=false`,
 `claim_ceiling=:contract_only`.
 
-The static negative matrix is expressed as guards, not executable fixtures:
+## Closed package identity
 
-| Input condition | Required result | Package |
-| --- | --- | --- |
-| no T0 recheck object | `terminal_deferred` | absent |
-| structural look-alike or wrong gate fields | `fail_closed` | absent |
-| T0 bundle/hash/candidate mismatch | `fail_closed` | absent |
-| missing declaration/child/feedback join | `fail_closed` | absent |
-| exact checked-present T0 gate | `prepared_not_executed` | contract-only projection |
+The package uses the dedicated `VNextT1NoLegacyReceiptV1`. It has zero
+`legacy_refs`, a candidate-bound identity hash, and a receipt hash recomputed
+from the complete receipt payload. No legacy receipt or migration-receipt
+dependency is accepted.
 
-R3 closes the six independent rejection points: no `Any`, open `NamedTuple`,
-or open `Vararg` fields; the canonical prior bundle bytes/hash and a closed
-typed T0-output projection are bound to the supplied transport and candidate;
-package-owned schema, canonicalization, and compatibility-profile hashes are
-stored and included in the package hash; factory axes are checked against the
-exact per-layer projection (never against the outer local axis tuple); receipt
-bytes are reconstructed and compared with the canonical factory-result
-envelope rather than self-hashed only; present and absent child source/body/
-identity joins are validated, including absent status/reason/receipt/source
-path in the label-erased identity; and feedback bodies are joined to candidate,
-source, declaration, target, authority, and target-body hashes.
+Schema, canonicalization, and compatibility-profile versions and hashes are
+package-owned fields. They are included directly in `package_hash`, separate
+from the three layer-derived identity hash tuples. Factory IDs, versions, and
+the frozen G1/G2/G3 plus G3-child contract references are independently
+checked, so a self-consistent forged receipt is rejected.
 
-## Encoded joins
+Every T1 receipt, declaration, child projection, and T0 output projection owns
+its exact bytes through `VNextT1CanonicalBytesV1` (an immutable tuple), and
+rechecks the hash of those owned bytes. Mutable T0 byte-vector fields are not
+retained as T1 package fields. Declaration source/declaration bytes, locators,
+hashes, factory envelopes, child joins, feedback target/body joins, and the
+label-erased semantic identity remain candidate-bound.
 
-The declaration carries exactly G1/G2/G3; each declaration keeps four ordered
-axes, source bytes, declaration bytes, locator, source/declaration hashes and
-closed receipt projections. The package checks raw byte-to-hash and
-locator-to-hash joins. The gate retains only canonical prior bytes and a
-closed output projection/identity, never the open T0 body, output, or
-transport.
-The G3 child slots are exactly `realization`, `control`, and `binding`.
-Feedback is candidate-bound, limited to G1/G2 targets, and target IDs are
-unique. A component-count receipt records three declarations, three child
-slots, three components, and the observed feedback count.
+## Static negative matrix
 
-`semantic_identity` is computed from a label-erased projection: semantic body
-labels are intentionally omitted, while body bytes, refs, axes, children,
-feedback and source/declaration hashes remain bound. The only migration receipt
-accepted is a fresh `v5_fresh_migration_receipt` with no legacy mapping.
+`static_qa.ps1` contains 16 assertion-only negative cases. They cover missing
+or invalid gates, unknown/multiple/child-inconsistent known gaps, legacy
+receipt or non-empty legacy refs, package-owned hash drift, feedback order and
+duplicate IDs, present/absent child joins, mixed or reordered children,
+factory/contract forgery, and mutable owned-byte/hash drift. Every negative
+case must return without a package. The exact checked-present gate is the only
+positive structural case and remains `prepared_not_executed/contract_only`.
 
-## Static QA and review plan
+Run only the PowerShell check in this directory:
 
-Run only the PowerShell static check in this directory. Do not invoke Julia.
-The executable negative matrix covers missing/invalid gates, prior-byte/hash
-drift, outer-vs-layer axis confusion, receipt-envelope mutation, declaration
-and feedback joins, present/absent child identity, and package-owned identity
-hash drift. The check also verifies the two additions are not included in the
-main module, contain the required fail-closed gate and fields, and do not call
-the legacy positive integration builder or perform source/runtime I/O.
+```text
+pwsh -NoProfile -File docs/implementation/UP1-04A-VNEXT-T1-SKELETON/static_qa.ps1
+```
 
-Before any runtime implementation is proposed, an independent review should
-recheck: (1) T0 result type identity and canonical bundle-byte/hash joins, (2) all three
-declaration and child arities, (3) four-axis order and source/declaration
-receipt equality, (4) label-erased identity recomputation, and (5) fresh
-migration receipt equality, (6) explicit schema/canonical/profile hashes, and
-(7) feedback target declaration/body hashes. That review must preserve `T0 unresolved`,
-`T1 prepared_not_executed`, `contract_only`, and no provider/mesh/engineering/
-physical credit unless fresh runtime evidence is separately supplied.
+The result is static evidence only. It gives no runtime, provider, mesh,
+solver, engineering, physical, or authority credit. Keep T0 unresolved and
+T1 `prepared_not_executed` until an independently reviewed, serialized
+runtime lane supplies fresh evidence.
