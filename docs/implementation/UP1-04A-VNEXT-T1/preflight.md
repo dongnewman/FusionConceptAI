@@ -62,3 +62,29 @@ and `postflightZeroJuliaDesc=true`. All `15/15` protected owned paths were
 unchanged (`ownedFileCount=15`, `ownedFilesUnchanged=true`). No retry was
 performed and no Julia/DESC process remained. This R1 attempt grants no T1,
 T2, UP1, provider, mesh, solver, physical, engineering, or authority credit.
+
+## R2 runtime attempt (2026-09-18)
+
+The append-only R2 runner was invoked once after the R1 program exception was
+archived. The receipt is `fail_closed` at the T1 projection boundary: `11`
+checks passed, `3` failed, and `14` errored (`11 pass / 3 fail / 14 error`).
+The runner recorded `executionStarted=true`, one start, no retry, and no
+timeout classification. All `15/15` protected owned paths were unchanged;
+the preflight and both postflight process observations were zero, so no
+Julia/DESC process remained. This is a projection/admission failure receipt,
+not T1 runtime admission, T2 rebinding, UP1 completion, or any provider,
+mesh, solver, physical, engineering, or authority credit.
+
+## R3 runtime attempt (2026-09-18)
+
+The append-only R3 runner was invoked once against the same focused T1 command
+after the R2 archive. It again failed closed at the projection boundary with
+`11 pass / 3 fail / 14 error`; `15/15` protected owned paths were unchanged,
+and the receipt records one start with no retry. The focused fixture's bare
+`catch` reduced the underlying exception to `:t1_projection_invalid`, so this
+receipt does not expose the root exception and must not be treated as a
+diagnosis or acceptance. Preflight and both postflight process observations
+were zero, with no timeout and no remaining Julia/DESC process. R3 grants no
+T1, T2, UP1, provider, mesh, solver, physical, engineering, or authority
+credit; the next action is a narrow diagnostic that preserves the immutable
+R1–R3 receipts.

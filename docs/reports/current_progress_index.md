@@ -1,6 +1,6 @@
 # FusionConceptAI Runtime V4 current progress index
 
-Last updated: 2026-09-18 (index sync at `94e4598d209c2d424c2e7affaeef0df171dd67da`; subsequent commits require refresh)
+Last updated: 2026-09-19 (index sync at `f418c6e`; subsequent commits require refresh)
 
 The following spatial material is a historical milestone snapshot, not the
 current repository execution state. Its first complete declared execution is
@@ -13,9 +13,9 @@ Historical source implementation was pushed at
 independent manifest audit were pushed at
 `91dc908dbcbcf7761a8984cbba2b68d4435805a6`.
 
-## Current repository status (2026-09-18)
+## Current repository status (2026-09-19)
 
-The current index baseline is HEAD `94e4598d209c2d424c2e7affaeef0df171dd67da`;
+The current index baseline is HEAD `f418c6e`;
 subsequent commits require a fresh index sync. The entries below are static/contract/screen records, not
 completion percentages, and do not close their UP labels, R01–R10, or the open
 parent goal:
@@ -24,7 +24,11 @@ parent goal:
 |---|---|---|
 | T0 LocalV1 | `87f0263` | committed |
 | T0 authority recheck | `94e4598` / R21 | `interrupted_incomplete`; negative dispatch `0/25`, negative-object snapshots `0/100`; no retry; no authority |
+| T0 authority recheck | `345bafb` / R22 | `runtime_complete`; Julia `310/310`; negative dispatch `25/25`; `accepted=false`; `contract_only`; no T1/T2 credit; 100 snapshots static-only |
 | T1 package/edit/round-trip | `62d9a61` / R5 | static `16`; `prepared_not_executed`; no runtime receipt |
+| T1 focused runtime | `d37ef44` / R1 | `program_exception`; 2 pass / 1 error; no retry; no T1/T2/UP1 credit |
+| T1 focused runtime | `f5c9328` / R2 | `fail_closed` projection; 11 pass / 3 fail / 14 error; 15/15 unchanged; no retry; no T1/T2/UP1 credit |
+| T1 focused runtime | `f418c6e` / R3 | `fail_closed` projection; 11 pass / 3 fail / 14 error; 15/15 unchanged; no retry; bare catch did not expose underlying exception; no T1/T2/UP1 credit |
 | Spatial composition | `e5e44bd` / R9 | `54/54`; `screen_only`; `accepted=false`; no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`; package `preflight_only`; `screen_only`; no formal credits |
 | UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
@@ -37,20 +41,24 @@ parent goal:
 | UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code; R15 runtime `77/77`; `screen_only`, `accepted=false`, `component_load=false`; no formal credits |
 
-The latest T0 authority recheck R21 is `interrupted_incomplete`: it reached
-negative dispatch `0/25` and negative-object snapshots `0/100`, emitted no
-`Test Summary` or authority, and was not retried. T1 R5 is static `16` and
-`prepared_not_executed`. Spatial R9 is `54/54` but `screen_only`. G1/G2/G3 R22
-has an authoritative nested `39/39 + 13/13` receipt, while the package
-manifest remains `preflight_only`; it grants no formal credit. EngineeringFeedback
-R14 code/R15 runtime
+The latest T0 authority recheck R22 is `runtime_complete`: Julia `310/310`,
+negative dispatch `25/25`, `accepted=false`, `contract_only`, and no T1/T2
+credit. The reported `100 snapshots` is a static 25×4 derivation, not an
+independent runtime count; R21 remains an immutable historical interruption.
+T1 R5 remains the historical static `16`/`prepared_not_executed` baseline.
+T1 R1 terminated as `program_exception` after 2 passes and 1 error. R2 and R3
+both fail closed at the projection boundary with `11 pass / 3 fail / 14 error`,
+`15/15` protected paths unchanged, and no retry; R3's bare catch did not expose
+the underlying exception. T1, T2, and UP1 receive no credit. Spatial R9 is
+`54/54` but `screen_only`. G1/G2/G3 R22 has an authoritative nested
+`39/39 + 13/13` receipt, while the package manifest remains `preflight_only`;
+it grants no formal credit. EngineeringFeedback R14 code/R15 runtime
 `77/77` remains `screen_only`, `accepted=false`, `component_load=false`, with
 no formal credits. These records carry no provider/physics Julia/DESC runtime
 credit, physical, engineering, or final-authority credit. `R01–R10` remain
-`pending`, `L4=0`, and the parent goal is open. Five untracked `pyc` files were
-removed during cleanup; dirty `runs`, `tmp`, evidence, and protected state were
-preserved. Unrun slices and untracked implementations must not be reported as
-complete.
+`pending`, `L4=0`, and the parent goal is open. Dirty `runs`, `tmp`, evidence,
+and protected state were preserved. Unrun slices and untracked implementations
+must not be reported as complete.
 
 ## Historical spatial-candidate execution (2026-09-13)
 
