@@ -1,0 +1,41 @@
+{
+  "schema_version": "fusion-agent-local-direct-foreground-runtime-v1",
+  "status": "command_completed",
+  "task_id": "UP4-02A-ENGINEERING-FEEDBACK-BRIDGE-V1",
+  "agent_local_run": "agent_local_r7_runtime",
+  "command": [
+    "Julia",
+    "--startup-file=no",
+    "--history-file=no",
+    "--project=.",
+    "test/RuntimeV4/UP4/engineering_feedback_bridge_contract_v1_tests.jl"
+  ],
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "tool_session": 29559,
+  "preflight_utc": "2026-09-18T03:08:27.1431239Z",
+  "postflight_utc": "2026-09-18T03:08:59.7489801Z",
+  "exit_code": 0,
+  "stdout_raw": "stdout.raw",
+  "stderr_raw": "stderr.raw",
+  "stdout_sha256": "657c3c7196dee94c00a62789a71759d32c8d0a4c0344cddf5de93d7567a85686",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "pass_count": 189,
+  "total_count": 189,
+  "reported_seconds": 7.3,
+  "r6_lineage": "program_exception/unknown receipt-incomplete wrapper failure preserved",
+  "input_hashes_equal_pre_post": true,
+  "residual_processes": {
+    "julia": false,
+    "desc": false
+  },
+  "scope": {
+    "claim_ceiling": "contract_only",
+    "accepted": false,
+    "provider_calls": 0,
+    "solver_calls": 0,
+    "checker_calls": 0,
+    "engineering_credit": "none",
+    "physical_credit": "none",
+    "R01_R10_credit": "none"
+  }
+}

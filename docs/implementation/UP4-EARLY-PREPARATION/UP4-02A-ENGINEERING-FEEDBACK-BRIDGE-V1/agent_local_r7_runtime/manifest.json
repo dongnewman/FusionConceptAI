@@ -1,0 +1,58 @@
+{
+  "schema": "UP4-02A-ENGINEERING-FEEDBACK-BRIDGE-V1-agent-local-r7-runtime-archive-v1",
+  "task_id": "UP4-02A-ENGINEERING-FEEDBACK-BRIDGE-V1",
+  "agent_local_run": "agent_local_r7_runtime",
+  "archive_kind": "direct_foreground_focused_julia_run",
+  "status": "contract_only",
+  "claim_ceiling": "contract_only",
+  "accepted": false,
+  "formal_credit": "none",
+  "engineering_credit": "none",
+  "physical_credit": "none",
+  "no_r01_r10_credit": true,
+  "provider_calls": 0,
+  "solver_calls": 0,
+  "checker_calls": 0,
+  "real_provider": false,
+  "real_hardware": false,
+  "desc_executed": false,
+  "no_commit": true,
+  "command": "& Julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP4/engineering_feedback_bridge_contract_v1_tests.jl",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "julia_executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+  "julia_version": "1.10.5.0",
+  "execution_mode": "direct_foreground",
+  "forbidden_used": ["Start-Process", "$PID", "relaunch", "other Julia", "DESC"],
+  "tool_session": 29559,
+  "preflight_utc": "2026-09-18T03:08:27.1431239Z",
+  "postflight_utc": "2026-09-18T03:08:59.7489801Z",
+  "exit_code": 0,
+  "pass_count": 189,
+  "total_count": 189,
+  "reported_seconds": 7.3,
+  "stdout_raw": "stdout.raw",
+  "stderr_raw": "stderr.raw",
+  "stderr_bytes": 0,
+  "no_residual_julia_or_desc": true,
+  "input_sha256_pre_post": {
+    "src/RuntimeV4/EngineeringFeedbackBridgeContractV1.jl": "0436da2fcd60974ce61d6823585488e944ffaf4c59a0b3633d4f23e882b64f55",
+    "test/RuntimeV4/UP4/engineering_feedback_bridge_contract_v1_fixture.json": "c059315325919ef855164e27eea67e9cefc97b0f80f92aee9448ca412d43748e",
+    "test/RuntimeV4/UP4/engineering_feedback_bridge_contract_v1_tests.jl": "4f09c6ce22ac0dead2c44df337cf9a9c2e16e449484f41462cd91850b4fac18d",
+    "test/RuntimeV4/UP4/static_qa_engineering_feedback_bridge_contract_v1.py": "e028388feebecf66a2a99cf36373dcfc650d0ad5f0afbc7e85c23dfb0161e719"
+  },
+  "r6_failure_lineage": {
+    "status": "program_exception",
+    "claim": "unknown",
+    "description": "receipt-incomplete wrapper failure preserved unchanged",
+    "overwritten": false
+  },
+  "archive_scope": {
+    "rerun_in_archive_turn": false,
+    "julia_or_desc_started_in_archive_turn": false,
+    "source_test_fixture_modified_in_archive_turn": false,
+    "r6_receipt_modified": false,
+    "raw_stdout_modified": false,
+    "raw_stderr_modified": false
+  }
+}
+
