@@ -13,7 +13,7 @@
     {"id": "pattern_1024", "length": 1024, "pattern": {"multiplier": 37, "offset": 11, "modulo": 256}, "sha256": "ffbad8f947474cfdd5b2bb22d7e0bf5ee8ba2b7af859d0c2bb28622db6a4be47", "base64": "CzBVep/E6Q4zWH2ix+wRNluApcrvFDleg6jN8hc8YYar0PUaP2SJrtP4HUJnjLHW+yBFao+02f4jSG2St9wBJktwlbrfBClOc5i94gcsUXabwOUKL1R5nsPoDTJXfKHG6xA1Wn+kye4TOF2Cp8zxFjtgharP9Bk+Y4it0vccQWaLsNX6H0RpjrPY/SJHbJG22wAlSm+Uud4DKE1yl7zhBitQdZq/5AkuU3idwucMMVZ7oMXqDzRZfqPI7RI3XIGmy/AVOl+Eqc7zGD1ih6zR9htAZYqv1PkeQ2iNstf8IUZrkLXa/yRJbpO43QInTHGWu+AFKk90mb7jCC1Sd5zB5gswVXqfxOkOM1h9osfsETZbgKXK7xQ5XoOozfIXPGGGq9D1Gj9kia7T+B1CZ4yx1vsgRWqPtNn+I0htkrfcASZLcJW63wQpTnOYveIHLFF2m8DlCi9UeZ7D6A0yV3yhxusQNVp/pMnuEzhdgqfM8RY7YIWqz/QZPmOIrdL3HEFmi7DV+h9EaY6z2P0iR2yRttsAJUpvlLneAyhNcpe84QYrUHWav+QJLlN4ncLnDDFWe6DF6g80WX6jyO0SN1yBpsvwFTpfhKnO8xg9Yoes0fYbQGWKr9T5HkNojbLX/CFGa5C12v8kSW6TuN0CJ0xxlrvgBSpPdJm+4wgtUnecweYLMFV6n8TpDjNYfaLH7BE2W4Clyu8UOV6DqM3yFzxhhqvQ9Ro/ZImu0/gdQmeMsdb7IEVqj7TZ/iNIbZK33AEmS3CVut8EKU5zmL3iByxRdpvA5QovVHmew+gNMld8ocbrEDVaf6TJ7hM4XYKnzPEWO2CFqs/0GT5jiK3S9xxBZouw1fofRGmOs9j9IkdskbbbACVKb5S53gMoTXKXvOEGK1B1mr/kCS5TeJ3C5wwxVnugxeoPNFl+o8jtEjdcgabL8BU6X4SpzvMYPWKHrNH2G0Bliq/U+R5DaI2y1/whRmuQtdr/JEluk7jdAidMcZa74AUqT3SZvuMILVJ3nMHmCzBVep/E6Q4zWH2ix+wRNluApcrvFDleg6jN8hc8YYar0PUaP2SJrtP4HUJnjLHW+yBFao+02f4jSG2St9wBJktwlbrfBClOc5i94gcsUXabwOUKL1R5nsPoDTJXfKHG6xA1Wn+kye4TOF2Cp8zxFjtgharP9Bk+Y4it0vccQWaLsNX6H0RpjrPY/SJHbJG22wAlSm+Uud4DKE1yl7zhBitQdZq/5AkuU3idwucMMVZ7oMXqDzRZfqPI7RI3XIGmy/AVOl+Eqc7zGD1ih6zR9htAZYqv1PkeQ2iNstf8IUZrkLXa/yRJbpO43QInTHGWu+AFKk90mb7jCC1Sd5zB5g=="}
   ],
   "large": {"id": "pattern_8269445", "length": 8269445, "pattern": {"multiplier": 37, "offset": 11, "modulo": 256}, "sha256": "23c9ceea243a80d1a4dfda9b355038ac2352e144c6dff8fd40d9f3904fa2484c"},
-  "runtime": "r2_test_exception_boundary_pair_tuple_index_repaired_not_rerun",
+  "runtime": "r3_exit_0_77_of_77_r4_independent_replay_exit_0_14_of_14",
   "r2": {
     "accepted": false,
     "exit_code": 1,
@@ -23,6 +23,24 @@
     "protected_files_unchanged": "18/18",
     "postflight_julia_desc_processes": [0, 0],
     "credit": "none"
+  },
+  "r3": {
+    "accepted": false,
+    "exit_code": 0,
+    "duration_seconds": 155.2198949,
+    "tests": "77/77 pass",
+    "protected_files_unchanged": "18/18",
+    "credit": "contract_only_no_t1_or_up1"
+  },
+  "r4": {
+    "accepted": false,
+    "exit_code": 0,
+    "duration_seconds": 149.8664493,
+    "tests": "14/14 pass",
+    "protected_files_unchanged": "19/19",
+    "replay_fields_match_r3": "6/6",
+    "postflight_julia_desc_processes": [0, 0],
+    "credit": "contract_only_no_t1_or_up1"
   },
   "integration": "not_connected"
 }

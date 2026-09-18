@@ -1,8 +1,8 @@
 # 实现档案入口：按阶段和验收范围查阅
 
-**2026-09-19 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。当前索引同步基线为 T1 R1–R3 diagnostic receipts（工作树基于 `f418c6e`）；后续提交会再刷新。以下 2026-09-16 阶段表、旧 HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
+**2026-09-19 当前规则：** 默认 [智能体自主研发](../v4_multitopology_generation/22_agent_local_execution.md)，取消外部责任人和认证材料对主线的阻塞。当前索引同步基线为旧 T1 R1–R5 失败链和 canonical-bytes V2 R1–R4 receipts（工作树基于 `5007e6a` 及未提交 R4 归档）；后续提交会再刷新。以下 2026-09-16 阶段表、旧 HEAD 和外部门描述保留为历史导航，不能作为当前门禁。先读 [当前批次](../v4_multitopology_generation/21_next_execution_batches.md) 与 [本次修改档案](AGENT-LOCAL-EXECUTION-20260917/README.md)。旧 R4 等档案不改写，已有数值切片按各自实际证据核验。
 
-更新：2026-09-19索引同步（T0 R22 runtime receipt；T1 R1–R3 diagnostic runtime attempts；DCCE `09cf7d1` 仅 Python screen）。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** T1/T2/UP1及 R01–R10 全部未关闭（`pending`），L4=0；parent goal 仍 open。
+更新：2026-09-19索引同步（T0 R22；旧 T1 R1–R5；canonical-bytes V2 R1–R4；DCCE `09cf7d1` 仅 Python screen）。当前规划在 [v4核心目录](../v4_multitopology_generation/README.md)；本目录保存实施、评审、失败、未完成记录和历史快照。**存入implementation不等于实现已接受。** T1/T2/UP1及 R01–R10 全部未关闭（`pending`），L4=0；parent goal 仍 open。
 
 ### 最近已提交切片的状态上限
 
@@ -17,6 +17,10 @@
 | T1 focused runtime | `d37ef44` / R1 | `program_exception`；2 pass / 1 error；no retry；no T1/T2/UP1 credit |
 | T1 focused runtime | `f5c9328` / R2 | `fail_closed` projection；11 pass / 3 fail / 14 error；15/15 unchanged；no retry；no T1/T2/UP1 credit |
 | T1 focused runtime | `f418c6e` / R3 | `fail_closed` projection；11 pass / 3 fail / 14 error；15/15 unchanged；no retry；bare catch did not expose underlying exception；no T1/T2/UP1 credit |
+| T1 focused runtime | `e995416` / R4 | diagnostic exposed large-`NTuple` `StackOverflowError`；8 pass / 1 error；18/18 unchanged；no credit |
+| T1 focused runtime | `f66bfcb` / R5 | 300 s timeout on giant tuple/type-parameter path；18/18 unchanged；no credit |
+| T1 canonical bytes V2 | R1/R2 | Base64 dependency exception / test lookup exception；exit 1；no credit |
+| T1 canonical bytes V2 | R3/R4 | R3 `77/77`；R4 independent replay `14/14`、six fields match、19/19 unchanged；not connected；`contract_only`；no T1/UP1 credit |
 | Spatial composition | `e5e44bd` / R9 | `54/54`；`screen_only`；`accepted=false`；no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`；package `preflight_only`；`screen_only`；no formal credits |
 | UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
@@ -30,7 +34,7 @@
 | DCCE declared diffusion compile-execute | `09cf7d1` | Python static QA/oracle pass；`screen_only`；`accepted=false`；Julia未运行；无 UP2-01/R credit |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code；R15 runtime `77/77`；`screen_only`，`accepted=false`，`component_load=false`；no formal credits |
 
-T0 authority recheck 最新 R22 为 `runtime_complete`：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`，`contract_only`，无 T1/T2 credit；所谓 `100 snapshots` 仅由静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。T1 R5 的 static `16`、`prepared_not_executed` 保留为历史基线；其后 R1 为 `program_exception`（2 pass / 1 error），R2/R3 均为 `fail_closed` projection（11 pass / 3 fail / 14 error，15/15 owned paths unchanged，no retry），且 R3 的裸 catch 未暴露底层异常。T1/T2/UP1 均无 credit。Spatial R9 `54/54` 仍为 `screen_only`。G1/G2/G3 R22 的 nested receipt authoritative，计数 `39/39 + 13/13`，但 package manifest 仍为 `preflight_only`，不授 formal credits。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。EngineeringFeedback R14 code/R15 runtime `77/77` 仍是 `screen_only`、`accepted=false`、`component_load=false`，无 formal credits。本波次记录不构成 provider/physics Julia/DESC runtime credit、物理、工程或终局 authority。`R01–R10=pending`，`L4=0`，parent goal=open，UP labels 仍未由这些 receipts 关闭。清理备注：已移除五个未跟踪 `pyc`；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片不得提前宣称完成。
+T0 authority recheck 最新 R22 为 `runtime_complete`：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`，`contract_only`，无 T1/T2 credit；所谓 `100 snapshots` 仅由静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。旧 T1 R1–R3 失败，R4 暴露 giant `NTuple` 的 `StackOverflowError`，R5 同一路径 300 秒超时。加法式 canonical-bytes V2 的 R1/R2 分别异常；修复后 R3 `77/77`、R4 独立复放 `14/14` 且六字段一致，但未接入 production admission，仅 `contract_only`。T1/T2/UP1 均无 credit。Spatial R9 `54/54` 仍为 `screen_only`。G1/G2/G3 R22 的 nested receipt authoritative，计数 `39/39 + 13/13`，但 package manifest 仍为 `preflight_only`，不授 formal credits。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。EngineeringFeedback R14 code/R15 runtime `77/77` 仍是 `screen_only`、`accepted=false`、`component_load=false`，无 formal credits。本波次记录不构成 provider/physics Julia/DESC runtime credit、物理、工程或终局 authority。`R01–R10=pending`，`L4=0`，parent goal=open，UP labels 仍未由这些 receipts 关闭。清理备注：已移除五个未跟踪 `pyc`；`runs`、`tmp`、evidence 和 protected dirty 状态保留。未跑切片不得提前宣称完成。
 
 ## 接手入口
 

@@ -69,5 +69,11 @@ observation. Its exact lock/run receipt is archived under
 base64-text digests. This raises the evidence only to local definition-only
 runtime pass; V2 is still not connected, so T1 and UP1 remain incomplete.
 
-An independent replay script and exactly-once runner are frozen under
-`local_profile_r4_replay_preflight/`. R4 has not been executed.
+The independent replay executed exactly once from
+`local_profile_r4_replay_preflight/`. R4 passed 14/14 assertions, exited 0
+after 149.8664493 seconds, reproduced all six stable R3 output fields, preserved
+19/19 protected files, and left no Julia/DESC process in either postflight
+observation. The lock and run receipt are archived byte-for-byte under
+`local_profile_r4_replay_runtime/`. This is independent local replay evidence
+for the definition-only carrier; V2 remains disconnected, so T1 and UP1 remain
+incomplete.

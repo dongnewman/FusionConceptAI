@@ -1,7 +1,7 @@
 {
   "schema": "FusionConceptAI/ImplementationManifest",
   "slice": "UP1-04A-VNEXT-T1-CANONICAL-BYTES-V2",
-  "status": "r3_local_runtime_pass_r4_replay_prepared_not_run",
+  "status": "r3_local_runtime_pass_r4_independent_replay_pass",
   "integration": "not_connected",
   "production_admission": "unchanged_v1",
   "runtime": {
@@ -50,7 +50,19 @@
     "credit": "contract_only_no_t1_or_up1"
   },
   "r4_replay": {
-    "status": "preflight_only_not_run",
+    "status": "runtime_complete",
+    "accepted": false,
+    "classification": "independent_local_replay_pass",
+    "exit_code": 0,
+    "duration_seconds": 149.8664493,
+    "tests": {"pass": 14, "total": 14},
+    "start_count": 1,
+    "automatic_retry": false,
+    "protected_files_unchanged": "19/19",
+    "postflight_julia_desc_processes": [0, 0],
+    "replay_fields_match_r3": "6/6",
+    "evidence": "local_profile_r4_replay_runtime",
+    "credit": "contract_only_no_t1_or_up1",
     "script": "test/GenomeV5/Integration/VNextT1CanonicalBytesV2/vnext_t1_canonical_bytes_v2_replay.jl",
     "runner": "local_profile_r4_replay_preflight/runner.ps1"
   },
@@ -92,7 +104,7 @@
     "base64_golden": "independently_checked",
     "canonical_json_golden": "specified_and_independently_checked",
     "production_files_unchanged": "sha256_and_size_static_checked",
-    "cross_process_replay": "r4_prepared_not_run",
+    "cross_process_replay": "r4_exit_0_14_of_14_six_fields_match",
     "t1_credit": false,
     "up1_credit": false
   }

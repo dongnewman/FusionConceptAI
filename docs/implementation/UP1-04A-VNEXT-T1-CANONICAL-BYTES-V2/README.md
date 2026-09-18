@@ -24,8 +24,9 @@ is over the original bytes.
 
 ## Evidence boundary
 
-Static QA, an independent Python hashlib/base64 oracle, and the serialized R3
-local Julia process pass for this slice. The serialized R1 Julia attempt started once and
+Static QA, an independent Python hashlib/base64 oracle, the serialized R3
+local Julia process, and the serialized R4 independent replay pass for this
+slice. The serialized R1 Julia attempt started once and
 ended as `program_exception` / exit 1 after 2.886777 seconds because the package
 project had not declared the Base64 standard-library dependency. It changed
 none of its 18 protected files and left no Julia/DESC process after either of
@@ -39,9 +40,9 @@ large tuple is constructed.
 Static QA also freezes the SHA-256 and byte size of
 `CandidateStatePackageV5Next.jl` and `src/FusionConceptAI.jl`, proving that the
 current production admission file and module include/export boundary were not
-changed by this definition-only slice. The Julia test contains a deterministic
-single-line `VNEXT_T1_CANONICAL_BYTES_V2_REPLAY` record for a later independent
-second process, but it is not runtime evidence until that process is run.
+changed by this definition-only slice. The Julia test emits a deterministic
+single-line `VNEXT_T1_CANONICAL_BYTES_V2_REPLAY` record. R4 reproduced its six
+stable fields in a separate Julia process.
 `Project.toml` now declares Base64 and the manifest was resolved, but no Julia
 test rerun is claimed by this repair.
 
@@ -61,5 +62,12 @@ protected files, and left zero Julia/DESC processes in both postflight
 observations. Its lock and run receipt are archived byte-for-byte in
 `local_profile_r3_runtime/`. This is local definition-only runtime evidence:
 V2 remains disconnected from production admission, and R3 grants no T1 or
-UP1 completion credit. An independent second-process replay is prepared but
-not run in `local_profile_r4_replay_preflight/`.
+UP1 completion credit.
+
+The serialized R4 independent replay then passed 14/14 assertions with exit 0
+after 149.8664493 seconds. It started once without retry, reproduced the same
+schema/version/encoding/length/raw-SHA/base64-SHA fields as R3, changed none of
+19 protected files, and left zero Julia/DESC processes in both postflight
+observations. Its lock and run receipt are archived byte-for-byte in
+`local_profile_r4_replay_runtime/`. This closes only the local carrier replay;
+V2 is not connected to production admission and grants no T1 or UP1 credit.

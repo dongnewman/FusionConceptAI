@@ -77,9 +77,13 @@ def main() -> int:
         "hashlib", "base64", "does not import Julia", "fixture.json"))
     report["fixture_boundary"] = fixture["large"]["length"] == 8_269_445
     report["fixture_no_runtime_credit"] = (
-        fixture["runtime"] == "r2_test_exception_boundary_pair_tuple_index_repaired_not_rerun"
+        fixture["runtime"] == "r3_exit_0_77_of_77_r4_independent_replay_exit_0_14_of_14"
         and fixture["r2"]["accepted"] is False
         and fixture["r2"]["credit"] == "none"
+        and fixture["r3"]["accepted"] is False
+        and fixture["r3"]["credit"] == "contract_only_no_t1_or_up1"
+        and fixture["r4"]["accepted"] is False
+        and fixture["r4"]["credit"] == "contract_only_no_t1_or_up1"
         and fixture["integration"] == "not_connected")
     report["docs_present"] = all((DOCS / name).is_file() for name in ("README.md", "manifest.json", "report.md"))
     report["r1_program_exception_archived"] = (

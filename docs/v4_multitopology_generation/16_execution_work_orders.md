@@ -6,7 +6,7 @@ AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result fo
 
 ## 2026-09-19 索引同步状态（非运行验收）
 
-本工作单当前索引基线为 T1 R1–R3 diagnostic receipts（工作树基于 `f418c6e`）；后续提交会再刷新。下列记录是静态、合同或屏幕记录，不是完成百分比，也不得替代原始工单的退出门或关闭 UP 标签：
+本工作单当前索引基线为旧 T1 R1–R5 失败链和 canonical-bytes V2 R1–R4 receipts（工作树基于 `5007e6a` 及未提交 R4 归档）；后续提交会再刷新。下列记录是静态、合同或屏幕记录，不是完成百分比，也不得替代原始工单的退出门或关闭 UP 标签：
 
 | 记录 | 提交 | 当前边界 |
 |---|---|---|
@@ -17,6 +17,10 @@ AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result fo
 | T1 focused runtime | `d37ef44` / R1 | `program_exception`；2 pass / 1 error；no retry；no T1/T2/UP1 credit |
 | T1 focused runtime | `f5c9328` / R2 | `fail_closed` projection；11 pass / 3 fail / 14 error；15/15 unchanged；no retry；no T1/T2/UP1 credit |
 | T1 focused runtime | `f418c6e` / R3 | `fail_closed` projection；11 pass / 3 fail / 14 error；15/15 unchanged；no retry；bare catch did not expose underlying exception；no T1/T2/UP1 credit |
+| T1 focused runtime | `e995416` / R4 | diagnostic exposed large-`NTuple` `StackOverflowError`；8 pass / 1 error；18/18 unchanged；no credit |
+| T1 focused runtime | `f66bfcb` / R5 | 300 s timeout on giant tuple/type-parameter path；18/18 unchanged；no credit |
+| T1 canonical bytes V2 | R1/R2 | Base64 dependency exception / test lookup exception；exit 1；no credit |
+| T1 canonical bytes V2 | R3/R4 | R3 `77/77`；R4 independent replay `14/14`、six fields match、19/19 unchanged；not connected；`contract_only`；no T1/UP1 credit |
 | Spatial composition | `e5e44bd` / R9 | `54/54`；`screen_only`；`accepted=false`；no formal credits |
 | G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`；package `preflight_only`；`screen_only`；no formal credits |
 | UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
@@ -30,7 +34,7 @@ AD-20 chain note: UP2-00 has an independent r18 accepted_limited local result fo
 | DCCE declared diffusion compile-execute | `09cf7d1` | Python static QA/oracle pass；`screen_only`；`accepted=false`；Julia未运行；无 UP2-01/R credit |
 | EngineeringFeedback | R14 code / R15 runtime | R14 code；R15 runtime `77/77`；`screen_only`，`accepted=false`，`component_load=false`；no formal credits |
 
-T0 authority recheck 最新 R22 已有独立 runtime receipt：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`、`contract_only`，无 T1/T2 credit；`100 snapshots` 仅为静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。T1 R5 的 static `16`、`prepared_not_executed` 保留历史状态；R1 为 `program_exception`（2 pass / 1 error），R2/R3 为 `fail_closed` projection（11 pass / 3 fail / 14 error，15/15 unchanged，no retry），R3 裸 catch 未暴露底层异常。T1/T2/UP1 均无 credit。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。上述新记录仍不提供 provider/physics Julia/DESC runtime、物理、工程或 final authority 信用；R01–R10 仍为 `pending`。
+T0 authority recheck 最新 R22 已有独立 runtime receipt：Julia focused test `310/310`，negative dispatch `25/25`，`accepted=false`、`contract_only`，无 T1/T2 credit；`100 snapshots` 仅为静态 25×4 推导，非运行时独立计数。R21 中断记录保留历史语义。旧 T1 R1–R3 失败，R4 暴露 giant `NTuple` 的 `StackOverflowError`，R5 同一路径 300 秒超时。加法式 canonical-bytes V2 的 R1/R2 分别异常；修复后 R3 `77/77`、R4 独立复放 `14/14` 且六字段一致，但未接入 production admission，仅 `contract_only`。T1/T2/UP1 均无 credit。DCCE `09cf7d1` 仅完成 Python static QA/oracle，`screen_only`、`accepted=false`，Julia未运行，不授 UP2-01 或 R credit。上述新记录仍不提供 provider/physics Julia/DESC runtime、物理、工程或 final authority 信用；R01–R10 仍为 `pending`，L4=0，parent goal=open。
 
 ## 读取与派单合同
 
