@@ -1,0 +1,32 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC-local-profile-r21-preflight",
+  "task_id": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+  "profile": "t0_authority_recheck_r21_one_shot_600s",
+  "status": "preflight_only",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "focused_julia_executed": false,
+  "desc_executed": false,
+  "timeout_seconds_default": 600,
+  "julia_num_threads": "1",
+  "command": "julia --startup-file=no --history-file=no --project=. test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl .",
+  "working_directory": "FusionConceptAI",
+  "protected_files": [
+    {"path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl", "bytes": 10317, "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9"},
+    {"path": "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl", "bytes": 19264, "sha256": "e8b2f8d10ba18752d540553495dd732412a7ede7fa2ea78926a0acfa7ff399b0"},
+    {"path": "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_local_v1.py", "bytes": 21464, "sha256": "f4541787d4f6d13245a76aa565f5db93b6b3b9190cea950725a0d5b374239716"},
+    {"path": "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_fixture.json", "bytes": 4193, "sha256": "296a660dd4e907c4d733cfb4d1dc3e6cd4c59949a5128bfdec8409631ff42afc"},
+    {"path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl", "bytes": 76191, "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b"},
+    {"path": "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl", "bytes": 96310, "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"}
+  ],
+  "execution_policy": {
+    "exactly_once": true,
+    "one_start_no_retry": true,
+    "durable_lock": "runtime.lock",
+    "run_directory_prefix": "run_",
+    "wait_for_exit_default_seconds": 600,
+    "owned_pid_tree_kill_on_timeout": true,
+    "postflight_zero_observations": 2,
+    "desc_forbidden": true
+  }
+}
