@@ -47,3 +47,18 @@ shared registry, old receipt, or dirty authority test is modified by this
 surface. The next handoff must independently review the T0 transport bytes,
 T0 output identity, frozen factory/contract IDs, candidate/body joins, and the
 typed-absence fail-closed behavior before any runtime credit is assigned.
+
+## R1 runtime attempt (2026-09-18)
+
+The append-only R1 runner was invoked once against the focused Julia command.
+The durable receipt records `status=child_nonzero`, `exitCode=1`,
+`executionStarted=true`, `startCount=1`, `autoRetry=false`, and
+`timeoutClassified=false`; this is a `program_exception` caused by the fixture
+calling the unsupported Julia method form `first(predicate, tuple)` at line
+37. The child produced `2` passing assertions and `1` error before the test
+set terminated. The runner captured all streams and performed both postflight
+process observations: `preflightProcessCount=0`, both postflight counts `0`,
+and `postflightZeroJuliaDesc=true`. All `15/15` protected owned paths were
+unchanged (`ownedFileCount=15`, `ownedFilesUnchanged=true`). No retry was
+performed and no Julia/DESC process remained. This R1 attempt grants no T1,
+T2, UP1, provider, mesh, solver, physical, engineering, or authority credit.

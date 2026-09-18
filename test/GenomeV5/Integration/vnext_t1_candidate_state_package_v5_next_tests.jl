@@ -34,7 +34,7 @@ function _t1_fixture(; labels=("t1",))
         id = i == 1 ? "g1-residual" : "g2-thermal"
         target = i == 1 ? declarations[1].declaration_ref : declarations[2].declaration_ref
         layer = i == 1 ? :G1 : :G2
-        raw_target = first(x -> x.target_id == id, g3.feedback_targets)
+        raw_target = only(filter(x -> x.target_id == id, g3.feedback_targets))
         body = (candidate_ref=_T1_CANDIDATE, source_ref=
             (i == 1 ? declarations[1].source_ref : declarations[2].source_ref),
             declaration_ref=(i == 1 ? declarations[1].declaration_ref : declarations[2].declaration_ref),
