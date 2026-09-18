@@ -1,0 +1,40 @@
+{
+  "schema": "T1CandidateStatePackageR5DiagnosticRunMetadataV1",
+  "status": "timeout",
+  "accepted": false,
+  "claimCeiling": "contract_only",
+  "command": "julia --startup-file=no --history-file=no --project=. test/GenomeV5/Integration/vnext_t1_candidate_state_package_v5_next_tests.jl",
+  "workingDirectory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "receiptDirectory": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T1\\local_profile_r5_preflight\\run_20260918_180059_969_531b6dfb9d2e4991b29dab3d7a050e8f",
+  "lockPath": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T1\\local_profile_r5_preflight\\runtime.lock",
+  "timeoutSeconds": 300,
+  "timeoutClassified": true,
+  "timeoutKillReceipt": "conditional",
+  "startedOnce": true,
+  "startCount": 1,
+  "executionStarted": true,
+  "processId": 71540,
+  "exitCode": -1,
+  "startedAtUtc": "2026-09-18T18:01:01.0277341Z",
+  "endedAtUtc": "2026-09-18T18:06:01.8495578Z",
+  "durationMs": 300821.8237,
+  "juliaNumThreads": "1",
+  "preflightProcessCount": 0,
+  "postflightFirstProcessCount": 0,
+  "postflightSecondProcessCount": 0,
+  "postflightZeroJuliaDesc": true,
+  "hashesComparable": true,
+  "ownedFileCount": 18,
+  "ownedFilesUnchanged": true,
+  "streamsCaptured": true,
+  "autoRetry": false,
+  "failure": "Julia process exceeded timeoutSeconds=300",
+  "killRecord": {
+    "rootProcessId": 71540,
+    "attemptedProcessIds": [
+      71540,
+      21076
+    ],
+    "errors": []
+  }
+}
