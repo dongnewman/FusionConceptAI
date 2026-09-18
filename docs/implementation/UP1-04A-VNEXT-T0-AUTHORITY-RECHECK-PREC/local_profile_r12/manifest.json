@@ -1,0 +1,49 @@
+{
+  "manifest_version": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC-local-profile-r12",
+  "task_id": "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+  "date": "2026-09-18",
+  "profile": "local_authority_recheck_typed_absence_contract",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "status": "static_qa_passed_only",
+  "focused_julia_executed": false,
+  "julia_or_desc_executed": false,
+  "commit_created": false,
+  "runtime_gate": "NO-GO",
+  "scope_paths": [
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_fixture.json",
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_local_v1.py",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/local_profile_r12/README.md",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/local_profile_r12/report.md",
+    "docs/implementation/UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC/local_profile_r12/manifest.json"
+  ],
+  "r12_lineage": {
+    "reached_test_line": 167,
+    "observed_typed_absence_reasons": ["missing_material", "g3_feedback_material_absent"],
+    "negative_dispatch_reached": 0,
+    "negative_dispatch_total": 25,
+    "performance_gate_timeout": true,
+    "result_class": "program_interruption"
+  },
+  "static_qa": {
+    "command": "python -B test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_local_v1.py",
+    "checks": 125,
+    "passed": 125,
+    "exit_code": 0
+  },
+  "input_hashes": {
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl": "17d355493effafdfc3fb2418468a0b36c60a0bce1c4e25d88ac310f7ea1dfd16",
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b",
+    "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_local_v1.py": "968d03044c2395211e836966163efe06953fdfb4be0ff5fabc506dcc194e78e9",
+    "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_fixture.json": "296a660dd4e907c4d733cfb4d1dc3e6cd4c59949a5128bfdec8409631ff42afc"
+  },
+  "credits": {
+    "t0": false,
+    "t1": false,
+    "t2": false,
+    "r01_r12": false,
+    "physical": false
+  }
+}

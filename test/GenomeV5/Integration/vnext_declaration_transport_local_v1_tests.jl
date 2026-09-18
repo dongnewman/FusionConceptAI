@@ -348,6 +348,13 @@ function _t0l_rekey_present(record, source_ref, declaration_ref)
         record.factory_receipt, record.declaration_receipt)
 end
 
+# Including this helper is a definition-only operation for the authority
+# harness.  Running this file directly retains the historical testset run.
+const _T0L_RUN_TESTSETS = isdefined(Main, :PROGRAM_FILE) &&
+    abspath(getfield(Main, :PROGRAM_FILE)) == abspath(@__FILE__)
+
+if _T0L_RUN_TESTSETS
+
 @testset "local T0 R20a G1 nested semantic rebind" begin
     declaration = _t0l_g1()
     original_body = G._g1d_declaration_body(declaration)
@@ -1114,6 +1121,8 @@ end
     @test edit_result.admission.status === :fail_closed
     @test :present_g3_child_requires_fresh_receipt in edit_result.admission.errors
 end
+
+end # _T0L_RUN_TESTSETS
 
 println("VNEXT_T0_LOCAL_STATIC_TEST_DEFINED=true")
 println("VNEXT_T0_LOCAL_JULIA_OR_DESC_EXECUTED=false")
