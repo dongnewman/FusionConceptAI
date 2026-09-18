@@ -1,0 +1,76 @@
+{
+  "domain": "FusionConceptAI/GenomeV5/VNextT1PackageBindingAdapterV1",
+  "schema": "GenomeV5/Contracts/VNextT1PackageBindingAdapter",
+  "version": "v1",
+  "candidate_ref": {
+    "id": "local://candidate/up1-04a",
+    "version": "v5"
+  },
+  "semantic_identity": "1111111111111111111111111111111111111111111111111111111111111111",
+  "package_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "package_status": "prepared_not_executed",
+  "package_resolution": "terminal_deferred",
+  "package_metadata": {
+    "schema_version": "v1",
+    "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "canonicalization_version": "canonical-json-v1",
+    "canonicalization_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "profile_version": "closed-no-legacy-v1",
+    "profile_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "expected_package_metadata": {
+    "schema_version": "v1",
+    "schema_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "canonicalization_version": "canonical-json-v1",
+    "canonicalization_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "profile_version": "closed-no-legacy-v1",
+    "profile_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "stored_layer_contract_hashes": {
+    "schema": ["11", "22", "33"],
+    "canonicalization": ["44", "55", "66"],
+    "profile": ["77", "88", "99"]
+  },
+  "derived_layer_contract_hashes": {
+    "schema": ["11", "22", "33"],
+    "canonicalization": ["44", "55", "66"],
+    "profile": ["77", "88", "99"]
+  },
+  "component_count_receipt": {
+    "declaration_layers": ["G1", "G2", "G3"],
+    "child_kinds": ["realization", "control", "binding"],
+    "feedback_ids": ["g1-residual", "g2-thermal"]
+  },
+  "expected_component_count_receipt": {
+    "declaration_layers": ["G1", "G2", "G3"],
+    "child_kinds": ["realization", "control", "binding"],
+    "feedback_ids": ["g1-residual", "g2-thermal"]
+  },
+  "t0_gate": {
+    "status": "local_checked_present",
+    "resolution": "resolved",
+    "accepted": false,
+    "claim_ceiling": "contract_only",
+    "candidate_ref": {"id": "local://candidate/up1-04a", "version": "v5"},
+    "declaration_identity_hashes_join": true,
+    "child_identity_hashes_join": true,
+    "feedback_hashes_join": true,
+    "prior_bundle_join": true
+  },
+  "g3_child_statuses": [
+    "terminal_deferred",
+    "terminal_deferred",
+    "terminal_deferred"
+  ],
+  "typed_absent_g3_child_statuses": [
+    "typed_absent",
+    "terminal_deferred",
+    "terminal_deferred"
+  ],
+  "wire_bytes": [0, 255, 16, 32, 127],
+  "wire_hash": "d2f541ee68b26be3d317b248bb148cb0d9c58324dc5a19b6ece610635b731f2e",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "integration": "not_connected",
+  "runtime": "not_run"
+}

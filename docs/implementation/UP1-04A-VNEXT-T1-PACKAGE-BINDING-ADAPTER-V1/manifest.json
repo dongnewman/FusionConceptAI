@@ -1,0 +1,26 @@
+{
+  "schema": "GenomeV5/ImplementationManifest",
+  "version": "v1",
+  "slice": "VNextT1PackageBindingAdapterV1",
+  "status": "definition_only",
+  "integration": "not_connected",
+  "runtime": "not_run",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "source": "src/Contracts/VNextT1PackageBindingAdapterV1.jl",
+  "tests": [
+    "test/GenomeV5/Integration/VNextT1PackageBindingAdapterV1/vnext_t1_package_binding_adapter_v1_tests.jl",
+    "test/GenomeV5/Integration/VNextT1PackageBindingAdapterV1/static_qa_vnext_t1_package_binding_adapter_v1.py",
+    "test/GenomeV5/Integration/VNextT1PackageBindingAdapterV1/independent_oracle_vnext_t1_package_binding_adapter_v1.py"
+  ],
+  "protected_boundaries": [
+    "src/FusionConceptAI.jl",
+    "src/Contracts/CandidateStatePackageV5Next.jl",
+    "src/Contracts/VNextT1CandidateBindingV2.jl"
+  ],
+  "gaps": [
+    "prepared_not_executed",
+    "terminal_deferred",
+    "g3_typed_absent"
+  ]
+}
