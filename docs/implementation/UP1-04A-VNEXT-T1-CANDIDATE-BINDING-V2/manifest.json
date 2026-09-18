@@ -1,9 +1,9 @@
 {
   "schema": "FusionConceptAI/ImplementationManifest",
   "slice": "UP1-04A-VNEXT-T1-CANDIDATE-BINDING-V2",
-  "status": "r1_program_exception_repaired_static_only",
+  "status": "r3_runtime_complete_replay_exact",
   "integration": "not_connected",
-  "runtime": "not_run",
+  "runtime": "complete",
   "r1_runtime": {
     "accepted": false,
     "classification": "program_exception",
@@ -19,8 +19,38 @@
     "julia_rerun": false,
     "scope": "python_static_oracle_and_diffcheck_only"
   },
+  "r2_runtime": {
+    "accepted": false,
+    "classification": "runtime_complete",
+    "exit_code": 0,
+    "duration_seconds": 3.425417,
+    "tests_passed": 24,
+    "tests_total": 24,
+    "test_summary": "VNext T1 V2 explicit candidate binding 24/24",
+    "protected_files_unchanged": "19/19",
+    "postflight_julia_desc_processes": [0, 0],
+    "evidence": "local_profile_r2_preflight/run_20260918_221435_957_da33f0ff621f4c33a6863f82b632afca",
+    "credit": "runtime_receipt_only"
+  },
+  "r3_runtime": {
+    "accepted": false,
+    "classification": "runtime_complete_replay_exact",
+    "exit_code": 0,
+    "duration_seconds": 3.3223064,
+    "tests_passed": 24,
+    "tests_total": 24,
+    "test_summary": "VNext T1 V2 explicit candidate binding 24/24",
+    "protected_files_unchanged": "35/35",
+    "postflight_julia_desc_processes": [0, 0],
+    "replayExact": true,
+    "replay_fields": ["schema", "version", "status", "candidate_digest", "wire_hash", "receipt_hash"],
+    "evidence": "local_profile_r3_preflight/run_20260918_222901_638_f60c70a246944614abd4abe3fc375a4e",
+    "credit": "runtime_replay_only"
+  },
   "accepted": false,
   "claim_ceiling": "contract_only",
+  "t1_t2_credit": false,
+  "up1_credit": false,
   "source_files": ["src/Contracts/VNextT1CandidateBindingV2.jl"],
   "test_files": [
     "test/GenomeV5/Integration/VNextT1CandidateBindingV2/fixture.json",
@@ -41,6 +71,7 @@
     "wire_and_receipt_hashes": "separate",
     "future_verified_package_adapter": "not_implemented",
     "t1_credit": false,
+    "t2_credit": false,
     "up1_credit": false
   }
 }
