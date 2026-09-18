@@ -1,0 +1,75 @@
+{
+  "schema": "DeclaredSpatialCompositionRuntimeAcceptanceManifestV1",
+  "task": "UP2-DECLARED-SPATIAL-COMPOSITION-V1",
+  "revision": "runtime_r9_acceptance",
+  "status": "runtime_complete",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "formal_up_credit": false,
+  "formal_r_credit": false,
+  "formal_l4_credit": false,
+  "provider_calls": 0,
+  "desc_executed": false,
+  "test_summary": {
+    "passed": 54,
+    "total": 54,
+    "exit_code": 0,
+    "julia_invocation_count": 1,
+    "julia_num_threads": "1",
+    "negative_vectors": 8
+  },
+  "numerics": {
+    "conservation_residual": 0.0,
+    "interface_flux_residual": 0.0,
+    "ledger_residual": 0.0,
+    "mms_order": 2.0020872428184697,
+    "mms_order_floor": 1.8,
+    "joint_solver_invocations": 1,
+    "joint_residual_bound": 1.0e-12,
+    "holdout_solution": [0.15601849765681325, 0.01194048906512854, -0.21296590148316002, -0.3486531796880121]
+  },
+  "negative_vectors": [
+    "duplicate_producer",
+    "unit_mismatch",
+    "missing_boundary",
+    "nonoverlap",
+    "nonfinite_K",
+    "pure_neumann_singular",
+    "missing_return",
+    "geometry_hash_change"
+  ],
+  "runtime_receipt": {
+    "directory": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d",
+    "metadata": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/run_metadata.json",
+    "stdout": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/julia.stdout.raw",
+    "stderr": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/julia.stderr.raw",
+    "exit_code": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/exit_code.txt",
+    "capture_failure": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/capture_failure.json",
+    "processes_before": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/processes_before.json",
+    "processes_after_first": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/processes_after_first.json",
+    "processes_after_second": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/processes_after_second.json",
+    "owned_hashes_before": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/owned_hashes_before.json",
+    "owned_hashes_after": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/owned_hashes_after.json",
+    "owned_hash_changes": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/owned_hash_changes.json",
+    "thread": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/agent_local_r9_preflight/run_20260918_120936_343_8ad76d38f9294970aa4776cfc0dbf22d/thread.json"
+  },
+  "hashes_unchanged": true,
+  "protected_files": {
+    "src/RuntimeV4/DeclaredSpatialCompositionExecutionV1.jl": "819500922d52408d4a16f75a441b157d6ac953a19510fc6648b3594bd9312216",
+    "test/RuntimeV4/DeclaredSpatialComposition/declared_spatial_composition_execution_v1_tests.jl": "44ed2fcb4b11e9a742a0acbf5c51495957c320736d1e3fdf0152237ebc22d547",
+    "test/RuntimeV4/DeclaredSpatialComposition/fixture.json": "ba506e35d0058d5c469dbf494c5ab1a00240206bf5e6826b86590b6dea064a0a",
+    "test/RuntimeV4/DeclaredSpatialComposition/independent_oracle.py": "946cf37ac8692c276ac9bb2ee32b32f1059fd7ce99ca5a0d9bc6bc4a3cb1c232",
+    "test/RuntimeV4/DeclaredSpatialComposition/static_qa.py": "9120b20e2384f57af5697befc430bb9fa0ffcaf86d4279aeda5071fef67ca389",
+    "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/report.md": "8b7b85bdc5d6a94212e641ae0c0fa12b69d1ad19fd7b04a42500557145cbc572"
+  },
+  "frozen_parent_report": {
+    "path": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/report.md",
+    "role": "pre_runtime_snapshot",
+    "modified": false
+  },
+  "creation_boundary": {
+    "julia_run_during_acceptance_record": false,
+    "desc_run_during_acceptance_record": false,
+    "commit_created": false
+  }
+}

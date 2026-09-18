@@ -1,0 +1,26 @@
+{
+  "schema": "DeclaredSpatialCompositionExecutionPreflightManifestV1",
+  "task": "UP2-DECLARED-SPATIAL-COMPOSITION-V1",
+  "revision": "agent_local_r9_preflight",
+  "status": "preflight_only",
+  "execution_performed_for_this_receipt": false,
+  "runner": "runner.ps1",
+  "static_report": "static_report.md",
+  "julia_invocation_count_in_this_receipt": 0,
+  "desc_executed_in_this_receipt": false,
+  "required_runtime_command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/DeclaredSpatialComposition/declared_spatial_composition_execution_v1_tests.jl",
+  "required_environment": { "JULIA_NUM_THREADS": "1" },
+  "timeout": { "defaultSeconds": 300, "waitMethod": "Process.WaitForExit(milliseconds)", "onTimeout": "kill only the started processId and its discovered descendants, drain redirected streams, classify status=timeout", "automaticRetry": false },
+  "receipt_policy": { "lock": "atomic FileMode.CreateNew runtime.lock; durable refusal after first attempt", "directory": "new unique run_UTC_timestamp_GUID directory", "overwrite": "refuse existing runtime.lock or run_* receipt directory", "exactlyOnce": true },
+  "process_policy": { "inspection": "Get-CimInstance Win32_Process", "names": ["julia", "julia-debug", "desc"], "preflight_must_be_zero": true, "postflight_consecutive_zero_observations": 2, "postflight_gapMilliseconds": 250 },
+  "protected_files": [
+    { "path": "src/RuntimeV4/DeclaredSpatialCompositionExecutionV1.jl", "sha256": "819500922d52408d4a16f75a441b157d6ac953a19510fc6648b3594bd9312216" },
+    { "path": "test/RuntimeV4/DeclaredSpatialComposition/declared_spatial_composition_execution_v1_tests.jl", "sha256": "44ed2fcb4b11e9a742a0acbf5c51495957c320736d1e3fdf0152237ebc22d547" },
+    { "path": "test/RuntimeV4/DeclaredSpatialComposition/fixture.json", "sha256": "ba506e35d0058d5c469dbf494c5ab1a00240206bf5e6826b86590b6dea064a0a" },
+    { "path": "test/RuntimeV4/DeclaredSpatialComposition/independent_oracle.py", "sha256": "946cf37ac8692c276ac9bb2ee32b32f1059fd7ce99ca5a0d9bc6bc4a3cb1c232" },
+    { "path": "test/RuntimeV4/DeclaredSpatialComposition/static_qa.py", "sha256": "9120b20e2384f57af5697befc430bb9fa0ffcaf86d4279aeda5071fef67ca389" },
+    { "path": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/report.md", "sha256": "8b7b85bdc5d6a94212e641ae0c0fa12b69d1ad19fd7b04a42500557145cbc572" }
+  ],
+  "runtime_receipt_outputs": ["processes_before.json", "owned_hashes_before.json", "julia.stdout.raw", "julia.stderr.raw", "exit_code.txt", "thread.json", "run_metadata.json", "capture_failure.json", "processes_after_first.json", "processes_after_second.json", "owned_hashes_after.json", "owned_hash_changes.json", "timeout_kill.json"],
+  "claim_ceiling_until_runtime_receipt": "screen_only"
+}

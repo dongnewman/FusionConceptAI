@@ -1,0 +1,40 @@
+{
+  "schema": "fusionconceptai:implementation-manifest:v1",
+  "name": "UP2-DECLARED-SPATIAL-COMPOSITION-V1",
+  "status": "local_python_qa_pass",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "formal_up_credit": false,
+  "formal_r_credit": false,
+  "formal_l4_credit": false,
+  "julia_executed": false,
+  "desc_executed": false,
+  "provider_calls": 0,
+  "solver_invocations": 1,
+  "negative_vectors": ["duplicate_producer", "unit_mismatch", "missing_boundary", "nonoverlap", "nonfinite_K", "pure_neumann_singular", "missing_return", "geometry_hash_change"],
+  "files": {
+    "source": "src/RuntimeV4/DeclaredSpatialCompositionExecutionV1.jl",
+    "focused_test": "test/RuntimeV4/DeclaredSpatialComposition/declared_spatial_composition_execution_v1_tests.jl",
+    "fixture": "test/RuntimeV4/DeclaredSpatialComposition/fixture.json",
+    "oracle": "test/RuntimeV4/DeclaredSpatialComposition/independent_oracle.py",
+    "static_qa": "test/RuntimeV4/DeclaredSpatialComposition/static_qa.py",
+    "report": "docs/implementation/UP2-DECLARED-SPATIAL-COMPOSITION-V1/report.md"
+  },
+  "hashes": {
+    "source_sha256": "819500922d52408d4a16f75a441b157d6ac953a19510fc6648b3594bd9312216",
+    "focused_test_sha256": "44ed2fcb4b11e9a742a0acbf5c51495957c320736d1e3fdf0152237ebc22d547",
+    "fixture_sha256": "ba506e35d0058d5c469dbf494c5ab1a00240206bf5e6826b86590b6dea064a0a",
+    "oracle_sha256": "946cf37ac8692c276ac9bb2ee32b32f1059fd7ce99ca5a0d9bc6bc4a3cb1c232",
+    "static_qa_sha256": "9120b20e2384f57af5697befc430bb9fa0ffcaf86d4279aeda5071fef67ca389",
+    "report_sha256": "8b7b85bdc5d6a94212e641ae0c0fa12b69d1ad19fd7b04a42500557145cbc572"
+  },
+  "numerical": {
+    "conservation_residual": 0.0,
+    "interface_flux_residual": 0.0,
+    "mms_order": 2.0020872428184697,
+    "joint_residual_bound": 1.0e-12,
+    "ledger_residual": 0.0,
+    "holdout_solution": [0.15601849765681325, 0.01194048906512854, -0.21296590148316002, -0.3486531796880121]
+  },
+  "gaps": ["screen_only", "no_provider_receipt", "no_UP_credit", "no_R_credit", "no_L4_credit", "focused_julia_test_not_executed"]
+}

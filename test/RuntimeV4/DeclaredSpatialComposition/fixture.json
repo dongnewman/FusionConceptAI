@@ -1,0 +1,51 @@
+{
+  "schema": "fusionconceptai:runtime-v4:declared-spatial-composition-execution-v1",
+  "claim_ceiling": "screen_only",
+  "accepted": false,
+  "formal_credit": {"up": false, "r": false, "l4": false},
+  "execution": {"provider_calls": 0, "solver_invocations": 1, "julia_executed": false, "desc_executed": false},
+  "geometry": {"old_edges": [0.0, 0.5, 1.0], "new_edges": [0.0, 0.25, 0.5, 0.75, 1.0], "old_state": [0.25, 0.75], "transfer_weights": [[1.0, 0.0], [1.0, 0.0], [0.0, 1.0], [0.0, 1.0]], "transferred_state": [0.25, 0.25, 0.75, 0.75]},
+  "positive": {
+    "k_cells": [1.0, 2.0, 1.5, 0.8],
+    "source": [1.0, 0.0, -0.5, 0.75],
+    "boundary": {"left": ["dirichlet", 0.0], "right": ["dirichlet", 1.0]},
+    "matrix": [[13.333333333333334, -5.333333333333333, 0.0, 0.0], [-5.333333333333333, 12.19047619047619, -6.857142857142857, 0.0], [0.0, -6.857142857142857, 11.031055900621118, -4.173913043478261], [0.0, 0.0, -4.173913043478261, 10.57391304347826]],
+    "rhs": [0.25, 0.0, -0.125, 6.5875],
+    "solution": [0.1700647865853659, 0.3782869664634147, 0.5402375508130083, 0.8362471417682928],
+    "mms_order": 2.002087242818209,
+    "gates": {"conservation_residual": 0.0, "interface_flux_residual": 0.0, "joint_residual": 1.0e-12, "ledger_residual": 0.0}
+  },
+  "holdout": {
+    "case_ref": "holdout-independent",
+    "k_cells": [2.0, 0.75, 1.4, 2.2],
+    "source": [-0.3, 1.0, 0.2, -0.1],
+    "boundary": {"left": ["dirichlet", 0.2], "right": ["dirichlet", -0.4]},
+    "matrix": [[20.363636363636363, -4.363636363636363, 0.0, 0.0], [-4.363636363636363, 8.27061310782241, -3.906976744186046, 0.0], [0.0, -3.906976744186046, 10.75142118863049, -6.844444444444444], [0.0, 0.0, -6.844444444444444, 24.444444444444446]],
+    "rhs": [3.125, 0.25, 0.05, -7.065000000000001],
+    "solution": [0.15601849765681325, 0.011940489065128537, -0.21296590148316005, -0.3486531796880121]
+  },
+  "neumann_probe": {
+    "left_kind": "neumann",
+    "left_value": 0.3,
+    "right_kind": "dirichlet",
+    "right_value": 1.0,
+    "expected_boundary_rhs_contribution": 0.3
+  },
+  "pure_neumann_probe": {
+    "left_value": 0.0,
+    "right_value": 0.0,
+    "expected_status": "numerical_fail",
+    "expected_code": "pure_neumann_singular"
+  },
+  "negative_expectations": {
+    "duplicate_producer": ["fail_closed", "duplicate_producer"],
+    "unit_mismatch": ["fail_closed", "unit_mismatch"],
+    "missing_boundary": ["fail_closed", "missing_boundary"],
+    "nonoverlap": ["terminal_deferred", "nonoverlap"],
+    "nonfinite_K": ["fail_closed", "nonfinite_K"],
+    "pure_neumann_singular": ["numerical_fail", "pure_neumann_singular"],
+    "missing_return": ["fail_closed", "missing_return"],
+    "geometry_hash_change": ["fail_closed", "geometry_hash_mismatch"]
+  },
+  "gaps": ["screen_only", "no_provider_receipt", "no_UP_credit", "no_R_credit", "no_L4_credit"]
+}
