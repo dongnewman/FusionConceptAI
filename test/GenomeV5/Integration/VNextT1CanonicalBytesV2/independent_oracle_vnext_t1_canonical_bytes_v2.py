@@ -52,10 +52,12 @@ def main() -> int:
     expected_nested = '{"a":{"carrier":' + expected_json + ',"enabled":true},"z":[' + expected_json + ',"tail"]}'
     assert json.dumps(nested, sort_keys=True, separators=(",", ":")) == expected_nested
     checks += 2
-    assert fixture["runtime"] == "r1_program_exception_base64_dependency_repaired_not_rerun"
+    assert fixture["runtime"] == "r2_test_exception_boundary_pair_tuple_index_repaired_not_rerun"
+    assert fixture["r2"]["accepted"] is False
+    assert fixture["r2"]["credit"] == "none"
     assert fixture["integration"] == "not_connected"
     print(json.dumps({"status": "PASS", "checks": checks, "cases": len(fixture["cases"]) + 1,
-                      "runtime": "R1_PROGRAM_EXCEPTION_NO_CREDIT",
+                      "runtime": "R2_TEST_EXCEPTION_NO_CREDIT",
                       "integration": "NOT_CONNECTED"}, sort_keys=True))
     return 0
 

@@ -1,7 +1,7 @@
 {
   "schema": "FusionConceptAI/ImplementationManifest",
   "slice": "UP1-04A-VNEXT-T1-CANONICAL-BYTES-V2",
-  "status": "r1_program_exception_dependency_repaired_not_rerun",
+  "status": "r2_test_exception_boundary_lookup_repaired_not_rerun",
   "integration": "not_connected",
   "production_admission": "unchanged_v1",
   "runtime": {
@@ -21,10 +21,31 @@
     "evidence": "local_profile_r1_runtime",
     "credit": "none"
   },
+  "r2_runtime": {
+    "accepted": false,
+    "classification": "test_exception",
+    "root_cause": "boundary_base64_pair_tuple_indexed_by_payload_length",
+    "exit_code": 1,
+    "duration_seconds": 2.7671703,
+    "fixed_payloads": {"pass": 48, "total": 48},
+    "boundary_patterns": {"pass": 12, "error": 4, "total": 16},
+    "start_count": 1,
+    "automatic_retry": false,
+    "protected_files_unchanged": "18/18",
+    "postflight_julia_desc_processes": [0, 0],
+    "evidence": "local_profile_r2_runtime",
+    "credit": "none"
+  },
   "dependency_repair": {
     "project_dependency": "Base64",
     "uuid": "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f",
     "manifest_resolved": true,
+    "julia_test_rerun": false
+  },
+  "r2_test_repair": {
+    "boundary_golden_storage": "immutable_named_tuple",
+    "lookup": "getproperty_with_explicit_n_length_symbol",
+    "static_regression_assertion": true,
     "julia_test_rerun": false
   },
   "contract": {

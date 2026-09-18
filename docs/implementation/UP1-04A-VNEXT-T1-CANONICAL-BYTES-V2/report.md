@@ -45,3 +45,18 @@ run must verify invalid-byte construction,
 ownership isolation, boundary byte access, the full large Vector digest, and a
 second-process semantic replay. Until then, the claim ceiling remains
 `contract_only` / `not_accepted_limited`.
+
+The serialized R2 Julia attempt also executed exactly once. It reached the
+tests, then exited 1 after 2.7671703 seconds: fixed payloads passed 48/48, while
+boundary patterns recorded 12 passes and 4 errors. The four errors were a
+test-harness lookup defect: `_V2_BOUNDARY_BASE64` was an immutable tuple of
+`Pair`s, but the test indexed that tuple with payload lengths 63, 64, 65, and
+1024. The original R2 lock/run evidence is copied byte-for-byte to
+`local_profile_r2_runtime/`. Its receipt records 18/18 protected files
+unchanged, one start, no retry, and zero residual Julia/DESC processes in both
+postflight observations. R2 is rejected and grants no runtime or T1 credit.
+
+The minimal R2 repair retains immutable test state by storing the four goldens
+in a NamedTuple and resolving the explicit `n<length>` property. Static QA now
+rejects the former Pair-tuple and payload-length-index forms. Only Python
+static/oracle checks were run after this repair; Julia was not rerun.

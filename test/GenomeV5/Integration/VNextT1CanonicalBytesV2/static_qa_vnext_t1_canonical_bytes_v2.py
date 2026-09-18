@@ -15,6 +15,7 @@ FIXTURE = Path(__file__).with_name("fixture.json")
 DOCS = ROOT / "docs" / "implementation" / "UP1-04A-VNEXT-T1-CANONICAL-BYTES-V2"
 PROJECT = ROOT / "Project.toml"
 R1_RUNTIME = DOCS / "local_profile_r1_runtime"
+R2_RUNTIME = DOCS / "local_profile_r2_runtime"
 PROTECTED = {
     ROOT / "src" / "Contracts" / "CandidateStatePackageV5Next.jl":
         (53197, "14e8f519dd4ffe56ca5678ae8e4b82009ced12616e05de11165e36c3b4adae73"),
@@ -64,19 +65,29 @@ def main() -> int:
     report["canonical_json_exact_and_nested"] = all(token in test for token in (
         "canonical JSON projection", "nested_expected", "sha256\\\":{\\\"value"))
     report["boundary_base64_goldens"] = "_V2_BOUNDARY_BASE64" in test and all(
-        f"{n} =>" in test for n in (63, 64, 65, 1024))
+        f"n{n}=" in test for n in (63, 64, 65, 1024))
+    report["immutable_boundary_lookup"] = all(token in test for token in (
+        "const _V2_BOUNDARY_BASE64 = (", "getproperty(", "Symbol(:n, length)"))
+    report["tuple_pair_index_regression_absent"] = all(
+        token not in test for token in ("63 =>", "64 =>", "65 =>", "1024 =>",
+                                        "_V2_BOUNDARY_BASE64[length]"))
     report["stable_replay_line"] = "VNEXT_T1_CANONICAL_BYTES_V2_REPLAY" in test and all(
         token in test for token in ("schema=$(", "version=$(", "length=$(", "sha256=$(", "base64_sha256=$("))
     report["independent_python"] = all(token in oracle for token in (
         "hashlib", "base64", "does not import Julia", "fixture.json"))
     report["fixture_boundary"] = fixture["large"]["length"] == 8_269_445
     report["fixture_no_runtime_credit"] = (
-        fixture["runtime"] == "r1_program_exception_base64_dependency_repaired_not_rerun"
+        fixture["runtime"] == "r2_test_exception_boundary_pair_tuple_index_repaired_not_rerun"
+        and fixture["r2"]["accepted"] is False
+        and fixture["r2"]["credit"] == "none"
         and fixture["integration"] == "not_connected")
     report["docs_present"] = all((DOCS / name).is_file() for name in ("README.md", "manifest.json", "report.md"))
     report["r1_program_exception_archived"] = (
         (R1_RUNTIME / "runtime.lock").is_file()
         and any(R1_RUNTIME.glob("run_*/run_metadata.json")))
+    report["r2_test_exception_archived"] = (
+        (R2_RUNTIME / "runtime.lock").is_file()
+        and any(R2_RUNTIME.glob("run_*/run_metadata.json")))
 
     failed = [name for name, ok in report.items() if not ok]
     if failed:

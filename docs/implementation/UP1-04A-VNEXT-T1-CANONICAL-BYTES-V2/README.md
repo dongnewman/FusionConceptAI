@@ -44,3 +44,13 @@ single-line `VNEXT_T1_CANONICAL_BYTES_V2_REPLAY` record for a later independent
 second process, but it is not runtime evidence until that process is run.
 `Project.toml` now declares Base64 and the manifest was resolved, but no Julia
 test rerun is claimed by this repair.
+
+The subsequent serialized R2 attempt reached the test body but exited 1 after
+2.7671703 seconds. Its fixed-payload testset passed 48/48; the boundary testset
+recorded 12 passes and 4 errors because an immutable tuple of `Pair` goldens
+was incorrectly indexed by payload lengths. R2 used one start, no retry,
+changed none of 18 protected files, and left zero Julia/DESC processes in both
+postflight observations. The byte-for-byte archive is
+`local_profile_r2_runtime/`; it grants no runtime or T1 credit. The test-only
+repair replaces that lookup with an immutable NamedTuple and explicit
+`n<length>` property resolution. No Julia rerun is claimed after this repair.
