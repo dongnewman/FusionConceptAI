@@ -1,0 +1,49 @@
+{
+  "schema_version": "fusion-up5-m5-structure-search-agent-local-r19-runtime-v1",
+  "record_kind": "single_serialized_focused_julia_runtime",
+  "task": "UP5-M5-STRUCTURE-SEARCH-R1",
+  "agent_local_run": "agent_local_r19_runtime",
+  "command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/M4Isolated/bounded_structure_search_v1_tests.jl",
+  "cwd": "D:/006-Programing/LMC/FusionConceptAI",
+  "started_utc": "2026-09-18T04:04:25.0882601Z",
+  "ended_utc": "2026-09-18T04:04:35.7757241Z",
+  "LASTEXITCODE": 0,
+  "stdout_raw": {
+    "path": "stdout.raw",
+    "bytes": 116,
+    "sha256": "e21f3d779617fdec73a70abd507a2ecad284958efe61b1c6838bb39e0ce65070",
+    "capture": "direct during execution"
+  },
+  "stderr_raw": {
+    "path": "stderr.raw",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "capture": "direct during execution"
+  },
+  "result": {
+    "status": "contract_only",
+    "claim_ceiling": "screen_only",
+    "accepted": false,
+    "no_publish": true,
+    "stdout_summary": "Test Summary: | Pass Total Time; UP5 bounded structure-search contract | 94 94 9.1s",
+    "passed": 94,
+    "total": 94,
+    "failed": 0,
+    "errored": 0
+  },
+  "process_postcheck": {
+    "utc": "2026-09-18T04:04:49.3917451Z",
+    "residual_julia_or_desc_process": false
+  },
+  "frozen_inputs_sha256_pre_equals_post": {
+    "src/RuntimeV4/M4Isolated/BoundedStructureSearchV1.jl": "d811ced9245f8f5cfea2f57fcf5e5f91f379340108b2bdc3ba3415b7f25633cf",
+    "test/RuntimeV4/M4Isolated/bounded_structure_search_v1_tests.jl": "191ea63ba2a5d0824ee2bf3096a41ee29be00e730636f4b2fbe1592174c51464",
+    "test/RuntimeV4/M4Isolated/bounded_structure_search_v1_fixture.json": "cc77dcf441db9440c6ad822ab9134b5a7ed05ad15bc41bded0c340cdb6184cfc",
+    "test/RuntimeV4/M4Isolated/oracles/bounded_structure_search_oracle_v1.py": "47bd46520e998966184ae6bb851dd56fa35e2cf47bd06c388cb1d0bed63fb3e7",
+    "test/RuntimeV4/M4Isolated/static_qa_bounded_structure_search_v1.py": "2bf5a3e5b7368e57f914e5ddbaf8c8b6d7df24ac4f6ff7b35f2d9e8c12bbe599"
+  },
+  "protected_dirty_hashes_pre_equals_post": {
+    "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl": "7d9a4452a10f726d547a61490974add77b4f14dc3db4df6b975be1e0edc18cb5",
+    "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl": "0041e9041b7376b3127d80454f8ffa1f455ae488b667f326719d3a0f5adf3773"
+  }
+}
