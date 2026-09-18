@@ -1,6 +1,6 @@
 # FusionConceptAI Runtime V4 current progress index
 
-Last updated: 2026-09-18 (index sync at `348b061`; subsequent commits require refresh)
+Last updated: 2026-09-18 (index sync at `94e4598d209c2d424c2e7affaeef0df171dd67da`; subsequent commits require refresh)
 
 The following spatial material is a historical milestone snapshot, not the
 current repository execution state. Its first complete declared execution is
@@ -15,16 +15,18 @@ independent manifest audit were pushed at
 
 ## Current repository status (2026-09-18)
 
-The current index baseline is HEAD `348b061`
-(`348b0611b9c8afd20bab0fb706528733c3fa0d7d`); subsequent commits require a
-fresh index sync. The entries below are static/contract/screen records, not
+The current index baseline is HEAD `94e4598d209c2d424c2e7affaeef0df171dd67da`;
+subsequent commits require a fresh index sync. The entries below are static/contract/screen records, not
 completion percentages, and do not close their UP labels, R01–R10, or the open
 parent goal:
 
 | Record | Commit | Status ceiling |
 |---|---|---|
 | T0 LocalV1 | `87f0263` | committed |
-| T0 authority recheck | `a7b6362` | static 125/125; R12 `performance_gate_timeout`, 0/25; `NO-GO`, T1 not started |
+| T0 authority recheck | `94e4598` / R21 | `interrupted_incomplete`; negative dispatch `0/25`, negative-object snapshots `0/100`; no retry; no authority |
+| T1 package/edit/round-trip | `62d9a61` / R5 | static `16`; `prepared_not_executed`; no runtime receipt |
+| Spatial composition | `e5e44bd` / R9 | `54/54`; `screen_only`; `accepted=false`; no formal credits |
+| G1/G2/G3 execution | `7c82e95` / R22 | nested receipt authoritative `39/39 + 13/13`; package `preflight_only`; `screen_only`; no formal credits |
 | UP2 spatial transfer | `ca5fef9` | 70/70 `contract_only` |
 | UP3 composition solve plan | `a1ad8cc` | 161/161 `contract_only` |
 | UP4 SHIR | `5d9d651` | 547/547 `prepared_not_measured` |
@@ -33,14 +35,22 @@ parent goal:
 | UP5 bounded structure | `f9612bd` | 94/94 `contract_only` |
 | UP6 final ledger | `67a4e87` | 123/123 `contract_only`; no final authority |
 | UP2 executable screen | `348b061` | 68/68 `manufactured_numerical_screen` |
+| EngineeringFeedback | R14 code / R15 runtime | R14 code; R15 runtime `77/77`; `screen_only`, `accepted=false`, `component_load=false`; no formal credits |
 
-The authority recheck is `NO-GO` because R12 timed out; T1 has not started.
-These records carry no provider/physics Julia/DESC runtime credit, physical,
-engineering, or final-authority credit; focused Julia contract tests ran for
-contract evidence only. `R01–R10` remain `pending`, `L4=0`, and the parent goal
-is open. Five untracked `pyc` files were removed during cleanup; dirty `runs`,
-`tmp`, evidence, and protected state were preserved. Unrun slices and
-untracked implementations must not be reported as complete.
+The latest T0 authority recheck R21 is `interrupted_incomplete`: it reached
+negative dispatch `0/25` and negative-object snapshots `0/100`, emitted no
+`Test Summary` or authority, and was not retried. T1 R5 is static `16` and
+`prepared_not_executed`. Spatial R9 is `54/54` but `screen_only`. G1/G2/G3 R22
+has an authoritative nested `39/39 + 13/13` receipt, while the package
+manifest remains `preflight_only`; it grants no formal credit. EngineeringFeedback
+R14 code/R15 runtime
+`77/77` remains `screen_only`, `accepted=false`, `component_load=false`, with
+no formal credits. These records carry no provider/physics Julia/DESC runtime
+credit, physical, engineering, or final-authority credit. `R01–R10` remain
+`pending`, `L4=0`, and the parent goal is open. Five untracked `pyc` files were
+removed during cleanup; dirty `runs`, `tmp`, evidence, and protected state were
+preserved. Unrun slices and untracked implementations must not be reported as
+complete.
 
 ## Historical spatial-candidate execution (2026-09-13)
 
