@@ -1,0 +1,31 @@
+{
+  "schema": "FusionConceptAI/ImplementationManifest",
+  "slice": "UP1-04A-VNEXT-T1-CANDIDATE-BINDING-V2",
+  "status": "static_contract_slice",
+  "integration": "not_connected",
+  "runtime": "not_run",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "source_files": ["src/Contracts/VNextT1CandidateBindingV2.jl"],
+  "test_files": [
+    "test/GenomeV5/Integration/VNextT1CandidateBindingV2/fixture.json",
+    "test/GenomeV5/Integration/VNextT1CandidateBindingV2/vnext_t1_candidate_binding_v2_tests.jl",
+    "test/GenomeV5/Integration/VNextT1CandidateBindingV2/static_qa_vnext_t1_candidate_binding_v2.py",
+    "test/GenomeV5/Integration/VNextT1CandidateBindingV2/independent_oracle_vnext_t1_candidate_binding_v2.py"
+  ],
+  "protected_production_files": {
+    "src/Contracts/CandidateStatePackageV5Next.jl": {"size": 53197, "sha256": "14e8f519dd4ffe56ca5678ae8e4b82009ced12616e05de11165e36c3b4adae73"},
+    "src/FusionConceptAI.jl": {"size": 10144, "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"},
+    "src/Contracts/VNextT1CanonicalBytesV2.jl": {"size": 2602, "sha256": "49c03ff3d81a8568bfb475d5c11e8d21c421b8a25e2e263b06d9caf820ca87fb"}
+  },
+  "claims": {
+    "explicit_candidate_binding": "specified_and_static_checked",
+    "label_or_uri_inference": "forbidden",
+    "missing_input": "terminal_deferred",
+    "foreign_tampered_duplicate": "fail_closed",
+    "wire_and_receipt_hashes": "separate",
+    "future_verified_package_adapter": "not_implemented",
+    "t1_credit": false,
+    "up1_credit": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "GenomeV5/Contracts/VNextT1CandidateBinding",
+  "version": "v2",
+  "domain": "FusionConceptAI/GenomeV5/VNextT1CandidateBindingV2",
+  "candidate_ref": {"id": "fusion.candidate/local-explicit", "version": "v1"},
+  "candidate_digest": "9f4f2f4631776ddd9ba616e06c69381c5ae40efdfed368b264708ee5014fe236",
+  "source_package_hash": "5a6c35fe029e862c34fa532a0639c32256f23993748ac108f92fd31ea0f29250",
+  "wire_bytes": [0, 255, 16, 32, 127],
+  "wire_hash": "d2f541ee68b26be3d317b248bb148cb0d9c58324dc5a19b6ece610635b731f2e",
+  "receipt_domain": "FusionConceptAI/GenomeV5/VNextT1CandidateBindingV2/receipt/v1",
+  "bound_receipt_hash": "f03d93a582a6f4f48443bbe68f7eced2c16933d43556b43a48565bcf6b34ecc7",
+  "expected_statuses": {
+    "exact": "bound",
+    "missing_observation": "terminal_deferred",
+    "missing_wire": "terminal_deferred",
+    "foreign_ref": "fail_closed",
+    "foreign_ref_version": "fail_closed",
+    "candidate_ref_case_mismatch": "fail_closed",
+    "candidate_ref_path_alias": "fail_closed",
+    "candidate_ref_cross_splice": "fail_closed",
+    "foreign_digest": "fail_closed",
+    "foreign_package": "fail_closed",
+    "wire_tamper": "fail_closed",
+    "duplicate_identical": "fail_closed",
+    "duplicate_conflict": "fail_closed"
+  },
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "integration": "not_connected",
+  "runtime": "not_run"
+}
