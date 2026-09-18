@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "FusionConceptAI/GenomeV5/VNextT1PackageBindingAdapterV1/local_profile_r1_preflight/runner_receipt.schema.json",
+  "title": "VNext T1 package-binding adapter hardened runner receipt",
+  "type": "object",
+  "required": ["schema", "status", "accepted", "claimCeiling", "command", "timeoutSeconds", "startCount", "autoRetry", "hashesComparable", "ownedFilesUnchanged", "postflightZeroJuliaDesc"],
+  "properties": {
+    "schema": {"type": "string", "const": "VNextT1PackageBindingAdapterV1R1RunMetadataV1"},
+    "status": {"type": "string"},
+    "accepted": {"type": "boolean", "const": false},
+    "claimCeiling": {"type": "string", "const": "contract_only"},
+    "command": {"type": "string", "const": "julia --startup-file=no --history-file=no --project=. test/GenomeV5/Integration/VNextT1PackageBindingAdapterV1/vnext_t1_package_binding_adapter_v1_tests.jl"},
+    "timeoutSeconds": {"type": "integer", "const": 300},
+    "startCount": {"type": "integer", "minimum": 0, "maximum": 1},
+    "autoRetry": {"type": "boolean", "const": false},
+    "juliaNumThreads": {"type": "string", "const": "1"},
+    "hashesComparable": {"type": "boolean"},
+    "ownedFilesUnchanged": {"type": "boolean"},
+    "postflightZeroJuliaDesc": {"type": "boolean"},
+    "staticQaExpectedChecks": {"type": "integer", "const": 20},
+    "independentOracleExpectedChecks": {"type": "integer", "const": 15},
+    "astContract": {"type": "string", "const": "source-structure-only"}
+  },
+  "additionalProperties": true
+}
