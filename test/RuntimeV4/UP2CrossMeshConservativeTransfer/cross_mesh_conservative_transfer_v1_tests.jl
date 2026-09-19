@@ -91,16 +91,16 @@ end
     negatives = Dict{String,Tuple{Symbol,Symbol}}()
     wrong_candidate = QualifiedRefV1("foreign://candidate", "v5")
     bad_identity = DeclaredCrossMeshIdentityV1(wrong_candidate, c.identity.source_hash,
-        c.identity.body_hash, c.identity.bundle_hash)
+        c.identity.body_hash, c.identity.bundle_hash, c.identity.axis_hashes)
     x = execute_declared_cross_mesh_v1(c.input, bad_identity, c.source, c.target, (0.25,0.75); accounts=c.accounts)
     negatives["wrong_candidate"] = (x.status,x.code)
-    @test x.status === :fail_closed
+    @test x.status === :fail_closed && x.code === :candidate_mismatch
 
     bad_body = DeclaredCrossMeshIdentityV1(c.identity.candidate_ref, c.identity.source_hash,
-        "forged-body-hash", c.identity.bundle_hash)
+        "forged-body-hash", c.identity.bundle_hash, c.identity.axis_hashes)
     x = execute_declared_cross_mesh_v1(c.input, bad_body, c.source, c.target, (0.25,0.75); accounts=c.accounts)
     negatives["wrong_body"] = (x.status,x.code)
-    @test x.status === :fail_closed
+    @test x.status === :fail_closed && x.code === :body_hash_mismatch
 
     outside = declared_cross_mesh_v1(c.identity, :target, "mesh:target-outside", "space:up2",
         (2.0, 2.5, 3.0, 3.5, 4.0); owners=("owner:t1","owner:t2","owner:t3","owner:t4"))
@@ -134,6 +134,13 @@ end
     negatives["zero_measure"] = (x.status,x.code)
     @test x.status === :numerical_fail
 
+    mismatched_measure = declared_cross_mesh_v1(c.identity,:target,"mesh:mismatched","space:up2",
+        (0.0,0.25,0.5,0.75,1.0);owners=("owner:t1","owner:t2","owner:t3","owner:t4"),
+        cell_measures=(0.25,0.25,0.25,0.2501))
+    x = execute_declared_cross_mesh_v1(c.input,c.identity,c.source,mismatched_measure,(0.25,0.75);accounts=c.accounts)
+    negatives["mismatched_measure"] = (x.status,x.code)
+    @test x.status === :fail_closed && x.code === :mismatched_measure
+
     nonfinite = execute_declared_cross_mesh_v1(c.input,c.identity,c.source,c.target,(NaN,0.75);accounts=c.accounts)
     @test nonfinite.status === :numerical_fail
     shape = execute_declared_cross_mesh_v1(c.input,c.identity,c.source,c.target,(0.25,);accounts=c.accounts)
@@ -155,6 +162,35 @@ end
         c.identity.body_hash,c.identity.bundle_hash,("wrong-axis",c.identity.axis_hashes[2],c.identity.axis_hashes[3]))
     axis = execute_declared_cross_mesh_v1(c.input,axis_bad,c.source,c.target,(0.25,0.75);accounts=c.accounts)
     @test axis.status === :fail_closed && axis.code === :axis_hash_mismatch
+
+    @test_throws ArgumentError DeclaredCrossMeshUnitV1("nan-scale"; scale_to_si=NaN)
+    @test_throws ArgumentError DeclaredCrossMeshUnitV1("zero-scale"; scale_to_si=0.0)
+    @test_throws ArgumentError DeclaredCrossMeshUnitV1("negative-scale"; scale_to_si=-1.0)
+
+    # A deliberately overlapping target mesh has exact per-cell geometry but
+    # source coverage above one; coverage must be an equality gate, not a
+    # lower-bound gate.  The explicit hash keeps this negative on the executor.
+    overlap_cells = (DeclaredCrossMeshCellV1("cell:target:1", 0.0, 0.75; owner_ref="owner:t1"),
+        DeclaredCrossMeshCellV1("cell:target:2", 0.25, 1.0; owner_ref="owner:t2"))
+    overlap_mesh_0 = DeclaredCrossMeshV1(:target, "mesh:overcoverage", "space:up2",
+        overlap_cells, ("owner:t1", "owner:t2"), c.identity, "")
+    overlap_mesh = DeclaredCrossMeshV1(overlap_mesh_0.side, overlap_mesh_0.mesh_ref,
+        overlap_mesh_0.space_ref, overlap_mesh_0.cells, overlap_mesh_0.dof_ownership,
+        overlap_mesh_0.identity, FusionConceptAI._dcm_hash(FusionConceptAI._dcm_mesh_body(overlap_mesh_0)))
+    x = execute_declared_cross_mesh_v1(c.input,c.identity,c.source,overlap_mesh,(0.25,0.75);accounts=c.accounts)
+    negatives["overcoverage"] = (x.status,x.code)
+    @test x.status === :terminal_deferred && x.code === :overcovering_overlap
+
+    # Finite arithmetic conservation defects are fail-closed, not numerical
+    # failures.  This payload is intentionally large enough to expose a
+    # reproducible floating-point defect above the 1e-12 gate.
+    defect_mesh = declared_cross_mesh_v1(c.identity,:target,"mesh:defect","space:up2",
+        (0.0,0.2,0.4,0.6,0.8,1.0);
+        owners=("owner:t1","owner:t2","owner:t3","owner:t4","owner:t5"))
+    defect = execute_declared_cross_mesh_v1(c.input,c.identity,c.source,defect_mesh,
+        (1.0e15,-999999999999999.0);accounts=c.accounts)
+    negatives["nonzero_defect"] = (defect.status,defect.code)
+    @test defect.status === :fail_closed && defect.code === :conservation_defect
     # Identity is checked before numeric state, so a foreign candidate cannot
     # be masked by a NaN numerical payload.
     priority = execute_declared_cross_mesh_v1(c.input,bad_identity,c.source,c.target,(NaN,0.75);accounts=c.accounts)

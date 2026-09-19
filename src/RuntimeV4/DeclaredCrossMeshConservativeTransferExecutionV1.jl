@@ -18,6 +18,8 @@ const DCM_SCHEMA_V1 = "fusionconceptai:runtime-v4:declared-cross-mesh-conservati
 const DCM_REVISION_V1 = "up2-cross-mesh-conservative-transfer-v1-r1"
 const DCM_CLAIM_CEILING_V1 = :screen_only
 const DCM_STATUSES_V1 = (:ready, :fail_closed, :terminal_deferred, :numerical_fail)
+const DCM_GEOMETRY_TOL_V1 = 1e-12
+const DCM_CONSERVATION_TOL_V1 = 1e-12
 
 _dcm_text(x, field) = begin
     x isa AbstractString || throw(ArgumentError("$field must be a string"))
@@ -149,8 +151,10 @@ end
 function DeclaredCrossMeshUnitV1(name, exponents=(0,0,0,0,0,0,0); scale_to_si=1.0)
     raw = Tuple(exponents); length(raw) == 7 || throw(ArgumentError("unit rank must be seven"))
     all(x -> x isa Integer, raw) || throw(ArgumentError("unit exponents must be integers"))
+    scale = _dcm_finite(scale_to_si, "unit scale_to_si")
+    scale > 0.0 || throw(ArgumentError("unit scale_to_si must be positive"))
     DeclaredCrossMeshUnitV1(_dcm_text(name, "unit name"), ntuple(i -> Int(raw[i]), 7),
-        Float64(scale_to_si))
+        scale)
 end
 
 function DeclaredCrossMeshCellV1(cell_ref, lower, upper; measure=nothing, owner_ref)
@@ -251,6 +255,11 @@ _dcm_mesh_recompute(mesh::DeclaredCrossMeshV1) = _dcm_hash(_dcm_mesh_body(mesh))
 _dcm_unit_equal(a,b) = a.name == b.name && a.exponents == b.exponents &&
     isequal(a.scale_to_si,b.scale_to_si)
 
+_dcm_valid_unit(u) = isfinite(u.scale_to_si) && u.scale_to_si > 0.0
+_dcm_valid_measure(c::DeclaredCrossMeshCellV1) =
+    isfinite(c.measure) && c.measure > 0.0 &&
+    isapprox(c.measure, c.upper - c.lower; rtol=0.0, atol=DCM_GEOMETRY_TOL_V1)
+
 function _dcm_fail_transfer(code, input, source_mesh, target_mesh; status=:fail_closed)
     hashes = try _dcm_actual_hashes(input) catch; (candidate_ref=nothing,source_hash="",body_hash="",bundle_hash="",axis_hashes=("","","")) end
     source_mesh_hash = _dcm_safe_hash(try _dcm_mesh_body(source_mesh) catch; source_mesh.mesh_hash end)
@@ -289,6 +298,8 @@ function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdent
             return _dcm_fail_transfer(:orientation_mismatch,input,source_mesh,target_mesh)
         accounts.source.owner_ref in source_mesh.dof_ownership && accounts.target.owner_ref in target_mesh.dof_ownership ||
             return _dcm_fail_transfer(:owner_mismatch,input,source_mesh,target_mesh)
+        _dcm_valid_unit(accounts.source.unit) && _dcm_valid_unit(accounts.target.unit) ||
+            return _dcm_fail_transfer(:invalid_unit_scale,input,source_mesh,target_mesh)
         _dcm_unit_equal(accounts.source.unit,accounts.target.unit) ||
             return _dcm_fail_transfer(:unit_mismatch,input,source_mesh,target_mesh)
         accounts.external !== nothing && accounts.return_account !== nothing ||
@@ -297,9 +308,12 @@ function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdent
             return _dcm_fail_transfer(:owner_mismatch,input,source_mesh,target_mesh)
         target_mesh.dof_ownership == Tuple(c.owner_ref for c in target_mesh.cells) ||
             return _dcm_fail_transfer(:owner_mismatch,input,source_mesh,target_mesh)
-        valid_measures = all(isfinite(c.measure) && c.measure > 0.0 for c in source_mesh.cells) &&
+        finite_positive_measures = all(isfinite(c.measure) && c.measure > 0.0 for c in source_mesh.cells) &&
             all(isfinite(c.measure) && c.measure > 0.0 for c in target_mesh.cells)
-        valid_measures || return _dcm_fail_transfer(:zero_or_nonfinite_measure,input,source_mesh,target_mesh; status=:numerical_fail)
+        finite_positive_measures || return _dcm_fail_transfer(:zero_or_nonfinite_measure,input,source_mesh,target_mesh; status=:numerical_fail)
+        valid_measures = all(_dcm_valid_measure, source_mesh.cells) &&
+            all(_dcm_valid_measure, target_mesh.cells)
+        valid_measures || return _dcm_fail_transfer(:mismatched_measure,input,source_mesh,target_mesh)
         old_measure = sum(c.measure for c in source_mesh.cells)
         new_measure = sum(c.measure for c in target_mesh.cells)
         isfinite(old_measure) && isfinite(new_measure) && old_measure > 0 && new_measure > 0 ||
@@ -312,8 +326,15 @@ function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdent
         target_coverage = sum(overlap) / new_measure
         all(isfinite,(source_coverage,target_coverage)) ||
             return _dcm_fail_transfer(:nonfinite_overlap,input,source_mesh,target_mesh; status=:numerical_fail)
-        source_coverage >= 1.0 - 1e-12 && target_coverage >= 1.0 - 1e-12 ||
-            return _dcm_fail_transfer(:noncovering_overlap,input,source_mesh,target_mesh; status=:terminal_deferred)
+        coverage_ok = isapprox(source_coverage, 1.0; rtol=0.0, atol=DCM_GEOMETRY_TOL_V1) &&
+            isapprox(target_coverage, 1.0; rtol=0.0, atol=DCM_GEOMETRY_TOL_V1)
+        coverage_ok || begin
+            coverage_code = source_coverage > 1.0 + DCM_GEOMETRY_TOL_V1 ||
+                target_coverage > 1.0 + DCM_GEOMETRY_TOL_V1 ?
+                :overcovering_overlap : :noncovering_overlap
+            return _dcm_fail_transfer(coverage_code,input,source_mesh,target_mesh;
+                status=:terminal_deferred)
+        end
         y = Float64[sum(overlap[i,j]*x[i] for i in axes(overlap,1))/target_mesh.cells[j].measure
             for j in axes(overlap,2)]
         source_total = sum(x[i]*source_mesh.cells[i].measure for i in eachindex(x))
@@ -342,6 +363,8 @@ function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdent
         global = target_total-source_total
         all(isfinite, (source_total,target_total,global)) ||
             return _dcm_fail_transfer(:nonfinite_derived,input,source_mesh,target_mesh; status=:numerical_fail)
+        abs(global) <= DCM_CONSERVATION_TOL_V1 ||
+            return _dcm_fail_transfer(:conservation_defect,input,source_mesh,target_mesh)
         hashes = _dcm_actual_hashes(input)
         body = (status=:ready,code=:conservative_cross_mesh_transfer,candidate=hashes.candidate_ref,
             source_hash=hashes.source_hash,body_hash=hashes.body_hash,bundle_hash=hashes.bundle_hash,
@@ -367,6 +390,7 @@ function _dcm_diffusion_kernel_v1(mesh::DeclaredCrossMeshV1, state, left_boundar
     n = length(mesh.cells); n == length(state) || return DeclaredCrossMeshDiffusionReceiptV1(:fail_closed,:state_shape_mismatch,nothing,nothing,nothing,Inf,0,_dcm_safe_hash(:state_shape_mismatch))
     all(isfinite, state) || return DeclaredCrossMeshDiffusionReceiptV1(:numerical_fail,:nonfinite_state,nothing,nothing,nothing,Inf,0,_dcm_safe_hash(:nonfinite_state))
     all(c.measure > 0 && isfinite(c.measure) for c in mesh.cells) || return DeclaredCrossMeshDiffusionReceiptV1(:numerical_fail,:zero_or_nonfinite_measure,nothing,nothing,nothing,Inf,0,_dcm_safe_hash(:zero_or_nonfinite_measure))
+    all(_dcm_valid_measure, mesh.cells) || return DeclaredCrossMeshDiffusionReceiptV1(:fail_closed,:mismatched_measure,nothing,nothing,nothing,Inf,0,_dcm_safe_hash(:mismatched_measure))
     A=zeros(Float64,n,n); b=zeros(Float64,n); k=1.0
     for i in 1:n
         h=mesh.cells[i].measure
