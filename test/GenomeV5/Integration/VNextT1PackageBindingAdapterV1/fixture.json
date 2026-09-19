@@ -72,5 +72,25 @@
   "accepted": false,
   "claim_ceiling": "contract_only",
   "integration": "not_connected",
-  "runtime": "not_run"
+  "runtime": "not_run",
+  "diagnostic_probe": {
+    "classification": "diagnostic_expected",
+    "expected": true,
+    "status": "not_run",
+    "stage": "no_legacy",
+    "exception_type": "ArgumentError",
+    "message_digest": "fixed_status_stage_exception_digest_only",
+    "full_exception_text": "not_recorded",
+    "runtime_credit": "none"
+  },
+  "r1_observed": {
+    "classification": "program_exception",
+    "admission_status": "fail_closed",
+    "admission_error": "t1_projection_invalid",
+    "stage": "not_observed",
+    "exception_type": "not_observed",
+    "message_digest": "not_observed",
+    "full_exception_text": "not_recorded",
+    "runtime_credit": "none"
+  }
 }

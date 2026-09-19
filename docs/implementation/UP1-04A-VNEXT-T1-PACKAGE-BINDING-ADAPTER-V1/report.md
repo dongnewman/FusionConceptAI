@@ -37,3 +37,13 @@ The focused Julia test source now constructs a real
 fixture and calls the adapter for valid, stale layer tuple, stale metadata,
 stale count, stale T0 gate, and G3 typed-absent cases.  That test source was
 not executed in this handoff.
+
+The `diagnostic_expected` probe is marked `not_run` in this handoff.  If run,
+it is expected to produce admission
+`status=fail_closed`, `error=t1_projection_invalid`, fixed diagnostic
+`stage=no_legacy`, `exception_type=ArgumentError`, and a digest of only the
+fixed status/stage/type tuple; its status is `not_run` in this handoff.  The
+historical R1 record only observes `classification=program_exception`,
+admission `status=fail_closed`, and `error=t1_projection_invalid`; stage and
+exception type are recorded as `not_observed` there.  Full exception text was not
+recorded and runtime credit is `none`.

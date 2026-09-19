@@ -15,6 +15,8 @@ Base.include(_PACKAGE_ADAPTER, joinpath(_PACKAGE_ADAPTER_ROOT, "src",
     "Contracts", "CandidateStatePackageV5Next.jl"))
 Base.include(_PACKAGE_ADAPTER, joinpath(_PACKAGE_ADAPTER_ROOT, "src",
     "GenomeV5", "Integration", "VNextGenomeV5Integration.jl"))
+Base.include(Main, joinpath(_PACKAGE_ADAPTER_ROOT, "test", "GenomeV5",
+    "Integration", "vnext_t1_projection_diagnostic_v1.jl"))
 if !isdefined(_PACKAGE_ADAPTER, :VNextT1CanonicalBytesV2)
     Base.include(_PACKAGE_ADAPTER, joinpath(_PACKAGE_ADAPTER_ROOT, "src",
         "Contracts", "VNextT1CanonicalBytesV2.jl"))
@@ -33,7 +35,7 @@ const PACKAGE_HASH = A.Digest256(repeat("2", 64))
 const WIRE = A.VNextT1CanonicalBytesV2(UInt8[0x00, 0xff, 0x10, 0x20, 0x7f])
 const INPUT = A.VNextT1CandidateBindingInputV2(REF, DIGEST, PACKAGE_HASH, WIRE)
 
-function _adapter_real_package(; g3_child_status=:terminal_deferred)
+function _adapter_real_input(; g3_child_status=:terminal_deferred)
     candidate = Main._T0L_CANDIDATE
     g1, g2, g3 = Main._t0l_g1(), Main._t0l_g2(), Main._t0l_g3()
     declarations = (Main._t0l_present(:G1, g1),
@@ -67,8 +69,12 @@ function _adapter_real_package(; g3_child_status=:terminal_deferred)
     recheck = A.vnext_declaration_authority_recheck_local_v1(
         A.VNextAuthorityRecheckLocalInputV1(candidate,
             transport_admission.transport, declarations))
-    input = A.VNextT1AdmissionInputV1(candidate, recheck,
+    A.VNextT1AdmissionInputV1(candidate, recheck,
         transport_admission.transport, nothing)
+end
+
+function _adapter_real_package(; g3_child_status=:terminal_deferred)
+    input = _adapter_real_input(; g3_child_status=g3_child_status)
     admitted = A.vnext_t1_admit_skeleton_v1(input)
     admitted.status === :prepared_not_executed ||
         error("adapter fixture package admission failed: $(admitted.status)")
@@ -116,6 +122,35 @@ end
         absent.package_resolution, absent.candidate_ref, absent.candidate_digest,
         absent.source_package_hash, absent.wire_hash, INPUT, false,
         absent.claim_ceiling, absent.receipt_hash)
+end
+
+@testset "VNext T1 forged no-legacy diagnostic probe" begin
+    valid_input = _adapter_real_input()
+    package_identity = A.canonical_hash((kind=:candidate_identity,
+        candidate_ref=valid_input.candidate_ref))
+    bad_no_legacy = A.VNextT1NoLegacyReceiptV1(
+        A.QualifiedRefV1("legacy://GenomeV5/T1/migration", "v1"),
+        valid_input.candidate_ref, (), :no_legacy_mapping, package_identity)
+    bad_input = A.VNextT1AdmissionInputV1(valid_input.candidate_ref,
+        valid_input.t0_recheck, valid_input.transport, bad_no_legacy)
+    admission_failure = A.vnext_t1_admit_skeleton_v1(bad_input)
+    @test admission_failure.status === :fail_closed
+    @test admission_failure.errors == (:t1_projection_invalid,)
+
+    diagnostic = Main.vnext_t1_projection_diagnostic_v1(bad_input)
+    expected_stage = :no_legacy
+    expected_exception_type = :ArgumentError
+    expected_message_digest = A.canonical_hash((status=:internal_failure,
+        stage=expected_stage, exception_type=expected_exception_type))
+    @test diagnostic.status === :internal_failure
+    @test diagnostic.stage === expected_stage
+    @test diagnostic.exception_type === expected_exception_type
+    @test diagnostic.message_digest == expected_message_digest
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_STATUS=", diagnostic.status)
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_STAGE=", diagnostic.stage)
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_EXCEPTION_TYPE=", diagnostic.exception_type)
+    println("UP1_04A_VNEXT_T1_DIAGNOSTIC_MESSAGE_DIGEST=",
+        diagnostic.message_digest.value)
 end
 
 @testset "VNext T1 package binding adapter real package" begin
@@ -205,6 +240,7 @@ end
     @test deferred.status === :terminal_deferred
     @test deferred.reason === :g3_typed_absent
     @test deferred.input === nothing
+
 end
 
 println("VNEXT_T1_PACKAGE_BINDING_ADAPTER_V1_REPLAY",

@@ -99,14 +99,47 @@ def main() -> int:
             "_adapter_real_package", "vnext_t1_package_binding_adapter_v1(package",
             "stale_layers", "stale_metadata", "stale_count", "stale_gate",
             "typed_absent = _adapter_real_package")),
+        "focused_diagnostic_boundary": all(x in test for x in (
+            "vnext_t1_projection_diagnostic_v1.jl",
+            "admission_failure.status === :fail_closed",
+            "admission_failure.errors == (:t1_projection_invalid,)",
+            "expected_stage = :no_legacy",
+            "expected_exception_type = :ArgumentError",
+            "expected_message_digest", "diagnostic.message_digest ==",
+            "UP1_04A_VNEXT_T1_DIAGNOSTIC_STAGE",
+            "UP1_04A_VNEXT_T1_DIAGNOSTIC_EXCEPTION_TYPE",
+            "UP1_04A_VNEXT_T1_DIAGNOSTIC_MESSAGE_DIGEST")),
+        "diagnostic_probe_precedes_real_package": test.find(
+            '"VNext T1 forged no-legacy diagnostic probe"') >= 0 and
+            test.find('"VNext T1 forged no-legacy diagnostic probe"') <
+            test.find('"VNext T1 package binding adapter real package"'),
+        "no_full_exception_text": all(x not in test for x in (
+            "sprint(showerror", "exception_text", "exception_message")),
         "oracle_independent": all(x in oracle for x in (
             "hashlib", "does not import Julia", "g3_typed_absent",
             "package_metadata", "component_count_receipt", "t0_gate_conflict_fail_closed")),
         "fixture_boundary": fixture["accepted"] is False and
             fixture["claim_ceiling"] == "contract_only" and
             fixture["runtime"] == "not_run" and fixture["integration"] == "not_connected",
+        "diagnostic_probe_expected_not_run": fixture["diagnostic_probe"]["classification"] ==
+            "diagnostic_expected" and fixture["diagnostic_probe"]["expected"] is True and
+            fixture["diagnostic_probe"]["status"] == "not_run" and
+            fixture["diagnostic_probe"]["stage"] == "no_legacy" and
+            fixture["diagnostic_probe"]["exception_type"] == "ArgumentError" and
+            fixture["diagnostic_probe"]["full_exception_text"] == "not_recorded" and
+            fixture["diagnostic_probe"]["runtime_credit"] == "none",
+        "r1_observed_without_stage_claim": fixture["r1_observed"]["classification"] ==
+            "program_exception" and fixture["r1_observed"]["admission_status"] ==
+            "fail_closed" and fixture["r1_observed"]["admission_error"] ==
+            "t1_projection_invalid" and fixture["r1_observed"]["stage"] ==
+            "not_observed" and fixture["r1_observed"]["exception_type"] ==
+            "not_observed" and fixture["r1_observed"]["runtime_credit"] == "none",
         "docs_present": all((DOCS / name).is_file() for name in
                              ("README.md", "manifest.json", "report.md")),
+        "diagnostic_archive_labels": all(token in
+            (DOCS / "report.md").read_text(encoding="utf-8") for token in (
+                "diagnostic_expected", "not_run", "not_observed",
+                "t1_projection_invalid", "runtime credit is `none`")),
         "protected_unchanged": all(unchanged(path, expected) for path, expected in PROTECTED.items()),
     }
     failed = [name for name, ok in checks.items() if not ok]

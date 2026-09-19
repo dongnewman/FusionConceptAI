@@ -93,6 +93,26 @@ def main() -> int:
             fixture["claim_ceiling"] == "contract_only" and
             fixture["runtime"] == "not_run",
         "no_integration": fixture["integration"] == "not_connected",
+        "diagnostic_probe_expected_not_run": fixture["diagnostic_probe"] == {
+            "classification": "diagnostic_expected",
+            "expected": True,
+            "status": "not_run",
+            "stage": "no_legacy",
+            "exception_type": "ArgumentError",
+            "message_digest": "fixed_status_stage_exception_digest_only",
+            "full_exception_text": "not_recorded",
+            "runtime_credit": "none",
+        },
+        "r1_program_exception_observed_only": fixture["r1_observed"] == {
+            "classification": "program_exception",
+            "admission_status": "fail_closed",
+            "admission_error": "t1_projection_invalid",
+            "stage": "not_observed",
+            "exception_type": "not_observed",
+            "message_digest": "not_observed",
+            "full_exception_text": "not_recorded",
+            "runtime_credit": "none",
+        },
     }
     failed = [name for name, ok in checks.items() if not ok]
     print(json.dumps({"status": "FAIL" if failed else "PASS", "failed": failed,
