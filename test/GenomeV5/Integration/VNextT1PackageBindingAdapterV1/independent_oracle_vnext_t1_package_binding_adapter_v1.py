@@ -106,7 +106,7 @@ def main() -> int:
         "r1_program_exception_observed_only": fixture["r1_observed"] == {
             "classification": "program_exception",
             "admission_status": "fail_closed",
-            "admission_error": "t1_projection_invalid",
+            "admission_error": "not_observed",
             "stage": "not_observed",
             "exception_type": "not_observed",
             "message_digest": "not_observed",

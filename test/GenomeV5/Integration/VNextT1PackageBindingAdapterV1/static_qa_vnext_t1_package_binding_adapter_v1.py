@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 SOURCE = ROOT / "src" / "Contracts" / "VNextT1PackageBindingAdapterV1.jl"
 TEST = Path(__file__).with_name("vnext_t1_package_binding_adapter_v1_tests.jl")
+R2_TEST = Path(__file__).with_name("vnext_t1_projection_diagnostic_r2_preflight.jl")
 ORACLE = Path(__file__).with_name("independent_oracle_vnext_t1_package_binding_adapter_v1.py")
 FIXTURE = Path(__file__).with_name("fixture.json")
 DOCS = ROOT / "docs" / "implementation" / "UP1-04A-VNEXT-T1-PACKAGE-BINDING-ADAPTER-V1"
@@ -31,6 +32,7 @@ def unchanged(path: Path, expected: tuple[int, str]) -> bool:
 def main() -> int:
     source = SOURCE.read_text(encoding="utf-8")
     test = TEST.read_text(encoding="utf-8")
+    r2_test = R2_TEST.read_text(encoding="utf-8")
     oracle = ORACLE.read_text(encoding="utf-8")
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
     checks = {
@@ -108,13 +110,29 @@ def main() -> int:
             "expected_message_digest", "diagnostic.message_digest ==",
             "UP1_04A_VNEXT_T1_DIAGNOSTIC_STAGE",
             "UP1_04A_VNEXT_T1_DIAGNOSTIC_EXCEPTION_TYPE",
-            "UP1_04A_VNEXT_T1_DIAGNOSTIC_MESSAGE_DIGEST")),
+            "UP1_04A_VNEXT_T1_DIAGNOSTIC_MESSAGE_DIGEST")) and all(x in r2_test for x in (
+            "Independent R2 diagnostic preflight",
+            "admission.errors == (:t1_projection_invalid,)",
+            "diagnostic.stage === expected_stage",
+            "diagnostic.exception_type === expected_exception_type",
+            "diagnostic.message_digest == expected_digest")),
         "diagnostic_probe_precedes_real_package": test.find(
             '"VNext T1 forged no-legacy diagnostic probe"') >= 0 and
             test.find('"VNext T1 forged no-legacy diagnostic probe"') <
-            test.find('"VNext T1 package binding adapter real package"'),
+            test.find('"VNext T1 package binding adapter real package"') and
+            "vnext_t1_package_binding_adapter_v1_tests.jl" not in r2_test and
+            r2_test.count("println(\"R2_DIAGNOSTIC") == 1 and
+            all(token in r2_test for token in (
+                "status=$(diagnostic.status)", "admission_errors=$(admission.errors)",
+                "stage=$(diagnostic.stage)", "exception_type=$(diagnostic.exception_type)",
+                "message_digest=$(diagnostic.message_digest.value)")) and
+            r2_test.count("println(") == 1,
+        "diagnostic_probe_no_test_framework": all(token not in r2_test for token in (
+            "using Test", "@testset", "@test")),
         "no_full_exception_text": all(x not in test for x in (
-            "sprint(showerror", "exception_text", "exception_message")),
+            "sprint(showerror", "exception_text", "exception_message")) and
+            all(x not in r2_test for x in (
+                "sprint(showerror", "exception_text", "exception_message")),
         "oracle_independent": all(x in oracle for x in (
             "hashlib", "does not import Julia", "g3_typed_absent",
             "package_metadata", "component_count_receipt", "t0_gate_conflict_fail_closed")),
@@ -131,7 +149,7 @@ def main() -> int:
         "r1_observed_without_stage_claim": fixture["r1_observed"]["classification"] ==
             "program_exception" and fixture["r1_observed"]["admission_status"] ==
             "fail_closed" and fixture["r1_observed"]["admission_error"] ==
-            "t1_projection_invalid" and fixture["r1_observed"]["stage"] ==
+            "not_observed" and fixture["r1_observed"]["stage"] ==
             "not_observed" and fixture["r1_observed"]["exception_type"] ==
             "not_observed" and fixture["r1_observed"]["runtime_credit"] == "none",
         "docs_present": all((DOCS / name).is_file() for name in
