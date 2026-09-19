@@ -1,0 +1,63 @@
+{
+  "schema": "DeclaredCrossMeshConservativeTransferPreflightManifestV1",
+  "task": "UP2-CROSS-MESH-CONSERVATIVE-TRANSFER-V1",
+  "revision": "local_profile_r1_preflight",
+  "base_commit": "3b4b6f8864bdcb003f814635821225ad7f0ce0d7",
+  "status": "preflight_only",
+  "execution_performed_for_this_receipt": false,
+  "runner": "runner.ps1",
+  "static_report": "static_report.md",
+  "runner_sha256": "fccafc17d66025c287d44013f139d1a8dc12adca4b7a0720b4679fa41e15c5f9",
+  "julia_invocation_count_in_this_receipt": 0,
+  "desc_executed_in_this_receipt": false,
+  "required_runtime_command": "julia --startup-file=no --history-file=no --project=. test/RuntimeV4/UP2CrossMeshConservativeTransfer/cross_mesh_conservative_transfer_v1_tests.jl",
+  "required_environment": { "JULIA_NUM_THREADS": "1" },
+  "timeout": {
+    "defaultSeconds": 300,
+    "waitMethod": "Process.WaitForExit(milliseconds)",
+    "onTimeout": "kill only the started processId and its discovered descendants, drain redirected streams, classify status=timeout",
+    "automaticRetry": false
+  },
+  "receipt_policy": {
+    "lock": "atomic FileMode.CreateNew runtime.lock; durable refusal after first attempt",
+    "directory": "new unique run_UTC_timestamp_GUID directory",
+    "overwrite": "refuse existing runtime.lock or run_* receipt directory",
+    "exactlyOnce": true
+  },
+  "process_policy": {
+    "inspection": "Get-CimInstance Win32_Process",
+    "names": ["julia", "julia-debug", "desc"],
+    "preflight_must_be_zero": true,
+    "postflight_consecutive_zero_observations": 2,
+    "postflight_gapMilliseconds": 250
+  },
+  "protected_files": [
+    { "role": "slice", "path": "src/RuntimeV4/DeclaredCrossMeshConservativeTransferExecutionV1.jl", "bytes": 25069, "sha256": "ed7e839b22156d46c1b19770e72cb4dfcafc37d2ba631458d17cc8b6865a6a9e" },
+    { "role": "slice", "path": "test/RuntimeV4/UP2CrossMeshConservativeTransfer/cross_mesh_conservative_transfer_v1_tests.jl", "bytes": 12560, "sha256": "60df60b2e1f4c60283cae44613d0934b812109a25f4bd196b39d7db2ade50a58" },
+    { "role": "slice", "path": "test/RuntimeV4/UP2CrossMeshConservativeTransfer/fixture.json", "bytes": 2576, "sha256": "dbe20ac4453a6d311e79089344fb1504ee9d74b39ddfcd5ee29ceb502dd3aafa" },
+    { "role": "slice", "path": "test/RuntimeV4/UP2CrossMeshConservativeTransfer/static_qa_declared_cross_mesh_v1.py", "bytes": 5160, "sha256": "61ca0829a140693719e789b05eea51c8775649ebb34560ee215378ab1d6d65a3" },
+    { "role": "slice", "path": "test/RuntimeV4/UP2CrossMeshConservativeTransfer/independent_oracle_declared_cross_mesh_v1.py", "bytes": 6707, "sha256": "b7fb93046f5ac35fcb0ba095f44124b8aacc64920e1111209e24efa69c1fed93" },
+    { "role": "slice", "path": "docs/implementation/UP2-CROSS-MESH-CONSERVATIVE-TRANSFER-V1/README.md", "bytes": 2817, "sha256": "cf19c4bc2899c82ea76841c13e97d0c9c51de2fe1f302d72de155c45ef5fa54d" },
+    { "role": "dirty_protection", "path": "README.md", "bytes": 7432, "sha256": "619ae3106769130235dd83fc493a935f63010ad73a1eae867a8120698a4890f1" },
+    { "role": "dirty_protection", "path": "runs/goal_recovery_20260913_012528_cst/task_queue.json", "bytes": 16762, "sha256": "dbc57e7e44677cfd4b5d950a37d3d9063fde61fc7e4cec9b8cc44c9a9c3c84c0" },
+    { "role": "dirty_protection", "path": "src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl", "bytes": 59772, "sha256": "0041e9041b7376b3127d80454f8ffa1f455ae488b667f326719d3a0f5adf3773" },
+    { "role": "dirty_protection", "path": "test/GenomeV5/Integration/static_qa_vnext_declaration_authority_recheck_local_v1.py", "bytes": 21464, "sha256": "f4541787d4f6d13245a76aa565f5db93b6b3b9190cea950725a0d5b374239716" },
+    { "role": "dirty_protection", "path": "test/GenomeV5/Integration/vnext_declaration_authority_recheck_local_v1_tests.jl", "bytes": 19264, "sha256": "e8b2f8d10ba18752d540553495dd732412a7ede7fa2ea78926a0acfa7ff399b0" },
+    { "role": "dirty_protection", "path": "test/RuntimeV4/M4Isolated/m5c_perf_r2/profile_probe.jl", "bytes": 14084, "sha256": "7d9a4452a10f726d547a61490974add77b4f14dc3db4df6b975be1e0edc18cb5" },
+    { "role": "dependency", "path": "src/RuntimeV4/DeclaredG123DiffusionExecutionV1.jl", "bytes": 40158, "sha256": "45e9fee04bebe7a62ee07456acee42834da7b8c9a8ca5bce95fdf2fe90013bef" },
+    { "role": "dependency", "path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl", "bytes": 76191, "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b" },
+    { "role": "dependency", "path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl", "bytes": 37919, "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756" },
+    { "role": "dependency", "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl", "bytes": 31706, "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3" },
+    { "role": "dependency", "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", "bytes": 34374, "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7" },
+    { "role": "dependency", "path": "src/FusionConceptAI.jl", "bytes": 10144, "sha256": "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783" },
+    { "role": "dependency", "path": "Project.toml", "bytes": 611, "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e" },
+    { "role": "dependency", "path": "Manifest.toml", "bytes": 3348, "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d" }
+  ],
+  "runtime_receipt_outputs": [
+    "processes_before.json", "owned_hashes_before.json", "julia.stdout.raw", "julia.stderr.raw",
+    "exit_code.txt", "thread.json", "run_metadata.json", "capture_failure.json",
+    "processes_after_first.json", "processes_after_second.json", "owned_hashes_after.json",
+    "owned_hash_changes.json", "timeout_kill.json"
+  ],
+  "claim_ceiling_until_runtime_receipt": "screen_only"
+}
