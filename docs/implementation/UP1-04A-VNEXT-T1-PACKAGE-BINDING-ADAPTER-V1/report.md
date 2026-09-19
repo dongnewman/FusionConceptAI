@@ -44,6 +44,10 @@ it is expected to produce admission
 `stage=no_legacy`, `exception_type=ArgumentError`, and a digest of only the
 fixed status/stage/type tuple; its status is `not_run` in this handoff.  The
 historical R1 record only observes `classification=program_exception`,
-admission `status=fail_closed`, and `error=t1_projection_invalid`; stage and
-exception type are recorded as `not_observed` there.  Full exception text was not
+admission `status=fail_closed`; admission error, stage, and exception type are
+recorded as `not_observed` there.  Full exception text was not
 recorded and runtime credit is `none`.
+
+The historical frozen QA counts are `staticQaExpectedChecks=20` and
+`oracleExpectedChecks=15`.  The current scripts contain 26 static QA checks
+and 17 oracle checks; the diagnostic probe remains `not_run`.

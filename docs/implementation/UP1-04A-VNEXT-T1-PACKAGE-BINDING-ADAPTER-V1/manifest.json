@@ -20,12 +20,23 @@
   "r1_observed": {
     "classification": "program_exception",
     "admission_status": "fail_closed",
-    "admission_error": "t1_projection_invalid",
+    "admission_error": "not_observed",
     "stage": "not_observed",
     "exception_type": "not_observed",
     "message_digest": "not_observed",
     "full_exception_text": "not_recorded",
     "runtime_credit": "none"
+  },
+  "qa_check_counts": {
+    "historical_frozen": {
+      "staticQaExpectedChecks": 20,
+      "oracleExpectedChecks": 15
+    },
+    "current": {
+      "staticQaChecks": 26,
+      "oracleChecks": 17,
+      "diagnostic": "not_run"
+    }
   },
   "source": "src/Contracts/VNextT1PackageBindingAdapterV1.jl",
   "tests": [
