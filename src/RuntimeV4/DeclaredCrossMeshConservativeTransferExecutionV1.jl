@@ -271,11 +271,10 @@ function _dcm_fail_transfer(code, input, source_mesh, target_mesh; status=:fail_
         zeros(0,0), zeros(0,0), (), (), nothing, h)
 end
 
-function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdentityV1,
+function _dcm_transfer_impl_v1(input, identity::DeclaredCrossMeshIdentityV1,
         source_mesh::DeclaredCrossMeshV1, target_mesh::DeclaredCrossMeshV1,
         source_state; accounts=nothing)
-    try
-        ok, code = _dcm_identity_match(input, identity)
+    ok, code = _dcm_identity_match(input, identity)
         ok || return _dcm_fail_transfer(code, input, source_mesh, target_mesh)
         source_mesh_hash = _dcm_mesh_recompute(source_mesh)
         target_mesh_hash = _dcm_mesh_recompute(target_mesh)
@@ -378,11 +377,23 @@ function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdent
             source_total,target_total,local,interface,global,source_coverage,target_coverage,
             overlap,overlap ./ reshape([c.measure for c in target_mesh.cells],1,:),interface_faces,
             interface_orientations,Tuple(y),_dcm_hash(body))
+end
+
+# Keep exception normalization at the public boundary so the transfer body has
+# no open try block while its arithmetic is being edited or reviewed.
+function declared_cross_mesh_transfer_v1(input, identity::DeclaredCrossMeshIdentityV1,
+        source_mesh::DeclaredCrossMeshV1, target_mesh::DeclaredCrossMeshV1,
+        source_state; accounts=nothing)
+    try
+        _dcm_transfer_impl_v1(input, identity, source_mesh, target_mesh, source_state;
+            accounts=accounts)
     catch err
-        code = occursin("unit",lowercase(string(err))) ? :unit_mismatch :
-            occursin("owner",lowercase(string(err))) ? :owner_mismatch : :transfer_program_exception
-        status = occursin("nonfinite",lowercase(string(err))) || occursin("measure",lowercase(string(err))) ? :numerical_fail : :fail_closed
-        _dcm_fail_transfer(code,input,source_mesh,target_mesh; status=status)
+        error_text = lowercase(string(err))
+        code = occursin("unit", error_text) ? :unit_mismatch :
+            occursin("owner", error_text) ? :owner_mismatch : :transfer_program_exception
+        status = occursin("nonfinite", error_text) || occursin("measure", error_text) ?
+            :numerical_fail : :fail_closed
+        _dcm_fail_transfer(code, input, source_mesh, target_mesh; status=status)
     end
 end
 
