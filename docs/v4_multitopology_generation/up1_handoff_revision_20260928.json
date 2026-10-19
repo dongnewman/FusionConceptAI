@@ -1,0 +1,61 @@
+{
+  "schema": "up1-frozen-handoff-plan-revision-20260928-v1",
+  "record_kind": "planning_revision_not_runtime_acceptance",
+  "base_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "before_task_manifest_sha256": "a3cd5726be633cdc16dd22cfb200d2e04e7340df1cec4475a5f3cf4b24d053fe",
+  "after_task_manifest_sha256": "32d7a0ec41ccf5bd07186b7473201d6bf944465586080ad60cec26b3da85c64a",
+  "historical_retained_contract_sha256": "550716a845f5986e4fa873a099c406c9f3e69c38f640f7c6a58452e0b1a5db3c",
+  "current_retained_contract_sha256": "fea649c43b401a8084e224148051875169477f7b7e60f99a3a23e1cd3582c4e0",
+  "changed_retained_task_ids": [
+    "UP1-04A-VNEXT"
+  ],
+  "old_aggregate_retained": {
+    "id": "UP1-04A-VNEXT",
+    "status": "planned",
+    "depends_on": [
+      "UP1-04A-VNEXT-T2"
+    ],
+    "optional": false,
+    "acceptance": [
+      "Proposal/review_pending only; accepted=false and no UP1-04 or UP2-01 execution credit.",
+      "The aggregate gate is independently reviewable after T2; old UP1-04A/G-I1A/N05/N06/UP2 local receipts remain historical only."
+    ],
+    "benchmarks": [
+      "B04"
+    ],
+    "technical_doc": "10_genome_upgrade_execution.md",
+    "acceptance_protocol_ref": "13_acceptance_benchmarks_and_evidence.md",
+    "claim_ceiling": "none"
+  },
+  "new_aggregate_retained": {
+    "id": "UP1-04A-VNEXT",
+    "status": "planned",
+    "depends_on": [
+      "UP1-04A-VNEXT-T0",
+      "UP1-04A-VNEXT-T0-AUTHORITY-RECHECK-PREC",
+      "UP1-04A-VNEXT-T1",
+      "UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC"
+    ],
+    "optional": false,
+    "acceptance": [
+      "UP1-04A-VNEXT remains accepted=false until the actual fresh T0/T1/source-witness consumer and same-snapshot positive, negative controls and new-process replay pass independent review; a local fixture or static freeze grants only its measured limited scope.",
+      "UP2-00 total, UP1-04B B00 F0–F5 and all 50 B04 mutations, UP1-04, physics, engineering, full-cycle station net output, VVUQ, originality and R01–R10 retain their separate gates and thresholds."
+    ],
+    "benchmarks": [
+      "B04"
+    ],
+    "technical_doc": "10_genome_upgrade_execution.md",
+    "acceptance_protocol_ref": "13_acceptance_benchmarks_and_evidence.md",
+    "claim_ceiling": "none"
+  },
+  "task_count": 46,
+  "accepted_limited_count": 21,
+  "historical_unaccepted_count": 1,
+  "active_unaccepted_count": 24,
+  "old_t2_formal_accepted": false,
+  "up1_formal_accepted": false,
+  "up2_00_total_accepted": false,
+  "b00_f0_f5_and_b04_50_unchanged": true,
+  "r01_r10_unchanged": true,
+  "historical_evidence_deleted": false
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r4",
+  "status": "fail",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection validator non-schema diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "generated cache stale SHA rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "third generated cache rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache reintroduced as runtime input rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 300 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 600 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "memory cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt8 timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline marker contract omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline serialization marker omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 site omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 extra site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 source assertion drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 case omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation row omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation source text drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r4b.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "attempt7_plan_equality": {
+    "status": "pass",
+    "case_count": 60,
+    "formal_case_count": 45,
+    "runtime_unique_case_count": 60,
+    "runtime_hit_count": 68,
+    "successor_site_count": 214,
+    "successor_runtime_hit_count": 622,
+    "case_ids_exact": true,
+    "site_ids_and_assertions_exact": true,
+    "phase_hit_map_exact": true,
+    "full_path_line_map_byte_equal": false,
+    "relocation_ledger": {
+      "site_count": 214,
+      "path_changed_site_count": 175,
+      "line_changed_site_count": 0,
+      "source_text_match_count": 214,
+      "current_source_line_verified_count": 214
+    }
+  },
+  "failure": {
+    "type": "KeyError",
+    "message": "'manifest_path'"
+  }
+}

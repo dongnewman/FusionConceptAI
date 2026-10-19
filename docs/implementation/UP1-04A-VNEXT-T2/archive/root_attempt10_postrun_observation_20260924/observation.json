@@ -1,0 +1,52 @@
+{
+  "schema": "root_t2_attempt10_postrun_observation_v1",
+  "root_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "baseline_tracked_dirty_count": 40,
+  "baseline_tracked_dirty_changed": [],
+  "git_status_short_sha256": "6e839cb365f150f8064c4f026bbecf5479f488cf38702aa28a0a64bd4128b724",
+  "active_heavy_processes": [],
+  "controller_invocation_sha256": "863b622679a4671f25237b2bf1d471d8d8a1994b4c5352aac9253c6d95dd1c37",
+  "pipeline_final_sha256": "7b6d4c159ad50e874936456e050387afa43da385b5dd826c7d1669a4418e6a38",
+  "pipeline_status": "fail",
+  "baseline": {
+    "exit_code": 0,
+    "stop_reason": "natural_exit",
+    "seconds": 318.56537460000254,
+    "peak_process_tree_working_set_bytes": 1669619712
+  },
+  "preflight": {
+    "exit_code": 15,
+    "stop_reason": "phase_wall_timeout",
+    "seconds": 480.1707022000046,
+    "peak_process_tree_working_set_bytes": 1754058752,
+    "timeout_seconds": 480.0
+  },
+  "preflight_observations_count": 16,
+  "preflight_observed_case_ids": [
+    "SRC_BYTES_ONLY",
+    "SRC_HASH_ONLY",
+    "SRC_BYTES_REHASHED",
+    "SRC_ZERO_BYTES_HASH",
+    "SOURCE_EDIT_NO_REBUILD",
+    "WIRE_GATE_STALE",
+    "SEMANTIC_GATE_FOREIGN",
+    "PACKAGE_GATE_FOREIGN",
+    "CANDIDATE_STALE",
+    "CANDIDATE_FOREIGN",
+    "T0_STALE",
+    "T0_FOREIGN",
+    "AXIS_STALE",
+    "AXIS_FOREIGN",
+    "CHILD_STALE",
+    "CHILD_FOREIGN"
+  ],
+  "preflight_observations_sha256": "a6c78b714cbbb6bc66cfbf3595f04a13aa86997f94a41a881dd95be2038b4d9e",
+  "preflight_stdout_sha256": "0f2abdb0b892e67d87623359d6639487542aaba7d4a8ecdee665b81752241b2e",
+  "preflight_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "classification": "resource_interruption_incomplete_no_formal_credit",
+  "acceptance": "NO-GO",
+  "process_filter_correction": {
+    "prior_observation_sha256": "3cf3ebe846965118144e1eb890cb7beaa4cddf0d3ada3dcefda46ee112463e22",
+    "reason": "initial substring filter matched own PowerShell command text; executable and script-token match used"
+  }
+}

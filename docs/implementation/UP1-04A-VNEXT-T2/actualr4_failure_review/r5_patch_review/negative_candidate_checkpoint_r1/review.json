@@ -1,0 +1,80 @@
+{
+  "schema": "independent-t2-negative-static-checkpoint-r1",
+  "verdict": "bounded_changes_required_before_negative_freeze",
+  "candidate_manifest": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_static_candidate_r1_20260922/candidate_manifest.json",
+    "bytes": 6358,
+    "sha256": "d52856d3072dc960e36de29d23ff614f570c2e9df5fc3350e171aca63ba210cd"
+  },
+  "review": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_candidate_checkpoint_r1/review.md",
+    "bytes": 3838,
+    "sha256": "7a6c1a77fcdbcf52bf4d890c121cd82876c61a997507f64d4b2394cd7bfebb74"
+  },
+  "inspected_owned_source_receipts": [
+    {
+      "bytes": 55922,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r1.jl",
+      "sha256": "9d0ca842b3b269da71f03760ecae72ae089876490d9303088d63174383ca9b6e"
+    },
+    {
+      "bytes": 6136,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl",
+      "sha256": "8882d692d73580c1de3a6892d2a09c1e5bd21cf751ad246fae5f43fa41395112"
+    },
+    {
+      "bytes": 3937,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl",
+      "sha256": "6dee99c4c8262e8c9ec7be36bc53f4b6bea98ac1ccb46012d3b6ea28e3b69f27"
+    },
+    {
+      "bytes": 43308,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r1.py",
+      "sha256": "8774f9acb9d7a5488aced475f6b0d72ef8bff81f6c24772c46522870276a176e"
+    },
+    {
+      "bytes": 8173,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r1.jl",
+      "sha256": "06b1ca9136091bdc2e785d93213d2fdaf85fcea01e3551d241f352afdcc7f82d"
+    },
+    {
+      "bytes": 380092,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r1.json",
+      "sha256": "b9bbd28b9c8643f64d2dcbfb24932f84a2bed198fdd008fc665cbbe3c207004e"
+    },
+    {
+      "bytes": 16308,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r1.py",
+      "sha256": "72d88b8fc0d665659eeb41a7868619281724938621a4a8b31918783757b5e747"
+    },
+    {
+      "bytes": 62360,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r1.py",
+      "sha256": "e33adf2dc6d50628cf444f9a2e171ec1312a8d4d5964e6670aaee70035ff358d"
+    },
+    {
+      "bytes": 4209,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/README.md",
+      "sha256": "bf65be5933a16f2c407de6fe05f142390d898ecdd56f986ea60a86e0a3e21f07"
+    },
+    {
+      "bytes": 17704,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r1.py",
+      "sha256": "e1ddc01975e882c28c16630cc60d769ac5f79e98c1c824f8a7deedf5a116c00a"
+    },
+    {
+      "bytes": 9563,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl",
+      "sha256": "39460a213c6c452e3847608383929c6ffc868bac3da308d2f5da48325f2c3e2a"
+    }
+  ],
+  "findings": [
+    "restore explicit legacy input type and validation assertions plus no-prior rejected-ledger branch",
+    "record exact enclosing control AST and branch paths",
+    "bind runtime selected positive evidence to protocol positive receipts"
+  ],
+  "no_julia": true,
+  "positive_dispatch_r3_go_unchanged": true,
+  "formal_t2_accepted": false,
+  "pending_final_protocol": true
+}

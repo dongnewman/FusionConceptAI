@@ -1,0 +1,1642 @@
+{
+  "actual_model_attestation": "unavailable",
+  "ast_inventory_plan_sha256": "d09988d22579a937086000d13db7ca1a65553f45da6031e95bde519a74ce2e1f",
+  "baseline_heavy_processes": [],
+  "created_utc": "2026-09-23T05:47:36.886514Z",
+  "expected_ast_inventory_assertion_site_count": 392,
+  "expected_context_transport_assertion_site_count_static_plan": 23,
+  "expected_context_transport_runtime_hit_count_static_plan": 92,
+  "expected_phase_order": [
+    "parse_gate",
+    "coverage_ast_inventory",
+    "projection24_cross_run_validation",
+    "actual_formal_baseline",
+    "actual_formal_preflight",
+    "actual_formal_authority",
+    "actual_formal_fault_n10",
+    "actual_formal_t1_handoff",
+    "supplementary_edited_operation",
+    "supplementary_child_coupling",
+    "artifact_hash_precondition",
+    "artifact_recomputed_corrupt",
+    "artifact_zero_malformed",
+    "artifact_attack_fixture_generation",
+    "formal_driver_artifact_raw_hash_precondition",
+    "formal_driver_artifact_deserialize_precondition",
+    "formal_driver_artifact_zero_precondition",
+    "formal_driver_artifact_wrong_type_precondition",
+    "formal_driver_artifact_foreign_package_precondition",
+    "preexisting_candidate_package_jls",
+    "preexisting_candidate_t1_admission_receipt_json",
+    "preexisting_t2_result_jls",
+    "preexisting_run_receipt_json",
+    "preexisting_replay_uncommitted_attempt_json",
+    "preexisting_prior_success_set",
+    "preexisting_prior_uncommitted",
+    "preexisting_symlink_owned_target",
+    "candidate_receipt_precondition",
+    "serialized_result_postcondition",
+    "stable_projection_postcondition"
+  ],
+  "expected_preserved_successor_assertion_site_count": 191,
+  "expected_preserved_successor_runtime_hit_count_static_plan": 530,
+  "expected_runtime_case_hit_count": 68,
+  "expected_successor_assertion_runtime_hit_count_static_plan": 622,
+  "expected_successor_assertion_site_count_static_plan": 214,
+  "expected_unique_case_count": 60,
+  "expected_versioned_product_repair_assertion_site_count": 24,
+  "formal_t2_accepted": false,
+  "inputs_before": {
+    "Manifest.toml": {
+      "bytes": 3348,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\Manifest.toml",
+      "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d"
+    },
+    "Project.toml": {
+      "bytes": 611,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\Project.toml",
+      "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json": {
+      "bytes": 23148,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T1\\formal_software_acceptance_r26_v9_r1\\software_acceptance_manifest.json",
+      "sha256": "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json": {
+      "bytes": 46759,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\agent_r1_20260922\\runtime_r5\\pipeline_final.json",
+      "sha256": "c01892c882a499a24f3063e6b37d70c302c92822ee4043b50a44586c3b944314"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json": {
+      "bytes": 4568,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\agent_r1_20260922\\runtime_r5\\shard_runtime_coverage.json",
+      "sha256": "11401f06213acd03d2dae8c5451350ff94eed73123b5149bbf2945bf3ba3488b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json": {
+      "bytes": 860,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\agent_r1_20260922\\runtime_r5_external_launch\\final.json",
+      "sha256": "f15f8d2e855d1cc9de99cd9fa292eebd3e1194ba6594d2b6b0ae6590c1c6b4e2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json": {
+      "bytes": 78236,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\astra_runtime_r5_review_r1_20260922\\actual_review.json",
+      "sha256": "97a22a469b1fe60185513a52dc082825a01a1c09b59052abbcaa2a1f1afc4946"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json": {
+      "bytes": 2974,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\software_acceptance_runtime_r5_r1\\software_qualification.json",
+      "sha256": "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/context_transport_addendum.md": {
+      "bytes": 2802,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\context_transport_addendum.md",
+      "sha256": "c3bd135dfe5bef5fcaa9531d1e08b6e679b8a0954826971e10c83c02785230e6"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/execution.json": {
+      "bytes": 259,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\execution.json",
+      "sha256": "6009a73196d492d71588544dd4487f98ac5c595fe55b914aab74af9bd0826817"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/final_review.json": {
+      "bytes": 4219,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\final_review.json",
+      "sha256": "5ac16e657454641e891c555a77ceb9c57ec75ab9db82be0e52194f4b16c5034a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/finalize_review.py": {
+      "bytes": 3275,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\finalize_review.py",
+      "sha256": "764646c9390b893cbc7443fb629420ee56265b56aa5ec08488b94dc48619c192"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/review.json": {
+      "bytes": 26527,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\review.json",
+      "sha256": "cf043a1ba65f42ef2cf3137a8d067176c3fe56eeb562683628e82e98083755b3"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/review.md": {
+      "bytes": 8722,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\review.md",
+      "sha256": "cfb18a76a63c7eedb2da8d92d2f9514507e3ca1539734d1888632e833caba6c8"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/review_evidence.py": {
+      "bytes": 11886,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\review_evidence.py",
+      "sha256": "6dbb235821e4b45de8eddd05d9df477c52df66e5f6916914992d2e12b50ec6ef"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/actual_negative_r1_resource_review/stdout.raw": {
+      "bytes": 234,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\actual_negative_r1_resource_review\\stdout.raw",
+      "sha256": "3a8c93c9e0d1b2d784776b06b8e2d2b71d79181ce38364f656bf5d16b2ec11d2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol/coverage_map_r2.json": {
+      "bytes": 455670,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol\\coverage_map_r2.json",
+      "sha256": "4e79435b9842ecd435fadeb50334e1f500e5635d8f9fef760bfc085ef655bd3d"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_full_acceptance_harness_review_r1_20260922/positive_first_shard_go.md": {
+      "bytes": 1904,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_full_acceptance_harness_review_r1_20260922\\positive_first_shard_go.md",
+      "sha256": "817537e78bfaf13e252b6c556d81d393f206ecf00e7867a58ed3f46da963cb1f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_full_acceptance_harness_review_r1_20260922/positive_static_review.json": {
+      "bytes": 28785,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_full_acceptance_harness_review_r1_20260922\\positive_static_review.json",
+      "sha256": "4aff4f89e7cdb29b213482f3c394a3ba6c2972db7dbc0173bdbb413b985faba8"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_full_acceptance_harness_review_r1_20260922/review_checkpoint.md": {
+      "bytes": 4798,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_full_acceptance_harness_review_r1_20260922\\review_checkpoint.md",
+      "sha256": "b84aa10a06da929da2a3af610c070cd50b80d6d51463de98e605cd5cbeac20ec"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_full_acceptance_harness_review_r1_20260922/review_positive_static.py": {
+      "bytes": 5473,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_full_acceptance_harness_review_r1_20260922\\review_positive_static.py",
+      "sha256": "ce4e413be055bc98cb0f890ed611e03ea4148644a432b29a399caafb29f5d539"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_positive_postrun_r3_review_20260922/audit_positive_r3.py": {
+      "bytes": 13029,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_positive_postrun_r3_review_20260922\\audit_positive_r3.py",
+      "sha256": "440e359e7a74fef6c5f159ca135029fe69c3a6a8d1650395094961167d2d6b9e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/astra_positive_postrun_r3_review_20260922/positive_r3_postrun_review.json": {
+      "bytes": 8433,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\astra_positive_postrun_r3_review_20260922\\positive_r3_postrun_review.json",
+      "sha256": "c870ee308c713c541504d339550150332818640d6535233ba4697de817fa0897"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/command.txt": {
+      "bytes": 947,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\command.txt",
+      "sha256": "4f187f1d55b5bb819c70436ce5cbd4c9320fdc360edf64d70075dcd403be72fe"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/dispatch.json": {
+      "bytes": 9753,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\dispatch.json",
+      "sha256": "4eb241995d58739ecef15429893a72eef4016e6a77654fba63c60f8cf66da748"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/protocol.json": {
+      "bytes": 9884,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\protocol.json",
+      "sha256": "a849e32bb5fa94d2667ca9bc1cc0760bdd4362013f54e7ce0b6e50481ad15e9e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/runtime_inputs.json": {
+      "bytes": 25331,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\runtime_inputs.json",
+      "sha256": "279310d67e5f151578b9a141893a4f8b197973379cad93c0a1f90444d2360538"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/snapshot.json": {
+      "bytes": 1165,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\snapshot.json",
+      "sha256": "412ef07a312cd3d3a7d83f891daba3f73d8e78eff897a1c7a54e0aec7954efec"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/actual_formal_matrix/phase.json": {
+      "bytes": 2591,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\actual_formal_matrix\\phase.json",
+      "sha256": "bf86f38fd6333f250c49f7cc2d1da81f63d5c410cd7f75755f9c85249f1cdc29"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/actual_formal_matrix/samples.jsonl": {
+      "bytes": 372621,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\actual_formal_matrix\\samples.jsonl",
+      "sha256": "d8e6dab61f78e83087b9a78066230c4a08b6c4781bed95e6c7e693976ba6c089"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/actual_formal_matrix/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\actual_formal_matrix\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/actual_formal_matrix/stdout.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\actual_formal_matrix\\stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/coverage_ast_inventory/ast_inventory.json": {
+      "bytes": 271232,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\coverage_ast_inventory\\ast_inventory.json",
+      "sha256": "6b13451843d027a281be81c2465bb7db27e907269ce0e3909b2915aedb1296b3"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/coverage_ast_inventory/phase.json": {
+      "bytes": 1808,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\coverage_ast_inventory\\phase.json",
+      "sha256": "357ab7ae916d3fe6c21321a1d012f06e9d4db39a3e808cd7f702150fe5a16570"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/coverage_ast_inventory/samples.jsonl": {
+      "bytes": 3532,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\coverage_ast_inventory\\samples.jsonl",
+      "sha256": "f9302225f01a1b9dc4be042cb492793a87ff931977141c325c9cabdfcbe29931"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/coverage_ast_inventory/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\coverage_ast_inventory\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/coverage_ast_inventory/stdout.raw": {
+      "bytes": 73,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\coverage_ast_inventory\\stdout.raw",
+      "sha256": "f29a11e10b4fbea197f9882c97e18789cff2597301f3a0c2f3269b8585fc88b7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/actual_observation.json": {
+      "bytes": 2256,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\package_full_content_projection_regression\\actual_observation.json",
+      "sha256": "49072e4519cc4eea7ba1675b644c682c475009f108271888292962cb94e5b803"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/phase.json": {
+      "bytes": 1783,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\package_full_content_projection_regression\\phase.json",
+      "sha256": "9fa149b1f2aefba2c4576e8ffd9dfedd715831bce3fc3ef4bc1315cb246c19ca"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/samples.jsonl": {
+      "bytes": 226240,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\package_full_content_projection_regression\\samples.jsonl",
+      "sha256": "3c4703004e31f01b4042af82e0cdbfb1718acfeb5224d95a9dd3b07158f3c70a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\package_full_content_projection_regression\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stdout.raw": {
+      "bytes": 438,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\package_full_content_projection_regression\\stdout.raw",
+      "sha256": "3b676de77ced4c00937e889041d21a857d9d7bdc975e8bbb8de580dc0b49b7c7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/parse_gate/phase.json": {
+      "bytes": 1621,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\parse_gate\\phase.json",
+      "sha256": "ff34a31759dd98ce7d588b8f5254dbcbf78acf64efde450b46557baddfbd2dcf"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/parse_gate/samples.jsonl": {
+      "bytes": 1081,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\parse_gate\\samples.jsonl",
+      "sha256": "7ee82449e7f3af6e88fb9f4fda0ef370ac887e959403cc1484c2f454200e77b6"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/parse_gate/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\parse_gate\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/parse_gate/stdout.raw": {
+      "bytes": 14056,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\parse_gate\\stdout.raw",
+      "sha256": "2fa7a88f15d036091537113152a37fd50f80cbf41e502543ce17acae39e51e18"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/pipeline_final.json": {
+      "bytes": 109293,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\pipeline_final.json",
+      "sha256": "deb748eb5552b5c5c6f49552f3331ed5bbacee343d7820bb8ef0c466801198e5"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/pipeline_start.json": {
+      "bytes": 51002,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\pipeline_start.json",
+      "sha256": "03b920649e64e9b6050f0027999b4afc2fd7c82cd6d8981b193c300971abd11c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/runtime_parse_manifest.tsv": {
+      "bytes": 11293,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_independent_negative_r1\\runtime_parse_manifest.tsv",
+      "sha256": "25af0e9855c79e038618103d475ded04deecf304fdc3e38ab81fa52dc77c71d7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/clean_load/clean_load_receipt.json": {
+      "bytes": 3121,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\clean_load\\clean_load_receipt.json",
+      "sha256": "c1989a2b08e5efc629fef0aac991486e44c5413c4ff7343c0f1a1f252816b797"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/clean_load/phase.json": {
+      "bytes": 1527,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\clean_load\\phase.json",
+      "sha256": "b44e513ae4e8cf9ea8144d9444fb65bad2e8a6efdc29df4bbff092d3978f6691"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/clean_load/samples.jsonl": {
+      "bytes": 16844,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\clean_load\\samples.jsonl",
+      "sha256": "b1801844b2b713db4cb9c3e51e260aef013368c2356738d94dad8c1da50f168d"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/clean_load/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\clean_load\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/clean_load/stdout.raw": {
+      "bytes": 3299,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\clean_load\\stdout.raw",
+      "sha256": "c9981f4135b8906357010b5755d58b57c7001375af470bc822737d3e26ef2944"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/formal_t2_serial_replay.json": {
+      "bytes": 61088,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\formal_t2_serial_replay.json",
+      "sha256": "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/parse_gate/phase.json": {
+      "bytes": 1512,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\parse_gate\\phase.json",
+      "sha256": "de1aadff04216969217614da2b00137781c9328f18513682be84775c2baa77e2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/parse_gate/samples.jsonl": {
+      "bytes": 1137,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\parse_gate\\samples.jsonl",
+      "sha256": "6380e4a95c9f752d431425117c956ec3dbabce0d8ba6756b93da8f25a9d8e86c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/parse_gate/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\parse_gate\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/parse_gate/stdout.raw": {
+      "bytes": 12693,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\parse_gate\\stdout.raw",
+      "sha256": "799b0dfa11d24335ce1d6815e6bcc2a53cb13d3981b3efc31fadabe5488f09bb"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/pipeline_final.json": {
+      "bytes": 57906,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\pipeline_final.json",
+      "sha256": "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/pipeline_start.json": {
+      "bytes": 30556,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\pipeline_start.json",
+      "sha256": "921aff82ea852aa39b234250bf58d23e6ca906ecfe9bc84e96fa9c1c590b43ab"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_package.jls": {
+      "bytes": 9414221,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_t1_admission_receipt.json": {
+      "bytes": 2166,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/phase.json": {
+      "bytes": 1968,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\phase.json",
+      "sha256": "f734be71eacb7b024a5de435fe7c3978c63fa51f8c37840dd1fc584849e488d0"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/run_receipt.json": {
+      "bytes": 15269,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\run_receipt.json",
+      "sha256": "93fac17e08df2b9bf044a9473d2ec9d92c076375c9ce731eb2b7b8141fc457d7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/samples.jsonl": {
+      "bytes": 316316,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\samples.jsonl",
+      "sha256": "1fee63f97da387f071b29c7ffb4b804890363ac1b3a0ea831981b3e93f66ba8f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/stdout.raw": {
+      "bytes": 15900,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\stdout.raw",
+      "sha256": "4c429c0425a52bc51ce3572b3904c6310a2bab77bbc2acf170506e06054dbd95"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/t2_result.jls": {
+      "bytes": 3367,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\producer\\t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_package.jls": {
+      "bytes": 9414221,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_t1_admission_receipt.json": {
+      "bytes": 2166,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/phase.json": {
+      "bytes": 2397,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\phase.json",
+      "sha256": "bb3515cdec8a3635198168a46f3e9fbe665baa3d0cded57c374c0485129de308"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/run_receipt.json": {
+      "bytes": 15271,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\run_receipt.json",
+      "sha256": "5fbd9ba7267d2222fd6781d158e715af070c8b691d6622bb36698d46ec85e76f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/samples.jsonl": {
+      "bytes": 283425,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\samples.jsonl",
+      "sha256": "26d1710d98c42ff44eeeb62899f92c0ed7eff193fc8a24f31209e18fd4d6d593"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/stderr.raw": {
+      "bytes": 0,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/stdout.raw": {
+      "bytes": 15901,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\stdout.raw",
+      "sha256": "26ef6687c95a82b13a3ba1a6cfdd18a135ba7b8a35988ebdcfa1755e84089848"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/t2_result.jls": {
+      "bytes": 3367,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\replay\\t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/runtime_parse_manifest.tsv": {
+      "bytes": 10142,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\runtime_parse_manifest.tsv",
+      "sha256": "07b7b41bbf63fca831bc0608024c83e6079641552bd3dbbca0ff2071cfd8713f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/software_manifest_verification.json": {
+      "bytes": 254637,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\software_manifest_verification.json",
+      "sha256": "8b1172ab1d5774beac40c9997900bc8298cc0c0f1dc91fe3167974f63a674b25"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/source_witness_qualification_verification.json": {
+      "bytes": 1733,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3\\source_witness_qualification_verification.json",
+      "sha256": "1cb0363f513dc720cb680761bfc0bb57d19b2dd71523fba47bf175a58c713b7e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_actual_r1_timeout_20260922/execution_receipt.json": {
+      "bytes": 6892,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\independent_negative_actual_r1_timeout_20260922\\execution_receipt.json",
+      "sha256": "e944aa221d32b0f0d95015ed8e5dcad816148c2b1867ee81df2bde13ea84996e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_dispatch_r1/protocol.json": {
+      "bytes": 78685,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\independent_negative_dispatch_r1\\protocol.json",
+      "sha256": "25ec35d1fb8abb5031b9a11879334b037b3150dfc41496acc23b06a1514c1053"
+    },
+    "docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md": {
+      "bytes": 14622,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\00_normative_contracts_and_state_model.md",
+      "sha256": "5982d8e258d67f57b1ece29094df3de0dc3b551509298acc8408a6ff5f03d7b2"
+    },
+    "docs/v4_multitopology_generation/10_genome_upgrade_execution.md": {
+      "bytes": 44387,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\10_genome_upgrade_execution.md",
+      "sha256": "522aa06e74725103c75d7931ab0ede113a396807a4c4c1a07628501d13f1b938"
+    },
+    "docs/v4_multitopology_generation/13_acceptance_benchmarks_and_evidence.md": {
+      "bytes": 49172,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\13_acceptance_benchmarks_and_evidence.md",
+      "sha256": "4a06cce8cd9fa44917defdaccde6b1133ae9ea66f531280d1b1bd8ae2a4e760c"
+    },
+    "docs/v4_multitopology_generation/16_execution_work_orders.md": {
+      "bytes": 140565,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\16_execution_work_orders.md",
+      "sha256": "bdb39910b026a0e009519c880b52c072ea7dcdee39b5efd37149467170de9911"
+    },
+    "docs/v4_multitopology_generation/21_next_execution_batches.md": {
+      "bytes": 5767,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\21_next_execution_batches.md",
+      "sha256": "97aa5d078efc09b63daa9a36693696063e7f28088a9638765686b517de51799b"
+    },
+    "docs/v4_multitopology_generation/22_agent_local_execution.md": {
+      "bytes": 8245,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\22_agent_local_execution.md",
+      "sha256": "957ac306611dcd8f139366820ed952e1ed52a907002301da5dc9fd717f1e4c03"
+    },
+    "docs/v4_multitopology_generation/25_astra_execution_and_recovery.md": {
+      "bytes": 10389,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\25_astra_execution_and_recovery.md",
+      "sha256": "791f7eca5d9a3ad11e963ce0fe7296f1de7e1b9cc5af8743380d2989a5f28232"
+    },
+    "docs/v4_multitopology_generation/README.md": {
+      "bytes": 3486,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\README.md",
+      "sha256": "d6e8988782b764a83c69e5c9f097903335a96a8f7da120cabcfb7476208e7d5d"
+    },
+    "docs/v4_multitopology_generation/task_manifest.json": {
+      "bytes": 326962,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\v4_multitopology_generation\\task_manifest.json",
+      "sha256": "512d87479e46b44ddefcde143b1b896385bb6abc1907276c6c5e1c3b769b2e9d"
+    },
+    "src/Canonical/CanonicalJSON.jl": {
+      "bytes": 10229,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\CanonicalJSON.jl",
+      "sha256": "612edaeb822c1beeff44f7134497426fd0c8ff1eea9c16a651421e2c63f8ab93"
+    },
+    "src/Canonical/ClosedCanonicalByteWriter.jl": {
+      "bytes": 6354,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\ClosedCanonicalByteWriter.jl",
+      "sha256": "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b"
+    },
+    "src/Canonical/ConditionalEGraphCanonical.jl": {
+      "bytes": 34551,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\ConditionalEGraphCanonical.jl",
+      "sha256": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235"
+    },
+    "src/Canonical/ControlObservationRequirementCanonical.jl": {
+      "bytes": 11788,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\ControlObservationRequirementCanonical.jl",
+      "sha256": "4ce8b6e6ddf8a659cda3253ffa3a5943e114eec768e6ed61a9e2d136c7a06c0b"
+    },
+    "src/Canonical/ExactGraphCanonicalization.jl": {
+      "bytes": 15741,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\ExactGraphCanonicalization.jl",
+      "sha256": "4b2a1072ba8bd70e00ccd334027e488c9f4000dcc96b78d39944fad7bce4f6e3"
+    },
+    "src/Canonical/FieldGeometryFieldProgramCanonical.jl": {
+      "bytes": 8278,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\FieldGeometryFieldProgramCanonical.jl",
+      "sha256": "e1f24e6de91cb2ceb3fe32e656ca66517870797c5f9dda80001541a5790c22ff"
+    },
+    "src/Canonical/FieldGeometryPhaseFieldCanonical.jl": {
+      "bytes": 4118,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\FieldGeometryPhaseFieldCanonical.jl",
+      "sha256": "3d573c530957b901395a4539538246db3c55462d179ad443ce7be166866ef1f7"
+    },
+    "src/Canonical/FieldGeometryPrimitiveCanonical.jl": {
+      "bytes": 7528,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\FieldGeometryPrimitiveCanonical.jl",
+      "sha256": "af024092decd20ef2e5a084ae3ae3894448a228b20ddff64e5dc792039bbfa8d"
+    },
+    "src/Canonical/FieldGeometrySpatialSupportCanonical.jl": {
+      "bytes": 20246,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\FieldGeometrySpatialSupportCanonical.jl",
+      "sha256": "ce4bb9411a9dd0f0019c2a544c7bc82ce39c5f727a89543ca8e4d9a355da0b23"
+    },
+    "src/Canonical/Hashes.jl": {
+      "bytes": 1606,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\Hashes.jl",
+      "sha256": "bd205d1208d095397447d3749f53b15a59cf22d2c7636d43d263c9ee7e09bd00"
+    },
+    "src/Canonical/MechanismCanonicalTransport.jl": {
+      "bytes": 31713,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\MechanismCanonicalTransport.jl",
+      "sha256": "dc37e6a8634d907f769f92c2715d7d783c47790f3e573363211330901ff0082a"
+    },
+    "src/Canonical/MechanismHashLayers.jl": {
+      "bytes": 45805,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\MechanismHashLayers.jl",
+      "sha256": "d6b4dd07898948ff9b48074da951a8118da4c6a2550b7174d327017492d444d7"
+    },
+    "src/Canonical/MechanismObservableCanonical.jl": {
+      "bytes": 13457,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\MechanismObservableCanonical.jl",
+      "sha256": "20f20219713a438b34f71bf3cdcc4bd2bb508a79dbbb234439b947aa19bad611"
+    },
+    "src/Canonical/TypedASTProgramCanonical.jl": {
+      "bytes": 44715,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Canonical\\TypedASTProgramCanonical.jl",
+      "sha256": "f1f1ca40e5f32af9c5fe18ac08b87600f25149e31863489c3c6e9a40a5cfff07"
+    },
+    "src/Contracts/Authority.jl": {
+      "bytes": 367,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\Authority.jl",
+      "sha256": "f3d43055134a61116d7364bc4f231d5bca392f88a6c38c163757587d737890e5"
+    },
+    "src/Contracts/CandidateStatePackage.jl": {
+      "bytes": 14084,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\CandidateStatePackage.jl",
+      "sha256": "7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163"
+    },
+    "src/Contracts/CandidateStatePackageV5.jl": {
+      "bytes": 13496,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\CandidateStatePackageV5.jl",
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+    },
+    "src/Contracts/CandidateStatePackageV5Next.jl": {
+      "bytes": 55440,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\CandidateStatePackageV5Next.jl",
+      "sha256": "7ca5b0bfed97193053f157c2b9650624b54ba206784fad348f77fd791652c3b0"
+    },
+    "src/Contracts/CandidateStatePackageV5NextV2.jl": {
+      "bytes": 15738,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\CandidateStatePackageV5NextV2.jl",
+      "sha256": "effac2e603d2a1af30605b70310a634e3659ac487634e164ab049851795c4f89"
+    },
+    "src/Contracts/GenomeContractRegistry.jl": {
+      "bytes": 2389,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\GenomeContractRegistry.jl",
+      "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"
+    },
+    "src/Contracts/MechanismOccurrenceOwnershipContract.jl": {
+      "bytes": 3344,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\MechanismOccurrenceOwnershipContract.jl",
+      "sha256": "a2ef1257989f038836b0623dc95cc06f2b56a8130a4181a928eea5f0aa6a86cf"
+    },
+    "src/Contracts/StatusDimensions.jl": {
+      "bytes": 2798,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\StatusDimensions.jl",
+      "sha256": "f0bc711e8344d768ae35e6b7ff4fbfff3de523ed3ed07bd91ccfb43adee080cc"
+    },
+    "src/Contracts/VNextT1CandidateBindingV2.jl": {
+      "bytes": 10143,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\VNextT1CandidateBindingV2.jl",
+      "sha256": "b507f8e4f31baea7fd2c4e5be5b5c7026382d69a92b6235f863bd67433c243b2"
+    },
+    "src/Contracts/VNextT1CanonicalBytesV2.jl": {
+      "bytes": 2688,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\VNextT1CanonicalBytesV2.jl",
+      "sha256": "6b1043d297347f7fb3b57b465a3eff1278003268afc708e8f888258bb87bede4"
+    },
+    "src/Contracts/VNextT1PackageBindingAdapterV2.jl": {
+      "bytes": 5481,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Contracts\\VNextT1PackageBindingAdapterV2.jl",
+      "sha256": "a7c6ac7065d84a18e541aa5743dc908f8d5304ec5875726d22d615b2c171e943"
+    },
+    "src/FusionConceptAI.jl": {
+      "bytes": 10305,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\FusionConceptAI.jl",
+      "sha256": "7fba6b0f632ce28cd2dd6e250561998988e241963b0ab44a3ef1677fdb270066"
+    },
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "bytes": 37919,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\DiffusionDeclarationV1.jl",
+      "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"
+    },
+    "src/GenomeV5/G1/EquationPlanV2.jl": {
+      "bytes": 15159,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\EquationPlanV2.jl",
+      "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"
+    },
+    "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": {
+      "bytes": 31396,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\G1SourceAuthorityFactoryV1.jl",
+      "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"
+    },
+    "src/GenomeV5/G1/GrammarProfileV2.jl": {
+      "bytes": 22812,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\GrammarProfileV2.jl",
+      "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"
+    },
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {
+      "bytes": 16572,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\MechanismGenomePayloadV2.jl",
+      "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"
+    },
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": {
+      "bytes": 3887,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G1\\MechanismGenomeV5.jl",
+      "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"
+    },
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {
+      "bytes": 18646,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\FieldGeometryGenomeV5.jl",
+      "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"
+    },
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": {
+      "bytes": 9905,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\FieldSpacePlanV2.jl",
+      "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"
+    },
+    "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": {
+      "bytes": 27640,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\G2SourceAuthorityFactoryV1.jl",
+      "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "bytes": 31706,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\MetricBoundaryDeclarationV1.jl",
+      "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3"
+    },
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {
+      "bytes": 5333,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\RegionInterfaceContractV2.jl",
+      "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"
+    },
+    "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": {
+      "bytes": 5945,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G2\\SpatialGrammarProfileV2.jl",
+      "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"
+    },
+    "src/GenomeV5/G3/ControlGenomeV5.jl": {
+      "bytes": 10297,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\ControlGenomeV5.jl",
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+    },
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {
+      "bytes": 10904,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\CoupledRealizationControlBindingV2.jl",
+      "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+    },
+    "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl": {
+      "bytes": 24578,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3BindingChildEditabilityV1.jl",
+      "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4"
+    },
+    "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl": {
+      "bytes": 34208,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3BindingChildEditabilityV2.jl",
+      "sha256": "ac70c4af9bfe1a4b96e03601535cb63276535a451c8b97624d559cfdb5544929"
+    },
+    "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl": {
+      "bytes": 64083,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3ControlChildEditabilityV1.jl",
+      "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+    },
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+      "bytes": 54819,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3RealizationChildEditabilityV1.jl",
+      "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+    },
+    "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl": {
+      "bytes": 35485,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3SourceAuthorityFactoryV1.jl",
+      "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 34374,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\G3SourceFeedbackLawV1.jl",
+      "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7"
+    },
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {
+      "bytes": 6704,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\RealizationControlGenomeV5.jl",
+      "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+    },
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+      "bytes": 33751,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\G3\\RealizationGenomeV5.jl",
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+    },
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+      "bytes": 16452,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\GenomeV5Integration.jl",
+      "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl": {
+      "bytes": 10317,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextDeclarationAuthorityRecheckLocalV1.jl",
+      "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl": {
+      "bytes": 10826,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextDeclarationAuthorityRecheckLocalV2.jl",
+      "sha256": "d68c61c20d359fd70a364ad70545845e540435b8b052fecf1a9ac1ab64e2008e"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": {
+      "bytes": 96310,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextDeclarationTransportLocalV1.jl",
+      "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"
+    },
+    "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl": {
+      "bytes": 14744,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextG3BindingAuthorityBridgeLocalV1.jl",
+      "sha256": "45a4bbda4d92373b822a31b23ba35753074d8ef0dbedb01d203e4289675cf27b"
+    },
+    "src/GenomeV5/Integration/VNextGenomeV5Integration.jl": {
+      "bytes": 10823,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextGenomeV5Integration.jl",
+      "sha256": "d9824756a1287f6ed7a7df0c5d06a1523b109b52f12a91d36b9aab5ec05ba501"
+    },
+    "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl": {
+      "bytes": 13232,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextGenomeV5IntegrationV2.jl",
+      "sha256": "37fc25612cccf94044f736984f7f4a730c7f6f078898c80849981add27f3bc86"
+    },
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+      "bytes": 61211,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextParentBaselineBindingLocalV1.jl",
+      "sha256": "6603bb1f3b8826a68583f070af13febf8fe91e1d153be90a1930c0aaa18c97a0"
+    },
+    "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl": {
+      "bytes": 78478,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextT2ConcreteSourceWitnessV3.jl",
+      "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+    },
+    "src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl": {
+      "bytes": 23367,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextT2IdentityReceiptIntegrationV2.jl",
+      "sha256": "64b1582c05cad8775af58d6ba35b1e50162e5394acbd92f0460b304b3195cf0b"
+    },
+    "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl": {
+      "bytes": 3899,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\Integration\\VNextT2ModuleEntryV2.jl",
+      "sha256": "40071a2609422bb8ec389e1f75279d3b2afeb9822f5b847fbf97224eb3a0f655"
+    },
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {
+      "bytes": 3155,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\UP2\\UP2ModuleEntryV1.jl",
+      "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"
+    },
+    "src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl": {
+      "bytes": 20354,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\UP2\\VNextT2IdentityReceiptProjectionV2.jl",
+      "sha256": "077a8634754c435caf8364d6bdc1325d56412ae256c181f9fb2a6a6da7084823"
+    },
+    "src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl": {
+      "bytes": 54588,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\GenomeV5\\UP2\\VNextT2UP2AdapterV2.jl",
+      "sha256": "4ff71f2d2e9863b04572a2f2f37df9e52ace948b3f90c10b2823a8fe2567a725"
+    },
+    "src/Genomes/ControlObservationRequirements.jl": {
+      "bytes": 10109,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\ControlObservationRequirements.jl",
+      "sha256": "d518856ec4310e9c16a7425b1479f73b92d0eb6581e78f199685512f00b863ad"
+    },
+    "src/Genomes/ControlPrimitives.jl": {
+      "bytes": 1066,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\ControlPrimitives.jl",
+      "sha256": "5e5af09c633f4f66851f21bdbd223f486b6b19333e560bbebe9fb69bcb004cf2"
+    },
+    "src/Genomes/FieldGeometryFieldPrograms.jl": {
+      "bytes": 12872,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\FieldGeometryFieldPrograms.jl",
+      "sha256": "78e3428436798c03454b6e814d4fb9348ad3d19a485e0fb33b7045af2651b17f"
+    },
+    "src/Genomes/FieldGeometryGenome.jl": {
+      "bytes": 982,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\FieldGeometryGenome.jl",
+      "sha256": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725"
+    },
+    "src/Genomes/FieldGeometryPhaseFields.jl": {
+      "bytes": 13367,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\FieldGeometryPhaseFields.jl",
+      "sha256": "a18ff4c417c194d6c1e6ff12e339452e9046f3782c98a17ad917216c80e83cbd"
+    },
+    "src/Genomes/FieldGeometryPrimitives.jl": {
+      "bytes": 8851,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\FieldGeometryPrimitives.jl",
+      "sha256": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5"
+    },
+    "src/Genomes/FieldGeometrySpatialSupport.jl": {
+      "bytes": 30147,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\FieldGeometrySpatialSupport.jl",
+      "sha256": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405"
+    },
+    "src/Genomes/MechanismConservationOwnership.jl": {
+      "bytes": 3704,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismConservationOwnership.jl",
+      "sha256": "8984932e950bb6afea67e5ebd9468a61ecd352ae2370af78c8151928b99c6673"
+    },
+    "src/Genomes/MechanismConservationScopes.jl": {
+      "bytes": 2110,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismConservationScopes.jl",
+      "sha256": "e85e7484af81d8291971cf3e03fbb29442e30c2720423013734eb60c93f0c5a0"
+    },
+    "src/Genomes/MechanismGeneCanonical.jl": {
+      "bytes": 14888,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismGeneCanonical.jl",
+      "sha256": "28184df2f61db1b51c4ce3569b8c6593bbd4d438449866a8715875a7a56f2263"
+    },
+    "src/Genomes/MechanismGenes.jl": {
+      "bytes": 7163,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismGenes.jl",
+      "sha256": "5f9ef77a0a31168329a6ff9d55dda77dece2eda8e5c5302e2a6911b04095a7cf"
+    },
+    "src/Genomes/MechanismGenesV1.jl": {
+      "bytes": 30394,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismGenesV1.jl",
+      "sha256": "1684c0db19b7edff688ca6b2e2ebf61ed541bc210005d8979c4d68094717b57c"
+    },
+    "src/Genomes/MechanismGenome.jl": {
+      "bytes": 3302,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismGenome.jl",
+      "sha256": "8c40c572d424572a38fbcbf00c06e395226086927a4b19ff477ea433e8789dd4"
+    },
+    "src/Genomes/MechanismGenomePayload.jl": {
+      "bytes": 36014,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismGenomePayload.jl",
+      "sha256": "fb8cb4966726328a4b9226b730586eb795e6603c39218bde142a247b6b8fab8f"
+    },
+    "src/Genomes/MechanismLegacyMigration.jl": {
+      "bytes": 69196,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismLegacyMigration.jl",
+      "sha256": "d9802d98a49f48e0e6d40e8bc982a06d7297cd46182d916b35692e663a23ecb0"
+    },
+    "src/Genomes/MechanismObservablesHoles.jl": {
+      "bytes": 22138,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\MechanismObservablesHoles.jl",
+      "sha256": "84da5b7c9c5ca20f19d2644e43d760d56a06aafe0583791c531ec0d04033128e"
+    },
+    "src/Genomes/RealizationControlGenome.jl": {
+      "bytes": 2099,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\Genomes\\RealizationControlGenome.jl",
+      "sha256": "48c99e5ab8f5a701063016df214be9741b4b07112c8d4a84068192474329b7a4"
+    },
+    "src/IR/ConditionalEGraph.jl": {
+      "bytes": 622,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\ConditionalEGraph.jl",
+      "sha256": "538a5985b9c065f18ad47cb9271f5f4e18c972e14e9385198b6c40d78572c110"
+    },
+    "src/IR/ConditionalEGraphSaturation.jl": {
+      "bytes": 42141,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\ConditionalEGraphSaturation.jl",
+      "sha256": "9d4d0f294079724ec54f7197dae12196a8af9c56b553f19139251aa4f9d04341"
+    },
+    "src/IR/ConditionalEGraphTypes.jl": {
+      "bytes": 38142,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\ConditionalEGraphTypes.jl",
+      "sha256": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92"
+    },
+    "src/IR/ConservationLedger.jl": {
+      "bytes": 2874,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\ConservationLedger.jl",
+      "sha256": "4066d9a39f2b07253c79d2ea1283872d56d8d8825f499eec23f82ba4b26a7727"
+    },
+    "src/IR/OperatorHypergraph.jl": {
+      "bytes": 24401,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\OperatorHypergraph.jl",
+      "sha256": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de"
+    },
+    "src/IR/OperatorRegistry.jl": {
+      "bytes": 64932,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\OperatorRegistry.jl",
+      "sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45"
+    },
+    "src/IR/PhysicalTypes.jl": {
+      "bytes": 11801,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\PhysicalTypes.jl",
+      "sha256": "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"
+    },
+    "src/IR/TypedAST.jl": {
+      "bytes": 27444,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\src\\IR\\TypedAST.jl",
+      "sha256": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373"
+    },
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl": {
+      "bytes": 14389,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2ConcreteSourceWitnessV3\\fixture_helpers.jl",
+      "sha256": "a992d7a1c77ff362cac53fe6e63f111595c173b8d6eac2f4029e1356179861bb"
+    },
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl": {
+      "bytes": 2088,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2ConcreteSourceWitnessV3\\parse_gate.jl",
+      "sha256": "5f7c1f62a198d1332af4b78a9b62fe283ea0c33fb97555f5adaa3e4060813493"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/README.md": {
+      "bytes": 4406,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\README.md",
+      "sha256": "d1a555c46022e428c3390404f8c554445fdeac0b2c6a4db5836536a4afd5f26d"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r1.jl": {
+      "bytes": 58695,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\actual_formal_negative_driver_r1.jl",
+      "sha256": "eab90cb85ac2eccc43aee93f8ed9741169401493b2ed16b0eb5088a88233ff6e"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r2.jl": {
+      "bytes": 86829,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\actual_formal_negative_driver_r2.jl",
+      "sha256": "ee2f49fda1695440792b7cecabc20aaac300e025c616966cce271d7757ee27ff"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl": {
+      "bytes": 6136,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\artifact_attack_fixture_driver_r1.jl",
+      "sha256": "8882d692d73580c1de3a6892d2a09c1e5bd21cf751ad246fae5f43fa41395112"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl": {
+      "bytes": 3937,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\artifact_preflight_negative_driver_r1.jl",
+      "sha256": "6dee99c4c8262e8c9ec7be36bc53f4b6bea98ac1ccb46012d3b6ea28e3b69f27"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_actual_formal_negative_driver_r2.py": {
+      "bytes": 42428,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\build_actual_formal_negative_driver_r2.py",
+      "sha256": "8aadbc8e55736db6b83fe064dc6eb306f23c9e01d174d3f631a0a3ccb6128b46"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r1.py": {
+      "bytes": 45694,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\build_coverage_map_r1.py",
+      "sha256": "0659248e18e9ee67e59343a7778a07e422320d81ff36749a1e432b0524d1e506"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r2.py": {
+      "bytes": 54468,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\build_coverage_map_r2.py",
+      "sha256": "2246d40d1a1722fb656efb153a9854ce0055a766021be92ebfdb3684a7701957"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r1.jl": {
+      "bytes": 8407,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_ast_inventory_r1.jl",
+      "sha256": "d949fdc860eb0e1b022496af936e62c825dfa8e101c018a48431d8dbd7f6b0bf"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r2.jl": {
+      "bytes": 8407,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_ast_inventory_r2.jl",
+      "sha256": "73e5743e9ac92d29b5772677360454da3917dff029d72851de7ed4b6ad9b614d"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r1.json": {
+      "bytes": 388108,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r1.json",
+      "sha256": "c98fe3bd29136f3d1848e0619ab4b6b4d531167dafbbeee735ab3c84c3224e32"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r1.py": {
+      "bytes": 16308,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\freeze_independent_negative_protocol_r1.py",
+      "sha256": "72d88b8fc0d665659eeb41a7868619281724938621a4a8b31918783757b5e747"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r2.py": {
+      "bytes": 29338,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\freeze_independent_negative_protocol_r2.py",
+      "sha256": "5532e1b6c27fc889edab22a6c6a9f21aa2df7862d282bfde1b3fad79d8e5fc6d"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r1.py": {
+      "bytes": 65426,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r1.py",
+      "sha256": "ef26666273dcdbf180c92a7c7f4749e341b955044d13335c612f9ae506f9c4c4"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r2.py": {
+      "bytes": 93068,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r2.py",
+      "sha256": "aac32e875db14472fcfdf14b86af960908b9b22c6b55e9002b2d792b5536e024"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r1.py": {
+      "bytes": 19027,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r1.py",
+      "sha256": "824f081318d15a5046bfa0770c27c0120000ac6b14cb32fa1aed51a19df697bb"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r2.py": {
+      "bytes": 34563,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r2.py",
+      "sha256": "0b3d1af51deb20c3e98f0e4ab8a2a5fec8807d3edd53eadea5bf011373397160"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl": {
+      "bytes": 13749,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\supplementary_contract_driver_r1.jl",
+      "sha256": "47a18c28a1f849546c088245f78303096236bf9e2a62d7dbc793ec649b4e869d"
+    },
+    "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r2.py": {
+      "bytes": 13215,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r2.py",
+      "sha256": "a4b2a48c13781bbf554cea8b0ae994a644a97da6e5b5fddb1a9005e64425db45"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl": {
+      "bytes": 11614,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\fixture_helpers.jl",
+      "sha256": "aa63b637e592adf53adca7a0aaa8d8b9cf8a74d577356999bd1fa179f075f59b"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl": {
+      "bytes": 34035,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\formal_candidate_driver.jl",
+      "sha256": "114d2628b69b246b4e9c7ae82e8f1837e86052874d3f7a1cbb51c198d4d8afdb"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py": {
+      "bytes": 55103,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\formal_t1_software_manifest_v1.py",
+      "sha256": "27a5c8abc79b46d78824916a4c9f66dbbb526c14f9e5dfe1b75f6df8c9700d47"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py": {
+      "bytes": 47451,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\formal_t2_controller.py",
+      "sha256": "d3704f9be40ff68fd0e37c6ee6f94f2bcba901c97e550e962ce0103badadbf1d"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl": {
+      "bytes": 3393,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\module_entry_clean_load.jl",
+      "sha256": "727b4d124082c7465c0f75a27ad5d7247b1db935919ad8d738f2dc2af8edd8a3"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_identity_receipt_v2_tests.jl": {
+      "bytes": 17910,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\vnext_t2_identity_receipt_v2_tests.jl",
+      "sha256": "edefda4defb0a94c7fc0935579f75e5d7c7431e97006eebee4186b9210ee8587"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl": {
+      "bytes": 11926,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\vnext_t2_package_full_content_projection_r1.jl",
+      "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": {
+      "bytes": 76191,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\vnext_declaration_transport_local_v1_tests.jl",
+      "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b"
+    }
+  },
+  "julia_threads": 1,
+  "openblas_threads": 1,
+  "phase_timeout_seconds": 300.0,
+  "positive_evidence": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3",
+  "positive_final_expected_sha256": "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05",
+  "positive_pipeline_final_expected_sha256": "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529",
+  "positive_r3_runtime_input_pin_join": {
+    "actual_model_attestation": "unavailable",
+    "pin_identity_sha256": "33ea4f4ca5f6be4d25ed8a80990767da5c04e9b33eff057eb8f2590615ff5a55",
+    "positive_runtime_input_count": 104,
+    "positive_runtime_inputs_receipt": {
+      "bytes": 25331,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_dispatch_r3\\runtime_inputs.json",
+      "sha256": "279310d67e5f151578b9a141893a4f8b197973379cad93c0a1f90444d2360538"
+    },
+    "schema": "vnext-t2-positive-r3-input-pin-join-r1",
+    "status": "pass",
+    "verified_current_pins": {
+      "Manifest.toml": {
+        "bytes": 3348,
+        "path": "Manifest.toml",
+        "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d"
+      },
+      "Project.toml": {
+        "bytes": 611,
+        "path": "Project.toml",
+        "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json": {
+        "bytes": 23148,
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json",
+        "sha256": "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json": {
+        "bytes": 46759,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json",
+        "sha256": "c01892c882a499a24f3063e6b37d70c302c92822ee4043b50a44586c3b944314"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json": {
+        "bytes": 4568,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json",
+        "sha256": "11401f06213acd03d2dae8c5451350ff94eed73123b5149bbf2945bf3ba3488b"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json": {
+        "bytes": 860,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json",
+        "sha256": "f15f8d2e855d1cc9de99cd9fa292eebd3e1194ba6594d2b6b0ae6590c1c6b4e2"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json": {
+        "bytes": 78236,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json",
+        "sha256": "97a22a469b1fe60185513a52dc082825a01a1c09b59052abbcaa2a1f1afc4946"
+      },
+      "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json": {
+        "bytes": 2974,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json",
+        "sha256": "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2"
+      },
+      "src/Canonical/CanonicalJSON.jl": {
+        "bytes": 10229,
+        "path": "src/Canonical/CanonicalJSON.jl",
+        "sha256": "612edaeb822c1beeff44f7134497426fd0c8ff1eea9c16a651421e2c63f8ab93"
+      },
+      "src/Canonical/ClosedCanonicalByteWriter.jl": {
+        "bytes": 6354,
+        "path": "src/Canonical/ClosedCanonicalByteWriter.jl",
+        "sha256": "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b"
+      },
+      "src/Canonical/ConditionalEGraphCanonical.jl": {
+        "bytes": 34551,
+        "path": "src/Canonical/ConditionalEGraphCanonical.jl",
+        "sha256": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235"
+      },
+      "src/Canonical/ControlObservationRequirementCanonical.jl": {
+        "bytes": 11788,
+        "path": "src/Canonical/ControlObservationRequirementCanonical.jl",
+        "sha256": "4ce8b6e6ddf8a659cda3253ffa3a5943e114eec768e6ed61a9e2d136c7a06c0b"
+      },
+      "src/Canonical/ExactGraphCanonicalization.jl": {
+        "bytes": 15741,
+        "path": "src/Canonical/ExactGraphCanonicalization.jl",
+        "sha256": "4b2a1072ba8bd70e00ccd334027e488c9f4000dcc96b78d39944fad7bce4f6e3"
+      },
+      "src/Canonical/FieldGeometryFieldProgramCanonical.jl": {
+        "bytes": 8278,
+        "path": "src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+        "sha256": "e1f24e6de91cb2ceb3fe32e656ca66517870797c5f9dda80001541a5790c22ff"
+      },
+      "src/Canonical/FieldGeometryPhaseFieldCanonical.jl": {
+        "bytes": 4118,
+        "path": "src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+        "sha256": "3d573c530957b901395a4539538246db3c55462d179ad443ce7be166866ef1f7"
+      },
+      "src/Canonical/FieldGeometryPrimitiveCanonical.jl": {
+        "bytes": 7528,
+        "path": "src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+        "sha256": "af024092decd20ef2e5a084ae3ae3894448a228b20ddff64e5dc792039bbfa8d"
+      },
+      "src/Canonical/FieldGeometrySpatialSupportCanonical.jl": {
+        "bytes": 20246,
+        "path": "src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+        "sha256": "ce4bb9411a9dd0f0019c2a544c7bc82ce39c5f727a89543ca8e4d9a355da0b23"
+      },
+      "src/Canonical/Hashes.jl": {
+        "bytes": 1606,
+        "path": "src/Canonical/Hashes.jl",
+        "sha256": "bd205d1208d095397447d3749f53b15a59cf22d2c7636d43d263c9ee7e09bd00"
+      },
+      "src/Canonical/MechanismCanonicalTransport.jl": {
+        "bytes": 31713,
+        "path": "src/Canonical/MechanismCanonicalTransport.jl",
+        "sha256": "dc37e6a8634d907f769f92c2715d7d783c47790f3e573363211330901ff0082a"
+      },
+      "src/Canonical/MechanismHashLayers.jl": {
+        "bytes": 45805,
+        "path": "src/Canonical/MechanismHashLayers.jl",
+        "sha256": "d6b4dd07898948ff9b48074da951a8118da4c6a2550b7174d327017492d444d7"
+      },
+      "src/Canonical/MechanismObservableCanonical.jl": {
+        "bytes": 13457,
+        "path": "src/Canonical/MechanismObservableCanonical.jl",
+        "sha256": "20f20219713a438b34f71bf3cdcc4bd2bb508a79dbbb234439b947aa19bad611"
+      },
+      "src/Canonical/TypedASTProgramCanonical.jl": {
+        "bytes": 44715,
+        "path": "src/Canonical/TypedASTProgramCanonical.jl",
+        "sha256": "f1f1ca40e5f32af9c5fe18ac08b87600f25149e31863489c3c6e9a40a5cfff07"
+      },
+      "src/Contracts/Authority.jl": {
+        "bytes": 367,
+        "path": "src/Contracts/Authority.jl",
+        "sha256": "f3d43055134a61116d7364bc4f231d5bca392f88a6c38c163757587d737890e5"
+      },
+      "src/Contracts/CandidateStatePackage.jl": {
+        "bytes": 14084,
+        "path": "src/Contracts/CandidateStatePackage.jl",
+        "sha256": "7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163"
+      },
+      "src/Contracts/CandidateStatePackageV5.jl": {
+        "bytes": 13496,
+        "path": "src/Contracts/CandidateStatePackageV5.jl",
+        "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+      },
+      "src/Contracts/CandidateStatePackageV5Next.jl": {
+        "bytes": 55440,
+        "path": "src/Contracts/CandidateStatePackageV5Next.jl",
+        "sha256": "7ca5b0bfed97193053f157c2b9650624b54ba206784fad348f77fd791652c3b0"
+      },
+      "src/Contracts/CandidateStatePackageV5NextV2.jl": {
+        "bytes": 15738,
+        "path": "src/Contracts/CandidateStatePackageV5NextV2.jl",
+        "sha256": "effac2e603d2a1af30605b70310a634e3659ac487634e164ab049851795c4f89"
+      },
+      "src/Contracts/GenomeContractRegistry.jl": {
+        "bytes": 2389,
+        "path": "src/Contracts/GenomeContractRegistry.jl",
+        "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"
+      },
+      "src/Contracts/MechanismOccurrenceOwnershipContract.jl": {
+        "bytes": 3344,
+        "path": "src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+        "sha256": "a2ef1257989f038836b0623dc95cc06f2b56a8130a4181a928eea5f0aa6a86cf"
+      },
+      "src/Contracts/StatusDimensions.jl": {
+        "bytes": 2798,
+        "path": "src/Contracts/StatusDimensions.jl",
+        "sha256": "f0bc711e8344d768ae35e6b7ff4fbfff3de523ed3ed07bd91ccfb43adee080cc"
+      },
+      "src/Contracts/VNextT1CandidateBindingV2.jl": {
+        "bytes": 10143,
+        "path": "src/Contracts/VNextT1CandidateBindingV2.jl",
+        "sha256": "b507f8e4f31baea7fd2c4e5be5b5c7026382d69a92b6235f863bd67433c243b2"
+      },
+      "src/Contracts/VNextT1CanonicalBytesV2.jl": {
+        "bytes": 2688,
+        "path": "src/Contracts/VNextT1CanonicalBytesV2.jl",
+        "sha256": "6b1043d297347f7fb3b57b465a3eff1278003268afc708e8f888258bb87bede4"
+      },
+      "src/Contracts/VNextT1PackageBindingAdapterV2.jl": {
+        "bytes": 5481,
+        "path": "src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+        "sha256": "a7c6ac7065d84a18e541aa5743dc908f8d5304ec5875726d22d615b2c171e943"
+      },
+      "src/FusionConceptAI.jl": {
+        "bytes": 10305,
+        "path": "src/FusionConceptAI.jl",
+        "sha256": "7fba6b0f632ce28cd2dd6e250561998988e241963b0ab44a3ef1677fdb270066"
+      },
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+        "bytes": 37919,
+        "path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+        "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"
+      },
+      "src/GenomeV5/G1/EquationPlanV2.jl": {
+        "bytes": 15159,
+        "path": "src/GenomeV5/G1/EquationPlanV2.jl",
+        "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"
+      },
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": {
+        "bytes": 31396,
+        "path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+        "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"
+      },
+      "src/GenomeV5/G1/GrammarProfileV2.jl": {
+        "bytes": 22812,
+        "path": "src/GenomeV5/G1/GrammarProfileV2.jl",
+        "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"
+      },
+      "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {
+        "bytes": 16572,
+        "path": "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+        "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"
+      },
+      "src/GenomeV5/G1/MechanismGenomeV5.jl": {
+        "bytes": 3887,
+        "path": "src/GenomeV5/G1/MechanismGenomeV5.jl",
+        "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"
+      },
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {
+        "bytes": 18646,
+        "path": "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+        "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"
+      },
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": {
+        "bytes": 9905,
+        "path": "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+        "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"
+      },
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": {
+        "bytes": 27640,
+        "path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+        "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"
+      },
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+        "bytes": 31706,
+        "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+        "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3"
+      },
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {
+        "bytes": 5333,
+        "path": "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+        "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"
+      },
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": {
+        "bytes": 5945,
+        "path": "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+        "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"
+      },
+      "src/GenomeV5/G3/ControlGenomeV5.jl": {
+        "bytes": 10297,
+        "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+        "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+      },
+      "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {
+        "bytes": 10904,
+        "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+        "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+      },
+      "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl": {
+        "bytes": 24578,
+        "path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+        "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4"
+      },
+      "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl": {
+        "bytes": 34208,
+        "path": "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+        "sha256": "ac70c4af9bfe1a4b96e03601535cb63276535a451c8b97624d559cfdb5544929"
+      },
+      "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl": {
+        "bytes": 64083,
+        "path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+        "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+      },
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+        "bytes": 54819,
+        "path": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+        "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+      },
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl": {
+        "bytes": 35485,
+        "path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+        "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"
+      },
+      "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+        "bytes": 34374,
+        "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+        "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7"
+      },
+      "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {
+        "bytes": 6704,
+        "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+        "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+      },
+      "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+        "bytes": 33751,
+        "path": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+        "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+      },
+      "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+        "bytes": 16452,
+        "path": "src/GenomeV5/Integration/GenomeV5Integration.jl",
+        "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"
+      },
+      "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl": {
+        "bytes": 10317,
+        "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+        "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9"
+      },
+      "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl": {
+        "bytes": 10826,
+        "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+        "sha256": "d68c61c20d359fd70a364ad70545845e540435b8b052fecf1a9ac1ab64e2008e"
+      },
+      "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": {
+        "bytes": 96310,
+        "path": "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+        "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"
+      },
+      "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl": {
+        "bytes": 14744,
+        "path": "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+        "sha256": "45a4bbda4d92373b822a31b23ba35753074d8ef0dbedb01d203e4289675cf27b"
+      },
+      "src/GenomeV5/Integration/VNextGenomeV5Integration.jl": {
+        "bytes": 10823,
+        "path": "src/GenomeV5/Integration/VNextGenomeV5Integration.jl",
+        "sha256": "d9824756a1287f6ed7a7df0c5d06a1523b109b52f12a91d36b9aab5ec05ba501"
+      },
+      "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl": {
+        "bytes": 13232,
+        "path": "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+        "sha256": "37fc25612cccf94044f736984f7f4a730c7f6f078898c80849981add27f3bc86"
+      },
+      "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+        "bytes": 61211,
+        "path": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+        "sha256": "6603bb1f3b8826a68583f070af13febf8fe91e1d153be90a1930c0aaa18c97a0"
+      },
+      "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl": {
+        "bytes": 78478,
+        "path": "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+        "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+      },
+      "src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl": {
+        "bytes": 23367,
+        "path": "src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl",
+        "sha256": "64b1582c05cad8775af58d6ba35b1e50162e5394acbd92f0460b304b3195cf0b"
+      },
+      "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl": {
+        "bytes": 3899,
+        "path": "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+        "sha256": "40071a2609422bb8ec389e1f75279d3b2afeb9822f5b847fbf97224eb3a0f655"
+      },
+      "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {
+        "bytes": 3155,
+        "path": "src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+        "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"
+      },
+      "src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl": {
+        "bytes": 20354,
+        "path": "src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl",
+        "sha256": "077a8634754c435caf8364d6bdc1325d56412ae256c181f9fb2a6a6da7084823"
+      },
+      "src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl": {
+        "bytes": 54588,
+        "path": "src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl",
+        "sha256": "4ff71f2d2e9863b04572a2f2f37df9e52ace948b3f90c10b2823a8fe2567a725"
+      },
+      "src/Genomes/ControlObservationRequirements.jl": {
+        "bytes": 10109,
+        "path": "src/Genomes/ControlObservationRequirements.jl",
+        "sha256": "d518856ec4310e9c16a7425b1479f73b92d0eb6581e78f199685512f00b863ad"
+      },
+      "src/Genomes/ControlPrimitives.jl": {
+        "bytes": 1066,
+        "path": "src/Genomes/ControlPrimitives.jl",
+        "sha256": "5e5af09c633f4f66851f21bdbd223f486b6b19333e560bbebe9fb69bcb004cf2"
+      },
+      "src/Genomes/FieldGeometryFieldPrograms.jl": {
+        "bytes": 12872,
+        "path": "src/Genomes/FieldGeometryFieldPrograms.jl",
+        "sha256": "78e3428436798c03454b6e814d4fb9348ad3d19a485e0fb33b7045af2651b17f"
+      },
+      "src/Genomes/FieldGeometryGenome.jl": {
+        "bytes": 982,
+        "path": "src/Genomes/FieldGeometryGenome.jl",
+        "sha256": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725"
+      },
+      "src/Genomes/FieldGeometryPhaseFields.jl": {
+        "bytes": 13367,
+        "path": "src/Genomes/FieldGeometryPhaseFields.jl",
+        "sha256": "a18ff4c417c194d6c1e6ff12e339452e9046f3782c98a17ad917216c80e83cbd"
+      },
+      "src/Genomes/FieldGeometryPrimitives.jl": {
+        "bytes": 8851,
+        "path": "src/Genomes/FieldGeometryPrimitives.jl",
+        "sha256": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5"
+      },
+      "src/Genomes/FieldGeometrySpatialSupport.jl": {
+        "bytes": 30147,
+        "path": "src/Genomes/FieldGeometrySpatialSupport.jl",
+        "sha256": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405"
+      },
+      "src/Genomes/MechanismConservationOwnership.jl": {
+        "bytes": 3704,
+        "path": "src/Genomes/MechanismConservationOwnership.jl",
+        "sha256": "8984932e950bb6afea67e5ebd9468a61ecd352ae2370af78c8151928b99c6673"
+      },
+      "src/Genomes/MechanismConservationScopes.jl": {
+        "bytes": 2110,
+        "path": "src/Genomes/MechanismConservationScopes.jl",
+        "sha256": "e85e7484af81d8291971cf3e03fbb29442e30c2720423013734eb60c93f0c5a0"
+      },
+      "src/Genomes/MechanismGeneCanonical.jl": {
+        "bytes": 14888,
+        "path": "src/Genomes/MechanismGeneCanonical.jl",
+        "sha256": "28184df2f61db1b51c4ce3569b8c6593bbd4d438449866a8715875a7a56f2263"
+      },
+      "src/Genomes/MechanismGenes.jl": {
+        "bytes": 7163,
+        "path": "src/Genomes/MechanismGenes.jl",
+        "sha256": "5f9ef77a0a31168329a6ff9d55dda77dece2eda8e5c5302e2a6911b04095a7cf"
+      },
+      "src/Genomes/MechanismGenesV1.jl": {
+        "bytes": 30394,
+        "path": "src/Genomes/MechanismGenesV1.jl",
+        "sha256": "1684c0db19b7edff688ca6b2e2ebf61ed541bc210005d8979c4d68094717b57c"
+      },
+      "src/Genomes/MechanismGenome.jl": {
+        "bytes": 3302,
+        "path": "src/Genomes/MechanismGenome.jl",
+        "sha256": "8c40c572d424572a38fbcbf00c06e395226086927a4b19ff477ea433e8789dd4"
+      },
+      "src/Genomes/MechanismGenomePayload.jl": {
+        "bytes": 36014,
+        "path": "src/Genomes/MechanismGenomePayload.jl",
+        "sha256": "fb8cb4966726328a4b9226b730586eb795e6603c39218bde142a247b6b8fab8f"
+      },
+      "src/Genomes/MechanismLegacyMigration.jl": {
+        "bytes": 69196,
+        "path": "src/Genomes/MechanismLegacyMigration.jl",
+        "sha256": "d9802d98a49f48e0e6d40e8bc982a06d7297cd46182d916b35692e663a23ecb0"
+      },
+      "src/Genomes/MechanismObservablesHoles.jl": {
+        "bytes": 22138,
+        "path": "src/Genomes/MechanismObservablesHoles.jl",
+        "sha256": "84da5b7c9c5ca20f19d2644e43d760d56a06aafe0583791c531ec0d04033128e"
+      },
+      "src/Genomes/RealizationControlGenome.jl": {
+        "bytes": 2099,
+        "path": "src/Genomes/RealizationControlGenome.jl",
+        "sha256": "48c99e5ab8f5a701063016df214be9741b4b07112c8d4a84068192474329b7a4"
+      },
+      "src/IR/ConditionalEGraph.jl": {
+        "bytes": 622,
+        "path": "src/IR/ConditionalEGraph.jl",
+        "sha256": "538a5985b9c065f18ad47cb9271f5f4e18c972e14e9385198b6c40d78572c110"
+      },
+      "src/IR/ConditionalEGraphSaturation.jl": {
+        "bytes": 42141,
+        "path": "src/IR/ConditionalEGraphSaturation.jl",
+        "sha256": "9d4d0f294079724ec54f7197dae12196a8af9c56b553f19139251aa4f9d04341"
+      },
+      "src/IR/ConditionalEGraphTypes.jl": {
+        "bytes": 38142,
+        "path": "src/IR/ConditionalEGraphTypes.jl",
+        "sha256": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92"
+      },
+      "src/IR/ConservationLedger.jl": {
+        "bytes": 2874,
+        "path": "src/IR/ConservationLedger.jl",
+        "sha256": "4066d9a39f2b07253c79d2ea1283872d56d8d8825f499eec23f82ba4b26a7727"
+      },
+      "src/IR/OperatorHypergraph.jl": {
+        "bytes": 24401,
+        "path": "src/IR/OperatorHypergraph.jl",
+        "sha256": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de"
+      },
+      "src/IR/OperatorRegistry.jl": {
+        "bytes": 64932,
+        "path": "src/IR/OperatorRegistry.jl",
+        "sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45"
+      },
+      "src/IR/PhysicalTypes.jl": {
+        "bytes": 11801,
+        "path": "src/IR/PhysicalTypes.jl",
+        "sha256": "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"
+      },
+      "src/IR/TypedAST.jl": {
+        "bytes": 27444,
+        "path": "src/IR/TypedAST.jl",
+        "sha256": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl": {
+        "bytes": 14389,
+        "path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+        "sha256": "a992d7a1c77ff362cac53fe6e63f111595c173b8d6eac2f4029e1356179861bb"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl": {
+        "bytes": 2088,
+        "path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+        "sha256": "5f7c1f62a198d1332af4b78a9b62fe283ea0c33fb97555f5adaa3e4060813493"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl": {
+        "bytes": 11614,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl",
+        "sha256": "aa63b637e592adf53adca7a0aaa8d8b9cf8a74d577356999bd1fa179f075f59b"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl": {
+        "bytes": 34035,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+        "sha256": "114d2628b69b246b4e9c7ae82e8f1837e86052874d3f7a1cbb51c198d4d8afdb"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py": {
+        "bytes": 55103,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+        "sha256": "27a5c8abc79b46d78824916a4c9f66dbbb526c14f9e5dfe1b75f6df8c9700d47"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py": {
+        "bytes": 47451,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+        "sha256": "d3704f9be40ff68fd0e37c6ee6f94f2bcba901c97e550e962ce0103badadbf1d"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl": {
+        "bytes": 3393,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+        "sha256": "727b4d124082c7465c0f75a27ad5d7247b1db935919ad8d738f2dc2af8edd8a3"
+      },
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl": {
+        "bytes": 11926,
+        "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+        "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91"
+      },
+      "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": {
+        "bytes": 76191,
+        "path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+        "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b"
+      }
+    }
+  },
+  "process_tree_working_set_limit_bytes": 2147483648,
+  "protocol": {
+    "bytes": 253799,
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt7\\protocol.json",
+    "sha256": "3a792f89ab2e9db3bff408dd0a7da3c5eb564d6807090c8fa0bbfa6004ec5c00"
+  },
+  "protocol_expected_sha256": "3a792f89ab2e9db3bff408dd0a7da3c5eb564d6807090c8fa0bbfa6004ec5c00",
+  "python_dont_write_bytecode": true,
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "runtime_execution_plan_sha256": "f0bf126e256caf88b913f4b28df2957d421cc53d25886ecc3f07477690c96fe6",
+  "schema": "vnext-t2-independent-negative-pipeline-start-r2"
+}

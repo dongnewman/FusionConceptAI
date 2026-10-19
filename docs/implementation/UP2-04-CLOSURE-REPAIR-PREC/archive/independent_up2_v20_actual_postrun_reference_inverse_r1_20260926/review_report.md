@@ -1,0 +1,33 @@
+# Independent read-only audit of the V20 actual replay leaf
+
+## Verdict
+
+**The V20 replay did not pass.** Two distinct failures are visible in the saved evidence:
+
+1. The Julia producer raised an application/protocol error at V20 source line 850: the guard compares the case identity hash with the solver-vector hash frozen in the protocol. These are different digest definitions, so this failure does not establish that the saved result bytes drifted.
+2. Separately, the supervisor classified the run as `resource_interruption` / controller exit 124 because RSS sampling and bounded cleanup could not confirm the process-tree state after PID 80036 disappeared (`NoSuchProcess`). This was not a measured wall-time, RSS, aggregate, or controller-overhead cap overrun.
+
+The producer did not reach the full validator; no carrier/binding or consumer was created. No numerical, physical, candidate, or publication credit is warranted.
+
+## Exact failure and process evidence
+
+- Frozen protocol `docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json` SHA-256: `26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2`. V20 replay source still matches SHA-256 `de982105ea005b0e9e2f5b52c2a3a23e38e6691563cfd8497043109767538c06`.
+- Controller `final.json` SHA-256: `13deb6abe1930529b1247715d3cb4656e8ae43cfefc4507ed3d861d1c259941c`; controller exit 124, class `resource_interruption`, authority `no_publish`, and `software_complete=false`.
+- Producer receipt `producer_process.json` SHA-256: `08717ab89117a6cf716c3270b1ba672759795eba43165ee194dd6cf4beffad81`; child exit 1 and stop reason `cleanup_unconfirmed`.
+- Raw Julia stderr SHA-256 `f13435655eb43d8b8769a334c58b994f80ca6d081be2c61d55ac0e680fc2ae58` says `saved result state hash differs from protocol`; its stack points to `replay_staged_v20.jl:850`. That line compares `string(c.state_hash)` with `protocol.preserved_identity.state_after_hash`.
+- Hash provenance is now verified against the exact V10 source pin. `src/RuntimeV4/SpatialMultiRegionV4.jl` has SHA-256 `bab46c0dd9329944b27824315c1b55f6a1e300bb0d45e00b5a1888568fe089fd`; both the V10 protocol source pin and V20 `preserved_identity.source_sha256` bind this exact file. At line 460 (and failed-step handling at line 651), `state_after_hash` is `canonical_hash(Tuple(x))`, a hash of the solver state vector. At lines 834/903, the saved case's `state_hash` is instead computed from `(candidate_hash, context_hash, case_id, level, flux_Wb, state=final_state)` and assigned to `case.state_hash`; line 1167 independently recomputes that case identity hash.
+- The pinned `numerical_result.json` is 81,595 bytes, SHA-256 `429d500e4d42d2ae8c6af9ab88f8b9b0a7a59dc1e5da1853c9dfa6b5bd6a10e7`. Its `n1_q1_2` `diagnostics.last_attempt.state_after_hash` equals the protocol's vector hash `464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662`. Its `case.state_hash` and `engineering_input.state_hash` both equal the separately defined case identity hash `b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7`. The serialized `case.final_state` exactly equals the pinned `solver_primary.json.final_state`. Therefore V20 line 850 compares unlike hashes; the underlying issue is the replay guard's provenance/field selection, not a demonstrated stale or changed saved-result payload. Detailed path/hash reconciliation is in `provenance_reconciliation.json`.
+- Producer stdout SHA-256 `6d24f8d54694f88edaf73363788d1e984916536c4c9b35bfef2ee387b07c12a8` contains the mode/version/PID line. Both raw stream byte counts and hashes match the process receipt.
+
+## Stage depth, inputs, and resources
+
+- All seven hydration phase receipts completed through `typed_wire_encoding`; observe-first reconstruction then reported 0 mismatch roots, 0 numeric-type differences, and 0 semantic differences, with 110 representation differences covered by the saved declared-schema allowlist. The initial observation had 3 mismatch roots, 153 numeric-type differences, 0 semantic differences, and 750 representation differences. The producer then failed at the separate saved-state/protocol identity comparison.
+- Three input snapshots are byte-identical: 165,654 bytes each, SHA-256 `1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294`. They contain 725 frozen paths; all current files match the snapshot size/hash pins. The current saved producer tree matches all 119 protocol-pinned entries (6,590,185 bytes). The controller's dedicated tree comparison is still `not_reached`, and its `producer_tree_unchanged` field remains null; no after-consumer comparison is claimed.
+- The process receipt records 934 complete RSS samples and a peak sampled process-tree RSS of 1,152,794,624 bytes, below the 2,147,483,648-byte cap. The failing sample records `scope=process_identity_or_rss` and `NoSuchProcess(pid=80036)`; cleanup then records `scope=root_process_lookup` with the same missing PID. V20 runner source SHA-256 `5340b60371e2e59fc9b20f0ada0023af3574c241685df1db079d734c2c78a410` confirms `live_tree_bytes` emits `process_identity_or_rss` when per-process identity/RSS access fails (lines 2257–2263), while the natural-exit-race exception branch only accepts `scope=root_process` (lines 2844–2851). Therefore this race becomes incomplete sampling and unconfirmed cleanup. The tree inventory was incomplete and `termination_confirmed=false`; do not interpret the empty observed remaining-PID list as proof that all descendants were absent. The exact status/source reconciliation is in `supervisor_classification_reconciliation.json`.
+- Producer wall time was 259.829 seconds of 480; aggregate child time was 259.829 of 960 seconds; controller overhead was 4.412 of 120 seconds. Those limits were not exceeded. The 124 status follows from uncertain monitoring/cleanup, while the application error above is the saved result identity mismatch.
+
+## Work not reached and claim ceiling
+
+No `producer_failure.json` was written for this error, which occurs after the hydration catch block. The runtime leaf has no validator-started/full-validator receipt, carrier, binding, or `consumer_process` directory. The saved numerical result remains solver exit 2, numerical `fail`, `stationary_nonzero_residual`, physical validation `unsupported`, and `no_publish`.
+
+The full exact file/hash inventory and machine-readable checks are in `actual_postrun_receipt.json`; the exact hash-definition reconciliation is in `provenance_reconciliation.json`, and the controller classification/source reconciliation is in `supervisor_classification_reconciliation.json`. This review did not launch Julia, rerun the solver, or modify owner files. It contains only read-only evidence and review notes.

@@ -1,0 +1,1834 @@
+{
+  "schema": "native-g1g2-gridap-consumer-r29-freeze-manifest-v1",
+  "status": "static_preparation_complete_pending_independent_review_and_exact_restore",
+  "protocol_path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r29_v1/protocol.json",
+  "protocol_sha256": "abab03601790bf7e095d19fcbca53426b353c662b6c0d4693c519fd79541dc8a",
+  "protocol_input_pin_count": 214,
+  "runner_path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r29_v1.py",
+  "runner_sha256": "52303e72aadbc4979a04144be20514527b24d34e3ff05b95ebc00c18ab3f5c74",
+  "test_path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_native_g1g2_gridap_consumer_r29_v1.py",
+  "test_sha256": "f956e43adbe28390b18324b7351a5c09a2e221dd760f033476e1f85443f0d793",
+  "verifier_path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_native_g1g2_gridap_consumer_r29_v1.py",
+  "verifier_sha256": "910ffc70f1b571412bf37367ddb9a3f78adb0b454fd078bc08593a3512157b19",
+  "julia_started": false,
+  "runtime_executed": false,
+  "runtime_output_leaf_absent": true,
+  "numerical_credit": false,
+  "physical_credit": false,
+  "limits": {
+    "blas_threads": 1,
+    "compiler_mode": "--compile=min",
+    "julia_heap_size_hint": "1G",
+    "julia_threads": 1,
+    "sample_interval_seconds": 0.2,
+    "sampled_rss_stop_threshold_bytes": 2147483648,
+    "wall_seconds_per_stage": 480.0
+  },
+  "stage_order": [
+    "parse_all",
+    "primary",
+    "fresh_replay"
+  ],
+  "fixture_and_solver_thresholds_unchanged": true,
+  "precontract_source": {
+    "path": "runs/goal_execution_20260926/r29_initial_runner_precontract.py",
+    "bytes": 107390,
+    "sha256": "5e5a1f86e3860fba91d1c5a76f4a758e20a461d4a38f39f59f2bcb94b2e56eaa",
+    "source_bytes": 107390,
+    "source_sha256": "5e5a1f86e3860fba91d1c5a76f4a758e20a461d4a38f39f59f2bcb94b2e56eaa",
+    "status": "precontract/static-only/NO-GO",
+    "formal_runtime_credit": false
+  },
+  "static_qa_receipts": {
+    "orphan_chain_fault_injection": {
+      "command_argv": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.command_argv.json",
+      "expected_exit_code": 0,
+      "expected_passed": 6,
+      "expected_tests_run": 6,
+      "stderr_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.stderr.raw",
+      "stdout_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.stdout.raw"
+    },
+    "python_full_suite": {
+      "command_argv": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.command_argv.json",
+      "expected_exit_code": 0,
+      "expected_passed": 30,
+      "expected_tests_run": 30,
+      "stderr_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.stderr.raw",
+      "stdout_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.stdout.raw"
+    },
+    "static_verifier": {
+      "command_argv": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.command_argv.json",
+      "expected_exit_code": 0,
+      "expected_input_pin_count": 191,
+      "runtime_output_leaf_absent": true,
+      "stderr_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.stderr.raw",
+      "stdout_raw": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.stdout.raw"
+    },
+    "pid_reuse_fault_injection": {
+      "command_argv": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/command_argv.json",
+      "exit_code": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/exit_code.json",
+      "expected_exit_code": 0,
+      "expected_passed": 2,
+      "expected_tests_run": 2,
+      "stdout_raw": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/stdout.raw",
+      "stderr_raw": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/stderr.raw",
+      "runner_before_sha256": "52303e72aadbc4979a04144be20514527b24d34e3ff05b95ebc00c18ab3f5c74",
+      "runner_after_sha256": "52303e72aadbc4979a04144be20514527b24d34e3ff05b95ebc00c18ab3f5c74",
+      "test_before_sha256": "f956e43adbe28390b18324b7351a5c09a2e221dd760f033476e1f85443f0d793",
+      "test_after_sha256": "f956e43adbe28390b18324b7351a5c09a2e221dd760f033476e1f85443f0d793",
+      "julia_started": false,
+      "numerical_credit": false,
+      "physical_credit": false
+    }
+  },
+  "runtime_preflight": {
+    "status": "NO-GO_until_exact_restore",
+    "runtime_dispatched": false,
+    "exact_restore_required": true,
+    "missing_count": 47,
+    "restored": false,
+    "input_pin_waiver": false,
+    "inventory": [
+      {
+        "path": "docs/implementation/GOAL-EXECUTION-20260922/ownership_delta13_native_g1g2_physics.json",
+        "expected_bytes": 2120,
+        "expected_sha256": "9f393258f0999749b321c0f7a37a007457f77fe3ea96409437c84f388c20a54e",
+        "zip_member": "docs/implementation/GOAL-EXECUTION-20260922/ownership_delta13_native_g1g2_physics.json",
+        "observed_bytes": 2120,
+        "observed_sha256": "9f393258f0999749b321c0f7a37a007457f77fe3ea96409437c84f388c20a54e",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_physics_gap_review_r1_20260922/review.md",
+        "expected_bytes": 16872,
+        "expected_sha256": "ef708a7a2dcb5d38b688834ad8a277c3b975a1686e5cacdd1e4e8b382d18a67b",
+        "zip_member": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_physics_gap_review_r1_20260922/review.md",
+        "observed_bytes": 16872,
+        "observed_sha256": "ef708a7a2dcb5d38b688834ad8a277c3b975a1686e5cacdd1e4e8b382d18a67b",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review.md",
+        "expected_bytes": 9528,
+        "expected_sha256": "4cd2ae78641b2b4b6f788fac6a902e014ed0b4108f329f3bdb2365c61c99b3ac",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review.md",
+        "observed_bytes": 9528,
+        "observed_sha256": "4cd2ae78641b2b4b6f788fac6a902e014ed0b4108f329f3bdb2365c61c99b3ac",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review_manifest.json",
+        "expected_bytes": 5016,
+        "expected_sha256": "bcddf629c96332bf1776b4b906fe392e0ca30847b624b3636b61d8c14d1cf53d",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review_manifest.json",
+        "observed_bytes": 5016,
+        "observed_sha256": "bcddf629c96332bf1776b4b906fe392e0ca30847b624b3636b61d8c14d1cf53d",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.exit_code.txt",
+        "expected_bytes": 1,
+        "expected_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.exit_code.txt",
+        "observed_bytes": 1,
+        "observed_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stderr.raw",
+        "expected_bytes": 0,
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stderr.raw",
+        "observed_bytes": 0,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stdout.raw",
+        "expected_bytes": 298,
+        "expected_sha256": "c75c4dbf061d3a4977e6b69c5d701d07eec3603071cf4afe46eea5e2bab2cb4a",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stdout.raw",
+        "observed_bytes": 298,
+        "observed_sha256": "c75c4dbf061d3a4977e6b69c5d701d07eec3603071cf4afe46eea5e2bab2cb4a",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/commands.txt",
+        "expected_bytes": 3019,
+        "expected_sha256": "8581508289b3cc4fcc87ca333f7b4488a4f17585e811a1636bcf41d918479a26",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/commands.txt",
+        "observed_bytes": 3019,
+        "observed_sha256": "8581508289b3cc4fcc87ca333f7b4488a4f17585e811a1636bcf41d918479a26",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.exit_code.txt",
+        "expected_bytes": 1,
+        "expected_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.exit_code.txt",
+        "observed_bytes": 1,
+        "observed_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stderr.raw",
+        "expected_bytes": 1477,
+        "expected_sha256": "8b0c5a938238054d2b3cd535f3c8c5e9ca792763844dd0ac2f1624aface387ad",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stderr.raw",
+        "observed_bytes": 1477,
+        "observed_sha256": "8b0c5a938238054d2b3cd535f3c8c5e9ca792763844dd0ac2f1624aface387ad",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stdout.raw",
+        "expected_bytes": 0,
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stdout.raw",
+        "observed_bytes": 0,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review.md",
+        "expected_bytes": 8422,
+        "expected_sha256": "ccc94d5cf0b8f97bb07a2e51fcee6668bee66480d488b24571d70511ab957a5b",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review.md",
+        "observed_bytes": 8422,
+        "observed_sha256": "ccc94d5cf0b8f97bb07a2e51fcee6668bee66480d488b24571d70511ab957a5b",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review_manifest.json",
+        "expected_bytes": 12852,
+        "expected_sha256": "f149f79dfb7d85a23678eef2ceae79abed780e6b51542da235d6c8f190f4c818",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review_manifest.json",
+        "observed_bytes": 12852,
+        "observed_sha256": "f149f79dfb7d85a23678eef2ceae79abed780e6b51542da235d6c8f190f4c818",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.exit_code.txt",
+        "expected_bytes": 1,
+        "expected_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.exit_code.txt",
+        "observed_bytes": 1,
+        "observed_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stderr.raw",
+        "expected_bytes": 0,
+        "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stderr.raw",
+        "observed_bytes": 0,
+        "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stdout.raw",
+        "expected_bytes": 533,
+        "expected_sha256": "d573734fb3102d148db88186fbdd3fa94a3f3a9690962c81b1e692711ddc6903",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stdout.raw",
+        "observed_bytes": 533,
+        "observed_sha256": "d573734fb3102d148db88186fbdd3fa94a3f3a9690962c81b1e692711ddc6903",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review.md",
+        "expected_bytes": 5217,
+        "expected_sha256": "e9e3ec48cb26f986d449feb01035e1bf4578b398c9f1b82526eed56cb14830ed",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review.md",
+        "observed_bytes": 5217,
+        "observed_sha256": "e9e3ec48cb26f986d449feb01035e1bf4578b398c9f1b82526eed56cb14830ed",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review_manifest.json",
+        "expected_bytes": 5022,
+        "expected_sha256": "a51f4f8448bbf67817f6824ac00bffef3aa766ab4afc5894240e2b8afbeaa0e9",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review_manifest.json",
+        "observed_bytes": 5022,
+        "observed_sha256": "a51f4f8448bbf67817f6824ac00bffef3aa766ab4afc5894240e2b8afbeaa0e9",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/evidence_manifest.json",
+        "expected_bytes": 4768,
+        "expected_sha256": "dd25fd77ddad1d9dca000608441dce785c94ae13352b84ccff04d7213f47d027",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/evidence_manifest.json",
+        "observed_bytes": 4768,
+        "observed_sha256": "dd25fd77ddad1d9dca000608441dce785c94ae13352b84ccff04d7213f47d027",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/review.md",
+        "expected_bytes": 4395,
+        "expected_sha256": "ac0b6f1681c7e51bc2471909f5c164d17d8538d28227a340cd2863dec3a20f61",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/review.md",
+        "observed_bytes": 4395,
+        "observed_sha256": "ac0b6f1681c7e51bc2471909f5c164d17d8538d28227a340cd2863dec3a20f61",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/evidence_manifest.json",
+        "expected_bytes": 1282,
+        "expected_sha256": "9e0bc0a6523cfa4129517b193f8b19eb9737feffe677a1fc8aa27d8496ce127a",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/evidence_manifest.json",
+        "observed_bytes": 1282,
+        "observed_sha256": "9e0bc0a6523cfa4129517b193f8b19eb9737feffe677a1fc8aa27d8496ce127a",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/review.md",
+        "expected_bytes": 3627,
+        "expected_sha256": "91d2d0a6a36c0b88e6fca5ada045605c2ad1ec366a1f5484289802601ccc5588",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/review.md",
+        "observed_bytes": 3627,
+        "observed_sha256": "91d2d0a6a36c0b88e6fca5ada045605c2ad1ec366a1f5484289802601ccc5588",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review.md",
+        "expected_bytes": 5778,
+        "expected_sha256": "bd3500584b79eda22c9dbc2d2fb0c0e9fd6514d05d55090241a9e9d1fbce77ee",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review.md",
+        "observed_bytes": 5778,
+        "observed_sha256": "bd3500584b79eda22c9dbc2d2fb0c0e9fd6514d05d55090241a9e9d1fbce77ee",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review_manifest.json",
+        "expected_bytes": 5793,
+        "expected_sha256": "3b52296caaf8e16ee56fe3dbafcdc5c462fb462c6f29b53ed712b2b34e47ea56",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review_manifest.json",
+        "observed_bytes": 5793,
+        "observed_sha256": "3b52296caaf8e16ee56fe3dbafcdc5c462fb462c6f29b53ed712b2b34e47ea56",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/evidence_manifest.json",
+        "expected_bytes": 4833,
+        "expected_sha256": "f8ddd4ce984e195ed87cd0e3a0c9f4bc0452dabe2e25505b63700e2ca5bbbd37",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/evidence_manifest.json",
+        "observed_bytes": 4833,
+        "observed_sha256": "f8ddd4ce984e195ed87cd0e3a0c9f4bc0452dabe2e25505b63700e2ca5bbbd37",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/review.md",
+        "expected_bytes": 5316,
+        "expected_sha256": "b28dcddafb169bb09217516819707c90bb8c158668b095810515f8be0d76f93c",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/review.md",
+        "observed_bytes": 5316,
+        "observed_sha256": "b28dcddafb169bb09217516819707c90bb8c158668b095810515f8be0d76f93c",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/freeze_manifest.json",
+        "expected_bytes": 36234,
+        "expected_sha256": "64713820c21bf509432823bf6d685fe40ee79966747acca7f15bb6827c86524f",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/freeze_manifest.json",
+        "observed_bytes": 36234,
+        "observed_sha256": "64713820c21bf509432823bf6d685fe40ee79966747acca7f15bb6827c86524f",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/protocol.json",
+        "expected_bytes": 39272,
+        "expected_sha256": "d75bcb96be36088caebb515aa5342b793519432a0fae16da47a5a83b1fe43511",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/protocol.json",
+        "observed_bytes": 39272,
+        "observed_sha256": "d75bcb96be36088caebb515aa5342b793519432a0fae16da47a5a83b1fe43511",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/freeze_manifest.json",
+        "expected_bytes": 51239,
+        "expected_sha256": "3a707a08afc0b3264270ea3f42afb04aca0365c0c63b44409787dbf3bcf611b2",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/freeze_manifest.json",
+        "observed_bytes": 51239,
+        "observed_sha256": "3a707a08afc0b3264270ea3f42afb04aca0365c0c63b44409787dbf3bcf611b2",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/protocol.json",
+        "expected_bytes": 47161,
+        "expected_sha256": "9fd7c31d90329b5bf8dd862468da0c9ccfb3cd5cb0963a2ba4ae237e1ca5916a",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/protocol.json",
+        "observed_bytes": 47161,
+        "observed_sha256": "9fd7c31d90329b5bf8dd862468da0c9ccfb3cd5cb0963a2ba4ae237e1ca5916a",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/freeze_manifest.json",
+        "expected_bytes": 44879,
+        "expected_sha256": "7898749d02b726fb45ebe4d2b2bbef6351e05e1b0265a18d90d044508298c6cf",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/freeze_manifest.json",
+        "observed_bytes": 44879,
+        "observed_sha256": "7898749d02b726fb45ebe4d2b2bbef6351e05e1b0265a18d90d044508298c6cf",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/protocol.json",
+        "expected_bytes": 49934,
+        "expected_sha256": "0e97083ef91123872e701cf707c2783b982c3fd15ab6cc56cd10cb5697d8a426",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/protocol.json",
+        "observed_bytes": 49934,
+        "observed_sha256": "0e97083ef91123872e701cf707c2783b982c3fd15ab6cc56cd10cb5697d8a426",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/freeze_manifest.json",
+        "expected_bytes": 57472,
+        "expected_sha256": "35dfe540b0abe1d49b872d2f97fb5b7f9e820b37aae39be649d7d0d8b95cf9d0",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/freeze_manifest.json",
+        "observed_bytes": 57472,
+        "observed_sha256": "35dfe540b0abe1d49b872d2f97fb5b7f9e820b37aae39be649d7d0d8b95cf9d0",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/protocol.json",
+        "expected_bytes": 65014,
+        "expected_sha256": "201ebb0fc3195b96fcbea84462fc5fe0886324ab9357c7838144f10897374e8d",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/protocol.json",
+        "observed_bytes": 65014,
+        "observed_sha256": "201ebb0fc3195b96fcbea84462fc5fe0886324ab9357c7838144f10897374e8d",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/final.json",
+        "expected_bytes": 2905,
+        "expected_sha256": "b278059a0029fa7f3f59639d97c78bf4f0498c9bad5208e19fb1d7289962bba8",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/final.json",
+        "observed_bytes": 2905,
+        "observed_sha256": "b278059a0029fa7f3f59639d97c78bf4f0498c9bad5208e19fb1d7289962bba8",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/stdout.raw",
+        "expected_bytes": 33,
+        "expected_sha256": "29f966d88cd13f6f31a7796b15a3dd5999ec8288cb19584fdc5fd7ec2f9852ad",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/stdout.raw",
+        "observed_bytes": 33,
+        "observed_sha256": "29f966d88cd13f6f31a7796b15a3dd5999ec8288cb19584fdc5fd7ec2f9852ad",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/final.json",
+        "expected_bytes": 2261,
+        "expected_sha256": "81fd260954e9cb0e6d76d8e337c044e9f812456c283c694be7a57d29538e14a0",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/final.json",
+        "observed_bytes": 2261,
+        "observed_sha256": "81fd260954e9cb0e6d76d8e337c044e9f812456c283c694be7a57d29538e14a0",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/stdout.raw",
+        "expected_bytes": 6853,
+        "expected_sha256": "2a61130c55dc3f7d6886092c406d876bb0a2430e1ae0403dace93a0c357d6595",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/stdout.raw",
+        "observed_bytes": 6853,
+        "observed_sha256": "2a61130c55dc3f7d6886092c406d876bb0a2430e1ae0403dace93a0c357d6595",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/parse_manifest.tsv",
+        "expected_bytes": 11504,
+        "expected_sha256": "a9f8625483929b02b3e1d00b272199a9be1f385ce212eb4459c9887d5b783ffa",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/parse_manifest.tsv",
+        "observed_bytes": 11504,
+        "observed_sha256": "a9f8625483929b02b3e1d00b272199a9be1f385ce212eb4459c9887d5b783ffa",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/protocol.json",
+        "expected_bytes": 21649,
+        "expected_sha256": "19a521ee7a7c59b44e6e379ccec32dcabeb9cb3081eeffc38ca28a8c0db02000",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/protocol.json",
+        "observed_bytes": 21649,
+        "observed_sha256": "19a521ee7a7c59b44e6e379ccec32dcabeb9cb3081eeffc38ca28a8c0db02000",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/summary.json",
+        "expected_bytes": 49252,
+        "expected_sha256": "e0ebc5cfd90ac36f4249af1022a2f05277c3e9850816244ca63bbb40ce1a5044",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/summary.json",
+        "observed_bytes": 49252,
+        "observed_sha256": "e0ebc5cfd90ac36f4249af1022a2f05277c3e9850816244ca63bbb40ce1a5044",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/freeze_manifest.json",
+        "expected_bytes": 6834,
+        "expected_sha256": "cd78efa4fa67e41090248a6a34bcbe0f797d418365b9eeccca71c36b2c1ed0d9",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/freeze_manifest.json",
+        "observed_bytes": 6834,
+        "observed_sha256": "cd78efa4fa67e41090248a6a34bcbe0f797d418365b9eeccca71c36b2c1ed0d9",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/handoff.md",
+        "expected_bytes": 8369,
+        "expected_sha256": "82a88826ebe6f6f10b2c9f56045e37ae74905feb97b92e3f42241c25e8397fe5",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/handoff.md",
+        "observed_bytes": 8369,
+        "observed_sha256": "82a88826ebe6f6f10b2c9f56045e37ae74905feb97b92e3f42241c25e8397fe5",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/protocol.json",
+        "expected_bytes": 45711,
+        "expected_sha256": "7f5c42314b444dd374eb0b71a187888ca6fa595b3be394c63caa8bc0afe3900b",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/protocol.json",
+        "observed_bytes": 45711,
+        "observed_sha256": "7f5c42314b444dd374eb0b71a187888ca6fa595b3be394c63caa8bc0afe3900b",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/parse_manifest.tsv",
+        "expected_bytes": 11492,
+        "expected_sha256": "4abb91920481650c5fb7b6d8da6f2f4369dd9880c40e4a52735f939ccfada2f5",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/parse_manifest.tsv",
+        "observed_bytes": 11492,
+        "observed_sha256": "4abb91920481650c5fb7b6d8da6f2f4369dd9880c40e4a52735f939ccfada2f5",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/protocol.json",
+        "expected_bytes": 5504,
+        "expected_sha256": "ab22013fa088cc6d68bcc175efcd5be8670ec1a0eee10663f5bdf0e6c543b1ae",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/protocol.json",
+        "observed_bytes": 5504,
+        "observed_sha256": "ab22013fa088cc6d68bcc175efcd5be8670ec1a0eee10663f5bdf0e6c543b1ae",
+        "archive_match": true
+      },
+      {
+        "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/static_preflight.json",
+        "expected_bytes": 21070,
+        "expected_sha256": "eefb6b07e8d1a4d7ca67bcfe63a21e0c506adce2182124e579a06ee994a6d7bf",
+        "zip_member": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/static_preflight.json",
+        "observed_bytes": 21070,
+        "observed_sha256": "eefb6b07e8d1a4d7ca67bcfe63a21e0c506adce2182124e579a06ee994a6d7bf",
+        "archive_match": true
+      }
+    ],
+    "archive": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI_cleanup_20260926\\precleanup_docs_runs_tmp.zip",
+      "bytes": 472888641,
+      "sha256": "c84743bc55dc749bbcc43e936c278027ad9bce9b437c09e176be587f75ff2bb7",
+      "local_only": true,
+      "portable": false
+    }
+  },
+  "archive_entries": [
+    {
+      "path": "Manifest.toml",
+      "bytes": 3348,
+      "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "Project.toml",
+      "bytes": 611,
+      "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/GOAL-EXECUTION-20260922/ownership_delta13_native_g1g2_physics.json",
+      "bytes": 2120,
+      "sha256": "9f393258f0999749b321c0f7a37a007457f77fe3ea96409437c84f388c20a54e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_physics_gap_review_r1_20260922/review.md",
+      "bytes": 16872,
+      "sha256": "ef708a7a2dcb5d38b688834ad8a277c3b975a1686e5cacdd1e4e8b382d18a67b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review.md",
+      "bytes": 9528,
+      "sha256": "4cd2ae78641b2b4b6f788fac6a902e014ed0b4108f329f3bdb2365c61c99b3ac",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r23_review_20260925/review_manifest.json",
+      "bytes": 5016,
+      "sha256": "bcddf629c96332bf1776b4b906fe392e0ca30847b624b3636b61d8c14d1cf53d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.exit_code.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/bind_failure_fake_probe_r2.stdout.raw",
+      "bytes": 298,
+      "sha256": "c75c4dbf061d3a4977e6b69c5d701d07eec3603071cf4afe46eea5e2bab2cb4a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/commands.txt",
+      "bytes": 3019,
+      "sha256": "8581508289b3cc4fcc87ca333f7b4488a4f17585e811a1636bcf41d918479a26",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.exit_code.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stderr.raw",
+      "bytes": 1477,
+      "sha256": "8b0c5a938238054d2b3cd535f3c8c5e9ca792763844dd0ac2f1624aface387ad",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/python_tests_exact.stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review.md",
+      "bytes": 8422,
+      "sha256": "ccc94d5cf0b8f97bb07a2e51fcee6668bee66480d488b24571d70511ab957a5b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/review_manifest.json",
+      "bytes": 12852,
+      "sha256": "f149f79dfb7d85a23678eef2ceae79abed780e6b51542da235d6c8f190f4c818",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.exit_code.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r24_review_20260925/static_verifier_exact.stdout.raw",
+      "bytes": 533,
+      "sha256": "d573734fb3102d148db88186fbdd3fa94a3f3a9690962c81b1e692711ddc6903",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review.md",
+      "bytes": 5217,
+      "sha256": "e9e3ec48cb26f986d449feb01035e1bf4578b398c9f1b82526eed56cb14830ed",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r25_review_20260925/review_manifest.json",
+      "bytes": 5022,
+      "sha256": "a51f4f8448bbf67817f6824ac00bffef3aa766ab4afc5894240e2b8afbeaa0e9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/evidence_manifest.json",
+      "bytes": 4768,
+      "sha256": "dd25fd77ddad1d9dca000608441dce785c94ae13352b84ccff04d7213f47d027",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_cleanup_tester_search_chain_r1_20260925/review.md",
+      "bytes": 4395,
+      "sha256": "ac0b6f1681c7e51bc2471909f5c164d17d8538d28227a340cd2863dec3a20f61",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/evidence_manifest.json",
+      "bytes": 1282,
+      "sha256": "9e0bc0a6523cfa4129517b193f8b19eb9737feffe677a1fc8aa27d8496ce127a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_postrun_search_chain_r1_20260925/review.md",
+      "bytes": 3627,
+      "sha256": "91d2d0a6a36c0b88e6fca5ada045605c2ad1ec366a1f5484289802601ccc5588",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review.md",
+      "bytes": 5778,
+      "sha256": "bd3500584b79eda22c9dbc2d2fb0c0e9fd6514d05d55090241a9e9d1fbce77ee",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r26_review_20260925/review_manifest.json",
+      "bytes": 5793,
+      "sha256": "3b52296caaf8e16ee56fe3dbafcdc5c462fb462c6f29b53ed712b2b34e47ea56",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/evidence_manifest.json",
+      "bytes": 4833,
+      "sha256": "f8ddd4ce984e195ed87cd0e3a0c9f4bc0452dabe2e25505b63700e2ca5bbbd37",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/independent_native_g1g2_r27_tester_search_chain_r1_20260926/review.md",
+      "bytes": 5316,
+      "sha256": "b28dcddafb169bb09217516819707c90bb8c158668b095810515f8be0d76f93c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/freeze_manifest.json",
+      "bytes": 36234,
+      "sha256": "64713820c21bf509432823bf6d685fe40ee79966747acca7f15bb6827c86524f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r24_v1/protocol.json",
+      "bytes": 39272,
+      "sha256": "d75bcb96be36088caebb515aa5342b793519432a0fae16da47a5a83b1fe43511",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/freeze_manifest.json",
+      "bytes": 51239,
+      "sha256": "3a707a08afc0b3264270ea3f42afb04aca0365c0c63b44409787dbf3bcf611b2",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r25_v1/protocol.json",
+      "bytes": 47161,
+      "sha256": "9fd7c31d90329b5bf8dd862468da0c9ccfb3cd5cb0963a2ba4ae237e1ca5916a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/01_parse_all/final.json",
+      "bytes": 432433,
+      "sha256": "40885a0b327a026780261f4dd5daaf1f7ede64c570e537c9f10f5ab381550a85",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/01_parse_all/samples.jsonl",
+      "bytes": 193232,
+      "sha256": "5804df2381d1a2334c688acb8fab4e295198ab706fa335a9bef0fa08df26d3ef",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/01_parse_all/start.json",
+      "bytes": 2153,
+      "sha256": "d8349d6d824afd4910f3f3d6bd93e7e4728398aa557b80a317d26cfed971e04a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/01_parse_all/stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/01_parse_all/stdout.raw",
+      "bytes": 33,
+      "sha256": "29f966d88cd13f6f31a7796b15a3dd5999ec8288cb19584fdc5fd7ec2f9852ad",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/02_primary/final.json",
+      "bytes": 37650309,
+      "sha256": "6ce50bf5a3a43fa9a623e74a1058d12c5eae06daff9dae13f92bde6bf0553a8d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/02_primary/samples.jsonl",
+      "bytes": 16947580,
+      "sha256": "114d368613b06b2d049cde54b7bdb7c1ab6581c5468cccf94f69b39a8567e06b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/02_primary/start.json",
+      "bytes": 1509,
+      "sha256": "0f19f6cd6e1697ac2280c30445195b0a193eee8c9d2c95cc733ed1599d8b871a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/02_primary/stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/02_primary/stdout.raw",
+      "bytes": 8009,
+      "sha256": "b8fc353e39f2236293e7d3002652cc827208e3544993c4a278a159e9005a9c50",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/prelaunch.json",
+      "bytes": 36744,
+      "sha256": "f98f251ba56c32b49f7faf40b06501e68a9880c5fa5164a6423b621c54b3b2d1",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/actual_run_root_grant_01/summary.json",
+      "bytes": 45996816,
+      "sha256": "9c31de1b208139365667e3327537a41adb01c982e661d54271392f6896212d11",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/freeze_manifest.json",
+      "bytes": 44879,
+      "sha256": "7898749d02b726fb45ebe4d2b2bbef6351e05e1b0265a18d90d044508298c6cf",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r26_v1/protocol.json",
+      "bytes": 49934,
+      "sha256": "0e97083ef91123872e701cf707c2783b982c3fd15ab6cc56cd10cb5697d8a426",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/freeze_manifest.json",
+      "bytes": 57472,
+      "sha256": "35dfe540b0abe1d49b872d2f97fb5b7f9e820b37aae39be649d7d0d8b95cf9d0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r27_v1/protocol.json",
+      "bytes": 65014,
+      "sha256": "201ebb0fc3195b96fcbea84462fc5fe0886324ab9357c7838144f10897374e8d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/freeze_manifest.json",
+      "bytes": 53011,
+      "sha256": "ebecae747dab25b161c816dda6c74992681fa082a107a0f553a92c5626b224aa",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/handoff.md",
+      "bytes": 4970,
+      "sha256": "c8a4a69ade1e3c48064c674f5150e9e08192f45d5e4adc294659e1ef6df970d5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.command_argv.json",
+      "bytes": 263,
+      "sha256": "1a87ba1921bedf7b6847742568925d0e5b946a1ae590b4cd77bf3f5588e58ef3",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.exit_code.json",
+      "bytes": 18,
+      "sha256": "302c5fcf0227d427ee240abdbd2a948557ea7ab09699f9c3bdeb0f98b67375ce",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.stderr.raw",
+      "bytes": 1233,
+      "sha256": "e1fc4b689ff58d0687ef9947e5f9dac64fe1b0c257b0d84e3f3f07486bededdb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/orphan_chain_tests_final.stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/protocol.json",
+      "bytes": 67613,
+      "sha256": "a0724674ff5ebec3d838fc646c376f307bac6ea0b2b5595de0e7abadf000ccee",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.command_argv.json",
+      "bytes": 227,
+      "sha256": "4b515090cc298ad46c1bbebba27dccab5bf2576ff6b57b47af4d7d65fb951ea5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.exit_code.json",
+      "bytes": 18,
+      "sha256": "302c5fcf0227d427ee240abdbd2a948557ea7ab09699f9c3bdeb0f98b67375ce",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.stderr.raw",
+      "bytes": 5382,
+      "sha256": "d83ef48631bb091f25f51292df4354a199c38d63ee69dfa648c7806f1fea9855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/python_tests_final.stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.command_argv.json",
+      "bytes": 403,
+      "sha256": "6fcd4b7eec148a2171d1a27516138505a8fbfb068b03212f711f7f43c25ee156",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.exit_code.json",
+      "bytes": 18,
+      "sha256": "302c5fcf0227d427ee240abdbd2a948557ea7ab09699f9c3bdeb0f98b67375ce",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_gridap_consumer_r28_v1/static_verifier_final.stdout.raw",
+      "bytes": 533,
+      "sha256": "21a86e852446c36c9147e62cb025ac203bcc7c9fe52df4032f20d2623a939453",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/final.json",
+      "bytes": 2905,
+      "sha256": "b278059a0029fa7f3f59639d97c78bf4f0498c9bad5208e19fb1d7289962bba8",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/01_parse_all/stdout.raw",
+      "bytes": 33,
+      "sha256": "29f966d88cd13f6f31a7796b15a3dd5999ec8288cb19584fdc5fd7ec2f9852ad",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/final.json",
+      "bytes": 2261,
+      "sha256": "81fd260954e9cb0e6d76d8e337c044e9f812456c283c694be7a57d29538e14a0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/02_primary/stdout.raw",
+      "bytes": 6853,
+      "sha256": "2a61130c55dc3f7d6886092c406d876bb0a2430e1ae0403dace93a0c357d6595",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/parse_manifest.tsv",
+      "bytes": 11504,
+      "sha256": "a9f8625483929b02b3e1d00b272199a9be1f385ce212eb4459c9887d5b783ffa",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/protocol.json",
+      "bytes": 21649,
+      "sha256": "19a521ee7a7c59b44e6e379ccec32dcabeb9cb3081eeffc38ca28a8c0db02000",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_prelaunch_r13_v1/r13_actual_v1/summary.json",
+      "bytes": 49252,
+      "sha256": "e0ebc5cfd90ac36f4249af1022a2f05277c3e9850816244ca63bbb40ce1a5044",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/freeze_manifest.json",
+      "bytes": 6834,
+      "sha256": "cd78efa4fa67e41090248a6a34bcbe0f797d418365b9eeccca71c36b2c1ed0d9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/handoff.md",
+      "bytes": 8369,
+      "sha256": "82a88826ebe6f6f10b2c9f56045e37ae74905feb97b92e3f42241c25e8397fe5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_r23_spi_static_20260925_r1/protocol.json",
+      "bytes": 45711,
+      "sha256": "7f5c42314b444dd374eb0b71a187888ca6fa595b3be394c63caa8bc0afe3900b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/parse_manifest.tsv",
+      "bytes": 11492,
+      "sha256": "4abb91920481650c5fb7b6d8da6f2f4369dd9880c40e4a52735f939ccfada2f5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/protocol.json",
+      "bytes": 5504,
+      "sha256": "ab22013fa088cc6d68bcc175efcd5be8670ec1a0eee10663f5bdf0e6c543b1ae",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/independent_r10_source_marker_review_20260923/frozen_protocol/static_preflight.json",
+      "bytes": 21070,
+      "sha256": "eefb6b07e8d1a4d7ca67bcfe63a21e0c506adce2182124e579a06ee994a6d7bf",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "runs/goal_execution_20260926/r29_initial_runner_precontract.py",
+      "bytes": 107390,
+      "sha256": "5e5a1f86e3860fba91d1c5a76f4a758e20a461d4a38f39f59f2bcb94b2e56eaa",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/command_argv.json",
+      "bytes": 759,
+      "sha256": "a9494f50aaffb3d2bed9364d24d59f6a4ae6ba94d842a7668f3da27d2f30f9e5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/exit_code.json",
+      "bytes": 695,
+      "sha256": "1624872362295622270ee6b10739b06afb7b2a06412a60facd03fda6f813a09b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/stderr.raw",
+      "bytes": 451,
+      "sha256": "f86f807c43fbd63952449cb2200e6f5c6eb91b7c7bfae1666b06893c9ae6185b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "runs/goal_execution_20260926/r29_pid_reuse_static_qa_r1/stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/CanonicalJSON.jl",
+      "bytes": 10229,
+      "sha256": "612edaeb822c1beeff44f7134497426fd0c8ff1eea9c16a651421e2c63f8ab93",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/ClosedCanonicalByteWriter.jl",
+      "bytes": 6354,
+      "sha256": "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/ConditionalEGraphCanonical.jl",
+      "bytes": 34551,
+      "sha256": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/ControlObservationRequirementCanonical.jl",
+      "bytes": 11788,
+      "sha256": "4ce8b6e6ddf8a659cda3253ffa3a5943e114eec768e6ed61a9e2d136c7a06c0b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/ExactGraphCanonicalization.jl",
+      "bytes": 15741,
+      "sha256": "4b2a1072ba8bd70e00ccd334027e488c9f4000dcc96b78d39944fad7bce4f6e3",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "bytes": 8278,
+      "sha256": "e1f24e6de91cb2ceb3fe32e656ca66517870797c5f9dda80001541a5790c22ff",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "bytes": 4118,
+      "sha256": "3d573c530957b901395a4539538246db3c55462d179ad443ce7be166866ef1f7",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "bytes": 7528,
+      "sha256": "af024092decd20ef2e5a084ae3ae3894448a228b20ddff64e5dc792039bbfa8d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "bytes": 20246,
+      "sha256": "ce4bb9411a9dd0f0019c2a544c7bc82ce39c5f727a89543ca8e4d9a355da0b23",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/Hashes.jl",
+      "bytes": 1606,
+      "sha256": "bd205d1208d095397447d3749f53b15a59cf22d2c7636d43d263c9ee7e09bd00",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/MechanismCanonicalTransport.jl",
+      "bytes": 31713,
+      "sha256": "dc37e6a8634d907f769f92c2715d7d783c47790f3e573363211330901ff0082a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/MechanismHashLayers.jl",
+      "bytes": 45805,
+      "sha256": "d6b4dd07898948ff9b48074da951a8118da4c6a2550b7174d327017492d444d7",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/MechanismObservableCanonical.jl",
+      "bytes": 13457,
+      "sha256": "20f20219713a438b34f71bf3cdcc4bd2bb508a79dbbb234439b947aa19bad611",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Canonical/TypedASTProgramCanonical.jl",
+      "bytes": 44715,
+      "sha256": "f1f1ca40e5f32af9c5fe18ac08b87600f25149e31863489c3c6e9a40a5cfff07",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/Authority.jl",
+      "bytes": 367,
+      "sha256": "f3d43055134a61116d7364bc4f231d5bca392f88a6c38c163757587d737890e5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/CandidateStatePackage.jl",
+      "bytes": 14084,
+      "sha256": "7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/CandidateStatePackageV5.jl",
+      "bytes": 13496,
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/CandidateStatePackageV5NextV2.jl",
+      "bytes": 15738,
+      "sha256": "effac2e603d2a1af30605b70310a634e3659ac487634e164ab049851795c4f89",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/GenomeContractRegistry.jl",
+      "bytes": 2389,
+      "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "bytes": 3344,
+      "sha256": "a2ef1257989f038836b0623dc95cc06f2b56a8130a4181a928eea5f0aa6a86cf",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/StatusDimensions.jl",
+      "bytes": 2798,
+      "sha256": "f0bc711e8344d768ae35e6b7ff4fbfff3de523ed3ed07bd91ccfb43adee080cc",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/VNextT1CandidateBindingV2.jl",
+      "bytes": 10143,
+      "sha256": "b507f8e4f31baea7fd2c4e5be5b5c7026382d69a92b6235f863bd67433c243b2",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/VNextT1CanonicalBytesV2.jl",
+      "bytes": 2688,
+      "sha256": "6b1043d297347f7fb3b57b465a3eff1278003268afc708e8f888258bb87bede4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+      "bytes": 5481,
+      "sha256": "a7c6ac7065d84a18e541aa5743dc908f8d5304ec5875726d22d615b2c171e943",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/FusionConceptAI.jl",
+      "bytes": 10305,
+      "sha256": "7fba6b0f632ce28cd2dd6e250561998988e241963b0ab44a3ef1677fdb270066",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "bytes": 37919,
+      "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/EquationPlanV2.jl",
+      "bytes": 15159,
+      "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "bytes": 31396,
+      "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/GrammarProfileV2.jl",
+      "bytes": 22812,
+      "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+      "bytes": 16572,
+      "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G1/MechanismGenomeV5.jl",
+      "bytes": 3887,
+      "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "bytes": 18646,
+      "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "bytes": 9905,
+      "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "bytes": 27640,
+      "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "bytes": 31706,
+      "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "bytes": 5333,
+      "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "bytes": 5945,
+      "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+      "bytes": 10297,
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "bytes": 10904,
+      "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "bytes": 24578,
+      "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+      "bytes": 34208,
+      "sha256": "ac70c4af9bfe1a4b96e03601535cb63276535a451c8b97624d559cfdb5544929",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "bytes": 64083,
+      "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "bytes": 54819,
+      "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+      "bytes": 35485,
+      "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "bytes": 34374,
+      "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "bytes": 6704,
+      "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "bytes": 33751,
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "bytes": 16452,
+      "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+      "bytes": 10317,
+      "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+      "bytes": 10826,
+      "sha256": "d68c61c20d359fd70a364ad70545845e540435b8b052fecf1a9ac1ab64e2008e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+      "bytes": 96310,
+      "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+      "bytes": 14744,
+      "sha256": "45a4bbda4d92373b822a31b23ba35753074d8ef0dbedb01d203e4289675cf27b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+      "bytes": 13232,
+      "sha256": "37fc25612cccf94044f736984f7f4a730c7f6f078898c80849981add27f3bc86",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "bytes": 61211,
+      "sha256": "6603bb1f3b8826a68583f070af13febf8fe91e1d153be90a1930c0aaa18c97a0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "bytes": 78478,
+      "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "bytes": 3899,
+      "sha256": "40071a2609422bb8ec389e1f75279d3b2afeb9822f5b847fbf97224eb3a0f655",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+      "bytes": 3155,
+      "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/ControlObservationRequirements.jl",
+      "bytes": 10109,
+      "sha256": "d518856ec4310e9c16a7425b1479f73b92d0eb6581e78f199685512f00b863ad",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/ControlPrimitives.jl",
+      "bytes": 1066,
+      "sha256": "5e5af09c633f4f66851f21bdbd223f486b6b19333e560bbebe9fb69bcb004cf2",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/FieldGeometryFieldPrograms.jl",
+      "bytes": 12872,
+      "sha256": "78e3428436798c03454b6e814d4fb9348ad3d19a485e0fb33b7045af2651b17f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/FieldGeometryGenome.jl",
+      "bytes": 982,
+      "sha256": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/FieldGeometryPhaseFields.jl",
+      "bytes": 13367,
+      "sha256": "a18ff4c417c194d6c1e6ff12e339452e9046f3782c98a17ad917216c80e83cbd",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/FieldGeometryPrimitives.jl",
+      "bytes": 8851,
+      "sha256": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/FieldGeometrySpatialSupport.jl",
+      "bytes": 30147,
+      "sha256": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismConservationOwnership.jl",
+      "bytes": 3704,
+      "sha256": "8984932e950bb6afea67e5ebd9468a61ecd352ae2370af78c8151928b99c6673",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismConservationScopes.jl",
+      "bytes": 2110,
+      "sha256": "e85e7484af81d8291971cf3e03fbb29442e30c2720423013734eb60c93f0c5a0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismGeneCanonical.jl",
+      "bytes": 14888,
+      "sha256": "28184df2f61db1b51c4ce3569b8c6593bbd4d438449866a8715875a7a56f2263",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismGenes.jl",
+      "bytes": 7163,
+      "sha256": "5f9ef77a0a31168329a6ff9d55dda77dece2eda8e5c5302e2a6911b04095a7cf",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismGenesV1.jl",
+      "bytes": 30394,
+      "sha256": "1684c0db19b7edff688ca6b2e2ebf61ed541bc210005d8979c4d68094717b57c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismGenome.jl",
+      "bytes": 3302,
+      "sha256": "8c40c572d424572a38fbcbf00c06e395226086927a4b19ff477ea433e8789dd4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismGenomePayload.jl",
+      "bytes": 36014,
+      "sha256": "fb8cb4966726328a4b9226b730586eb795e6603c39218bde142a247b6b8fab8f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismLegacyMigration.jl",
+      "bytes": 69196,
+      "sha256": "d9802d98a49f48e0e6d40e8bc982a06d7297cd46182d916b35692e663a23ecb0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/MechanismObservablesHoles.jl",
+      "bytes": 22138,
+      "sha256": "84da5b7c9c5ca20f19d2644e43d760d56a06aafe0583791c531ec0d04033128e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/Genomes/RealizationControlGenome.jl",
+      "bytes": 2099,
+      "sha256": "48c99e5ab8f5a701063016df214be9741b4b07112c8d4a84068192474329b7a4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/ConditionalEGraph.jl",
+      "bytes": 622,
+      "sha256": "538a5985b9c065f18ad47cb9271f5f4e18c972e14e9385198b6c40d78572c110",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/ConditionalEGraphSaturation.jl",
+      "bytes": 42141,
+      "sha256": "9d4d0f294079724ec54f7197dae12196a8af9c56b553f19139251aa4f9d04341",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/ConditionalEGraphTypes.jl",
+      "bytes": 38142,
+      "sha256": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/ConservationLedger.jl",
+      "bytes": 2874,
+      "sha256": "4066d9a39f2b07253c79d2ea1283872d56d8d8825f499eec23f82ba4b26a7727",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/OperatorHypergraph.jl",
+      "bytes": 24401,
+      "sha256": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/OperatorRegistry.jl",
+      "bytes": 64932,
+      "sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/PhysicalTypes.jl",
+      "bytes": 11801,
+      "sha256": "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/IR/TypedAST.jl",
+      "bytes": 27444,
+      "sha256": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/AlgebraicGenerationV4.jl",
+      "bytes": 8105,
+      "sha256": "fa07a3211a905af31de739fd82337305596ee5becdfcd4e778c2654c24e84711",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/AlgebraicResidual.jl",
+      "bytes": 35593,
+      "sha256": "7979cd8b2512958644f896116a284f3d6e352eb9e72e50e21193079af87f621f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/AlgebraicScopedSearch.jl",
+      "bytes": 23562,
+      "sha256": "3831c62191eb2307024580933ce2bf40508ff85adeb0c197207aae1f7a2d1804",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Archives.jl",
+      "bytes": 11923,
+      "sha256": "92b21487da96c9879b8899c02471e682a2a74ea110eadd6d7852b4e731b3b118",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Authority.jl",
+      "bytes": 845,
+      "sha256": "e48a5f9b24b9390806012333509ee0bca61d1fe07e9d0459523fef2548f7b22f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Campaign.jl",
+      "bytes": 4911,
+      "sha256": "3b9545c58928c06c98b114487ab4eecc7a8e8acdb34c18063ab72ea07ed480bb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Capability.jl",
+      "bytes": 6326,
+      "sha256": "1e938abfd1dc80ee3dacc3826d5e95399178b73433c72c53c306c252bdb2c442",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Compiler.jl",
+      "bytes": 14428,
+      "sha256": "7a550e2b9ac27693f7e7008f3562ef6d5f52795997bc89c676440cb2e4bab4aa",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Contracts.jl",
+      "bytes": 23715,
+      "sha256": "d190630dc76b3c78df8f6608937599f6a799dc32296400e18f8521a6b1da739c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/DeterministicScreenProvider.jl",
+      "bytes": 5933,
+      "sha256": "c02a1cf3f8b596694c964214ca82f0d83684596e53ea70365db4a787a2f82372",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Execution.jl",
+      "bytes": 6093,
+      "sha256": "4f0eeabc35a2b95a67307c561e1873788044a50ac2aa88580e14189c3813b824",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/FieldProgramEvaluation.jl",
+      "bytes": 44975,
+      "sha256": "97320caec8a8b759a4f3195b6fe5c4f1f3b2aed5370c98657cead70c94e24a86",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/FieldResidualNumerics.jl",
+      "bytes": 26849,
+      "sha256": "ed956e72e0d1f3c27d029ed1f463ce4fd38c3a9eb309c9ba9cc9ed735af2ccb5",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/FieldResidualPipeline.jl",
+      "bytes": 45405,
+      "sha256": "f928607e232e5667b27e3dc82365a376a93de830c36ec47ce2d2e767e9159856",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Frontier.jl",
+      "bytes": 21013,
+      "sha256": "c9fb9d703a2f26786f5b0598232b463d60df67d96300008e2c8b5656e2fb3f9f",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/FusionRuntimeV4.jl",
+      "bytes": 4003,
+      "sha256": "de87c548c716a041cb7d600cca4bb3d6712dc4222d3d8c526014d598075e8767",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/GridapFieldResidualAdapter.jl",
+      "bytes": 39389,
+      "sha256": "12bc4a7f8260cba51d1fe94d7a862ae22fac8f0de5d5753c2f5fda2d94a92523",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/GridapNativeG1G2DiffusionAdapterV1.jl",
+      "bytes": 60109,
+      "sha256": "4b42e7091f360e5cf7f1ad77e5c80ef7ffe440c39640566148f60c5d5623b028",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/NativeG1G2DiffusionCompilerV1.jl",
+      "bytes": 39489,
+      "sha256": "3ab3d151b5218b7a64f72037b14de8b254b52dbe91154a4a503ed0740aebc0da",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/RuntimePipeline.jl",
+      "bytes": 8431,
+      "sha256": "8c40d60a64560043546baabcb9623e8e261303d1278719fb2cd8033621a738e7",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/Search.jl",
+      "bytes": 7047,
+      "sha256": "3068b8b65a53745f1f1ac5cb4eee50133a2383c94ed48a60a4a5547aa75d3a83",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "src/RuntimeV4/WholeDevice.jl",
+      "bytes": 9158,
+      "sha256": "e178efb49a201758f6d29f3f8811b86ca3bd0f791f35488980ef2c99a5cdc5f2",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+      "bytes": 14389,
+      "sha256": "a992d7a1c77ff362cac53fe6e63f111595c173b8d6eac2f4029e1356179861bb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+      "bytes": 76191,
+      "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/fixture_and_oracle.jl",
+      "bytes": 20583,
+      "sha256": "53b63053d1d60822d772ec8cec809f93e47096faea8816bb1fc7c1b8b8f20650",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests.jl",
+      "bytes": 36953,
+      "sha256": "2416ca0f6bcdcb9bd6a20cd6f229c49b70342d8452701f740f33dd9f26e26abb",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests_r12_markers.jl",
+      "bytes": 38202,
+      "sha256": "7365639c802b3ff2ac5106bf368ea7ceea307afbe9bbfc78822907b186a99f78",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests_r14_compile_min.jl",
+      "bytes": 38202,
+      "sha256": "7365639c802b3ff2ac5106bf368ea7ceea307afbe9bbfc78822907b186a99f78",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+      "bytes": 27470,
+      "sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/r13_prelaunch_preflight.py",
+      "bytes": 32599,
+      "sha256": "9a57fcaed04c77b0ca5b37ff0ba1dc0ec06674320e016e3e7c870ccd8a00198a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/r23_native_process_table_host_smoke_v1.py",
+      "bytes": 7134,
+      "sha256": "293e5a209c00dcd7fd5970f23908c6ddce2cacc97886fce3d6b0221056e7ef4c",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r24_v1.py",
+      "bytes": 49884,
+      "sha256": "ce4d5d6b2a68a7a50903c89d6a21237f7e1b4fa02125a3594fc4ace3117a6759",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r26_v1.py",
+      "bytes": 72834,
+      "sha256": "61270040e15bb1581f9a7e2f7af1c4eb49c5c2c5f51f6009311569c9e7589424",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r28_v1.py",
+      "bytes": 104633,
+      "sha256": "20d64430f65c6c1c8c8377bc3336d2e58ce0a7ebc91131512728920ce36d41ca",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r29_v1.py",
+      "bytes": 107794,
+      "sha256": "52303e72aadbc4979a04144be20514527b24d34e3ff05b95ebc00c18ab3f5c74",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_recorded.py",
+      "bytes": 41529,
+      "sha256": "f29d301f00b4a23e76084fd2a39b000e79cc4056437100571e7910e37b1d674e",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/run_recorded_r13.py",
+      "bytes": 64098,
+      "sha256": "71a4c163b2ff285a429deab42cf4e475563c51112ee557065374de3d66769ff8",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+      "bytes": 25343,
+      "sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_native_g1g2_gridap_consumer_r24_v1.py",
+      "bytes": 6570,
+      "sha256": "b891103f1152d43126e64a8c9516909e06c013aee0577e3b7d05e0210a5b082d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_native_g1g2_gridap_consumer_r26_v1.py",
+      "bytes": 21576,
+      "sha256": "fe7f63b495b7f0dbb94a320d00b111b085256196772cd11fe7e658957c699a46",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_native_g1g2_gridap_consumer_r28_v1.py",
+      "bytes": 60751,
+      "sha256": "d842ea08afd8b6d0a2a063d6ead5d8d437b21bdaa56029864e581bc6681d7cf8",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_native_g1g2_gridap_consumer_r29_v1.py",
+      "bytes": 8443,
+      "sha256": "f956e43adbe28390b18324b7351a5c09a2e221dd760f033476e1f85443f0d793",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_r13_prelaunch_preflight.py",
+      "bytes": 3352,
+      "sha256": "4a4312d824ab5ab8fe6d8217db82baa656982e81bf9ba35459e08983da7cd3d0",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_r16_root_audit_r23_v1.py",
+      "bytes": 28593,
+      "sha256": "c179aa94a34c1244a9d9756a2cf71440008d0542fcf82b6e7d4bace4bd693a95",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_native_g1g2_gridap_consumer_r24_v1.py",
+      "bytes": 2897,
+      "sha256": "fd8212db5dbd03a4d550e023395ad354396da1a0ce054035446df22e60ad206d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_native_g1g2_gridap_consumer_r26_v1.py",
+      "bytes": 2897,
+      "sha256": "b0641a068e342450243d7da0ad9a528f87736f2765c095a64b15cdb64598a16d",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_native_g1g2_gridap_consumer_r28_v1.py",
+      "bytes": 2897,
+      "sha256": "e188e6974997db0dae05a7f1decc24c5c44aff81cccef7df9d7e1a555e452810",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_native_g1g2_gridap_consumer_r29_v1.py",
+      "bytes": 38052,
+      "sha256": "910ffc70f1b571412bf37367ddb9a3f78adb0b454fd078bc08593a3512157b19",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/verify_r23_static_protocol_v1.py",
+      "bytes": 6028,
+      "sha256": "4fd82e5c20ef2b59b8abb668a6d24384ac99a725c94c938f4f61e5b5d93886ab",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "tools/qualification/gridap/Manifest.toml",
+      "bytes": 34697,
+      "sha256": "2e1d103396d3f3faa13687bd4a95fde287d1f94e8b0006046b65e1e29aa3765a",
+      "role": "protocol_input_pin"
+    },
+    {
+      "path": "tools/qualification/gridap/Project.toml",
+      "bytes": 55,
+      "sha256": "223fb6c8ea33f03989ccb4d76ed80016a3bc2799bc4210490c4e43cc7affceb6",
+      "role": "protocol_input_pin"
+    }
+  ],
+  "prior_static_verifier_attempts": [
+    {
+      "command": "D:\\Users\\Newman\\anaconda3\\python.exe -B D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\NativeG1G2DiffusionV1\\verify_native_g1g2_gridap_consumer_r29_v1.py --protocol D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-01-NATIVE-G1G2-DIFFUSION-PREC\\archive\\native_g1g2_gridap_consumer_r29_v1\\protocol.json",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\NativeG1G2DiffusionV1\\verify_native_g1g2_gridap_consumer_r29_v1.py",
+        "--protocol",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-01-NATIVE-G1G2-DIFFUSION-PREC\\archive\\native_g1g2_gridap_consumer_r29_v1\\protocol.json"
+      ],
+      "exit_code": 1,
+      "tool_output_json": {
+        "status": "static_protocol_check_fail",
+        "runtime_executed": false,
+        "error": "R28/R29 frozen planned stage argv differs from its consumer contract"
+      },
+      "raw_stdout_persisted": false,
+      "raw_stderr_persisted": false,
+      "raw_stdout_sha256": null,
+      "raw_stderr_sha256": null,
+      "receipt_paths": null,
+      "evidence_note": "The tester reported one merged tool-output JSON line and exit 1. No separate raw streams or receipt files were captured; this is a tool-fact record, not a reconstructed receipt."
+    }
+  ]
+}

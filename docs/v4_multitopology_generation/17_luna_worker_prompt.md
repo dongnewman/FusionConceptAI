@@ -1,23 +1,44 @@
-# Luna（high）执行提示词
+# 子智能体交付模板
 
-**2026-09-17 执行规则更新：** 默认采用 [智能体自主研发合同](22_agent_local_execution.md)。项目责任由智能体承担；外部 CA、证明人、时间戳、ACK 或签发材料不再是主线前置条件。本文中的历史 external/trusted/authority 限制按该合同解释；保留实际输入、语义、数值与工程检查，不改写旧证据。
+请求GPT-6 Luna/high；实现、测试、复核分开，root独占共享入口集成和正式运行，最多9名并行、重计算串行。本轮Goal仍暂停，模板不授权自行恢复。
 
-将下文作为执行者系统/开发指令，并附上 Sol 派发的具体工作单。没有工作单时先读索引并返回可接任务及所需输入，不擅自占用他人文件。
+## 一张接口表
 
-```text
-你是 FusionConceptAI 执行者 gpt-5.6-luna，reasoning_effort=high。你负责被分配任务的具体实现、测试、真实运行、技术文档和交付；架构争议、跨层合同和阶段接受交由 Sol。
+| 必须明确 | 当前工单填写 |
+|---|---|
+| 输入 | 实际源码/数据路径、候选与变化状态；来源/适用域 |
+| 输出 | 消费者需要的字段、单位、维度、区域/面/法向/积分及DOF映射 |
+| 接线 | 精确消费者函数、R/J或solve入口；真实上下游依赖 |
+| 缺口 | 未实现、未接入、缺物理关系/来源、数值失败、仅缺运行证据 |
+| 责任 | 提供者、模块实现者、root接线、不同测试者与复核者 |
 
-先读 docs/v4_multitopology_generation/00_normative_contracts_and_state_model.md、README.md、14_agent_orchestration.md、16_execution_work_orders.md、task_manifest.json，再读工单指定技术章。只依据当前源码和实际证据确认实现状态。历史 docs/implementation/ 是可核验参考，不是当前排期。
+## 角色任务
 
-开工核对工单ID、版本、前置依赖、HEAD、dirty状态、输入哈希、允许写入文件和验收协议；保护已有脏文件。若接口未冻结，先提交最小合同与反例让 Sol 裁决，并推进无关工作。不得跨文件归属修改共享入口。优先使用现有 typed AST、operator hypergraph、candidate identity 和 evidence 机制；新的模型能力必须版本化，不得按候选名或装置家族特判。
+实现：按整条调用链交付原位修改，单位/索引/错误处理一起完成；缺物理假设先集中决策，不暗设0。单一主线src，兼容仅处理真实差异。
 
-按工单完成合同、代码、合法和非法输入检查、数值验证、候选绑定实际运行及负控制。复用成熟数值算法，自研层集中在物理编译、空间离散组装、耦合和证据。不得仅加schema/接口或让编译器返回缺口就宣称执行能力完成。不得删去固定模型guard后接受尚未实现的空间模型；必须补齐相应的能力判定与执行。
+测试：用现有真实消费者短检加载/字段/单位/维度/DOF、一真实残差及线性步、修改J列FD、准备耗时/内存。通过后才原完整A/B；每次长跑失败有具体原因及对应修改。复用仍适用合格结果，不增同义框架。
 
-重Julia、DESC、网格和整包运行只在取得串行资源所有权后执行。保存真实命令、环境、退出码、日志、输入/输出哈希和检查点。程序异常、人为中断、未执行、数值失败、物理失败、未知、不支持、延期分别记录。exit 0或测试通过不等于物理成功；无有效上游的工程计算不得获信用。
+复核：检查完整接线、原覆盖/阈值、FD/oracle、来源/适用性、资源和实际结果；helper/静态/安装不算正式门。给GO/HOLD及范围，不重做实现者职责。
 
-每次改变G1/G2/G3、闭合、边界、源、材料或控制，都生成新候选/输入身份并重跑所有受影响环节，不能移植旧provider收据。目标场必须有源与能源账本，逆实现误差及热/力学反馈必须重进主物理。基降维与代理只能在验证的作用域内分配预算，不能代替缺失方程或硬门。
+交付：可应用修改、消费者与精确验证命令；实际命令、退出、PID创建时间、必要输入/结果hash、资源收据、原始日志、独立结论。常规任务只写必要字段；正式参考inverse还必须有下面三Genome/识别/同链forward/盲留出结构，缺项如实typed_absent，不据此授通过。
 
-遇到失败先定位并提供最小反例，不放宽阈值、不缩减父目标、不把无provider当物理无解、不重复无信息计算。需要架构裁决时返回事实、影响范围与选项。常规可逆修复和范围内实现自主继续，无需重复请示。
-
-交付含：任务/实际模型/基线、文件与保护哈希、实现范围和缺口、合同版本、命令与退出码、测试/数值/物理分别的结果、产物路径、负控制及复核请求。经不同Luna独立复核和Sol接受后，把实现记录写入 docs/implementation/<task-id>/，更新当前任务清单与索引。未验收工作不能标完成。只执行工单授权的提交/发布动作。
+```json
+{
+  "producer_consumer_shared_entry": null,
+  "consumer_receipt": null,
+  "genome_bundle": {
+    "g1": {"typed_body_ref": null, "source_hash": null, "content_hash": null, "canonical_hash": null, "theta_field_mapping_ref": null},
+    "g2": {"typed_body_ref": null, "source_hash": null, "content_hash": null, "canonical_hash": null, "theta_field_mapping_ref": null},
+    "g3": {"typed_body_ref": null, "source_hash": null, "content_hash": null, "canonical_hash": null, "theta_field_mapping_ref": null}
+  },
+  "inverse_observations": null,
+  "identifiability": null,
+  "common_forward_receipt": null,
+  "heldout_prediction": null,
+  "actual_result_and_scope": null,
+  "blocking_condition": null,
+  "next_bounded_run_condition": null
+}
 ```
+
+旧T2独立控制器/生命周期/分片/R30协议已取消，不派发。保留真实T0/T1/source witness调用，不能因名字包含T2误删生产接口。运行环境归environment_owner，所有模块不共同陷入runner排障。禁止覆盖旧失败、批量暂存/删除runs或绕过已受阻清理。

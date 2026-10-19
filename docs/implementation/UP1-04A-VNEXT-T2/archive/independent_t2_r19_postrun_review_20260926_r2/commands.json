@@ -1,0 +1,32 @@
+{
+  "schema": "independent-review-command-record-r1",
+  "commands": [
+    {
+      "id": "protocol_and_pin_rehash",
+      "command": "PowerShell here-string piped to `python -B -`; read-only SHA256/byte verification of the frozen protocol, its 655 input pins in protocol/start/final-before/final-after/current disk, 104 positive reuse pins, positive dispatch/evidence pins, 9 guidance pins, controller/driver/map/supervisor/native table, phase summaries, and sample 161.",
+      "exit_code": 0,
+      "result": "655 current inputs and all supplemental pins verified; zero mismatches; HEAD stable."
+    },
+    {
+      "id": "process_state",
+      "command": "`Get-Process -Id 18528,85212,86060 -ErrorAction SilentlyContinue`; `Get-Process -Name julia -ErrorAction SilentlyContinue`",
+      "exit_code": 0,
+      "result": "Historical git/conhost/Julia PIDs absent; no Julia-named process."
+    },
+    {
+      "id": "protocol_sha",
+      "command": "`python -B -c` hashing R19 protocol.json",
+      "exit_code": 0,
+      "result": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8"
+    },
+    {
+      "id": "source_line_inspection",
+      "command": "`python -` read-only source lines 4635-4655, 1744-1756, 112-122, and 209-260",
+      "exit_code": 0,
+      "result": "Confirmed per-row requery at controller line 4643 and absent-row rejection at supervisor line 117; did not execute either source module."
+    }
+  ],
+  "julia_started_by_reviewer": false,
+  "source_modified_by_reviewer": false,
+  "outer_shell_exit_code_provenance": "Root task message reported shell exit 1; no raw outer invocation sidecar exists in the actual run leaf, so the reviewer does not represent it as independently rehashed."
+}

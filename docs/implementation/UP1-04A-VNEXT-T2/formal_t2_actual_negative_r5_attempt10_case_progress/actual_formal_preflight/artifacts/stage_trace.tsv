@@ -1,0 +1,25 @@
+schema	vnext-t2-independent-negative-stage-trace-r6
+script_entry	pid=77876	time_ns=93520945538700
+imports_complete	pid=77876	time_ns=93521652282600
+fixture_include.begin	pid=77876	time_ns=93530676236700
+fixture_include.end	pid=77876	time_ns=93533292818200	elapsed_ns=2615846800
+lazy_loader.begin	pid=77876	time_ns=93533294679700
+lazy_loader.end	pid=77876	time_ns=93533344951000	elapsed_ns=48677800
+definitions_ready	pid=77876	time_ns=93533850070300
+dispatch_before	pid=77876	time_ns=93533865648800	detail=preflight
+shard_function_body_first	pid=77876	time_ns=93567554991400	detail=preflight
+raw_authority_verify.begin	pid=77876	time_ns=93567557337800
+raw_authority_verify.end	pid=77876	time_ns=93567655798800	elapsed_ns=97300400	detail=package_bytes=9414221
+authority_documents.begin	pid=77876	time_ns=93567657429900
+authority_documents.end	pid=77876	time_ns=93567659701300	elapsed_ns=1080500
+context_deserialize.begin	pid=77876	time_ns=93567660774100
+context_deserialize.end	pid=77876	time_ns=93569402835400	elapsed_ns=1740553400	detail=bytes=31996941
+shard_source_full_reconstruction.begin	pid=77876	time_ns=93569403339100
+shard_source_full_reconstruction.end	pid=77876	time_ns=93665711513100	elapsed_ns=96307673900	detail=status=source_ready
+shard_original_package_full_content.begin	pid=77876	time_ns=93665712254000
+shard_original_package_full_content.end	pid=77876	time_ns=93667539895800	elapsed_ns=1827103200	detail=wire_bytes=8284803
+shard_adapter_candidate_gate.begin	pid=77876	time_ns=93667541698800
+shard_adapter_candidate_gate.end	pid=77876	time_ns=93678056734200	elapsed_ns=10513526600
+shard_t1_handoff_revalidation.begin	pid=77876	time_ns=93678057619700
+shard_t1_handoff_revalidation.end	pid=77876	time_ns=93703918200700	elapsed_ns=25860114000	detail=status=prepared_not_executed
+attack_group_preflight.begin	pid=77876	time_ns=93704608283100

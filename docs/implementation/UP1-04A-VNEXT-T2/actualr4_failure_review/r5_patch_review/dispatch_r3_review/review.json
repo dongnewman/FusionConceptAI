@@ -1,0 +1,673 @@
+{
+  "schema": "independent-t2-r5-dispatch-r3-static-review-r1",
+  "utc": "2026-09-22T08:41:21.088002+00:00",
+  "verdict": "bounded_static_go_for_four_positive_phases_only",
+  "checks": [
+    {
+      "name": "protocol exact reviewed version",
+      "pass": true
+    },
+    {
+      "name": "dispatch exact reviewed version",
+      "pass": true
+    },
+    {
+      "name": "snapshot join command",
+      "pass": true
+    },
+    {
+      "name": "snapshot join dispatch",
+      "pass": true
+    },
+    {
+      "name": "snapshot join protocol",
+      "pass": true
+    },
+    {
+      "name": "snapshot join runtime_inputs",
+      "pass": true
+    },
+    {
+      "name": "protocol runtime receipt join",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+      "pass": true
+    },
+    {
+      "name": "implementation test/GenomeV5/Integration/VNextT2IdentityReceiptV2/static_qa_formal_t2_execution_v1.py",
+      "pass": true
+    },
+    {
+      "name": "upstream docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json",
+      "pass": true
+    },
+    {
+      "name": "upstream src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "pass": true
+    },
+    {
+      "name": "upstream docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json",
+      "pass": true
+    },
+    {
+      "name": "explicit src/FusionConceptAI.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/static_qa_formal_t2_execution_v1.py",
+      "pass": true
+    },
+    {
+      "name": "explicit test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency Manifest.toml",
+      "pass": true
+    },
+    {
+      "name": "dependency Project.toml",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json",
+      "pass": true
+    },
+    {
+      "name": "dependency docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/CanonicalJSON.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/ClosedCanonicalByteWriter.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/ConditionalEGraphCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/ControlObservationRequirementCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/ExactGraphCanonicalization.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/Hashes.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/MechanismCanonicalTransport.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/MechanismHashLayers.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/MechanismObservableCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Canonical/TypedASTProgramCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/Authority.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/CandidateStatePackage.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/CandidateStatePackageV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/CandidateStatePackageV5Next.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/CandidateStatePackageV5NextV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/GenomeContractRegistry.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/StatusDimensions.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/VNextT1CandidateBindingV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/VNextT1CanonicalBytesV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/FusionConceptAI.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/EquationPlanV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/GrammarProfileV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G1/MechanismGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/ControlGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextGenomeV5Integration.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/ControlObservationRequirements.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/ControlPrimitives.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/FieldGeometryFieldPrograms.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/FieldGeometryGenome.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/FieldGeometryPhaseFields.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/FieldGeometryPrimitives.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/FieldGeometrySpatialSupport.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismConservationOwnership.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismConservationScopes.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismGeneCanonical.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismGenes.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismGenesV1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismGenome.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismGenomePayload.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismLegacyMigration.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/MechanismObservablesHoles.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/Genomes/RealizationControlGenome.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/ConditionalEGraph.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/ConditionalEGraphSaturation.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/ConditionalEGraphTypes.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/ConservationLedger.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/OperatorHypergraph.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/OperatorRegistry.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/PhysicalTypes.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency src/IR/TypedAST.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+      "pass": true
+    },
+    {
+      "name": "dependency test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+      "pass": true
+    },
+    {
+      "name": "exact runtime dependency set and bytes",
+      "pass": true
+    },
+    {
+      "name": "104 dependencies",
+      "pass": true
+    },
+    {
+      "name": "92 active parse/runtime Julia files",
+      "pass": true
+    },
+    {
+      "name": "V3 qualification semantic/source/evidence joins",
+      "pass": true
+    },
+    {
+      "name": "command arrays match",
+      "pass": true
+    },
+    {
+      "name": "command text is exact Windows argv encoding",
+      "pass": true
+    },
+    {
+      "name": "working set gate",
+      "pass": true
+    },
+    {
+      "name": "wall gate",
+      "pass": true
+    },
+    {
+      "name": "planned evidence path",
+      "pass": true
+    },
+    {
+      "name": "planned output absent",
+      "pass": true
+    },
+    {
+      "name": "four positive stages",
+      "pass": true
+    },
+    {
+      "name": "no premature acceptance",
+      "pass": true
+    },
+    {
+      "name": "supplement dispatch join",
+      "pass": true
+    },
+    {
+      "name": "supplement 8/7/7/2",
+      "pass": true
+    },
+    {
+      "name": "supplement separate sole execution",
+      "pass": true
+    },
+    {
+      "name": "supplement final SHA",
+      "pass": true
+    },
+    {
+      "name": "supplement exact lexical 24 test sites",
+      "pass": true
+    },
+    {
+      "name": "supplement full admission content equality retained",
+      "pass": true
+    },
+    {
+      "name": "supplement real wire byte mutation",
+      "pass": true
+    },
+    {
+      "name": "supplement real source byte mutation",
+      "pass": true
+    },
+    {
+      "name": "observation before assertions, PASS after",
+      "pass": true
+    },
+    {
+      "name": "observation does not claim executed sites",
+      "pass": true
+    },
+    {
+      "name": "old 154-site source preserved",
+      "pass": true
+    },
+    {
+      "name": "Python parse formal_t2_controller.py",
+      "pass": true
+    },
+    {
+      "name": "Python parse static_qa_formal_t2_execution_v1.py",
+      "pass": true
+    },
+    {
+      "name": "end closure unchanged",
+      "pass": true
+    }
+  ],
+  "reviewed_dispatch": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/dispatch.json",
+    "bytes": 9753,
+    "sha256": "4eb241995d58739ecef15429893a72eef4016e6a77654fba63c60f8cf66da748"
+  },
+  "reviewed_protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/protocol.json",
+    "bytes": 9884,
+    "sha256": "a849e32bb5fa94d2667ca9bc1cc0760bdd4362013f54e7ce0b6e50481ad15e9e"
+  },
+  "runtime_inputs": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/runtime_inputs.json",
+    "bytes": 25331,
+    "sha256": "279310d67e5f151578b9a141893a4f8b197973379cad93c0a1f90444d2360538"
+  },
+  "supplement": {
+    "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+    "bytes": 11926,
+    "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91"
+  },
+  "dependency_count": 104,
+  "active_julia_parse_file_count": 92,
+  "julia_executed": false,
+  "formal_t2_accepted": false,
+  "physical_accepted": false,
+  "scientific_accepted": false,
+  "pending": [
+    "root serialized lane grant",
+    "actual four-phase positive pass",
+    "independent complete legacy154 mapping/negative runtime",
+    "sole supplemental24 natural shard"
+  ],
+  "resource_scope": "300 seconds and 2 GiB sampled process-tree RSS per T2 phase; protocol T1 10/30/30 are upstream-qualified gates, not T2 remeasurement",
+  "cross_shard_join": "Future test-only negative freeze may extend closure; shared product/fixture/driver/qualifications and actual producer package bytes must join this candidate exactly."
+}

@@ -1,0 +1,62 @@
+{
+  "checks": {
+    "cap_not_exceeded": true,
+    "child_exit_was_natural_app_error_code_1": true,
+    "cleanup_root_lookup_is_nosuchprocess": true,
+    "controller_exit_124_resource_interrupt": true,
+    "natural_race_branch_only_accepts_root_process_scope": true,
+    "postrun_process_uncertain": true,
+    "protocol_sha": true,
+    "raw_sample_scope_is_identity_or_rss": true,
+    "runner_sha_matches_frozen": true,
+    "runner_tags_per_process_rss_error": true
+  },
+  "interpretation": "The RSS sampling exception happened during per-process identity/RSS access and therefore has scope process_identity_or_rss. The frozen runner natural-exit race special case only accepts scope root_process. It did not classify this as a confirmed Popen natural-exit race; it marked sampling incomplete, attempted bounded cleanup, then recorded a root_process_lookup NoSuchProcess and cleanup_unconfirmed. Producer child exit 1 is the Julia application exception; controller exit 124 is a separate fail-closed supervisory classification. No numeric resource cap was exceeded.",
+  "julia_started": false,
+  "overall": "PASS",
+  "protocol": {
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+    "sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2"
+  },
+  "read_only": true,
+  "runner": {
+    "line_2257": "except Exception as exc:",
+    "line_2263": "\"process_identity_or_rss\", root_pid, failed_pid, total, identities, exc) from exc",
+    "line_2844": "root_missing_after_confirmed_exit = (",
+    "line_2847": "exc.evidence.get(\"scope\") == \"root_process\" and",
+    "line_2851": "if root_missing_after_confirmed_exit:",
+    "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/run_replay_staged_v20.py",
+    "protocol_sha256": "5340b60371e2e59fc9b20f0ada0023af3574c241685df1db079d734c2c78a410",
+    "sha256": "5340b60371e2e59fc9b20f0ada0023af3574c241685df1db079d734c2c78a410"
+  },
+  "saved_observation": {
+    "aggregate_limit_seconds": 960.0,
+    "aggregate_spent_seconds": 259.82886090001557,
+    "cleanup_error": {
+      "error": "process PID not found (pid=80036)",
+      "error_type": "NoSuchProcess",
+      "pid": 80036,
+      "stage": "root_process_lookup"
+    },
+    "controller_classification": "resource_interruption",
+    "controller_exit_code": 124,
+    "overhead_limit_seconds": 120.0,
+    "overhead_spent_seconds": 4.411988000007113,
+    "peak_rss_bytes": 1152794624,
+    "producer_exit_code": 1,
+    "producer_stop_reason": "cleanup_unconfirmed",
+    "rss_limit_bytes": 2147483648,
+    "sample_error": {
+      "error": "process no longer exists (pid=80036)",
+      "error_type": "NoSuchProcess",
+      "observed_process_identities": [],
+      "partial_rss_bytes_not_used_for_gate": 0,
+      "process_pid": 80036,
+      "root_pid": 80036,
+      "scope": "process_identity_or_rss"
+    },
+    "wall_limit_seconds": 480.0,
+    "wall_seconds": 259.82947539997986
+  },
+  "schema": "v20-supervisor-classification-reconciliation-v1"
+}

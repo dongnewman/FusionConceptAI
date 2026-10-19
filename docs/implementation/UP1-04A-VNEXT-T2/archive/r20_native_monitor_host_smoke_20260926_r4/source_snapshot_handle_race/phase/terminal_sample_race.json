@@ -1,0 +1,20 @@
+{
+  "exact_root_handle_wait_confirmed": true,
+  "formal_t2_accepted": false,
+  "root_identity": {
+    "create_time_100ns": 134348361035157272,
+    "pid": 54988
+  },
+  "sample_errors": [
+    {
+      "message": "root process is absent from process table",
+      "phase": "sample_process_tree",
+      "repr": "ProcessTableError('root process is absent from process table')",
+      "type": "ProcessTableError"
+    }
+  ],
+  "sample_excluded_from_completed_resource_samples": true,
+  "sample_index": 12,
+  "schema": "vnext-t2-r23-terminal-sample-race-r1",
+  "status": "terminal_root_exit_during_sample"
+}

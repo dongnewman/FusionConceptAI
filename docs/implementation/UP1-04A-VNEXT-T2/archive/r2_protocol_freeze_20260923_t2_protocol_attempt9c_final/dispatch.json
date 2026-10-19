@@ -1,0 +1,221 @@
+{
+  "actual_model_attestation": "unavailable",
+  "actual_source_site_hits": "pending_julia_execution",
+  "attempt9b_static_qa_failure_basis": {
+    "files": {
+      "command": {
+        "bytes": 1646,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/command_argv.json",
+        "sha256": "77e2b29038016de49129bd9154935be2d1369040e027f517f777d0a0adcf40eb"
+      },
+      "coverage_map": {
+        "bytes": 455670,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/coverage_map_r3.json",
+        "sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+      },
+      "dispatch": {
+        "bytes": 6887,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/dispatch.json",
+        "sha256": "a665599866496a61ebd2c3497443ed393fcbf5c64049e285ab6143bdc841d098"
+      },
+      "preflight_phase": {
+        "bytes": 1975,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/projection24_reuse_preflight/phase.json",
+        "sha256": "f0eb78504292fa306f862632bc7f602378951a7352c753639037fed7e7ecf372"
+      },
+      "preflight_receipt": {
+        "bytes": 48553,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/projection24_reuse_preflight/reuse_receipt.json",
+        "sha256": "da2dfebf90b61d052997291369ec3dd561edd4b11a401f0b0679b38c91f26262"
+      },
+      "preflight_stderr": {
+        "bytes": 0,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/projection24_reuse_preflight/stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "preflight_stdout": {
+        "bytes": 327,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/projection24_reuse_preflight/stdout.raw",
+        "sha256": "8a1fd07fc8875b79ad411a17174207311d74de94312b196c9f4a06b99564f0b8"
+      },
+      "protocol": {
+        "bytes": 447838,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/protocol.json",
+        "sha256": "85e4ebc8d6833696e5e0b08cc18baad965ca27fa76c29e972f41b8ceb00e451a"
+      },
+      "static_qa": {
+        "bytes": 3867,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/static_qa.json",
+        "sha256": "2d0edd159cd7930ac4371468f980804512672fc1f365c1f22dbaa7ec55883d9d"
+      },
+      "static_qa_stderr": {
+        "bytes": 0,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/static_qa.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "static_qa_stdout": {
+        "bytes": 4006,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/static_qa.stdout.raw",
+        "sha256": "6ec4179f1de7850288b42f6844b3f662889decdf71f1ee4f3e5f376b1f4c5b48"
+      }
+    },
+    "formal_t2_accepted": false,
+    "julia_started": false,
+    "observed_failure": {
+      "message": "'manifest_path'",
+      "type": "KeyError"
+    },
+    "projection_preflight_natural_exit_code": 0,
+    "projection_reuse_sites_completed": 24,
+    "schema": "vnext-t2-attempt9b-static-qa-failure-r1",
+    "status": "preserved_static_qa_failure_not_acceptance"
+  },
+  "command": {
+    "bytes": 1607,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/command_argv.json",
+    "sha256": "5843df297f45e53b678e3b50edbb1d2bb37d1c77168c9c346edcc9304696993a"
+  },
+  "command_argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r5.py",
+    "--julia",
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--project",
+    "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "--protocol",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt9c_final\\protocol.json",
+    "--protocol-sha256",
+    "c8c258a73e824824734578b440906c6db69394c33c78ad216917f70efe3dc708",
+    "--positive-evidence",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3",
+    "--positive-final-sha256",
+    "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05",
+    "--positive-pipeline-final-sha256",
+    "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529",
+    "--evidence-dir",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_actual_negative_r4_attempt9c_final",
+    "--phase-timeout",
+    "480",
+    "--working-set-limit",
+    "2147483648"
+  ],
+  "environment": {
+    "JULIA_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "expected_runtime_case_hit_count": 68,
+  "expected_unique_case_count": 60,
+  "formal_t2_accepted": false,
+  "julia_lane_granted": false,
+  "julia_started": false,
+  "phase_count": 30,
+  "phase_order": [
+    "parse_gate",
+    "coverage_ast_inventory",
+    "projection24_cross_run_validation",
+    "actual_formal_baseline",
+    "actual_formal_preflight",
+    "actual_formal_authority",
+    "actual_formal_fault_n10",
+    "actual_formal_t1_handoff",
+    "supplementary_edited_operation",
+    "supplementary_child_coupling",
+    "artifact_hash_precondition",
+    "artifact_recomputed_corrupt",
+    "artifact_zero_malformed",
+    "artifact_attack_fixture_generation",
+    "formal_driver_artifact_raw_hash_precondition",
+    "formal_driver_artifact_deserialize_precondition",
+    "formal_driver_artifact_zero_precondition",
+    "formal_driver_artifact_wrong_type_precondition",
+    "formal_driver_artifact_foreign_package_precondition",
+    "preexisting_candidate_package_jls",
+    "preexisting_candidate_t1_admission_receipt_json",
+    "preexisting_t2_result_jls",
+    "preexisting_run_receipt_json",
+    "preexisting_replay_uncommitted_attempt_json",
+    "preexisting_prior_success_set",
+    "preexisting_prior_uncommitted",
+    "preexisting_symlink_owned_target",
+    "candidate_receipt_precondition",
+    "serialized_result_postcondition",
+    "stable_projection_postcondition"
+  ],
+  "physical_acceptance": false,
+  "planned_evidence_directory": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r4_attempt9c_final",
+  "positive_evidence": {
+    "formal_serial_replay": {
+      "bytes": 61088,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/formal_t2_serial_replay.json",
+      "sha256": "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05"
+    },
+    "pipeline_final": {
+      "bytes": 57906,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/pipeline_final.json",
+      "sha256": "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529"
+    },
+    "producer_candidate_package": {
+      "bytes": 9414221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "producer_candidate_t1_receipt": {
+      "bytes": 2166,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "producer_result": {
+      "bytes": 3367,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "producer_run_receipt": {
+      "bytes": 15269,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/run_receipt.json",
+      "sha256": "93fac17e08df2b9bf044a9473d2ec9d92c076375c9ce731eb2b7b8141fc457d7"
+    },
+    "replay_candidate_package": {
+      "bytes": 9414221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "replay_candidate_t1_receipt": {
+      "bytes": 2166,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "replay_result": {
+      "bytes": 3367,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "replay_run_receipt": {
+      "bytes": 15271,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/run_receipt.json",
+      "sha256": "5fbd9ba7267d2222fd6781d158e715af070c8b691d6622bb36698d46ec85e76f"
+    },
+    "root": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3"
+  },
+  "projection24_reuse_preflight": {
+    "bytes": 2004,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/projection24_reuse_preflight/phase.json",
+    "sha256": "9e469004e7a97d99af3a9acf6877a073cf45c69ee9894bb940e05da28f4c80c7"
+  },
+  "protocol": {
+    "bytes": 485843,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/protocol.json",
+    "sha256": "c8c258a73e824824734578b440906c6db69394c33c78ad216917f70efe3dc708"
+  },
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "resource_gates": {
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 480,
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "schema": "vnext-t2-independent-negative-dispatch-r4",
+  "scientific_acceptance": false,
+  "status": "frozen_static_ready_not_executed"
+}

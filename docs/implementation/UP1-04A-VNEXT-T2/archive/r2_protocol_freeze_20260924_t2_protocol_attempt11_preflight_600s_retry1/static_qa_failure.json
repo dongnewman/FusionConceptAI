@@ -1,0 +1,112 @@
+{
+  "command_data": {
+    "bytes": 1722,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/command_argv.json",
+    "sha256": "13d736926f8defe126a7d93b338635db57c32621b4fe7f832dba3f44182efaf1"
+  },
+  "controller_source": {
+    "bytes": 148795,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r10.py",
+    "sha256": "a80b3e1b92b040ab645569abbabd63fc4597b9d7419e1c20d91db4c0c5566152"
+  },
+  "coverage_map": {
+    "bytes": 600011,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/coverage_map_r8.json",
+    "sha256": "9fb16233ae8c0c4373781450c3f1bffedd3373f4e5a6e44f34f804132f93df41"
+  },
+  "dispatch": {
+    "bytes": 10694,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/dispatch.json",
+    "sha256": "bf7c84620014c39ffe90ee92fb10f28dbb3ea0df217c94c85e6c0ffa86b3802c"
+  },
+  "expected_projection24_natural_exit_code": 0,
+  "failure": {
+    "message": "controller r8/r9 source binding drift",
+    "type": "RuntimeError"
+  },
+  "formal_t2_accepted": false,
+  "freeze_snapshot_written": false,
+  "freezer_exit_code": 1,
+  "julia_started": false,
+  "observed_projection24_phase": {
+    "exit_code": 0,
+    "name": "projection24_reuse_python_preflight",
+    "pass_marker": "T2_PROJECTION24_REUSE=PASS sites=24 groups=4",
+    "pass_marker_observed": true,
+    "status": "pass",
+    "stop_reason": "natural_exit"
+  },
+  "planned_execution_directory_absent": true,
+  "preserved_retry1_files": {
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/command_argv.json": {
+      "bytes": 1722,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/command_argv.json",
+      "sha256": "13d736926f8defe126a7d93b338635db57c32621b4fe7f832dba3f44182efaf1"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/coverage_map_r8.json": {
+      "bytes": 600011,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/coverage_map_r8.json",
+      "sha256": "9fb16233ae8c0c4373781450c3f1bffedd3373f4e5a6e44f34f804132f93df41"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/dispatch.json": {
+      "bytes": 10694,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/dispatch.json",
+      "sha256": "bf7c84620014c39ffe90ee92fb10f28dbb3ea0df217c94c85e6c0ffa86b3802c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/phase.json": {
+      "bytes": 2085,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/phase.json",
+      "sha256": "816889333eaebbcf60bb10c4cafda8f88d3edeb570e028f30949d37e383e8002"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/reuse_receipt.json": {
+      "bytes": 48553,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/reuse_receipt.json",
+      "sha256": "da2dfebf90b61d052997291369ec3dd561edd4b11a401f0b0679b38c91f26262"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/stderr.raw": {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/stdout.raw": {
+      "bytes": 349,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/projection24_reuse_preflight/stdout.raw",
+      "sha256": "32c91d36cd75cf1f6b8182da86e7c3d0b92ba32dfe67e8efda3f26c256fb7eaf"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/protocol.json": {
+      "bytes": 596177,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/protocol.json",
+      "sha256": "ac120f30285beb869aa55492b59700816a202026a943383e8221637b6cab9c84"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.json": {
+      "bytes": 2607,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.json",
+      "sha256": "029d4100d2cb788c4fb6fbcdf1efbcc810d0542e0794052ab120879589c70fe0"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.stderr.raw": {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.stdout.raw": {
+      "bytes": 2696,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/static_qa.stdout.raw",
+      "sha256": "2831d41f5ca15652f3d882f523cd44445b81471cb5b34ba7257c802e2ae8808e"
+    }
+  },
+  "protocol": {
+    "bytes": 596177,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry1/protocol.json",
+    "sha256": "ac120f30285beb869aa55492b59700816a202026a943383e8221637b6cab9c84"
+  },
+  "schema": "vnext-t2-attempt11-retry1-static-qa-failure-r1",
+  "static_qa_exit_code": 1,
+  "static_qa_schema": "vnext-t2-independent-negative-static-qa-r6",
+  "static_qa_source_at_failure": {
+    "bytes": 202670,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r9.py",
+    "sha256": "97d723d11fc389cbcbc9551f6cbccb1cc440c9b0cf3ea4327727d0ae7e9b9d88"
+  },
+  "static_qa_status": "fail",
+  "status": "preserved_static_qa_failure_after_projection_preflight_not_acceptance"
+}

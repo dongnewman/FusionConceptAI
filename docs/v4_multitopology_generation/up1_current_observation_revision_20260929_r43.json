@@ -1,0 +1,103 @@
+{
+  "schema": "up1-current-observation-revision-20260929-r43-v1",
+  "record_kind": "current_observation_update_not_formal_acceptance",
+  "task_id": "UP1-04A-VNEXT",
+  "scope": "local_frozen_source_software_and_compile_only_replay",
+  "accepted": false,
+  "formal_status": "HOLD",
+  "previous_bounded_dag_revision": "up1_handoff_revision_20260928.json",
+  "previous_task_manifest_sha256": "d53119a6624e7a3f5c45b0cce525c4b589e80fd51f018916438d1ca6e4e153b6",
+  "previous_observation_revision": "up1_current_observation_revision_20260929_r35.json",
+  "previous_observation_revision_sha256": "f84346b58a19162b0a6a155afe970e12e98ee69ea122f5b08c8aeb22a7aed8e2",
+  "current_observation_key": "current_observation_20260929_r43",
+  "current_task_manifest_sha256": "35a84db556393013db5d2163ce5d3b23b9608df3b7b55481a6c7ad9774cd6ec4",
+  "retained_task_contract_sha256": "fea649c43b401a8084e224148051875169477f7b7e60f99a3a23e1cd3582c4e0",
+  "changed_fields": [
+    "current_observation_20260929_r43"
+  ],
+  "snapshot_entry_count": 544,
+  "snapshot_id": "up1-up4-r2-8fcc67e2ea58c8cdf226",
+  "snapshot_manifest_sha256": "1926a588a7dba4d5864d0bd04c529e1c5530b39468faf7a48c6044f2bf69dc6c",
+  "independent_review": "runs/e/up1_r43_independent_review_20260929_r1/review.md",
+  "independent_review_sha256": "9462351124a3ffcad2c60858ec14d8bc14384f20ebb11ce743ec1d9d9eda441b",
+  "evidence_files": [
+    {
+      "role": "freeze_receipt",
+      "path": "runs/e/up1_up4_r2_frozen_candidate_20260929_r43/freeze_receipt.json",
+      "bytes": 125887,
+      "sha256": "96fe5e1db0c7935682057e9b6e24dafe3eced835e20a0e12240ab2ad41363b2d"
+    },
+    {
+      "role": "t0_positive",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/t0_positive_o0_bounded/receipt.json",
+      "bytes": 3839,
+      "sha256": "cf48d1638fc6a637d7342b146bd34016e86245e4f0e56681b0fef2123aa39e80"
+    },
+    {
+      "role": "g3_expected_receipt_producer",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/g3_expected_o0_bounded/receipt.json",
+      "bytes": 3931,
+      "sha256": "79048fb4dce19b2bf40314131a5106fff1894bdff4e6ccd969d786c4d0539854"
+    },
+    {
+      "role": "t1_consumer",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/t1_consumer_o0_bounded/receipt.json",
+      "bytes": 4109,
+      "sha256": "3e06fc0bc725b94db95e5cd3a0b6edcfd496604c905d82b3ff9c06e7571b4963"
+    },
+    {
+      "role": "native_phase_a",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_phase_a_o0_bounded/receipt.json",
+      "bytes": 5207,
+      "sha256": "ae9f37f8910073d2accaedb35fc70a48b7ba59c249e43dce9913ab5b0e1593aa"
+    },
+    {
+      "role": "native_phase_a_replay",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_phase_a_replay1_bounded/receipt.json",
+      "bytes": 5234,
+      "sha256": "2c401d9438f592651a9ca373a4867a70a2645bbf5b4743a724d24f74a9200239"
+    },
+    {
+      "role": "native_phase_b",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_phase_b_o0_bounded/receipt.json",
+      "bytes": 5626,
+      "sha256": "ac6487b8935ea3b488e4eed8b29384ed45fd3a49801ace71fc66421e591a490e"
+    },
+    {
+      "role": "native_phase_b_replay",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_phase_b_replay1_bounded/receipt.json",
+      "bytes": 5661,
+      "sha256": "3065dbdfb477fa7c1263341e18e8ad51f90c5e4a50a0ee1702325032ff5d3c7d"
+    },
+    {
+      "role": "negative_setup_failure",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/negatives_o0_bounded/receipt.json",
+      "bytes": 4113,
+      "sha256": "e3c39a82e4bbeafa1d4fcbc62027330a1fcb08ae11be46df72a69d8eda32f035"
+    },
+    {
+      "role": "negative_suite_final",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/negatives_r1_bounded/receipt.json",
+      "bytes": 4716,
+      "sha256": "5e534bc60ceb5f3c151e8f4449a43ca0df51410059b5e25b7d66666bf7a84721"
+    },
+    {
+      "role": "phase_a_artifact",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_compile_o0.bin",
+      "bytes": 8637281,
+      "sha256": "85e6f2263887d9e912925aec342023bf7b742e1a0bc3c52e9e883e766b0cfa76"
+    },
+    {
+      "role": "phase_a_replay_artifact",
+      "path": "runs/e/up1_up4_r2_candidate_actual_20260929_r43/native_compile_replay1.bin",
+      "bytes": 8637281,
+      "sha256": "85e6f2263887d9e912925aec342023bf7b742e1a0bc3c52e9e883e766b0cfa76"
+    },
+    {
+      "role": "independent_review",
+      "path": "runs/e/up1_r43_independent_review_20260929_r1/review.md",
+      "bytes": 9012,
+      "sha256": "9462351124a3ffcad2c60858ec14d8bc14384f20ebb11ce743ec1d9d9eda441b"
+    }
+  ]
+}

@@ -1,0 +1,2165 @@
+{
+  "schema": "astra_source_witness_v3_runtime_r5_critical_review_v1",
+  "created_utc": "2026-09-22T06:36:54.304551+00:00",
+  "recommendation": "qualify_exact_frozen_V3_source_witness_software_as_T2_prerequisite",
+  "root_acceptance_granted_by_reviewer": false,
+  "formal_T2_accepted": false,
+  "UP2_credit": false,
+  "scientific_acceptance": false,
+  "R01_R10_credit": false,
+  "reviewer_ran_julia_or_provider": false,
+  "production_or_harness_changed": false,
+  "method": "Independently parsed raw finalized evidence and recomputed sequence/hash/resource/source/artifact joins; reused unchanged independent whole-body/context static review, not new product execution.",
+  "coverage": {
+    "syntactic_sites": 103,
+    "runtime_hits": 115,
+    "ordered_shards": [
+      {
+        "scenario": "native_baseline_coupling",
+        "syntactic_sites": 43,
+        "runtime_assertions": 55,
+        "site_sequence_sha256": "2815c0bbabc23b0d5b9c7305028c5d29ee94428b551f9acc3e438fe565d1ccdd",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A001",
+          "A002",
+          "A003",
+          "A004",
+          "A005",
+          "A006",
+          "A007",
+          "A008",
+          "A009",
+          "A010",
+          "A011",
+          "A012",
+          "A013",
+          "A014",
+          "A015",
+          "A016",
+          "A017",
+          "A018",
+          "A019",
+          "A020",
+          "A021",
+          "A022",
+          "A023",
+          "A024",
+          "A025",
+          "A026",
+          "A027",
+          "A028",
+          "A029",
+          "A030",
+          "A031",
+          "A032",
+          "A033",
+          "A034",
+          "A035",
+          "A036",
+          "A037",
+          "A038",
+          "A039",
+          "A040",
+          "A041",
+          "A042",
+          "A043"
+        ],
+        "natural_test_summary_pass": 59,
+        "additional_fixture_assertions": 4
+      },
+      {
+        "scenario": "edited_state_typed_reload",
+        "syntactic_sites": 16,
+        "runtime_assertions": 16,
+        "site_sequence_sha256": "a3ed42e9ac00d883f5909092b1cbe1912cae0db6e0153e5f1e159919c6531b6d",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A044",
+          "A045",
+          "A046",
+          "A047",
+          "A048",
+          "A049",
+          "A050",
+          "A051",
+          "A052",
+          "A053",
+          "A054",
+          "A055",
+          "A056",
+          "A057",
+          "A058",
+          "A059"
+        ],
+        "natural_test_summary_pass": 20,
+        "additional_fixture_assertions": 4
+      },
+      {
+        "scenario": "intrinsic_absence_precedence",
+        "syntactic_sites": 23,
+        "runtime_assertions": 23,
+        "site_sequence_sha256": "5dbe3f2ea979a2783f2ede9e7d6386b48c7ec3ddd1c24413e47ec584fbd4dc93",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A060",
+          "A061",
+          "A062",
+          "A063",
+          "A064",
+          "A065",
+          "A066",
+          "A067",
+          "A068",
+          "A069",
+          "A070",
+          "A071",
+          "A072",
+          "A073",
+          "A074",
+          "A075",
+          "A076",
+          "A077",
+          "A078",
+          "A079",
+          "A080",
+          "A081",
+          "A082"
+        ],
+        "natural_test_summary_pass": 25,
+        "additional_fixture_assertions": 2
+      },
+      {
+        "scenario": "foreign_authority_joins",
+        "syntactic_sites": 7,
+        "runtime_assertions": 7,
+        "site_sequence_sha256": "e17d189132c970048c858cc0fd91dc7b5d46873a08450fdc3c0ce51d8be17a7c",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A083",
+          "A084",
+          "A085",
+          "A086",
+          "A087",
+          "A088",
+          "A089"
+        ],
+        "natural_test_summary_pass": 11,
+        "additional_fixture_assertions": 4
+      },
+      {
+        "scenario": "recomputed_source_layer",
+        "syntactic_sites": 8,
+        "runtime_assertions": 8,
+        "site_sequence_sha256": "25eabfa45aec8727907d275619b18f2b9fd4e0dd94de4dca4d9f1c93191bdd63",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A090",
+          "A091",
+          "A092",
+          "A093",
+          "A094",
+          "A095",
+          "A100",
+          "A101"
+        ],
+        "natural_test_summary_pass": 12,
+        "additional_fixture_assertions": 4
+      },
+      {
+        "scenario": "feedback_child_serialization",
+        "syntactic_sites": 6,
+        "runtime_assertions": 6,
+        "site_sequence_sha256": "1d2647b008925cdcfc2553dd783bb2b9505964e7e909b3ea1e3591543f585f03",
+        "input_pin_sha256": "79aec01b680af84232456a41b7d5e429a46db49abfe1e686487b8132721138ed",
+        "site_ids": [
+          "A096",
+          "A097",
+          "A098",
+          "A099",
+          "A102",
+          "A103"
+        ],
+        "natural_test_summary_pass": 10,
+        "additional_fixture_assertions": 4
+      }
+    ],
+    "hit_multiplicity": {
+      "A001": 1,
+      "A002": 1,
+      "A003": 1,
+      "A004": 1,
+      "A005": 1,
+      "A006": 1,
+      "A007": 1,
+      "A008": 1,
+      "A009": 1,
+      "A010": 1,
+      "A011": 1,
+      "A012": 1,
+      "A013": 3,
+      "A014": 3,
+      "A015": 3,
+      "A016": 3,
+      "A017": 3,
+      "A018": 3,
+      "A019": 1,
+      "A020": 1,
+      "A021": 1,
+      "A022": 1,
+      "A023": 1,
+      "A024": 1,
+      "A025": 1,
+      "A026": 1,
+      "A027": 1,
+      "A028": 1,
+      "A029": 1,
+      "A030": 1,
+      "A031": 1,
+      "A032": 1,
+      "A033": 1,
+      "A034": 1,
+      "A035": 1,
+      "A036": 1,
+      "A037": 1,
+      "A038": 1,
+      "A039": 1,
+      "A040": 1,
+      "A041": 1,
+      "A042": 1,
+      "A043": 1,
+      "A044": 1,
+      "A045": 1,
+      "A046": 1,
+      "A047": 1,
+      "A048": 1,
+      "A049": 1,
+      "A050": 1,
+      "A051": 1,
+      "A052": 1,
+      "A053": 1,
+      "A054": 1,
+      "A055": 1,
+      "A056": 1,
+      "A057": 1,
+      "A058": 1,
+      "A059": 1,
+      "A060": 1,
+      "A061": 1,
+      "A062": 1,
+      "A063": 1,
+      "A064": 1,
+      "A065": 1,
+      "A066": 1,
+      "A067": 1,
+      "A068": 1,
+      "A069": 1,
+      "A070": 1,
+      "A071": 1,
+      "A072": 1,
+      "A073": 1,
+      "A074": 1,
+      "A075": 1,
+      "A076": 1,
+      "A077": 1,
+      "A078": 1,
+      "A079": 1,
+      "A080": 1,
+      "A081": 1,
+      "A082": 1,
+      "A083": 1,
+      "A084": 1,
+      "A085": 1,
+      "A086": 1,
+      "A087": 1,
+      "A088": 1,
+      "A089": 1,
+      "A090": 1,
+      "A091": 1,
+      "A092": 1,
+      "A093": 1,
+      "A094": 1,
+      "A095": 1,
+      "A096": 1,
+      "A097": 1,
+      "A098": 1,
+      "A099": 1,
+      "A100": 1,
+      "A101": 1,
+      "A102": 1,
+      "A103": 1
+    }
+  },
+  "resource_scope": "Per-stage sampled Julia/Python child process tree RSS includes descendants. It is not OS true high-water memory. Outer Python controller working set is measured separately. 300s and 2GiB gates unchanged.",
+  "resource_maxima": {
+    "stage_elapsed_seconds": 234.9098469999999,
+    "sampled_child_tree_peak_bytes": 1782677504,
+    "controller_elapsed_seconds": 1516.9741688,
+    "controller_working_set_bytes": 28917760.0
+  },
+  "stages": [
+    {
+      "index": 1,
+      "stage": "static_qa",
+      "elapsed_seconds": 0.21694220000017594,
+      "sampled_process_tree_peak_bytes": 10047488,
+      "sample_count": 1,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 2,
+      "stage": "parse_gate",
+      "elapsed_seconds": 0.8655093999996097,
+      "sampled_process_tree_peak_bytes": 283234304,
+      "sample_count": 4,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 3,
+      "stage": "shard_native_baseline_coupling",
+      "elapsed_seconds": 188.45806979999952,
+      "sampled_process_tree_peak_bytes": 1404342272,
+      "sample_count": 878,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 4,
+      "stage": "shard_edited_state_typed_reload",
+      "elapsed_seconds": 131.49934789999952,
+      "sampled_process_tree_peak_bytes": 1274175488,
+      "sample_count": 616,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 5,
+      "stage": "shard_intrinsic_absence_precedence",
+      "elapsed_seconds": 164.71138599999995,
+      "sampled_process_tree_peak_bytes": 1411592192,
+      "sample_count": 764,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 6,
+      "stage": "shard_foreign_authority_joins",
+      "elapsed_seconds": 146.3035731,
+      "sampled_process_tree_peak_bytes": 1545048064,
+      "sample_count": 683,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 7,
+      "stage": "shard_recomputed_source_layer",
+      "elapsed_seconds": 225.74333579999984,
+      "sampled_process_tree_peak_bytes": 1782677504,
+      "sample_count": 1051,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 8,
+      "stage": "shard_feedback_child_serialization",
+      "elapsed_seconds": 234.9098469999999,
+      "sampled_process_tree_peak_bytes": 1481945088,
+      "sample_count": 1091,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 9,
+      "stage": "artifact_producer",
+      "elapsed_seconds": 120.7551026000001,
+      "sampled_process_tree_peak_bytes": 1357905920,
+      "sample_count": 564,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 10,
+      "stage": "fresh_baseline",
+      "elapsed_seconds": 152.97930499999984,
+      "sampled_process_tree_peak_bytes": 1172439040,
+      "sample_count": 704,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    },
+    {
+      "index": 11,
+      "stage": "fresh_foreign",
+      "elapsed_seconds": 147.30940809999993,
+      "sampled_process_tree_peak_bytes": 1149116416,
+      "sample_count": 676,
+      "exit_code": 0,
+      "stop_reason": "natural_exit"
+    }
+  ],
+  "artifact_binary_receipts": {
+    "baseline-witness.jls": {
+      "bytes": 5868163,
+      "sha256": "6216872b81c7df429341b8d98c1a64938411690de6dbe20c06db9c4361560b3f"
+    },
+    "foreign-witness.jls": {
+      "bytes": 5868125,
+      "sha256": "5d35ec1022ee644ed5df18474d411407c000d0ed279136919cba45410676f531"
+    }
+  },
+  "artifact_semantic_witness_hashes": {
+    "baseline": "b149b9f1e13e5b1d56d1c752f923f0931256f73bc8820a4e26cd4ff3fa61ce1a",
+    "foreign": "b31db848651c156a620d08996d78e70d815879a201f1340b0abf95881eecf386"
+  },
+  "actual_fresh_results": {
+    "baseline": "source_ready/true",
+    "foreign": "fail_closed/false"
+  },
+  "source_closure": {
+    "julia_parse_entries": 84,
+    "all_inputs": 91,
+    "unchanged": true,
+    "dependencies": {
+      "Manifest.toml": {
+        "bytes": 3348,
+        "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d"
+      },
+      "Project.toml": {
+        "bytes": 611,
+        "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e"
+      },
+      "src/Canonical/CanonicalJSON.jl": {
+        "bytes": 10229,
+        "sha256": "612edaeb822c1beeff44f7134497426fd0c8ff1eea9c16a651421e2c63f8ab93"
+      },
+      "src/Canonical/ClosedCanonicalByteWriter.jl": {
+        "bytes": 6354,
+        "sha256": "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b"
+      },
+      "src/Canonical/ConditionalEGraphCanonical.jl": {
+        "bytes": 34551,
+        "sha256": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235"
+      },
+      "src/Canonical/ControlObservationRequirementCanonical.jl": {
+        "bytes": 11788,
+        "sha256": "4ce8b6e6ddf8a659cda3253ffa3a5943e114eec768e6ed61a9e2d136c7a06c0b"
+      },
+      "src/Canonical/ExactGraphCanonicalization.jl": {
+        "bytes": 15741,
+        "sha256": "4b2a1072ba8bd70e00ccd334027e488c9f4000dcc96b78d39944fad7bce4f6e3"
+      },
+      "src/Canonical/FieldGeometryFieldProgramCanonical.jl": {
+        "bytes": 8278,
+        "sha256": "e1f24e6de91cb2ceb3fe32e656ca66517870797c5f9dda80001541a5790c22ff"
+      },
+      "src/Canonical/FieldGeometryPhaseFieldCanonical.jl": {
+        "bytes": 4118,
+        "sha256": "3d573c530957b901395a4539538246db3c55462d179ad443ce7be166866ef1f7"
+      },
+      "src/Canonical/FieldGeometryPrimitiveCanonical.jl": {
+        "bytes": 7528,
+        "sha256": "af024092decd20ef2e5a084ae3ae3894448a228b20ddff64e5dc792039bbfa8d"
+      },
+      "src/Canonical/FieldGeometrySpatialSupportCanonical.jl": {
+        "bytes": 20246,
+        "sha256": "ce4bb9411a9dd0f0019c2a544c7bc82ce39c5f727a89543ca8e4d9a355da0b23"
+      },
+      "src/Canonical/Hashes.jl": {
+        "bytes": 1606,
+        "sha256": "bd205d1208d095397447d3749f53b15a59cf22d2c7636d43d263c9ee7e09bd00"
+      },
+      "src/Canonical/MechanismCanonicalTransport.jl": {
+        "bytes": 31713,
+        "sha256": "dc37e6a8634d907f769f92c2715d7d783c47790f3e573363211330901ff0082a"
+      },
+      "src/Canonical/MechanismHashLayers.jl": {
+        "bytes": 45805,
+        "sha256": "d6b4dd07898948ff9b48074da951a8118da4c6a2550b7174d327017492d444d7"
+      },
+      "src/Canonical/MechanismObservableCanonical.jl": {
+        "bytes": 13457,
+        "sha256": "20f20219713a438b34f71bf3cdcc4bd2bb508a79dbbb234439b947aa19bad611"
+      },
+      "src/Canonical/TypedASTProgramCanonical.jl": {
+        "bytes": 44715,
+        "sha256": "f1f1ca40e5f32af9c5fe18ac08b87600f25149e31863489c3c6e9a40a5cfff07"
+      },
+      "src/Contracts/Authority.jl": {
+        "bytes": 367,
+        "sha256": "f3d43055134a61116d7364bc4f231d5bca392f88a6c38c163757587d737890e5"
+      },
+      "src/Contracts/CandidateStatePackage.jl": {
+        "bytes": 14084,
+        "sha256": "7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163"
+      },
+      "src/Contracts/CandidateStatePackageV5.jl": {
+        "bytes": 13496,
+        "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+      },
+      "src/Contracts/GenomeContractRegistry.jl": {
+        "bytes": 2389,
+        "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"
+      },
+      "src/Contracts/MechanismOccurrenceOwnershipContract.jl": {
+        "bytes": 3344,
+        "sha256": "a2ef1257989f038836b0623dc95cc06f2b56a8130a4181a928eea5f0aa6a86cf"
+      },
+      "src/Contracts/StatusDimensions.jl": {
+        "bytes": 2798,
+        "sha256": "f0bc711e8344d768ae35e6b7ff4fbfff3de523ed3ed07bd91ccfb43adee080cc"
+      },
+      "src/FusionConceptAI.jl": {
+        "bytes": 10305,
+        "sha256": "7fba6b0f632ce28cd2dd6e250561998988e241963b0ab44a3ef1677fdb270066"
+      },
+      "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+        "bytes": 37919,
+        "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"
+      },
+      "src/GenomeV5/G1/EquationPlanV2.jl": {
+        "bytes": 15159,
+        "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"
+      },
+      "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": {
+        "bytes": 31396,
+        "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"
+      },
+      "src/GenomeV5/G1/GrammarProfileV2.jl": {
+        "bytes": 22812,
+        "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"
+      },
+      "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {
+        "bytes": 16572,
+        "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"
+      },
+      "src/GenomeV5/G1/MechanismGenomeV5.jl": {
+        "bytes": 3887,
+        "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"
+      },
+      "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {
+        "bytes": 18646,
+        "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"
+      },
+      "src/GenomeV5/G2/FieldSpacePlanV2.jl": {
+        "bytes": 9905,
+        "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"
+      },
+      "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": {
+        "bytes": 27640,
+        "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"
+      },
+      "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+        "bytes": 31706,
+        "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3"
+      },
+      "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {
+        "bytes": 5333,
+        "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"
+      },
+      "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": {
+        "bytes": 5945,
+        "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"
+      },
+      "src/GenomeV5/G3/ControlGenomeV5.jl": {
+        "bytes": 10297,
+        "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+      },
+      "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {
+        "bytes": 10904,
+        "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+      },
+      "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl": {
+        "bytes": 24578,
+        "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4"
+      },
+      "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl": {
+        "bytes": 34208,
+        "sha256": "ac70c4af9bfe1a4b96e03601535cb63276535a451c8b97624d559cfdb5544929"
+      },
+      "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl": {
+        "bytes": 64083,
+        "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+      },
+      "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+        "bytes": 54819,
+        "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+      },
+      "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl": {
+        "bytes": 35485,
+        "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"
+      },
+      "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+        "bytes": 34374,
+        "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7"
+      },
+      "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {
+        "bytes": 6704,
+        "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+      },
+      "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+        "bytes": 33751,
+        "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+      },
+      "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+        "bytes": 16452,
+        "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"
+      },
+      "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl": {
+        "bytes": 10317,
+        "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9"
+      },
+      "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": {
+        "bytes": 96310,
+        "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"
+      },
+      "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl": {
+        "bytes": 14744,
+        "sha256": "45a4bbda4d92373b822a31b23ba35753074d8ef0dbedb01d203e4289675cf27b"
+      },
+      "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+        "bytes": 61211,
+        "sha256": "6603bb1f3b8826a68583f070af13febf8fe91e1d153be90a1930c0aaa18c97a0"
+      },
+      "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl": {
+        "bytes": 78478,
+        "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+      },
+      "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl": {
+        "bytes": 3899,
+        "sha256": "40071a2609422bb8ec389e1f75279d3b2afeb9822f5b847fbf97224eb3a0f655"
+      },
+      "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {
+        "bytes": 3155,
+        "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"
+      },
+      "src/Genomes/ControlObservationRequirements.jl": {
+        "bytes": 10109,
+        "sha256": "d518856ec4310e9c16a7425b1479f73b92d0eb6581e78f199685512f00b863ad"
+      },
+      "src/Genomes/ControlPrimitives.jl": {
+        "bytes": 1066,
+        "sha256": "5e5af09c633f4f66851f21bdbd223f486b6b19333e560bbebe9fb69bcb004cf2"
+      },
+      "src/Genomes/FieldGeometryFieldPrograms.jl": {
+        "bytes": 12872,
+        "sha256": "78e3428436798c03454b6e814d4fb9348ad3d19a485e0fb33b7045af2651b17f"
+      },
+      "src/Genomes/FieldGeometryGenome.jl": {
+        "bytes": 982,
+        "sha256": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725"
+      },
+      "src/Genomes/FieldGeometryPhaseFields.jl": {
+        "bytes": 13367,
+        "sha256": "a18ff4c417c194d6c1e6ff12e339452e9046f3782c98a17ad917216c80e83cbd"
+      },
+      "src/Genomes/FieldGeometryPrimitives.jl": {
+        "bytes": 8851,
+        "sha256": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5"
+      },
+      "src/Genomes/FieldGeometrySpatialSupport.jl": {
+        "bytes": 30147,
+        "sha256": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405"
+      },
+      "src/Genomes/MechanismConservationOwnership.jl": {
+        "bytes": 3704,
+        "sha256": "8984932e950bb6afea67e5ebd9468a61ecd352ae2370af78c8151928b99c6673"
+      },
+      "src/Genomes/MechanismConservationScopes.jl": {
+        "bytes": 2110,
+        "sha256": "e85e7484af81d8291971cf3e03fbb29442e30c2720423013734eb60c93f0c5a0"
+      },
+      "src/Genomes/MechanismGeneCanonical.jl": {
+        "bytes": 14888,
+        "sha256": "28184df2f61db1b51c4ce3569b8c6593bbd4d438449866a8715875a7a56f2263"
+      },
+      "src/Genomes/MechanismGenes.jl": {
+        "bytes": 7163,
+        "sha256": "5f9ef77a0a31168329a6ff9d55dda77dece2eda8e5c5302e2a6911b04095a7cf"
+      },
+      "src/Genomes/MechanismGenesV1.jl": {
+        "bytes": 30394,
+        "sha256": "1684c0db19b7edff688ca6b2e2ebf61ed541bc210005d8979c4d68094717b57c"
+      },
+      "src/Genomes/MechanismGenome.jl": {
+        "bytes": 3302,
+        "sha256": "8c40c572d424572a38fbcbf00c06e395226086927a4b19ff477ea433e8789dd4"
+      },
+      "src/Genomes/MechanismGenomePayload.jl": {
+        "bytes": 36014,
+        "sha256": "fb8cb4966726328a4b9226b730586eb795e6603c39218bde142a247b6b8fab8f"
+      },
+      "src/Genomes/MechanismLegacyMigration.jl": {
+        "bytes": 69196,
+        "sha256": "d9802d98a49f48e0e6d40e8bc982a06d7297cd46182d916b35692e663a23ecb0"
+      },
+      "src/Genomes/MechanismObservablesHoles.jl": {
+        "bytes": 22138,
+        "sha256": "84da5b7c9c5ca20f19d2644e43d760d56a06aafe0583791c531ec0d04033128e"
+      },
+      "src/Genomes/RealizationControlGenome.jl": {
+        "bytes": 2099,
+        "sha256": "48c99e5ab8f5a701063016df214be9741b4b07112c8d4a84068192474329b7a4"
+      },
+      "src/IR/ConditionalEGraph.jl": {
+        "bytes": 622,
+        "sha256": "538a5985b9c065f18ad47cb9271f5f4e18c972e14e9385198b6c40d78572c110"
+      },
+      "src/IR/ConditionalEGraphSaturation.jl": {
+        "bytes": 42141,
+        "sha256": "9d4d0f294079724ec54f7197dae12196a8af9c56b553f19139251aa4f9d04341"
+      },
+      "src/IR/ConditionalEGraphTypes.jl": {
+        "bytes": 38142,
+        "sha256": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92"
+      },
+      "src/IR/ConservationLedger.jl": {
+        "bytes": 2874,
+        "sha256": "4066d9a39f2b07253c79d2ea1283872d56d8d8825f499eec23f82ba4b26a7727"
+      },
+      "src/IR/OperatorHypergraph.jl": {
+        "bytes": 24401,
+        "sha256": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de"
+      },
+      "src/IR/OperatorRegistry.jl": {
+        "bytes": 64932,
+        "sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45"
+      },
+      "src/IR/PhysicalTypes.jl": {
+        "bytes": 11801,
+        "sha256": "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"
+      },
+      "src/IR/TypedAST.jl": {
+        "bytes": 27444,
+        "sha256": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl": {
+        "bytes": 14389,
+        "sha256": "a992d7a1c77ff362cac53fe6e63f111595c173b8d6eac2f4029e1356179861bb"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fresh_process_replay_driver.jl": {
+        "bytes": 1416,
+        "sha256": "6dda0b057a9248786b1f79c538a005cfe36be5aa3d3d7922059acfa67a1c2abb"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl": {
+        "bytes": 2088,
+        "sha256": "5f7c1f62a198d1332af4b78a9b62fe283ea0c33fb97555f5adaa3e4060813493"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/replay_child.jl": {
+        "bytes": 731,
+        "sha256": "ca8c3cc32e984e0afe396f1e1d4d976eddbf8080972b2727dbcd84944dc0210b"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/run_diagnostic_v3.py": {
+        "bytes": 2727,
+        "sha256": "66596e0be52886f19839b950953ba07318c0523d5fde7582ad20584055f34351"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/run_recorded_v3.py": {
+        "bytes": 28336,
+        "sha256": "aac3a3de1fb75d869ff734adcdd5c21a5f44f07c8d05eb3662caf4863f447437"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_ledger.json": {
+        "bytes": 38007,
+        "sha256": "c780eb02c613a80253d1314188ffc31294be4c58f18759cb953e623a6b61bfb3"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_tools.py": {
+        "bytes": 16971,
+        "sha256": "4741d619d8bc63f3a0270194acf0c6f570874bcfbf36306f9a6283438cb4583f"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_test_helpers.jl": {
+        "bytes": 9819,
+        "sha256": "f1d94e120dfc9efa109f48587352516b3f08d91a7c7a2833240070e534385e94"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/static_qa_vnext_t2_concrete_source_witness_v3.py": {
+        "bytes": 13167,
+        "sha256": "d5526c3ff9fc8f0540e18d6f82922420c2468fc67ddb73c9a05ecbb8bffbcc0e"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_shard_tests.jl": {
+        "bytes": 29090,
+        "sha256": "4a254e490950effbb60953c1568ea1b7f97c6217b68464c96fc582d0b7514edc"
+      },
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_tests.jl": {
+        "bytes": 26373,
+        "sha256": "8c52c726c4ce82d8d427f59469dbcb30122d0e0b37063495b97e0be606f3e516"
+      },
+      "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": {
+        "bytes": 76191,
+        "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b"
+      }
+    }
+  },
+  "physical_gaps_retained": [
+    "g1_g2_coordinate_pullback_missing",
+    "g1_g3_feedback_conversion_missing",
+    "g2_thermal_target_material_missing"
+  ],
+  "qualification_boundary": "Source readiness validates identity/joins/reconstruction; it does not resolve the baseline G3 contradiction or prove physical coupling. T2 must still use its own fresh formal T1 package and execute downstream transactions.",
+  "check_count": 253,
+  "checks": [
+    {
+      "check": "prior independent full-body/loop static review preserved",
+      "pass": true
+    },
+    {
+      "check": "prior context/negative static checks passed",
+      "pass": true
+    },
+    {
+      "check": "frozen 91-file closure matches static/prepared/prelaunch/before/after exactly",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: Manifest.toml",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: Project.toml",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/CanonicalJSON.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/ClosedCanonicalByteWriter.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/ConditionalEGraphCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/ControlObservationRequirementCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/ExactGraphCanonicalization.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/Hashes.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/MechanismCanonicalTransport.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/MechanismHashLayers.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/MechanismObservableCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Canonical/TypedASTProgramCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/Authority.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/CandidateStatePackage.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/CandidateStatePackageV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/GenomeContractRegistry.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Contracts/StatusDimensions.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/FusionConceptAI.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/EquationPlanV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/GrammarProfileV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G1/MechanismGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/ControlGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/ControlObservationRequirements.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/ControlPrimitives.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/FieldGeometryFieldPrograms.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/FieldGeometryGenome.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/FieldGeometryPhaseFields.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/FieldGeometryPrimitives.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/FieldGeometrySpatialSupport.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismConservationOwnership.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismConservationScopes.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismGeneCanonical.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismGenes.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismGenesV1.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismGenome.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismGenomePayload.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismLegacyMigration.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/MechanismObservablesHoles.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/Genomes/RealizationControlGenome.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/ConditionalEGraph.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/ConditionalEGraphSaturation.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/ConditionalEGraphTypes.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/ConservationLedger.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/OperatorHypergraph.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/OperatorRegistry.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/PhysicalTypes.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: src/IR/TypedAST.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fresh_process_replay_driver.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/replay_child.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/run_diagnostic_v3.py",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/run_recorded_v3.py",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_ledger.json",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_tools.py",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_test_helpers.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/static_qa_vnext_t2_concrete_source_witness_v3.py",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_shard_tests.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_tests.jl",
+      "pass": true
+    },
+    {
+      "check": "current unchanged input: test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_tests.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_test_helpers.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_shard_tests.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_ledger.json",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_tools.py",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/run_recorded_v3.py",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/static_qa_vnext_t2_concrete_source_witness_v3.py",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: src/FusionConceptAI.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "pass": true
+    },
+    {
+      "check": "prior static pin remains exact: docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_protocol.json",
+      "pass": true
+    },
+    {
+      "check": "pipeline natural full completion",
+      "pass": true
+    },
+    {
+      "check": "no formal consumer or formal-T1 credit from source witness pipeline",
+      "pass": true
+    },
+    {
+      "check": "protocol/start retain 300 seconds and 2GiB per child",
+      "pass": true
+    },
+    {
+      "check": "prelaunch empty heavy lane and new output",
+      "pass": true
+    },
+    {
+      "check": "launch pins",
+      "pass": true
+    },
+    {
+      "check": "runtime parse manifest equals prepared bytes",
+      "pass": true
+    },
+    {
+      "check": "84 exact unique Julia parse entries",
+      "pass": true
+    },
+    {
+      "check": "84 actual parse records and terminal gate",
+      "pass": true
+    },
+    {
+      "check": "actual parse records join exact manifest/current closure",
+      "pass": true
+    },
+    {
+      "check": "manifest receipt join",
+      "pass": true
+    },
+    {
+      "check": "same six ordered scenarios",
+      "pass": true
+    },
+    {
+      "check": "11 exact ordered stages",
+      "pass": true
+    },
+    {
+      "check": "static_qa: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "static_qa: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "static_qa: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "static_qa: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "static_qa: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "static_qa: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "static_qa: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "static_qa: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "parse_gate: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_native_baseline_coupling: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_edited_state_typed_reload: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_intrinsic_absence_precedence: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_foreign_authority_joins: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_recomputed_source_layer: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "shard_feedback_child_serialization: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "artifact_producer: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "fresh_baseline: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: final/command/start/checkpoint match",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: exact original resource limits",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: natural exit under wall gate",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: sampled whole-child-tree peak verified",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: ordered samples within elapsed interval",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: stream raw hashes",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: serial ordering/checkpoint precedes start",
+      "pass": true
+    },
+    {
+      "check": "fresh_foreign: single Julia thread/trace",
+      "pass": true
+    },
+    {
+      "check": "independent current input-pin derivation",
+      "pass": true
+    },
+    {
+      "check": "native_baseline_coupling: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "native_baseline_coupling: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "native_baseline_coupling: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "native_baseline_coupling: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "edited_state_typed_reload: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "edited_state_typed_reload: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "edited_state_typed_reload: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "edited_state_typed_reload: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "intrinsic_absence_precedence: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "intrinsic_absence_precedence: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "intrinsic_absence_precedence: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "intrinsic_absence_precedence: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "foreign_authority_joins: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "foreign_authority_joins: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "foreign_authority_joins: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "foreign_authority_joins: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "recomputed_source_layer: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "recomputed_source_layer: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "recomputed_source_layer: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "recomputed_source_layer: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "feedback_child_serialization: exactly one completed receipt",
+      "pass": true
+    },
+    {
+      "check": "feedback_child_serialization: exact dynamic context/order/count/identity",
+      "pass": true
+    },
+    {
+      "check": "feedback_child_serialization: recorded validator joins raw receipt",
+      "pass": true
+    },
+    {
+      "check": "feedback_child_serialization: natural Test summary passed and no dropped declared assertions",
+      "pass": true
+    },
+    {
+      "check": "all 103 original sites owned exactly once",
+      "pass": true
+    },
+    {
+      "check": "all 115 runtime occurrences including layer loop",
+      "pass": true
+    },
+    {
+      "check": "aggregate complete and exact",
+      "pass": true
+    },
+    {
+      "check": "producer really rebuilt two distinct native chains",
+      "pass": true
+    },
+    {
+      "check": "foreign semantic witness differs",
+      "pass": true
+    },
+    {
+      "check": "baseline: original artifact binary receipt equals fresh input/current bytes",
+      "pass": true
+    },
+    {
+      "check": "baseline: prior full six-shard aggregate bound to fresh input",
+      "pass": true
+    },
+    {
+      "check": "baseline: actual fresh native baseline rebuilt independently",
+      "pass": true
+    },
+    {
+      "check": "baseline: actual status/read semantic hash equals producer",
+      "pass": true
+    },
+    {
+      "check": "foreign: original artifact binary receipt equals fresh input/current bytes",
+      "pass": true
+    },
+    {
+      "check": "foreign: prior full six-shard aggregate bound to fresh input",
+      "pass": true
+    },
+    {
+      "check": "foreign: actual fresh native baseline rebuilt independently",
+      "pass": true
+    },
+    {
+      "check": "foreign: actual status/read semantic hash equals producer",
+      "pass": true
+    },
+    {
+      "check": "producer started only after full aggregate receipt",
+      "pass": true
+    },
+    {
+      "check": "all 11 subprocess identities distinct",
+      "pass": true
+    },
+    {
+      "check": "outer controller stdout is exact finalized pipeline object",
+      "pass": true
+    },
+    {
+      "check": "outer controller natural exit zero and joined final digest",
+      "pass": true
+    },
+    {
+      "check": "outer controller stream bytes/digests",
+      "pass": true
+    },
+    {
+      "check": "controller-only RSS is separately recorded",
+      "pass": true
+    },
+    {
+      "check": "none of this run's owned processes remain",
+      "pass": true
+    },
+    {
+      "check": "runtime lock removed",
+      "pass": true
+    },
+    {
+      "check": "reviewed evidence stable during audit",
+      "pass": true
+    },
+    {
+      "check": "91 frozen inputs stable after review",
+      "pass": true
+    }
+  ],
+  "evidence_pins": {
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_six_shard_review_r1_20260922/static_review.json": {
+      "bytes": 38183,
+      "sha256": "3e02999a89d570a1974d2627adcd2c9dc3231c441e09c9481ffba686e2a8c064"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/shard_harness_r5_static/prepared_dependency_receipts.json": {
+      "bytes": 14527,
+      "sha256": "5e9d5192b88e58c450516558868a55dfeee64435fe3ff67c61297161d13c920d"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_start.json": {
+      "bytes": 21527,
+      "sha256": "6f7469fd1190a14bb597ec5da8242e7b974096bf3c5f2918e7f9bcdfbfd3b4e0"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json": {
+      "bytes": 46759,
+      "sha256": "c01892c882a499a24f3063e6b37d70c302c92822ee4043b50a44586c3b944314"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json": {
+      "bytes": 4568,
+      "sha256": "11401f06213acd03d2dae8c5451350ff94eed73123b5149bbf2945bf3ba3488b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/prelaunch_pin_audit.json": {
+      "bytes": 16780,
+      "sha256": "cdb8177e0f8b744df5b573c44716de41cfed2c7831e24a09d7c7840f5272574b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/launch.json": {
+      "bytes": 1052,
+      "sha256": "60bad23acdab0c309f394b9c607508150eaaf68d07f2da97480cc7ed42624e6a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json": {
+      "bytes": 860,
+      "sha256": "f15f8d2e855d1cc9de99cd9fa292eebd3e1194ba6594d2b6b0ae6590c1c6b4e2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_protocol.json": {
+      "bytes": 6691,
+      "sha256": "524fd391ea2fc826a4985cb617aadfcbb68e26721013fa80bedf01e49ff5525e"
+    },
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/shard_coverage_ledger.json": {
+      "bytes": 38007,
+      "sha256": "c780eb02c613a80253d1314188ffc31294be4c58f18759cb953e623a6b61bfb3"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/runtime_parse_manifest.tsv": {
+      "bytes": 9287,
+      "sha256": "be3f41b6738d7a50c6db47f7e03cc92d8e6724f1b3316eb821c845823a31faea"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/stdout.raw": {
+      "bytes": 11651,
+      "sha256": "2443d8764ad68fb9b72e6587f939151d2c7cd671f533386f11086ea746e8275a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/final.json": {
+      "bytes": 765,
+      "sha256": "c88f05022e67a587c47928d66c17c7a031ea76643e6b8ef645deb02644e3154f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/start.json": {
+      "bytes": 612,
+      "sha256": "8b4423d4f0bbfbf642d48c75192a4dce7f21134452ee2ced5b918f8c709efb20"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/checkpoint_before_assert.json": {
+      "bytes": 15708,
+      "sha256": "df5283064d0530bc2db2b67124325ec9a11cd00a2fbec4f3467098d0cf47d6b2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/stdout.raw": {
+      "bytes": 1722,
+      "sha256": "686c21e365d8dd0eca0cdbcc06e0dc1f45e8288b7977da29d377053d12b11d5c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/01_static_qa/samples.jsonl": {
+      "bytes": 176,
+      "sha256": "2a7787fe42370da958c496d8ac48759e440191d3cf2fe0a0cad98908c12902fd"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/final.json": {
+      "bytes": 898,
+      "sha256": "21eb9a1bcb06431d4416425aee8b3badf4639c4ca41f90e99090e43a1f01ea8a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/start.json": {
+      "bytes": 744,
+      "sha256": "063b22a98a92303cc1d7a61e35dd96d2cbb7722c5917021e843e23e49c28ac2a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/checkpoint_before_assert.json": {
+      "bytes": 16010,
+      "sha256": "6f0031391470f605cbb9e8654e569b69c19dac6e1cd81d36559986e457c4cd44"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/02_parse_gate/samples.jsonl": {
+      "bytes": 699,
+      "sha256": "f998a75223991bb28677c6e823e31c6b5eaa50c43b74a19f9228af54cb71cd95"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/final.json": {
+      "bytes": 820,
+      "sha256": "6fa554447965a495c6cb1aa4d59a9c9dc4d445fafec763fbe2d768b2942b1227"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/start.json": {
+      "bytes": 666,
+      "sha256": "4f1b2f1e44db51932ab0d5e4029648e3ae2d56fd0ef7776f7359b73e3495d0a7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/checkpoint_before_assert.json": {
+      "bytes": 16030,
+      "sha256": "d3ea737e36893f7ead482938f1335ff2d695017a2bda8456c1d553e1ff95414f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/stdout.raw": {
+      "bytes": 6893,
+      "sha256": "1502ff866578116e532b53b37387e0a7261cab1112872deb8aa85a489969ff7f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/samples.jsonl": {
+      "bytes": 154732,
+      "sha256": "b671abfb0e0cceace50b85e81bef00af075a72892e0762a4812ba54a59e0e0a7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/final.json": {
+      "bytes": 822,
+      "sha256": "e331bb83f7f678618334ffd62e99cefdb30c81432981c6d91c8a24bdfe4ccc64"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/start.json": {
+      "bytes": 667,
+      "sha256": "4acb898cb7751d8a9ecb04951491fd11574d6ca069f027e5325f26b8bb5db6ea"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/checkpoint_before_assert.json": {
+      "bytes": 16032,
+      "sha256": "32b943f2d678ba4b63ebb889ee6705320a0c8818e015de464c279bc1882fd4c2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/stdout.raw": {
+      "bytes": 6776,
+      "sha256": "413fa13df3caee101cb21c5b89348f6b973416ca50eb44f022315b24a07e4ba0"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/samples.jsonl": {
+      "bytes": 108299,
+      "sha256": "ff0f814421c6889fa8d138829564eb531f61825a8f5081d5a3c8bbcca3763ac4"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/final.json": {
+      "bytes": 828,
+      "sha256": "1ae084462d70a8a824a68051a65ef2f2c79916a5637f890658c3885799f51a1e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/start.json": {
+      "bytes": 673,
+      "sha256": "cba20cca12de2fb0ebd85d1dbb810ca1346992252d02493a8b00c4bf148fd19a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/checkpoint_before_assert.json": {
+      "bytes": 16038,
+      "sha256": "b3477ee88d525919b8ba6e5194539613eb9a370af7c5364f3d5173fefb3d81c5"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/stdout.raw": {
+      "bytes": 3152,
+      "sha256": "e66a81b67d1031d5af13c16d43467b0fc031c102ae1f8b8ac6b2b1c81d5bcba2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/samples.jsonl": {
+      "bytes": 132704,
+      "sha256": "beb319f9ea61e02634e51d7b5c2c1c6bd64fc487f6810dea6f79749c7bcafe24"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/final.json": {
+      "bytes": 811,
+      "sha256": "55ba0d269ea0cb2a705786c29b2bcf74d2453c62476a569fcc4200f3646e8839"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/start.json": {
+      "bytes": 664,
+      "sha256": "5fdbd6b8e47c675066bb5639dddccd6229dc5322eb05ae12fcb1112fa6a91a69"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/checkpoint_before_assert.json": {
+      "bytes": 16028,
+      "sha256": "988fc2b86865df49bf38c8a8035a536795373605661e9d98161968f8cb0d969c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/stdout.raw": {
+      "bytes": 5256,
+      "sha256": "6041811327286692d667e9f7262991a94cf5dbce3c6e4c3f56b30903c4fe4163"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/samples.jsonl": {
+      "bytes": 120171,
+      "sha256": "34e5459cfd3c31ec42ea7753a3e010188f9fcb13c8b1535651465a44470bd2f4"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/final.json": {
+      "bytes": 819,
+      "sha256": "375a8dcb393a21a0daac8e97c0ad0836143a7df89773de91f21d65080874e35b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/start.json": {
+      "bytes": 663,
+      "sha256": "8837bece836ebdf8821ae548c3cbf7039a98dbd603890fa646a2cbcca5b5cdaa"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/checkpoint_before_assert.json": {
+      "bytes": 16028,
+      "sha256": "a2b298597982005837627700947092401be6454691232925822b10d5d8065d35"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/stdout.raw": {
+      "bytes": 11027,
+      "sha256": "710433ba429051f1a66a1bd8185323ecfc8c6c5fca335f18bb296c7248ce3273"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/samples.jsonl": {
+      "bytes": 185128,
+      "sha256": "0be1a9f9c846de53687dcdca7205c3e144ec263c180b477d0d206f2d0f44e19c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/final.json": {
+      "bytes": 827,
+      "sha256": "52b80a5de391d1631d95967b15431674660c2bb31b24477536afa18d3d249a8c"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/start.json": {
+      "bytes": 674,
+      "sha256": "43d20dfb5e977f00113432cb715c48d723dd9182b68374be49f87cfd66283a1a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/checkpoint_before_assert.json": {
+      "bytes": 16038,
+      "sha256": "4c7559450535a2af7c39bfee67968a79ea6361d1bd1da13d3ebf211d27cccb86"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/stdout.raw": {
+      "bytes": 9606,
+      "sha256": "3adc4f5f6ae17caf59d88e87a5bda4499e22ff67ca1ef62d2c81308ca4ac59d7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/samples.jsonl": {
+      "bytes": 190820,
+      "sha256": "7343bc3baa66224c563b6983b5a86c45c49075f420bdd3dabe2cd225f7c1243f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/final.json": {
+      "bytes": 904,
+      "sha256": "0520bfedf3fdb17f3e3451dbd63f3b7e590b64e7be62387fd6d2c217aec35fae"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/start.json": {
+      "bytes": 750,
+      "sha256": "397b263aa515633815a214299975bc369797decf59be9d93e1097d4a37df9dfa"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/checkpoint_before_assert.json": {
+      "bytes": 15997,
+      "sha256": "a347ed3fcfbe9cdc98d99b78e4a847b0c39e5ee928ebb0ed8b6754a724a96fa7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/stdout.raw": {
+      "bytes": 4813,
+      "sha256": "f5feabf58bb5b262e461d3dddeafec9e0a33288c50fcb3650547c0e42aa3ed54"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/09_artifact_producer/samples.jsonl": {
+      "bytes": 99199,
+      "sha256": "209f58ea002f127e773a1be9798f98838981fd28f6836cc131a83aa78b5d3c53"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/final.json": {
+      "bytes": 930,
+      "sha256": "b2645b1ac9f5eb785a792ef5535b3c873c2b2b2b40eb389376327213815584f5"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/start.json": {
+      "bytes": 775,
+      "sha256": "ffecb94a359dceea7a5a9f9046b1eb0beb957d9d067b5c96f4c13838d20daa0d"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/checkpoint_before_assert.json": {
+      "bytes": 16308,
+      "sha256": "a9cf2c8a4c2b8fbf078dee70305cad8bfabfc5a418c0415575d75865f4f3e868"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/stdout.raw": {
+      "bytes": 3966,
+      "sha256": "42af5cfe9e5e8e83acef439b1833fe0edf89287bdd0d2a7660939b242e8c23e3"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/10_fresh_baseline/samples.jsonl": {
+      "bytes": 123677,
+      "sha256": "7f0fc82c07904fa864c0b35c034e6ac9612e3694a7ac9854cc20916fc0de1302"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/final.json": {
+      "bytes": 927,
+      "sha256": "df2791cfa31cea8a4f986dcb8df1ccb34ffe2cba6bef72a85100048bf02450b7"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/start.json": {
+      "bytes": 771,
+      "sha256": "37b7c105edde76c22988bb213cc2aef33570b1c6283ccfb787a024a7074df596"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/checkpoint_before_assert.json": {
+      "bytes": 16305,
+      "sha256": "0983a0d1851f97d65e0ebd776e7b01cabe422f4f798306d2e76a82f65330a30a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/stdout.raw": {
+      "bytes": 3966,
+      "sha256": "064d653f2908132e25803f3c8ef8fbf4edbe13e16d80bc881c6b420536cc259f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/11_fresh_foreign/samples.jsonl": {
+      "bytes": 118686,
+      "sha256": "998d954da28db38c679feff73d47863b90213f23da03dcb428ba21e2dbd5653b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/03_shard_native_baseline_coupling/shard_receipt_validation.json": {
+      "bytes": 937,
+      "sha256": "b544905e9bda7e6826cd8e82b464553a4580af12234d6ae2beb4427b0c6371f5"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/04_shard_edited_state_typed_reload/shard_receipt_validation.json": {
+      "bytes": 614,
+      "sha256": "7d1885193000cf13ba866e33e4068f694855ed6d99df27e35ac2db35b3f40f84"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/05_shard_intrinsic_absence_precedence/shard_receipt_validation.json": {
+      "bytes": 701,
+      "sha256": "fcb45a63ea41ddae8c0476b9d6c6365be01c83d03c88fecc5580561b0863876b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/06_shard_foreign_authority_joins/shard_receipt_validation.json": {
+      "bytes": 502,
+      "sha256": "a90a27dc9c1bfc94ee421b2e31758fe922e39ee4249494e6175afb9833b5a153"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/07_shard_recomputed_source_layer/shard_receipt_validation.json": {
+      "bytes": 514,
+      "sha256": "9507ac746253a474165fd1f78a350b89a46fe37378603f1439f98f68401be498"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/08_shard_feedback_child_serialization/shard_receipt_validation.json": {
+      "bytes": 495,
+      "sha256": "583518fe11e9bc86ccc06447741f0ab8a8e0a5360fb3190b73b1bc70a7330d62"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/artifacts/baseline-witness.jls": {
+      "bytes": 5868163,
+      "sha256": "6216872b81c7df429341b8d98c1a64938411690de6dbe20c06db9c4361560b3f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/artifacts/foreign-witness.jls": {
+      "bytes": 5868125,
+      "sha256": "5d35ec1022ee644ed5df18474d411407c000d0ed279136919cba45410676f531"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/controller.stdout.raw": {
+      "bytes": 39113,
+      "sha256": "d25ffdbb7e41cacbc96254fb1346b3b478af719300318612d9dbf8c68aad5974"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/controller.stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/controller_resource_samples.csv": {
+      "bytes": 113661,
+      "sha256": "58c26207333e8d2f34ac58f083f6c66397954f1d4478cd4f6328431c55850dcb"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "python",
+        "-B",
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r12.py",
+        "--protocol",
+        "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/protocol.json",
+        "--protocol-sha256",
+        "c271961cdf6d5549a3167a1ce17527688f63a3a39688a07ca6e4b16db145f8b3",
+        "--dispatch",
+        "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/dispatch.json",
+        "--command",
+        "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/command_argv.json",
+        "--report",
+        "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.json"
+      ],
+      "exit_code": 0,
+      "exit_sidecar": "static_qa_rerun.exit.txt",
+      "name": "retry7_static_qa_independent_rerun",
+      "negative_controls": 153,
+      "result_status": "pass",
+      "stderr": "static_qa_rerun.stderr.raw",
+      "stdout": "static_qa_rerun.stdout.raw"
+    },
+    {
+      "exit_code": 0,
+      "invocation": "PowerShell here-string piped to python -B -; inline audit read frozen JSON/current pinned files and wrote retry7_static_audit.json",
+      "name": "independent_input_map_lineage_audit",
+      "writes_outside_independent_review_leaf": false
+    },
+    {
+      "artifacts": [
+        "monitor_probe.json",
+        "monitor_probe.stdout.raw",
+        "monitor_probe.stderr.raw",
+        "monitor_probe.exit.txt"
+      ],
+      "cases": 9,
+      "complete_true_cases": 8,
+      "exit_code": 0,
+      "invocation": "PowerShell here-string piped to python -B -; import pinned source and call process_tree_sample on in-memory FakeProcess only",
+      "kill_tree_called": false,
+      "name": "controller_r12_process_tree_sample_fake_probe",
+      "subprocesses_created": false
+    },
+    {
+      "artifacts": [
+        "kill_tree_pid_alias_probe.json",
+        "kill_tree_pid_alias_probe.stdout.raw",
+        "kill_tree_pid_alias_probe.stderr.raw",
+        "kill_tree_pid_alias_probe.exit.txt"
+      ],
+      "exit_code": 0,
+      "fake_target_kill_calls": 1,
+      "fake_target_pid": 1,
+      "invocation": "PowerShell here-string piped to python -B -; monkeypatch module-local Process/wait/snapshot with fake objects, invoke kill_tree, restore patches in finally",
+      "name": "controller_r12_kill_tree_bool_pid_fake_probe",
+      "real_os_process_or_signal": false,
+      "reported_complete": true,
+      "reported_verified": true
+    },
+    {
+      "exit_code": 0,
+      "invocation": "PowerShell here-string piped to python -B -; construct psutil.Process(True), do not query/kill",
+      "name": "native_psutil_bool_pid_constructor_read_only_check",
+      "observed": "NoSuchProcess (pid=True; PID 1 absent on this Windows host)",
+      "process_signal_sent": false
+    },
+    {
+      "artifacts": [
+        "psutil_bool_pid_constructor.json",
+        "psutil_bool_pid_constructor.stdout.raw",
+        "psutil_bool_pid_constructor.stderr.raw",
+        "psutil_bool_pid_constructor.exit.txt"
+      ],
+      "exit_code": 0,
+      "invocation": "python -B -; construct psutil.Process(True) only",
+      "name": "native_psutil_bool_pid_constructor_read_only_check",
+      "observed": "NoSuchProcess (pid=True; PID 1 absent on this Windows host)",
+      "process_signal_sent": false
+    }
+  ],
+  "frozen_producer_state": {
+    "actual_site_hits": "pending_julia_execution",
+    "formal_t2_accepted": false,
+    "freezer_exit_code": 0,
+    "integrated_static_qa_exit_code": 0,
+    "integrated_static_qa_negative_controls": 153,
+    "planned_output_leaf_absent": true,
+    "projection_preflight_exit_code": 0,
+    "projection_preflight_sites": 24
+  },
+  "independent_hash_audit": {
+    "active_guidance_pins": "9/9",
+    "coverage_map_semantic_equal_attempt7": true,
+    "current_coverage_site_lines": "214/214 start-line-prefix plus source-text-sha",
+    "current_inputs": "393/393",
+    "positive_r3_pins": "104/104",
+    "retry5_retry6_pinned_by_retry7": false
+  },
+  "julia_started_by_reviewer": false,
+  "reviewer": "/root/t2_review",
+  "schema": "independent-t2-retry7-review-command-receipts-r1",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI"
+}

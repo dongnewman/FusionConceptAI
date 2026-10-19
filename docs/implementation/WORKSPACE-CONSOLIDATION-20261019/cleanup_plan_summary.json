@@ -1,0 +1,23 @@
+{
+  "schema": "summarized-raw-cleanup-plan-v1",
+  "user_authorized_date": "2026-10-19",
+  "goal_state": "paused",
+  "plan_only": true,
+  "groups": 5473,
+  "delete_files": 70873,
+  "delete_bytes": 61457124451,
+  "retained_input_files": 360,
+  "retained_input_bytes": 1835254241,
+  "raw_cleanup_grants_no_acceptance": true,
+  "deleted_inputs_require_regeneration_for_replay": true,
+  "by_reason": {
+    "orphan shell output or superseded source snapshot": 3,
+    "root run log/exit artifact": 5,
+    "rebuildable interpreter/linter cache": 110,
+    "obsolete run-local source copy/patch; maintained references excluded": 39728,
+    "large run result/report replaced by bounded summary and artifact hash": 616,
+    "raw run payload/log summarized before removal": 20474,
+    "retired optional certification/UP4 protocol version family and its exclusive tests": 190,
+    "retired unreferenced temporary code/probe/output; paused entries excluded": 9747
+  }
+}

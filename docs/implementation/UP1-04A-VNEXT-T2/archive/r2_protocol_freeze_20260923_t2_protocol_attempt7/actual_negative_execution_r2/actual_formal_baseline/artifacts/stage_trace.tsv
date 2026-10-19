@@ -1,0 +1,30 @@
+schema	vnext-t2-independent-negative-stage-trace-r2
+script_entry	pid=49312	time_ns=45132024744600
+imports_complete	pid=49312	time_ns=45133390321800
+fixture_include.begin	pid=49312	time_ns=45149053921600
+fixture_include.end	pid=49312	time_ns=45152318204100	elapsed_ns=3262089100
+lazy_loader.begin	pid=49312	time_ns=45152319664900
+lazy_loader.end	pid=49312	time_ns=45152362887600	elapsed_ns=42059700
+definitions_ready	pid=49312	time_ns=45152796847300
+dispatch_before	pid=49312	time_ns=45152809120800	detail=baseline
+baseline_function_body_first	pid=49312	time_ns=45200708217400
+raw_authority_verify.begin	pid=49312	time_ns=45200732552800
+raw_authority_verify.end	pid=49312	time_ns=45200766662300	elapsed_ns=33689800	detail=package_bytes=9414221
+authority_documents.begin	pid=49312	time_ns=45200767981200
+authority_documents.end	pid=49312	time_ns=45200768818200	elapsed_ns=455400
+fresh_source_t1_admission.begin	pid=49312	time_ns=45200769105600
+fresh_source_t1_admission.end	pid=49312	time_ns=45281522075400	elapsed_ns=80752685100
+source_full_reconstruction.begin	pid=49312	time_ns=45281523226600
+source_full_reconstruction.end	pid=49312	time_ns=45324441586000	elapsed_ns=42917919700	detail=status=source_ready
+producer_package_full_content.begin	pid=49312	time_ns=45324442098000
+producer_package_full_content.end	pid=49312	time_ns=45325389843600	elapsed_ns=947147100	detail=wire_bytes=8284803
+reload_adapter.begin	pid=49312	time_ns=45325390379600
+reload_adapter.end	pid=49312	time_ns=45325742303900	elapsed_ns=351628000
+candidate_receipt_join.begin	pid=49312	time_ns=45325743639700
+candidate_receipt_join.end	pid=49312	time_ns=45333874090600	elapsed_ns=8129999900
+formal_gate.begin	pid=49312	time_ns=45333874875600
+formal_gate.end	pid=49312	time_ns=45334219229500	elapsed_ns=343880000
+t1_handoff_build.begin	pid=49312	time_ns=45334219846200
+t1_handoff_build.end	pid=49312	time_ns=45353478995000	elapsed_ns=19258795400	detail=status=prepared_not_executed
+five_consumer_baseline.begin	pid=49312	time_ns=45353479497400
+five_consumer_baseline.end	pid=49312	time_ns=45386730321700	elapsed_ns=33250526000	detail=status=complete_contract_receipts

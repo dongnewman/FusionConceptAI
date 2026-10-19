@@ -1,9 +1,0 @@
-{
-  "schema": "UP1.atomic-bundle.preimage-vectors.v1",
-  "canonical_profile_without_rfc8785": "RFC8785-required-float-reject-fallback",
-  "vectors": [
-    {"id": "float-exponent-1e20", "input": {"n": "1e20"}, "expected": "CANONICAL_NUMBER_UNSUPPORTED", "collision_target": {"n": 1}},
-    {"id": "packet-owner-excludes-whole-signature", "exclusions": ["/signature", "/payload_sha256"], "payload_is_opaque": true},
-    {"id": "bundle-path-scoped", "excludes": ["/bundle_canonical_sha256", "/packets/*/signature", "/set_receipt/set_signature", "/independent_review/review_signature"], "payload_nested_signature_retained": true}
-  ]
-}

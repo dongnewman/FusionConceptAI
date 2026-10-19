@@ -1,0 +1,89 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r6",
+  "status": "fail",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b QA failure receipt mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "old authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "new authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority invocation cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority coverage threshold change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority resource contract drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout policy drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c timeout cannot be relabeled complete",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c pre-assertion observation cannot be mislabeled",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection validator non-schema diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout selector source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout mutation outside attempt11 delta rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r9.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "failure": {
+    "type": "RuntimeError",
+    "message": "controller r8/r9 source binding drift"
+  }
+}

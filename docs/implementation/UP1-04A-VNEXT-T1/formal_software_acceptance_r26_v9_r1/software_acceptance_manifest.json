@@ -1,0 +1,590 @@
+{
+  "schema": "vnext-t1-software-acceptance-manifest-r1",
+  "formal_t1_software_accepted": true,
+  "acceptance_scope": "software_capability_multi_candidate",
+  "candidate_specific": false,
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "actual_model_attestation": "unavailable",
+  "accepted_by": {
+    "role": "root",
+    "agent": "/root",
+    "requested_model": "gpt-6-astra/max",
+    "utc": "2026-09-22T05:48:05.021872+00:00"
+  },
+  "source_receipts": [
+    {
+      "path": "src/Contracts/CandidateStatePackageV5Next.jl",
+      "bytes": 55440,
+      "sha256": "7ca5b0bfed97193053f157c2b9650624b54ba206784fad348f77fd791652c3b0"
+    },
+    {
+      "path": "src/Contracts/CandidateStatePackageV5NextV2.jl",
+      "bytes": 15738,
+      "sha256": "effac2e603d2a1af30605b70310a634e3659ac487634e164ab049851795c4f89"
+    },
+    {
+      "path": "src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+      "bytes": 5481,
+      "sha256": "a7c6ac7065d84a18e541aa5743dc908f8d5304ec5875726d22d615b2c171e943"
+    },
+    {
+      "path": "src/Contracts/VNextT1CandidateBindingV2.jl",
+      "bytes": 10143,
+      "sha256": "b507f8e4f31baea7fd2c4e5be5b5c7026382d69a92b6235f863bd67433c243b2"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+      "bytes": 10826,
+      "sha256": "d68c61c20d359fd70a364ad70545845e540435b8b052fecf1a9ac1ab64e2008e"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+      "bytes": 13232,
+      "sha256": "37fc25612cccf94044f736984f7f4a730c7f6f078898c80849981add27f3bc86"
+    },
+    {
+      "path": "src/GenomeV5/Integration/VNextGenomeV5Integration.jl",
+      "bytes": 10823,
+      "sha256": "d9824756a1287f6ed7a7df0c5d06a1523b109b52f12a91d36b9aab5ec05ba501"
+    }
+  ],
+  "protocol_scope": {
+    "historical_snapshot_receipts": [
+      {
+        "path": "test/GenomeV5/Integration/VNextT1FormalR26/protocol_r26_v9.json",
+        "bytes": 50998,
+        "sha256": "1431ac4298529160de7454b96a546f55905eea3e7042e982f0e6f2a9ede6c0cc"
+      }
+    ],
+    "current_integration_receipts": [
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/single_merge.json",
+        "bytes": 37341,
+        "sha256": "1556c4471aa640d7e681ffb5cab765427e9bd420bb1d26b1ba421f83938f24e4"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/single_merge.json",
+        "bytes": 37343,
+        "sha256": "13d54717471d8a29d1a6d82cefb4bbb82f0e1ca17a97ad07a3ae29b4ac530ae9"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/cross_merge.json",
+        "bytes": 791,
+        "sha256": "63b8659e06ae142e78a0f30fa62b953ac4f0e8b1c3ebf8380e794ae4f842dde7"
+      }
+    ],
+    "shared_loader_covered": false
+  },
+  "coverage": {
+    "v1": {
+      "status": "pass",
+      "legacy_target_count": 63,
+      "added_target_count": 7,
+      "exact_target_count": 70,
+      "unique_target_count": 70,
+      "missing_targets": [],
+      "duplicate_targets": [],
+      "target_ids": [
+        "r18v2-001",
+        "r18v2-002",
+        "r18v2-003",
+        "r18v2-004",
+        "r18v2-005",
+        "r18v2-006",
+        "r18v2-007",
+        "r18v2-008",
+        "r18v2-009",
+        "r18v2-010",
+        "r18v2-011",
+        "r18v2-012",
+        "r18v2-013",
+        "r18v2-014",
+        "r18v2-015",
+        "r18v2-016",
+        "r18v2-017",
+        "r18v2-018",
+        "r18v2-019",
+        "r18v2-020",
+        "r18v2-021",
+        "r18v2-022",
+        "r18v2-023",
+        "r18v2-024",
+        "r18v2-025",
+        "r18v2-026",
+        "r18v2-027",
+        "r18v2-028",
+        "r18v2-029",
+        "r18v2-030",
+        "r18v2-031",
+        "r18v2-032",
+        "r18v2-033",
+        "r18v2-034",
+        "r18v2-035",
+        "r18v2-036",
+        "r18v2-037",
+        "r18v2-038",
+        "r18v2-039",
+        "r18v2-040",
+        "r18v2-041",
+        "r18v2-042",
+        "r18v2-043",
+        "r18v2-044",
+        "r18v2-045",
+        "r18v2-046",
+        "r18v2-047",
+        "r18v2-048",
+        "r18v2-049",
+        "r18v2-050",
+        "r18v2-051",
+        "r18v2-052",
+        "r18v2-053",
+        "r18v2-054",
+        "r18v2-055",
+        "r18v2-056",
+        "r18v2-057",
+        "r18v2-058",
+        "r18v2-059",
+        "r18v2-060",
+        "r18v2-061",
+        "r18v2-062",
+        "r18v2-063",
+        "r26-extra-001",
+        "r26-extra-002",
+        "r26-extra-003",
+        "r26-extra-004",
+        "r26-extra-005",
+        "r26-extra-006",
+        "r26-extra-007"
+      ],
+      "receipt": {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/single_merge.json",
+        "bytes": 37341,
+        "sha256": "1556c4471aa640d7e681ffb5cab765427e9bd420bb1d26b1ba421f83938f24e4"
+      }
+    },
+    "v2": {
+      "status": "pass",
+      "legacy_testset_count": 7,
+      "legacy_testsets": [
+        {
+          "title": "V2 same-chain producer to reload adapter",
+          "ast_sha256": "5B193CC2A469B281D3DBB0FB3785489A4EC624459FF54DF2F3CCAAD51486E469",
+          "default_source_ast_sha256": "5B193CC2A469B281D3DBB0FB3785489A4EC624459FF54DF2F3CCAAD51486E469",
+          "filename_context_ast_sha256": "D2DC41EB2551F84B4BD7F4502979360176F1249316FA0B06538C7F9235A8C6A2",
+          "captured_ast_sha256": "D2DC41EB2551F84B4BD7F4502979360176F1249316FA0B06538C7F9235A8C6A2",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 2
+        },
+        {
+          "title": "R11b wire-bound package guards and identity witness boundary",
+          "ast_sha256": "D6D79E012F29AAF0D318D2E8F646F5020D6661465C777F5ADD0897EFC4FF4DF0",
+          "default_source_ast_sha256": "D6D79E012F29AAF0D318D2E8F646F5020D6661465C777F5ADD0897EFC4FF4DF0",
+          "filename_context_ast_sha256": "7347D35CEF04E4DA437CD1C3D061DDA250DF1899727DD9372E5C353DC8B85BBB",
+          "captured_ast_sha256": "7347D35CEF04E4DA437CD1C3D061DDA250DF1899727DD9372E5C353DC8B85BBB",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        },
+        {
+          "title": "V2 fail-closed gates",
+          "ast_sha256": "6787E0F46A0A6D0A4CDA4A9AAFB12731858CBDA39BFBA6F2D02CA5EA97A3FF48",
+          "default_source_ast_sha256": "6787E0F46A0A6D0A4CDA4A9AAFB12731858CBDA39BFBA6F2D02CA5EA97A3FF48",
+          "filename_context_ast_sha256": "E1CA9A8CA8062CF6CCA21C6EABAC2994D850FA1511F8CD12CFD70F762C65BCD4",
+          "captured_ast_sha256": "E1CA9A8CA8062CF6CCA21C6EABAC2994D850FA1511F8CD12CFD70F762C65BCD4",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        },
+        {
+          "title": "V2 R7 carrier byte/hash negative matrix",
+          "ast_sha256": "C1E8160B7811142AFE8CEF3F28997C6A33DF4CDDD42693D0C79029AEC1E1DBA1",
+          "default_source_ast_sha256": "C1E8160B7811142AFE8CEF3F28997C6A33DF4CDDD42693D0C79029AEC1E1DBA1",
+          "filename_context_ast_sha256": "1FD5343137C193F429B169265A595E8E72E4A1A2E083B04782D01727E8F51FD4",
+          "captured_ast_sha256": "1FD5343137C193F429B169265A595E8E72E4A1A2E083B04782D01727E8F51FD4",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        },
+        {
+          "title": "V2 R7 transport duplicate and stale authority negatives",
+          "ast_sha256": "182D95C641043035FFAC1768A1FC3B5ED97E86DF4398A2C46F7C69C79ADD65C7",
+          "default_source_ast_sha256": "182D95C641043035FFAC1768A1FC3B5ED97E86DF4398A2C46F7C69C79ADD65C7",
+          "filename_context_ast_sha256": "57FFB52E60C5B26979AE32C62E74B6A1A6A7932866995833A84D9ED9EE0F04E0",
+          "captured_ast_sha256": "57FFB52E60C5B26979AE32C62E74B6A1A6A7932866995833A84D9ED9EE0F04E0",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        },
+        {
+          "title": "V2 R9 G3 authority shape guards",
+          "ast_sha256": "64B2310FA502CFF93A4A03E4C61E7749E86DB25EA3DBADA73FD20B1A073D04F5",
+          "default_source_ast_sha256": "64B2310FA502CFF93A4A03E4C61E7749E86DB25EA3DBADA73FD20B1A073D04F5",
+          "filename_context_ast_sha256": "C43B8036BDA81CCCB1E60DF7AE96019B0B923A79FC4A7F0CC0AC81715E073099",
+          "captured_ast_sha256": "C43B8036BDA81CCCB1E60DF7AE96019B0B923A79FC4A7F0CC0AC81715E073099",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        },
+        {
+          "title": "V2 R7 package wire and semantic tamper fail atomic",
+          "ast_sha256": "13004BC3D51E4A13C79B6E36E0935FBEEE40B2271CF26C6F6F0DF0D6EC3E4C67",
+          "default_source_ast_sha256": "13004BC3D51E4A13C79B6E36E0935FBEEE40B2271CF26C6F6F0DF0D6EC3E4C67",
+          "filename_context_ast_sha256": "71EE5F7869102C3F392576596BC0426BBB0A4B41A361BCCF1DAFEAAC448D71FE",
+          "captured_ast_sha256": "71EE5F7869102C3F392576596BC0426BBB0A4B41A361BCCF1DAFEAAC448D71FE",
+          "context_match": true,
+          "default_source_line_files": [
+            "none"
+          ],
+          "filename_context_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "captured_line_files": [
+            "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT1V2\\vnext_t1_v2_same_chain_tests.jl"
+          ],
+          "status": "pass",
+          "writer_suppressions": 0
+        }
+      ],
+      "required_extras": [
+        "R26 V2 honest absence, mismatch, and envelope separation",
+        "R26 V2 malformed absence cannot be laundered",
+        "R26 V2 detached content joins and constructor closure",
+        "R26 V2 reload adapter binding and resource gates"
+      ],
+      "receipts": [
+        {
+          "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/v2_formal/ledger.json",
+          "bytes": 26086,
+          "sha256": "b6dad8df03397803f7c4d330d221d73f9474f188c14e59193ddb1ac0362a9722"
+        }
+      ]
+    },
+    "binding": {
+      "status": "pass",
+      "case_count": 16,
+      "case_ids": [
+        "absent_zero",
+        "absent_duplicate_matching",
+        "absent_duplicate_differing",
+        "absent_foreign_candidate",
+        "absent_candidate_digest",
+        "absent_package_hash",
+        "absent_matching_present",
+        "absent_matching_absent",
+        "present_zero",
+        "present_duplicate",
+        "present_foreign_candidate",
+        "present_candidate_digest",
+        "present_package_hash",
+        "present_observed_absent",
+        "present_matching",
+        "present_wrong_wire"
+      ],
+      "receipt": {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/binding_formal/ledger.json",
+        "bytes": 26369,
+        "sha256": "f495b30b2084cc536fe42c8afa0748c0411e28636f13152fd2ae78567fa293c8"
+      }
+    }
+  },
+  "primary_execution": {
+    "status": "pass",
+    "exit_code": 0,
+    "stop_reason": "natural_exit",
+    "status_origin": "all four recorded natural child exits and strict single merge",
+    "execution_structure": "four serial fresh Julia children",
+    "pinned_input_changes": [],
+    "residual_heavy_processes": [],
+    "summary_receipt": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/single_merge.json",
+      "bytes": 37341,
+      "sha256": "1556c4471aa640d7e681ffb5cab765427e9bd420bb1d26b1ba421f83938f24e4"
+    },
+    "stage_receipts": [
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/v1_carrier/final.json",
+        "bytes": 24110,
+        "sha256": "902351d808912426ce3e0040b13f0dc7735c8ffb628b3b1354971110124bbcfc"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/v1_contract/final.json",
+        "bytes": 24114,
+        "sha256": "31860ba557441d7a0e36310a92fa12b3cd7dce1abd5fbff0325e722dd0735db9"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/v2_formal/final.json",
+        "bytes": 24081,
+        "sha256": "72ae6ffddebb60432f1ec6a6dfe7e00b9f5950c0e5fa5b9130a19829c21b36d1"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/primary_r8/binding_formal/final.json",
+        "bytes": 24102,
+        "sha256": "23e9a7af657b034bac5a066a0c69d97198d40fdded20c166376e4b663d099335"
+      }
+    ],
+    "stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/primary_r8.stdout_bundle.json",
+      "bytes": 1441,
+      "sha256": "91114ca1fbbd8a8bdae8ee0bdc39b88cd303476c79c94572b51d0009d7289068"
+    },
+    "stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/primary_r8.stderr_bundle.json",
+      "bytes": 1425,
+      "sha256": "aebe88cc56664fecd193b86d819226485cea71a75cfefe24181dcb21042a166f"
+    },
+    "top_level_stream_format": "derived raw-stage receipt indices; not controller stream captures",
+    "resource_gates": {
+      "timeout_seconds": 240,
+      "working_set_limit_bytes": 2147483648,
+      "carrier_limit_seconds": 10,
+      "package_integrator_limit_seconds": 30,
+      "reload_adapter_limit_seconds": 30,
+      "include_limit_seconds": 220,
+      "within_timeout": true,
+      "within_working_set_limit": true,
+      "rss_measurement": "maximum sampled process-tree RSS in frozen recorder"
+    },
+    "stable_projection_sha256": "02b24897f7963399f35d0519f6c049dc61b0c6244dd9a859062dfaa716b4da4d",
+    "child_identities": {
+      "v1_carrier": {
+        "pid": 28724,
+        "process_create_time": 1790053918.2244122,
+        "started_utc": "2026-09-22T05:11:58.221416+00:00"
+      },
+      "v1_contract": {
+        "pid": 30648,
+        "process_create_time": 1790053933.0296497,
+        "started_utc": "2026-09-22T05:12:13.027087+00:00"
+      },
+      "v2_formal": {
+        "pid": 3452,
+        "process_create_time": 1790054071.4113376,
+        "started_utc": "2026-09-22T05:14:31.409707+00:00"
+      },
+      "binding_formal": {
+        "pid": 29376,
+        "process_create_time": 1790054224.3763576,
+        "started_utc": "2026-09-22T05:17:04.373027+00:00"
+      }
+    }
+  },
+  "fresh_replay": {
+    "status": "pass",
+    "exit_code": 0,
+    "stop_reason": "natural_exit",
+    "status_origin": "all four recorded natural child exits and strict single merge",
+    "execution_structure": "four serial fresh Julia children",
+    "pinned_input_changes": [],
+    "residual_heavy_processes": [],
+    "summary_receipt": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/single_merge.json",
+      "bytes": 37343,
+      "sha256": "13d54717471d8a29d1a6d82cefb4bbb82f0e1ca17a97ad07a3ae29b4ac530ae9"
+    },
+    "stage_receipts": [
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/v1_carrier/final.json",
+        "bytes": 24110,
+        "sha256": "a868bd149472285cedb740e4ddb35f750d5e75cc6e859d3fc93237dd00e75f60"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/v1_contract/final.json",
+        "bytes": 24113,
+        "sha256": "883d4c7101036e2d74f47af3b938e8082f63df14eeafea395b9e551e7004f9b6"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/v2_formal/final.json",
+        "bytes": 24081,
+        "sha256": "4c440c37a235e2a2295d19d808ca14c16f89268e1a7b8e0dd5578799ed653f8d"
+      },
+      {
+        "path": "docs/implementation/UP1-04A-VNEXT-T1/independent_formal_r26_20260922/replay_r8/binding_formal/final.json",
+        "bytes": 24102,
+        "sha256": "155b0b796b7be4de64f97d1c726fa6081c6d98be7df7864b62fbece7ae0b16ff"
+      }
+    ],
+    "stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/replay_r8.stdout_bundle.json",
+      "bytes": 1436,
+      "sha256": "5c825eadc5fced818717b72520c50d072e26894ef4b694905703056c31bd84a9"
+    },
+    "stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/replay_r8.stderr_bundle.json",
+      "bytes": 1420,
+      "sha256": "706e4adbb49f7b6149dbc4a81ca1ea31f2c5d3f5d0576805342333009a22cedc"
+    },
+    "top_level_stream_format": "derived raw-stage receipt indices; not controller stream captures",
+    "resource_gates": {
+      "timeout_seconds": 240,
+      "working_set_limit_bytes": 2147483648,
+      "carrier_limit_seconds": 10,
+      "package_integrator_limit_seconds": 30,
+      "reload_adapter_limit_seconds": 30,
+      "include_limit_seconds": 220,
+      "within_timeout": true,
+      "within_working_set_limit": true,
+      "rss_measurement": "maximum sampled process-tree RSS in frozen recorder"
+    },
+    "stable_projection_sha256": "02b24897f7963399f35d0519f6c049dc61b0c6244dd9a859062dfaa716b4da4d",
+    "child_identities": {
+      "v1_carrier": {
+        "pid": 19972,
+        "process_create_time": 1790054300.5650055,
+        "started_utc": "2026-09-22T05:18:20.562125+00:00"
+      },
+      "v1_contract": {
+        "pid": 27076,
+        "process_create_time": 1790054312.8406167,
+        "started_utc": "2026-09-22T05:18:32.839000+00:00"
+      },
+      "v2_formal": {
+        "pid": 21044,
+        "process_create_time": 1790054461.9187562,
+        "started_utc": "2026-09-22T05:21:01.915472+00:00"
+      },
+      "binding_formal": {
+        "pid": 25944,
+        "process_create_time": 1790054617.4134653,
+        "started_utc": "2026-09-22T05:23:37.411804+00:00"
+      }
+    },
+    "fresh_child_identity_distinct": true,
+    "stable_projection_equal": true,
+    "process_overlap": false,
+    "replay_mode": "full frozen tests reconstructed in fresh children; each round also serializes and reloads"
+  },
+  "recorded_process_intervals": [
+    {
+      "run": "primary_r8",
+      "stage": "v1_carrier",
+      "pid": 28724,
+      "started_utc": "2026-09-22T05:11:58.221416+00:00",
+      "ended_utc": "2026-09-22T05:12:11.641587+00:00"
+    },
+    {
+      "run": "primary_r8",
+      "stage": "v1_contract",
+      "pid": 30648,
+      "started_utc": "2026-09-22T05:12:13.027087+00:00",
+      "ended_utc": "2026-09-22T05:14:30.077840+00:00"
+    },
+    {
+      "run": "primary_r8",
+      "stage": "v2_formal",
+      "pid": 3452,
+      "started_utc": "2026-09-22T05:14:31.409707+00:00",
+      "ended_utc": "2026-09-22T05:17:03.462723+00:00"
+    },
+    {
+      "run": "primary_r8",
+      "stage": "binding_formal",
+      "pid": 29376,
+      "started_utc": "2026-09-22T05:17:04.373027+00:00",
+      "ended_utc": "2026-09-22T05:17:10.792372+00:00"
+    },
+    {
+      "run": "replay_r8",
+      "stage": "v1_carrier",
+      "pid": 19972,
+      "started_utc": "2026-09-22T05:18:20.562125+00:00",
+      "ended_utc": "2026-09-22T05:18:31.833235+00:00"
+    },
+    {
+      "run": "replay_r8",
+      "stage": "v1_contract",
+      "pid": 27076,
+      "started_utc": "2026-09-22T05:18:32.839000+00:00",
+      "ended_utc": "2026-09-22T05:21:00.734657+00:00"
+    },
+    {
+      "run": "replay_r8",
+      "stage": "v2_formal",
+      "pid": 21044,
+      "started_utc": "2026-09-22T05:21:01.915472+00:00",
+      "ended_utc": "2026-09-22T05:23:36.412738+00:00"
+    },
+    {
+      "run": "replay_r8",
+      "stage": "binding_formal",
+      "pid": 25944,
+      "started_utc": "2026-09-22T05:23:37.411804+00:00",
+      "ended_utc": "2026-09-22T05:23:42.151967+00:00"
+    }
+  ],
+  "independent_review_receipts": [
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/astra_semantic_review_20260922_r1/r18/final_cross_process_review_v2.json",
+      "bytes": 72934,
+      "sha256": "ab79621923dbffc43cb09752df24ac024e259ef774d6f50a10fb1e47dc9d594d"
+    }
+  ],
+  "consumer_verifier": {
+    "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+    "bytes": 55103,
+    "sha256": "27a5c8abc79b46d78824916a4c9f66dbbb526c14f9e5dfe1b75f6df8c9700d47"
+  },
+  "assembly_script": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/assemble_manifest.py",
+    "bytes": 11293,
+    "sha256": "ea2889ae403cd4c81939d184d4b1f4407042cf82c1b52f34cd41c01973e81e2d"
+  },
+  "scientific_acceptance": false,
+  "b00_b04_formal_acceptance": false,
+  "formal_t2_accepted": false,
+  "r01_r10_accepted": false
+}

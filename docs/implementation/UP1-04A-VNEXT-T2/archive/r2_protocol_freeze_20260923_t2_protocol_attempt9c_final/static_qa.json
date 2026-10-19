@@ -1,0 +1,675 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r4",
+  "status": "pass",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b QA failure receipt mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection validator non-schema diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller r4/r5 non-binding diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "unplanned controller Python child rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller child phase omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "generated cache stale SHA rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "third generated cache rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache reintroduced as runtime input rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 300 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 600 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "memory cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt8 timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline marker contract omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline serialization marker omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 site omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 extra site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 source assertion drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 case omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation row omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation source text drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects both missing map argv values",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects missing map SHA argv value",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map path drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map argv reordering",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 plan missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 schema drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 source/phase consumed pin missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 phase sidecar missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 exclusion reason drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 historical intersection drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 current input join drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan case ID drift from coverage map",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan field removed from coverage map copy",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site ID missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase order drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r4d.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "attempt7_plan_equality": {
+    "status": "pass",
+    "case_count": 60,
+    "formal_case_count": 45,
+    "runtime_unique_case_count": 60,
+    "runtime_hit_count": 68,
+    "successor_site_count": 214,
+    "successor_runtime_hit_count": 622,
+    "case_ids_exact": true,
+    "site_ids_and_assertions_exact": true,
+    "phase_hit_map_exact": true,
+    "full_path_line_map_byte_equal": false,
+    "relocation_ledger": {
+      "site_count": 214,
+      "path_changed_site_count": 175,
+      "line_changed_site_count": 0,
+      "source_text_match_count": 214,
+      "current_source_line_verified_count": 214
+    }
+  },
+  "checks": [
+    {
+      "name": "projection24 historical input join and exclusions",
+      "status": "pass",
+      "historical_input_count": 157,
+      "exact_current_intersection_count": 151,
+      "excluded_count": 6,
+      "missing_from_current_closure": [
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/dispatch_r3_review/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_candidate_checkpoint_r1/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_delta_review_r2/positive_join_unit_review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/review.json"
+      ],
+      "bytes_or_sha256_changed": [
+        "docs/v4_multitopology_generation/16_execution_work_orders.md",
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "dependency_subset_count": 159,
+      "explicitly_consumed_paths": [
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/actual_observation.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/phase.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/samples.jsonl",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stderr.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stdout.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/pipeline_final.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_actual_r1_timeout_20260922/execution_receipt.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_dispatch_r1/protocol.json"
+      ]
+    },
+    {
+      "name": "projection24 path-keyed dependency order is semantic",
+      "status": "pass"
+    },
+    {
+      "name": "projection24 plan targeted synthetic positive/negative controls",
+      "status": "pass",
+      "negative_controls_added": 11,
+      "synthetic_only": true
+    },
+    {
+      "name": "phase semantic maps ignore JSON object key order",
+      "status": "pass"
+    },
+    {
+      "name": "104 positive r3 pins compare as path-keyed exact records",
+      "status": "pass"
+    },
+    {
+      "name": "synthetic phase hit receipts satisfy static 214/622 mapping",
+      "status": "pass",
+      "synthetic_only": true,
+      "site_count": 214,
+      "hit_count": 622
+    }
+  ],
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/protocol.json",
+    "bytes": 485843,
+    "sha256": "c8c258a73e824824734578b440906c6db69394c33c78ad216917f70efe3dc708"
+  },
+  "coverage_map": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/coverage_map_r3.json",
+    "bytes": 455670,
+    "sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+  },
+  "controller": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r5.py",
+    "bytes": 95511,
+    "sha256": "c203a0b1522fc9c89f25df0ff51defe2534b3111f719af324b94eaadbe87962f"
+  },
+  "input_count": 296,
+  "python_parse_count": 28,
+  "julia_parse_inventory_count_not_executed": 104,
+  "positive_r3_input_pin_count": 104,
+  "positive_r3_pin_identity_sha256": "33ea4f4ca5f6be4d25ed8a80990767da5c04e9b33eff057eb8f2590615ff5a55",
+  "positive_evidence_receipt_count": 10,
+  "old_assertion_sites_static_mapping": 154,
+  "old_runtime_hits_static_mapping": 174,
+  "successor_assertion_sites_static_plan": 214,
+  "successor_runtime_hits_static_plan": 622,
+  "context_transport_sites_static_plan": 23,
+  "context_transport_hits_static_plan": 92,
+  "preserved_successor_sites_static_plan": 191,
+  "preserved_successor_hits_static_plan": 530,
+  "projection24_prior_reuse_mapping": 24,
+  "projection24_python_preflight": {
+    "bytes": 2004,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/projection24_reuse_preflight/phase.json",
+    "sha256": "9e469004e7a97d99af3a9acf6877a073cf45c69ee9894bb940e05da28f4c80c7"
+  },
+  "projection24_preflight_natural_exit_zero": true,
+  "projection24_historical_actual_sites_completed": 24,
+  "projection24_r1_source_input_count": 157,
+  "projection24_r1_exact_current_intersection_count": 151,
+  "projection24_r1_excluded_input_count": 6,
+  "projection24_dependency_subset_count": 159,
+  "projection24_python_only_child_phase_count": 1,
+  "attempt8_preflight_failure_basis": {
+    "status": "preserved_natural_exit_failure_not_acceptance",
+    "baseline_exit_code": 0,
+    "preflight_exit_code": 1,
+    "preflight_argument_count": 14,
+    "driver_expected_argument_count": 16,
+    "coverage_map_pair_omitted": true,
+    "formal_t2_accepted": false
+  },
+  "attempt9_projection_preflight_failure_basis": {
+    "status": "preserved_natural_exit_failure_not_acceptance",
+    "preflight_exit_code": 1,
+    "stop_reason": "natural_exit",
+    "validator_schema_mismatch": true,
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt9b_static_qa_failure_basis": {
+    "status": "preserved_static_qa_failure_not_acceptance",
+    "failure": {
+      "message": "'manifest_path'",
+      "type": "KeyError"
+    },
+    "projection_preflight_exit_code": 0,
+    "projection_reuse_sites_completed": 24,
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "projection_validator_r3_r4_delta": {
+    "status": "pass",
+    "r3_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r3.py",
+      "bytes": 13215,
+      "sha256": "ca46d5c73d4f95b2f328f25fe9e1a3647ab7afd02b9a00c50aeb73f63c7af2c9"
+    },
+    "r4_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297"
+    },
+    "allowed_replacement_count": 3,
+    "non_schema_semantic_changes": 0,
+    "exact_unified_diff_sha256": "841bcad4af95ff3423b2fba417e689993f548d20b0b186918f1df612e707eba5"
+  },
+  "controller_r4_r5_validator_binding_delta": {
+    "status": "pass",
+    "r4_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r4.py",
+      "bytes": 95511,
+      "sha256": "5260c2c75916af832f76a0de593ee1d88c80d27ba18dce1b9ca6e80eb5f3ba38"
+    },
+    "r5_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r5.py",
+      "bytes": 95511,
+      "sha256": "c203a0b1522fc9c89f25df0ff51defe2534b3111f719af324b94eaadbe87962f"
+    },
+    "allowed_replacement_count": 1,
+    "non_binding_semantic_changes": 0,
+    "exact_unified_diff_sha256": "d59203190ed18f0519e174f85fb6793e41961e099139635c8287303f26214da4"
+  },
+  "controller_child_script_plan": {
+    "status": "pass",
+    "schema": "vnext-t2-controller-child-script-plan-r2",
+    "phase_count": 30,
+    "unique_script_count": 8,
+    "phase_ids": [
+      "parse_gate",
+      "coverage_ast_inventory",
+      "projection24_cross_run_validation",
+      "actual_formal_baseline",
+      "actual_formal_preflight",
+      "actual_formal_authority",
+      "actual_formal_fault_n10",
+      "actual_formal_t1_handoff",
+      "supplementary_edited_operation",
+      "supplementary_child_coupling",
+      "artifact_hash_precondition",
+      "artifact_recomputed_corrupt",
+      "artifact_zero_malformed",
+      "artifact_attack_fixture_generation",
+      "formal_driver_artifact_raw_hash_precondition",
+      "formal_driver_artifact_deserialize_precondition",
+      "formal_driver_artifact_zero_precondition",
+      "formal_driver_artifact_wrong_type_precondition",
+      "formal_driver_artifact_foreign_package_precondition",
+      "preexisting_candidate_package_jls",
+      "preexisting_candidate_t1_admission_receipt_json",
+      "preexisting_t2_result_jls",
+      "preexisting_run_receipt_json",
+      "preexisting_replay_uncommitted_attempt_json",
+      "preexisting_prior_success_set",
+      "preexisting_prior_uncommitted",
+      "preexisting_symlink_owned_target",
+      "candidate_receipt_precondition",
+      "serialized_result_postcondition",
+      "stable_projection_postcondition"
+    ],
+    "script_paths": [
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r3.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+    ],
+    "phase_to_script_paths": {
+      "parse_gate": [
+        "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl"
+      ],
+      "coverage_ast_inventory": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r3.jl"
+      ],
+      "projection24_cross_run_validation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py"
+      ],
+      "actual_formal_baseline": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl"
+      ],
+      "actual_formal_preflight": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl"
+      ],
+      "actual_formal_authority": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl"
+      ],
+      "actual_formal_fault_n10": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl"
+      ],
+      "actual_formal_t1_handoff": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r3.jl"
+      ],
+      "supplementary_edited_operation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "supplementary_child_coupling": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "artifact_hash_precondition": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_recomputed_corrupt": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_zero_malformed": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_attack_fixture_generation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl"
+      ],
+      "formal_driver_artifact_raw_hash_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_deserialize_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_zero_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_wrong_type_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_foreign_package_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_candidate_package_jls": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_candidate_t1_admission_receipt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_t2_result_jls": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_run_receipt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_replay_uncommitted_attempt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_prior_success_set": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_prior_uncommitted": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_symlink_owned_target": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "candidate_receipt_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "serialized_result_postcondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "stable_projection_postcondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ]
+    },
+    "python_child_phase_ids": [
+      "projection24_cross_run_validation"
+    ],
+    "dynamic_python_imports_in_controller": []
+  },
+  "actual_formal_shard_argv_contract": {
+    "status": "pass",
+    "shard_count": 4,
+    "expected_driver_argument_count": 16,
+    "coverage_map_path_index_1_based": 15,
+    "coverage_map_sha256_index_1_based": 16,
+    "coverage_map": {
+      "bytes": 455670,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/coverage_map_r3.json",
+      "sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+    },
+    "commands": [
+      {
+        "mode": "preflight",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt9c_final\\coverage_map_r3.json",
+        "coverage_map_sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+      },
+      {
+        "mode": "authority",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt9c_final\\coverage_map_r3.json",
+        "coverage_map_sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+      },
+      {
+        "mode": "fault_n10",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt9c_final\\coverage_map_r3.json",
+        "coverage_map_sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+      },
+      {
+        "mode": "t1_handoff",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt9c_final\\coverage_map_r3.json",
+        "coverage_map_sha256": "59442e71116459b9de143d8edcfe451a6c1fbf8ad09187b89ba5fdd3b1a3af27"
+      }
+    ],
+    "negative_controls": 5,
+    "runtime_uses_tested_builder": true
+  },
+  "python_cache_exclusion": {
+    "excluded_cache_file_count": 2,
+    "excluded_cache_receipts": [
+      {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "bytes": 48089,
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "bytes": 72660,
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "cache_files_are_current_inputs": false,
+    "cache_cleaned": false,
+    "direct_source_entrypoints": [
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r4d.py",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r4d.py"
+    ],
+    "cache_modules_imported_as_modules": [],
+    "controller_and_projection_sources_hash_pinned_before_loader": true
+  },
+  "attempt9_archive_evidence_only": true,
+  "actual_source_site_hits": "pending_julia_execution",
+  "four_shard_protocol_status": "frozen_not_executed",
+  "formal_t2_accepted": false,
+  "negative_control_count": 54
+}

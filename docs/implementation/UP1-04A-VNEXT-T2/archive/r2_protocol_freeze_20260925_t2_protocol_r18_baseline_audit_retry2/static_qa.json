@@ -1,0 +1,492 @@
+{
+  "actual_source_site_hits": "pending_julia_execution",
+  "baseline_heavy_preflight_controls": {
+    "baseline_and_final_audit_share_helper": true,
+    "negative_count": 24,
+    "positive_count": 1,
+    "production_helper": "verify_baseline_heavy_processes_clear"
+  },
+  "coverage": {
+    "attempt7_case_site_set_equal": true,
+    "authority_nonzero_sites": 75,
+    "authority_planned_hits": 118,
+    "authority_source_sites": 175,
+    "case_count": 60,
+    "formal_case_count": 45,
+    "phase_count": 30,
+    "planned_source_site_hits": 622,
+    "projection_sites": 24,
+    "relocated_site_count": 175,
+    "runtime_case_hits": 68,
+    "runtime_unique_cases": 60,
+    "source_sites": 214,
+    "transport_planned_hits": 92,
+    "transport_site_ids": 23
+  },
+  "formal_t2_accepted": false,
+  "generated_actual_shard_argv": [
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "preflight",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\0",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "preflight"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "fault_n10",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\1",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "fault_n10"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "t1_handoff",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\2",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "t1_handoff"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:PARENT_STALE",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\3",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:PARENT_STALE"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:PARENT_FOREIGN",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\4",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:PARENT_FOREIGN"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:G3_STALE",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\5",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:G3_STALE"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:G3_FOREIGN",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\6",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:G3_FOREIGN"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:ACTUAL_FOREIGN_SCENARIO",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\7",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:ACTUAL_FOREIGN_SCENARIO"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:ACTUAL_TYPED_ABSENCE",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\8",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:ACTUAL_TYPED_ABSENCE"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:ACTUAL_FORMAL_GATE_REJECTION",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\9",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\10",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR"
+    },
+    {
+      "argument_count": 16,
+      "driver_args": [
+        "authority-case:ACTUAL_DUPLICATE_INVOCATION",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-0.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-1.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-2.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authority-3.json",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-context.jls",
+        "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\static-authorization.json",
+        "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\planned-static-do-not-create\\11",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r16.json",
+        "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+      ],
+      "mode": "authority-case:ACTUAL_DUPLICATE_INVOCATION"
+    }
+  ],
+  "input_count": 580,
+  "julia_executed": false,
+  "negative_control_count": 30,
+  "negative_controls": [
+    {
+      "name": "non-object baseline audit rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unknown baseline audit schema rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: complete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: snapshot",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "non-boolean complete rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "contradictory audit receipt rejected: incomplete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "contradictory audit receipt rejected: missing snapshot object",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: snapshot incomplete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: snapshot schema",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: boolean row count",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: empty native process table",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: wrong identity authority",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing formal case rejected by plan/map equality",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unique case count reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "assertion site reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "site hit reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unexpected map schema rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed coverage-map SHA rejected by actual builder guard",
+      "rejected_as": "ValueError",
+      "status": "pass"
+    }
+  ],
+  "positive_control_count": 5,
+  "positive_controls": [
+    "R17 real empty complete audit accepted by R18 predicate"
+  ],
+  "positive_runtime_input_count": 104,
+  "r17_host_smoke_failure_lineage": {
+    "attempts": 2,
+    "r5_failure_pinned": true,
+    "r6_failure_pinned": true,
+    "status": "pass"
+  },
+  "r23_host_smoke": {
+    "exact_kill_wait_and_final_audit": true,
+    "natural_exit_zero": true,
+    "phase_count": 2,
+    "status": "pass",
+    "terminal_sample_race_receipt": true,
+    "timeout_remains_partial": true
+  },
+  "r23_source_pins": {
+    "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py": {
+      "bytes": 27470,
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+      "sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4"
+    },
+    "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py": {
+      "bytes": 25343,
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+      "sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192"
+    }
+  },
+  "resource_gates": {
+    "authority_case_wall_seconds": 2400,
+    "authority_phase_wall_seconds": 2400,
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 480,
+    "phase_wall_timeout_overrides": {
+      "actual_formal_preflight": 600
+    },
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "schema": "vnext-t2-independent-negative-static-qa-r11-r23",
+  "status": "pass_static_r18_r23_no_julia"
+}

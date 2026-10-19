@@ -1,0 +1,11 @@
+{
+  "command": "python -B -; construct psutil.Process(True) only",
+  "result": {
+    "constructor_success": false,
+    "exception_type": "NoSuchProcess",
+    "exit_code": 0,
+    "message": "process PID not found (pid=True)",
+    "process_signal_sent": false
+  },
+  "schema": "independent-readonly-psutil-bool-pid-constructor-r1"
+}

@@ -1,0 +1,7 @@
+# Exact orphan cleanup: historical T2 R5 stdin command
+
+The targeted process pair was an abandoned historical T2 command started on 2026-09-23 23:38 local time: Python PID 66196, parent PowerShell PID 72312, command `python -B - test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r5.py`. The `-` form reads standard input; it was not a current test and had accumulated high CPU time. Before action, process command, creation times, parent linkage, and absence of children below Python or unrelated children below parent were checked. `r5_before.json` SHA-256 `5f550912ebb0ea398fc4998cae9b07d4741e77183e4a298c1c29fb92af86f17a`.
+
+Two exact-script invocations are preserved as separate failures. First exit 1 before action because PowerShell's read-only `$ShellId` variable blocked assignment. The script was changed to `$ownedShellPid` and rerun. Second exit 1 **after** exact identity checks and Python `Stop-Process` succeeded: the parent shell exited naturally when its child died, so the subsequent parent `Stop-Process` reported `Cannot find a process with the process identifier 72312`. This exit must not be relabeled as command success.
+
+The final observation shows both PIDs absent; `r5_after.json` SHA-256 `7b2551ea48e601d987ffe937b2b1605f793e71bdd4a575acf6c182e12b08144`. Final script SHA-256 `a31523b6417dd0a0d6b27b7950e1ea477dec4e117492dd8757e299d63ca81b6a`. No filesystem file was deleted. The original R5 negative evidence remains untouched.

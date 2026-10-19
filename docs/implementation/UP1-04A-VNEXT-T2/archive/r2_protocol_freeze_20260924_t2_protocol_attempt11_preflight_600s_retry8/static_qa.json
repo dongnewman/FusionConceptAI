@@ -1,0 +1,1825 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r9",
+  "status": "pass",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b historical r4 validator provenance rejects current r6",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b QA failure receipt mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "old authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "new authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority invocation cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority coverage threshold change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority resource contract drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout policy drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c timeout cannot be relabeled complete",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c pre-assertion observation cannot be mislabeled",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection validator non-schema diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 projection validator changed closure size rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 projection validator generic schema acceptance rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 current map pin path drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r6 projection closure change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r6 generic protocol schema acceptance rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r6 current map path drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r6 projection current-map self-binding drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry4 projection compatibility failure cannot be relabeled",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry4 raw schema error must remain an exact input pin",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 monitor delta cannot hide coverage drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 changed-function inventory is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 source diff pin is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 final NO-GO decision hash is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 independent receipts remain pinned",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 cannot be relabeled accepted",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 monitor source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 launch identity threshold change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 process-table generation proof cannot be dropped",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 source diff pin is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "historical r12 launch identity source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 exact RSS type guard mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 monitor delta coverage_semantics_changed mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 monitor delta working_set_limit_changed mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 monitor delta thread_limits_changed mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 monitor delta semantic_thresholds_changed mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r13 RSS bool alias contract mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry5 historical failure SHA drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry6 historical failure SHA drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry6 program exception cannot be relabeled scientific failure",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry5 failure receipt must remain input pinned",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout selector source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout mutation outside attempt11 delta rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller r8/r9 non-binding diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller delta cannot hide 2400s case cap drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "unplanned controller Python child rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller child phase omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "stale r11 dynamic controller loader name rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled as cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "generated cache stale SHA rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "third generated cache rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache reintroduced as runtime input rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 300 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 600 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight-only override missing rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout 599 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout 601 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "wrong phase timeout override rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase timeout override rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority phase budget drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority case budget drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "memory cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "dispatch preflight timeout override drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "budget delta preflight timeout drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller base timeout argv must remain 480 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt8 timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority phase timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority per-case timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline marker contract omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline serialization marker omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 missing final case rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 partial case cannot be reused",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt11 partial coverage credit rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 remaining case identity drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 historical input omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial freeze error relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial freezer source pin drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial failure Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial failure receipt omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 static QA failure relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 QA source-at-failure pin drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 preserved artifact omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 QA failure reason drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 stale module binding relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 projection completion omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 pinned artifact omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 site omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 extra site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 source assertion drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 case omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation row omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation source text drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "summed phase wall cap arithmetic drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "unbounded total is not misreported as enforced timeout",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "monitor-incomplete cleanup cannot become accepted",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "termination wait contract cannot be widened",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport map missing ID rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport map extra ID rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport phase hit drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport moved to wrong case rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority protocol transport total drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority runtime Test.record counter removal rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport function source drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority flushed per-record event removal rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority per-record source line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority receipt missing source site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority receipt extra source site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority receipt wrong source hit rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority progress wrong-case hit rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority partial progress receipt rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority partial child phase rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority PASS marker missing rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority map SHA drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority source SHA drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority receipt wrong case ID rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "partial event wrong source line rejected",
+      "status": "pass",
+      "observed": "invalid_assertion_event"
+    },
+    {
+      "name": "partial event wrong site ID rejected",
+      "status": "pass",
+      "observed": "invalid_assertion_event"
+    },
+    {
+      "name": "partial event ordinal gap rejected",
+      "status": "pass",
+      "observed": "invalid_assertion_event"
+    },
+    {
+      "name": "partial event wrong source file rejected",
+      "status": "pass",
+      "observed": "invalid_assertion_event"
+    },
+    {
+      "name": "partial event result class rejected",
+      "status": "pass",
+      "observed": "invalid_assertion_event"
+    },
+    {
+      "name": "partial map SHA drift rejected",
+      "status": "pass",
+      "observed": "invalid_header"
+    },
+    {
+      "name": "partial source SHA drift rejected",
+      "status": "pass",
+      "observed": "invalid_header"
+    },
+    {
+      "name": "partial case identity drift rejected",
+      "status": "pass",
+      "observed": "invalid_case_begin"
+    },
+    {
+      "name": "mismatched child receipt is not reusable",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "partial child receipt is not reusable",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "parent pipeline phase join missing rejected",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "resume input closure drift rejected",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "completed case with missing child phase rejected",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "reordered parent case rows rejected",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "parent protocol SHA drift rejected",
+      "status": "pass",
+      "observed": "rejected_or_not_reusable"
+    },
+    {
+      "name": "formal shard rejects both missing map argv values",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects missing map SHA argv value",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map path drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "formal shard rejects coverage map argv reordering",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 plan missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 schema drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 source/phase consumed pin missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 phase sidecar missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 exclusion reason drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 historical intersection drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 current input join drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan case ID drift from coverage map",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan field removed from coverage map copy",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site ID missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase order drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r13.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "attempt10_preflight_interruption": {
+    "status": "pass",
+    "attempt10_completed_cases": 16,
+    "attempt10_planned_cases": 18,
+    "attempt10_uncredited_remaining_case_ids": [
+      "FEEDBACK_STALE",
+      "FEEDBACK_FOREIGN"
+    ],
+    "estimated_finalization_margin_seconds": 82.765803,
+    "estimate_is_guarantee": false
+  },
+  "attempt11_initial_freeze_failure": {
+    "status": "pass",
+    "first_freeze_exit_code": 1,
+    "classification": "python_freezer_lineage_guard_only",
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt11_retry1_static_qa_failure": {
+    "status": "pass",
+    "retry1_static_qa_exit_code": 1,
+    "projection24_preflight_exit_code": 0,
+    "failure_classification": "stale_historical_protocol_controller_path_assertion",
+    "julia_started": false
+  },
+  "attempt11_retry2_static_qa_failure": {
+    "status": "pass",
+    "retry2_static_qa_exit_code": 1,
+    "projection24_preflight_exit_code": 0,
+    "failure_classification": "r10_loader_name_mismatch_in_protocol_cache_contract",
+    "case_work_started": false,
+    "julia_started": false
+  },
+  "attempt7_plan_equality": {
+    "status": "pass",
+    "case_count": 60,
+    "formal_case_count": 45,
+    "runtime_unique_case_count": 60,
+    "runtime_hit_count": 68,
+    "successor_site_count": 214,
+    "successor_runtime_hit_count": 622,
+    "case_ids_exact": true,
+    "site_ids_and_assertions_exact": true,
+    "phase_hit_map_exact": true,
+    "full_path_line_map_byte_equal": false,
+    "relocation_ledger": {
+      "site_count": 214,
+      "path_changed_site_count": 175,
+      "line_changed_site_count": 175,
+      "source_text_match_count": 214,
+      "current_source_line_verified_count": 214
+    }
+  },
+  "process_monitor_contract": {
+    "status": "pass",
+    "checks": 69,
+    "check_names": [
+      "complete sample has unique exact root identity",
+      "zero CPU/RSS and system PPID zero remain valid",
+      "boolean RSS is incomplete, not an integer byte count",
+      "root boolean create_time cannot equal expected float identity",
+      "boolean CPU user measurement is incomplete",
+      "boolean CPU system measurement is incomplete",
+      "NaN CPU user measurement is incomplete",
+      "infinite CPU system measurement is incomplete",
+      "negative CPU user measurement is incomplete",
+      "negative CPU system measurement is incomplete",
+      "descendant create_time True is incomplete",
+      "descendant create_time 0.0 is incomplete",
+      "descendant create_time -1.0 is incomplete",
+      "descendant create_time inf is incomplete",
+      "descendant create_time -inf is incomplete",
+      "descendant create_time nan is incomplete",
+      "process-table create_time True is incomplete",
+      "process-table create_time 0.0 is incomplete",
+      "process-table create_time -1.0 is incomplete",
+      "process-table create_time inf is incomplete",
+      "process-table create_time nan is incomplete",
+      "process-table live recheck rejects True before equality",
+      "process-table live recheck rejects 0.0 before equality",
+      "process-table live recheck rejects -1.0 before equality",
+      "process-table live recheck rejects inf before equality",
+      "process-table live recheck rejects nan before equality",
+      "boolean PPID is incomplete while nonnegative PPID zero is valid",
+      "boolean process PID is incomplete",
+      "launch generation A versus same-PID lookup generation B is rejected",
+      "launch identity binds exact Popen and lookup generation",
+      "launch identity rejects nonfinite/nonpositive/bool timestamps",
+      "child enumeration AccessDenied is incomplete",
+      "RSS AccessDenied is incomplete",
+      "CPU AccessDenied is incomplete",
+      "root PID with different create_time is incomplete",
+      "root PID reuse during sample is incomplete",
+      "kill AccessDenied cannot produce verified termination",
+      "wait AccessDenied cannot produce verified termination",
+      "tracked PID reuse cannot produce verified termination",
+      "kill_tree rejects tracked create_time True before signals",
+      "kill_tree rejects tracked create_time 0.0 before signals",
+      "kill_tree rejects tracked create_time -1.0 before signals",
+      "kill_tree rejects tracked create_time inf before signals",
+      "kill_tree rejects tracked create_time nan before signals",
+      "kill_tree rejects boolean root timestamp equal to one before signals",
+      "kill_tree rejects boolean tracked PID before signals",
+      "boolean tracked PID cannot alias PID 1 or signal its target",
+      "live child boolean create_time cannot alias before termination signal",
+      "final tree audit rejects boolean tracked identity alias",
+      "final tree audit rejects boolean root timestamp alias",
+      "residual audit rejects malformed process-table identity",
+      "residual cmdline AccessDenied is incomplete",
+      "residual cmdline NoSuchProcess is incomplete",
+      "residual cmdline ZombieProcess is incomplete",
+      "residual process enumeration failure is incomplete",
+      "empty psutil process name requires recorded tasklist resolution",
+      "unresolved live process name is incomplete",
+      "process-table A-to-B PID reuse is incomplete despite stable PID set",
+      "leader exit with live descendant is never natural acceptance",
+      "natural exit rejects incomplete sample",
+      "natural exit rejects incomplete final tree audit",
+      "natural exit rejects incomplete termination",
+      "natural exit rejects incomplete residual audit",
+      "natural exit rejects nonempty residual process audit",
+      "natural exit rejects missing launch identity",
+      "natural exit rejects phase timestamp bool alias",
+      "natural exit rejects launch timestamp bool alias",
+      "natural exit rejects lookup timestamp nonfinite alias",
+      "natural exit rejects phase PID bool alias"
+    ],
+    "synthetic_process_fakes_only": true,
+    "julia_executed": false
+  },
+  "checks": [
+    {
+      "name": "r13 fail-closed numeric process-monitor audits",
+      "status": "pass",
+      "synthetic_process_fakes_only": true,
+      "negative_controls_added": 69
+    },
+    {
+      "name": "attempt11 preflight-only 600s controller path",
+      "status": "pass",
+      "phase_override_seconds": 600,
+      "base_formal_phase_seconds": 480,
+      "negative_controls_added": 14
+    },
+    {
+      "name": "controller summed phase wall cap and fail-closed cleanup",
+      "status": "pass",
+      "summed_phase_wall_cap_seconds": 16440,
+      "single_end_to_end_controller_timeout_enforced": false,
+      "negative_controls_added": 4
+    },
+    {
+      "name": "r10 to r11 fail-closed process-monitor source delta",
+      "status": "pass",
+      "coverage_semantics_changed": false,
+      "negative_controls_added": 7
+    },
+    {
+      "name": "r11 to r12 launch and process-table generation binding",
+      "status": "pass",
+      "coverage_semantics_changed": false,
+      "negative_controls_added": 7
+    },
+    {
+      "name": "retry4 projection schema failure lineage",
+      "status": "pass",
+      "julia_started": false
+    },
+    {
+      "name": "attempt11 retry3 final dual-review NO-GO lineage",
+      "status": "pass",
+      "formal_t2_accepted": false
+    },
+    {
+      "name": "projection24 historical input join and exclusions",
+      "status": "pass",
+      "historical_input_count": 157,
+      "exact_current_intersection_count": 151,
+      "excluded_count": 6,
+      "missing_from_current_closure": [
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/dispatch_r3_review/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_candidate_checkpoint_r1/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_delta_review_r2/positive_join_unit_review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/review.json"
+      ],
+      "bytes_or_sha256_changed": [
+        "docs/v4_multitopology_generation/16_execution_work_orders.md",
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "dependency_subset_count": 159,
+      "explicitly_consumed_paths": [
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/actual_observation.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/phase.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/samples.jsonl",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stderr.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stdout.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/pipeline_final.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_actual_r1_timeout_20260922/execution_receipt.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_dispatch_r1/protocol.json"
+      ]
+    },
+    {
+      "name": "projection24 path-keyed dependency order is semantic",
+      "status": "pass"
+    },
+    {
+      "name": "projection24 plan targeted synthetic positive/negative controls",
+      "status": "pass",
+      "negative_controls_added": 11,
+      "synthetic_only": true
+    },
+    {
+      "name": "phase semantic maps ignore JSON object key order",
+      "status": "pass"
+    },
+    {
+      "name": "104 positive r3 pins compare as path-keyed exact records",
+      "status": "pass"
+    },
+    {
+      "name": "synthetic phase hit receipts satisfy static 214/622 mapping",
+      "status": "pass",
+      "synthetic_only": true,
+      "site_count": 214,
+      "hit_count": 622
+    }
+  ],
+  "attempt11_preflight_budget": {
+    "status": "pass",
+    "resource_gates": {
+      "phase_wall_seconds": 480,
+      "authority_phase_wall_seconds": 2400,
+      "authority_case_wall_seconds": 2400,
+      "process_tree_working_set_bytes": 2147483648,
+      "julia_threads": 1,
+      "openblas_threads": 1,
+      "phase_wall_timeout_overrides": {
+        "actual_formal_preflight": 600
+      }
+    },
+    "preflight_only_timeout_source": {
+      "status": "pass",
+      "preflight_cap_seconds": 600,
+      "all_other_formal_shards_use_base_cap": true,
+      "selection_is_on_actual_run_path": true
+    },
+    "controller_wall_budget_summary": {
+      "schema": "vnext-t2-controller-summed-phase-wall-budget-r1",
+      "phase_count": 30,
+      "ordinary_phase_seconds": 480,
+      "preflight_phase_seconds": 600,
+      "authority_phase_seconds": 2400,
+      "summed_phase_wall_cap_seconds": 16440,
+      "sum_formula": "30*480 + (600-480) + (2400-480)",
+      "single_end_to_end_controller_timeout_enforced": false,
+      "excludes_setup_interphase_and_finalization_overhead": true
+    },
+    "process_cleanup_contract": {
+      "schema": "vnext-t2-process-monitor-cleanup-contract-r1",
+      "timeout_termination_function": "kill_tree",
+      "wait_procs_timeout_seconds": 5,
+      "natural_exit_requires_root_exit_confirmation": true,
+      "natural_exit_requires_complete_final_tree_audit": true,
+      "natural_exit_requires_root_identity_absent": true,
+      "natural_exit_requires_complete_empty_residual_audit": true,
+      "incomplete_termination_or_audit": "typed_monitor_incomplete_nonzero_no_acceptance",
+      "nonempty_residual_processes": "fail_closed",
+      "julia_executed_by_freezer": false
+    },
+    "command_base_phase_timeout_seconds": 480,
+    "authority_phase_seconds": 2400,
+    "summed_phase_wall_cap_seconds": 16440,
+    "single_end_to_end_controller_timeout_enforced": false,
+    "authority_case_seconds": 2400,
+    "working_set_limit_bytes": 2147483648
+  },
+  "controller_r10_r11_monitor_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_descendant_rows",
+      "_final_process_tree_audit",
+      "_monitor_error",
+      "_process_table_snapshot",
+      "_tasklist_process_names",
+      "heavy_processes",
+      "kill_tree",
+      "main",
+      "process_tree_sample",
+      "require_natural",
+      "run_authority_case_phase",
+      "run_phase",
+      "verify_authority_case_receipt",
+      "verify_protocol"
+    ],
+    "changed_module_assignments": [],
+    "added_imports": [
+      "csv",
+      "io"
+    ],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "73e68e568756bcbb176372c7022a272a941e329c2444b68d5b2a72a204f13a7f"
+  },
+  "controller_r11_r12_launch_generation_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_bind_launch_root_identity",
+      "_process_table_snapshot",
+      "_terminate_unbound_launch",
+      "main",
+      "require_natural",
+      "run_phase"
+    ],
+    "changed_module_assignments": [
+      "PROJECTION_REUSE_VALIDATOR"
+    ],
+    "added_imports": [
+      "math"
+    ],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "b6ff0176d3c6a0452e8ac56658f0abb5f2104eb020b03ba6db78ff3b6f985ff0"
+  },
+  "controller_r12_r13_numeric_monitor_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_bind_launch_root_identity",
+      "_descendant_rows",
+      "_final_process_tree_audit",
+      "_process_table_snapshot",
+      "_terminate_unbound_launch",
+      "_valid_cpu_seconds",
+      "_valid_create_time",
+      "_valid_finite_nonnegative_real",
+      "_valid_finite_positive_real",
+      "_valid_pid",
+      "_valid_ppid",
+      "_valid_rss_bytes",
+      "heavy_processes",
+      "kill_tree",
+      "main",
+      "process_tree_sample",
+      "require_natural",
+      "run_phase",
+      "verify_protocol"
+    ],
+    "changed_module_assignments": [
+      "PROJECTION_REUSE_VALIDATOR"
+    ],
+    "added_imports": [],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "3bffd08d9414337653651d4161b501250dd27a3958190f0e8d6ad82f5b47ee89"
+  },
+  "projection_validator_r4_r5_delta": {
+    "status": "pass",
+    "r4_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297"
+    },
+    "r5_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r5.py",
+      "bytes": 13699,
+      "sha256": "4cc51a6e16591d2e55a93a1bc5fb6dde6752ee808419d6768b372e5abe510849"
+    },
+    "changed_top_level_functions": [
+      "main",
+      "verify_projection24_reuse_plan"
+    ],
+    "projection_dependency_subset_count_unchanged": 159,
+    "generic_schema_acceptance": false
+  },
+  "projection_validator_r5_r6_delta": {
+    "status": "pass",
+    "r5_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r5.py",
+      "bytes": 13699,
+      "sha256": "4cc51a6e16591d2e55a93a1bc5fb6dde6752ee808419d6768b372e5abe510849"
+    },
+    "r6_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r6.py",
+      "bytes": 13699,
+      "sha256": "3210149a408a93d812ae8b1e4fcf45f4877b318e079364ae0774c90c75aab424"
+    },
+    "changed_top_level_functions": [
+      "main",
+      "verify_projection24_reuse_plan"
+    ],
+    "projection_dependency_subset_count_unchanged": 159,
+    "generic_schema_acceptance": false
+  },
+  "attempt11_retry4_projection_failure": {
+    "status": "preserved_projection_preflight_failure_no_julia",
+    "natural_exit_code": 1,
+    "stderr_sha256": "0a205f744a100e33ee784c7ffa41c44f85e5a584c0be87a43ba6c72c0e3f0794",
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt11_retry3_final_no_go_lineage": {
+    "status": "pass",
+    "lineage": {
+      "decision": {
+        "bytes": 3154,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry3_static_no_go_20260924/decision.md",
+        "sha256": "17627d424287ebb78fc4c68a274103204b9319174fe2e383340f2614ab2a307e"
+      },
+      "formal_t2_accepted": false,
+      "julia_started_by_retry4_freezer": false,
+      "reviewer_manifest": {
+        "bytes": 581,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_t2_attempt11_retry3_static_review_20260924/evidence_manifest.json",
+        "sha256": "350e74139dabb32aa02e6a7a286beaa7059cfd97b36fb814a63c49a192a4c68e"
+      },
+      "reviewer_report": {
+        "bytes": 12347,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_t2_attempt11_retry3_static_review_20260924/review.json",
+        "sha256": "1850362826c4ce87d95b4a91b68b28833a9dc22dbfea94d9158108d5664a34ed"
+      },
+      "schema": "vnext-t2-attempt11-retry3-final-no-go-lineage-r1",
+      "status": "preserved_retry3_no_go_with_final_independent_receipts",
+      "tester_manifest": {
+        "bytes": 1563,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/archive_manifest.json",
+        "sha256": "761c78a335e9175d293b5010ed5372c984a203aa86f679934eb6cf420e8c8c5f"
+      },
+      "tester_report": {
+        "bytes": 11991,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/review.json",
+        "sha256": "8a16c369a6f1cbd2e6ea980db293d3ad3717b82f71991f91bdb30ee732480f0f"
+      }
+    },
+    "formal_t2_accepted": false
+  },
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry8/protocol.json",
+    "bytes": 816239,
+    "sha256": "e5ddc50030d82c1532dd18538f06adabcc7b10d3500241075c4062a813c5b965"
+  },
+  "coverage_map": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r11.json",
+    "bytes": 600012,
+    "sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+  },
+  "controller": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r13.py",
+    "bytes": 212034,
+    "sha256": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863"
+  },
+  "input_count": 459,
+  "python_parse_count": 66,
+  "julia_parse_inventory_count_not_executed": 107,
+  "positive_r3_input_pin_count": 104,
+  "positive_r3_pin_identity_sha256": "33ea4f4ca5f6be4d25ed8a80990767da5c04e9b33eff057eb8f2590615ff5a55",
+  "positive_evidence_receipt_count": 10,
+  "old_assertion_sites_static_mapping": 154,
+  "old_runtime_hits_static_mapping": 174,
+  "successor_assertion_sites_static_plan": 214,
+  "successor_runtime_hits_static_plan": 622,
+  "process_monitor_contract_negative_controls": 69,
+  "context_transport_sites_static_plan": 23,
+  "context_transport_hits_static_plan": 92,
+  "preserved_successor_sites_static_plan": 191,
+  "preserved_successor_hits_static_plan": 530,
+  "projection24_prior_reuse_mapping": 24,
+  "projection24_python_preflight": {
+    "bytes": 2085,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry8/projection24_reuse_preflight/phase.json",
+    "sha256": "7a4e1ba653181e274b885386c1523143d6748f2d749afc5820a39a5c225804fe"
+  },
+  "projection24_preflight_natural_exit_zero": true,
+  "projection24_historical_actual_sites_completed": 24,
+  "projection24_r1_source_input_count": 157,
+  "projection24_r1_exact_current_intersection_count": 151,
+  "projection24_r1_excluded_input_count": 6,
+  "projection24_dependency_subset_count": 159,
+  "projection24_python_only_child_phase_count": 1,
+  "attempt8_preflight_failure_basis": {
+    "status": "preserved_natural_exit_failure_not_acceptance",
+    "baseline_exit_code": 0,
+    "preflight_exit_code": 1,
+    "preflight_argument_count": 14,
+    "driver_expected_argument_count": 16,
+    "coverage_map_pair_omitted": true,
+    "formal_t2_accepted": false
+  },
+  "attempt9_projection_preflight_failure_basis": {
+    "status": "preserved_natural_exit_failure_not_acceptance",
+    "preflight_exit_code": 1,
+    "stop_reason": "natural_exit",
+    "validator_schema_mismatch": true,
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt9b_static_qa_failure_basis": {
+    "status": "preserved_static_qa_failure_not_acceptance",
+    "failure": {
+      "message": "'manifest_path'",
+      "type": "KeyError"
+    },
+    "projection_preflight_exit_code": 0,
+    "projection_reuse_sites_completed": 24,
+    "historical_projection_validator": {
+      "status": "pass",
+      "validator_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r4.py",
+      "current_validator_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r6.py",
+      "current_r6_substitution_rejected": true
+    },
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt9b_historical_projection_validator_provenance": {
+    "status": "pass",
+    "validator_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r4.py",
+    "current_validator_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r6.py",
+    "current_r6_substitution_rejected": true
+  },
+  "attempt9c_authority_interruption_basis": {
+    "status": "resource_interruption_incomplete_not_scientific_fail_not_accepted",
+    "authority_exit_code": 15,
+    "timeout_seconds": 480.0,
+    "peak_working_set_bytes": 1703682048,
+    "last_marker": "attack_group_authority.begin\tpid=68444\ttime_ns=74653836729500",
+    "pre_assertion_observation": {
+      "case_id": "PARENT_STALE",
+      "status": "fail_closed",
+      "resolution": "none",
+      "first_reason": "t2_preflight_parent_commitment_mismatch",
+      "committed": false,
+      "ledger_status": "complete_contract_receipts"
+    },
+    "assertion_completion_status": "unknown_no_authority_summary_or_case_progress",
+    "formal_t2_accepted": false
+  },
+  "authority_case_budget_change": {
+    "status": "pass",
+    "prior_case_timeout_seconds": 1200,
+    "current_case_timeout_seconds": 2400,
+    "invocation_timeout_seconds": 2400,
+    "effective_child_timeout_policy": "min(per_case_cap, remaining_invocation_budget)",
+    "coverage_thresholds_changed": false,
+    "working_set_limit_bytes": 2147483648
+  },
+  "projection_validator_r3_r4_delta": {
+    "status": "pass",
+    "r3_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r3.py",
+      "bytes": 13215,
+      "sha256": "ca46d5c73d4f95b2f328f25fe9e1a3647ab7afd02b9a00c50aeb73f63c7af2c9"
+    },
+    "r4_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297"
+    },
+    "allowed_replacement_count": 3,
+    "non_schema_semantic_changes": 0,
+    "exact_unified_diff_sha256": "841bcad4af95ff3423b2fba417e689993f548d20b0b186918f1df612e707eba5"
+  },
+  "controller_r8_r9_authority_progress_delta": {
+    "status": "pass",
+    "r8_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r8.py",
+      "bytes": 136682,
+      "sha256": "ad02a7bf50f29c45124c020bec0f3cbef3fb05741ce6a6c4916b25e002d5573d"
+    },
+    "r9_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r9.py",
+      "bytes": 147896,
+      "sha256": "514181506b6d41f05773d2388d79262e46ba26f1bfa42f301e72c1389d1ff8ad"
+    },
+    "changed_top_level_functions": [
+      "_authority_source_ids",
+      "main",
+      "run_authority_case_phase",
+      "summarize_authority_case_progress_prefix",
+      "verify_authority_case_receipt"
+    ],
+    "changed_module_bindings": [
+      "ACTUAL_DRIVER",
+      "AUTHORITY_CASE_TIMEOUT_SECONDS"
+    ],
+    "coverage_semantics_changed": false,
+    "exact_unified_diff_sha256": "09e64c9f8aaaa89e6bf9f1f089d038f72549d191a7e683549f171c1829c3e707"
+  },
+  "controller_r10_r11_fail_closed_monitor_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_descendant_rows",
+      "_final_process_tree_audit",
+      "_monitor_error",
+      "_process_table_snapshot",
+      "_tasklist_process_names",
+      "heavy_processes",
+      "kill_tree",
+      "main",
+      "process_tree_sample",
+      "require_natural",
+      "run_authority_case_phase",
+      "run_phase",
+      "verify_authority_case_receipt",
+      "verify_protocol"
+    ],
+    "changed_module_assignments": [],
+    "added_imports": [
+      "csv",
+      "io"
+    ],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "73e68e568756bcbb176372c7022a272a941e329c2444b68d5b2a72a204f13a7f"
+  },
+  "attempt11_retry5_retry6_static_failure_lineage": {
+    "status": "pass",
+    "retry5_file_count": 10,
+    "retry6_file_count": 10,
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt11_retry4_projection_schema_failure": {
+    "status": "preserved_projection_preflight_failure_no_julia",
+    "natural_exit_code": 1,
+    "stderr_sha256": "0a205f744a100e33ee784c7ffa41c44f85e5a584c0be87a43ba6c72c0e3f0794",
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "controller_wall_budget_summary": {
+    "schema": "vnext-t2-controller-summed-phase-wall-budget-r1",
+    "phase_count": 30,
+    "ordinary_phase_seconds": 480,
+    "preflight_phase_seconds": 600,
+    "authority_phase_seconds": 2400,
+    "summed_phase_wall_cap_seconds": 16440,
+    "sum_formula": "30*480 + (600-480) + (2400-480)",
+    "single_end_to_end_controller_timeout_enforced": false,
+    "excludes_setup_interphase_and_finalization_overhead": true
+  },
+  "process_cleanup_contract": {
+    "schema": "vnext-t2-process-monitor-cleanup-contract-r1",
+    "timeout_termination_function": "kill_tree",
+    "wait_procs_timeout_seconds": 5,
+    "natural_exit_requires_root_exit_confirmation": true,
+    "natural_exit_requires_complete_final_tree_audit": true,
+    "natural_exit_requires_root_identity_absent": true,
+    "natural_exit_requires_complete_empty_residual_audit": true,
+    "incomplete_termination_or_audit": "typed_monitor_incomplete_nonzero_no_acceptance",
+    "nonempty_residual_processes": "fail_closed",
+    "julia_executed_by_freezer": false
+  },
+  "controller_child_script_plan": {
+    "status": "pass",
+    "schema": "vnext-t2-controller-child-script-plan-r2",
+    "phase_count": 30,
+    "unique_script_count": 8,
+    "phase_ids": [
+      "parse_gate",
+      "coverage_ast_inventory",
+      "projection24_cross_run_validation",
+      "actual_formal_baseline",
+      "actual_formal_preflight",
+      "actual_formal_authority",
+      "actual_formal_fault_n10",
+      "actual_formal_t1_handoff",
+      "supplementary_edited_operation",
+      "supplementary_child_coupling",
+      "artifact_hash_precondition",
+      "artifact_recomputed_corrupt",
+      "artifact_zero_malformed",
+      "artifact_attack_fixture_generation",
+      "formal_driver_artifact_raw_hash_precondition",
+      "formal_driver_artifact_deserialize_precondition",
+      "formal_driver_artifact_zero_precondition",
+      "formal_driver_artifact_wrong_type_precondition",
+      "formal_driver_artifact_foreign_package_precondition",
+      "preexisting_candidate_package_jls",
+      "preexisting_candidate_t1_admission_receipt_json",
+      "preexisting_t2_result_jls",
+      "preexisting_run_receipt_json",
+      "preexisting_replay_uncommitted_attempt_json",
+      "preexisting_prior_success_set",
+      "preexisting_prior_uncommitted",
+      "preexisting_symlink_owned_target",
+      "candidate_receipt_precondition",
+      "serialized_result_postcondition",
+      "stable_projection_postcondition"
+    ],
+    "script_paths": [
+      "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r3.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r6.py",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl",
+      "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+    ],
+    "phase_to_script_paths": {
+      "parse_gate": [
+        "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl"
+      ],
+      "coverage_ast_inventory": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_ast_inventory_r3.jl"
+      ],
+      "projection24_cross_run_validation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r6.py"
+      ],
+      "actual_formal_baseline": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+      ],
+      "actual_formal_preflight": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+      ],
+      "actual_formal_authority": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+      ],
+      "actual_formal_fault_n10": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+      ],
+      "actual_formal_t1_handoff": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+      ],
+      "supplementary_edited_operation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "supplementary_child_coupling": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "artifact_hash_precondition": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_recomputed_corrupt": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_zero_malformed": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_preflight_negative_driver_r1.jl"
+      ],
+      "artifact_attack_fixture_generation": [
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/artifact_attack_fixture_driver_r1.jl"
+      ],
+      "formal_driver_artifact_raw_hash_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_deserialize_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_zero_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_wrong_type_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "formal_driver_artifact_foreign_package_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_candidate_package_jls": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_candidate_t1_admission_receipt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_t2_result_jls": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_run_receipt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_replay_uncommitted_attempt_json": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_prior_success_set": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_prior_uncommitted": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "preexisting_symlink_owned_target": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "candidate_receipt_precondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "serialized_result_postcondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ],
+      "stable_projection_postcondition": [
+        "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl"
+      ]
+    },
+    "python_child_phase_ids": [
+      "projection24_cross_run_validation"
+    ],
+    "dynamic_python_imports_in_controller": []
+  },
+  "actual_formal_shard_argv_contract": {
+    "status": "pass",
+    "shard_count": 12,
+    "expected_driver_argument_count": 16,
+    "coverage_map_path_index_1_based": 15,
+    "coverage_map_sha256_index_1_based": 16,
+    "coverage_map": {
+      "bytes": 600012,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r11.json",
+      "sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+    },
+    "commands": [
+      {
+        "mode": "preflight",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "fault_n10",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "t1_handoff",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:PARENT_STALE",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:PARENT_FOREIGN",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:G3_STALE",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:G3_FOREIGN",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:ACTUAL_FOREIGN_SCENARIO",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:ACTUAL_TYPED_ABSENCE",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      },
+      {
+        "mode": "authority-case:ACTUAL_DUPLICATE_INVOCATION",
+        "driver_argument_count": 16,
+        "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r11.json",
+        "coverage_map_sha256": "b20a3081025442899f4b7e880dfd1d864413d65afdd678f135a1cb3af2e099f7"
+      }
+    ],
+    "outer_actual_shard_count": 4,
+    "authority_case_child_count": 9,
+    "negative_controls": 5,
+    "runtime_uses_tested_builder": true
+  },
+  "authority_case_hit_contract": {
+    "status": "pass",
+    "case_order": [
+      "PARENT_STALE",
+      "PARENT_FOREIGN",
+      "G3_STALE",
+      "G3_FOREIGN",
+      "ACTUAL_FOREIGN_SCENARIO",
+      "ACTUAL_TYPED_ABSENCE",
+      "ACTUAL_FORMAL_GATE_REJECTION",
+      "ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR",
+      "ACTUAL_DUPLICATE_INVOCATION"
+    ],
+    "authority_source_site_count": 175,
+    "case_zero_fill_count": 1575,
+    "case_hit_counts_static_plan": {
+      "PARENT_STALE": 38,
+      "PARENT_FOREIGN": 10,
+      "G3_STALE": 10,
+      "G3_FOREIGN": 10,
+      "ACTUAL_FOREIGN_SCENARIO": 10,
+      "ACTUAL_TYPED_ABSENCE": 8,
+      "ACTUAL_FORMAL_GATE_REJECTION": 15,
+      "ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR": 10,
+      "ACTUAL_DUPLICATE_INVOCATION": 7
+    },
+    "authority_nonzero_site_count_static_plan": 75,
+    "authority_hit_count_static_plan": 118,
+    "transport_site_count": 23,
+    "transport_hits_per_formal_phase_static_plan": 23,
+    "transport_total_across_four_phases_static_plan": 92,
+    "transport_hits_in_authority_static_plan": 23,
+    "parent_stale_total_hits_static_plan": 38,
+    "driver_hit_source": "Test.record actual results",
+    "actual_hits": "pending_julia_execution",
+    "negative_controls": 9
+  },
+  "authority_case_receipt_contract": {
+    "status": "pass_synthetic_receipts_only",
+    "positive_case": "PARENT_STALE",
+    "positive_source_site_count": 175,
+    "positive_observed_hit_count": 38,
+    "negative_controls": 10,
+    "actual_julia_hits": false,
+    "actual_hits_pending": true
+  },
+  "authority_partial_prefix_contract": {
+    "status": "pass_synthetic_partial_prefix_only",
+    "case_id": "PARENT_STALE",
+    "source_site_count_zero_filled": 175,
+    "actual_record_events_in_positive_prefix": 3,
+    "partial_case_is_reusable": false,
+    "negative_controls": 8,
+    "actual_julia_hits": false
+  },
+  "authority_resume_ancestry_contract": {
+    "status": "pass_synthetic_ancestry_only",
+    "resumed_case_count_positive": 1,
+    "negative_controls": 7,
+    "partial_cases_are_joinable": false,
+    "actual_julia_resume": false
+  },
+  "python_cache_exclusion": {
+    "excluded_cache_file_count": 2,
+    "excluded_cache_receipts": [
+      {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "bytes": 48089,
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "bytes": 72660,
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "cache_files_are_current_inputs": false,
+    "cache_cleaned": false,
+    "direct_source_entrypoints": [
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r13.py",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r13.py"
+    ],
+    "cache_modules_imported_as_modules": [],
+    "controller_and_projection_sources_hash_pinned_before_loader": true
+  },
+  "attempt11_cleanup_inventory": {
+    "status": "pass",
+    "task_owned_disposable_paths": [],
+    "preserved_excluded_cache_count": 2,
+    "excluded_cache_files_cleaned": false
+  },
+  "attempt9_archive_evidence_only": true,
+  "actual_source_site_hits": "pending_julia_execution",
+  "four_shard_protocol_status": "frozen_not_executed",
+  "formal_t2_accepted": false,
+  "negative_control_count": 166
+}

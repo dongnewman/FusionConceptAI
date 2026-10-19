@@ -1,0 +1,343 @@
+{
+  "actual_source_site_hits": "unavailable",
+  "classification": "pre_julia_program_exception_baseline_process_monitor_incomplete",
+  "formal_coverage_credit": false,
+  "frozen_inputs": {
+    "controller": {
+      "bytes": 212034,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r13.py",
+      "sha256": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863"
+    },
+    "controller_sha256_expected": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863",
+    "protocol": {
+      "bytes": 816239,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry8/protocol.json",
+      "sha256": "e5ddc50030d82c1532dd18538f06adabcc7b10d3500241075c4062a813c5b965"
+    },
+    "protocol_sha256_expected": "e5ddc50030d82c1532dd18538f06adabcc7b10d3500241075c4062a813c5b965",
+    "static_qa_source": {
+      "bytes": 302470,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r13.py",
+      "sha256": "ae32f430fc338a91d8bbd3b8722d5810826dfa7d418e7bc2dc4e2eccd5f0f1c2"
+    }
+  },
+  "independent_live_recheck": {
+    "command": {
+      "bytes": 2674,
+      "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\postrun_recheck.command.json",
+      "sha256": "b19caa1ce17997cbdeb3e0308b283e9b23e0d5de4b0734460406c27484a71433"
+    },
+    "current_input_pins_checked": 459,
+    "current_input_pins_expected": 459,
+    "exit_code": 0,
+    "exit_receipt": {
+      "bytes": 2,
+      "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\postrun_recheck.exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "julia_processes": [],
+    "mismatch_count": 0,
+    "missing_count": 0,
+    "output_files": [],
+    "process_scan_errors": [],
+    "protocol_sha256": "e5ddc50030d82c1532dd18538f06adabcc7b10d3500241075c4062a813c5b965",
+    "r13_controller_processes": [],
+    "stderr": {
+      "bytes": 0,
+      "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\postrun_recheck.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 450,
+      "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\postrun_recheck.stdout.raw",
+      "sha256": "ee8f02f906464c448003aa23af01556d2d2106206f6e23072b48a7c57b255b1e"
+    }
+  },
+  "repair_contract": [
+    "Version the controller and protocol; preserve retry8 bytes and failure evidence.",
+    "Keep _valid_pid strict for launch roots, tracked process identities, descendants, lookups, and signals; PID 0 must never be treated as an owned identity or passed to Process/kill.",
+    "Use a separate Windows global-inventory normalizer at before, after, and final inventories: filter exactly the native integer 0 sentinel, preserve positive PIDs, and reject bool, float, negative, string, duplicate or malformed entries; do not allow PID 0 on unsupported platforms.",
+    "In process_iter, skip only the exact Windows System Idle row pid=0, ppid=0, create_time=0.0, name=System Idle Process; any PID0 row with different fields remains incomplete.",
+    "Add fakes proving complete snapshots for [0, positive PIDs] across before/after/final inventories and the exact iterator sentinel, while retaining fail-closed negatives for malformed PID types, altered sentinel fields, PID0 root/tracked identity, and residual Julia/Python descendants."
+  ],
+  "reproductions": {
+    "fake_pid0_probe": {
+      "command": {
+        "bytes": 4271,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\fake_pid0_probe_command.json",
+        "sha256": "1b903c124913197d62fd1b1065303f9183f1f046db053ed80e146a0ddc14457f"
+      },
+      "exit_code": 0,
+      "exit_receipt": {
+        "bytes": 3,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\fake_pid0_probe.exit.txt",
+        "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+      },
+      "result": {
+        "case_count": 2,
+        "controller_sha256": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863",
+        "results": [
+          {
+            "attempts": 1,
+            "case": "native global inventory including pid0",
+            "complete": false,
+            "error_stages": [
+              "pid_inventory_before"
+            ],
+            "errors": [
+              {
+                "exception_type": "RuntimeError",
+                "message": "PID inventory contains invalid PID values",
+                "pid": null,
+                "stage": "pid_inventory_before"
+              }
+            ]
+          },
+          {
+            "attempts": 1,
+            "case": "inventory normalized but iterator exposes pid0",
+            "complete": false,
+            "error_stages": [
+              "process_identity_pid"
+            ],
+            "errors": [
+              {
+                "exception_type": "RuntimeError",
+                "message": "pid absent or inaccessible",
+                "pid": null,
+                "stage": "process_identity_pid"
+              }
+            ]
+          }
+        ],
+        "status": "pass"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\fake_pid0_probe.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 688,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\fake_pid0_probe.stdout.raw",
+        "sha256": "9a3b48c93d5eed98021ab2ca0c1425845817ae1c6b3b2de8553fe2a31f45839a"
+      }
+    },
+    "proposed_policy_probe": {
+      "command": {
+        "bytes": 4324,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\proposed_policy_probe_command.json",
+        "sha256": "7c39123ffd5d90f047424e00160cd67e520354e6da036368f10c2fc0efed432e"
+      },
+      "exit_code": 0,
+      "exit_receipt": {
+        "bytes": 3,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\proposed_policy_probe.exit.txt",
+        "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+      },
+      "result": {
+        "checks": 9,
+        "results": [
+          {
+            "case": "Windows inventory PID0 filtered but positive PIDs kept",
+            "pass": true
+          },
+          {
+            "case": "exact Windows System Idle PID0 row recognized and skipped",
+            "pass": true
+          },
+          {
+            "case": "bool PID still rejected",
+            "pass": true
+          },
+          {
+            "case": "negative PID still rejected",
+            "pass": true
+          },
+          {
+            "case": "float PID still rejected",
+            "pass": true
+          },
+          {
+            "case": "string PID still rejected",
+            "pass": true
+          },
+          {
+            "case": "unexpected PID0 name remains fail-closed",
+            "pass": true
+          },
+          {
+            "case": "unexpected PID0 PPID remains fail-closed",
+            "pass": true
+          },
+          {
+            "case": "unexpected PID0 creation time remains fail-closed",
+            "pass": true
+          }
+        ],
+        "schema": "review-only-proposed-pid0-normalization-policy-check-r1",
+        "status": "pass"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\proposed_policy_probe.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 706,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\proposed_policy_probe.stdout.raw",
+        "sha256": "dba14323414e4cd35bb304aee3a39a95485195c4e0c3576d9997e4cae994ae89"
+      }
+    },
+    "real_psutil_probe": {
+      "command": {
+        "bytes": 1810,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\real_psutil_probe_command.json",
+        "sha256": "e0678a64fbe9bea449bee276964979d2af04f2e692c01d4d058bc7303823469f"
+      },
+      "exit_code": 0,
+      "exit_receipt": {
+        "bytes": 3,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\real_psutil_probe.exit.txt",
+        "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+      },
+      "result": {
+        "invalid_pids_under_r13_rule": [
+          {
+            "type": "int",
+            "value": "0"
+          }
+        ],
+        "minimum_pid": 0,
+        "pid_count": 554,
+        "process_iter_pid0_count": 1,
+        "process_iter_pid0_rows": [
+          {
+            "create_time": 0.0,
+            "name": "System Idle Process",
+            "pid": 0,
+            "ppid": 0
+          }
+        ],
+        "psutil_version": "5.9.0"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\real_psutil_probe.stderr.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 261,
+        "path": "docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_attempt11_retry8_postrun_pid0_review_20260924_r1\\real_psutil_probe.stdout.raw",
+        "sha256": "5acef97000a6c9c551850bc4dd4446cd40c6a7b388c0e4db2ca33f56a3f27b1a"
+      }
+    }
+  },
+  "resource_interruption": false,
+  "reviewed_utc": "2026-09-24T12:51:49Z",
+  "reviewer": "/root/t2_review",
+  "root_cause": {
+    "cause_confidence": "same-host current psutil probe and frozen-code synthetic reproduction agree with stderr; runtime stderr does not contain a serialized inventory dump",
+    "observed_windows_psutil": {
+      "latest_pid_count": 554,
+      "only_inventory_value_rejected_by_r13_rule": [
+        {
+          "type": "int",
+          "value": "0"
+        }
+      ],
+      "pid0_process_iter_rows": [
+        {
+          "create_time": 0.0,
+          "name": "System Idle Process",
+          "pid": 0,
+          "ppid": 0
+        }
+      ],
+      "version": "5.9.0"
+    },
+    "source_function": "_valid_pid",
+    "source_locations": {
+      "after_inventory": "418-425",
+      "baseline_abort": "3147-3150",
+      "before_inventory": "374-379",
+      "final_inventory": "486-495",
+      "process_iter_pid": "387-395",
+      "valid_pid": "194-195"
+    },
+    "strict_identity_rule": "type(value) is int and value > 0"
+  },
+  "root_runtime_attempt": {
+    "artifacts": {
+      "invocation.exit.txt": {
+        "bytes": 3,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/invocation.exit.txt",
+        "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+      },
+      "invocation.json": {
+        "bytes": 594,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/invocation.json",
+        "sha256": "6230525048c6fbb0b17ea520fee44df059f81ff3972f3d92573e5d518914a805"
+      },
+      "invocation.stderr.raw": {
+        "bytes": 1122,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/invocation.stderr.raw",
+        "sha256": "361d5a0c0a0e7fd0c78c36e9795cf36af8aebe470563cbea2721f54bc9c10c1d"
+      },
+      "invocation.stdout.raw": {
+        "bytes": 0,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/invocation.stdout.raw",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "run_once.py": {
+        "bytes": 8544,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/run_once.py",
+        "sha256": "74bf3e7926a058b342e95f7a2d26b97ac62b553110f8198c97f055e53dd6cf38"
+      },
+      "start.json": {
+        "bytes": 2281,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry8_runtime_grant_20260924/start.json",
+        "sha256": "b9238cbe19beba489ebc7bdd407eaa518d59b91a6aed2d48f57e0562c5fa22bb"
+      }
+    },
+    "controller_exit_code": 1,
+    "controller_pid": 87428,
+    "elapsed_seconds": 0.637114,
+    "exit_receipt_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+    "finish_utc": "2026-09-24T12:01:29.031147+00:00",
+    "first_julia_run_phase_line": 3236,
+    "head_at_recheck": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "head_at_start": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "observed_error": "baseline residual process audit incomplete; pid_inventory_before: PID inventory contains invalid PID values",
+    "output_directory": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r6_attempt11_retry8",
+    "output_directory_exists": true,
+    "output_file_count": 0,
+    "phase_receipts": 0,
+    "root_invocation_sha256": "6230525048c6fbb0b17ea520fee44df059f81ff3972f3d92573e5d518914a805",
+    "root_launcher_sha256": "74bf3e7926a058b342e95f7a2d26b97ac62b553110f8198c97f055e53dd6cf38",
+    "root_start_sha256": "b9238cbe19beba489ebc7bdd407eaa518d59b91a6aed2d48f57e0562c5fa22bb",
+    "start_utc": "2026-09-24T12:01:28.394033+00:00",
+    "stderr_bytes": 1122,
+    "stderr_sha256": "361d5a0c0a0e7fd0c78c36e9795cf36af8aebe470563cbea2721f54bc9c10c1d",
+    "stdout_bytes": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "traceback_controller_line": 3149
+  },
+  "schema": "independent-t2-attempt11-retry8-postrun-review-r1",
+  "scientific_or_numerical_failure": false,
+  "scope": {
+    "julia_or_heavy_execution": false,
+    "old_static_preflight_go_preserved": true,
+    "old_static_preflight_go_sha256": "0915889499fee7714e8db951ef0af0f2ac331984acd9da3332e8c24b7ea46b81",
+    "source_or_test_edits": false
+  },
+  "static_qa_gap": {
+    "fake_psutil_lines": "344-394",
+    "fixtures_lines": "399-409",
+    "gap": "FakePsutil.pids returns sorted positive fixture keys; process_iter only emits fixture processes (41001/41002). No pid0 global inventory or System Idle row fixture; prior 166 controls therefore missed both failing sites.",
+    "pids_implementation_lines": "359-362",
+    "source": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r13.py",
+    "source_sha256": "ae32f430fc338a91d8bbd3b8722d5810826dfa7d418e7bc2dc4e2eccd5f0f1c2"
+  },
+  "verdict": "NO_GO_RETRY8_RUNTIME_ATTEMPT_CONSUMED"
+}

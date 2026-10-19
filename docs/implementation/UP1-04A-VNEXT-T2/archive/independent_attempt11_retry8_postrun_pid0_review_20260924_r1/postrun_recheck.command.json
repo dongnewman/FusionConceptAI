@@ -1,0 +1,14 @@
+{
+  "schema": "independent-t2-attempt11-retry8-postrun-recheck-command-r2",
+  "kind": "non_executable_command_data",
+  "argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "-c",
+    "import hashlib,json,pathlib,psutil\nroot=pathlib.Path.cwd(); p=root/'docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry8/protocol.json'; proto=json.loads(p.read_text(encoding='utf-8'))\nitems=[]; mismatches=[]; missing=[]\nfor pin in proto['inputs'].values():\n q=root/pin['path']\n if not q.is_file(): missing.append(pin['path']); continue\n raw=q.read_bytes(); got=hashlib.sha256(raw).hexdigest()\n if len(raw)!=pin['bytes'] or got!=pin['sha256']: mismatches.append({'path':pin['path'],'expected_bytes':pin['bytes'],'observed_bytes':len(raw),'expected_sha256':pin['sha256'],'observed_sha256':got})\n items.append(pin['path'])\njulia=[]; controllers=[]; scan_errors=[]\nfor pr in psutil.process_iter(attrs=['pid','name','cmdline'],ad_value=None):\n try:\n  info=pr.info; name=(info.get('name') or '').lower(); cmd=info.get('cmdline') or []\n  if name in ('julia.exe','julia') or any(pathlib.Path(arg).name.lower()=='julia.exe' for arg in cmd): julia.append({'pid':info.get('pid'),'name':info.get('name')})\n  if any(pathlib.Path(arg).name.lower()=='independent_negative_controller_r13.py' for arg in cmd): controllers.append({'pid':info.get('pid'),'name':info.get('name')})\n except (psutil.NoSuchProcess,psutil.ZombieProcess): pass\n except psutil.AccessDenied as e: scan_errors.append({'pid':getattr(pr,'pid',None),'error':'AccessDenied'})\n except Exception as e: scan_errors.append({'pid':getattr(pr,'pid',None),'error':type(e).__name__+': '+str(e)})\nout=root/'docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r6_attempt11_retry8'; files=sorted(str(x.relative_to(root)) for x in out.rglob('*') if x.is_file()) if out.exists() else None\nprint(json.dumps({'schema':'independent-attempt11-retry8-postrun-recheck-r2','protocol_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'current_input_pin_count':len(items),'current_input_pin_mismatch_count':len(mismatches),'current_input_pin_missing_count':len(missing),'mismatches':mismatches,'missing':missing,'output_directory_exists':out.exists(),'output_file_count':len(files) if files is not None else None,'output_files':files,'julia_processes':julia,'r13_controller_processes':controllers,'process_scan_errors':scan_errors},sort_keys=True))"
+  ],
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "exit_code": 0,
+  "stdout_file": "postrun_recheck.stdout.raw",
+  "stderr_file": "postrun_recheck.stderr.raw"
+}

@@ -1,0 +1,248 @@
+{
+  "schema": "independent-t2-attempt10-postrun-review-r1",
+  "reviewer": "/root/t2_review",
+  "date_utc": "2026-09-24",
+  "verdict": "NO_GO_RESOURCE_INTERRUPTION_INCOMPLETE",
+  "classification": {
+    "primary": "resource_interruption",
+    "child": "actual_formal_preflight exit 15 phase_wall_timeout",
+    "controller": "exit 1 RuntimeError from require_natural after child timeout",
+    "scientific_fail": false,
+    "complete_coverage": false,
+    "t2_acceptance": false
+  },
+  "scope": "Independent read-only review of root grant/invocation and attempt10 actual output. No Julia was started by reviewer; implementation sources were not edited.",
+  "protocol_sha256": "30c7e2141d0028607040d3395fecb3327738bb8c5cfda54ad6aa50a5ba96f58d",
+  "map_sha256": "060b6d887901b462e63ae0ac68539abc35c2f89bdf35a360672435aef5df0d68",
+  "static_qa_sha256": "8ea4d4395da37167ea8bb595783477227cb4038579a3bb38cc29acff1772a383",
+  "controller_r9_sha256": "514181506b6d41f05773d2388d79262e46ba26f1bfa42f301e72c1389d1ff8ad",
+  "driver_r6_sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e",
+  "root_execution": {
+    "grant_sha256": "9d71e57b2edb0faaec047f6ca0198613d2b84a492079b7f2b8260c35da89f38a",
+    "invocation_sha256": "863b622679a4671f25237b2bf1d471d8d8a1994b4c5352aac9253c6d95dd1c37",
+    "grant_decision": "grant_one_bounded_initial_execution_only",
+    "command_argv_sha256": "88e561459b877c3f21d3f8f6be8568aea3c5f644c0d987544a6b4385fcab971e",
+    "controller_exit": 1,
+    "outer_stdout_bytes": 0,
+    "outer_stderr_sha256": "51c33372b366eecd320027fc948118fc18cf6541e1efae0ad8e6051042aac561",
+    "started_utc": "2026-09-23T19:08:23.277395+00:00",
+    "finished_utc": "2026-09-23T19:22:29.013821+00:00",
+    "resource_args": {
+      "phase_timeout_s": 480,
+      "authority_phase_timeout_s": 2400,
+      "authority_case_timeout_s": 2400,
+      "working_set_limit_bytes": 2147483648,
+      "julia_threads": 1,
+      "openblas_threads": 1
+    }
+  },
+  "baseline": {
+    "phase_sha256": "e6b5e17dfcd0486492ab019f39f61efc0cf3a670415a38e1ff98f0a9af355e7a",
+    "summary_sha256": "64c07f45b1bfbaaa00052377a53b5eedec1bcab030c46c4c562fa9a364384185",
+    "exit_code": 0,
+    "stop_reason": "natural_exit",
+    "seconds": 318.56537460000254,
+    "peak_working_set_bytes": 1669619712,
+    "case_ids": [
+      "ACTUAL_BASELINE_POSITIVE"
+    ],
+    "site_hit_sum": 53,
+    "nonzero_site_count": 53,
+    "unmapped_assertion_sources": [],
+    "accepted": false,
+    "residual": []
+  },
+  "preflight": {
+    "phase_sha256": "dea03afa6085e5aecdf3fd59466f0274857e8f6dbc614757753a97f7c750f7ea",
+    "exit_code": 15,
+    "stop_reason": "phase_wall_timeout",
+    "seconds": 480.1707022000046,
+    "timeout_seconds": 480.0,
+    "peak_working_set_bytes": 1754058752,
+    "working_set_limit_bytes": 2147483648,
+    "sample_count": 2031,
+    "partial_observation_count": 16,
+    "expected_preflight_case_count": 18,
+    "all_partial_observations_fail_closed": true,
+    "last_stage_marker": "attack_group_preflight.begin\tpid=77876\ttime_ns=93704608283100",
+    "summary_present": false,
+    "case_progress_present": false,
+    "residual": []
+  },
+  "pipeline": {
+    "start_sha256": "a26694d1c40f73c1513a724d1078110d8baebb27cc7ac3b5daf9a5b4e0031d58",
+    "final_sha256": "7b6d4c159ad50e874936456e050387afa43da385b5dd826c7d1669a4418e6a38",
+    "status": "fail",
+    "failure": {
+      "message": "actual_formal_preflight stop=phase_wall_timeout",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r9.py\", line 2185, in main\n    require_natural(shard_phase, exit_zero=True)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r9.py\", line 311, in require_natural\n    raise RuntimeError(f\"{phase['name']} stop={phase['stop_reason']}\")\nRuntimeError: actual_formal_preflight stop=phase_wall_timeout\n",
+      "type": "RuntimeError"
+    },
+    "completed_phases": [
+      [
+        "parse_gate",
+        0,
+        "natural_exit",
+        1.2062373000080697
+      ],
+      [
+        "coverage_ast_inventory",
+        0,
+        "natural_exit",
+        3.801751699997112
+      ],
+      [
+        "projection24_cross_run_validation",
+        0,
+        "natural_exit",
+        0.24517169999307953
+      ],
+      [
+        "actual_formal_baseline",
+        0,
+        "natural_exit",
+        318.56537460000254
+      ],
+      [
+        "actual_formal_preflight",
+        15,
+        "phase_wall_timeout",
+        480.1707022000046
+      ]
+    ],
+    "aggregate_site_count": null,
+    "aggregate_hit_count": null,
+    "aggregate_hits": null,
+    "authority_started": false,
+    "executed_case_ids": [
+      "ACTUAL_BASELINE_POSITIVE"
+    ],
+    "executed_case_hit_count": 1,
+    "formal_t2_accepted": false,
+    "inputs_before_after_equal": true,
+    "inputs_rehashed": 319,
+    "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "residual_heavy_processes": []
+  },
+  "old_failure_protocols": {
+    "attempt8": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt8_final2/protocol.json",
+      "sha256": "4ad2c2448c8fe406fd05877ee8acbcd81acb10227fe598d8a5f0d0e118ca3ee4",
+      "current_matches": true
+    },
+    "attempt9": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9/protocol.json",
+      "sha256": "a80a9161ac4a758f01a427e8c67348863be933f8c9ce108cc03776ec657faeb4",
+      "current_matches": true
+    },
+    "attempt9b": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b/protocol.json",
+      "sha256": "85e4ebc8d6833696e5e0b08cc18baad965ca27fa76c29e972f41b8ceb00e451a",
+      "current_matches": true
+    },
+    "attempt9c": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final/protocol.json",
+      "sha256": "c8c258a73e824824734578b440906c6db69394c33c78ad216917f70efe3dc708",
+      "current_matches": true
+    }
+  },
+  "raw_evidence": {
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt10_grant_20260924/grant.json": {
+      "bytes": 4090,
+      "sha256": "9d71e57b2edb0faaec047f6ca0198613d2b84a492079b7f2b8260c35da89f38a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt10_grant_20260924/invocation.json": {
+      "bytes": 2422,
+      "sha256": "863b622679a4671f25237b2bf1d471d8d8a1994b4c5352aac9253c6d95dd1c37"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt10_grant_20260924/controller.exit.txt": {
+      "bytes": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt10_grant_20260924/controller.stdout.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt10_grant_20260924/controller.stderr.raw": {
+      "bytes": 821,
+      "sha256": "51c33372b366eecd320027fc948118fc18cf6541e1efae0ad8e6051042aac561"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/pipeline_start.json": {
+      "bytes": 144907,
+      "sha256": "a26694d1c40f73c1513a724d1078110d8baebb27cc7ac3b5daf9a5b4e0031d58"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/pipeline_final.json": {
+      "bytes": 268522,
+      "sha256": "7b6d4c159ad50e874936456e050387afa43da385b5dd826c7d1669a4418e6a38"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/phase.json": {
+      "bytes": 3458,
+      "sha256": "e6b5e17dfcd0486492ab019f39f61efc0cf3a670415a38e1ff98f0a9af355e7a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/stdout.raw": {
+      "bytes": 16314,
+      "sha256": "b650602cb84974d8644e08f7139dcc47c7edf61ef6beaec24585aed6c16ab92f"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/samples.jsonl": {
+      "bytes": 657470,
+      "sha256": "de62df05ac1273710f7f467381a2173ef5e7aa725bd53465e09d946ed829f44a"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/artifacts/summary.json": {
+      "bytes": 6454,
+      "sha256": "64c07f45b1bfbaaa00052377a53b5eedec1bcab030c46c4c562fa9a364384185"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/artifacts/observations.jsonl": {
+      "bytes": 5473,
+      "sha256": "b2dd75ba13c1d79d707c8e5cd493cd32e82f8e20de53674a5a22a88118adea66"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_baseline/artifacts/stage_trace.tsv": {
+      "bytes": 3173,
+      "sha256": "7d9bcfc44fbec1a1fba796cfc35e8036ef3a05861b6d591f228f4d5b838e6e89"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/phase.json": {
+      "bytes": 3584,
+      "sha256": "dea03afa6085e5aecdf3fd59466f0274857e8f6dbc614757753a97f7c750f7ea"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/stdout.raw": {
+      "bytes": 84929,
+      "sha256": "0f2abdb0b892e67d87623359d6639487542aaba7d4a8ecdee665b81752241b2e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/samples.jsonl": {
+      "bytes": 975016,
+      "sha256": "3c204f0b7d7a48874508fba11ee68a5342c4359de2f9130152ee7818a8f59a39"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/artifacts/observations.jsonl": {
+      "bytes": 81224,
+      "sha256": "a6c78b714cbbb6bc66cfbf3595f04a13aa86997f94a41a881dd95be2038b4d9e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/artifacts/context_transport_observation.json": {
+      "bytes": 829,
+      "sha256": "a435c1b8064549cdec48dadbde9fd76e819c3283c713416804f63d96eeea72dc"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt10_case_progress/actual_formal_preflight/artifacts/stage_trace.tsv": {
+      "bytes": 1855,
+      "sha256": "e54a9e0474518b5799d2ca053d4455f147fb2d80a91f7f42754e10f363b26972"
+    }
+  },
+  "attempt11_requirements": [
+    "Freeze a new protocol and output leaf; keep attempt10 grant, raw streams, child phases, pipeline and partial observations immutable.",
+    "Rerun the whole preflight shard from a fresh child. The 16 fail-closed observation rows are not Test.record/site-hit receipts; no summary, completed phase receipt or case_progress exists. Do not merge or resume that prefix.",
+    "Set an explicit finite preflight-specific cap above 480 s; recommend 2400 s for this formal shard, while retaining the 2 GiB sampled process-tree threshold and one Julia/OpenBLAS thread. Freeze and static-QA the exact budget delta before a new grant.",
+    "Preserve all phase/case/site obligations exactly: 30 phases, 45 formal projection IDs, 60 unique case IDs, 68 expected case hits, 214 site IDs, and 622 planned site hits. Require full natural-exit-zero phase and exact aggregate receipts before coverage credit.",
+    "Reuse the completed attempt10 baseline only through an explicit versioned cross-attempt receipt join checking source/map/current-input/HEAD identity and avoiding double count; otherwise rerun it. The preflight prefix is never reusable.",
+    "Keep one serial heavy lane. A repeated timeout is resource_interruption_incomplete; RSS-triggered stop is resource_failure. Neither is scientific failure or acceptance."
+  ],
+  "limitations": [
+    "The completed baseline is only one case and 53 hits, not the 214/622 aggregate.",
+    "Preflight output includes 16 flushed expected fail-closed observations of 18, but no finished shard/test summary.",
+    "Actual aggregate hit fields are null and authority was not started."
+  ]
+}

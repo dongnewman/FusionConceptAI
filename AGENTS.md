@@ -25,7 +25,13 @@ mathematics, scientific coverage or R01–R10 scope because of the requested wor
 Use explicit file ownership, one owner for each shared entry point, and one serialized lane
 for heavy Julia/DESC/mesh/regression execution.
 
-Preserve unrelated dirty work and historical artifacts. Audit current source and run
+Preserve unrelated dirty work. The October 19, 2026 user instruction authorizes
+summarizing and deleting bulky historical raw results/logs and retiring unused code.
+The exact boundary and SHA manifests are in
+`docs/implementation/WORKSPACE-CONSOLIDATION-20261019/README.md`. Preserve current
+reference inputs, explicit paused-work inputs, receipts and source/input pins; do not
+recreate deleted raw bytes or claim a summary is an executable replay. This cleanup
+does not authorize resuming the paused experimental Goal. Audit current source and run
 evidence before editing. Keep execution failures, numerical failures, physical failures,
 missing capabilities and evidence ceilings separate. Neither a document nor a passing
 test completes the unchanged parent R01–R10 goal. The September 14, 2026 user instruction

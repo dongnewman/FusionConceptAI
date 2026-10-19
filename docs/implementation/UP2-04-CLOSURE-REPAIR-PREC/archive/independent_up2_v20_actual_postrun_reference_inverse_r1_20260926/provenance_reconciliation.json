@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "case_hash_differs_from_vector_hash": true,
+    "numerical_result_matches_pin": true,
+    "protocol_expected_is_last_attempt_vector_hash": true,
+    "saved_result_case_and_engineering_identity_hash_equal": true,
+    "serialized_final_state_matches_solver_primary": true,
+    "solver_primary_matches_pin": true,
+    "source_assigns_composite_hash_to_case": true,
+    "source_contains_case_identity_hash_definition": true,
+    "source_contains_vector_hash_definition": true,
+    "v10_protocol_matches_v20_pin": true,
+    "v10_spatial_source_matches_pin": true,
+    "v20_line850_compares_case_identity_to_vector_digest": true,
+    "v20_protocol_matches_announced_hash": true
+  },
+  "conclusion": "The pinned source defines diagnostics attempt state_after_hash as canonical_hash(Tuple(x)); it defines case.state_hash as a composite identity hash over candidate/context/case/level/flux/final state. The V20 line-850 guard compares these distinct values. The exact source and artifacts are pinned; the stored result final_state equals solver_primary final_state and the protocol state_after_hash equals the last-attempt vector hash. This is a guard/provenance-field mismatch, not evidence of changed saved-result bytes.",
+  "julia_started": false,
+  "numerical_result": {
+    "bytes": 81595,
+    "case_final_state_equals_solver_primary_final_state": true,
+    "case_id": "n1_q1_2",
+    "case_state_hash": "b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7",
+    "diagnostics_last_attempt_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "engineering_input_state_hash": "b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7",
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/agent_r2_n1_20260922/runtime_manufactured_staged_r1/producer_process/numerical/production/numerical_result.json",
+    "protocol_expected_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "protocol_pin_sha256": "429d500e4d42d2ae8c6af9ab88f8b9b0a7a59dc1e5da1853c9dfa6b5bd6a10e7",
+    "sha256": "429d500e4d42d2ae8c6af9ab88f8b9b0a7a59dc1e5da1853c9dfa6b5bd6a10e7"
+  },
+  "overall": "PASS",
+  "read_only": true,
+  "schema": "v20-state-hash-provenance-reconciliation-v1",
+  "solver_primary": {
+    "bytes": 289039,
+    "last_attempt_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/agent_r2_n1_20260922/runtime_manufactured_staged_r1/producer_process/numerical/production/n1_q1_2/solver_primary.json",
+    "protocol_pin_sha256": "59905f83c7648056dac75e83e5ec14976293a0ca18ef697a72ede60e940a5218",
+    "sha256": "59905f83c7648056dac75e83e5ec14976293a0ca18ef697a72ede60e940a5218"
+  },
+  "source": {
+    "bytes": 114326,
+    "line_1167": "statehash=canonical_hash((candidate_hash=context.candidate_hash,context_hash=context.context_hash,case_id=c.case_id,level=c.level,flux_Wb=c.flux_Wb,state=c.final_state))",
+    "line_460": "state_after=Tuple(x),state_after_hash=canonical_hash(Tuple(x)),solver_exit_code=nothing,",
+    "line_651": "(no_progress ? :floating_point_no_progress : :line_search_rejected),state_after_hash=canonical_hash(Tuple(x)),elapsed_seconds=time()-start))",
+    "line_834": "statehash=canonical_hash((candidate_hash=context.candidate_hash,context_hash=context.context_hash,case_id=case.case_id,level=case.level,flux_Wb=case.flux_Wb,state=sol.final_state))",
+    "line_903": "initial_state=sol.initial_state,final_state=sol.final_state,state_hash=statehash,executed=true,status=sol.status,solver_exit_code=sol.solver_exit_code,",
+    "path": "src/RuntimeV4/SpatialMultiRegionV4.jl",
+    "sha256": "bab46c0dd9329944b27824315c1b55f6a1e300bb0d45e00b5a1888568fe089fd",
+    "v10_pin_sha256": "bab46c0dd9329944b27824315c1b55f6a1e300bb0d45e00b5a1888568fe089fd",
+    "v20_preserved_identity_source_sha256": "bab46c0dd9329944b27824315c1b55f6a1e300bb0d45e00b5a1888568fe089fd"
+  },
+  "v10_protocol": {
+    "expected_sha256": "ff53030155703ee3fcfe3b25ae48fdcc03d411b0da1020cff0cd909388c6aad3",
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/agent_r2_n1_20260922/manufactured_candidate_v1/protocol_staged_v10.json",
+    "sha256": "ff53030155703ee3fcfe3b25ae48fdcc03d411b0da1020cff0cd909388c6aad3"
+  },
+  "v20_protocol": {
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+    "sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2"
+  },
+  "v20_replay_source": {
+    "line_850": "string(c.state_hash) == String(protocol.preserved_identity.state_after_hash) || error(\"saved result state hash differs from protocol\")",
+    "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/replay_staged_v20.jl",
+    "sha256": "de982105ea005b0e9e2f5b52c2a3a23e38e6691563cfd8497043109767538c06"
+  }
+}

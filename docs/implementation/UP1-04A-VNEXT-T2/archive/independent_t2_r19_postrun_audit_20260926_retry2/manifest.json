@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "bytes": 10967,
+      "path": "audit.json",
+      "sha256": "6fa69ab2e07e7c0034c6c61ba02659cbc3502bcc05aaaf046f5c13fda7e62ed7"
+    },
+    {
+      "bytes": 1445,
+      "path": "report.md",
+      "sha256": "77e48e179a0f57e44afd19611ff85d230f3f1ac9609cae314d11c3d84941e103"
+    },
+    {
+      "bytes": 153,
+      "path": "SHA256SUMS",
+      "sha256": "91fec210b505495ffb01aa34e736d5fe6106af743e0124ce0c4eec4b1efbdb23"
+    }
+  ],
+  "evidence_only": true,
+  "execution_boundary": "Read-only Python audit; no Julia launch",
+  "schema": "independent-t2-r19-postrun-evidence-manifest-r1",
+  "source_anchors": [
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r19_snapshot_receipt_retry4/protocol.json",
+      "sha256": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8"
+    },
+    {
+      "path": "test/GenomeV5/Integration/VNextT2PostrunAuditR19/audit_r19_postrun.py",
+      "sha256": "7ecdb27772136338c7673d90439f691a4fc6351ba1d65dcdc8c01269d183849e"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/pipeline_start.json",
+      "sha256": "401852fda0376b224c75ad2d0f15aba399fa5edfce6fe7805514a290991ca5e9"
+    },
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/pipeline_final.json",
+      "sha256": "02b42759ed668bf6e822fbede824ffcc69091a10498c131e383aa7baae510e9b"
+    }
+  ],
+  "verdict": "RUNTIME_NO_GO_MONITOR_INCOMPLETE_BEFORE_FORMAL_NEGATIVE_SHARDS"
+}

@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "D:\006-Programing\LMC\FusionConceptAI\docs\implementation\UP1-EXTERNAL-BLOCKER-CLOSURE-R2\reviews\contract-freeze-independent-review-r1\static_contract_freeze_validator.py", line 211, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "D:\006-Programing\LMC\FusionConceptAI\docs\implementation\UP1-EXTERNAL-BLOCKER-CLOSURE-R2\reviews\contract-freeze-independent-review-r1\static_contract_freeze_validator.py", line 195, in main
-    check("NO_FORMAL_CREDIT", manifest["claims"]["formal_credit"] is False and all(v is False for v in ceiling["credits"].values() if isinstance(v, bool)) and ceiling["formal_b00_b04"]["status"] == "pending")
-                                                                                                                                                               ~~~~~~~^^^^^^^^^^^^^^^^^^
-KeyError: 'formal_b00_b04'

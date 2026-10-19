@@ -1,0 +1,243 @@
+{
+  "cases": [
+    {
+      "case": "rss_bool_under_counts",
+      "fixture": {
+        "children": [],
+        "cpu_system": "0.125",
+        "cpu_user": "0.25",
+        "root_create_time": 100.0,
+        "root_pid": 73001,
+        "rss": "True"
+      },
+      "observed": {
+        "errors": [],
+        "sample_complete": true,
+        "system_cpu_seconds": "0.125",
+        "tree_rss_bytes": 1,
+        "user_cpu_seconds": "0.25"
+      }
+    },
+    {
+      "case": "cpu_bool_accepted",
+      "fixture": {
+        "children": [],
+        "cpu_system": "False",
+        "cpu_user": "True",
+        "root_create_time": 100.0,
+        "root_pid": 73001,
+        "rss": "123"
+      },
+      "observed": {
+        "errors": [],
+        "sample_complete": true,
+        "system_cpu_seconds": "0.0",
+        "tree_rss_bytes": 123,
+        "user_cpu_seconds": "1.0"
+      }
+    },
+    {
+      "case": "cpu_nan_inf_accepted",
+      "fixture": {
+        "children": [],
+        "cpu_system": "inf",
+        "cpu_user": "nan",
+        "root_create_time": 100.0,
+        "root_pid": 73001,
+        "rss": "123"
+      },
+      "observed": {
+        "errors": [],
+        "sample_complete": true,
+        "system_cpu_seconds": "inf",
+        "tree_rss_bytes": 123,
+        "user_cpu_seconds": "nan"
+      }
+    },
+    {
+      "case": "cpu_negative_accepted",
+      "fixture": {
+        "children": [],
+        "cpu_system": "-2.0",
+        "cpu_user": "-1.0",
+        "root_create_time": 100.0,
+        "root_pid": 73001,
+        "rss": "123"
+      },
+      "observed": {
+        "errors": [],
+        "sample_complete": true,
+        "system_cpu_seconds": "-2.0",
+        "tree_rss_bytes": 123,
+        "user_cpu_seconds": "-1.0"
+      }
+    },
+    {
+      "case": "child_bool_create_time",
+      "fixture": {
+        "child_create_time": "True",
+        "child_create_time_returned_as_stable_same_object": true,
+        "child_pid": 73002,
+        "root_create_time": 101.0,
+        "root_pid": 73003
+      },
+      "observed": {
+        "child_rows": [
+          {
+            "create_time": "True",
+            "pid": 73002,
+            "system_cpu_seconds": "0.125",
+            "user_cpu_seconds": "0.25",
+            "working_set_bytes": 123
+          }
+        ],
+        "errors": [],
+        "sample_complete": true,
+        "tree_rss_bytes": 246
+      }
+    },
+    {
+      "case": "child_zero_create_time",
+      "fixture": {
+        "child_create_time": "0.0",
+        "child_create_time_returned_as_stable_same_object": true,
+        "child_pid": 73002,
+        "root_create_time": 101.0,
+        "root_pid": 73003
+      },
+      "observed": {
+        "child_rows": [
+          {
+            "create_time": "0.0",
+            "pid": 73002,
+            "system_cpu_seconds": "0.125",
+            "user_cpu_seconds": "0.25",
+            "working_set_bytes": 123
+          }
+        ],
+        "errors": [],
+        "sample_complete": true,
+        "tree_rss_bytes": 246
+      }
+    },
+    {
+      "case": "child_negative_create_time",
+      "fixture": {
+        "child_create_time": "-1.0",
+        "child_create_time_returned_as_stable_same_object": true,
+        "child_pid": 73002,
+        "root_create_time": 101.0,
+        "root_pid": 73003
+      },
+      "observed": {
+        "child_rows": [
+          {
+            "create_time": "-1.0",
+            "pid": 73002,
+            "system_cpu_seconds": "0.125",
+            "user_cpu_seconds": "0.25",
+            "working_set_bytes": 123
+          }
+        ],
+        "errors": [],
+        "sample_complete": true,
+        "tree_rss_bytes": 246
+      }
+    },
+    {
+      "case": "child_infinite_create_time",
+      "fixture": {
+        "child_create_time": "inf",
+        "child_create_time_returned_as_stable_same_object": true,
+        "child_pid": 73002,
+        "root_create_time": 101.0,
+        "root_pid": 73003
+      },
+      "observed": {
+        "child_rows": [
+          {
+            "create_time": "inf",
+            "pid": 73002,
+            "system_cpu_seconds": "0.125",
+            "user_cpu_seconds": "0.25",
+            "working_set_bytes": 123
+          }
+        ],
+        "errors": [],
+        "sample_complete": true,
+        "tree_rss_bytes": 246
+      }
+    },
+    {
+      "case": "child_nan_create_time",
+      "fixture": {
+        "child_create_time": "nan",
+        "child_create_time_returned_as_stable_same_object": true,
+        "child_pid": 73002,
+        "root_create_time": 101.0,
+        "root_pid": 73003
+      },
+      "observed": {
+        "child_rows": [],
+        "errors": [
+          {
+            "exception_type": "RuntimeError",
+            "message": "PID identity changed during resource sample",
+            "pid": 73002,
+            "stage": "process_resource_sample"
+          }
+        ],
+        "sample_complete": false,
+        "tree_rss_bytes": 123
+      }
+    }
+  ],
+  "conclusion": "Observed r12 validator returns sample_complete=true with empty errors for boolean RSS (summed as 1 byte), bool/NaN/infinite/negative CPU counters, and child create_time True/zero/negative/infinity. NaN child time fails by identity self-inequality. These are malformed mock readings, not actual psutil or runtime evidence.",
+  "controller": {
+    "bytes": 196521,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r12.py",
+    "sha256_after": "04c85a30d4f7a1f15c8c9016cc1b4000259d89a2a1b0ea337867e5e2a52e85ac",
+    "sha256_before": "04c85a30d4f7a1f15c8c9016cc1b4000259d89a2a1b0ea337867e5e2a52e85ac",
+    "unchanged": true
+  },
+  "execution": {
+    "command": "PowerShell here-string piped to `python -B -`; imports controller from pinned source and invokes only pure `process_tree_sample` on in-memory FakeProcess objects. No OS child PID is created; `kill_tree` is not called; no Julia is launched.",
+    "exit_code": 0,
+    "fake_pid_values": [
+      73001,
+      73002,
+      73003
+    ],
+    "julia_started": false,
+    "kill_tree_called": false,
+    "subprocesses_created": false
+  },
+  "pycache": {
+    "after": [
+      {
+        "bytes": 48089,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "bytes": 72660,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "before": [
+      {
+        "bytes": 48089,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "bytes": 72660,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "unchanged": true
+  },
+  "schema": "independent-t2-r12-monitor-malformed-input-probe-r1"
+}

@@ -1,0 +1,87 @@
+{
+  "schema": "independent-t2-attempt11-retry7-review-commands-r1",
+  "reviewer_task": "/root/mms_closure/oracle_review",
+  "commands": [
+    {
+      "name": "repository HEAD",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "exit_code": 0,
+      "stdout_text": "63792ca22958ffca8c3fa8e642256eb9f7240724"
+    },
+    {
+      "name": "fresh static QA",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r12.py",
+        "--protocol",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7\\protocol.json",
+        "--protocol-sha256",
+        "c271961cdf6d5549a3167a1ce17527688f63a3a39688a07ca6e4b16db145f8b3",
+        "--dispatch",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7\\dispatch.json",
+        "--command",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7\\command_argv.json",
+        "--report",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_t2_attempt11_retry7_test_review_20260924\\static_qa_fresh.json"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "exit_code": 0,
+      "stdout_path": "static_qa_fresh.stdout.raw",
+      "stdout_sha256": "a28c368f762bfcc0fd9b89fb5ae4296c96d2d4d8625238254e159e95cb156fdf",
+      "stderr_path": "static_qa_fresh.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "process-monitor built-in and targeted fake controls",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "-"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "input": "transient PowerShell here-string; loaded the pinned r12 QA/controller modules; ran verify_r12_process_monitor_contract plus direct PID-generation, sampled missing/bool/infinite timestamp and process-table missing/bool/infinite timestamp probes",
+      "exit_code": 1,
+      "classification": "finding: malformed timestamps were accepted",
+      "stdout_path": "process_controls_expanded.stdout.raw",
+      "stdout_sha256": "054252e703d2172366a8f48a8298207f6c67847d9109e7ba83ec755a40c4a25a",
+      "stderr_path": "process_controls_expanded.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "fresh projection24 cross-run validator",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\validate_projection24_reuse_r5.py",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7\\protocol.json",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\independent_t2_attempt11_retry7_test_review_20260924\\projection24_reuse_fresh.json"
+      ],
+      "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+      "exit_code": 0,
+      "stdout_path": "projection24_reuse_fresh.stdout.raw",
+      "stdout_sha256": "410386b0bd955d7ba970976db1bef4354be452d2e4f2dcf5437c9ca75ae66ffd",
+      "stderr_path": "projection24_reuse_fresh.stderr.raw",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt_sha256": "1e621d5e849f6736e15d79f90e488d43baa79e64a5e00b3f060add44ac81a0a0"
+    }
+  ],
+  "frozen_inputs": {
+    "protocol_sha256": "c271961cdf6d5549a3167a1ce17527688f63a3a39688a07ca6e4b16db145f8b3",
+    "dispatch_sha256": "83ab579b134cf4f04782191669362e9cbd9e9efc16d0721c9145ac65ecd11259",
+    "command_argv_sha256": "dba91840746b0421e37308e019f4e6f4238385f2796dc75db16ffc613abca3b4",
+    "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+    "controller_sha256": "04c85a30d4f7a1f15c8c9016cc1b4000259d89a2a1b0ea337867e5e2a52e85ac",
+    "static_qa_source_sha256": "f196e0bfc79d40d70875fdf2644774715483f02dc57ebcb64404b614bb3adf4b",
+    "driver_sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e",
+    "projection_validator_sha256": "4cc51a6e16591d2e55a93a1bc5fb6dde6752ee808419d6768b372e5abe510849"
+  },
+  "julia_executed": false,
+  "source_modified": false,
+  "decision": "NO-GO for retry7 T2 runtime launch; static package passes except explicit malformed timestamp negative control"
+}

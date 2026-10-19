@@ -1,0 +1,345 @@
+{
+  "controller": {
+    "aggregate_child_wall": {
+      "controller_overhead_separate_limit_seconds": 120.0,
+      "definition": "The total is the cumulative child Popen-to-observed-exit wall time, including bounded cleanup for producer and consumer. Read-only preflight, snapshots, source/input hashing, raw-log hashing, and receipt preparation are excluded from this child total and included in the separately enforced controller_overhead_seconds_limit.",
+      "limit_seconds": 960.0,
+      "limit_status": "cleanup_unconfirmed",
+      "overrun_seconds": 0.0,
+      "remaining_seconds": 700.1711390999844,
+      "spent_seconds": 259.82886090001557,
+      "termination_cleanup_grace_seconds": 6.0,
+      "unconfirmed_cleanup_stages": [
+        "producer"
+      ]
+    },
+    "authority": "no_publish",
+    "classification": "resource_interruption",
+    "controller_overhead_limit_seconds": 120.0,
+    "controller_overhead_seconds": 4.411988000007113,
+    "exit_code": 124,
+    "inputs_unchanged": true,
+    "numerical_status": "fail",
+    "physical_validation": "unsupported",
+    "producer_tree_comparison_status": "not_reached",
+    "producer_tree_unchanged": null,
+    "software_complete": false,
+    "solver_exit_code": 2
+  },
+  "findings": {
+    "all_frozen_input_files_current": true,
+    "controller_exit_124": true,
+    "hydration_completed_before_identity_check": true,
+    "inputs_three_way_equal": true,
+    "no_validator_or_consumer": true,
+    "process_monitor_incomplete": true,
+    "producer_child_exit_1": true,
+    "producer_stop_cleanup_unconfirmed": true,
+    "protocol_sha256_matches_frozen": true,
+    "raw_stream_receipts_match": true,
+    "saved_numerical_result_hash_matches_pin": true,
+    "saved_producer_tree_matches_frozen_protocol_now": true,
+    "saved_state_hash_disagrees_with_protocol": true,
+    "source_line850_is_state_hash_guard": true,
+    "source_sha256_matches_v20_pin": true
+  },
+  "input_audit": {
+    "current_frozen_input_count": 725,
+    "current_frozen_input_mismatch_count": 0,
+    "current_frozen_input_mismatch_sample": [],
+    "dedicated_runtime_tree_comparison": "not_reached",
+    "producer_tree_bytes": 6590185,
+    "producer_tree_current_entries": 119,
+    "producer_tree_current_matches_protocol": true,
+    "producer_tree_expected_entries": 119,
+    "snapshot_byte_lengths": [
+      165654,
+      165654,
+      165654
+    ],
+    "snapshot_count": 725,
+    "snapshot_paths": [
+      "inputs_before.json",
+      "inputs_after.json",
+      "producer_process/inputs_after.json"
+    ],
+    "snapshot_sha256": [
+      "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294",
+      "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294",
+      "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294"
+    ],
+    "three_way_byte_equal": true
+  },
+  "interpretation": {
+    "claim_ceiling": "Numerical fail/solver exit 2/no_publish remains. No full validator, carrier, binding, or consumer ran; no candidate, numerical-success, physical, or inverse credit.",
+    "primary_application_failure": "The frozen saved result state hash (b36d\u2026 from the pinned numerical_result.json) fails V20 line 850 against protocol state_after_hash 4645\u2026; this application exception is visible in raw Julia stderr and is separate from wrapper resource classification.",
+    "supervisor_classification": "The wrapper returned controller exit 124/resource_interruption because RSS sampling became incomplete when PID 80036 raised NoSuchProcess and bounded cleanup could not confirm the root process/tree state. Time, sampled RSS, aggregate wall, and controller overhead were below configured caps; this was an observation/cleanup uncertainty, not a measured cap overrun."
+  },
+  "producer_process": {
+    "child_wall_seconds": 259.82947539997986,
+    "cleanup": {
+      "bounded_wait_deadline_monotonic": 256240.3171534,
+      "cleanup_grace_seconds": 6.0,
+      "elapsed_seconds": 0.002897099999245256,
+      "kill_requested_pids": [],
+      "owned_process_identities": [],
+      "process_tree_inventory_complete": false,
+      "remaining_process_pids": [],
+      "terminate_requested_pids": [],
+      "termination_confirmed": false,
+      "termination_verification_errors": [
+        {
+          "error": "process PID not found (pid=80036)",
+          "error_type": "NoSuchProcess",
+          "pid": 80036,
+          "stage": "root_process_lookup"
+        }
+      ],
+      "termination_wait_succeeded": false
+    },
+    "exit_code": 1,
+    "peak_sampled_rss_bytes": 1152794624,
+    "raw_hash_checks": {
+      "stderr_size_and_sha": true,
+      "stdout_size_and_sha": true
+    },
+    "rss_complete_sample_count": 934,
+    "rss_limit_bytes": 2147483648,
+    "rss_observation_errors": [
+      {
+        "error": "process no longer exists (pid=80036)",
+        "error_type": "NoSuchProcess",
+        "observed_process_identities": [],
+        "partial_rss_bytes_not_used_for_gate": 0,
+        "process_pid": 80036,
+        "root_pid": 80036,
+        "scope": "process_identity_or_rss"
+      }
+    ],
+    "rss_sampling_complete": false,
+    "stderr": {
+      "bytes": 670,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-04-CLOSURE-REPAIR-PREC\\archive\\replay_only_continuation_r20\\runtime_replay_r20\\producer_process\\stderr.raw",
+      "sha256": "f13435655eb43d8b8769a334c58b994f80ca6d081be2c61d55ac0e680fc2ae58"
+    },
+    "stdout": {
+      "bytes": 53,
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-04-CLOSURE-REPAIR-PREC\\archive\\replay_only_continuation_r20\\runtime_replay_r20\\producer_process\\stdout.raw",
+      "sha256": "6d24f8d54694f88edaf73363788d1e984916536c4c9b35bfef2ee387b07c12a8"
+    },
+    "stop_reason": "cleanup_unconfirmed",
+    "wall_limit_seconds": 480.0
+  },
+  "protocol_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+  "protocol_sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2",
+  "protocol_source_path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/replay_staged_v20.jl",
+  "protocol_source_sha256": "de982105ea005b0e9e2f5b52c2a3a23e38e6691563cfd8497043109767538c06",
+  "runtime_file_count": 21,
+  "runtime_files": [
+    {
+      "bytes": 5264,
+      "path": "final.json",
+      "sha256": "13deb6abe1930529b1247715d3cb4656e8ae43cfefc4507ed3d861d1c259941c"
+    },
+    {
+      "bytes": 165654,
+      "path": "inputs_after.json",
+      "sha256": "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294"
+    },
+    {
+      "bytes": 165654,
+      "path": "inputs_before.json",
+      "sha256": "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294"
+    },
+    {
+      "bytes": 165654,
+      "path": "producer_process/inputs_after.json",
+      "sha256": "1fac2cdd57d67f201df7d302f44682444651740463a259c8355a0b06a00e8294"
+    },
+    {
+      "bytes": 17615,
+      "path": "producer_process/numerical/context_rebuild/parent/parent_candidate.json",
+      "sha256": "6c149cd58b788efab3e6431411a7c8f6d0c494b0a6ae71f2e2b44cb579990823"
+    },
+    {
+      "bytes": 1229,
+      "path": "producer_process/numerical/context_rebuild/parent/parent_context.json",
+      "sha256": "0c955e9214e426bdde0445f6c1762db3ed826e392c57bf86cdc1b78ece122bc1"
+    },
+    {
+      "bytes": 703,
+      "path": "producer_process/numerical/context_rebuild/parent/parent_identity.json",
+      "sha256": "58e553f2ca91194298c83cd32639a4867f64224bc295d23de5533a557847d02b"
+    },
+    {
+      "bytes": 121265,
+      "path": "producer_process/numerical/hydration_declared_schema_allowlist.json",
+      "sha256": "6b68658a7958d9aa96be30feeed1f9ae319373979d0c865bf0e6a300fdedae22"
+    },
+    {
+      "bytes": 83686,
+      "path": "producer_process/numerical/hydration_observation_differences.json",
+      "sha256": "31b02b1be19f43331110e83d996903a0ef54f852e1b8c89621e7dabf26ec29ec"
+    },
+    {
+      "bytes": 1349427,
+      "path": "producer_process/numerical/hydration_observation_initial.json",
+      "sha256": "5065442b4ad45e16c722d969de0bf4a768b981a6635c64e030494b81aec86677"
+    },
+    {
+      "bytes": 1284358,
+      "path": "producer_process/numerical/hydration_observation_reconstruction.json",
+      "sha256": "45a6fda75c2ce960195bdafdfcf9ac4d9ba1bcbb1f31b7024d0fcf1867c0dc3a"
+    },
+    {
+      "bytes": 158,
+      "path": "producer_process/numerical/hydration_phases/canonical_body_parse.json",
+      "sha256": "84d462a0c0df4c8cee2e11aa40806febbd8f1a37b31914effb1c4d0f63bacedf"
+    },
+    {
+      "bytes": 217,
+      "path": "producer_process/numerical/hydration_phases/json3_typed_parse.json",
+      "sha256": "78cca10e764b812a7b732ee77005e3d146f8c1123988ec15a7c096bb7e3a71fd"
+    },
+    {
+      "bytes": 236,
+      "path": "producer_process/numerical/hydration_phases/observe_typed_body_before_assertions.json",
+      "sha256": "f408eda599d8e60bcce264801f0dabf14defdfe551acb92bec54548df5e6fc36"
+    },
+    {
+      "bytes": 223,
+      "path": "producer_process/numerical/hydration_phases/result_digest_injection.json",
+      "sha256": "eb850e82cba5f1a18695d4d5b740f052e0b1b2f73a98cde50599833353f73803"
+    },
+    {
+      "bytes": 230,
+      "path": "producer_process/numerical/hydration_phases/schema_directed_reconstruction.json",
+      "sha256": "3bb8bb9c4d109c29832f723cd5ea82c6316015a81428fbb706519cdc6151f89d"
+    },
+    {
+      "bytes": 223,
+      "path": "producer_process/numerical/hydration_phases/semantic_hash_recompute.json",
+      "sha256": "0893dcb80a437fc5fd7c9ee2e33190d75df076bd7e5cf702b8d180442c8e1a81"
+    },
+    {
+      "bytes": 219,
+      "path": "producer_process/numerical/hydration_phases/typed_wire_encoding.json",
+      "sha256": "0b40477a740e95998ad4e3642e20092db9e24446656e5091a05f3604deed32c9"
+    },
+    {
+      "bytes": 670,
+      "path": "producer_process/stderr.raw",
+      "sha256": "f13435655eb43d8b8769a334c58b994f80ca6d081be2c61d55ac0e680fc2ae58"
+    },
+    {
+      "bytes": 53,
+      "path": "producer_process/stdout.raw",
+      "sha256": "6d24f8d54694f88edaf73363788d1e984916536c4c9b35bfef2ee387b07c12a8"
+    },
+    {
+      "bytes": 2934,
+      "path": "producer_process.json",
+      "sha256": "08717ab89117a6cf716c3270b1ba672759795eba43165ee194dd6cf4beffad81"
+    }
+  ],
+  "runtime_leaf": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/runtime_replay_r20",
+  "saved_result_identity": {
+    "case_id": "n1_q1_2",
+    "case_status": "fail",
+    "declared_schema_allowlist_entries": 237,
+    "difference_observation_counts": {
+      "mismatch_roots": 3,
+      "numeric_type_differences": 153,
+      "representation_differences": 750,
+      "semantic_differences": 0
+    },
+    "failed_source_line_850": "string(c.state_hash) == String(protocol.preserved_identity.state_after_hash) || error(\"saved result state hash differs from protocol\")",
+    "hydration_phases": [
+      {
+        "completed": true,
+        "phase": "canonical_body_parse",
+        "result_hash": null
+      },
+      {
+        "completed": true,
+        "phase": "json3_typed_parse",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      },
+      {
+        "completed": true,
+        "phase": "observe_typed_body_before_assertions",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      },
+      {
+        "completed": true,
+        "phase": "schema_directed_reconstruction",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      },
+      {
+        "completed": true,
+        "phase": "result_digest_injection",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      },
+      {
+        "completed": true,
+        "phase": "semantic_hash_recompute",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      },
+      {
+        "completed": true,
+        "phase": "typed_wire_encoding",
+        "result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+      }
+    ],
+    "initial_observation_counts": {
+      "mismatch_roots": 3,
+      "numeric_type_differences": 153,
+      "representation_differences": 750,
+      "semantic_differences": 0
+    },
+    "mismatch": true,
+    "numerical_result_bytes": 81595,
+    "numerical_result_matches_protocol_pin": true,
+    "numerical_result_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/agent_r2_n1_20260922/runtime_manufactured_staged_r1/producer_process/numerical/production/numerical_result.json",
+    "numerical_result_sha256": "429d500e4d42d2ae8c6af9ab88f8b9b0a7a59dc1e5da1853c9dfa6b5bd6a10e7",
+    "protocol_expected_result_hash": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f",
+    "protocol_expected_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "reconstruction_observation_counts": {
+      "mismatch_roots": 0,
+      "numeric_type_differences": 0,
+      "representation_differences": 110,
+      "semantic_differences": 0
+    },
+    "result_hash_expected": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f",
+    "saved_result_state_hash": "b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7",
+    "solver_exit_code": 2,
+    "stderr_text": "ERROR: LoadError: saved result state hash differs from protocol\nStacktrace:\n [1] error(s::String)\n   @ Base .\\error.jl:35\n [2] producer(args::Vector{String})\n   @ Main D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2ClosureReplayOnlyV20\\replay_staged_v20.jl:850\n [3] main(args::Vector{String})\n   @ Main D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2ClosureReplayOnlyV20\\replay_staged_v20.jl:945\n [4] top-level scope\n   @ D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2ClosureReplayOnlyV20\\replay_staged_v20.jl:949\nin expression starting at D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2ClosureReplayOnlyV20\\replay_staged_v20.jl:948\n",
+    "stored_result_hash_initial_observation": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f",
+    "stored_result_hash_reconstruction_observation": "10eeefa961fe7dc6e4a822af1b5a159054a4d97fa916304f7f27893d78087b1f"
+  },
+  "schema": "independent-up2-v20-actual-postrun-review-v1",
+  "stage_depth": {
+    "absent_expected_outputs": {
+      "controller_binding.json": true,
+      "controller_carrier.json": true,
+      "producer_failure.json": true,
+      "producer_full_validator.json": true,
+      "producer_validator_complete.json": true,
+      "producer_validator_started.json": true
+    },
+    "consumer_directory_exists": false,
+    "controller_carrier_or_binding_present": false,
+    "hydration_phases_completed": [
+      "canonical_body_parse",
+      "json3_typed_parse",
+      "observe_typed_body_before_assertions",
+      "schema_directed_reconstruction",
+      "result_digest_injection",
+      "semantic_hash_recompute",
+      "typed_wire_encoding"
+    ],
+    "producer_failure_receipt_present": false,
+    "producer_full_validator_completed": false,
+    "producer_full_validator_started": false
+  }
+}

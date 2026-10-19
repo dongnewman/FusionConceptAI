@@ -1,0 +1,2448 @@
+{
+  "anchors": {
+    "command_argv": {
+      "bytes": 1714,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/command_argv.json",
+      "sha256": "dba91840746b0421e37308e019f4e6f4238385f2796dc75db16ffc613abca3b4"
+    },
+    "controller": {
+      "bytes": 196521,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r12.py",
+      "sha256": "04c85a30d4f7a1f15c8c9016cc1b4000259d89a2a1b0ea337867e5e2a52e85ac"
+    },
+    "coverage_map": {
+      "bytes": 600012,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r10.json",
+      "sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6"
+    },
+    "dispatch": {
+      "bytes": 10678,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/dispatch.json",
+      "sha256": "83ab579b134cf4f04782191669362e9cbd9e9efc16d0721c9145ac65ecd11259"
+    },
+    "driver": {
+      "bytes": 99581,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl",
+      "sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e"
+    },
+    "freeze_snapshot": {
+      "bytes": 7702,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/freeze_snapshot.json",
+      "sha256": "3a70e551d862258a58a1469437ecc60b2f731fa756f3c6892877b4971da2a8d7"
+    },
+    "freezer_source": {
+      "bytes": 139368,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r12.py",
+      "sha256": "cdc2545d84caf8093fa3fd916011b77b654c19b3b5ac56b4bd51f42d4933aeda"
+    },
+    "map_builder_r10": {
+      "bytes": 62173,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r10.py",
+      "sha256": "3c106dd2f2852347ca2fb94b0c6b61e5d13cc1167444296ca55fbb46a31ffdb1"
+    },
+    "map_builder_r11_also_pinned": {
+      "bytes": 62175,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r11.py",
+      "sha256": "56bd41f83e5354b19d18d19494b2dd9b7690f224b1c023a38beb502ec5fe38a9"
+    },
+    "old_attempt7_map": {
+      "bytes": 455670,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol/coverage_map_r2.json",
+      "sha256": "4e79435b9842ecd435fadeb50334e1f500e5635d8f9fef760bfc085ef655bd3d"
+    },
+    "projection_validator": {
+      "bytes": 13699,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r5.py",
+      "sha256": "4cc51a6e16591d2e55a93a1bc5fb6dde6752ee808419d6768b372e5abe510849"
+    },
+    "protocol": {
+      "bytes": 723930,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/protocol.json",
+      "sha256": "c271961cdf6d5549a3167a1ce17527688f63a3a39688a07ca6e4b16db145f8b3"
+    },
+    "reviewer_static_qa_rerun": {
+      "bytes": 59221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.json",
+      "sha256": "dbe55ad3a92839fa72abe37b48409d28b42b60f86e51ac93176b058e92b7a19a"
+    },
+    "static_qa": {
+      "bytes": 59221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/static_qa.json",
+      "sha256": "dbe55ad3a92839fa72abe37b48409d28b42b60f86e51ac93176b058e92b7a19a"
+    },
+    "static_qa_source": {
+      "bytes": 273684,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r12.py",
+      "sha256": "f196e0bfc79d40d70875fdf2644774715483f02dc57ebcb64404b614bb3adf4b"
+    }
+  },
+  "archive_scope": {
+    "file_count": 11,
+    "files": [
+      {
+        "bytes": 1714,
+        "path": "command_argv.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 10678,
+        "path": "dispatch.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 7702,
+        "path": "freeze_snapshot.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 2085,
+        "path": "projection24_reuse_preflight/phase.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 48553,
+        "path": "projection24_reuse_preflight/reuse_receipt.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 0,
+        "path": "projection24_reuse_preflight/stderr.raw",
+        "suffix": ".raw"
+      },
+      {
+        "bytes": 349,
+        "path": "projection24_reuse_preflight/stdout.raw",
+        "suffix": ".raw"
+      },
+      {
+        "bytes": 723930,
+        "path": "protocol.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 59221,
+        "path": "static_qa.json",
+        "suffix": ".json"
+      },
+      {
+        "bytes": 0,
+        "path": "static_qa.stderr.raw",
+        "suffix": ".raw"
+      },
+      {
+        "bytes": 60880,
+        "path": "static_qa.stdout.raw",
+        "suffix": ".raw"
+      }
+    ],
+    "has_executable_or_source_payload": false
+  },
+  "authority_case_contract": {
+    "case_order": [
+      "PARENT_STALE",
+      "PARENT_FOREIGN",
+      "G3_STALE",
+      "G3_FOREIGN",
+      "ACTUAL_FOREIGN_SCENARIO",
+      "ACTUAL_TYPED_ABSENCE",
+      "ACTUAL_FORMAL_GATE_REJECTION",
+      "ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR",
+      "ACTUAL_DUPLICATE_INVOCATION"
+    ],
+    "case_site_hits_are_observed_from_test_record": true,
+    "coverage_map_path_argument_index_1_based": 15,
+    "coverage_map_sha256_argument_index_1_based": 16,
+    "effective_child_timeout_policy": "min(per_case_cap, remaining_invocation_budget)",
+    "invocation_wall_seconds": null,
+    "partial_case_receipts_joinable": false,
+    "partial_or_unterminated_case_receipts_joinable": false,
+    "partial_record_event_prefix_is_observational_only": true,
+    "per_assertion_events_are_flushed_after_test_record": true,
+    "per_case_wall_seconds": 2400
+  },
+  "blocking_finding_ids": [
+    "MONITOR_MALFORMED_RESOURCE_SAMPLE_ACCEPTED_COMPLETE",
+    "RETRY5_RETRY6_FAILURES_NOT_BOUND_BY_RETRY7_PROTOCOL",
+    "KILL_TREE_BOOLEAN_PID_ALIAS_ACCEPTED"
+  ],
+  "cache_exclusion_audit": {
+    "actual_cache_file_names": [
+      "freeze_independent_negative_protocol_r3.cpython-313.pyc",
+      "static_qa_independent_negative_r3.cpython-313.pyc"
+    ],
+    "cleaned": false,
+    "excluded_files": [
+      {
+        "bytes": 48089,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "bytes": 72660,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "monitor_probe_pycache_unchanged": true,
+    "runtime_cache_import_targets": [],
+    "snapshot_before_equals_after": true,
+    "status": "excluded_from_current_input_closure_not_cleaned"
+  },
+  "cache_exclusion_current": {
+    "cache_module_import_targets": [],
+    "cleaned": false,
+    "excluded_file_count": 2,
+    "excluded_files": [
+      {
+        "bytes": 48089,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/freeze_independent_negative_protocol_r3.cpython-313.pyc",
+        "sha256": "ebc3c1cfc31b7acf306d5f9addfaff5e45ca4a6772877585148a7df57d897608"
+      },
+      {
+        "bytes": 72660,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/__pycache__/static_qa_independent_negative_r3.cpython-313.pyc",
+        "sha256": "30cf8b444ec15c98e018a8cfb261e650acc61cf431e83ef65d59535cc5e51e4b"
+      }
+    ],
+    "exclusion_reason": "these two bytecode files were created by a local Python import preflight; exact cleanup was rejected by tool safety, so they remain present and are excluded from execution inputs",
+    "freeze_entrypoint": {
+      "argv0_matches_source": true,
+      "mode": "direct_script_as_main",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r12.py",
+      "sys_dont_write_bytecode": true
+    },
+    "qa_dynamic_import_module_names": [
+      "vnext_t2_controller_r12",
+      "vnext_t2_projection24_reuse_r5"
+    ],
+    "schema": "vnext-t2-generated-python-cache-exclusion-r1",
+    "static_qa_direct_argv_prefix": [
+      "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "-B",
+      "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r12.py"
+    ],
+    "status": "excluded_from_current_input_closure_not_cleaned"
+  },
+  "counterexample_probe": {
+    "bytes": 7238,
+    "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/monitor_probe.json",
+    "sha256": "96f0668f1c0afa6daf1a431c16030143e400ef376946658027843e1c189f3d26"
+  },
+  "coverage": {
+    "actual_hit_receipt_contract": {
+      "actual_hits_pending": true,
+      "actual_julia_hits": false,
+      "negative_controls": 10,
+      "positive_case": "PARENT_STALE",
+      "positive_observed_hit_count": 38,
+      "positive_source_site_count": 175,
+      "status": "pass_synthetic_receipts_only"
+    },
+    "all_current_source_lines_pass": true,
+    "all_relocation_source_text_matches": true,
+    "authority_case_count": 9,
+    "authority_cases_sum_expected_hits": 118,
+    "authority_nonzero_site_count": 75,
+    "authority_resume_fail_closed": {
+      "actual_julia_resume": false,
+      "negative_controls": 7,
+      "partial_cases_are_joinable": false,
+      "resumed_case_count_positive": 1,
+      "status": "pass_synthetic_ancestry_only"
+    },
+    "authority_site_id_count": 175,
+    "case_hit_count_dict_count": 60,
+    "case_hit_counts_sum": 68,
+    "case_id_set_equal_old_attempt7": true,
+    "context_transport_hits": 92,
+    "context_transport_source_sites": 23,
+    "current_source_lines_checked": 214,
+    "current_source_lines_passed": 214,
+    "formal_phase_case_map_count": 5,
+    "formal_phase_ids": [
+      "actual_formal_authority",
+      "actual_formal_baseline",
+      "actual_formal_fault_n10",
+      "actual_formal_preflight",
+      "actual_formal_t1_handoff"
+    ],
+    "formal_summary_cases": 45,
+    "formal_summary_ids_equal_map_cases": true,
+    "formal_summary_map_case_ids_count": 45,
+    "formal_t2_accepted": false,
+    "line_changed_rows": 175,
+    "map_formal_site_count": 214,
+    "partial_prefix_not_joinable": {
+      "actual_julia_hits": false,
+      "actual_record_events_in_positive_prefix": 3,
+      "case_id": "PARENT_STALE",
+      "negative_controls": 8,
+      "partial_case_is_reusable": false,
+      "source_site_count_zero_filled": 175,
+      "status": "pass_synthetic_partial_prefix_only"
+    },
+    "path_changed_rows": 175,
+    "phase_order_unique": true,
+    "planned_case_hit_count": 68,
+    "planned_site_hit_sum": 622,
+    "projection_preflight_phase": {
+      "exit_code": 0,
+      "julia_started": false,
+      "pass_marker_observed": true,
+      "receipt": {
+        "bytes": 2085,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/projection24_reuse_preflight/phase.json",
+        "sha256": "26d9ab7473595f1d6da99b1a4c02019b17bacfdc09fd3eefdf2c811f79116054"
+      },
+      "stop_reason": "natural_exit"
+    },
+    "projection_reuse_receipt": {
+      "assertion_sites_completed": 24,
+      "natural_exit_zero": true,
+      "post_assertion_pass_marker": true,
+      "receipt": {
+        "bytes": 48553,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/projection24_reuse_preflight/reuse_receipt.json",
+        "sha256": "1e621d5e849f6736e15d79f90e488d43baa79e64a5e00b3f060add44ac81a0a0"
+      },
+      "status": "pass"
+    },
+    "protocol_phase_count": 30,
+    "protocol_phase_count_expected": 30,
+    "relocation_count": 214,
+    "reviewer_line_check_method_correction": "Initial quick check required whole source_text == single physical line and flagged multi-line @test spans. Corrected independent check binds the physical start line as prefix and validates full source_text SHA256; 214/214 pass.",
+    "schema": "vnext-t2-independent-negative-coverage-map-r10",
+    "shard_argv_static_contract": {
+      "authority_case_child_count": 9,
+      "commands": [
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "preflight"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "fault_n10"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "t1_handoff"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:PARENT_STALE"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:PARENT_FOREIGN"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:G3_STALE"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:G3_FOREIGN"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:ACTUAL_FOREIGN_SCENARIO"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:ACTUAL_TYPED_ABSENCE"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:ACTUAL_FORMAL_GATE_REJECTION_NO_PRIOR"
+        },
+        {
+          "coverage_map_path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\coverage_map_r10.json",
+          "coverage_map_sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6",
+          "driver_argument_count": 16,
+          "mode": "authority-case:ACTUAL_DUPLICATE_INVOCATION"
+        }
+      ],
+      "coverage_map": {
+        "bytes": 600012,
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r10.json",
+        "sha256": "d7f79b06d3f0cbf505d5321857767f40157ae0d38dc2706b989edaf8d97449c6"
+      },
+      "coverage_map_path_index_1_based": 15,
+      "coverage_map_sha256_index_1_based": 16,
+      "expected_driver_argument_count": 16,
+      "negative_controls": 5,
+      "outer_actual_shard_count": 4,
+      "runtime_uses_tested_builder": true,
+      "shard_count": 12,
+      "status": "pass"
+    },
+    "site_id_set_equal_old_attempt7": true,
+    "site_phase_plan_key_count": 214,
+    "site_source_text_multiplicity_and_phase_hits_equal_old_attempt7": true,
+    "source_line_matching_rule": "Physical line at the reported location is the prefix of the normalized full assertion text; full text SHA256 is independently checked. Exact whole-expression equality to the first physical line is not applicable to multi-line Julia @test expressions.",
+    "status": "static_coverage_map_no_julia",
+    "unique_case_ids": 60,
+    "unique_site_ids": 214
+  },
+  "decision": "NO_GO_FOR_BOUNDED_JULIA_DISPATCH",
+  "formal_t2_accepted": false,
+  "historical_lineage": {
+    "retry3_failure_basis_present": true,
+    "retry4_failure_basis_present": true,
+    "retry5_retry6_bound_in_protocol": false,
+    "retry5_retry6_current_directory_inventories": [
+      {
+        "attempt": 5,
+        "directory_exists": true,
+        "failure": {
+          "message": "attempt9b static QA failure details are inconsistent",
+          "type": "RuntimeError"
+        },
+        "file_count": 10,
+        "files": [
+          {
+            "bytes": 1714,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/command_argv.json",
+            "sha256": "ae8015240b863a49f1667af26f50c89e0d5cff3024ab33fed195a145f4b69a63"
+          },
+          {
+            "bytes": 10678,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/dispatch.json",
+            "sha256": "720a97c9af856736f6671334dddbe3fbf83fa0b9f345b5cdf140cd9d2137bfab"
+          },
+          {
+            "bytes": 2085,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/projection24_reuse_preflight/phase.json",
+            "sha256": "6d158ba87291d3a3417f7c08a65f351cff7cced6389706f92ee82449308227f6"
+          },
+          {
+            "bytes": 48553,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/projection24_reuse_preflight/reuse_receipt.json",
+            "sha256": "1e621d5e849f6736e15d79f90e488d43baa79e64a5e00b3f060add44ac81a0a0"
+          },
+          {
+            "bytes": 0,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/projection24_reuse_preflight/stderr.raw",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 349,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/projection24_reuse_preflight/stdout.raw",
+            "sha256": "2514a280952b56ab0c9bc2b391faa22b068791dd4fbdd912bf3fe6de08617e59"
+          },
+          {
+            "bytes": 723930,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/protocol.json",
+            "sha256": "ecc75f64c746e5155c74d9db5a69617f0bf1f9a3ec0a408b7b3b7b1705954419"
+          },
+          {
+            "bytes": 916,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/static_qa.json",
+            "sha256": "764c4633acb906c5022ee3285a113d6ddada3db73d57cdfe8a24fa614e427e68"
+          },
+          {
+            "bytes": 0,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/static_qa.stderr.raw",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 945,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry5/static_qa.stdout.raw",
+            "sha256": "43f111d4e9ed1a4460f34d04be98546bb8206e00238fe02e7b6ba0e56937f1c6"
+          }
+        ],
+        "input_pin_reference_count": 0,
+        "protocol_string_reference_count": 0,
+        "static_qa_status": "fail"
+      },
+      {
+        "attempt": 6,
+        "directory_exists": true,
+        "failure": {
+          "message": "authority case resource contract mismatch: PARENT_STALE",
+          "type": "RuntimeError"
+        },
+        "file_count": 10,
+        "files": [
+          {
+            "bytes": 1714,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/command_argv.json",
+            "sha256": "69612b97651b19a1927841c683104b1e1e513c4b96c68880e0d74dda5a4a6e14"
+          },
+          {
+            "bytes": 10678,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/dispatch.json",
+            "sha256": "4dfce10a45717df35708b0f1e6d27e66397695f975413afc2ba27ccbe60bc9cf"
+          },
+          {
+            "bytes": 2085,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/projection24_reuse_preflight/phase.json",
+            "sha256": "af28f28c5c0d4cef30a53713a592343e7fc9fa8d4af5154c3976ce5c8749bc7e"
+          },
+          {
+            "bytes": 48553,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/projection24_reuse_preflight/reuse_receipt.json",
+            "sha256": "1e621d5e849f6736e15d79f90e488d43baa79e64a5e00b3f060add44ac81a0a0"
+          },
+          {
+            "bytes": 0,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/projection24_reuse_preflight/stderr.raw",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 349,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/projection24_reuse_preflight/stdout.raw",
+            "sha256": "e466188211638011ba73a1acb47db3403e55aadd742625e2651bb6bb986725a1"
+          },
+          {
+            "bytes": 723930,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/protocol.json",
+            "sha256": "5c9a4c02c18e3b73ac182f0318da897048968da3cb55ce87e6a6940dc3f115f2"
+          },
+          {
+            "bytes": 24980,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/static_qa.json",
+            "sha256": "c17ce4afeffd6bab067a9bc1dd3a6aa3ca4c1a94417e80e52a696317ea37d9c0"
+          },
+          {
+            "bytes": 0,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/static_qa.stderr.raw",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 25775,
+            "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry6/static_qa.stdout.raw",
+            "sha256": "ba7af67f77d939b9a4016226806a6477a40b99ffb8b25ff4d83d819d3c3ff31c"
+          }
+        ],
+        "input_pin_reference_count": 0,
+        "protocol_string_reference_count": 0,
+        "static_qa_status": "fail"
+      }
+    ],
+    "retry5_retry6_refs": [
+      {
+        "attempt": 5,
+        "input_pin_path_count": 0,
+        "serialized_protocol_substring_count": 0
+      },
+      {
+        "attempt": 6,
+        "input_pin_path_count": 0,
+        "serialized_protocol_substring_count": 0
+      }
+    ]
+  },
+  "julia_started_by_reviewer": false,
+  "kill_tree_alias_probe": {
+    "fake_kill_tree_complete": true,
+    "fake_kill_tree_verified": true,
+    "fake_target_kill_calls": 1,
+    "local_read_only_psutil_Process_True_check": "NoSuchProcess; no process existed for pid=True/PID1 on this Windows host",
+    "native_psutil_constructor_receipt": {
+      "bytes": 331,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/psutil_bool_pid_constructor.json",
+      "sha256": "f0d66724ab80dfd7fef4ff5cecbfbfbcbf8e7c4b8a327d7b88b7b302ed4ef711"
+    },
+    "real_os_process_touched": false,
+    "receipt": {
+      "bytes": 2865,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/kill_tree_pid_alias_probe.json",
+      "sha256": "5deefa58f8c572ea4ba40423f61f682f8c60871b43547e79f054731770c5d580"
+    }
+  },
+  "line_checks": [
+    {
+      "id": "NEW-ACT-001",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual isa FusionConceptAI.VNextT2IdentityReceiptIntegrationResultV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-002",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-003",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-004",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.reason === expected_reason",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-005",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !actual.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-006",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.ledger === baseline.result.ledger",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-007",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.committed_counts == baseline.result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-008",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(actual.attempted_trace.events)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-009",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.attempted_trace.counts == T2_NEG_ZERO_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-010",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-011",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.status === expected_status",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-012",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.resolution === expected_resolution",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-013",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.reason === expected_reason",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-014",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual isa FusionConceptAI.VNextT2IdentityReceiptIntegrationResultV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-015",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.status === expected_status",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-016",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.resolution === expected_resolution",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-017",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.reason === expected_reason",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-018",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !actual.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-019",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.ledger === baseline.result.ledger",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-020",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.committed_counts == baseline.result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-021",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(actual.attempted_trace.events)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-022",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.attempted_trace.counts == T2_NEG_ZERO_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-023",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-024",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.status === :prepared_not_executed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-025",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-026",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input isa FusionConceptAI.VNextT2UP2BoundInputV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-027",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test input_validation.status === :valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-028",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test input_validation.reason === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-029",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.status === :complete_contract_receipts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-030",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-031",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.reason === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-032",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-033",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger isa FusionConceptAI.VNextT2ReceiptLedgerV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-034",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.attempted_trace.counts == T2_NEG_EXPECTED_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-035",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.counts == T2_NEG_EXPECTED_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-036",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.input_hash == build.input.input_hash",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-037",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.package_hash == build.input.package.package_hash",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-038",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in result.ledger.receipts) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-039",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.invocation_count for x in result.ledger.receipts) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-040",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in result.attempted_trace.events) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-041",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.formal_gate.evidence_kind === :formal_t1_actual",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-042",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.formal_gate.formal_t1_accepted",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-043",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.package === build.input.package",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-044",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.admission.status === :prepared_not_executed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-045",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.admission.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-046",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.admission.accepted === false",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-047",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.admission.claim_ceiling === :contract_only",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-048",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.admission.package === material.t1.admission.package",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-049",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.package.package_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-050",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.candidate_receipt.producer_t1_admission_invocation_count == 1",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-051",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.candidate_receipt.handoff_revalidation_required",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-052",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test material.candidate_receipt.producer_t1_admission_invocation_count +",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-053",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.package.parent_commitments == material.t1.t1_parents ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-054",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test source_parent_commitments != material.t1.t1_parents",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-055",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test FusionConceptAI.verify_present_t0_local_parent_bundle_v1(",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-056",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.witness.children.expected_commitment.commitment_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-057",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.formal_gate.formal_t1_software_acceptance_receipt_hash !=",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-058",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.formal_gate.candidate_t1_admission_receipt_hash !=",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-059",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test keys(recheck_projection) == (:domain, :status, :resolution,",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-060",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test keys(recheck_projection.output) == (:domain, :candidate_ref,",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-061",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test recheck_projection.status ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-062",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test recheck_projection.output.declarations ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-063",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test recheck_projection.prior_bundle_bytes ===",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-064",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test FusionConceptAI._vnext_t2_t1_recheck_projection_v2(nothing) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-065",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test keys(typed_absent_projection) == (:domain, :candidate_ref,",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-066",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.witness.g1.declaration isa",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-067",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.witness.g2.declaration isa FusionConceptAI.G2MBDeclarationV1",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-068",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.witness.g3.declaration isa FusionConceptAI.G3SFDeclarationV1",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-069",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[3].status === :typed_absent",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-070",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[3].resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-071",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[4].status === :typed_absent",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-072",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[4].resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-073",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.accepted === false",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-074",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.claim_ceiling === :contract_only",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-075",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test build.input.package.package_hash == package_hash_before",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-076",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test FusionConceptAI.vnext_t1_package_v2_validate(",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-077",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual isa FusionConceptAI.VNextT2IdentityReceiptIntegrationResultV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-078",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.status === :program_exception",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-079",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-080",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.reason === expected_reason",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-081",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !actual.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-082",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.ledger === nothing",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-083",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.committed_counts == T2_NEG_ZERO_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-084",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in actual.attempted_trace.events) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-085",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test actual.attempted_trace.counts == expected_counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-086",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-087",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.context_authorization_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-088",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.producer_natural_exit_zero",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-089",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.five_consumer_counts_verified",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-090",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.source_status === :source_ready",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-091",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(facts.source_errors)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-092",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.source_content_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-093",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.package_type_valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-094",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.package_context_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-095",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.package_t1_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-096",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.package_validation === nothing",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-097",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.adapter_binding_present",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-098",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.candidate_hash_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-099",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.candidate_bytes_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-100",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.build_status === :prepared_not_executed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-101",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.build_input_type_valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-102",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.input_validation_status === :valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-103",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.input_content_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-104",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.result_status === :complete_contract_receipts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-105",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.result_committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-106",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.ledger_type_valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-107",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.ledger_input_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-108",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.ledger_package_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-109",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test facts.ledger_counts_join",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-110",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test attacked.witness.parent_bundle.g1.",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-111",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !FusionConceptAI.",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-112",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test absent.status === :typed_absent",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-113",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test absent.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-114",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !absent.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-115",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test absent.ledger === baseline.result.ledger",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-116",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test absent.committed_counts == baseline.result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-117",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(absent.attempted_trace.events)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-118",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test absent.attempted_trace.counts == T2_NEG_ZERO_COUNTS",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-119",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-120",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_gate.formal_t1_software_acceptance_receipt_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-121",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_gate.candidate_t1_admission_receipt_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-122",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior isa",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-123",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-124",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-125",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.reason ===",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-126",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !rejected_without_prior.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-127",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.ledger === nothing",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-128",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.committed_counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-129",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(rejected_without_prior.attempted_trace.events)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-130",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected_without_prior.attempted_trace.counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-131",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test no_prior_before == no_prior_after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-132",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test duplicate.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-133",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test duplicate.reason === :t2_preflight_duplicate_invocation",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-134",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !duplicate.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-135",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test duplicate.ledger === baseline.result.ledger",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-136",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test duplicate.committed_counts == baseline.result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-137",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test isempty(duplicate.attempted_trace.events)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-138",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-139",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection_validation.status === :valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-140",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection_validation.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-141",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.row_id for x in projection.fields) ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-142",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.gaps == (:legacy_migration_provenance_absent,)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-143",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.fields[1].original_value.value ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-144",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.fields[2].original_value.value ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-145",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.fields[3].original_value.child_contract_ref ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-146",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.fields[4].authoritative_value.value ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-147",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection.fields[5].original_value.binding_receipt_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-148",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-149",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test attacked.projection_hash != projection.projection_hash",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-150",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-151",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-152",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected.reason === expected_reason",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-153",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test rejected.row_id === row_id",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-154",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-155",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test projection_reload.projection_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-156",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test FusionConceptAI.vnext_t2_validate_identity_receipt_v2(",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-157",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test coupling.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-158",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test coupling.reason === :e2_declared_source_child_contradiction",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-159",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !coupling.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-160",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test coupling.ledger === baseline.result.ledger",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-161",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test coupling.committed_counts == baseline.result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-162",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-163",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test coupling.attempted_trace.counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-164",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-165",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test mixed_admission.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-166",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test mixed_admission.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-167",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test mixed_admission.package === nothing",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-168",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test mixed_admission.errors == (:parent_commitment_mismatch,)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-169",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test missing_admission.status === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-170",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test missing_admission.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-171",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test missing_admission.gaps == (:t0_transport_required,)",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-172",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test malformed_admission.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-173",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test malformed_admission.errors ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-174",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test thrown isa ArgumentError",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-ACT-175",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test before == after",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-176",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.status === :prepared_not_executed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-177",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-178",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.input isa FusionConceptAI.VNextT2UP2BoundInputV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-179",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test validation.status === :valid",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-180",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test validation.reason === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-181",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.input.formal_gate.evidence_kind === :synthetic_local",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-182",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.formal_gate_verified === false",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-183",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.input.formal_gate.formal_t1_accepted",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-184",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.input.formal_gate.",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-185",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.build.input.formal_gate.",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-186",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.status === :complete_contract_receipts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-187",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-188",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.reason === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-189",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-190",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger isa FusionConceptAI.VNextT2ReceiptLedgerV2",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-191",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-192",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.attempted_trace.counts == result.ledger.counts",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-193",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-194",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test :formal_gate_verified_false_synthetic_local in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-195",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.accepted === false",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-196",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.claim_ceiling === :contract_only",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-197",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test :realization_full_operation_replay_evidence_not_carried in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-198",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[4].status === :typed_absent",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-199",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[4].resolution === :terminal_deferred",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-200",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger.receipts[4].reason ===",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-201",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test :full_child_operation_replay_evidence in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-202",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test :realization_full_operation_replay_evidence_not_carried in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-203",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test chain.package.package_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-204",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test FusionConceptAI.vnext_t1_package_v2_validate(",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-205",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test contradiction.source.witness.coupling.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-206",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.status === :fail_closed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-207",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.resolution === :none",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-208",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.reason === :e2_declared_source_child_contradiction",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-209",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test !result.committed",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-210",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.ledger === nothing",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-211",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.committed_counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-212",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test result.attempted_trace.counts ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-213",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test Tuple(x.consumer_id for x in",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    },
+    {
+      "id": "NEW-SUP-214",
+      "line_in_range": true,
+      "path_exists": true,
+      "physical_start_line": "@test contradiction.package.package_hash ==",
+      "source_start_line_prefix_matches_normalized_full_text": true,
+      "source_text_hash_matches": true
+    }
+  ],
+  "monitor_negative_control_audit": {
+    "invalid_numeric_missing_cases": [
+      "RSS bool",
+      "CPU bool",
+      "CPU NaN/Inf",
+      "CPU negative",
+      "descendant create_time bool/zero/negative/nonfinite",
+      "kill_tree tracked PID bool/zero/negative"
+    ],
+    "note": "Existing controls cover nonfinite/bool launch-root timestamps and psutil access/identity/audit failures, but the list does not test malformed sample RSS/CPU values, descendant timestamp validity, or bool tracked PID.",
+    "process_monitor_control_names": [
+      "complete sample has unique exact root identity",
+      "launch identity binds exact Popen and lookup generation",
+      "launch identity rejects nonfinite/nonpositive/bool timestamps",
+      "child enumeration AccessDenied is incomplete",
+      "RSS AccessDenied is incomplete",
+      "CPU AccessDenied is incomplete",
+      "root PID with different create_time is incomplete",
+      "root PID reuse during sample is incomplete",
+      "kill AccessDenied cannot produce verified termination",
+      "wait AccessDenied cannot produce verified termination",
+      "tracked PID reuse cannot produce verified termination",
+      "residual cmdline AccessDenied is incomplete",
+      "residual cmdline NoSuchProcess is incomplete",
+      "residual cmdline ZombieProcess is incomplete",
+      "residual process enumeration failure is incomplete",
+      "empty psutil process name requires recorded tasklist resolution",
+      "unresolved live process name is incomplete",
+      "process-table A-to-B PID reuse is incomplete despite stable PID set",
+      "leader exit with live descendant is never natural acceptance",
+      "natural exit rejects incomplete sample",
+      "natural exit rejects incomplete final tree audit",
+      "natural exit rejects incomplete termination",
+      "natural exit rejects incomplete residual audit",
+      "natural exit rejects nonempty residual process audit",
+      "natural exit rejects missing launch identity"
+    ],
+    "process_monitor_controls": 25,
+    "total_static_qa_negative_controls": 153
+  },
+  "monitor_probe_summary": {
+    "case_count": 9,
+    "kill_tree_called": false,
+    "no_os_child_created": true,
+    "pycache_unchanged": true,
+    "receipt": {
+      "bytes": 7238,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/monitor_probe.json",
+      "sha256": "96f0668f1c0afa6daf1a431c16030143e400ef376946658027843e1c189f3d26"
+    },
+    "sample_complete_true_case_count": 8,
+    "source_unchanged": true
+  },
+  "pin_audits": {
+    "active_guidance": {
+      "count": 9,
+      "matches": 9,
+      "mismatches": []
+    },
+    "current_inputs": {
+      "count": 393,
+      "matches": 393,
+      "mismatches": []
+    },
+    "guidance_exact_subset_of_inputs": true,
+    "positive_exact_subset_of_inputs": true,
+    "positive_reuse": {
+      "count": 104,
+      "matches": 104,
+      "mismatches": []
+    }
+  },
+  "projection_closure": {
+    "dependency_subset_count": 159,
+    "exclusion_count": 6,
+    "intersection_count": 151,
+    "preflight": {
+      "bytes": 2085,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/projection24_reuse_preflight/phase.json",
+      "sha256": "26d9ab7473595f1d6da99b1a4c02019b17bacfdc09fd3eefdf2c811f79116054"
+    },
+    "receipt": {
+      "bytes": 48553,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry7/projection24_reuse_preflight/reuse_receipt.json",
+      "sha256": "1e621d5e849f6736e15d79f90e488d43baa79e64a5e00b3f060add44ac81a0a0"
+    },
+    "source_input_count": 157
+  },
+  "resources": {
+    "authority_case_wall_seconds": 2400,
+    "authority_phase_wall_seconds": 2400,
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 480,
+    "phase_wall_timeout_overrides": {
+      "actual_formal_preflight": 600
+    },
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "reviewed_at_utc": "2026-09-24T05:04:22.172366+00:00",
+  "reviewer": "/root/t2_review",
+  "reviewer_static_qa_exit_receipt": {
+    "exit_code": 0,
+    "exit_text": {
+      "bytes": 1,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.exit.txt",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    "negative_control_count": 153,
+    "result": {
+      "bytes": 59221,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.json",
+      "sha256": "dbe55ad3a92839fa72abe37b48409d28b42b60f86e51ac93176b058e92b7a19a"
+    },
+    "status": "pass",
+    "stderr": {
+      "bytes": 0,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 60880,
+      "path": "D:/006-Programing/LMC/FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry7_preflight_review_20260924_r1/static_qa_rerun.stdout.raw",
+      "sha256": "a28c368f762bfcc0fd9b89fb5ae4296c96d2d4d8625238254e159e95cb156fdf"
+    }
+  },
+  "runtime_state": {
+    "formal_t2_accepted": false,
+    "julia_processes_seen": [],
+    "julia_started_by_protocol": false,
+    "output_leaf_exists": false,
+    "planned_output_absent_by_protocol": true,
+    "planned_output_absent_on_disk": true,
+    "planned_output_path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r6_attempt11_retry7",
+    "protocol_actual_source_site_hits": "pending_julia_execution",
+    "reviewer_rerun_julia_started": false,
+    "reviewer_rerun_negative_controls": 153,
+    "reviewer_rerun_status": "pass",
+    "static_qa_negative_controls": 153,
+    "static_qa_rerun_exit_code": 0,
+    "static_qa_status": "pass"
+  },
+  "schema": "independent-t2-retry7-readonly-audit-r1",
+  "wall_budget_summary": {
+    "authority_phase_seconds": 2400,
+    "excludes_setup_interphase_and_finalization_overhead": true,
+    "ordinary_phase_seconds": 480,
+    "phase_count": 30,
+    "preflight_phase_seconds": 600,
+    "schema": "vnext-t2-controller-summed-phase-wall-budget-r1",
+    "single_end_to_end_controller_timeout_enforced": false,
+    "sum_formula": "30*480 + (600-480) + (2400-480)",
+    "summed_phase_wall_cap_seconds": 16440
+  }
+}

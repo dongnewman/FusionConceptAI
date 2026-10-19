@@ -1,8 +1,0 @@
-{
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"urn:fusionconceptai:m5-search-r2:static-process-receipt-v1",
-  "type":"object","additionalProperties":false,
-  "required":["schema","purpose","pid","utc_start","utc_end","command","cwd","exit_code","termination","stdout","stderr"],
-  "properties":{"schema":{"const":"M5SearchR2StaticValidationReceiptV1"},"purpose":{"const":"package_static_validation_only"},"pid":{"type":"integer","minimum":1},"utc_start":{"type":"string","pattern":"Z$"},"utc_end":{"type":"string","pattern":"Z$"},"command":{"type":"string"},"cwd":{"type":"string"},"exit_code":{"const":0},"termination":{"const":"normal"},"stdout":{"$ref":"#/$defs/raw"},"stderr":{"$ref":"#/$defs/raw"}},
-  "$defs":{"raw":{"type":"object","additionalProperties":false,"required":["path","bytes","sha256"],"properties":{"path":{"type":"string"},"bytes":{"type":"integer","minimum":0},"sha256":{"pattern":"^[a-f0-9]{64}$"}}}}
-}

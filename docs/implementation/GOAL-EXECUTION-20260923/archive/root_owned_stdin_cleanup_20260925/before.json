@@ -1,0 +1,7 @@
+{
+  "ProcessId": 75060,
+  "ParentProcessId": 74100,
+  "CreationDate": "2026-09-24T01:08:04.999469+08:00",
+  "Name": "python.exe",
+  "CommandLine": "\"D:\\Users\\Newman\\anaconda3\\python.exe\" -B - \"import json\nfrom pathlib import Path\nfor leaf in [r'FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9b', r'FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt9c_final']:\n p=Path(leaf)/'protocol.json'\n print(leaf, json.loads(p.read_text())['schema'])\""
+}

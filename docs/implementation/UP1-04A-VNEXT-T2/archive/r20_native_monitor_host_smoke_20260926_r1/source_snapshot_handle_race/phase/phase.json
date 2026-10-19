@@ -1,0 +1,311 @@
+{
+  "actual_model_attestation": "unavailable",
+  "child_seconds": 0.4612920999643393,
+  "command": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "-c",
+    "import os, pathlib, subprocess, sys, time\nflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)\nhelper = subprocess.Popen(\n    [sys.executable, '-B', '-c', 'import time; time.sleep(60)'],\n    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,\n    stderr=subprocess.DEVNULL, creationflags=flags)\nprint('R20_ROOT_READY', os.getpid(), helper.pid, flush=True)\nbegin = pathlib.Path('D:\\\\006-Programing\\\\LMC\\\\FusionConceptAI\\\\docs\\\\implementation\\\\UP1-04A-VNEXT-T2\\\\archive\\\\r20_native_monitor_host_smoke_20260926_r1\\\\source_snapshot_handle_race\\\\begin_target.txt')\ndeadline = time.monotonic() + 12.0\nwhile not begin.exists() and time.monotonic() < deadline:\n    time.sleep(0.01)\nif not begin.exists():\n    raise SystemExit(91)\nworker = subprocess.Popen(\n    [sys.executable, '-B', '-c', \"import os, pathlib, subprocess, sys, time\\norphan_pid = 'D:\\\\\\\\006-Programing\\\\\\\\LMC\\\\\\\\FusionConceptAI\\\\\\\\docs\\\\\\\\implementation\\\\\\\\UP1-04A-VNEXT-T2\\\\\\\\archive\\\\\\\\r20_native_monitor_host_smoke_20260926_r1\\\\\\\\source_snapshot_handle_race\\\\\\\\orphan_pid.txt'\\nif False:\\n    flags = getattr(subprocess, 'CREATE_NO_WINDOW', 0)\\n    child = subprocess.Popen(\\n        [sys.executable, '-B', '-c', 'import time; time.sleep(60)'],\\n        stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,\\n        stderr=subprocess.DEVNULL, creationflags=flags)\\n    pathlib.Path(orphan_pid).write_text(str(child.pid), encoding='ascii')\\npathlib.Path('D:\\\\\\\\006-Programing\\\\\\\\LMC\\\\\\\\FusionConceptAI\\\\\\\\docs\\\\\\\\implementation\\\\\\\\UP1-04A-VNEXT-T2\\\\\\\\archive\\\\\\\\r20_native_monitor_host_smoke_20260926_r1\\\\\\\\source_snapshot_handle_race\\\\\\\\target_pid.txt').write_text(\\n    str(os.getpid()), encoding='ascii')\\nprint('R20_TARGET_READY', os.getpid(), flush=True)\\ntime.sleep(60)\"],\n    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,\n    stderr=subprocess.DEVNULL, creationflags=flags)\ndeadline = time.monotonic() + 5.0\nwhile not pathlib.Path('D:\\\\006-Programing\\\\LMC\\\\FusionConceptAI\\\\docs\\\\implementation\\\\UP1-04A-VNEXT-T2\\\\archive\\\\r20_native_monitor_host_smoke_20260926_r1\\\\source_snapshot_handle_race\\\\target_pid.txt').exists() and time.monotonic() < deadline:\n    time.sleep(0.01)\nif not pathlib.Path('D:\\\\006-Programing\\\\LMC\\\\FusionConceptAI\\\\docs\\\\implementation\\\\UP1-04A-VNEXT-T2\\\\archive\\\\r20_native_monitor_host_smoke_20260926_r1\\\\source_snapshot_handle_race\\\\target_pid.txt').exists():\n    raise SystemExit(92)\nprint('R20_TARGET_STARTED', worker.pid, flush=True)\ntime.sleep(3.0)"
+  ],
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "ended_utc": "2026-09-25T18:26:54.197729Z",
+  "exact_exit_receipts": [],
+  "exit_code": 15,
+  "final_process_tree_audit": {
+    "complete": true,
+    "errors": [],
+    "global_heavy_process_audit": {
+      "complete": true,
+      "controller_processes": [],
+      "errors": [],
+      "native_heavy_identities": [],
+      "processes": [],
+      "schema": "vnext-t2-r23-global-heavy-audit-r1",
+      "snapshot": {
+        "buffer_bytes": 1298576,
+        "complete": true,
+        "host_identity": [
+          10,
+          0,
+          26200,
+          "AMD64"
+        ],
+        "identity_authority": "NtQuerySystemInformation_class5_raw_FILETIME_100ns",
+        "query_attempts": 1,
+        "raw_identity_digest_sha256": "a5adc332fe478dd513d7e56aff13b82c8e510c5040e78ff667888d917dabb8ed",
+        "row_count": 460,
+        "schema": "vnext-t2-r23-native-snapshot-receipt-r1",
+        "system_information_class": 5
+      }
+    },
+    "identity_authority": "raw_PID_FILETIME_100ns_SPI_and_original_process_handle",
+    "residual_descendant_processes": [],
+    "residual_process_audit": {
+      "complete": true,
+      "expected_identity_count": 4,
+      "host_identity": [
+        10,
+        0,
+        26200,
+        "AMD64"
+      ],
+      "residual_clear": true,
+      "residual_exact_identities": [],
+      "row_count": 460,
+      "schema": "native-g1g2-r23-residual-audit-v1"
+    },
+    "root_exit_confirmed": true,
+    "root_identity": {
+      "create_time_100ns": 134348344135935763,
+      "pid": 36448
+    },
+    "root_identity_absent": true,
+    "schema": "vnext-t2-r23-final-process-tree-audit-r1",
+    "snapshot": {
+      "buffer_bytes": 1298576,
+      "complete": true,
+      "host_identity": [
+        10,
+        0,
+        26200,
+        "AMD64"
+      ],
+      "identity_authority": "NtQuerySystemInformation_class5_raw_FILETIME_100ns",
+      "query_attempts": 1,
+      "raw_identity_digest_sha256": "a5adc332fe478dd513d7e56aff13b82c8e510c5040e78ff667888d917dabb8ed",
+      "row_count": 460,
+      "schema": "vnext-t2-r23-native-snapshot-receipt-r1",
+      "system_information_class": 5
+    },
+    "tracked_identity_count": 4,
+    "tracked_pid_reuse": [],
+    "unbound_observation_final_audit": {
+      "complete": true,
+      "errors": [],
+      "observed_generation_count": 0,
+      "observed_unbound_generations": [],
+      "orphan_descendants": [],
+      "residual_observed_generations": [],
+      "schema": "vnext-t2-r20-unbound-observation-final-audit-r1"
+    }
+  },
+  "final_sample_process_tree_system_cpu_seconds": 0.078125,
+  "final_sample_process_tree_user_cpu_seconds": 0.078125,
+  "handle_close_receipt": {
+    "closed_owned_handles": [
+      {
+        "create_time_100ns": 134348344136902779,
+        "pid": 65296
+      },
+      {
+        "create_time_100ns": 134348344136855973,
+        "pid": 71712
+      },
+      {
+        "create_time_100ns": 134348344136757967,
+        "pid": 85612
+      },
+      {
+        "create_time_100ns": 134348344136028089,
+        "pid": 98580
+      },
+      {
+        "create_time_100ns": 134348344136837059,
+        "pid": 100196
+      }
+    ],
+    "complete": true,
+    "errors": [],
+    "popen_handle_close_policy": "retained_until_phase_return_then_closed_by_Popen_handle_owner",
+    "popen_handles_not_owned_by_registry": 1,
+    "popen_original_handle_owner": "psutil.Popen",
+    "schema": "native-g1g2-r23-handle-close-receipt-v1"
+  },
+  "monitor_source_pins": {
+    "load_mode": "hash-pinned compile-exec; no pyc read/write",
+    "native_process_table": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+      "sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4"
+    },
+    "supervisor": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+      "sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192"
+    }
+  },
+  "name": "r20_disappearing_descendant_before_handle_open",
+  "peak_process_tree_working_set_bytes": 51425280,
+  "pid": 36448,
+  "process_create_time": 1790360813.5935762,
+  "process_create_time_100ns": 134348344135935763,
+  "process_tree_sample_count": 2,
+  "process_tree_samples_complete": false,
+  "residual_heavy_processes": [],
+  "residual_process_audit": {
+    "complete": true,
+    "controller_processes": [],
+    "errors": [],
+    "native_heavy_identities": [],
+    "processes": [],
+    "schema": "vnext-t2-r23-global-heavy-audit-r1",
+    "snapshot": {
+      "buffer_bytes": 1298576,
+      "complete": true,
+      "host_identity": [
+        10,
+        0,
+        26200,
+        "AMD64"
+      ],
+      "identity_authority": "NtQuerySystemInformation_class5_raw_FILETIME_100ns",
+      "query_attempts": 1,
+      "raw_identity_digest_sha256": "a5adc332fe478dd513d7e56aff13b82c8e510c5040e78ff667888d917dabb8ed",
+      "row_count": 460,
+      "schema": "vnext-t2-r23-native-snapshot-receipt-r1",
+      "system_information_class": 5
+    }
+  },
+  "root_launch_identity": {
+    "complete": true,
+    "create_time": 1790360813.5935762,
+    "create_time_100ns": 134348344135935763,
+    "helper_sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4",
+    "identity_authority": "raw_PID_FILETIME_100ns_SPI_plus_original_Popen_handle",
+    "looked_up_create_time": 1790360813.5935762,
+    "looked_up_pid": 36448,
+    "native_snapshot": {
+      "buffer_bytes": 1302368,
+      "complete": true,
+      "host_identity": [
+        10,
+        0,
+        26200,
+        "AMD64"
+      ],
+      "identity_authority": "NtQuerySystemInformation_class5_raw_FILETIME_100ns",
+      "query_attempts": 1,
+      "raw_identity_digest_sha256": "031a9af6fb08fa88ea83794731e99bd7b8453eccea34531d6fc34a0cf764cb6d",
+      "row_count": 464,
+      "schema": "vnext-t2-r23-native-snapshot-receipt-r1",
+      "system_information_class": 5
+    },
+    "pid": 36448,
+    "schema": "vnext-t2-r23-launch-identity-r1",
+    "supervisor_sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192"
+  },
+  "sample_handoff_recoveries": [],
+  "sample_handoff_recovery_count": 0,
+  "schema": "vnext-t2-independent-negative-phase-r6-native-r23",
+  "seconds": 0.6056373999454081,
+  "started_utc": "2026-09-25T18:26:53.592054Z",
+  "stderr": {
+    "bytes": 0,
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r20_native_monitor_host_smoke_20260926_r1\\source_snapshot_handle_race\\phase\\stderr.raw",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 55,
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r20_native_monitor_host_smoke_20260926_r1\\source_snapshot_handle_race\\phase\\stdout.raw",
+    "sha256": "0e2ba128fabd75cd414ca9f0fff69739392d4702f744b12d036c368f07b3fbbb"
+  },
+  "stop_reason": "process_tree_monitor_incomplete",
+  "terminal_sample_race": null,
+  "termination_receipt": {
+    "complete": true,
+    "errors": [],
+    "post_cleanup_audit": {
+      "complete": true,
+      "residual_descendant_count": 0,
+      "snapshot": {
+        "buffer_bytes": 1298576,
+        "complete": true,
+        "host_identity": [
+          10,
+          0,
+          26200,
+          "AMD64"
+        ],
+        "identity_authority": "NtQuerySystemInformation_class5_raw_FILETIME_100ns",
+        "query_attempts": 1,
+        "raw_identity_digest_sha256": "a5adc332fe478dd513d7e56aff13b82c8e510c5040e78ff667888d917dabb8ed",
+        "row_count": 460,
+        "schema": "vnext-t2-r23-native-snapshot-receipt-r1",
+        "system_information_class": 5
+      }
+    },
+    "root_exit_confirmed": true,
+    "schema": "vnext-t2-r23-termination-r1",
+    "signal_attempts": [
+      {
+        "identity": {
+          "create_time_100ns": 134348344136855973,
+          "pid": 71712
+        },
+        "receipt": {
+          "complete": true,
+          "exit_code": 15,
+          "identity": {
+            "create_time_100ns": 134348344136855973,
+            "pid": 71712
+          },
+          "post_table_reused_pid_ticks": null,
+          "post_table_same_generation_present": false,
+          "schema": "native-g1g2-r23-exit-receipt-v1",
+          "signal_sent": true,
+          "wait_confirmed": true
+        }
+      },
+      {
+        "identity": {
+          "create_time_100ns": 134348344136757967,
+          "pid": 85612
+        },
+        "receipt": {
+          "complete": true,
+          "exit_code": 15,
+          "identity": {
+            "create_time_100ns": 134348344136757967,
+            "pid": 85612
+          },
+          "post_table_reused_pid_ticks": null,
+          "post_table_same_generation_present": false,
+          "schema": "native-g1g2-r23-exit-receipt-v1",
+          "signal_sent": true,
+          "wait_confirmed": true
+        }
+      }
+    ],
+    "verified": true
+  },
+  "timeout_seconds": 9.0,
+  "total_supervision_seconds": 0.6056373999454081,
+  "tracked_process_identities_raw": [
+    {
+      "create_time_100ns": 134348344135935763,
+      "pid": 36448
+    },
+    {
+      "create_time_100ns": 134348344136855973,
+      "pid": 71712
+    },
+    {
+      "create_time_100ns": 134348344136757967,
+      "pid": 85612
+    },
+    {
+      "create_time_100ns": 134348344136028089,
+      "pid": 98580
+    }
+  ],
+  "tracked_process_identity_count": 4,
+  "unbound_observation_final_audit": {
+    "complete": true,
+    "errors": [],
+    "observed_generation_count": 0,
+    "observed_unbound_generations": [],
+    "orphan_descendants": [],
+    "residual_observed_generations": [],
+    "schema": "vnext-t2-r20-unbound-observation-final-audit-r1"
+  },
+  "unbound_observed_generations": [],
+  "working_set_limit_bytes": 2147483648
+}

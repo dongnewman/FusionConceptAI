@@ -1,0 +1,236 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r2",
+  "status": "pass",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "projection24 plan missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 schema drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 dependency byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 source/phase consumed pin missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 phase sidecar missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 exclusion reason drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 historical intersection drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection24 current input join drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_case_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "missing phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase key actual_formal_phase_observation_ids",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan case ID drift from coverage map",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "protocol plan field removed from coverage map copy",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input SHA drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input byte-count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "positive input extra",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site ID missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "per-phase source-site count drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase order drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "aggregate source-site phase missing",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "checks": [
+    {
+      "name": "projection24 historical input join and exclusions",
+      "status": "pass",
+      "historical_input_count": 157,
+      "exact_current_intersection_count": 151,
+      "excluded_count": 6,
+      "missing_from_current_closure": [
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/dispatch_r3_review/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_candidate_checkpoint_r1/review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/negative_delta_review_r2/positive_join_unit_review.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/actualr4_failure_review/r5_patch_review/review.json"
+      ],
+      "bytes_or_sha256_changed": [
+        "docs/v4_multitopology_generation/16_execution_work_orders.md",
+        "test/GenomeV5/Integration/VNextT2FormalIndependentR1/supplementary_contract_driver_r1.jl"
+      ],
+      "dependency_subset_count": 159,
+      "explicitly_consumed_paths": [
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/actual_observation.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/phase.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/samples.jsonl",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stderr.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/package_full_content_projection_regression/stdout.raw",
+        "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_independent_negative_r1/pipeline_final.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_actual_r1_timeout_20260922/execution_receipt.json",
+        "docs/implementation/UP1-04A-VNEXT-T2/independent_negative_dispatch_r1/protocol.json"
+      ]
+    },
+    {
+      "name": "projection24 path-keyed dependency order is semantic",
+      "status": "pass"
+    },
+    {
+      "name": "projection24 plan targeted synthetic positive/negative controls",
+      "status": "pass",
+      "negative_controls_added": 11,
+      "synthetic_only": true
+    },
+    {
+      "name": "phase semantic maps ignore JSON object key order",
+      "status": "pass"
+    },
+    {
+      "name": "104 positive r3 pins compare as path-keyed exact records",
+      "status": "pass"
+    },
+    {
+      "name": "synthetic phase hit receipts satisfy static 214/622 mapping",
+      "status": "pass",
+      "synthetic_only": true,
+      "site_count": 214,
+      "hit_count": 622
+    }
+  ],
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/protocol.json",
+    "bytes": 253799,
+    "sha256": "3a792f89ab2e9db3bff408dd0a7da3c5eb564d6807090c8fa0bbfa6004ec5c00"
+  },
+  "coverage_map": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol/coverage_map_r2.json",
+    "bytes": 455670,
+    "sha256": "4e79435b9842ecd435fadeb50334e1f500e5635d8f9fef760bfc085ef655bd3d"
+  },
+  "controller": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r2.py",
+    "bytes": 93068,
+    "sha256": "aac32e875db14472fcfdf14b86af960908b9b22c6b55e9002b2d792b5536e024"
+  },
+  "input_count": 208,
+  "python_parse_count": 16,
+  "julia_parse_inventory_count_not_executed": 102,
+  "positive_r3_input_pin_count": 104,
+  "positive_r3_pin_identity_sha256": "33ea4f4ca5f6be4d25ed8a80990767da5c04e9b33eff057eb8f2590615ff5a55",
+  "positive_evidence_receipt_count": 10,
+  "old_assertion_sites_static_mapping": 154,
+  "old_runtime_hits_static_mapping": 174,
+  "successor_assertion_sites_static_plan": 214,
+  "successor_runtime_hits_static_plan": 622,
+  "context_transport_sites_static_plan": 23,
+  "context_transport_hits_static_plan": 92,
+  "preserved_successor_sites_static_plan": 191,
+  "preserved_successor_hits_static_plan": 530,
+  "projection24_prior_reuse_mapping": 24,
+  "projection24_python_preflight": {
+    "bytes": 1969,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/projection24_reuse_preflight/phase.json",
+    "sha256": "19fc939dd3a7c14ab7606131e64e086e8d38486f05da3faf77c75e8187465b71"
+  },
+  "projection24_preflight_natural_exit_zero": true,
+  "projection24_historical_actual_sites_completed": 24,
+  "projection24_r1_source_input_count": 157,
+  "projection24_r1_exact_current_intersection_count": 151,
+  "projection24_r1_excluded_input_count": 6,
+  "projection24_dependency_subset_count": 159,
+  "projection24_python_only_child_phase_count": 1,
+  "actual_source_site_hits": "pending_julia_execution",
+  "four_shard_protocol_status": "frozen_not_executed",
+  "formal_t2_accepted": false,
+  "negative_control_count": 25
+}

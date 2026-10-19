@@ -1,0 +1,74 @@
+{
+  "kind": "python_only_r7_full_host_smoke_launcher",
+  "argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\r20_native_monitor_host_smoke_r7.py",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r20_native_monitor_host_smoke_20260926_r7"
+  ],
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "started_utc": "2026-09-25T19:31:31.1980242Z",
+  "ended_utc": "2026-09-25T19:31:41.0838259Z",
+  "exit_code": 1,
+  "runner_sha256_before": "2151897EC5E9416B30352534B7F546A5486E8D32E7BCAF364AAFB00BA34380B7",
+  "runner_sha256_after": "2151897EC5E9416B30352534B7F546A5486E8D32E7BCAF364AAFB00BA34380B7",
+  "source_pins_before": {
+    "runner": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/r20_native_monitor_host_smoke_r7.py",
+      "bytes": 77413,
+      "sha256": "2151897EC5E9416B30352534B7F546A5486E8D32E7BCAF364AAFB00BA34380B7"
+    },
+    "controller": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r20.py",
+      "bytes": 326817,
+      "sha256": "C1607FC4508356366E9EEE350582DD9DF2248B3B89022CE4EA43928D1148D9B4"
+    },
+    "native_process_table": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+      "bytes": 27470,
+      "sha256": "B18136C52DF644579E05D52A82F98541AC95A85DE9BE56CDAE6D52BAA8AF74E4"
+    },
+    "supervisor": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+      "bytes": 25343,
+      "sha256": "ED38B5E1D9D7C506BD8DB4C311948601FBB12BE47AC68E2D3E4AC2E710342192"
+    },
+    "test_suite_source": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_r16_root_audit_r23_v1.py",
+      "bytes": 28593,
+      "sha256": "C179AA94A34C1244A9D9756A2CF71440008D0542FCF82B6E7D4BACE4BD693A95"
+    }
+  },
+  "source_pins_after": {
+    "runner": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/r20_native_monitor_host_smoke_r7.py",
+      "bytes": 77413,
+      "sha256": "2151897EC5E9416B30352534B7F546A5486E8D32E7BCAF364AAFB00BA34380B7"
+    },
+    "controller": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r20.py",
+      "bytes": 326817,
+      "sha256": "C1607FC4508356366E9EEE350582DD9DF2248B3B89022CE4EA43928D1148D9B4"
+    },
+    "native_process_table": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+      "bytes": 27470,
+      "sha256": "B18136C52DF644579E05D52A82F98541AC95A85DE9BE56CDAE6D52BAA8AF74E4"
+    },
+    "supervisor": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+      "bytes": 25343,
+      "sha256": "ED38B5E1D9D7C506BD8DB4C311948601FBB12BE47AC68E2D3E4AC2E710342192"
+    },
+    "test_suite_source": {
+      "path": "test/RuntimeV4/NativeG1G2DiffusionV1/test_r16_root_audit_r23_v1.py",
+      "bytes": 28593,
+      "sha256": "C179AA94A34C1244A9D9756A2CF71440008D0542FCF82B6E7D4BACE4BD693A95"
+    }
+  },
+  "source_pins_stable": true,
+  "stdout_bytes": 46724,
+  "stderr_bytes": 0,
+  "formal_t2_accepted": false,
+  "julia_started": false
+}

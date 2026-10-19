@@ -1,0 +1,164 @@
+{
+  "schema": "independent_up2_v20_postrun_review_v1",
+  "verdict": "NO_GO",
+  "reviewer_ran_julia": false,
+  "protocol": {
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+    "sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2"
+  },
+  "sources": [
+    {
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/replay_staged_v20.jl",
+      "sha256": "de982105ea005b0e9e2f5b52c2a3a23e38e6691563cfd8497043109767538c06"
+    },
+    {
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/run_replay_staged_v20.py",
+      "sha256": "5340b60371e2e59fc9b20f0ada0023af3574c241685df1db079d734c2c78a410"
+    }
+  ],
+  "pin_audit": {
+    "count": 952,
+    "errors": 0,
+    "snapshot_count": 725,
+    "snapshot_equal": true,
+    "live_snapshot_matches": 725,
+    "labels": {
+      "runtime_725_input": 725,
+      "saved_producer_tree_119": 119,
+      "v10_actual_replay_protocol": 1,
+      "v10_staged_input_89": 89,
+      "v10_staged_protocol": 1,
+      "v20_owned_source": 4,
+      "v20_replay_input_candidate": 1,
+      "v20_replay_input_candidate_identity": 1,
+      "v20_replay_input_canonical_declaration": 1,
+      "v20_replay_input_canonical_input": 1,
+      "v20_replay_input_context": 1,
+      "v20_replay_input_numerical_result": 1,
+      "v20_replay_input_parent_candidate": 1,
+      "v20_replay_input_parent_context": 1,
+      "v20_replay_input_parent_identity": 1,
+      "v20_replay_input_replay_started_marker": 1,
+      "v20_replay_input_solver_call_completed_marker": 1,
+      "v20_replay_input_solver_exitcode": 1,
+      "v20_replay_input_solver_primary": 1
+    }
+  },
+  "outer": {
+    "exit": 124,
+    "classification": "resource_interruption",
+    "child_stage": "producer",
+    "child_exit": 1,
+    "child_stop": "cleanup_unconfirmed",
+    "child_wall_seconds": 259.82886090001557,
+    "stage_limit_seconds": 480,
+    "aggregate_wall": {
+      "controller_overhead_separate_limit_seconds": 120.0,
+      "definition": "The total is the cumulative child Popen-to-observed-exit wall time, including bounded cleanup for producer and consumer. Read-only preflight, snapshots, source/input hashing, raw-log hashing, and receipt preparation are excluded from this child total and included in the separately enforced controller_overhead_seconds_limit.",
+      "limit_seconds": 960.0,
+      "limit_status": "cleanup_unconfirmed",
+      "overrun_seconds": 0.0,
+      "remaining_seconds": 700.1711390999844,
+      "spent_seconds": 259.82886090001557,
+      "termination_cleanup_grace_seconds": 6.0,
+      "unconfirmed_cleanup_stages": [
+        "producer"
+      ]
+    },
+    "overhead": {
+      "definition": "Controller overhead is elapsed wall time from immediately before the read-only preflight through controller snapshots, source/input/raw-log hashing, and receipt preparation, subtracting child intervals measured separately from Popen through observed exit. The separate 120-second limit is checked after preflight before output creation and before each child launch; a preflight timeout reports resource_interruption/124 without creating the output leaf or starting a child.",
+      "limit_seconds": 120.0,
+      "limit_status": "within_limit",
+      "overrun_seconds": 0.0,
+      "spent_seconds": 4.411988000007113
+    },
+    "rss_samples": 934,
+    "rss_complete": false,
+    "peak_sampled_rss_bytes": 1152794624,
+    "cleanup": {
+      "bounded_wait_deadline_monotonic": 256240.3171534,
+      "cleanup_grace_seconds": 6.0,
+      "elapsed_seconds": 0.002897099999245256,
+      "kill_requested_pids": [],
+      "owned_process_identities": [],
+      "process_tree_inventory_complete": false,
+      "remaining_process_pids": [],
+      "terminate_requested_pids": [],
+      "termination_confirmed": false,
+      "termination_verification_errors": [
+        {
+          "error": "process PID not found (pid=80036)",
+          "error_type": "NoSuchProcess",
+          "pid": 80036,
+          "stage": "root_process_lookup"
+        }
+      ],
+      "termination_wait_succeeded": false
+    },
+    "output_stages": [
+      "producer"
+    ],
+    "consumer_or_validator_artifacts": false,
+    "inputs_unchanged": true,
+    "producer_tree_comparison_status": "not_reached",
+    "producer_tree_unchanged": null
+  },
+  "julia_failure": {
+    "after_reconstruction_counts": {
+      "mismatch_roots": 0,
+      "numeric_type": 0,
+      "reconstruction_paths": 153,
+      "representation": 110,
+      "semantic": 0
+    },
+    "controller_classification_order": {
+      "program_exception_classification_source_line": 3953,
+      "resource_branch_precedes_replay_hydration_and_program_exception": true,
+      "resource_branch_source_line": 3945,
+      "typed_hydration_classification_source_line": 3949
+    },
+    "hash_definition_crosscheck": {
+      "attempt_file_sha256": "70f659c3f7da76e0db00ee9c8cf5cfd46f03f5342c51266a5df8d9b0471f5efb",
+      "authoritative_case_recheck_source_line": 1167,
+      "case_final_state_count": 40,
+      "case_metadata_hash_formula_source_line": 834,
+      "case_metadata_state_hash": "b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7",
+      "case_state_hash_assignment_source_line": 903,
+      "last_solver_attempt_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+      "protocol_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+      "v10_actual_replay_protocol_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+      "vector_hash_formula_source_line": 651
+    },
+    "initial_observation_counts": {
+      "mismatch_roots": 3,
+      "numeric_type": 153,
+      "representation": 750,
+      "semantic": 0
+    },
+    "kind": "saved_result_state_hash_mismatch",
+    "occurs_after_completed_hydration_phases": "typed_wire_encoding",
+    "signature": "saved result state hash differs from protocol",
+    "source_line": 850,
+    "source_path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/replay_staged_v20.jl",
+    "stderr_sha256": "f13435655eb43d8b8769a334c58b994f80ca6d081be2c61d55ac0e680fc2ae58",
+    "validator_gate_after_failure": true,
+    "validator_gate_line": 859
+  },
+  "hash_definitions": {
+    "attempt_file_sha256": "70f659c3f7da76e0db00ee9c8cf5cfd46f03f5342c51266a5df8d9b0471f5efb",
+    "authoritative_case_recheck_source_line": 1167,
+    "case_final_state_count": 40,
+    "case_metadata_hash_formula_source_line": 834,
+    "case_metadata_state_hash": "b36d2109eba29fdced93e09f2730fb785860f203d4cf9d39f2dedf43e94fb5d7",
+    "case_state_hash_assignment_source_line": 903,
+    "last_solver_attempt_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "protocol_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "v10_actual_replay_protocol_state_after_hash": "464534cafdcecbbf215c656843349faa88a4ea3120e58d4cf79345a71bd89662",
+    "vector_hash_formula_source_line": 651
+  },
+  "exact_reviewer_command": "D:\\Users\\Newman\\anaconda3\\python.exe -B \"D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-04-CLOSURE-REPAIR-PREC\\archive\\independent_replay_v20_postrun_audit_fec_reference_audit_r1_20260926\\audit_v20_postrun.py\"",
+  "independent_audit_exit": 0,
+  "runtime_inventory_entries": 21,
+  "runtime_inventory_bytes": 3365672.0,
+  "minimum_repair": "Compare protocol state_after_hash to the typed final vector digest; retain a separate case-bound c.state_hash validation."
+}

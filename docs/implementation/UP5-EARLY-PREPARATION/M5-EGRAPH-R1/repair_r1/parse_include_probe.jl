@@ -1,5 +1,0 @@
-source_path = normpath(joinpath(pwd(), raw"src/RuntimeV4/M4Isolated/ManufacturedConditionalEGraphV1.jl"))
-source_text = read(source_path, String)
-Meta.parseall(source_text)
-include(source_path)
-println("M5-C_PARSE_INCLUDE_PASS")

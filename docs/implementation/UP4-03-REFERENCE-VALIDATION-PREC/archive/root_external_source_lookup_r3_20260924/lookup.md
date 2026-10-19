@@ -1,0 +1,7 @@
+# Public-source follow-up for MAST shot 30421
+
+Read-only lookup after the user confirmed they have no local signed EFM segment-current algorithm/P6 polarity or AYC Thomson calibration/channel/error file. This supplements, and does not replace, `root_external_source_lookup_r2_20260924` and the pinned UKAEA ingestion-source trace.
+
+Checked UKAEA's published `fair-mast-ingestion/INGESTION.md` (`https://github.com/ukaea/fair-mast-ingestion/blob/main/INGESTION.md`), read 2026-09-24. Its Level 2 ingestion instructions state that source UDA access requires a certificate, permission, and UKAEA VPN/internal-network access; its MAST shot range includes 30421, but those instructions do not supply a shot-specific EFM sign/segment algorithm or AYC calibration and uncertainty map. Also checked UKAEA Open Data's MAST access page (`https://opendata.ukaea.uk/mast-data/`) and the UKAEA/IBM/STFC TokaMark public repository (`https://github.com/UKAEA-IBM-STFC-Fusion-FMs/tokamark`). The former describes request-based shot-file access; the latter publishes benchmark data/transform tooling. Neither source observed in this lookup supplies the missing first-party, shot-specific reconstruction inputs.
+
+Conclusion remains `typed_absent` for those inputs. Do not infer coil signs, splice a 130/131 channel mapping, or label an inverse run as real-reference validation from a generic benchmark or source-field name. No remote data was modified and no run was started.

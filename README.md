@@ -1,106 +1,23 @@
-# FusionConceptAI v4 runtime
+# FusionConceptAI
 
-This repository contains the typed three Genome contracts used by
-FusionConceptAI: G1 mechanism, G2 field and geometry, and G3 realization and
-control.  The source package entrypoint is
-[`src/FusionConceptAI.jl`](src/FusionConceptAI.jl).  The current architecture, Genome upgrades, execution roadmap and work orders live in
-[`docs/v4_multitopology_generation/README.md`](docs/v4_multitopology_generation/README.md).
-Start there for project guidance. Completed implementation records and explicitly labelled
-historical plans live in [`docs/implementation/README.md`](docs/implementation/README.md).
-Every delegated subtask follows the AD-35 closeout contract: implementation tasks
-must retain dedicated positive and negative test receipts, while architecture,
-audit and documentation tasks retain applicable static validation; cleanup is
-path-owned, hash-recorded and independently reviewed. Static command receipts
-include stdout/stderr/combined content hashes, UTC/exit and input/output/artifact
-hashes. AD-35 is a collaboration contract, and AD-36 clarifies that mandatory
-append-only evidence sidecars live only in task-owned archive/review/status subdirectories
-and do not count as product deliverables. Neither contract adds a mainline task or grants physical/R01–R10 credit.
-The 2026-09-14 roadmap uses Sol (high) for architecture and delegation, with Luna (high)
-for implementation, integration and independent review. The technical descriptions below
-cover bounded existing slices; they do not establish full physics or device readiness.
+FusionConceptAI implements typed G1 mechanisms, G2 fields/geometry, and G3 realization/control contracts, with candidate-bound compilation, spatial residuals, provider execution, coupled solvers, and validation interfaces.
 
-G1 revision 2 binds each conservation occurrence to its exact invariant owner.
-The seven-argument `InvariantV1` constructor requires explicit occurrence refs;
-legacy nine-argument inputs use the declared migration path and a sealed receipt.
-The migration, hash domains, fixtures, and runtime call sites are upgraded
-together. See [`g1_occurrence_ownership_migration.md`](docs/implementation/g1_occurrence_ownership_migration.md).
+Start with the [current architecture and remaining work](docs/v4_multitopology_generation/README.md). The [implementation record](docs/implementation/IMPLEMENTED-STATE-20261019/implementation.md) documents actual entrypoints, units, and verified limits; [run history](docs/implementation/IMPLEMENTED-STATE-20261019/run_history.md) summarizes earlier execution.
 
-The additive RuntimeV4 module is assembled by
-[`src/RuntimeV4/FusionRuntimeV4.jl`](src/RuntimeV4/FusionRuntimeV4.jl).  Its
-implemented contracts cover typed candidate-prefix compilation, exact
-capability matching, conservative materialization and solver-input identity,
-screen-level execution evidence, stage evidence closure, and the standalone candidate queue and
-deferred-capability archive in `Search.jl` and `Archives.jl`, plus a
-candidate-local algebraic scoped work/archive layer.  RuntimeV4
-consumes complete `CandidateStatePackageV4` objects and preserves unresolved
-capability obligations; it does not manufacture missing physical components
-or upgrade screen evidence.
+As of 2026-10-19 the experimental goal is **paused**. UP1/UP2-00 retain their user-accepted software scope. UP2's five global closures, complete UP2/UP3 acceptance, real reference-device inversion, and R01–R10 remain open. No candidate has passed all terminal physics, engineering, whole-cycle net-electric, VVUQ, originality, and fresh-process replay gates.
 
-Run the RuntimeV4 checks through the independent-process wrapper from the
-repository root. With no names it runs core, vertical, archive, spine,
-algebraic, algebraic_slice, algebraic_scoped, and g2_field in that order. The three CLI
-checks remain selectable by name:
+## Code entrypoints
+
+- [`src/FusionConceptAI.jl`](src/FusionConceptAI.jl): package and Genome contracts.
+- [`src/RuntimeV4/FusionRuntimeV4.jl`](src/RuntimeV4/FusionRuntimeV4.jl): additive runtime interfaces and components.
+- [`docs/code_layout.md`](docs/code_layout.md): maintained code, compatibility contracts, and ownership.
+- [`scripts/run_bounded_check.py`](scripts/run_bounded_check.py): bounded independent-process execution.
+
+Existing software checks remain available from the repository root:
 
 ```powershell
-julia --project=. scripts\test_runtime_v4.jl
-julia --project=. scripts\test_runtime_v4.jl core archive
-julia --project=. scripts\test_runtime_v4.jl algebraic_scoped
-julia --project=. scripts\test_runtime_v4.jl g2_field g2_field_cli
+julia --project=. scripts/test_runtime_v4.jl core archive
+python -B docs/v4_multitopology_generation/validate_plan.py
 ```
 
-The wrapper starts a separate Julia process for every selected item, inherits
-the active `--project`, prints each exit status, and exits nonzero if any item
-fails.  The individual entrypoints remain available for focused debugging.
-
-Run the declared software campaign with `julia --project=. scripts/run_v4_spine.jl`.
-Its default S0-S10 ladder records missing physical declarations explicitly.
-Traversing this ladder does not mean its physics stages have executed:
-the current fixture reports withheld authority and no whole-device readiness.
-
-The bounded numerical example is available with
-`julia --project=. scripts/run_v4_algebraic_slice.jl`. It extracts the declared
-parameter-free, zero-dimensional scalar constraint AST and runs a bounded
-Newton solve. The two-equation regression system reaches `(2, 1)` with zero
-reported residual; its evidence is `screen_only` and covers the selected
-constraint subgraph. The remaining candidate obligations are retained.
-
-The candidate-local scoped search check is available with
-`julia --project=. test/runtime_v4_algebraic_scoped_search_tests.jl`. Its
-59 assertions cover exact local-provider provenance before archive mutation,
-deterministic queue selection without global revival, typed screen resolution
-versus numerical-failure attempts, preservation of unresolved candidate
-obligations, and checkpoint identity. A scoped resolution remains attached to
-one candidate, prefix, plan, stage, and scenario; it does not close generic
-physical gaps or revive the candidate for whole-device stages.
-
-The typed G2 field producer runs with
-`julia --project=. scripts/run_v4_g2_field_evaluation.jl`. It evaluates the
-declared static scalar AST on an explicit chart-coordinate grid. The example
-computes `2x - y + 1` at 27 points, with minimum `-2` and maximum `4`.
-Its sealed, typed result and evidence bind the candidate, plan, scenario,
-operator manifests, provider source, and cache identity. Coordinate-map and
-metric execution remain unresolved; this field evaluation does not solve a PDE
-or establish physical-device readiness.
-
-The current acceptance record is in
-[`docs/implementation/runtime_acceptance.md`](docs/implementation/runtime_acceptance.md).
-It records the verified standalone checks and their evidence boundary.  Core
-and archive checks have clean-project results; the published vertical slice
-also passed 25/25 in a fresh checkout. The accepted stage spine passed 54/54;
-the numerical core passed 77/77 and its integration passed 22/22. The combined
-runtime release check passed 285 assertions across all seven suites; both
-CLI checks also exited successfully. The root ran all nine entrypoints in a
-fresh `89a85dd` worktree with the frozen implementation snapshot and updated
-Project and Manifest loaded together.
-The G2 producer passed 50 focused assertions and its CLI against the published
-G1 contract. A subsequent independent combined snapshot containing the
-G1 r2 migration, final G2 producer, and canonical String-axis fix passed
-348 assertions across eight suites and all three CLIs. The final G1 migration
-then passed the complete package test in an independent frozen checkout:
-**2,616 assertions across 104 test summaries, exit 0**. The main release matches
-all 27 reviewed migration-file hashes and the 32 unchanged files used by the
-combined RuntimeV4 check; the final differences are two package tests and the
-migration implementation document.
-The clean published package baseline at `310db3b`
-also passed its full `Pkg.test` run. Integrated physics, L4 validation evidence,
-and the user's overall fusion objective remain incomplete.
+These checks do not establish whole-device readiness. Historical raw outputs are local artifacts ignored by Git; authorized cleanup replaced most bulky outputs and temporary copies with compact records, retaining the paused-work input closure. See the [cleanup record](docs/implementation/WORKSPACE-CONSOLIDATION-20261019/README.md) for exactly what remains and what must be regenerated for replay.

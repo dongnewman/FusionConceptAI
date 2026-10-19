@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "M5CCollisionReceiptV2",
-  "type": "object",
-  "required": ["schema", "protocol", "payload_a", "payload_b", "forced_digest", "bucket_id", "full_key_a", "full_key_b", "full_key_equal", "outcome", "domains", "hostile_supervisor_receipt"],
-  "properties": {"schema": {"const": "M5CCollisionReceiptV2"}, "protocol": {"const": "M5CTestDigestV1"}, "payload_a": {"$ref": "#/$defs/payload"}, "payload_b": {"$ref": "#/$defs/payload"}, "forced_digest": {"type": "string", "pattern": "^[0-9a-f]+$"}, "bucket_id": {"type": "string"}, "full_key_a": {"type": "string", "contentEncoding": "base64"}, "full_key_b": {"type": "string", "contentEncoding": "base64"}, "full_key_equal": {"const": false}, "outcome": {"enum": ["key_collision", "dedup_allowed", "fail_closed"]}, "domains": {"type": "array", "items": {"enum": ["proposal", "member", "visited"]}, "minItems": 3, "uniqueItems": true}, "hostile_supervisor_receipt": {"type": "string", "minLength": 1}},
-  "$defs": {"payload": {"type": "object", "required": ["bytes", "sha256"], "properties": {"bytes": {"type": "string", "contentEncoding": "base64"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}, "additionalProperties": false}}
-}

@@ -1,0 +1,39 @@
+{
+  "schema": "independent-t2-negative-positive-join-static-unit-review-r1",
+  "status": "pass",
+  "classification": "synthetic_python_validator_unit_only",
+  "controller": {
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r1.py",
+    "bytes": 65426,
+    "sha256": "a5d9e17689a727637dd88243b3688ca39623543656e97878fc8c7a53d8276897"
+  },
+  "checks": [
+    {
+      "case": "exact_ten_receipts",
+      "pass": true
+    },
+    {
+      "case": "different_positive_root",
+      "rejected": true
+    },
+    {
+      "case": "missing_receipt",
+      "rejected": true
+    },
+    {
+      "case": "extra_receipt",
+      "rejected": true
+    },
+    {
+      "case": "producer_package_bytes_mismatch",
+      "rejected": true
+    },
+    {
+      "case": "producer_package_sha256_mismatch",
+      "rejected": true
+    }
+  ],
+  "julia_executed": false,
+  "formal_t2_accepted": false,
+  "fixture_is_formal_positive_evidence": false
+}

@@ -1,0 +1,795 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r8",
+  "status": "fail",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b historical r4 validator provenance rejects current r5",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9b QA failure receipt mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "old authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "new authority child cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority invocation cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority coverage threshold change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority resource contract drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout policy drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c timeout cannot be relabeled complete",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9c pre-assertion observation cannot be mislabeled",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "projection validator non-schema diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 projection validator changed closure size rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 projection validator generic schema acceptance rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 current map pin path drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r5 projection map self-binding drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry4 projection compatibility failure cannot be relabeled",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry4 raw schema error must remain an exact input pin",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 monitor delta cannot hide coverage drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 changed-function inventory is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 source diff pin is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 final NO-GO decision hash is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 independent receipts remain pinned",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry3 cannot be relabeled accepted",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r10/r11 monitor source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 launch identity threshold change rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 process-table generation proof cannot be dropped",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r11/r12 source diff pin is exact",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "r12 launch identity source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout selector source mutation rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority timeout mutation outside attempt11 delta rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller r8/r9 non-binding diff rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller delta cannot hide 2400s case cap drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "unplanned controller Python child rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller child phase omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "stale r11 dynamic controller loader name rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled as cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "generated cache stale SHA rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "third generated cache rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache mislabeled cleaned rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "excluded cache reintroduced as runtime input rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 300 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "phase budget 600 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight-only override missing rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout 599 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "preflight timeout 601 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "wrong phase timeout override rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "extra phase timeout override rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority phase budget drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority case budget drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "memory cap drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "dispatch preflight timeout override drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "budget delta preflight timeout drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "controller base timeout argv must remain 480 rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt8 timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority phase timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority per-case timeout argv drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline marker contract omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "baseline serialization marker omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 missing final case rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 partial case cannot be reused",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt11 partial coverage credit rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 remaining case identity drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt10 historical input omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial freeze error relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial freezer source pin drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial failure Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "initial failure receipt omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 static QA failure relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 QA source-at-failure pin drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry1 preserved artifact omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 QA failure reason drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 stale module binding relabel rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 projection completion omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 Julia execution claim rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "retry2 pinned artifact omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 site omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 extra site rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 source assertion drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt7 case omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation row omission rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "relocation source text drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "summed phase wall cap arithmetic drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "unbounded total is not misreported as enforced timeout",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "monitor-incomplete cleanup cannot become accepted",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "termination wait contract cannot be widened",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport map missing ID rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport map extra ID rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport phase hit drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport moved to wrong case rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority protocol transport total drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority runtime Test.record counter removal rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority transport function source drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority flushed per-record event removal rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "authority per-record source line drift rejected",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r12.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "attempt10_preflight_interruption": {
+    "status": "pass",
+    "attempt10_completed_cases": 16,
+    "attempt10_planned_cases": 18,
+    "attempt10_uncredited_remaining_case_ids": [
+      "FEEDBACK_STALE",
+      "FEEDBACK_FOREIGN"
+    ],
+    "estimated_finalization_margin_seconds": 82.765803,
+    "estimate_is_guarantee": false
+  },
+  "attempt11_initial_freeze_failure": {
+    "status": "pass",
+    "first_freeze_exit_code": 1,
+    "classification": "python_freezer_lineage_guard_only",
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt11_retry1_static_qa_failure": {
+    "status": "pass",
+    "retry1_static_qa_exit_code": 1,
+    "projection24_preflight_exit_code": 0,
+    "failure_classification": "stale_historical_protocol_controller_path_assertion",
+    "julia_started": false
+  },
+  "attempt11_retry2_static_qa_failure": {
+    "status": "pass",
+    "retry2_static_qa_exit_code": 1,
+    "projection24_preflight_exit_code": 0,
+    "failure_classification": "r10_loader_name_mismatch_in_protocol_cache_contract",
+    "case_work_started": false,
+    "julia_started": false
+  },
+  "attempt7_plan_equality": {
+    "status": "pass",
+    "case_count": 60,
+    "formal_case_count": 45,
+    "runtime_unique_case_count": 60,
+    "runtime_hit_count": 68,
+    "successor_site_count": 214,
+    "successor_runtime_hit_count": 622,
+    "case_ids_exact": true,
+    "site_ids_and_assertions_exact": true,
+    "phase_hit_map_exact": true,
+    "full_path_line_map_byte_equal": false,
+    "relocation_ledger": {
+      "site_count": 214,
+      "path_changed_site_count": 175,
+      "line_changed_site_count": 175,
+      "source_text_match_count": 214,
+      "current_source_line_verified_count": 214
+    }
+  },
+  "process_monitor_contract": {
+    "status": "pass",
+    "checks": 24,
+    "check_names": [
+      "complete sample has unique exact root identity",
+      "launch identity binds exact Popen and lookup generation",
+      "launch identity rejects nonfinite/nonpositive/bool timestamps",
+      "child enumeration AccessDenied is incomplete",
+      "RSS AccessDenied is incomplete",
+      "CPU AccessDenied is incomplete",
+      "root PID with different create_time is incomplete",
+      "root PID reuse during sample is incomplete",
+      "kill AccessDenied cannot produce verified termination",
+      "wait AccessDenied cannot produce verified termination",
+      "tracked PID reuse cannot produce verified termination",
+      "residual cmdline AccessDenied is incomplete",
+      "residual cmdline NoSuchProcess is incomplete",
+      "residual cmdline ZombieProcess is incomplete",
+      "residual process enumeration failure is incomplete",
+      "empty psutil process name requires recorded tasklist resolution",
+      "unresolved live process name is incomplete",
+      "process-table A-to-B PID reuse is incomplete despite stable PID set",
+      "leader exit with live descendant is never natural acceptance",
+      "natural exit rejects incomplete sample",
+      "natural exit rejects incomplete final tree audit",
+      "natural exit rejects incomplete termination",
+      "natural exit rejects incomplete residual audit",
+      "natural exit rejects nonempty residual process audit"
+    ],
+    "synthetic_process_fakes_only": true,
+    "julia_executed": false
+  },
+  "checks": [
+    {
+      "name": "r12 launch identity and process-tree generation audits",
+      "status": "pass",
+      "synthetic_process_fakes_only": true,
+      "negative_controls_added": 24
+    },
+    {
+      "name": "attempt11 preflight-only 600s controller path",
+      "status": "pass",
+      "phase_override_seconds": 600,
+      "base_formal_phase_seconds": 480,
+      "negative_controls_added": 14
+    },
+    {
+      "name": "controller summed phase wall cap and fail-closed cleanup",
+      "status": "pass",
+      "summed_phase_wall_cap_seconds": 16440,
+      "single_end_to_end_controller_timeout_enforced": false,
+      "negative_controls_added": 4
+    },
+    {
+      "name": "r10 to r11 fail-closed process-monitor source delta",
+      "status": "pass",
+      "coverage_semantics_changed": false,
+      "negative_controls_added": 7
+    },
+    {
+      "name": "r11 to r12 launch and process-table generation binding",
+      "status": "pass",
+      "coverage_semantics_changed": false,
+      "negative_controls_added": 7
+    },
+    {
+      "name": "retry4 projection schema failure lineage",
+      "status": "pass",
+      "julia_started": false
+    },
+    {
+      "name": "attempt11 retry3 final dual-review NO-GO lineage",
+      "status": "pass",
+      "formal_t2_accepted": false
+    }
+  ],
+  "attempt11_preflight_budget": {
+    "status": "pass",
+    "resource_gates": {
+      "phase_wall_seconds": 480,
+      "authority_phase_wall_seconds": 2400,
+      "authority_case_wall_seconds": 2400,
+      "process_tree_working_set_bytes": 2147483648,
+      "julia_threads": 1,
+      "openblas_threads": 1,
+      "phase_wall_timeout_overrides": {
+        "actual_formal_preflight": 600
+      }
+    },
+    "preflight_only_timeout_source": {
+      "status": "pass",
+      "preflight_cap_seconds": 600,
+      "all_other_formal_shards_use_base_cap": true,
+      "selection_is_on_actual_run_path": true
+    },
+    "controller_wall_budget_summary": {
+      "schema": "vnext-t2-controller-summed-phase-wall-budget-r1",
+      "phase_count": 30,
+      "ordinary_phase_seconds": 480,
+      "preflight_phase_seconds": 600,
+      "authority_phase_seconds": 2400,
+      "summed_phase_wall_cap_seconds": 16440,
+      "sum_formula": "30*480 + (600-480) + (2400-480)",
+      "single_end_to_end_controller_timeout_enforced": false,
+      "excludes_setup_interphase_and_finalization_overhead": true
+    },
+    "process_cleanup_contract": {
+      "schema": "vnext-t2-process-monitor-cleanup-contract-r1",
+      "timeout_termination_function": "kill_tree",
+      "wait_procs_timeout_seconds": 5,
+      "natural_exit_requires_root_exit_confirmation": true,
+      "natural_exit_requires_complete_final_tree_audit": true,
+      "natural_exit_requires_root_identity_absent": true,
+      "natural_exit_requires_complete_empty_residual_audit": true,
+      "incomplete_termination_or_audit": "typed_monitor_incomplete_nonzero_no_acceptance",
+      "nonempty_residual_processes": "fail_closed",
+      "julia_executed_by_freezer": false
+    },
+    "command_base_phase_timeout_seconds": 480,
+    "authority_phase_seconds": 2400,
+    "summed_phase_wall_cap_seconds": 16440,
+    "single_end_to_end_controller_timeout_enforced": false,
+    "authority_case_seconds": 2400,
+    "working_set_limit_bytes": 2147483648
+  },
+  "controller_r10_r11_monitor_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_descendant_rows",
+      "_final_process_tree_audit",
+      "_monitor_error",
+      "_process_table_snapshot",
+      "_tasklist_process_names",
+      "heavy_processes",
+      "kill_tree",
+      "main",
+      "process_tree_sample",
+      "require_natural",
+      "run_authority_case_phase",
+      "run_phase",
+      "verify_authority_case_receipt",
+      "verify_protocol"
+    ],
+    "changed_module_assignments": [],
+    "added_imports": [
+      "csv",
+      "io"
+    ],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "73e68e568756bcbb176372c7022a272a941e329c2444b68d5b2a72a204f13a7f"
+  },
+  "controller_r11_r12_launch_generation_delta": {
+    "status": "pass",
+    "changed_top_level_functions": [
+      "_bind_launch_root_identity",
+      "_process_table_snapshot",
+      "_terminate_unbound_launch",
+      "main",
+      "require_natural",
+      "run_phase"
+    ],
+    "changed_module_assignments": [
+      "PROJECTION_REUSE_VALIDATOR"
+    ],
+    "added_imports": [
+      "math"
+    ],
+    "coverage_semantics_changed": false,
+    "resource_thresholds_changed": false,
+    "unified_diff_sha256": "b6ff0176d3c6a0452e8ac56658f0abb5f2104eb020b03ba6db78ff3b6f985ff0"
+  },
+  "projection_validator_r4_r5_delta": {
+    "status": "pass",
+    "r4_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297"
+    },
+    "r5_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r5.py",
+      "bytes": 13699,
+      "sha256": "4cc51a6e16591d2e55a93a1bc5fb6dde6752ee808419d6768b372e5abe510849"
+    },
+    "changed_top_level_functions": [
+      "main",
+      "verify_projection24_reuse_plan"
+    ],
+    "projection_dependency_subset_count_unchanged": 159,
+    "generic_schema_acceptance": false
+  },
+  "attempt11_retry4_projection_failure": {
+    "status": "preserved_projection_preflight_failure_no_julia",
+    "natural_exit_code": 1,
+    "stderr_sha256": "0a205f744a100e33ee784c7ffa41c44f85e5a584c0be87a43ba6c72c0e3f0794",
+    "julia_started": false,
+    "formal_t2_accepted": false
+  },
+  "attempt11_retry3_final_no_go_lineage": {
+    "status": "pass",
+    "lineage": {
+      "decision": {
+        "bytes": 3154,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_retry3_static_no_go_20260924/decision.md",
+        "sha256": "17627d424287ebb78fc4c68a274103204b9319174fe2e383340f2614ab2a307e"
+      },
+      "formal_t2_accepted": false,
+      "julia_started_by_retry4_freezer": false,
+      "reviewer_manifest": {
+        "bytes": 581,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_t2_attempt11_retry3_static_review_20260924/evidence_manifest.json",
+        "sha256": "350e74139dabb32aa02e6a7a286beaa7059cfd97b36fb814a63c49a192a4c68e"
+      },
+      "reviewer_report": {
+        "bytes": 12347,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_t2_attempt11_retry3_static_review_20260924/review.json",
+        "sha256": "1850362826c4ce87d95b4a91b68b28833a9dc22dbfea94d9158108d5664a34ed"
+      },
+      "schema": "vnext-t2-attempt11-retry3-final-no-go-lineage-r1",
+      "status": "preserved_retry3_no_go_with_final_independent_receipts",
+      "tester_manifest": {
+        "bytes": 1563,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/archive_manifest.json",
+        "sha256": "761c78a335e9175d293b5010ed5372c984a203aa86f679934eb6cf420e8c8c5f"
+      },
+      "tester_report": {
+        "bytes": 11991,
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/review.json",
+        "sha256": "8a16c369a6f1cbd2e6ea980db293d3ad3717b82f71991f91bdb30ee732480f0f"
+      }
+    },
+    "formal_t2_accepted": false
+  },
+  "failure": {
+    "type": "RuntimeError",
+    "message": "authority case resource contract mismatch: PARENT_STALE"
+  }
+}

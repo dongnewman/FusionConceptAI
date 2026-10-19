@@ -1,9 +1,0 @@
-# RuntimeV4 multi-region coupling contract
-
-This bounded module defines typed region and interface declarations and validates their binding to a `CompiledCandidatePrefixV4` mechanism graph. Interfaces carry exact typed edge/node/output-port bindings, conservation channels, ledger identities, and units; the bound `AtomicMIMOHyperedgeV1` must carry the matching `InterfaceFluxPairV1`, so flux closure is explicit and opposite-signed.
-
-Validation is candidate-bound and graph-bound: prefix, candidate, mission, bounds, and mechanism-graph hashes are stored and revalidated; node ownership, edge identity, exact ports, role, ledger/unit identity, orientation, coefficient closure, and required channels are checked. Results are `:ready` or `:deferred` with typed gap strings; capability absence is never terminal `:unsupported`. The contract is always `claim_ceiling=:screen_only`; it performs no solve and grants no physical or validation evidence. Unknown inputs remain visible as deferred gaps.
-
-Legacy v93 material was used as a vocabulary/reference only. Extracted ideas: explicit regions, oriented interfaces, conservation channels, one typed governing/additive operator per equation, and recoverable backend gaps. Wrapped: interface flux pairs and typed graph edge identity. Test-only: the synthetic two-node fixture in the focused test. Rejected: family/name/ID routing, legacy Genome/authority, penalty-only conservation, proxy evidence, and synthetic-pass-as-physics.
-
-Integration hook: include `MultiRegionCouplingContracts.jl` after `FusionRuntimeV4.jl` (or add one include/export line there), construct `MultiRegionCouplingContractV4(compiled, regions, interfaces)`, then call `validate_multiregion_coupling`. A production caller must supply the actual compiled candidate and actual G1 hyperedges; no fake upstream is acceptable.

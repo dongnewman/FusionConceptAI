@@ -1,0 +1,265 @@
+{
+  "baseline": {
+    "child_exit": 15,
+    "last_sample_error": [
+      {
+        "message": "cannot open a process absent from current SPI snapshot",
+        "phase": "sample_process_tree",
+        "repr": "MonitorIncomplete('cannot open a process absent from current SPI snapshot')",
+        "type": "MonitorIncomplete"
+      }
+    ],
+    "last_sample_index": 161,
+    "last_sample_sha256": "72ff60839fc1b1bc96e9385d6c7e8e2ea3eb6f73cc9fa731a1698a49f1f94a18",
+    "peak_rss_bytes": 819822592,
+    "phase_exit": 15,
+    "phase_sha256": "3046341512e9067ec13c349f7c9beaa23430d2fb921c9b04dee534c523bcecda",
+    "rss_cap_bytes": 2147483648,
+    "sample_count": 161,
+    "samples_complete": false,
+    "seconds": 48.75397459999658,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "96cf04a7c90b44dd8ee696fd080cce878af64ec93c246f10211122581dbae495",
+    "stop_reason": "process_tree_monitor_incomplete",
+    "test_summary_emitted": false,
+    "tracked_final_audit_complete": true,
+    "tracked_final_audit_residuals": [],
+    "tracked_identity_count": 2,
+    "untracked_git_row": [
+      {
+        "path": "$.exact_monitor_receipt.native_snapshot_before_digest[269]",
+        "row": [
+          18528,
+          86060,
+          134348254310869192,
+          "git.exe"
+        ]
+      }
+    ],
+    "verified_termination_exit_codes": [
+      15,
+      15
+    ]
+  },
+  "coverage_map_sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56",
+  "current_pin_audit": {
+    "current_pin_count": 655,
+    "current_pin_match_count": 655,
+    "current_pin_mismatches": [],
+    "positive_pin_count": 104,
+    "positive_pin_match_count": 104,
+    "positive_pin_mismatches": []
+  },
+  "input_snapshots": [
+    {
+      "expected_count": 655,
+      "extra_count": 0,
+      "extra_sample": [],
+      "label": "pipeline_start.inputs_before",
+      "mismatch_count": 0,
+      "mismatch_sample": [],
+      "row_count": 655,
+      "status": "present"
+    },
+    {
+      "expected_count": 655,
+      "extra_count": 0,
+      "extra_sample": [],
+      "label": "pipeline_final.inputs_before",
+      "mismatch_count": 0,
+      "mismatch_sample": [],
+      "row_count": 655,
+      "status": "present"
+    },
+    {
+      "expected_count": 655,
+      "extra_count": 0,
+      "extra_sample": [],
+      "label": "pipeline_final.inputs_after",
+      "mismatch_count": 0,
+      "mismatch_sample": [],
+      "row_count": 655,
+      "status": "present"
+    }
+  ],
+  "interpretation": {
+    "acceptance": "none; baseline was interrupted before test summary and the four negative shards did not execute",
+    "classification": "program/process-tree monitor interruption, not assertion or numerical failure",
+    "final_audit_scope": "complete for the two tracked identities only; final residual audit is empty",
+    "untracked_child": "PID 18528 git.exe with parent 86060 appears in the terminal native snapshot-before digest but was not in tracked identities; monitor failed closed while opening it against a later/current SPI snapshot"
+  },
+  "limitations": [
+    "No Julia was started by this auditor; the audited R19 run had already started Julia.",
+    "The repository checkout contains no separate root invocation.json/outer shell receipt; outer shell exit 1 is reported by root, while pipeline_final status=fail and baseline phase exit 15 are directly verified."
+  ],
+  "pipeline": {
+    "actual_site_hits_observed": null,
+    "final_sha256": "02b42759ed668bf6e822fbede824ffcc69091a10498c131e383aa7baae510e9b",
+    "formal_t2_accepted": false,
+    "negative_shards_absent": true,
+    "outer_shell_exit": "1 as reported by root; no separate invocation receipt found in this repository checkout",
+    "phase_sequence": [
+      {
+        "exit_code": 0,
+        "name": "parse_gate",
+        "samples": 3,
+        "samples_complete": true,
+        "seconds": 1.0217487999761943,
+        "stop_reason": "natural_exit"
+      },
+      {
+        "exit_code": 0,
+        "name": "coverage_ast_inventory",
+        "samples": 9,
+        "samples_complete": true,
+        "seconds": 2.832749099994544,
+        "stop_reason": "natural_exit"
+      },
+      {
+        "exit_code": 0,
+        "name": "projection24_cross_run_validation",
+        "samples": 1,
+        "samples_complete": true,
+        "seconds": 0.38566550001269206,
+        "stop_reason": "natural_exit"
+      },
+      {
+        "exit_code": 15,
+        "name": "actual_formal_baseline",
+        "samples": 161,
+        "samples_complete": false,
+        "seconds": 48.75397459999658,
+        "stop_reason": "process_tree_monitor_incomplete"
+      }
+    ],
+    "repository_head_after": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "repository_head_before": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "start_sha256": "401852fda0376b224c75ad2d0f15aba399fa5edfce6fe7805514a290991ca5e9",
+    "status": "fail"
+  },
+  "protocol": {
+    "bytes": 1069548,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r19_snapshot_receipt_retry4/protocol.json",
+    "sha256": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8"
+  },
+  "run_file_count": 23,
+  "run_file_inventory": [
+    {
+      "bytes": 956,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/actual_formal_baseline/artifacts/stage_trace.tsv",
+      "sha256": "c64b44f2668dbf5d77f0ad4d8b75294f7d3d070543034acb1044a95e36026f11"
+    },
+    {
+      "bytes": 9942,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/actual_formal_baseline/phase.json",
+      "sha256": "3046341512e9067ec13c349f7c9beaa23430d2fb921c9b04dee534c523bcecda"
+    },
+    {
+      "bytes": 10572328,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/actual_formal_baseline/samples.jsonl",
+      "sha256": "72ff60839fc1b1bc96e9385d6c7e8e2ea3eb6f73cc9fa731a1698a49f1f94a18"
+    },
+    {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/actual_formal_baseline/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1300,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/actual_formal_baseline/stdout.raw",
+      "sha256": "96cf04a7c90b44dd8ee696fd080cce878af64ec93c246f10211122581dbae495"
+    },
+    {
+      "bytes": 275583,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/ast_inventory.json",
+      "sha256": "c2fd5df66a266bc6bc8b834c6a67f0285af0ba8839b63060c66d84154655b2c8"
+    },
+    {
+      "bytes": 8706,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/phase.json",
+      "sha256": "5f95019b11e3b817ee264c02cde1489f5041d5dae1b341022860ea04ca8eea7a"
+    },
+    {
+      "bytes": 594132,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/samples.jsonl",
+      "sha256": "f369681f501ed59e6491e24a675b79970aacac460871383c8d27d95a677f3c94"
+    },
+    {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 73,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/stdout.raw",
+      "sha256": "47cbb99c74c93cc84f2115e68fdfa19872e64b3cdad9b97459730d12f14efca8"
+    },
+    {
+      "bytes": 599,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/coverage_ast_inventory/terminal_sample_race.json",
+      "sha256": "f6a005cea440986635fa7e7643e8ae5713c1e2313b764bd75e0b640add23bbac"
+    },
+    {
+      "bytes": 7098,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/parse_gate/phase.json",
+      "sha256": "09f7bd150687828e8de47a18ee2b8bccd53fad559a8a7c7481eb7899096b44cc"
+    },
+    {
+      "bytes": 198566,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/parse_gate/samples.jsonl",
+      "sha256": "46d5ef226b0ccef610f678f35f5e487d05f4ec28e9c7f03107e9ae4a6ea1a0bf"
+    },
+    {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/parse_gate/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 15304,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/parse_gate/stdout.raw",
+      "sha256": "002e9c730662665858990cf0d45a78a755a603e16e59d3187bcc5ccec67b1ca2"
+    },
+    {
+      "bytes": 559589,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/pipeline_final.json",
+      "sha256": "02b42759ed668bf6e822fbede824ffcc69091a10498c131e383aa7baae510e9b"
+    },
+    {
+      "bytes": 288794,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/pipeline_start.json",
+      "sha256": "401852fda0376b224c75ad2d0f15aba399fa5edfce6fe7805514a290991ca5e9"
+    },
+    {
+      "bytes": 7240,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/projection24_cross_run_validation/phase.json",
+      "sha256": "4ff96c4c553efdcb057dd0d456c699b03d66a6f04f312d0fc0d44a62424ea81a"
+    },
+    {
+      "bytes": 48578,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/projection24_cross_run_validation/reuse_receipt.json",
+      "sha256": "412add63aca032c860b4302ab5fbda4bad65a0e85a137b188306e7044ecb709c"
+    },
+    {
+      "bytes": 66839,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/projection24_cross_run_validation/samples.jsonl",
+      "sha256": "97e8fd12d525804773c1196c248b62e551b73e726eaa35b55427d5e437315714"
+    },
+    {
+      "bytes": 0,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/projection24_cross_run_validation/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 311,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/projection24_cross_run_validation/stdout.raw",
+      "sha256": "777abeb82bba8b2210495533587309dd37baf73e30056bfa3f7ee72733fb1abb"
+    },
+    {
+      "bytes": 12357,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r19_r23_r9/runtime_parse_manifest.tsv",
+      "sha256": "a694cb8b0d616e4d6584082fe38075709f2977ba2e2c4c93c1ac9b510ec9f61b"
+    }
+  ],
+  "schema": "independent-t2-r19-postrun-audit-r1",
+  "verdict": "RUNTIME_NO_GO_MONITOR_INCOMPLETE_BEFORE_FORMAL_NEGATIVE_SHARDS"
+}

@@ -1,0 +1,60 @@
+{
+  "time_utc": "2026-09-25T18:14:47.966777+00:00",
+  "head": {
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit": 0,
+    "stdout": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+    "stderr_lines": 0
+  },
+  "diffcheck": {
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr_lines": 36
+  },
+  "staged": {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--name-only"
+    ],
+    "exit": 0,
+    "count": 0
+  },
+  "status": {
+    "argv": [
+      "git",
+      "-c",
+      "core.longpaths=true",
+      "status",
+      "--porcelain=v1",
+      "--untracked-files=all"
+    ],
+    "exit": 0,
+    "stderr_lines": 0,
+    "stdout_lines": 13122
+  },
+  "protected": {
+    "count": 40,
+    "mismatches": [
+      "docs/v4_multitopology_generation/16_execution_work_orders.md",
+      "docs/v4_multitopology_generation/21_next_execution_batches.md",
+      "docs/v4_multitopology_generation/22_agent_local_execution.md",
+      "docs/v4_multitopology_generation/README.md",
+      "docs/v4_multitopology_generation/task_manifest.json",
+      "docs/v4_multitopology_generation/validate_plan.py"
+    ],
+    "baseline_sha256": "9991a2d5677dfd3367a76276aa0b5776498988b0c32e1a6e5939f8e4ff4e5404"
+  },
+  "active_project_julia_python": [],
+  "restored_t2_reference_closure": "D:\\006-Programing\\LMC\\FusionConceptAI_cleanup_20260926\\restored_t2_r19_reference_closure.json"
+}

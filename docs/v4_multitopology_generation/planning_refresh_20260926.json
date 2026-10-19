@@ -1,0 +1,80 @@
+{
+  "schema": "planning-refresh-20260926-v1",
+  "record_kind": "planning_change_not_runtime_or_scientific_acceptance",
+  "base_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "before_sha256": {
+    "README.md": "d6e8988782b764a83c69e5c9f097903335a96a8f7da120cabcfb7476208e7d5d",
+    "16_execution_work_orders.md": "bdb39910b026a0e009519c880b52c072ea7dcdee39b5efd37149467170de9911",
+    "21_next_execution_batches.md": "97aa5d078efc09b63daa9a36693696063e7f28088a9638765686b517de51799b",
+    "23_sol_goal_prompt.md": "c22f31eb3b4ace3829a3e87ebf2fcd35e8bddf86db93df868252aa5714d5745f",
+    "24_closeout_status_hotspots_and_roadmap_20260922.md": "08bb9ac61fa2f70d423460f929185452b43ebcacdc32a8d5608d6caa4228c8e2",
+    "25_astra_execution_and_recovery.md": "791f7eca5d9a3ad11e963ce0fe7296f1de7e1b9cc5af8743380d2989a5f28232",
+    "22_agent_local_execution.md": "957ac306611dcd8f139366820ed952e1ed52a907002301da5dc9fd717f1e4c03",
+    "task_manifest.json": "512d87479e46b44ddefcde143b1b896385bb6abc1907276c6c5e1c3b769b2e9d",
+    "validate_plan.py": "4ddf5c670f2dfb4b66a8662c1580b9b7de0dd35b2fe4f49da93cc0cce04ae594"
+  },
+  "retained_contract_sha256": "550716a845f5986e4fa873a099c406c9f3e69c38f640f7c6a58452e0b1a5db3c",
+  "retained_contract_keys": [
+    "id",
+    "status",
+    "depends_on",
+    "optional",
+    "acceptance",
+    "benchmarks",
+    "technical_doc",
+    "acceptance_protocol_ref",
+    "claim_ceiling",
+    "accepted_scope",
+    "credit_boundary",
+    "formal_node_accepted",
+    "formal_shared_consumer_connected"
+  ],
+  "technical_documents_sha256": {
+    "00_normative_contracts_and_state_model.md": "5982d8e258d67f57b1ece29094df3de0dc3b551509298acc8408a6ff5f03d7b2",
+    "01_candidate_integration_and_abstract_compilation.md": "0a458ec935597912c24d687062a62554d3f3c23a4aabeef33d320a2555a5cd33",
+    "02_proof_pruning_and_failure_semantics.md": "db562ce7772a9840c43aff1a63575b74b5f506016c8cc64f7947738d2072d024",
+    "03_open_ended_evolution_and_quality_diversity.md": "0d6cade2623aa024fa4da094c67a343bf89beff8d27c567703ee5670e292e23f",
+    "04_mcts_and_generative_proposal.md": "add8aae786c51ab87cb8e90478d5f1d34c2e135a23cadaf0bd8522792a3ad8fa",
+    "05_realization_and_independent_physics_execution.md": "90dede11b503be321781ec074d2f31400fcbc708b58692ee236fd3358c5ba173",
+    "06_multifidelity_hard_physics_frontier.md": "21176c034693cc597ff8257d77019a89f904a914ef3f6298673356d575f85d0f",
+    "07_survivor_sparsification_and_pareto.md": "6d24ea5c28deb2271a5ac350676944a16405fc5b6afcd51ba48c5e37101b4248",
+    "08_high_fidelity_whole_device_vvuq.md": "f019256f5740f6365b5ef78edc197159ad902c47c1b9844b802a46ded4662b51",
+    "09_evidence_authority_campaign_and_v4_roadmap.md": "099f788bce2dffc76cd04255cb524c3088d00e4159ed29700d1f578e4a168a8d",
+    "10_genome_upgrade_execution.md": "522aa06e74725103c75d7931ab0ede113a396807a4c4c1a07628501d13f1b938",
+    "11_physics_compilation_and_discretization.md": "40dc7b240a2437116d48f5b6933d983c4b4ff25a0e7d5664c885e129038fc975",
+    "12_composition_and_inverse_realization.md": "5ba5dc4ab2f97ec9be7f091d28ab2143cea79e5c4dbf0ed82dbd013ffcadb63f",
+    "13_acceptance_benchmarks_and_evidence.md": "4a06cce8cd9fa44917defdaccde6b1133ae9ea66f531280d1b1bd8ae2a4e760c"
+  },
+  "baseline_document_validation": {
+    "exit_code": 1,
+    "reason": "historical snapshot INDEX.md moved into cleanup recovery archive"
+  },
+  "recovery_archive": {
+    "zip_relative_to_repo": "../FusionConceptAI_cleanup_20260926/precleanup_docs_runs_tmp.zip",
+    "zip_sha256": "c84743bc55dc749bbcc43e936c278027ad9bce9b437c09e176be587f75ff2bb7",
+    "manifest_relative_to_repo": "../FusionConceptAI_cleanup_20260926/precleanup_manifest.jsonl",
+    "manifest_sha256": "77b95edeb3757a45b06e54ce4de6e7d861e8219e3800c646040b7f37f456414e",
+    "role": "historical_evidence_only_restore_exact_runtime_inputs_before_new_freeze"
+  },
+  "requested_planning_agent": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "max"
+  },
+  "existing_task_count": 46,
+  "accepted_limited_count": 21,
+  "open_task_count": 25,
+  "goal_requirements": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+  ],
+  "goal_achieved": false,
+  "credible_candidate_count": 0
+}

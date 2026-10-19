@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "-c",
+    "import json,psutil\nattrs=['pid','ppid','create_time','name']; rows=[]; denied=object()\nfor proc in psutil.process_iter(attrs=attrs,ad_value=denied):\n info=proc.info\n if info.get('pid')==0:\n  rows.append({k:('DENIED' if info.get(k) is denied else info.get(k)) for k in attrs})\npids=psutil.pids(); invalid=[{'type':type(x).__name__,'value':repr(x)} for x in pids if type(x) is not int or x<=0]\nprint(json.dumps({'psutil_version':psutil.__version__,'pid_count':len(pids),'minimum_pid':min(pids) if pids else None,'invalid_pids_under_r13_rule':invalid,'process_iter_pid0_rows':rows,'process_iter_pid0_count':len(rows)},sort_keys=True))"
+  ],
+  "code": "import json,psutil\nattrs=['pid','ppid','create_time','name']; rows=[]; denied=object()\nfor proc in psutil.process_iter(attrs=attrs,ad_value=denied):\n info=proc.info\n if info.get('pid')==0:\n  rows.append({k:('DENIED' if info.get(k) is denied else info.get(k)) for k in attrs})\npids=psutil.pids(); invalid=[{'type':type(x).__name__,'value':repr(x)} for x in pids if type(x) is not int or x<=0]\nprint(json.dumps({'psutil_version':psutil.__version__,'pid_count':len(pids),'minimum_pid':min(pids) if pids else None,'invalid_pids_under_r13_rule':invalid,'process_iter_pid0_rows':rows,'process_iter_pid0_count':len(rows)},sort_keys=True))",
+  "exit_code": 0,
+  "kind": "non_executable_command_data",
+  "schema": "independent-t2-real-psutil-pid0-probe-command-r1",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 261,
+  "stdout_sha256": "5acef97000a6c9c551850bc4dd4446cd40c6a7b388c0e4db2ca33f56a3f27b1a",
+  "working_directory": "D:\\006-Programing\\LMC\\FusionConceptAI"
+}

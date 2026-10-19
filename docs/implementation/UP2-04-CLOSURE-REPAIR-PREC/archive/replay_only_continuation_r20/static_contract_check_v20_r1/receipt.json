@@ -1,0 +1,108 @@
+{
+  "classification": "test_only_continuation_static_only",
+  "consumer_started": false,
+  "independent_review": "pending; static/type-probe evidence is not a full replay grant",
+  "julia_type_probe": {
+    "commands_sha256": "083c93bc3d2227afc674b64124ce168090ad9cf42fb94d0fe0cf3a86891cffbf",
+    "evidence_leaf": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/julia_type_probe_v20_r1",
+    "exit_code": 0,
+    "observed": {
+      "exact_namedtuple_key_type": "Tuple{String}",
+      "v19_canonical_type": "Vector{String}",
+      "v19_tuple_vector_equal": false,
+      "v20_canonical_type": "Tuple{String}",
+      "v20_tuple_tuple_equal": true
+    },
+    "receipt_sha256": "86859bc4ee909d98de8e65393333c09946e12305b721752bd9158a5ddafb7698",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "b55324ec6000087ec30278afbed04f1b1588954517adeb5c88a3869716436e7b"
+  },
+  "julia_type_probe_started": true,
+  "limits": {
+    "aggregate_child_wall_seconds": 960,
+    "controller_overhead_seconds": 120,
+    "per_stage_wall_seconds": 480,
+    "residual_tolerance": 1e-06,
+    "sampled_rss_bytes": 2147483648
+  },
+  "output_leaf": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/runtime_replay_r20",
+  "output_leaf_created": false,
+  "owned_source_files": [
+    {
+      "bytes": 978,
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/namedtuple_order_probe_v20.jl",
+      "sha256": "17977f17d958819fa12a8782d2d267aac9e954d7c5e2eb367fc4a9474a259db8"
+    },
+    {
+      "bytes": 60329,
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/replay_staged_v20.jl",
+      "sha256": "de982105ea005b0e9e2f5b52c2a3a23e38e6691563cfd8497043109767538c06"
+    },
+    {
+      "bytes": 273086,
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/run_replay_staged_v20.py",
+      "sha256": "5340b60371e2e59fc9b20f0ada0023af3574c241685df1db079d734c2c78a410"
+    },
+    {
+      "bytes": 83223,
+      "path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/test_contract_v20.py",
+      "sha256": "71aa936733651674447b6cd6576c3db2d3bf74993a7f30e69fff44e613603921"
+    }
+  ],
+  "pre_output_verification": {
+    "consumer_started": false,
+    "frozen_input_count": 725,
+    "output_leaf_created": false,
+    "producer_started": false,
+    "solver_started": false,
+    "status": "pass",
+    "v19_runtime_entry_count": 20
+  },
+  "preserved_status": {
+    "authority": "no_publish",
+    "physical_validation": "unsupported",
+    "solver_exit_code": 2,
+    "status": "fail",
+    "stopping_reason": "stationary_nonzero_residual"
+  },
+  "producer_started": false,
+  "protocol": {
+    "bytes": 246493,
+    "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+    "sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2"
+  },
+  "schema": "mms-replay-only-continuation-v20-static-evidence-v1",
+  "static_test": {
+    "argv": [
+      "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "-B",
+      "test/RuntimeV4/UP2ClosureReplayOnlyV20/test_contract_v20.py"
+    ],
+    "command_file": {
+      "bytes": 100,
+      "path": "static_test.command.txt",
+      "sha256": "45c20a1417c5b7b243a0705c850945607ac58e944cd03a382322aabb0bd4b3f2"
+    },
+    "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "exit_code": 0,
+    "exit_file": {
+      "bytes": 2,
+      "path": "static_test.exit_code.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "failed": 0,
+    "passed": 50,
+    "stderr": {
+      "bytes": 8592,
+      "path": "python.stderr.raw",
+      "sha256": "d41cefbd18817aa4f76ee79ef878b754370da7b78b9346a0acd5fea6befb4132"
+    },
+    "stdout": {
+      "bytes": 0,
+      "path": "python.stdout.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test_count": 50
+  },
+  "static_test_started_julia": false
+}

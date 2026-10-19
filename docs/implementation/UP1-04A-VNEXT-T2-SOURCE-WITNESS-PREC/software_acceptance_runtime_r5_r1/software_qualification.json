@@ -1,0 +1,62 @@
+{
+  "schema": "vnext-t2-source-witness-software-qualification-r1",
+  "utc": "2026-09-22T06:45:34.077402+00:00",
+  "task": "UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC",
+  "accepted_by": "root",
+  "software_qualified": true,
+  "acceptance_scope": "exact_frozen_V3_source_witness_software_capability",
+  "claim_ceiling": "contract_only",
+  "qualified_source": {
+    "path": "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+    "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+  },
+  "runtime_protocol_sha256": "524fd391ea2fc826a4985cb617aadfcbb68e26721013fa80bedf01e49ff5525e",
+  "historical_dependencies": 91,
+  "parse_files": 84,
+  "syntactic_sites": 103,
+  "runtime_hits": 115,
+  "natural_stages": 11,
+  "controller_natural_exit": 0,
+  "independent_review_checks": 253,
+  "max_stage_seconds": 234.909847,
+  "sampled_process_tree_peak_rss_bytes": 1782677504,
+  "measurement_scope": "sampled tree RSS, not continuous OS high-water mark",
+  "evidence": {
+    "review": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json",
+      "bytes": 78236,
+      "sha256": "97a22a469b1fe60185513a52dc082825a01a1c09b59052abbcaa2a1f1afc4946"
+    },
+    "pipeline": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json",
+      "bytes": 46759,
+      "sha256": "c01892c882a499a24f3063e6b37d70c302c92822ee4043b50a44586c3b944314"
+    },
+    "controller": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json",
+      "bytes": 860,
+      "sha256": "f15f8d2e855d1cc9de99cd9fa292eebd3e1194ba6594d2b6b0ae6590c1c6b4e2"
+    },
+    "coverage": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json",
+      "bytes": 4568,
+      "sha256": "11401f06213acd03d2dae8c5451350ff94eed73123b5149bbf2945bf3ba3488b"
+    }
+  },
+  "implementer": "source_witness",
+  "independent_executor": "parallel_independent_tests",
+  "independent_reviewer": "t1_semantics_review",
+  "consumer_obligation": "T2 must reconstruct fresh source-backed formal T1 package, verify same candidate/parent/child/content and execute actual positive/negative consumers and original-artifact replay",
+  "formal_T2_accepted": false,
+  "UP2_accepted": false,
+  "physical_coupling_accepted": false,
+  "scientific_acceptance": false,
+  "R01_R10_complete": false,
+  "preserved_gaps": [
+    "g1_g2_coordinate_pullback_missing",
+    "g1_g3_feedback_conversion_missing",
+    "g2_thermal_target_material_missing"
+  ],
+  "baseline_contradictions": "source_ready does not erase G3 allocation/unit coupling contradictions; coherent child checks are separately scoped",
+  "historical_failed_runs": "preserved; no prior timeout or program failure relabeled"
+}

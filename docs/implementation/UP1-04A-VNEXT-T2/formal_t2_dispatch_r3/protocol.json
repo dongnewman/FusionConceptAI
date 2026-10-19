@@ -1,0 +1,289 @@
+{
+  "actual_model_attestation": "unavailable",
+  "command": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2IdentityReceiptV2\\formal_t2_controller.py",
+    "--julia",
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--project",
+    "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "--manifest",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T1\\formal_software_acceptance_r26_v9_r1\\software_acceptance_manifest.json",
+    "--manifest-sha256",
+    "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e",
+    "--v3-qualification",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC\\software_acceptance_runtime_r5_r1\\software_qualification.json",
+    "--v3-qualification-sha256",
+    "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2",
+    "--evidence-dir",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3",
+    "--phase-timeout",
+    "300",
+    "--working-set-limit",
+    "2147483648"
+  ],
+  "execution_owner": "formal_tests",
+  "formal_t2_accepted": false,
+  "implementation": {
+    "clean_loader": {
+      "bytes": 3393,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+      "sha256": "727b4d124082c7465c0f75a27ad5d7247b1db935919ad8d738f2dc2af8edd8a3"
+    },
+    "controller": {
+      "bytes": 47451,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+      "sha256": "d3704f9be40ff68fd0e37c6ee6f94f2bcba901c97e550e962ce0103badadbf1d"
+    },
+    "driver": {
+      "bytes": 34035,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+      "sha256": "114d2628b69b246b4e9c7ae82e8f1837e86052874d3f7a1cbb51c198d4d8afdb"
+    },
+    "manifest_verifier": {
+      "bytes": 55103,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+      "sha256": "27a5c8abc79b46d78824916a4c9f66dbbb526c14f9e5dfe1b75f6df8c9700d47"
+    },
+    "package_projection_regression": {
+      "bytes": 11926,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+      "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91"
+    },
+    "static_qa": {
+      "bytes": 16890,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/static_qa_formal_t2_execution_v1.py",
+      "sha256": "a5890b71885443748d1b16b43c9221835dc5792d2f5131e9393751a3dba46bd2"
+    }
+  },
+  "implementation_owner": "t1_implementation",
+  "independent_critical_reviewer": "t1_semantics_review",
+  "julia_lane_granted": false,
+  "julia_started": false,
+  "negative_cases": [
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "raw_sha256_mismatch",
+      "id": "producer_artifact_raw_hash_mismatch",
+      "publication_committed": false,
+      "stage": "producer_artifact_hash_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "deserialize_error",
+      "id": "producer_artifact_deserialize_failure",
+      "publication_committed": false,
+      "stage": "producer_artifact_deserialize_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "type_invalid",
+      "id": "producer_artifact_wrong_type",
+      "publication_committed": false,
+      "stage": "producer_artifact_deserialize_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "expected_admission_mismatch",
+      "id": "producer_artifact_foreign_valid_package",
+      "publication_committed": false,
+      "stage": "producer_artifact_deserialize_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "formal_t2_candidate_receipt_replay_mismatch",
+      "id": "candidate_receipt_expected_hash_mismatch",
+      "publication_committed": false,
+      "stage": "candidate_receipt_precondition"
+    },
+    {
+      "attempted_counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "expected_first_error": "formal_t2_serialized_result_replay_mismatch",
+      "id": "serialized_result_semantic_identity_mismatch",
+      "publication_committed": false,
+      "stage": "serialized_result_postcondition"
+    },
+    {
+      "attempted_counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "expected_first_error": "formal_t2_stable_projection_replay_mismatch",
+      "id": "stable_projection_expected_hash_mismatch",
+      "publication_committed": false,
+      "stage": "stable_projection_postcondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "formal_t2_output_artifact_already_exists",
+      "id": "each_owned_artifact_preexists",
+      "publication_committed": false,
+      "stage": "output_leaf_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "formal_t2_output_artifact_already_exists",
+      "id": "prior_success_artifacts_preexist",
+      "publication_committed": false,
+      "stage": "output_leaf_precondition"
+    },
+    {
+      "attempted_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_error": "formal_t2_output_artifact_already_exists",
+      "id": "owned_artifact_symlink_preexists",
+      "platform_skip_only_if_symlink_unavailable": true,
+      "publication_committed": false,
+      "stage": "output_leaf_precondition"
+    }
+  ],
+  "negative_common_requirements": {
+    "caller_package_and_prior_ledger_unchanged": true,
+    "corruption_uses_isolated_copy": true,
+    "exact_first_error_required": true,
+    "natural_nonzero_exit_required": true,
+    "no_success_artifact_publication": true,
+    "original_producer_artifact_unchanged": true,
+    "raw_stdout_stderr_required": true,
+    "real_formal_candidate_driver_invoked": true
+  },
+  "physical_acceptance": false,
+  "positive_phase_order": [
+    "parse_gate",
+    "clean_load",
+    "producer",
+    "replay"
+  ],
+  "positive_requirements": {
+    "caller_package_unchanged": true,
+    "default_registry_unchanged": true,
+    "five_consumer_attempt_counts": {
+      "e0": 1,
+      "e1": 1,
+      "e2": 1,
+      "gi1a": 1,
+      "n10": 1
+    },
+    "fresh_process_identities_distinct": true,
+    "fresh_replay_reads_original_producer_candidate_package_jls": true,
+    "fresh_source_backed_t1_admission_per_candidate_process": true,
+    "independent_expected_admission_rebuilt": true,
+    "package_content_hash_bound_in_candidate_receipt": true,
+    "package_full_content_projection_used_for_reload_joins": true,
+    "prior_external_ledger_mutated": false,
+    "producer_candidate_package_published": true,
+    "producer_replay_stable_projection_equal": true,
+    "source_qualification_verified_before_julia": true
+  },
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "resource_gates": {
+    "julia_threads": 1,
+    "phase_wall_seconds": 300,
+    "process_tree_rss_bytes": 2147483648,
+    "t1_carrier_seconds": 10,
+    "t1_package_integrator_seconds": 30,
+    "t1_reload_adapter_seconds": 30
+  },
+  "runtime_inputs": {
+    "bytes": 25331,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3/runtime_inputs.json",
+    "sha256": "279310d67e5f151578b9a141893a4f8b197973379cad93c0a1f90444d2360538"
+  },
+  "schema": "vnext-t2-formal-execution-protocol-r3",
+  "scientific_acceptance": false,
+  "status": "prepared_not_executed",
+  "supplemental_product_regression": {
+    "assertion_sites_completed_before_observation": 0,
+    "classification": "supplemental_product_regression",
+    "execution_mode": "dedicated_natural_fresh_process_shard",
+    "execution_owner": "formal_tests",
+    "group_site_map": {
+      "admission_envelope_projection": 2,
+      "reload_content_equivalence": 8,
+      "source_byte_tamper_detection": 7,
+      "wire_byte_tamper_detection": 7
+    },
+    "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+    "planned_test_sites": 24,
+    "positive_pipeline_behavior": "pinned_and_parsed_not_executed",
+    "receipt_schema": "vnext-t2-package-full-content-projection-actual-r1",
+    "runtime_hits_must_be_derived_after_natural_exit_zero": true,
+    "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91",
+    "single_execution_required": true,
+    "status": "prepared_not_executed"
+  },
+  "uncommitted_attempt_schema": "vnext-t2-formal-replay-uncommitted-attempt-r2",
+  "upstream_qualifications": {
+    "formal_t1_software": {
+      "bytes": 23148,
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json",
+      "sha256": "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e"
+    },
+    "v3_qualified_source": {
+      "bytes": 78478,
+      "path": "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+    },
+    "v3_source_witness_software": {
+      "bytes": 2974,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json",
+      "sha256": "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "M5CFullBindingReceiptV2",
-  "type": "object",
-  "required": ["schema", "receipt_id", "candidate_id", "layers", "artifact_object_relation", "canonical_hash_relation", "aggregate", "producer_owner"],
-  "properties": {"schema": {"const": "M5CFullBindingReceiptV2"}, "receipt_id": {"type": "string"}, "candidate_id": {"type": "string"}, "layers": {"type": "array", "minItems": 9, "items": {"$ref": "#/$defs/layer"}}, "artifact_object_relation": {"enum": ["same_object", "mismatch", "missing"]}, "canonical_hash_relation": {"enum": ["equal", "mismatch", "missing"]}, "aggregate": {"enum": ["binding_ok", "fail_closed"]}, "producer_owner": {"const": "m5c_adapter"}},
-  "$defs": {"layer": {"type": "object", "required": ["layer", "fields", "status", "typed_code"], "properties": {"layer": {"enum": ["m5a", "m5b", "owner_provenance", "catalog", "envelope", "rewrite", "derivation", "graph", "adapter"]}, "fields": {"type": "array", "items": {"type": "object", "required": ["name", "present", "exact_bytes", "sha256", "owner_ref", "object_relation"], "properties": {"name": {"type": "string"}, "present": {"type": "boolean"}, "exact_bytes": {"type": "boolean"}, "sha256": {"type": "boolean"}, "owner_ref": {"type": "boolean"}, "object_relation": {"type": "boolean"}}, "additionalProperties": false}}, "status": {"enum": ["bound", "fail_closed"]}, "typed_code": {"type": "string"}}, "additionalProperties": false}}
-}

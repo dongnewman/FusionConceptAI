@@ -1,0 +1,145 @@
+{
+  "actual_child_os_exit_code": 0,
+  "argv": [
+    "C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe",
+    "--project=.",
+    "--startup-file=no",
+    "--history-file=no",
+    "--threads=1",
+    "--heap-size-hint=1G",
+    "-O0",
+    "test/RuntimeV4/DeclaredDiffusionCompileExecute/focused_tests.jl"
+  ],
+  "authority": "no_publish",
+  "check_audit_writer": {
+    "complete": true,
+    "error": null,
+    "submitted_rows": 876,
+    "written_rows": 876
+  },
+  "check_audit_writer_complete": true,
+  "check_child_priority_class": 32,
+  "check_child_priority_class_name": "NORMAL",
+  "check_child_priority_class_observed_before_resume": true,
+  "check_commit_peak_observation": {
+    "bytes": 1292816384,
+    "end_monotonic_ns": 13582921614200,
+    "job_empty_confirmed": true,
+    "source": "OS_Job_lifetime_PeakJobMemoryUsed",
+    "start_monotonic_ns": 13582921600300
+  },
+  "check_job_snapshot_attempts": 876,
+  "check_job_snapshot_retries": 0,
+  "check_process_creation_monotonic_ns": 13362828302200,
+  "check_process_creation_time_utc": 1792398339.6845322,
+  "check_process_exit_monotonic_ns": 13582921599500,
+  "check_process_id": 37676,
+  "child_exit_success": true,
+  "cleanup_complete": true,
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "executable": {
+    "bytes": 169744,
+    "path": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "sha256": "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad"
+  },
+  "executable_pin_unchanged": true,
+  "formal_acceptance": false,
+  "input_pins_unchanged": true,
+  "job_active_processes_after_run": 0,
+  "job_memory_limit_bytes": 4294967296,
+  "observer_priority": {
+    "previous_process_priority_class": 32,
+    "previous_thread_priority": 0,
+    "process_api": "SetPriorityClass",
+    "process_applied": true,
+    "process_readback_priority_class": 128,
+    "process_requested": "HIGH",
+    "process_requested_value": 128,
+    "process_restore_readback": 32,
+    "process_restored": true,
+    "restoration_errors": [],
+    "thread_api": "SetThreadPriority",
+    "thread_applied": true,
+    "thread_readback_priority": 2,
+    "thread_requested": "HIGHEST",
+    "thread_requested_value": 2,
+    "thread_restore_readback": 0,
+    "thread_restored": true
+  },
+  "outer_argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "scripts/run_bounded_check.py",
+    "--output-dir",
+    "runs/e/up2_01_transient_si_source_bound_20261019_r21",
+    "--seconds",
+    "600",
+    "--memory-gib",
+    "4",
+    "--pin",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+    "--pin",
+    "src/RuntimeV4/DeclaredDiffusionCompileExecuteV1.jl",
+    "--pin",
+    "src/RuntimeV4/DeclaredSpatialCompositionExecutionV1.jl",
+    "--pin",
+    "test/RuntimeV4/DeclaredDiffusionCompileExecute/focused_tests.jl",
+    "--pin",
+    "test/RuntimeV4/DeclaredDiffusionCompileExecute/thermal_slab_actual_source_fixture.jl",
+    "--pin",
+    "test/fixtures/thermal_slab/thermal_slab_source_variant_builder.jl",
+    "--",
+    "C:/Users/Newman/AppData/Local/Programs/Julia-1.10.5/bin/julia.exe",
+    "--project=.",
+    "--startup-file=no",
+    "--history-file=no",
+    "--threads=1",
+    "--heap-size-hint=1G",
+    "-O0",
+    "test/RuntimeV4/DeclaredDiffusionCompileExecute/focused_tests.jl"
+  ],
+  "owner": "/root",
+  "passed_software_check": true,
+  "peak_job_commit_bytes": 1292816384,
+  "peak_sampled_tree_rss_bytes": 1194147840,
+  "pending_process_sample_handles": [],
+  "physical_validation": "not_assessed",
+  "process_tree_rss_limit_bytes": 4294967296,
+  "raw_files": {
+    "input_pins_after.json": {
+      "bytes": 1044,
+      "sha256": "0b43a58e790649c0eb15f6151c004b81c00c041901f2c4fca385d15796d3e81e"
+    },
+    "input_pins_before.json": {
+      "bytes": 1044,
+      "sha256": "0b43a58e790649c0eb15f6151c004b81c00c041901f2c4fca385d15796d3e81e"
+    },
+    "process_tree_audit.jsonl": {
+      "bytes": 1043529,
+      "sha256": "a666040807b4dbe843066c69a030b472ea3a0e2b103af30b3e85bda41c4e78f3"
+    },
+    "stderr.raw": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.raw": {
+      "bytes": 819,
+      "sha256": "e8db5830bb9a0ca749626f05328cd455debfd23af9e72e371a12ac00cfee348a"
+    }
+  },
+  "resource_audit_coverage": {
+    "clock": "monotonic_ns",
+    "complete": true,
+    "head_gap_seconds": 0.0122147,
+    "max_internal_gap_seconds": 0.2587588,
+    "max_sample_operation_seconds": 0.002649,
+    "samples": 876,
+    "tail_gap_seconds": 0.0004741
+  },
+  "resource_gate_passed": true,
+  "rss_accounting_incomplete": false,
+  "sample_seconds": 0.25,
+  "schema": "bounded-workspace-check-v1",
+  "seconds": 220.19443970000066,
+  "stop_reason": null,
+  "wall_limit_seconds": 600
+}

@@ -1,0 +1,154 @@
+{
+  "actual_output_directory": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r6_attempt11_retry8",
+  "actual_output_file_count": 0,
+  "classification": "pre_julia_program_exception_baseline_process_monitor_incomplete",
+  "controller_exit_code": 1,
+  "controller_r13_sha256": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863",
+  "current_input_pin_count": 459,
+  "current_input_pin_mismatch_count": 0,
+  "current_input_pin_missing_count": 0,
+  "decision": "NO_GO_RETRY8_RUNTIME_ATTEMPT_CONSUMED",
+  "elapsed_seconds": 0.637114,
+  "error_message": "baseline residual process audit incomplete; pid_inventory_before: PID inventory contains invalid PID values",
+  "fake_pid0_reproduction": {
+    "case_count": 2,
+    "controller_sha256": "876b324e8dae38f3b5b3477d2e0f75f66abc32125aa06d050bedb4b0120eb863",
+    "results": [
+      {
+        "attempts": 1,
+        "case": "native global inventory including pid0",
+        "complete": false,
+        "error_stages": [
+          "pid_inventory_before"
+        ],
+        "errors": [
+          {
+            "exception_type": "RuntimeError",
+            "message": "PID inventory contains invalid PID values",
+            "pid": null,
+            "stage": "pid_inventory_before"
+          }
+        ]
+      },
+      {
+        "attempts": 1,
+        "case": "inventory normalized but iterator exposes pid0",
+        "complete": false,
+        "error_stages": [
+          "process_identity_pid"
+        ],
+        "errors": [
+          {
+            "exception_type": "RuntimeError",
+            "message": "pid absent or inaccessible",
+            "pid": null,
+            "stage": "process_identity_pid"
+          }
+        ]
+      }
+    ],
+    "status": "pass"
+  },
+  "finish_utc": "2026-09-24T20:01:29.031147+08:00",
+  "first_julia_launch_source_line": 3236,
+  "invocation_artifact_sha256": "6230525048c6fbb0b17ea520fee44df059f81ff3972f3d92573e5d518914a805",
+  "julia_process_count_after": 0,
+  "monitor_failure_source_line": 3149,
+  "not_resource_interruption": true,
+  "not_scientific_failure": true,
+  "phase_receipts": 0,
+  "postrun_input_recheck_stdout_sha256": "",
+  "postrun_input_rehash_exit_code": 0,
+  "postrun_process_scan_exit_code": 0,
+  "postrun_process_scan_sha256": "ee8f02f906464c448003aa23af01556d2d2106206f6e23072b48a7c57b255b1e",
+  "postrun_recheck_exit_code": 0,
+  "postrun_recheck_output_file_count": 0,
+  "postrun_recheck_stdout_sha256": "ee8f02f906464c448003aa23af01556d2d2106206f6e23072b48a7c57b255b1e",
+  "previous_static_review_sha256": "0915889499fee7714e8db951ef0af0f2ac331984acd9da3332e8c24b7ea46b81",
+  "proposed_policy_probe": {
+    "checks": 9,
+    "results": [
+      {
+        "case": "Windows inventory PID0 filtered but positive PIDs kept",
+        "pass": true
+      },
+      {
+        "case": "exact Windows System Idle PID0 row recognized and skipped",
+        "pass": true
+      },
+      {
+        "case": "bool PID still rejected",
+        "pass": true
+      },
+      {
+        "case": "negative PID still rejected",
+        "pass": true
+      },
+      {
+        "case": "float PID still rejected",
+        "pass": true
+      },
+      {
+        "case": "string PID still rejected",
+        "pass": true
+      },
+      {
+        "case": "unexpected PID0 name remains fail-closed",
+        "pass": true
+      },
+      {
+        "case": "unexpected PID0 PPID remains fail-closed",
+        "pass": true
+      },
+      {
+        "case": "unexpected PID0 creation time remains fail-closed",
+        "pass": true
+      }
+    ],
+    "schema": "review-only-proposed-pid0-normalization-policy-check-r1",
+    "status": "pass"
+  },
+  "protocol_sha256": "e5ddc50030d82c1532dd18538f06adabcc7b10d3500241075c4062a813c5b965",
+  "r13_controller_process_count_after": 0,
+  "real_psutil_observation": {
+    "invalid_pids_under_r13_rule": [
+      {
+        "type": "int",
+        "value": "0"
+      }
+    ],
+    "minimum_pid": 0,
+    "pid_count": 554,
+    "process_iter_pid0_count": 1,
+    "process_iter_pid0_rows": [
+      {
+        "create_time": 0.0,
+        "name": "System Idle Process",
+        "pid": 0,
+        "ppid": 0
+      }
+    ],
+    "psutil_version": "5.9.0"
+  },
+  "review_utc": "2026-09-24T12:51:49Z",
+  "schema": "independent-t2-attempt11-retry8-runtime-observation-r1",
+  "source_findings": [
+    {
+      "finding": "strict process PID validation is incorrectly applied to Windows global PID inventory and PID0 System Idle process_iter row",
+      "lines": "194,374-379,391,418-425,486-495,3149",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r13.py"
+    },
+    {
+      "finding": "process fake pid inventory derives from only positive fixture process keys; does not model native PID0 global inventory or process_iter sentinel",
+      "lines": "266-405",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r13.py"
+    }
+  ],
+  "start_artifact_sha256": "b9238cbe19beba489ebc7bdd407eaa518d59b91a6aed2d48f57e0562c5fa22bb",
+  "start_utc": "2026-09-24T20:01:28.394033+08:00",
+  "stderr_artifact_sha256": "361d5a0c0a0e7fd0c78c36e9795cf36af8aebe470563cbea2721f54bc9c10c1d",
+  "stderr_bytes": 1122,
+  "stderr_sha256": "361d5a0c0a0e7fd0c78c36e9795cf36af8aebe470563cbea2721f54bc9c10c1d",
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

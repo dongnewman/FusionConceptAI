@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:fusionconceptai:m5-search-r2:machine-checker-negative-vectors-v1",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["schema", "vectors"],
-  "properties": {"schema": {"const": "M5SearchR2MachineCheckerNegativeVectorsV1"}, "vectors": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "mutation", "expected_status", "expected_failure_code"], "properties": {"id": {"type": "string"}, "mutation": {"type": "string"}, "expected_status": {"type": "string"}, "expected_failure_code": {"type": "string"}}}}}
-}

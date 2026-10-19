@@ -1,0 +1,58 @@
+{
+  "schema": "r28-independent-test-commands-v1",
+  "commands": [
+    {
+      "name": "python_full",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\NativeG1G2DiffusionV1\\test_native_g1g2_gridap_consumer_r28_v1.py",
+        "-v"
+      ],
+      "pid": 40988,
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.816388,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 5382,
+      "stderr_sha256": "a33bf2baab59fcfdaaa79da6a8c86e39963f15039127f7c46a419f7f972c918d"
+    },
+    {
+      "name": "orphan_chain_tests",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\NativeG1G2DiffusionV1\\test_native_g1g2_gridap_consumer_r28_v1.py",
+        "R28OrphanChainRecoveryTests",
+        "-v"
+      ],
+      "pid": 99480,
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.364295,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 1233,
+      "stderr_sha256": "af8e62fb6569bf7dad4f901eef6a0607409056a9be1bc3f00715c4dd7c10c00c"
+    },
+    {
+      "name": "static_verifier",
+      "argv": [
+        "D:\\Users\\Newman\\anaconda3\\python.exe",
+        "-B",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\NativeG1G2DiffusionV1\\verify_native_g1g2_gridap_consumer_r28_v1.py",
+        "--protocol",
+        "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-01-NATIVE-G1G2-DIFFUSION-PREC\\archive\\native_g1g2_gridap_consumer_r28_v1\\protocol.json"
+      ],
+      "pid": 100256,
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.403819,
+      "stdout_bytes": 533,
+      "stdout_sha256": "21a86e852446c36c9147e62cb025ac203bcc7c9fe52df4032f20d2623a939453",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

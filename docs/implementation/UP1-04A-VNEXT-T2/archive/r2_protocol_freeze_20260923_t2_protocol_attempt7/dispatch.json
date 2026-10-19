@@ -1,0 +1,152 @@
+{
+  "actual_model_attestation": "unavailable",
+  "actual_source_site_hits": "pending_julia_execution",
+  "command": {
+    "bytes": 1643,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/command_argv.json",
+    "sha256": "c97ad26a30f0a753a8fc56493752c7cabb1c8084cae45f91fe49663687124de1"
+  },
+  "command_argv": [
+    "D:\\Users\\Newman\\anaconda3\\python.exe",
+    "-B",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r2.py",
+    "--julia",
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--project",
+    "D:\\006-Programing\\LMC\\FusionConceptAI",
+    "--protocol",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt7\\protocol.json",
+    "--protocol-sha256",
+    "3a792f89ab2e9db3bff408dd0a7da3c5eb564d6807090c8fa0bbfa6004ec5c00",
+    "--positive-evidence",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\formal_t2_serial_replay_r3",
+    "--positive-final-sha256",
+    "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05",
+    "--positive-pipeline-final-sha256",
+    "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529",
+    "--evidence-dir",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP1-04A-VNEXT-T2\\archive\\r2_protocol_freeze_20260923_t2_protocol_attempt7\\actual_negative_execution_r2",
+    "--phase-timeout",
+    "300",
+    "--working-set-limit",
+    "2147483648"
+  ],
+  "environment": {
+    "JULIA_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "expected_runtime_case_hit_count": 68,
+  "expected_unique_case_count": 60,
+  "formal_t2_accepted": false,
+  "julia_lane_granted": false,
+  "julia_started": false,
+  "phase_count": 30,
+  "phase_order": [
+    "parse_gate",
+    "coverage_ast_inventory",
+    "projection24_cross_run_validation",
+    "actual_formal_baseline",
+    "actual_formal_preflight",
+    "actual_formal_authority",
+    "actual_formal_fault_n10",
+    "actual_formal_t1_handoff",
+    "supplementary_edited_operation",
+    "supplementary_child_coupling",
+    "artifact_hash_precondition",
+    "artifact_recomputed_corrupt",
+    "artifact_zero_malformed",
+    "artifact_attack_fixture_generation",
+    "formal_driver_artifact_raw_hash_precondition",
+    "formal_driver_artifact_deserialize_precondition",
+    "formal_driver_artifact_zero_precondition",
+    "formal_driver_artifact_wrong_type_precondition",
+    "formal_driver_artifact_foreign_package_precondition",
+    "preexisting_candidate_package_jls",
+    "preexisting_candidate_t1_admission_receipt_json",
+    "preexisting_t2_result_jls",
+    "preexisting_run_receipt_json",
+    "preexisting_replay_uncommitted_attempt_json",
+    "preexisting_prior_success_set",
+    "preexisting_prior_uncommitted",
+    "preexisting_symlink_owned_target",
+    "candidate_receipt_precondition",
+    "serialized_result_postcondition",
+    "stable_projection_postcondition"
+  ],
+  "physical_acceptance": false,
+  "planned_evidence_directory": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/actual_negative_execution_r2",
+  "positive_evidence": {
+    "formal_serial_replay": {
+      "bytes": 61088,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/formal_t2_serial_replay.json",
+      "sha256": "d17dd0eaa9e2837714e417e7d95a1055dda1119a6a771314053bcf3bf9039b05"
+    },
+    "pipeline_final": {
+      "bytes": 57906,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/pipeline_final.json",
+      "sha256": "056299adfbdc51762f0997c021fbcf064a724eff5a5cea707f198fa5a6b98529"
+    },
+    "producer_candidate_package": {
+      "bytes": 9414221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "producer_candidate_t1_receipt": {
+      "bytes": 2166,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "producer_result": {
+      "bytes": 3367,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "producer_run_receipt": {
+      "bytes": 15269,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/producer/run_receipt.json",
+      "sha256": "93fac17e08df2b9bf044a9473d2ec9d92c076375c9ce731eb2b7b8141fc457d7"
+    },
+    "replay_candidate_package": {
+      "bytes": 9414221,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_package.jls",
+      "sha256": "4563a784f02692c53fb86a846a5724f7cc0b54afd8a1058021cf6a0b0729ad80"
+    },
+    "replay_candidate_t1_receipt": {
+      "bytes": 2166,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/candidate_t1_admission_receipt.json",
+      "sha256": "b81fa0980e1034e89ae06da64faac1842b934b9669f76ee667ddac2aaa82269b"
+    },
+    "replay_result": {
+      "bytes": 3367,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/t2_result.jls",
+      "sha256": "8a85710a5a620e7cd2a448bc2a25cb3075a801861157df65ce5e3b2d40d0e877"
+    },
+    "replay_run_receipt": {
+      "bytes": 15271,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3/replay/run_receipt.json",
+      "sha256": "5fbd9ba7267d2222fd6781d158e715af070c8b691d6622bb36698d46ec85e76f"
+    },
+    "root": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3"
+  },
+  "projection24_reuse_preflight": {
+    "bytes": 1969,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/projection24_reuse_preflight/phase.json",
+    "sha256": "19fc939dd3a7c14ab7606131e64e086e8d38486f05da3faf77c75e8187465b71"
+  },
+  "protocol": {
+    "bytes": 253799,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260923_t2_protocol_attempt7/protocol.json",
+    "sha256": "3a792f89ab2e9db3bff408dd0a7da3c5eb564d6807090c8fa0bbfa6004ec5c00"
+  },
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "resource_gates": {
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 300,
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "schema": "vnext-t2-independent-negative-dispatch-r2",
+  "scientific_acceptance": false,
+  "status": "frozen_static_ready_not_executed"
+}

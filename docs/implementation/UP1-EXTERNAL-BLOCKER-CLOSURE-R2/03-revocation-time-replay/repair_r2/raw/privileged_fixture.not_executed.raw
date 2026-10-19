@@ -1,7 +1,0 @@
-status: not_executed
-classification: test_scope_deferred
-required_privilege: SeRestorePrivilege (already held by caller; no elevation performed)
-prepared_script: test/up1_external_closure_r2/revocation_time_replay/privileged_acl_fixture.ps1
-prepared_command: pwsh -NoProfile -NonInteractive -File privileged_acl_fixture.ps1 -Path TRUSTED_KEY
-foreign_owner_fixture: NT AUTHORITY\NETWORK SERVICE (S-1-5-20) -> trusted_key_acl_invalid/fail_closed
-preserved_command_not_run: icacls TRUSTED_KEY /setowner "NT AUTHORITY\NETWORK SERVICE" (requires privilege 1307)

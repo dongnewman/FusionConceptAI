@@ -1,0 +1,36 @@
+{
+  "classification": "test_only_language_semantics_probe",
+  "command_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/julia_type_probe_v20_r1/julia.command.txt",
+  "command_sha256": "8c9ebf384bb757a85962427cb91e7d6af57afb27453a43a1aa4ef603b9424bf0",
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "exit_code": 0,
+  "exit_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/julia_type_probe_v20_r1/julia.exit_code.txt",
+  "exit_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+  "julia_argv": [
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--startup-file=no",
+    "test/RuntimeV4/UP2ClosureReplayOnlyV20/namedtuple_order_probe_v20.jl"
+  ],
+  "julia_executable": "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+  "julia_executable_sha256": "8e86e2d48c574393c37bbfb6e922ea4176ba8e1a83f956826f3da24948e389ad",
+  "julia_version": "1.10.5",
+  "observed": {
+    "exact_namedtuple_key_type": "Tuple{String}",
+    "v19_canonical_type": "Vector{String}",
+    "v19_tuple_vector_equal": false,
+    "v20_canonical_type": "Tuple{String}",
+    "v20_tuple_tuple_equal": true
+  },
+  "probe_source_path": "test/RuntimeV4/UP2ClosureReplayOnlyV20/namedtuple_order_probe_v20.jl",
+  "probe_source_sha256": "17977f17d958819fa12a8782d2d267aac9e954d7c5e2eb367fc4a9474a259db8",
+  "protocol_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/replay_protocol_v20.json",
+  "protocol_sha256": "26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2",
+  "schema": "mms-replay-only-v20-julia-type-probe-receipt-v1",
+  "scope": "Single lightweight Julia process; no modules, replay artifact, solver, producer, or consumer were loaded or started.",
+  "stderr_bytes": 0,
+  "stderr_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/julia_type_probe_v20_r1/julia.stderr.raw",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 161,
+  "stdout_path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r20/julia_type_probe_v20_r1/julia.stdout.raw",
+  "stdout_sha256": "b55324ec6000087ec30278afbed04f1b1588954517adeb5c88a3869716436e7b"
+}

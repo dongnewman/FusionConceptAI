@@ -1,0 +1,67 @@
+{
+  "authorized_v4_planning_migration": {
+    "authorized_migrated_input_count": 6,
+    "historical_bytes_are_current": false,
+    "historical_input_count": 459,
+    "planning_refresh": {
+      "bytes": 4228,
+      "path": "docs/v4_multitopology_generation/planning_refresh_20260926.json",
+      "sha256": "582312eeb33e863f4996c6dd322c26388155b275a03238d21d5939359d57080a"
+    },
+    "planning_validation": {
+      "bytes": 785,
+      "path": "docs/v4_multitopology_generation/planning_validation_20260926.json",
+      "sha256": "a6241b8c763e1d4ce47f055c9bbbc301ec147a66e1fed6645503fb423093551d"
+    },
+    "retained_acceptance_items": 124,
+    "retained_contract_sha256": "550716a845f5986e4fa873a099c406c9f3e69c38f640f7c6a58452e0b1a5db3c",
+    "unchanged_historical_pin_count": 453,
+    "validation_status": "pass"
+  },
+  "controller_r18_r19_snapshot_predicate_delta": {
+    "changed_functions": [
+      "_verify_r23_native_snapshot_receipt",
+      "verify_baseline_heavy_processes_clear"
+    ],
+    "coverage_or_threshold_changed": false,
+    "status": "pass"
+  },
+  "controller_r19_r20_process_sample_delta": {
+    "before_snapshot_binding": true,
+    "changed_functions": [
+      "_r20_audit_unbound_observations",
+      "_r20_confirm_unbound_sample_race",
+      "_r20_descendants_from_pid_set",
+      "_r20_native_sample",
+      "_r20_unbound_cleanup_plan",
+      "_r20_unbound_observed_rows",
+      "_r20_valid_snapshot_receipt",
+      "_r23_audit_and_cleanup",
+      "_r23_final_audit",
+      "_r23_native_sample",
+      "main",
+      "require_t2_execution_leaf",
+      "run_phase",
+      "verify_authority_resume_ancestry"
+    ],
+    "coverage_thresholds_changed": false,
+    "post_open_failure_fresh_snapshot_count": 3,
+    "resource_limits_changed": false,
+    "status": "pass"
+  },
+  "failure": {
+    "message": "expected JSON object: D:\\006-Programing\\LMC\\FusionConceptAI\\runs\\UP1-04A-VNEXT-T2\\r21_tracked_sample_exit_python_controls_20260926_r2\\command_argv.json",
+    "type": "RuntimeError"
+  },
+  "formal_t2_accepted": false,
+  "input_count": 1043,
+  "julia_executed": false,
+  "negative_controls": [],
+  "projection24_reuse_validator_r10_r11_delta": {
+    "changed_contract": "top-level protocol schema r8 to r9",
+    "projection_reuse_assertions_changed": false,
+    "status": "pass"
+  },
+  "schema": "vnext-t2-independent-negative-static-qa-r21-r23",
+  "status": "fail"
+}

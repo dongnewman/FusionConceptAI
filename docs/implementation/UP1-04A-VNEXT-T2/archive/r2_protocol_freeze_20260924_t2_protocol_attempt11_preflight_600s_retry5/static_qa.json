@@ -1,0 +1,29 @@
+{
+  "schema": "vnext-t2-independent-negative-static-qa-r8",
+  "status": "fail",
+  "julia_executed": false,
+  "julia_parse_executed": false,
+  "actual_model_attestation": "unavailable",
+  "negative_controls": [
+    {
+      "name": "attempt8 14-argument interruption pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    },
+    {
+      "name": "attempt9 projection natural-exit failure pin drift",
+      "status": "pass",
+      "observed": "rejected:RuntimeError"
+    }
+  ],
+  "python_execution_context": {
+    "mode": "direct_script_as_main",
+    "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\static_qa_independent_negative_r12.py",
+    "argv0_matches_source": true,
+    "sys_dont_write_bytecode": true
+  },
+  "failure": {
+    "type": "RuntimeError",
+    "message": "attempt9b static QA failure details are inconsistent"
+  }
+}

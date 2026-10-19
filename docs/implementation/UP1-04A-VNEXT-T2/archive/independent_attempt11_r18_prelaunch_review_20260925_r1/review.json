@@ -1,0 +1,165 @@
+{
+  "schema": "independent-t2-r18-bounded-dispatch-review-r1",
+  "reviewer": "/root/t2_review",
+  "reviewed_at_utc": "2026-09-25T14:42:10Z",
+  "verdict": "GO_FOR_ONE_SERIALIZED_BOUNDED_FORMAL_ATTEMPT",
+  "acceptance_verdict": "NO_GO_NOT_ACCEPTED",
+  "julia_started_by_reviewer": false,
+  "formal_t2_accepted": false,
+  "candidate_leaf": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r18_baseline_audit_retry2",
+  "anchors": [
+    {
+      "name": "protocol",
+      "bytes": 1013468,
+      "sha256": "90262706d77127112e6c097664b18c67062ed265641719f666e546baf55a9cc7"
+    },
+    {
+      "name": "coverage_map_r16",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+      "bytes": 600012,
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    },
+    {
+      "name": "controller_r18",
+      "bytes": 275508,
+      "sha256": "0c82606e5d76815238db567c2be55095ba6523cf838b16f3ee50beb55119b660"
+    },
+    {
+      "name": "static_qa_r18",
+      "bytes": 37119,
+      "sha256": "c4a53d8d4658eb3209c8a6a04aa88fbc4b5904b4b577ab035daf67f914afe0e6"
+    },
+    {
+      "name": "freezer_r18",
+      "bytes": 174118,
+      "sha256": "f24c1fc44b1f6fef876aa40350d28ad0ffd4f7081de67498c8a9f43a1be2be5b"
+    },
+    {
+      "name": "host_probe_r18",
+      "bytes": 3555,
+      "sha256": "4aa58224ed9bdc4cd81e3f1cda6e7d29ac7e81d8e6573a38dfaa5eebd4ee5ff4"
+    }
+  ],
+  "independent_static_qa": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_r18_prelaunch_review_20260925_r1/fresh_static_qa.json",
+    "sha256": "b3a369a542ed743a6cf401d843b5e4fc5b396c4f615cb7a526f1043ef746c2f4",
+    "status": "pass_static_r18_r23_no_julia",
+    "exit_code": 0,
+    "input_count": 580,
+    "negative_controls": 30,
+    "positive_controls": 5,
+    "heavy_audit_negative_controls": 24,
+    "heavy_audit_positive_controls": 1,
+    "julia_started": false
+  },
+  "independent_pin_audit": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_r18_prelaunch_review_20260925_r1/pin_audit_v2.json",
+    "sha256": "52834e1057862dcdc48a6acd8b70c49cc0ddc9d7d9345f115834236facb42bb1",
+    "exit_path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_r18_prelaunch_review_20260925_r1/pin_audit_v2.exit.json",
+    "exit_sha256": "3a060cf6f406ae3d126c7b34ee67741576e9de76327f658cc304adb084e3ce26",
+    "matched_count": 580,
+    "mismatch_count": 0
+  },
+  "controller_delta": {
+    "from_sha256": "fe42ce209bdf73bfc6884a0ed5a1bd560223c32e8fd7d035b700de8a334c9eeb",
+    "diff_command": "git diff --no-index --unified=5 -- test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r17.py test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r18.py",
+    "diff_exit_code": 1,
+    "diff_exit_meaning": "expected because the source files differ",
+    "changes": [
+      "Replace baseline nonempty-dict truthiness abort with verify_baseline_heavy_processes_clear(baseline_heavy).",
+      "Apply the same strict predicate in the final global-heavy audit.",
+      "Add shared predicate requiring exact dict/schema, complete true, four exact empty lists, and complete raw-native snapshot with positive row_count."
+    ],
+    "coverage_or_semantic_threshold_change": false
+  },
+  "heavy_audit": {
+    "baseline_gate": "Strict helper runs before the first Julia phase.",
+    "final_gate": "Final audit invokes the same strict helper; any exception is recorded, final audit becomes incomplete, and run_phase classifies it as process_tree_monitor_incomplete.",
+    "validated_fields": [
+      "complete",
+      "processes",
+      "controller_processes",
+      "native_heavy_identities",
+      "errors",
+      "snapshot"
+    ],
+    "malformed_receipts_rejected": [
+      "missing fields",
+      "wrong types",
+      "nonempty lists",
+      "wrong schema",
+      "complete false",
+      "invalid or empty native snapshot"
+    ]
+  },
+  "host_smoke": {
+    "leaf": "docs/implementation/UP1-04A-VNEXT-T2/archive/r18_native_monitor_host_smoke_20260925_r4",
+    "natural_exit": 0,
+    "natural_stop_reason": "natural_exit",
+    "terminal_sample_race_recorded": true,
+    "exact_root_handle_wait_confirmed": true,
+    "timeout_exit": 15,
+    "timeout_stop_reason": "phase_wall_timeout",
+    "timeout_termination_verified": true,
+    "final_audits_complete": true
+  },
+  "preserved_failures": {
+    "r17_baseline_truthiness_abort": "pinned zero-phase/no-Julia evidence; complete empty audit dict was treated as truthy.",
+    "r18_retry1_static_failure": "pinned QA failure because natural host child did not produce the terminal-exit-race receipt.",
+    "r17_host_r5_r6": "both pinned as failed host attempts."
+  },
+  "coverage": {
+    "phases": 30,
+    "formal_cases": 45,
+    "unique_cases": 60,
+    "case_hits": 68,
+    "site_ids": 214,
+    "planned_site_hits": 622,
+    "authority_sites": 175,
+    "authority_nonzero_sites": 75,
+    "authority_planned_hits": 118,
+    "transport_site_ids": 23,
+    "transport_planned_hits": 92,
+    "projection_sites": 24,
+    "attempt7_case_site_set_equal": true
+  },
+  "resources": {
+    "default_phase_wall_seconds": 480,
+    "preflight_override_seconds": 600,
+    "authority_phase_seconds": 2400,
+    "authority_case_seconds": 2400,
+    "working_set_threshold_bytes": 2147483648,
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "summed_phase_wall_cap_seconds": 16440,
+    "working_set_semantics": "sampled process-tree stop threshold, not OS-enforced hard cap"
+  },
+  "scope": {
+    "freeze_archive_files": 11,
+    "json_files": 7,
+    "raw_files": 4,
+    "executable_or_source_payloads": 0,
+    "command_argv_is_data": true,
+    "planned_output_absent": true,
+    "julia_process_seen_after_review": false
+  },
+  "commands": [
+    {
+      "name": "fresh Python static QA",
+      "exit_code": 0,
+      "argv_receipt": "static_qa_command.json"
+    },
+    {
+      "name": "PowerShell exact input pin audit",
+      "exit_code": 0,
+      "result": "580/580 matched"
+    },
+    {
+      "name": "R17 to R18 source diff",
+      "exit_code": 1,
+      "interpretation": "expected difference status"
+    }
+  ],
+  "acceptance_boundary": "One bounded serialized attempt only. Actual source-site hits, negative outcomes, and formal T2 acceptance remain pending.",
+  "freezer_command_receipt": "freezer_command_receipt.json"
+}

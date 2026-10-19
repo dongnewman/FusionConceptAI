@@ -1,0 +1,73 @@
+{
+  "schema": "root-runtime-batch-status-r1",
+  "recorded_utc": "2026-09-23T03:42:58.6272257Z",
+  "head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "requested_root": "gpt-6-sol/high",
+  "requested_workers": "gpt-6-luna/max",
+  "actual_model_attestation": "unavailable",
+  "active_task_count": 46,
+  "accepted_task_count_before_batch": 21,
+  "l4_credible_candidate_count": 0,
+  "r01_r10_complete": false,
+  "formal_t2_complete": false,
+  "formal_reference_inverse_complete": false,
+  "all_end_gates_complete": false,
+  "entries": [
+    {
+      "name": "mms_v10_final",
+      "path": "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/agent_r2_n1_20260922/runtime_manufactured_staged_r1/final.json",
+      "bytes": 6987,
+      "sha256": "0ac754699e2ec66131abf3835ae0a79b49b2f45519c71bb4d00bf67c549fa6e4",
+      "status": "resource_interruption_producer_wall_timeout_consumer_not_executed"
+    },
+    {
+      "name": "native_g1g2_r10",
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/summary.json",
+      "bytes": 46172,
+      "sha256": "1781213362b2894e1885492da7c30df1f127b3623ecf283700c77b57632eeb46",
+      "status": "resource_interruption_primary_wall_timeout_no_numerical_artifact"
+    },
+    {
+      "name": "freegs_v10_step1",
+      "path": "docs/implementation/UP4-03-REFERENCE-VALIDATION-PREC/agent_r1_20260922/native_axisymmetric_forward_v2/actual_run_r10/julia_closure/execution.json",
+      "bytes": 269908,
+      "sha256": "802be380568dcdb73f40e97eb748ea66e6a8dbb1fc14941ca09448cf9093c08a",
+      "status": "natural_exit_0_pins_stable"
+    },
+    {
+      "name": "freegs_v10_step2",
+      "path": "docs/implementation/UP4-03-REFERENCE-VALIDATION-PREC/agent_r1_20260922/native_axisymmetric_forward_v2/actual_run_r10/freegs_solve/execution.json",
+      "bytes": 128603,
+      "sha256": "020c09f5e2bf71b103dd66073ccacda8f995a8ce4c88ba02bf4c96f086b003f1",
+      "status": "natural_exit_4_numerical_fail_nonconvergence"
+    },
+    {
+      "name": "freegs_v10_solver_output",
+      "path": "docs/implementation/UP4-03-REFERENCE-VALIDATION-PREC/agent_r1_20260922/native_axisymmetric_forward_v2/actual_run_r10/freegs_solve/solver_output.json",
+      "bytes": 53141147,
+      "sha256": "0ab33908927e1875cddd4cb56302aa800bfc77a03d9ccf8a709ebc028ef59869",
+      "status": "partial_numerics_not_inverse"
+    },
+    {
+      "name": "freegs_v10_root_grant",
+      "path": "docs/implementation/UP4-03-REFERENCE-VALIDATION-PREC/archive/root_freegs_v10_grant_20260923/grant.json",
+      "bytes": 696,
+      "sha256": "75a5d468df82acf4d4d309379fff88b4ae124e23dada91fe90e141e9f86faeeb",
+      "status": "granted_serial_lane"
+    },
+    {
+      "name": "native_g1g2_independent_review",
+      "path": "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_r10_actual_review_20260923/review_receipt.json",
+      "bytes": 38795,
+      "sha256": "20db802cf9c2c1b15f2cacb3688a82782edef777e999f35a200b6c56bf59efd8",
+      "status": "independent_review_pass_scope_limited"
+    },
+    {
+      "name": "up5_search_gap_review",
+      "path": "docs/implementation/UP5-01/archive/search_evaluator_gap_review_20260923/audit_manifest.json",
+      "bytes": 12556,
+      "sha256": "748adf7717b092e63b4e3cdee4c2661911a84fab9284a3baaa11baf68b3d6772",
+      "status": "read_only_gap_review"
+    }
+  ]
+}

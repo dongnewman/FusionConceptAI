@@ -1,0 +1,536 @@
+{
+  "actual_model_attestation": "unavailable",
+  "formal_t1_software_manifest_sha256": "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e",
+  "formal_t2_accepted": false,
+  "inputs": {
+    "Manifest.toml": {
+      "bytes": 3348,
+      "path": "Manifest.toml",
+      "sha256": "133de98e7862bf4486ed39a6f72a14c6a17bf2faf5622f3561f9e907badab91d"
+    },
+    "Project.toml": {
+      "bytes": 611,
+      "path": "Project.toml",
+      "sha256": "e923c66b2d2ea42e79bec67efd7ee1f100ae092897363b4d49ed58984058ff4e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json": {
+      "bytes": 23148,
+      "path": "docs/implementation/UP1-04A-VNEXT-T1/formal_software_acceptance_r26_v9_r1/software_acceptance_manifest.json",
+      "sha256": "11f411be3feba7e2be9f11047cd33cf8de56e26d8c8af93545f791a04d2d5c1e"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json": {
+      "bytes": 46759,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/pipeline_final.json",
+      "sha256": "c01892c882a499a24f3063e6b37d70c302c92822ee4043b50a44586c3b944314"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json": {
+      "bytes": 4568,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5/shard_runtime_coverage.json",
+      "sha256": "11401f06213acd03d2dae8c5451350ff94eed73123b5149bbf2945bf3ba3488b"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json": {
+      "bytes": 860,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/agent_r1_20260922/runtime_r5_external_launch/final.json",
+      "sha256": "f15f8d2e855d1cc9de99cd9fa292eebd3e1194ba6594d2b6b0ae6590c1c6b4e2"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json": {
+      "bytes": 78236,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/astra_runtime_r5_review_r1_20260922/actual_review.json",
+      "sha256": "97a22a469b1fe60185513a52dc082825a01a1c09b59052abbcaa2a1f1afc4946"
+    },
+    "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json": {
+      "bytes": 2974,
+      "path": "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/software_acceptance_runtime_r5_r1/software_qualification.json",
+      "sha256": "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2"
+    },
+    "src/Canonical/CanonicalJSON.jl": {
+      "bytes": 10229,
+      "path": "src/Canonical/CanonicalJSON.jl",
+      "sha256": "612edaeb822c1beeff44f7134497426fd0c8ff1eea9c16a651421e2c63f8ab93"
+    },
+    "src/Canonical/ClosedCanonicalByteWriter.jl": {
+      "bytes": 6354,
+      "path": "src/Canonical/ClosedCanonicalByteWriter.jl",
+      "sha256": "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b"
+    },
+    "src/Canonical/ConditionalEGraphCanonical.jl": {
+      "bytes": 34551,
+      "path": "src/Canonical/ConditionalEGraphCanonical.jl",
+      "sha256": "6a52c6574cb30643352b88f7cfd2fee49a1a35d549b7986f858e7de55e08f235"
+    },
+    "src/Canonical/ControlObservationRequirementCanonical.jl": {
+      "bytes": 11788,
+      "path": "src/Canonical/ControlObservationRequirementCanonical.jl",
+      "sha256": "4ce8b6e6ddf8a659cda3253ffa3a5943e114eec768e6ed61a9e2d136c7a06c0b"
+    },
+    "src/Canonical/ExactGraphCanonicalization.jl": {
+      "bytes": 15741,
+      "path": "src/Canonical/ExactGraphCanonicalization.jl",
+      "sha256": "4b2a1072ba8bd70e00ccd334027e488c9f4000dcc96b78d39944fad7bce4f6e3"
+    },
+    "src/Canonical/FieldGeometryFieldProgramCanonical.jl": {
+      "bytes": 8278,
+      "path": "src/Canonical/FieldGeometryFieldProgramCanonical.jl",
+      "sha256": "e1f24e6de91cb2ceb3fe32e656ca66517870797c5f9dda80001541a5790c22ff"
+    },
+    "src/Canonical/FieldGeometryPhaseFieldCanonical.jl": {
+      "bytes": 4118,
+      "path": "src/Canonical/FieldGeometryPhaseFieldCanonical.jl",
+      "sha256": "3d573c530957b901395a4539538246db3c55462d179ad443ce7be166866ef1f7"
+    },
+    "src/Canonical/FieldGeometryPrimitiveCanonical.jl": {
+      "bytes": 7528,
+      "path": "src/Canonical/FieldGeometryPrimitiveCanonical.jl",
+      "sha256": "af024092decd20ef2e5a084ae3ae3894448a228b20ddff64e5dc792039bbfa8d"
+    },
+    "src/Canonical/FieldGeometrySpatialSupportCanonical.jl": {
+      "bytes": 20246,
+      "path": "src/Canonical/FieldGeometrySpatialSupportCanonical.jl",
+      "sha256": "ce4bb9411a9dd0f0019c2a544c7bc82ce39c5f727a89543ca8e4d9a355da0b23"
+    },
+    "src/Canonical/Hashes.jl": {
+      "bytes": 1606,
+      "path": "src/Canonical/Hashes.jl",
+      "sha256": "bd205d1208d095397447d3749f53b15a59cf22d2c7636d43d263c9ee7e09bd00"
+    },
+    "src/Canonical/MechanismCanonicalTransport.jl": {
+      "bytes": 31713,
+      "path": "src/Canonical/MechanismCanonicalTransport.jl",
+      "sha256": "dc37e6a8634d907f769f92c2715d7d783c47790f3e573363211330901ff0082a"
+    },
+    "src/Canonical/MechanismHashLayers.jl": {
+      "bytes": 45805,
+      "path": "src/Canonical/MechanismHashLayers.jl",
+      "sha256": "d6b4dd07898948ff9b48074da951a8118da4c6a2550b7174d327017492d444d7"
+    },
+    "src/Canonical/MechanismObservableCanonical.jl": {
+      "bytes": 13457,
+      "path": "src/Canonical/MechanismObservableCanonical.jl",
+      "sha256": "20f20219713a438b34f71bf3cdcc4bd2bb508a79dbbb234439b947aa19bad611"
+    },
+    "src/Canonical/TypedASTProgramCanonical.jl": {
+      "bytes": 44715,
+      "path": "src/Canonical/TypedASTProgramCanonical.jl",
+      "sha256": "f1f1ca40e5f32af9c5fe18ac08b87600f25149e31863489c3c6e9a40a5cfff07"
+    },
+    "src/Contracts/Authority.jl": {
+      "bytes": 367,
+      "path": "src/Contracts/Authority.jl",
+      "sha256": "f3d43055134a61116d7364bc4f231d5bca392f88a6c38c163757587d737890e5"
+    },
+    "src/Contracts/CandidateStatePackage.jl": {
+      "bytes": 14084,
+      "path": "src/Contracts/CandidateStatePackage.jl",
+      "sha256": "7961d41659caee44812b4bf976109006710ee9fb10f6e61acce9cf5455cec163"
+    },
+    "src/Contracts/CandidateStatePackageV5.jl": {
+      "bytes": 13496,
+      "path": "src/Contracts/CandidateStatePackageV5.jl",
+      "sha256": "c5c70e8798e0e12fa63ecbfc766079266e770735216c0e2724012d4c9527e620"
+    },
+    "src/Contracts/CandidateStatePackageV5Next.jl": {
+      "bytes": 55440,
+      "path": "src/Contracts/CandidateStatePackageV5Next.jl",
+      "sha256": "7ca5b0bfed97193053f157c2b9650624b54ba206784fad348f77fd791652c3b0"
+    },
+    "src/Contracts/CandidateStatePackageV5NextV2.jl": {
+      "bytes": 15738,
+      "path": "src/Contracts/CandidateStatePackageV5NextV2.jl",
+      "sha256": "effac2e603d2a1af30605b70310a634e3659ac487634e164ab049851795c4f89"
+    },
+    "src/Contracts/GenomeContractRegistry.jl": {
+      "bytes": 2389,
+      "path": "src/Contracts/GenomeContractRegistry.jl",
+      "sha256": "ee57228623e314897a3e34f3bfd387e8cce4d89c2b0dfaaf29d227076a08495c"
+    },
+    "src/Contracts/MechanismOccurrenceOwnershipContract.jl": {
+      "bytes": 3344,
+      "path": "src/Contracts/MechanismOccurrenceOwnershipContract.jl",
+      "sha256": "a2ef1257989f038836b0623dc95cc06f2b56a8130a4181a928eea5f0aa6a86cf"
+    },
+    "src/Contracts/StatusDimensions.jl": {
+      "bytes": 2798,
+      "path": "src/Contracts/StatusDimensions.jl",
+      "sha256": "f0bc711e8344d768ae35e6b7ff4fbfff3de523ed3ed07bd91ccfb43adee080cc"
+    },
+    "src/Contracts/VNextT1CandidateBindingV2.jl": {
+      "bytes": 10143,
+      "path": "src/Contracts/VNextT1CandidateBindingV2.jl",
+      "sha256": "b507f8e4f31baea7fd2c4e5be5b5c7026382d69a92b6235f863bd67433c243b2"
+    },
+    "src/Contracts/VNextT1CanonicalBytesV2.jl": {
+      "bytes": 2688,
+      "path": "src/Contracts/VNextT1CanonicalBytesV2.jl",
+      "sha256": "6b1043d297347f7fb3b57b465a3eff1278003268afc708e8f888258bb87bede4"
+    },
+    "src/Contracts/VNextT1PackageBindingAdapterV2.jl": {
+      "bytes": 5481,
+      "path": "src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+      "sha256": "a7c6ac7065d84a18e541aa5743dc908f8d5304ec5875726d22d615b2c171e943"
+    },
+    "src/FusionConceptAI.jl": {
+      "bytes": 10305,
+      "path": "src/FusionConceptAI.jl",
+      "sha256": "7fba6b0f632ce28cd2dd6e250561998988e241963b0ab44a3ef1677fdb270066"
+    },
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl": {
+      "bytes": 37919,
+      "path": "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+      "sha256": "8bf9e1b428c98d144aa46ad7d09403680a7d4b44f7bd687dd4a6f68611f1a756"
+    },
+    "src/GenomeV5/G1/EquationPlanV2.jl": {
+      "bytes": 15159,
+      "path": "src/GenomeV5/G1/EquationPlanV2.jl",
+      "sha256": "b537636bae49fcd765aa6c856bde08d21257282ec994daa77a80bf94c3457f99"
+    },
+    "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl": {
+      "bytes": 31396,
+      "path": "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+      "sha256": "de5a0d14d71c02244df6344c1a339a56d3dc051f115d975a4072a260d0204bf2"
+    },
+    "src/GenomeV5/G1/GrammarProfileV2.jl": {
+      "bytes": 22812,
+      "path": "src/GenomeV5/G1/GrammarProfileV2.jl",
+      "sha256": "96b35f434e5e9f94d910272d822567eeafeb5133e40fc1fe240bf8e4a723c10c"
+    },
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl": {
+      "bytes": 16572,
+      "path": "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+      "sha256": "ff3383c66e4592b413edb735a3f5a3ea42bf75fb7417ff3c57ac2055731b8e18"
+    },
+    "src/GenomeV5/G1/MechanismGenomeV5.jl": {
+      "bytes": 3887,
+      "path": "src/GenomeV5/G1/MechanismGenomeV5.jl",
+      "sha256": "8445011321ca11fd69d60101faa7f4bb1fd8ee331372ebe3320a8756f84c7884"
+    },
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl": {
+      "bytes": 18646,
+      "path": "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+      "sha256": "7e38588de58a482a8291734117defabf1fd42379f4f1e1d59cbf2d933c603b32"
+    },
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl": {
+      "bytes": 9905,
+      "path": "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+      "sha256": "7c7820ee85c852798300994432cbe11c63f07f5411ec352d81ad8829a0059ae6"
+    },
+    "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl": {
+      "bytes": 27640,
+      "path": "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+      "sha256": "2e15b97676e8cef51af62c47f83f0bce061e98366e42d3d68bb2a120876436fc"
+    },
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl": {
+      "bytes": 31706,
+      "path": "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+      "sha256": "a52ea1a60a207027c9f8029f0928af2b8bcc543f0e9ae37b88b87c9767c337b3"
+    },
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl": {
+      "bytes": 5333,
+      "path": "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+      "sha256": "683af3c899999ca9a0d718ba1e3abff5b961e21d1e099e93f938a80354d5f1a7"
+    },
+    "src/GenomeV5/G2/SpatialGrammarProfileV2.jl": {
+      "bytes": 5945,
+      "path": "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+      "sha256": "3e35bda6ffb9aa8c1a31adb6e82e1f888ae686d822b7e5f4f17701d54717409f"
+    },
+    "src/GenomeV5/G3/ControlGenomeV5.jl": {
+      "bytes": 10297,
+      "path": "src/GenomeV5/G3/ControlGenomeV5.jl",
+      "sha256": "eb0c672d6d7146fef03a12038240c101e64e2949ddfddb48eb983d92fb7c7135"
+    },
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl": {
+      "bytes": 10904,
+      "path": "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+      "sha256": "21187643295f3c115f3a2eb52c40aafcc039c75cc3a22bff59d5800b21c9d5e4"
+    },
+    "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl": {
+      "bytes": 24578,
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+      "sha256": "a989b336f1607d69746c94f4636daad2225932fcc0192c2b6476feb6a7a7e0f4"
+    },
+    "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl": {
+      "bytes": 34208,
+      "path": "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+      "sha256": "ac70c4af9bfe1a4b96e03601535cb63276535a451c8b97624d559cfdb5544929"
+    },
+    "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl": {
+      "bytes": 64083,
+      "path": "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+      "sha256": "54f30536c965b223797831e8bd01fdeb0a115d0073701ef0c04e84a7ab2ec0eb"
+    },
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl": {
+      "bytes": 54819,
+      "path": "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+      "sha256": "01bdfd40f1a824b8530fc51f6ff319e40dda4edbce275c62276e5431f78f25bf"
+    },
+    "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl": {
+      "bytes": 35485,
+      "path": "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+      "sha256": "d07805ce5b708be33232fccd25fd491ef4bd8a05c6320ccef4b274ef4644b05e"
+    },
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl": {
+      "bytes": 34374,
+      "path": "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+      "sha256": "616bda1a3f8f32a60e8175f9d8cbb44261e803fd9e392bf75c7a5593d26ed8e7"
+    },
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl": {
+      "bytes": 6704,
+      "path": "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+      "sha256": "8e9d4f1505098b745048a5f741e0cb1edcccdcf70a395c212f0a8649a73d62a4"
+    },
+    "src/GenomeV5/G3/RealizationGenomeV5.jl": {
+      "bytes": 33751,
+      "path": "src/GenomeV5/G3/RealizationGenomeV5.jl",
+      "sha256": "0034f0c494df9a61f6e753d6d0b7f0fbca2d1a21eccf915ad3bba25ca427f6fb"
+    },
+    "src/GenomeV5/Integration/GenomeV5Integration.jl": {
+      "bytes": 16452,
+      "path": "src/GenomeV5/Integration/GenomeV5Integration.jl",
+      "sha256": "391a7f32ce22c73244ac41f0d6e5c321e98931649491d3fd3a52f907ffaf44c4"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl": {
+      "bytes": 10317,
+      "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+      "sha256": "1933f9faf918999170db794639f3f94c66dc6dfd4e3a125eb9fc65ab63bdf0a9"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl": {
+      "bytes": 10826,
+      "path": "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+      "sha256": "d68c61c20d359fd70a364ad70545845e540435b8b052fecf1a9ac1ab64e2008e"
+    },
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl": {
+      "bytes": 96310,
+      "path": "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+      "sha256": "3f3446ec7b641470d1bb45cefed814463aca1af424a858945e09cbb1330ffcaa"
+    },
+    "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl": {
+      "bytes": 14744,
+      "path": "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+      "sha256": "45a4bbda4d92373b822a31b23ba35753074d8ef0dbedb01d203e4289675cf27b"
+    },
+    "src/GenomeV5/Integration/VNextGenomeV5Integration.jl": {
+      "bytes": 10823,
+      "path": "src/GenomeV5/Integration/VNextGenomeV5Integration.jl",
+      "sha256": "d9824756a1287f6ed7a7df0c5d06a1523b109b52f12a91d36b9aab5ec05ba501"
+    },
+    "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl": {
+      "bytes": 13232,
+      "path": "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+      "sha256": "37fc25612cccf94044f736984f7f4a730c7f6f078898c80849981add27f3bc86"
+    },
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl": {
+      "bytes": 61211,
+      "path": "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+      "sha256": "6603bb1f3b8826a68583f070af13febf8fe91e1d153be90a1930c0aaa18c97a0"
+    },
+    "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl": {
+      "bytes": 78478,
+      "path": "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+      "sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9"
+    },
+    "src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl": {
+      "bytes": 23367,
+      "path": "src/GenomeV5/Integration/VNextT2IdentityReceiptIntegrationV2.jl",
+      "sha256": "64b1582c05cad8775af58d6ba35b1e50162e5394acbd92f0460b304b3195cf0b"
+    },
+    "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl": {
+      "bytes": 3899,
+      "path": "src/GenomeV5/Integration/VNextT2ModuleEntryV2.jl",
+      "sha256": "40071a2609422bb8ec389e1f75279d3b2afeb9822f5b847fbf97224eb3a0f655"
+    },
+    "src/GenomeV5/UP2/UP2ModuleEntryV1.jl": {
+      "bytes": 3155,
+      "path": "src/GenomeV5/UP2/UP2ModuleEntryV1.jl",
+      "sha256": "7eb7ed593fbac217ea925830e53b675a38760aed708c7864bd43c436f74d8937"
+    },
+    "src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl": {
+      "bytes": 20354,
+      "path": "src/GenomeV5/UP2/VNextT2IdentityReceiptProjectionV2.jl",
+      "sha256": "077a8634754c435caf8364d6bdc1325d56412ae256c181f9fb2a6a6da7084823"
+    },
+    "src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl": {
+      "bytes": 54588,
+      "path": "src/GenomeV5/UP2/VNextT2UP2AdapterV2.jl",
+      "sha256": "4ff71f2d2e9863b04572a2f2f37df9e52ace948b3f90c10b2823a8fe2567a725"
+    },
+    "src/Genomes/ControlObservationRequirements.jl": {
+      "bytes": 10109,
+      "path": "src/Genomes/ControlObservationRequirements.jl",
+      "sha256": "d518856ec4310e9c16a7425b1479f73b92d0eb6581e78f199685512f00b863ad"
+    },
+    "src/Genomes/ControlPrimitives.jl": {
+      "bytes": 1066,
+      "path": "src/Genomes/ControlPrimitives.jl",
+      "sha256": "5e5af09c633f4f66851f21bdbd223f486b6b19333e560bbebe9fb69bcb004cf2"
+    },
+    "src/Genomes/FieldGeometryFieldPrograms.jl": {
+      "bytes": 12872,
+      "path": "src/Genomes/FieldGeometryFieldPrograms.jl",
+      "sha256": "78e3428436798c03454b6e814d4fb9348ad3d19a485e0fb33b7045af2651b17f"
+    },
+    "src/Genomes/FieldGeometryGenome.jl": {
+      "bytes": 982,
+      "path": "src/Genomes/FieldGeometryGenome.jl",
+      "sha256": "ed8dfc25c13e85b9720fdb93f43d9075494b383209e82b8be5c24d54ec306725"
+    },
+    "src/Genomes/FieldGeometryPhaseFields.jl": {
+      "bytes": 13367,
+      "path": "src/Genomes/FieldGeometryPhaseFields.jl",
+      "sha256": "a18ff4c417c194d6c1e6ff12e339452e9046f3782c98a17ad917216c80e83cbd"
+    },
+    "src/Genomes/FieldGeometryPrimitives.jl": {
+      "bytes": 8851,
+      "path": "src/Genomes/FieldGeometryPrimitives.jl",
+      "sha256": "8054a1b127f3d0a6e3db1cd651bbbe8c90d8d78d26bfab85e3d7b71da326fef5"
+    },
+    "src/Genomes/FieldGeometrySpatialSupport.jl": {
+      "bytes": 30147,
+      "path": "src/Genomes/FieldGeometrySpatialSupport.jl",
+      "sha256": "54f18db33e8698ba876dcc79c952596bae25d84b64e35a4714dc2a63c77cd405"
+    },
+    "src/Genomes/MechanismConservationOwnership.jl": {
+      "bytes": 3704,
+      "path": "src/Genomes/MechanismConservationOwnership.jl",
+      "sha256": "8984932e950bb6afea67e5ebd9468a61ecd352ae2370af78c8151928b99c6673"
+    },
+    "src/Genomes/MechanismConservationScopes.jl": {
+      "bytes": 2110,
+      "path": "src/Genomes/MechanismConservationScopes.jl",
+      "sha256": "e85e7484af81d8291971cf3e03fbb29442e30c2720423013734eb60c93f0c5a0"
+    },
+    "src/Genomes/MechanismGeneCanonical.jl": {
+      "bytes": 14888,
+      "path": "src/Genomes/MechanismGeneCanonical.jl",
+      "sha256": "28184df2f61db1b51c4ce3569b8c6593bbd4d438449866a8715875a7a56f2263"
+    },
+    "src/Genomes/MechanismGenes.jl": {
+      "bytes": 7163,
+      "path": "src/Genomes/MechanismGenes.jl",
+      "sha256": "5f9ef77a0a31168329a6ff9d55dda77dece2eda8e5c5302e2a6911b04095a7cf"
+    },
+    "src/Genomes/MechanismGenesV1.jl": {
+      "bytes": 30394,
+      "path": "src/Genomes/MechanismGenesV1.jl",
+      "sha256": "1684c0db19b7edff688ca6b2e2ebf61ed541bc210005d8979c4d68094717b57c"
+    },
+    "src/Genomes/MechanismGenome.jl": {
+      "bytes": 3302,
+      "path": "src/Genomes/MechanismGenome.jl",
+      "sha256": "8c40c572d424572a38fbcbf00c06e395226086927a4b19ff477ea433e8789dd4"
+    },
+    "src/Genomes/MechanismGenomePayload.jl": {
+      "bytes": 36014,
+      "path": "src/Genomes/MechanismGenomePayload.jl",
+      "sha256": "fb8cb4966726328a4b9226b730586eb795e6603c39218bde142a247b6b8fab8f"
+    },
+    "src/Genomes/MechanismLegacyMigration.jl": {
+      "bytes": 69196,
+      "path": "src/Genomes/MechanismLegacyMigration.jl",
+      "sha256": "d9802d98a49f48e0e6d40e8bc982a06d7297cd46182d916b35692e663a23ecb0"
+    },
+    "src/Genomes/MechanismObservablesHoles.jl": {
+      "bytes": 22138,
+      "path": "src/Genomes/MechanismObservablesHoles.jl",
+      "sha256": "84da5b7c9c5ca20f19d2644e43d760d56a06aafe0583791c531ec0d04033128e"
+    },
+    "src/Genomes/RealizationControlGenome.jl": {
+      "bytes": 2099,
+      "path": "src/Genomes/RealizationControlGenome.jl",
+      "sha256": "48c99e5ab8f5a701063016df214be9741b4b07112c8d4a84068192474329b7a4"
+    },
+    "src/IR/ConditionalEGraph.jl": {
+      "bytes": 622,
+      "path": "src/IR/ConditionalEGraph.jl",
+      "sha256": "538a5985b9c065f18ad47cb9271f5f4e18c972e14e9385198b6c40d78572c110"
+    },
+    "src/IR/ConditionalEGraphSaturation.jl": {
+      "bytes": 42141,
+      "path": "src/IR/ConditionalEGraphSaturation.jl",
+      "sha256": "9d4d0f294079724ec54f7197dae12196a8af9c56b553f19139251aa4f9d04341"
+    },
+    "src/IR/ConditionalEGraphTypes.jl": {
+      "bytes": 38142,
+      "path": "src/IR/ConditionalEGraphTypes.jl",
+      "sha256": "1b2e57637ede403535a9570d5081e7021fb4a99f4e18667e2dae15713f42cf92"
+    },
+    "src/IR/ConservationLedger.jl": {
+      "bytes": 2874,
+      "path": "src/IR/ConservationLedger.jl",
+      "sha256": "4066d9a39f2b07253c79d2ea1283872d56d8d8825f499eec23f82ba4b26a7727"
+    },
+    "src/IR/OperatorHypergraph.jl": {
+      "bytes": 24401,
+      "path": "src/IR/OperatorHypergraph.jl",
+      "sha256": "b7fd30cf1bff4f17645f7cbf89c9f888fe4d6a1aa0a27d0c6326c921a04830de"
+    },
+    "src/IR/OperatorRegistry.jl": {
+      "bytes": 64932,
+      "path": "src/IR/OperatorRegistry.jl",
+      "sha256": "4c2f4383140527613782288749283d268497846ec915df158164875125677f45"
+    },
+    "src/IR/PhysicalTypes.jl": {
+      "bytes": 11801,
+      "path": "src/IR/PhysicalTypes.jl",
+      "sha256": "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"
+    },
+    "src/IR/TypedAST.jl": {
+      "bytes": 27444,
+      "path": "src/IR/TypedAST.jl",
+      "sha256": "66acd725f0e2ff29c1b7da0d653aa2a32b4c623a063c01f9099ef1b450769373"
+    },
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl": {
+      "bytes": 14389,
+      "path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+      "sha256": "a992d7a1c77ff362cac53fe6e63f111595c173b8d6eac2f4029e1356179861bb"
+    },
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl": {
+      "bytes": 2088,
+      "path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/parse_gate.jl",
+      "sha256": "5f7c1f62a198d1332af4b78a9b62fe283ea0c33fb97555f5adaa3e4060813493"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl": {
+      "bytes": 11614,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/fixture_helpers.jl",
+      "sha256": "aa63b637e592adf53adca7a0aaa8d8b9cf8a74d577356999bd1fa179f075f59b"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl": {
+      "bytes": 34035,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_candidate_driver.jl",
+      "sha256": "114d2628b69b246b4e9c7ae82e8f1837e86052874d3f7a1cbb51c198d4d8afdb"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py": {
+      "bytes": 55103,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t1_software_manifest_v1.py",
+      "sha256": "27a5c8abc79b46d78824916a4c9f66dbbb526c14f9e5dfe1b75f6df8c9700d47"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py": {
+      "bytes": 47451,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/formal_t2_controller.py",
+      "sha256": "d3704f9be40ff68fd0e37c6ee6f94f2bcba901c97e550e962ce0103badadbf1d"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl": {
+      "bytes": 3393,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/module_entry_clean_load.jl",
+      "sha256": "727b4d124082c7465c0f75a27ad5d7247b1db935919ad8d738f2dc2af8edd8a3"
+    },
+    "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl": {
+      "bytes": 11926,
+      "path": "test/GenomeV5/Integration/VNextT2IdentityReceiptV2/vnext_t2_package_full_content_projection_r1.jl",
+      "sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91"
+    },
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl": {
+      "bytes": 76191,
+      "path": "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+      "sha256": "b1c355c94467c2469fff724c4d02134e9a17ac245b9cc674358393a31864814b"
+    }
+  },
+  "physical_acceptance": false,
+  "repository_head": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "runtime_dependency_count": 104,
+  "runtime_julia_file_count": 92,
+  "schema": "vnext-t2-formal-runtime-inputs-r3",
+  "scientific_acceptance": false,
+  "supplemental_projection_regression_sha256": "041a11f5852b5efaaac3992f108d59a6d98a59d0fbbf7a21504937b0234dde91",
+  "v3_qualified_source_sha256": "f381f4ed8e48dba499ddbe877d638838240cf4fcf99d4718ba177c2b5d7b2bd9",
+  "v3_source_witness_qualification_sha256": "b3361b6ff968452e5ca94471ba9b9a72e7a9d198cd8818f81d4c918f7c5018c2"
+}

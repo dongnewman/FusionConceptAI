@@ -1,0 +1,88 @@
+{
+  "command": "PowerShell here-string piped to `python -B -`; import pinned controller source; replace only this process local module `psutil.Process`, `psutil.wait_procs`, `_process_table_snapshot` with deterministic fakes; invoke `kill_tree` once; restore monkeypatches in finally.",
+  "conclusion": "In this isolated fixture a bool tracked pid is accepted by isinstance(pid, int), is passed to Process(True) (the fake models Python/Windows integer alias to pid 1), passes numeric create_time equality, is killed, and termination reports complete=true/verified=true. No real process was queried or signaled. Production psutil does not return bool pids; the concern is fail-closed input validation at this internal boundary.",
+  "controller": {
+    "bytes": 196521,
+    "lines": {
+      "kill_signal": 865,
+      "psutil_process_resolution": 819,
+      "tracked_identity_type_check": 810
+    },
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r12.py",
+    "sha256": "04c85a30d4f7a1f15c8c9016cc1b4000259d89a2a1b0ea337867e5e2a52e85ac"
+  },
+  "factory_calls": [
+    {
+      "pid_argument_repr": "True",
+      "pid_argument_type": "bool"
+    },
+    {
+      "pid_argument_repr": "True",
+      "pid_argument_type": "bool"
+    },
+    {
+      "pid_argument_repr": "74000",
+      "pid_argument_type": "int"
+    }
+  ],
+  "fake_root_kill_calls": 1,
+  "fake_target_kill_calls": 1,
+  "fixture": {
+    "root_fake_create_time": 1800000001.0,
+    "root_fake_pid": 74000,
+    "synthetic_resolved_target_pid": 1,
+    "synthetic_target_create_time": 1800000000.0,
+    "target_create_time_is_positive_finite": true,
+    "tracked_identity": {
+      "create_time": 1800000000.0,
+      "pid": true
+    }
+  },
+  "julia_started": false,
+  "no_os_processes_or_signals": true,
+  "result": {
+    "complete": true,
+    "enumeration_error_count": 0,
+    "errors": [],
+    "events": [
+      {
+        "outcome": "exited",
+        "pid": 1,
+        "stage": "termination_wait"
+      },
+      {
+        "outcome": "exited",
+        "pid": 74000,
+        "stage": "termination_wait"
+      },
+      {
+        "outcome": "confirmed_not_running",
+        "pid": true,
+        "stage": "termination_final_identity"
+      },
+      {
+        "outcome": "confirmed_not_running",
+        "pid": 74000,
+        "stage": "termination_final_identity"
+      }
+    ],
+    "root_exit_confirmed": false,
+    "schema": "vnext-t2-process-tree-termination-r1",
+    "signal_attempts": [
+      {
+        "create_time": 1800000000.0,
+        "outcome": "kill_requested",
+        "pid": true
+      },
+      {
+        "create_time": 1800000001.0,
+        "outcome": "kill_requested",
+        "pid": 74000
+      }
+    ],
+    "still_alive": [],
+    "target_identity_count": 2,
+    "verified": true
+  },
+  "schema": "independent-t2-r12-kill-tree-bool-pid-alias-probe-r1"
+}

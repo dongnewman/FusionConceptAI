@@ -1,0 +1,14 @@
+{
+  "record_kind": "preexisting_normative_amendment_exact_delta",
+  "file": "00_normative_contracts_and_state_model.md",
+  "historical_protection_sha256": "5982d8e258d67f57b1ece29094df3de0dc3b551509298acc8408a6ff5f03d7b2",
+  "current_sha256": "4ee8f1920142755614ab8bddf395835f8cfae724a71f320e204c531391260b6b",
+  "only_content_addition": "2026-10-16 用户授权主线程确定此前未配置的 Jn 科学门，冻结 `ideal_periodic_lcfs_Jn_scientific_protocol_v1`，唯一数值实现为 `CandidateCoupledPhysicsV4.jl::_CCP_IDEAL_PERIODIC_JN_ACCEPTANCE`。仅用于显式声明的理想轴对称周期等离子体：全 LCFS 点值总绝对上界不超过 `1e-4 A/m²`，`∫LCFS |Jn| dS` 总上界不超过 `1e-3 A`，`|∫LCFS Jn dS|` 总上界不超过 `1e-4 A`。参考量为 `1e6 A`、`1e6 A/m²`；这些固定数值验证限值分别对应 `1e-10` 的参考电流密度、`1e-9` 和 `1e-10` 的参考电流。每个上界必须覆盖实际约束残差、坐标/法向误差、浮点误差及积分截断误差；64 点观察不代替完整面片/奇异极限覆盖，净抵消不代替绝对泄漏门，原同态非零 D 的 h/h2 FD 负控必须通过。原64→加密序列与有界运行规则保持，仅比较/加密差值不能冒充截断界；不完整覆盖或缺误差项均 HOLD。保留旧未配置预算及旧失败，新协议不追认旧物理通过，也不替代五项闭合、UP2聚合或真实装置有效性。",
+  "prior_line_endings": "CRLF_except_final_LF",
+  "cleanup_baseline_bytes": 15726,
+  "cleanup_baseline_mtime_ns": 1792138419886453100,
+  "unchanged_since_cleanup_baseline": true,
+  "existing_amendment_date": "2026-10-16",
+  "source_constant": "src/RuntimeV4/CandidateCoupledPhysicsV4.jl::_CCP_IDEAL_PERIODIC_JN_ACCEPTANCE",
+  "explanation": "Preexisting user-authorized Jn scientific protocol paragraph; cleanup did not edit normative 00-09. Removing exactly this paragraph and restoring prior line endings reproduces the original protected SHA."
+}

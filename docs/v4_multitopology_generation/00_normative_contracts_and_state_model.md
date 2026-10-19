@@ -10,6 +10,12 @@
 
 ## 2. 规范性上游
 
+2026-09-20 当前文档合同：本目录是唯一活动任务、工作指导和验收来源；implementation 只保存历史记录。旧快照/AD 的证据可以按精确路径读取，但不拥有当前派单权。当前工单见 [16](16_execution_work_orders.md) 与 [task_manifest](task_manifest.json)，完整 Goal 见 [23](23_sol_goal_prompt.md)。节点数不是目标约束；新增准备单不自动关闭正式父单。
+
+“局部成果接成完整能力”必须有五项证据：明确生产 consumer/共享入口、真实调用、真实声明或数据、下游求解/工程/证据实际消费、不同执行者新进程复放及负例。导入成功、字段存在、合同测试、prepared receipt 不构成该能力。共享入口由指定集成者独占修改，旧数据和默认 registry 语义保护不能被解释成永久禁止版本化接线。
+
+参考反演的输出是可执行的 G1 机制/闭合、G2 场/几何/域/边界、G3 源/硬件/资源/控制及其跨层引用与不确定性。必须从预注册观测求未知量，再由新候选使用的同一正向链重算和盲留出检验；不能复制 anchor 或按装置名称绕门。具体字段、识别边界和验收见 [12](12_composition_and_inverse_realization.md)、[13](13_acceptance_benchmarks_and_evidence.md)。
+
 v4 必须通过版本化 registry 引用三种 Genome 合同；当前已有类型化实现，但尚未具备本次目标要求的完整执行能力：
 
 | 引用 | 所有者 | v4 可做 | v4 禁止做 |
@@ -256,4 +262,6 @@ Genome schema、canonicalization、operator registry、closure library、geometr
 
 [16 工作单](16_execution_work_orders.md) 与 [13 验收](13_acceptance_benchmarks_and_evidence.md) 联合定义交付。`accepted` 只在该工单范围内有效，不传播为父目标已完成。每个正式协议须在结果前冻结 `quantity / unit / normalization / threshold / grid-time sequence / algorithm-stop rules / scenario split / independence group / evidence ceiling`。后验调整只能创建新协议并保留旧运行。
 
-重计算串行、文件独占、Luna 独立复核、Sol 架构裁决按 [14](14_agent_orchestration.md)。阶段顺序以 README 的 UP0–UP6 为准。01–09 的历史算法规模参数仅是建议，不授权跳过 UP1–UP4。
+2026-10-16 用户授权主线程确定此前未配置的 Jn 科学门，冻结 `ideal_periodic_lcfs_Jn_scientific_protocol_v1`，唯一数值实现为 `CandidateCoupledPhysicsV4.jl::_CCP_IDEAL_PERIODIC_JN_ACCEPTANCE`。仅用于显式声明的理想轴对称周期等离子体：全 LCFS 点值总绝对上界不超过 `1e-4 A/m²`，`∫LCFS |Jn| dS` 总上界不超过 `1e-3 A`，`|∫LCFS Jn dS|` 总上界不超过 `1e-4 A`。参考量为 `1e6 A`、`1e6 A/m²`；这些固定数值验证限值分别对应 `1e-10` 的参考电流密度、`1e-9` 和 `1e-10` 的参考电流。每个上界必须覆盖实际约束残差、坐标/法向误差、浮点误差及积分截断误差；64 点观察不代替完整面片/奇异极限覆盖，净抵消不代替绝对泄漏门，原同态非零 D 的 h/h2 FD 负控必须通过。原64→加密序列与有界运行规则保持，仅比较/加密差值不能冒充截断界；不完整覆盖或缺误差项均 HOLD。保留旧未配置预算及旧失败，新协议不追认旧物理通过，也不替代五项闭合、UP2聚合或真实装置有效性。
+
+重计算串行、文件独占、实现/独立测试/复核分由不同 agent，root 主线程最终架构裁决，按 [14](14_agent_orchestration.md)。阶段顺序以 README 的 UP0–UP6 为准。01–09 的历史算法规模参数仅是建议，不授权跳过 UP1–UP4。

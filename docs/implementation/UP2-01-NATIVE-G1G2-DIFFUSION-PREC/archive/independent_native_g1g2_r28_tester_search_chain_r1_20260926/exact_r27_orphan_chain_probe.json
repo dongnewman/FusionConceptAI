@@ -1,0 +1,457 @@
+{
+  "schema": "r28-independent-exact-r27-orphan-chain-probe-v1",
+  "lineage_r27_root_A": {
+    "pid": 71568,
+    "create_time_100ns": 134348220498673693
+  },
+  "lineage_r27_missing_tracked_parent_B": {
+    "pid": 92628,
+    "create_time_100ns": 134348220498823650
+  },
+  "lineage_r27_direct_git_X": {
+    "pid": 90784,
+    "create_time_100ns": 134348221368408563
+  },
+  "r27_live_child_C": {
+    "pid": 90785,
+    "create_time_100ns": 134348221368408564,
+    "ppid": 92628
+  },
+  "added_deeper_descendant_D": {
+    "pid": 90786,
+    "create_time_100ns": 134348221368408565,
+    "ppid": 90785
+  },
+  "cases": {
+    "exact_reparent": {
+      "stage_stop_reason": "natural_exit",
+      "resource_monitor_complete": true,
+      "sample_recovery_count": 1,
+      "sample_calls": 2,
+      "attempt_count": 2,
+      "first_attempt_outcome": "recoverable_exact_tracked_race",
+      "first_sample_digest": [
+        [
+          71568,
+          1,
+          134348220498673693,
+          "julia.exe"
+        ],
+        [
+          90784,
+          71568,
+          134348221368408563,
+          "git.exe"
+        ],
+        [
+          90785,
+          92628,
+          134348221368408564,
+          "git.exe"
+        ],
+        [
+          90786,
+          90785,
+          134348221368408565,
+          "orphan-helper.exe"
+        ]
+      ],
+      "recovery_reason": "missing_generations_receipted_and_all_observed_descendants_bound",
+      "recovery_complete": true,
+      "missing_tracked_exit_receipts": [
+        {
+          "complete": true,
+          "exit_code": 0,
+          "identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "pid_reused_after_exit": false,
+          "replacement_create_time_100ns": null,
+          "schema": "native-g1g2-r28-natural-exit-receipt-v1",
+          "signal_sent": false,
+          "wait_confirmed": true
+        }
+      ],
+      "orphan_chain_roots": [
+        {
+          "create_time_100ns": 134348220498823650,
+          "pid": 92628
+        }
+      ],
+      "orphan_chain_descendants": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "bound_observed_generations": [
+        {
+          "create_time_100ns": 134348221368408563,
+          "pid": 90784
+        },
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "reparented_observed_generations": [
+        {
+          "after_parent_identity": {
+            "create_time_100ns": 134348220498673693,
+            "pid": 71568
+          },
+          "after_parent_pid": 71568,
+          "before_parent_identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "before_parent_pid": 92628,
+          "create_time_100ns": 134348221368408564,
+          "parent_exit_receipt_verified": true,
+          "pid": 90785
+        }
+      ],
+      "stale_ppid_bindings": [],
+      "unaccounted": [],
+      "exact_handle_bound_for_X_C_D": {
+        "(90784, 134348221368408563)": true,
+        "(90785, 134348221368408564)": true,
+        "(90786, 134348221368408565)": true
+      },
+      "residual_clear": true,
+      "numerical_credit": false,
+      "physical_credit": false
+    },
+    "exact_stale_ppid": {
+      "stage_stop_reason": "natural_exit",
+      "resource_monitor_complete": true,
+      "sample_recovery_count": 1,
+      "sample_calls": 2,
+      "attempt_count": 2,
+      "first_attempt_outcome": "recoverable_exact_tracked_race",
+      "first_sample_digest": [
+        [
+          71568,
+          1,
+          134348220498673693,
+          "julia.exe"
+        ],
+        [
+          90784,
+          71568,
+          134348221368408563,
+          "git.exe"
+        ],
+        [
+          90785,
+          92628,
+          134348221368408564,
+          "git.exe"
+        ],
+        [
+          90786,
+          90785,
+          134348221368408565,
+          "orphan-helper.exe"
+        ]
+      ],
+      "recovery_reason": "missing_generations_receipted_and_all_observed_descendants_bound",
+      "recovery_complete": true,
+      "missing_tracked_exit_receipts": [
+        {
+          "complete": true,
+          "exit_code": 0,
+          "identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "pid_reused_after_exit": false,
+          "replacement_create_time_100ns": null,
+          "schema": "native-g1g2-r28-natural-exit-receipt-v1",
+          "signal_sent": false,
+          "wait_confirmed": true
+        }
+      ],
+      "orphan_chain_roots": [
+        {
+          "create_time_100ns": 134348220498823650,
+          "pid": 92628
+        }
+      ],
+      "orphan_chain_descendants": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "bound_observed_generations": [
+        {
+          "create_time_100ns": 134348221368408563,
+          "pid": 90784
+        },
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "reparented_observed_generations": [],
+      "stale_ppid_bindings": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "parent_exit_receipt_verified": true,
+          "parent_identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "parent_pid": 92628,
+          "pid": 90785,
+          "sampled_ppid_persists_after_exit": true
+        }
+      ],
+      "unaccounted": [],
+      "exact_handle_bound_for_X_C_D": {
+        "(90784, 134348221368408563)": true,
+        "(90785, 134348221368408564)": true,
+        "(90786, 134348221368408565)": true
+      },
+      "residual_clear": true,
+      "numerical_credit": false,
+      "physical_credit": false
+    },
+    "missing_child_C": {
+      "stage_stop_reason": "resource_monitor_incomplete",
+      "resource_monitor_complete": false,
+      "sample_recovery_count": 0,
+      "sample_calls": 1,
+      "attempt_count": 1,
+      "first_attempt_outcome": "incomplete_unrecovered",
+      "first_sample_digest": [
+        [
+          71568,
+          1,
+          134348220498673693,
+          "julia.exe"
+        ],
+        [
+          90784,
+          71568,
+          134348221368408563,
+          "git.exe"
+        ],
+        [
+          90785,
+          92628,
+          134348221368408564,
+          "git.exe"
+        ],
+        [
+          90786,
+          90785,
+          134348221368408565,
+          "orphan-helper.exe"
+        ]
+      ],
+      "recovery_reason": "digest_observed_descendant_unaccounted",
+      "recovery_complete": false,
+      "missing_tracked_exit_receipts": [
+        {
+          "complete": true,
+          "exit_code": 0,
+          "identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "pid_reused_after_exit": false,
+          "replacement_create_time_100ns": null,
+          "schema": "native-g1g2-r28-natural-exit-receipt-v1",
+          "signal_sent": false,
+          "wait_confirmed": true
+        }
+      ],
+      "orphan_chain_roots": [
+        {
+          "create_time_100ns": 134348220498823650,
+          "pid": 92628
+        }
+      ],
+      "orphan_chain_descendants": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "bound_observed_generations": [
+        {
+          "create_time_100ns": 134348221368408563,
+          "pid": 90784
+        }
+      ],
+      "reparented_observed_generations": [],
+      "stale_ppid_bindings": [],
+      "unaccounted": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785,
+          "reason": "digest_observed_descendant_missing_before_handle_bind"
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786,
+          "reason": "orphan_descendant_parent_absent_without_exact_exit_receipt"
+        }
+      ],
+      "exact_handle_bound_for_X_C_D": {
+        "(90784, 134348221368408563)": true,
+        "(90785, 134348221368408564)": false,
+        "(90786, 134348221368408565)": false
+      },
+      "residual_clear": false,
+      "numerical_credit": false,
+      "physical_credit": false
+    },
+    "missing_grandchild_D": {
+      "stage_stop_reason": "resource_monitor_incomplete",
+      "resource_monitor_complete": false,
+      "sample_recovery_count": 0,
+      "sample_calls": 1,
+      "attempt_count": 1,
+      "first_attempt_outcome": "incomplete_unrecovered",
+      "first_sample_digest": [
+        [
+          71568,
+          1,
+          134348220498673693,
+          "julia.exe"
+        ],
+        [
+          90784,
+          71568,
+          134348221368408563,
+          "git.exe"
+        ],
+        [
+          90785,
+          92628,
+          134348221368408564,
+          "git.exe"
+        ],
+        [
+          90786,
+          90785,
+          134348221368408565,
+          "orphan-helper.exe"
+        ]
+      ],
+      "recovery_reason": "digest_observed_descendant_unaccounted",
+      "recovery_complete": false,
+      "missing_tracked_exit_receipts": [
+        {
+          "complete": true,
+          "exit_code": 0,
+          "identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "pid_reused_after_exit": false,
+          "replacement_create_time_100ns": null,
+          "schema": "native-g1g2-r28-natural-exit-receipt-v1",
+          "signal_sent": false,
+          "wait_confirmed": true
+        }
+      ],
+      "orphan_chain_roots": [
+        {
+          "create_time_100ns": 134348220498823650,
+          "pid": 92628
+        }
+      ],
+      "orphan_chain_descendants": [
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        },
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786
+        }
+      ],
+      "bound_observed_generations": [
+        {
+          "create_time_100ns": 134348221368408563,
+          "pid": 90784
+        },
+        {
+          "create_time_100ns": 134348221368408564,
+          "pid": 90785
+        }
+      ],
+      "reparented_observed_generations": [
+        {
+          "after_parent_identity": {
+            "create_time_100ns": 134348220498673693,
+            "pid": 71568
+          },
+          "after_parent_pid": 71568,
+          "before_parent_identity": {
+            "create_time_100ns": 134348220498823650,
+            "pid": 92628
+          },
+          "before_parent_pid": 92628,
+          "create_time_100ns": 134348221368408564,
+          "parent_exit_receipt_verified": true,
+          "pid": 90785
+        }
+      ],
+      "stale_ppid_bindings": [],
+      "unaccounted": [
+        {
+          "create_time_100ns": 134348221368408565,
+          "pid": 90786,
+          "reason": "digest_observed_descendant_missing_before_handle_bind"
+        }
+      ],
+      "exact_handle_bound_for_X_C_D": {
+        "(90784, 134348221368408563)": true,
+        "(90785, 134348221368408564)": true,
+        "(90786, 134348221368408565)": false
+      },
+      "residual_clear": false,
+      "numerical_credit": false,
+      "physical_credit": false
+    },
+    "serial_stop": {
+      "dispatched_stages": [
+        "parse_all",
+        "primary"
+      ],
+      "returned_stage_count": 2,
+      "failure": "primary: stop_reason=resource_monitor_incomplete",
+      "fresh_replay_started": false
+    }
+  },
+  "julia_started": false,
+  "runtime_dispatched": false,
+  "numerical_credit": false,
+  "physical_credit": false
+}

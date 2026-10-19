@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "M5CBudgetReceiptV2",
-  "type": "object",
-  "required": ["schema", "requested_budget", "effective_budget", "budget_applied", "budget_reason", "sealed_budget_hash", "result_status", "priority_rank"],
-  "properties": {"schema": {"const": "M5CBudgetReceiptV2"}, "requested_budget": {"type": ["integer", "null"], "minimum": 0}, "effective_budget": {"type": "integer", "minimum": 0}, "budget_applied": {"enum": ["omitted_identity_preserve", "equal_identity_preserve", "reject_sealed_mismatch", "rebuild_input_overload", "defer_over_limit", "reject_invalid"]}, "budget_reason": {"enum": ["budget_omitted", "budget_equal", "sealed_budget_mismatch", "over_limit", "input_overload", "invalid_budget"]}, "sealed_budget_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "result_status": {"enum": ["no_op", "budget_mismatch", "rebuilt", "terminal_deferred", "fail_closed"]}, "priority_rank": {"type": "integer", "minimum": 1, "maximum": 6}},
-  "additionalProperties": false
-}

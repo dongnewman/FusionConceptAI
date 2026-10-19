@@ -1,0 +1,378 @@
+{
+  "schema": "independent-t2-attempt11-retry3-static-review-r1",
+  "reviewed_utc": "2026-09-23T22:58:40.015423+00:00",
+  "reviewer": "/root/t2_review; actual model attestation unavailable",
+  "requested_model": "GPT-6 Luna/max requested; actual not observable",
+  "scope": "read-only frozen protocol review; no Julia/FreeGS; no source/test/controller edits",
+  "decision": "NO_GO_FOR_BOUNDED_RUNTIME_DISPATCH",
+  "formal_t2_acceptance": false,
+  "anchor_sha256": {
+    "protocol.json": {
+      "bytes": 632138,
+      "sha256": "5731a35854292096feafb1838cfd1ff2811d62f1eccc6a150246b160928bd1e0"
+    },
+    "coverage_map_r8.json": {
+      "bytes": 600011,
+      "sha256": "9fb16233ae8c0c4373781450c3f1bffedd3373f4e5a6e44f34f804132f93df41"
+    },
+    "dispatch.json": {
+      "bytes": 10694,
+      "sha256": "018507844889043f4b3064cbfba13b72ee0eeca4257383e2febcab72dac58fb9"
+    },
+    "command_argv.json": {
+      "bytes": 1722,
+      "sha256": "dc2fedc31fec43602ef4400f3a60545351aa3b416be760d27bdb53161e5337b0"
+    },
+    "freeze_snapshot.json": {
+      "bytes": 7765,
+      "sha256": "be30ee559e74281671d041770264fd806aae7c10da34fee7347bdb8349b0f73f"
+    },
+    "static_qa.json": {
+      "bytes": 45870,
+      "sha256": "c0770174cb2e363ee1a901e6f1c87e4aa3688a1a5a551a2a979b00492d13061c"
+    }
+  },
+  "source_sha256": {
+    "controller": {
+      "bytes": 148795,
+      "sha256": "a80b3e1b92b040ab645569abbabd63fc4597b9d7419e1c20d91db4c0c5566152",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r10.py"
+    },
+    "driver": {
+      "bytes": 99581,
+      "sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl"
+    },
+    "builder": {
+      "bytes": 62173,
+      "sha256": "5f991a6fba45eacfe5e82c306d8dfef8897ef12de7eeb2efaaecaebca8843327",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r8.py"
+    },
+    "validator": {
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py"
+    },
+    "qa_source": {
+      "bytes": 220861,
+      "sha256": "1f2aebfd08a6afc3a541c3223171f51a15e80e9af18213f23647fbe1fb2a9773",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r9.py"
+    },
+    "freezer": {
+      "bytes": 119026,
+      "sha256": "c509a878e71e45481b00b865e89b92b1c293bbdeff966d592b1f2ca03331e4e3",
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r9.py"
+    },
+    "root_launcher": {
+      "bytes": 4818,
+      "sha256": "5d6cf4c135bdc2ece734fbfe8ab0fd10e3e6025021a10eda457eec1634c6cccf",
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_grant_20260924/run_once.py"
+    }
+  },
+  "checks": [
+    {
+      "name": "frozen anchors/sources rehashed",
+      "status": "pass"
+    },
+    {
+      "name": "368 current input pins",
+      "status": "pass",
+      "count": 368,
+      "missing": 0,
+      "mismatch": 0,
+      "unsafe": 0
+    },
+    {
+      "name": "104 positive R3 exact joins",
+      "status": "pass",
+      "count": 104
+    },
+    {
+      "name": "source-bound map",
+      "status": "pass",
+      "site_count": 214,
+      "unique_site_ids": 214,
+      "source_line_text_sha_errors": 0
+    },
+    {
+      "name": "phase-site coverage union",
+      "status": "pass",
+      "runtime_multiplicity_sum": 622,
+      "phase_hit_sum": 622,
+      "phase_hits_by_phase": {
+        "actual_formal_authority": 118,
+        "actual_formal_baseline": 53,
+        "actual_formal_fault_n10": 123,
+        "actual_formal_preflight": 203,
+        "actual_formal_t1_handoff": 86,
+        "supplementary_child_coupling": 10,
+        "supplementary_edited_operation": 29
+      }
+    },
+    {
+      "name": "case/phase closure",
+      "status": "pass",
+      "formal_case_ids": 45,
+      "unique_cases": 60,
+      "case_hits": 68,
+      "phases": 30
+    },
+    {
+      "name": "relocation/history map equality",
+      "status": "pass",
+      "r3_to_r6_driver_site_moves": 175,
+      "unchanged_supplementary_sites": 39,
+      "r3_line_delta_histogram": {
+        "3": 109,
+        "5": 2,
+        "13": 8,
+        "17": 2,
+        "29": 10,
+        "33": 7,
+        "35": 37,
+        "0": 39
+      },
+      "attempt10_r7_drift": 0,
+      "semantic_drift": 0
+    },
+    {
+      "name": "projection24 positive reuse receipt",
+      "status": "pass",
+      "exit_code": 0,
+      "stop_reason": "natural_exit",
+      "marker": "T2_PROJECTION24_REUSE=PASS sites=24 groups=4",
+      "r1_count": 157,
+      "intersection": 151,
+      "excluded": 6,
+      "dependency_subset": 159
+    },
+    {
+      "name": "historical failure/interruption receipts",
+      "status": "pass",
+      "lineage": {
+        "initial_freezer_exit": 1,
+        "retry1_freezer_exit": 1,
+        "retry1_projection_exit": 0,
+        "retry2_freezer_exit": 1,
+        "retry2_modules_at_failure": [
+          "vnext_t2_controller_r9",
+          "vnext_t2_projection24_reuse_r4"
+        ],
+        "retry2_actual_binding": "vnext_t2_controller_r10",
+        "attempt10_preflight": {
+          "stop_reason": "phase_wall_timeout",
+          "exit_code": 15,
+          "actual_complete_observation_count": 16,
+          "planned_case_count": 18,
+          "remaining_case_ids": [
+            "FEEDBACK_STALE",
+            "FEEDBACK_FOREIGN"
+          ]
+        },
+        "attempt10_partial_reuse": false,
+        "failed_attempt11_credit": 0
+      }
+    },
+    {
+      "name": "two pyc exclusions exact and stable",
+      "status": "pass",
+      "count": 2,
+      "cleaned": false,
+      "dynamic_module_targets": []
+    },
+    {
+      "name": "fresh output, command data, archive scope",
+      "status": "pass",
+      "output_absent": true,
+      "command_kind": "non_executable_command_data",
+      "executable_files_in_retry3_leaf": []
+    },
+    {
+      "name": "time, memory, thread contract",
+      "status": "pass",
+      "resource_gates": {
+        "authority_case_wall_seconds": 2400,
+        "authority_phase_wall_seconds": 2400,
+        "julia_threads": 1,
+        "openblas_threads": 1,
+        "phase_wall_seconds": 480,
+        "phase_wall_timeout_overrides": {
+          "actual_formal_preflight": 600
+        },
+        "process_tree_working_set_bytes": 2147483648
+      },
+      "thresholds_changed": false
+    },
+    {
+      "name": "root launcher pinned/AST checked, ungranted",
+      "status": "pass",
+      "sha256": "5d6cf4c135bdc2ece734fbfe8ab0fd10e3e6025021a10eda457eec1634c6cccf",
+      "grant_leaf_files": [
+        "run_once.py"
+      ],
+      "launcher_invoked": false
+    },
+    {
+      "name": "exclusive lane current observation",
+      "status": "pass",
+      "julia_processes": [],
+      "inspection_errors": []
+    },
+    {
+      "name": "static only/no acceptance",
+      "status": "pass",
+      "qa_status": "pass",
+      "negative_controls": 131,
+      "actual_hits": "pending_julia_execution",
+      "formal_t2_accepted": false,
+      "julia_started": false
+    }
+  ],
+  "coverage": {
+    "old_sites": 154,
+    "old_hits": 174,
+    "successor_sites": 214,
+    "successor_hits": 622,
+    "preserved_sites": 191,
+    "preserved_hits": 530,
+    "context_transport_sites": 23,
+    "context_transport_hits": 92,
+    "formal_case_ids_by_phase": {
+      "actual_formal_authority": 9,
+      "actual_formal_baseline": 1,
+      "actual_formal_fault_n10": 12,
+      "actual_formal_preflight": 18,
+      "actual_formal_t1_handoff": 5
+    },
+    "unique_cases": 60,
+    "planned_case_hits": 68,
+    "formal_case_ids": 45,
+    "ordered_phases": 30,
+    "phase_hit_totals": {
+      "actual_formal_authority": 118,
+      "actual_formal_baseline": 53,
+      "actual_formal_fault_n10": 123,
+      "actual_formal_preflight": 203,
+      "actual_formal_t1_handoff": 86,
+      "supplementary_child_coupling": 10,
+      "supplementary_edited_operation": 29
+    },
+    "r3_to_r6_relocation": {
+      "driver_sites_moved": 175,
+      "supplementary_unchanged": 39,
+      "line_delta_histogram": {
+        "3": 109,
+        "5": 2,
+        "13": 8,
+        "17": 2,
+        "29": 10,
+        "33": 7,
+        "35": 37,
+        "0": 39
+      },
+      "semantic_contract_drift": 0
+    },
+    "attempt10_r7_drift": 0,
+    "actual_hits": "pending_julia_execution"
+  },
+  "retry_lineage": {
+    "initial_freezer_exit": 1,
+    "retry1_freezer_exit": 1,
+    "retry1_projection_exit": 0,
+    "retry2_freezer_exit": 1,
+    "retry2_modules_at_failure": [
+      "vnext_t2_controller_r9",
+      "vnext_t2_projection24_reuse_r4"
+    ],
+    "retry2_actual_binding": "vnext_t2_controller_r10",
+    "attempt10_preflight": {
+      "stop_reason": "phase_wall_timeout",
+      "exit_code": 15,
+      "actual_complete_observation_count": 16,
+      "planned_case_count": 18,
+      "remaining_case_ids": [
+        "FEEDBACK_STALE",
+        "FEEDBACK_FOREIGN"
+      ]
+    },
+    "attempt10_partial_reuse": false,
+    "failed_attempt11_credit": 0
+  },
+  "resource_gates": {
+    "authority_case_wall_seconds": 2400,
+    "authority_phase_wall_seconds": 2400,
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 480,
+    "phase_wall_timeout_overrides": {
+      "actual_formal_preflight": 600
+    },
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "blockers": [
+    {
+      "id": "RESOURCE_MONITOR_FAIL_OPEN",
+      "severity": "blocking",
+      "source": {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r10.py",
+        "sha256": "a80b3e1b92b040ab645569abbabd63fc4597b9d7419e1c20d91db4c0c5566152",
+        "lines": [
+          184,
+          202,
+          205,
+          233,
+          236,
+          249,
+          279,
+          285
+        ]
+      },
+      "finding": "process_tree_sample suppresses psutil.Error during descendant enumeration and per-process RSS/CPU reads, returning a partial total without a completeness/error marker; run_phase compares the partial total to 2 GiB. heavy_processes skips inspection errors; kill_tree suppresses descendant enumeration/kill errors without proving descendants exited. A missing observer can therefore yield incomplete resource/residual receipts.",
+      "qa_gap": "No injected negative controls for child enumeration, RSS read, termination, or residual-inspection failures.",
+      "repair": "Version controller/protocol: any incomplete process tree enumeration, RSS sampling, termination or residual scan must produce typed resource_monitor_incomplete and block later phases. Add deterministic fault-injection controls for each path; keep all time/memory/thread gates and 45/214/622 coverage unchanged.",
+      "runtime_failure_observed": false
+    }
+  ],
+  "root_launcher": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_grant_20260924/run_once.py",
+    "sha256": "5d6cf4c135bdc2ece734fbfe8ab0fd10e3e6025021a10eda457eec1634c6cccf",
+    "ast": "pass",
+    "command/protocol hash checks": true,
+    "368 input rehash": true,
+    "exact fresh output check": true,
+    "Julia scan uses strict tasklist fallback": true,
+    "grant present": false,
+    "invoked": false,
+    "current scan": {
+      "exit_code": 0,
+      "found": [],
+      "errors": []
+    }
+  },
+  "commands": [
+    {
+      "description": "Read-only Python stdin audit of anchors, 368 pins, 104 R3 join, source sites, phase union, cases, relocation and cache receipts",
+      "exit_code": 0
+    },
+    {
+      "description": "Python -B stdin root launcher SHA and AST check",
+      "exit_code": 0
+    },
+    {
+      "description": "Python -B stdin process-name scan with tasklist fallback",
+      "exit_code": 0
+    },
+    {
+      "description": "Frozen owner static QA receipt: pass, 131 negative controls; not rerun to preserve bytes",
+      "exit_code": 0
+    },
+    {
+      "description": "Reviewer Julia/controller run",
+      "exit_code": null
+    }
+  ],
+  "limitations": [
+    "No actual negative shard or actual source-site hit was generated by this review.",
+    "NO-GO is a static resource-observability blocker, not an observed retry3 runtime/science failure."
+  ]
+}

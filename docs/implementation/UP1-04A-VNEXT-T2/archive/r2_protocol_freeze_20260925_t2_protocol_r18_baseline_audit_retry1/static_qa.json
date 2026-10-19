@@ -1,0 +1,172 @@
+{
+  "baseline_heavy_preflight_controls": {
+    "baseline_and_final_audit_share_helper": true,
+    "negative_count": 24,
+    "positive_count": 1,
+    "production_helper": "verify_baseline_heavy_processes_clear"
+  },
+  "failure": {
+    "message": "R23 natural child did not complete with the exact terminal-exit-race receipt",
+    "type": "RuntimeError"
+  },
+  "formal_t2_accepted": false,
+  "input_count": 565,
+  "julia_executed": false,
+  "negative_controls": [
+    {
+      "name": "non-object baseline audit rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unknown baseline audit schema rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: complete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing baseline audit field rejected: snapshot",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "non-boolean complete rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: controller_processes",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: native_heavy_identities",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "wrong-type audit list rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "nonempty audit list rejected: errors",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "contradictory audit receipt rejected: incomplete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "contradictory audit receipt rejected: missing snapshot object",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: snapshot incomplete",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: snapshot schema",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: boolean row count",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: empty native process table",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed native snapshot rejected: wrong identity authority",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "missing formal case rejected by plan/map equality",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unique case count reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "assertion site reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "site hit reduction rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "unexpected map schema rejected",
+      "rejected_as": "RuntimeError",
+      "status": "pass"
+    },
+    {
+      "name": "malformed coverage-map SHA rejected by actual builder guard",
+      "rejected_as": "ValueError",
+      "status": "pass"
+    }
+  ],
+  "positive_controls": [
+    "R17 real empty complete audit accepted by R18 predicate"
+  ],
+  "schema": "vnext-t2-independent-negative-static-qa-r11-r23",
+  "status": "fail"
+}

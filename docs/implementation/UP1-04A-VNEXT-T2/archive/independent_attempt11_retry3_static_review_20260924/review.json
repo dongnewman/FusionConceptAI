@@ -1,0 +1,337 @@
+{
+  "schema": "independent-vnext-t2-attempt11-retry3-review-r1",
+  "created_utc": "2026-09-23T22:59:02.024407+00:00",
+  "verdict": "NO_GO_RESOURCE_SAMPLE_FAIL_OPEN",
+  "formal_t2_accepted": false,
+  "julia_started": false,
+  "actual_site_hits": "pending_julia_execution",
+  "checks": [
+    {
+      "check": "frozen hash protocol.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash coverage_map_r8.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash static_qa.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash freeze_snapshot.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash dispatch.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash command_argv.json",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash independent_negative_controller_r10.py",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash actual_formal_negative_driver_r6.jl",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash build_coverage_map_r8.py",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash static_qa_independent_negative_r9.py",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash freeze_independent_negative_protocol_r9.py",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash validate_projection24_reuse_r4.py",
+      "status": "pass"
+    },
+    {
+      "check": "frozen hash run_once.py",
+      "status": "pass"
+    },
+    {
+      "check": "368 current input pins rehashed",
+      "status": "pass"
+    },
+    {
+      "check": "attempt10 input closure preserved with 49 explained lineage/tool additions",
+      "status": "pass"
+    },
+    {
+      "check": "104 positive pins exact-join current input closure",
+      "status": "pass"
+    },
+    {
+      "check": "30 ordered phases",
+      "status": "pass"
+    },
+    {
+      "check": "45 formal IDs, 60 unique case IDs, 68 runtime case hits preserved",
+      "status": "pass"
+    },
+    {
+      "check": "214 sites and 622 planned hits preserve text/hash/multiplicity/phase semantics and resolve to current source",
+      "status": "pass"
+    },
+    {
+      "check": "owner static QA receipt has 131 unique passing negative controls",
+      "status": "pass"
+    },
+    {
+      "check": "480s ordinary / 600s preflight-only / 2400s authority / 2GiB / 1+1 thread gates",
+      "status": "pass"
+    },
+    {
+      "check": "12 actual shard commands retain 16 arguments and exact map path/hash",
+      "status": "pass"
+    },
+    {
+      "check": "projection reuse preflight natural exit, exact 159-pin dependency join and 24/4 groups",
+      "status": "pass"
+    },
+    {
+      "check": "exactly two pre-existing excluded pycs remain unchanged and out of input closure",
+      "status": "pass"
+    },
+    {
+      "check": "attempt10 interruption and attempt11 failed ancestry remain typed and pinned",
+      "status": "pass"
+    },
+    {
+      "check": "evidence-only archive, planned runtime output absent and no Julia execution",
+      "status": "pass"
+    },
+    {
+      "check": "controller incomplete child RSS is accepted as below hard cap (NO-GO defect reproduced)",
+      "status": "pass"
+    },
+    {
+      "check": "launcher direct name path",
+      "status": "pass"
+    },
+    {
+      "check": "launcher missing-name tasklist fallback",
+      "status": "pass"
+    },
+    {
+      "check": "launcher fallback argv and captured CSV contract",
+      "status": "pass"
+    },
+    {
+      "check": "launcher seven malformed/failing tasklist results reject",
+      "status": "pass"
+    },
+    {
+      "check": "launcher Julia process filter is present",
+      "status": "pass"
+    }
+  ],
+  "check_count": 32,
+  "failed_static_contract_checks": [],
+  "frozen_receipts": {
+    "protocol": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/protocol.json",
+      "bytes": 632138,
+      "sha256": "5731a35854292096feafb1838cfd1ff2811d62f1eccc6a150246b160928bd1e0"
+    },
+    "coverage_map": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/coverage_map_r8.json",
+      "bytes": 600011,
+      "sha256": "9fb16233ae8c0c4373781450c3f1bffedd3373f4e5a6e44f34f804132f93df41"
+    },
+    "static_qa": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/static_qa.json",
+      "bytes": 45870,
+      "sha256": "c0770174cb2e363ee1a901e6f1c87e4aa3688a1a5a551a2a979b00492d13061c"
+    },
+    "freeze_snapshot": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/freeze_snapshot.json",
+      "bytes": 7765,
+      "sha256": "be30ee559e74281671d041770264fd806aae7c10da34fee7347bdb8349b0f73f"
+    },
+    "dispatch": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/dispatch.json",
+      "bytes": 10694,
+      "sha256": "018507844889043f4b3064cbfba13b72ee0eeca4257383e2febcab72dac58fb9"
+    },
+    "command_argv": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/command_argv.json",
+      "bytes": 1722,
+      "sha256": "dc2fedc31fec43602ef4400f3a60545351aa3b416be760d27bdb53161e5337b0"
+    },
+    "static_qa_stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/static_qa.stdout.raw",
+      "bytes": 47148,
+      "sha256": "8757842fd6ac01200e5336f835b53aef73265cc1d20093327077ecce1b22aafa"
+    },
+    "static_qa_stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/static_qa.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "projection_phase": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/projection24_reuse_preflight/phase.json",
+      "bytes": 2085,
+      "sha256": "b942d467e073fec183f074c5cf8bd8d3bd7d9b6bb4b402093fc188f43aef4213"
+    },
+    "projection_receipt": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/projection24_reuse_preflight/reuse_receipt.json",
+      "bytes": 48553,
+      "sha256": "da2dfebf90b61d052997291369ec3dd561edd4b11a401f0b0679b38c91f26262"
+    },
+    "projection_stdout": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/projection24_reuse_preflight/stdout.raw",
+      "bytes": 349,
+      "sha256": "39259bbbeb8501deecf69870f30e09b38c56f554a2df35997f135f66edf21284"
+    },
+    "projection_stderr": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/projection24_reuse_preflight/stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "controller": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r10.py",
+      "bytes": 148795,
+      "sha256": "a80b3e1b92b040ab645569abbabd63fc4597b9d7419e1c20d91db4c0c5566152"
+    },
+    "driver": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl",
+      "bytes": 99581,
+      "sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e"
+    },
+    "map_builder": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/build_coverage_map_r8.py",
+      "bytes": 62173,
+      "sha256": "5f991a6fba45eacfe5e82c306d8dfef8897ef12de7eeb2efaaecaebca8843327"
+    },
+    "static_qa_source": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r9.py",
+      "bytes": 220861,
+      "sha256": "1f2aebfd08a6afc3a541c3223171f51a15e80e9af18213f23647fbe1fb2a9773"
+    },
+    "freezer": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r9.py",
+      "bytes": 119026,
+      "sha256": "c509a878e71e45481b00b865e89b92b1c293bbdeff966d592b1f2ca03331e4e3"
+    },
+    "projection_validator": {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/validate_projection24_reuse_r4.py",
+      "bytes": 13215,
+      "sha256": "bb0f40d1dbe5b7507657e4e60442ec6b6b027cca223d4eaed7ddcd56fb99b297"
+    }
+  },
+  "input_pin_audit": {
+    "count": 368,
+    "mismatch_count": 0,
+    "attempt10_count": 319,
+    "added": 49,
+    "missing": 0,
+    "changed_shared": 0,
+    "positive_pin_count": 104
+  },
+  "coverage_audit": {
+    "phase_count": 30,
+    "formal_case_count": 45,
+    "unique_case_count": 60,
+    "runtime_case_hit_count": 68,
+    "site_count": 214,
+    "planned_hit_count": 622,
+    "semantic_site_diffs": 0,
+    "current_source_expression_mismatches": 0,
+    "ledger_site_count": 214,
+    "path_changed_count": 175,
+    "line_changed_count": 175,
+    "line_delta_values": [
+      0,
+      3,
+      5,
+      13,
+      17,
+      29,
+      33,
+      35
+    ]
+  },
+  "resource_policy": {
+    "authority_case_wall_seconds": 2400,
+    "authority_phase_wall_seconds": 2400,
+    "julia_threads": 1,
+    "openblas_threads": 1,
+    "phase_wall_seconds": 480,
+    "phase_wall_timeout_overrides": {
+      "actual_formal_preflight": 600
+    },
+    "process_tree_working_set_bytes": 2147483648
+  },
+  "resource_fail_open_counterexample": {
+    "observed_root_rss_bytes": 1288490188,
+    "unreadable_child_rss_bytes_in_fixture": 1288490188,
+    "fixture_tree_rss_lower_bound_bytes": 2576980376,
+    "hard_limit_bytes": 2147483648,
+    "reported_sample_rss_bytes": 1288490188,
+    "reported_process_rows": [
+      {
+        "pid": 4321,
+        "create_time": 4321.0,
+        "working_set_bytes": 1288490188,
+        "user_cpu_seconds": 0.0,
+        "system_cpu_seconds": 0.0
+      }
+    ],
+    "sample_completeness_field_present": false,
+    "run_phase_completeness_guard_present": false,
+    "controller_source_lines": {
+      "children_error_swallowed": "207-210",
+      "per_process_error_skipped": "215-228",
+      "unconditional_rss_limit_comparison": "279-285"
+    }
+  },
+  "owner_static_qa": {
+    "status": "pass",
+    "negative_control_count": 131,
+    "all_pass": true,
+    "resource_fail_open_caught": false
+  },
+  "owner_run_receipts": {
+    "freeze_exit_code": 0,
+    "static_qa_exit_code": 0,
+    "static_qa_stderr_empty": true,
+    "projection_preflight_exit_code": 0
+  },
+  "lineage": {
+    "attempt10": "preserved_resource_interruption_partial_not_scientific_failure",
+    "initial": "preserved_pre_execution_freezer_failure_only",
+    "retry1": "preserved_static_qa_failure_only_no_julia",
+    "retry2": "preserved_static_qa_failure_only_no_julia"
+  },
+  "launcher_static_probe": {
+    "source": {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/root_attempt11_grant_20260924/run_once.py",
+      "bytes": 4818,
+      "sha256": "5d6cf4c135bdc2ece734fbfe8ab0fd10e3e6025021a10eda457eec1634c6cccf"
+    },
+    "fake_controls": 10,
+    "windows_tasklist_end_to_end": "not_run",
+    "main_called": false
+  },
+  "commands": {
+    "independent_python": [
+      "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "-B",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_static_r5/independent_attempt11_retry3_tester.py",
+      "--write-receipt",
+      "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/review.json"
+    ],
+    "exit_code": 0,
+    "scope": "Python-only/static and fake-object probes; no controller main, Julia, or runtime shard was launched"
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "schema": "independent-t2-postrun-review-r1",
+  "reviewed_utc": "2026-09-25T16:21:51.530538Z",
+  "reviewer": "/root/t2_review",
+  "task": "Independent read-only postrun review of T2 R19 actual run",
+  "verdict": "NO_GO_RUN_INCOMPLETE",
+  "decision_scope": "This is a postrun classification, not static dispatch readiness or T2 acceptance.",
+  "reviewer_started_julia": false,
+  "classification": {
+    "primary": "process_tree_monitor_incomplete",
+    "category": "monitor_integrity_program_interruption",
+    "science_failure": false,
+    "numerical_failure": false,
+    "physical_failure": false,
+    "resource_limit_failure": false,
+    "wall_timeout": false,
+    "formal_acceptance": false
+  },
+  "outer_shell": {
+    "exit_code": 1,
+    "source": "root task report",
+    "raw_outer_invocation_sidecar_in_actual_leaf": false
+  },
+  "frozen_protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r19_snapshot_receipt_retry4/protocol.json",
+    "bytes": 1069548,
+    "sha256": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8",
+    "declared_sha256": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8",
+    "matches_declared": true
+  },
+  "controller": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r19.py",
+    "actual": {
+      "bytes": 277560,
+      "sha256": "1d955e17b4b9634ab5288ada36d4e30d6402bf56670b14f8e9afabfde1f252ca"
+    },
+    "protocol_pin": {
+      "bytes": 277560,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r19.py",
+      "sha256": "1d955e17b4b9634ab5288ada36d4e30d6402bf56670b14f8e9afabfde1f252ca"
+    },
+    "matches": true
+  },
+  "coverage_map": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+    "actual": {
+      "bytes": 600012,
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    },
+    "protocol_pin": {
+      "bytes": 600012,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    },
+    "matches": true
+  },
+  "phase_ledger": [
+    {
+      "name": "parse_gate",
+      "started_utc": "2026-09-25T15:56:18.416996Z",
+      "ended_utc": "2026-09-25T15:56:19.438783Z",
+      "seconds": 1.0217487999761943,
+      "child_seconds": 0.9543111999810208,
+      "timeout_seconds": 480.0,
+      "exit_code": 0,
+      "stop_reason": "natural_exit",
+      "process_tree_sample_count": 3,
+      "process_tree_samples_complete": true,
+      "peak_process_tree_working_set_bytes": 288473088,
+      "working_set_limit_bytes": 2147483648
+    },
+    {
+      "name": "coverage_ast_inventory",
+      "started_utc": "2026-09-25T15:56:19.444357Z",
+      "ended_utc": "2026-09-25T15:56:22.277131Z",
+      "seconds": 2.832749099994544,
+      "child_seconds": 2.797026400017785,
+      "timeout_seconds": 480.0,
+      "exit_code": 0,
+      "stop_reason": "natural_exit",
+      "process_tree_sample_count": 9,
+      "process_tree_samples_complete": true,
+      "peak_process_tree_working_set_bytes": 346583040,
+      "working_set_limit_bytes": 2147483648
+    },
+    {
+      "name": "projection24_cross_run_validation",
+      "started_utc": "2026-09-25T15:56:22.286353Z",
+      "ended_utc": "2026-09-25T15:56:22.672039Z",
+      "seconds": 0.38566550001269206,
+      "child_seconds": 0.33830530001432635,
+      "timeout_seconds": 480.0,
+      "exit_code": 0,
+      "stop_reason": "natural_exit",
+      "process_tree_sample_count": 1,
+      "process_tree_samples_complete": true,
+      "peak_process_tree_working_set_bytes": 28303360,
+      "working_set_limit_bytes": 2147483648
+    },
+    {
+      "name": "actual_formal_baseline",
+      "started_utc": "2026-09-25T15:56:22.675371Z",
+      "ended_utc": "2026-09-25T15:57:11.429235Z",
+      "seconds": 48.75397459999658,
+      "child_seconds": 48.718176599999424,
+      "timeout_seconds": 480.0,
+      "exit_code": 15,
+      "stop_reason": "process_tree_monitor_incomplete",
+      "process_tree_sample_count": 161,
+      "process_tree_samples_complete": false,
+      "peak_process_tree_working_set_bytes": 819822592,
+      "working_set_limit_bytes": 2147483648
+    }
+  ],
+  "baseline_failure": {
+    "message": "actual_formal_baseline process_tree_monitor_incomplete: samples",
+    "traceback": "Traceback (most recent call last):\n  File \"D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r19.py\", line 3606, in main\n    require_natural(baseline_phase, exit_zero=True)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r19.py\", line 5174, in require_natural\n    _require_natural_legacy_r16(phase, exit_zero=exit_zero)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\006-Programing\\LMC\\FusionConceptAI\\test\\GenomeV5\\Integration\\VNextT2FormalIndependentR1\\independent_negative_controller_r19.py\", line 1752, in _require_natural_legacy_r16\n    raise RuntimeError(\n        f\"{phase['name']} process_tree_monitor_incomplete: samples\")\nRuntimeError: actual_formal_baseline process_tree_monitor_incomplete: samples\n",
+    "sample": {
+      "count": 161,
+      "complete_count": 160,
+      "incomplete_count": 1,
+      "index": 161,
+      "elapsed_seconds": 48.45034690000466,
+      "sample_complete": false,
+      "errors": [
+        {
+          "message": "cannot open a process absent from current SPI snapshot",
+          "phase": "sample_process_tree",
+          "repr": "MonitorIncomplete('cannot open a process absent from current SPI snapshot')",
+          "type": "MonitorIncomplete"
+        }
+      ],
+      "exact_monitor_receipt_complete": false,
+      "snapshot_after_digest": null,
+      "before_snapshot_rows": 607,
+      "transient_git_rows": [
+        [
+          18528,
+          86060,
+          134348254310869192,
+          "git.exe"
+        ]
+      ],
+      "tracked_process_identities": [
+        {
+          "create_time_100ns": 134348253826937489,
+          "pid": 85212
+        },
+        {
+          "create_time_100ns": 134348253826773891,
+          "pid": 86060
+        }
+      ]
+    },
+    "resources": {
+      "phase_wall_seconds": 48.75397459999658,
+      "phase_wall_limit_seconds": 480.0,
+      "peak_working_set_bytes": 819822592,
+      "sampled_working_set_limit_bytes": 2147483648,
+      "headroom_bytes": 1327661056,
+      "phase_exit_code": 15,
+      "stop_reason": "process_tree_monitor_incomplete"
+    }
+  },
+  "failure_path": {
+    "controller_path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r19.py",
+    "controller_handle_provider_line": 4643,
+    "supervisor_path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+    "registry_lines": "112-118",
+    "registry_error": "cannot open a process absent from current SPI snapshot"
+  },
+  "input_and_source_integrity": {
+    "protocol_inputs": {
+      "expected_count": 655,
+      "protocol_count": 655,
+      "pipeline_start_count": 655,
+      "pipeline_final_before_count": 655,
+      "pipeline_final_after_count": 655,
+      "mismatches": [],
+      "mismatch_count": 0,
+      "start_equals_final_before": true,
+      "final_before_equals_after": true,
+      "HEAD_protocol": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+      "HEAD_start": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+      "HEAD_final_before": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+      "HEAD_final_after": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+      "HEAD_current": "63792ca22958ffca8c3fa8e642256eb9f7240724"
+    },
+    "supplemental_pins": {
+      "checked_counts": {
+        "positive_reuse_input_pins": 104,
+        "positive_dispatch": 4,
+        "positive_evidence": 10,
+        "active_guidance_pins": 9
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "positive_reuse_subset_of_current_inputs": true
+    },
+    "source_hash_checks": {
+      "controller": {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r19.py",
+        "actual": {
+          "bytes": 277560,
+          "sha256": "1d955e17b4b9634ab5288ada36d4e30d6402bf56670b14f8e9afabfde1f252ca"
+        },
+        "protocol_pin": {
+          "bytes": 277560,
+          "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r19.py",
+          "sha256": "1d955e17b4b9634ab5288ada36d4e30d6402bf56670b14f8e9afabfde1f252ca"
+        },
+        "matches": true
+      },
+      "coverage_map": {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+        "actual": {
+          "bytes": 600012,
+          "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+        },
+        "protocol_pin": {
+          "bytes": 600012,
+          "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+          "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+        },
+        "matches": true
+      },
+      "protocol": {
+        "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r19_snapshot_receipt_retry4/protocol.json",
+        "actual": {
+          "bytes": 1069548,
+          "sha256": "1b0e6f4e2267b32c83195b7cf0cf0b92c3b8d356b8fd69b6840f3cfdcf6810b8"
+        },
+        "protocol_pin": "protocol top-level sha256 bound by pipeline_start.protocol_expected_sha256 and final protocol reference",
+        "matches": true
+      },
+      "native_process_table": {
+        "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+        "actual": {
+          "bytes": 27470,
+          "sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4"
+        },
+        "protocol_pin": {
+          "bytes": 27470,
+          "path": "test/RuntimeV4/NativeG1G2DiffusionV1/native_process_table_r23_v1.py",
+          "sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4"
+        },
+        "phase_expected_sha256": "b18136c52df644579e05d52a82f98541ac95a85de9be56cdae6d52baa8af74e4",
+        "matches": true
+      },
+      "supervisor": {
+        "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+        "actual": {
+          "bytes": 25343,
+          "sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192"
+        },
+        "protocol_pin": {
+          "bytes": 25343,
+          "path": "test/RuntimeV4/NativeG1G2DiffusionV1/supervise_r16_root_audit_r23_v1.py",
+          "sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192"
+        },
+        "phase_expected_sha256": "ed38b5e1d9d7c506bd8db4c311948601fbb12be47ac68e2d3e4ac2e710342192",
+        "matches": true
+      },
+      "driver": {
+        "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl",
+        "actual": {
+          "bytes": 99581,
+          "sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e"
+        },
+        "protocol_pin": {
+          "bytes": 99581,
+          "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/actual_formal_negative_driver_r6.jl",
+          "sha256": "5a71c6417cadd04c3f36f8461134de46f455debdf7c6e9f804181c589c3b590e"
+        },
+        "phase_expected_sha256": null,
+        "matches": true
+      }
+    },
+    "audit_integrity_pass": true
+  },
+  "cleanup_and_current_state": {
+    "final_process_tree_audit_complete": true,
+    "final_process_tree_audit_errors": [],
+    "root_exit_confirmed": true,
+    "root_identity_absent": true,
+    "residual_descendant_processes": [],
+    "residual_audit": {
+      "complete": true,
+      "expected_identity_count": 2,
+      "host_identity": [
+        10,
+        0,
+        26200,
+        "AMD64"
+      ],
+      "residual_clear": true,
+      "residual_exact_identities": [],
+      "row_count": 604,
+      "schema": "native-g1g2-r23-residual-audit-v1"
+    },
+    "termination_receipt": {
+      "complete": true,
+      "errors": [],
+      "root_exit_confirmed": true,
+      "schema": "vnext-t2-r23-termination-r1",
+      "signal_attempts": [
+        {
+          "identity": {
+            "create_time_100ns": 134348253826937489,
+            "pid": 85212
+          },
+          "receipt": {
+            "complete": true,
+            "exit_code": 15,
+            "identity": {
+              "create_time_100ns": 134348253826937489,
+              "pid": 85212
+            },
+            "post_table_reused_pid_ticks": null,
+            "post_table_same_generation_present": false,
+            "schema": "native-g1g2-r23-exit-receipt-v1",
+            "signal_sent": true,
+            "wait_confirmed": true
+          }
+        },
+        {
+          "identity": {
+            "create_time_100ns": 134348253826773891,
+            "pid": 86060
+          },
+          "receipt": {
+            "complete": true,
+            "exit_code": 15,
+            "identity": {
+              "create_time_100ns": 134348253826773891,
+              "pid": 86060
+            },
+            "post_table_reused_pid_ticks": null,
+            "post_table_same_generation_present": false,
+            "schema": "native-g1g2-r23-exit-receipt-v1",
+            "signal_sent": true,
+            "wait_confirmed": true
+          }
+        }
+      ],
+      "verified": true
+    },
+    "current_process_state": {
+      "captured_utc": "2026-09-25T16:20:49.3014380Z",
+      "target_processes": [
+        {
+          "pid": 18528,
+          "present": false,
+          "name": null,
+          "start_time": null
+        },
+        {
+          "pid": 85212,
+          "present": false,
+          "name": null,
+          "start_time": null
+        },
+        {
+          "pid": 86060,
+          "present": false,
+          "name": null,
+          "start_time": null
+        }
+      ],
+      "julia_processes": [],
+      "query": "Get-Process by exact historical PIDs and name julia",
+      "exit_code": 0
+    }
+  },
+  "coverage_and_acceptance_ceiling": {
+    "pipeline_status": "fail",
+    "phase_count_expected": 30,
+    "negative_shard_phases_started": false,
+    "authority_started": false,
+    "executed_runtime_case_hit_count_field": 0,
+    "executed_unique_case_count_field": 0,
+    "assertion_site_count_observed": null,
+    "assertion_site_hit_count_observed": null,
+    "assertion_site_hit_aggregate": null,
+    "formal_t2_accepted": false,
+    "scientific_acceptance": false,
+    "physical_acceptance": false,
+    "phases_started": 4
+  },
+  "r20_minimum_recovery_criteria": [
+    "Preserve the immutable R19 actual leaf and create a new versioned controller/protocol/output leaf; do not relabel this run or overwrite its artifacts.",
+    "In the sampling path, validate/open each exact (pid, FILETIME) generation using the authoritative before-snapshot row; remove the per-row fresh SPI query in controller R19 line 4643, while retaining exact handle identity checks and the post-read check.",
+    "Do not silently drop or zero-measure a row found in before snapshot. If exact-generation handle acquisition or resource read fails, remain incomplete unless a fully specified bounded retry obtains a new complete sample without pretending the failed sample passed.",
+    "If a child is successfully exact-opened and resource-read then exits by the after-snapshot, only classify it as measured-then-exited with a typed receipt binding before row, handle identity, resource read, and after snapshot; a PID reuse must never be signaled or counted as the old generation.",
+    "Add deterministic controls for the observed before-row/fresh-query-missing race, child exit before handle acquisition, exit after successful measurement, same-PID generation reuse, a new child appearing after the before snapshot, malformed snapshots, and handle/resource-reader failure. Preserve fail-closed behavior for unmeasured generations.",
+    "Run a Python-only Windows host smoke with a controlled short-lived child and exact raw generation identities; capture before/after snapshots, measurement outcome, signal/wait receipts, and no residual child.",
+    "Keep R19 coverage and semantic gates intact: 30 phases, 45 formal cases, 60 unique cases/68 case hits, 214 source-site IDs/622 planned hits, authority and shard scopes unchanged; keep 480s ordinary phases, 600s preflight override only, 2400s authority limits, 2 GiB sampled stop, and one Julia/BLAS thread.",
+    "Before a new serialized run, freeze and rehash all current inputs, bind old R19 failure as immutable lineage, ensure the new output path is absent, and verify the heavy lane is empty. A new run may proceed only after independent static and host-race reviews."
+  ],
+  "evidence_files": {
+    "verification_receipt": "verification_receipt.json",
+    "actual_raw_hashes": "actual_raw_file_hashes.json",
+    "current_process_state": "current_process_state.json"
+  }
+}

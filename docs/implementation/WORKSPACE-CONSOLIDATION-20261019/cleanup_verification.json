@@ -1,0 +1,54 @@
+{
+  "scope": "maintenance_static_and_control_volume_check_only",
+  "scientific_acceptance": false,
+  "checks": [
+    {
+      "path": "runs/e/workspace_consolidation_julia_parse_20261019_r1",
+      "actual_child_os_exit_code": 1,
+      "stop_reason": null,
+      "seconds": 2.5956334000002244,
+      "peak_job_commit_bytes": 412450816,
+      "resource_gate_passed": true,
+      "input_pins_unchanged": true,
+      "cleanup_complete": true,
+      "stdout": "",
+      "stderr": "┌ Warning: Assignment to `n` in soft scope is ambiguous because a global variable by the same name exists: `n` will be treated as a new local. Disambiguate by using `local n` to suppress this warning or `global n` to assign to the existing global variable.\n└ @ none:1\nERROR: UndefVarError: `n` not defined\nStacktrace:\n [1] top-level scope\n   @ .\\none:1\n"
+    },
+    {
+      "path": "runs/e/workspace_consolidation_julia_parse_20261019_r2",
+      "actual_child_os_exit_code": 1,
+      "stop_reason": null,
+      "seconds": 3.098076400001446,
+      "peak_job_commit_bytes": 266498048,
+      "resource_gate_passed": true,
+      "input_pins_unchanged": true,
+      "cleanup_complete": true,
+      "stdout": "(check = :julia_source_syntax_only, files = 346, errors = [\"src\\\\RuntimeV4\\\\DeclaredCrossMeshConservativeTransferExecutionV1.jl\"], scientific_acceptance = false)\n",
+      "stderr": ""
+    },
+    {
+      "path": "runs/e/workspace_consolidation_crossmesh_syntax_20261019_r1",
+      "actual_child_os_exit_code": 1,
+      "stop_reason": null,
+      "seconds": 4.622936200001277,
+      "peak_job_commit_bytes": 447746048,
+      "resource_gate_passed": true,
+      "input_pins_unchanged": true,
+      "cleanup_complete": true,
+      "stdout": "",
+      "stderr": "ERROR: LoadError: UndefVarError: `G1DiffusionDeclarationV1` not defined\nStacktrace:\n [1] top-level scope\n   @ D:\\006-Programing\\LMC\\FusionConceptAI\\src\\RuntimeV4\\DeclaredG123DiffusionExecutionV1.jl:52\n [2] include\n   @ .\\Base.jl:495 [inlined]\n [3] top-level scope\n   @ D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2CrossMeshConservativeTransfer\\module_load_shortcheck_v1.jl:19\n [4] include(fname::String)\n   @ Base.MainInclude .\\client.jl:489\n [5] top-level scope\n   @ none:1\nin expression starting at D:\\006-Programing\\LMC\\FusionConceptAI\\src\\RuntimeV4\\DeclaredG123DiffusionExecutionV1.jl:52\nin expression starting at D:\\006-Programing\\LMC\\FusionConceptAI\\test\\RuntimeV4\\UP2CrossMeshConservativeTransfer\\module_load_shortcheck_v1.jl:14\n"
+    },
+    {
+      "path": "runs/e/workspace_consolidation_crossmesh_syntax_20261019_r2",
+      "actual_child_os_exit_code": 0,
+      "stop_reason": null,
+      "seconds": 9.145163799999864,
+      "peak_job_commit_bytes": 352702464,
+      "resource_gate_passed": true,
+      "input_pins_unchanged": true,
+      "cleanup_complete": true,
+      "stdout": "Test Summary:                      | Pass  Total  Time\nUP2-03 cross-mesh module load only |    5      5  0.0s\nUP2_03_MODULE_LOAD_ONLY=true\nUP2_03_T1_CONTINUATION_EXECUTED=false\nUP2_03_TRANSFER_OR_SOLVER_EXECUTED=false\nUP2_03_T2_OR_Q1_8_EXECUTED=false\nTest Summary:                        | Pass  Total  Time\naxisymmetric control volume geometry |    4      4  0.4s\n(check = :julia_source_syntax_only, files = 346, errors = String[], scientific_acceptance = false)\n",
+      "stderr": ""
+    }
+  ]
+}

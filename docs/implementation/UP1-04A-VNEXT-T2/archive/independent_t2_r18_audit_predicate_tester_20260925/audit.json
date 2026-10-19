@@ -1,0 +1,193 @@
+{
+  "schema": "independent-t2-r18-audit-predicate-review-r1",
+  "observed_utc": "2026-09-25T14:51:50Z",
+  "verdict": "NO_GO_FOR_ONE_BOUNDED_FORMAL_RUN_PENDING_FULL_SNAPSHOT_RECEIPT_VALIDATION",
+  "no_go_reason": "At both baseline and final trust boundaries the production predicate accepts missing/malformed required fields from the vnext-t2-r23-native-snapshot-receipt-r1 schema.",
+  "frozen_anchors": [
+    {
+      "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r18_baseline_audit_retry2/protocol.json",
+      "bytes": 1013468,
+      "sha256": "90262706d77127112e6c097664b18c67062ed265641719f666e546baf55a9cc7"
+    },
+    {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r18.py",
+      "bytes": 275508,
+      "sha256": "0c82606e5d76815238db567c2be55095ba6523cf838b16f3ee50beb55119b660"
+    },
+    {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r18.py",
+      "bytes": 37119,
+      "sha256": "c4a53d8d4658eb3209c8a6a04aa88fbc4b5904b4b577ab035daf67f914afe0e6"
+    },
+    {
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+      "bytes": 600012,
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    }
+  ],
+  "static_qa": {
+    "fresh_exit": 0,
+    "status": "pass_static_r18_r23_no_julia",
+    "report_sha256": "b3a369a542ed743a6cf401d843b5e4fc5b396c4f615cb7a526f1043ef746c2f4",
+    "negative_controls": 30,
+    "positive_controls": 5,
+    "julia_executed": false,
+    "formal_t2_accepted": false
+  },
+  "focused_probe": {
+    "command_file": "predicate_probe_r4.command.json",
+    "exit": 1,
+    "stdout_sha256": "951ea2ea79158885f5f800e12c2ae95a5e490ca33937f6df881434e39e13f8b8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test_count": 49,
+    "positive_cases": 2,
+    "negative_cases": 47,
+    "passed_cases": 39,
+    "failing_cases": [
+      {
+        "case": "snapshot_missing_host_identity",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_wrong_host_identity",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_missing_system_information_class",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_wrong_system_information_class",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_missing_buffer_bytes",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_wrong_buffer_bytes",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_missing_query_attempts",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_wrong_query_attempts",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_missing_raw_identity_digest",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      },
+      {
+        "case": "snapshot_malformed_raw_identity_digest",
+        "baseline_accepted": true,
+        "final_accepted": true,
+        "expected_go": false
+      }
+    ],
+    "baseline_final_boundaries_each": null,
+    "julia_started": false
+  },
+  "actual_process_table_controls": [
+    {
+      "case": "actual_table_empty_baseline_and_final_positive",
+      "baseline_go": true,
+      "final_go": true,
+      "baseline_process_count": 0,
+      "final_process_count": 0,
+      "passed": true
+    },
+    {
+      "case": "actual_table_julia_process_baseline_and_final_negative",
+      "baseline_go": false,
+      "final_go": false,
+      "baseline_process_count": 1,
+      "final_process_count": 1,
+      "passed": true
+    }
+  ],
+  "earlier_probe": {
+    "r3_exit": 0,
+    "r3_tests": 39,
+    "r3_passed": 39,
+    "tester_harness_r2_exit": 1,
+    "harness_error": "NameError: ticks not defined; preserved as a tester-only harness defect and fixed before r3."
+  },
+  "input_rehash": {
+    "schema": "independent-t2-r18-input-rehash-r2",
+    "protocol_sha256": "90262706d77127112e6c097664b18c67062ed265641719f666e546baf55a9cc7",
+    "protocol_inputs_count": 580,
+    "protocol_inputs_match": 580,
+    "positive_reuse_pins_count": 104,
+    "positive_reuse_pins_match": 104,
+    "mismatch_count": 0,
+    "tester_source_path": "test/GenomeV5/Integration/VNextT2AuditIndependentR18/test_r18_audit_predicate.py",
+    "tester_source_sha256": "4b2d11aa93d308165a061fe2b204ceda001591329544b0bf697fc7e8622ad995",
+    "tester_source_is_pinned": false
+  },
+  "coverage_comparison": {
+    "schema": "independent-t2-r18-coverage-comparison-r1",
+    "retry7_protocol_sha256": "5635d5093aab15b557234c57217a8b0302bf6ddfbf00aa1acb66a38e46d970c0",
+    "retry7_map_pin": {
+      "bytes": 600012,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    },
+    "r18_map_pin": {
+      "bytes": 600012,
+      "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+      "sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56"
+    },
+    "live_map_path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/coverage_map_r16.json",
+    "live_map_sha256": "7cb1c9ed0d32c5ef09c135b185d42865fa22ed7381907a325ed63561fe19db56",
+    "r17_r18_map_pin_equal": true,
+    "static_qa_equal_attempt7_case_site_sets": true,
+    "coverage": {
+      "attempt7_case_site_set_equal": true,
+      "authority_nonzero_sites": 75,
+      "authority_planned_hits": 118,
+      "authority_source_sites": 175,
+      "case_count": 60,
+      "formal_case_count": 45,
+      "phase_count": 30,
+      "planned_source_site_hits": 622,
+      "projection_sites": 24,
+      "relocated_site_count": 175,
+      "runtime_case_hits": 68,
+      "runtime_unique_cases": 60,
+      "source_sites": 214,
+      "transport_planned_hits": 92,
+      "transport_site_ids": 23
+    },
+    "planned_evidence_path": "docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r18_r23_r8",
+    "planned_evidence_path_absent": true,
+    "formal_t2_accepted": false,
+    "static_julia_executed": false
+  },
+  "conclusion": "Top-level populated process/controller/native/error lists, incomplete booleans, missing/malformed top-level fields, malformed list fields, and basic snapshot schema/completeness/authority/row-count controls reject at both boundaries. However missing/incorrect snapshot host_identity, system_information_class, buffer_bytes, query_attempts, and raw_identity_digest_sha256 are accepted at both boundaries. Static QA exit 0 misses these controls. No Julia was started.",
+  "limitations": [
+    "This is Python/static/synthetic-process-table evidence only.",
+    "No formal T2 phase or Julia execution was performed.",
+    "One-run GO is withheld until the strict helper validates required snapshot receipt fields or the contract expressly defines them as optional."
+  ]
+}

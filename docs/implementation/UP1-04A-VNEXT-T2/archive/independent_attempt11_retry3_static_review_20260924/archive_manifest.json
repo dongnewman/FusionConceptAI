@@ -1,0 +1,34 @@
+{
+  "schema": "independent-vnext-t2-attempt11-retry3-manifest-r1",
+  "verdict": "NO_GO_RESOURCE_SAMPLE_FAIL_OPEN",
+  "review": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/review.json",
+    "bytes": 11991,
+    "sha256": "8a16c369a6f1cbd2e6ea980db293d3ad3717b82f71991f91bdb30ee732480f0f"
+  },
+  "tester_source": {
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_static_r5/independent_attempt11_retry3_tester.py",
+    "bytes": 24840,
+    "sha256": "32814b3a1697a43caa4d102d407c0e3e26779cf32b6d07b5ea077c08a90f8d53",
+    "pinned_by_frozen_protocol": false
+  },
+  "command": {
+    "argv": [
+      "D:\\Users\\Newman\\anaconda3\\python.exe",
+      "-B",
+      "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_static_r5/independent_attempt11_retry3_tester.py",
+      "--write-receipt",
+      "docs/implementation/UP1-04A-VNEXT-T2/archive/independent_attempt11_retry3_static_review_20260924/review.json"
+    ],
+    "exit_code": 0,
+    "scope": "Python only; frozen JSON/source reads; fake process and fake tasklist probes; no controller main, Julia, or T2 runtime shard"
+  },
+  "frozen_protocol": {
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s_retry3/protocol.json",
+    "sha256": "5731a35854292096feafb1838cfd1ff2811d62f1eccc6a150246b160928bd1e0"
+  },
+  "archive_payload": {
+    "executable_files": 0,
+    "runtime_output_created": false
+  }
+}

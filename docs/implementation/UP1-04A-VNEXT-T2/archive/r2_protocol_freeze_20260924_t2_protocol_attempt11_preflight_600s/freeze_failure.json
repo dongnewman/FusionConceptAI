@@ -1,0 +1,67 @@
+{
+  "command_argv": [
+    "python",
+    "-B",
+    "FusionConceptAI/test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r9.py",
+    "--positive-dispatch-dir",
+    "FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/formal_t2_dispatch_r3",
+    "--positive-evidence-dir",
+    "FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/formal_t2_serial_replay_r3",
+    "--output-dir",
+    "FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s",
+    "--planned-evidence-dir",
+    "FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/formal_t2_actual_negative_r5_attempt11_preflight_600s",
+    "--julia",
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--coverage-map",
+    "FusionConceptAI/docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s/coverage_map_r8.json"
+  ],
+  "controller_source": {
+    "bytes": 148795,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/independent_negative_controller_r10.py",
+    "sha256": "a80b3e1b92b040ab645569abbabd63fc4597b9d7419e1c20d91db4c0c5566152"
+  },
+  "coverage_map": {
+    "bytes": 600011,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s/coverage_map_r8.json",
+    "sha256": "9fb16233ae8c0c4373781450c3f1bffedd3373f4e5a6e44f34f804132f93df41"
+  },
+  "dispatch_written": false,
+  "exit_code": 1,
+  "failure_location": {
+    "cause": "freezer compared controller r8 directly with current r10 source instead of the frozen r9 intermediate",
+    "function": "build_controller_r8_r9_authority_progress_delta",
+    "line": 619
+  },
+  "failure_message": "controller r9 changed unapproved module bindings",
+  "failure_type": "RuntimeError",
+  "formal_t2_accepted": false,
+  "freezer_source_at_failure": {
+    "bytes": 103179,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/freeze_independent_negative_protocol_r9.py",
+    "sha256": "4cb636ec1de1160ce1ec15094efb4b1e48ac61a4e2baebb4c78a3fbf9a72b5d5"
+  },
+  "julia_started": false,
+  "planned_execution_directory_absent": true,
+  "protocol_written": false,
+  "python_executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "python_version": "3.13.5",
+  "schema": "vnext-t2-attempt11-initial-freezer-failure-r1",
+  "static_qa_source": {
+    "bytes": 197776,
+    "path": "test/GenomeV5/Integration/VNextT2FormalIndependentR1/static_qa_independent_negative_r9.py",
+    "sha256": "70fef3be72cd5beaf84d697087771c2c4b37638a4b63bc68a79b3d4249ea2799"
+  },
+  "static_qa_written": false,
+  "status": "preserved_python_freezer_lineage_guard_failure_no_t2_execution",
+  "stderr": {
+    "bytes": 861,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s/freezer.stderr.raw",
+    "sha256": "02cdb946ec04cc366b126671243706484e89185730f1290faa8ef8de974811bc"
+  },
+  "stdout": {
+    "bytes": 0,
+    "path": "docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260924_t2_protocol_attempt11_preflight_600s/freezer.stdout.raw",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

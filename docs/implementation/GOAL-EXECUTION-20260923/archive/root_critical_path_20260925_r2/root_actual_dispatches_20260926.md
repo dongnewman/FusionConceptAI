@@ -1,0 +1,14 @@
+# Root actual dispatch receipt supplement
+
+These are root-observed shell exits for commands dispatched from this task. The linked protocol/argv and runtime leaves retain the exact executable inputs and detailed child receipts. This supplement was written after the runs; it is not an independent observer or a substitute for raw child output.
+
+| Dispatch | Exact command source | Root shell exit | Deepest actual stage and raw final SHA-256 |
+|---|---|---:|---|
+| T2 R17 retry7 | `docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r17_r23_r8_retry7/command_argv.json` | 1 | Native baseline audit only; zero Julia phases. `formal_t2_actual_negative_r17_r23_r8/pipeline_final.json` `c017ddbeb37c7a08bb8dac073c92980a21a4f84fc49883539b8c2a0f5ad9eef9`. |
+| UP2 V18 test-only | `test/RuntimeV4/UP2ClosureReplayOnlyV18/run_replay_staged_v18.py`, protocol SHA `8220f0f8ff11d06baefeeec923eb9f6e36f41e0f153c3df938ac827167718205`, `--root-serial-slot-granted` | 72 | Producer typed-result hydration, `copy(::Tuple{String})`; `runtime_replay_r18/final.json` `04d34e959a4159847a21136e0d983cba1b6e5164e70fdb3d720cf4a878514e47`. |
+| Native G1/G2 R26 | `test/RuntimeV4/NativeG1G2DiffusionV1/run_native_g1g2_gridap_consumer_r26_v1.py --dispatch-actual`, protocol SHA `0e97083ef91123872e701cf707c2783b982c3fd15ab6cc56cd10cb5697d8a426` | 1 | `parse_all` exit 0; primary `resource_monitor_incomplete` with missing tracked process exit receipt. No fresh replay. |
+| UP2 V19 test-only | `test/RuntimeV4/UP2ClosureReplayOnlyV19/run_replay_staged_v19.py`, protocol SHA `8ec067a3b4f945dcaed4f10e28c4a0f8877e8322d2a6e1b0a0e808b5ff2c6a54`, `--root-serial-slot-granted` | 72 | Producer typed-result hydration at `candidate_hash`; `runtime_replay_r19/final.json` `1473b7889fba7f450ebf41323760ae5448377c2a3d64cb72da6a130edc35e79c`. |
+| T2 R19 retry4 | `docs/implementation/UP1-04A-VNEXT-T2/archive/r2_protocol_freeze_20260925_t2_protocol_r19_snapshot_receipt_retry4/command_argv.json` SHA `1790067dce399d5d2dea2bf16704ef2b007af171c2c9edf14eba09f85fbd463d` | 1 | Parse, AST inventory and projection exit 0; `actual_formal_baseline` Julia exit 15 on incomplete process-tree sample; `formal_t2_actual_negative_r19_r23_r9/pipeline_final.json` `02b42759ed668bf6e822fbede824ffcc69091a10498c131e383aa7baae510e9b`. |
+| UP2 V20 test-only | `test/RuntimeV4/UP2ClosureReplayOnlyV20/run_replay_staged_v20.py`, protocol SHA `26690948566c5191994e2d2ae3cbf94e7d9f481f8adf7e88962b128792d61dc2`, `--root-serial-slot-granted` | 124 | Producer `cleanup_unconfirmed` after root RSS `NoSuchProcess`; Julia stderr separately reported saved state hash mismatch. `runtime_replay_r20/final.json` `13deb6abe1930529b1247715d3cb4656e8ae43cfefc4507ed3d861d1c259941c`. |
+
+No row above grants physical, numerical, inverse, candidate, or T2 formal acceptance. The independent postrun leaves and current gate table provide separate verdicts and next-run conditions.

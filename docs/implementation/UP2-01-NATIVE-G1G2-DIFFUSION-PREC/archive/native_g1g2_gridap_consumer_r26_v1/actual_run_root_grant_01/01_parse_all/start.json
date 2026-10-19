@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "C:\\Users\\Newman\\AppData\\Local\\Programs\\Julia-1.10.5\\bin\\julia.exe",
+    "--project=D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\qualification\\gridap",
+    "--startup-file=no",
+    "--history-file=no",
+    "--threads=1",
+    "--compile=min",
+    "--heap-size-hint=1G",
+    "-e",
+    "using SHA; function ng12_parse_issue(x); x isa Expr || return nothing; x.head in (:error,:incomplete) && return x.head; for child in x.args; issue=ng12_parse_issue(child); issue===nothing || return issue; end; nothing; end; function main(args); manifest=args[1]; root=args[2]; count=0; for line in eachline(manifest); expected,relative=split(line,\"\\t\";limit=2); path=joinpath(root,split(relative,'/')...); bytes=read(path); bytes2hex(SHA.sha256(bytes))==expected || error(\"parse pin mismatch: \"*relative); parsed=Meta.parseall(String(bytes)); issue=ng12_parse_issue(parsed); issue===nothing || error(\"parse tree \"*String(issue)*\": \"*relative); count+=1; end; println(\"NG12_PARSE status=pass files=\",count); end; main(ARGS)",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\UP2-01-NATIVE-G1G2-DIFFUSION-PREC\\archive\\native_g1g2_prelaunch_r13_v1\\r13_actual_v1\\parse_manifest.tsv",
+    "D:\\006-Programing\\LMC\\FusionConceptAI"
+  ],
+  "cwd": "D:\\006-Programing\\LMC\\FusionConceptAI",
+  "environment": {
+    "JULIA_LOAD_PATH": "@;D:\\006-Programing\\LMC\\FusionConceptAI;@stdlib",
+    "JULIA_NUM_THREADS": "1",
+    "JULIA_PKG_OFFLINE": "true",
+    "JULIA_PKG_PRECOMPILE_AUTO": "0",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "global_heavy_before": [],
+  "identity_source": "Popen_original_handle_plus_build_pinned_SPI_raw_FILETIME",
+  "root_identity": {
+    "create_time_100ns": 134348220487323644,
+    "pid": 61948
+  },
+  "root_pid": 61948,
+  "sample_interval_seconds": 0.2,
+  "sampled_rss_stop_threshold_bytes": 2147483648,
+  "sampled_stop_semantics": true,
+  "schema": "native-g1g2-r26-stage-start-v1",
+  "stage": "parse_all",
+  "started_utc": "2026-09-25T15:00:48.743442Z",
+  "wall_seconds_per_stage": 480.0
+}
