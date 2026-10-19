@@ -5524,12 +5524,12 @@ def verify_managed_process_lifecycle_controller_delta(
         node for node in new_tree.body
         if isinstance(node, ast.Assign) and len(node.targets) == 1 and
         isinstance(node.targets[0], ast.Name) and
-        node.targets[0].id == "R20_MAX_WHOLE_SAMPLE_ATTEMPTS",
+        node.targets[0].id == "R20_MAX_WHOLE_SAMPLE_ATTEMPTS"
     ]
     natural_functions = [
         node for node in new_tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and
-        node.name == "require_natural",
+        node.name == "require_natural"
     ]
     require(
         len(sample_cap_assignments) == 1 and

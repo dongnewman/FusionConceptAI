@@ -133,12 +133,12 @@ def assert_whole_sample_retry_cap_binding(source: str) -> None:
         node for node in tree.body
         if isinstance(node, ast.Assign) and len(node.targets) == 1 and
         isinstance(node.targets[0], ast.Name) and
-        node.targets[0].id == cap_name,
+        node.targets[0].id == cap_name
     ]
     functions = [
         node for node in tree.body
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and
-        node.name == "require_natural",
+        node.name == "require_natural"
     ]
     assert len(assignments) == 1 and len(functions) == 1
     cap_value = ast.literal_eval(assignments[0].value)
