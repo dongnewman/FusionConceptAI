@@ -22,7 +22,7 @@ function result_hash_like(r; events=r.events, rhs_evaluations=r.rhs_evaluations,
         mass_residual_norm=r.mass_residual_norm,trajectory_defect_norm=trajectory_defect_norm,
         residual_norm=residual_norm,status=r.status))
 end
-include(joinpath(@__DIR__,"..","examples","runtime_v4_typed_time_event_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_time_event_fixture.jl"))
 
 @testset "D1.2b candidate-bound single event" begin
     @test tte_plan isa TypedTimeEventPlanV4

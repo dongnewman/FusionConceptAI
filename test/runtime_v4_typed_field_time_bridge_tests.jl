@@ -1,7 +1,6 @@
 using Test
 
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_typed_field_time_bridge_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_field_time_bridge_fixture.jl"))
 
 function _d3_rebuilt_report(base::FieldTimeBridgeReportV4;
         status=base.status,

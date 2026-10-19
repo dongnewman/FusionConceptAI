@@ -7,7 +7,7 @@ Base.include(FusionRuntimeV4,joinpath(@__DIR__,"..","src","RuntimeV4","TypedTime
 using .FusionRuntimeV4
 const replay_typed_time_events=FusionRuntimeV4.replay_typed_time_events
 const typed_time_events_manifest=FusionRuntimeV4.typed_time_events_manifest
-include(joinpath(@__DIR__,"..","examples","runtime_v4_typed_time_event_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_typed_time_event_fixture.jl"))
 e=tte_result.events[1]
 println("status=",tte_result.status," event_time=",e.event_time," pre_target=",e.pre_state[3]," post_target=",e.post_state[3]," remainder=",length(tte_result.times)>2 ? tte_result.times[end]-e.event_time : 0.0," rhs_evaluations=",tte_result.rhs_evaluations," guard_evaluations=",tte_result.guard_evaluations," reset_evaluations=",tte_result.reset_evaluations," residual=",tte_result.residual_norm," exit=terminal")
 println("claim_ceiling=screen_only; simultaneous_events=deferred")

@@ -1,6 +1,5 @@
 using Test
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_field_residual_composition_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_field_residual_composition_fixture.jl"))
 
 function _d41_resign_evidence(evidence::RuntimeEvidenceV4, binding_provenance;
         provider=nothing, metrics=evidence.metrics,

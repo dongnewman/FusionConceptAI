@@ -1,0 +1,19 @@
+{
+  "scenario_id": "scenario-local-authored-up4-g123-20260928-r2",
+  "candidate_id": "local-authored-up4-g123-20260928-r2",
+  "candidate_ref": {
+    "id": "fusionconceptai://candidate-design/local-authored-up4-g123-20260928-r2",
+    "version": "v5"
+  },
+  "scenario_ref": {
+    "id": "fusionconceptai://scenario-design/scenario-local-authored-up4-g123-20260928-r2",
+    "version": "v1"
+  },
+  "scenario_status": "unvalidated_design_input",
+  "scenario_kind": "typed-source-admission-only",
+  "operating_point": "typed_absent",
+  "physical_claim": "none",
+  "description": "Scenario identity for constructing local G1/G2/G3 contract payloads. It carries no physical operating point or measured evidence.",
+  "target_consumer": "G1/G2/G3 factories -> T0 transport and authority recheck -> V1/V2 -> T1 V2 -> V3",
+  "next_gate": "One local software source-admission gate, limited to 240 seconds and 2 GiB; no Julia/solver in this preparation task."
+}

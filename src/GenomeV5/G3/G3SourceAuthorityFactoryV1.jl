@@ -8,6 +8,10 @@ identity, CandidateIdentityV1, trusted attestation, registry entry, or physical
 result.
 """
 
+if !isdefined(@__MODULE__, :NativeGitReadCompatibilityV1)
+    Base.include(@__MODULE__, joinpath(@__DIR__, "..", "Integration", "NativeGitReadCompatibilityV1.jl"))
+end
+
 const G3_SOURCE_AUTHORITY_FACTORY_VERSION_V1 = "v1"
 const G3_SOURCE_AUTHORITY_FACTORY_REF_V1 =
     QualifiedRefV1("fusionconceptai://GenomeV5/G3/source-authority-factory", "v1")
@@ -317,7 +321,10 @@ end
 function _g3s_status(x, field)
     s = x isa Symbol ? x : x isa AbstractString ? Symbol(x) :
         throw(ArgumentError("$field must be Symbol or String"))
-    s in (:present, :absent_untracked, :untracked, :tracked, :dirty, :clean, :missing) ||
+    # A frozen UP1 source has no Git observation. The frozen validator requires
+    # this value for all three status fields and verifies the source bytes.
+    s in (:present, :absent_untracked, :untracked, :tracked, :dirty, :clean,
+        :missing, :not_observed) ||
         throw(ArgumentError("invalid $field: $s"))
     s
 end
@@ -361,11 +368,24 @@ end
 _g3s_ref_equal(a::QualifiedRefV1, b::QualifiedRefV1) = a.id == b.id && a.version == b.version
 
 function _g3s_validate_common_binding_handle(repository_root::String,
-        handle::QualifiedRefV1)
+        handle::QualifiedRefV1, frozen_context=nothing)
     handle.version == G3_AD45_COMMON_BINDING_HANDLE_VERSION_V1 ||
         return :common_handle_version_mismatch
     handle.id == G3_AD45_COMMON_BINDING_HANDLE_ID_V1 ||
         return :foreign_common_handle
+    if frozen_context isa AbstractString
+        envelope = NativeGitReadCompatibilityV1.current_source(frozen_context,
+            G3_AD45_ENVELOPE_RELATIVE_PATH_V1)
+        return Digest256(envelope.sha256) == G3_AD45_ENVELOPE_SHA256_V1 ? nothing : :ad45_envelope_hash_mismatch
+    elseif frozen_context !== nothing
+        envelope = NativeGitReadCompatibilityV1.frozen_source(frozen_context,
+            G3_AD45_ENVELOPE_RELATIVE_PATH_V1)
+        envelope === nothing && return :ad45_envelope_missing
+        envelope.role == "binding_envelope" || throw(ArgumentError("frozen AD45 envelope role mismatch"))
+        return Digest256(bytes2hex(SHA.sha256(envelope.bytes))) == G3_AD45_ENVELOPE_SHA256_V1 ?
+            nothing : :ad45_envelope_hash_mismatch
+    end
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("_g3s_validate_common_binding_handle")
     try
         path = joinpath(repository_root, split(G3_AD45_ENVELOPE_RELATIVE_PATH_V1, '/')...)
         isfile(path) || return :ad45_envelope_missing
@@ -400,20 +420,22 @@ end
 
 function _g3s_git_read(root::String, args...)
     try
-        parts = String["git", "-C", root]
-        append!(parts, String.(args))
-        String(readchomp(Cmd(parts)))
-    catch
+        output = NativeGitReadCompatibilityV1.git_text(root, args...)
+        output isa AbstractString || return nothing
+        chomp(String(output))
+    catch err
+        err isa ManagedExternalProcessV1.ManagedProcessError && rethrow()
         nothing
     end
 end
 
 function _g3s_git_bytes(root::String, args...)
     try
-        parts = String["git", "-C", root]
-        append!(parts, String.(args))
-        read(Cmd(parts))
-    catch
+        output = NativeGitReadCompatibilityV1.git_bytes(root, args...)
+        output isa Vector{UInt8} || return nothing
+        output
+    catch err
+        err isa ManagedExternalProcessV1.ManagedProcessError && rethrow()
         nothing
     end
 end
@@ -515,9 +537,17 @@ function _g3s_validate_git(locator::G3IndependentSourceLocatorV1)
     nothing
 end
 
-function _g3s_validate_locator(scope::Symbol, locator::G3IndependentSourceLocatorV1)
+function _g3s_validate_locator(scope::Symbol, locator::G3IndependentSourceLocatorV1,
+        frozen_context=nothing)
     locator.scope == scope || return :scope_mismatch
     locator.source_path == _g3s_expected_source(scope) || return :source_path_mismatch
+    if frozen_context isa AbstractString
+        return NativeGitReadCompatibilityV1.current_source_validation(frozen_context, locator; family=:g3)
+    end
+    if frozen_context !== nothing
+        return NativeGitReadCompatibilityV1.frozen_source_validation(frozen_context, locator; family=:g3)
+    end
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("_g3s_validate_locator")
     try
         path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
         isfile(path) || return :source_file_missing
@@ -543,8 +573,8 @@ function _g3s_content_body(scope::Symbol, locator::G3IndependentSourceLocatorV1,
         locator_digest::Digest256, handle::QualifiedRefV1, contract_ref::GenomeContractRef,
         axes::G3VersionAxesV2, binding::G3SourceContractBindingV1,
         binding_digest::Digest256, source_role::Symbol,
-        source_schema_ref::QualifiedRefV1, source_version::String)
-    (scope=scope, locator=locator, locator_digest=locator_digest,
+        source_schema_ref::QualifiedRefV1, source_version::String, frozen_context=nothing)
+    body = (scope=scope, locator=locator, locator_digest=locator_digest,
      source_path=locator.source_path, source_bytes=locator.source_bytes,
      source_sha256=locator.source_sha256, common_binding_handle=handle,
      common_binding_envelope_path=G3_AD45_ENVELOPE_RELATIVE_PATH_V1,
@@ -552,18 +582,30 @@ function _g3s_content_body(scope::Symbol, locator::G3IndependentSourceLocatorV1,
      contract_ref=contract_ref, version_axes=axes, binding=binding,
      binding_digest=binding_digest, source_role=source_role,
      source_schema_ref=source_schema_ref, source_version=source_version)
+    if frozen_context isa NativeGitReadCompatibilityV1.FrozenSourceContextV1 ||
+            frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        auth = NativeGitReadCompatibilityV1.frozen_source_identity(frozen_context)
+        source_entry = NativeGitReadCompatibilityV1.frozen_source(frozen_context, locator.source_path)
+        source_entry === nothing && throw(ArgumentError("verified frozen source input disappeared"))
+        body = merge(body, (frozen_source_authority=merge(auth, (
+            source_logical_path=source_entry.logical_path,
+            source_manifest_key=source_entry.manifest_key,
+            ad45_envelope_manifest_key=NativeGitReadCompatibilityV1.frozen_source_manifest_key(
+                frozen_context, G3_AD45_ENVELOPE_RELATIVE_PATH_V1))),))
+    end
+    body
 end
 
 function _g3s_make_content(scope::Symbol, locator::G3IndependentSourceLocatorV1,
         handle::QualifiedRefV1, contract_ref::GenomeContractRef,
-        axes::G3VersionAxesV2, binding::G3SourceContractBindingV1)
+        axes::G3VersionAxesV2, binding::G3SourceContractBindingV1, frozen_context=nothing)
     locator_digest = _g3s_locator_digest(locator)
     source_role = _g3s_source_role(scope)
     source_schema_ref = _g3s_source_schema_ref(scope)
     binding_digest = binding.binding_digest
     body = _g3s_content_body(scope, locator, locator_digest, handle, contract_ref,
         axes, binding, binding_digest, source_role, source_schema_ref,
-        G3_SOURCE_AUTHORITY_FACTORY_SOURCE_VERSION_V1)
+        G3_SOURCE_AUTHORITY_FACTORY_SOURCE_VERSION_V1, frozen_context)
     digest = canonical_hash(body)
     G3CandidateBoundSourceContentV1(scope, locator, locator_digest,
         locator.source_path, locator.source_bytes, locator.source_sha256, digest,
@@ -587,9 +629,11 @@ end
 locator, or foreign contract is `Failed...`.  The operation has no global
 state and therefore has no partial publication path.
 """
-function g3_source_authority_factory_v1(scope::Any, locator::Any,
+function _g3_source_authority_factory_core_v1(scope::Any, locator::Any,
         common_binding_handle::Any, contract_ref::Any, version_axes::Any,
-        source_declaration_ref::Any=nothing)
+        source_declaration_ref::Any,
+        frozen_context::Union{Nothing,NativeGitReadCompatibilityV1.FrozenSourceContextV1,NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1,AbstractString};
+        allow_legacy::Bool=false)
     parsed_scope = try _g3s_scope(scope) catch; return G3FactoryConstructionResultV1(
         _g3s_failed(:invalid, :invalid_scope)...); end
     locator === nothing && return G3FactoryConstructionResultV1(_g3s_absent(parsed_scope, :locator_missing)...)
@@ -603,10 +647,12 @@ function g3_source_authority_factory_v1(scope::Any, locator::Any,
     version_axes isa G3VersionAxesV2 || return G3FactoryConstructionResultV1(_g3s_failed(parsed_scope, :version_axes_type_mismatch)...)
     declaration_ref_error = _g3s_declaration_ref(source_declaration_ref, parsed_scope)
     declaration_ref_error === nothing || return G3FactoryConstructionResultV1(_g3s_failed(parsed_scope, declaration_ref_error)...)
+    frozen_context === nothing && !allow_legacy &&
+        return G3FactoryConstructionResultV1(_g3s_failed(parsed_scope, :frozen_source_context_missing)...)
     handle_error = _g3s_validate_common_binding_handle(locator.repository_root,
-        common_binding_handle)
+        common_binding_handle, frozen_context)
     handle_error === nothing || return G3FactoryConstructionResultV1(_g3s_failed(parsed_scope, handle_error)...)
-    locator_error = _g3s_validate_locator(parsed_scope, locator)
+    locator_error = _g3s_validate_locator(parsed_scope, locator, frozen_context)
     if locator_error !== nothing
         classified = locator_error in (:source_file_missing, :source_authority_missing) ?
             _g3s_absent(parsed_scope, locator_error) : _g3s_failed(parsed_scope, locator_error)
@@ -625,7 +671,7 @@ function g3_source_authority_factory_v1(scope::Any, locator::Any,
         :g3_contract_ref, :g3_version_axes_v2, :source_declaration_ref_v1)
     locator_digest = _g3s_locator_digest(locator)
     content = _g3s_make_content(parsed_scope, locator, common_binding_handle,
-        contract_ref, version_axes, binding)
+        contract_ref, version_axes, binding, frozen_context)
     declaration = _g3s_make_declaration(parsed_scope, source_declaration_ref, content)
     semantic_digest = canonical_hash((scope=parsed_scope, factory_ref=G3_SOURCE_AUTHORITY_FACTORY_REF_V1,
         factory_version=G3_SOURCE_AUTHORITY_FACTORY_VERSION_V1, function_name=function_name,
@@ -664,14 +710,65 @@ function g3_source_authority_factory_v1(scope::Any, locator::Any,
     G3FactoryConstructionResultV1(identity, binding, declaration, receipt)
 end
 
+g3_source_authority_factory_v1(scope, locator, common_binding_handle, contract_ref,
+    version_axes, source_declaration_ref,
+    frozen_context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+        _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+            contract_ref, version_axes, source_declaration_ref, frozen_context)
+
+g3_source_authority_factory_v1(scope, locator, common_binding_handle, contract_ref,
+    version_axes, source_declaration_ref,
+    frozen_context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+        _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+            contract_ref, version_axes, source_declaration_ref, frozen_context)
+
+g3_source_authority_factory_v1(scope, locator, common_binding_handle, contract_ref,
+    version_axes, source_declaration_ref) =
+        _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+            contract_ref, version_axes, source_declaration_ref, nothing)
+
+g3_source_authority_factory_v1(scope, locator, common_binding_handle, contract_ref,
+    version_axes) =
+        _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+            contract_ref, version_axes, nothing, nothing)
+
+function g3_source_authority_factory_legacy_v1(scope, locator, common_binding_handle,
+        contract_ref, version_axes, source_declaration_ref=nothing)
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("g3_source_authority_factory_legacy_v1")
+    _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+        contract_ref, version_axes, source_declaration_ref, nothing; allow_legacy=true)
+end
+
+g3_source_authority_factory_v1(scope, locator, common_binding_handle, contract_ref,
+    version_axes, source_declaration_ref,
+    context::AbstractString) =
+        _g3_source_authority_factory_core_v1(scope, locator, common_binding_handle,
+            contract_ref, version_axes, source_declaration_ref, context)
+
 g3_realization_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref) =
     g3_source_authority_factory_v1(:realization, locator, handle, contract_ref, axes, declaration_ref)
+g3_realization_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:realization, locator, handle, contract_ref, axes, declaration_ref, context)
+g3_realization_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:realization, locator, handle, contract_ref, axes, declaration_ref, context)
 g3_control_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref) =
     g3_source_authority_factory_v1(:control, locator, handle, contract_ref, axes, declaration_ref)
+g3_control_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:control, locator, handle, contract_ref, axes, declaration_ref, context)
+g3_control_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:control, locator, handle, contract_ref, axes, declaration_ref, context)
 g3_binding_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref) =
     g3_source_authority_factory_v1(:binding, locator, handle, contract_ref, axes, declaration_ref)
+g3_binding_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:binding, locator, handle, contract_ref, axes, declaration_ref, context)
+g3_binding_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:binding, locator, handle, contract_ref, axes, declaration_ref, context)
 g3_bundle_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref) =
     g3_source_authority_factory_v1(:bundle, locator, handle, contract_ref, axes, declaration_ref)
+g3_bundle_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:bundle, locator, handle, contract_ref, axes, declaration_ref, context)
+g3_bundle_source_authority_factory_v1(locator, handle, contract_ref, axes, declaration_ref, context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+    g3_source_authority_factory_v1(:bundle, locator, handle, contract_ref, axes, declaration_ref, context)
 
 g3_factory_identity_v1(result::G3FactoryConstructionResultV1) = result.identity
 g3_factory_construction_receipt_v1(result::G3FactoryConstructionResultV1) = result.receipt

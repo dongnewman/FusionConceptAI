@@ -1,0 +1,108 @@
+{
+  "assembled_bytes": 30616,
+  "assembled_path": "arrays/pf_passive__time/assembled.raw",
+  "assembled_sha256": "a94b2e196ea58275f96c23016bc9412792cd533529c872b22dd44dc8d9696736",
+  "chunks": [
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:55.811176Z",
+      "compressed_bytes": 14957,
+      "compressed_path": "arrays/pf_passive__time/chunks/c__0.zst",
+      "compressed_sha256": "4eb9cbd8e8ae4ad41d9adb845993c568fe9eb4deedc9806605cdf7f9688025ee",
+      "decoded_bytes": 30616,
+      "decoded_path": "arrays/pf_passive__time/chunks/c__0.raw",
+      "decoded_sha256": "a94b2e196ea58275f96c23016bc9412792cd533529c872b22dd44dc8d9696736",
+      "decoded_shape": [
+        3827
+      ],
+      "edge_shape": [
+        3827
+      ],
+      "full_chunk_shape": [
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:55.261676Z",
+      "response_headers": {
+        "Content-Length": "14957",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"157c1defce915ab3e36ff4b5ea474388\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:35 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/time/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:55.818448Z",
+  "data_type": "float64",
+  "decoded_bytes": 30616,
+  "dimensions": [
+    "time"
+  ],
+  "finite_count": 3827,
+  "maximum": 0.6652,
+  "minimum": -0.1,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "units": "s"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/time",
+  "shape": [
+    3827
+  ],
+  "started_utc": "2026-09-22T08:25:55.253484Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 3827,
+  "units": "s"
+}

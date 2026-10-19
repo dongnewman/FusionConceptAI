@@ -1,0 +1,101 @@
+{
+  "requested_path": "efm/lcfs_coords",
+  "resolved_path": "efm/lcfs_coords",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      139
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      139
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "lcfs_coords"
+    ],
+    "units": ""
+  },
+  "shape": [
+    139
+  ],
+  "chunks": [
+    139
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "lcfs_coords"
+  ],
+  "decoded_bytes": 556,
+  "coordinate_paths": [
+    {
+      "dimension": "lcfs_coords",
+      "path": "efm/lcfs_coords",
+      "available": true,
+      "shape": [
+        139
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:05.097640Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        139
+      ],
+      "full_chunk_shape": [
+        139
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/lcfs_coords/0",
+      "requested_utc": "2026-09-21T20:02:05.097791Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "231",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"ad71087ce927edf5a94b63482c7fb93d\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 231,
+      "compressed_sha256": "6052fde850ecd889516617ac84f6ccd53749de3039e8f6c4385092b5c3d12c31",
+      "decoded_bytes": 556,
+      "decoded_sha256": "76486910439615c02833d8dd275ae8ea0378c47aec96f6334e1ee7cdc464ab69",
+      "decoded_shape": [
+        139
+      ],
+      "expected_full_bytes": 556,
+      "expected_edge_bytes": 556,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__lcfs_coords\\assembled.raw",
+  "assembled_raw_bytes": 556,
+  "assembled_raw_sha256": "76486910439615c02833d8dd275ae8ea0378c47aec96f6334e1ee7cdc464ab69",
+  "finite_count": 139,
+  "total_count": 139,
+  "minimum": 0.0,
+  "maximum": 138.0
+}

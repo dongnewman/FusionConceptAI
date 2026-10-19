@@ -2,7 +2,7 @@ using Test
 using Pkg
 Pkg.activate(joinpath(@__DIR__, ".."))
 using FusionConceptAI
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_dae_composition_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_dae_composition_fixture.jl"))
 
 @testset "D2.3 composition public compatibility" begin
     authority = FusionRuntimeV4._tdae_compile_authority(composition_compiled, tdae_drefs, tdae_arefs, tdae_rows)

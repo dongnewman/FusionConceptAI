@@ -1,0 +1,125 @@
+{
+  "requested_path": "amc/p4l_current",
+  "resolved_path": "amc/p4l_current",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      30000
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      30000
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Internal P4L current",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "P4L Current",
+    "mds_name": "\\TOP.ANALYSED.AMC:P4L_CURRENT",
+    "name": "amc/p4l_current",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      30000
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "amc",
+    "time_index": 0,
+    "uda_name": "AMC_P4L CURRENT",
+    "units": "kA * turn",
+    "uuid": "79f035fc-550e-5b64-ab5e-fe5125e4208f",
+    "version": 0
+  },
+  "shape": [
+    30000
+  ],
+  "chunks": [
+    30000
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 120000,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "amc/time",
+      "available": true,
+      "shape": [
+        30000
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-22T01:49:42.901036Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        30000
+      ],
+      "full_chunk_shape": [
+        30000
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p4l_current/0",
+      "requested_utc": "2026-09-22T01:49:42.901203Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "104112",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+        "ETag": "\"f5556e99aecd5d2f3609670f48a1aa29\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 104112,
+      "compressed_sha256": "5b9a256ad90a8c95fe620fa956400bdf7e90c42add61eeffdff9bf2b380b7afa",
+      "decoded_bytes": 120000,
+      "decoded_sha256": "622e54d212bad9bfa0e65d0cac920e99e2e6a5b40cbeff88f3b4c8d285984279",
+      "decoded_shape": [
+        30000
+      ],
+      "written_shape": [
+        30000
+      ],
+      "expected_full_bytes": 120000,
+      "expected_edge_bytes": 120000,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\amc__p4l_current\\assembled.raw",
+  "assembled_raw_bytes": 120000,
+  "assembled_raw_sha256": "622e54d212bad9bfa0e65d0cac920e99e2e6a5b40cbeff88f3b4c8d285984279",
+  "finite_count": 30000,
+  "total_count": 30000,
+  "minimum": -164.487548828125,
+  "maximum": 0.07081778347492218
+}

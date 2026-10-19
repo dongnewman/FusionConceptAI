@@ -1,0 +1,565 @@
+{
+  "schema": "mast-level1-raw-acquisition-v1",
+  "shot": 30463,
+  "utc_started": "2026-09-21T18:45:48.435672+00:00",
+  "command": [
+    "tools/fetch_mast_level1_uncertainty_v1.py",
+    "--shot",
+    "30463",
+    "--metadata",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\docs\\implementation\\GOAL-EXECUTION-20260922\\reference_expansion_acquisition_r1\\inputs\\shot30463.zmetadata.json",
+    "--output",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\reference_data_level1_expansion_v1\\calibration\\shot30463_r1"
+  ],
+  "pid": 94632,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "metadata_sha256": "5e159e56c84e47659f6f5c31afc5e99c889ec56987cd1ab6bb4833205208d7b3",
+  "script_sha256": "1e06a51a9df29c626ce06286e6b24d2c660aa92a4cef627e26a5e7861a28e29e",
+  "blosc_dll": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+  "blosc_dll_sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11",
+  "error_semantics": "unverified_not_assumed_standard_deviation",
+  "likelihood_ready": false,
+  "scientific_acceptance": false,
+  "arrays": [
+    {
+      "name": "ne",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/ne/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "Electron Density",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "electron density",
+        "mds_name": "\\TOP.ANALYSED.AYC:NE",
+        "name": "ayc/ne",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          44,
+          130
+        ],
+        "shot_id": 30463,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_NE",
+        "units": "1 / m ** 3",
+        "uuid": "3dcf2c95-8e48-5055-a867-1fb5798699fe",
+        "version": 0
+      },
+      "compressed_sha256": "671ee7cf0edad7b0ac9df587d2e6d44b039a49ab15a8cb9b4556554517a659d3",
+      "raw_sha256": "53a96d782df5af019eb067e2a2535d2278c15cfab43bde19c0e8a583ccdc8891",
+      "raw_bytes": 23056,
+      "finite_count": 4812,
+      "total_count": 5764,
+      "minimum": 2.7946115244490752e+17,
+      "maximum": 1.2321222298662496e+20,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "te",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/te/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "Electron Temperature",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "electron temperature",
+        "mds_name": "\\TOP.ANALYSED.AYC:TE",
+        "name": "ayc/te",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          44,
+          130
+        ],
+        "shot_id": 30463,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_TE",
+        "units": "eV",
+        "uuid": "afe030bf-90c0-50cc-846d-4666ef6816db",
+        "version": 0
+      },
+      "compressed_sha256": "74ca26f1e91d961a862b41cafecac712217b113d6eb58ff28c233fce0fa48b11",
+      "raw_sha256": "f83b2f857a7c05c9b740e5d824e83dad03b63b1630d62a7cf354bbdae55a214b",
+      "raw_bytes": 23056,
+      "finite_count": 4812,
+      "total_count": 5764,
+      "minimum": 2.6158499717712402,
+      "maximum": 4854.23583984375,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "ne_error",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/ne_error/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "units": ""
+      },
+      "compressed_sha256": "12d95627ec715f2b30f8d4655a74061c8a1930b361b4b7c91170d7cd765657a3",
+      "raw_sha256": "1e21712bcf664d15aee3fcaf7a2e47c0cb51031db07c7987c456eea109eb1d6e",
+      "raw_bytes": 23056,
+      "finite_count": 4812,
+      "total_count": 5764,
+      "minimum": 1.990893607153828e+17,
+      "maximum": 4.70929230445297e+19,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "te_error",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/te_error/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "units": ""
+      },
+      "compressed_sha256": "424f8df3ad5b60547b6e3838208cd5237cc705344a6a3e91366a1d126f42f657",
+      "raw_sha256": "0074a41d43043f06beb3853690d6caa9c525c330cffda729eb334d7cfefefb48",
+      "raw_bytes": 23056,
+      "finite_count": 4812,
+      "total_count": 5764,
+      "minimum": 0.34871959686279297,
+      "maximum": 28532.52734375,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "covariance_ne_te",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/covariance_ne_te/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "fit covariance of ne Te",
+        "mds_name": "\\TOP.ANALYSED.AYC.COVARIANCE:NE_TE",
+        "name": "ayc/covariance_ne_te",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          44,
+          130
+        ],
+        "shot_id": 30463,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_COVARIANCE_NE_TE",
+        "units": "eV / m ** 3",
+        "uuid": "ee5dff32-4fd0-5f53-92b7-1a56bd072109",
+        "version": 0
+      },
+      "compressed_sha256": "981717335c24862295808f94ef39e0a2432a79cde4103c41a522abc203d2f074",
+      "raw_sha256": "196c8c3b2897b41ee2b2bbd4ee62313423d4b127e7fa4c469fdd45d85946f739",
+      "raw_bytes": 23056,
+      "finite_count": 4812,
+      "total_count": 5764,
+      "minimum": -3.6956870007134865e+23,
+      "maximum": 1.6520921286236844e+24,
+      "negative_finite_count": 3074,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "time",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/time/0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "units": "s"
+      },
+      "compressed_sha256": "09cbe057ab75ff806a6659dbe9d2cdeca80aa34cac952f074a06d1918433e24b",
+      "raw_sha256": "35456baeb1849cea584c50ccaab41197f4c1cab2e5b03387faf421e886f6f7db",
+      "raw_bytes": 176,
+      "finite_count": 44,
+      "total_count": 44,
+      "minimum": 0.004760100040584803,
+      "maximum": 0.20951999723911285,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "radial_index",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/radial_index/0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "radial_index"
+        ],
+        "units": " arb "
+      },
+      "compressed_sha256": "b1dd2a241c83c09dba7873e64232f6a2f4f233eeec5ba851cc85ba707ed6e947",
+      "raw_sha256": "d67638241fab12fef50019e6abdf8902fb939791f601835a5ba824a9916219de",
+      "raw_bytes": 524,
+      "finite_count": 131,
+      "total_count": 131,
+      "minimum": 0.0,
+      "maximum": 130.0,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "radius",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/radius/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          44,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          44,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "Radial basis (x,t)",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "major radius",
+        "mds_name": "\\TOP.ANALYSED.AYC:R",
+        "name": "ayc/r",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          44,
+          130
+        ],
+        "shot_id": 30463,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_R",
+        "units": "m",
+        "uuid": "fbf39cdb-4632-562d-b4de-a495af8d6a43",
+        "version": 0
+      },
+      "compressed_sha256": "0ba2d7a2979c2a35548b566e8e998962355387ea7fff9a7e149854096a792f4e",
+      "raw_sha256": "a2fbff5df86906ffdac7411c341526a548dea136894b1a3d850b0df91aaac3ee",
+      "raw_bytes": 23056,
+      "finite_count": 5720,
+      "total_count": 5764,
+      "minimum": 0.23366700112819672,
+      "maximum": 1.517449975013733,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "instrument_dr",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/instrument_dr/0.0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          20,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "instrument_dr",
+        "mds_name": "\\TOP.ANALYSED.AYC.INSTRUMENT:DR",
+        "name": "ayc/instrument_dr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          20,
+          130
+        ],
+        "shot_id": 30463,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_INSTRUMENT_DR",
+        "units": "m",
+        "uuid": "3eff2037-2a25-561a-bca5-d0325db02752",
+        "version": 0
+      },
+      "compressed_sha256": "83cbbc42dc790c614010777ad9e71afcbc609a932bbfc9c469a90510daca8695",
+      "raw_sha256": "6039a11a9555decc47f6bd38716f43439e81aed8e306a454a385b376a9cb4286",
+      "raw_bytes": 10480,
+      "finite_count": 2600,
+      "total_count": 2620,
+      "minimum": -0.007203750312328339,
+      "maximum": 0.007211179472506046,
+      "negative_finite_count": 1300,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    },
+    {
+      "name": "instrument_time",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30463.zarr/ayc/instrument_time/0",
+      "http_status": 200,
+      "metadata": {
+        "chunks": [
+          20
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time"
+        ],
+        "units": "s"
+      },
+      "compressed_sha256": "4c0890d848af7a0366c553dca795b1f44749f7de5539e9e19bcb2ab0fc029cda",
+      "raw_sha256": "53ea0f80fbb5f1506f57f86e41a6ce264eae257365515b654a8fa718261342ca",
+      "raw_bytes": 80,
+      "finite_count": 20,
+      "total_count": 20,
+      "minimum": 1.0,
+      "maximum": 20.0,
+      "negative_finite_count": 0,
+      "status": "decoded_raw_values_no_uncertainty_interpretation"
+    }
+  ],
+  "failures": [],
+  "utc_finished": "2026-09-21T18:45:56.321277+00:00",
+  "exit_code": 0
+}

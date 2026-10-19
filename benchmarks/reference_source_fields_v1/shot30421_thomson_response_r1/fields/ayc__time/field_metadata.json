@@ -1,0 +1,99 @@
+{
+  "requested_path": "ayc/time",
+  "resolved_path": "ayc/time",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      284
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "units": "s"
+  },
+  "shape": [
+    284
+  ],
+  "chunks": [
+    284
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 1136,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        284
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/time/0",
+      "requested_utc": "2026-09-22T08:10:18.130224+00:00",
+      "compressed_path": "fields/ayc__time/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "891",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"2c36f920316e71a26e78f026d5c6da5b\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 891,
+      "compressed_sha256": "a4fa7a810f461c34a6e657a5b7bbf32f4be3499fd84d292cbd203ba46991200a",
+      "decoded_path": "fields/ayc__time/chunks/0.raw",
+      "decoded_bytes": 1136,
+      "decoded_sha256": "a83829471800d7662724bf47356061ed8ff7cc3277a252b9a8ad850cfe208e16",
+      "decoded_shape": [
+        284
+      ],
+      "full_bytes": 1136,
+      "edge_bytes": 1136,
+      "completed_utc": "2026-09-22T08:10:18.665069+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:18.128661+00:00",
+  "completed_utc": "2026-09-22T08:10:18.667559+00:00",
+  "assembled_path": "fields/ayc__time/assembled.raw",
+  "assembled_bytes": 1136,
+  "assembled_sha256": "a83829471800d7662724bf47356061ed8ff7cc3277a252b9a8ad850cfe208e16",
+  "finite_count": 284,
+  "total_count": 284,
+  "minimum": 0.004166000057011843,
+  "maximum": 0.6041658520698547
+}

@@ -1,0 +1,104 @@
+{
+  "assembled_bytes": 104,
+  "assembled_path": "arrays/pf_passive__p2larm_current_channel/assembled.strings.json",
+  "assembled_sha256": "bcc11a168fb844c2a913ed41c3a43ab6655383576f7f6c270064bc3b00784a51",
+  "chunks": [
+    3
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:27:25.561915Z",
+      "compressed_bytes": 34,
+      "compressed_path": "arrays/pf_passive__p2larm_current_channel/chunks/c__0.zst",
+      "compressed_sha256": "6bf45339a5d465855b6a062d0bbc5e09a130013f949bfeb0537dda29619aa19e",
+      "decoded_bytes": 37,
+      "decoded_item_count": 3,
+      "decoded_path": "arrays/pf_passive__p2larm_current_channel/chunks/c__0.raw",
+      "decoded_sha256": "2cfdc1253b2bc1f6f5f1d3a338c55f70306936d0b5423e43f432243d846c941c",
+      "decoded_shape": [
+        3
+      ],
+      "edge_shape": [
+        3
+      ],
+      "full_chunk_shape": [
+        3
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:25.052615Z",
+      "response_headers": {
+        "Content-Length": "34",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"dc48b90a22ac29e72bffc35cd02f0065\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:30 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2larm_current_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:25.579395Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "p2larm_current_channel"
+  ],
+  "node": {
+    "attributes": {
+      "name": "AMM_{channel}"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          3
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "p2larm_current_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      3
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2larm_current_channel",
+  "shape": [
+    3
+  ],
+  "started_utc": "2026-09-22T08:27:25.007809Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 3,
+  "unique_string_count": 3,
+  "units": null
+}

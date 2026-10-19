@@ -1,0 +1,1351 @@
+"""Recorded native G1/G2 Gridap qualification runner.
+
+The runner freezes the exact source closure, parses every active Julia file,
+then executes primary and fresh replay processes serially.  Each Julia stage
+has an independent 480 second wall limit and 2 GiB whole-process-tree RSS
+limit.  `--static-only` performs only Python/inventory checks and never starts
+Julia.
+"""
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from pathlib import Path
+import argparse
+import ast
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+
+import psutil
+
+
+ROOT = Path(__file__).resolve().parents[3]
+TEST_DIR = Path(__file__).resolve().parent
+EVIDENCE_ROOT = (
+    ROOT
+    / "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/"
+      "native_g1g2_precompile_r12_v1"
+).resolve()
+GRIDAP_PROJECT = (ROOT / "tools/qualification/gridap").resolve()
+JULIA_LOAD_PATH_ENTRIES = ("@", str(ROOT), "@stdlib")
+R10_BASELINE_MANIFEST = (
+    ROOT
+    / "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/"
+      "independent_r10_source_marker_review_20260923/frozen_protocol/"
+      "static_preflight.json"
+).resolve()
+R10_BASELINE_PARSE_MANIFEST = (
+    ROOT
+    / "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/"
+      "independent_r10_source_marker_review_20260923/frozen_protocol/"
+      "parse_manifest.tsv"
+).resolve()
+R10_BASELINE_PROTOCOL = (
+    ROOT
+    / "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/"
+      "independent_r10_source_marker_review_20260923/frozen_protocol/"
+      "protocol.json"
+).resolve()
+R10_BASELINE_MANIFEST_SHA256 = (
+    "eefb6b07e8d1a4d7ca67bcfe63a21e0c506adce2182124e579a06ee994a6d7bf"
+)
+R10_BASELINE_PARSE_MANIFEST_SHA256 = (
+    "4abb91920481650c5fb7b6d8da6f2f4369dd9880c40e4a52735f939ccfada2f5"
+)
+R10_BASELINE_PROTOCOL_SHA256 = (
+    "ab22013fa088cc6d68bcc175efcd5be8670ec1a0eee10663f5bdf0e6c543b1ae"
+)
+R10_BASELINE_PIN_COUNT = 115
+
+R10_PRIOR_EVIDENCE_SHA256 = {
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/protocol.json": "60d590bc83ab3465c71ce38a70096f9274937db9e7f2616f4bf5384caafa9446",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/summary.json": "1781213362b2894e1885492da7c30df1f127b3623ecf283700c77b57632eeb46",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/02_primary/final.json": "f653af01048c39af84fbebae9aa71f8ecf23542c3f67a83514ccf5ad1d5abeb2",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/02_primary/stdout.raw": "c4edca785554ec75726f37199f9c759a4f80c3154703b8c57019fd9f9c8290d3",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/02_primary/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/agent_r1_20260922/runtime_r10_actual_r1/02_primary/samples.jsonl": "5f222225fcf59f51005c21a09809bdeb6449ef0e1fe82279532d171ae4efb2a8",
+}
+R11_PRIOR_EVIDENCE_SHA256 = {
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/root_native_r11_grant_20260923/grant.json": "4cfefe298a13ea0399a9bc768125fefc411b0fe3954c85a67431fbe9901b4650",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/root_native_r11_grant_20260923/observation.json": "f1202bbcb8171dd0d6583fb5117a6ced9681c5a4ba762fdbcb2715d136ce937e",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_static_v1/protocol.json": "fc1170e86a63ca71e16e0d530fff824bb1bec7d5317e0e91fd52d2fbd11c1e6f",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/protocol.json": "00ed4cccd1ae0d31ed56c5edab4044e836d8b4319b367e125cdb193b2d9a064d",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/summary.json": "868b6a2b027bfbd444f32e24771105e9f77d55ec3d847f27816ce76fd4e2ba85",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/02_primary/final.json": "1c08baf96505a6309df7d4bba21e8a6c34963eadf5cf2c6a9fea819656a42413",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/02_primary/stdout.raw": "4098aaa4c099ae88fedd9848c11baeffbadcff31149226e281f37c75d864b132",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/02_primary/stderr.raw": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/implementation/UP2-01-NATIVE-G1G2-DIFFUSION-PREC/archive/native_g1g2_precompile_r11_v1/r11_actual_v1/02_primary/samples.jsonl": "c4a2e104e8273a291691049496ddf00fea6469fa154bffac0e99f6c012d7e6da",
+}
+PRIOR_RUN_FACTS = {
+    "r10_first_call": {
+        "status": "wall_timeout",
+        "exit_code": 15,
+        "elapsed_seconds": 300.30108749999636,
+        "peak_process_tree_rss_bytes": 2014654464,
+        "last_flushed_marker": "NG12_STAGE stage=dispatch.before elapsed_ms=16642",
+        "function_body_entry_observed": False,
+        "solver_run_observed": False,
+    },
+    "r11_explicit_precompile": {
+        "status": "wall_timeout",
+        "exit_code": 15,
+        "elapsed_seconds": 300.51891890000115,
+        "peak_process_tree_rss_bytes": 2102079488,
+        "rss_limit_bytes": 2147483648,
+        "rss_margin_bytes": 45404160,
+        "peak_sample_elapsed_seconds": 147.04105659999914,
+        "last_sample_elapsed_seconds": 300.232050300001,
+        "last_sample_rss_bytes": 2029449216,
+        "last_sample_cpu_user_seconds": 280.21875,
+        "last_flushed_marker": "NG12_STAGE stage=precompile.before elapsed_ms=16649 target=ng12_primary signature=(String,)",
+        "precompile_return_observed": False,
+        "primary_function_entry_observed": False,
+        "solver_run_observed": False,
+        "fresh_replay_executed": False,
+    },
+}
+PRELAUNCH_PREFLIGHT = (
+    "test/RuntimeV4/NativeG1G2DiffusionV1/r12_prelaunch_preflight.py"
+)
+PRELAUNCH_PREFLIGHT_TEST = (
+    "test/RuntimeV4/NativeG1G2DiffusionV1/test_r12_prelaunch_preflight.py"
+)
+
+TIMEOUT_SECONDS = 480.0
+PROCESS_TREE_RSS_LIMIT_BYTES = 2_147_483_648
+JULIA_HEAP_SIZE_HINT = "1G"
+JULIA_HEAP_SIZE_HINT_BYTES = 1_073_741_824
+HEAVY_NAMES = {
+    "julia.exe", "julia", "desc.exe", "desc", "mesh.exe", "mesh",
+    "mpiexec.exe", "mpiexec",
+}
+
+OWNED_FILES = (
+    "src/RuntimeV4/NativeG1G2DiffusionCompilerV1.jl",
+    "src/RuntimeV4/GridapNativeG1G2DiffusionAdapterV1.jl",
+    "test/RuntimeV4/NativeG1G2DiffusionV1/fixture_and_oracle.jl",
+    "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests_r12_markers.jl",
+    "test/RuntimeV4/NativeG1G2DiffusionV1/run_recorded_r12.py",
+)
+
+GENOME_V5_DYNAMIC_COMPONENTS = (
+    "src/GenomeV5/G1/GrammarProfileV2.jl",
+    "src/GenomeV5/G1/EquationPlanV2.jl",
+    "src/GenomeV5/G1/MechanismGenomePayloadV2.jl",
+    "src/GenomeV5/G1/MechanismGenomeV5.jl",
+    "src/GenomeV5/G2/SpatialGrammarProfileV2.jl",
+    "src/GenomeV5/G2/RegionInterfaceContractV2.jl",
+    "src/GenomeV5/G2/FieldSpacePlanV2.jl",
+    "src/GenomeV5/G2/FieldGeometryGenomeV5.jl",
+    "src/GenomeV5/G3/RealizationGenomeV5.jl",
+    "src/GenomeV5/G3/ControlGenomeV5.jl",
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl",
+)
+
+T0_DEFINITION_DEPENDENCIES = (
+    "test/GenomeV5/Integration/vnext_declaration_transport_local_v1_tests.jl",
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+    "src/GenomeV5/G1/G1SourceAuthorityFactoryV1.jl",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+    "src/GenomeV5/G2/G2SourceAuthorityFactoryV1.jl",
+    "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl",
+    "src/GenomeV5/G3/G3SourceAuthorityFactoryV1.jl",
+    "src/GenomeV5/Integration/VNextDeclarationTransportLocalV1.jl",
+)
+
+V3_FIXTURE_DEPENDENCIES = (
+    "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/fixture_helpers.jl",
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV1.jl",
+    "src/GenomeV5/Integration/VNextParentBaselineBindingLocalV1.jl",
+    "src/GenomeV5/G3/G3RealizationChildEditabilityV1.jl",
+    "src/GenomeV5/G3/G3ControlChildEditabilityV1.jl",
+    "src/GenomeV5/G3/G3BindingChildEditabilityV1.jl",
+    "src/GenomeV5/G3/G3BindingChildEditabilityV2.jl",
+    "src/GenomeV5/Integration/VNextG3BindingAuthorityBridgeLocalV1.jl",
+    "src/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3.jl",
+)
+
+T1_V2_DEPENDENCIES = (
+    "src/Contracts/VNextT1CanonicalBytesV2.jl",
+    "src/Contracts/VNextT1CandidateBindingV2.jl",
+    "src/GenomeV5/Integration/VNextDeclarationAuthorityRecheckLocalV2.jl",
+    "src/Contracts/CandidateStatePackageV5NextV2.jl",
+    "src/GenomeV5/Integration/VNextGenomeV5IntegrationV2.jl",
+    "src/Contracts/VNextT1PackageBindingAdapterV2.jl",
+)
+
+NUMERICAL_DEPENDENCIES = (
+    "src/RuntimeV4/GridapFieldResidualAdapter.jl",
+    "src/RuntimeV4/NativeG1G2DiffusionCompilerV1.jl",
+    "src/RuntimeV4/GridapNativeG1G2DiffusionAdapterV1.jl",
+    "test/RuntimeV4/NativeG1G2DiffusionV1/fixture_and_oracle.jl",
+    "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests_r12_markers.jl",
+)
+
+
+def utc() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def receipt(path: Path) -> dict[str, object]:
+    data = path.read_bytes()
+    return {"bytes": len(data), "sha256": sha256_bytes(data)}
+
+
+def load_r10_baseline_pins() -> dict[str, dict[str, object]]:
+    raw = R10_BASELINE_MANIFEST.read_bytes()
+    observed = sha256_bytes(raw)
+    if observed != R10_BASELINE_MANIFEST_SHA256:
+        raise RuntimeError(
+            "frozen r10 baseline manifest hash mismatch: " + observed
+        )
+    document = json.loads(raw)
+    dependencies = document.get("dependencies")
+    if not isinstance(dependencies, dict) or len(dependencies) != R10_BASELINE_PIN_COUNT:
+        raise RuntimeError("frozen r10 baseline must contain exactly 115 pins")
+    for relative, expected in dependencies.items():
+        candidate = (ROOT / Path(*relative.split("/"))).resolve()
+        try:
+            candidate.relative_to(ROOT.resolve())
+        except ValueError as error:
+            raise RuntimeError("r10 baseline path escaped repository") from error
+        if not candidate.is_file():
+            raise FileNotFoundError("r10 baseline dependency missing: " + relative)
+        current = receipt(candidate)
+        if current != {"bytes": expected["bytes"], "sha256": expected["sha256"]}:
+            raise RuntimeError("r10 baseline dependency changed: " + relative)
+    return dependencies
+
+
+def recorded_julia_environment(environment: dict[str, str]) -> dict[str, str]:
+    """Return the complete, non-secret Julia execution environment contract."""
+
+    keys = (
+        "JULIA_LOAD_PATH", "JULIA_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+        "MKL_NUM_THREADS", "OMP_NUM_THREADS", "JULIA_PKG_OFFLINE",
+        "JULIA_PKG_PRECOMPILE_AUTO",
+    )
+    return {key: environment[key] for key in keys}
+
+
+def write_new(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("x", encoding="utf-8", newline="\n") as stream:
+        json.dump(value, stream, indent=2, sort_keys=True)
+        stream.write("\n")
+
+
+def fusion_package_source_paths() -> list[Path]:
+    entry = ROOT / "src/FusionConceptAI.jl"
+    text = entry.read_text(encoding="utf-8")
+    includes = re.findall(
+        r'^\s*include\("([^"\r\n]+\.jl)"\)\s*$', text, flags=re.MULTILINE
+    )
+    include_calls = len(re.findall(r"\binclude\(", text))
+    if len(includes) != include_calls:
+        raise RuntimeError(
+            "unresolved FusionConceptAI include form: "
+            f"resolved={len(includes)} calls={include_calls}"
+        )
+    return [entry, *(ROOT / "src" / relative for relative in includes)]
+
+
+def runtime_package_source_paths() -> list[Path]:
+    entry = ROOT / "src/RuntimeV4/FusionRuntimeV4.jl"
+    text = entry.read_text(encoding="utf-8")
+    includes = re.findall(
+        r'^\s*include\("([^"\r\n]+\.jl)"\)\s*$', text, flags=re.MULTILINE
+    )
+    include_calls = len(re.findall(r"\binclude\(", text))
+    if len(includes) != include_calls:
+        raise RuntimeError(
+            "unresolved FusionRuntimeV4 include form: "
+            f"resolved={len(includes)} calls={include_calls}"
+        )
+    return [entry, *(ROOT / "src/RuntimeV4" / relative for relative in includes)]
+
+
+def assert_loader_inventories() -> None:
+    genome_loader = ROOT / "src/GenomeV5/Integration/GenomeV5Integration.jl"
+    observed = set(re.findall(
+        r'"([^"\r\n]+\.jl)"', genome_loader.read_text(encoding="utf-8")
+    ))
+    expected = {Path(item).name for item in GENOME_V5_DYNAMIC_COMPONENTS}
+    if observed != expected:
+        raise RuntimeError(
+            "GenomeV5 dynamic loader inventory mismatch: "
+            f"observed={sorted(observed)} expected={sorted(expected)}"
+        )
+
+    t0 = ROOT / T0_DEFINITION_DEPENDENCIES[0]
+    preamble = t0.read_text(encoding="utf-8").split(
+        "# Current factory APIs", 1
+    )[0]
+    observed = set(re.findall(r'"([^"\r\n]+\.jl)"', preamble))
+    expected = {Path(item).name for item in T0_DEFINITION_DEPENDENCIES[1:]}
+    if observed != expected or "load_genome_v5_components!()" not in preamble:
+        raise RuntimeError(
+            "T0 definition loader inventory mismatch: "
+            f"observed={sorted(observed)} expected={sorted(expected)}"
+        )
+
+    v3_fixture = ROOT / V3_FIXTURE_DEPENDENCIES[0]
+    preamble = v3_fixture.read_text(encoding="utf-8").split(
+        "const V3_CANDIDATE", 1
+    )[0]
+    observed = set(re.findall(r'"([^"\r\n]+\.jl)"', preamble))
+    expected = {
+        Path(T0_DEFINITION_DEPENDENCIES[0]).name,
+        *(Path(item).name for item in V3_FIXTURE_DEPENDENCIES[1:]),
+    }
+    if observed != expected:
+        raise RuntimeError(
+            "V3 fixture loader inventory mismatch: "
+            f"observed={sorted(observed)} expected={sorted(expected)}"
+        )
+
+    fixture = (ROOT / NUMERICAL_DEPENDENCIES[-2]).read_text(encoding="utf-8")
+    observed = set(re.findall(r'"([^"\r\n]+\.jl)"', fixture))
+    required = {
+        Path(V3_FIXTURE_DEPENDENCIES[0]).name,
+        *(Path(item).name for item in T1_V2_DEPENDENCIES),
+        Path(NUMERICAL_DEPENDENCIES[0]).name,
+        Path(NUMERICAL_DEPENDENCIES[1]).name,
+        Path(NUMERICAL_DEPENDENCIES[2]).name,
+    }
+    missing = required - observed
+    if missing:
+        raise RuntimeError(
+            "native fixture lost an explicit dependency: " +
+            json.dumps(sorted(missing))
+        )
+
+
+def runtime_julia_paths() -> list[Path]:
+    assert_loader_inventories()
+    paths = set(fusion_package_source_paths())
+    paths.update(runtime_package_source_paths())
+    for group in (
+        GENOME_V5_DYNAMIC_COMPONENTS,
+        T0_DEFINITION_DEPENDENCIES,
+        V3_FIXTURE_DEPENDENCIES,
+        T1_V2_DEPENDENCIES,
+        NUMERICAL_DEPENDENCIES,
+    ):
+        paths.update(ROOT / item for item in group)
+    missing = [str(path) for path in paths if not path.is_file()]
+    if missing:
+        raise FileNotFoundError(
+            "runtime Julia dependency missing: " + json.dumps(missing)
+        )
+    return sorted(paths)
+
+
+def dependency_paths() -> list[Path]:
+    paths = set(runtime_julia_paths())
+    paths.add(Path(__file__).resolve())
+    paths.add(R10_BASELINE_MANIFEST)
+    paths.add(R10_BASELINE_PARSE_MANIFEST)
+    paths.add(R10_BASELINE_PROTOCOL)
+    paths.add((ROOT / PRELAUNCH_PREFLIGHT).resolve())
+    paths.add((ROOT / PRELAUNCH_PREFLIGHT_TEST).resolve())
+    baseline = load_r10_baseline_pins()
+    paths.update(
+        (ROOT / Path(*relative.split("/"))).resolve()
+        for relative in baseline
+    )
+    for path in (
+        ROOT / "Project.toml",
+        ROOT / "Manifest.toml",
+        GRIDAP_PROJECT / "Project.toml",
+        GRIDAP_PROJECT / "Manifest.toml",
+        ROOT / "docs/implementation/GOAL-EXECUTION-20260922/"
+        "ownership_delta13_native_g1g2_physics.json",
+        ROOT / "docs/implementation/UP1-04A-VNEXT-T2-SOURCE-WITNESS-PREC/"
+        "astra_physics_gap_review_r1_20260922/review.md",
+    ):
+        if path.is_file():
+            paths.add(path)
+    return sorted(paths)
+
+
+def dependency_receipts() -> dict[str, dict[str, object]]:
+    return {
+        path.resolve().relative_to(ROOT.resolve()).as_posix(): receipt(path)
+        for path in dependency_paths()
+    }
+
+
+def static_checks() -> dict[str, object]:
+    runner = Path(__file__).read_text(encoding="utf-8")
+    ast.parse(runner, filename=__file__)
+    source = (ROOT / OWNED_FILES[0]).read_text(encoding="utf-8")
+    adapter = (ROOT / OWNED_FILES[1]).read_text(encoding="utf-8")
+    fixture = (ROOT / OWNED_FILES[2]).read_text(encoding="utf-8")
+    tests = (ROOT / OWNED_FILES[3]).read_text(encoding="utf-8")
+    r10_tests = (ROOT / "test/RuntimeV4/NativeG1G2DiffusionV1/focused_tests.jl").read_text(
+        encoding="utf-8"
+    )
+    preflight = (ROOT / PRELAUNCH_PREFLIGHT).read_text(encoding="utf-8")
+    preflight_tests = (ROOT / PRELAUNCH_PREFLIGHT_TEST).read_text(encoding="utf-8")
+    compact_tests = re.sub(r"\s+", " ", tests)
+    dispatch_marker = 'ng12_stage("dispatch.before"; detail="mode=" * mode)\n'
+    precompile_before = tests.find('ng12_stage("precompile.before"')
+    precompile_call = tests.find("precompile(ng12_primary, (String,))")
+    precompile_try = tests.rfind("try", 0, precompile_call)
+    precompile_return = tests.find('ng12_stage("precompile.return"')
+    precompile_catch = tests.find("catch error", precompile_call)
+    precompile_caught = tests.find("precompile_exception = error", precompile_catch)
+    precompile_exception_marker = tests.find('ng12_stage("precompile.exception"')
+    precompile_after = tests.find('ng12_stage("precompile.after"')
+    function_entry_marker = '    ng12_stage("primary.function.enter")\n'
+    function_header = "function ng12_primary(artifact_path::AbstractString)\n"
+    primary_entry = tests.find(function_entry_marker)
+    primary_definition = tests.find(function_header)
+    primary_fixture = tests.find('ng12_stage("primary.fixture.begin")')
+    primary_call = tests.rfind("ng12_primary(artifact_path)")
+    r12_prefix = tests.split(dispatch_marker, 1)[0]
+    checks = {
+        "typed_source_bytes": all(token in source for token in (
+            "unknown_source_expression", "source_expression",
+            "TypedASTProgramV1", "minus_div_k_grad_equals_f",
+        )),
+        "complete_program_projection": all(token in source for token in (
+            "native_g1g2_program_bundle_v1",
+            "program_semantic_projection_mismatch",
+            "canonical_json(x) == canonical_json(expected)",
+        )),
+        "variable_k_residual": all(token in source for token in (
+            "K_APPLY", "DIV_OP", "residual_operator_wiring_invalid",
+            "p.k_slope",
+        )),
+        "unit_basis_profile": all(token in source for token in (
+            'source_basis == "GenomeV5/native-length-first-partial-basis-v1"',
+            'target_basis == "RuntimeV4/SI-kg-m-s-A-K-mol-cd-v1"',
+            "source_length_axis", "target_length_axis", "scale == 1 // 1",
+            "undocumented non-length axis",
+            "translated_g2_flux_unit_mismatch",
+        )),
+        "actual_t1_package_carried": all(token in source for token in (
+            "t1_package::CandidateStatePackageV5NextV2",
+            "_ng12_t1_package_binding_errors",
+            "vnext_t1_package_binding_adapter_v2",
+        )),
+        "runtime_subject_reconstructed": all(token in source for token in (
+            "_ng12_runtime_projection_v1",
+            "canonical_json(x.capability) == canonical_json(projected.capability)",
+            "canonical_json(x.subject) == canonical_json(projected.subject)",
+        )),
+        "actual_gridap_weak_form": all(token in adapter for token in (
+            "CartesianDiscreteModel", "AffineFEOperator", "LUSolver",
+            "k_field", "native_g1g2_source_value_v1",
+        )),
+        "byte_carrier_numeric_hashes": all(token in adapter for token in (
+            "rows=Vector{Int}(rows)", "columns=Vector{Int}(columns)",
+            "values=Vector{Float64}(values)",
+            "rhs_hash = canonical_hash(rhs)",
+            "solution_hash = canonical_hash(free_values)",
+        )) and "canonical_hash(Tuple(rhs))" not in adapter,
+        "actual_discrete_balance": all(token in adapter for token in (
+            "BoundaryTriangulation", "discrete_trace_conormal_integral",
+            "_ng12_full_space_dof_partition",
+            "boundary_reactions = full_reactions[dof_partition.boundary_to_full]",
+            "interior_reactions = full_reactions[dof_partition.free_to_full]",
+            "discrete_interior_residual_match_linf",
+            "discrete_boundary_reaction_integral",
+            "discrete_boundary_reaction_balance_defect",
+        )) and "sum(full_reactions)" not in adapter,
+        "no_global_provider_plan": "_NG12_ACTIVE_PROVIDER_PLAN" not in adapter,
+        "provider_self_reconstructs": all(token in adapter for token in (
+            "compile_result_hash=", "provider plan reconstruction mismatch",
+            "_ng12_run_gridap_series(rebuilt_plan)",
+        )),
+        "independent_oracle": all(token in fixture for token in (
+            "ng12_oracle_reference", "ng12_oracle_source",
+            "ng12_oracle_continuous_balance",
+        )),
+        "three_grid_refinement":
+            "((2, 3, 4), (4, 6, 8), (8, 12, 16))" in compact_tests,
+        "recomputed_tamper": all(token in tests for token in (
+            "ng12_rehashed_level", "ng12_rehashed_report",
+            "forged_level", "foreign_report",
+        )),
+        "wrong_sign_negative": "run_native_g1g2_wrong_sign_control_v1" in tests,
+        "wrong_sign_reaches_solver": all(token in tests for token in (
+            "reversed.matrix_hash == report.levels[2].matrix_hash",
+            "reversed.rhs_hash != report.levels[2].rhs_hash",
+            "reversed.solution_hash != report.levels[2].solution_hash",
+            "reversed.l2_error > report.levels[2].l2_error",
+        )),
+        "coherent_source_program_negative": all(token in tests for token in (
+            "ng12_alternative_source_program_bundle",
+            "program_semantic_projection_mismatch",
+        )),
+        "g2_mesh_and_quadrature_bound": all(token in tests for token in (
+            "plan.protocol.cell_counts[1] == chain.g2.source.mesh.cells",
+            "identity_bound_geometry_metadata_not_execution_rule",
+        )),
+        "fresh_before_deserialize": tests.index("fresh = NG12_R.execute") <
+            tests.index("Serialization.deserialize", tests.index("function ng12_replay")),
+        "formal_receipts_zero": "formal_t2_consumer_receipts=0" in tests,
+        "preassert_checkpoints": all(token in tests for token in (
+            'artifact_path * ".preassert.bin"',
+            '".wrong-sign-preassert.bin"',
+            'artifact_path * ".replay-preassert.bin"',
+            "wrong_sign_level=reversed",
+        )) and tests.index("primary.preassert_checkpoint.complete") <
+            tests.index("primary.wrong_sign.begin"),
+        "metric_units": all(token in tests for token in (
+            "_ng12_si_length_unit(3 // 2)",
+            "_ng12_si_length_unit(1 // 2)",
+            "_ng12_si_length_unit(1)",
+            ":max_interior_reaction_linf",
+            ":max_interior_residual_match_linf",
+            ":max_discrete_boundary_reaction_balance_defect",
+        )),
+        "error_budget_basis": all(token in adapter for token in (
+            "cea_finest_h1_bound_m12=0.009487198126",
+            "poincare_finest_l2_bound_m32=0.004639855187",
+            "gridap_quadrature_degree=8", "_ng12_error_budget_applies",
+            "p.k_base == b.k_base", "p.k_slope == b.k_slope",
+        )) and all(token in tests for token in (
+            "altered_k_programs", "altered_k_compile",
+            '"error budget does not apply"',
+        )),
+        "actual_t2_link_validation": all(token in adapter for token in (
+            "t2_input_hash", "_ng12_validate_actual_t2_ledger_v1",
+            "VNextT2UP2BoundInputV2", "expected_stage_inputs",
+            "vnext_t2_up2_validate_input_v2",
+            ":VNextT2InvocationCountsV2)(1, 1, 1, 1, 1, 0, 0, 0)",
+            "receipt.identity_hash == canonical_hash(body)",
+            "ledger.input_hash",
+        )) and "actual qualified T2 receipt ledger is invalid" in tests,
+        "immutable_protocol_literals": all(token in tests for token in (
+            "residual_abs_tol == 1e-9", "l2_order_interval == (1.4, 2.6)",
+            "analytic_identity_abs_tol == 1e-12",
+            "reaction_balance_abs_tol == 1e-9",
+            "finest_h1_seminorm_max == 1e-2",
+            "assembly_calls=6",
+        )),
+        "parse_gate_rejects_error_nodes": all(token in runner for token in (
+            "function ng12_parse_issue(x)",
+            "x.head in (:error,:incomplete)",
+            'error("parse tree "*String(issue)*": "*relative)',
+        )),
+        "runtime_package_environment_stack": all(token in runner for token in (
+            'JULIA_LOAD_PATH_ENTRIES = ("@", str(ROOT), "@stdlib")',
+            '"JULIA_LOAD_PATH": os.pathsep.join(JULIA_LOAD_PATH_ENTRIES)',
+            '"JULIA_PKG_OFFLINE": "true"',
+            '"JULIA_PKG_PRECOMPILE_AUTO": "0"',
+            '"primary_and_fresh_replay_identical": True',
+            "recorded_julia_environment(environment)",
+        )),
+        "early_flushed_memory_observability": all(token in tests for token in (
+            'ng12_stage("entry.before_imports"',
+            'ng12_stage("entry.before_fixture_include")',
+            'ng12_stage("entry.after_fixture_include")',
+            'ng12_stage("dispatch.before"',
+            "Base.gc_live_bytes", "Base.jit_total_bytes", "Sys.maxrss",
+            "Base.gc_time_ns", "flush(stdout)",
+        )) and all(token in fixture for token in (
+            'ng12_stage("fixture.before_using_fusionconceptai")',
+            'ng12_stage("fixture.after_using_fusionconceptai")',
+            'ng12_stage("fixture.before_v3_fixture_include")',
+            'ng12_stage("fixture.after_v3_fixture_include")',
+            'ng12_stage("fixture.source_chain.begin")',
+            'ng12_stage("fixture.compiler.begin")',
+            'ng12_stage("fixture.plan.begin")',
+            'ng12_stage("fixture.definitions.complete")',
+        )) and "GC.gc(" not in tests + fixture,
+        "documented_gc_hint_under_unchanged_hard_cap": all(
+            token in runner for token in (
+                'JULIA_HEAP_SIZE_HINT = "1G"',
+                "JULIA_HEAP_SIZE_HINT_BYTES = 1_073_741_824",
+                'f"--heap-size-hint={JULIA_HEAP_SIZE_HINT}"',
+                "PROCESS_TREE_RSS_LIMIT_BYTES = 2_147_483_648",
+            )
+        ),
+        "r12_precompile_return_exception_and_entry_markers": (
+            precompile_before >= 0 and
+            precompile_before < precompile_try < precompile_call < precompile_return <
+            precompile_catch < precompile_caught < precompile_exception_marker <
+            precompile_after < primary_call and
+            primary_definition >= 0 and
+            primary_definition + len(function_header) == primary_entry < primary_fixture and
+            tests.count(function_entry_marker) == 1 and
+            tests.count(dispatch_marker) == 1 and
+            'ng12_stage("dispatch.before"' in tests and
+            "ng12_primary(artifact_path)" in tests and
+            "ng12_replay(artifact_path)" in tests and
+            "precompile.return" in tests and "precompile.exception" in tests and
+            "precompile.after" in tests and
+            "precompile_exception = nothing" in tests and
+            "precompile_exception === nothing" not in tests
+        ),
+        "r12_test_body_matches_r10_with_only_entry_marker_delta": (
+            r10_tests.count(dispatch_marker) == 1 and
+            tests.count(dispatch_marker) == 1 and
+            r10_tests.split(dispatch_marker, 1)[0] ==
+                r12_prefix.replace(function_entry_marker, "", 1) and
+            r12_prefix.count(function_entry_marker) == 1
+        ),
+        "r12_python_prelaunch_verifier_and_tests": all(token in preflight for token in (
+            "R10_BASELINE_PIN_COUNT = 115",
+            "prelaunch parent command line differs from frozen actual_invocation_argv",
+            "planned_stage_commands(planned_output, julia)",
+            "fixture_cases_or_mesh_levels_changed",
+            "julia_started",
+        )) and all(token in preflight_tests for token in (
+            "test_static_parent_argv_binds_both_leaves",
+            "test_actual_parent_argv_rejects_preparation_only_flag",
+            "test_parent_argv_mismatch_fails_closed",
+        )),
+        "r12_r10_baseline_pin_constants": all(token in runner for token in (
+            R10_BASELINE_MANIFEST_SHA256,
+            R10_BASELINE_PARSE_MANIFEST_SHA256,
+            R10_BASELINE_PROTOCOL_SHA256,
+            "R10_BASELINE_PIN_COUNT = 115",
+        )),
+        "r10_115_frozen_pins_unchanged": (
+            len(load_r10_baseline_pins()) == R10_BASELINE_PIN_COUNT
+        ),
+        "per_pid_tree_resource_attribution": all(token in runner for token in (
+            '"process_tree_processes": processes', '"name": member.name()',
+            '"cmdline": member.cmdline()', '"create_time": member.create_time()',
+            '"rss_bytes": int(memory.rss)', '"cpu_user_seconds": float(cpu.user)',
+            '"cpu_system_seconds": float(cpu.system)',
+            '"per_pid_peak_resources": per_pid_peak',
+        )),
+    }
+    failed = sorted(name for name, passed in checks.items() if not passed)
+    if failed:
+        raise RuntimeError("static checks failed: " + json.dumps(failed))
+    return {
+        "checks": checks,
+        "check_count": len(checks),
+        "julia_dependency_count": len(runtime_julia_paths()),
+        "owned_files": {item: receipt(ROOT / item) for item in OWNED_FILES},
+    }
+
+
+def heavy_processes() -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for process in psutil.process_iter(["name", "cmdline", "create_time"]):
+        name = (process.info.get("name") or "").lower()
+        if name in HEAVY_NAMES:
+            rows.append({
+                "pid": process.pid,
+                "name": process.info.get("name"),
+                "cmdline": process.info.get("cmdline"),
+                "create_time": process.info.get("create_time"),
+            })
+    return rows
+
+
+def tree_resources(
+    process: psutil.Process,
+) -> tuple[int, list[dict[str, object]]]:
+    members = [process]
+    try:
+        members.extend(process.children(recursive=True))
+    except psutil.Error:
+        pass
+    total = 0
+    rows: list[dict[str, object]] = []
+    for member in members:
+        try:
+            with member.oneshot():
+                memory = member.memory_info()
+                cpu = member.cpu_times()
+                row = {
+                    "pid": member.pid,
+                    "name": member.name(),
+                    "cmdline": member.cmdline(),
+                    "create_time": member.create_time(),
+                    "rss_bytes": int(memory.rss),
+                    "cpu_user_seconds": float(cpu.user),
+                    "cpu_system_seconds": float(cpu.system),
+                }
+            total += int(memory.rss)
+            rows.append(row)
+        except psutil.Error:
+            pass
+    rows.sort(key=lambda row: int(row["pid"]))
+    return total, rows
+
+
+def kill_tree(process: psutil.Process) -> None:
+    try:
+        children = process.children(recursive=True)
+    except psutil.Error:
+        children = []
+    for child in reversed(children):
+        try:
+            child.kill()
+        except psutil.Error:
+            pass
+    try:
+        process.kill()
+    except psutil.Error:
+        pass
+
+
+def write_parse_manifest(
+    path: Path,
+    snapshot: dict[str, dict[str, object]],
+) -> dict[str, object]:
+    with path.open("x", encoding="utf-8", newline="\n") as stream:
+        for source in runtime_julia_paths():
+            relative = source.resolve().relative_to(ROOT.resolve()).as_posix()
+            stream.write(f"{snapshot[relative]['sha256']}\t{relative}\n")
+    return {"entries": len(runtime_julia_paths()), **receipt(path)}
+
+
+def run_step(
+    output: Path,
+    index: int,
+    name: str,
+    command: list[str],
+    snapshot: dict[str, dict[str, object]],
+    environment: dict[str, str],
+    artifacts: dict[str, dict[str, object]] | None = None,
+) -> dict[str, object]:
+    active = heavy_processes()
+    if active:
+        raise RuntimeError(
+            f"heavy process lane is not exclusive before {name}: " +
+            json.dumps(active, sort_keys=True)
+        )
+    stage = output / f"{index:02d}_{name}"
+    stage.mkdir()
+    write_new(stage / "checkpoint_before_assert.json", {
+        "schema": "native-g1g2-recorded-checkpoint-v1",
+        "created_utc": utc(),
+        "stage": name,
+        "command": command,
+        "dependencies": snapshot,
+        "artifacts": artifacts or {},
+        "environment": recorded_julia_environment(environment),
+        "timeout_seconds": TIMEOUT_SECONDS,
+        "process_tree_rss_limit_bytes": PROCESS_TREE_RSS_LIMIT_BYTES,
+        "julia_heap_size_hint": JULIA_HEAP_SIZE_HINT,
+        "julia_heap_size_hint_bytes": JULIA_HEAP_SIZE_HINT_BYTES,
+    })
+    started = time.monotonic()
+    started_utc = utc()
+    stop_reason = "natural_exit"
+    samples: list[dict[str, object]] = []
+    with (stage / "stdout.raw").open("xb") as stdout, \
+            (stage / "stderr.raw").open("xb") as stderr:
+        process = subprocess.Popen(
+            command, cwd=ROOT, env=environment, stdout=stdout, stderr=stderr,
+            creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
+        )
+        observed = psutil.Process(process.pid)
+        create_time = observed.create_time()
+        write_new(stage / "start.json", {
+            "schema": "native-g1g2-recorded-stage-v1",
+            "stage": name,
+            "command": command,
+            "cwd": str(ROOT),
+            "pid": process.pid,
+            "process_create_time": create_time,
+            "started_utc": started_utc,
+            "environment": recorded_julia_environment(environment),
+            "timeout_seconds": TIMEOUT_SECONDS,
+            "process_tree_rss_limit_bytes": PROCESS_TREE_RSS_LIMIT_BYTES,
+            "julia_heap_size_hint": JULIA_HEAP_SIZE_HINT,
+            "julia_heap_size_hint_bytes": JULIA_HEAP_SIZE_HINT_BYTES,
+        })
+        with (stage / "samples.jsonl").open(
+            "x", encoding="utf-8", newline="\n", buffering=1
+        ) as stream:
+            while process.poll() is None:
+                try:
+                    if observed.create_time() != create_time:
+                        stop_reason = "pid_ownership_invalid"
+                        break
+                    rss, processes = tree_resources(observed)
+                    sample = {
+                        "utc": utc(),
+                        "elapsed_seconds": time.monotonic() - started,
+                        "root_pid": process.pid,
+                        "process_tree_pids": [
+                            int(row["pid"]) for row in processes
+                        ],
+                        "process_tree_processes": processes,
+                        "process_tree_rss_bytes": rss,
+                    }
+                    samples.append(sample)
+                    stream.write(json.dumps(sample, sort_keys=True) + "\n")
+                    if rss >= PROCESS_TREE_RSS_LIMIT_BYTES:
+                        stop_reason = "process_tree_rss_limit"
+                        break
+                    if time.monotonic() - started >= TIMEOUT_SECONDS:
+                        stop_reason = "wall_timeout"
+                        break
+                except psutil.NoSuchProcess:
+                    break
+                time.sleep(0.2)
+            if process.poll() is None and stop_reason != "natural_exit":
+                kill_tree(observed)
+            exit_code = process.wait()
+    per_pid_peak: dict[str, dict[str, object]] = {}
+    for sample in samples:
+        for row in sample["process_tree_processes"]:
+            key = str(row["pid"])
+            previous = per_pid_peak.get(key)
+            if previous is None or int(row["rss_bytes"]) > int(
+                previous["peak_rss_bytes"]
+            ):
+                per_pid_peak[key] = {
+                    "pid": row["pid"],
+                    "name": row["name"],
+                    "cmdline": row["cmdline"],
+                    "create_time": row["create_time"],
+                    "peak_rss_bytes": row["rss_bytes"],
+                    "cpu_user_seconds_at_peak": row["cpu_user_seconds"],
+                    "cpu_system_seconds_at_peak": row["cpu_system_seconds"],
+                }
+    final = {
+        "schema": "native-g1g2-recorded-stage-v1",
+        "index": index,
+        "stage": name,
+        "command": command,
+        "started_utc": started_utc,
+        "ended_utc": utc(),
+        "elapsed_seconds": time.monotonic() - started,
+        "exit_code": exit_code,
+        "stop_reason": stop_reason,
+        "julia_heap_size_hint": JULIA_HEAP_SIZE_HINT,
+        "julia_heap_size_hint_bytes": JULIA_HEAP_SIZE_HINT_BYTES,
+        "peak_process_tree_rss_bytes": max(
+            (int(row["process_tree_rss_bytes"]) for row in samples), default=0
+        ),
+        "per_pid_peak_resources": per_pid_peak,
+        "sample_count": len(samples),
+        "stdout": receipt(stage / "stdout.raw"),
+        "stderr": receipt(stage / "stderr.raw"),
+        "environment": recorded_julia_environment(environment),
+    }
+    write_new(stage / "final.json", final)
+    return final
+
+
+def locate_julia(requested: str | None) -> str:
+    if requested:
+        path = Path(requested).resolve()
+        if not path.is_file():
+            raise FileNotFoundError(f"Julia executable missing: {path}")
+        return str(path)
+    discovered = shutil.which("julia")
+    if discovered is None:
+        raise FileNotFoundError("Julia executable is not on PATH")
+    return discovered
+
+
+def parse_output_leaf(value: str) -> Path:
+    output = Path(value)
+    if not output.is_absolute():
+        output = EVIDENCE_ROOT / output
+    output = output.resolve()
+    try:
+        output.relative_to(EVIDENCE_ROOT)
+    except ValueError as error:
+        raise ValueError("output must remain inside the owned evidence root") from error
+    if output.exists():
+        raise FileExistsError(f"output leaf already exists: {output}")
+    output.mkdir(parents=True)
+    return output
+
+
+def resolve_planned_output(value: str) -> Path:
+    output = Path(value)
+    if not output.is_absolute():
+        output = EVIDENCE_ROOT / output
+    output = output.resolve()
+    try:
+        output.relative_to(EVIDENCE_ROOT)
+    except ValueError as error:
+        raise ValueError(
+            "planned output must remain inside the owned evidence root"
+        ) from error
+    if output.exists():
+        raise FileExistsError(f"planned output already exists: {output}")
+    return output
+
+
+def parse_script_text() -> str:
+    return (
+        'using SHA; '
+        'function ng12_parse_issue(x); '
+        'x isa Expr || return nothing; '
+        'x.head in (:error,:incomplete) && return x.head; '
+        'for child in x.args; issue=ng12_parse_issue(child); '
+        'issue===nothing || return issue; end; nothing; end; '
+        'function main(args); manifest=args[1]; root=args[2]; count=0; '
+        'for line in eachline(manifest); expected,relative=split(line,"\\t";limit=2); '
+        'path=joinpath(root,split(relative,\'/\')...); '
+        'bytes=read(path); bytes2hex(SHA.sha256(bytes))==expected || '
+        'error("parse pin mismatch: "*relative); '
+        'parsed=Meta.parseall(String(bytes)); issue=ng12_parse_issue(parsed); '
+        'issue===nothing || error("parse tree "*String(issue)*": "*relative); '
+        'count+=1; end; println("NG12_PARSE status=pass files=",count); end; '
+        'main(ARGS)'
+    )
+
+
+def julia_prefix(julia: str) -> list[str]:
+    return [
+        julia,
+        f"--project={GRIDAP_PROJECT}",
+        "--startup-file=no",
+        "--history-file=no",
+        "--threads=1",
+        f"--heap-size-hint={JULIA_HEAP_SIZE_HINT}",
+    ]
+
+
+def planned_stage_commands(output: Path, julia: str) -> tuple[tuple[str, list[str]], ...]:
+    prefix = julia_prefix(julia)
+    parse_script = parse_script_text()
+    artifact = output / "artifacts" / "primary.bin"
+    return (
+        ("parse_all", [*prefix, "-e", parse_script,
+            str(output / "parse_manifest.tsv"), str(ROOT)]),
+        ("primary", [*prefix, str(ROOT / OWNED_FILES[3]),
+            "primary", str(artifact)]),
+        ("fresh_replay", [*prefix, str(ROOT / OWNED_FILES[3]),
+            "replay", str(artifact)]),
+    )
+
+
+def planned_supervisor_argv(output: Path, julia: str) -> list[str]:
+    return [
+        str(Path(sys.executable).resolve()), "-B",
+        str(Path(__file__).resolve()),
+        "--output", output.relative_to(EVIDENCE_ROOT).as_posix(),
+        "--julia", julia,
+    ]
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", required=True,
+        help="new leaf name or absolute path inside the owned evidence root")
+    parser.add_argument("--julia", required=True)
+    parser.add_argument("--planned-output",
+        help="future actual-run leaf, required with --static-only")
+    parser.add_argument("--static-only", action="store_true")
+    args = parser.parse_args()
+
+    julia = locate_julia(args.julia)
+    output = parse_output_leaf(args.output)
+    if args.static_only:
+        if args.planned_output is None:
+            raise ValueError("--planned-output is required with --static-only")
+        planned_output = resolve_planned_output(args.planned_output)
+    else:
+        if args.planned_output is not None:
+            raise ValueError("--planned-output is only valid with --static-only")
+        planned_output = output
+    static = static_checks()
+    snapshot = dependency_receipts()
+    manifest = write_parse_manifest(output / "parse_manifest.tsv", snapshot)
+    commands = planned_stage_commands(planned_output, julia)
+    preflight_path = (ROOT / PRELAUNCH_PREFLIGHT).resolve()
+    preflight_command = [
+        str(Path(sys.executable).resolve()), "-B", str(preflight_path),
+        "--protocol", str(output / "protocol.json"),
+        "--static-preflight", str(output / "static_preflight.json"),
+        "--baseline-manifest", str(R10_BASELINE_MANIFEST),
+        "--baseline-parse-manifest", str(R10_BASELINE_PARSE_MANIFEST),
+        "--baseline-protocol", str(R10_BASELINE_PROTOCOL),
+    ]
+    preflight_relative = Path(PRELAUNCH_PREFLIGHT).as_posix()
+    preflight_sha = str(snapshot[preflight_relative]["sha256"])
+    protocol = {
+        "schema": "native-g1g2-gridap-recorded-protocol-r12-v1",
+        "run_revision": "r12_precompile_marker_test_only",
+        "run_mode": "static_only" if args.static_only else "actual",
+        "preparation_output": str(output),
+        "created_utc": utc(),
+        "ownership": OWNED_FILES,
+        "model_record": {
+            "requested_model": "gpt-6-luna",
+            "requested_reasoning_effort": "max",
+            "actual_model": "not_visible_to_worker",
+        },
+        "r10_baseline": {
+            "static_preflight_path": str(R10_BASELINE_MANIFEST),
+            "static_preflight_sha256": R10_BASELINE_MANIFEST_SHA256,
+            "parse_manifest_path": str(R10_BASELINE_PARSE_MANIFEST),
+            "parse_manifest_sha256": R10_BASELINE_PARSE_MANIFEST_SHA256,
+            "protocol_path": str(R10_BASELINE_PROTOCOL),
+            "protocol_sha256": R10_BASELINE_PROTOCOL_SHA256,
+            "pinned_input_count": R10_BASELINE_PIN_COUNT,
+        },
+        "prior_run_lineage": {
+            "files": {
+                **{path: digest for path, digest in R10_PRIOR_EVIDENCE_SHA256.items()},
+                **{path: digest for path, digest in R11_PRIOR_EVIDENCE_SHA256.items()},
+            },
+            **PRIOR_RUN_FACTS,
+        },
+        "prelaunch_guard": {
+            "path": PRELAUNCH_PREFLIGHT,
+            "sha256": preflight_sha,
+            "command": preflight_command,
+            "required_before_julia": True,
+            "implementation": "python_only_no_julia_import_or_launch",
+        },
+        "julia_dependency_count": len(runtime_julia_paths()),
+        "parse_manifest": manifest,
+        "parse_gate": {
+            "hash_pin_before_parse": True,
+            "reject_expr_heads": ("error", "incomplete"),
+            "reports_relative_filename": True,
+        },
+        "stage_order": ("parse_all", "primary", "fresh_replay"),
+        "r12_budget_delta": {
+            "r11_primary_timeout_seconds": 300.0,
+            "r12_wall_seconds_per_stage": 480.0,
+            "process_tree_rss_limit_bytes_unchanged": 2_147_483_648,
+            "fixtures_and_numerical_thresholds_unchanged": True,
+            "rationale": (
+                "r10 and r11 both ended at the first primary specialization before "
+                "function-body entry; r11 was CPU-active near its 300s wall stop. "
+                "This extends only the bounded diagnostic window. RSS remains hard "
+                "capped at 2 GiB; r11 peak left only 45,404,160 bytes of measured "
+                "headroom, so the longer window is not evidence of memory safety."
+            ),
+            "diagnostic_only_not_solver_or_numerical_success": True,
+        },
+        "limits_per_julia_stage": {
+            "wall_seconds": TIMEOUT_SECONDS,
+            "whole_process_tree_rss_bytes": PROCESS_TREE_RSS_LIMIT_BYTES,
+            "julia_threads": 1,
+            "blas_threads": 1,
+        },
+        "memory_observability": {
+            "julia_heap_size_hint": JULIA_HEAP_SIZE_HINT,
+            "julia_heap_size_hint_bytes": JULIA_HEAP_SIZE_HINT_BYTES,
+            "heap_hint_semantics": (
+                "Julia GC pressure hint; not a hard RSS cap and not evidence "
+                "of an OOM root cause"
+            ),
+            "whole_tree_rss_hard_cap_bytes": PROCESS_TREE_RSS_LIMIT_BYTES,
+            "in_process_metrics": {
+                "gc_live_bytes": "Julia live plus post-GC allocation bytes",
+                "jit_total_bytes": "Julia JIT native code and data bytes",
+                "process_maxrss_bytes": "current Julia process peak RSS bytes",
+                "gc_time_ns": "current Julia process cumulative GC nanoseconds",
+            },
+            "recorder_metrics": (
+                "per-process pid/name/cmdline/create-time/RSS/CPU plus "
+                "whole-process-tree RSS"
+            ),
+            "forced_gc_at_markers": False,
+            "root_cause_established_before_run": False,
+        },
+        "runtime_environment": {
+            "active_project": str(GRIDAP_PROJECT),
+            "load_path_entries": JULIA_LOAD_PATH_ENTRIES,
+            "julia_load_path": os.pathsep.join(JULIA_LOAD_PATH_ENTRIES),
+            "gridap_project_sha256": receipt(GRIDAP_PROJECT / "Project.toml")[
+                "sha256"
+            ],
+            "gridap_manifest_sha256": receipt(GRIDAP_PROJECT / "Manifest.toml")[
+                "sha256"
+            ],
+            "fusion_package_environment": str(ROOT),
+            "fusion_project_sha256": receipt(ROOT / "Project.toml")["sha256"],
+            "fusion_manifest_sha256": receipt(ROOT / "Manifest.toml")["sha256"],
+            "primary_and_fresh_replay_identical": True,
+        },
+        "numerical_protocol": {
+            "cell_counts": ((2, 3, 4), (4, 6, 8), (8, 12, 16)),
+            "quadrature_degree": 8,
+            "declared_g2_quadrature_role":
+                "identity_bound_geometry_metadata_not_execution_rule",
+            "residual_abs_tol": 1.0e-9,
+            "residual_rel_tol": 1.0e-11,
+            "boundary_abs_tol": 1.0e-10,
+            "source_integral_abs_tol": 1.0e-10,
+            "analytic_identity_abs_tol": 1.0e-12,
+            "reaction_balance_abs_tol": 1.0e-9,
+            "l2_order_interval": (1.4, 2.6),
+            "h1_order_interval": (0.6, 1.4),
+            "finest_l2_max": 5.0e-3,
+            "finest_h1_seminorm_max": 1.0e-2,
+            "error_budget_basis": {
+                "derivation":
+                    "tensor_q1_interpolation_plus_cea_ellipticity_and_box_poincare",
+                "value_representation":
+                    "rounded_decimal_approximations_of_fraction_integral_square_roots",
+                "physical_lower_metres_rational": ("1/2", "1/3", "1/4"),
+                "physical_upper_metres_rational": ("5/2", "10/3", "17/4"),
+                "physical_lengths_metres_rational": ("2", "3", "4"),
+                "k_base_rational": ("2", "3", "4"),
+                "k_slope_rational": ("1/10", "1/20", "1/30"),
+                "ellipticity_bounds_rational": ("41/20", "497/120"),
+                "finest_interpolation_l2_m32": 0.000714216274,
+                "finest_interpolation_h1_m12": 0.006674632049,
+                "cea_finest_h1_bound_m12": 0.009487198126,
+                "poincare_finest_l2_bound_m32": 0.004639855187,
+                "stiffness_integrand_max_coordinate_degree": 2,
+                "rhs_integrand_max_coordinate_degree": 3,
+                "squared_error_integrand_max_coordinate_degree": 4,
+                "gridap_quadrature_degree": 8,
+            },
+            "expected_invocations": {
+                "t0_source_record_factory_calls": 3,
+                "v3_source_witness_calls": 1,
+                "t1_admission_calls": 1,
+                "compiler_calls": 1,
+                "provider_calls": 1,
+                "mesh_calls": 3,
+                "assembly_calls": 6,
+                "solver_calls": 3,
+                "formal_t2_consumer_receipts": 0,
+            },
+            "discrete_balance_ledger": {
+                "strong_boundary_trace": "diagnostic_only",
+                "boundary_reaction_subset":
+                    "explicit_constrained_to_unconstrained_q1_dof_partition",
+                "interior_reaction_check":
+                    "mapped_against_reduced_algebraic_residual",
+                "conservation_gate":
+                    "assembled_source_plus_boundary_reaction",
+            },
+        },
+        "checkpoint_order": (
+            "positive_three_grid_preassert",
+            "wrong_sign_preassert",
+            "primary_artifact",
+            "fresh_replay_preassert",
+        ),
+        "precompile_diagnostic": {
+            "target": "ng12_primary(::String)",
+            "request": "precompile(ng12_primary, (String,))",
+            "markers": (
+                "precompile.before", "precompile.return", "precompile.exception",
+                "precompile.after", "primary.function.enter"
+            ),
+            "position": (
+                "precompile outcome markers surround the explicit precompile call; "
+                "primary.function.enter is the first ng12_primary body statement"
+            ),
+            "precompile_semantics": (
+                "precompile requests compilation of ng12_primary(::String); it does "
+                "not execute the function body or solver. The ordinary call follows "
+                "after the explicit precompile attempt."
+            ),
+            "exception_policy": (
+                "precompile.return is emitted only if the explicit request returns; "
+                "precompile.exception is emitted if it throws; precompile.after "
+                "records either outcome before continuing into ordinary ng12_primary"
+            ),
+            "replay_process": "no explicit precompile request; fresh replay unchanged",
+            "interpretation_limit": (
+                "diagnostic request for the primary method specialization; it does "
+                "not prove all downstream dynamic dispatch has been compiled"
+            ),
+            "forced_gc": False,
+            "numerical_thresholds_changed": False,
+            "fixture_cases_or_mesh_levels_changed": False,
+            "diagnostic_is_numerical_success": False,
+        },
+        "execution_plan": {
+            "runtime_executed": not args.static_only,
+            "julia_executable": {"path": julia, **receipt(Path(julia))},
+            "supervisor_cwd": str(ROOT),
+            "actual_invocation_argv": [
+                str(Path(sys.executable).resolve()), "-B",
+                str(Path(__file__).resolve()), *sys.argv[1:],
+            ],
+            "supervisor_argv": planned_supervisor_argv(planned_output, julia),
+            "planned_actual_output": str(planned_output),
+            "stage_commands": [
+                {"stage": name, "argv": command}
+                for name, command in commands
+            ],
+        },
+        "formal_t2_consumer_receipts_assigned": 0,
+        "acceptance_boundary": {
+            "software": "pending_actual_run",
+            "numerical": "pending_actual_run",
+            "scientific": "not_accepted",
+            "physical": "unknown",
+            "resolution": "terminal_deferred",
+        },
+    }
+    write_new(output / "protocol.json", protocol)
+    write_new(output / "static_preflight.json", {
+        "schema": "native-g1g2-static-preflight-v1",
+        "created_utc": utc(),
+        "r10_baseline": {
+            "static_preflight_path": str(R10_BASELINE_MANIFEST),
+            "static_preflight_sha256": R10_BASELINE_MANIFEST_SHA256,
+            "parse_manifest_path": str(R10_BASELINE_PARSE_MANIFEST),
+            "parse_manifest_sha256": R10_BASELINE_PARSE_MANIFEST_SHA256,
+            "protocol_path": str(R10_BASELINE_PROTOCOL),
+            "protocol_sha256": R10_BASELINE_PROTOCOL_SHA256,
+            "pinned_input_count": R10_BASELINE_PIN_COUNT,
+        },
+        "static": static,
+        "dependencies": snapshot,
+    })
+    preflight_run = subprocess.run(
+        preflight_command, cwd=ROOT, capture_output=True, check=False
+    )
+    (output / "prelaunch.stdout.raw").write_bytes(preflight_run.stdout)
+    (output / "prelaunch.stderr.raw").write_bytes(preflight_run.stderr)
+    (output / "prelaunch.exit.txt").write_text(
+        f"{preflight_run.returncode}\n", encoding="ascii"
+    )
+    if preflight_run.returncode != 0:
+        raise RuntimeError(
+            "r12 Python prelaunch source/argv verifier failed; Julia was not started"
+        )
+    prelaunch_receipt = json.loads(preflight_run.stdout.decode("utf-8"))
+    if args.static_only:
+        write_new(output / "summary.json", {
+            "schema": "native-g1g2-run-summary-v1",
+            "created_utc": utc(),
+            "mode": "static_only",
+            "runtime_executed": False,
+            "status": "static_ready",
+            "scientific_status": "not_accepted",
+            "physical_status": "unknown",
+            "resolution": "terminal_deferred",
+            "prelaunch": prelaunch_receipt,
+        })
+        print(json.dumps({
+            "status": "static_ready",
+            "output": str(output),
+            "julia_dependency_count": len(runtime_julia_paths()),
+            "runtime_executed": False,
+            "prelaunch_status": prelaunch_receipt["status"],
+        }, sort_keys=True))
+        return 0
+
+    environment = os.environ.copy()
+    environment.update({
+        "JULIA_LOAD_PATH": os.pathsep.join(JULIA_LOAD_PATH_ENTRIES),
+        "JULIA_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "JULIA_PKG_OFFLINE": "true",
+        "JULIA_PKG_PRECOMPILE_AUTO": "0",
+    })
+    artifact = output / "artifacts" / "primary.bin"
+    artifact.parent.mkdir()
+    stages: list[dict[str, object]] = []
+    failure: dict[str, object] | None = None
+    for index, (name, command) in enumerate(commands, start=1):
+        artifact_receipts: dict[str, dict[str, object]] = {}
+        for label, path in (
+            ("primary", artifact),
+            ("primary_preassert", Path(str(artifact) + ".preassert.bin")),
+            ("wrong_sign_preassert",
+                Path(str(artifact) + ".wrong-sign-preassert.bin")),
+            ("replay_preassert", Path(str(artifact) + ".replay-preassert.bin")),
+        ):
+            if path.is_file():
+                artifact_receipts[label] = receipt(path)
+        final = run_step(output, index, name, command, snapshot,
+            environment, artifact_receipts)
+        stages.append(final)
+        stage_stdout = output / f"{index:02d}_{name}" / "stdout.raw"
+        text = stage_stdout.read_text(encoding="utf-8", errors="replace")
+        required_token = "NG12_PARSE status=pass" if name == "parse_all" else (
+            f"NG12_RESULT mode={'primary' if name == 'primary' else 'replay'} status=pass"
+        )
+        if (final["exit_code"] != 0 or
+                final["stop_reason"] != "natural_exit" or
+                required_token not in text):
+            failure = {"stage": name, "required_token": required_token,
+                "final": final}
+            break
+        if name == "primary" and not artifact.is_file():
+            failure = {"stage": name, "reason": "primary_artifact_missing"}
+            break
+        if name == "primary" and not Path(
+                str(artifact) + ".preassert.bin").is_file():
+            failure = {"stage": name,
+                "reason": "primary_preassert_checkpoint_missing"}
+            break
+        if name == "primary" and not Path(
+                str(artifact) + ".wrong-sign-preassert.bin").is_file():
+            failure = {"stage": name,
+                "reason": "wrong_sign_preassert_checkpoint_missing"}
+            break
+        if name == "fresh_replay" and not Path(
+                str(artifact) + ".replay-preassert.bin").is_file():
+            failure = {"stage": name,
+                "reason": "replay_preassert_checkpoint_missing"}
+            break
+
+    after = dependency_receipts()
+    unchanged = snapshot == after
+    if not unchanged and failure is None:
+        failure = {"stage": "postflight", "reason": "dependency_bytes_changed"}
+    residual = heavy_processes()
+    if residual and failure is None:
+        failure = {"stage": "postflight", "reason": "residual_heavy_process",
+            "processes": residual}
+    complete = failure is None and len(stages) == 3
+    final_artifacts: dict[str, dict[str, object]] = {}
+    for label, path in (
+        ("primary", artifact),
+        ("primary_preassert", Path(str(artifact) + ".preassert.bin")),
+        ("wrong_sign_preassert",
+            Path(str(artifact) + ".wrong-sign-preassert.bin")),
+        ("replay_preassert", Path(str(artifact) + ".replay-preassert.bin")),
+    ):
+        if path.is_file():
+            final_artifacts[label] = receipt(path)
+    summary = {
+        "schema": "native-g1g2-run-summary-v1",
+        "created_utc": utc(),
+        "runtime_executed": True,
+        "status": "pass" if complete else "fail",
+        "stages": stages,
+        "failure": failure,
+        "dependencies_unchanged": unchanged,
+        "dependencies_before": snapshot,
+        "dependencies_after": after,
+        "artifacts": final_artifacts,
+        "software_status": "pass" if complete else "not_established",
+        "numerical_status": "pass" if complete else "not_established",
+        "scientific_status": "not_accepted",
+        "physical_status": "unknown",
+        "resolution": "terminal_deferred",
+        "formal_t2_consumer_receipts_assigned": 0,
+    }
+    write_new(output / "summary.json", summary)
+    print(json.dumps({
+        "status": summary["status"],
+        "output": str(output),
+        "runtime_executed": True,
+        "completed_stages": [stage["stage"] for stage in stages],
+        "failure": failure,
+    }, sort_keys=True))
+    return 0 if complete else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,119 @@
+{
+  "requested_path": "ayc/pe_error",
+  "resolved_path": "ayc/pe_error",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      284,
+      131
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index"
+    ],
+    "units": ""
+  },
+  "shape": [
+    284,
+    131
+  ],
+  "chunks": [
+    284,
+    131
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index"
+  ],
+  "decoded_bytes": 148816,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        284,
+        131
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/pe_error/0.0",
+      "requested_utc": "2026-09-22T08:10:21.067713+00:00",
+      "compressed_path": "fields/ayc__pe_error/chunks/0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "64699",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"ea48ad0ac0c3321b4c906b25ed65ba6f\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 64699,
+      "compressed_sha256": "78bd975200679c478155387de55e0ce0394fcd7ef7f55b7d6cd6e4122df23616",
+      "decoded_path": "fields/ayc__pe_error/chunks/0.0.raw",
+      "decoded_bytes": 148816,
+      "decoded_sha256": "a9c093d9f46f2f3fa24cf6fb6037e25a00c6c0d423170ea20df944b23c66b507",
+      "decoded_shape": [
+        284,
+        131
+      ],
+      "full_bytes": 148816,
+      "edge_bytes": 148816,
+      "completed_utc": "2026-09-22T08:10:21.909611+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:21.066814+00:00",
+  "completed_utc": "2026-09-22T08:10:21.911080+00:00",
+  "assembled_path": "fields/ayc__pe_error/assembled.raw",
+  "assembled_bytes": 148816,
+  "assembled_sha256": "a9c093d9f46f2f3fa24cf6fb6037e25a00c6c0d423170ea20df944b23c66b507",
+  "finite_count": 15863,
+  "total_count": 37204,
+  "minimum": 0.4030275344848633,
+  "maximum": 144979.25
+}

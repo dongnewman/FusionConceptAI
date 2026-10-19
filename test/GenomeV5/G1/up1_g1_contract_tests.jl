@@ -230,3 +230,96 @@ end
         mimo.input_units, mimo.output_units, mimo.temporal_kind, mimo.derivative_order, mimo.effects, mimo.occurrences, mimo.closure_ref, wrong_port_types;
         input_ranks=mimo.input_ranks, output_ranks=mimo.output_ranks, mimo=true)
 end
+
+
+@testset "UP1 G1 typed-expression canonical DAG numbering" begin
+    genome, payload, _, axes, _ = _g1_fixture()
+
+    # The fixture's MIMO expression has two ordered inputs and two ordered outputs.
+    mimo_eq = payload.equation_plan.equations[3]
+    mimo = mimo_eq.expression
+    apply = mimo.nodes[3]
+    @test apply.output_types[1] != apply.output_types[2]
+    reordered_mimo = G.G1TypedExpressionV2(
+        (mimo.nodes[2], mimo.nodes[1],
+         G.G1MIMOOperatorApplyV2(apply.operator_ref, (2, 1), apply.output_types)),
+        (3, 3))
+    view_equal = G.canonical_json(G.semantic_view(mimo)) == G.canonical_json(G.semantic_view(reordered_mimo))
+    @test view_equal
+    @test G.g1_expression_hash(mimo) == G.g1_expression_hash(reordered_mimo)
+
+    # Reordering nodes must not reorder the operator's input ports or MIMO outputs.
+    wrong_input_ports = G.G1TypedExpressionV2(
+        (mimo.nodes[2], mimo.nodes[1],
+         G.G1MIMOOperatorApplyV2(apply.operator_ref, (1, 2), apply.output_types)),
+        (3, 3))
+    wrong_output_ports = G.G1TypedExpressionV2(
+        (mimo.nodes[1], mimo.nodes[2],
+         G.G1MIMOOperatorApplyV2(apply.operator_ref, (1, 2),
+             (apply.output_types[2], apply.output_types[1]))),
+        (3, 3))
+    @test G.g1_expression_hash(wrong_input_ports) != G.g1_expression_hash(mimo)
+    @test G.g1_expression_hash(wrong_output_ports) != G.g1_expression_hash(mimo)
+    @test G.canonical_json(G.semantic_view(wrong_input_ports)) != G.canonical_json(G.semantic_view(mimo))
+    @test G.canonical_json(G.semantic_view(wrong_output_ports)) != G.canonical_json(G.semantic_view(mimo))
+
+    reordered_eq = G.G1EquationV2(mimo_eq.equation_id, mimo_eq.role, mimo_eq.operator_ref,
+        mimo_eq.input_state_refs, mimo_eq.output_state_refs, mimo_eq.input_units, mimo_eq.output_units,
+        mimo_eq.temporal_kind, mimo_eq.derivative_order, mimo_eq.effects, mimo_eq.occurrences,
+        mimo_eq.closure_ref, reordered_mimo; input_ranks=mimo_eq.input_ranks,
+        output_ranks=mimo_eq.output_ranks, mimo=true)
+    reordered_equations = ntuple(i -> i == 3 ? reordered_eq : payload.equation_plan.equations[i],
+        length(payload.equation_plan.equations))
+    reordered_plan = G.G1EquationPlanV2(payload.equation_plan.plan_ref, reordered_equations)
+    reordered_payload = G.MechanismGenomePayloadV2(payload.contract_ref, payload.states,
+        reordered_plan, payload.grammar_profile)
+    reordered_genome = G.MechanismGenomeV5(genome.contract_ref, reordered_payload, axes)
+    @test G.equation_plan_hash(reordered_plan) == G.equation_plan_hash(payload.equation_plan)
+    @test G.g1_genome_hash(reordered_genome) == G.g1_genome_hash(genome)
+
+    scalar_eq = payload.equation_plan.equations[1]
+    scalar_input, scalar_apply = scalar_eq.expression.nodes
+    make_apply(input_index, tag) = G.G1OperatorApplyV2(scalar_apply.operator_ref,
+        (input_index,), scalar_apply.output_type; parameters=(; branch=tag))
+
+    # Root tuple order denotes output order, and remains semantic after renumbering.
+    root_ordered = G.G1TypedExpressionV2((scalar_input,
+        make_apply(1, :left), make_apply(1, :right)), (2, 3))
+    root_ordered_reindexed = G.G1TypedExpressionV2((scalar_input,
+        make_apply(1, :right), make_apply(1, :left)), (3, 2))
+    root_order_reversed = G.G1TypedExpressionV2((scalar_input,
+        make_apply(1, :left), make_apply(1, :right)), (3, 2))
+    view_equal = G.canonical_json(G.semantic_view(root_ordered)) == G.canonical_json(G.semantic_view(root_ordered_reindexed))
+    @test view_equal
+    @test G.g1_expression_hash(root_ordered) == G.g1_expression_hash(root_ordered_reindexed)
+    @test G.g1_expression_hash(root_ordered) != G.g1_expression_hash(root_order_reversed)
+    @test G.canonical_json(G.semantic_view(root_ordered)) != G.canonical_json(G.semantic_view(root_order_reversed))
+
+    # Two consumers of one shared node are a different DAG from two copied nodes.
+    shared = G.G1TypedExpressionV2((scalar_input, make_apply(1, :inner),
+        make_apply(2, :left), make_apply(2, :right)), (3, 4))
+    shared_reindexed = G.G1TypedExpressionV2((scalar_input, make_apply(1, :inner),
+        make_apply(2, :right), make_apply(2, :left)), (4, 3))
+    copied = G.G1TypedExpressionV2((scalar_input, make_apply(1, :inner),
+        make_apply(1, :inner), make_apply(2, :left), make_apply(3, :right)), (4, 5))
+    view_equal = G.canonical_json(G.semantic_view(shared)) == G.canonical_json(G.semantic_view(shared_reindexed))
+    @test view_equal
+    @test G.g1_expression_hash(shared) == G.g1_expression_hash(shared_reindexed)
+    @test G.g1_expression_hash(shared) != G.g1_expression_hash(copied)
+
+    # Separate but structurally identical nodes retain their multiplicity.
+    duplicate_nodes = G.G1TypedExpressionV2((scalar_input,
+        make_apply(1, :same), make_apply(1, :same)), (2, 3))
+    one_node_twice = G.G1TypedExpressionV2((scalar_input, make_apply(1, :same)), (2, 2))
+    @test G.g1_expression_hash(duplicate_nodes) != G.g1_expression_hash(one_node_twice)
+
+    # Unreachable authored nodes stay visible and affect identity; they are not dropped.
+    unreachable = G.G1ParameterInputV2("unreachable_parameter", scalar_input.physical_type)
+    with_unreachable = G.G1TypedExpressionV2((scalar_input, scalar_apply, unreachable), 2)
+    without_unreachable = G.G1TypedExpressionV2((scalar_input, scalar_apply), 2)
+    unreachable_view = G.semantic_view(with_unreachable)
+    @test length(unreachable_view.nodes) == 3
+    @test any(node -> node isa G.G1ParameterInputV2 &&
+        node.parameter_id == "unreachable_parameter", unreachable_view.nodes)
+    @test G.g1_expression_hash(with_unreachable) != G.g1_expression_hash(without_unreachable)
+end

@@ -1,0 +1,122 @@
+{
+  "requested_path": "efm/bvac_r",
+  "resolved_path": "efm/bvac_r",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Reference radius for efm_bvac_val; f(A)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "radius at where B_phi=_b",
+    "mds_name": "\\TOP.ANALYSED.EFM:BVAC_R",
+    "name": "efm/bvac_r",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      120
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_BVAC_R",
+    "units": "m",
+    "uuid": "2e44b3ba-e5f9-56b5-86d6-fe955ca2176d",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:14.110357Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/bvac_r/0",
+      "requested_utc": "2026-09-21T20:02:14.110492Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "45",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"7d20da973ff45cab31496059ec7c3a9c\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 45,
+      "compressed_sha256": "dbb1662d05d5f8ddd4e99a6e244fa601c04b7040581c0fa795b09caadb892cdd",
+      "decoded_bytes": 480,
+      "decoded_sha256": "c7de6f41f2595786d0100c0b8ed1ec965629671e44fc4c912830977f1a48b0c5",
+      "decoded_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__bvac_r\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "c7de6f41f2595786d0100c0b8ed1ec965629671e44fc4c912830977f1a48b0c5",
+  "finite_count": 120,
+  "total_count": 120,
+  "minimum": 1.0,
+  "maximum": 1.0
+}

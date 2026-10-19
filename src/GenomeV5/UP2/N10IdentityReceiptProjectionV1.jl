@@ -235,13 +235,27 @@ semantic_view(x::N10ValidationResultV1) =
      provider_calls=x.provider_calls, solver_calls=x.solver_calls,
      result_hash=x.result_hash)
 
-function _n10_check_package(package::CandidateStatePackageV5)
+function _n10_check_package_with_hashes(package::CandidateStatePackageV5)
     package.structural_status == :valid || throw(ArgumentError("N10 requires valid actual A package"))
     package.candidate_ref.version == "v5" || throw(ArgumentError("N10 candidate ref must be v5"))
     package.resolution == terminal_deferred || throw(ArgumentError("N10 preserves A deferred resolution"))
     package.claim_ceiling == none || throw(ArgumentError("N10 claim ceiling must remain none"))
+    legacy_g3 = package.g3 isa RealizationControlGenomeV5
+    authored_g3 = isdefined(@__MODULE__, :G3AuthoredSourceDesignAggregateV1) &&
+        package.g3 isa getfield(@__MODULE__, :G3AuthoredSourceDesignAggregateV1)
     package.g1 isa MechanismGenomeV5 && package.g2 isa FieldGeometryGenomeV5 &&
-        package.g3 isa RealizationControlGenomeV5 || throw(ArgumentError("N10 requires concrete A components"))
+        (legacy_g3 || authored_g3) || throw(ArgumentError("N10 requires concrete A components"))
+    source_identity_valid = false
+    if authored_g3
+        isdefined(@__MODULE__, :_v5_package_identity_valid) ||
+            throw(ArgumentError("N10 source-aware package identity validator is unavailable"))
+        source_identity_valid = _v5_package_identity_valid(package.candidate_ref, package.g1, package.g2,
+            package.g2_binding, package.g3, package.version_axes,
+            package.component_identity, package.migration_receipt;
+            require_candidate=true)
+        source_identity_valid ||
+            throw(ArgumentError("N10 source-aware A package identity or G3 proof mismatch"))
+    end
     package.g2_binding.candidate_ref == package.candidate_ref ||
         throw(ArgumentError("N10 G2 candidate binding mismatch"))
     package.g2_binding.genome_hash == package.g2.candidate_hash ||
@@ -266,19 +280,29 @@ function _n10_check_package(package::CandidateStatePackageV5)
     identity.candidate_ref == package.candidate_ref || throw(ArgumentError("N10 identity candidate mismatch"))
     expected_g2_uri = replace(package.candidate_ref.id,
         "fusionconceptai://candidate/" => "fusionconceptai://GenomeV5/G2/")
-    g2.uri == expected_g2_uri || throw(ArgumentError("N10 G2 ref is foreign to package candidate"))
+    source_aware_g2 = authored_g3 && source_identity_valid &&
+        hasproperty(identity, :g2_source_projection) && identity.g2_source_projection !== nothing
+    !source_aware_g2 && g2.uri != expected_g2_uri &&
+        throw(ArgumentError("N10 G2 ref is foreign to package candidate"))
     package.migration_receipt.candidate_ref == package.candidate_ref ||
         throw(ArgumentError("N10 receipt candidate mismatch"))
-    package.candidate_hash == _n10_expected_package_hash(package) ||
+    package_hash = _n10_expected_package_hash(package)
+    package.candidate_hash == package_hash ||
         throw(ArgumentError("N10 package candidate hash does not recompute"))
-    package.migration_receipt.candidate_identity_after == _n10_expected_identity_hash(package) ||
+    identity_after = _n10_expected_identity_hash(package)
+    package.migration_receipt.candidate_identity_after == identity_after ||
         throw(ArgumentError("N10 receipt identity-after does not recompute"))
-    (g1, g2, g3, child)
+    (refs=(g1, g2, g3, child), package_hash=package_hash, identity_after=identity_after)
+end
+
+function _n10_check_package(package::CandidateStatePackageV5)
+    _n10_check_package_with_hashes(package).refs
 end
 
 """Build the five declarations from the actual A package and no other input."""
 function n10_identity_projection_from_a(package::CandidateStatePackageV5)
-    g1, g2, g3, child = _n10_check_package(package)
+    checked = _n10_check_package_with_hashes(package)
+    g1, g2, g3, child = checked.refs
     identity = package.component_identity
     package_hash = package.candidate_hash
     fields = (
@@ -297,11 +321,11 @@ function n10_identity_projection_from_a(package::CandidateStatePackageV5)
         N10IdentityFieldV1("N10-04", "/candidate/candidate_hash",
             "CandidateStatePackageV5.candidate_hash::Digest256", :Digest256,
             package.candidate_ref, package_hash, N10DigestValueV1(package_hash),
-            N10DigestValueV1(_n10_expected_package_hash(package))),
+            N10DigestValueV1(checked.package_hash)),
         N10IdentityFieldV1("N10-05", "/migration_receipt/candidate_identity_after",
             "GenomeV5MigrationReceipt.candidate_identity_after::String", :String,
             package.candidate_ref, package_hash, N10TextValueV1(package.migration_receipt.candidate_identity_after),
-            N10TextValueV1(_n10_expected_identity_hash(package)))
+            N10TextValueV1(checked.identity_after))
     )
     N10IdentityProjectionV1(package.candidate_ref, package_hash, identity,
         package.version_axes, package.migration_receipt,

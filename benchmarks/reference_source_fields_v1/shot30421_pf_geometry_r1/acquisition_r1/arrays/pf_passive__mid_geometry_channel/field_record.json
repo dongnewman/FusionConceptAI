@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 162,
+  "assembled_path": "arrays/pf_passive__mid_geometry_channel/assembled.strings.json",
+  "assembled_sha256": "04c8290a07c34131d4b9cd8546ae1c343a57ce8ba4d76c5382684971f2bc9b01",
+  "chunks": [
+    12
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:20.348688Z",
+      "compressed_bytes": 59,
+      "compressed_path": "arrays/pf_passive__mid_geometry_channel/chunks/c__0.zst",
+      "compressed_sha256": "c08196dbabe6b3ba847d1e0f365fd08ed53d4dfa942d8c82987edc725f6b543f",
+      "decoded_bytes": 103,
+      "decoded_item_count": 12,
+      "decoded_path": "arrays/pf_passive__mid_geometry_channel/chunks/c__0.raw",
+      "decoded_sha256": "8356175781d197625674ed55c3c695949a5603920b3d989da6459109efaf8b09",
+      "decoded_shape": [
+        12
+      ],
+      "edge_shape": [
+        12
+      ],
+      "full_chunk_shape": [
+        12
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:19.822310Z",
+      "response_headers": {
+        "Content-Length": "59",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"d99995f4dcd36fa144b17156d1960354\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:30 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/mid_geometry_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:20.363749Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "mid_geometry_channel"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          12
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "mid_geometry_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      12
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/mid_geometry_channel",
+  "shape": [
+    12
+  ],
+  "started_utc": "2026-09-22T08:26:19.805054Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 12,
+  "unique_string_count": 12,
+  "units": null
+}

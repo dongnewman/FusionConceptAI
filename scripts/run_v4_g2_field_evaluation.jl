@@ -3,7 +3,7 @@ using FusionConceptAI
 
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 using .FusionRuntimeV4
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_g2_field_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_g2_field_fixture.jl"))
 
 const bounds_payload = (scope="g2",)
 const comparison_scope = ("g2",)

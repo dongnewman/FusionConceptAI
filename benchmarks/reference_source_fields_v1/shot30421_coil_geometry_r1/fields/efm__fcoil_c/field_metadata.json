@@ -1,0 +1,149 @@
+{
+  "requested_path": "efm/fcoil_c",
+  "resolved_path": "efm/fcoil_c",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120,
+      101
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      101
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "fcoil_n"
+    ],
+    "description": "Output (computed) fitted toroidal currents; f(nfcoil, A)",
+    "dims": [
+      "time",
+      "fcoil_n"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Computed f-coil current",
+    "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_C",
+    "name": "efm/fcoil_c",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      120,
+      101
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_FCOIL_(C)",
+    "units": "A",
+    "uuid": "b11b7647-f109-554a-9117-be367fdeedf9",
+    "version": 0
+  },
+  "shape": [
+    120,
+    101
+  ],
+  "chunks": [
+    120,
+    101
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "fcoil_n"
+  ],
+  "decoded_bytes": 48480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "fcoil_n",
+      "path": "efm/fcoil_n",
+      "available": true,
+      "shape": [
+        101
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-22T02:31:40.895834Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        120,
+        101
+      ],
+      "full_chunk_shape": [
+        120,
+        101
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_c/0.0",
+      "requested_utc": "2026-09-22T02:31:40.895950Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "42396",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"0cb3d7d0a2f2a5c509188857d62c8d86\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 42396,
+      "compressed_sha256": "6581a9370a85310bdc068b9ec5d475bfebe69a26de91497d8a79b13f0373ef29",
+      "decoded_bytes": 48480,
+      "decoded_sha256": "1ff46e6a6e4d6394be654aa28ffdc2cd22957f8e1810a920ef1896abe82203b3",
+      "decoded_shape": [
+        120,
+        101
+      ],
+      "written_shape": [
+        120,
+        101
+      ],
+      "expected_full_bytes": 48480,
+      "expected_edge_bytes": 48480,
+      "compressed_path": "chunks\\0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fcoil_c\\assembled.raw",
+  "assembled_raw_bytes": 48480,
+  "assembled_raw_sha256": "1ff46e6a6e4d6394be654aa28ffdc2cd22957f8e1810a920ef1896abe82203b3",
+  "finite_count": 12120,
+  "total_count": 12120,
+  "minimum": -167919.046875,
+  "maximum": 152051.46875
+}

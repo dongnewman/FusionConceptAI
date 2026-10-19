@@ -1,0 +1,13 @@
+{
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "schema": "GenomeV5/G3/G3BindingChildEditabilityV2",
+  "candidate": "local://candidate/g3-binding-v2",
+  "parent_declaration": "local://g3/decl-v2",
+  "fixture_class": "local_software_only",
+  "source_hash_policy": "caller_supplied_expected_T0_plus_realization_plus_control_commitment",
+  "source_hash": "digest256(canonical expected commitment)",
+  "child_commitment_fields": ["kind", "candidate", "parent_ref", "parent_hash", "child_ref", "contract_ref", "source_record_ref", "source_record_hash", "source_content_hash", "child_identity_hash", "state_hash"],
+  "physical_evidence": "typed_absent",
+  "initial_links": ["G1:g1", "G2:g2"],
+  "required_negative_cases": ["stale_state", "duplicate_operation_id", "foreign_key", "tampered_operation_hash", "legacy_actual_typed_absent"]
+}

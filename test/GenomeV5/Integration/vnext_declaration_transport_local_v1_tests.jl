@@ -1,5 +1,7 @@
 using Test
+using Base64
 using SHA
+using JSON3
 using FusionConceptAI
 
 const _T0L_ROOT = joinpath(@__DIR__, "..", "..", "..", "src")
@@ -7,6 +9,8 @@ const _T0L_REPO = normpath(joinpath(@__DIR__, "..", "..", ".."))
 const _T0L = FusionConceptAI
 const G = FusionConceptAI
 G.load_genome_v5_components!()
+Base.include(_T0L, joinpath(_T0L_REPO, "scripts", "prepare_t2_source_fixtures.jl"))
+const _T0L_FROZEN = G.T2FrozenSourceFixturePreparationV1.load_authorized_context_from_environment()
 Base.include(_T0L, joinpath(_T0L_ROOT, "GenomeV5", "G1", "DiffusionDeclarationV1.jl"))
 Base.include(_T0L, joinpath(_T0L_ROOT, "GenomeV5", "G1", "G1SourceAuthorityFactoryV1.jl"))
 Base.include(_T0L, joinpath(_T0L_ROOT, "GenomeV5", "G2", "MetricBoundaryDeclarationV1.jl"))
@@ -20,18 +24,59 @@ Base.include(_T0L, joinpath(_T0L_ROOT, "GenomeV5", "Integration", "VNextDeclarat
 
 _t0l_sha(x) = G.Digest256(bytes2hex(SHA.sha256(copy(Vector{UInt8}(x)))))
 _t0l_bytes(text) = begin b = Vector{UInt8}(codeunits(text)); G.VNextT0LocalBytesV1(b, _t0l_sha(b)) end
+
+function _t0l_fixture(path; case_id=nothing)
+    id = case_id === nothing ?
+        path == "src/GenomeV5/G1/DiffusionDeclarationV1.jl" ? "g1_clean" :
+        path == "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl" ? "g2_clean" :
+        path == "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl" ? "g3_feedback_clean" :
+        path == "src/GenomeV5/G3/RealizationGenomeV5.jl" ? "g3_realization_clean" :
+        path == "src/GenomeV5/G3/ControlGenomeV5.jl" ? "g3_control_clean" :
+        path == "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl" ? "g3_binding_clean" :
+        path == "src/GenomeV5/G3/RealizationControlGenomeV5.jl" ? "g3_bundle_clean" :
+        throw(ArgumentError("no frozen T0 fixture case for $(path)")) : String(case_id)
+    fixture = G.T2FrozenSourceFixturePreparationV1.frozen_fixture_case(_T0L_FROZEN, id, path)
+    preparation = JSON3.read(String(fixture.preparation_receipt.bytes))
+    preparation.availability_status == "available" ||
+        throw(ArgumentError("formal T0 source fixture is unavailable: $(id)"))
+    valid_outputs = all(preparation.commands) do row
+        stdout = base64decode(row.stdout_base64)
+        stderr = base64decode(row.stderr_base64)
+        length(stdout) == row.stdout_bytes &&
+            bytes2hex(SHA.sha256(stdout)) == row.stdout_sha256 &&
+            length(stderr) == row.stderr_bytes &&
+            bytes2hex(SHA.sha256(stderr)) == row.stderr_sha256
+    end
+    valid_outputs || throw(ArgumentError("frozen Git command output bytes do not match their receipts: $(id)"))
+    fixture
+end
+
+function _t0l_context_entry(path, case_id=nothing)
+    fixture = _t0l_fixture(path; case_id=case_id)
+    ((String(path), fixture.source.sha256), fixture.context)
+end
+const _T0L_CONTEXTS = Dict{Tuple{String,String},Any}(
+    _t0l_context_entry("src/GenomeV5/G1/DiffusionDeclarationV1.jl"),
+    _t0l_context_entry("src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"),
+    _t0l_context_entry("src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"),
+    _t0l_context_entry("src/GenomeV5/G3/RealizationGenomeV5.jl"),
+    _t0l_context_entry("src/GenomeV5/G3/ControlGenomeV5.jl"),
+    _t0l_context_entry("src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl"),
+    _t0l_context_entry("src/GenomeV5/G3/RealizationControlGenomeV5.jl"),
+    _t0l_context_entry("src/GenomeV5/G1/DiffusionDeclarationV1.jl", "t0_source_edit"))
+
+function _t0l_admit(args...; kwargs...)
+    G.vnext_declaration_transport_local_v1(args...;
+        frozen_contexts=_T0L_CONTEXTS, kwargs...)
+end
 const _T0L_CANDIDATE = G.QualifiedRefV1("local://candidate/up1-04a", "v5")
 const _T0L_AXES = ntuple(i -> G.QualifiedRefV1(G.VNEXT_T0_LOCAL_AXIS_IDS_V1[i], "v1"), 4)
 
 function _t0l_local_locator(path, source_ref, source_bytes;
-        provenance=:repository_head, root=_T0L_REPO)
-    root = realpath(root)
-    head = readchomp(Cmd(["git", "-C", root, "rev-parse", "HEAD"]))
-    head_blob = try
-        hb = read(Cmd(["git", "-C", root, "show", "HEAD:" * path])); _t0l_sha(hb)
-    catch
-        nothing
-    end
+        provenance=:repository_head, fixture=_t0l_fixture(path))
+    root = fixture.repository_root
+    head = fixture.observation.observed_head
+    head_blob = G.Digest256(fixture.head.sha256)
     G.VNextT0LocalSourceLocatorV1(root, path, source_ref.id, source_ref,
         length(source_bytes.bytes), source_bytes.sha256, head, :present,
         :present, :clean, head_blob, provenance)
@@ -101,12 +146,15 @@ function _t0l_g3(candidate=_T0L_CANDIDATE)
     declaration
 end
 
-function _t0l_factory_result(layer, declaration; g3_scope=:realization)
-    root = _T0L_REPO
+function _t0l_factory_result(layer, declaration; g3_scope=:realization,
+        fixture=_t0l_fixture(layer === :G1 ? "src/GenomeV5/G1/DiffusionDeclarationV1.jl" :
+            layer === :G2 ? "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl" :
+            "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"))
+    root = fixture.repository_root
     if layer === :G1
-        path = G.G1_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1
-        head = readchomp(Cmd(["git", "-C", root, "rev-parse", "HEAD"]))
-        bytes = read(Cmd(["git", "-C", root, "show", "HEAD:" * path]))
+        path = fixture.source_path
+        head = fixture.observation.observed_head
+        bytes = fixture.source.bytes
         sha = _t0l_sha(bytes)
         locator = G.G1IndependentSourceLocatorV1(root, head, path, length(bytes), sha,
             :present, :present, :clean, sha, :repository_head)
@@ -120,11 +168,12 @@ function _t0l_factory_result(layer, declaration; g3_scope=:realization)
             declaration.negative_controls)
         return G.g1_source_authority_factory_v1(locator,
             G.QualifiedRefV1(G.G1_AD45_COMMON_BINDING_HANDLE_ID_V1, "v5"),
-            G._g1sf_expected_contract(), declaration.source_payload, axes, ctor)
+            G._g1sf_expected_contract(), declaration.source_payload, axes, ctor,
+            fixture.context)
     elseif layer === :G2
-        path = G.G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1
-        head = readchomp(Cmd(["git", "-C", root, "rev-parse", "HEAD"]))
-        bytes = read(Cmd(["git", "-C", root, "show", "HEAD:" * path]))
+        path = fixture.source_path
+        head = fixture.observation.observed_head
+        bytes = fixture.source.bytes
         sha = _t0l_sha(bytes)
         locator = G.G2IndependentSourceLocatorV1(root, head, path, length(bytes), sha,
             :present, :present, :clean, sha, :repository_head)
@@ -135,7 +184,8 @@ function _t0l_factory_result(layer, declaration; g3_scope=:realization)
         ctor = G.G2SourceDeclarationConstructorV1(G.g2mb_declaration_v1)
         return G.g2_source_authority_factory_v1(locator,
             G.QualifiedRefV1(G.G2_AD45_COMMON_BINDING_HANDLE_ID_V1, "v5"),
-            G._g2sf_expected_contract(), declaration.source, axes, ctor)
+            G._g2sf_expected_contract(), declaration.source, axes, ctor,
+            fixture.context)
     else
         # G3SourceFeedbackLawV1 is a candidate-consuming declaration, not a
         # realization/control/binding source-authority factory input.
@@ -190,13 +240,15 @@ function _t0l_rebuild_g1_payload(payload, candidate, source_ref)
 end
 
 function _t0l_factory_builder(candidate, layer, source_ref, declaration_ref,
-        source_bytes, semantic_body, source_locator)
+        source_bytes, semantic_body, source_locator; frozen_context=nothing)
     source_locator.source_ref == source_ref || throw(ArgumentError("ignored-builder-input-source_ref"))
     source_locator.source_sha256 == source_bytes.sha256 ||
         throw(ArgumentError("ignored-builder-input-source_bytes"))
     semantic_body.bytes.sha256 == _t0l_sha(semantic_body.bytes.bytes) ||
         throw(ArgumentError("ignored-builder-input-semantic_body"))
     locator = _t0l_factory_locator(layer, source_locator, source_bytes)
+    context = frozen_context === nothing ?
+        _t0l_fixture(source_locator.source_path; case_id="t0_source_edit").context : frozen_context
     if layer === :G1
         body = semantic_body.body
         fresh_payload = _t0l_rebuild_g1_payload(body.source_payload, candidate, source_ref)
@@ -209,7 +261,7 @@ function _t0l_factory_builder(candidate, layer, source_ref, declaration_ref,
             G.G1VersionAxesV2(G.QualifiedRefV1("fusion.g1.payload-schema", "v2"),
                 G.QualifiedRefV1("fusion.g1.canonicalization", "v2"),
                 G.QualifiedRefV1("fusion.g1.applicability", "v2"),
-                G.QualifiedRefV1("fusion.g1.receipt", "v2")), ctor)
+                G.QualifiedRefV1("fusion.g1.receipt", "v2")), ctor, context)
     elseif layer === :G2
         body = semantic_body.body
         body.candidate_ref == candidate || throw(ArgumentError("g2-fresh-candidate-envelope-mismatch"))
@@ -227,7 +279,7 @@ function _t0l_factory_builder(candidate, layer, source_ref, declaration_ref,
                 G.QualifiedRefV1("fusion.g2.canonicalization", "v5"),
                 G.QualifiedRefV1("fusion.g2.applicability", "v5"),
                 G.QualifiedRefV1("fusion.g2.receipt", "v5")),
-            G.G2SourceDeclarationConstructorV1(G.g2mb_declaration_v1))
+                G.G2SourceDeclarationConstructorV1(G.g2mb_declaration_v1), context)
     else
         body = semantic_body.body
         body.candidate_ref == candidate || throw(ArgumentError("g3-feedback-fresh-candidate-mismatch"))
@@ -240,7 +292,7 @@ function _t0l_factory_builder(candidate, layer, source_ref, declaration_ref,
             feedback_bytes.sha256.value[1:16]), declaration_ref.version)
         normalized = G.vnext_t0_local_normalize_g3_feedback_declaration_v1(
             feedback, candidate, source_ref, source_bytes, source_locator,
-            actual_declaration_ref, semantic_body)
+            actual_declaration_ref, semantic_body; frozen_context=context)
         return (normalized, normalized)
     end
     payload = layer === :G3 ? result.source_declaration :
@@ -252,24 +304,26 @@ function _t0l_factory_builder(candidate, layer, source_ref, declaration_ref,
         layer === :G2 ? G._g2sf_expected_contract() : G.g3_contract_ref(:realization)
     normalized = G.vnext_t0_local_normalize_factory_result_v1(result, layer, layer,
         candidate, source_ref, source_bytes, source_locator, actual_declaration_ref,
-        declaration_bytes, contract)
+        declaration_bytes, contract; frozen_context=context)
     (normalized, normalized)
 end
 
-function _t0l_present(layer, declaration; candidate=_T0L_CANDIDATE, label="visible", path=layer === :G1 ? "src/GenomeV5/G1/DiffusionDeclarationV1.jl" : layer === :G2 ? "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl" : "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl")
-    raw = read(joinpath("D:/006-Programing/LMC/FusionConceptAI", path))
+function _t0l_present(layer, declaration; candidate=_T0L_CANDIDATE, label="visible", path=layer === :G1 ? "src/GenomeV5/G1/DiffusionDeclarationV1.jl" : layer === :G2 ? "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl" : "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", case_id=nothing)
+    fixture = _t0l_fixture(path; case_id=case_id)
+    raw = copy(fixture.source.bytes)
     source = G.VNextT0LocalBytesV1(raw, _t0l_sha(raw))
     if layer === :G3
         source_ref = G.QualifiedRefV1("fusionconceptai://GenomeV5/G3/source-feedback/local", "v1")
         body = merge(G._g3sf_body(declaration), (candidate_ref=candidate, source_ref=source_ref))
         semantic = G.VNextT0LocalSemanticBodyV1(body, _t0l_bytes(G.canonical_json(body)), (label,))
-        locator = _t0l_local_locator(path, source_ref, source)
+        locator = _t0l_local_locator(path, source_ref, source; fixture=fixture)
         declaration_bytes = _t0l_bytes(G.canonical_json(declaration))
         declaration_ref = G.QualifiedRefV1("fusionconceptai://GenomeV5/G3/source-feedback/declaration/" * declaration_bytes.sha256.value, "v1")
         normalized = G.vnext_t0_local_normalize_g3_feedback_declaration_v1(
-            declaration, candidate, source_ref, source, locator, declaration_ref, semantic)
+            declaration, candidate, source_ref, source, locator, declaration_ref, semantic;
+            frozen_context=fixture.context)
     else
-        factory_result = _t0l_factory_result(layer, declaration)
+        factory_result = _t0l_factory_result(layer, declaration; fixture=fixture)
         source_ref = layer === :G1 ? declaration.source_ref : declaration.source.source_ref
         body = layer === :G1 ? merge(G._g1d_declaration_body(declaration), (candidate_ref=candidate,)) :
             (candidate_ref=candidate, candidate_envelope=G.VNextT0LocalG2CandidateEnvelopeV1(
@@ -282,11 +336,11 @@ function _t0l_present(layer, declaration; candidate=_T0L_CANDIDATE, label="visib
         declaration_bytes = _t0l_bytes(G.canonical_json(declaration_payload))
         declaration_ref = G.QualifiedRefV1("factory://" * String(layer) * "/declaration/" *
             declaration_bytes.sha256.value, "v1")
-        locator = _t0l_local_locator(path, source_ref, source)
+        locator = _t0l_local_locator(path, source_ref, source; fixture=fixture)
         contract = layer === :G1 ? G._g1sf_expected_contract() : G._g2sf_expected_contract()
         normalized = G.vnext_t0_local_normalize_factory_result_v1(factory_result,
             layer, layer, candidate, source_ref, source, locator, declaration_ref,
-            declaration_bytes, contract)
+            declaration_bytes, contract; frozen_context=fixture.context)
     end
     si = G.canonical_hash((kind=:source, ref=source_ref, bytes_sha256=source.sha256))
     di = G.canonical_hash((kind=:declaration, ref=declaration_ref, bytes_sha256=declaration_bytes.sha256))
@@ -301,16 +355,19 @@ function _t0l_child(kind; candidate=_T0L_CANDIDATE)
     paths = Dict(:realization => "src/GenomeV5/G3/RealizationGenomeV5.jl",
         :control => "src/GenomeV5/G3/ControlGenomeV5.jl",
         :binding => "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl")
-    path = paths[kind]; root = realpath(_T0L_REPO)
-    head = readchomp(Cmd(["git", "-C", root, "rev-parse", "HEAD"]))
-    raw = read(Cmd(["git", "-C", root, "show", "HEAD:" * path]))
+    path = paths[kind]
+    fixture = _t0l_fixture(path)
+    root = fixture.repository_root
+    head = fixture.observation.observed_head
+    raw = copy(fixture.source.bytes)
     sb = G.VNextT0LocalBytesV1(raw, _t0l_sha(raw))
     locator = G.G3IndependentSourceLocatorV1(kind, root, head, path, length(raw), sb.sha256,
         :present, :present, :clean, sb.sha256)
     result = G.g3_source_authority_factory_v1(kind, locator,
         G.QualifiedRefV1(G.G3_AD45_COMMON_BINDING_HANDLE_ID_V1, "v5"),
         G.g3_contract_ref(kind), G.g3_version_axes(kind),
-        G.QualifiedRefV1("fusionconceptai://GenomeV5/G3/" * String(kind) * "/source-declaration/local", "v1"))
+        G.QualifiedRefV1("fusionconceptai://GenomeV5/G3/" * String(kind) * "/source-declaration/local", "v1"),
+        fixture.context)
     result.identity.candidate_identity_created == false ||
         throw(ArgumentError("child factory unexpectedly consumed candidate"))
     receipt_raw = Vector{UInt8}(codeunits(G.canonical_json(result.receipt)))
@@ -320,8 +377,10 @@ function _t0l_child(kind; candidate=_T0L_CANDIDATE)
         receipt_bytes.sha256, path)
 end
 function _t0l_child_present(kind; candidate=_T0L_CANDIDATE)
-    raw = read("D:/006-Programing/LMC/FusionConceptAI/src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"); sb = G.VNextT0LocalBytesV1(raw, _t0l_sha(raw)); sr = G.QualifiedRefV1("local://g3/source", "v1")
-    loc = _t0l_local_locator("src/GenomeV5/G3/G3SourceFeedbackLawV1.jl", sr, sb)
+    path = "src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"
+    fixture = _t0l_fixture(path)
+    raw = copy(fixture.source.bytes); sb = G.VNextT0LocalBytesV1(raw, _t0l_sha(raw)); sr = G.QualifiedRefV1("local://g3/source", "v1")
+    loc = _t0l_local_locator(path, sr, sb; fixture=fixture)
     body = (kind=kind, source_ref=sr, source_sha256=sb.sha256, contract=:candidate_bound_g3)
     cref = G.QualifiedRefV1("local://g3/child/" * String(kind), "v1"); bh = G.canonical_hash(body); ih = G.canonical_hash((candidate_ref=candidate,layer=:G3,child_id=String(kind),kind=kind,child_ref=cref,body_hash=bh,source_ref=sr,source_sha256=sb.sha256))
     G.VNextT0LocalChildPresentV1(kind,candidate,:G3,String(kind),cref,sr,sb,loc,body,bh,ih)
@@ -565,8 +624,8 @@ end
     declarations = (_t0l_present(:G1, g1), _t0l_present(:G2, g2; path="src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"), _t0l_present(:G3, g3; path="src/GenomeV5/G3/G3SourceFeedbackLawV1.jl"))
     children = (_t0l_child(:realization), _t0l_child(:control), _t0l_child(:binding))
     feedback = (_t0l_feedback("g1-residual", declarations[1].declaration_ref), _t0l_feedback("g2-thermal", declarations[2].declaration_ref))
-    a = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, declarations, children, feedback)
-    b = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE,
+    a = _t0l_admit(_T0L_CANDIDATE, declarations, children, feedback)
+    b = _t0l_admit(_T0L_CANDIDATE,
         (declarations[3], declarations[1], declarations[2]), (children[3], children[1], children[2]),
         (feedback[2], feedback[1]))
     # Keep the first admission error visible; do not dereference a missing
@@ -606,7 +665,7 @@ end
             declarations[2].source_bytes, declarations[2].declaration_bytes,
             tampered_semantic, declarations[2].source_locator,
             declarations[2].factory_receipt, declarations[2].declaration_receipt)
-        tampered_admission = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE,
+        tampered_admission = _t0l_admit(_T0L_CANDIDATE,
             (declarations[1], tampered_record, declarations[3]), children, feedback)
         @test tampered_admission.status === :fail_closed
         @test :factory_result_source_content_mismatch in tampered_admission.errors
@@ -632,7 +691,7 @@ end
             declarations[2].source_bytes, declarations[2].declaration_bytes,
             fake_semantic, declarations[2].source_locator,
             declarations[2].factory_receipt, declarations[2].declaration_receipt)
-        fake_admission = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE,
+        fake_admission = _t0l_admit(_T0L_CANDIDATE,
             (declarations[1], fake_record, declarations[3]), children, feedback)
         @test fake_admission.status === :fail_closed
         @test :factory_result_typed_declaration_mismatch in fake_admission.errors
@@ -644,37 +703,73 @@ end
     g1, g2, g3 = _t0l_g1(), _t0l_g2(), _t0l_g3()
     d = [_t0l_present(:G1, g1), _t0l_present(:G2, g2; path="src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"), _t0l_present(:G3, g3; path="src/GenomeV5/G3/G3SourceFeedbackLawV1.jl")]
     children = (_t0l_child(:realization), _t0l_child(:control), _t0l_child(:binding))
-    base = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, Tuple(d), children)
+    base = _t0l_admit(_T0L_CANDIDATE, Tuple(d), children)
     stale = _t0l_present(:G1, g1)
     stale_source = G.VNextT0LocalBytesV1(stale.source_bytes.bytes, G.digest256_text("stale-source-claim"))
     stale = G.VNextT0LocalPresentDeclarationV1(stale.layer, stale.candidate_ref, stale.source_ref, stale.declaration_ref,
         stale.source_identity_hash, stale.declaration_identity_hash, stale.axes, stale_source, stale.declaration_bytes, stale.semantic_body, stale.source_locator,
         stale.factory_receipt, stale.declaration_receipt)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (stale, d[2], d[3]), children)
+    result = _t0l_admit(_T0L_CANDIDATE, (stale, d[2], d[3]), children)
     @test result.status === :fail_closed
     @test :source_bytes_hash_mismatch in result.errors
     foreign = G.QualifiedRefV1("local://candidate/foreign", "v5")
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (d[1], _t0l_present(:G2, _t0l_g2(foreign); candidate=foreign, path="src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"), d[3]), children)
+    result = _t0l_admit(_T0L_CANDIDATE, (d[1], _t0l_present(:G2, _t0l_g2(foreign); candidate=foreign, path="src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl"), d[3]), children)
     @test result.status === :fail_closed
     @test :foreign_candidate in result.errors
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (d[1], d[1], d[3]), children)
+    result = _t0l_admit(_T0L_CANDIDATE, (d[1], d[1], d[3]), children)
     @test result.status === :fail_closed
     @test :layer_set_invalid in result.errors
     @test_throws ArgumentError G.VNextT0LocalSourceLocatorV1("root", "../escape.jl", "local://escape", G.QualifiedRefV1("local://escape", "v1"), 1, _t0l_sha(UInt8[0]), "head", :present, :present, :clean, nothing, :repository_head)
-    # A symlinked source path is checked with realpath/containment by the production locator read.
-    @test occursin("symlink", "symlink_escape")
-    @testset "real symlink escape is rejected or explicitly skipped" begin
-        root = mktempdir(); outside = mktempdir()
-        link = joinpath(root, "link"); target = joinpath(outside, "escaped.jl")
-        write(target, UInt8[0x23])
-        try
-            symlink(outside, link)
-            sr = G.QualifiedRefV1("local://symlink", "v1")
-            loc = G.VNextT0LocalSourceLocatorV1(realpath(root), "link/escaped.jl", sr.id, sr, 1, _t0l_sha(UInt8[0x23]), "fixture", :present, :present, :clean, nothing, :isolated_test_fixture)
-            @test_throws ArgumentError G._vnl_t0_locator_bytes(loc)
-        catch err
-            @info "symlink creation unsupported; negative control skipped" error=typeof(err)
+    # The sealed pre-freeze sidecar records the actual symlink path kind; this
+    # formal check reads that typed observation and never creates a link.
+    @testset "frozen symlink source is rejected" begin
+        path = "src/GenomeV5/G1/DiffusionDeclarationV1.jl"
+        native = G.NativeGitReadCompatibilityV1
+        case_context = native.FrozenSourceContextV1(_T0L_FROZEN.authorization;
+            fixture_case_id="g1_symlink")
+        receipt_key = "test/fixtures/t2_source_authority/cases/g1_symlink/frozen/preparation_receipt.json"
+        receipt = native.register_frozen_source!(case_context, receipt_key)
+        receipt === nothing && throw(ArgumentError("frozen symlink preparation receipt is absent"))
+        preparation = JSON3.read(String(receipt.bytes))
+        inventory_key = "test/fixtures/t2_source_authority/fixture_inventory.json"
+        inventory_input = native.register_frozen_source!(case_context, inventory_key)
+        inventory_input === nothing && throw(ArgumentError("frozen fixture inventory is absent"))
+        inventory = JSON3.read(String(inventory_input.bytes))
+        case_rows = filter(row -> row.case_id == "g1_symlink", inventory.cases)
+        length(case_rows) == 1 || throw(ArgumentError("frozen inventory must contain one g1_symlink row"))
+        inventory_case = only(case_rows)
+        if preparation.availability_status == "platform_unavailable"
+            @test preparation.case_id == "g1_symlink"
+            @test preparation.mode == "symlink"
+            @test preparation.exception_type == string(Base.IOError)
+            @test preparation.exception_code in
+                (Base.UV_EPERM, Base.UV_EACCES, Base.UV_ENOSYS, Base.UV_ENOTSUP)
+            @test preparation.source_key === nothing
+            @test preparation.head_key === nothing
+            @test preparation.observation_key === nothing
+            @test preparation.operation == "symlink"
+            @test !isempty(preparation.path)
+            @test !isempty(preparation.error_text)
+            @test isempty(preparation.commands)
+            @test isempty(preparation.emitted)
+            @test inventory_case.availability_status == "platform_unavailable"
+            @test inventory_case.unavailable_reason.operation == "symlink"
+            @test inventory_case.source_key === nothing
+            @test inventory_case.head_key === nothing
+            @test inventory_case.observation_key === nothing
+            @test inventory_case.receipt_key == receipt_key
             @test_skip true
+        else
+            @test preparation.availability_status == "available"
+            @test inventory_case.availability_status == "available"
+            fixture = _t0l_fixture(path; case_id="g1_symlink")
+            sr = G.QualifiedRefV1("local://symlink", "v1")
+            loc = G.VNextT0LocalSourceLocatorV1(fixture.repository_root, path, sr.id, sr,
+                0, _t0l_sha(UInt8[]), fixture.observation.observed_head, :present,
+                :present, :clean, G.Digest256(fixture.head.sha256), :isolated_test_fixture)
+            @test fixture.observation.worktree_path_kind === :symlink
+            @test_throws ArgumentError G._vnl_t0_locator_bytes(loc;
+                frozen_context=fixture.context)
         end
     end
     @test_throws ArgumentError G.VNextT0LocalFactoryReceiptV1(
@@ -747,7 +842,7 @@ end
         d[1].declaration_identity_hash, d[1].axes, d[1].source_bytes,
         d[1].declaration_bytes, d[1].semantic_body, d[1].source_locator,
         stale_factory, stale_declaration)
-    stale_admission = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE,
+    stale_admission = _t0l_admit(_T0L_CANDIDATE,
         (stale_record, d[2], d[3]), children)
     @test stale_admission.status === :fail_closed
     @test :factory_result_declaration_content_mismatch in stale_admission.errors
@@ -790,7 +885,7 @@ end
         d[1].source_identity_hash, d[1].declaration_identity_hash, d[1].axes,
         d[1].source_bytes, d[1].declaration_bytes, d[1].semantic_body,
         d[1].source_locator, tampered_factory, tampered_declaration)
-    tampered_admission = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE,
+    tampered_admission = _t0l_admit(_T0L_CANDIDATE,
         (tampered_record, d[2], d[3]), children)
     @test tampered_admission.status === :fail_closed
     @test :factory_result_locator_provenance_mismatch in tampered_admission.errors
@@ -798,50 +893,48 @@ end
         _t0l_factory_result(:G1, _t0l_g1(G.QualifiedRefV1("local://candidate/stale-g1", "v5"))),
         :G1, :G1, _T0L_CANDIDATE, d[1].source_ref, d[1].source_bytes,
         d[1].source_locator, d[1].declaration_ref, d[1].declaration_bytes,
-        G._g1sf_expected_contract()), "factory_result_candidate_mismatch")
+        G._g1sf_expected_contract(); frozen_context=_T0L_CONTEXTS[(d[1].source_locator.source_path, d[1].source_locator.source_sha256.value)]), "factory_result_candidate_mismatch")
     @test _t0l_expect_code(() -> G.vnext_t0_local_normalize_factory_result_v1(
         _t0l_factory_result(:G2, _t0l_g2(; variant=true)), :G2, :G2,
         _T0L_CANDIDATE, d[2].source_ref, d[2].source_bytes, d[2].source_locator,
-        d[2].declaration_ref, d[2].declaration_bytes, G._g2sf_expected_contract()),
+        d[2].declaration_ref, d[2].declaration_bytes, G._g2sf_expected_contract();
+        frozen_context=_T0L_CONTEXTS[(d[2].source_locator.source_path, d[2].source_locator.source_sha256.value)]),
         "factory_result_declaration_content_mismatch")
     @test _t0l_expect_code(() -> G.vnext_t0_local_normalize_factory_result_v1(
         _t0l_factory_result(:G2, _t0l_g2()), :G2, :G2, _T0L_CANDIDATE,
         G.QualifiedRefV1("foreign://source", "v1"), d[2].source_bytes,
         d[2].source_locator, d[2].declaration_ref, d[2].declaration_bytes,
-        G._g2sf_expected_contract()), "factory_result_source_ref_mismatch")
+        G._g2sf_expected_contract(); frozen_context=_T0L_CONTEXTS[(d[2].source_locator.source_path, d[2].source_locator.source_sha256.value)]), "factory_result_source_ref_mismatch")
     @test _t0l_expect_code(() -> G.vnext_t0_local_normalize_g3_feedback_declaration_v1(
         g3, _T0L_CANDIDATE, G.QualifiedRefV1("foreign://feedback-source", "v1"),
         d[3].source_bytes, d[3].source_locator, d[3].declaration_ref,
-        d[3].semantic_body), "g3_feedback_body_source_ref_mismatch")
+        d[3].semantic_body; frozen_context=_T0L_CONTEXTS[(d[3].source_locator.source_path, d[3].source_locator.source_sha256.value)]), "g3_feedback_body_source_ref_mismatch")
     wrong_feedback = (_t0l_feedback("g1-residual", G.QualifiedRefV1("local://foreign/target", "v1")),)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, Tuple(d), children, wrong_feedback)
+    result = _t0l_admit(_T0L_CANDIDATE, Tuple(d), children, wrong_feedback)
     @test result.status === :fail_closed
     @test :feedback_target_ref_mismatch in result.errors
     wrong_axis = G.VNextT0LocalPresentDeclarationV1(d[1].layer, d[1].candidate_ref, d[1].source_ref, d[1].declaration_ref, d[1].source_identity_hash, d[1].declaration_identity_hash, (G.QualifiedRefV1("foreign-axis", "v1"), d[1].axes[2], d[1].axes[3], d[1].axes[4]), d[1].source_bytes, d[1].declaration_bytes, d[1].semantic_body, d[1].source_locator, d[1].factory_receipt, d[1].declaration_receipt)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (wrong_axis, d[2], d[3]), children)
+    result = _t0l_admit(_T0L_CANDIDATE, (wrong_axis, d[2], d[3]), children)
     @test :axes_identity_or_order_invalid in result.errors
     edited_semantic_value = (edited=true, original=d[1].semantic_body.body)
     edit_body = G.VNextT0LocalSemanticBodyV1(edited_semantic_value, _t0l_bytes(G.canonical_json(edited_semantic_value)), ("edited",))
     @test_throws ArgumentError G.vnext_t0_local_source_edit_v1(
         d[1], G.VNextT0LocalBytesV1(vcat(d[1].source_bytes.bytes, UInt8[0x0a]),
         _t0l_sha(vcat(d[1].source_bytes.bytes, UInt8[0x0a]))), edit_body)
-    edit_root = joinpath("D:/006-Programing/LMC/FusionConceptAI", "tmp", "t0_local_r3_source_edit")
-    mkpath(edit_root)
-    edit_path = joinpath(edit_root, "G1_DiffusionDeclarationV1.edited.jl")
-    edited_bytes = vcat(d[1].source_bytes.bytes, UInt8[0x0a, 0x23, 0x20, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x2d, 0x65, 0x64, 0x69, 0x74])
-    write(edit_path, edited_bytes)
+    edit_fixture = _t0l_fixture("src/GenomeV5/G1/DiffusionDeclarationV1.jl"; case_id="t0_source_edit")
+    edited_bytes = copy(edit_fixture.source.bytes)
     edited_sha = _t0l_sha(edited_bytes)
     edited_source_ref = G.QualifiedRefV1(string(d[1].source_ref.id, "#source-", edited_sha.value[1:16]), d[1].source_ref.version)
-    edited_locator = _t0l_local_locator("tmp/t0_local_r3_source_edit/G1_DiffusionDeclarationV1.edited.jl", edited_source_ref, G.VNextT0LocalBytesV1(edited_bytes, edited_sha); provenance=:repository_head)
+    edited_locator = _t0l_local_locator("tmp/t0_local_r3_source_edit/G1_DiffusionDeclarationV1.edited.jl", edited_source_ref, G.VNextT0LocalBytesV1(edited_bytes, edited_sha); provenance=:repository_head, fixture=edit_fixture)
     rebuilt = G.vnext_t0_local_rebuild_after_source_edit_v1(
         _T0L_CANDIDATE, Tuple(d), children,
         (_t0l_feedback("g1-residual", d[1].declaration_ref),
          _t0l_feedback("g2-thermal", d[2].declaration_ref)), :G1,
         G.VNextT0LocalBytesV1(edited_bytes, edited_sha), edit_body;
-        new_source_locator=edited_locator, factory_builder=_t0l_factory_builder)
+        new_source_locator=edited_locator, factory_builder=(args...)->_t0l_factory_builder(args...;
+            frozen_context=edit_fixture.context), frozen_contexts=_T0L_CONTEXTS)
     @test rebuilt.admission.status === :fail_closed
     @test :factory_builder_fail_closed in rebuilt.admission.errors
-    rm(edit_root; recursive=true, force=true)
     @test base.accepted === false
 end
 
@@ -853,24 +946,9 @@ end
     children = (_t0l_child(:realization), _t0l_child(:control), _t0l_child(:binding))
     feedback = (_t0l_feedback("g1-residual", declarations[1].declaration_ref),
         _t0l_feedback("g2-thermal", declarations[2].declaration_ref))
-    fixture_root = mktempdir()
     fixture_source_path = "src/GenomeV5/G1/DiffusionDeclarationV1.jl"
-    edit_path = joinpath(fixture_root, split(fixture_source_path, '/')...)
-    mkpath(dirname(edit_path))
-    edited_bytes = vcat(declarations[1].source_bytes.bytes,
-        UInt8[0x0a, 0x23, 0x20, 0x52, 0x38, 0x2d, 0x65, 0x64, 0x69, 0x74])
-    write(edit_path, edited_bytes)
-    envelope_path = joinpath(fixture_root,
-        split("docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json", '/')...)
-    mkpath(dirname(envelope_path))
-    write(envelope_path, read(joinpath(_T0L_REPO,
-        "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json")))
-    run(Cmd(["git", "-C", fixture_root, "init", "--quiet"]))
-    run(Cmd(["git", "-C", fixture_root, "config", "user.email", "t0-local-r8@example.invalid"]))
-    run(Cmd(["git", "-C", fixture_root, "config", "user.name", "T0 Local R8 Fixture"]))
-    run(Cmd(["git", "-C", fixture_root, "add", fixture_source_path,
-        "docs/implementation/AD-45/FRESH-CANDIDATE-BINDING-ENVELOPE/fresh_candidate_binding_envelope_v1.json"]))
-    run(Cmd(["git", "-C", fixture_root, "commit", "--quiet", "-m", "isolated T0 local R8 fixture"]))
+    edit_fixture = _t0l_fixture(fixture_source_path; case_id="t0_source_edit")
+    edited_bytes = copy(edit_fixture.source.bytes)
     edited_source = G.VNextT0LocalBytesV1(edited_bytes, _t0l_sha(edited_bytes))
     edited_source_ref = G._vnl_t0_edit_ref(
         declarations[1].source_ref, edited_source.sha256, :source)
@@ -879,14 +957,15 @@ end
     @test edited_source_ref != legacy_edited_source_ref
     edited_locator = _t0l_local_locator(
         fixture_source_path, edited_source_ref, edited_source;
-        provenance=:isolated_test_fixture, root=fixture_root)
+        provenance=:isolated_test_fixture, fixture=edit_fixture)
     edit_body = G.VNextT0LocalSemanticBodyV1(declarations[1].semantic_body.body,
         _t0l_bytes(G.canonical_json(declarations[1].semantic_body.body)), ("r8-source-edit",))
     internal_rebuild = try
         G._vnl_t0_rebuild_after_source_edit_impl_v1(
             _T0L_CANDIDATE, declarations, children, feedback, :G1,
             edited_source, edit_body; new_source_locator=edited_locator,
-            factory_builder=_t0l_factory_builder)
+            factory_builder=(args...)->_t0l_factory_builder(args...;
+                frozen_context=edit_fixture.context), frozen_contexts=_T0L_CONTEXTS)
     catch err
         @error "fresh source edit internal rebuild diagnostic failed" exception=(err, catch_backtrace())
         @test false
@@ -896,7 +975,8 @@ end
     rebuilt = G.vnext_t0_local_rebuild_after_source_edit_v1(
         _T0L_CANDIDATE, declarations, children, feedback, :G1,
         edited_source, edit_body; new_source_locator=edited_locator,
-        factory_builder=_t0l_factory_builder)
+        factory_builder=(args...)->_t0l_factory_builder(args...;
+            frozen_context=edit_fixture.context), frozen_contexts=_T0L_CONTEXTS)
     @test rebuilt.admission.errors == ()
     @test rebuilt.admission.status === :valid
     @test rebuilt.admission.accepted === false
@@ -917,14 +997,13 @@ end
         @test all(i -> fresh.declarations[i].source_ref != declarations[i].source_ref, 1:3)
         @test all(i -> fresh.declarations[i].declaration_ref != declarations[i].declaration_ref, 1:3)
         @test G.vnext_t0_local_bundle_hash_recompute_v1(fresh) == fresh.bundle_hash
-        old_identity_attempt = G.vnext_declaration_transport_local_v1(
+        old_identity_attempt = _t0l_admit(
             _T0L_CANDIDATE, fresh.declarations, fresh.children, fresh.feedback)
         @test old_identity_attempt.status === :fail_closed
         @test :foreign_candidate in old_identity_attempt.errors
     else
         @test false
     end
-    rm(fixture_root; recursive=true, force=true)
 end
 
 @testset "local T0 keeps missing material typed-deferred and rejects labels only semantically" begin
@@ -934,7 +1013,7 @@ end
     declarations = (d1, d2, absent)
     children = (_t0l_child(:realization), _t0l_child(:control), _t0l_child(:binding))
     present_children = (_t0l_child_present(:realization), _t0l_child_present(:control), _t0l_child_present(:binding))
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, declarations, children, (_t0l_feedback("g1-residual", d1.declaration_ref),))
+    result = _t0l_admit(_T0L_CANDIDATE, declarations, children, (_t0l_feedback("g1-residual", d1.declaration_ref),))
     @test result.status === :valid
     @test result.accepted === false
     @test result.resolution === :terminal_deferred
@@ -942,20 +1021,20 @@ end
     @test :g3_child_terminal_deferred in result.gaps
     nanbody = G.VNextT0LocalSemanticBodyV1((bad=NaN,), _t0l_bytes("nan"), ())
     nanrecord = G.VNextT0LocalPresentDeclarationV1(d1.layer, d1.candidate_ref, d1.source_ref, d1.declaration_ref, d1.source_identity_hash, d1.declaration_identity_hash, d1.axes, d1.source_bytes, d1.declaration_bytes, nanbody, d1.source_locator, d1.factory_receipt, d1.declaration_receipt)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (nanrecord, d2, absent), children)
+    result = _t0l_admit(_T0L_CANDIDATE, (nanrecord, d2, absent), children)
     @test result.status === :fail_closed
     @test :semantic_body_invalid in result.errors
     badchild = G.VNextT0LocalChildPresentV1(:realization, _T0L_CANDIDATE, :G3, "realization", present_children[1].child_ref, present_children[1].source_ref, present_children[1].source_bytes, present_children[1].source_locator, present_children[1].body, G.digest256_text("stale-child-body"), present_children[1].child_identity_hash)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (d1, d2, absent), (badchild, children[2], children[3]))
+    result = _t0l_admit(_T0L_CANDIDATE, (d1, d2, absent), (badchild, children[2], children[3]))
     @test result.status === :fail_closed
     @test :child_body_hash_mismatch in result.errors
     contradictory_child_bytes = G.VNextT0LocalBytesV1(vcat(present_children[1].source_bytes.bytes, UInt8[0x00]), _t0l_sha(vcat(present_children[1].source_bytes.bytes, UInt8[0x00])))
     contradictory_child = G.VNextT0LocalChildPresentV1(:realization, _T0L_CANDIDATE, :G3, "realization", present_children[1].child_ref, present_children[1].source_ref, contradictory_child_bytes, present_children[1].source_locator, present_children[1].body, present_children[1].body_hash, present_children[1].child_identity_hash)
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (d1, d2, absent), (contradictory_child, children[2], children[3]))
+    result = _t0l_admit(_T0L_CANDIDATE, (d1, d2, absent), (contradictory_child, children[2], children[3]))
     @test result.status === :fail_closed
     @test :child_locator_bytes_mismatch in result.errors
     bad_absent = _t0l_child(:control; candidate=G.QualifiedRefV1("local://foreign", "v5"))
-    result = G.vnext_declaration_transport_local_v1(_T0L_CANDIDATE, (d1, d2, absent), (children[1], bad_absent, children[3]))
+    result = _t0l_admit(_T0L_CANDIDATE, (d1, d2, absent), (children[1], bad_absent, children[3]))
     @test result.status === :fail_closed
     @test :child_candidate_mismatch in result.errors
     @test_throws ArgumentError G.VNextT0LocalChildAbsentV1(:control, _T0L_CANDIDATE,
@@ -1082,7 +1161,7 @@ end
     wrong_layer_item = G.VNextT0LocalFeedbackV1("g1-wrong-layer", :G3,
         _T0L_CANDIDATE, d1.source_ref, wrong_layer_body,
         G.canonical_hash(wrong_layer_body))
-    wrong_layer_result = G.vnext_declaration_transport_local_v1(
+    wrong_layer_result = _t0l_admit(
         _T0L_CANDIDATE, old_declarations,
         (_t0l_child(:realization), _t0l_child(:control), _t0l_child(:binding)),
         (wrong_layer_item,))

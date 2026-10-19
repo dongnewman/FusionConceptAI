@@ -1,0 +1,166 @@
+{
+  "assembled_bytes": 306160,
+  "assembled_path": "arrays/pf_passive__incon_current/assembled.raw",
+  "assembled_sha256": "a9d732da562be6165a2fe9cfafd66d3589f3956e8f49d7b27ffde3e86ea3bc76",
+  "chunks": [
+    5,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:05.536169Z",
+      "compressed_bytes": 145763,
+      "compressed_path": "arrays/pf_passive__incon_current/chunks/c__0__0.zst",
+      "compressed_sha256": "0df9321a0bd6c602536d9b1dee75d26c1d514797fd28bd9ce536ae195686d833",
+      "decoded_bytes": 153080,
+      "decoded_path": "arrays/pf_passive__incon_current/chunks/c__0__0.raw",
+      "decoded_sha256": "e0ca2b054dc67869b6250d06556af406ec9f0b353ae5a5e03fc6d0a9faaaf931",
+      "decoded_shape": [
+        5,
+        3827
+      ],
+      "edge_shape": [
+        5,
+        3827
+      ],
+      "full_chunk_shape": [
+        5,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:03.763999Z",
+      "response_headers": {
+        "Content-Length": "145763",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"1fc1625b545708ba39bb778f5241778b\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:28 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/incon_current/c/0/0"
+    },
+    {
+      "chunk_index": [
+        1,
+        0
+      ],
+      "chunk_key": "c/1/0",
+      "completed_utc": "2026-09-22T08:27:06.935242Z",
+      "compressed_bytes": 145691,
+      "compressed_path": "arrays/pf_passive__incon_current/chunks/c__1__0.zst",
+      "compressed_sha256": "09e688a939a0a5afe583590d1cbb6e9ef83cb2a4ff7d29214a08a85e2a3f80c2",
+      "decoded_bytes": 153080,
+      "decoded_path": "arrays/pf_passive__incon_current/chunks/c__1__0.raw",
+      "decoded_sha256": "6131cdaa6ab23e41e5442cc69bdc1309785a18f211530cb15c4e10ad433cd47b",
+      "decoded_shape": [
+        5,
+        3827
+      ],
+      "edge_shape": [
+        5,
+        3827
+      ],
+      "full_chunk_shape": [
+        5,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:05.553003Z",
+      "response_headers": {
+        "Content-Length": "145691",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"23b8729505a2f946be04d0209a8dae63\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:28 GMT"
+      },
+      "starts": [
+        5,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/incon_current/c/1/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:06.960231Z",
+  "data_type": "float64",
+  "decoded_bytes": 306160,
+  "dimensions": [
+    "incon_current_channel",
+    "time"
+  ],
+  "finite_count": 38270,
+  "maximum": 12033.501681931817,
+  "minimum": -14557.149256526038,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "Centre column Inconel passive filaments.",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "incon_current",
+      "uda_name": "AMM_INCON1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          5,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "incon_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      10,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/incon_current",
+  "shape": [
+    10,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:03.748582Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 38270,
+  "units": "A"
+}

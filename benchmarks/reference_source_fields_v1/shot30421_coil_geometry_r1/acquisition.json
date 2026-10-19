@@ -1,0 +1,1710 @@
+{
+  "schema": "mast-source-fields-acquisition-receipt-v1",
+  "shot": 30421,
+  "field_set": "coil_geometry13",
+  "utc_started": "2026-09-22T02:31:34.166302Z",
+  "command": [
+    "tools/fetch_mast_source_fields_v1.py",
+    "--shot",
+    "30421",
+    "--metadata",
+    "benchmarks/reference_data_level1_v1/shot30421_r1/zmetadata.json",
+    "--output",
+    "benchmarks/reference_source_fields_v1/shot30421_coil_geometry_r1",
+    "--field-set",
+    "coil_geometry13"
+  ],
+  "pid": 55376,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "metadata_source": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "metadata_bytes": 1714135,
+  "metadata_copy": "zmetadata.json",
+  "selection_sha256": "af53f0c4989ee75d9f58ff979cd7f98e142deb3bb29ac6824e4efbeef2a67dad",
+  "script_sha256": "b5b2fb24dcbb189b9425b811aca2390c7027dac177486bf9b795c9fb0a6a259c",
+  "script_copy": "fetch_mast_source_fields_v1.py.copy",
+  "blosc_dll": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+  "blosc_dll_sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11",
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "max_compressed_chunk_bytes": 8000000,
+    "request_timeout_seconds": 30
+  },
+  "error_semantics": "unverified_not_assumed_standard_deviation",
+  "raw_values_only": true,
+  "likelihood_ready": false,
+  "scientific_acceptance": false,
+  "arrays": [
+    {
+      "requested_path": "efm/fcoil_r",
+      "resolved_path": "efm/fcoil_r",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "R centroid of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Location Radius",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_R",
+        "name": "efm/fcoil_r",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_R",
+        "units": "m",
+        "uuid": "ab240bd7-52a1-5a7b-a409-a3cc311fc1ca",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:34.169988Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_r/0",
+          "requested_utc": "2026-09-22T02:31:34.170114Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "1000",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"4b1e4cde1bd94d325b52af799a90fa13\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 1000,
+          "compressed_sha256": "0fcf9da00b20b18dfadffffdcf2215d2e375cd9fa817dc394679293c7f3e6832",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "1d6c220923ecfa74839518f507545ba84ea8b3643fa82d1ae1ff53b53d68b04a",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_r\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "1d6c220923ecfa74839518f507545ba84ea8b3643fa82d1ae1ff53b53d68b04a",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": 0.11900000274181366,
+      "maximum": 2.04296612739563
+    },
+    {
+      "requested_path": "efm/fcoil_z",
+      "resolved_path": "efm/fcoil_z",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Z centroid of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Location Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_Z",
+        "name": "efm/fcoil_z",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_Z",
+        "units": "m",
+        "uuid": "6bdba7ed-4885-53b4-a447-287df37a06d7",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:36.616549Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_z/0",
+          "requested_utc": "2026-09-22T02:31:36.616712Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "3025",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"85a8655fe3f84be957e8d11e186bebff\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 3025,
+          "compressed_sha256": "402533f28f04c2b8c3d2966698995743e21d455613b80f134fbe16c9e4a5066b",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "2d4b117dafe0412bd906abf33e709942a6060905c6a13a689b4e6641d30453c7",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_z\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "2d4b117dafe0412bd906abf33e709942a6060905c6a13a689b4e6641d30453c7",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": -2.458250045776367,
+      "maximum": 2.458250045776367
+    },
+    {
+      "requested_path": "efm/fcoil_width",
+      "resolved_path": "efm/fcoil_width",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "R extent of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Width",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_WIDTH",
+        "name": "efm/fcoil_width",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_WIDTH",
+        "units": "m",
+        "uuid": "747e7562-effd-573c-af60-b8c1e1106fbe",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:37.137791Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_width/0",
+          "requested_utc": "2026-09-22T02:31:37.137972Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "593",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"71badeb1f2d61c644c4caa99aaca7e61\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 593,
+          "compressed_sha256": "67126cf99ea177948cf3a0ce3547fb458b2b0e1a1284b218fb33f74055e71b22",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "41d372be29a9316b11f7d8a942f2788b996a2eea72edf9557e99249a784d445b",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_width\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "41d372be29a9316b11f7d8a942f2788b996a2eea72edf9557e99249a784d445b",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": 0.003000000026077032,
+      "maximum": 0.4174998998641968
+    },
+    {
+      "requested_path": "efm/fcoil_height",
+      "resolved_path": "efm/fcoil_height",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Z extent of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_HEIGHT",
+        "name": "efm/fcoil_height",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_HEIGHT",
+        "units": "m",
+        "uuid": "9c25db48-09f1-52c4-b17c-5c34187569d7",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:37.775433Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_height/0",
+          "requested_utc": "2026-09-22T02:31:37.775961Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "594",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"99a6f5c5d425ab66a0fc8c5d7806fcf0\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 594,
+          "compressed_sha256": "46219a5959fa0ace13d185d61d4f897c299df349291b39894fceef41d3f95bc1",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "2e4dbe69e51ab9b3563a1c1a78ad4d30d46aa7c51a8e985f9133c44ef7408c10",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_height\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "2e4dbe69e51ab9b3563a1c1a78ad4d30d46aa7c51a8e985f9133c44ef7408c10",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": -0.2890002131462097,
+      "maximum": 0.5417500138282776
+    },
+    {
+      "requested_path": "efm/fcoil_ang1",
+      "resolved_path": "efm/fcoil_ang1",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Defining angular skew of first type for each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Angle 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_ANG1",
+        "name": "efm/fcoil_ang1",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_ANG1",
+        "units": "deg",
+        "uuid": "b5e0e457-51a5-5aa5-938a-c75849f580d1",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:38.302936Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_ang1/0",
+          "requested_utc": "2026-09-22T02:31:38.303121Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "124",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"02d770522e2832b297a211555e949227\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 124,
+          "compressed_sha256": "b6491a3cb43c0fd4a19b75eb76438b540dc49f16f124f2d73a8e70a51f10b90d",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "b4d179b359757b4a5c835f4e31ca28981178fdfc53d9d9deb0240c66a276ebf1",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_ang1\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "b4d179b359757b4a5c835f4e31ca28981178fdfc53d9d9deb0240c66a276ebf1",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": -45.0,
+      "maximum": 45.0
+    },
+    {
+      "requested_path": "efm/fcoil_ang2",
+      "resolved_path": "efm/fcoil_ang2",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Defining angular skew of second type for each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Angle 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_ANG2",
+        "name": "efm/fcoil_ang2",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_ANG2",
+        "units": "deg",
+        "uuid": "6f6fc0aa-e08d-5f7a-a87a-cb6662207598",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:38.829045Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_ang2/0",
+          "requested_utc": "2026-09-22T02:31:38.829223Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "184",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"a606ca2cc1ce0f04bfe206271cc9c27b\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 184,
+          "compressed_sha256": "fadb489b8436ef9fd8ebcd584b204f6749f0e5ac1d2ff2beda8f3958a32320d1",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "e5631a653b546891653b700d22587674f349929f1edda183edf82f4bce0a4ee4",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_ang2\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "e5631a653b546891653b700d22587674f349929f1edda183edf82f4bce0a4ee4",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": -64.67566680908203,
+      "maximum": 64.67566680908203
+    },
+    {
+      "requested_path": "efm/fcoil_circ",
+      "resolved_path": "efm/fcoil_circ",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f8",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Circuit number of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil circuit",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_CIRC",
+        "name": "efm/fcoil_circ",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_CIRC",
+        "units": "",
+        "uuid": "496920c1-decf-5576-b4c7-83769ad4b9c4",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f8",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 7504,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:39.360448Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_circ/0",
+          "requested_utc": "2026-09-22T02:31:39.360610Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "362",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"867b2798713684338a5922797ce7e5bf\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 362,
+          "compressed_sha256": "0271473e5484b0c20720dfa7e773a57c4f47fa6daa77c26f67dc5687a3ca030a",
+          "decoded_bytes": 7504,
+          "decoded_sha256": "2d47e39355abd80ad05643e144b8a5a73cb255b78bd05508d9d62d9238a21626",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 7504,
+          "expected_edge_bytes": 7504,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_circ\\assembled.raw",
+      "assembled_raw_bytes": 7504,
+      "assembled_raw_sha256": "2d47e39355abd80ad05643e144b8a5a73cb255b78bd05508d9d62d9238a21626",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": 1.0,
+      "maximum": 101.0
+    },
+    {
+      "requested_path": "efm/fcoil_turns",
+      "resolved_path": "efm/fcoil_turns",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Number of turns represented by each f-coil elements; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil turns",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_TURNS",
+        "name": "efm/fcoil_turns",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_TURNS",
+        "units": "deg",
+        "uuid": "795d5485-9fb7-5f0b-9c08-63f1e72b12a4",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:39.892594Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_turns/0",
+          "requested_utc": "2026-09-22T02:31:39.892704Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "92",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"03e1e010c35b2fc492933f1dd5a362f2\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 92,
+          "compressed_sha256": "f254fbb081f019a16c6aff7915fb3fb2f0c94432987a4d5044e85a9e3dd98a06",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "c3ae9a34ced22531202a1a7a04ab6f20e5292ba907f6ae49875613cd98d9c0fb",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_turns\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "c3ae9a34ced22531202a1a7a04ab6f20e5292ba907f6ae49875613cd98d9c0fb",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": 1.0,
+      "maximum": 1.0
+    },
+    {
+      "requested_path": "efm/fcoil_xmult",
+      "resolved_path": "efm/fcoil_xmult",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Multiplier for each f-coil element to weight current within coil, e.g. by area; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil turns multiplier",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_XMULT",
+        "name": "efm/fcoil_xmult",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_XMULT",
+        "units": "deg",
+        "uuid": "bf17f6d0-ebb3-54c2-8165-81263ce29712",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:40.385711Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            938
+          ],
+          "full_chunk_shape": [
+            938
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_xmult/0",
+          "requested_utc": "2026-09-22T02:31:40.385790Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "359",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"20b56dfe0bca960b63a0e14e966be979\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 359,
+          "compressed_sha256": "18a3b3fe54152f1d953b59d679bc12d875d1ee1cafb9ccbe96309a0d171a3c2f",
+          "decoded_bytes": 3752,
+          "decoded_sha256": "5c41fa10414243ff03cb70c23e495fead0654a121cfbddf720f4e5be6be7c50e",
+          "decoded_shape": [
+            938
+          ],
+          "written_shape": [
+            938
+          ],
+          "expected_full_bytes": 3752,
+          "expected_edge_bytes": 3752,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_xmult\\assembled.raw",
+      "assembled_raw_bytes": 3752,
+      "assembled_raw_sha256": "5c41fa10414243ff03cb70c23e495fead0654a121cfbddf720f4e5be6be7c50e",
+      "finite_count": 938,
+      "total_count": 938,
+      "minimum": 0.04347829893231392,
+      "maximum": 1.0
+    },
+    {
+      "requested_path": "efm/fcoil_c",
+      "resolved_path": "efm/fcoil_c",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "fcoil_n"
+        ],
+        "description": "Output (computed) fitted toroidal currents; f(nfcoil, A)",
+        "dims": [
+          "time",
+          "fcoil_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Computed f-coil current",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_C",
+        "name": "efm/fcoil_c",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          120,
+          101
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_(C)",
+        "units": "A",
+        "uuid": "b11b7647-f109-554a-9117-be367fdeedf9",
+        "version": 0
+      },
+      "shape": [
+        120,
+        101
+      ],
+      "chunks": [
+        120,
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "fcoil_n"
+      ],
+      "decoded_bytes": 48480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:40.895834Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            120,
+            101
+          ],
+          "full_chunk_shape": [
+            120,
+            101
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_c/0.0",
+          "requested_utc": "2026-09-22T02:31:40.895950Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "42396",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"0cb3d7d0a2f2a5c509188857d62c8d86\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 42396,
+          "compressed_sha256": "6581a9370a85310bdc068b9ec5d475bfebe69a26de91497d8a79b13f0373ef29",
+          "decoded_bytes": 48480,
+          "decoded_sha256": "1ff46e6a6e4d6394be654aa28ffdc2cd22957f8e1810a920ef1896abe82203b3",
+          "decoded_shape": [
+            120,
+            101
+          ],
+          "written_shape": [
+            120,
+            101
+          ],
+          "expected_full_bytes": 48480,
+          "expected_edge_bytes": 48480,
+          "compressed_path": "chunks\\0.0.blosc",
+          "decoded_chunk_path": "chunks\\0.0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_c\\assembled.raw",
+      "assembled_raw_bytes": 48480,
+      "assembled_raw_sha256": "1ff46e6a6e4d6394be654aa28ffdc2cd22957f8e1810a920ef1896abe82203b3",
+      "finite_count": 12120,
+      "total_count": 12120,
+      "minimum": -167919.046875,
+      "maximum": 152051.46875
+    },
+    {
+      "requested_path": "efm/limiterr",
+      "resolved_path": "efm/limiterr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          37
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          37
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "limiter_n"
+        ],
+        "description": "R co-ordinates of limiter; f(nlimiter)",
+        "dims": [
+          "limiter_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Limiter Radius",
+        "mds_name": "\\TOP.ANALYSED.EFM:LIMITER_R",
+        "name": "efm/limiterr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          37
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_LIMITER(R)",
+        "units": "m",
+        "uuid": "af7941be-e414-50ff-b798-ed5a8288b508",
+        "version": 0
+      },
+      "shape": [
+        37
+      ],
+      "chunks": [
+        37
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "limiter_n"
+      ],
+      "decoded_bytes": 148,
+      "coordinate_paths": [
+        {
+          "dimension": "limiter_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:41.535330Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            37
+          ],
+          "full_chunk_shape": [
+            37
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/limiterr/0",
+          "requested_utc": "2026-09-22T02:31:41.535452Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "159",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"feb38b5e30fe35068f7beb3a276ddf41\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 159,
+          "compressed_sha256": "3a38a3372f02f27e88a9b9464add6a19c22b0d8d0ea12554cb9bab2568450b71",
+          "decoded_bytes": 148,
+          "decoded_sha256": "f20fc81533a07778b69d8a59bbc280fc91b5331b47a69f6f8cf0cbfb50209073",
+          "decoded_shape": [
+            37
+          ],
+          "written_shape": [
+            37
+          ],
+          "expected_full_bytes": 148,
+          "expected_edge_bytes": 148,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__limiterr\\assembled.raw",
+      "assembled_raw_bytes": 148,
+      "assembled_raw_sha256": "f20fc81533a07778b69d8a59bbc280fc91b5331b47a69f6f8cf0cbfb50209073",
+      "finite_count": 37,
+      "total_count": 37,
+      "minimum": 0.19524440169334412,
+      "maximum": 1.899999976158142
+    },
+    {
+      "requested_path": "efm/limiterz",
+      "resolved_path": "efm/limiterz",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          37
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          37
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "limiter_n"
+        ],
+        "description": "Z co-ordinates of limiter; f(nlimiter)",
+        "dims": [
+          "limiter_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Limiter Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:LIMITER_Z",
+        "name": "efm/limiterz",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          37
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_LIMITER(Z)",
+        "units": "m",
+        "uuid": "b9df63e9-af6d-58df-ad74-7abe9f6d4743",
+        "version": 0
+      },
+      "shape": [
+        37
+      ],
+      "chunks": [
+        37
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "limiter_n"
+      ],
+      "decoded_bytes": 148,
+      "coordinate_paths": [
+        {
+          "dimension": "limiter_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:42.058968Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            37
+          ],
+          "full_chunk_shape": [
+            37
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/limiterz/0",
+          "requested_utc": "2026-09-22T02:31:42.059111Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "156",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"667c8a618ec188a2706bf35aa19ea198\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 156,
+          "compressed_sha256": "0462bae8204e5c50ac1da2eb2b5cffad6135c45c48c0e6faea7d254a773277fa",
+          "decoded_bytes": 148,
+          "decoded_sha256": "026361f77aa922757d0117a6596d088fd42ff9089cd655b43b6976ed293908f8",
+          "decoded_shape": [
+            37
+          ],
+          "written_shape": [
+            37
+          ],
+          "expected_full_bytes": 148,
+          "expected_edge_bytes": 148,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__limiterz\\assembled.raw",
+      "assembled_raw_bytes": 148,
+      "assembled_raw_sha256": "026361f77aa922757d0117a6596d088fd42ff9089cd655b43b6976ed293908f8",
+      "finite_count": 37,
+      "total_count": 37,
+      "minimum": -1.8250000476837158,
+      "maximum": 1.8250000476837158
+    },
+    {
+      "requested_path": "efm/qpsi_c",
+      "resolved_path": "efm/qpsi_c",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "psi_norm"
+        ],
+        "description": "Safety factor as a function of magnetic flux; f(npsi, B)",
+        "dims": [
+          "time",
+          "psi_norm"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "q-profile (centre to edg",
+        "mds_name": "\\TOP.ANALYSED.EFM:Q_PSI_C",
+        "name": "efm/qpsi_c",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          108,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_Q(PSI)_(C)",
+        "units": "",
+        "uuid": "028f3486-3e95-542e-97cb-0f276766d7f4",
+        "version": 0
+      },
+      "shape": [
+        120,
+        65
+      ],
+      "chunks": [
+        120,
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "psi_norm"
+      ],
+      "decoded_bytes": 31200,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "psi_norm",
+          "path": "efm/psi_norm",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "utc_started": "2026-09-22T02:31:42.588427Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            120,
+            65
+          ],
+          "full_chunk_shape": [
+            120,
+            65
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/qpsi_c/0.0",
+          "requested_utc": "2026-09-22T02:31:42.588607Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "21287",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"9cbbebce456e928cdaf766416816f794\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 21287,
+          "compressed_sha256": "78ab70a1faf7bf02132a0e6d940423e429cba806be78365a740634a2343d360d",
+          "decoded_bytes": 31200,
+          "decoded_sha256": "0e4a89ba8752f1b6a8e41102acc32272e4d864b797e30b214deed3f8e64fd23c",
+          "decoded_shape": [
+            120,
+            65
+          ],
+          "written_shape": [
+            120,
+            65
+          ],
+          "expected_full_bytes": 31200,
+          "expected_edge_bytes": 31200,
+          "compressed_path": "chunks\\0.0.blosc",
+          "decoded_chunk_path": "chunks\\0.0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__qpsi_c\\assembled.raw",
+      "assembled_raw_bytes": 31200,
+      "assembled_raw_sha256": "0e4a89ba8752f1b6a8e41102acc32272e4d864b797e30b214deed3f8e64fd23c",
+      "finite_count": 7020,
+      "total_count": 7800,
+      "minimum": 0.20934991538524628,
+      "maximum": 18.08050537109375
+    }
+  ],
+  "failures": [],
+  "status": "success",
+  "total_decoded_bytes": 117496,
+  "utc_progress": "2026-09-22T02:31:43.121034Z",
+  "utc_finished": "2026-09-22T02:31:43.121758Z",
+  "exit_code": 0
+}

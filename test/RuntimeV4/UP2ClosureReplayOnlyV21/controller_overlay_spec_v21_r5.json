@@ -1,0 +1,40 @@
+{
+  "schema": "mms-v21-r5-controller-overlay-spec-v1",
+  "original_controller_path": "test/RuntimeV4/UP2ClosureReplayOnlyV21/run_replay_staged_v21.py",
+  "original_controller_sha256": "adfaf790f75e6584f1ee61e50ec2cb87aaf84835ed61071356db92d46fcab44e",
+  "replacement_count": 8,
+  "replacements": [
+    {
+      "old_line": "SCRIPT = pathlib.Path(__file__).resolve().with_name(\"replay_staged_v21.jl\")",
+      "new_line": "SCRIPT = pathlib.Path(__file__).resolve().with_name(\"replay_staged_v21_r4.jl\")"
+    },
+    {
+      "old_line": "DEFAULT_PROTOCOL = BASE / \"replay_protocol_v21.json\"",
+      "new_line": "DEFAULT_PROTOCOL = BASE / \"replay_protocol_v21_r5.json\""
+    },
+    {
+      "old_line": "    external_root = (root.parent / \"FusionConceptAI_cleanup_20260926\" / \"up2_replay_v21\").resolve()",
+      "new_line": "    external_root = (root.parent / \"FusionConceptAI_cleanup_20260926\" / \"up2_replay_v21_r5\").resolve()"
+    },
+    {
+      "old_line": "        raise ValueError(\"V21 output_leaf must remain under the external up2_replay_v21 evidence root\")",
+      "new_line": "        raise ValueError(\"V21 R5 output_leaf must remain under the external up2_replay_v21_r5 evidence root\")"
+    },
+    {
+      "old_line": "    julia_source_path = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21.jl\"",
+      "new_line": "    julia_source_path = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21_r4.jl\""
+    },
+    {
+      "old_line": "    julia_script = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21.jl\"",
+      "new_line": "    julia_script = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21_r4.jl\""
+    },
+    {
+      "old_line": "    verify_process_exit_race_contract_text(SCRIPT.read_text(encoding=\"utf-8\"))",
+      "new_line": "    verify_process_exit_race_contract_text(R4_TRANSFORMED_CONTROLLER_SOURCE)"
+    },
+    {
+      "old_line": "    if file_inventory(runtime_root) != runtime_entries:",
+      "new_line": "    if sorted(file_inventory(runtime_root), key=lambda item: item[\"path\"]) != sorted(runtime_entries, key=lambda item: item[\"path\"]):"
+    }
+  ]
+}

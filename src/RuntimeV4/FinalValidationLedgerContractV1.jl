@@ -653,3 +653,290 @@ function admit_final_validation_ledger(builder::Function)
 end
 
 const validate_final_validation_ledger_v1 = validate_final_validation_ledger
+
+# Candidate-bound station cycle energy screen.  This is deliberately a narrow
+# metric producer for the existing final-validation ledger, not an authority.
+const _FVLC_STATION_TERM_IDS =
+    (:gross_generation, :auxiliary_consumption, :loss, :storage_start, :storage_end)
+
+_fvlc_station_float_tuple(xs, label; nonnegative=false) = begin
+    values = Tuple(Float64(x) for x in Tuple(xs))
+    all(isfinite, values) || throw(ArgumentError("$label must be finite"))
+    nonnegative && any(x -> x < 0, values) &&
+        throw(ArgumentError("$label must be nonnegative"))
+    values
+end
+
+_fvlc_station_text_tuple(xs, label) = begin
+    values = Tuple(_fvlc_text(x, label) for x in Tuple(xs))
+    isempty(values) && throw(ArgumentError("$label must not be empty"))
+    length(Set(values)) == length(values) ||
+        throw(ArgumentError("$label contains duplicates"))
+    values
+end
+
+"""An existing ledger evidence ref explicitly joined to a station boundary, cycle, and term."""
+struct StationCycleEvidenceV1
+    evidence::FinalValidationLedgerEvidenceRefV1
+    station_boundary_ref::String
+    cycle_id::String
+    term::Symbol
+    measurement_ref::String
+    component_scope_refs::Tuple{Vararg{String}}
+    function StationCycleEvidenceV1(evidence, station_boundary_ref, cycle_id, term,
+            measurement_ref, component_scope_refs)
+        evidence isa FinalValidationLedgerEvidenceRefV1 ||
+            throw(ArgumentError("station cycle evidence requires existing typed ledger evidence"))
+        t = term isa Symbol ? term : Symbol(term)
+        t in _FVLC_STATION_TERM_IDS || throw(ArgumentError("unknown station energy term"))
+        scopes = _fvlc_station_text_tuple(component_scope_refs, "component_scope_ref")
+        new(evidence, _fvlc_text(station_boundary_ref, "station_boundary_ref"),
+            _fvlc_text(cycle_id, "cycle_id"), t,
+            _fvlc_text(measurement_ref, "measurement_ref"), scopes)
+    end
+end
+
+semantic_view(x::StationCycleEvidenceV1) =
+    (evidence=x.evidence, station_boundary_ref=x.station_boundary_ref,
+     cycle_id=x.cycle_id, term=x.term, measurement_ref=x.measurement_ref,
+     component_scope_refs=x.component_scope_refs)
+
+"""One sampled power channel with an absolute per-sample error bound in watts."""
+struct StationPowerTraceV1
+    time_s::Tuple{Vararg{Float64}}
+    power_w::Tuple{Vararg{Float64}}
+    absolute_error_bound_w::Tuple{Vararg{Float64}}
+    meter_ref::String
+    component_scope_refs::Tuple{Vararg{String}}
+    data_evidence::Union{Nothing,StationCycleEvidenceV1}
+    uncertainty_evidence::Union{Nothing,StationCycleEvidenceV1}
+    function StationPowerTraceV1(time_s, power_w, absolute_error_bound_w,
+            meter_ref, component_scope_refs, data_evidence, uncertainty_evidence)
+        ts = _fvlc_station_float_tuple(time_s, "time_s")
+        ps = _fvlc_station_float_tuple(power_w, "power_w"; nonnegative=true)
+        us = _fvlc_station_float_tuple(absolute_error_bound_w,
+            "absolute_error_bound_w"; nonnegative=true)
+        length(ts) >= 2 && length(ts) == length(ps) == length(us) ||
+            throw(ArgumentError("station power and uncertainty traces must have equal length >= 2"))
+        all(diff(collect(ts)) .> 0) || throw(ArgumentError("time_s must be strictly increasing"))
+        scopes = _fvlc_station_text_tuple(component_scope_refs, "component_scope_ref")
+        data_evidence === nothing || data_evidence isa StationCycleEvidenceV1 ||
+            throw(ArgumentError("data_evidence must be StationCycleEvidenceV1 or nothing"))
+        uncertainty_evidence === nothing || uncertainty_evidence isa StationCycleEvidenceV1 ||
+            throw(ArgumentError("uncertainty_evidence must be StationCycleEvidenceV1 or nothing"))
+        new(ts, ps, us, _fvlc_text(meter_ref, "meter_ref"), scopes,
+            data_evidence, uncertainty_evidence)
+    end
+end
+
+semantic_view(x::StationPowerTraceV1) =
+    (time_s=x.time_s, power_w=x.power_w,
+     absolute_error_bound_w=x.absolute_error_bound_w, meter_ref=x.meter_ref,
+     component_scope_refs=x.component_scope_refs,
+     data_evidence=x.data_evidence, uncertainty_evidence=x.uncertainty_evidence)
+
+"""A declared station time interval with four explicitly joined sampled energy terms."""
+struct StationCycleEnergyInputV1
+    identity::FinalValidationLedgerIdentityV1
+    station_boundary_ref::String
+    cycle_id::String
+    cycle_start_s::Float64
+    cycle_end_s::Float64
+    maximum_gap_s::Float64
+    gross::StationPowerTraceV1
+    auxiliary::StationPowerTraceV1
+    loss::StationPowerTraceV1
+    storage_start_j::Float64
+    storage_end_j::Float64
+    storage_start_error_bound_j::Float64
+    storage_end_error_bound_j::Float64
+    storage_start_evidence::Union{Nothing,StationCycleEvidenceV1}
+    storage_start_uncertainty_evidence::Union{Nothing,StationCycleEvidenceV1}
+    storage_end_evidence::Union{Nothing,StationCycleEvidenceV1}
+    storage_end_uncertainty_evidence::Union{Nothing,StationCycleEvidenceV1}
+    function StationCycleEnergyInputV1(identity; station_boundary_ref, cycle_id,
+            cycle_start_s, cycle_end_s, maximum_gap_s, gross, auxiliary, loss,
+            storage_start_j, storage_end_j, storage_start_error_bound_j,
+            storage_end_error_bound_j, storage_start_evidence=nothing,
+            storage_start_uncertainty_evidence=nothing, storage_end_evidence=nothing,
+            storage_end_uncertainty_evidence=nothing)
+        identity isa FinalValidationLedgerIdentityV1 ||
+            throw(ArgumentError("complete final-validation ledger identity required"))
+        traces = (gross, auxiliary, loss)
+        all(x -> x isa StationPowerTraceV1, traces) ||
+            throw(ArgumentError("gross, auxiliary, and loss must be typed station power traces"))
+        start = Float64(cycle_start_s); stop = Float64(cycle_end_s)
+        gap = Float64(maximum_gap_s)
+        values = (start, stop, gap, Float64(storage_start_j), Float64(storage_end_j),
+            Float64(storage_start_error_bound_j), Float64(storage_end_error_bound_j))
+        all(isfinite, values) || throw(ArgumentError("cycle and storage values must be finite"))
+        0 <= start < stop && gap > 0 || throw(ArgumentError("invalid station cycle interval"))
+        values[6] >= 0 && values[7] >= 0 ||
+            throw(ArgumentError("storage error bounds must be nonnegative"))
+        refs = (storage_start_evidence, storage_start_uncertainty_evidence,
+            storage_end_evidence, storage_end_uncertainty_evidence)
+        all(x -> x === nothing || x isa StationCycleEvidenceV1, refs) ||
+            throw(ArgumentError("storage evidence must be typed station cycle evidence or nothing"))
+        new(identity, _fvlc_text(station_boundary_ref, "station_boundary_ref"),
+            _fvlc_text(cycle_id, "cycle_id"), start, stop, gap, gross, auxiliary,
+            loss, values[4], values[5], values[6], values[7], refs...)
+    end
+end
+
+_fvlc_station_identity_complete(identity) =
+    identity isa FinalValidationLedgerIdentityV1 && !_fvlc_identity_missing(identity)
+
+function _fvlc_station_evidence_ok(row, input, term, kind;
+        measurement_ref=nothing, component_scope_refs=nothing)
+    row isa StationCycleEvidenceV1 || return false
+    e = row.evidence
+    row.station_boundary_ref == input.station_boundary_ref &&
+        row.cycle_id == input.cycle_id && row.term === term && e.kind === kind &&
+        e.status === :pass && e.content_hash !== nothing &&
+        _fvlc_evidence_binding_matches(e, input.identity) &&
+        (measurement_ref === nothing || row.measurement_ref == measurement_ref) &&
+        (component_scope_refs === nothing || row.component_scope_refs == component_scope_refs)
+end
+
+function _fvlc_station_integral(trace::StationPowerTraceV1)
+    weights = zeros(Float64, length(trace.time_s))
+    for i in 1:length(weights)-1
+        dt = trace.time_s[i+1] - trace.time_s[i]
+        weights[i] += dt / 2
+        weights[i+1] += dt / 2
+    end
+    energy = sum(weights .* collect(trace.power_w))
+    error_bound = sum(weights .* collect(trace.absolute_error_bound_w))
+    (energy_j=energy, absolute_error_bound_j=error_bound)
+end
+
+"""Missing station interval input remains explicit and cannot produce ledger metrics."""
+station_cycle_net_output_v1(::Nothing) =
+    (status=:typed_absent, detail=:full_cycle_input_missing,
+     claim_ceiling=:screen_only, metrics=nothing)
+
+"""Compute a candidate-bound sampled trapezoid screen in the existing ledger metrics.
+
+Power samples use W, time uses s, and storage state uses J. The sampled estimate is
+`gross - auxiliary - loss - (storage_end - storage_start)`. Per-sample absolute
+measurement bounds are propagated over the trapezoid weights, without independence
+or probability assumptions. This does not bound between-sample waveform/quadrature
+error, verify storage endpoint timestamps, or establish physical disjointness of
+caller-declared component scopes. Therefore the interval is a sampled measurement
+screen only; full-cycle uncertainty and VVUQ remain absent.
+"""
+function station_cycle_net_output_v1(input::StationCycleEnergyInputV1)
+    identity = input.identity
+    _fvlc_station_identity_complete(identity) ||
+        return (status=:typed_absent, detail=:candidate_identity_incomplete,
+            claim_ceiling=:screen_only, metrics=nothing)
+    traces = (input.gross, input.auxiliary, input.loss)
+    length(Set(x.meter_ref for x in traces)) == 3 ||
+        return (status=:fail_closed, detail=:duplicate_meter_ref,
+            claim_ceiling=:screen_only, metrics=nothing)
+    scopes = Tuple(scope for trace in traces for scope in trace.component_scope_refs)
+    length(Set(scopes)) == length(scopes) ||
+        return (status=:fail_closed, detail=:double_counted_component_scope,
+            claim_ceiling=:screen_only, metrics=nothing)
+    reference_time = input.gross.time_s
+    all(trace -> trace.time_s == reference_time, traces) ||
+        return (status=:fail_closed, detail=:time_grid_mismatch,
+            claim_ceiling=:screen_only, metrics=nothing)
+    first(reference_time) == input.cycle_start_s && last(reference_time) == input.cycle_end_s ||
+        return (status=:typed_absent, detail=:cycle_boundary_not_fully_sampled,
+            claim_ceiling=:screen_only, metrics=nothing)
+    any(diff(collect(reference_time)) .> input.maximum_gap_s) &&
+        return (status=:typed_absent, detail=:cycle_gap_exceeds_declared_maximum,
+            claim_ceiling=:screen_only, metrics=nothing)
+    required_rows = (
+        (input.gross.data_evidence, input.gross.uncertainty_evidence, :gross_generation),
+        (input.auxiliary.data_evidence, input.auxiliary.uncertainty_evidence, :auxiliary_consumption),
+        (input.loss.data_evidence, input.loss.uncertainty_evidence, :loss),
+        (input.storage_start_evidence, input.storage_start_uncertainty_evidence, :storage_start),
+        (input.storage_end_evidence, input.storage_end_uncertainty_evidence, :storage_end))
+    any(any(row === nothing for row in rows[1:2]) for rows in required_rows) &&
+        return (status=:typed_absent, detail=:cycle_data_or_uncertainty_evidence_missing,
+            claim_ceiling=:screen_only, metrics=nothing)
+    evidence_rows = StationCycleEvidenceV1[]
+    for (data, uncertainty, term) in required_rows
+        if term in (:gross_generation, :auxiliary_consumption, :loss)
+            trace = term === :gross_generation ? input.gross :
+                term === :auxiliary_consumption ? input.auxiliary : input.loss
+            measurement_ref, component_scope_refs = trace.meter_ref, trace.component_scope_refs
+        else
+            measurement_ref, component_scope_refs = data.measurement_ref, data.component_scope_refs
+        end
+        _fvlc_station_evidence_ok(data, input, term, :net_output;
+            measurement_ref=measurement_ref, component_scope_refs=component_scope_refs) &&
+            _fvlc_station_evidence_ok(uncertainty, input, term, :uncertainty;
+            measurement_ref=measurement_ref, component_scope_refs=component_scope_refs) ||
+            return (status=:fail_closed, detail=:evidence_binding_mismatch,
+                claim_ceiling=:screen_only, metrics=nothing)
+        push!(evidence_rows, data, uncertainty)
+    end
+    meter_refs = Set(trace.meter_ref for trace in traces)
+    storage_meter_refs = (input.storage_start_evidence.measurement_ref,
+        input.storage_end_evidence.measurement_ref)
+    any(ref in meter_refs for ref in storage_meter_refs) &&
+        return (status=:fail_closed, detail=:duplicate_meter_ref,
+            claim_ceiling=:screen_only, metrics=nothing)
+    start_scope = input.storage_start_evidence.component_scope_refs
+    end_scope = input.storage_end_evidence.component_scope_refs
+    start_scope == end_scope ||
+        return (status=:fail_closed, detail=:storage_scope_mismatch,
+            claim_ceiling=:screen_only, metrics=nothing)
+    any(scope in Set(scopes) for scope in start_scope) &&
+        return (status=:fail_closed, detail=:double_counted_component_scope,
+            claim_ceiling=:screen_only, metrics=nothing)
+    evidence_ids = Tuple(x.evidence.evidence_id for x in evidence_rows)
+    length(Set(evidence_ids)) == length(evidence_ids) ||
+        return (status=:fail_closed, detail=:duplicate_evidence_ref,
+            claim_ceiling=:screen_only, metrics=nothing)
+    energy = Tuple(_fvlc_station_integral(trace) for trace in traces)
+    gross_energy, auxiliary_energy, loss_energy = (x.energy_j for x in energy)
+    storage_delta = input.storage_end_j - input.storage_start_j
+    net_energy = gross_energy - auxiliary_energy - loss_energy - storage_delta
+    propagated_bound = sum(x.absolute_error_bound_j for x in energy) +
+        input.storage_start_error_bound_j + input.storage_end_error_bound_j
+    lower = net_energy - propagated_bound
+    upper = net_energy + propagated_bound
+    crosses_zero = lower <= 0 <= upper
+    classification = crosses_zero ? :sampled_interval_crosses_zero :
+        lower > 0 ? :sampled_positive_lower_bound : :sampled_nonpositive_upper_bound
+    sampled_interval = (lower, upper)
+    limitations = (:between_sample_waveform_and_quadrature_error_unbounded,
+        :storage_endpoint_timestamps_unverified,
+        :component_scope_physical_provenance_unverified,
+        :statistical_coverage_and_distribution_model_missing)
+    metric = (status=:screen_only, method=:station_sampled_trapezoid_v1,
+        station_boundary_ref=input.station_boundary_ref, cycle_id=input.cycle_id,
+        units=(power=:W, time=:s, energy=:J),
+        integration_scope=:sampled_trapezoid_only,
+        gross_sampled_energy_estimate_j=gross_energy,
+        auxiliary_sampled_energy_estimate_j=auxiliary_energy,
+        storage_delta_j=storage_delta, loss_sampled_energy_estimate_j=loss_energy,
+        sampled_net_energy_estimate_j=net_energy,
+        sampled_measurement_interval_j=sampled_interval,
+        propagated_sample_measurement_bound_j=propagated_bound,
+        interval_crosses_zero=crosses_zero, classification=classification,
+        limitations=limitations,
+        counted_terms=(:gross_generation, :auxiliary_consumption, :loss, :storage_delta),
+        evidence_hashes=Tuple(x.evidence.content_hash for x in evidence_rows))
+    vvuq = (status=:typed_absent, method=:sample_error_bound_only,
+        propagated_sample_measurement_bound_j=propagated_bound,
+        reason=limitations)
+    metrics = FinalValidationLedgerMetricsV1(net_output=metric, vvuq=vvuq)
+    (status=:screen_only, detail=:sampled_trapezoid_interval,
+     identity_hash=canonical_hash(semantic_view(identity)),
+     station_boundary_ref=input.station_boundary_ref, cycle_id=input.cycle_id,
+     gross_sampled_energy_estimate_j=gross_energy,
+     auxiliary_sampled_energy_estimate_j=auxiliary_energy,
+     storage_delta_j=storage_delta,
+     loss_sampled_energy_estimate_j=loss_energy,
+     sampled_net_energy_estimate_j=net_energy,
+     propagated_sample_measurement_bound_j=propagated_bound,
+     sampled_measurement_interval_j=sampled_interval,
+     interval_crosses_zero=crosses_zero, classification=classification,
+     limitations=limitations, evidence_refs=Tuple(evidence_rows),
+     claim_ceiling=:screen_only, metrics=metrics)
+end

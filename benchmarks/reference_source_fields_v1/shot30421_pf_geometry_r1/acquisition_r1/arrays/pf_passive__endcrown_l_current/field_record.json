@@ -1,0 +1,115 @@
+{
+  "assembled_bytes": 30616,
+  "assembled_path": "arrays/pf_passive__endcrown_l_current/assembled.raw",
+  "assembled_sha256": "e52bee73f6a3cd9e715d69f3bd9fe9539875dc1af71a52efa8861969c79703d6",
+  "chunks": [
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:27:02.822103Z",
+      "compressed_bytes": 29177,
+      "compressed_path": "arrays/pf_passive__endcrown_l_current/chunks/c__0.zst",
+      "compressed_sha256": "3233965c420abda986d2db4b890842535040dd976fe6ea5d1e56bc3e4cb8406d",
+      "decoded_bytes": 30616,
+      "decoded_path": "arrays/pf_passive__endcrown_l_current/chunks/c__0.raw",
+      "decoded_sha256": "e52bee73f6a3cd9e715d69f3bd9fe9539875dc1af71a52efa8861969c79703d6",
+      "decoded_shape": [
+        3827
+      ],
+      "edge_shape": [
+        3827
+      ],
+      "full_chunk_shape": [
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:01.929593Z",
+      "response_headers": {
+        "Content-Length": "29177",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"31877f2610283c686bf8381775bc00bf\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:27 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/endcrown_l_current/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:02.831722Z",
+  "data_type": "float64",
+  "decoded_bytes": 30616,
+  "dimensions": [
+    "time"
+  ],
+  "finite_count": 3827,
+  "maximum": 2549.1621328247847,
+  "minimum": -2560.1820087570713,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "Lower centre column end crown passive loop.",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "endcrown_l_current",
+      "uda_name": "AMM_ENDCROWN_L",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/endcrown_l_current",
+  "shape": [
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:01.907915Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 3827,
+  "units": "A"
+}

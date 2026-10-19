@@ -1,0 +1,125 @@
+{
+  "requested_path": "amc/p5u_current",
+  "resolved_path": "amc/p5u_current",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      30000
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      30000
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Internal P5U current",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "P5U Current",
+    "mds_name": "\\TOP.ANALYSED.AMC:P5U_CURRENT",
+    "name": "amc/p5u_current",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      30000
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "amc",
+    "time_index": 0,
+    "uda_name": "AMC_P5U CURRENT",
+    "units": "kA * turn",
+    "uuid": "f8a281e3-4bff-5dc6-aca4-7c3d8f81b383",
+    "version": 0
+  },
+  "shape": [
+    30000
+  ],
+  "chunks": [
+    30000
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 120000,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "amc/time",
+      "available": true,
+      "shape": [
+        30000
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-22T01:49:43.453961Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        30000
+      ],
+      "full_chunk_shape": [
+        30000
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p5u_current/0",
+      "requested_utc": "2026-09-22T01:49:43.454239Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "96707",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+        "ETag": "\"ba8e2f6db80e1da5747f342321d188b7\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 96707,
+      "compressed_sha256": "c76716e551801bd3f682fff6a2b89617bb92739478e86bdbe5a3979d21605dc2",
+      "decoded_bytes": 120000,
+      "decoded_sha256": "cddcda4dc65a71981ee4253b8aaa11693571a040f20b4e8259d60a1cc9805dc1",
+      "decoded_shape": [
+        30000
+      ],
+      "written_shape": [
+        30000
+      ],
+      "expected_full_bytes": 120000,
+      "expected_edge_bytes": 120000,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\amc__p5u_current\\assembled.raw",
+  "assembled_raw_bytes": 120000,
+  "assembled_raw_sha256": "cddcda4dc65a71981ee4253b8aaa11693571a040f20b4e8259d60a1cc9805dc1",
+  "finite_count": 30000,
+  "total_count": 30000,
+  "minimum": -111.03095245361328,
+  "maximum": 0.17021004855632782
+}

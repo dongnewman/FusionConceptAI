@@ -184,3 +184,51 @@ end
         source_expression="f_candidate(x)=2")
     @test G.g1_diffusion_edit_source(d, :f, edited_f).source_hash != d.source_hash
 end
+
+
+@testset "UP2-01 G1 symmetric affine tensor K typed admission" begin
+    K_expr = G.G1DiffusionSymmetricAffineTensorKFieldV2("K_xy_affine";
+        domain_min=(0 // 1, 0 // 1, 0 // 1),
+        domain_max=(1 // 1, 1 // 1, 1 // 1),
+        base_matrix=((4 // 1, 1 // 1, 0 // 1),
+                     (1 // 1, 3 // 1, 0 // 1),
+                     (0 // 1, 0 // 1, 2 // 1)))
+    K = G.G1DiffusionCoefficientFieldV1("K_xy", _TENSOR, _SOURCE;
+        lower_bound=2 // 1, upper_bound=43 // 10, expression=K_expr)
+    base = _declaration()
+    payload = G.G1DiffusionSourcePayloadV1(_CANDIDATE, _SOURCE,
+        "candidate-source-v1", base.u, K, base.f)
+    declaration = G.g1_diffusion_declaration_v1(_CANDIDATE, _SOURCE,
+        "candidate-source-v1", G.g1_diffusion_source_hash_v1(payload),
+        base.u, K, base.f, base.operators, base.closure_ref,
+        base.applicability_ref, base.applicability_domain,
+        base.negative_controls; source_payload=payload)
+    @test G.g1_diffusion_validate(declaration)[1] == :valid
+    @test declaration.K.expression === K_expr
+    @test G.g1_diffusion_admit_k_v1(K_expr).status == :terminal_deferred
+    @test G.g1_diffusion_k_eval(K_expr, (1 // 2, 1 // 2, 1 // 2))[1][2] == 43 // 40
+    @test G.g1_diffusion_k_eval(K_expr, (1 // 2, 1 // 2, 1 // 2))[2][1] == 43 // 40
+    @test G.g1_diffusion_k_eval(K_expr, (1 // 2, 1 // 2, 1 // 2))[1][1] !=
+        G.g1_diffusion_k_eval(K_expr, (1 // 1, 1 // 2, 1 // 2))[1][1]
+    @test G.g1_diffusion_k_enclosure(K_expr).lower == 2 // 1
+    @test G.g1_diffusion_k_enclosure(K_expr).upper == 43 // 10
+    @test K.expression === K_expr
+    @test_throws ArgumentError G.g1_diffusion_k_eval(K_expr, (2 // 1, 0 // 1, 0 // 1))
+    @test_throws ArgumentError G.G1DiffusionSymmetricAffineTensorKFieldV2("nonsymmetric";
+        base_matrix=((4 // 1, 1 // 1, 0 // 1),
+                     (0 // 1, 3 // 1, 0 // 1),
+                     (0 // 1, 0 // 1, 2 // 1)))
+    @test_throws ArgumentError G.G1DiffusionSymmetricAffineTensorKFieldV2("nonsymmetric_slope";
+        slope_matrices=(
+            ((1 // 5, 1 // 20, 0 // 1), (0 // 1, 1 // 10, 0 // 1), (0 // 1, 0 // 1, 1 // 10)),
+            ((1 // 10, 1 // 10, 0 // 1), (1 // 10, 1 // 5, 0 // 1), (0 // 1, 0 // 1, 1 // 20)),
+            ((0 // 1, 0 // 1, 0 // 1), (0 // 1, 0 // 1, 0 // 1), (0 // 1, 0 // 1, 0 // 1))))
+    @test_throws ArgumentError G.G1DiffusionSymmetricAffineTensorKFieldV2("nonfinite_domain";
+        domain_min=(-Inf, 0 // 1, 0 // 1))
+    @test_throws ArgumentError G.G1DiffusionSymmetricAffineTensorKFieldV2("indefinite";
+        base_matrix=((1 // 1, 2 // 1, 0 // 1),
+                     (2 // 1, 1 // 1, 0 // 1),
+                     (0 // 1, 0 // 1, 2 // 1)))
+    @test_throws ArgumentError G.G1DiffusionSymmetricAffineTensorKFieldV2("nonfinite";
+        base_matrix=((4.0, 1.0, 0.0), (1.0, 3.0, 0.0), (0.0, 0.0, 2.0)))
+end

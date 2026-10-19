@@ -11,12 +11,19 @@ older plans do not override the current roadmap. Store accepted implementation d
 there and retain their acceptance scope and links in the active index. Do not classify
 unfinished work, a historical plan or a failed physical run as accepted implementation.
 
-The user-directed execution setup is `gpt-5.6-sol` with `high` for top-level architecture,
-planning, delegation and acceptance decisions. Delegate bounded implementation, tests,
-integration, documentation maintenance and independent reviews to `gpt-5.6-luna` with
-`high`, following `14_agent_orchestration.md`. Record actual model availability/settings;
-do not silently substitute models. Use explicit file ownership, different implementer and
-reviewer agents, and one serialized lane for heavy Julia/DESC/mesh/regression execution.
+The 2026-09-23 user-directed requested configuration was `gpt-6-sol / high`
+for the root main thread and `gpt-6-luna / max` for delegated implementation, tests,
+integration, independent acceptance reviews and reports. The 2026-09-28 user request
+supersedes the delegated setting with `gpt-6-luna / high`; at most nine child agents are
+active at once. This documentation records requested settings; it does not switch the
+running model. Record host-visible actual settings separately. Apply the current user override to
+stale model/effort fields in older prompts and `execution_assignment` while retaining each
+task's scope, dependencies, ownership and acceptance gates; keep historical review models
+unchanged and label them as historical. Keep implementation, testing and review with
+different agents; the root main thread makes final project decisions. Do not reduce the
+mathematics, scientific coverage or R01–R10 scope because of the requested worker model.
+Use explicit file ownership, one owner for each shared entry point, and one serialized lane
+for heavy Julia/DESC/mesh/regression execution.
 
 Preserve unrelated dirty work and historical artifacts. Audit current source and run
 evidence before editing. Keep execution failures, numerical failures, physical failures,
@@ -26,7 +33,7 @@ authorizes versioned Genome upgrades; do not reinterpret old candidate hashes or
 
 The September 17, 2026 user decision makes `agent_local` the default execution
 profile. Read `docs/v4_multitopology_generation/22_agent_local_execution.md` and
-`execution_policy.json` before applying historical authority gates. Sol and Luna
+`execution_policy.json` before applying historical authority gates. Mainline and worker
 agents own project roles; do not request external people, CA/OCSP/CRL/TSA,
 witness signatures, channel ACKs, publisher proofs or EHP bundles to authorize
 local development, candidate construction, numerical execution or search.

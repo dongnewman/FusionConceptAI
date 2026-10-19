@@ -1,0 +1,122 @@
+{
+  "requested_path": "efm/psi_axis",
+  "resolved_path": "efm/psi_axis",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Poloidal magnetic flux per toroidal radian at the magnetic axis; f(B)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Poloidal flux on axis",
+    "mds_name": "\\TOP.ANALYSED.EFM:PSI_AXIS",
+    "name": "efm/psi_axis",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      108
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_PSI_AXIS",
+    "units": "Wb / rad",
+    "uuid": "be551547-8c43-58de-9cd5-0a1a9fdf91a4",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:08.305398Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psi_axis/0",
+      "requested_utc": "2026-09-21T20:02:08.305640Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "400",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"a6b43c276bed845562f32348b049304e\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 400,
+      "compressed_sha256": "acae3bbd24bffba4b59dc9f7f56ee417b0242b965c5d320331ddfb93c23b24a5",
+      "decoded_bytes": 480,
+      "decoded_sha256": "af1caaf7bfa0fd62f5df309b11f08bf110223e48f0080cc73a0f06857853a330",
+      "decoded_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__psi_axis\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "af1caaf7bfa0fd62f5df309b11f08bf110223e48f0080cc73a0f06857853a330",
+  "finite_count": 108,
+  "total_count": 120,
+  "minimum": 0.0435241274535656,
+  "maximum": 0.14961178600788116
+}

@@ -1,0 +1,63 @@
+{
+  "task_id": "UP1-04A-VNEXT-T1-R13",
+  "status": "coverage_preserving_isolation_contract_repaired",
+  "original_test": {
+    "path": "test/GenomeV5/Integration/vnext_t1_candidate_state_package_v5_next_tests.jl",
+    "bytes": 12975,
+    "sha256": "970976C4122FC6B4F5303D6763C286514B1C9DC653ABA36D46E1D003BCBF9669"
+  },
+  "coverage_contract": {
+    "source_binding": "exact_utf8_bytes_and_sha256_before_child_dispatch",
+    "ast_extractor": "Julia Meta.parseall recursive macrocall walk",
+    "test_occurrences": 62,
+    "test_throws_occurrences": 1,
+    "ownership": "every occurrence gets one location, AST expression hash and exactly one child id",
+    "child_set": "each fresh child may report legal repeated hits, but every runtime id equals its selected target and hit_count is at least one; no foreign id is allowed; aggregate set equals the original set",
+    "assertion_rewrite": false,
+    "unsafe_extraction": "insufficient_evidence"
+  },
+  "runtime_contract": {
+    "legal_repeated_hits": true,
+    "runtime_id_policy": "all_ids_equal_target",
+    "minimum_hit_count": 1,
+    "expected_multiplicity_status": "typed_unknown",
+    "expected_multiplicity_reason": "source helper invocation multiplicity is not statically bounded",
+    "success_stdout_marker_fields": [
+      "R12_CHILD_TARGET",
+      "R12_CHILD_RUNTIME_ASSERTION_IDS",
+      "R12_CHILD_RUNTIME_HIT_COUNT",
+      "R12_CHILD_EXPECTED_MULTIPLICITY_STATUS",
+      "R12_CHILD_SOURCE_BYTES",
+      "R12_CHILD_SOURCE_SHA256"
+    ],
+    "aggregate_fail_fast": true,
+    "ordered_unrun_target_ids": true,
+    "source_unchanged_binding": "pre/post bytes+length+sha256 exact equality"
+  },
+  "coverage_ledger": {
+    "static_assertion_rows": true,
+    "static_unique_expression_hashes": true,
+    "runtime_children": true,
+    "expected_multiplicity": true,
+    "success_stdout_markers": true,
+    "source_hashes": true
+  },
+  "required_markers": [
+    "UP1_04A_VNEXT_T1_LOCAL_STATUS=prepared_not_executed",
+    "UP1_04A_VNEXT_T1_LOCAL_ACCEPTED=false",
+    "UP1_04A_VNEXT_T1_LOCAL_CLAIM_CEILING=contract_only",
+    "UP1_04A_VNEXT_T1_LOCAL_T2_UP2_R_CREDIT=false",
+    "UP1_04A_VNEXT_T1_LOCAL_NEGATIVE_CASES=9"
+  ],
+  "direct_large_payload_bytes": 8269445,
+  "execution": {
+    "fresh_process": true,
+    "julia_threads": 1,
+    "serial_queue": true,
+    "working_set_hard_ceiling_bytes": 2147483648,
+    "aggregate_requires_natural_exit_zero": true,
+    "monolithic_r10": false,
+    "actual_model_attestation": "unavailable"
+  },
+  "evidence_root": "docs/implementation/UP1-04A-VNEXT-T1/agent_local_r12_v1_isolation/"
+}

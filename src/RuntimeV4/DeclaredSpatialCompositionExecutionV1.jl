@@ -71,6 +71,36 @@ struct DeclaredSpatialFieldV1
     end
 end
 
+"An explicit, candidate-source-bound scalar mass/capacity declaration."
+struct DeclaredSpatialTimeMassV1
+    coefficient::Float64
+    units::Any
+    source_ref::Any
+    closed::Bool
+    function DeclaredSpatialTimeMassV1(coefficient, units, source_ref; closed=false)
+        new(Float64(coefficient), units, source_ref, Bool(closed))
+    end
+end
+
+"""Symmetric exchange between two declared scalar components.
+
+`coefficient` has units of source/field (L^-2 in the normalized DCCE lane),
+and contributes coefficient*cell_width*(u_i-u_j) to each cell residual.
+"""
+struct DeclaredSpatialCouplingV1
+    left_component::Int
+    right_component::Int
+    coefficient::Float64
+    units::Any
+    source_ref::Any
+    closed::Bool
+    function DeclaredSpatialCouplingV1(left_component, right_component,
+            coefficient, units, source_ref; closed=false)
+        new(Int(left_component), Int(right_component), Float64(coefficient),
+            units, source_ref, Bool(closed))
+    end
+end
+
 "A typed port.  port_ref/component_ref are labels; account, quantity and unit are semantic."
 struct DeclaredSpatialPortV1
     port_ref::String
@@ -124,15 +154,135 @@ struct DeclaredSpatialCaseV1
     boundary::Union{Nothing,DeclaredSpatialBoundaryV1}
     composition::DeclaredSpatialCompositionV1
     case_ref::String
+    time_interval::Union{Nothing,Tuple{Float64,Float64}}
+    time_unit::Union{Nothing,Symbol}
+    time_mass::Union{Nothing,DeclaredSpatialTimeMassV1}
+    component_fields::Tuple
+    component_boundaries::Tuple
+    component_old_states::Tuple
+    couplings::Tuple
     function DeclaredSpatialCaseV1(old_geometry, new_geometry, old_state, field,
-                                   boundary, composition; case_ref="declared-case")
+                                   boundary, composition; case_ref="declared-case",
+                                   time_interval=nothing, time_unit=nothing,
+                                   time_mass=nothing, component_fields=nothing,
+                                   component_boundaries=nothing,
+                                   component_old_states=nothing, couplings=())
         old_geometry isa DeclaredSpatialGeometryV1 && new_geometry isa DeclaredSpatialGeometryV1 ||
             throw(ArgumentError("case geometries must be typed"))
         field isa DeclaredSpatialFieldV1 && composition isa DeclaredSpatialCompositionV1 ||
             throw(ArgumentError("case field/composition must be typed"))
+        interval = if time_interval === nothing
+            nothing
+        else
+            values = Float64.(collect(time_interval))
+            length(values) == 2 || throw(ArgumentError("time_interval must contain (t_old,t_new)"))
+            Tuple(values)
+        end
+        unit = time_unit === nothing ? nothing : Symbol(time_unit)
+        time_mass === nothing || time_mass isa DeclaredSpatialTimeMassV1 ||
+            throw(ArgumentError("time_mass must be DeclaredSpatialTimeMassV1 or nothing"))
+        fields = component_fields === nothing ? (field,) : Tuple(component_fields)
+        boundaries = component_boundaries === nothing ? (boundary,) : Tuple(component_boundaries)
+        histories = component_old_states === nothing ?
+            (Tuple(Float64.(collect(old_state))),) :
+            Tuple(Tuple(Float64.(collect(state))) for state in component_old_states)
+        coupling_terms = Tuple(couplings)
+        !isempty(fields) && all(x -> x isa DeclaredSpatialFieldV1, fields) &&
+            first(fields) === field || throw(ArgumentError(
+                "component_fields must be typed and begin with the legacy field"))
+        length(boundaries) == length(fields) && first(boundaries) === boundary &&
+            all(x -> x === nothing || x isa DeclaredSpatialBoundaryV1, boundaries) ||
+            throw(ArgumentError("component_boundaries must match component_fields and begin with boundary"))
+        length(histories) == length(fields) || throw(ArgumentError(
+            "component_old_states must contain one history per component"))
+        first(histories) == Tuple(Float64.(collect(old_state))) ||
+            throw(ArgumentError("legacy old_state must equal the first component history"))
+        all(x -> x isa DeclaredSpatialCouplingV1, coupling_terms) ||
+            throw(ArgumentError("couplings must be typed DeclaredSpatialCouplingV1 values"))
         new(old_geometry, new_geometry, Float64.(collect(old_state)), field,
-            boundary, composition, _dsc_text(case_ref, "case_ref"))
+            boundary, composition, _dsc_text(case_ref, "case_ref"), interval,
+            unit, time_mass, fields, boundaries, histories, coupling_terms)
     end
+end
+
+"""Build one backward-Euler system from an already assembled FV diffusion system.
+
+The static assembly has already converted source density to cell-integrated
+loads (`source .* cell_width`).  This adds only the diagonal FV mass and its
+history load; it must not width-weight the source a second time.
+"""
+function declared_spatial_backward_euler_system(case::DeclaredSpatialCaseV1,
+        transfer, assembly; coupling_gain=1.0, expected_source_ref=nothing,
+        expected_capacity=nothing)
+    interval = case.time_interval
+    interval === nothing && return _dsc_result(:terminal_deferred,
+        :time_interval_missing, "backward-Euler assembly requires an explicit time interval", system=nothing)
+    case.time_mass === nothing && return _dsc_result(:terminal_deferred,
+        :time_capacity_typed_absent, "backward-Euler assembly requires an explicit closed mass/capacity declaration", system=nothing)
+    case.time_unit === :second || return _dsc_result(:terminal_deferred,
+        :time_unit_absent, "SI transient diffusion requires an explicitly declared second time unit", system=nothing)
+    expected_source_ref === nothing && return _dsc_result(:terminal_deferred,
+        :time_mass_source_binding_absent,
+        "backward-Euler mass must be joined to an expected G1 source identity", system=nothing)
+    case.time_mass.source_ref == expected_source_ref || return _dsc_result(:fail_closed,
+        :time_mass_source_mismatch,
+        "closed mass/capacity source identity differs from the expected G1 source", system=nothing)
+    expected_capacity !== nothing &&
+        isdefined(@__MODULE__, :G1DiffusionTransientCapacityV1) &&
+        expected_capacity isa G1DiffusionTransientCapacityV1 ||
+        return _dsc_result(:terminal_deferred, :time_capacity_source_absent,
+            "transient capacity must be authored in the expected G1 source", system=nothing)
+    case.time_mass.coefficient == expected_capacity.coefficient &&
+        case.time_mass.units == expected_capacity.units && expected_capacity.closed ||
+        return _dsc_result(:fail_closed, :time_capacity_source_mismatch,
+            "case mass must exactly match the closed capacity authored in G1", system=nothing)
+    t_old, t_new = interval
+    all(isfinite, interval) && t_new > t_old || return _dsc_result(:fail_closed,
+        :invalid_time_interval, "time interval endpoints must be finite and increasing", system=nothing)
+    dt = t_new - t_old
+    edges = case.new_geometry.edges
+    widths = diff(edges)
+    state = transfer.new_state
+    n = length(widths)
+    length(state) == n && size(assembly.matrix) == (n, n) && length(assembly.rhs) == n ||
+        return _dsc_result(:fail_closed, :time_state_size_mismatch,
+            "transferred history state and FV assembly dimensions must match", system=nothing)
+    all(isfinite, state) && all(isfinite, widths) && all(>(0.0), widths) ||
+        return _dsc_result(:fail_closed, :invalid_time_state_or_mass,
+            "history values and cell masses must be finite, with positive cell widths", system=nothing)
+    gain = Float64(coupling_gain)
+    isfinite(gain) && gain > 0 || return _dsc_result(:fail_closed,
+        :invalid_coupling_gain, "time mass coupling must be finite and positive", system=nothing)
+    capacity = case.time_mass.coefficient
+    isfinite(capacity) && capacity > 0.0 && case.time_mass.closed ||
+        return _dsc_result(:fail_closed, :invalid_time_capacity,
+            "closed mass/capacity must be finite, positive and explicitly closed", system=nothing)
+    isdefined(@__MODULE__, :UnitSignature) && case.time_mass.units isa UnitSignature &&
+        case.time_mass.units == UnitSignature((-1, 1, -2, 0, -1, 0, 0)) &&
+        case.time_mass.source_ref !== nothing ||
+        return _dsc_result(:terminal_deferred, :unsupported_time_mass_units,
+            "only source-identified SI volumetric heat capacity J/(m^3 K) is admitted", system=nothing)
+    mass = (gain * capacity) .* widths
+    A = copy(assembly.matrix)
+    rhs = copy(assembly.rhs)
+    for i in 1:n
+        A[i, i] += mass[i] / dt
+        rhs[i] += mass[i] * state[i] / dt
+    end
+    all(isfinite, A) && all(isfinite, rhs) || return _dsc_result(:numerical_fail,
+        :nonfinite_derived, "backward-Euler matrix/RHS is nonfinite", system=nothing)
+    system_hash = _dsc_hash((interval=interval, time_unit=case.time_unit,
+        mass_capacity=capacity, mass_units=case.time_mass.units,
+        mass_source_ref=case.time_mass.source_ref, mass_closed=case.time_mass.closed,
+        dt=dt, mass=Tuple(mass),
+        history=Tuple(state), diffusion=assembly.assembly_hash,
+        matrix=Tuple(vec(A)), rhs=Tuple(rhs)))
+    _dsc_result(:ready, :backward_euler_assembled,
+        "one backward-Euler scalar diffusion step assembled",
+        system=(matrix=A, rhs=rhs, dt=dt, interval=interval,
+            mass=Tuple(mass), mass_capacity=capacity,
+            mass_units=case.time_mass.units, mass_source_ref=case.time_mass.source_ref,
+            time_unit=case.time_unit, history=Tuple(state), assembly_hash=system_hash))
 end
 
 "Canonical semantic projections exclude display labels and mutable container identity."
@@ -284,7 +434,11 @@ function _dsc_edge_payload(edge, fallback, n, field)
     edge === nothing && throw(ArgumentError("missing typed $field edge"))
     p = edge.producer.payload
     p === nothing && throw(ArgumentError("typed $field edge has no numerical payload"))
-    if p isa AbstractVector
+    if p isa Tuple
+        all(value -> value isa Real && !(value isa Bool), p) ||
+            throw(ArgumentError("typed $field tuple payload must contain only real values"))
+        v = Float64.(collect(p)); length(v) == n || throw(ArgumentError("typed $field payload size mismatch")); v
+    elseif p isa AbstractVector
         v = Float64.(collect(p)); length(v) == n || throw(ArgumentError("typed $field payload size mismatch")); v
     elseif p isa Number
         fill(Float64(p), n)
@@ -382,6 +536,124 @@ function assemble_declared_spatial_fv(g::DeclaredSpatialGeometryV1,
             boundary_hash=_dsc_boundary_hash(b)))
 end
 
+"Assemble field-major scalar FV blocks and declared conservative exchange terms."
+function assemble_declared_spatial_multifield_fv(g::DeclaredSpatialGeometryV1,
+        fields, boundaries, couplings; edges=nothing)
+    fs, bs, cs = Tuple(fields), Tuple(boundaries), Tuple(couplings)
+    count = length(fs); count >= 2 && length(bs) == count ||
+        return _dsc_result(:fail_closed, :multifield_shape_mismatch,
+            "multifield assembly requires at least two fields and one boundary per field", assembly=nothing)
+    n = length(g.edges) - 1; total = count * n
+    all(f -> f isa DeclaredSpatialFieldV1, fs) &&
+        all(b -> b isa DeclaredSpatialBoundaryV1, bs) ||
+        return _dsc_result(:fail_closed, :multifield_declaration_missing,
+            "every component requires a typed field and boundary", assembly=nothing)
+    blocks = map(1:count) do i
+        result = assemble_declared_spatial_fv(g, fs[i], bs[i]; edges=i == 1 ? edges : nothing)
+        result.valid ? result.assembly : result
+    end
+    bad = findfirst(x -> !(x isa NamedTuple) || !hasproperty(x, :matrix), blocks)
+    bad === nothing || return _dsc_result(blocks[bad].status, blocks[bad].code,
+        "component $bad FV assembly failed: $(blocks[bad].detail)", assembly=nothing)
+    matrix = zeros(Float64, total, total); rhs = zeros(Float64, total)
+    widths = diff(g.edges)
+    for c in 1:count
+        r = (c-1)*n+1:c*n
+        matrix[r, r] .= blocks[c].matrix
+        rhs[r] .= blocks[c].rhs
+    end
+    seen = Set{Tuple{Int,Int}}()
+    for coupling in cs
+        coupling isa DeclaredSpatialCouplingV1 || return _dsc_result(:fail_closed,
+            :invalid_component_coupling, "component coupling is not typed", assembly=nothing)
+        i, j = coupling.left_component, coupling.right_component
+        1 <= i < j <= count || return _dsc_result(:fail_closed,
+            :invalid_component_coupling_index, "coupling component indices must be ordered and in range", assembly=nothing)
+        (i,j) in seen && return _dsc_result(:fail_closed,
+            :duplicate_component_coupling, "component pair is coupled more than once", assembly=nothing)
+        push!(seen, (i,j))
+        value = coupling.coefficient
+        isfinite(value) && value > 0.0 && coupling.closed &&
+            coupling.source_ref !== nothing || return _dsc_result(:fail_closed,
+            :invalid_component_coupling, "coupling must be finite, positive, closed and source identified", assembly=nothing)
+        for cell in 1:n
+            a = (i-1)*n + cell; b = (j-1)*n + cell
+            exchange = value * widths[cell]
+            matrix[a,a] += exchange; matrix[b,b] += exchange
+            matrix[a,b] -= exchange; matrix[b,a] -= exchange
+        end
+    end
+    all(isfinite, matrix) && all(isfinite, rhs) || return _dsc_result(:numerical_fail,
+        :nonfinite_derived, "multifield block matrix/RHS is nonfinite", assembly=nothing)
+    ah = _dsc_hash((geometry=_dsc_expected_geometry_hash(g),
+        component_assemblies=Tuple(b.assembly_hash for b in blocks),
+        coupling=Tuple((c.left_component,c.right_component,c.coefficient,c.units,
+            c.source_ref,c.closed) for c in cs), matrix=Tuple(vec(matrix)), rhs=Tuple(rhs)))
+    _dsc_result(:ready, :multifield_finite_volume_assembled,
+        "field-major FV block system with conservative declared exchange assembled",
+        assembly=(matrix=matrix, rhs=rhs, component_assemblies=Tuple(blocks),
+            component_count=count, cells_per_component=n, assembly_hash=ah))
+end
+
+function declared_spatial_multifield_backward_euler_system(case::DeclaredSpatialCaseV1,
+        transfers, assembly; coupling_gain=1.0, expected_source_ref=nothing,
+        expected_capacity=nothing)
+    interval = case.time_interval
+    interval === nothing && return _dsc_result(:terminal_deferred,
+        :time_interval_missing, "backward-Euler assembly requires an explicit time interval", system=nothing)
+    case.time_mass === nothing && return _dsc_result(:terminal_deferred,
+        :time_capacity_typed_absent, "backward-Euler assembly requires explicit closed capacity", system=nothing)
+    case.time_unit === :second || return _dsc_result(:terminal_deferred,
+        :time_unit_absent, "SI transient diffusion requires the explicit second time unit", system=nothing)
+    expected_source_ref === nothing && return _dsc_result(:terminal_deferred,
+        :time_mass_source_binding_absent, "mass requires expected G1 source identity", system=nothing)
+    case.time_mass.source_ref == expected_source_ref || return _dsc_result(:fail_closed,
+        :time_mass_source_mismatch, "mass identity differs from expected G1 source", system=nothing)
+    expected_capacity !== nothing &&
+        isdefined(@__MODULE__, :G1DiffusionTransientCapacityV1) &&
+        expected_capacity isa G1DiffusionTransientCapacityV1 ||
+        return _dsc_result(:terminal_deferred, :time_capacity_source_absent,
+            "transient capacity must be authored in the expected G1 source", system=nothing)
+    case.time_mass.coefficient == expected_capacity.coefficient &&
+        case.time_mass.units == expected_capacity.units && expected_capacity.closed ||
+        return _dsc_result(:fail_closed, :time_capacity_source_mismatch,
+            "case mass must exactly match the closed capacity authored in G1", system=nothing)
+    t0,t1 = interval; isfinite(t0) && isfinite(t1) && t1 > t0 ||
+        return _dsc_result(:fail_closed, :invalid_time_interval,
+            "time interval must be finite and increasing", system=nothing)
+    count, n = length(case.component_fields), length(case.new_geometry.edges)-1
+    length(transfers) == count && size(assembly.matrix) == (count*n,count*n) ||
+        return _dsc_result(:fail_closed, :multifield_time_shape_mismatch,
+            "one transferred history per component must match block system", system=nothing)
+    all(t -> t.valid, transfers) || return _dsc_result(:fail_closed,
+        :multifield_transfer_invalid, "component history transfer failed", system=nothing)
+    capacity = case.time_mass.coefficient
+    gain = Float64(coupling_gain)
+    isfinite(gain) && gain > 0.0 || return _dsc_result(:fail_closed,
+        :invalid_coupling_gain, "field coupling gain must be finite and positive", system=nothing)
+    isfinite(capacity) && capacity > 0.0 && case.time_mass.closed &&
+        isdefined(@__MODULE__, :UnitSignature) && case.time_mass.units isa UnitSignature &&
+        case.time_mass.units == UnitSignature((-1, 1, -2, 0, -1, 0, 0)) || return _dsc_result(:terminal_deferred,
+        :unsupported_time_mass_units, "only closed SI volumetric heat capacity is admitted", system=nothing)
+    widths = diff(case.new_geometry.edges); dt = t1-t0
+    histories = Tuple(Tuple(t.transfer.new_state) for t in transfers)
+    mass = Tuple((gain * capacity) .* widths for _ in 1:count)
+    matrix = copy(assembly.matrix); rhs = copy(assembly.rhs)
+    for c in 1:count, cell in 1:n
+        i = (c-1)*n+cell; m = mass[c][cell]
+        matrix[i,i] += m/dt; rhs[i] += m*histories[c][cell]/dt
+    end
+    all(isfinite,matrix) && all(isfinite,rhs) || return _dsc_result(:numerical_fail,
+        :nonfinite_derived, "transient block matrix/RHS is nonfinite", system=nothing)
+    ah = _dsc_hash((interval=interval, capacity=capacity, mass=mass,
+        history=histories, spatial=assembly.assembly_hash,
+        matrix=Tuple(vec(matrix)), rhs=Tuple(rhs)))
+    _dsc_result(:ready, :multifield_backward_euler_assembled,
+        "one backward-Euler block diffusion step assembled",
+        system=(matrix=matrix,rhs=rhs,dt=dt,interval=interval,mass=mass,
+            history=histories,assembly_hash=ah))
+end
+
 function _dsc_solve(A::Matrix{Float64}, rhs::Vector{Float64})
     n = length(rhs); n == size(A,1) == size(A,2) || return (nothing, Inf, :invalid_system)
     all(isfinite, A) && all(isfinite, rhs) || return (nothing, Inf, :nonfinite_derived)
@@ -434,11 +706,44 @@ function _dsc_failure(status, code, detail; kwargs...)
 end
 
 "Execute one complete declared composition path, with at most one linear solve."
-function execute_declared_spatial_composition(case::DeclaredSpatialCaseV1)
+function execute_declared_spatial_composition(case::DeclaredSpatialCaseV1;
+        expected_source_ref=nothing, expected_capacity=nothing)
     try
+        component_count = length(case.component_fields)
+        component_count >= 1 && length(case.component_boundaries) == component_count &&
+            length(case.component_old_states) == component_count ||
+            return _dsc_failure(:fail_closed, :multifield_shape_mismatch,
+                "component field, boundary and history counts must agree")
+        if component_count > 1
+            isempty(case.couplings) && return _dsc_failure(:terminal_deferred,
+                :multifield_coupling_absent, "multifield execution requires declared coupling")
+            expected_source_ref === nothing && return _dsc_failure(:terminal_deferred,
+                :multifield_source_binding_absent, "multifield coupling requires expected source identity")
+            all(c -> c.source_ref == expected_source_ref && c.closed &&
+                isfinite(c.coefficient) && c.coefficient > 0.0 &&
+                isdefined(@__MODULE__, :UnitSignature) && c.units isa UnitSignature &&
+                c.units == UnitSignature((-2, 0, 0, 0, 0, 0, 0)) &&
+                1 <= c.left_component < c.right_component <= component_count,
+                case.couplings) || return _dsc_failure(:fail_closed,
+                :multifield_coupling_invalid, "coupling declarations are unbound or invalid")
+        end
         vg1 = validate_declared_geometry(case.old_geometry); vg1.valid || return _dsc_failure(vg1.status, vg1.code, vg1.detail)
         vg2 = validate_declared_geometry(case.new_geometry); vg2.valid || return _dsc_failure(vg2.status, vg2.code, vg2.detail)
-        transfer = measure_overlap_transfer(case.old_geometry, case.new_geometry, case.old_state)
+        component_transfers = component_count == 1 ? nothing :
+            Tuple(measure_overlap_transfer(case.old_geometry, case.new_geometry, state)
+                for state in case.component_old_states)
+        transfer = if component_count == 1
+            measure_overlap_transfer(case.old_geometry, case.new_geometry, case.old_state)
+        else
+            first_transfer = first(component_transfers)
+            bad_index = findfirst(t -> !t.valid, component_transfers)
+            selected = bad_index === nothing ? first_transfer : component_transfers[bad_index]
+            (valid=bad_index === nothing, status=selected.status, code=selected.code,
+                detail="component histories are independently transferred",
+                residual=sum(t.residual for t in component_transfers),
+                transfer=first_transfer.transfer,
+                component_transfers=Tuple(t.transfer for t in component_transfers))
+        end
         transfer.valid || return _dsc_failure(transfer.status, transfer.code, transfer.detail,
             transfer=transfer, conservation_residual=Inf)
         edges = auto_typed_port_edges(case.composition)
@@ -447,23 +752,58 @@ function execute_declared_spatial_composition(case::DeclaredSpatialCaseV1)
         bc = validate_declared_boundary(case.boundary)
         bc.valid || return _dsc_failure(bc.status, bc.code, bc.detail, transfer=transfer,
             edges=edges, ledger_residual=edges.residual)
-        assembled = assemble_declared_spatial_fv(case.new_geometry, case.field, case.boundary;
-            edges=edges.edges)
+        assembled = component_count == 1 ?
+            assemble_declared_spatial_fv(case.new_geometry, case.field, case.boundary;
+                edges=edges.edges) :
+            assemble_declared_spatial_multifield_fv(case.new_geometry,
+                case.component_fields, case.component_boundaries, case.couplings;
+                edges=edges.edges)
         assembled.valid || return _dsc_failure(assembled.status, assembled.code, assembled.detail,
             transfer=transfer, edges=edges, ledger_residual=edges.residual, assembly=assembled)
-        if case.boundary.left_kind === :neumann && case.boundary.right_kind === :neumann
+        solve_matrix = assembled.assembly.matrix
+        solve_rhs = assembled.assembly.rhs
+        time_step = nothing
+        if case.time_interval !== nothing
+            field_edge = only(filter(e -> e.account == "field", edges.edges))
+            time_system = component_count == 1 ?
+                declared_spatial_backward_euler_system(case, transfer.transfer,
+                    assembled.assembly; coupling_gain=field_edge.producer.magnitude,
+                    expected_source_ref=expected_source_ref,
+                    expected_capacity=expected_capacity) :
+                declared_spatial_multifield_backward_euler_system(case,
+                    component_transfers, assembled.assembly;
+                    coupling_gain=field_edge.producer.magnitude,
+                    expected_source_ref=expected_source_ref,
+                    expected_capacity=expected_capacity)
+            time_system.valid || return _dsc_failure(time_system.status,
+                time_system.code, time_system.detail; transfer=transfer,
+                edges=edges, assembly=assembled.assembly, time_system=time_system)
+            solve_matrix = time_system.system.matrix
+            solve_rhs = time_system.system.rhs
+            time_step = time_system.system
+        end
+        if time_step === nothing && all(b -> b.left_kind === :neumann &&
+                b.right_kind === :neumann, case.component_boundaries)
             return _dsc_failure(:numerical_fail, :pure_neumann_singular, "pure Neumann system has a constant nullspace",
                 transfer=transfer, edges=edges, assembly=assembled.assembly,
                 conservation_residual=transfer.residual, ledger_residual=edges.residual)
         end
-        x, residual, code = _dsc_solve(assembled.assembly.matrix, assembled.assembly.rhs)
+        x, residual, code = _dsc_solve(solve_matrix, solve_rhs)
         code === :joint_linear_solved || return _dsc_failure(:numerical_fail, code, "joint solve failed",
             transfer=transfer, edges=edges, assembly=assembled.assembly, joint_residual=residual,
             conservation_residual=transfer.residual, ledger_residual=edges.residual)
-        interface_residual = _dsc_interface_flux_residual(assembled.assembly, x)
+        interface_residual = if component_count == 1
+            _dsc_interface_flux_residual(assembled.assembly, x)
+        else
+            n = assembled.assembly.cells_per_component
+            maximum(_dsc_interface_flux_residual(assembled.assembly.component_assemblies[c],
+                x[(c-1)*n+1:c*n]) for c in 1:component_count)
+        end
         result_hash = _dsc_hash((solution=Tuple(x), residual=residual,
             assembly=assembled.assembly.assembly_hash, transfer=transfer.transfer.transfer_hash,
-            edges=edges.composition_hash))
+            edges=edges.composition_hash,
+            time_step=time_step === nothing ? nothing :
+                (interval=time_step.interval, system_hash=time_step.assembly_hash)))
         _dsc_failure(:ready, :joint_linear_solved, "declared spatial composition solved",
             accepted=false, claim_ceiling=DSC_CLAIM_CEILING_V1, formal_up_credit=false,
             formal_r_credit=false, formal_l4_credit=false, provider_calls=0,
@@ -471,7 +811,11 @@ function execute_declared_spatial_composition(case::DeclaredSpatialCaseV1)
             solution=Tuple(x), joint_residual=residual,
             conservation_residual=transfer.residual, interface_flux_residual=interface_residual,
             ledger_residual=edges.residual, assembly=assembled.assembly,
-            k_hash=case.field.k_hash, boundary_hash=assembled.assembly.boundary_hash,
+            time_step=time_step,
+            k_hash=case.field.k_hash,
+            boundary_hash=component_count == 1 ? assembled.assembly.boundary_hash :
+                _dsc_hash(Tuple(a.boundary_hash for a in
+                    assembled.assembly.component_assemblies)),
             mms_order=declared_spatial_mms_refinement(), receipt_hash=result_hash)
     catch err
         _dsc_failure(:fail_closed, :program_exception, sprint(showerror, err))

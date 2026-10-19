@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 210,
+  "assembled_path": "arrays/pf_active__p2_outer_upper_coordinate_element/assembled.strings.json",
+  "assembled_sha256": "2e979ce0b34be3b0216d114d5cbeb202a6388ef1c566f07fc5f0c5012c7de58e",
+  "chunks": [
+    8
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:27.547631Z",
+      "compressed_bytes": 52,
+      "compressed_path": "arrays/pf_active__p2_outer_upper_coordinate_element/chunks/c__0.zst",
+      "compressed_sha256": "46c78f9d995263a95d7df3e4b015b9ba1f1bf917abed54d806b5ac8196ed3c62",
+      "decoded_bytes": 148,
+      "decoded_item_count": 8,
+      "decoded_path": "arrays/pf_active__p2_outer_upper_coordinate_element/chunks/c__0.raw",
+      "decoded_sha256": "fbe18a333c091c0170178c20f34353d33b559b3cd9ef05ceeda807d96f947e96",
+      "decoded_shape": [
+        8
+      ],
+      "edge_shape": [
+        8
+      ],
+      "full_chunk_shape": [
+        8
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:27.028011Z",
+      "response_headers": {
+        "Content-Length": "52",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"48f13cd6c960558606eedcabdc29c4eb\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:22 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/p2_outer_upper_coordinate_element/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:27.554933Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "p2_outer_upper_coordinate_element"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          8
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "p2_outer_upper_coordinate_element"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      8
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/p2_outer_upper_coordinate_element",
+  "shape": [
+    8
+  ],
+  "started_utc": "2026-09-22T08:25:27.019964Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 8,
+  "unique_string_count": 8,
+  "units": null
+}

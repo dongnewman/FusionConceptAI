@@ -1,0 +1,121 @@
+{
+  "requested_path": "anb/sw_sum_power",
+  "resolved_path": "anb/sw_sum_power",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      49961
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      99921
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Calculated total power injected into MAST, south west",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "P(Total)",
+    "mds_name": "\\TOP.ANALYSED.ANB:SW_SUM_POWER",
+    "name": "amb/sw_sum_power",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      50001
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "anb",
+    "time_index": 0,
+    "uda_name": "ANB_SW_SUM_POWER",
+    "units": "MW",
+    "uuid": "bc92815e-21fd-54e3-97df-c3a3cc3c6e6f",
+    "version": 0
+  },
+  "shape": [
+    99921
+  ],
+  "chunks": [
+    49961
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 399684,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "anb/time",
+      "available": true,
+      "shape": [
+        99921
+      ],
+      "dtype": "<f8",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:24.140223Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        49961
+      ],
+      "full_chunk_shape": [
+        49961
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/sw_sum_power/0",
+      "requested_utc": "2026-09-21T20:02:24.140363Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "163198",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"238a66f13b06ea842e8ca218dad07540\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 163198,
+      "compressed_sha256": "6a1c3c9de79a9625ceace6d6f75bee8bdd72348fc348f112eeb2d0e991f66b24",
+      "decoded_bytes": 199844,
+      "decoded_sha256": "bf781a32eae0aeaee820825993d3e9c5587f68bc91562e3ac996b3afdab224a2",
+      "decoded_shape": [
+        49961
+      ],
+      "expected_full_bytes": 199844,
+      "expected_edge_bytes": 199844,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [
+    {
+      "exception_type": "ValueError",
+      "message": "could not broadcast input array from shape (49961,) into shape (49960,)",
+      "utc": "2026-09-21T20:02:25.444412Z"
+    }
+  ],
+  "status": "acquisition_failed"
+}

@@ -1,0 +1,126 @@
+{
+  "assembled_bytes": 91848,
+  "assembled_path": "arrays/pf_passive__p2larm_current/assembled.raw",
+  "assembled_sha256": "551af61a24d218810c32556ee14a5f69ebca2a22030b7b2457518df9b2fa056f",
+  "chunks": [
+    3,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:12.573070Z",
+      "compressed_bytes": 87443,
+      "compressed_path": "arrays/pf_passive__p2larm_current/chunks/c__0__0.zst",
+      "compressed_sha256": "a70c663ed2ddfba4e7c17bf174348ddc4a36733a5f69b2f6c7dd80764dbd2976",
+      "decoded_bytes": 91848,
+      "decoded_path": "arrays/pf_passive__p2larm_current/chunks/c__0__0.raw",
+      "decoded_sha256": "551af61a24d218810c32556ee14a5f69ebca2a22030b7b2457518df9b2fa056f",
+      "decoded_shape": [
+        3,
+        3827
+      ],
+      "edge_shape": [
+        3,
+        3827
+      ],
+      "full_chunk_shape": [
+        3,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:11.697447Z",
+      "response_headers": {
+        "Content-Length": "87443",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"986489ae457defb012479fe164c2e56b\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:30 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2larm_current/c/0/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:12.598554Z",
+  "data_type": "float64",
+  "decoded_bytes": 91848,
+  "dimensions": [
+    "p2larm_current_channel",
+    "time"
+  ],
+  "finite_count": 11481,
+  "maximum": 902.0934900446904,
+  "minimum": -862.5001777405896,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "p2larm_current",
+      "uda_name": "AMM_P2LARM1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          3,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "p2larm_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      3,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2larm_current",
+  "shape": [
+    3,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:11.652342Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 11481,
+  "units": "A"
+}

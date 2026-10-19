@@ -2,8 +2,7 @@ push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
 
-Base.include(Main, joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_gridap_field_fixture.jl"))
+Base.include(Main, joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_gridap_field_fixture.jl"))
 
 report = FusionRuntimeV4.run_gridap_field_residual(gridap_b1_compilation)
 result = report.result

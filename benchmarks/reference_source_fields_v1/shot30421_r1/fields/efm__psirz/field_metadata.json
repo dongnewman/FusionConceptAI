@@ -1,0 +1,167 @@
+{
+  "requested_path": "efm/psirz",
+  "resolved_path": "efm/psirz",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      60,
+      33,
+      65
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      65,
+      129
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "profile_z",
+      "profile_r"
+    ],
+    "description": "Poloidal magnetic flux per toroidal radian as a function of radius and height; f(nw, nh, B)",
+    "dims": [
+      "time",
+      "profile_z",
+      "profile_r"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "psi(r,z)",
+    "mds_name": "\\TOP.ANALYSED.EFM:PSI_R_Z",
+    "name": "efm/psirz",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      120,
+      65,
+      65
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_PSI(R,Z)",
+    "units": "Wb / rad",
+    "uuid": "61aac2ef-845b-533e-948f-25f824fb52c1",
+    "version": 0
+  },
+  "shape": [
+    120,
+    65,
+    129
+  ],
+  "chunks": [
+    60,
+    33,
+    65
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "profile_z",
+    "profile_r"
+  ],
+  "decoded_bytes": 4024800,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "profile_z",
+      "path": "efm/profile_z",
+      "available": true,
+      "shape": [
+        65
+      ],
+      "dtype": "<f4",
+      "units": "m"
+    },
+    {
+      "dimension": "profile_r",
+      "path": "efm/profile_r",
+      "available": true,
+      "shape": [
+        129
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:06.342124Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        60,
+        33,
+        65
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/0.0.0",
+      "requested_utc": "2026-09-21T20:02:06.342347Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "295165",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"9c4acfb9f7adda4440ac37d52fa624d1\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 295165,
+      "compressed_sha256": "e520ac6d7623abeb39a3a49ffbff9866e84a5d64473c8de4a9133afbfebfe790",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "dc24f74e3ae2bf714996c4fc4087c61bcbc1cc99f3ac6ad19830bbcab92f796f",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 514800,
+      "compressed_path": "chunks\\0.0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [
+    {
+      "exception_type": "ValueError",
+      "message": "could not broadcast input array from shape (60,33,65) into shape (60,33,64)",
+      "utc": "2026-09-21T20:02:08.303348Z"
+    }
+  ],
+  "status": "acquisition_failed"
+}

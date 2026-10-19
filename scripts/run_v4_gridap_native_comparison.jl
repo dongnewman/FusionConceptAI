@@ -1,7 +1,7 @@
 push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
-Base.include(Main, joinpath(@__DIR__, "..", "examples", "runtime_v4_gridap_native_comparison_fixture.jl"))
+Base.include(Main, joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_gridap_native_comparison_fixture.jl"))
 let r = gridap_c_report
     FusionRuntimeV4.validate_gridap_native_comparison(r,
         gridap_c_gridap_bundles, gridap_c_native_witnesses,

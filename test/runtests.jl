@@ -310,6 +310,45 @@ end
     @test validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"), (static, t), (t,))
     @test_throws ArgumentError validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"),
         (PhysicalType(:scalar_field, 0, 2, TemporalTypeV1(static_time), U0), t), (t,))
+    rate_unit = UnitSignature((0, 0, -1, 0, 0, 0, 0))
+    rate = PhysicalType(:scalar_parameter, 0, 0, TemporalTypeV1(static_time), rate_unit)
+    weighted = PhysicalType(:scalar_field, 0, 3, differential, rate_unit)
+    @test validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"),
+        (rate, t), (weighted,))
+    @test validate_operator_signature(registry, OperatorRefV1("SCALAR_MUL", "v1"),
+        (t, rate), (weighted,))
+    spatial_rate = PhysicalType(:scalar_parameter, 0, 3,
+        TemporalTypeV1(static_time), rate_unit)
+    @test_throws ArgumentError validate_operator_signature(registry,
+        OperatorRefV1("SCALAR_MUL", "v1"), (spatial_rate, t), (weighted,))
+    @test_throws ArgumentError ASTApplyV1(OperatorRefV1("SCALAR_MUL", "v1"), (1, 2);
+        registry=registry, input_types=(spatial_rate, t))
+    inferred_rate_first = ASTApplyV1(OperatorRefV1("SCALAR_MUL", "v1"), (1, 2);
+        registry=registry, input_types=(rate, t))
+    inferred_field_first = ASTApplyV1(OperatorRefV1("SCALAR_MUL", "v1"), (1, 2);
+        registry=registry, input_types=(t, rate))
+    @test inferred_rate_first.output_type == weighted
+    @test inferred_field_first.output_type == weighted
+    @test_throws ArgumentError validate_operator_signature(registry,
+        OperatorRefV1("SCALAR_DIV", "v1"), (rate, t), (weighted,))
+    @test_throws ArgumentError ASTApplyV1(OperatorRefV1("SCALAR_DIV", "v1"), (1, 2);
+        registry=registry, input_types=(rate, t))
+    @test_throws ArgumentError validate_operator_signature(registry,
+        OperatorRefV1("SCALAR_MUL", "v1"), (rate, t),
+        (PhysicalType(:scalar_field, 0, 3, differential, U0),))
+    @test_throws ArgumentError validate_operator_signature(registry,
+        OperatorRefV1("SCALAR_MUL", "v1"), (rate, t),
+        (PhysicalType(:scalar_field, 0, 2, differential, rate_unit),))
+    @test_throws ArgumentError validate_operator_signature(registry,
+        OperatorRefV1("SCALAR_MUL", "v1"), (rate, t),
+        (PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(static_time), rate_unit),))
+    nonstatic_rate = PhysicalType(:scalar_parameter, 0, 0, differential, rate_unit)
+    @test_throws ArgumentError ASTApplyV1(OperatorRefV1("SCALAR_MUL", "v1"), (1, 2);
+        registry=registry, input_types=(nonstatic_rate, t))
+    nonscalar_rate = PhysicalType(:scalar_parameter, 1, 0,
+        TemporalTypeV1(static_time), rate_unit)
+    @test_throws ArgumentError ASTApplyV1(OperatorRefV1("SCALAR_MUL", "v1"), (1, 2);
+        registry=registry, input_types=(nonscalar_rate, t))
     dt_out = PhysicalType(:scalar_field, 0, 3, TemporalTypeV1(differential_time, UInt8(1)), UnitSignature((0, 0, -1, 0, 0, 0, 0)))
     @test validate_operator_signature(registry, OperatorRefV1("DT", "v1"), (t,), (dt_out,))
     other_clock = QualifiedRefV1("other-clock", "v1")
@@ -501,7 +540,7 @@ FusionConceptAI._default_manifest(::String, ::Int, ::SameTypeVariadicRuleV1; kwa
 @assert length(default_operator_registry().operators) == 20
 println(\"constructor-dispatch-subprocess-ok\")
 """
-    @test success(`$(Base.julia_cmd()) --project=$project -e $script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$project -e $script`; windows_hide=true))
 end
 
 @testset "P0 registry-validated multi-root typed AST programs" begin
@@ -540,7 +579,7 @@ end
     FusionConceptAI._canonical(::NamedTuple) = \"{}\"
     @assert canonical_hash(program) == before
     """
-    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $program_dispatch_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $program_dispatch_script`; windows_hide=true))
     @test canonical_hash(program) == canonical_hash(TypedASTProgramV1((ASTInputV1(2, scalar), ASTInputV1(1, scalar),
         ASTApplyV1(OperatorRefV1("ADD", "v1"), (2, 1), (;); registry=registry, input_types=(scalar, scalar))), (3,), (2, 1); registry=registry))
     mixed = TypedASTProgramV1((ASTInputV1(1, scalar), ASTInputV1(2, vector)), (1, 2), (1, 2); registry=registry)
@@ -745,7 +784,7 @@ g = TypedOperatorHypergraphV1((node(:output, t), node(:input, t)), (e,))
     @assert canonical_hash(e) isa Digest256
     println("mimo-closed-identity-ok")
 """
-    @test success(`$(Base.julia_cmd()) --project=$project -e $script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$project -e $script`; windows_hide=true))
 end
 
 @testset "canonical identity/label and permutation invariance" begin
@@ -1091,7 +1130,7 @@ end
     @assert canonical_json(g) == before
     println("incidence-dispatch-closed-ok")
     """
-    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $incidence_dispatch_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $incidence_dispatch_script`; windows_hide=true))
     @test_throws ArgumentError EvidenceRef("not-a-hash")
     @test_throws ArgumentError EvidenceRef(repeat("a", 64) * "0")
     @test_throws Exception evidence_envelope(physical_subject_hash="p", scenario_hash="s", solver_input_hash="i", provider_manifest_hash="m", backend_revision="b", numerical_configuration_hash="n", applicability=required, match_status=no_match, resolution_status=resolved, stage_outcome=pass, metrics_with_units=(MetricWithUnit(:x, 1.0, U0),))
@@ -1238,7 +1277,7 @@ end
     @assert before == (map(canonical_json, values), map(canonical_hash, values))
     println(\"g1-primitive-dispatch-closed-ok\")
     """
-    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $dispatch_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $dispatch_script`; windows_hide=true))
 end
 
 @testset "G1 state invariant parameter and symmetry genes" begin
@@ -1328,7 +1367,7 @@ end
     @assert SymmetryGeneV1(SymmetryRefV1(\"s\"), QualifiedRefV1(\"g\", \"v1\"), symmetry_continuous, ExactRationalMatrixV1(((1,),)), (), nothing, symmetry_invariant, 0).ref.value == \"s\"
     println(\"g1-gene-dispatch-closed-ok\")
     """
-    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $gene_dispatch_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $gene_dispatch_script`; windows_hide=true))
 end
 
 @testset "G1 sealed gene hash and endpoint remediation" begin
@@ -1639,7 +1678,7 @@ end
     @eval FusionConceptAI _g1_payload_edge_role(::AtomicMIMOHyperedgeV1) = event
     FusionConceptAI._g1_payload_validate_governing(g)
     """
-    @test success(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $authority_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $authority_script`; windows_hide=true))
 end
     unit = UnitSignature()
     interval = ExactFiniteIntervalV1(-7 // 3, 11 // 5, false)
@@ -1696,5 +1735,7 @@ end
     @assert before_objects == (map(canonical_json, (state, invariant, symmetry)), map(canonical_hash, (state, invariant, symmetry)))
     println(\"g1-parameter-dispatch-closed-ok\")
     """
-    @test success(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $parameter_dispatch_script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --project=$(Base.active_project()) -e $parameter_dispatch_script`; windows_hide=true))
 end
+
+include("RuntimeV4/UP2DTReactivity/dt_fusion_reactivity_v1_tests.jl")

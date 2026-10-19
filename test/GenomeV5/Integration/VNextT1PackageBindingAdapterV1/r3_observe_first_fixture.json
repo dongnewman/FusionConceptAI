@@ -1,0 +1,43 @@
+{
+  "schema": "VNextT1PackageBindingAdapterV1R3ObserveFirstFixtureV2",
+  "base_commit": "63792ca22958ffca8c3fa8e642256eb9f7240724",
+  "accepted": false,
+  "claim_ceiling": "contract_only",
+  "runtime": "not_run",
+  "integration": "not_connected",
+  "producer": "vnext_t1_admit_skeleton_v1",
+  "consumer": "vnext_t1_candidate_binding_v2",
+  "shared_entry": "package+wire -> vnext_t1_package_binding_adapter_v1 -> VNextT1CandidateBindingInputV2",
+  "output_fields": [
+    "status", "reason", "stage", "exception_type", "exception_message_hash", "backtrace_hash", "input_hash",
+    "wire_hash", "binding_status", "binding_reason", "receipt_negative_diagnostic", "declaration_bytes_negative_diagnostic"
+  ],
+  "positive": {
+    "input": "real_candidate_bound_package_and_nonempty_wire",
+    "adapter_status": "prepared_not_executed",
+    "adapter_reason": "mapped_prepared_not_executed",
+    "binding_status": "bound",
+    "binding_reason": "exact_explicit_binding",
+    "placeholders": false
+  },
+  "negative": {
+    "wrong_package_hash": "fail_closed/package_hash_mismatch",
+    "foreign_candidate": "fail_closed/candidate_ref_conflict",
+    "missing_declaration": "upstream_missing_declaration/package_constructor; not an adapter receipt",
+    "zero_bytes_or_zero_hash": "fail_closed/zero_bytes_placeholder or zero_hash_placeholder",
+    "wrong_wire_hash": "fail_closed/wire_hash_mismatch",
+    "tampered_receipt_bytes_or_hash": "fail_closed/receipt_envelope_mismatch",
+    "tampered_declaration_bytes_or_hash": "fail_closed/factory_result_declaration_bytes_mismatch or factory_result_declaration_hash_mismatch"
+  },
+  "diagnostic_contract": {
+    "observe_before_classification": true,
+    "exception_type": "retained",
+    "exception_message": "actual_showerror_hash",
+    "backtrace": "retained_and_hashed",
+    "input_hash": "nonzero_canonical_hash",
+    "all_cases_emitted": true,
+    "unexpected_case_exit": "nonzero",
+    "stage_mismatch": "diagnostic_observed_unexpected",
+    "unexpected_credit": "none"
+  }
+}

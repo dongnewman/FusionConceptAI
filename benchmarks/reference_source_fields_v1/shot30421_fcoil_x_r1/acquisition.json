@@ -1,0 +1,397 @@
+{
+  "schema": "mast-source-fields-acquisition-receipt-v1",
+  "shot": 30421,
+  "field_set": "fcoil_x_comparator3",
+  "utc_started": "2026-10-18T02:25:30.989308Z",
+  "command": [
+    "-c"
+  ],
+  "pid": 7924,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "metadata_source": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "metadata_bytes": 1714135,
+  "metadata_copy": "zmetadata.json",
+  "selection_sha256": "9237ea4b3f70ac6c10c67f8cb1a7eb2a4e8cd1db5204621ea5dc89482a394006",
+  "script_sha256": "b5b2fb24dcbb189b9425b811aca2390c7027dac177486bf9b795c9fb0a6a259c",
+  "script_copy": "fetch_mast_source_fields_v1.py.copy",
+  "blosc_dll": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+  "blosc_dll_sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11",
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "max_compressed_chunk_bytes": 8000000,
+    "request_timeout_seconds": 30
+  },
+  "error_semantics": "unverified_not_assumed_standard_deviation",
+  "raw_values_only": true,
+  "likelihood_ready": false,
+  "scientific_acceptance": false,
+  "arrays": [
+    {
+      "requested_path": "efm/fcoil_x",
+      "resolved_path": "efm/fcoil_x",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "fcoil_n"
+        ],
+        "description": "Input (experimental) fitted toroidal currents; f(nfcoil, A)",
+        "dims": [
+          "time",
+          "fcoil_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Measured f-coil current",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_X",
+        "name": "efm/fcoil_x",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          120,
+          101
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_(X)",
+        "units": "A",
+        "uuid": "207705fc-6696-5ce4-ad58-cd7877f153d1",
+        "version": 0
+      },
+      "shape": [
+        120,
+        101
+      ],
+      "chunks": [
+        120,
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "fcoil_n"
+      ],
+      "decoded_bytes": 48480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "utc_started": "2026-10-18T02:25:31.004248Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            120,
+            101
+          ],
+          "full_chunk_shape": [
+            120,
+            101
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_x/0.0",
+          "requested_utc": "2026-10-18T02:25:31.004669Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "12191",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"e09b667743e4f73f39a22a5f4f66e936\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 12191,
+          "compressed_sha256": "4d50b863193fa64abbe07ded3630fc4a7ce5f1d7dd6551dc765a8c733c6d7781",
+          "decoded_bytes": 48480,
+          "decoded_sha256": "b304aac69d128283436a1e66a916ea2844d64b96a05d944e695ad57f4950226c",
+          "decoded_shape": [
+            120,
+            101
+          ],
+          "written_shape": [
+            120,
+            101
+          ],
+          "expected_full_bytes": 48480,
+          "expected_edge_bytes": 48480,
+          "compressed_path": "chunks\\0.0.blosc",
+          "decoded_chunk_path": "chunks\\0.0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_x\\assembled.raw",
+      "assembled_raw_bytes": 48480,
+      "assembled_raw_sha256": "b304aac69d128283436a1e66a916ea2844d64b96a05d944e695ad57f4950226c",
+      "finite_count": 12120,
+      "total_count": 12120,
+      "minimum": -168004.34375,
+      "maximum": 152146.234375
+    },
+    {
+      "requested_path": "efm/time",
+      "resolved_path": "efm/time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "units": "S"
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ],
+      "utc_started": "2026-10-18T02:25:36.828738Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            120
+          ],
+          "full_chunk_shape": [
+            120
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/time/0",
+          "requested_utc": "2026-10-18T02:25:36.828944Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "395",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"ed0f75752463cca45b87eb58ebcd8c08\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 395,
+          "compressed_sha256": "2831fe67d19b63afd57b883d7376524a0a25185f86dbee4b06cd93a4844d1d13",
+          "decoded_bytes": 480,
+          "decoded_sha256": "8fb00a14b7d6d92d044a04c2240574674acfbec804ed1dab55eb6c8755ee8777",
+          "decoded_shape": [
+            120
+          ],
+          "written_shape": [
+            120
+          ],
+          "expected_full_bytes": 480,
+          "expected_edge_bytes": 480,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__time\\assembled.raw",
+      "assembled_raw_bytes": 480,
+      "assembled_raw_sha256": "8fb00a14b7d6d92d044a04c2240574674acfbec804ed1dab55eb6c8755ee8777",
+      "finite_count": 120,
+      "total_count": 120,
+      "minimum": -0.04999999701976776,
+      "maximum": 0.5999999642372131
+    },
+    {
+      "requested_path": "efm/fcoil_n",
+      "resolved_path": "efm/fcoil_n",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_n"
+        ],
+        "units": ""
+      },
+      "shape": [
+        101
+      ],
+      "chunks": [
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_n"
+      ],
+      "decoded_bytes": 404,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "utc_started": "2026-10-18T02:25:37.479132Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            101
+          ],
+          "full_chunk_shape": [
+            101
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_n/0",
+          "requested_utc": "2026-10-18T02:25:37.479307Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "158",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"8b35d95cecdd35d379cf7db749fff5a5\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 158,
+          "compressed_sha256": "3fdb6bdd5a639dbd36fc0f1ab7e62b04fef334eabc446ea738eefe4b2844f7fd",
+          "decoded_bytes": 404,
+          "decoded_sha256": "124d4b94e000928007740572850b790c2a70efd809fb32d4264c8e3cfd5ba29a",
+          "decoded_shape": [
+            101
+          ],
+          "written_shape": [
+            101
+          ],
+          "expected_full_bytes": 404,
+          "expected_edge_bytes": 404,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__fcoil_n\\assembled.raw",
+      "assembled_raw_bytes": 404,
+      "assembled_raw_sha256": "124d4b94e000928007740572850b790c2a70efd809fb32d4264c8e3cfd5ba29a",
+      "finite_count": 101,
+      "total_count": 101,
+      "minimum": 0.0,
+      "maximum": 100.0
+    }
+  ],
+  "failures": [],
+  "status": "success",
+  "total_decoded_bytes": 49364,
+  "utc_progress": "2026-10-18T02:25:38.400347Z",
+  "utc_finished": "2026-10-18T02:25:38.401856Z",
+  "exit_code": 0
+}

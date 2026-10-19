@@ -98,7 +98,7 @@ const _G31_HELPER_PATH = joinpath(@__DIR__, "control_observation_requirement_tes
     @assert rejected
     println("g31-closed-dispatch-ok")
     """)
-    cmd = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    cmd = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     @test success(pipeline(cmd, stdout=stdout, stderr=stderr))
 end
 

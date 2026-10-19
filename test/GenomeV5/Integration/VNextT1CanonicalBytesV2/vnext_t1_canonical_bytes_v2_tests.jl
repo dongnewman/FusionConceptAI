@@ -110,6 +110,30 @@ end
     @test _V2_G.semantic_view(value).base64 == "//7DKA=="
 end
 
+@testset "VNextT1CanonicalBytesV2 exhaustive arbitrary byte preservation" begin
+    cases = (
+        UInt8.(0:255),
+        UInt8[0x00, 0x41, 0x00, 0x00],
+        UInt8[0x80, 0xbf, 0xfe],
+        UInt8[0xe2, 0x82],
+        UInt8[0xed, 0xa0, 0x80, 0xed, 0xbf, 0xbf],
+    )
+    for input in cases
+        expected = copy(input)
+        value = _V2_G.VNextT1CanonicalBytesV2(input)
+        expected_sha = bytes2hex(SHA.sha256(copy(expected)))
+        expected_base64 = Base64.base64encode(expected)
+        @test _V2_G.copy_bytes(value) == expected
+        @test Vector{UInt8}(codeunits(value.raw)) == expected
+        @test _V2_G.byte_length(value) == length(expected)
+        @test value.sha256.value == expected_sha
+        @test _V2_G.semantic_view(value).base64 == expected_base64
+        input .= 0x11
+        @test _V2_G.copy_bytes(value) == expected
+        @test Vector{UInt8}(codeunits(value.raw)) == expected
+    end
+end
+
 @testset "VNextT1CanonicalBytesV2 large Vector" begin
     # Deliberately a Vector allocation; no NTuple or tuple materialization is
     # used for the 8,269,445-byte replay case.

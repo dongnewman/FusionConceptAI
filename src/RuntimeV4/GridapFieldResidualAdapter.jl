@@ -46,7 +46,8 @@ function _gridap_dependency_identity(root::AbstractString=_GRIDAP_QUALIFICATION_
     isfile(project_path) && isfile(manifest_path) ||
         throw(ArgumentError("Gridap qualification lock is missing"))
     project_sha256 = _gridap_file_hash(project_path)
-    manifest_sha256 = _gridap_file_hash(manifest_path)
+    manifest_bytes = read(manifest_path)
+    manifest_sha256 = bytes2hex(SHA.sha256(manifest_bytes))
     project_sha256 == _GRIDAP_EXPECTED.project_sha256 ||
         throw(ArgumentError("Gridap qualification Project byte hash mismatch"))
     manifest_sha256 == _GRIDAP_EXPECTED.manifest_sha256 ||
@@ -54,7 +55,7 @@ function _gridap_dependency_identity(root::AbstractString=_GRIDAP_QUALIFICATION_
     verify_active && normpath(Base.active_project()) != project_path &&
         throw(ArgumentError("Gridap adapter is outside the pinned qualification environment"))
 
-    manifest = TOML.parsefile(manifest_path)
+    manifest = TOML.parse(String(manifest_bytes))
     haskey(manifest, "deps") && haskey(manifest["deps"], "Gridap") ||
         throw(ArgumentError("Gridap is absent from the qualification manifest"))
     entries = manifest["deps"]["Gridap"]
@@ -263,6 +264,190 @@ semantic_view(x::GridapFieldResidualCompilationV4) = (plan_hash=x.plan.plan_hash
     boundary_content_hash=x.boundary.content_hash,
     compilation_hash=x.compilation_hash)
 canonical_hash(x::GridapFieldResidualCompilationV4) = x.compilation_hash
+
+function _gridap_projection_body(source_content_hash, payload_content_hash,
+        source_grid_hash, target_grid_hash, source_domain, target_domain,
+        source_integral, target_integral, conservation_defect,
+        cell_integral_defects, state_delta_linf, support, quadrature)
+    (source_content_hash=source_content_hash,
+        payload_content_hash=payload_content_hash,
+        source_grid_hash=source_grid_hash, target_grid_hash=target_grid_hash,
+        source_domain=source_domain, target_domain=target_domain,
+        source_integral=source_integral, target_integral=target_integral,
+        conservation_defect=conservation_defect,
+        cell_integral_defects=cell_integral_defects,
+        state_delta_linf=state_delta_linf, support=support,
+        quadrature=quadrature)
+end
+
+_gridap_node_index(i, j, k, ny, nz) = (i - 1) * ny * nz + (j - 1) * nz + k
+
+function _gridap_cell_nodes(i, j, k, ny, nz)
+    (_gridap_node_index(i, j, k, ny, nz),
+     _gridap_node_index(i + 1, j, k, ny, nz),
+     _gridap_node_index(i, j + 1, k, ny, nz),
+     _gridap_node_index(i + 1, j + 1, k, ny, nz),
+     _gridap_node_index(i, j, k + 1, ny, nz),
+     _gridap_node_index(i + 1, j, k + 1, ny, nz),
+     _gridap_node_index(i, j + 1, k + 1, ny, nz),
+     _gridap_node_index(i + 1, j + 1, k + 1, ny, nz))
+end
+
+function _gridap_q1_basis(t)
+    ntuple(a -> begin
+        bx = (a - 1) & 1
+        by = ((a - 1) >> 1) & 1
+        bz = ((a - 1) >> 2) & 1
+        (bx == 0 ? 1 - t[1] : t[1]) *
+        (by == 0 ? 1 - t[2] : t[2]) *
+        (bz == 0 ? 1 - t[3] : t[3])
+    end, 8)
+end
+
+function _gridap_axis_cell_overlaps(source_axis, target_axis, target_cell)
+    lower, upper = target_axis[target_cell], target_axis[target_cell + 1]
+    first_source = clamp(searchsortedlast(source_axis, lower), 1, length(source_axis) - 1)
+    last_source = clamp(searchsortedfirst(source_axis, upper) - 1, 1, length(source_axis) - 1)
+    Tuple((i, max(lower, source_axis[i]), min(upper, source_axis[i + 1]))
+        for i in first_source:last_source if min(upper, source_axis[i + 1]) > max(lower, source_axis[i]))
+end
+
+"""L2-project a trilinear source onto a same-domain rectilinear target grid.
+
+The cross-mass integral is split at every source/target cell intersection.
+Two-point Gauss quadrature per axis is exact for the product of the two Q1
+fields on each intersection box. Domain changes fail closed; this scalar API
+does not model external return accounts or curved/vector fields.
+"""
+function transfer_gridap_field_payload_v1(source::FieldResidualPayloadV4,
+        target_grid::FieldGridSpecV4, geometry::Union{Nothing,DiagonalAffineChartGeometryV4})
+    geometry === nothing || geometry isa DiagonalAffineChartGeometryV4 ||
+        throw(ArgumentError("typed_unsupported: requires rectilinear diagonal-affine geometry or physical-coordinate axes"))
+    _gridap_payload_integrity(source) || throw(ArgumentError("invalid Gridap source payload"))
+    source.physical_type.value_kind === :scalar_field &&
+        source.physical_type.spatial_dimension == 3 &&
+        source.physical_type.tensor_rank == 0 ||
+        throw(ArgumentError("typed_unsupported: requires scalar 3-D Q1 field"))
+    target_axes = _fr_grid_coordinates(target_grid)
+    source_axes = source.coordinates
+    source_search_axes = ntuple(d -> collect(source_axes[d]), 3)
+    all(length(a) >= 2 for a in source_axes) || throw(ArgumentError("source grid needs cells"))
+    source_domain = geometry === nothing ?
+        (first(source_axes[1]), last(source_axes[1]), first(source_axes[2]),
+         last(source_axes[2]), first(source_axes[3]), last(source_axes[3])) :
+        _gridap_physical_domain(geometry, source_axes)
+    target_domain = geometry === nothing ?
+        (first(target_axes[1]), last(target_axes[1]), first(target_axes[2]),
+         last(target_axes[2]), first(target_axes[3]), last(target_axes[3])) :
+        _gridap_physical_domain(geometry, target_axes)
+    all((first(source_axes[d]), last(source_axes[d])) ==
+        (first(target_axes[d]), last(target_axes[d])) for d in 1:3) ||
+        throw(ArgumentError("typed_unsupported: target domain change needs external return"))
+    source_domain == target_domain ||
+        throw(ArgumentError("typed_unsupported: physical domain mismatch"))
+
+    sx, sy, sz = source_axes
+    tx, ty, tz = target_axes
+    nx, ny, nz = length.(target_axes)
+    nt = prod(length.(target_axes))
+    jacobian = geometry === nothing ? 1.0 : abs(geometry.scale^3 * prod(Float64.(geometry.factors)))
+    isfinite(jacobian) && jacobian > 0 || throw(ArgumentError("invalid physical chart Jacobian"))
+    M_i = Int[]; M_j = Int[]; M_v = Float64[]
+    rhs = zeros(Float64, nt)
+    source_integral = 0.0
+    target_source_integral = 0.0
+    cell_source_integrals = zeros(Float64, (nx - 1) * (ny - 1) * (nz - 1))
+    cell_target_integrals = zeros(Float64, (nx - 1) * (ny - 1) * (nz - 1))
+    gauss = ((1 - inv(sqrt(3.0))) / 2, (1 + inv(sqrt(3.0))) / 2)
+    source_values = source.values
+    for itx in 1:nx-1, ity in 1:ny-1, itz in 1:nz-1
+        target_cell_nodes = _gridap_cell_nodes(itx, ity, itz, ny, nz)
+        target_cell_index = (itx - 1) * (ny - 1) * (nz - 1) + (ity - 1) * (nz - 1) + itz
+        target_widths = (tx[itx + 1] - tx[itx], ty[ity + 1] - ty[ity],
+            tz[itz + 1] - tz[itz])
+        for qx in gauss, qy in gauss, qz in gauss
+            Ntgt = _gridap_q1_basis((qx, qy, qz))
+            weight = prod(target_widths) * jacobian / 8
+            for a in 1:8, b in 1:8
+                push!(M_i, target_cell_nodes[a]); push!(M_j, target_cell_nodes[b])
+                push!(M_v, weight * Ntgt[a] * Ntgt[b])
+            end
+        end
+        target_source_integral = 0.0
+        overlaps = (_gridap_axis_cell_overlaps(source_search_axes[1], tx, itx),
+            _gridap_axis_cell_overlaps(source_search_axes[2], ty, ity),
+            _gridap_axis_cell_overlaps(source_search_axes[3], tz, itz))
+        for ox in overlaps[1], oy in overlaps[2], oz in overlaps[3]
+            source_cell = (ox[1], oy[1], oz[1])
+            source_cell_nodes = _gridap_cell_nodes(source_cell..., length(sy), length(sz))
+            lows = (ox[2], oy[2], oz[2]); highs = (ox[3], oy[3], oz[3])
+            widths = ntuple(d -> highs[d] - lows[d], 3)
+            for qx in gauss, qy in gauss, qz in gauss
+                q = (qx, qy, qz)
+                chart_x = ntuple(d -> lows[d] + q[d] * widths[d], 3)
+                st = ntuple(d -> (chart_x[d] - source_axes[d][source_cell[d]]) /
+                    (source_axes[d][source_cell[d] + 1] - source_axes[d][source_cell[d]]), 3)
+                tt = ntuple(d -> (chart_x[d] - target_axes[d][(itx, ity, itz)[d]]) /
+                    (target_axes[d][(itx, ity, itz)[d] + 1] - target_axes[d][(itx, ity, itz)[d]]), 3)
+                Ns = _gridap_q1_basis(st); Ntgt = _gridap_q1_basis(tt)
+                source_value = sum(Ns[a] * source_values[source_cell_nodes[a]] for a in 1:8)
+                weight = prod(widths) * jacobian / 8
+                source_integral += weight * source_value
+                target_source_integral += weight * source_value
+                for a in 1:8
+                    rhs[target_cell_nodes[a]] += weight * Ntgt[a] * source_value
+                end
+            end
+        end
+        cell_source_integrals[target_cell_index] = target_source_integral
+    end
+    mass = sparse(M_i, M_j, M_v, nt, nt)
+    target_values = mass \ rhs
+    all(isfinite, target_values) || throw(ArgumentError("numerical_fail: nonfinite L2 projection"))
+    target_integral = 0.0
+    for i in 1:nx-1, j in 1:ny-1, k in 1:nz-1
+        nodes = _gridap_cell_nodes(i, j, k, ny, nz)
+        cell_integral = 0.0
+        widths = (tx[i+1]-tx[i], ty[j+1]-ty[j], tz[k+1]-tz[k])
+        for qx in gauss, qy in gauss, qz in gauss
+            cell_integral += prod(widths) * jacobian / 8 *
+                sum(_gridap_q1_basis((qx,qy,qz))[a] * target_values[nodes[a]] for a in 1:8)
+        end
+        target_integral += cell_integral
+        ci = (i - 1) * (ny - 1) * (nz - 1) + (j - 1) * (nz - 1) + k
+        cell_target_integrals[ci] = cell_integral
+    end
+    defect = target_integral - source_integral
+    cell_integral_defects = Tuple(cell_target_integrals[i] - cell_source_integrals[i]
+        for i in eachindex(cell_source_integrals))
+    max_cell_defect = maximum(abs, cell_integral_defects; init=0.0)
+    delta = maximum(abs(target_values[_gridap_node_index(i, j, k, ny, nz)] -
+        _gridap_trilinear(source_values, source_axes, (tx[i], ty[j], tz[k])))
+        for i in 1:nx, j in 1:ny, k in 1:nz; init=0.0)
+    conservation_tol = 512eps(Float64) * max(1.0, abs(source_integral))
+    abs(defect) <= conservation_tol ||
+        throw(ArgumentError("numerical_fail: L2 projection violated global conservation"))
+    target_payload = FieldResidualPayloadV4(source.state_ref, target_grid,
+        Tuple(target_values), source.physical_type)
+    target_grid_hash = canonical_hash(target_axes)
+    support = geometry === nothing ? :same_domain_rectilinear_scalar_q1_physical_coordinates : :same_domain_rectilinear_scalar_q1
+    quadrature = :gauss2_on_source_target_cell_intersections
+    body = _gridap_projection_body(source.content_hash, target_payload.content_hash,
+        canonical_hash(source_axes), target_grid_hash, source_domain, target_domain,
+        source_integral, target_integral, defect, cell_integral_defects, delta,
+        support, quadrature)
+    (payload=target_payload, source_grid_hash=canonical_hash(source_axes),
+        target_grid_hash=target_grid_hash, source_domain=source_domain,
+        target_domain=target_domain, source_integral=source_integral,
+        target_integral=target_integral, conservation_defect=defect,
+        cell_integral_defects=cell_integral_defects,
+        max_target_cell_defect=max_cell_defect, state_delta_linf=delta,
+        support=support, quadrature=quadrature, projection_hash=canonical_hash(body))
+end
+
+transfer_gridap_field_payload_v1(source::FieldResidualPayloadV4,
+        target_grid::FieldGridSpecV4, geometry) =
+    throw(ArgumentError("typed_unsupported: requires rectilinear diagonal-affine geometry or physical-coordinate axes"))
 
 function _gridap_payload_integrity(payload::FieldResidualPayloadV4)
     canonical_hash((state_ref=payload.state_ref, coordinates=payload.coordinates,
@@ -588,8 +773,8 @@ function _gridap_matrix_hash(A)
         rowval=Tuple(A.rowval), nzval=Tuple(Float64.(A.nzval))))
 end
 
-function _gridap_sample_solution(uh, compilation::GridapFieldResidualCompilationV4)
-    coordinates = compilation.source.coordinates
+function _gridap_sample_solution(uh, compilation::GridapFieldResidualCompilationV4,
+        coordinates=compilation.source.coordinates)
     geometry = compilation.plan.native_plan.geometry
     samples = NamedTuple[]
     reference_errors = Float64[]
@@ -601,7 +786,9 @@ function _gridap_sample_solution(uh, compilation::GridapFieldResidualCompilation
         q = (coordinates[1][ix], coordinates[2][iy], coordinates[3][iz])
         physical = _gridap_chart_to_physical(geometry, q)
         value = Float64(uh(Point(physical...)))
-        reference = compilation.boundary.values[k]
+        reference = coordinates == compilation.source.coordinates ?
+            compilation.boundary.values[k] :
+            _gridap_payload_value(compilation.boundary, geometry, physical)
         push!(samples, (coordinate=physical, value=value))
         error = abs(value - reference)
         push!(reference_errors, error)
@@ -612,8 +799,61 @@ function _gridap_sample_solution(uh, compilation::GridapFieldResidualCompilation
     Tuple(samples), maximum(reference_errors), maximum(boundary_errors)
 end
 
+function _gridap_projection_integrity(projection::NamedTuple,
+        source::FieldResidualPayloadV4,
+        geometry::Union{Nothing,DiagonalAffineChartGeometryV4})
+    all(key -> hasproperty(projection, key),
+        (:payload, :source_grid_hash, :target_grid_hash, :source_domain,
+         :target_domain, :source_integral, :target_integral,
+         :conservation_defect, :cell_integral_defects,
+         :max_target_cell_defect, :state_delta_linf, :support,
+         :quadrature, :projection_hash)) || return false
+    payload = projection.payload
+    payload isa FieldResidualPayloadV4 || return false
+    _gridap_payload_integrity(payload) || return false
+    payload.state_ref == source.state_ref && payload.physical_type == source.physical_type || return false
+    expected_support = geometry === nothing ?
+        :same_domain_rectilinear_scalar_q1_physical_coordinates :
+        :same_domain_rectilinear_scalar_q1
+    projection.support === expected_support || return false
+    projection.quadrature === :gauss2_on_source_target_cell_intersections || return false
+    expected = try
+        target_grid = FieldGridSpecV4(payload.coordinates)
+        transfer_gridap_field_payload_v1(source, target_grid, geometry)
+    catch
+        return false
+    end
+    payload.content_hash == expected.payload.content_hash || return false
+    projection.source_grid_hash == expected.source_grid_hash || return false
+    projection.target_grid_hash == expected.target_grid_hash || return false
+    projection.source_domain == expected.source_domain || return false
+    projection.target_domain == expected.target_domain || return false
+    projection.source_domain == projection.target_domain || return false
+    projection.source_integral == expected.source_integral || return false
+    projection.target_integral == expected.target_integral || return false
+    projection.conservation_defect == expected.target_integral - expected.source_integral ||
+        return false
+    projection.conservation_defect == expected.conservation_defect || return false
+    abs(expected.conservation_defect) <=
+        512eps(Float64) * max(1.0, abs(expected.source_integral)) || return false
+    projection.cell_integral_defects == expected.cell_integral_defects || return false
+    projection.max_target_cell_defect == expected.max_target_cell_defect || return false
+    projection.state_delta_linf == expected.state_delta_linf || return false
+    projection.projection_hash == expected.projection_hash
+end
+
+function _gridap_transfer_outcome_hash(report::GridapFieldResidualReportV4,
+        projection::NamedTuple)
+    canonical_hash((report_hash=report.report_hash,
+        assembly_hash=report.receipt.assembly_hash,
+        result_hash=report.result.result_hash,
+        source_content_hash=projection.payload.content_hash,
+        target_grid_hash=projection.target_grid_hash,
+        projection_hash=projection.projection_hash))
+end
+
 function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4;
-        weak_form_sign::Symbol=:declared)
+        weak_form_sign::Symbol=:declared, transfer_to_grid=nothing)
     weak_form_sign in (:declared, :reversed_test_control) ||
         throw(ArgumentError("unsupported Gridap weak-form sign selector"))
     _gridap_compilation_integrity(compilation) ||
@@ -629,7 +869,15 @@ function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4
         length(form.source_coefficients) == 1 ||
         throw(ArgumentError("Gridap B1 form is outside the audited linear subset"))
 
-    coordinates = compilation.source.coordinates
+    projection = nothing
+    if transfer_to_grid !== nothing
+        transfer_to_grid isa FieldGridSpecV4 ||
+            throw(ArgumentError("target transfer grid must be the typed G2 FieldGridSpecV4"))
+        projection = transfer_gridap_field_payload_v1(compilation.source,
+            transfer_to_grid, native.geometry)
+    end
+    source_payload = projection === nothing ? compilation.source : projection.payload
+    coordinates = source_payload.coordinates
     cell_counts = ntuple(i -> length(coordinates[i]) - 1, 3)
     domain = _gridap_physical_domain(native.geometry, coordinates)
     model = CartesianDiscreteModel(domain, cell_counts)
@@ -642,7 +890,7 @@ function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4
     dΩ = Measure(Ω, plan.protocol.quadrature_degree)
     multiplier = weak_form_sign === :declared ? 1.0 : -1.0
     source_term(x) = multiplier * (form.source_coefficients[1] *
-        _gridap_payload_value(compilation.source, native.geometry, x) +
+        _gridap_payload_value(source_payload, native.geometry, x) +
         form.constant)
     a(u, v) = ∫(form.alpha * (∇(v) ⋅ ∇(u)) - form.beta * v * u) * dΩ
     b(v) = ∫(v * source_term) * dΩ
@@ -655,15 +903,17 @@ function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4
     rhs_norm_inf = norm(rhs, Inf)
     residual_rel = residual_abs / max(rhs_norm_inf, eps(Float64))
     samples, node_error, boundary_mismatch =
-        _gridap_sample_solution(uh, compilation)
+        _gridap_sample_solution(uh, compilation, coordinates)
 
     matrix_hash = _gridap_matrix_hash(A)
     rhs_hash = canonical_hash(Tuple(rhs))
+    target_grid_hash = projection === nothing ? plan.grid_hash : projection.target_grid_hash
     receipt_body = _gridap_receipt_body(plan.plan_hash, domain, cell_counts,
         num_cells(model), num_free_dofs(V0), num_dirichlet_dofs(V0),
         (size(A, 1), size(A, 2)), nnz(A), matrix_hash, rhs_hash,
-        rhs_norm_inf, plan.form_hash, plan.geometry_hash, plan.grid_hash,
-        plan.source_content_hash, plan.boundary_content_hash,
+        rhs_norm_inf, plan.form_hash, plan.geometry_hash, target_grid_hash,
+        source_payload.content_hash,
+        plan.boundary_content_hash,
         plan.protocol.protocol_hash, plan.dependency_identity.dependency_hash,
         plan.adapter_code_hash, _GRIDAP_WEAK_FORM_REVISION,
         _GRIDAP_INTERPOLATION_REVISION)
@@ -671,7 +921,8 @@ function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4
         domain, cell_counts, num_cells(model), num_free_dofs(V0),
         num_dirichlet_dofs(V0), (size(A, 1), size(A, 2)), nnz(A),
         matrix_hash, rhs_hash, rhs_norm_inf, plan.form_hash,
-        plan.geometry_hash, plan.grid_hash, plan.source_content_hash,
+        plan.geometry_hash, target_grid_hash,
+        source_payload.content_hash,
         plan.boundary_content_hash, plan.protocol.protocol_hash,
         plan.dependency_identity.dependency_hash, plan.adapter_code_hash,
         _GRIDAP_WEAK_FORM_REVISION, _GRIDAP_INTERPOLATION_REVISION,
@@ -700,19 +951,23 @@ function run_gridap_field_residual(compilation::GridapFieldResidualCompilationV4
         boundary_mismatch, node_error, finite_values, receipt.assembly_hash,
         plan.protocol.protocol_hash, canonical_hash(result_body))
     report_body = _gridap_report_body(status, plan.plan_hash,
-        receipt.assembly_hash, result.result_hash, :manufactured_control,
+        receipt.assembly_hash, result.result_hash,
+        :manufactured_control,
         screen_only, :terminal_deferred, 0, false, false)
     report = GridapFieldResidualReportV4(_GRIDAP_FIELD_TOKEN, status,
         plan.plan_hash, receipt, result, :manufactured_control, screen_only,
         :terminal_deferred, 0, false, false, canonical_hash(report_body))
-    validate_gridap_field_residual_report(compilation, report) ||
+    validate_gridap_field_residual_report(compilation, report;
+        projection=projection) ||
         throw(ArgumentError("Gridap report integrity mismatch"))
-    report
+    projection === nothing ? report :
+        (report=report, projection=projection,
+         evidence_hash=_gridap_transfer_outcome_hash(report, projection))
 end
 
 function validate_gridap_field_residual_report(
         compilation::GridapFieldResidualCompilationV4,
-        report::GridapFieldResidualReportV4)
+        report::GridapFieldResidualReportV4; projection=nothing)
     _gridap_compilation_integrity(compilation) || return false
     plan = compilation.plan
     _gridap_receipt_integrity(report.receipt) || return false
@@ -721,8 +976,18 @@ function validate_gridap_field_residual_report(
     report.receipt.plan_hash == plan.plan_hash || return false
     report.receipt.form_hash == plan.form_hash || return false
     report.receipt.geometry_hash == plan.geometry_hash || return false
-    report.receipt.grid_hash == plan.grid_hash || return false
-    report.receipt.source_content_hash == plan.source_content_hash || return false
+    if projection === nothing
+        report.receipt.grid_hash == plan.grid_hash || return false
+        report.receipt.source_content_hash == plan.source_content_hash || return false
+    else
+        _gridap_projection_integrity(projection, compilation.source,
+            plan.native_plan.geometry) || return false
+        report.receipt.grid_hash == projection.target_grid_hash || return false
+        report.receipt.source_content_hash == projection.payload.content_hash || return false
+        report.receipt.physical_domain == projection.target_domain || return false
+        report.receipt.cell_counts ==
+            ntuple(i -> length(projection.payload.coordinates[i]) - 1, 3) || return false
+    end
     report.receipt.boundary_content_hash == plan.boundary_content_hash || return false
     report.receipt.protocol_hash == plan.protocol.protocol_hash || return false
     report.receipt.dependency_hash == plan.dependency_identity.dependency_hash || return false
@@ -758,6 +1023,16 @@ function validate_gridap_field_residual_report(
         report.unsupported_emitted)) == report.report_hash
 end
 
+function validate_gridap_field_residual_report(
+        compilation::GridapFieldResidualCompilationV4, outcome::NamedTuple)
+    all(key -> hasproperty(outcome, key), (:report, :projection, :evidence_hash)) || return false
+    report = outcome.report
+    report isa GridapFieldResidualReportV4 || return false
+    validate_gridap_field_residual_report(compilation, report;
+        projection=outcome.projection) || return false
+    _gridap_transfer_outcome_hash(report, outcome.projection) == outcome.evidence_hash
+end
+
 function replay_gridap_field_residual(
         compilation::GridapFieldResidualCompilationV4,
         report::GridapFieldResidualReportV4)
@@ -767,6 +1042,14 @@ function replay_gridap_field_residual(
     replay.report_hash == report.report_hash &&
         replay.receipt.assembly_hash == report.receipt.assembly_hash &&
         replay.result.result_hash == report.result.result_hash
+end
+
+function replay_gridap_field_residual(compilation::GridapFieldResidualCompilationV4,
+        outcome::NamedTuple)
+    validate_gridap_field_residual_report(compilation, outcome) || return false
+    grid = FieldGridSpecV4(outcome.projection.payload.coordinates)
+    replay = run_gridap_field_residual(compilation; transfer_to_grid=grid)
+    replay.evidence_hash == outcome.evidence_hash
 end
 
 run_gridap_b1(compilation::GridapFieldResidualCompilationV4; wrong_sign::Bool=false) =

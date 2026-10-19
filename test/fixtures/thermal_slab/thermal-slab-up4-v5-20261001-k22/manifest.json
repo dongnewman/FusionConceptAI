@@ -1,0 +1,79 @@
+{
+  "claims": {
+    "terminal": "none",
+    "engineering": "none",
+    "numerical": "none",
+    "physical": "none"
+  },
+  "scenario_ref": {
+    "version": "v1",
+    "id": "fusionconceptai://scenario-design/thermal-slab-up4-v5-20261001"
+  },
+  "schema": "candidate-design-input-manifest-v1",
+  "target_consumer": "current-source G1/G2/G3 factories -> T0 -> DGD -> focused DCCE; no solver authority",
+  "files": [
+    {
+      "path": "identity.jl",
+      "bytes": 502,
+      "sha256": "e02b6f52660bb72b234f11fcf79b0bb238938a937d2d2c71cbd7329015c34c87"
+    },
+    {
+      "path": "design_identity.json",
+      "bytes": 512,
+      "sha256": "561d8558dab2138dfdfb4b6887846c26b132b6861dead79aaeb72ebfaf622e99"
+    },
+    {
+      "path": "scenario.json",
+      "bytes": 619,
+      "sha256": "76ad67804dfa5374d96f13bcc040116d4cf844a16d0d6a362fad34b892d08a88"
+    },
+    {
+      "path": "g1_source.jl",
+      "bytes": 5452,
+      "sha256": "d50f0b73c489a06ecd82bbff9195ce64ac7657347882368f53da37a6586da429"
+    },
+    {
+      "path": "g2_source.jl",
+      "bytes": 3697,
+      "sha256": "68bd670b39c9bb29e8b8c5e18230a12f3743bf1c0a07bab952eb64434f66b030"
+    },
+    {
+      "path": "g3_source.jl",
+      "bytes": 30069,
+      "sha256": "b24be9ce0edaa42a6eb25dbc690f7ba35d359ac2d9087125bee868dbf113dd50"
+    },
+    {
+      "path": "g3_child_design_source.jl",
+      "bytes": 13840,
+      "sha256": "0391d8c5a59ebac00d1a97511aefcc430fceb480ab82acd0c9736f1d1aa3cd87"
+    },
+    {
+      "path": "native_mms_source_expressions.json",
+      "bytes": 654,
+      "sha256": "cfb6a34827c261be4750534c07f25afdd2bbdde9903f65af4378e58d3df39fcf"
+    }
+  ],
+  "candidate_ref": {
+    "version": "v5",
+    "id": "fusionconceptai://candidate-design/thermal-slab-up4-v5-20261001-k22"
+  },
+  "source_origin": "independently authored thermal-slab candidate design; no external source or authority",
+  "candidate_id": "thermal-slab-up4-v5-20261001-k22",
+  "design_status": "unvalidated_design_input",
+  "scenario_id": "scenario-thermal-slab-up4-v5-20261001",
+  "native_g1g2_mms_alignment": {
+    "source_expression_record": {
+      "required_fields": [
+        "design_scope",
+        "candidate_id",
+        "candidate_ref",
+        "scenario_id",
+        "scenario_ref",
+        "formula",
+        "unknown_source_expression",
+        "source_expression",
+        "compiler_rebuild_required"
+      ]
+    }
+  }
+}

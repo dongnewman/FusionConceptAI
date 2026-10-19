@@ -230,9 +230,17 @@ end
 
 """Exact source body used by the current G2 declaration implementation."""
 function _vnext_t0_g2_source_body(x::G2MBSourceV1)
-    (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
+    body = (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
      chart_map=x.chart_map, mesh=x.mesh, faces=x.faces, profile=x.profile,
      units=x.units, authority=x.authority)
+    if x.region_interface !== nothing
+        body = merge(body, (field_space=x.field_space,
+            q1_interpretation=x.q1_interpretation,
+            boundary_coverage=x.boundary_coverage,
+            region_interface=x.region_interface,
+            region_exterior_owners=x.region_exterior_owners))
+    end
+    body
 end
 
 function _vnext_t0_g2_body(x::G2MBDeclarationV1)

@@ -1,0 +1,468 @@
+#!/usr/bin/env python3
+"""Two-process, test-only replay continuation with explicit resource gates."""
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import json
+import os
+import pathlib
+import subprocess
+import sys
+import time
+import traceback
+
+try:
+    import psutil
+except Exception as exc:  # fail before launching Julia when the monitor is absent
+    raise SystemExit(f"psutil is required for the replay resource gate: {exc}")
+
+ROOT = pathlib.Path(__file__).resolve().parents[3]
+SCRIPT = pathlib.Path(__file__).resolve().with_name("replay_staged_v1.jl")
+DEFAULT_PROTOCOL = ROOT / "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r1/replay_protocol_v1.json"
+
+
+def digest(path: pathlib.Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def canonical_bytes(value: object) -> bytes:
+    return (json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+
+
+def write_new(path: pathlib.Path, value: object) -> None:
+    if path.exists():
+        raise FileExistsError(f"preserve existing replay evidence: {path}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(canonical_bytes(value))
+
+
+def checked_path(root: pathlib.Path, rel: str) -> pathlib.Path:
+    path = (root / rel).resolve()
+    if not path.is_relative_to(root.resolve()):
+        raise ValueError(f"protocol path escapes repository: {rel}")
+    return path
+
+
+def file_inventory(root: pathlib.Path) -> list[dict[str, object]]:
+    entries = []
+    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+        entries.append({"path": path.relative_to(ROOT).as_posix(), "bytes": path.stat().st_size, "sha256": digest(path)})
+    return entries
+
+
+def verify_inventory(entries: list[dict[str, object]]) -> None:
+    for entry in entries:
+        path = checked_path(ROOT, str(entry["path"]))
+        if not path.is_file():
+            raise FileNotFoundError(f"frozen replay input missing: {path}")
+        if path.stat().st_size != entry["bytes"] or digest(path) != entry["sha256"]:
+            raise ValueError(f"frozen replay input drift: {path}")
+
+
+def snapshot(entries: list[dict[str, object]]) -> list[dict[str, object]]:
+    records = []
+    for entry in entries:
+        path = checked_path(ROOT, str(entry["path"]))
+        records.append({"path": entry["path"], "bytes": path.stat().st_size, "sha256": digest(path)})
+    return records
+
+
+def tree_digest(root: pathlib.Path) -> dict[str, object]:
+    items = file_inventory(root)
+    body = canonical_bytes(items)
+    return {"root": str(root.resolve()), "files": len(items), "bytes": sum(int(x["bytes"]) for x in items),
+            "sha256": hashlib.sha256(body).hexdigest(), "entries": items}
+
+
+def live_tree_bytes(root_pid: int) -> tuple[int, list[dict[str, object]]]:
+    try:
+        root_proc = psutil.Process(root_pid)
+        processes = [root_proc] + root_proc.children(recursive=True)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+        processes = []
+    total = 0
+    identities = []
+    seen = set()
+    for proc in processes:
+        if proc.pid in seen:
+            continue
+        seen.add(proc.pid)
+        try:
+            total += proc.memory_info().rss
+            identities.append({"pid": proc.pid, "create_time": proc.create_time()})
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    return total, identities
+
+
+def terminate_tree(pid: int) -> list[dict[str, object]]:
+    try:
+        root_proc = psutil.Process(pid)
+        children = root_proc.children(recursive=True)
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+        root_proc = None
+        children = []
+    residual = []
+    for proc in reversed(children):
+        try:
+            residual.append({"pid": proc.pid, "create_time": proc.create_time()})
+            proc.terminate()
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+    if root_proc is not None:
+        try:
+            root_proc.terminate()
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+    if root_proc is not None:
+        try:
+            _, alive = psutil.wait_procs(children + [root_proc], timeout=2.0)
+            for proc in alive:
+                try:
+                    proc.kill()
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+            psutil.wait_procs(alive, timeout=2.0)
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+    return residual
+
+
+def run_stage(command: list[str], cwd: pathlib.Path, stage_dir: pathlib.Path, limit_s: float,
+              memory_limit: int, env: dict[str, str]) -> dict[str, object]:
+    stage_dir.mkdir(parents=True, exist_ok=True)
+    stdout_path = stage_dir / "stdout.raw"
+    stderr_path = stage_dir / "stderr.raw"
+    started = time.monotonic()
+    started_utc = dt.datetime.now(dt.timezone.utc).isoformat(timespec="milliseconds")
+    peak = 0
+    identities: list[dict[str, object]] = []
+    stop_reason = "exited"
+    cleanup: list[dict[str, object]] = []
+    with stdout_path.open("xb") as stdout, stderr_path.open("xb") as stderr:
+        proc = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout, stderr=stderr,
+                                creationflags=getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0))
+        while proc.poll() is None:
+            rss, observed = live_tree_bytes(proc.pid)
+            peak = max(peak, rss)
+            identities.extend(observed)
+            elapsed = time.monotonic() - started
+            if rss > memory_limit:
+                stop_reason = "working_set_limit"
+                cleanup = terminate_tree(proc.pid)
+                break
+            if elapsed >= limit_s:
+                stop_reason = "wall_timeout"
+                cleanup = terminate_tree(proc.pid)
+                break
+            time.sleep(0.25)
+        try:
+            proc.wait(timeout=5.0)
+        except subprocess.TimeoutExpired:
+            cleanup = cleanup or terminate_tree(proc.pid)
+            proc.wait(timeout=5.0)
+    ended = time.monotonic()
+    stdout_bytes = stdout_path.read_bytes()
+    stderr_bytes = stderr_path.read_bytes()
+    unique = {(int(x["pid"]), float(x["create_time"])): x for x in identities}
+    return {
+        "schema": "mms-replay-recorded-process-v1", "command": command, "cwd": str(cwd),
+        "pid": proc.pid, "started_utc": started_utc,
+        "elapsed_seconds": ended - started, "exit_code": proc.returncode,
+        "stop_reason": stop_reason, "peak_sampled_process_tree_working_set_bytes": peak,
+        "memory_limit_bytes": memory_limit, "wall_limit_seconds": limit_s,
+        "observed_process_identities": list(unique.values()), "terminated_owned_processes": cleanup,
+        "stdout": {"path": str(stdout_path), "bytes": len(stdout_bytes), "sha256": hashlib.sha256(stdout_bytes).hexdigest()},
+        "stderr": {"path": str(stderr_path), "bytes": len(stderr_bytes), "sha256": hashlib.sha256(stderr_bytes).hexdigest()},
+        "memory_scope": "sampled process-tree RSS; sampling is not a continuous operating-system hard limit",
+    }
+
+
+def valid_completion(path: pathlib.Path, stage: str) -> dict[str, object]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    required = {
+        "producer": ("mms-replay-only-producer-complete-v1", "test_only_continuation", 2, "fail"),
+        "consumer": ("mms-replay-only-consumer-complete-v1", "test_only_continuation", 2, "fail"),
+    }[stage]
+    if (value.get("schema"), value.get("classification"), value.get("solver_exit_code"), value.get("numerical_status")) != required:
+        raise ValueError(f"{stage} completion changed frozen numerical status semantics")
+    if value.get("nonlinear_solves") != 0 or value.get("authority") != "no_publish" or value.get("physical_validation") != "unsupported":
+        raise ValueError(f"{stage} completion exceeds test-only replay scope")
+    if value.get("formal_candidate_credit") is not False:
+        raise ValueError(f"{stage} completion promoted a test-only result")
+    marker_name = "producer_validator_completed.json" if stage == "producer" else "consumer_suite_completed.json"
+    marker = json.loads((path.parent / marker_name).read_text(encoding="utf-8"))
+    expected_name = "validate_spatial_manufactured_result_v1" if stage == "producer" else "ManufacturedCandidateV1Tests.result_tests"
+    field_name = "validator" if stage == "producer" else "suite"
+    if marker.get("runtime_hit") is not True or marker.get(field_name) != expected_name or marker.get("exit_code") != 0:
+        raise ValueError(f"{stage} did not record its required runtime hit and exit")
+    return value
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--protocol", type=pathlib.Path, default=DEFAULT_PROTOCOL)
+    parser.add_argument("--output", type=pathlib.Path, required=True)
+    parser.add_argument("--protocol-sha256", required=True)
+    parser.add_argument("--root-serial-slot-granted", action="store_true",
+                        help="required explicit acknowledgement that the root allocated its sole Julia slot")
+    args = parser.parse_args()
+    if not args.root_serial_slot_granted:
+        parser.error("refusing Julia execution without --root-serial-slot-granted")
+
+    protocol_path = args.protocol.resolve()
+    if protocol_path != DEFAULT_PROTOCOL.resolve():
+        raise ValueError("only the frozen replay_protocol_v1.json is accepted")
+    output = (ROOT / args.output).resolve() if not args.output.is_absolute() else args.output.resolve()
+    if not output.is_relative_to((ROOT / "docs/implementation/UP2-04-CLOSURE-REPAIR-PREC/archive/replay_only_continuation_r1").resolve()):
+        raise ValueError("output must remain under the versioned replay-only archive leaf")
+    if output.exists():
+        raise FileExistsError(f"preserve existing replay-only output: {output}")
+
+    protocol_wire = protocol_path.read_bytes()
+    actual_protocol_sha = hashlib.sha256(protocol_wire).hexdigest()
+    if actual_protocol_sha.lower() != args.protocol_sha256.lower():
+        raise ValueError("replay protocol SHA does not match --protocol-sha256")
+    protocol = json.loads(protocol_wire)
+    if protocol.get("schema") != "mms-replay-only-continuation-protocol-v1" or protocol.get("classification") != "test_only_continuation":
+        raise ValueError("unsupported replay protocol schema or classification")
+    if protocol.get("runtime_grant") is not False:
+        raise ValueError("protocol runtime_grant must remain false; root serial-slot grant is a command argument")
+
+    runtime = protocol["runtime"]
+    if str(pathlib.Path(sys.executable).resolve()) != str(pathlib.Path(runtime["python_executable"]).resolve()):
+        raise ValueError("Python executable differs from the frozen runtime")
+    if sys.version.split()[0] != runtime["python_version"] or psutil.__version__ != runtime["psutil_version"]:
+        raise ValueError("Python or psutil version differs from the frozen runtime")
+
+    source_files = protocol["owned_source_files"]
+    verify_inventory(source_files)
+    evidence_docs = protocol["owned_evidence_docs"]
+    verify_inventory(evidence_docs)
+    v10_protocol = protocol["v10_protocol"]
+    v10_path = checked_path(ROOT, v10_protocol["path"])
+    if digest(v10_path) != v10_protocol["sha256"]:
+        raise ValueError("preserved v10 protocol drift")
+    old_protocol = json.loads(v10_path.read_text(encoding="utf-8"))
+    if len(old_protocol["inputs"]) != 89:
+        raise ValueError("v10 frozen input count drift")
+    pinned_files = old_protocol["inputs"]
+    if len(pinned_files) != protocol["v10_protocol"]["pinned_input_count"]:
+        raise ValueError("protocol-declared v10 frozen input count drift")
+    for item in pinned_files:
+        path = checked_path(ROOT, item["path"])
+        if path.stat().st_size != item["bytes"] or digest(path) != item["sha256"]:
+            raise ValueError(f"v10 pinned input drift: {path}")
+    frozen_tree = protocol["saved_producer_tree"]
+    tree_root = checked_path(ROOT, frozen_tree["root"])
+    actual_tree = file_inventory(tree_root)
+    if actual_tree != frozen_tree["entries"]:
+        raise ValueError("preserved v10 producer tree drift")
+    if len(actual_tree) != frozen_tree["file_count"]:
+        raise ValueError("preserved v10 producer tree file count drift")
+
+    v10_timeout = protocol["v10_timeout_receipts"]
+    controller_final = json.loads(checked_path(ROOT, v10_timeout["controller_final"]).read_text(encoding="utf-8"))
+    process_final = json.loads(checked_path(ROOT, v10_timeout["producer_process_final"]).read_text(encoding="utf-8"))
+    process_record = json.loads(checked_path(ROOT, v10_timeout["producer_process_record"]).read_text(encoding="utf-8"))
+    if (controller_final.get("schema"), controller_final.get("controller_exit_code"),
+            controller_final.get("execution_classification"), controller_final.get("software_batch_complete")) != (
+            "mms-staged-controller-result-v10", 124, "resource_interruption", False):
+        raise ValueError("original v10 controller timeout/failure semantics changed")
+    original_stage = controller_final["stages"][0]
+    if (original_stage.get("stage"), original_stage.get("stop_reason"), original_stage.get("exit_code")) != (
+            "producer", "wall_timeout", 15):
+        raise ValueError("original v10 producer timeout/exit semantics changed")
+    if (process_final.get("schema"), process_final.get("stop_reason"), process_final.get("exit_code"),
+            process_final.get("stage"), process_final.get("controller_exit_code")) != (
+            "mms-recorded-process-v3", "wall_timeout", 15, "producer", 124):
+        raise ValueError("original v10 producer process receipt changed")
+    if (process_record.get("schema"), process_record.get("stop_reason"), process_record.get("exit_code")) != (
+            "mms-recorded-process-v3", "wall_timeout", 15):
+        raise ValueError("original v10 producer raw process record changed")
+    numerical_wire = json.loads(checked_path(ROOT, protocol["replay_inputs"]["numerical_result"]["path"]).read_text(encoding="utf-8"))
+    numerical_case = numerical_wire["cases"][0]
+    if (numerical_wire.get("status"), numerical_wire.get("solver_exit_code"), numerical_case.get("status"),
+            numerical_case.get("stopping_reason"), numerical_case.get("solver_exit_code")) != (
+            "fail", 2, "fail", "stationary_nonzero_residual", 2):
+        raise ValueError("saved numerical failure/solver exit 2 semantics changed")
+
+    all_inputs = {x["path"]: {"path": x["path"], "bytes": x["bytes"], "sha256": x["sha256"]} for x in pinned_files}
+    all_inputs.update({x["path"]: {"path": x["path"], "bytes": x["bytes"], "sha256": x["sha256"]} for x in frozen_tree["entries"]})
+    all_inputs.update({x["path"]: {"path": x["path"], "bytes": x["bytes"], "sha256": x["sha256"]} for x in source_files})
+    all_inputs.update({x["path"]: {"path": x["path"], "bytes": x["bytes"], "sha256": x["sha256"]} for x in evidence_docs})
+    for key in ("controller_final", "producer_process_final", "producer_process_record", "producer_stdout", "producer_stderr",
+                "controller_inputs_before", "controller_inputs_after", "protocol_receipt"):
+        item = v10_timeout[key]
+        path = checked_path(ROOT, item["path"])
+        if not path.is_file() or path.stat().st_size != item["bytes"] or digest(path) != item["sha256"]:
+            raise ValueError(f"original v10 timeout receipt drift ({key}): {path}")
+        all_inputs[item["path"]] = {"path": item["path"], "bytes": item["bytes"], "sha256": item["sha256"]}
+    for key in ("producer_stdout", "producer_stderr"):
+        item = v10_timeout[key]
+        recorded = process_record[key.replace("producer_", "")]
+        if recorded.get("bytes") != item["bytes"] or recorded.get("sha256") != item["sha256"]:
+            raise ValueError(f"original v10 raw process output receipt mismatch ({key})")
+        stage_raw = original_stage[key.replace("producer_", "")]
+        if stage_raw.get("bytes") != item["bytes"] or stage_raw.get("sha256") != item["sha256"]:
+            raise ValueError(f"original v10 controller raw output receipt mismatch ({key})")
+    if digest(checked_path(ROOT, v10_timeout["controller_inputs_before"]["path"])) != digest(
+            checked_path(ROOT, v10_timeout["controller_inputs_after"]["path"])):
+        raise ValueError("original v10 91-key recorder snapshots are not byte-identical")
+    for label, item in protocol["replay_inputs"].items():
+        path = checked_path(ROOT, item["path"])
+        if not path.is_file() or path.stat().st_size != item["bytes"] or digest(path) != item["sha256"]:
+            raise ValueError(f"replay input drift ({label}): {path}")
+        all_inputs[item["path"]] = {"path": item["path"], "bytes": item["bytes"], "sha256": item["sha256"]}
+    input_entries = [all_inputs[k] for k in sorted(all_inputs)]
+    julia = pathlib.Path(protocol["runtime"]["julia_executable"])
+    if not julia.is_file() or digest(julia) != protocol["runtime"]["julia_sha256"]:
+        raise ValueError("pinned Julia executable missing or changed")
+    if str(julia.resolve()) != protocol["runtime"]["julia_executable"]:
+        raise ValueError("Julia executable path resolution changed")
+    if digest(SCRIPT) != protocol["owned_source_files_by_path"][SCRIPT.relative_to(ROOT).as_posix()]:
+        raise ValueError("replay controller source hash differs from frozen protocol")
+    julia_script = ROOT / "test/RuntimeV4/UP2ClosureReplayOnlyV1/replay_staged_v1.jl"
+    if digest(julia_script) != protocol["owned_source_files_by_path"][julia_script.relative_to(ROOT).as_posix()]:
+        raise ValueError("replay Julia entrypoint hash differs from frozen protocol")
+    before = snapshot(input_entries)
+    stage_limit = float(protocol["stage_limits"]["seconds"])
+    memory_limit = int(protocol["stage_limits"]["working_set_bytes"])
+    output.mkdir(parents=True)
+    write_new(output / "inputs_before.json", before)
+    common = [str(julia), "--startup-file=no", "--project=.", str(julia_script.relative_to(ROOT).as_posix())]
+    env = os.environ.copy()
+    env.update({str(k): str(v) for k, v in protocol.get("environment", {}).items()})
+    results: list[dict[str, object]] = []
+    completions: list[dict[str, object]] = []
+    classification = "program_exception"
+    controller_exit = 126
+    producer_tree_unchanged = False
+    producer_root = output / "producer_process/numerical"
+    consumer_root = output / "consumer_process/numerical"
+    start = time.monotonic()
+    try:
+        producer_dir = output / "producer_process"
+        producer_cmd = common + ["producer", str(producer_root), str(tree_root), actual_protocol_sha,
+                                 "not_applicable", "not_applicable"]
+        producer = run_stage(producer_cmd, ROOT, producer_dir, stage_limit, memory_limit, env)
+        results.append(dict(producer, stage="producer"))
+        write_new(output / "producer_process.json", producer)
+        after_producer = snapshot(input_entries)
+        write_new(producer_dir / "inputs_after.json", after_producer)
+        if before != after_producer:
+            classification = "input_drift"
+            controller_exit = 125
+            raise ValueError("pinned inputs or saved producer tree changed in producer stage")
+        complete_path = producer_root / "producer_complete.json"
+        if producer["stop_reason"] != "exited" or producer["exit_code"] != 0:
+            failure_path = producer_root / "producer_failure.json"
+            failure = json.loads(failure_path.read_text(encoding="utf-8")) if failure_path.is_file() else None
+            if producer["stop_reason"] in ("wall_timeout", "working_set_limit"):
+                classification = "resource_interruption"
+                controller_exit = 124 if producer["stop_reason"] == "wall_timeout" else 123
+            elif failure and failure.get("classification") == "replay_hydration_unsupported":
+                classification = "replay_hydration_unsupported"
+                controller_exit = 72
+            else:
+                classification = "program_exception"
+                controller_exit = int(producer["exit_code"] or 1)
+            raise RuntimeError(f"producer stage incomplete: {classification}")
+        producer_complete = valid_completion(complete_path, "producer")
+        binding_path = producer_root / "replay_carrier_binding.json"
+        carrier_path = producer_root / "replay_carrier.bin"
+        seal = {"carrier_sha256": digest(carrier_path), "binding_sha256": digest(binding_path),
+                "carrier_bytes": carrier_path.stat().st_size, "binding_bytes": binding_path.stat().st_size,
+                "source_result_sha256": protocol["replay_inputs"]["numerical_result"]["sha256"]}
+        if seal["carrier_sha256"] != producer_complete["carrier_sha256"] or seal["binding_sha256"] != producer_complete["carrier_binding_sha256"]:
+            raise ValueError("producer completion differs from independent transport seal")
+        write_new(output / "producer_transport_seal.json", seal)
+        producer_before_consumer = tree_digest(producer_dir)
+        write_new(output / "producer_tree_before_consumer.json", producer_before_consumer)
+        producer_overhead = time.monotonic() - start - float(producer["elapsed_seconds"])
+        if producer_overhead > float(protocol["controller_overhead_seconds_limit"]):
+            classification = "resource_interruption"
+            controller_exit = 124
+            raise TimeoutError("replay controller overhead exceeded before consumer")
+
+        consumer_dir = output / "consumer_process"
+        consumer_cmd = common + ["consumer", str(consumer_root), str(producer_root), actual_protocol_sha,
+                                 str(seal["carrier_sha256"]), str(seal["binding_sha256"])]
+        consumer = run_stage(consumer_cmd, ROOT, consumer_dir, stage_limit, memory_limit, env)
+        results.append(dict(consumer, stage="consumer"))
+        write_new(output / "consumer_process.json", consumer)
+        after_consumer = snapshot(input_entries)
+        write_new(consumer_dir / "inputs_after.json", after_consumer)
+        if before != after_consumer:
+            classification = "input_drift"
+            controller_exit = 125
+            raise ValueError("pinned inputs or saved producer tree changed in consumer stage")
+        if consumer["stop_reason"] != "exited" or consumer["exit_code"] != 0:
+            if consumer["stop_reason"] in ("wall_timeout", "working_set_limit"):
+                classification = "resource_interruption"
+                controller_exit = 124 if consumer["stop_reason"] == "wall_timeout" else 123
+            else:
+                classification = "program_exception"
+                controller_exit = int(consumer["exit_code"] or 1)
+            raise RuntimeError(f"consumer stage incomplete: {classification}")
+        consumer_complete = valid_completion(consumer_root / "consumer_complete.json", "consumer")
+        producer_after_consumer = tree_digest(producer_dir)
+        write_new(output / "producer_tree_after_consumer.json", producer_after_consumer)
+        if producer_before_consumer != producer_after_consumer:
+            raise ValueError("consumer altered the sealed producer tree")
+        producer_tree_unchanged = True
+        after = snapshot(input_entries)
+        write_new(output / "inputs_after.json", after)
+        if before != after:
+            classification = "input_drift"
+            controller_exit = 125
+            raise ValueError("original 89 pins or saved producer tree changed during replay")
+        elapsed_children = sum(float(x["elapsed_seconds"]) for x in results)
+        overhead = time.monotonic() - start - elapsed_children
+        if overhead > float(protocol["controller_overhead_seconds_limit"]):
+            classification = "resource_interruption"
+            controller_exit = 124
+            raise TimeoutError("replay controller overhead limit exceeded")
+        if producer_complete["result_hash"] != consumer_complete["result_hash"]:
+            raise ValueError("producer/consumer result identity mismatch")
+        classification = "test_only_continuation_complete"
+        controller_exit = 0
+    except Exception:
+        if controller_exit == 126:
+            classification = "program_exception"
+        exception = traceback.format_exc()
+    else:
+        exception = None
+    finally:
+        after = snapshot(input_entries)
+        if not (output / "inputs_after.json").exists():
+            write_new(output / "inputs_after.json", after)
+        if before != after and controller_exit == 0:
+            classification = "input_drift"
+            controller_exit = 125
+        final = {
+            "schema": "mms-replay-only-controller-final-v1", "classification": classification,
+            "controller_exit_code": controller_exit, "test_only_continuation": True,
+            "software_complete": controller_exit == 0, "numerical_status": "fail", "solver_exit_code": 2,
+            "stopping_reason": "stationary_nonzero_residual", "formal_candidate_credit": False,
+            "physical_validation": "unsupported", "authority": "no_publish", "nonlinear_solves": 0,
+            "inputs_unchanged": before == after, "producer_tree_unchanged": producer_tree_unchanged,
+            "stages": results, "elapsed_seconds": time.monotonic() - start,
+            "stage_limits": protocol["stage_limits"],
+        }
+        if "exception" in locals() and exception:
+            final["controller_exception"] = exception
+        write_new(output / "final.json", final)
+    print(json.dumps({"classification": classification, "controller_exit_code": controller_exit,
+                      "output": str(output), "final_sha256": digest(output / "final.json")}, separators=(",", ":")))
+    return controller_exit
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,16 @@
+{
+  "candidate_id": "native-g1g2-diffusion-mms-alternate-source-v1",
+  "candidate_ref": {
+    "id": "fusionconceptai://candidate/native-g1g2-diffusion-mms-alternate-source-v1",
+    "version": "v5"
+  },
+  "scenario_id": "scenario-native-g1g2-diffusion-mms-alternate-source-v1",
+  "scenario_ref": {
+    "id": "fusionconceptai://scenario-design/scenario-native-g1g2-diffusion-mms-alternate-source-v1",
+    "version": "v1"
+  },
+  "design_status": "unvalidated_design_input",
+  "scope": "contract-only locally authored typed design; no solver, provider, measured data, or physical validation",
+  "target_consumer": "G1/G2/G3 factories -> T0 transport and authority recheck -> V1/V2 -> T1 V2 -> V3",
+  "next_gate": "One local software source-admission gate, limited to 240 seconds and 2 GiB; no Julia/solver in this preparation task."
+}

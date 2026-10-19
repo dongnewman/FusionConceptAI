@@ -1,0 +1,104 @@
+{
+  "requested_path": "efm/fcoil_n",
+  "resolved_path": "efm/fcoil_n",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      101
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      101
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "fcoil_n"
+    ],
+    "units": ""
+  },
+  "shape": [
+    101
+  ],
+  "chunks": [
+    101
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "fcoil_n"
+  ],
+  "decoded_bytes": 404,
+  "coordinate_paths": [
+    {
+      "dimension": "fcoil_n",
+      "path": "efm/fcoil_n",
+      "available": true,
+      "shape": [
+        101
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:23.603406Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        101
+      ],
+      "full_chunk_shape": [
+        101
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_n/0",
+      "requested_utc": "2026-09-21T20:06:23.603526Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "158",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"8b35d95cecdd35d379cf7db749fff5a5\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 158,
+      "compressed_sha256": "3fdb6bdd5a639dbd36fc0f1ab7e62b04fef334eabc446ea738eefe4b2844f7fd",
+      "decoded_bytes": 404,
+      "decoded_sha256": "124d4b94e000928007740572850b790c2a70efd809fb32d4264c8e3cfd5ba29a",
+      "decoded_shape": [
+        101
+      ],
+      "written_shape": [
+        101
+      ],
+      "expected_full_bytes": 404,
+      "expected_edge_bytes": 404,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fcoil_n\\assembled.raw",
+  "assembled_raw_bytes": 404,
+  "assembled_raw_sha256": "124d4b94e000928007740572850b790c2a70efd809fb32d4264c8e3cfd5ba29a",
+  "finite_count": 101,
+  "total_count": 101,
+  "minimum": 0.0,
+  "maximum": 100.0
+}

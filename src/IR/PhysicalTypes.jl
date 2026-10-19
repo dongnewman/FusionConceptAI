@@ -88,7 +88,8 @@ _legacy_time_symbol(k::TimeKindV1) = k == static_time ? :static : k == algebraic
                                       k == differential_time ? :differential : Symbol(k)
 
 """Recursive admission trait for values that can be represented canonically."""
-function is_canonical_value(x)
+Base.@nospecializeinfer function is_canonical_value(x)
+    Base.@nospecialize x
     x === nothing && return true
     if Base.ismutabletype(typeof(x))
         (typeof(x) === String || (x isa Symbol && isvalid(String(x)))) && return true
@@ -100,8 +101,12 @@ function is_canonical_value(x)
     x isa Number && return _p0_safe_number(x)
     x isa Enum && return true
     (x isa AbstractArray || x isa AbstractDict || x isa AbstractSet) && return false
-    x isa NamedTuple && return all(is_canonical_value, values(x))
-    x isa Tuple && return all(is_canonical_value, x)
+    if x isa NamedTuple || x isa Tuple
+        for i in 1:fieldcount(typeof(x))
+            is_canonical_value(getfield(x, i)) || return false
+        end
+        return true
+    end
     isstructtype(typeof(x)) || return false
     hasmethod(semantic_view, Tuple{typeof(x)}) || return false
     projected = try

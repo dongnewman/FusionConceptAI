@@ -6,7 +6,7 @@ include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 using .FusionRuntimeV4
 Base.include(FusionRuntimeV4, joinpath(@__DIR__, "..", "src", "RuntimeV4", "TypedDAEInitializationContracts.jl"))
 Base.include(FusionRuntimeV4, joinpath(@__DIR__, "..", "src", "RuntimeV4", "TypedDAEInitialization.jl"))
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_dae_initialization_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_dae_initialization_fixture.jl"))
 
 const compile_typed_dae_initialization_plan = FusionRuntimeV4.compile_typed_dae_initialization_plan
 const TypedDAEInitializationStoreV4 = FusionRuntimeV4.TypedDAEInitializationStoreV4

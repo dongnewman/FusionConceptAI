@@ -1,4 +1,4 @@
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_time_refinement_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_typed_time_refinement_fixture.jl"))
 using LinearAlgebra
 exact = ((1 + exp(-2)) / 2, (1 - exp(-2)) / 2)
 hs = (tref_protocol.base_step, tref_protocol.base_step / 2, tref_protocol.base_step / 4)

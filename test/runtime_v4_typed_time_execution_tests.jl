@@ -15,7 +15,7 @@ const SolverInputV4=FusionRuntimeV4.SolverInputV4
 const TypedTimeResidualReportV4=FusionRuntimeV4.TypedTimeResidualReportV4
 const TypedTimeExecutionPlanV4=FusionRuntimeV4.TypedTimeExecutionPlanV4
 const TypedTimeExecutionReceiptV4=FusionRuntimeV4.TypedTimeExecutionReceiptV4
-include(joinpath(@__DIR__,"..","examples","runtime_v4_typed_time_execution_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_time_execution_fixture.jl"))
 
 @testset "D1.3 typed execution" begin
  for (p,r) in ((texec_plan_continuous,texec_continuous_report),(texec_plan_refinement,texec_refinement_report),(texec_plan_event,texec_event_report))

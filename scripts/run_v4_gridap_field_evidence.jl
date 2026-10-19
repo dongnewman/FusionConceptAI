@@ -1,7 +1,7 @@
 push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
-Base.include(Main, joinpath(@__DIR__, "..", "examples", "runtime_v4_gridap_field_evidence_fixture.jl"))
+Base.include(Main, joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_gridap_field_evidence_fixture.jl"))
 b = gridap_b3_bundle
 FusionRuntimeV4.validate_gridap_field_evidence(b) || error("B3 evidence validation failed")
 FusionRuntimeV4.replay_gridap_field_evidence!(gridap_b3_store, b) || error("B3 replay failed")

@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 12430,
+  "assembled_path": "arrays/pf_active__sol_coordinate_element/assembled.strings.json",
+  "assembled_sha256": "a68d3357feba90cc2f6135be21f81a8d75aee774b77c05782a42426884ba6ae7",
+  "chunks": [
+    656
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:52.495944Z",
+      "compressed_bytes": 449,
+      "compressed_path": "arrays/pf_active__sol_coordinate_element/chunks/c__0.zst",
+      "compressed_sha256": "c52933ededad27cbd016c48165f95e64897493f4e01330875864c415b01a860d",
+      "decoded_bytes": 13014,
+      "decoded_item_count": 656,
+      "decoded_path": "arrays/pf_active__sol_coordinate_element/chunks/c__0.raw",
+      "decoded_sha256": "9ff12097667098893062b714ed4494cee7228f1b99b2f40d8b033ca00481d53c",
+      "decoded_shape": [
+        656
+      ],
+      "edge_shape": [
+        656
+      ],
+      "full_chunk_shape": [
+        656
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:51.999405Z",
+      "response_headers": {
+        "Content-Length": "449",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"abe7f7be0c4e15ea1ca5a698476b651d\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:25 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/sol_coordinate_element/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:52.503460Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "sol_coordinate_element"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          656
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "sol_coordinate_element"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      656
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/sol_coordinate_element",
+  "shape": [
+    656
+  ],
+  "started_utc": "2026-09-22T08:25:51.982486Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 656,
+  "unique_string_count": 656,
+  "units": null
+}

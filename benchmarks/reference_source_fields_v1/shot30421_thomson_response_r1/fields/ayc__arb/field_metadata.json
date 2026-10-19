@@ -1,0 +1,99 @@
+{
+  "requested_path": "ayc/arb",
+  "resolved_path": "ayc/arb",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      130
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      130
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "arb"
+    ],
+    "units": " arb "
+  },
+  "shape": [
+    130
+  ],
+  "chunks": [
+    130
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "arb"
+  ],
+  "decoded_bytes": 520,
+  "coordinate_paths": [
+    {
+      "dimension": "arb",
+      "path": "ayc/arb",
+      "available": true,
+      "shape": [
+        130
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        130
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/arb/0",
+      "requested_utc": "2026-09-22T08:10:02.520807+00:00",
+      "compressed_path": "fields/ayc__arb/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "216",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"0fb2744587b41888e20dd25b75cc95a6\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 216,
+      "compressed_sha256": "632ede2dc2daf283c4d6e0c630096bf2592126b930c709d3d8db496713a1a281",
+      "decoded_path": "fields/ayc__arb/chunks/0.raw",
+      "decoded_bytes": 520,
+      "decoded_sha256": "3944a0934a96146c21b62ea0b5911a752cef11b36a1da0b233d79ec7daa862ff",
+      "decoded_shape": [
+        130
+      ],
+      "full_bytes": 520,
+      "edge_bytes": 520,
+      "completed_utc": "2026-09-22T08:10:03.072783+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:02.518967+00:00",
+  "completed_utc": "2026-09-22T08:10:03.075187+00:00",
+  "assembled_path": "fields/ayc__arb/assembled.raw",
+  "assembled_bytes": 520,
+  "assembled_sha256": "3944a0934a96146c21b62ea0b5911a752cef11b36a1da0b233d79ec7daa862ff",
+  "finite_count": 130,
+  "total_count": 130,
+  "minimum": 0.0,
+  "maximum": 129.0
+}

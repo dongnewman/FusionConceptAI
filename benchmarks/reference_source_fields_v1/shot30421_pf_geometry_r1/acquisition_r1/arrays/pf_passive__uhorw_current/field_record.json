@@ -1,0 +1,126 @@
+{
+  "assembled_bytes": 183696,
+  "assembled_path": "arrays/pf_passive__uhorw_current/assembled.raw",
+  "assembled_sha256": "6b674323c706ee53fad0555a0f1732df428ce0a1dad359bbc2996806d1d3c3ae",
+  "chunks": [
+    6,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:21.222519Z",
+      "compressed_bytes": 175470,
+      "compressed_path": "arrays/pf_passive__uhorw_current/chunks/c__0__0.zst",
+      "compressed_sha256": "d2d6df3a7c4eb74aba362794980dae22d531861f76d3339995117f40fe139b93",
+      "decoded_bytes": 183696,
+      "decoded_path": "arrays/pf_passive__uhorw_current/chunks/c__0__0.raw",
+      "decoded_sha256": "6b674323c706ee53fad0555a0f1732df428ce0a1dad359bbc2996806d1d3c3ae",
+      "decoded_shape": [
+        6,
+        3827
+      ],
+      "edge_shape": [
+        6,
+        3827
+      ],
+      "full_chunk_shape": [
+        6,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:20.160165Z",
+      "response_headers": {
+        "Content-Length": "175470",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"841ad982eb522884df41a4888c8ce131\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:36 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/uhorw_current/c/0/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:21.239915Z",
+  "data_type": "float64",
+  "decoded_bytes": 183696,
+  "dimensions": [
+    "uhorw_current_channel",
+    "time"
+  ],
+  "finite_count": 22962,
+  "maximum": 4272.769558334417,
+  "minimum": -5571.806441215803,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "uhorw_current",
+      "uda_name": "AMM_UHORW1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          6,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "uhorw_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      6,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/uhorw_current",
+  "shape": [
+    6,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:20.128643Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 22962,
+  "units": "A"
+}

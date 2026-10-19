@@ -229,7 +229,7 @@ if get(ENV, "FUSION_G1OC_CHILD", "0") == "1"
 else
     function _g1oc_run_child(mode)
         script = "using FusionConceptAI; using SHA; include($(repr(joinpath(@__DIR__, "mechanism_observable_closed_canonical_adversarial.jl"))))"
-        command = setenv(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`, "FUSION_G1OC_CHILD" => "1", "FUSION_G1OC_MODE" => mode)
+        command = setenv(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true), "FUSION_G1OC_CHILD" => "1", "FUSION_G1OC_MODE" => mode)
         read(pipeline(command, stderr=stdout), String)
     end
     @testset "G1 Observable isolated fresh poison" begin

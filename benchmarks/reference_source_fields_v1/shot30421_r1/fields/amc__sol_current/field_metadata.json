@@ -1,0 +1,122 @@
+{
+  "requested_path": "amc/solenoid_current",
+  "resolved_path": "amc/sol_current",
+  "metadata_resolution": "explicit_metadata_alias",
+  "zarray": {
+    "chunks": [
+      30000
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      30000
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "P1PS - Solenoid Feed Current",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Sol Current",
+    "mds_name": "\\TOP.ANALYSED.AMC:SOL_CURRENT",
+    "name": "amc/sol_current",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      30000
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "amc",
+    "time_index": 0,
+    "uda_name": "AMC_SOL CURRENT",
+    "units": "kA",
+    "uuid": "ef8c0b38-5cb3-5511-a4a3-cfe926679818",
+    "version": 0
+  },
+  "shape": [
+    30000
+  ],
+  "chunks": [
+    30000
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 120000,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "amc/time",
+      "available": true,
+      "shape": [
+        30000
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:19.090033Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        30000
+      ],
+      "full_chunk_shape": [
+        30000
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/sol_current/0",
+      "requested_utc": "2026-09-21T20:02:19.090144Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "102397",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+        "ETag": "\"a506fb8de0f8512f5c25821bf8429c29\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 102397,
+      "compressed_sha256": "d90c10cac0367d3e7d0bb6227f916f79d0a5cdd05531882766c1616fc9708496",
+      "decoded_bytes": 120000,
+      "decoded_sha256": "b41673518c3f36abd7f2a0d804e7a28b660c9caf223ffdacfddc311b225b519d",
+      "decoded_shape": [
+        30000
+      ],
+      "expected_full_bytes": 120000,
+      "expected_edge_bytes": 120000,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\amc__sol_current\\assembled.raw",
+  "assembled_raw_bytes": 120000,
+  "assembled_raw_sha256": "b41673518c3f36abd7f2a0d804e7a28b660c9caf223ffdacfddc311b225b519d",
+  "finite_count": 30000,
+  "total_count": 30000,
+  "minimum": -46.952510833740234,
+  "maximum": 45.65493392944336
+}

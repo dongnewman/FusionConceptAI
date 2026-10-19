@@ -1,0 +1,99 @@
+{
+  "requested_path": "ayc/instrument_time",
+  "resolved_path": "ayc/instrument_time",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      20
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      20
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "instrument_time"
+    ],
+    "units": "s"
+  },
+  "shape": [
+    20
+  ],
+  "chunks": [
+    20
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "instrument_time"
+  ],
+  "decoded_bytes": 80,
+  "coordinate_paths": [
+    {
+      "dimension": "instrument_time",
+      "path": "ayc/instrument_time",
+      "available": true,
+      "shape": [
+        20
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        20
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/instrument_time/0",
+      "requested_utc": "2026-09-22T08:10:01.429739+00:00",
+      "compressed_path": "fields/ayc__instrument_time/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "96",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"4b76607d7ff3c3436f858cd4e088aba0\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 96,
+      "compressed_sha256": "4c0890d848af7a0366c553dca795b1f44749f7de5539e9e19bcb2ab0fc029cda",
+      "decoded_path": "fields/ayc__instrument_time/chunks/0.raw",
+      "decoded_bytes": 80,
+      "decoded_sha256": "53ea0f80fbb5f1506f57f86e41a6ce264eae257365515b654a8fa718261342ca",
+      "decoded_shape": [
+        20
+      ],
+      "full_bytes": 80,
+      "edge_bytes": 80,
+      "completed_utc": "2026-09-22T08:10:01.964662+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:01.428467+00:00",
+  "completed_utc": "2026-09-22T08:10:01.968816+00:00",
+  "assembled_path": "fields/ayc__instrument_time/assembled.raw",
+  "assembled_bytes": 80,
+  "assembled_sha256": "53ea0f80fbb5f1506f57f86e41a6ce264eae257365515b654a8fa718261342ca",
+  "finite_count": 20,
+  "total_count": 20,
+  "minimum": 1.0,
+  "maximum": 20.0
+}

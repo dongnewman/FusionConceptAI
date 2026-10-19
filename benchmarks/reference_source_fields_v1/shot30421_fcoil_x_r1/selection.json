@@ -1,0 +1,222 @@
+{
+  "schema": "mast-source-fields-selection-v1",
+  "shot": 30421,
+  "field_set": "fcoil_x_comparator3",
+  "metadata_path": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "selection_rule": "fixed requested paths from ownership_delta05; solenoid alias only when exact requested path is absent",
+  "requested_fields": [
+    {
+      "requested_path": "efm/fcoil_x",
+      "resolved_path": "efm/fcoil_x",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "fcoil_n"
+        ],
+        "description": "Input (experimental) fitted toroidal currents; f(nfcoil, A)",
+        "dims": [
+          "time",
+          "fcoil_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Measured f-coil current",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_X",
+        "name": "efm/fcoil_x",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          120,
+          101
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_(X)",
+        "units": "A",
+        "uuid": "207705fc-6696-5ce4-ad58-cd7877f153d1",
+        "version": 0
+      },
+      "shape": [
+        120,
+        101
+      ],
+      "chunks": [
+        120,
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "fcoil_n"
+      ],
+      "decoded_bytes": 48480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/time",
+      "resolved_path": "efm/time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "units": "S"
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_n",
+      "resolved_path": "efm/fcoil_n",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_n"
+        ],
+        "units": ""
+      },
+      "shape": [
+        101
+      ],
+      "chunks": [
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_n"
+      ],
+      "decoded_bytes": 404,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    }
+  ],
+  "total_decoded_bytes": 49364,
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "network_timeout_seconds": 30
+  },
+  "raw_values_only": true,
+  "uncertainty_interpretation": "not_performed",
+  "scientific_acceptance": false,
+  "frozen_utc": "2026-10-18T02:25:30.969903Z"
+}

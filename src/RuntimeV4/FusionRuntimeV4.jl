@@ -12,6 +12,7 @@ include("AlgebraicResidual.jl")
 include("AlgebraicScopedSearch.jl")
 include("AlgebraicGenerationV4.jl")
 include("FieldProgramEvaluation.jl")
+include("DTFusionReactivityV1.jl")
 include("FieldResidualNumerics.jl")
 include("FieldResidualPipeline.jl")
 include("DeterministicScreenProvider.jl")
@@ -36,6 +37,9 @@ export MinimalityScopeV4, CapabilitySignatureV4, ProviderManifestV4,
        FieldEvaluationReportV4, compile_field_evaluation_plan,
        evaluate_field_program, field_evaluation_manifest,
        field_evaluation_provider, execute_field_evaluation,
+       dt_fusion_reactivity_capability_v1, dt_fusion_reactivity_manifest_v1,
+       evaluate_dt_fusion_reactivity_v1, DTFusionQuantityV1, DTFusionReactivityInputV1,
+       evolve_dt_fusion_composition_v1,
        StructuredGridProtocolV4, DiagonalAffineChartGeometryV4,
        LinearFieldResidualFormV4, FieldResidualPayloadV4,
        ResidualAssemblyV4, FieldSolveResultV4,

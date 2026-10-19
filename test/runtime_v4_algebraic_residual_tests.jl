@@ -12,7 +12,7 @@ end
 
 module RuntimeV4AlgebraicResidualFixture
 using FusionConceptAI
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_algebraic_constraint_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_algebraic_constraint_fixture.jl"))
 end
 
 const R = RuntimeV4AlgebraicResidualTestModule

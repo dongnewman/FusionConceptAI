@@ -3,8 +3,7 @@ push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
 
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_gridap_native_comparison_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_gridap_native_comparison_fixture.jl"))
 
 const GNC = FusionRuntimeV4
 const GNC_REPORT = gridap_c_report

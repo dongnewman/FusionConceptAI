@@ -1,7 +1,6 @@
 using Pkg
 Pkg.activate(joinpath(@__DIR__, ".."))
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_typed_dae_time_execution_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_typed_dae_time_execution_fixture.jl"))
 
 store = TypedDAETimeStoreV4()
 report = FusionRuntimeV4.execute_once!(store, d2_time_plan.input,

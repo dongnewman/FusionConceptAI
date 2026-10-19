@@ -68,35 +68,100 @@ function _bad_receipt(x, ::Type{T}) where {T}
         x.status, x.factory_result)
 end
 
-function _state_part(x)
-    bytes = Vector{UInt8}(codeunits(G.canonical_json(x)))
-    (bytes=bytes, hash=G._vnl_t0_sha(bytes))
+"""Closed comparison of test values with a bounded product-value walk.
+
+The comparator must not introspect Julia runtime structs: String, Function,
+Type, and similar values can expose implementation objects with recursive
+internal graphs.  Product structs owned by FusionConceptAI are the only
+structs opened; mutable byte arrays remain recursively checked so nested
+mutation cannot be hidden.  The explicit depth bound makes a malformed
+self-referential fixture fail closed instead of exhausting the Windows stack.
+"""
+const _CLOSED_EQUAL_MAX_DEPTH = 256
+const _CLOSED_EQUAL_PRODUCT_MODULE = parentmodule(G.VNextT0LocalTransportV1)
+
+function _closed_equal(a, b, depth::Int=0)
+    typeof(a) === typeof(b) || return false
+    depth <= _CLOSED_EQUAL_MAX_DEPTH || return false
+    a === b && return true
+    # Runtime/atomic values are opaque; do not recurse through their internal
+    # struct representation (which is outside the product value contract).
+    if a isa AbstractString || a isa AbstractChar || a isa Symbol ||
+            a isa Number || a isa Enum || a isa Function || a isa Type ||
+            a isa Module || a isa Ptr || a isa Nothing
+        return a == b
+    elseif a isa AbstractArray
+        size(a) == size(b) || return false
+        return all(_closed_equal(x, y, depth + 1) for (x, y) in zip(a, b))
+    elseif a isa Tuple
+        length(a) == length(b) || return false
+        return all(_closed_equal(x, y, depth + 1) for (x, y) in zip(a, b))
+    elseif a isa NamedTuple
+        keys(a) == keys(b) || return false
+        return all(_closed_equal(getproperty(a, k), getproperty(b, k), depth + 1)
+            for k in keys(a))
+    elseif a isa AbstractDict
+        keys(a) == keys(b) || return false
+        return all(haskey(b, k) && _closed_equal(v, b[k], depth + 1)
+            for (k, v) in a)
+    elseif isstructtype(typeof(a))
+        # Only recurse into immutable product values defined by this package;
+        # unknown runtime structs are compared opaquely and never traversed.
+        parentmodule(typeof(a)) === _CLOSED_EQUAL_PRODUCT_MODULE || return a == b
+        return all(_closed_equal(getfield(a, i), getfield(b, i), depth + 1)
+            for i in 1:fieldcount(typeof(a)))
+    end
+    a == b
 end
 
-function _state(bundle, records)
-    bundle_state = _state_part(bundle)
-    record_state = Tuple(_state_part(x) for x in records)
-    (bundle_bytes=bundle_state.bytes, bundle_hash=bundle_state.hash,
+function _snapshot_part(x)
+    frozen = deepcopy(x)
+    canonical = G.canonical_json(frozen)
+    bytes = copy(Vector{UInt8}(codeunits(canonical)))
+    hash = G._vnl_t0_sha(bytes)
+    (frozen=frozen, bytes=bytes, hash=hash)
+end
+
+function _freeze_state(bundle, records)
+    bundle_state = _snapshot_part(bundle)
+    record_state = Tuple(_snapshot_part(x) for x in records)
+    (bundle=bundle_state.frozen, records=Tuple(x.frozen for x in record_state),
+        bundle_bytes=bundle_state.bytes, bundle_hash=bundle_state.hash,
         record_bytes=Tuple(x.bytes for x in record_state),
         record_hash=Tuple(x.hash for x in record_state))
 end
 
+function _assert_frozen_unchanged(snapshot, bundle, records)
+    @test _closed_equal(bundle, snapshot.bundle)
+    @test _closed_equal(records, snapshot.records)
+end
+
+function _expected_present(snapshot)
+    G.VNextAuthorityRecheckLocalCheckedPresentV1(Main._T0L_CANDIDATE,
+        snapshot.records[1], snapshot.records[2], snapshot.records[3],
+        snapshot.bundle.feedback, snapshot.bundle.children,
+        snapshot.bundle.bundle_hash)
+end
+
+function _expected_typed_absent(snapshot)
+    G.VNextAuthorityRecheckLocalTypedAbsentV1(Main._T0L_CANDIDATE,
+        (:missing_material, :g3_feedback_material_absent),
+        snapshot.bundle.bundle_hash, true)
+end
+
 function _assert_negative(name, bundle, records, expected_errors)
-    before = _state(bundle, records)
+    before = _freeze_state(bundle, records)
     result = G.vnext_declaration_authority_recheck_local_v1(
         _local_input(bundle, records))
-    after = _state(bundle, records)
     @test result.status === :fail_closed
     @test result.resolution === :none
     @test result.accepted === false
     @test result.claim_ceiling === :contract_only
     @test result.errors === expected_errors
+    @test result.reasons === expected_errors
     @test result.output === nothing
-    @test before.bundle_bytes == after.bundle_bytes
-    @test before.bundle_hash == after.bundle_hash
-    @test before.record_bytes == after.record_bytes
-    @test before.record_hash == after.record_hash
-    @test result.prior_bundle_bytes == before.bundle_bytes
+    _assert_frozen_unchanged(before, bundle, records)
+    @test collect(result.prior_bundle_bytes) == before.bundle_bytes
     @test result.prior_bundle_sha256 == bundle.bundle_hash
     result
 end
@@ -136,17 +201,33 @@ const LOCAL_NEGATIVE_DISPATCH = (
 
 @testset "local T0 authority recheck V1" begin
     bundle, records, children, feedback = _local_fixture()
+    positive_before = _freeze_state(bundle, records)
     result = G.vnext_declaration_authority_recheck_local_v1(
         _local_input(bundle, records))
     @test result.status === :local_checked_present
     @test result.resolution === :resolved
     @test result.accepted === false
     @test result.claim_ceiling === :contract_only
+    @test result.errors === ()
+    @test result.reasons === ()
     @test result.output isa G.VNextAuthorityRecheckLocalCheckedPresentV1
     @test result.output.g1.layer === :G1
     @test result.output.g2.layer === :G2
     @test result.output.g3.layer === :G3
     @test all(x -> x isa G.VNextT0LocalChildAbsentV1, result.output.children)
+    @test _closed_equal(result.output, _expected_present(positive_before))
+    _assert_frozen_unchanged(positive_before, bundle, records)
+    @test collect(result.prior_bundle_bytes) == positive_before.bundle_bytes
+    @test result.prior_bundle_sha256 == bundle.bundle_hash
+
+    @testset "closed comparator mutation probe" begin
+        probe = deepcopy(bundle)
+        probe_snapshot = deepcopy(probe)
+        @test _closed_equal(probe, probe_snapshot)
+        probe.declarations[1].source_bytes.bytes[1] = xor(
+            probe.declarations[1].source_bytes.bytes[1], UInt8(0x01))
+        @test !_closed_equal(probe, probe_snapshot)
+    end
 
     @testset "typed absence preserves the deferred G3 boundary" begin
         absent_g3 = G.VNextT0LocalAbsentDeclarationV1(:G3,
@@ -154,24 +235,23 @@ const LOCAL_NEGATIVE_DISPATCH = (
         absent_bundle = _rebuild_bundle(bundle;
             declarations=(records[1], records[2], absent_g3))
         absent_records = (records[1], records[2], absent_g3)
-        absent_before = _state(absent_bundle, absent_records)
+        absent_before = _freeze_state(absent_bundle, absent_records)
         absent = G.vnext_declaration_authority_recheck_local_v1(
             _local_input(absent_bundle, absent_records))
-        absent_after = _state(absent_bundle, absent_records)
         @test absent.status === :typed_absent
         @test absent.resolution === :terminal_deferred
         @test absent.accepted === false
         @test absent.claim_ceiling === :contract_only
         @test absent.errors === ()
+        @test absent.reasons ===
+            (:missing_material, :g3_feedback_material_absent)
         @test absent.output isa G.VNextAuthorityRecheckLocalTypedAbsentV1
         @test absent.output.reasons ===
             (:missing_material, :g3_feedback_material_absent)
         @test absent.output.g3_children_deferred
-        @test absent_before.bundle_bytes == absent_after.bundle_bytes
-        @test absent_before.bundle_hash == absent_after.bundle_hash
-        @test absent_before.record_bytes == absent_after.record_bytes
-        @test absent_before.record_hash == absent_after.record_hash
-        @test absent.prior_bundle_bytes == absent_before.bundle_bytes
+        @test _closed_equal(absent.output, _expected_typed_absent(absent_before))
+        _assert_frozen_unchanged(absent_before, absent_bundle, absent_records)
+        @test collect(absent.prior_bundle_bytes) == absent_before.bundle_bytes
         @test absent.prior_bundle_sha256 == absent_bundle.bundle_hash
     end
 

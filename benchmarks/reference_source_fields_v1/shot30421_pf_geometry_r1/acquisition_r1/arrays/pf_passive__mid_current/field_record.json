@@ -1,0 +1,166 @@
+{
+  "assembled_bytes": 367392,
+  "assembled_path": "arrays/pf_passive__mid_current/assembled.raw",
+  "assembled_sha256": "b6905d7a5aaebd91e3bc5e984509a80edf46d1601959ec28655707f70406d0e7",
+  "chunks": [
+    6,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:10.135468Z",
+      "compressed_bytes": 175268,
+      "compressed_path": "arrays/pf_passive__mid_current/chunks/c__0__0.zst",
+      "compressed_sha256": "8a42489c52f77650298e9597b51503cf6ca5ae76aa90732a6bef133b24a531de",
+      "decoded_bytes": 183696,
+      "decoded_path": "arrays/pf_passive__mid_current/chunks/c__0__0.raw",
+      "decoded_sha256": "0843f6b9a33d2a9952a59e59424054336eb8a22610dc7319a536abfa1a8a320c",
+      "decoded_shape": [
+        6,
+        3827
+      ],
+      "edge_shape": [
+        6,
+        3827
+      ],
+      "full_chunk_shape": [
+        6,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:08.472901Z",
+      "response_headers": {
+        "Content-Length": "175268",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"7d05994f2deb88c9d6bad253cf619144\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:30 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/mid_current/c/0/0"
+    },
+    {
+      "chunk_index": [
+        1,
+        0
+      ],
+      "chunk_key": "c/1/0",
+      "completed_utc": "2026-09-22T08:27:11.597989Z",
+      "compressed_bytes": 174976,
+      "compressed_path": "arrays/pf_passive__mid_current/chunks/c__1__0.zst",
+      "compressed_sha256": "4eec4e2971a195797c035b33d20d57d0274897a8cfedf92d706ef526da31792f",
+      "decoded_bytes": 183696,
+      "decoded_path": "arrays/pf_passive__mid_current/chunks/c__1__0.raw",
+      "decoded_sha256": "5cd52c29cc535aac3a548d02f88039911fb7e23955877dd4c13710128e5e90ca",
+      "decoded_shape": [
+        6,
+        3827
+      ],
+      "edge_shape": [
+        6,
+        3827
+      ],
+      "full_chunk_shape": [
+        6,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:10.167251Z",
+      "response_headers": {
+        "Content-Length": "174976",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"3783a86b0faac2fa92a02018d829b6dc\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:30 GMT"
+      },
+      "starts": [
+        6,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/mid_current/c/1/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:11.623299Z",
+  "data_type": "float64",
+  "decoded_bytes": 367392,
+  "dimensions": [
+    "mid_current_channel",
+    "time"
+  ],
+  "finite_count": 45924,
+  "maximum": 983.0696515589692,
+  "minimum": -1229.7144475145572,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "mid_current",
+      "uda_name": "AMM_MID1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          6,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "mid_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      12,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/mid_current",
+  "shape": [
+    12,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:08.445020Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 45924,
+  "units": "A"
+}

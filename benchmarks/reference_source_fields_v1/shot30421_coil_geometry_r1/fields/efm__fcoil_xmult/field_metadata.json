@@ -1,0 +1,124 @@
+{
+  "requested_path": "efm/fcoil_xmult",
+  "resolved_path": "efm/fcoil_xmult",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      938
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      938
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "fcoil_seg_n"
+    ],
+    "description": "Multiplier for each f-coil element to weight current within coil, e.g. by area; f(fcoil_segs_n)",
+    "dims": [
+      "fcoil_seg_n"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "f-Coil turns multiplier",
+    "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_XMULT",
+    "name": "efm/fcoil_xmult",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      1,
+      938
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_FCOIL_XMULT",
+    "units": "deg",
+    "uuid": "bf17f6d0-ebb3-54c2-8165-81263ce29712",
+    "version": 0
+  },
+  "shape": [
+    938
+  ],
+  "chunks": [
+    938
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "fcoil_seg_n"
+  ],
+  "decoded_bytes": 3752,
+  "coordinate_paths": [
+    {
+      "dimension": "fcoil_seg_n",
+      "path": null,
+      "available": false,
+      "shape": null,
+      "dtype": null,
+      "units": null
+    }
+  ],
+  "utc_started": "2026-09-22T02:31:40.385711Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        938
+      ],
+      "full_chunk_shape": [
+        938
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_xmult/0",
+      "requested_utc": "2026-09-22T02:31:40.385790Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "359",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"20b56dfe0bca960b63a0e14e966be979\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 359,
+      "compressed_sha256": "18a3b3fe54152f1d953b59d679bc12d875d1ee1cafb9ccbe96309a0d171a3c2f",
+      "decoded_bytes": 3752,
+      "decoded_sha256": "5c41fa10414243ff03cb70c23e495fead0654a121cfbddf720f4e5be6be7c50e",
+      "decoded_shape": [
+        938
+      ],
+      "written_shape": [
+        938
+      ],
+      "expected_full_bytes": 3752,
+      "expected_edge_bytes": 3752,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fcoil_xmult\\assembled.raw",
+  "assembled_raw_bytes": 3752,
+  "assembled_raw_sha256": "5c41fa10414243ff03cb70c23e495fead0654a121cfbddf720f4e5be6be7c50e",
+  "finite_count": 938,
+  "total_count": 938,
+  "minimum": 0.04347829893231392,
+  "maximum": 1.0
+}

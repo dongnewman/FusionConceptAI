@@ -1,0 +1,166 @@
+{
+  "assembled_bytes": 306160,
+  "assembled_path": "arrays/pf_passive__ring_current/assembled.raw",
+  "assembled_sha256": "fc64074156eff4c2c3ad9fcb56f388d64bf4a269d54fb5b09331876973b4bac0",
+  "chunks": [
+    5,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:16.250228Z",
+      "compressed_bytes": 146860,
+      "compressed_path": "arrays/pf_passive__ring_current/chunks/c__0__0.zst",
+      "compressed_sha256": "52c0e14300864e7818564dba4436d915585861321c90042a06222c515fa4969d",
+      "decoded_bytes": 153080,
+      "decoded_path": "arrays/pf_passive__ring_current/chunks/c__0__0.raw",
+      "decoded_sha256": "c27d67ce465d7d4f070f1f97c44a29220bb44a2270d53e6bd67948219a496883",
+      "decoded_shape": [
+        5,
+        3827
+      ],
+      "edge_shape": [
+        5,
+        3827
+      ],
+      "full_chunk_shape": [
+        5,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:15.156164Z",
+      "response_headers": {
+        "Content-Length": "146860",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"65cb44b666ff3c671cb1c8f6aaec14f7\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:33 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/ring_current/c/0/0"
+    },
+    {
+      "chunk_index": [
+        1,
+        0
+      ],
+      "chunk_key": "c/1/0",
+      "completed_utc": "2026-09-22T08:27:17.319263Z",
+      "compressed_bytes": 146709,
+      "compressed_path": "arrays/pf_passive__ring_current/chunks/c__1__0.zst",
+      "compressed_sha256": "8f4a217e176762c47e29d453ec42adddff9ae5c222498ec64f4569942bad12d3",
+      "decoded_bytes": 153080,
+      "decoded_path": "arrays/pf_passive__ring_current/chunks/c__1__0.raw",
+      "decoded_sha256": "d561ebcec0c88d989a4fc03a769e293ad041cd6094ae75523ddec666f95a118e",
+      "decoded_shape": [
+        5,
+        3827
+      ],
+      "edge_shape": [
+        5,
+        3827
+      ],
+      "full_chunk_shape": [
+        5,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:16.291300Z",
+      "response_headers": {
+        "Content-Length": "146709",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"db24a32d086c934d9e625e605d7822a9\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:33 GMT"
+      },
+      "starts": [
+        5,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/ring_current/c/1/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:17.342727Z",
+  "data_type": "float64",
+  "decoded_bytes": 306160,
+  "dimensions": [
+    "ring_current_channel",
+    "time"
+  ],
+  "finite_count": 38270,
+  "maximum": 307.16661690771974,
+  "minimum": -355.02569277440233,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "Centre column ring passive filaments.",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "ring_current",
+      "uda_name": "AMM_RING1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          5,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "ring_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      10,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/ring_current",
+  "shape": [
+    10,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:15.137482Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 38270,
+  "units": "A"
+}

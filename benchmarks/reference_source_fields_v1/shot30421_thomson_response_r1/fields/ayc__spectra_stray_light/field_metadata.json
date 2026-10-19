@@ -1,0 +1,205 @@
+{
+  "requested_path": "ayc/spectra_stray_light",
+  "resolved_path": "ayc/spectra_stray_light",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      142,
+      131,
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131,
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Raw spectra",
+    "mds_name": "\\TOP.ANALYSED.AYC.SPECTRA_:STRAY_LIGHT",
+    "name": "ayc/spectra_stray_light",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      145,
+      130,
+      4
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_SPECTRA_STRAY_LIGHT",
+    "units": "V",
+    "uuid": "0bfdfc6e-9537-5303-bce5-2df7377eb350",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131,
+    4
+  ],
+  "chunks": [
+    142,
+    131,
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index",
+    "spectral_index"
+  ],
+  "decoded_bytes": 595264,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    },
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_stray_light/0.0.0",
+      "requested_utc": "2026-09-22T08:10:10.791597+00:00",
+      "compressed_path": "fields/ayc__spectra_stray_light/chunks/0.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "3472",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"8899c202f30266dcf6e4627af5699778\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 3472,
+      "compressed_sha256": "7a2924665a2d50a9524ce265de48c539f282274144d5f66ff962e0528ad8aeff",
+      "decoded_path": "fields/ayc__spectra_stray_light/chunks/0.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "3d94778ddd0dcc6f05830e9696f13a31638d73efd3570a68cc81a83d0bc9abb3",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:11.331666+00:00"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        142,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_stray_light/1.0.0",
+      "requested_utc": "2026-09-22T08:10:11.333640+00:00",
+      "compressed_path": "fields/ayc__spectra_stray_light/chunks/1.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "3428",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"a6891a2036a5674167a98d2395c5ee1e\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 3428,
+      "compressed_sha256": "cdc6062abbad91465c28cba55bb70f0af239d4fc4dc2b4d8369b9219389a75bd",
+      "decoded_path": "fields/ayc__spectra_stray_light/chunks/1.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "b5874b52a7adac047ae078865e500739470d8ba5cc69831b23b4590cdec25729",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:11.879837+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:10.790191+00:00",
+  "completed_utc": "2026-09-22T08:10:11.883982+00:00",
+  "assembled_path": "fields/ayc__spectra_stray_light/assembled.raw",
+  "assembled_bytes": 595264,
+  "assembled_sha256": "7c6d22aab7a6ba7916a66d56af91bab052ce62431052eaec25d7c136e6eb16b7",
+  "finite_count": 75400,
+  "total_count": 148816,
+  "minimum": 0.0,
+  "maximum": 0.7499606013298035
+}

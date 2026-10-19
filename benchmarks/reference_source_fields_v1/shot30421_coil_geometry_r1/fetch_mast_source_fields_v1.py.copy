@@ -1,0 +1,469 @@
+"""Bounded raw acquisition of selected MAST Level-1 source fields.
+
+This tool freezes a shot-specific field selection against the supplied
+consolidated Zarr metadata, downloads only the selected public chunks, and
+keeps compressed chunks, decoded chunks, and a C-order assembled raw array.
+It does not infer uncertainty semantics or physical independence.
+"""
+from __future__ import annotations
+
+import argparse
+import ctypes
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import sys
+from datetime import datetime, timezone
+
+import numpy as np
+import requests
+
+
+EXPECTED_METADATA_SHA256 = "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1"
+SOURCE_BASE = "https://s3.echo.stfc.ac.uk/mast/level1/shots"
+MAX_ARRAY_BYTES = 8_000_000
+MAX_TOTAL_DECODED_BYTES = 24_000_000
+MAX_COMPRESSED_CHUNK_BYTES = 8_000_000
+PROCESS_MEMORY_LIMIT_BYTES = 536_870_912
+REQUEST_TIMEOUT = (10, 30)
+
+# Logical paths are frozen from the 30421 metadata inventory.  The solenoid
+# spelling is resolved only through the explicit metadata alias below.
+REQUESTED_FIELDS = [
+    "efm/time",
+    "efm/profile_r",
+    "efm/profile_z",
+    "efm/psi_norm",
+    "efm/lcfs_coords",
+    "efm/fcoil_n",
+    "efm/psirz",
+    "efm/psi_axis",
+    "efm/psi_boundary",
+    "efm/lcfs_r",
+    "efm/lcfs_z",
+    "efm/ppsi_c",
+    "efm/fpsi_c",
+    "efm/pprime",
+    "efm/ffprime",
+    "efm/magnetic_axis_r",
+    "efm/magnetic_axis_z",
+    "efm/bvac_r",
+    "efm/bvac_val",
+    "efm/fcoil_x",
+    "efm/plasma_current_x",
+    "amc/time",
+    "amc/plasma_current",
+    "amc/tf_current",
+    "amc/solenoid_current",
+    "anb/time",
+    "anb/ss_sum_power",
+    "anb/sw_sum_power",
+    "anb/tot_sum_power",
+]
+NATIVE_COIL_COORD_FIELDS = [
+    "amc/p2u_current",
+    "amc/p2l_current",
+    "amc/p3u_current",
+    "amc/p3l_current",
+    "amc/p4u_current",
+    "amc/p4l_current",
+    "amc/p5u_current",
+    "amc/p5l_current",
+    "amc/p6u_current",
+    "amc/p6l_current",
+    "efm/xpoint1_rc",
+    "efm/xpoint1_zc",
+    "efm/xpoint2_rc",
+    "efm/xpoint2_zc",
+    "efm/r",
+    "efm/gridr",
+    "efm/z",
+    "efm/gridz",
+    "efm/rvals",
+]
+COIL_GEOMETRY_FIELDS = [
+    "efm/fcoil_r",
+    "efm/fcoil_z",
+    "efm/fcoil_width",
+    "efm/fcoil_height",
+    "efm/fcoil_ang1",
+    "efm/fcoil_ang2",
+    "efm/fcoil_circ",
+    "efm/fcoil_turns",
+    "efm/fcoil_xmult",
+    "efm/fcoil_c",
+    "efm/limiterr",
+    "efm/limiterz",
+    "efm/qpsi_c",
+]
+SOLENOID_METADATA_ALIASES = {
+    "amc/solenoid_current": ["amc/sol_current"],
+}
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def sha256_path(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def load_blosc():
+    dll_dir = Path(sys.executable).parent / "Library" / "bin"
+    dll_path = dll_dir / "blosc.dll"
+    if not dll_path.is_file():
+        raise FileNotFoundError(f"Blosc DLL not found: {dll_path}")
+    dll_handle = os.add_dll_directory(str(dll_dir)) if hasattr(os, "add_dll_directory") else None
+    library = ctypes.CDLL(str(dll_path))
+    library.blosc_init.argtypes = []
+    library.blosc_init.restype = None
+    library.blosc_init()
+    library.blosc_cbuffer_validate.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_size_t,
+        ctypes.POINTER(ctypes.c_size_t),
+    ]
+    library.blosc_cbuffer_validate.restype = ctypes.c_int
+    library.blosc_decompress_ctx.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_void_p,
+        ctypes.c_size_t,
+        ctypes.c_int,
+    ]
+    library.blosc_decompress_ctx.restype = ctypes.c_int
+    library.blosc_compress.argtypes = [
+        ctypes.c_int,
+        ctypes.c_int,
+        ctypes.c_size_t,
+        ctypes.c_size_t,
+        ctypes.c_void_p,
+        ctypes.c_void_p,
+        ctypes.c_size_t,
+    ]
+    library.blosc_compress.restype = ctypes.c_int
+    return library, dll_handle, dll_path
+
+
+def blosc_compress(library, raw: bytes) -> bytes:
+    destination = ctypes.create_string_buffer(len(raw) + max(1024, len(raw) // 16))
+    source = ctypes.create_string_buffer(raw)
+    result = library.blosc_compress(5, 1, 4, len(raw), source, destination, len(destination))
+    if result <= 0:
+        raise ValueError(f"Blosc self-test compression failed: {result}")
+    return destination.raw[:result]
+
+
+def decode_chunk(library, compressed: bytes, dtype: np.dtype, full_shape: tuple[int, ...], edge_shape: tuple[int, ...]):
+    if not compressed:
+        raise ValueError("empty compressed chunk")
+    if len(compressed) > MAX_COMPRESSED_CHUNK_BYTES:
+        raise ValueError(f"compressed chunk exceeds {MAX_COMPRESSED_CHUNK_BYTES} bytes")
+    source = ctypes.create_string_buffer(compressed)
+    decoded_size = ctypes.c_size_t()
+    validation = library.blosc_cbuffer_validate(source, len(compressed), ctypes.byref(decoded_size))
+    if validation != 0:
+        raise ValueError(f"invalid Blosc buffer: validator={validation}")
+    full_bytes = int(np.prod(full_shape, dtype=np.int64)) * dtype.itemsize
+    edge_bytes = int(np.prod(edge_shape, dtype=np.int64)) * dtype.itemsize
+    if full_bytes > MAX_COMPRESSED_CHUNK_BYTES or edge_bytes > MAX_COMPRESSED_CHUNK_BYTES:
+        raise ValueError("decoded chunk exceeds bounded chunk size")
+    if decoded_size.value not in (full_bytes, edge_bytes):
+        raise ValueError(
+            f"decoded byte count {decoded_size.value} differs from full {full_bytes} or edge {edge_bytes}"
+        )
+    destination = ctypes.create_string_buffer(max(full_bytes, edge_bytes))
+    result = library.blosc_decompress_ctx(source, destination, len(destination), 1)
+    if result not in (full_bytes, edge_bytes):
+        raise ValueError(f"Blosc decompression returned {result}, expected {full_bytes} or {edge_bytes}")
+    decoded_shape = full_shape if result == full_bytes else edge_shape
+    raw = destination.raw[:result]
+    array = np.frombuffer(raw, dtype=dtype).reshape(decoded_shape, order="C")
+    return raw, array, decoded_shape, full_bytes, edge_bytes
+
+
+def chunk_indices(shape: tuple[int, ...], chunks: tuple[int, ...]):
+    counts = tuple(math.ceil(shape[axis] / chunks[axis]) for axis in range(len(shape)))
+    for index in np.ndindex(counts):
+        yield tuple(int(value) for value in index)
+
+
+def validate_spec(path: str, zarray: dict, attrs: dict):
+    shape = tuple(int(value) for value in zarray.get("shape", []))
+    chunks = tuple(int(value) for value in zarray.get("chunks", []))
+    if not shape or len(shape) != len(chunks):
+        raise ValueError(f"{path}: shape/chunks rank mismatch")
+    if any(value <= 0 for value in shape + chunks):
+        raise ValueError(f"{path}: non-positive shape/chunk extent")
+    if zarray.get("order") != "C":
+        raise ValueError(f"{path}: only C-order arrays are supported")
+    if zarray.get("filters") not in (None, []):
+        raise ValueError(f"{path}: filters are unsupported")
+    compressor = zarray.get("compressor") or {}
+    if compressor.get("id") != "blosc":
+        raise ValueError(f"{path}: compressor is not Blosc")
+    dtype_text = str(zarray.get("dtype", ""))
+    if dtype_text not in ("<f4", "<f8"):
+        raise ValueError(f"{path}: expected little-endian float32/float64, got {dtype_text!r}")
+    dtype = np.dtype(dtype_text)
+    total_bytes = int(np.prod(shape, dtype=np.int64)) * dtype.itemsize
+    if total_bytes > MAX_ARRAY_BYTES:
+        raise ValueError(f"{path}: array decoded bytes {total_bytes} exceed {MAX_ARRAY_BYTES}")
+    dimensions = attrs.get("_ARRAY_DIMENSIONS")
+    if not isinstance(dimensions, list) or len(dimensions) != len(shape):
+        raise ValueError(f"{path}: _ARRAY_DIMENSIONS rank does not match shape")
+    shot_id = attrs.get("shot_id")
+    return {
+        "shape": shape,
+        "chunks": chunks,
+        "dtype": dtype,
+        "dtype_text": dtype_text,
+        "dimensions": [str(value) for value in dimensions],
+        "decoded_bytes": total_bytes,
+        "shot_id": shot_id,
+    }
+
+
+def resolve_fields(metadata: dict, shot: int, requested_fields: list[str]):
+    resolved = []
+    total_bytes = 0
+    for requested in requested_fields:
+        candidates = [requested] + SOLENOID_METADATA_ALIASES.get(requested, [])
+        actual = next((candidate for candidate in candidates if candidate + "/.zarray" in metadata), None)
+        if actual is None:
+            raise KeyError(f"metadata field not found for requested path {requested}")
+        if requested != actual and requested != "amc/solenoid_current":
+            raise KeyError(f"unexpected metadata mapping {requested} -> {actual}")
+        zarray = metadata[actual + "/.zarray"]
+        attrs = metadata.get(actual + "/.zattrs", {})
+        if not isinstance(attrs, dict):
+            raise ValueError(f"{actual}: .zattrs is not an object")
+        spec = validate_spec(actual, zarray, attrs)
+        if spec["shot_id"] is not None and int(spec["shot_id"]) != shot:
+            raise ValueError(f"{actual}: metadata shot_id mismatch")
+        coordinates = []
+        for dimension in spec["dimensions"]:
+            coordinate_path = f"{actual.split('/')[0]}/{dimension}"
+            coordinate_zarray = metadata.get(coordinate_path + "/.zarray")
+            coordinate_attrs = metadata.get(coordinate_path + "/.zattrs")
+            coordinates.append({
+                "dimension": dimension,
+                "path": coordinate_path if coordinate_zarray is not None else None,
+                "available": coordinate_zarray is not None,
+                "shape": coordinate_zarray.get("shape") if coordinate_zarray is not None else None,
+                "dtype": coordinate_zarray.get("dtype") if coordinate_zarray is not None else None,
+                "units": coordinate_attrs.get("units") if isinstance(coordinate_attrs, dict) else None,
+            })
+        field = {
+            "requested_path": requested,
+            "resolved_path": actual,
+            "metadata_resolution": "exact_path" if requested == actual else "explicit_metadata_alias",
+            "zarray": zarray,
+            "attributes": attrs,
+            "shape": list(spec["shape"]),
+            "chunks": list(spec["chunks"]),
+            "dtype": spec["dtype_text"],
+            "dimensions": spec["dimensions"],
+            "decoded_bytes": spec["decoded_bytes"],
+            "coordinate_paths": coordinates,
+        }
+        resolved.append(field)
+        total_bytes += spec["decoded_bytes"]
+    if total_bytes > MAX_TOTAL_DECODED_BYTES:
+        raise ValueError(f"selected arrays decoded bytes {total_bytes} exceed {MAX_TOTAL_DECODED_BYTES}")
+    return resolved, total_bytes
+
+
+def run_self_test():
+    library, dll_handle, dll_path = load_blosc()
+    try:
+        shape = (5, 7)
+        chunks = (3, 4)
+        dtype = np.dtype("<f4")
+        expected = np.arange(np.prod(shape), dtype=dtype).reshape(shape)
+        reconstructed = np.empty(shape, dtype=dtype)
+        chunk_receipts = []
+        for index in chunk_indices(shape, chunks):
+            starts = tuple(index[axis] * chunks[axis] for axis in range(len(shape)))
+            edge_shape = tuple(min(chunks[axis], shape[axis] - starts[axis]) for axis in range(len(shape)))
+            edge_slices = tuple(slice(starts[axis], starts[axis] + edge_shape[axis]) for axis in range(len(shape)))
+            source = np.full(chunks, -999.0, dtype=dtype)
+            source[tuple(slice(0, edge_shape[axis]) for axis in range(len(shape)))] = expected[edge_slices]
+            compressed = blosc_compress(library, source.tobytes(order="C"))
+            raw, array, decoded_shape, full_bytes, edge_bytes = decode_chunk(library, compressed, dtype, chunks, edge_shape)
+            write_array = array[tuple(slice(0, edge_shape[axis]) for axis in range(len(shape)))] if tuple(decoded_shape) == chunks else array
+            reconstructed[edge_slices] = write_array
+            chunk_receipts.append({"index": list(index), "edge_shape": list(edge_shape), "decoded_shape": list(decoded_shape), "written_shape": list(write_array.shape), "decoded_bytes": len(raw), "full_bytes": full_bytes, "edge_bytes": edge_bytes})
+        if not np.array_equal(expected, reconstructed):
+            raise AssertionError("multi-chunk edge reconstruction mismatch")
+        result = {"schema": "mast-source-fields-multichunk-self-test-v1", "status": "pass", "shape": list(shape), "chunks": list(chunks), "chunk_count": len(chunk_receipts), "chunk_receipts": chunk_receipts, "deterministic_values": "arange_float32", "blosc_dll": str(dll_path), "blosc_dll_sha256": sha256_path(dll_path), "utc": utc_now()}
+        print(json.dumps(result, ensure_ascii=False), flush=True)
+        return 0
+    finally:
+        if dll_handle is not None:
+            dll_handle.close()
+
+
+def acquire(shot: int, metadata_path: Path, output: Path, requested_fields: list[str], field_set: str) -> int:
+    metadata_bytes = metadata_path.read_bytes()
+    metadata_hash = sha256_bytes(metadata_bytes)
+    if metadata_hash != EXPECTED_METADATA_SHA256:
+        raise ValueError(f"metadata SHA mismatch: expected {EXPECTED_METADATA_SHA256}, got {metadata_hash}")
+    schema = json.loads(metadata_bytes)
+    metadata = schema.get("metadata")
+    if not isinstance(metadata, dict):
+        raise ValueError("metadata JSON has no object metadata member")
+    fields, total_decoded_bytes = resolve_fields(metadata, shot, requested_fields)
+    if output.exists():
+        if any(output.iterdir()):
+            raise FileExistsError(f"refusing to overwrite non-empty output: {output}")
+    else:
+        output.mkdir(parents=True)
+    metadata_copy = output / "zmetadata.json"
+    metadata_copy.write_bytes(metadata_bytes)
+    selection = {
+        "schema": "mast-source-fields-selection-v1",
+        "shot": shot,
+        "field_set": field_set,
+        "metadata_path": str(metadata_path),
+        "metadata_sha256": metadata_hash,
+        "selection_rule": "fixed requested paths from ownership_delta05; solenoid alias only when exact requested path is absent",
+        "requested_fields": fields,
+        "total_decoded_bytes": total_decoded_bytes,
+        "limits": {"max_array_decoded_bytes": MAX_ARRAY_BYTES, "max_total_decoded_bytes": MAX_TOTAL_DECODED_BYTES, "process_memory_bytes": PROCESS_MEMORY_LIMIT_BYTES, "network_timeout_seconds": REQUEST_TIMEOUT[1]},
+        "raw_values_only": True,
+        "uncertainty_interpretation": "not_performed",
+        "scientific_acceptance": False,
+        "frozen_utc": utc_now(),
+    }
+    selection_bytes = json.dumps(selection, ensure_ascii=False, indent=2).encode("utf-8") + b"\n"
+    (output / "selection.json").write_bytes(selection_bytes)
+    library, dll_handle, dll_path = load_blosc()
+    receipt = {
+        "schema": "mast-source-fields-acquisition-receipt-v1",
+        "shot": shot,
+        "field_set": field_set,
+        "utc_started": utc_now(),
+        "command": sys.argv,
+        "pid": os.getpid(),
+        "python": sys.version,
+        "executable": sys.executable,
+        "metadata_source": str(metadata_path),
+        "metadata_sha256": metadata_hash,
+        "metadata_bytes": len(metadata_bytes),
+        "metadata_copy": "zmetadata.json",
+        "selection_sha256": sha256_bytes(selection_bytes),
+        "script_sha256": sha256_path(Path(__file__)),
+        "script_copy": "fetch_mast_source_fields_v1.py.copy",
+        "blosc_dll": str(dll_path),
+        "blosc_dll_sha256": sha256_path(dll_path),
+        "limits": {"max_array_decoded_bytes": MAX_ARRAY_BYTES, "max_total_decoded_bytes": MAX_TOTAL_DECODED_BYTES, "process_memory_bytes": PROCESS_MEMORY_LIMIT_BYTES, "max_compressed_chunk_bytes": MAX_COMPRESSED_CHUNK_BYTES, "request_timeout_seconds": REQUEST_TIMEOUT[1]},
+        "error_semantics": "unverified_not_assumed_standard_deviation",
+        "raw_values_only": True,
+        "likelihood_ready": False,
+        "scientific_acceptance": False,
+        "arrays": [],
+        "failures": [],
+        "status": "running",
+    }
+    (output / "fetch_mast_source_fields_v1.py.copy").write_bytes(Path(__file__).read_bytes())
+    (output / "acquisition.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    session = requests.Session()
+    try:
+        for field in fields:
+            actual = field["resolved_path"]
+            field_dir = output / "fields" / actual.replace("/", "__")
+            chunks_dir = field_dir / "chunks"
+            field_dir.mkdir(parents=True, exist_ok=True)
+            chunks_dir.mkdir(parents=True, exist_ok=True)
+            dtype = np.dtype(field["dtype"])
+            shape = tuple(field["shape"])
+            chunks = tuple(field["chunks"])
+            field_record = dict(field)
+            field_record.update({"utc_started": utc_now(), "chunks_acquired": [], "failures": [], "status": "running"})
+            try:
+                assembled = np.empty(shape, dtype=dtype, order="C")
+                for index in chunk_indices(shape, chunks):
+                    starts = tuple(index[axis] * chunks[axis] for axis in range(len(shape)))
+                    edge_shape = tuple(min(chunks[axis], shape[axis] - starts[axis]) for axis in range(len(shape)))
+                    key = ".".join(str(value) for value in index)
+                    url = f"{SOURCE_BASE}/{shot}.zarr/{actual}/{key}"
+                    requested_utc = utc_now()
+                    chunk_record = {"chunk_index": list(index), "chunk_start": list(starts), "edge_shape": list(edge_shape), "full_chunk_shape": list(chunks), "url": url, "requested_utc": requested_utc}
+                    response = session.get(url, timeout=REQUEST_TIMEOUT)
+                    chunk_record["http_status"] = response.status_code
+                    chunk_record["response_headers"] = {key: value for key, value in response.headers.items() if key.lower() in ("content-length", "etag", "last-modified", "content-type")}
+                    if response.status_code != 200:
+                        raise requests.HTTPError(f"HTTP {response.status_code} for {url}", response=response)
+                    compressed = response.content
+                    compressed_name = key + ".blosc"
+                    raw_name = key + ".raw"
+                    (chunks_dir / compressed_name).write_bytes(compressed)
+                    chunk_record["compressed_bytes"] = len(compressed)
+                    chunk_record["compressed_sha256"] = sha256_bytes(compressed)
+                    raw, chunk_array, decoded_shape, full_bytes, edge_bytes = decode_chunk(library, compressed, dtype, chunks, edge_shape)
+                    (chunks_dir / raw_name).write_bytes(raw)
+                    write_array = chunk_array
+                    if tuple(decoded_shape) == chunks and tuple(decoded_shape) != edge_shape:
+                        write_array = chunk_array[tuple(slice(0, edge_shape[axis]) for axis in range(len(edge_shape)))]
+                    chunk_record.update({"decoded_bytes": len(raw), "decoded_sha256": sha256_bytes(raw), "decoded_shape": list(decoded_shape), "written_shape": list(write_array.shape), "expected_full_bytes": full_bytes, "expected_edge_bytes": edge_bytes, "compressed_path": str(Path("chunks") / compressed_name), "decoded_chunk_path": str(Path("chunks") / raw_name), "status": "decoded"})
+                    slices = tuple(slice(starts[axis], starts[axis] + edge_shape[axis]) for axis in range(len(shape)))
+                    assembled[slices] = write_array
+                    field_record["chunks_acquired"].append(chunk_record)
+                assembled_raw = assembled.tobytes(order="C")
+                assembled_path = field_dir / "assembled.raw"
+                assembled_path.write_bytes(assembled_raw)
+                finite = assembled[np.isfinite(assembled)]
+                field_record.update({"assembled_raw_path": str(Path("fields") / actual.replace("/", "__") / "assembled.raw"), "assembled_raw_bytes": len(assembled_raw), "assembled_raw_sha256": sha256_bytes(assembled_raw), "finite_count": int(finite.size), "total_count": int(assembled.size), "minimum": float(finite.min()) if finite.size else None, "maximum": float(finite.max()) if finite.size else None, "status": "acquired_raw_values_no_uncertainty_interpretation"})
+            except Exception as exc:
+                field_record["failures"].append({"exception_type": type(exc).__name__, "message": str(exc), "utc": utc_now()})
+                field_record["status"] = "acquisition_failed"
+                receipt["failures"].append({"requested_path": field["requested_path"], "resolved_path": actual, "field_status": field_record["status"], "failure": field_record["failures"][-1]})
+            (field_dir / "field_metadata.json").write_text(json.dumps(field_record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            receipt["arrays"].append(field_record)
+            receipt["total_decoded_bytes"] = sum(int(item.get("decoded_bytes", 0)) for item in fields)
+            receipt["utc_progress"] = utc_now()
+            (output / "acquisition.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    finally:
+        receipt["utc_finished"] = utc_now()
+        receipt["exit_code"] = int(bool(receipt["failures"]))
+        receipt["status"] = "failed" if receipt["failures"] else "success"
+        (output / "acquisition.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        session.close()
+        if dll_handle is not None:
+            dll_handle.close()
+    return int(receipt["exit_code"])
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--shot", type=int)
+    parser.add_argument("--metadata", type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--field-set", choices=("original29", "native_coil_coords19", "coil_geometry13"), default="original29")
+    args = parser.parse_args()
+    if args.self_test:
+        return run_self_test()
+    if args.shot is None or args.metadata is None or args.output is None:
+        parser.error("--shot, --metadata and --output are required unless --self-test is used")
+    requested_fields = {
+        "original29": REQUESTED_FIELDS,
+        "native_coil_coords19": NATIVE_COIL_COORD_FIELDS,
+        "coil_geometry13": COIL_GEOMETRY_FIELDS,
+    }[args.field_set]
+    return acquire(args.shot, args.metadata, args.output.resolve(), requested_fields, args.field_set)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

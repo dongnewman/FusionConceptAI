@@ -14,7 +14,7 @@ function _g2sc_run_child(label::String, body::String)
     const hits = Set{Symbol}()
     _hit(name::Symbol) = (push!(hits, name); error("poison sentinel"))
     """, body, "\nprintln(\"g2sc-child-ok-", label, "\")\n")
-    command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     read(pipeline(ignorestatus(command), stderr=stdout), String)
 end
 

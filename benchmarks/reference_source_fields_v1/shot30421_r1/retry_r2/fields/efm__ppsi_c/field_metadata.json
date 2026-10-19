@@ -1,0 +1,149 @@
+{
+  "requested_path": "efm/ppsi_c",
+  "resolved_path": "efm/ppsi_c",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120,
+      65
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      65
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "psi_norm"
+    ],
+    "description": "Pressure as a function of flux surface; f(psin, B)",
+    "dims": [
+      "time",
+      "psi_norm"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "computed press (centre t",
+    "mds_name": "\\TOP.ANALYSED.EFM:P_PSI_C",
+    "name": "efm/ppsi_c",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      108,
+      65
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_P(PSI)_(C)",
+    "units": "Pa",
+    "uuid": "cfed1cf3-ff15-547e-ad0e-cd24197aaac6",
+    "version": 0
+  },
+  "shape": [
+    120,
+    65
+  ],
+  "chunks": [
+    120,
+    65
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "psi_norm"
+  ],
+  "decoded_bytes": 31200,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "psi_norm",
+      "path": "efm/psi_norm",
+      "available": true,
+      "shape": [
+        65
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:32.502843Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        120,
+        65
+      ],
+      "full_chunk_shape": [
+        120,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/ppsi_c/0.0",
+      "requested_utc": "2026-09-21T20:06:32.502998Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "22165",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"2f8d38ea851087d6f92008ffeaa3a62a\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 22165,
+      "compressed_sha256": "d580894512e7b4baf9fe593a400377132466ee11da8ca0f147d2d632484ee78b",
+      "decoded_bytes": 31200,
+      "decoded_sha256": "9216c912b095f46287da5ef6332c567cf35ce44f06c8e2054040bb0ee6e55a2e",
+      "decoded_shape": [
+        120,
+        65
+      ],
+      "written_shape": [
+        120,
+        65
+      ],
+      "expected_full_bytes": 31200,
+      "expected_edge_bytes": 31200,
+      "compressed_path": "chunks\\0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__ppsi_c\\assembled.raw",
+  "assembled_raw_bytes": 31200,
+  "assembled_raw_sha256": "9216c912b095f46287da5ef6332c567cf35ce44f06c8e2054040bb0ee6e55a2e",
+  "finite_count": 7020,
+  "total_count": 7800,
+  "minimum": -114402.6171875,
+  "maximum": 19370.353515625
+}

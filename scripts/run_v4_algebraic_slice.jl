@@ -5,7 +5,7 @@ using FusionConceptAI
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 using .FusionRuntimeV4
 
-fixture = isempty(ARGS) ? joinpath(@__DIR__, "..", "examples", "runtime_v4_algebraic_constraint_fixture.jl") : abspath(ARGS[1])
+fixture = isempty(ARGS) ? joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_algebraic_constraint_fixture.jl") : abspath(ARGS[1])
 isfile(fixture) || error("fixture file does not exist: $fixture")
 include(fixture)
 @assert @isdefined(candidate) "fixture must define candidate"

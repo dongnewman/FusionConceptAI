@@ -90,23 +90,35 @@ required_test = (
     "absent.accepted === false", "absent.claim_ceiling === :contract_only",
     "absent.errors === ()", "absent.output.reasons ===",
     ":missing_material, :g3_feedback_material_absent",
-    "absent_before.bundle_bytes == absent_after.bundle_bytes",
-    "absent_before.record_hash == absent_after.record_hash")
+    "_closed_equal", "_freeze_state", "_assert_frozen_unchanged",
+    "deepcopy(x)", "G.canonical_json(frozen)",
+    "copy(Vector{UInt8}(codeunits(canonical)))", "hash = G._vnl_t0_sha(bytes)",
+    "closed comparator mutation probe",
+    "probe.declarations[1].source_bytes.bytes[1]",
+    "!_closed_equal(probe, probe_snapshot)", "_CLOSED_EQUAL_MAX_DEPTH",
+    "_CLOSED_EQUAL_PRODUCT_MODULE", "parentmodule(typeof(a))",
+    "a isa AbstractString", "a isa Function", "depth + 1",
+    "_expected_present", "_expected_typed_absent")
 for token in required_test:
     require(f"test_token:{token}", token in test, token)
 
-# R10 safety contract: the public adapter uses the pre-R6 transport validator
-# unchanged.  The only retained optimization is the test-side snapshot,
-# which serializes once and hashes those exact bytes.  The checker reports
-# these counts as static counters; it never evaluates Julia.
+# R17 safety contract: the public adapter uses the pre-R6 transport validator
+# unchanged.  The test-side snapshot deep-copies each object, canonicalizes
+# the frozen copy once, and uses a closed structural comparator after the
+# call.  The checker reports the resulting static contract; it never evaluates
+# Julia.
 performance_counters = {
     "transport_validator_calls": source.count(
         "_vnl_t0_errors(local_record, input.candidate_ref)"),
     "prepared_evidence_definitions": sum(source.count(token) for token in
         ("_ARLocalFactoryPreparedV1", "_ARLocalPresentPreparedV1",
          "_ar_local_prepare_present", "_ar_local_present_errors")),
-    "test_snapshot_object_serializers": test.count(
-        "Vector{UInt8}(codeunits(G.canonical_json(x)))"),
+    "test_snapshot_frozen_serializers": test.count(
+        "G.canonical_json(frozen)"),
+    "test_after_call_canonicalizers": test.count(
+        "canonical_json(x)"),
+    "test_after_call_state_helpers": len(re.findall(
+        r"(?<!freeze)_state\(", test)),
 }
 require("r10_transport_validator_restored",
         performance_counters["transport_validator_calls"] == 1,
@@ -114,11 +126,53 @@ require("r10_transport_validator_restored",
 require("r10_prepared_evidence_disabled",
         performance_counters["prepared_evidence_definitions"] == 0,
         str(performance_counters))
-require("performance_test_snapshot_single_serialization",
-        performance_counters["test_snapshot_object_serializers"] == 1 and
-        "function _state_part" in test and
+require("performance_test_snapshot_once_on_frozen_copy",
+        performance_counters["test_snapshot_frozen_serializers"] == 1 and
+        performance_counters["test_after_call_canonicalizers"] == 0 and
+        performance_counters["test_after_call_state_helpers"] == 0 and
+        "function _snapshot_part" in test and
+        "deepcopy(x)" in test and
         "G._vnl_t0_sha(bytes)" in test,
         str(performance_counters))
+require("performance_no_after_call_canonicalization",
+        "after = _state" not in test and
+        not re.search(r"after[^\n]*canonical_json", test),
+        "live after-call canonicalization remains")
+require("snapshot_owned_vector_bytes",
+        "canonical = G.canonical_json(frozen)" in test and
+        "bytes = copy(Vector{UInt8}(codeunits(canonical)))" in test and
+        "hash = G._vnl_t0_sha(bytes)" in test,
+        "snapshot bytes are not an owned Vector hashed immediately")
+require("snapshot_no_giant_ntuple_bytes",
+        not re.search(r"Tuple\s*\(\s*codeunits\s*\(\s*G\.canonical_json\(frozen\)", test) and
+        not re.search(r"Tuple\s*\(\s*Vector\{UInt8\}", test),
+        "canonical bytes are still materialized as a giant NTuple")
+require("prior_bytes_exact_without_tuple_rebuild",
+        "collect(result.prior_bundle_bytes) == before.bundle_bytes" in test and
+        "collect(absent.prior_bundle_bytes) == absent_before.bundle_bytes" in test,
+        "returned prior bytes are not compared exactly without rebuilding a giant tuple")
+require("prior_sha_uses_transport_bundle_hash",
+        "result.prior_bundle_sha256 == bundle.bundle_hash" in test and
+        "absent.prior_bundle_sha256 == absent_bundle.bundle_hash" in test and
+        not re.search(r"prior_bundle_sha256\s*==\s*(?:\w+_)?before\.bundle_hash", test),
+        "prior_bundle_sha256 must use the transport bundle.bundle_hash, not a snapshot hash")
+require("closed_comparator_depth_guard",
+        "const _CLOSED_EQUAL_MAX_DEPTH = 256" in test and
+        "depth <= _CLOSED_EQUAL_MAX_DEPTH || return false" in test,
+        "closed comparator has no explicit recursion bound")
+require("closed_comparator_runtime_atom_guard",
+        all(token in test for token in (
+            "a isa AbstractString", "a isa Function", "a isa Type",
+            "a isa Module", "a isa Ptr")),
+        "runtime/internal values are still opened as generic structs")
+require("closed_comparator_product_module_guard",
+        "parentmodule(typeof(a)) === _CLOSED_EQUAL_PRODUCT_MODULE || return a == b" in test and
+        "const _CLOSED_EQUAL_PRODUCT_MODULE = parentmodule(G.VNextT0LocalTransportV1)" in test,
+        "generic struct recursion is not restricted to product values")
+require("closed_comparator_nested_walk_is_bounded",
+        "_closed_equal(getfield(a, i), getfield(b, i), depth + 1)" in test and
+        "_closed_equal(x, y, depth + 1)" in test,
+        "nested comparator calls do not carry the depth bound")
 require("performance_no_shared_mutable_cache",
         not re.search(r"(?m)^\s*(?:const|global).*\b(?:Dict|cache)\b", source),
         "shared mutable cache/global state present")
@@ -168,6 +222,23 @@ try:
             "fixture dispatch expected error tuples differ from executable dispatch")
     require("fixture_dispatch_count", len(dispatch_names) == 25,
             f"dispatch count={len(dispatch_names)}")
+    negative_object_snapshots = len(dispatch_names) * (1 + 3)
+    performance_counters["negative_dispatches"] = len(dispatch_names)
+    performance_counters["negative_objects_per_call"] = 1 + 3
+    performance_counters["negative_object_snapshots"] = negative_object_snapshots
+    require("negative_dispatch_25_of_25", len(dispatch_names) == 25 and
+            "for dispatch in LOCAL_NEGATIVE_DISPATCH" in test,
+            f"dispatch count={len(dispatch_names)}")
+    require("negative_object_snapshot_count_100",
+            negative_object_snapshots == 100 and
+            "before = _freeze_state(bundle, records)" in test and
+            "record_state = Tuple(_snapshot_part(x) for x in records)" in test,
+            f"negative object snapshots={negative_object_snapshots}")
+    require("negative_snapshot_closed_comparator",
+            "_assert_frozen_unchanged(before, bundle, records)" in test and
+            "function _closed_equal(a, b, depth::Int=0)" in test and
+            "probe.declarations[1].source_bytes.bytes[1]" in test,
+            "closed nested-byte mutation check missing")
     require("case_constructor_exact_set", set(case_names) == set(dispatch_names),
             f"constructors={case_names!r}")
     require("case_constructor_unique", len(case_names) == len(set(case_names)),

@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 8,
+  "assembled_path": "arrays/pf_passive__botcol_z/assembled.raw",
+  "assembled_sha256": "60b65508e9caa39dbad397e006e53431019702ae42b1af6e06a85d6dbb208bed",
+  "chunks": [
+    1
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:58.630575Z",
+      "compressed_bytes": 17,
+      "compressed_path": "arrays/pf_passive__botcol_z/chunks/c__0.zst",
+      "compressed_sha256": "f58a8baf3d4509b958d76f0343d91e5ed674b7d7a68030a5e1bdcaf2b8e2afac",
+      "decoded_bytes": 8,
+      "decoded_path": "arrays/pf_passive__botcol_z/chunks/c__0.raw",
+      "decoded_sha256": "60b65508e9caa39dbad397e006e53431019702ae42b1af6e06a85d6dbb208bed",
+      "decoded_shape": [
+        1
+      ],
+      "edge_shape": [
+        1
+      ],
+      "full_chunk_shape": [
+        1
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:58.111505Z",
+      "response_headers": {
+        "Content-Length": "17",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"12d76e88b294615a82c70c0904aeb672\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:27 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/botcol_z/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:58.643804Z",
+  "data_type": "float64",
+  "decoded_bytes": 8,
+  "dimensions": [
+    "botcol_geometry_channel"
+  ],
+  "finite_count": 1,
+  "maximum": -2.0250000953674316,
+  "minimum": -2.0250000953674316,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "passive structure",
+      "comment": "mid sectors: {'outer upper': 'mid1, mid2, mid3', 'outer lower': 'mid4, mid5, mid6', 'inner upper': 'mid7, mid8, mid9', 'inner outer': 'mid10, mid11, mid12'}",
+      "configuration": "geometry",
+      "content": "geometry of the passive structures for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-11",
+      "creatorCode": "python create_netcdf_passive.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric centre Z values of the botcol coils",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/pfcoils.dat_M4",
+      "status": "development",
+      "system": "passive structure",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          1
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "botcol_geometry_channel"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      1
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/botcol_z",
+  "shape": [
+    1
+  ],
+  "started_utc": "2026-09-22T08:25:58.099941Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 1,
+  "units": "SI, degrees, m"
+}

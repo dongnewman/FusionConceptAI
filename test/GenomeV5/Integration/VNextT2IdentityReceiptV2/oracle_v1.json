@@ -1,0 +1,31 @@
+{
+  "schema": "vnext_t2_identity_receipt_v2_oracle_r1",
+  "consumer_order": ["E0", "GI1A", "E1", "E2", "UP2_N10"],
+  "success_counts": {"e0": 1, "gi1a": 1, "e1": 1, "e2": 1, "n10": 1},
+  "execution_counts": {"compiler": 0, "provider": 0, "solver": 0},
+  "n10_rows": ["N10-V2-01", "N10-V2-02", "N10-V2-03", "N10-V2-04", "N10-V2-05"],
+  "n10_attack_reasons": [
+    "up2_n10_01_g1_schema_descriptor_mismatch",
+    "up2_n10_02_g2_canonicalization_descriptor_mismatch",
+    "up2_n10_03_g3_binding_child_identity_mismatch",
+    "up2_n10_04_t1_package_hash_mismatch",
+    "up2_n10_05_reload_binding_identity_mismatch"
+  ],
+  "required_zero_call_reasons": [
+    "t2_preflight_source_witness_absent",
+    "t2_preflight_scenario_mismatch",
+    "t2_preflight_formal_t1_not_accepted",
+    "t2_preflight_duplicate_invocation"
+  ],
+  "credit_boundary": {
+    "formal_gate_evidence_kind": "synthetic_local",
+    "formal_gate_verified": false,
+    "formal_t2_accepted": false,
+    "compiler_executed": false,
+    "provider_executed": false,
+    "solver_executed": false,
+    "physical_acceptance": false,
+    "scientific_acceptance": false,
+    "r01_r10_closed": false
+  }
+}

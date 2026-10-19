@@ -1,0 +1,170 @@
+{
+  "requested_path": "anb/time",
+  "resolved_path": "anb/time",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      24981
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f8",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      99921
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "units": "s"
+  },
+  "shape": [
+    99921
+  ],
+  "chunks": [
+    24981
+  ],
+  "dtype": "<f8",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 799368,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "anb/time",
+      "available": true,
+      "shape": [
+        99921
+      ],
+      "dtype": "<f8",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:19.804584Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        24981
+      ],
+      "full_chunk_shape": [
+        24981
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/time/0",
+      "requested_utc": "2026-09-21T20:02:19.804745Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "72956",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"eef49ad582faab89d79e0fcbd82b34b4\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 72956,
+      "compressed_sha256": "7b928a916c66846f5d4e22def42785754bf766390315122d8e3351800fad620d",
+      "decoded_bytes": 199848,
+      "decoded_sha256": "40155d3e257c8a8684609e5fa68700aedb0f10e040139ca0ad632aa359e3e724",
+      "decoded_shape": [
+        24981
+      ],
+      "expected_full_bytes": 199848,
+      "expected_edge_bytes": 199848,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1
+      ],
+      "chunk_start": [
+        24981
+      ],
+      "edge_shape": [
+        24981
+      ],
+      "full_chunk_shape": [
+        24981
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/time/1",
+      "requested_utc": "2026-09-21T20:02:20.603856Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "33999",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"90c16761265aebd49b0f47ac2c753947\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 33999,
+      "compressed_sha256": "28730f0176dce3fc715fae4a38c4df28d984694cdcfb9b0eec6777cf4229d451",
+      "decoded_bytes": 199848,
+      "decoded_sha256": "1de3140f004ad022044b5bc87873299576672a82f12cd33887a7beed25b79238",
+      "decoded_shape": [
+        24981
+      ],
+      "expected_full_bytes": 199848,
+      "expected_edge_bytes": 199848,
+      "compressed_path": "chunks\\1.blosc",
+      "decoded_chunk_path": "chunks\\1.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        2
+      ],
+      "chunk_start": [
+        49962
+      ],
+      "edge_shape": [
+        24981
+      ],
+      "full_chunk_shape": [
+        24981
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/time/2",
+      "requested_utc": "2026-09-21T20:02:21.171452Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "23960",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"109502d5fe7148bd30a63b5ee12ca5fb\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 23960,
+      "compressed_sha256": "d9dc30b1e00ca7827a09bfe92cb11ea01955980109f203f105becc5e3792fd44",
+      "decoded_bytes": 199848,
+      "decoded_sha256": "f85e950c7fd6aa8c781b26a48bfb2294035e6368be442eb549a27b6c3811d092",
+      "decoded_shape": [
+        24981
+      ],
+      "expected_full_bytes": 199848,
+      "expected_edge_bytes": 199848,
+      "compressed_path": "chunks\\2.blosc",
+      "decoded_chunk_path": "chunks\\2.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [
+    {
+      "exception_type": "ValueError",
+      "message": "could not broadcast input array from shape (24981,) into shape (24978,)",
+      "utc": "2026-09-21T20:02:22.528178Z"
+    }
+  ],
+  "status": "acquisition_failed"
+}

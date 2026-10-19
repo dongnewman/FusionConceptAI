@@ -1,0 +1,74 @@
+{
+  "schema_version": "mast_level1_expansion_protocol_v1",
+  "protocol_id": "UP4-03-reference-validation-level1-expansion-v1",
+  "source_root": "benchmarks/reference_data_level1_expansion_v1",
+  "selection": {
+    "path": "benchmarks/reference_data_level1_expansion_v1/selection.json",
+    "sha256": "b962c135e1569457e80efb5ab05842d73b05347ffd56732bf465f8869fa04c78",
+    "selection_id": "mast-ayc-m9-expansion-r1"
+  },
+  "acquisition_index": {
+    "path": "benchmarks/reference_validation_expansion_v1/acquisition_index.json",
+    "sha256": "a3750fd5a7b0ad8fdfb865feeb981c05633cfab5b0d80bf8c4dd1f549bc7e045",
+    "schema_version": "mast_level1_expansion_acquisition_index_v1"
+  },
+  "verified_helper": {
+    "path": "benchmarks/reference_validation_v1/level1_error_adapter.py",
+    "sha256": "7dcdd5c49815e7fd166ad958a9441abd71e15ebf981fccaf3e0b37038635d9af",
+    "reused_functions": [
+      "_load_acquired_array",
+      "_payload_hash",
+      "_sample_lineage_hash",
+      "_readonly_f32",
+      "_readonly_bool"
+    ]
+  },
+  "split_contract": {
+    "loadable": {
+      "calibration": [30463, 30468, 30459, 30462, 30464, 30460, 30456, 30466],
+      "validation": [30469]
+    },
+    "release_required": {
+      "held_out": [30471, 30467, 30457, 30458],
+      "reserve": [30461, 30470, 30465]
+    },
+    "one_split_per_execution": true,
+    "combination_unit": "one complete shot-level paired AYC ne/te bundle",
+    "formal_minimum_met": false
+  },
+  "canonical_contract": {
+    "dimensions": ["time", "radial_index"],
+    "dtype": "float32_little_endian",
+    "mapping": "identity: canonical[time,radial_index] = raw[time,radial_index]",
+    "scale": 1.0,
+    "offset": 0.0,
+    "resampling": "none",
+    "imputation": "none",
+    "dynamic_radius": true,
+    "array_names": [
+      "ne",
+      "te",
+      "ne_error",
+      "te_error",
+      "covariance_ne_te",
+      "time",
+      "radial_index",
+      "radius",
+      "instrument_dr",
+      "instrument_time"
+    ]
+  },
+  "error_semantics": {
+    "status": "present_values_unknown_statistical_semantics",
+    "standard_deviation_interpretation": "prohibited",
+    "covariance_likelihood_interpretation": "prohibited",
+    "likelihood_ready": false
+  },
+  "held_out_release": {
+    "status": "release_required_no_source_paths_indexed",
+    "condition": "a separately versioned post-optimizer release manifest is required"
+  },
+  "formal_acceptance": false,
+  "iter_included": false,
+  "claim_ceiling": "manifest-driven Level-1 calibration/validation data preparation only; held-out and reserve values remain unreleased; error statistics, calibrated diagnostic response, formal inverse, B03, B07B, physical independence, ITER measurement status, and parent UP4-03 acceptance remain deferred"
+}

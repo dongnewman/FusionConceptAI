@@ -1008,3 +1008,164 @@ trusted_engineering_control_fault_provider_manifest() = (
     engineering_evidence=false, physical_evidence=false,
     validation_evidence=false, promotion_authority=false,
     p5_authority=false, terminal_authority=false)
+
+# Source-limited G3 thermostat consumer; callers supply T1-rebuilt control
+# values and independently derive the match obligation from those same pins.
+function _tecfe_g3_context(d, c, binding)
+    c isa G3ControlSourceBodyV1 && is_canonical_value(binding) ||
+        throw(ArgumentError("typed, candidate-bound G3 control is required"))
+    all(k -> k in keys(d), (:fault_event_basis,:sampled_fault_trace_kelvin,
+        :sample_period_seconds,:setpoint_kelvin,:full_source_at_or_below_kelvin,
+        :zero_source_at_or_above_kelvin,:in_band_action,:command_fraction_bounds,
+        :trip_command_fraction,:overtemperature_trip_kelvin,:trip_deadline_seconds,
+        :command_to_power_map)) || throw(ArgumentError("G3 control source is incomplete"))
+    d.fault_event_basis === :sampled_observation && d.sample_period_seconds == 1//20 &&
+        d.setpoint_kelvin == 330//1 && d.full_source_at_or_below_kelvin == 325//1 &&
+        d.zero_source_at_or_above_kelvin == 335//1 && d.overtemperature_trip_kelvin == 350//1 &&
+        d.trip_deadline_seconds == 1//10 && d.in_band_action === :hold_previous_fraction &&
+        d.command_fraction_bounds == (0//1,1//1) && d.trip_command_fraction == 0//1 ||
+        throw(ArgumentError("G3 source control contract is outside this provider"))
+    length(c.controllers)==1 && length(c.faults)==1 ||
+        throw(ArgumentError("G3 control controller/fault cardinality mismatch"))
+    k=only(c.controllers); f=only(c.faults); m=d.command_to_power_map
+    length(k.sensor_port_ids)==1 && length(k.actuator_port_ids)==1 &&
+        length(k.actuator_resource_port_ids)==1 ||
+        throw(ArgumentError("G3 thermostat must identify one sensor, command, and power-status port"))
+    selected_signal(port_id,kind,label)=begin
+        rows=Tuple(x for x in c.signal_ports if x.port_id==port_id)
+        length(rows)==1 && only(rows).signal_kind===kind ||
+            throw(ArgumentError("G3 thermostat $label port is absent, ambiguous, or has the wrong kind"))
+        only(rows)
+    end
+    s=selected_signal(only(k.sensor_port_ids),:sensor,"sensor")
+    a=selected_signal(only(k.actuator_port_ids),:command,"command")
+    p=selected_signal(only(k.actuator_resource_port_ids),:status,"power-status")
+    s.unit==UnitSignature((0,0,0,0,1,0,0)) && a.unit==UnitSignature((0,0,0,0,0,0,0)) &&
+        p.unit==UnitSignature((2,1,-3,0,0,0,0)) || throw(ArgumentError("G3 sensor/command/power units are not K/1/W"))
+    if !hasproperty(d,:re_enable_policy)
+        length(k.initial_states)==1 && only(k.initial_states).unit==s.unit &&
+            only(k.initial_states).value==293//1 && length(k.events)==1 &&
+            only(k.events).event_id=="initial_enable" && only(k.events).trigger===:initial &&
+            only(k.events).time==0//1 && only(k.events).action===:enable &&
+            k.fault_ids==(f.fault_id,) || throw(ArgumentError("G3 initial state/event/fault binding mismatch"))
+    else
+        guard_policy=d.re_enable_policy
+        all(key->key in keys(guard_policy),(:event_id,:signal_port_id,:comparator,:threshold_kelvin,:unit,:action)) ||
+            throw(ArgumentError("G3 re-enable guard fields are incomplete"))
+        guard_policy.signal_port_id==s.port_id && guard_policy.comparator===:at_or_below &&
+            guard_policy.threshold_kelvin isa Rational{Int64} && 0//1<=guard_policy.threshold_kelvin<d.overtemperature_trip_kelvin &&
+            guard_policy.unit==s.unit && guard_policy.action===:recover ||
+            throw(ArgumentError("G3 re-enable guard is not a bound lower-temperature recovery condition"))
+        length(k.initial_states)==1 && only(k.initial_states).unit==s.unit &&
+            only(k.initial_states).value==293//1 && length(k.events)==2 &&
+            first(k.events).event_id=="initial_enable" && first(k.events).trigger===:initial &&
+            first(k.events).time==0//1 && first(k.events).action===:enable &&
+            last(k.events).event_id==guard_policy.event_id && last(k.events).trigger===:threshold &&
+            last(k.events).time==0//1 && last(k.events).action===:recover &&
+            k.fault_ids==(f.fault_id,) || throw(ArgumentError("G3 initial/re-enable event/fault binding mismatch"))
+    end
+    k.sensor_port_ids==(s.port_id,) && k.actuator_port_ids==(a.port_id,) &&
+        k.actuator_resource_port_ids==(p.port_id,) && f.target_id==k.controller_id &&
+        f.mode===:overtemperature && f.safe_action===:trip && f.detection_signal_id==s.port_id &&
+        f.deadline==d.trip_deadline_seconds || throw(ArgumentError("G3 typed control source is not closed"))
+    m isa NamedTuple && m.coefficient==1000//1 && m.offset==0//1 &&
+        m.coefficient_unit==p.unit && m.output_unit==p.unit && m.command_unit==a.unit ||
+        throw(ArgumentError("typed command-to-power map mismatch"))
+    (sensor=s,command=a,power=p,controller=k,fault=f,map=m,binding=binding)
+end
+
+function g3_sampled_control_capability_v1(d,c,binding; fault_basis=d.fault_event_basis)
+    x=_tecfe_g3_context(d,c,binding)
+    base_policy=(d.sample_period_seconds,d.setpoint_kelvin,d.full_source_at_or_below_kelvin,
+        d.zero_source_at_or_above_kelvin,d.in_band_action,d.command_fraction_bounds,
+        d.trip_command_fraction,d.overtemperature_trip_kelvin,d.trip_deadline_seconds,
+        d.sampled_fault_trace_kelvin,d.command_to_power_map)
+    policy=hasproperty(d,:re_enable_policy) ? (base_policy,d.re_enable_policy) : base_policy
+    input=canonical_hash((inputs=(:sample_index,:time_seconds,:temperature_kelvin),
+        outputs=hasproperty(d,:re_enable_policy) ?
+            (:command_fraction,:power_status,:action,:fault_tick,:deadline,:fault_latched,:re_enabled_at) :
+            (:command_fraction,:power_status,:action,:fault_tick,:deadline),policy=policy))
+    bounds=canonical_hash((binding=binding,design=d,control=semantic_view(c),fault_basis=fault_basis))
+    CapabilitySignatureV4(_TECFE_SCHEMA,_TECFE_REVISION,:engineering_control_fault_operational_screen,
+        "g3_candidate_sampled_thermostat",(x.controller.controller_id,x.fault.fault_id),
+        "G3_temperature_K","G3_command_fraction_and_power_W",1,("sampled_controller_time",),
+        "contiguous_exact_1/20_second_samples","typed_G3_sensor_command_status_ports",
+        string(fault_basis,"; same-sample trip; deadline 1/10 second"),
+        ("full_command_trace","full_power_status_trace","sampled_fault_and_action_times","deadline_check"),
+        screen_only,bounds;input_schema_hash=input,coordinate_system="candidate_controller_time")
+end
+
+function g3_sampled_control_provider_v1(d,c,binding)
+    cap=g3_sampled_control_capability_v1(d,c,binding)
+    ProviderManifestV4(_TECFE_SCHEMA,_TECFE_REVISION,cap.kind,cap,
+        (bounds_hash=cap.applicability_bounds,),"FusionConceptAI candidate G3 thermostat",
+        "sampled-control-source",Digest256(bytes2hex(SHA.sha256(read(@__FILE__)))),
+        "candidate-source-control",screen_only;executor=_tecfe_g3_trace_executor)
+end
+
+function _tecfe_g3_trace_executor(req)
+    all(k->hasproperty(req,k),(:design,:control,:source_binding,:obligation,:provider)) ||
+        throw(ArgumentError("G3 trace request incomplete"))
+    x=_tecfe_g3_context(req.design,req.control,req.source_binding)
+    req.provider.executor === _tecfe_g3_trace_executor || throw(ArgumentError("wrong G3 executor"))
+    m=match_provider(req.obligation,(req.provider,))
+    m.status===unique_match && m.provider===req.provider || throw(ArgumentError("G3 source obligation mismatch"))
+    ts=Tuple(req.design.sampled_fault_trace_kelvin); length(ts)>=2 || throw(ArgumentError("full trace absent"))
+    init=only(x.controller.initial_states); init.unit==x.sensor.unit && first(ts)==init.value ||
+        throw(ArgumentError("G3 trace initial value/unit mismatch"))
+    rows=NamedTuple[]; previous=1//1; fault=nothing
+    if !hasproperty(req.design,:re_enable_policy)
+        for (i,t) in enumerate(ts)
+            t isa Rational{Int64} || throw(ArgumentError("G3 observation must be exact rational Kelvin"))
+            time=(i-1)*req.design.sample_period_seconds
+            if t>=req.design.overtemperature_trip_kelvin
+                cmd=req.design.trip_command_fraction; action=:trip; fault===nothing && (fault=time)
+            elseif t<=req.design.full_source_at_or_below_kelvin; cmd=1//1; action=:full_source
+            elseif t>=req.design.zero_source_at_or_above_kelvin; cmd=0//1; action=:zero_source
+            else; cmd=previous; action=:hold_previous_fraction end
+            power=x.map.coefficient*cmd+x.map.offset
+            push!(rows,(time_seconds=time,temperature_kelvin=t,command_fraction=cmd,
+                power_status=power,power_unit=x.power.unit,action=action)); previous=cmd
+        end
+        fault===nothing && throw(ArgumentError("trace has no sampled fault"))
+        return (samples=Tuple(rows),fault_observed_at=fault,trip_action_at=fault,
+            logical_response_seconds=0//1,deadline_seconds=x.fault.deadline,
+            deadline_satisfied=0//1<=x.fault.deadline,timing_scope=:discrete_software_samples,
+            claim_ceiling=screen_only,engineering_evidence=false,physical_evidence=false,
+            terminal_authority=false)
+    end
+    p=req.design.re_enable_policy; latched=false; recovered_at=nothing
+    for (i,t) in enumerate(ts)
+        t isa Rational{Int64} || throw(ArgumentError("G3 observation must be exact rational Kelvin"))
+        time=(i-1)*req.design.sample_period_seconds; action=:hold_previous_fraction
+        if latched && t<=p.threshold_kelvin
+            latched=false; recovered_at=time; action=:recover
+        elseif t>=req.design.overtemperature_trip_kelvin
+            latched=true; fault===nothing && (fault=time); action=:trip
+        elseif latched
+            action=:trip_latched
+        elseif t<=req.design.full_source_at_or_below_kelvin
+            action=:full_source
+        elseif t>=req.design.zero_source_at_or_above_kelvin
+            action=:zero_source
+        end
+        cmd=latched ? req.design.trip_command_fraction :
+            action===:full_source ? 1//1 : action===:zero_source ? 0//1 : previous
+        power=x.map.coefficient*cmd+x.map.offset
+        push!(rows,(time_seconds=time,temperature_kelvin=t,command_fraction=cmd,
+            power_status=power,power_unit=x.power.unit,action=action,fault_latched=latched)); previous=cmd
+    end
+    fault===nothing && throw(ArgumentError("trace has no sampled fault"))
+    recovered_at===nothing && throw(ArgumentError("guarded trace has no sampled clear/re-enable event"))
+    (samples=Tuple(rows),fault_observed_at=fault,trip_action_at=fault,
+        re_enabled_at=recovered_at,re_enable_threshold_kelvin=p.threshold_kelvin,
+        re_enable_policy_hash=canonical_hash(p),fault_latched=latched,
+        logical_response_seconds=0//1,deadline_seconds=x.fault.deadline,
+        deadline_satisfied=0//1<=x.fault.deadline,timing_scope=:discrete_software_samples,
+        claim_ceiling=screen_only,engineering_evidence=false,physical_evidence=false,
+        terminal_authority=false)
+end
+
+execute_g3_sampled_control_trace_v1(d,c,binding,obligation,provider) =
+    _tecfe_g3_trace_executor((design=d,control=c,source_binding=binding,
+        obligation=obligation,provider=provider))

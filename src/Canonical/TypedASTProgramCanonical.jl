@@ -116,6 +116,69 @@ function _tac_write_namedtuple!(io::Base.GenericIOBuffer, value::NamedTuple)
     _ccbw_byte!(io, UInt8('}'))
 end
 
+# These sealed leaf projections write the same alphabetic key order as the
+# corresponding NamedTuple path without allocating and sorting an order vector.
+function _tac_write_qualified_ref!(io::Base.GenericIOBuffer, value::QualifiedRefV1)
+    _ccbw_ascii!(io, "{\"id\":")
+    _tac_write_value!(io, getfield(value, :id))
+    _ccbw_ascii!(io, ",\"version\":")
+    _tac_write_value!(io, getfield(value, :version))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_operator_ref!(io::Base.GenericIOBuffer, value::OperatorRefV1)
+    _ccbw_ascii!(io, "{\"qualified\":")
+    _tac_write_value!(io, getfield(value, :qualified))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_digest!(io::Base.GenericIOBuffer, value::Digest256)
+    _ccbw_ascii!(io, "{\"value\":")
+    _tac_write_value!(io, getfield(value, :value))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_unit_signature!(io::Base.GenericIOBuffer, value::UnitSignature)
+    _ccbw_ascii!(io, "{\"exponents\":")
+    _tac_write_value!(io, getfield(value, :exponents))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_temporal_type!(io::Base.GenericIOBuffer, value::TemporalTypeV1)
+    _ccbw_ascii!(io, "{\"clock_ref\":")
+    _tac_write_value!(io, getfield(value, :clock_ref))
+    _ccbw_ascii!(io, ",\"derivative_order\":")
+    _tac_write_value!(io, getfield(value, :derivative_order))
+    _ccbw_ascii!(io, ",\"kind\":")
+    _tac_write_value!(io, getfield(value, :kind))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_physical_type!(io::Base.GenericIOBuffer, value::PhysicalType)
+    _ccbw_ascii!(io, "{\"spatial_dimension\":")
+    _tac_write_value!(io, getfield(value, :spatial_dimension))
+    _ccbw_ascii!(io, ",\"temporal_type\":")
+    _tac_write_value!(io, getfield(value, :temporal_type))
+    _ccbw_ascii!(io, ",\"tensor_rank\":")
+    _tac_write_value!(io, getfield(value, :tensor_rank))
+    _ccbw_ascii!(io, ",\"units\":")
+    _tac_write_value!(io, getfield(value, :units))
+    _ccbw_ascii!(io, ",\"value_kind\":")
+    _tac_write_value!(io, getfield(value, :value_kind))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
+function _tac_write_operator_parameter!(io::Base.GenericIOBuffer,
+        value::OperatorParameterSpecV1)
+    _ccbw_ascii!(io, "{\"name\":")
+    _tac_write_value!(io, getfield(value, :name))
+    _ccbw_ascii!(io, ",\"required\":")
+    _tac_write_value!(io, getfield(value, :required))
+    _ccbw_ascii!(io, ",\"type_tag\":")
+    _tac_write_value!(io, getfield(value, :type_tag))
+    _ccbw_byte!(io, UInt8('}'))
+end
+
 function _tac_write_value!(io::Base.GenericIOBuffer, value::Any)
     value === nothing && return _ccbw_ascii!(io, "null")
     typeof(value) === String && return _ccbw_quote!(io, value)
@@ -143,23 +206,19 @@ function _tac_write_value!(io::Base.GenericIOBuffer, value::Any)
         return io
     end
     if typeof(value) === QualifiedRefV1
-        return _tac_write_namedtuple!(io, (id=getfield(value, :id), version=getfield(value, :version)))
+        return _tac_write_qualified_ref!(io, value)
     elseif typeof(value) === OperatorRefV1
-        return _tac_write_namedtuple!(io, (qualified=getfield(value, :qualified),))
+        return _tac_write_operator_ref!(io, value)
     elseif typeof(value) === Digest256
-        return _tac_write_namedtuple!(io, (value=getfield(value, :value),))
+        return _tac_write_digest!(io, value)
     elseif typeof(value) === UnitSignature
-        return _tac_write_namedtuple!(io, (exponents=getfield(value, :exponents),))
+        return _tac_write_unit_signature!(io, value)
     elseif typeof(value) === TemporalTypeV1
-        return _tac_write_namedtuple!(io, (kind=getfield(value, :kind),
-            derivative_order=getfield(value, :derivative_order), clock_ref=getfield(value, :clock_ref)))
+        return _tac_write_temporal_type!(io, value)
     elseif typeof(value) === PhysicalType
-        return _tac_write_namedtuple!(io, (value_kind=getfield(value, :value_kind),
-            tensor_rank=getfield(value, :tensor_rank), spatial_dimension=getfield(value, :spatial_dimension),
-            temporal_type=getfield(value, :temporal_type), units=getfield(value, :units)))
+        return _tac_write_physical_type!(io, value)
     elseif typeof(value) === OperatorParameterSpecV1
-        return _tac_write_namedtuple!(io, (name=getfield(value, :name), type_tag=getfield(value, :type_tag),
-            required=getfield(value, :required)))
+        return _tac_write_operator_parameter!(io, value)
     end
     throw(ArgumentError("AST canonical payload contains an unsealed value"))
 end
@@ -361,18 +420,77 @@ function _tac_permutations(n::Int)
 end
 
 function _tac_program_payload(program::TypedASTProgramV1)
+    invoke(_canonical_payload_memoized, Tuple{Function,Any},
+        () -> invoke(_tac_compute_program_payload,
+            Tuple{TypedASTProgramV1}, program), program)
+end
+
+function _tac_input_ports_for_order(program::TypedASTProgramV1,
+        order::Tuple{Vararg{Int}})
+    nodes = getfield(program, :nodes); ports = getfield(program, :input_ports)
+    n = fieldcount(typeof(nodes))
+    fieldcount(typeof(order)) === n || throw(ArgumentError("AST order length mismatch"))
+    # Match the public v1 candidate's inverse mapping exactly.
+    refs = Vector{Int}(undef, n); new = 1
+    while new <= n
+        old = getfield(order, new)
+        Core.arrayset(true, refs, new, old)
+        new += 1
+    end
+    np = fieldcount(typeof(ports))
+    declarations = Vector{NamedTuple{(:port,:node),Tuple{Int,Int}}}(undef, np)
+    k = 1
+    while k <= np
+        old = getfield(ports, k)
+        Core.arrayset(true, declarations,
+            (port=getfield(getfield(nodes, old), :port),
+             node=Core.arrayref(true, refs, old)), k)
+        k += 1
+    end
+    k = 2
+    while k <= np
+        current = Core.arrayref(true, declarations, k); j = k - 1
+        while j >= 1 && current.port < Core.arrayref(true, declarations, j).port
+            Core.arrayset(true, declarations,
+                Core.arrayref(true, declarations, j), j + 1)
+            j -= 1
+        end
+        Core.arrayset(true, declarations, current, j + 1)
+        k += 1
+    end
+    ntuple(k -> Core.arrayref(true, declarations, k), np)
+end
+
+function _tac_compute_program_payload(program::TypedASTProgramV1)
     _tac_payload_counter_bump()
-    nodes = getfield(program, :nodes); roots = getfield(program, :roots); ports = getfield(program, :input_ports)
+    nodes = getfield(program, :nodes)
     n = fieldcount(typeof(nodes)); perms = _tac_permutations(n); total = 1; factorial_i = 2
     while factorial_i <= n; total *= factorial_i; factorial_i += 1; end
-    best = nothing; best_text = nothing
-    pi = 1
+    # Preserve the original first candidate's complete validation and error
+    # order before using its input_ports encoding as a lexicographic bound.
+    first_order = Core.arrayref(true, perms, 1)
+    best, _ = invoke(_tac_candidate_for_order,
+        Tuple{TypedASTProgramV1,Tuple{Vararg{Int}}}, program, first_order)
+    best_text = invoke(_tac_value_string, Tuple{Any}, best)
+    best_prefix = invoke(_tac_value_string, Tuple{Any},
+        getfield(best, :input_ports))
+    pi = 2
     while pi <= total
         order = Core.arrayref(true, perms, pi)
-        candidate, _ = invoke(_tac_candidate_for_order, Tuple{TypedASTProgramV1,Tuple{Vararg{Int}}}, program, order)
-        text = invoke(_tac_value_string, Tuple{Any}, candidate)
-        if best_text === nothing || invoke(_tac_string_less, Tuple{AbstractString,AbstractString}, text, best_text)
-            best = candidate; best_text = text
+        input_ports = invoke(_tac_input_ports_for_order,
+            Tuple{TypedASTProgramV1,Tuple{Vararg{Int}}}, program, order)
+        prefix = invoke(_tac_value_string, Tuple{Any}, input_ports)
+        # Canonical NamedTuple keys put input_ports before nodes, roots, and
+        # used_manifest_bindings; a larger prefix cannot win the full string.
+        if !invoke(_tac_string_less, Tuple{AbstractString,AbstractString},
+                best_prefix, prefix)
+            candidate, _ = invoke(_tac_candidate_for_order,
+                Tuple{TypedASTProgramV1,Tuple{Vararg{Int}}}, program, order)
+            text = invoke(_tac_value_string, Tuple{Any}, candidate)
+            if invoke(_tac_string_less,
+                    Tuple{AbstractString,AbstractString}, text, best_text)
+                best = candidate; best_text = text; best_prefix = prefix
+            end
         end
         pi += 1
     end

@@ -1,0 +1,122 @@
+{
+  "requested_path": "efm/magnetic_axis_r",
+  "resolved_path": "efm/magnetic_axis_r",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "R co-ordinate of magnetic axis; f(B)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Radius of Magnetic Axis",
+    "mds_name": "\\TOP.ANALYSED.EFM.MAGNETIC:AXIS_R",
+    "name": "efm/magnetic_axis_r",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      108
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_MAGNETIC_AXIS_R",
+    "units": "m",
+    "uuid": "9c1a8901-8263-5e31-8b0d-072f64e58cfc",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:12.977910Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/magnetic_axis_r/0",
+      "requested_utc": "2026-09-21T20:02:12.977983Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "399",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"8d68b9f704d0c40abc0f7faa4e8df349\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 399,
+      "compressed_sha256": "dc54c873cb26bfbfacec68bc749c7e977eab883c269ee522d2767f4e5f1d7ec6",
+      "decoded_bytes": 480,
+      "decoded_sha256": "9cfd68ec85c74e410c3906ac228ac9bc958b6821a9fd784652bd7033d8b39aa6",
+      "decoded_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__magnetic_axis_r\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "9cfd68ec85c74e410c3906ac228ac9bc958b6821a9fd784652bd7033d8b39aa6",
+  "finite_count": 108,
+  "total_count": 120,
+  "minimum": 0.6637505888938904,
+  "maximum": 1.0007027387619019
+}

@@ -221,7 +221,67 @@ semantic_view(x::G1StateInputV2) = (state_id=x.state_id, physical_type=x.physica
 semantic_view(x::G1ParameterInputV2) = (parameter_id=x.parameter_id, physical_type=x.physical_type)
 semantic_view(x::G1OperatorApplyV2) = (operator_ref=x.operator_ref, input_indices=x.input_indices, output_type=x.output_type, parameters=x.parameters)
 semantic_view(x::G1MIMOOperatorApplyV2) = (operator_ref=x.operator_ref, input_indices=x.input_indices, output_types=x.output_types)
-semantic_view(x::G1TypedExpressionV2) = (nodes=x.nodes, roots=x.roots)
+
+function _g1_expression_canonical_node_order_v2(expression::G1TypedExpressionV2)
+    nodes = expression.nodes
+    all(node -> node isa G1StateInputV2 || node isa G1ParameterInputV2 ||
+                node isa G1OperatorApplyV2 || node isa G1MIMOOperatorApplyV2, nodes) ||
+        return nothing
+    seen = falses(length(nodes))
+    order = Int[]
+    stack = Tuple{Int,Bool}[]
+    for root in expression.roots
+        seen[root] && continue
+        push!(stack, (root, false))
+        while !isempty(stack)
+            index, expanded = pop!(stack)
+            if expanded
+                push!(order, index)
+                continue
+            end
+            seen[index] && continue
+            seen[index] = true
+            push!(stack, (index, true))
+            node = nodes[index]
+            if node isa G1OperatorApplyV2 || node isa G1MIMOOperatorApplyV2
+                for port in length(node.input_indices):-1:1
+                    input_index = node.input_indices[port]
+                    seen[input_index] || push!(stack, (input_index, false))
+                end
+            end
+        end
+    end
+    # Unreachable nodes remain part of the expression. Keep their authored
+    # order until a canonical labeling for disconnected components is defined.
+    all(seen) ? Tuple(order) : nothing
+end
+
+function _g1_expression_reindex_node_v2(node::G1ExpressionNodeV2, old_to_new::Vector{Int})
+    node isa G1StateInputV2 && return node
+    node isa G1ParameterInputV2 && return node
+    if node isa G1OperatorApplyV2
+        return G1OperatorApplyV2(node.operator_ref,
+            Tuple(old_to_new[i] for i in node.input_indices), node.output_type;
+            parameters=node.parameters)
+    elseif node isa G1MIMOOperatorApplyV2
+        return G1MIMOOperatorApplyV2(node.operator_ref,
+            Tuple(old_to_new[i] for i in node.input_indices), node.output_types)
+    end
+    throw(ArgumentError("unsupported G1 expression node type in canonical view"))
+end
+
+function semantic_view(x::G1TypedExpressionV2)
+    order = _g1_expression_canonical_node_order_v2(x)
+    order === nothing && return (nodes=x.nodes, roots=x.roots)
+    old_to_new = zeros(Int, length(x.nodes))
+    for (new_index, old_index) in enumerate(order)
+        old_to_new[old_index] = new_index
+    end
+    nodes = Tuple(_g1_expression_reindex_node_v2(x.nodes[old_index], old_to_new)
+        for old_index in order)
+    roots = Tuple(old_to_new[root] for root in x.roots)
+    (nodes=nodes, roots=roots)
+end
 semantic_view(x::G1ResidualSemanticsV2) = (equation_id=x.equation_id, role=x.role, operator_ref=x.operator_ref,
     input_state_refs=x.input_state_refs, output_state_refs=x.output_state_refs,
     expression_hash=x.expression_hash, expression=x.expression, input_units=x.input_units,

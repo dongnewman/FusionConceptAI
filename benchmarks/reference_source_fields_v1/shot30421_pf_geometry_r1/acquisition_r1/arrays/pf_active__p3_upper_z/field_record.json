@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 32,
+  "assembled_path": "arrays/pf_active__p3_upper_z/assembled.raw",
+  "assembled_sha256": "fda936625f31fe1f1488d8d6214ea869de7c1f228b8be78885728cd71f0201cc",
+  "chunks": [
+    8
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:35.198100Z",
+      "compressed_bytes": 38,
+      "compressed_path": "arrays/pf_active__p3_upper_z/chunks/c__0.zst",
+      "compressed_sha256": "acf5ae4a2981b29edfb449140b8a54016be135f002429ea3da7397a92b43626f",
+      "decoded_bytes": 32,
+      "decoded_path": "arrays/pf_active__p3_upper_z/chunks/c__0.raw",
+      "decoded_sha256": "fda936625f31fe1f1488d8d6214ea869de7c1f228b8be78885728cd71f0201cc",
+      "decoded_shape": [
+        8
+      ],
+      "edge_shape": [
+        8
+      ],
+      "full_chunk_shape": [
+        8
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:34.688538Z",
+      "response_headers": {
+        "Content-Length": "38",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"49fca47d819246cd6c079ad4436bf9d8\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:23 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/p3_upper_z/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:35.202642Z",
+  "data_type": "float32",
+  "decoded_bytes": 32,
+  "dimensions": [
+    "p3_upper_coordinate_element"
+  ],
+  "finite_count": 8,
+  "maximum": 1.1273400783538818,
+  "minimum": 1.0723400115966797,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "magnetics",
+      "comment": "Data sourced from EFIT file",
+      "configuration": "geometry",
+      "content": "geometry of the pfcoils for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-24",
+      "creatorCode": "python create_netcdf_pf.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric centre Z values of the P3 upper coil elements",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/EFIT_efit_data_pfcoils-3.dat_M4",
+      "status": "development",
+      "system": "pfcoils",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          8
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float32",
+    "dimension_names": [
+      "p3_upper_coordinate_element"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      8
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/p3_upper_z",
+  "shape": [
+    8
+  ],
+  "started_utc": "2026-09-22T08:25:34.684770Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 8,
+  "units": "SI, degrees, m"
+}

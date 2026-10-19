@@ -19,8 +19,10 @@ struct G2MBChartMapV1
     jacobian_rows::NTuple{3,NTuple{3,Rational{Int64}}}
     offset::NTuple{3,Rational{Int64}}
     map_kind::Symbol
+    axes::Union{Nothing,NTuple{3,Symbol}}
     function G2MBChartMapV1(chart_ref::Any, domain_lower::Any, domain_upper::Any,
-                            jacobian_rows::Any, offset::Any; map_kind=:affine)
+                            jacobian_rows::Any, offset::Any; map_kind=:affine,
+                            axes=nothing)
         chart_ref isa QualifiedRefV1 && chart_ref.version == "v1" ||
             throw(ArgumentError("chart_ref must be a v1 QualifiedRefV1"))
         length(domain_lower) == 3 && length(domain_upper) == 3 ||
@@ -33,7 +35,16 @@ struct G2MBChartMapV1
         shift = _g2mb_vector(offset, "offset")
         _g2mb_det3(rows) != 0 || throw(ArgumentError("chart Jacobian must be nonsingular"))
         map_kind === :affine || throw(ArgumentError("only affine chart maps are supported"))
-        new(chart_ref, lower, upper, rows, shift, map_kind)
+        axis_labels = if axes === nothing
+            nothing
+        else
+            axes isa Tuple && length(axes) == 3 &&
+                all(x -> x isa Symbol && x in (:x, :y, :z), axes) &&
+                length(unique(axes)) == 3 ||
+                throw(ArgumentError("chart axes must be three unique Cartesian labels"))
+            ntuple(i -> axes[i], 3)
+        end
+        new(chart_ref, lower, upper, rows, shift, map_kind, axis_labels)
     end
 end
 
@@ -63,9 +74,11 @@ function _g2mb_det3(a::NTuple{3,NTuple{3,Rational{Int64}}})
         a[1][3] * (a[2][1] * a[3][2] - a[2][2] * a[3][1])
 end
 
-semantic_view(x::G2MBChartMapV1) =
-    (chart_ref=x.chart_ref, domain_lower=x.domain_lower, domain_upper=x.domain_upper,
-     jacobian_rows=x.jacobian_rows, offset=x.offset, map_kind=x.map_kind)
+function semantic_view(x::G2MBChartMapV1)
+    body = (chart_ref=x.chart_ref, domain_lower=x.domain_lower, domain_upper=x.domain_upper,
+        jacobian_rows=x.jacobian_rows, offset=x.offset, map_kind=x.map_kind)
+    x.axes === nothing ? body : merge(body, (axes=x.axes,))
+end
 canonical_json(x::G2MBChartMapV1) = canonical_json(semantic_view(x))
 
 function g2mb_chart_map(x::G2MBChartMapV1, point::Any)
@@ -279,6 +292,33 @@ semantic_view(x::G2MBUnitContractV1) =
      field_value=x.field_value, flux_value=x.flux_value)
 canonical_json(x::G2MBUnitContractV1) = canonical_json(semantic_view(x))
 
+struct G2MBFieldSpaceV1
+    state_field_id::String
+    value_shape::Symbol
+    state_unit::String
+    state_unit_signature::UnitSignature
+    function G2MBFieldSpaceV1(state_field_id::Any, value_shape::Any,
+                              state_unit::Any, state_unit_signature::Any)
+        state_field_id isa AbstractString && !isempty(String(state_field_id)) ||
+            throw(ArgumentError("field-space state_field_id is required"))
+        value_shape in (:scalar, :vector3) ||
+            throw(ArgumentError("field-space value_shape must be :scalar or :vector3"))
+        state_unit isa String && !isempty(state_unit) ||
+            throw(ArgumentError("field-space state_unit is required"))
+        state_unit_signature isa UnitSignature ||
+            throw(ArgumentError("field-space state_unit_signature must be UnitSignature"))
+        dimensionless = all(iszero, state_unit_signature.exponents)
+        (state_unit == "1") == dimensionless ||
+            throw(ArgumentError("field-space unit label '1' must mean exactly dimensionless"))
+        new(String(state_field_id), value_shape, state_unit, state_unit_signature)
+    end
+end
+
+semantic_view(x::G2MBFieldSpaceV1) =
+    (state_field_id=x.state_field_id, value_shape=x.value_shape,
+     state_unit=x.state_unit, state_unit_signature=x.state_unit_signature)
+canonical_json(x::G2MBFieldSpaceV1) = canonical_json(semantic_view(x))
+
 # Face order is a canonicalization concern, not an execution-order concern.
 # `face`/owner/value are semantic fields; an input tuple permutation must not
 # create a new source or declaration identity.  The complete key includes the
@@ -292,11 +332,151 @@ function _g2mb_canonical_faces(faces)
         f.value.value, Tuple(f.value.unit.exponents))))
 end
 
+struct G2MBRegionExteriorOwnerV1
+    face::Symbol
+    owner_region_id::String
+    function G2MBRegionExteriorOwnerV1(face::Any, owner_region_id::Any)
+        face isa Symbol && face in (:x_min, :x_max, :y_min, :y_max, :z_min, :z_max) ||
+            throw(ArgumentError("unsupported region exterior face"))
+        owner_region_id isa String && !isempty(owner_region_id) ||
+            throw(ArgumentError("region exterior owner id is required"))
+        new(face, owner_region_id)
+    end
+end
+semantic_view(x::G2MBRegionExteriorOwnerV1) =
+    (face=x.face, owner_region_id=x.owner_region_id)
+canonical_json(x::G2MBRegionExteriorOwnerV1) = canonical_json(semantic_view(x))
+
 function _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
-                            mesh, faces, profile, units, authority)
-    (source_ref=source_ref, source_version=source_version, candidate_ref=candidate_ref,
+                           mesh, faces, profile, units, authority;
+                           field_space=nothing, q1_interpretation=nothing,
+                           boundary_coverage=nothing, region_interface=nothing,
+                           region_exterior_owners=nothing)
+    body = (source_ref=source_ref, source_version=source_version, candidate_ref=candidate_ref,
      chart_map=chart_map, mesh=mesh, faces=_g2mb_canonical_faces(faces), profile=profile,
      units=units, authority=authority)
+    if field_space !== nothing || q1_interpretation !== nothing
+        field_space isa G2MBFieldSpaceV1 ||
+            throw(ArgumentError("field_space must be G2MBFieldSpaceV1 when declared"))
+        q1_interpretation === :continuous_tensor_product_lagrange_degree1_h1 ||
+            throw(ArgumentError("unsupported Q1 field-space interpretation"))
+        body = merge(body, (field_space=field_space, q1_interpretation=q1_interpretation))
+    end
+    if boundary_coverage !== nothing
+        boundary_coverage === :whole_face ||
+            throw(ArgumentError("unsupported boundary coverage semantics"))
+        chart_map isa G2MBChartMapV1 && chart_map.axes !== nothing ||
+            throw(ArgumentError("whole-face coverage requires explicit chart axes"))
+        body = merge(body, (boundary_coverage=boundary_coverage,))
+    end
+    if region_interface === nothing
+        region_exterior_owners === nothing ||
+            throw(ArgumentError("region exterior owners require a region interface"))
+    else
+        region_interface isa RegionInterfaceContractV2 ||
+            throw(ArgumentError("region_interface must be RegionInterfaceContractV2"))
+        region_exterior_owners isa Tuple &&
+            all(x -> x isa G2MBRegionExteriorOwnerV1, region_exterior_owners) ||
+            throw(ArgumentError("region_exterior_owners must be a typed tuple"))
+        _g2mb_validate_region_interface(region_interface, chart_map, region_exterior_owners)
+        body = merge(body, (region_interface=region_interface,
+            region_exterior_owners=region_exterior_owners))
+    end
+    body
+end
+
+# The optional internal partition is restricted to two exact chart boxes joined
+# by one complete axis-aligned face. It records candidate geometry only.
+function _g2mb_validate_region_interface(contract, chart_map::G2MBChartMapV1, region_exterior_owners)
+    contract isa RegionInterfaceContractV2 ||
+        throw(ArgumentError("region_interface must be RegionInterfaceContractV2"))
+    length(contract.regions) == 2 && length(contract.interfaces) == 1 ||
+        throw(ArgumentError("G2MB partition requires two regions and one interface"))
+    interface = only(contract.interfaces)
+    left_index = findfirst(region -> region.region_id == interface.left_region_id,
+        contract.regions)
+    right_index = findfirst(region -> region.region_id == interface.right_region_id,
+        contract.regions)
+    # Keep the prior ordered validation path for malformed references.  The
+    # authored tuple position is no longer used to assign interface roles.
+    left = left_index === nothing ? first(contract.regions) : contract.regions[left_index]
+    right = right_index === nothing ? last(contract.regions) : contract.regions[right_index]
+    axis = Int(interface.axis)
+    left.chart_ref.id == chart_map.chart_ref.id && left.chart_ref.version == "v2" &&
+        chart_map.chart_ref.version == "v1" &&
+        left.chart_ref == right.chart_ref && left.embedding_ref == right.embedding_ref &&
+        left.field_space_ref == right.field_space_ref ||
+        throw(ArgumentError("G2MB partition region references differ"))
+    all(region.boundary_kinds == (:dirichlet,) for region in contract.regions) ||
+        throw(ArgumentError("G2MB partition regions must inherit the authored Dirichlet boundary kind"))
+    left.lower == chart_map.domain_lower && right.upper == chart_map.domain_upper ||
+        throw(ArgumentError("G2MB partition does not cover the chart domain"))
+    left.upper[axis] == interface.coordinate && right.lower[axis] == interface.coordinate ||
+        throw(ArgumentError("G2MB partition interface faces do not coincide"))
+    all(left.lower[i] == right.lower[i] && left.upper[i] == right.upper[i]
+        for i in 1:3 if i != axis) ||
+        throw(ArgumentError("G2MB partition tangential coverage is incomplete"))
+    left_index !== nothing && right_index !== nothing &&
+        interface.left_region_id == left.region_id &&
+        interface.right_region_id == right.region_id && interface.normal == 1 &&
+        interface.continuity === :trace_flux &&
+        interface.transfer_kind === :conservative ||
+        throw(ArgumentError("G2MB interface orientation or transfer contract is unsupported"))
+    expected = Set{Tuple{Symbol,String}}()
+    for face in (:x_min, :x_max, :y_min, :y_max, :z_min, :z_max)
+        a = face in (:x_min, :x_max) ? 1 : face in (:y_min, :y_max) ? 2 : 3
+        lower_side = face in (:x_min, :y_min, :z_min)
+        boundary = lower_side ? chart_map.domain_lower[a] : chart_map.domain_upper[a]
+        for region in contract.regions
+            edge = lower_side ? region.lower[a] : region.upper[a]
+            edge == boundary && push!(expected, (face, region.region_id))
+        end
+    end
+    actual = Set((face.face, face.owner_region_id) for face in region_exterior_owners)
+    length(actual) == length(region_exterior_owners) && actual == expected ||
+        throw(ArgumentError("G2MB exterior owners do not match the partition boundary"))
+    nothing
+end
+
+function _g2mb_validate_field_space(field_space, q1_interpretation,
+                                    mesh::G2MBMeshPlanV1, profile::G2MBProfileV1,
+                                    units::G2MBUnitContractV1)
+    if field_space === nothing && q1_interpretation === nothing
+        return nothing
+    end
+    field_space isa G2MBFieldSpaceV1 ||
+        throw(ArgumentError("field_space must be G2MBFieldSpaceV1 when declared"))
+    q1_interpretation === :continuous_tensor_product_lagrange_degree1_h1 ||
+        throw(ArgumentError("unsupported Q1 field-space interpretation"))
+    field_space.state_unit_signature == units.field_value ||
+        throw(ArgumentError("field-space state unit signature must match units.field_value"))
+    mesh.basis === :Q1 && profile.basis_family === :tensor_product ||
+        throw(ArgumentError("continuous Q1 interpretation requires Q1 basis and tensor_product profile"))
+    nothing
+end
+
+function _g2mb_validate_boundary_coverage(boundary_coverage,
+        chart_map::G2MBChartMapV1, faces, profile::G2MBProfileV1;
+        region_interface=nothing)
+    boundary_coverage === nothing && return nothing
+    boundary_coverage === :whole_face ||
+        throw(ArgumentError("unsupported boundary coverage semantics"))
+    chart_map.axes == (:x, :y, :z) && profile.topology === :cartesian ||
+        throw(ArgumentError("whole-face coverage requires ordered Cartesian axes"))
+    all(iszero(chart_map.jacobian_rows[i][j]) for i in 1:3 for j in 1:3 if i != j) &&
+        all(chart_map.jacobian_rows[i][i] > 0 for i in 1:3) ||
+        throw(ArgumentError("whole-face coverage requires a positive diagonal chart"))
+    if region_interface === nothing
+        length(faces) == 6 && Set(f.face for f in faces) ==
+            Set((:x_min, :x_max, :y_min, :y_max, :z_min, :z_max)) &&
+            length(Set(f.owner_region_id for f in faces)) == 1 ||
+            throw(ArgumentError("whole-face coverage requires one closed six-face region"))
+    else
+        _g2mb_validate_region_interface(region_interface, chart_map, faces)
+    end
+    all(Tuple(f.reference_normal) == _g2mb_expected_normal(f.face) for f in faces) ||
+        throw(ArgumentError("whole-face coverage face normals do not match Cartesian labels"))
+    nothing
 end
 
 _g2mb_unit_add(a::UnitSignature, b::UnitSignature) =
@@ -358,16 +538,34 @@ const G2MB_SCHEMA_DESCRIPTOR_V1 =
     (id=G2MB_SCHEMA_ID_V1, version=G2MB_SCHEMA_VERSION_V1,
      fields=("candidate_ref", "chart_map", "jacobian", "metric", "mesh", "basis",
              "quadrature", "face_owner", "face_value", "units", "detJ", "authority",
-             "reference_coordinate_unit", "derived_geometry_unit_algebra"),
+             "reference_coordinate_unit", "derived_geometry_unit_algebra",
+             "optional_chart_map_axes", "optional_boundary_coverage",
+             "optional_field_space(state_field_id,value_shape,state_unit,state_unit_signature)",
+             "optional_q1_interpretation"),
      constraints=("bounded_3d_chart", "J_transpose_J_positive_definite",
                   "unique_face_owner", "dirichlet_or_neumann_value",
                   "reference_coordinate_dimensionless", "coordinate_J_L_metric_L2_area_L2_volume_L3",
-                  "fail_closed_contradiction", "terminal_deferred_missing_authority"))
+                  "fail_closed_contradiction", "terminal_deferred_missing_authority",
+                  "field_space_and_q1_interpretation_declared_together",
+                  "field_space_value_shape_scalar_or_vector3",
+                  "field_space_state_unit_signature_equals_units_field_value",
+                  "state_unit_label_1_iff_dimensionless",
+                  "continuous_tensor_product_lagrange_degree1_h1_requires_Q1_tensor_product_profile",
+                  "cartesian_chart_axes_are_unique_ordered_xyz_labels",
+                  "whole_face_coverage_requires_positive_diagonal_rectangular_chart_and_closed_face_normals",
+                  "whole_face_patch_tangential_bounds_are_exact_chart_image_bounds"))
 const G2MB_CANONICALIZATION_DESCRIPTOR_V1 =
     (domain="fusionconceptai:g2:metric-boundary:v1", encoding="canonical_json_named_tuple",
      coordinate_type="Rational{Int64}", matrix_order="row_major", face_order="lexical")
 
+const G2MB_REGION_INTERFACE_EXTENSION_DESCRIPTOR_V1 =
+    (fields=("optional_region_interface(RegionInterfaceContractV2:exact_two_region_partition)",
+             "optional_region_exterior_owners(Tuple{G2MBRegionExteriorOwnerV1}:exact_boundary_union)"),
+     constraints=("exact_two_region_full_face_partition", "region_exterior_owner_union_matches_geometry"))
 g2mb_schema_hash_v1()::Digest256 = canonical_hash(G2MB_SCHEMA_DESCRIPTOR_V1)
+g2mb_schema_hash_v1(region_interface_present::Bool)::Digest256 = region_interface_present ?
+    canonical_hash((base=G2MB_SCHEMA_DESCRIPTOR_V1, extension=G2MB_REGION_INTERFACE_EXTENSION_DESCRIPTOR_V1)) :
+    g2mb_schema_hash_v1()
 g2mb_canonicalization_hash_v1()::Digest256 = canonical_hash(G2MB_CANONICALIZATION_DESCRIPTOR_V1)
 g2mb_profile_hash_v1(profile::G2MBProfileV1)::Digest256 = canonical_hash(profile)
 g2mb_profile_token_v1(profile::G2MBProfileV1) = "g2-metric-boundary-v1-profile:" * g2mb_profile_hash_v1(profile).value
@@ -382,10 +580,18 @@ struct G2MBSourceV1
     profile::G2MBProfileV1
     units::G2MBUnitContractV1
     authority::G2MBAuthorityV1
+    field_space::Union{Nothing,G2MBFieldSpaceV1}
+    q1_interpretation::Union{Nothing,Symbol}
+    boundary_coverage::Union{Nothing,Symbol}
+    region_interface::Union{Nothing,RegionInterfaceContractV2}
+    region_exterior_owners::Union{Nothing,Tuple{Vararg{G2MBRegionExteriorOwnerV1}}}
     source_hash::Digest256
     function G2MBSourceV1(source_ref::Any, source_version::Any, candidate_ref::Any,
                           chart_map::Any, mesh::Any, faces::Any, profile::Any,
-                          units::Any, authority::Any, source_hash::Any)
+                          units::Any, authority::Any, source_hash::Any;
+                          field_space=nothing, q1_interpretation=nothing,
+                          boundary_coverage=nothing, region_interface=nothing,
+                          region_exterior_owners=nothing)
         source_ref isa QualifiedRefV1 || throw(ArgumentError("source_ref must be typed"))
         source_version isa String && !isempty(source_version) || throw(ArgumentError("source_version is required"))
         candidate_ref isa GenomeContractRef && candidate_ref.version == "v5" ||
@@ -398,26 +604,57 @@ struct G2MBSourceV1
         units isa G2MBUnitContractV1 || throw(ArgumentError("units must be typed"))
         authority isa G2MBAuthorityV1 || throw(ArgumentError("authority must be typed"))
         source_hash isa Digest256 || throw(ArgumentError("source_hash must be Digest256"))
+        _g2mb_validate_field_space(field_space, q1_interpretation, mesh, profile, units)
+        _g2mb_validate_boundary_coverage(boundary_coverage, chart_map, faces, profile)
+        region_interface === nothing || region_interface isa RegionInterfaceContractV2 ||
+            throw(ArgumentError("region_interface must be RegionInterfaceContractV2"))
+        region_exterior_owners === nothing || (region_exterior_owners isa Tuple &&
+            all(x -> x isa G2MBRegionExteriorOwnerV1, region_exterior_owners)) ||
+            throw(ArgumentError("region_exterior_owners must be a typed tuple"))
         body = _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
-            mesh, faces, profile, units, authority)
+            mesh, faces, profile, units, authority; field_space=field_space,
+            q1_interpretation=q1_interpretation,
+            boundary_coverage=boundary_coverage, region_interface=region_interface,
+            region_exterior_owners=region_exterior_owners)
         source_hash == canonical_hash(body) || throw(ArgumentError("source_hash does not match source body"))
         new(source_ref, source_version, candidate_ref, chart_map, mesh, _g2mb_canonical_faces(faces), profile,
-            units, authority, source_hash)
+            units, authority, field_space, q1_interpretation, boundary_coverage,
+            region_interface, region_exterior_owners, source_hash)
     end
 end
 
 function g2mb_source_v1(source_ref, source_version, candidate_ref, chart_map, mesh, faces,
-                        profile, units, authority)
+                        profile, units, authority; field_space=nothing,
+                        q1_interpretation=nothing, boundary_coverage=nothing,
+                        region_interface=nothing, region_exterior_owners=nothing)
+    _g2mb_validate_field_space(field_space, q1_interpretation, mesh, profile, units)
     body = _g2mb_source_body(source_ref, source_version, candidate_ref, chart_map,
-        mesh, faces, profile, units, authority)
+        mesh, faces, profile, units, authority; field_space=field_space,
+        q1_interpretation=q1_interpretation,
+        boundary_coverage=boundary_coverage, region_interface=region_interface,
+        region_exterior_owners=region_exterior_owners)
     G2MBSourceV1(source_ref, source_version, candidate_ref, chart_map, mesh, faces, profile,
-                 units, authority, canonical_hash(body))
+                 units, authority, canonical_hash(body); field_space=field_space,
+                 q1_interpretation=q1_interpretation,
+                 boundary_coverage=boundary_coverage, region_interface=region_interface,
+                 region_exterior_owners=region_exterior_owners)
 end
 
-semantic_view(x::G2MBSourceV1) =
-    (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
-     chart_map=x.chart_map, mesh=x.mesh, faces=_g2mb_canonical_faces(x.faces), profile=x.profile,
-     units=x.units, authority=x.authority, source_hash=x.source_hash)
+function semantic_view(x::G2MBSourceV1)
+    body = (source_ref=x.source_ref, source_version=x.source_version, candidate_ref=x.candidate_ref,
+        chart_map=x.chart_map, mesh=x.mesh, faces=_g2mb_canonical_faces(x.faces), profile=x.profile,
+        units=x.units, authority=x.authority)
+    if x.field_space !== nothing || x.q1_interpretation !== nothing
+        body = merge(body, (field_space=x.field_space,
+            q1_interpretation=x.q1_interpretation))
+    end
+    x.boundary_coverage === nothing ||
+        (body = merge(body, (boundary_coverage=x.boundary_coverage,)))
+    x.region_interface === nothing ||
+        (body = merge(body, (region_interface=x.region_interface,
+            region_exterior_owners=x.region_exterior_owners)))
+    merge(body, (source_hash=x.source_hash,))
+end
 canonical_json(x::G2MBSourceV1) = canonical_json(semantic_view(x))
 
 struct G2MBAdmissionV1
@@ -455,7 +692,32 @@ function _g2mb_validate_source(x::G2MBSourceV1)
     errors = String[]
     gaps = String[]
     body = _g2mb_source_body(x.source_ref, x.source_version, x.candidate_ref, x.chart_map,
-        x.mesh, x.faces, x.profile, x.units, x.authority)
+        x.mesh, x.faces, x.profile, x.units, x.authority;
+        field_space=x.field_space, q1_interpretation=x.q1_interpretation,
+        boundary_coverage=x.boundary_coverage, region_interface=x.region_interface,
+        region_exterior_owners=x.region_exterior_owners)
+    try
+        _g2mb_validate_field_space(x.field_space, x.q1_interpretation,
+            x.mesh, x.profile, x.units)
+    catch
+        push!(errors, "field_space_contract_invalid")
+    end
+    try
+        _g2mb_validate_boundary_coverage(x.boundary_coverage,
+            x.chart_map, x.faces, x.profile)
+    catch
+        push!(errors, "boundary_coverage_contract_invalid")
+    end
+    if x.region_interface !== nothing
+        try
+            _g2mb_validate_region_interface(x.region_interface, x.chart_map,
+                x.region_exterior_owners)
+            all(f -> f.value.kind === :dirichlet && iszero(f.value.value), x.faces) ||
+                push!(errors, "region_exterior_boundary_value_mismatch")
+        catch
+            push!(errors, "region_interface_contract_invalid")
+        end
+    end
     x.source_hash == canonical_hash(body) || push!(errors, "source_hash_mismatch")
     x.mesh.chart_ref == x.chart_map.chart_ref || push!(errors, "mesh_chart_ref_mismatch")
     append!(errors, g2mb_unit_algebra_errors(x.units))
@@ -469,9 +731,12 @@ function _g2mb_validate_source(x::G2MBSourceV1)
     face_ids = Tuple(f.face_id for f in x.faces)
     length(unique(face_ids)) == length(face_ids) || push!(errors, "boundary_face_id_duplicate")
     face_names = Tuple(f.face for f in x.faces)
-    length(unique(face_names)) == length(face_names) || push!(errors, "boundary_face_owner_duplicate")
     expected_faces = (:x_min, :x_max, :y_min, :y_max, :z_min, :z_max)
     Set(face_names) == Set(expected_faces) || push!(errors, "boundary_faces_not_closed")
+    length(unique(face_names)) != length(face_names) &&
+        push!(errors, "boundary_face_owner_duplicate")
+    (x.region_interface === nothing) == (x.region_exterior_owners === nothing) ||
+        push!(errors, "region_interface_owner_presence_mismatch")
     for f in x.faces
         expected = _g2mb_expected_normal(f.face)
         Tuple(f.reference_normal) == expected || push!(errors, "reference_face_orientation_mismatch:" * String(f.face))
@@ -540,7 +805,7 @@ struct G2MBDeclarationV1
         contract_ref isa GenomeContractRef && contract_ref.version == "v5" ||
             throw(ArgumentError("metric-boundary contract_ref must use v5"))
         source isa G2MBSourceV1 || throw(ArgumentError("source must be G2MBSourceV1"))
-        schema_hash == g2mb_schema_hash_v1() || throw(ArgumentError("schema_hash mismatch"))
+        schema_hash == g2mb_schema_hash_v1(source.region_interface !== nothing) || throw(ArgumentError("schema_hash mismatch"))
         canonicalization_hash == g2mb_canonicalization_hash_v1() || throw(ArgumentError("canonicalization_hash mismatch"))
         profile_hash == g2mb_profile_hash_v1(source.profile) || throw(ArgumentError("profile_hash mismatch"))
         contract_ref.schema_hash == schema_hash || throw(ArgumentError("external schema hash mismatch"))
@@ -555,7 +820,7 @@ struct G2MBDeclarationV1
 end
 
 function g2mb_declaration_v1(contract_ref, source)
-    schema = g2mb_schema_hash_v1(); canon = g2mb_canonicalization_hash_v1()
+    schema = g2mb_schema_hash_v1(source.region_interface !== nothing); canon = g2mb_canonicalization_hash_v1()
     profile = g2mb_profile_hash_v1(source.profile)
     body = (contract_ref=contract_ref, source=source, schema_hash=schema,
             canonicalization_hash=canon, profile_hash=profile)
@@ -614,18 +879,39 @@ end
 function g2mb_edit_source(x::G2MBDeclarationV1, field::Symbol, value)
     s = x.source
     if field === :chart_map && value isa G2MBChartMapV1
+        chart_value = value
+        if s.chart_map.axes !== nothing && value.axes === nothing
+            chart_value = G2MBChartMapV1(value.chart_ref, value.domain_lower,
+                value.domain_upper, value.jacobian_rows, value.offset;
+                map_kind=value.map_kind, axes=s.chart_map.axes)
+        end
         return _g2mb_rebuild(x, g2mb_source_v1(s.source_ref, s.source_version, s.candidate_ref,
-            value, s.mesh, s.faces, s.profile, s.units, s.authority))
+            chart_value, s.mesh, s.faces, s.profile, s.units, s.authority;
+            field_space=s.field_space, q1_interpretation=s.q1_interpretation,
+            boundary_coverage=s.boundary_coverage, region_interface=s.region_interface,
+            region_exterior_owners=s.region_exterior_owners))
     elseif field === :mesh && value isa G2MBMeshPlanV1
         return _g2mb_rebuild(x, g2mb_source_v1(s.source_ref, s.source_version, s.candidate_ref,
-            s.chart_map, value, s.faces, s.profile, s.units, s.authority))
+            s.chart_map, value, s.faces, s.profile, s.units, s.authority;
+            field_space=s.field_space, q1_interpretation=s.q1_interpretation,
+            boundary_coverage=s.boundary_coverage, region_interface=s.region_interface,
+            region_exterior_owners=s.region_exterior_owners))
     elseif field === :face_value && value isa Tuple && length(value) == 2 && value[1] isa String &&
             value[2] isa G2MBFaceValueV1
         faces = Tuple(f.face_id == value[1] ? G2MBFaceOwnerV1(f.face_id, f.face, f.owner_region_id,
             f.reference_normal, value[2]; ownership=f.ownership) : f for f in s.faces)
         any(f.face_id == value[1] for f in s.faces) || throw(ArgumentError("unknown face_id"))
         return _g2mb_rebuild(x, g2mb_source_v1(s.source_ref, s.source_version, s.candidate_ref,
-            s.chart_map, s.mesh, faces, s.profile, s.units, s.authority))
+            s.chart_map, s.mesh, faces, s.profile, s.units, s.authority;
+            field_space=s.field_space, q1_interpretation=s.q1_interpretation,
+            boundary_coverage=s.boundary_coverage, region_interface=s.region_interface,
+            region_exterior_owners=s.region_exterior_owners))
+    elseif field === :field_space && value isa G2MBFieldSpaceV1
+        return _g2mb_rebuild(x, g2mb_source_v1(s.source_ref, s.source_version, s.candidate_ref,
+            s.chart_map, s.mesh, s.faces, s.profile, s.units, s.authority;
+            field_space=value, q1_interpretation=:continuous_tensor_product_lagrange_degree1_h1,
+            boundary_coverage=s.boundary_coverage, region_interface=s.region_interface,
+            region_exterior_owners=s.region_exterior_owners))
     end
-    throw(ArgumentError("editable source field must be :chart_map, :mesh or :face_value"))
+    throw(ArgumentError("editable source field must be :chart_map, :mesh, :face_value or :field_space"))
 end

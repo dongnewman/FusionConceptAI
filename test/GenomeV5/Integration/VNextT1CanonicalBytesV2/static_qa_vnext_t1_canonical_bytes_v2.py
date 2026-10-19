@@ -18,7 +18,7 @@ R1_RUNTIME = DOCS / "local_profile_r1_runtime"
 R2_RUNTIME = DOCS / "local_profile_r2_runtime"
 PROTECTED = {
     ROOT / "src" / "Contracts" / "CandidateStatePackageV5Next.jl":
-        (53197, "14e8f519dd4ffe56ca5678ae8e4b82009ced12616e05de11165e36c3b4adae73"),
+        (53280, "18182801dfe14b9ae06f3240e71549df026268f74ecc2188aab7a0af292976fa"),
     ROOT / "src" / "FusionConceptAI.jl":
         (10144, "e3fa8638ed9c5c5f468ae9a8f797416f2bec19b432cc10a9c1aea81ec3460783"),
 }
@@ -43,7 +43,9 @@ def main() -> int:
     report["required_fields"] = all(token in source for token in (
         "raw::String", "sha256::Digest256", "encoding::Symbol"))
     report["copy_before_string"] = source.index("owned = copy(bytes)") < source.index("raw = String(owned)")
-    report["exact_hash_codeunits"] = "codeunits(raw)" in source and "SHA.sha256" in source
+    report["owned_byte_sha"] = (
+        "invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, owned)" in source)
+    report["raw_codeunits_sha_absent"] = "codeunits(raw)" not in source
     report["base64_stdlib"] = "using Base64" in source and "Base64.base64encode" in source
     report["base64_project_dependency"] = (
         'Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"' in project)

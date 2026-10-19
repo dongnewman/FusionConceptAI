@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 156,
+  "assembled_path": "arrays/pf_passive__ring_geometry_channel/assembled.strings.json",
+  "assembled_sha256": "29807da4c0520f4c6f7507648f1fb83851037efcec4eb59b36fc154633120b0d",
+  "chunks": [
+    10
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:41.259527Z",
+      "compressed_bytes": 54,
+      "compressed_path": "arrays/pf_passive__ring_geometry_channel/chunks/c__0.zst",
+      "compressed_sha256": "959435305f88659f39c2d067277c9feac3647e8d861efa8f7ecfd59e5fcc1324",
+      "decoded_bytes": 95,
+      "decoded_item_count": 10,
+      "decoded_path": "arrays/pf_passive__ring_geometry_channel/chunks/c__0.raw",
+      "decoded_sha256": "838a6507c73c9916cb6d4538dec0706d358f0b074abedde03e925c2abb8a01e6",
+      "decoded_shape": [
+        10
+      ],
+      "edge_shape": [
+        10
+      ],
+      "full_chunk_shape": [
+        10
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:40.401514Z",
+      "response_headers": {
+        "Content-Length": "54",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"51bd316353bd050987df68b9837d5a51\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:34 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/ring_geometry_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:41.272021Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "ring_geometry_channel"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          10
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "ring_geometry_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      10
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/ring_geometry_channel",
+  "shape": [
+    10
+  ],
+  "started_utc": "2026-09-22T08:26:40.377815Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 10,
+  "unique_string_count": 10,
+  "units": null
+}

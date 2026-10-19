@@ -1,0 +1,104 @@
+{
+  "requested_path": "efm/psi_norm",
+  "resolved_path": "efm/psi_norm",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      65
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      65
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "psi_norm"
+    ],
+    "units": ""
+  },
+  "shape": [
+    65
+  ],
+  "chunks": [
+    65
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "psi_norm"
+  ],
+  "decoded_bytes": 260,
+  "coordinate_paths": [
+    {
+      "dimension": "psi_norm",
+      "path": "efm/psi_norm",
+      "available": true,
+      "shape": [
+        65
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:22.472229Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        65
+      ],
+      "full_chunk_shape": [
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psi_norm/0",
+      "requested_utc": "2026-09-21T20:06:22.472409Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "122",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"8c8d6034a26a840df521a1d36b2e868c\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 122,
+      "compressed_sha256": "e3decd02d3596f7d8e13cc3bc111cdb6e3043d02b06d2e734a8d8daa3ba3ad38",
+      "decoded_bytes": 260,
+      "decoded_sha256": "290164b65cc3f0881f9afceb1048a01a2da756e37c7ba0a2d539d2082f67afec",
+      "decoded_shape": [
+        65
+      ],
+      "written_shape": [
+        65
+      ],
+      "expected_full_bytes": 260,
+      "expected_edge_bytes": 260,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__psi_norm\\assembled.raw",
+  "assembled_raw_bytes": 260,
+  "assembled_raw_sha256": "290164b65cc3f0881f9afceb1048a01a2da756e37c7ba0a2d539d2082f67afec",
+  "finite_count": 65,
+  "total_count": 65,
+  "minimum": 0.0,
+  "maximum": 1.0
+}

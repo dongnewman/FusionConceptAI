@@ -1,0 +1,142 @@
+{
+  "requested_path": "ayc/chi2",
+  "resolved_path": "ayc/chi2",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      284,
+      131
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "fit chi^2 error",
+    "mds_name": "\\TOP.ANALYSED.AYC:CHI2",
+    "name": "ayc/chi2",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      145,
+      130
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_CHI2",
+    "units": "",
+    "uuid": "7d22cbd5-3d7c-56b0-9db6-a8d524f24f23",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131
+  ],
+  "chunks": [
+    284,
+    131
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index"
+  ],
+  "decoded_bytes": 148816,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        284,
+        131
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/chi2/0.0",
+      "requested_utc": "2026-09-22T08:10:16.236351+00:00",
+      "compressed_path": "fields/ayc__chi2/chunks/0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "70124",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"19c2064596899e1f0f0de4579376bb0f\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 70124,
+      "compressed_sha256": "945e67edfe8672c582f825a421eb2e7650453f43bd6d226ff11ddb4305a29eb9",
+      "decoded_path": "fields/ayc__chi2/chunks/0.0.raw",
+      "decoded_bytes": 148816,
+      "decoded_sha256": "c6df2426f4f092b37f779dad5f35ac264ec975beef6d405f7ca065503af09c66",
+      "decoded_shape": [
+        284,
+        131
+      ],
+      "full_bytes": 148816,
+      "edge_bytes": 148816,
+      "completed_utc": "2026-09-22T08:10:16.967984+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:16.235423+00:00",
+  "completed_utc": "2026-09-22T08:10:16.971203+00:00",
+  "assembled_path": "fields/ayc__chi2/assembled.raw",
+  "assembled_bytes": 148816,
+  "assembled_sha256": "c6df2426f4f092b37f779dad5f35ac264ec975beef6d405f7ca065503af09c66",
+  "finite_count": 15863,
+  "total_count": 37204,
+  "minimum": 1.1912353370937742e-19,
+  "maximum": 19.570556640625
+}

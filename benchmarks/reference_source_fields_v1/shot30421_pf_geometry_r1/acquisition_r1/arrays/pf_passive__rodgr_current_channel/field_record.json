@@ -1,0 +1,104 @@
+{
+  "assembled_bytes": 186,
+  "assembled_path": "arrays/pf_passive__rodgr_current_channel/assembled.strings.json",
+  "assembled_sha256": "d33503312c8284f7e712b961dc3c4b856ed9463b7783b71ac12b20c1bb3729b3",
+  "chunks": [
+    12
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:27:28.439468Z",
+      "compressed_bytes": 61,
+      "compressed_path": "arrays/pf_passive__rodgr_current_channel/chunks/c__0.zst",
+      "compressed_sha256": "8e0ac76820442a358bea9fd5436e6fd8c8537d5645c7a840b699e0470e8241fa",
+      "decoded_bytes": 127,
+      "decoded_item_count": 12,
+      "decoded_path": "arrays/pf_passive__rodgr_current_channel/chunks/c__0.raw",
+      "decoded_sha256": "a5d630cbd96e84181ae66ef96e083ccdd933c947568a862f3166782c771e3b5f",
+      "decoded_shape": [
+        12
+      ],
+      "edge_shape": [
+        12
+      ],
+      "full_chunk_shape": [
+        12
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:27.918518Z",
+      "response_headers": {
+        "Content-Length": "61",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"53e442cc20ad50ced075418175e6e679\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:34 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/rodgr_current_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:28.461913Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "rodgr_current_channel"
+  ],
+  "node": {
+    "attributes": {
+      "name": "AMM_{channel}"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          12
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "rodgr_current_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      12
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/rodgr_current_channel",
+  "shape": [
+    12
+  ],
+  "started_utc": "2026-09-22T08:27:27.870865Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 12,
+  "unique_string_count": 12,
+  "units": null
+}

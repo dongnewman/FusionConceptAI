@@ -1,0 +1,126 @@
+{
+  "assembled_bytes": 61232,
+  "assembled_path": "arrays/pf_passive__p2ldivpl_current/assembled.raw",
+  "assembled_sha256": "679ca6b05131b5b0e3a73939235b4d8f698832a8593f4715583fb8b41d64e8fb",
+  "chunks": [
+    2,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:13.394678Z",
+      "compressed_bytes": 58491,
+      "compressed_path": "arrays/pf_passive__p2ldivpl_current/chunks/c__0__0.zst",
+      "compressed_sha256": "e2614abdd470e1f6c8c78249e7a566488d648e2204e66e989043ae92277d733a",
+      "decoded_bytes": 61232,
+      "decoded_path": "arrays/pf_passive__p2ldivpl_current/chunks/c__0__0.raw",
+      "decoded_sha256": "679ca6b05131b5b0e3a73939235b4d8f698832a8593f4715583fb8b41d64e8fb",
+      "decoded_shape": [
+        2,
+        3827
+      ],
+      "edge_shape": [
+        2,
+        3827
+      ],
+      "full_chunk_shape": [
+        2,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:12.672455Z",
+      "response_headers": {
+        "Content-Length": "58491",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"a1ca2e222b173571347429983116476e\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:31 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2ldivpl_current/c/0/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:13.420129Z",
+  "data_type": "float64",
+  "decoded_bytes": 61232,
+  "dimensions": [
+    "p2ldivpl_current_channel",
+    "time"
+  ],
+  "finite_count": 7654,
+  "maximum": 2216.4666904109636,
+  "minimum": -3328.5114749634854,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "p2ldivpl_current",
+      "uda_name": "AMM_P2LDIVPL1",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          2,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "p2ldivpl_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      2,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2ldivpl_current",
+  "shape": [
+    2,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:12.627012Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 7654,
+  "units": "A"
+}

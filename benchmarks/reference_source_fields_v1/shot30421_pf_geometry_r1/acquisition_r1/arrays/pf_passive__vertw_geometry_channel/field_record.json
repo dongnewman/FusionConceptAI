@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 146,
+  "assembled_path": "arrays/pf_passive__vertw_geometry_channel/assembled.strings.json",
+  "assembled_sha256": "27cc11c08343c94f956ae6492b96deab35f47141ebd2d6fd5fc0dded7925ae20",
+  "chunks": [
+    8
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:57.465528Z",
+      "compressed_bytes": 43,
+      "compressed_path": "arrays/pf_passive__vertw_geometry_channel/chunks/c__0.zst",
+      "compressed_sha256": "2ee77f3f1d25b60738825d86dc5e12b44d4fb11bef47073674f079df57ea95b8",
+      "decoded_bytes": 84,
+      "decoded_item_count": 8,
+      "decoded_path": "arrays/pf_passive__vertw_geometry_channel/chunks/c__0.raw",
+      "decoded_sha256": "55d9fa3c3d9a3569d74aca75c1b4909a39a633f253e940a40c98cc4495c482ea",
+      "decoded_shape": [
+        8
+      ],
+      "edge_shape": [
+        8
+      ],
+      "full_chunk_shape": [
+        8
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:56.958746Z",
+      "response_headers": {
+        "Content-Length": "43",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"e7b5c56e5f75cbfc9dda342aacb602f9\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:37 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/vertw_geometry_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:57.481254Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "vertw_geometry_channel"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          8
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "vertw_geometry_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      8
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/vertw_geometry_channel",
+  "shape": [
+    8
+  ],
+  "started_utc": "2026-09-22T08:26:56.933844Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 8,
+  "unique_string_count": 8,
+  "units": null
+}

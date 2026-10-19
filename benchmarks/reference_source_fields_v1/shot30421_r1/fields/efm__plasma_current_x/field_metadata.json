@@ -1,0 +1,122 @@
+{
+  "requested_path": "efm/plasma_current_x",
+  "resolved_path": "efm/plasma_current_x",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Input (experimental) fitted total plasma current; f(A)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Measured Plasma Current",
+    "mds_name": "\\TOP.ANALYSED.EFM.PLASMA_CURR:X",
+    "name": "efm/plasma_currx",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      120
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_PLASMA_CURR(X)",
+    "units": "A",
+    "uuid": "1cde371e-86ad-57f6-a093-317ebe7d7ba0",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:16.059466Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/plasma_current_x/0",
+      "requested_utc": "2026-09-21T20:02:16.059612Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "416",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"9a2dbf30a3c1a002ca3d31b942a6cf96\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 416,
+      "compressed_sha256": "662326cb07d1f3eed75a11ad299fb9b7e6263e2ace2f8cc125058256f8380511",
+      "decoded_bytes": 480,
+      "decoded_sha256": "f0165e7891c87e2f798e1f72e7bc9cfc55656846a5522638f8d6692bc2e7e064",
+      "decoded_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__plasma_current_x\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "f0165e7891c87e2f798e1f72e7bc9cfc55656846a5522638f8d6692bc2e7e064",
+  "finite_count": 120,
+  "total_count": 120,
+  "minimum": -6951.1357421875,
+  "maximum": 648633.25
+}

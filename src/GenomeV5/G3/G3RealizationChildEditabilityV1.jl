@@ -25,6 +25,7 @@ const G3_REALIZATION_CHILD_EDIT_SLOT_KINDS_V1 =
 const G3_REALIZATION_CHILD_EDIT_SLOT_STATUSES_V1 = (:present, :typed_absent)
 const G3_REALIZATION_CHILD_EDIT_CONTRACT_STATUSES_V1 =
     (:declared_consistent, :terminal_deferred, :fail_closed, :program_exception)
+const G3_AUTHORED_SI_BASIS_V1 = (:kg, :m, :s, :A, :K, :mol, :cd)
 
 const _G3_REALIZATION_CHILD_EDIT_SCHEMA_SOURCE_V1 = """
 schema_id=GenomeV5/G3/G3RealizationChildEditabilityV1
@@ -81,6 +82,44 @@ function _g3rce_rat(value, field; nonnegative=false, positive=false)
     nonnegative && result < 0 && throw(ArgumentError("$field must be non-negative"))
     positive && result <= 0 && throw(ArgumentError("$field must be positive"))
     result
+end
+
+"""Candidate-authored V-I-P identity; not a measurement or provider receipt."""
+struct G3AuthoredPowerLawV1
+    law_id::String
+    effort_port_id::String
+    current_port_id::String
+    power_endpoint_id::String
+    voltage::Rational{Int64}
+    current::Rational{Int64}
+    power::Rational{Int64}
+    voltage_unit::UnitSignature
+    current_unit::UnitSignature
+    power_unit::UnitSignature
+    claim_scope::Symbol
+    function G3AuthoredPowerLawV1(law_id, effort_port_id, current_port_id,
+            power_endpoint_id, voltage, current, power, voltage_unit,
+            current_unit, power_unit, claim_scope=:candidate_design_only)
+        v = _g3rce_rat(voltage, "authored voltage"; positive=true)
+        i = _g3rce_rat(current, "authored current"; nonnegative=true)
+        p = _g3rce_rat(power, "authored power"; nonnegative=true)
+        voltage_unit isa UnitSignature && current_unit isa UnitSignature &&
+            power_unit isa UnitSignature || throw(ArgumentError("authored V-I-P units must be UnitSignature"))
+        voltage_unit == UnitSignature((1, 2, -3, -1, 0, 0, 0)) ||
+            throw(ArgumentError("voltage unit must use declared kg,m,s,A,K,mol,cd basis"))
+        current_unit == UnitSignature((0, 0, 0, 1, 0, 0, 0)) ||
+            throw(ArgumentError("current unit must use declared kg,m,s,A,K,mol,cd basis"))
+        power_unit == UnitSignature((1, 2, -3, 0, 0, 0, 0)) ||
+            throw(ArgumentError("power unit must use declared kg,m,s,A,K,mol,cd basis"))
+        v * i == p || throw(ArgumentError("authored voltage-current product differs from power"))
+        claim_scope === :candidate_design_only ||
+            throw(ArgumentError("authored V-I-P law is candidate_design_only"))
+        new(_g3rce_text(law_id, "law_id"),
+            _g3rce_text(effort_port_id, "effort_port_id"),
+            _g3rce_text(current_port_id, "current_port_id"),
+            _g3rce_text(power_endpoint_id, "power_endpoint_id"),
+            v, i, p, voltage_unit, current_unit, power_unit, claim_scope)
+    end
 end
 
 function _g3rce_candidate(value, field="candidate_ref")
@@ -847,6 +886,12 @@ semantic_view(x::G3RealizationLedgerEntryV1) =
 semantic_view(x::G3RealizationLedgerClosureV1) =
     (closure_id=x.closure_id, domain=x.domain, account_ids=x.account_ids,
         expected_balance=x.expected_balance)
+semantic_view(x::G3AuthoredPowerLawV1) =
+    (law_id=x.law_id, effort_port_id=x.effort_port_id,
+        current_port_id=x.current_port_id, power_endpoint_id=x.power_endpoint_id,
+        voltage=x.voltage, current=x.current, power=x.power,
+        voltage_unit=x.voltage_unit, current_unit=x.current_unit,
+        power_unit=x.power_unit, claim_scope=x.claim_scope)
 semantic_view(x::G3RealizationSourceBodyV1) =
     (source_id=x.source_id, owner_scope=x.owner_scope, ports=x.ports,
         source_power=x.source_power, field_power=x.field_power, return_power=x.return_power,

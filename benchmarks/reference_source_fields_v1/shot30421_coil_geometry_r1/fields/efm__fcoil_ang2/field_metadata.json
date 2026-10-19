@@ -1,0 +1,124 @@
+{
+  "requested_path": "efm/fcoil_ang2",
+  "resolved_path": "efm/fcoil_ang2",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      938
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      938
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "fcoil_seg_n"
+    ],
+    "description": "Defining angular skew of second type for each f-coil element; f(fcoil_segs_n)",
+    "dims": [
+      "fcoil_seg_n"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "f-Coil Angle 2",
+    "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_ANG2",
+    "name": "efm/fcoil_ang2",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      1,
+      938
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_FCOIL_ANG2",
+    "units": "deg",
+    "uuid": "6f6fc0aa-e08d-5f7a-a87a-cb6662207598",
+    "version": 0
+  },
+  "shape": [
+    938
+  ],
+  "chunks": [
+    938
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "fcoil_seg_n"
+  ],
+  "decoded_bytes": 3752,
+  "coordinate_paths": [
+    {
+      "dimension": "fcoil_seg_n",
+      "path": null,
+      "available": false,
+      "shape": null,
+      "dtype": null,
+      "units": null
+    }
+  ],
+  "utc_started": "2026-09-22T02:31:38.829045Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        938
+      ],
+      "full_chunk_shape": [
+        938
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_ang2/0",
+      "requested_utc": "2026-09-22T02:31:38.829223Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "184",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"a606ca2cc1ce0f04bfe206271cc9c27b\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 184,
+      "compressed_sha256": "fadb489b8436ef9fd8ebcd584b204f6749f0e5ac1d2ff2beda8f3958a32320d1",
+      "decoded_bytes": 3752,
+      "decoded_sha256": "e5631a653b546891653b700d22587674f349929f1edda183edf82f4bce0a4ee4",
+      "decoded_shape": [
+        938
+      ],
+      "written_shape": [
+        938
+      ],
+      "expected_full_bytes": 3752,
+      "expected_edge_bytes": 3752,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fcoil_ang2\\assembled.raw",
+  "assembled_raw_bytes": 3752,
+  "assembled_raw_sha256": "e5631a653b546891653b700d22587674f349929f1edda183edf82f4bce0a4ee4",
+  "finite_count": 938,
+  "total_count": 938,
+  "minimum": -64.67566680908203,
+  "maximum": 64.67566680908203
+}

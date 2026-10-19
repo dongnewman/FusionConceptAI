@@ -21,6 +21,8 @@ const VNEXT_LOCAL_PBB_FACTORY_VERSION_V1 =
     "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/factory-v1"
 const VNEXT_LOCAL_PBB_REVIEW_VERSION_V1 =
     "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/review-v1"
+const VNEXT_LOCAL_PBB_T0_SUCCESSOR_VERSION_V1 =
+    "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/t0-parent-baseline-successor-v1"
 const VNEXT_LOCAL_PBB_AXES_COUNT_V1 = 4
 const VNEXT_LOCAL_PBB_ALLOWED_LAYERS_V1 = (:G1, :G2)
 const VNEXT_LOCAL_PBB_ALLOWED_ORIGINS_V1 = (:runtime_local,)
@@ -294,6 +296,101 @@ struct LocalParentBaselineBindResultV1
     output::Union{LocalParentBaselineBundleUnionV1,Nothing}
     output_hash::Digest256
 end
+
+"""Versioned T0 successor; the legacy LocalFactoryReceiptV1 ABI is untouched."""
+struct PresentT0LocalParentBaselineBindingV1
+    layer::Symbol
+    candidate_ref::QualifiedRefV1
+    source_ref::QualifiedRefV1
+    declaration_ref::QualifiedRefV1
+    source_identity_hash::Digest256
+    declaration_identity_hash::Digest256
+    axes::NTuple{4,QualifiedRefV1}
+    source_bytes::Vector{UInt8}
+    declaration_bytes::Vector{UInt8}
+    semantic_body_bytes::Vector{UInt8}
+    source_locator_bytes::Vector{UInt8}
+    factory_receipt_bytes::Vector{UInt8}
+    declaration_receipt_bytes::Vector{UInt8}
+    source_bytes_sha256::Digest256
+    declaration_bytes_sha256::Digest256
+    semantic_body_sha256::Digest256
+    source_locator_sha256::Digest256
+    factory_receipt_sha256::Digest256
+    declaration_receipt_sha256::Digest256
+    semantic_body_identity_hash::Digest256
+    source_locator_identity_hash::Digest256
+    factory_receipt_identity_hash::Digest256
+    declaration_receipt_identity_hash::Digest256
+    authority_commitment::Digest256
+    same_candidate_identity_hash::Digest256
+    parent_binding_hash::Digest256
+end
+struct AbsentT0LocalParentBaselineBundleV1
+    candidate_ref::QualifiedRefV1
+    g1_reason::Symbol
+    g2_reason::Symbol
+    bundle_hash::Digest256
+end
+struct PresentT0LocalParentBaselineBundleV1
+    candidate_ref::QualifiedRefV1
+    g1::PresentT0LocalParentBaselineBindingV1
+    g2::PresentT0LocalParentBaselineBindingV1
+    bundle_hash::Digest256
+end
+const T0LocalParentBaselineBundleUnionV1 = Union{
+    PresentT0LocalParentBaselineBundleV1,AbsentT0LocalParentBaselineBundleV1}
+struct T0LocalParentBaselineBindResultV1
+    status::Symbol
+    resolution::Symbol
+    accepted::Bool
+    errors::Tuple{Vararg{Symbol}}
+    output::Union{T0LocalParentBaselineBundleUnionV1,Nothing}
+    output_hash::Digest256
+    diagnostic_type_hash::Digest256
+    diagnostic_message_hash::Digest256
+end
+struct T0LocalParentBaselineInputV1
+    candidate_ref::QualifiedRefV1
+    declarations::Tuple
+end
+semantic_view(x::PresentT0LocalParentBaselineBindingV1) =
+    (layer=x.layer, candidate_ref=x.candidate_ref,
+     source_ref=x.source_ref, declaration_ref=x.declaration_ref,
+     source_identity_hash=x.source_identity_hash,
+     declaration_identity_hash=x.declaration_identity_hash, axes=x.axes,
+     source_bytes=x.source_bytes, declaration_bytes=x.declaration_bytes,
+     semantic_body_bytes=x.semantic_body_bytes,
+     source_locator_bytes=x.source_locator_bytes,
+     factory_receipt_bytes=x.factory_receipt_bytes,
+     declaration_receipt_bytes=x.declaration_receipt_bytes,
+     source_bytes_sha256=x.source_bytes_sha256,
+     declaration_bytes_sha256=x.declaration_bytes_sha256,
+     semantic_body_sha256=x.semantic_body_sha256,
+     source_locator_sha256=x.source_locator_sha256,
+     factory_receipt_sha256=x.factory_receipt_sha256,
+     declaration_receipt_sha256=x.declaration_receipt_sha256,
+     semantic_body_identity_hash=x.semantic_body_identity_hash,
+     source_locator_identity_hash=x.source_locator_identity_hash,
+     factory_receipt_identity_hash=x.factory_receipt_identity_hash,
+     declaration_receipt_identity_hash=x.declaration_receipt_identity_hash,
+     authority_commitment=x.authority_commitment,
+     same_candidate_identity_hash=x.same_candidate_identity_hash,
+     parent_binding_hash=x.parent_binding_hash)
+canonical_json(x::PresentT0LocalParentBaselineBindingV1) = canonical_json(semantic_view(x))
+semantic_view(x::AbsentT0LocalParentBaselineBundleV1) =
+    (candidate_ref=x.candidate_ref, g1_reason=x.g1_reason, g2_reason=x.g2_reason,
+     bundle_hash=x.bundle_hash)
+canonical_json(x::AbsentT0LocalParentBaselineBundleV1) = canonical_json(semantic_view(x))
+semantic_view(x::PresentT0LocalParentBaselineBundleV1) =
+    (candidate_ref=x.candidate_ref, g1=x.g1, g2=x.g2, bundle_hash=x.bundle_hash)
+canonical_json(x::PresentT0LocalParentBaselineBundleV1) = canonical_json(semantic_view(x))
+semantic_view(x::T0LocalParentBaselineBindResultV1) =
+    (status=x.status, resolution=x.resolution, accepted=x.accepted,
+     errors=x.errors, output=x.output, output_hash=x.output_hash,
+     diagnostic_type_hash=x.diagnostic_type_hash,
+     diagnostic_message_hash=x.diagnostic_message_hash)
+canonical_json(x::T0LocalParentBaselineBindResultV1) = canonical_json(semantic_view(x))
 
 function _vnl_record_structural_errors(record::LocalDeclarationRecordV1,
         candidate::LocalCandidateIdentityV1)
@@ -627,6 +724,297 @@ function bind_local_parent_baseline_v1(input::LocalParentBaselineBatchInputV1)
         _vnl_result(:fail_closed, :none, [:program_exception], nothing)
     end
 end
+
+_vnl_t0_type(name::Symbol) = isdefined(@__MODULE__, name) ? getfield(@__MODULE__, name) : nothing
+function _vnl_t0_local_result(status, resolution, errors, output, diagnostic=nothing)
+    unique!(errors)
+    type_hash = diagnostic === nothing ? _vnl_sha256(UInt8[]) :
+        digest256_text(string(typeof(diagnostic)))
+    message_hash = diagnostic === nothing ? _vnl_sha256(UInt8[]) :
+        digest256_text(sprint(showerror, diagnostic))
+    h = canonical_hash((status=status, resolution=resolution, errors=Tuple(errors),
+        output=output, diagnostic_type_hash=type_hash,
+        diagnostic_message_hash=message_hash))
+    T0LocalParentBaselineBindResultV1(status, resolution, status === :present,
+        Tuple(errors), output, h, type_hash, message_hash)
+end
+
+function _vnl_t0_identity_hash(record)
+    canonical_hash((candidate_ref=record.candidate_ref,
+        source_ref=record.source_ref, declaration_ref=record.declaration_ref,
+        source_identity_hash=record.source_identity_hash,
+        declaration_identity_hash=record.declaration_identity_hash))
+end
+
+"""Normative producer-side commitment for a real T0 LocalV1 declaration."""
+function t0_parent_authority_commitment_v1(record)
+    source_locator_bytes = Vector{UInt8}(codeunits(canonical_json(record.source_locator)))
+    factory_receipt_bytes = Vector{UInt8}(codeunits(canonical_json(record.factory_receipt)))
+    declaration_receipt_bytes = Vector{UInt8}(codeunits(canonical_json(record.declaration_receipt)))
+    canonical_hash((layer=record.layer, candidate_ref=record.candidate_ref,
+        source_ref=record.source_ref, declaration_ref=record.declaration_ref,
+        axes=record.axes, source_identity_hash=record.source_identity_hash,
+        declaration_identity_hash=record.declaration_identity_hash,
+        source_bytes_sha256=record.source_bytes.sha256,
+        declaration_bytes_sha256=record.declaration_bytes.sha256,
+        semantic_body_sha256=record.semantic_body.bytes.sha256,
+        source_locator_sha256=_vnl_sha256(source_locator_bytes),
+        factory_receipt_sha256=_vnl_sha256(factory_receipt_bytes),
+        declaration_receipt_sha256=_vnl_sha256(declaration_receipt_bytes)))
+end
+
+function _vnl_t0_binding_authority_commitment(x::PresentT0LocalParentBaselineBindingV1)
+    canonical_hash((layer=x.layer, candidate_ref=x.candidate_ref,
+        source_ref=x.source_ref, declaration_ref=x.declaration_ref, axes=x.axes,
+        source_identity_hash=x.source_identity_hash,
+        declaration_identity_hash=x.declaration_identity_hash,
+        source_bytes_sha256=x.source_bytes_sha256,
+        declaration_bytes_sha256=x.declaration_bytes_sha256,
+        semantic_body_sha256=x.semantic_body_sha256,
+        source_locator_sha256=x.source_locator_sha256,
+        factory_receipt_sha256=x.factory_receipt_sha256,
+        declaration_receipt_sha256=x.declaration_receipt_sha256))
+end
+
+function _vnl_t0_parent_hash(layer, candidate_ref, source_ref, declaration_ref,
+        source_bytes, declaration_bytes, semantic_body_bytes, source_locator_bytes,
+        factory_receipt_bytes, declaration_receipt_bytes, axes,
+        source_bytes_sha256, declaration_bytes_sha256, semantic_body_sha256,
+        source_locator_sha256, factory_receipt_sha256, declaration_receipt_sha256,
+        semantic_body_identity_hash, source_locator_identity_hash,
+        factory_receipt_identity_hash, declaration_receipt_identity_hash,
+        authority_commitment,
+        same_candidate_identity_hash)
+    canonical_hash((layer=layer, candidate_ref=candidate_ref, source_ref=source_ref,
+        declaration_ref=declaration_ref, source_bytes=source_bytes,
+        declaration_bytes=declaration_bytes, semantic_body_bytes=semantic_body_bytes,
+        source_locator_bytes=source_locator_bytes,
+        factory_receipt_bytes=factory_receipt_bytes,
+        declaration_receipt_bytes=declaration_receipt_bytes, axes=axes,
+        source_bytes_sha256=source_bytes_sha256,
+        declaration_bytes_sha256=declaration_bytes_sha256,
+        semantic_body_sha256=semantic_body_sha256,
+        source_locator_sha256=source_locator_sha256,
+        factory_receipt_sha256=factory_receipt_sha256,
+        declaration_receipt_sha256=declaration_receipt_sha256,
+        semantic_body_identity_hash=semantic_body_identity_hash,
+        source_locator_identity_hash=source_locator_identity_hash,
+        factory_receipt_identity_hash=factory_receipt_identity_hash,
+        declaration_receipt_identity_hash=declaration_receipt_identity_hash,
+        authority_commitment=authority_commitment,
+        same_candidate_identity_hash=same_candidate_identity_hash))
+end
+
+function _vnl_t0_present_binding(record)
+    same_candidate = _vnl_t0_identity_hash(record)
+    source_locator_bytes = Vector{UInt8}(codeunits(canonical_json(record.source_locator)))
+    factory_receipt_bytes = Vector{UInt8}(codeunits(canonical_json(record.factory_receipt)))
+    declaration_receipt_bytes = Vector{UInt8}(codeunits(canonical_json(record.declaration_receipt)))
+    source_bytes_sha256 = _vnl_sha256(record.source_bytes.bytes)
+    declaration_bytes_sha256 = _vnl_sha256(record.declaration_bytes.bytes)
+    semantic_body_sha256 = _vnl_sha256(record.semantic_body.bytes.bytes)
+    source_locator_sha256 = _vnl_sha256(source_locator_bytes)
+    factory_receipt_sha256 = _vnl_sha256(factory_receipt_bytes)
+    declaration_receipt_sha256 = _vnl_sha256(declaration_receipt_bytes)
+    semantic_body_identity_hash = canonical_hash((kind=:semantic_body,
+        bytes_sha256=record.semantic_body.bytes.sha256))
+    source_locator_identity_hash = canonical_hash((kind=:source_locator,
+        bytes_sha256=source_locator_sha256))
+    factory_receipt_identity_hash = canonical_hash((kind=:factory_receipt,
+        bytes_sha256=factory_receipt_sha256))
+    declaration_receipt_identity_hash = canonical_hash((kind=:declaration_receipt,
+        bytes_sha256=declaration_receipt_sha256))
+    authority_commitment = t0_parent_authority_commitment_v1(record)
+    parent = _vnl_t0_parent_hash(record.layer, record.candidate_ref, record.source_ref,
+        record.declaration_ref, record.source_bytes.bytes, record.declaration_bytes.bytes,
+        record.semantic_body.bytes.bytes, source_locator_bytes, factory_receipt_bytes,
+        declaration_receipt_bytes, record.axes, source_bytes_sha256,
+        declaration_bytes_sha256, semantic_body_sha256, source_locator_sha256,
+        factory_receipt_sha256, declaration_receipt_sha256,
+        semantic_body_identity_hash, source_locator_identity_hash,
+        factory_receipt_identity_hash, declaration_receipt_identity_hash,
+        authority_commitment,
+        same_candidate)
+    PresentT0LocalParentBaselineBindingV1(record.layer, record.candidate_ref,
+        record.source_ref, record.declaration_ref, record.source_identity_hash,
+        record.declaration_identity_hash, record.axes,
+        copy(record.source_bytes.bytes), copy(record.declaration_bytes.bytes),
+        copy(record.semantic_body.bytes.bytes), source_locator_bytes,
+        factory_receipt_bytes, declaration_receipt_bytes,
+        source_bytes_sha256, declaration_bytes_sha256, semantic_body_sha256,
+        source_locator_sha256, factory_receipt_sha256, declaration_receipt_sha256,
+        semantic_body_identity_hash, source_locator_identity_hash,
+        factory_receipt_identity_hash, declaration_receipt_identity_hash,
+        authority_commitment,
+        same_candidate, parent)
+end
+
+function verify_present_t0_local_binding_self_consistency_v1(
+        x::PresentT0LocalParentBaselineBindingV1)
+    x.layer in (:G1, :G2) || return false
+    x.candidate_ref isa QualifiedRefV1 || return false
+    x.source_ref isa QualifiedRefV1 || return false
+    x.declaration_ref isa QualifiedRefV1 || return false
+    x.axes isa NTuple{4,QualifiedRefV1} || return false
+    x.source_bytes_sha256 == _vnl_sha256(x.source_bytes) || return false
+    x.declaration_bytes_sha256 == _vnl_sha256(x.declaration_bytes) || return false
+    x.semantic_body_sha256 == _vnl_sha256(x.semantic_body_bytes) || return false
+    x.source_locator_sha256 == _vnl_sha256(x.source_locator_bytes) || return false
+    x.factory_receipt_sha256 == _vnl_sha256(x.factory_receipt_bytes) || return false
+    x.declaration_receipt_sha256 == _vnl_sha256(x.declaration_receipt_bytes) || return false
+    x.semantic_body_identity_hash == canonical_hash((kind=:semantic_body,
+        bytes_sha256=x.semantic_body_sha256)) || return false
+    x.source_locator_identity_hash == canonical_hash((kind=:source_locator,
+        bytes_sha256=x.source_locator_sha256)) || return false
+    x.factory_receipt_identity_hash == canonical_hash((kind=:factory_receipt,
+        bytes_sha256=x.factory_receipt_sha256)) || return false
+    x.declaration_receipt_identity_hash == canonical_hash((kind=:declaration_receipt,
+        bytes_sha256=x.declaration_receipt_sha256)) || return false
+    x.authority_commitment == _vnl_t0_binding_authority_commitment(x) || return false
+    x.source_identity_hash == canonical_hash((kind=:source, ref=x.source_ref,
+        bytes_sha256=x.source_bytes_sha256)) || return false
+    x.declaration_identity_hash == canonical_hash((kind=:declaration, ref=x.declaration_ref,
+        bytes_sha256=x.declaration_bytes_sha256)) || return false
+    x.same_candidate_identity_hash == canonical_hash((candidate_ref=x.candidate_ref,
+        source_ref=x.source_ref, declaration_ref=x.declaration_ref,
+        source_identity_hash=x.source_identity_hash,
+        declaration_identity_hash=x.declaration_identity_hash)) || return false
+    x.parent_binding_hash == _vnl_t0_parent_hash(x.layer, x.candidate_ref,
+        x.source_ref, x.declaration_ref, x.source_bytes, x.declaration_bytes,
+        x.semantic_body_bytes, x.source_locator_bytes, x.factory_receipt_bytes,
+        x.declaration_receipt_bytes, x.axes, x.source_bytes_sha256,
+        x.declaration_bytes_sha256, x.semantic_body_sha256, x.source_locator_sha256,
+        x.factory_receipt_sha256, x.declaration_receipt_sha256,
+        x.semantic_body_identity_hash, x.source_locator_identity_hash,
+        x.factory_receipt_identity_hash, x.declaration_receipt_identity_hash,
+        x.authority_commitment,
+        x.same_candidate_identity_hash) || return false
+    true
+end
+
+function verify_present_t0_local_binding_v1(
+        x::PresentT0LocalParentBaselineBindingV1,
+        expected_upstream_commitment::Digest256)
+    verify_present_t0_local_binding_self_consistency_v1(x) || return false
+    x.authority_commitment == expected_upstream_commitment
+end
+
+function verify_absent_t0_local_bundle_v1(x::AbsentT0LocalParentBaselineBundleV1)
+    allowed = (:present, :missing_declaration_record, :missing_material,
+        :source_unavailable, :declaration_unavailable)
+    x.candidate_ref isa QualifiedRefV1 || return false
+    x.g1_reason in allowed && x.g2_reason in allowed || return false
+    x.bundle_hash == canonical_hash((candidate_ref=x.candidate_ref,
+        g1_reason=x.g1_reason, g2_reason=x.g2_reason))
+end
+
+function verify_present_t0_local_parent_bundle_v1(
+        x::PresentT0LocalParentBaselineBundleV1,
+        expected_g1_commitment::Digest256,
+        expected_g2_commitment::Digest256)
+    x.candidate_ref == x.g1.candidate_ref == x.g2.candidate_ref || return false
+    verify_present_t0_local_binding_v1(x.g1, expected_g1_commitment) || return false
+    verify_present_t0_local_binding_v1(x.g2, expected_g2_commitment) || return false
+    x.bundle_hash == canonical_hash((candidate_ref=x.candidate_ref,
+        g1=x.g1, g2=x.g2))
+end
+
+"""Source-backed T0 adapter.  No legacy review or receipt field is synthesized."""
+function _vnl_t0_upstream_error_code(errors)
+    :foreign_candidate in errors && return :t0_candidate_mismatch
+    :foreign_layer in errors && return :foreign_layer
+    (:absence_status_invalid in errors || :absence_reason_invalid in errors) &&
+        return :t0_absence_invalid
+    :t0_declaration_invalid
+end
+
+function _vnl_t0_absent_bundle(input::T0LocalParentBaselineInputV1, records, absent_t)
+    by_layer = Dict(x.layer => x for x in records)
+    g1_reason = haskey(by_layer, :G1) ?
+        (by_layer[:G1] isa absent_t ? by_layer[:G1].reason : :present) :
+        :missing_declaration_record
+    g2_reason = haskey(by_layer, :G2) ?
+        (by_layer[:G2] isa absent_t ? by_layer[:G2].reason : :present) :
+        :missing_declaration_record
+    bundle = AbsentT0LocalParentBaselineBundleV1(input.candidate_ref, g1_reason,
+        g2_reason, canonical_hash((candidate_ref=input.candidate_ref,
+            g1_reason=g1_reason, g2_reason=g2_reason)))
+    verify_absent_t0_local_bundle_v1(bundle) ||
+        throw(ArgumentError("t0_absent_bundle_invalid"))
+    bundle
+end
+
+function bind_local_parent_baseline_from_t0_v1(input::T0LocalParentBaselineInputV1;
+        frozen_context=nothing)
+    try
+        t = _vnl_t0_type(:VNextT0LocalPresentDeclarationV1)
+        absent_t = _vnl_t0_type(:VNextT0LocalAbsentDeclarationV1)
+        (t !== nothing && absent_t !== nothing) ||
+            return _vnl_t0_local_result(:fail_closed, :none, [:t0_adapter_capability_gap], nothing)
+        records = collect(input.declarations)
+        layers = Symbol[]
+        for record in records
+            hasproperty(record, :layer) ||
+                return _vnl_t0_local_result(:fail_closed, :none, [:t0_declaration_invalid], nothing)
+            push!(layers, record.layer)
+        end
+        all(layer -> layer in (:G1, :G2), layers) ||
+            return _vnl_t0_local_result(:fail_closed, :none, [:unknown_layer], nothing)
+        if any(count(==(layer), layers) > 1 for layer in (:G1, :G2)) || length(layers) > 2
+            return _vnl_t0_local_result(:fail_closed, :none, [:duplicate_layer], nothing)
+        end
+        error_fn = _vnl_t0_type(Symbol("_vnl_t0_errors"))
+        absent_error_fn = _vnl_t0_type(Symbol("_vnl_t0_absent_errors"))
+        (error_fn isa Function && absent_error_fn isa Function) ||
+            return _vnl_t0_local_result(:fail_closed, :none,
+            [:t0_adapter_capability_gap], nothing)
+        upstream_errors = Symbol[]
+        for record in records
+            if record isa t
+                append!(upstream_errors, error_fn(record, input.candidate_ref;
+                    frozen_context=frozen_context))
+            elseif record isa absent_t
+                append!(upstream_errors, absent_error_fn(record, input.candidate_ref))
+            else
+                push!(upstream_errors, :t0_declaration_invalid)
+            end
+        end
+        isempty(upstream_errors) || return _vnl_t0_local_result(:fail_closed, :none,
+            [_vnl_t0_upstream_error_code(upstream_errors)], nothing)
+        length(records) < 2 && return _vnl_t0_local_result(:typed_absent, :terminal_deferred,
+            [:t0_declaration_material_missing], _vnl_t0_absent_bundle(input, records, absent_t))
+        any(x -> x isa absent_t, records) && return _vnl_t0_local_result(
+            :typed_absent, :terminal_deferred, [:t0_declaration_material_missing],
+            _vnl_t0_absent_bundle(input, records, absent_t))
+        all(x -> x isa t, records) || return _vnl_t0_local_result(:fail_closed, :none,
+            [:t0_declaration_invalid], nothing)
+        g1 = _vnl_t0_present_binding(records[findfirst(x -> x.layer === :G1, records)])
+        g2 = _vnl_t0_present_binding(records[findfirst(x -> x.layer === :G2, records)])
+        g1.candidate_ref == g2.candidate_ref == input.candidate_ref ||
+            return _vnl_t0_local_result(:fail_closed, :none, [:t0_candidate_mismatch], nothing)
+        bundle_hash = canonical_hash((candidate_ref=input.candidate_ref, g1=g1, g2=g2))
+        bundle = PresentT0LocalParentBaselineBundleV1(input.candidate_ref, g1, g2,
+            bundle_hash)
+        expected_g1 = t0_parent_authority_commitment_v1(
+            records[findfirst(x -> x.layer === :G1, records)])
+        expected_g2 = t0_parent_authority_commitment_v1(
+            records[findfirst(x -> x.layer === :G2, records)])
+        verify_present_t0_local_parent_bundle_v1(bundle, expected_g1, expected_g2) ||
+            return _vnl_t0_local_result(:fail_closed, :none,
+                [:t0_parent_authority_commitment_mismatch], nothing)
+        _vnl_t0_local_result(:present, :resolved, Symbol[], bundle)
+    catch err
+        msg = sprint(showerror, err)
+        code = occursin("t0_candidate_mismatch", msg) ? :t0_candidate_mismatch :
+            occursin("t0_absent", msg) ? :t0_absence_invalid :
+            occursin("t0_adapter_capability_gap", msg) ? :t0_adapter_capability_gap :
+            :program_exception
+        _vnl_t0_local_result(:fail_closed, :none, [code], nothing, err)
+    end
+end
+
+bind_local_parent_baseline_v1(input::T0LocalParentBaselineInputV1) =
+    bind_local_parent_baseline_from_t0_v1(input)
 
 struct LocalCanonicalStateV1
     bundle::LocalParentBaselineBundleUnionV1

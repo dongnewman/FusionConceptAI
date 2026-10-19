@@ -28,9 +28,10 @@ struct VNextT1CanonicalBytesV2
 
     function VNextT1CanonicalBytesV2(bytes::AbstractVector{UInt8})
         owned = copy(bytes)
-        raw = String(owned)
+        # The digest is computed from owned bytes, never from reconstructed String code units.
         digest = Digest256(bytes2hex(
-            invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, codeunits(raw))))
+            invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, owned)))
+        raw = String(owned)
         new(raw, digest, VNEXT_T1_CANONICAL_BYTES_V2_ENCODING)
     end
 end

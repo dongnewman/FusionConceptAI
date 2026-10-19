@@ -30,6 +30,10 @@ _g2v5_v5_qref(value::Any, field::AbstractString) =
 
 const G2_PROFILE_REF_ID = "fusion.g2.grammar-profile"
 const G2_CANONICALIZATION_PROFILE_REF_ID = "fusion.g2.canonicalization-profile"
+const G2_SOURCE_ORDER_CANONICALIZATION_PROFILE_REF_ID =
+    "fusion.g2.canonicalization-profile.source-backed"
+const G2_SOURCE_ORDER_CANONICALIZATION_AXIS_REF_ID =
+    "fusion.g2.canonicalization.source-backed"
 const G2_APPLICABILITY_PROFILE_REF_ID = "fusion.g2.applicability-profile"
 
 function _g2v5_tuple(value::Any, field::AbstractString)
@@ -65,8 +69,9 @@ struct SpatialGrammarProfileV2
         a = _g2v5_v2_qref(applicability_profile_ref, "applicability_profile_ref")
         p.id == G2_PROFILE_REF_ID ||
             throw(ArgumentError("profile_ref must use the fusion.g2.grammar-profile domain"))
-        c.id == G2_CANONICALIZATION_PROFILE_REF_ID ||
-            throw(ArgumentError("canonicalization_profile_ref must use the fusion.g2.canonicalization-profile domain"))
+        c.id in (G2_CANONICALIZATION_PROFILE_REF_ID,
+                 G2_SOURCE_ORDER_CANONICALIZATION_PROFILE_REF_ID) ||
+            throw(ArgumentError("canonicalization_profile_ref must use a controlled G2 canonicalization profile"))
         a.id == G2_APPLICABILITY_PROFILE_REF_ID ||
             throw(ArgumentError("applicability_profile_ref must use the fusion.g2.applicability-profile domain"))
         ambient_dimension isa Integer && !(ambient_dimension isa Bool) ||
@@ -114,7 +119,30 @@ const G2_CANONICALIZATION_DESCRIPTOR_V2 =
      version_axes=("payload_schema_version", "canonicalization_profile_version",
                    "applicability_profile_version", "evidence_receipt_version"))
 
+# The historical profile remains byte/order preserving.  Only current
+# source-backed projections opt into this separately bound representation rule.
+const G2_SOURCE_ORDER_CANONICALIZATION_DESCRIPTOR_V2 =
+    (base=G2_CANONICALIZATION_DESCRIPTOR_V2,
+     profile_ref=(id=G2_SOURCE_ORDER_CANONICALIZATION_PROFILE_REF_ID, version="v2"),
+     canonicalization_axis=(id=G2_SOURCE_ORDER_CANONICALIZATION_AXIS_REF_ID,
+         version="v5"),
+     unordered_fields=(
+         "region_interface.regions sorted by region_id",
+         "plan.mesh.region_ids sorted by region_id",
+         "plan.exterior.boundary_region_ids sorted by region_id",
+         "plan.exterior.boundary_faces sorted lexically",
+         "plan.exterior.boundary_patches sorted by face, region_id, lower, upper"),
+     ordered_fields=("plan.mesh.cells_per_region retained in source x/y/z axis order",
+         "plan.mesh.basis", "plan.mesh.quadrature"))
+
 g2_schema_hash()::Digest256 = canonical_hash(G2_SCHEMA_DESCRIPTOR_V2)
 g2_canonicalization_hash()::Digest256 = canonical_hash(G2_CANONICALIZATION_DESCRIPTOR_V2)
+function g2_canonicalization_hash(profile::SpatialGrammarProfileV2)::Digest256
+    descriptor = profile.canonicalization_profile_ref.id ==
+        G2_SOURCE_ORDER_CANONICALIZATION_PROFILE_REF_ID ?
+        G2_SOURCE_ORDER_CANONICALIZATION_DESCRIPTOR_V2 :
+        G2_CANONICALIZATION_DESCRIPTOR_V2
+    canonical_hash(descriptor)
+end
 g2_compatibility_profile_token(profile::SpatialGrammarProfileV2)::String =
     "g2-v5-profile:" * g2_profile_hash(profile).value

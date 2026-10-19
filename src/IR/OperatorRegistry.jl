@@ -536,12 +536,33 @@ function _validate_rule(rule::SameTypeVariadicRuleV1, inputs, outputs, parameter
 end
 function _validate_rule(rule::ScalarProductRuleV1, inputs, outputs, parameters)
     ins, outs = Tuple(inputs), Tuple(outputs)
-    length(ins) == 2 && length(outs) == 1 && all(t -> t.tensor_rank == 0, ins) && outs[1].tensor_rank == 0 &&
-        outs[1].value_kind == ins[1].value_kind && outs[1].value_kind == ins[2].value_kind &&
+    length(ins) == 2 && length(outs) == 1 && all(t -> t.tensor_rank == 0, ins) && outs[1].tensor_rank == 0 ||
+        return false
+    parameter_field = _scalar_parameter_field_pair(ins[1], ins[2])
+    if parameter_field !== nothing
+        rule.division && return false
+        parameter, field = parameter_field
+        return parameter.spatial_dimension == 0 &&
+            parameter.temporal_type.kind == static_time &&
+            parameter.temporal_type.derivative_order == 0 &&
+            field.value_kind == :scalar_field &&
+            outs[1].value_kind == :scalar_field &&
+            outs[1].spatial_dimension == field.spatial_dimension &&
+            outs[1].temporal_type == field.temporal_type &&
+            outs[1].units == UnitSignature(ntuple(i ->
+                ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))
+    end
+    outs[1].value_kind == ins[1].value_kind && outs[1].value_kind == ins[2].value_kind &&
         ins[1].spatial_dimension == ins[2].spatial_dimension && outs[1].spatial_dimension == ins[1].spatial_dimension &&
         _temporal_compatible(ins[1].temporal_type, ins[2].temporal_type) &&
         outs[1].temporal_type == (ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type) &&
         outs[1].units == UnitSignature(ntuple(i -> rule.division ? ins[1].units.exponents[i] - ins[2].units.exponents[i] : ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))
+end
+
+function _scalar_parameter_field_pair(a, b)
+    a.value_kind === :scalar_parameter && b.value_kind === :scalar_field && return (a, b)
+    b.value_kind === :scalar_parameter && a.value_kind === :scalar_field && return (b, a)
+    nothing
 end
 function _validate_rule(rule::SpatialDerivativeRuleV1, inputs, outputs, parameters)
     ins, outs = Tuple(inputs), Tuple(outputs)
@@ -607,8 +628,22 @@ function _sealed_validate_rule(rule::OperatorTypeRuleV1, inputs, outputs, parame
         return length(outs) == 1 && length(ins) >= rule.minimum_arity && length(ins) <= rule.maximum_arity &&
             !isempty(ins) && all(t -> t == ins[1], ins) && outs[1] == ins[1]
     elseif typeof(rule) === ScalarProductRuleV1
-        return length(ins) == 2 && length(outs) == 1 && all(t -> t.tensor_rank == 0, ins) && outs[1].tensor_rank == 0 &&
-            outs[1].value_kind == ins[1].value_kind && outs[1].value_kind == ins[2].value_kind &&
+        length(ins) == 2 && length(outs) == 1 && all(t -> t.tensor_rank == 0, ins) && outs[1].tensor_rank == 0 ||
+            return false
+        parameter_field = _scalar_parameter_field_pair(ins[1], ins[2])
+        if parameter_field !== nothing
+            rule.division && return false
+            parameter, field = parameter_field
+            return parameter.spatial_dimension == 0 &&
+                parameter.temporal_type.kind == static_time &&
+                parameter.temporal_type.derivative_order == 0 &&
+                field.value_kind == :scalar_field && outs[1].value_kind == :scalar_field &&
+                outs[1].spatial_dimension == field.spatial_dimension &&
+                outs[1].temporal_type == field.temporal_type &&
+                outs[1].units == UnitSignature(ntuple(i ->
+                    ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))
+        end
+        return outs[1].value_kind == ins[1].value_kind && outs[1].value_kind == ins[2].value_kind &&
             ins[1].spatial_dimension == ins[2].spatial_dimension && outs[1].spatial_dimension == ins[1].spatial_dimension &&
             (ins[1].temporal_type == ins[2].temporal_type ||
              (ins[1].temporal_type.kind == static_time && ins[1].temporal_type.derivative_order == 0) ||
@@ -723,6 +758,17 @@ function _sealed_infer_outputs(rule::OperatorTypeRuleV1, inputs, parameters)
          (ins[1].temporal_type.kind == static_time && ins[1].temporal_type.derivative_order == 0) ||
          (ins[2].temporal_type.kind == static_time && ins[2].temporal_type.derivative_order == 0)) ||
             throw(ArgumentError("scalar product crosses incompatible temporal types"))
+        parameter_field = _scalar_parameter_field_pair(ins[1], ins[2])
+        if parameter_field !== nothing
+            rule.division && throw(ArgumentError("scalar parameter division is unsupported"))
+            parameter, field = parameter_field
+            parameter.spatial_dimension == 0 &&
+                parameter.temporal_type.kind == static_time &&
+                parameter.temporal_type.derivative_order == 0 ||
+                throw(ArgumentError("scalar parameter must be static and spatially constant"))
+            return (PhysicalType(:scalar_field, 0, field.spatial_dimension, field.temporal_type,
+                UnitSignature(ntuple(i -> ins[1].units.exponents[i] + ins[2].units.exponents[i], 7))),)
+        end
         temporal = ins[1].temporal_type.kind == static_time ? ins[2].temporal_type : ins[1].temporal_type
         value_kind = ins[1].value_kind == ins[2].value_kind ? ins[1].value_kind :
             throw(ArgumentError("scalar product requires matching value kinds"))

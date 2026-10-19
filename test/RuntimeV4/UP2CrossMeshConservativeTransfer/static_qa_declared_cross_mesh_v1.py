@@ -31,14 +31,26 @@ def main() -> None:
         "missing_external_return_account", "body_hash", "bundle_hash",
         "axis_hashes", "mesh_hash", "owner_mismatch", "state_shape_mismatch",
         "space_mismatch", "mesh_side_mismatch", "one_dimensional_diffusion_solved",
+        "declared_axisymmetric_global_consumer_v1",
+        "assemble_coupled_mhd_global_v1", "solve_coupled_mhd_global_v1",
+        "coupled_mhd_global_consumer",
+        "state_vector = vec(Float64.(collect(state)))",
+        "state_dofs=length(state_vector)",
+        "policy_hash=hasproperty(policy,:policy_hash)",
     )
     missing = [token for token in required_source if token not in source]
     assert not missing, f"source missing required contract tokens: {missing}"
     for token in ("execute_declared_cross_mesh_v1", "declared_cross_mesh_transfer_v1",
                   "0.25,0.75", "mesh:source-2", "mesh:target-4",
                   "wrong_candidate", "noncovering_overlap", "missing_external",
-                  "axis_bad", "forged_mesh", "wrong_owner", "shape"):
+                  "axis_bad", "forged_mesh", "wrong_owner", "shape",
+                  "remesh adapter dispatches only to existing CoupledMHD APIs",
+                  "assembly_missing_closures", "solver_missing_closures"):
         assert token in test, f"test does not exercise {token}"
+    for token in ("_cm_remesh_global_api_fixture", "status === :evaluated_screen_only",
+                  "assembly_status === :assembled", "solver_status === :converged",
+                  "purpose=:global_consumer_vector_dispatch_fixture"):
+        assert token in test, f"positive global consumer seam is missing {token}"
     assert "(1.0, 3.0)" not in test
     assert ORACLE.exists(), "independent arithmetic oracle is missing"
     oracle_source = ORACLE.read_text(encoding="utf-8")

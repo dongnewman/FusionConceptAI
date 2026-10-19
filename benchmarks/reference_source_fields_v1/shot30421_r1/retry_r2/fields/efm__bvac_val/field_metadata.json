@@ -1,0 +1,125 @@
+{
+  "requested_path": "efm/bvac_val",
+  "resolved_path": "efm/bvac_val",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Reference vacuum toroidal B field at efm_bvac_r; f(A)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Vacuum toroidal field at",
+    "mds_name": "\\TOP.ANALYSED.EFM:BVAC_VAL",
+    "name": "efm/bvac_val",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      120
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_BVAC_VAL",
+    "units": "T",
+    "uuid": "8251caa9-fcee-5d5a-829c-e2eca500e77d",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:36.789560Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/bvac_val/0",
+      "requested_utc": "2026-09-21T20:06:36.789669Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "319",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"c00d60e90944ef5048cd29848e76be58\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 319,
+      "compressed_sha256": "53e5b747fd77c940d8daa2a97a1341147dd95b11ff94bbb033632ed175a383e6",
+      "decoded_bytes": 480,
+      "decoded_sha256": "85bae372c4d9cd83537efe6fc0a42b036463cae23ab6dab32012a752fd37b1c4",
+      "decoded_shape": [
+        120
+      ],
+      "written_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__bvac_val\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "85bae372c4d9cd83537efe6fc0a42b036463cae23ab6dab32012a752fd37b1c4",
+  "finite_count": 120,
+  "total_count": 120,
+  "minimum": -0.4076462984085083,
+  "maximum": -0.3945411443710327
+}

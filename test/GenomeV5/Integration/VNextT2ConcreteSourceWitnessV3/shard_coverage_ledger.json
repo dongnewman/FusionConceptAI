@@ -1,0 +1,1242 @@
+{
+  "schema": "vnext_t2_source_witness_v3_shard_coverage_v1",
+  "monolith_path": "test/GenomeV5/Integration/VNextT2ConcreteSourceWitnessV3/vnext_t2_concrete_source_witness_v3_tests.jl",
+  "monolith_sha256": "8c52c726c4ce82d8d427f59469dbcb30122d0e0b37063495b97e0be606f3e516",
+  "syntactic_site_count": 103,
+  "runtime_assertion_count": 115,
+  "contexts": {
+    "scenario_root": {
+      "kind": "testset",
+      "original_header_line": 134,
+      "original_header_sha256": "7a64bf3df0da68bef40846b525469cf0991246917808e60b2a0df7315e4f2c63",
+      "runtime_iterations": 1
+    },
+    "layer_loop_g1_g2_g3": {
+      "kind": "for_loop",
+      "original_start_line": 154,
+      "original_end_line": 166,
+      "header": "for layer in (:g1, :g2, :g3)",
+      "header_sha256": "62daa6fa6dce0d476a3b0a2c92bfdd7af9e627c7d1d121c3961a7afad3bda79e",
+      "runtime_iterations": 3,
+      "site_ids": [
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018"
+      ]
+    }
+  },
+  "scenario_order": [
+    "native_baseline_coupling",
+    "edited_state_typed_reload",
+    "intrinsic_absence_precedence",
+    "foreign_authority_joins",
+    "recomputed_source_layer",
+    "feedback_child_serialization"
+  ],
+  "scenarios": {
+    "native_baseline_coupling": {
+      "site_ids": [
+        "A001",
+        "A002",
+        "A003",
+        "A004",
+        "A005",
+        "A006",
+        "A007",
+        "A008",
+        "A009",
+        "A010",
+        "A011",
+        "A012",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A019",
+        "A020",
+        "A021",
+        "A022",
+        "A023",
+        "A024",
+        "A025",
+        "A026",
+        "A027",
+        "A028",
+        "A029",
+        "A030",
+        "A031",
+        "A032",
+        "A033",
+        "A034",
+        "A035",
+        "A036",
+        "A037",
+        "A038",
+        "A039",
+        "A040",
+        "A041",
+        "A042",
+        "A043"
+      ],
+      "syntactic_site_count": 43,
+      "expected_runtime_sequence": [
+        "A001",
+        "A002",
+        "A003",
+        "A004",
+        "A005",
+        "A006",
+        "A007",
+        "A008",
+        "A009",
+        "A010",
+        "A011",
+        "A012",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A013",
+        "A014",
+        "A015",
+        "A016",
+        "A017",
+        "A018",
+        "A019",
+        "A020",
+        "A021",
+        "A022",
+        "A023",
+        "A024",
+        "A025",
+        "A026",
+        "A027",
+        "A028",
+        "A029",
+        "A030",
+        "A031",
+        "A032",
+        "A033",
+        "A034",
+        "A035",
+        "A036",
+        "A037",
+        "A038",
+        "A039",
+        "A040",
+        "A041",
+        "A042",
+        "A043"
+      ],
+      "expected_runtime_assertions": 55,
+      "expected_runtime_sequence_sha256": "2815c0bbabc23b0d5b9c7305028c5d29ee94428b551f9acc3e438fe565d1ccdd"
+    },
+    "edited_state_typed_reload": {
+      "site_ids": [
+        "A044",
+        "A045",
+        "A046",
+        "A047",
+        "A048",
+        "A049",
+        "A050",
+        "A051",
+        "A052",
+        "A053",
+        "A054",
+        "A055",
+        "A056",
+        "A057",
+        "A058",
+        "A059"
+      ],
+      "syntactic_site_count": 16,
+      "expected_runtime_sequence": [
+        "A044",
+        "A045",
+        "A046",
+        "A047",
+        "A048",
+        "A049",
+        "A050",
+        "A051",
+        "A052",
+        "A053",
+        "A054",
+        "A055",
+        "A056",
+        "A057",
+        "A058",
+        "A059"
+      ],
+      "expected_runtime_assertions": 16,
+      "expected_runtime_sequence_sha256": "a3ed42e9ac00d883f5909092b1cbe1912cae0db6e0153e5f1e159919c6531b6d"
+    },
+    "intrinsic_absence_precedence": {
+      "site_ids": [
+        "A060",
+        "A061",
+        "A062",
+        "A063",
+        "A064",
+        "A065",
+        "A066",
+        "A067",
+        "A068",
+        "A069",
+        "A070",
+        "A071",
+        "A072",
+        "A073",
+        "A074",
+        "A075",
+        "A076",
+        "A077",
+        "A078",
+        "A079",
+        "A080",
+        "A081",
+        "A082"
+      ],
+      "syntactic_site_count": 23,
+      "expected_runtime_sequence": [
+        "A060",
+        "A061",
+        "A062",
+        "A063",
+        "A064",
+        "A065",
+        "A066",
+        "A067",
+        "A068",
+        "A069",
+        "A070",
+        "A071",
+        "A072",
+        "A073",
+        "A074",
+        "A075",
+        "A076",
+        "A077",
+        "A078",
+        "A079",
+        "A080",
+        "A081",
+        "A082"
+      ],
+      "expected_runtime_assertions": 23,
+      "expected_runtime_sequence_sha256": "5dbe3f2ea979a2783f2ede9e7d6386b48c7ec3ddd1c24413e47ec584fbd4dc93"
+    },
+    "foreign_authority_joins": {
+      "site_ids": [
+        "A083",
+        "A084",
+        "A085",
+        "A086",
+        "A087",
+        "A088",
+        "A089"
+      ],
+      "syntactic_site_count": 7,
+      "expected_runtime_sequence": [
+        "A083",
+        "A084",
+        "A085",
+        "A086",
+        "A087",
+        "A088",
+        "A089"
+      ],
+      "expected_runtime_assertions": 7,
+      "expected_runtime_sequence_sha256": "e17d189132c970048c858cc0fd91dc7b5d46873a08450fdc3c0ce51d8be17a7c"
+    },
+    "recomputed_source_layer": {
+      "site_ids": [
+        "A090",
+        "A091",
+        "A092",
+        "A093",
+        "A094",
+        "A095",
+        "A100",
+        "A101"
+      ],
+      "syntactic_site_count": 8,
+      "expected_runtime_sequence": [
+        "A090",
+        "A091",
+        "A092",
+        "A093",
+        "A094",
+        "A095",
+        "A100",
+        "A101"
+      ],
+      "expected_runtime_assertions": 8,
+      "expected_runtime_sequence_sha256": "25eabfa45aec8727907d275619b18f2b9fd4e0dd94de4dca4d9f1c93191bdd63"
+    },
+    "feedback_child_serialization": {
+      "site_ids": [
+        "A096",
+        "A097",
+        "A098",
+        "A099",
+        "A102",
+        "A103"
+      ],
+      "syntactic_site_count": 6,
+      "expected_runtime_sequence": [
+        "A096",
+        "A097",
+        "A098",
+        "A099",
+        "A102",
+        "A103"
+      ],
+      "expected_runtime_assertions": 6,
+      "expected_runtime_sequence_sha256": "1d2647b008925cdcfc2553dd783bb2b9505964e7e909b3ea1e3591543f585f03"
+    }
+  },
+  "sites": [
+    {
+      "id": "A001",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 136,
+      "original_end_line": 136,
+      "assertion_sha256": "2e1155919386a9935bcfc00ed443dda8a97917702afeb72bb8b14f37e639ada4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A002",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 137,
+      "original_end_line": 137,
+      "assertion_sha256": "7eb8fdb21f65b980ff8f66da3bc14c4241f40f30ee70bc7ae8d745c1ee3781b0",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A003",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 139,
+      "original_end_line": 139,
+      "assertion_sha256": "b360fffccc9f58b840b26c95ddddd8c2f4c5a1085e8632cd9c64457fbb4a3f3b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A004",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 140,
+      "original_end_line": 140,
+      "assertion_sha256": "00e0ada6eddcff75e8a36f99fec0d17f1a3b8a6c3d83ada7d86dc57f7f879c01",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A005",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 141,
+      "original_end_line": 142,
+      "assertion_sha256": "964c2d34900db0221647bc2f0146fc2f934854674cd1a6c7f23132343b31f1b1",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A006",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 144,
+      "original_end_line": 144,
+      "assertion_sha256": "3ef74356f0de7823f34615cc58272918013547f8fdd0a824ca26e501a7ff8a48",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A007",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 145,
+      "original_end_line": 145,
+      "assertion_sha256": "8434c1574db1125aca05e74a46a9083164bbdafc9fa4463ddf9d14b6cb0c14e0",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A008",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 146,
+      "original_end_line": 146,
+      "assertion_sha256": "15870669328e1168831a3f827f4b4284e52d8eb26184828653d26bbd7e210dd6",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A009",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 147,
+      "original_end_line": 147,
+      "assertion_sha256": "5ab6661b73a5f5dc76689b92b893c1fbaaf768692975520676b9557f2aeec61b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A010",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 148,
+      "original_end_line": 148,
+      "assertion_sha256": "2b67d7413d14ae6974301e68d6318c7ac194f28a309deb7b0c5bcaaac25eddc6",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A011",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 149,
+      "original_end_line": 150,
+      "assertion_sha256": "ddd893c6d9cdca456e940260fa605cfb3d81c876166bdb6bce54f9ab9123c8d3",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A012",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 151,
+      "original_end_line": 152,
+      "assertion_sha256": "db8b664ce7a496097242d1cf3fe86ecfa2b147778486f01b296d8f8d4685fe2b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A013",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 156,
+      "original_end_line": 157,
+      "assertion_sha256": "7d6b1790f092307756e14522598d0d0bf4f566ca148b6880c09616d82a74f036",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A014",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 158,
+      "original_end_line": 159,
+      "assertion_sha256": "9401b8b5d11db43dab16150683a3737f6545e039c1795b5cdc920526979e762a",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A015",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 160,
+      "original_end_line": 160,
+      "assertion_sha256": "af40864f0546019f655532f4a131e7901757ce28b58aba2278197bf59222f072",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A016",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 161,
+      "original_end_line": 161,
+      "assertion_sha256": "3ae44db43333c85cbb705c890150803660ea38b7f131649fddbd26ae47f606e4",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A017",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 162,
+      "original_end_line": 162,
+      "assertion_sha256": "49bb22db079eecbe45d29f65dd1795d7fed05fe7c5daf636dff0fcc8385020cd",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A018",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 163,
+      "original_end_line": 165,
+      "assertion_sha256": "f4b7e6ceaa6b1cbe331e5d1c2e6c4b58da75dc8fb4fd978cc6054f58f23caeda",
+      "context": "layer_loop_g1_g2_g3",
+      "runtime_occurrences": 3
+    },
+    {
+      "id": "A019",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 168,
+      "original_end_line": 169,
+      "assertion_sha256": "1fa010938aa8d04ac6e484274e10e5cb120387cfbea2030d96c19984f168fd8e",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A020",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 170,
+      "original_end_line": 170,
+      "assertion_sha256": "214f19c96aad5e3c180fec3003bc366e509fa5fb38346f5a208e96cba0f8f358",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A021",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 171,
+      "original_end_line": 172,
+      "assertion_sha256": "453750b471a91621320babd811840fd929eb68f032ece68b01fecc4defab988b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A022",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 173,
+      "original_end_line": 174,
+      "assertion_sha256": "b31df0a2d57724827ddbfdde31b8bd898d44bbc6c821809e14195ae62a6782d7",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A023",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 175,
+      "original_end_line": 175,
+      "assertion_sha256": "056e857089995a4004bbcdb83ae5680160178df431cb89db15081257cff8d65a",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A024",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 176,
+      "original_end_line": 177,
+      "assertion_sha256": "6dee81487629d976fdf8217f849ab26bfadb036166a995a1e519926a537d0024",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A025",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 190,
+      "original_end_line": 190,
+      "assertion_sha256": "ab39c2150ddfb91f705d9c9bd2f41295c1c0eb97cb1812285b91d408b90569f4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A026",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 191,
+      "original_end_line": 192,
+      "assertion_sha256": "610b4c0877ad69c754af9e2b86ddb801a462c62386da4bbb9e95063c1882807a",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A027",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 204,
+      "original_end_line": 206,
+      "assertion_sha256": "c59b18b36c5b410d57e5c326d98224046c1cd5087b9c15cd1f554492da9f925f",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A028",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 208,
+      "original_end_line": 208,
+      "assertion_sha256": "721ba25ade9dd797918db7b56c902b625fa86661ba33b083e64eef5de85f539d",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A029",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 209,
+      "original_end_line": 209,
+      "assertion_sha256": "4672cd13f40465f9aebb1304f3bf0ac43af0200a55e7008a3035c21f0a56581d",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A030",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 210,
+      "original_end_line": 210,
+      "assertion_sha256": "eb8d061b8253a2b8cd9a84450bb53cb4b0f7683dda16a7951b8796a589ec5ef2",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A031",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 211,
+      "original_end_line": 211,
+      "assertion_sha256": "858b07cd887d3043c4658840fb9ae0b89519911d75d243d184c70b110ed4ea7b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A032",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 212,
+      "original_end_line": 212,
+      "assertion_sha256": "92b94b120aa55aacd5cd0f1658e5f20fd47316f8d2a99661ddfd45f1ada59d16",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A033",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 213,
+      "original_end_line": 213,
+      "assertion_sha256": "d57a0536f031f3559f7399f41c10ecdd8a8c0838edeec78a3cd533e24a0376a5",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A034",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 214,
+      "original_end_line": 215,
+      "assertion_sha256": "aac15d2cfe73fefccfd10d0be426d75f2976b5d10ce416b4a6a9f6d9797c08d6",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A035",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 216,
+      "original_end_line": 216,
+      "assertion_sha256": "dd9f017ff82d7fa1d15cdabd6d414b8aff32200c499eab1ef88a46567ad574e2",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A036",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 217,
+      "original_end_line": 217,
+      "assertion_sha256": "f2f2241ca5f56e74f7fa1927cb260b3284b43a362de070568097c5f8bd4024b8",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A037",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 222,
+      "original_end_line": 222,
+      "assertion_sha256": "06895edbe72eb972a159014d040d10ff3cab9c9f6eb49380a0c16a1fd0426a9a",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A038",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 223,
+      "original_end_line": 223,
+      "assertion_sha256": "10dfd787467ac8b8c6a3a71ab2feee3e1d5610789ccd16697e9b3033465e6c4e",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A039",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 224,
+      "original_end_line": 224,
+      "assertion_sha256": "43eccf750b258099a993892ea31e83a286b759e14aa2adfa3cbebaeb76ca5b03",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A040",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 226,
+      "original_end_line": 226,
+      "assertion_sha256": "18ae8ba8ebc304160d833664967cdb7af82936e44a3604980900c11317d4e794",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A041",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 227,
+      "original_end_line": 227,
+      "assertion_sha256": "7daa638fb43616dae563231d3912bb8e8fd84a9a6fbb452f6878d674bc188468",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A042",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 228,
+      "original_end_line": 228,
+      "assertion_sha256": "c45a45fb4289d5b007dc8c230c267437c3cd757ecad29af4b303e265fbdeee0e",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A043",
+      "scenario": "native_baseline_coupling",
+      "original_start_line": 229,
+      "original_end_line": 229,
+      "assertion_sha256": "4f7193b15c892561b564307b2c5dc97e09bb7e3d458c64190c5959df3dee7f24",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A044",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 236,
+      "original_end_line": 237,
+      "assertion_sha256": "88db0e24073df7fa52b60ad9c28f2220fe311ba9fcd6cd54e7e2a2e5de7777b0",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A045",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 238,
+      "original_end_line": 238,
+      "assertion_sha256": "59bf06b78bd74666cf9fbcc47a02be16a7260eff9bde797406e12c99aae4818c",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A046",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 239,
+      "original_end_line": 240,
+      "assertion_sha256": "1bde3a4ffc67bdd7dab0723d4ea6d088b231c9e1fb52571d68a943e887bececa",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A047",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 241,
+      "original_end_line": 242,
+      "assertion_sha256": "c9a750a0c85c649b9a2b91f95ac88781299e429ccd31477b6b351ed61690815b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A048",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 243,
+      "original_end_line": 244,
+      "assertion_sha256": "f9cd7a8333a55d91c0e72bab6c25e33cf7abe02edb470492cd77d49a421dbec0",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A049",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 245,
+      "original_end_line": 245,
+      "assertion_sha256": "d8fd15ece4d025f90599cf4068c131718a70b6a3af8b26996f1511ad95f67c56",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A050",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 246,
+      "original_end_line": 247,
+      "assertion_sha256": "51f1dc5d51e98415278cdc8b8db6095b95a6e72b654967b4db75d2f002ac7184",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A051",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 248,
+      "original_end_line": 249,
+      "assertion_sha256": "7c46b94d931aef8a2eb05027a550ed09fee9c74be3355b76cd9cfabdb8cfddcc",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A052",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 250,
+      "original_end_line": 250,
+      "assertion_sha256": "8e52b992c7e7eac401e7f5c7743d397ee17a50e7282e56bca5cbbe758d65b04b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A053",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 251,
+      "original_end_line": 251,
+      "assertion_sha256": "60e816db5256557992570f32bb6b9ba1539ee17017f6f794d690dda03102159a",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A054",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 252,
+      "original_end_line": 253,
+      "assertion_sha256": "594a251abd01fb9efb994762f1924d8ca148215644fa8ec52ee112aea732cab1",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A055",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 262,
+      "original_end_line": 262,
+      "assertion_sha256": "452bcaf47161f59cc90b86517ecb8da0e00214d3f0c2b69966b8fdff537a1986",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A056",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 263,
+      "original_end_line": 264,
+      "assertion_sha256": "dbcecd850c225013aeeaf85cb1462ae5176e789fc8966cadcacafd7bcf9463b4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A057",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 265,
+      "original_end_line": 266,
+      "assertion_sha256": "521841add3ebaad0605ee93f6997cca4fb4b44f0f012e6df0f3e2dfda2aa3f40",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A058",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 271,
+      "original_end_line": 271,
+      "assertion_sha256": "a863b8d4f4987e14a4a4189fd2f01b7c07810ecfdbe0070f16e30610fa8774e1",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A059",
+      "scenario": "edited_state_typed_reload",
+      "original_start_line": 272,
+      "original_end_line": 272,
+      "assertion_sha256": "09bf4479a4aea072296e193dc2f32782833bd6748687b7b522be2c458c9fa9ce",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A060",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 280,
+      "original_end_line": 280,
+      "assertion_sha256": "b0aaaa859cf32ace8b8a6d090edd75e290782a3feb6e7dc8152b50cc46e96f41",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A061",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 281,
+      "original_end_line": 282,
+      "assertion_sha256": "e36235dcc8db024702a10741f36378a9d93c5b2b353c0a33a35e6102f1c43017",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A062",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 288,
+      "original_end_line": 288,
+      "assertion_sha256": "9a8b71e960dafbd9596c1bb37e5d11317f4760fd1afb7891a0fd67b796ad70de",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A063",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 289,
+      "original_end_line": 289,
+      "assertion_sha256": "a83cee695510c8787612239c9494ecb1ab9fc33b6fdc7a712375cbaa2d217421",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A064",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 292,
+      "original_end_line": 292,
+      "assertion_sha256": "2a41d1ced9d491ce10a6cc6db1825c23a5337b8399986f4c7e1eda28c1af55d0",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A065",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 293,
+      "original_end_line": 294,
+      "assertion_sha256": "f2b90b64ee112f9ea856a0b4fffda393682a19367993c1a20426550c49054d7b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A066",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 300,
+      "original_end_line": 300,
+      "assertion_sha256": "b31c10381965511b0be2e7a8cc34cd526ad8d4e4f9094da96852ce14ef5f10fa",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A067",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 301,
+      "original_end_line": 301,
+      "assertion_sha256": "0c25b2e0ed69a391661bbb1a107a3d4dc4533e245da533537a1db7ab354cfe64",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A068",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 304,
+      "original_end_line": 304,
+      "assertion_sha256": "fc76eb64534799fd2299f2afb7d60de03a5b320f042729c82cd6ef0e50c3f460",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A069",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 305,
+      "original_end_line": 306,
+      "assertion_sha256": "c4d5a53c4183682a5843c1a0969ca1cb56b1a61d74f4f584f7cc047450cc8761",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A070",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 312,
+      "original_end_line": 312,
+      "assertion_sha256": "e053ba6b2f45bf1ff7399598f44b91bc53a53fec09279a4a25c52d2cff0198a4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A071",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 313,
+      "original_end_line": 313,
+      "assertion_sha256": "b2c541760c292ec77f4acc74eaab026ff8daf0904f0d2a69054ac5032bbd4f82",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A072",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 314,
+      "original_end_line": 325,
+      "assertion_sha256": "e40e23594980708f848caef322cf848a2a00dcb5e40d866997675f2b48489147",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A073",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 336,
+      "original_end_line": 336,
+      "assertion_sha256": "5a09052c76d167ee9d72851a550695592e0b59ce701b9435e5ed4e08ce0ff685",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A074",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 342,
+      "original_end_line": 342,
+      "assertion_sha256": "20c9f3720497d28c20be66e4071d5d612384a58d9991f582b4227fd5acbc72bc",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A075",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 347,
+      "original_end_line": 347,
+      "assertion_sha256": "69bca1b4365de6f64cbf037f8d25108e2b7ba4e168226737b34ab05b0c6aa808",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A076",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 348,
+      "original_end_line": 348,
+      "assertion_sha256": "bac51938fdbd1944e3cd2f6d232c4cd3af0243f10a2251633b7bbc0c1bbcd7f7",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A077",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 354,
+      "original_end_line": 354,
+      "assertion_sha256": "aaebcfec620311ffd64ea64ecbb131d5ac541719131fe249dde4bf6b891803e4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A078",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 355,
+      "original_end_line": 357,
+      "assertion_sha256": "48babe8514e5aaa75a2dcb46941e0a9afa330ad8c4b9c61f2248bb85e42cc289",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A079",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 362,
+      "original_end_line": 362,
+      "assertion_sha256": "c21fb549f88a63bca8584b86bca90d3849bb327a4b1c7398f0a8c40f9af4c7f4",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A080",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 363,
+      "original_end_line": 363,
+      "assertion_sha256": "000a90ec9d1639b3a30db198fc590de8de39fa8b677ed817ae130c88dacd610e",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A081",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 375,
+      "original_end_line": 375,
+      "assertion_sha256": "cc0280a4d7c5b8651894540c5517005bedcb48bdeae35640c1c4f22f7979b7a1",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A082",
+      "scenario": "intrinsic_absence_precedence",
+      "original_start_line": 376,
+      "original_end_line": 376,
+      "assertion_sha256": "a0ad60eb93c77ad0af3b0c0691882eef31c6d3245524b36af503c3528c52c00b",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A083",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 389,
+      "original_end_line": 389,
+      "assertion_sha256": "e8cf002dc91d330582ab0900a8422c7305fead4a3d481c2564ff8f26ae07d432",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A084",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 390,
+      "original_end_line": 390,
+      "assertion_sha256": "8e1af1283f176aabf2f0f3a2f088099c838009675ad7d56db143144455d8f79f",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A085",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 396,
+      "original_end_line": 396,
+      "assertion_sha256": "b30bdfb05528315e13e186b60131405b80488ab5b7ff4df09c00cc524be649dc",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A086",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 397,
+      "original_end_line": 398,
+      "assertion_sha256": "6e99cd3ae047093328aac2d587daa9810c0c5f3e561c98f5ab915437113a1d0d",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A087",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 399,
+      "original_end_line": 399,
+      "assertion_sha256": "0850d286a22621a0a650a7a5dff99f0979cc3d842ce348dd371f56e11b7b593c",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A088",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 411,
+      "original_end_line": 411,
+      "assertion_sha256": "19449c68469c5d4c75ee3589234921fb1580cb2cb4698638ec63a14568ed02e8",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A089",
+      "scenario": "foreign_authority_joins",
+      "original_start_line": 412,
+      "original_end_line": 412,
+      "assertion_sha256": "953d64dd8b94b60e0df330697998dc44ee3dbc1ea1513813e86f922742d1b1f7",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A090",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 418,
+      "original_end_line": 418,
+      "assertion_sha256": "e8e407c6d54562891f4906e601043eadb7fd5682df3c66877c77b452da978327",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A091",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 419,
+      "original_end_line": 419,
+      "assertion_sha256": "b096ba626d93bdd6c3586f1cd1eb5354174259fc91218fb797e06c2f5377ff27",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A092",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 421,
+      "original_end_line": 421,
+      "assertion_sha256": "761fa2bc21fda2d9b24e2e37925dd45aa1b6150687b4909d10c291c74ded04c5",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A093",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 422,
+      "original_end_line": 422,
+      "assertion_sha256": "b5b47ce779c55f2671fd819e0c8762d1bcc8c5eaed82dbe9680e2fd7af56c585",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A094",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 432,
+      "original_end_line": 433,
+      "assertion_sha256": "973586759be29545f67f4cb8823922f29365cff3cb71c4cb6564bd5953add897",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A095",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 434,
+      "original_end_line": 434,
+      "assertion_sha256": "6c3f74249dce0a9628ee2dc4fe58f92343380800401dbcc6e97af5ff15a64418",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A096",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 449,
+      "original_end_line": 451,
+      "assertion_sha256": "11fa004fc35801971d9b879903c8d42926cb6d8758366ce5a79b52b66e730841",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A097",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 452,
+      "original_end_line": 452,
+      "assertion_sha256": "c2901a4be237d5927fa33ac0d499e6d062260a6320fcdda49fe00f73ec17eb2c",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A098",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 460,
+      "original_end_line": 462,
+      "assertion_sha256": "a864645306897521ddc2928a55f328704a50560c212b1fc03d4c7fef1ee93cea",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A099",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 463,
+      "original_end_line": 463,
+      "assertion_sha256": "24580e4535f8c52fc8613e5cc4afe0f3e1dce0cd26de61231b7b3a4a099da170",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A100",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 474,
+      "original_end_line": 474,
+      "assertion_sha256": "bad0c865694dd26c29e2b1dd025310348183e5e4b67bba9547b4fc0c43158f2f",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A101",
+      "scenario": "recomputed_source_layer",
+      "original_start_line": 477,
+      "original_end_line": 477,
+      "assertion_sha256": "74364deb4d8214aa3396852c63973e01e61dcd2d0d54ba028559ad0a498e8ea8",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A102",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 486,
+      "original_end_line": 487,
+      "assertion_sha256": "6457aed621cbf5004b6a77527cd89a8104bf80c8d0517508b10bd516d0267dfa",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    },
+    {
+      "id": "A103",
+      "scenario": "feedback_child_serialization",
+      "original_start_line": 488,
+      "original_end_line": 491,
+      "assertion_sha256": "1f1bbcbd3b7ea4bf1edd9dc0717fde6d6028886a3eee40eabaf7d9dd96991907",
+      "context": "scenario_root",
+      "runtime_occurrences": 1
+    }
+  ]
+}

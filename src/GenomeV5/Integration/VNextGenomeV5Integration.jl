@@ -11,12 +11,12 @@ const VNEXT_T1_ADMISSION_SCHEMA_VERSION_V1 = "v1"
 
 struct VNextT1AdmissionInputV1
     candidate_ref::QualifiedRefV1
-    t0_recheck::Union{Nothing,VNextT1ExpectedRecheckV1}
+    t0_recheck::Union{Nothing,VNextT1AdmissionRecheckInputV1}
     transport::Union{Nothing,VNextT0LocalTransportV1}
     no_legacy_receipt::Union{Nothing,VNextT1NoLegacyReceiptV1}
 end
 VNextT1AdmissionInputV1(candidate_ref::QualifiedRefV1,
-        t0_recheck::Union{Nothing,VNextT1ExpectedRecheckV1},
+        t0_recheck::Union{Nothing,VNextT1AdmissionRecheckInputV1},
         transport::Union{Nothing,VNextT0LocalTransportV1}) =
     VNextT1AdmissionInputV1(candidate_ref, t0_recheck, transport, nothing)
 

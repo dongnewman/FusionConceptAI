@@ -1,0 +1,1649 @@
+{
+  "schema": "mast-thomson-response-selection-v1",
+  "frozen_utc": "2026-09-22T08:09:59.244318+00:00",
+  "shot": 30421,
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "ownership": "docs/implementation/GOAL-EXECUTION-20260922/ownership_delta15_thomson_response_source.json",
+  "fields": [
+    {
+      "requested_path": "ayc/angle",
+      "resolved_path": "ayc/angle",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "scattering angle",
+        "mds_name": "\\TOP.ANALYSED.AYC:ANGLE",
+        "name": "ayc/angle",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_ANGLE",
+        "units": "",
+        "uuid": "0de8b65f-96d9-5b70-9c9b-de39ab38d7b0",
+        "version": 0
+      },
+      "shape": [
+        131
+      ],
+      "chunks": [
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "radial_index"
+      ],
+      "decoded_bytes": 524,
+      "coordinate_paths": [
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/instrument_dr",
+      "resolved_path": "ayc/instrument_dr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          20,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "instrument_dr",
+        "mds_name": "\\TOP.ANALYSED.AYC.INSTRUMENT:DR",
+        "name": "ayc/instrument_dr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          20,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_INSTRUMENT_DR",
+        "units": "m",
+        "uuid": "f26b6e25-881b-511e-8bcc-faf6851ece7f",
+        "version": 0
+      },
+      "shape": [
+        20,
+        131
+      ],
+      "chunks": [
+        20,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "instrument_time",
+        "radial_index"
+      ],
+      "decoded_bytes": 10480,
+      "coordinate_paths": [
+        {
+          "dimension": "instrument_time",
+          "path": "ayc/instrument_time",
+          "available": true,
+          "shape": [
+            20
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/instrument_time",
+      "resolved_path": "ayc/instrument_time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          20
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time"
+        ],
+        "units": "s"
+      },
+      "shape": [
+        20
+      ],
+      "chunks": [
+        20
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "instrument_time"
+      ],
+      "decoded_bytes": 80,
+      "coordinate_paths": [
+        {
+          "dimension": "instrument_time",
+          "path": "ayc/instrument_time",
+          "available": true,
+          "shape": [
+            20
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/scat_length",
+      "resolved_path": "ayc/scat_length",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          130
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          130
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "arb"
+        ],
+        "description": "",
+        "dims": [
+          "arb"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "scattering length",
+        "mds_name": "\\TOP.ANALYSED.AYC:SCAT_LENGTH",
+        "name": "ayc/scat_length",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SCAT_LENGTH",
+        "units": "m",
+        "uuid": "13ab0aef-2be6-50e9-b12d-4ad4cc9b5876",
+        "version": 0
+      },
+      "shape": [
+        130
+      ],
+      "chunks": [
+        130
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "arb"
+      ],
+      "decoded_bytes": 520,
+      "coordinate_paths": [
+        {
+          "dimension": "arb",
+          "path": "ayc/arb",
+          "available": true,
+          "shape": [
+            130
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/arb",
+      "resolved_path": "ayc/arb",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          130
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          130
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "arb"
+        ],
+        "units": " arb "
+      },
+      "shape": [
+        130
+      ],
+      "chunks": [
+        130
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "arb"
+      ],
+      "decoded_bytes": 520,
+      "coordinate_paths": [
+        {
+          "dimension": "arb",
+          "path": "ayc/arb",
+          "available": true,
+          "shape": [
+            130
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/spectra",
+      "resolved_path": "ayc/spectra",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Raw spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC:SPECTRA",
+        "name": "ayc/spectra",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SPECTRA",
+        "units": "V",
+        "uuid": "6b03323f-2ead-5e6a-90cc-7ccc1e75d3c9",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/aspectra",
+      "resolved_path": "ayc/aspectra",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Fitted spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC:ASPECTRA",
+        "name": "ayc/aspectra",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_ASPECTRA",
+        "units": "V",
+        "uuid": "2cf4f793-9167-5ad9-97e9-3e48da8d049d",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/spectra_error",
+      "resolved_path": "ayc/spectra_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/spectra_stray_light",
+      "resolved_path": "ayc/spectra_stray_light",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Raw spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC.SPECTRA_:STRAY_LIGHT",
+        "name": "ayc/spectra_stray_light",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SPECTRA_STRAY_LIGHT",
+        "units": "V",
+        "uuid": "0bfdfc6e-9537-5303-bce5-2df7377eb350",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/poisson_error",
+      "resolved_path": "ayc/poisson_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Poisson error on scatter",
+        "mds_name": "\\TOP.ANALYSED.AYC.POISSON:ERROR",
+        "name": "ayc/poisson_error",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_POISSON_ERROR",
+        "units": "V",
+        "uuid": "d98643dc-1437-5e32-a7e1-2d600f32671e",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/plasmalight_error",
+      "resolved_path": "ayc/plasmalight_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Plasma light noise on sc",
+        "mds_name": "\\TOP.ANALYSED.AYC.PLASMALIGHT:ERROR",
+        "name": "ayc/plasmalight_error",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_PLASMALIGHT_ERROR",
+        "units": "V",
+        "uuid": "f60f7f8b-fe7f-51e4-a128-637acb8c8635",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/chi2",
+      "resolved_path": "ayc/chi2",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "fit chi^2 error",
+        "mds_name": "\\TOP.ANALYSED.AYC:CHI2",
+        "name": "ayc/chi2",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          145,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_CHI2",
+        "units": "",
+        "uuid": "7d22cbd5-3d7c-56b0-9db6-a8d524f24f23",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/laser_energy",
+      "resolved_path": "ayc/laser_energy",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "laser energy",
+        "mds_name": "\\TOP.ANALYSED.AYC:LASER_ENERGY",
+        "name": "ayc/laser_energy",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_LASER_ENERGY",
+        "units": "J",
+        "uuid": "9cf0055e-9b8a-571d-b3c6-e092e978cadd",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/laser_track",
+      "resolved_path": "ayc/laser_track",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "laser number",
+        "mds_name": "\\TOP.ANALYSED.AYC:LASER_TRACK",
+        "name": "ayc/laser_track",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_LASER_TRACK",
+        "units": "",
+        "uuid": "50103591-2f8e-58c1-9421-0fc5d60a0a24",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/time",
+      "resolved_path": "ayc/time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "units": "s"
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/radial_index",
+      "resolved_path": "ayc/radial_index",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "radial_index"
+        ],
+        "units": " arb "
+      },
+      "shape": [
+        131
+      ],
+      "chunks": [
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "radial_index"
+      ],
+      "decoded_bytes": 524,
+      "coordinate_paths": [
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/spectral_index",
+      "resolved_path": "ayc/spectral_index",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "spectral_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        4
+      ],
+      "chunks": [
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "spectral_index"
+      ],
+      "decoded_bytes": 16,
+      "coordinate_paths": [
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/pe",
+      "resolved_path": "ayc/pe",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "Electron Pressure",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "electron pressure",
+        "mds_name": "\\TOP.ANALYSED.AYC:PE",
+        "name": "ayc/pe",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          145,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_PE",
+        "units": "",
+        "uuid": "11e793ce-11e3-5a99-bf15-38e0f9a2eebf",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/pe_error",
+      "resolved_path": "ayc/pe_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ]
+    },
+    {
+      "requested_path": "ayc/interferometer_corr",
+      "resolved_path": "ayc/interferometer_corr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Interferometer Correctio",
+        "mds_name": "\\TOP.ANALYSED.AYC.TERFEROMETER:CORR",
+        "name": "ayc/interferometer_corr",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_INTERFEROMETER_CORR",
+        "units": " - ",
+        "uuid": "052b0c31-7d23-57d6-b07a-86359e76a6a3",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    }
+  ],
+  "total_decoded_bytes": 4035240,
+  "selection": "exact metadata paths; no aliases, resampling, unit conversion or imputation",
+  "interpretation": "all reported error/covariance and instrument labels remain unverified scientific semantics"
+}

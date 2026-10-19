@@ -1,0 +1,101 @@
+{
+  "schema_version": "inverse_protocol_v2",
+  "protocol_id": "UP4-03-reference-inverse-v2",
+  "status": "frozen_preparation_not_executed",
+  "scope": "Freeze the inputs and acceptance shape for the formal UP4-03 observation/inverse loader; this file contains no fitted parameters or inverse result.",
+  "manifest": {"path": "benchmarks/reference_data_v2/reference_manifest.json", "sha256": "2e3d92f1f479cc614c7e1147b09cef8fcb04606202b3ae7049bc5be1639c8688", "must_match_before_run": true},
+  "claim_ceiling": "prepared_not_executed; no B03/B07B credit; no credible_within_scope; no parent UP4-03 acceptance",
+  "known_x": {
+    "mast": [
+      {"name": "shot_id", "unit": "1", "source": "raw shot metadata", "role": "known_discrete_input"},
+      {"name": "time", "unit": "s", "source": "thomson_scattering/time", "role": "known_coordinate"},
+      {"name": "major_radius", "unit": "m", "source": "thomson_scattering/major_radius", "role": "known_coordinate"},
+      {"name": "plasma_max_current", "unit": "catalog metadata unit unresolved", "source": "shot_metadata.plasma_max_current", "role": "known_metadata_key_only"},
+      {"name": "plasma_time_avg_current", "unit": "catalog metadata unit unresolved", "source": "shot_metadata.plasma_time_avg_current", "role": "known_metadata_key_only"},
+      {"name": "catalog_unit_label_n_e", "unit": "eV", "source": "catalog parquet only", "role": "conflict_record_not_forward_input"}
+    ],
+    "iter": [
+      {"name": "fusion_power", "value": 500.0, "unit": "MW", "source": "ITER FAQ design target", "role": "design_consistency_input"},
+      {"name": "auxiliary_heating_power", "value": 50.0, "unit": "MW", "source": "ITER FAQ design target", "role": "design_consistency_input"},
+      {"name": "target_Q_plasma", "value": 10.0, "unit": "1", "source": "ITER FAQ design target", "role": "design_consistency_input"},
+      {"name": "electrical_generation", "value": false, "unit": "boolean", "source": "ITER FAQ", "role": "mission_constraint"}
+    ]
+  },
+  "unknown_theta": {
+    "status": "frozen_schema_only",
+    "truth_policy": "No measured theta truth is available. Real-data recovery_error must remain absent; report posterior/equivalence classes and held-out prediction only after formal execution.",
+    "parameters": [
+      {"id": "g1.profile_coefficients", "layer": "G1", "field_paths": ["mechanism.profile_closure.coefficients"], "unit": "SI profile units", "prior": {"kind": "bounded_declared_prior", "bounds": "must be supplied from provider-supported physical domain before run"}, "identifiability": "unknown_until_rank_analysis"},
+      {"id": "g1.diagnostic_calibration", "layer": "G1", "field_paths": ["mechanism.observation_calibration.gain", "mechanism.observation_calibration.offset"], "unit": "declared channel units", "prior": {"kind": "measurement_calibration_prior", "bounds": "provider uncertainty required"}, "identifiability": "unknown_until_uncertainty_and_rank"},
+      {"id": "g2.boundary_geometry", "layer": "G2", "field_paths": ["field_geometry.geometry.boundary", "field_geometry.coordinate.mapping"], "unit": "m", "prior": {"kind": "geometry_prior", "bounds": "provider geometry scope required"}, "identifiability": "unknown_until_observation_operator_bound"},
+      {"id": "g2.field_basis_coefficients", "layer": "G2", "field_paths": ["field_geometry.field_representation.coefficients"], "unit": "declared field units", "prior": {"kind": "regularized_basis_prior", "bounds": "formal UP4-03 must freeze basis and support"}, "identifiability": "unknown_until_jacobian_analysis"},
+      {"id": "g3.source_parameters", "layer": "G3", "field_paths": ["realization_control.source.parameters"], "unit": "A/W", "prior": {"kind": "source_domain_prior", "bounds": "no source provider bound in preparation"}, "identifiability": "not_executed"},
+      {"id": "g3.control_parameters", "layer": "G3", "field_paths": ["realization_control.control.parameters"], "unit": "controller units", "prior": {"kind": "control_prior", "bounds": "no control provider bound in preparation"}, "identifiability": "not_executed"}
+    ]
+  },
+  "observation_model": {
+    "forward_symbol": "F(G1(theta), G2(theta), G3(theta); x)",
+    "observation_symbol": "H(F(...))",
+    "required_observation_operators": [
+      {"id": "H_thomson_profile", "maps": ["thomson_scattering/t_e", "thomson_scattering/n_e"], "status": "declared_not_implemented", "reason": "Formal common forward and diagnostic operator belong to UP4-03."},
+      {"id": "H_geometry_profile", "maps": ["thomson_scattering/major_radius"], "status": "declared_not_implemented", "reason": "Coordinate observation is acquired but not a full geometry inverse."},
+      {"id": "H_source_control_metadata", "maps": ["shot_metadata.plasma_max_current", "shot_metadata.plasma_time_avg_current"], "status": "typed_absent", "reason": "The raw shot metadata keys exist, but no source/control observation operator or unit contract is supplied."}
+    ],
+    "units": {"n_e": {"raw": "1 / m ** 3", "canonical": "m^-3", "catalog_conflict": "eV", "conversion": "identity_raw_schema_only"}, "t_e": {"raw": "eV", "canonical": "eV", "conversion": "identity"}, "major_radius": {"raw": "m", "canonical": "m", "conversion": "identity"}, "time": {"raw": "s", "canonical": "s", "conversion": "identity"}},
+    "normalization": {"status": "none_declared", "rule": "Do not apply an inferred scale or convert n_e from the catalog eV label. Any future normalization must be versioned and hash-bound."},
+    "catalog_vs_raw_identity_mismatch": {"root_cause_status": "unproven", "catalog_shape": {"30421": [146, 120], "30420": null}, "catalog_dimensions": {"30421": ["time", "major_radius"], "30420": null}, "catalog_status": {"30420": "typed_absent_local_parquet_decode_failed"}, "raw_zarr_shape": {"30421": [121, 135], "30420": [121, 77]}, "raw_zarr_dimensions": ["major_radius", "time"], "normalization": "none_declared", "rule": "Do not reshape, transpose, resample, or scale to reconcile the catalog and raw identities until provider provenance is confirmed; unknown catalog fields remain typed absent."},
+    "measurement_error": {"status": "typed_absent", "rule": "Per-sample uncertainty, covariance, quality flags and reconstruction version must be obtained or the formal inverse remains terminal_deferred."},
+    "missingness": {"status": "partially_observable", "raw_fill_value": "NaN", "rule": "Use raw NaN mask as observation mask; never impute before freezing the protocol; missingness mechanism and uncertainty remain unverified."}
+  },
+  "split": {
+    "manifest_ref": "reference_manifest.split_protocol",
+    "calibration": {"shot_ids": [30421], "observation_ids": ["mast:30421:thomson_scattering:n_e", "mast:30421:thomson_scattering:t_e"]},
+    "validation": {"shot_ids": [], "observation_ids": [], "status": "typed_absent", "reason": "No third shot or independent validation artifact was acquired in this preparation."},
+    "blind_held_out": {"shot_ids": [30420], "observation_ids": ["mast:30420:thomson_scattering:n_e", "mast:30420:thomson_scattering:t_e"]},
+    "candidate_independent": true,
+    "identity_intersections": {"shot_ids": [], "observation_ids": []},
+    "leakage_policy": "Reject any intersection of artifact, shot, channel, time window, derived basis, cache, seed, initializer or benchmark fixture across calibration/validation/held-out.",
+    "formal_minimum": {"calibration_combinations": 8, "held_out_combinations": 4},
+    "available_counts": {"calibration_combinations": 2, "validation_combinations": 0, "held_out_combinations": 2},
+    "status": "prepared_insufficient_for_formal_gate"
+  },
+  "multi_start": {
+    "required_count": 8,
+    "starts": [
+      {"id": "ms01", "seed": 101, "initializer": "declared_prior_quantile_0.05"},
+      {"id": "ms02", "seed": 202, "initializer": "declared_prior_quantile_0.15"},
+      {"id": "ms03", "seed": 303, "initializer": "declared_prior_quantile_0.30"},
+      {"id": "ms04", "seed": 404, "initializer": "declared_prior_quantile_0.45"},
+      {"id": "ms05", "seed": 505, "initializer": "declared_prior_quantile_0.55"},
+      {"id": "ms06", "seed": 606, "initializer": "declared_prior_quantile_0.70"},
+      {"id": "ms07", "seed": 707, "initializer": "declared_prior_quantile_0.85"},
+      {"id": "ms08", "seed": 808, "initializer": "declared_prior_quantile_0.95"}
+    ],
+    "answer_injection_prohibited": true,
+    "status": "plan_only"
+  },
+  "optimizer": {
+    "objective": "weighted_observation_residual_plus_declared_regularization",
+    "weights": "Sigma_cal^-1 only after provider uncertainty/covariance is obtained; no guessed error weights",
+    "stop_rules": {"gradient_norm": "<=1e-8", "parameter_step_norm": "<=1e-8", "relative_objective_change": "<=1e-10", "max_iterations": 2000, "stagnation_window": 50},
+    "tolerances": {"held_out_normalized_error": "<=1 measurement-noise budget", "coverage": ">=0.90 when uncertainty exists", "known_theta_recovery": "<=2% only for an isolated known truth; prohibited for current real shots"},
+    "failure_states": ["numerical_fail", "program_exception", "unknown", "terminal_deferred"],
+    "status": "not_executed"
+  },
+  "identifiability": {
+    "required": ["Jacobian rank", "condition number", "singular spectrum", "multi-start spread", "posterior/equivalence classes", "parameter-observation map coverage"],
+    "rank_method": "SVD of the candidate-bound observation Jacobian at each accepted local solution with units tracked",
+    "non_identifiable_policy": "Report equivalence class or posterior interval; do not delete unknown theta fields or claim unique whole-device recovery.",
+    "status": "not_executed",
+    "reason": "No common forward evaluator, uncertainty model, or formal inverse consumer was run in this preparation task."
+  },
+  "genome_output_contract": {
+    "required_layers": ["G1", "G2", "G3"],
+    "mapping_ref": "reference_manifest.references[*].theta_to_genome_mapping",
+    "each_layer_requires": ["typed_body", "source_hash", "content_hash", "canonical_hash", "unit_map", "applicability", "uncertainty", "candidate_identity"],
+    "current_status": "typed_absent",
+    "reason": "Preparation freezes mapping only; it does not materialize or fit Genome fields."
+  },
+  "evidence_outputs_required_for_formal_up4_03": ["raw_source_hashes", "diagnostic_schema", "unit_and_normalization_receipt", "measurement_error_receipt", "frozen_split_manifest", "multi_start_trace", "identifiability_report", "G1_G2_G3_bundle", "common_forward_receipt", "held_out_prediction", "independent_replay"],
+  "formal_execution": {"status": "not_executed", "reason": "This is a preparation handoff; formal UP4-03 is a downstream consumer."}
+}

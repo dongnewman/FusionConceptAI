@@ -4,7 +4,7 @@ using SHA
 
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 using .FusionRuntimeV4
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_g2_field_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_g2_field_fixture.jl"))
 
 const _G2_BOUNDS = (scope="g2",)
 const _G2_COMPARISON = ("g2",)

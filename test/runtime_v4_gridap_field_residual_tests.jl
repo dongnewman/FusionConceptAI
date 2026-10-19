@@ -3,8 +3,7 @@ push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
 
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_gridap_field_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_gridap_field_fixture.jl"))
 
 const GRIDAP_NATIVE_ASSEMBLER_CALLS = Ref(0)
 @eval FusionRuntimeV4 begin
@@ -77,6 +76,119 @@ end
     @test !report.unsupported_emitted
     @test FusionRuntimeV4.validate_gridap_field_residual_report(compilation, report)
     @test FusionRuntimeV4.replay_gridap_field_residual(compilation, report)
+
+    @test_throws ArgumentError FieldGridSpecV4(((0.0, NaN, 1.0),
+        (-1.0, 0.0, 1.0), (-1.0, 0.0, 1.0)))
+    @test_throws ArgumentError FieldGridSpecV4(((0.0, 1.0, 0.5),
+        (-1.0, 0.0, 1.0), (-1.0, 0.0, 1.0)))
+
+    # Remesh the actual authenticated scalar source onto a coarser 3-D G2
+    # rectilinear grid. Its projected payload is consumed by the residual below.
+    target_grid = FieldGridSpecV4(((-1.0, 0.0, 1.0),
+        (-1.0, 0.0, 1.0), (-1.0, 0.0, 1.0)))
+    transferred_report = FusionRuntimeV4.run_gridap_field_residual(
+        compilation; transfer_to_grid=target_grid)
+    transfer = transferred_report.projection
+    transferred = transferred_report.report
+    @test transfer !== nothing
+    @test transfer.payload.coordinates ==
+        FusionRuntimeV4._fr_grid_coordinates(target_grid)
+    @test length(transfer.payload.values) == 27
+    @test length(transfer.payload.values) != length(compilation.source.values)
+    @test transfer.state_delta_linf > 1e-8
+    @test abs(transfer.conservation_defect) <=
+        512eps(Float64) * max(1.0, abs(transfer.source_integral))
+    @test transfer.max_target_cell_defect >= 0.0
+    @test transferred.receipt.source_content_hash ==
+        transfer.payload.content_hash
+    @test transferred.receipt.grid_hash == transfer.target_grid_hash
+    @test transfer.target_grid_hash == target_grid.grid_hash
+    @test transferred.receipt.cells == 8
+    @test transferred.receipt.free_dofs == 1
+    @test transferred.receipt.dirichlet_dofs == 26
+    @test transferred.receipt.matrix_shape == (1, 1)
+    @test transferred.receipt.rhs_hash != receipt.rhs_hash
+    @test transferred.receipt.matrix_hash != receipt.matrix_hash
+    @test transferred.result.finite_values
+    @test transferred.result.residual_abs <= compilation.plan.protocol.residual_abs_tol ||
+        transferred.result.residual_rel <= compilation.plan.protocol.residual_rel_tol
+    @test transferred.result.boundary_mismatch <=
+        compilation.plan.protocol.boundary_abs_tol
+    @test transferred_report.evidence_hash != report.report_hash
+    @test FusionRuntimeV4.validate_gridap_field_residual_report(
+        compilation, transferred_report)
+    @test FusionRuntimeV4.replay_gridap_field_residual(
+        compilation, transferred_report)
+
+    forged_projection = merge(transfer, (conservation_defect=
+        transfer.conservation_defect + 1e-5,))
+    forged_projection = merge(forged_projection, (projection_hash=
+        FusionRuntimeV4.canonical_hash(FusionRuntimeV4._gridap_projection_body(
+            compilation.source.content_hash, forged_projection.payload.content_hash,
+            forged_projection.source_grid_hash, forged_projection.target_grid_hash,
+            forged_projection.source_domain, forged_projection.target_domain,
+            forged_projection.source_integral, forged_projection.target_integral,
+            forged_projection.conservation_defect,
+            forged_projection.cell_integral_defects, forged_projection.state_delta_linf,
+            forged_projection.support, forged_projection.quadrature)),))
+    forged_outcome = (report=transferred, projection=forged_projection,
+        evidence_hash=FusionRuntimeV4._gridap_transfer_outcome_hash(
+            transferred, forged_projection))
+    @test !FusionRuntimeV4.validate_gridap_field_residual_report(
+        compilation, forged_outcome)
+
+    constant_source = FusionRuntimeV4.FieldResidualPayloadV4(
+        compilation.source.state_ref, gridap_b1_grid,
+        fill(2.75, length(compilation.source.values)),
+        compilation.source.physical_type)
+    constant_transfer = FusionRuntimeV4.transfer_gridap_field_payload_v1(
+        constant_source, target_grid, compilation.plan.native_plan.geometry)
+    @test all(isapprox(value, 2.75; atol=2e-13, rtol=0.0)
+        for value in constant_transfer.payload.values)
+    @test isapprox(constant_transfer.target_integral,
+        constant_transfer.source_integral; atol=2e-13, rtol=0.0)
+    println("UP2_03_GRIDAP_TRANSFER=" * repr((
+        source_integral=transfer.source_integral,
+        target_integral=transfer.target_integral,
+        conservation_defect=transfer.conservation_defect,
+        local_cell_defects=transfer.cell_integral_defects,
+        state_delta_linf=transfer.state_delta_linf,
+        source_domain=transfer.source_domain,
+        target_domain=transfer.target_domain,
+        source_grid_hash=string(transfer.source_grid_hash),
+        target_grid_hash=string(transfer.target_grid_hash),
+        projected_payload_hash=string(transfer.payload.content_hash),
+        projection_hash=string(transfer.projection_hash),
+        cells=transferred.receipt.cells,
+        free_dofs=transferred.receipt.free_dofs,
+        dirichlet_dofs=transferred.receipt.dirichlet_dofs,
+        rhs_hash=string(transferred.receipt.rhs_hash),
+        matrix_hash=string(transferred.receipt.matrix_hash),
+        result_hash=string(transferred.result.result_hash),
+        evidence_hash=string(transferred_report.evidence_hash),
+        residual_abs=transferred.result.residual_abs,
+        residual_rel=transferred.result.residual_rel,
+        boundary_mismatch=transferred.result.boundary_mismatch,
+        boundary_tolerance=compilation.plan.protocol.boundary_abs_tol,
+        finite_values=transferred.result.finite_values,
+        constant_error_linf=maximum(abs(value - 2.75) for value in constant_transfer.payload.values),
+        constant_source_integral=constant_transfer.source_integral,
+        constant_target_integral=constant_transfer.target_integral)))
+    flush(stdout)
+
+    outside_grid = FieldGridSpecV4(((-1.1, 0.0, 1.1),
+        (-1.0, 0.0, 1.0), (-1.0, 0.0, 1.0)))
+    outside_error = try
+        FusionRuntimeV4.transfer_gridap_field_payload_v1(compilation.source,
+            outside_grid, compilation.plan.native_plan.geometry)
+        nothing
+    catch error
+        error
+    end
+    @test outside_error isa ArgumentError
+    if outside_error isa Exception
+        @test occursin("typed_unsupported", sprint(showerror, outside_error))
+    end
 
     plan = compilation.plan
     @test plan.native_plan_hash == plan.native_plan.plan_hash

@@ -1,0 +1,126 @@
+{
+  "assembled_bytes": 30616,
+  "assembled_path": "arrays/pf_passive__botcol_current/assembled.raw",
+  "assembled_sha256": "a424de0d0ad57caf4a15317e7479a6c72dc79e5baf608b447a9e81031d7d7f38",
+  "chunks": [
+    1,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:01.870474Z",
+      "compressed_bytes": 29287,
+      "compressed_path": "arrays/pf_passive__botcol_current/chunks/c__0__0.zst",
+      "compressed_sha256": "6a8382d75ed0eb9cbcefdc53f0648b9f70f23bae66eb59291aa0e0bc88e8e35f",
+      "decoded_bytes": 30616,
+      "decoded_path": "arrays/pf_passive__botcol_current/chunks/c__0__0.raw",
+      "decoded_sha256": "a424de0d0ad57caf4a15317e7479a6c72dc79e5baf608b447a9e81031d7d7f38",
+      "decoded_shape": [
+        1,
+        3827
+      ],
+      "edge_shape": [
+        1,
+        3827
+      ],
+      "full_chunk_shape": [
+        1,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:01.095802Z",
+      "response_headers": {
+        "Content-Length": "29287",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"6fe3f688594b284d7460a0476fba31c1\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:26 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/botcol_current/c/0/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:01.892723Z",
+  "data_type": "float64",
+  "decoded_bytes": 30616,
+  "dimensions": [
+    "botcol_current_channel",
+    "time"
+  ],
+  "finite_count": 3827,
+  "maximum": 71.14276119780187,
+  "minimum": -113.47718518427736,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "botcol_current",
+      "uda_name": "AMM_BOTCOL",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          1,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "botcol_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      1,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/botcol_current",
+  "shape": [
+    1,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:01.065170Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 3827,
+  "units": "A"
+}

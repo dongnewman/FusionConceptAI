@@ -69,6 +69,20 @@ struct _TTRRow
     rhs_root_position::Int
 end
 
+struct TimeParameterValueV4
+    name::Symbol
+    value::Float64
+    unit::UnitSignature
+    function TimeParameterValueV4(name, value, unit)
+        name isa Symbol && !isempty(String(name)) ||
+            throw(ArgumentError("typed parameter name required"))
+        unit isa UnitSignature || throw(ArgumentError("typed parameter unit required"))
+        new(name, _ttr_float(value, "parameter value"), unit)
+    end
+end
+semantic_view(x::TimeParameterValueV4) =
+    (name=x.name, value=x.value, unit=x.unit)
+
 function _ttr_validate_program(program, registry)
     bindings = program.used_manifest_bindings
     for node in program.nodes
@@ -104,23 +118,31 @@ struct TypedTimeResidualFormV4
     state_types::Tuple
     rows::Tuple
     mass_matrix::Matrix{Float64}
+    parameter_values::Tuple
     form_hash::Digest256
     function TypedTimeResidualFormV4(token::Val{:typed_time_residual_private}, prefix, refs, types,
-                                     rows, matrix, form_hash)
+                                     rows, matrix, parameter_values, form_hash)
         token === _TTR_TOKEN || throw(ArgumentError("private constructor"))
-        new(prefix, refs, types, rows, matrix, form_hash)
+        new(prefix, refs, types, rows, matrix, parameter_values, form_hash)
     end
 end
-semantic_view(x::TypedTimeResidualFormV4) =
-    (revision=_TTR_REVISION, prefix_hash=x.prefix_hash, state_refs=x.state_refs, state_types=x.state_types,
-     rows=x.rows, mass_matrix=x.mass_matrix, form_hash=x.form_hash)
+function semantic_view(x::TypedTimeResidualFormV4)
+    body = (revision=_TTR_REVISION, prefix_hash=x.prefix_hash,
+        state_refs=x.state_refs, state_types=x.state_types, rows=x.rows,
+        mass_matrix=x.mass_matrix)
+    isempty(x.parameter_values) ? merge(body, (form_hash=x.form_hash,)) :
+        merge(body, (parameter_values=x.parameter_values, form_hash=x.form_hash))
+end
 function _ttr_form_identity(x::TypedTimeResidualFormV4)
     row_hashes = Tuple((binding=r.binding, state_type=r.state_type,
         lower=r.lower, upper=r.upper, mass_coefficients=Tuple(r.mass_coefficients),
         rhs_program=r.rhs_program, rhs_ports=r.rhs_ports,
         rhs_root_position=r.rhs_root_position) for r in x.rows)
-    canonical_hash((revision=_TTR_REVISION, prefix=x.prefix_hash,
-        states=x.state_refs, state_types=x.state_types, rows=row_hashes, mass_matrix=x.mass_matrix))
+    body = (revision=_TTR_REVISION, prefix=x.prefix_hash,
+        states=x.state_refs, state_types=x.state_types, rows=row_hashes,
+        mass_matrix=x.mass_matrix)
+    canonical_hash(isempty(x.parameter_values) ? body :
+        merge(body, (parameter_values=x.parameter_values,)))
 end
 function _ttr_validate_form(x::TypedTimeResidualFormV4)
     _ttr_form_identity(x) == x.form_hash || throw(ArgumentError("typed residual form identity mismatch"))
@@ -228,14 +250,18 @@ function _ttr_mass(program, ports, n, root_position, registry)
     coeff
 end
 
-function _ttr_eval_rhs(program, ports, root_position, y)
+function _ttr_eval_rhs(program, ports, root_position, y, parameter_values=())
     1 <= root_position <= length(program.roots) || throw(ArgumentError("RHS root position out of range"))
     portmap = Dict{Int,Int}(p.port => p.state for p in ports)
+    parammap = Dict{Symbol,Float64}(p.name => p.value for p in parameter_values)
     function eval_node(index)
         node = program.nodes[index]
         node isa ASTInputV1 && return (haskey(portmap, node.port) ? y[portmap[node.port]] : throw(ArgumentError("unbound RHS input")))
         node isa ASTConstantV1 && return _ttr_float(node.value, "RHS constant")
-        node isa ASTParameterV1 && throw(ArgumentError("parameter node deferred in D1.1"))
+        if node isa ASTParameterV1
+            haskey(parammap, node.name) || throw(ArgumentError("unbound RHS parameter $(node.name)"))
+            return parammap[node.name]
+        end
         node isa ASTApplyV1 || throw(ArgumentError("unsealed AST node"))
         op = node.operator_ref.qualified.id
         op == "DT" && throw(ArgumentError("RHS cannot contain DT"))
@@ -253,7 +279,9 @@ end
 
 function compile_typed_time_residual_plan(compiled::CompiledCandidatePrefixV4,
                                           registry::GenomeContractRegistryV4;
-                                          row_bindings, protocol=TimeIntegrationProtocolV4())
+                                          row_bindings,
+                                          parameter_values=(),
+                                          protocol=TimeIntegrationProtocolV4())
     _runtime_validate_compiled_prefix(compiled, compiled.candidate, registry,
         compiled.mission_payload, compiled.bounds_payload,
         compiled.minimality_scope.comparison_scope,
@@ -335,16 +363,56 @@ function compile_typed_time_residual_plan(compiled::CompiledCandidatePrefixV4,
     rank(matrix) == n || throw(ArgumentError("singular mass matrix"))
     isfinite(cond(matrix)) && cond(matrix) < 1e12 || throw(ArgumentError("ill-conditioned mass matrix"))
     row_tuple = Tuple(rows)
+    parameter_bindings = Tuple(parameter_values)
+    all(p -> p isa TimeParameterValueV4, parameter_bindings) ||
+        throw(ArgumentError("typed time parameter values required"))
+    length(unique(p.name for p in parameter_bindings)) == length(parameter_bindings) ||
+        throw(ArgumentError("duplicate typed time parameter"))
+    declared_parameters = Dict{Symbol,ParameterGeneV1}(
+        Symbol(p.ref.value) => p for p in payload.parameters)
+    length(declared_parameters) == length(payload.parameters) ||
+        throw(ArgumentError("duplicate mechanism parameter name"))
+    required_parameter_units = Dict{Symbol,UnitSignature}()
+    for row in row_tuple, node in row.rhs_program.nodes
+        node isa ASTParameterV1 || continue
+        parameter = get(declared_parameters, node.name, nothing)
+        parameter === nothing && throw(ArgumentError("RHS parameter is not declared by the candidate"))
+        node.output_type.value_kind === :scalar_parameter && node.output_type.tensor_rank == 0 &&
+            node.output_type.spatial_dimension == 0 &&
+            node.output_type.temporal_type == TemporalTypeV1(static_time) ||
+            throw(ArgumentError("RHS parameter must be a static scalar"))
+        node.output_type.units == parameter.unit ||
+            throw(ArgumentError("RHS parameter type differs from candidate declaration"))
+        if haskey(required_parameter_units, node.name)
+            required_parameter_units[node.name] == node.output_type.units ||
+                throw(ArgumentError("RHS parameter has conflicting units"))
+        else
+            required_parameter_units[node.name] = node.output_type.units
+        end
+    end
+    Tuple(sort(collect(keys(required_parameter_units)), by=String)) ==
+        Tuple(sort(collect(p.name for p in parameter_bindings), by=String)) ||
+        throw(ArgumentError("typed time parameter coverage mismatch"))
+    all(p -> p.unit == required_parameter_units[p.name], parameter_bindings) ||
+        throw(ArgumentError("typed time parameter unit mismatch"))
+    all(p -> begin
+        gene = declared_parameters[p.name]
+        gene.bounds.interval.lower <= p.value <= gene.bounds.interval.upper
+    end, parameter_bindings) ||
+        throw(ArgumentError("typed time parameter is outside declared bounds"))
+    parameter_bindings = Tuple(sort(collect(parameter_bindings), by=p -> String(p.name)))
     row_hashes = Tuple((binding=r.binding, state_type=r.state_type,
         lower=r.lower, upper=r.upper, mass_coefficients=Tuple(r.mass_coefficients),
         rhs_program=r.rhs_program, rhs_ports=r.rhs_ports,
         rhs_root_position=r.rhs_root_position)
         for r in rows)
     state_types = Tuple(s.physical_type for s in states)
-    form_hash = canonical_hash((revision=_TTR_REVISION, prefix=compiled.prefix_hash,
-        states=refs, state_types=state_types, rows=row_hashes, mass_matrix=matrix))
+    form_body = (revision=_TTR_REVISION, prefix=compiled.prefix_hash,
+        states=refs, state_types=state_types, rows=row_hashes, mass_matrix=matrix)
+    form_hash = canonical_hash(isempty(parameter_bindings) ? form_body :
+        merge(form_body, (parameter_values=parameter_bindings,)))
     form = TypedTimeResidualFormV4(_TTR_TOKEN, compiled.prefix_hash, refs, state_types,
-        row_tuple, copy(matrix), form_hash)
+        row_tuple, copy(matrix), parameter_bindings, form_hash)
     plan_hash = canonical_hash((revision=_TTR_REVISION, prefix=compiled.prefix_hash,
         form_hash=form_hash, protocol=protocol))
     TypedTimeResidualPlanV4(_TTR_TOKEN, compiled.prefix_hash, form, protocol, plan_hash)
@@ -441,7 +509,8 @@ function _ttr_replay_trajectory(form, times, states)
     evaluations = 0
     slope(z) = begin
         evaluations += 1
-        factor \ Float64[_ttr_eval_rhs(r.rhs_program, r.rhs_ports, r.rhs_root_position, z)
+        factor \ Float64[_ttr_eval_rhs(r.rhs_program, r.rhs_ports,
+            r.rhs_root_position, z, form.parameter_values)
             for r in form.rows]
     end
     for i in 1:(length(times) - 1)
@@ -488,7 +557,8 @@ function integrate_typed_time_residual(plan::TypedTimeResidualPlanV4,
     end
     function slope(z)
         values = Float64[_ttr_eval_rhs(form.rows[i].rhs_program, form.rows[i].rhs_ports,
-            form.rows[i].rhs_root_position, z) for i in eachindex(form.rows)]
+            form.rows[i].rhs_root_position, z, form.parameter_values)
+            for i in eachindex(form.rows)]
         evaluations += 1
         all(isfinite, values) || throw(ArgumentError("nonfinite RHS"))
         k = factor \ values

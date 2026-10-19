@@ -1,0 +1,104 @@
+{
+  "assembled_bytes": 128,
+  "assembled_path": "arrays/pf_passive__lhorw_current_channel/assembled.strings.json",
+  "assembled_sha256": "7d8247c69739e43ff85849d8856d1ca48e02b7aee65f08ddb85b192efb2be590",
+  "chunks": [
+    6
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:27:24.393337Z",
+      "compressed_bytes": 39,
+      "compressed_path": "arrays/pf_passive__lhorw_current_channel/chunks/c__0.zst",
+      "compressed_sha256": "384470fc1078740330ec6483ff86168fd92edaf89ef7efcaba9fe83f4dcd852d",
+      "decoded_bytes": 64,
+      "decoded_item_count": 6,
+      "decoded_path": "arrays/pf_passive__lhorw_current_channel/chunks/c__0.raw",
+      "decoded_sha256": "7a9158739690d4e6cfd36d299f56eef2b4fbdf3e2a2dd15be8d2781248f71aa5",
+      "decoded_shape": [
+        6
+      ],
+      "edge_shape": [
+        6
+      ],
+      "full_chunk_shape": [
+        6
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:23.700338Z",
+      "response_headers": {
+        "Content-Length": "39",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"2981806f69af52552a9377f389be9782\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:29 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/lhorw_current_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:24.410908Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "lhorw_current_channel"
+  ],
+  "node": {
+    "attributes": {
+      "name": "AMM_{channel}"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          6
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "lhorw_current_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      6
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/lhorw_current_channel",
+  "shape": [
+    6
+  ],
+  "started_utc": "2026-09-22T08:27:23.683171Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 6,
+  "unique_string_count": 6,
+  "units": null
+}

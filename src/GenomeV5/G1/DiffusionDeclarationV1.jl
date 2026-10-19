@@ -24,7 +24,9 @@ const G1_DIFFUSION_REQUIRED_GAPS_V1 =
 const _G1_DIFFUSION_SCHEMA_SOURCE_V1 = """
 schema_id=GenomeV5/G1/DiffusionDeclarationV1
 version=v1
-fields=candidate_ref,source_ref,source_version,source_payload(candidate_bound),source_hash,u,K,f,grad,K_apply,div,closure(profile_bound),applicability(profile_bound),negative_controls
+fields=candidate_ref,source_ref,source_version,source_payload(candidate_bound,optional_typed_unknown_state_binding,optional_per_operator_temporal_whitelist),source_hash,u,K,f,grad,K_apply,div,closure(profile_bound),applicability(profile_bound),negative_controls
+unknown_state_binding=optional;state_index=0;role=unknown;field_id=u.field_id;physical_type=u.physical_type(exact)
+operator_temporal_support=optional;operators=GRAD,K_APPLY,DIV;each_ref_exact;each_temporal_kinds_nonempty_unique;each_input_output_kind_member
 equation=-DIV(K(x)*GRAD(u(x)))=f(x); residual_sign=-1
 u=3-D scalar candidate-owned source field; K=editable diagonal-affine 3x3 source field; f=3-D scalar candidate-owned source field
 ownership=all field declarations are candidate-owned; no manufactured value is an authority
@@ -48,6 +50,34 @@ profile_binding=G1_DIFFUSION_PROFILE_VERSION_V1
 """
 
 g1_diffusion_schema_hash_v1() = digest256_text(_G1_DIFFUSION_SCHEMA_SOURCE_V1)
+const _G1_DIFFUSION_INTERFACE_FLUX_PAIR_EXTENSION_V1 = """
+source_payload.interface_flux_pair=optional typed G1DiffusionInterfaceFluxPairV1
+scope=x-half only (axis=1, coordinate=1/2); fields=G2 interface ref, ordered region ids and ports, exact K_APPLY operator/output field, outward normals, signs and explicit law; unit=exact K_APPLY output PhysicalType.units, not duplicated
+law=left_outward_flux_plus_right_outward_flux_equals_zero; signs=left-to-right orientation; typed output units
+claim_ceiling=contract_only; physical_authority=false; provider_calls=0; solver_calls=0
+"""
+const _G1_DIFFUSION_TRANSIENT_CAPACITY_EXTENSION_V1 = """
+source_payload.transient_capacity=optional typed source-bound G1DiffusionTransientCapacityV1
+units=J/(m^3 K);time_unit=second;equation=rhoCp*du/dt-DIV(K*GRAD(u))=f
+applicable_domain=transient_thermal_diffusion;closed=true;no default
+"""
+g1_diffusion_schema_hash_v1(interface_flux_pair_present::Bool,
+                            transient_capacity_present::Bool) = begin
+    transient_capacity_present ||
+        return g1_diffusion_schema_hash_v1(interface_flux_pair_present)
+    extensions = String[]
+    interface_flux_pair_present && push!(extensions,
+        _G1_DIFFUSION_INTERFACE_FLUX_PAIR_EXTENSION_V1)
+    transient_capacity_present && push!(extensions,
+        _G1_DIFFUSION_TRANSIENT_CAPACITY_EXTENSION_V1)
+    isempty(extensions) ? g1_diffusion_schema_hash_v1() :
+        canonical_hash((base=g1_diffusion_schema_hash_v1(),
+            extensions=Tuple(digest256_text(x) for x in extensions)))
+end
+g1_diffusion_schema_hash_v1(interface_flux_pair_present::Bool) =
+    interface_flux_pair_present ? canonical_hash((base=g1_diffusion_schema_hash_v1(),
+        extension=digest256_text(_G1_DIFFUSION_INTERFACE_FLUX_PAIR_EXTENSION_V1))) :
+        g1_diffusion_schema_hash_v1()
 g1_diffusion_canonicalization_hash_v1() = digest256_text(_G1_DIFFUSION_CANONICALIZATION_SOURCE_V1)
 g1_diffusion_applicability_hash_v1() = digest256_text(_G1_DIFFUSION_APPLICABILITY_SOURCE_V1)
 g1_diffusion_closure_hash_v1() = digest256_text(_G1_DIFFUSION_CLOSURE_SOURCE_V1)
@@ -62,6 +92,16 @@ g1_diffusion_profile_hash_v1() = canonical_hash((
     closure_ref=G1_DIFFUSION_CLOSURE_ID_V1,
     closure_hash=g1_diffusion_closure_hash_v1(),
     claim_ceiling=G1_DIFFUSION_CLAIM_CEILING_V1))
+g1_diffusion_profile_hash_v1(interface_flux_pair_present::Bool) =
+    interface_flux_pair_present ? canonical_hash((base=g1_diffusion_profile_hash_v1(),
+        schema_hash=g1_diffusion_schema_hash_v1(true))) : g1_diffusion_profile_hash_v1()
+g1_diffusion_profile_hash_v1(interface_flux_pair_present::Bool,
+                              transient_capacity_present::Bool) =
+    !transient_capacity_present ?
+        g1_diffusion_profile_hash_v1(interface_flux_pair_present) :
+        canonical_hash((base=g1_diffusion_profile_hash_v1(),
+            schema_hash=g1_diffusion_schema_hash_v1(interface_flux_pair_present,
+                transient_capacity_present)))
 
 const G1_DIFFUSION_GRAD_OPERATOR_ID_V1 = "fusionconceptai://GenomeV5/G1/operator/GRAD"
 const G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 = "fusionconceptai://GenomeV5/G1/operator/K_APPLY"
@@ -134,6 +174,153 @@ function g1_diffusion_k_enclosure(x::G1DiffusionDiagonalAffineKFieldV1)
     (lower=minimum(lower), upper=maximum(upper), diagonal_lower=lower, diagonal_upper=upper)
 end
 
+"""Candidate-owned affine symmetric 3-D conductivity tensor.
+
+K(x) = base_matrix + sum_c x[c] * slope_matrices[c]. The closed convex
+box domain is part of the declaration; exact SPD admission checks every box
+vertex, which suffices because this affine matrix field is a convex
+combination of its vertex matrices throughout the box.
+"""
+function _g1d_exact_r3(x, field)
+    values = Tuple(x)
+    length(values) == 3 || throw(ArgumentError("$field must have exactly three finite rational values"))
+    ntuple(i -> begin
+        value = values[i]
+        (value isa Integer && !(value isa Bool)) || value isa Rational ||
+            throw(ArgumentError("$field must contain only finite exact rational values"))
+        try
+            Rational{Int64}(value)
+        catch
+            throw(ArgumentError("$field entry is outside the exact rational range"))
+        end
+    end, 3)
+end
+
+struct G1DiffusionSymmetricAffineTensorKFieldV2
+    expression_id::String
+    domain_min::NTuple{3,Rational{Int64}}
+    domain_max::NTuple{3,Rational{Int64}}
+    base_matrix::NTuple{3,NTuple{3,Rational{Int64}}}
+    slope_matrices::NTuple{3,NTuple{3,NTuple{3,Rational{Int64}}}}
+    function G1DiffusionSymmetricAffineTensorKFieldV2(expression_id::Any;
+            domain_min=(0 // 1, 0 // 1, 0 // 1),
+            domain_max=(1 // 1, 1 // 1, 1 // 1),
+            base_matrix=((4 // 1, 1 // 1, 0 // 1),
+                        (1 // 1, 3 // 1, 0 // 1),
+                        (0 // 1, 0 // 1, 2 // 1)),
+            slope_matrices=(
+                ((1 // 5, 1 // 20, 0 // 1),
+                 (1 // 20, 1 // 10, 0 // 1),
+                 (0 // 1, 0 // 1, 1 // 10)),
+                ((1 // 10, 1 // 10, 0 // 1),
+                 (1 // 10, 1 // 5, 0 // 1),
+                 (0 // 1, 0 // 1, 1 // 20)),
+                ((0 // 1, 0 // 1, 0 // 1),
+                 (0 // 1, 0 // 1, 0 // 1),
+                 (0 // 1, 0 // 1, 0 // 1))))
+        dmin = _g1d_exact_r3(domain_min, "K domain_min")
+        dmax = _g1d_exact_r3(domain_max, "K domain_max")
+        all(dmin[i] < dmax[i] for i in 1:3) ||
+            throw(ArgumentError("K domain must be a convex non-degenerate box"))
+        base = _g1d_matrix3(base_matrix, "K base_matrix")
+        slopes_in = Tuple(slope_matrices)
+        length(slopes_in) == 3 ||
+            throw(ArgumentError("K requires one affine slope matrix per coordinate"))
+        slopes = ntuple(i -> _g1d_matrix3(slopes_in[i], "K slope_matrices[$i]"), 3)
+        all(_g1d_symmetric3, (base, slopes...)) ||
+            throw(ArgumentError("K affine matrices must be exactly symmetric"))
+        any(value -> !iszero(value), (value for matrix in slopes for row in matrix for value in row)) ||
+            throw(ArgumentError("K affine tensor must have a nonzero spatial slope"))
+        _g1d_text(expression_id, "K expression_id")
+        expression = new(String(expression_id), dmin, dmax, base, slopes)
+        vertices = _g1d_tensor_box_vertices(expression)
+        all(_g1d_spd3, vertices) ||
+            throw(ArgumentError("K affine tensor is not positive definite over its declared box"))
+        expression
+    end
+end
+
+function _g1d_matrix3(x, field)
+    rows = Tuple(x)
+    length(rows) == 3 || throw(ArgumentError("$field must be a 3x3 matrix"))
+    ntuple(i -> begin
+        row = Tuple(rows[i])
+        length(row) == 3 || throw(ArgumentError("$field must be a 3x3 matrix"))
+        ntuple(j -> begin
+            value = row[j]
+            (value isa Integer && !(value isa Bool)) || value isa Rational ||
+                throw(ArgumentError("$field entries must be finite exact rationals"))
+            try
+                Rational{Int64}(value)
+            catch
+                throw(ArgumentError("$field entry is outside the exact rational range"))
+            end
+        end, 3)
+    end, 3)
+end
+
+_g1d_symmetric3(matrix) = all(matrix[i][j] == matrix[j][i] for i in 1:3 for j in 1:3)
+_g1d_big_rational(value::Rational) = BigInt(numerator(value)) // BigInt(denominator(value))
+
+function _g1d_tensor_box_vertices(expression::G1DiffusionSymmetricAffineTensorKFieldV2)
+    vertices = Vector{NTuple{3,NTuple{3,Rational{BigInt}}}}(undef, 8)
+    for mask in 0:7
+        point = ntuple(c -> iszero(mask & (1 << (c - 1))) ?
+            expression.domain_min[c] : expression.domain_max[c], 3)
+        wide_point = ntuple(c -> _g1d_big_rational(point[c]), 3)
+        vertices[mask + 1] = ntuple(i -> ntuple(j ->
+            _g1d_big_rational(expression.base_matrix[i][j]) +
+            sum(_g1d_big_rational(expression.slope_matrices[c][i][j]) * wide_point[c]
+                for c in 1:3), 3), 3)
+    end
+    Tuple(vertices)
+end
+
+function _g1d_spd3(matrix)
+    a, b, c = matrix[1]
+    d, e, f = matrix[2]
+    g, h, i = matrix[3]
+    a > 0 && a * e - b * d > 0 &&
+        a * (e * i - f * h) - b * (d * i - f * g) +
+        c * (d * h - e * g) > 0
+end
+
+semantic_view(x::G1DiffusionSymmetricAffineTensorKFieldV2) =
+    (expression_id=x.expression_id, domain_min=x.domain_min, domain_max=x.domain_max,
+     base_matrix=x.base_matrix, slope_matrices=x.slope_matrices)
+
+function g1_diffusion_k_eval(x::G1DiffusionSymmetricAffineTensorKFieldV2, point)
+    p = _g1d_r3(point, "K evaluation point")
+    all(x.domain_min[i] <= p[i] <= x.domain_max[i] for i in 1:3) ||
+        throw(ArgumentError("K evaluation point is outside declared bounded domain"))
+    ntuple(i -> ntuple(j -> x.base_matrix[i][j] +
+        sum(x.slope_matrices[c][i][j] * p[c] for c in 1:3), 3), 3)
+end
+
+function _g1d_tensor_k_admissible(x::G1DiffusionSymmetricAffineTensorKFieldV2)
+    all(x.domain_min[i] < x.domain_max[i] for i in 1:3) || return false
+    all(_g1d_symmetric3, (x.base_matrix, x.slope_matrices...)) || return false
+    all(_g1d_spd3, _g1d_tensor_box_vertices(x))
+end
+
+function g1_diffusion_k_enclosure(x::G1DiffusionSymmetricAffineTensorKFieldV2)
+    vertices = _g1d_tensor_box_vertices(x)
+    lower_big = ntuple(i -> minimum(matrix[i][i] for matrix in vertices), 3)
+    upper_big = ntuple(i -> maximum(matrix[i][i] for matrix in vertices), 3)
+    lower = try
+        ntuple(i -> Rational{Int64}(lower_big[i]), 3)
+    catch
+        throw(ArgumentError("K diagonal enclosure is outside the exact rational range"))
+    end
+    upper = try
+        ntuple(i -> Rational{Int64}(upper_big[i]), 3)
+    catch
+        throw(ArgumentError("K diagonal enclosure is outside the exact rational range"))
+    end
+    (lower=minimum(lower), upper=maximum(upper),
+     diagonal_lower=lower, diagonal_upper=upper)
+end
+
 struct G1DiffusionScalarFieldV1
     field_id::String
     physical_type::PhysicalType
@@ -143,8 +330,7 @@ struct G1DiffusionScalarFieldV1
                                       source_expression=field_id)
         id = _g1d_text(field_id, "scalar field_id")
         ty = physical_type isa PhysicalType ? physical_type : throw(ArgumentError("scalar physical_type must be PhysicalType"))
-        ty.tensor_rank == 0 && ty.spatial_dimension == 3 && ty.value_kind == :scalar_field &&
-            ty.temporal_type == TemporalTypeV1(static_time) ||
+        ty.tensor_rank == 0 && ty.spatial_dimension == 3 && ty.value_kind == :scalar_field ||
             throw(ArgumentError("u/f must be 3-D scalar fields"))
         new(id, ty, _g1d_ref(source_ref, "scalar source_ref"), _g1d_text(source_expression, "scalar source_expression"))
     end
@@ -159,21 +345,22 @@ struct G1DiffusionCoefficientFieldV1
     positive_definite::Bool
     lower_bound::Rational{Int64}
     upper_bound::Rational{Int64}
-    expression::G1DiffusionDiagonalAffineKFieldV1
+    expression::Union{G1DiffusionDiagonalAffineKFieldV1,
+        G1DiffusionSymmetricAffineTensorKFieldV2}
     function G1DiffusionCoefficientFieldV1(field_id::Any, physical_type::Any, source_ref::Any;
                                             spatial_dependency=:spatial, symmetry=:symmetric,
                                             positive_definite=true, lower_bound=1 // 1000,
                                             upper_bound=1000 // 1, expression=nothing)
         id = _g1d_text(field_id, "K field_id")
         ty = physical_type isa PhysicalType ? physical_type : throw(ArgumentError("K physical_type must be PhysicalType"))
-        ty.tensor_rank == 2 && ty.spatial_dimension == 3 && ty.value_kind == :tensor_field &&
-            ty.temporal_type == TemporalTypeV1(static_time) ||
+        ty.tensor_rank == 2 && ty.spatial_dimension == 3 && ty.value_kind == :tensor_field ||
             throw(ArgumentError("K must be a 3-D rank-2 tensor field"))
         spatial_dependency === :spatial || throw(ArgumentError("K must declare spatial dependency"))
         symmetry === :symmetric || throw(ArgumentError("K must declare symmetric structure"))
         positive_definite === true || throw(ArgumentError("K must declare positive definiteness"))
-        expression isa G1DiffusionDiagonalAffineKFieldV1 ||
-            throw(ArgumentError("K requires a candidate-owned diagonal-affine expression"))
+        expression isa Union{G1DiffusionDiagonalAffineKFieldV1,
+            G1DiffusionSymmetricAffineTensorKFieldV2} ||
+            throw(ArgumentError("K requires a supported candidate-owned affine tensor expression"))
         enclosure = g1_diffusion_k_enclosure(expression)
         lo = Rational{Int64}(lower_bound); hi = Rational{Int64}(upper_bound)
         lo == enclosure.lower && hi == enclosure.upper ||
@@ -197,9 +384,10 @@ struct G1TypedGradV1
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("GRAD input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("GRAD output type must be PhysicalType"))
         i.tensor_rank == 0 && i.spatial_dimension == 3 && i.value_kind == :scalar_field &&
-            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("GRAD input must be a static 3-D scalar"))
-        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field &&
-            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("GRAD output must be a static 3-D vector"))
+            o isa PhysicalType && o.temporal_type == i.temporal_type ||
+            throw(ArgumentError("GRAD input/output must be matching 3-D scalar/vector temporal types"))
+        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field ||
+            throw(ArgumentError("GRAD output must be a 3-D vector"))
         o.units == _g1d_sub(i.units, _g1d_length_unit()) || throw(ArgumentError("GRAD unit closure failed"))
         new(ref, _g1d_text(input_field_id, "GRAD input_field_id"), _g1d_text(output_field_id, "GRAD output_field_id"), i, o)
     end
@@ -221,10 +409,10 @@ struct G1TypedKApplyV1
         ref.version == "v1" || throw(ArgumentError("K_APPLY operator version must be v1"))
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("K_APPLY input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("K_APPLY output type must be PhysicalType"))
-        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field &&
-            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("K_APPLY input must be a static 3-D vector"))
-        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field &&
-            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("K_APPLY output must be a static 3-D vector"))
+        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field ||
+            throw(ArgumentError("K_APPLY input must be a 3-D vector"))
+        o.tensor_rank == 1 && o.spatial_dimension == 3 && o.value_kind == :vector_field ||
+            throw(ArgumentError("K_APPLY output must be a 3-D vector"))
         cu = _g1d_unit(coefficient_units, "K_APPLY coefficient_units")
         o.units == _g1d_add(i.units, cu) && o.temporal_type == i.temporal_type ||
             throw(ArgumentError("K_APPLY output type closure failed"))
@@ -246,15 +434,177 @@ struct G1TypedDivV1
         ref.version == "v1" || throw(ArgumentError("DIV operator version must be v1"))
         i = input_type isa PhysicalType ? input_type : throw(ArgumentError("DIV input type must be PhysicalType"))
         o = output_type isa PhysicalType ? output_type : throw(ArgumentError("DIV output type must be PhysicalType"))
-        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field &&
-            i.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("DIV input must be a static 3-D vector"))
-        o.tensor_rank == 0 && o.spatial_dimension == 3 && o.value_kind == :scalar_field &&
-            o.temporal_type == TemporalTypeV1(static_time) || throw(ArgumentError("DIV output must be a static 3-D scalar"))
+        i.tensor_rank == 1 && i.spatial_dimension == 3 && i.value_kind == :vector_field ||
+            throw(ArgumentError("DIV input must be a 3-D vector"))
+        o.tensor_rank == 0 && o.spatial_dimension == 3 && o.value_kind == :scalar_field ||
+            throw(ArgumentError("DIV output must be a 3-D scalar"))
         o.units == _g1d_sub(i.units, _g1d_length_unit()) && o.temporal_type == i.temporal_type ||
             throw(ArgumentError("DIV output type closure failed"))
         new(ref, _g1d_text(input_field_id, "DIV input_field_id"), _g1d_text(output_field_id, "DIV output_field_id"), i, o)
     end
 end
+
+struct G1DiffusionUnknownStateBindingV1
+    state_index::Int
+    role::Symbol
+    field_id::String
+    physical_type::PhysicalType
+    function G1DiffusionUnknownStateBindingV1(state_index::Any, role::Any,
+                                               field_id::Any, physical_type::Any)
+        state_index isa Integer && !(state_index isa Bool) && state_index == 0 ||
+            throw(ArgumentError("unknown-state binding state_index must be 0"))
+        role === :unknown || throw(ArgumentError("unknown-state binding role must be :unknown"))
+        id = _g1d_text(field_id, "unknown-state binding field_id")
+        ty = physical_type isa PhysicalType ? physical_type :
+            throw(ArgumentError("unknown-state binding physical_type must be PhysicalType"))
+        new(Int(state_index), :unknown, id, ty)
+    end
+end
+
+semantic_view(x::G1DiffusionUnknownStateBindingV1) =
+    (state_index=x.state_index, role=x.role, field_id=x.field_id, physical_type=x.physical_type)
+
+struct G1DiffusionOperatorTemporalWhitelistV1
+    operator_ref::QualifiedRefV1
+    temporal_kinds::Tuple{Vararg{TimeKindV1}}
+    function G1DiffusionOperatorTemporalWhitelistV1(operator_ref::Any, temporal_kinds::Any)
+        ref = _g1d_ref(operator_ref, "operator temporal whitelist operator_ref")
+        ref.version == "v1" || throw(ArgumentError("operator temporal whitelist ref version must be v1"))
+        ref.id in (G1_DIFFUSION_GRAD_OPERATOR_ID_V1,
+                   G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1,
+                   G1_DIFFUSION_DIV_OPERATOR_ID_V1) ||
+            throw(ArgumentError("operator temporal whitelist ref must name GRAD, K_APPLY or DIV"))
+        kinds = Tuple(temporal_kinds)
+        !isempty(kinds) && all(kind -> kind isa TimeKindV1, kinds) ||
+            throw(ArgumentError("operator temporal whitelist must contain TimeKindV1 members"))
+        length(unique(kinds)) == length(kinds) ||
+            throw(ArgumentError("operator temporal whitelist members must be unique"))
+        new(ref, kinds)
+    end
+end
+
+semantic_view(x::G1DiffusionOperatorTemporalWhitelistV1) =
+    (operator_ref=x.operator_ref, temporal_kinds=x.temporal_kinds)
+
+struct G1DiffusionOperatorTemporalSupportV1
+    grad::G1DiffusionOperatorTemporalWhitelistV1
+    coefficient_apply::G1DiffusionOperatorTemporalWhitelistV1
+    div::G1DiffusionOperatorTemporalWhitelistV1
+    function G1DiffusionOperatorTemporalSupportV1(grad::Any, coefficient_apply::Any, div::Any)
+        grad isa G1DiffusionOperatorTemporalWhitelistV1 ||
+            throw(ArgumentError("GRAD temporal support must be a typed whitelist"))
+        coefficient_apply isa G1DiffusionOperatorTemporalWhitelistV1 ||
+            throw(ArgumentError("K_APPLY temporal support must be a typed whitelist"))
+        div isa G1DiffusionOperatorTemporalWhitelistV1 ||
+            throw(ArgumentError("DIV temporal support must be a typed whitelist"))
+        grad.operator_ref == QualifiedRefV1(G1_DIFFUSION_GRAD_OPERATOR_ID_V1, "v1") ||
+            throw(ArgumentError("GRAD temporal whitelist identity mismatch"))
+        coefficient_apply.operator_ref == QualifiedRefV1(G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1, "v1") ||
+            throw(ArgumentError("K_APPLY temporal whitelist identity mismatch"))
+        div.operator_ref == QualifiedRefV1(G1_DIFFUSION_DIV_OPERATOR_ID_V1, "v1") ||
+            throw(ArgumentError("DIV temporal whitelist identity mismatch"))
+        new(grad, coefficient_apply, div)
+    end
+end
+
+semantic_view(x::G1DiffusionOperatorTemporalSupportV1) =
+    (grad=x.grad, coefficient_apply=x.coefficient_apply, div=x.div)
+
+"""Candidate-authored normal-flux port pair for one internal diffusion interface.
+
+This is an unevaluated contract over K_APPLY's vector output; it grants no
+physical or provider authority. `left_sign` and `right_sign` express each
+region's outward normal relative to the left-to-right interface orientation.
+"""
+struct G1DiffusionInterfaceFluxPairV1
+    interface_ref::QualifiedRefV1
+    left_region_id::String
+    right_region_id::String
+    left_port_id::String
+    right_port_id::String
+    operator_ref::QualifiedRefV1
+    field_id::String
+    left_outward_normal::NTuple{3,Int8}
+    right_outward_normal::NTuple{3,Int8}
+    left_sign::Int8
+    right_sign::Int8
+    law::Symbol
+    function G1DiffusionInterfaceFluxPairV1(interface_ref::Any,
+            left_region_id::Any, right_region_id::Any, left_port_id::Any,
+            right_port_id::Any, operator_ref::Any, field_id::Any,
+            left_outward_normal::Any, right_outward_normal::Any,
+            left_sign::Any, right_sign::Any, law::Any)
+        interface_ref isa QualifiedRefV1 && interface_ref.version == "v2" ||
+            throw(ArgumentError("interface flux pair requires a v2 G2 interface ref"))
+        left_region_id isa AbstractString && !isempty(String(left_region_id)) &&
+            right_region_id isa AbstractString && !isempty(String(right_region_id)) &&
+            String(left_region_id) != String(right_region_id) ||
+            throw(ArgumentError("interface flux pair regions must be distinct nonempty ids"))
+        left_port_id isa AbstractString && !isempty(String(left_port_id)) &&
+            right_port_id isa AbstractString && !isempty(String(right_port_id)) &&
+            String(left_port_id) != String(right_port_id) ||
+            throw(ArgumentError("interface flux pair ports must be distinct nonempty ids"))
+        operator_ref isa QualifiedRefV1 && operator_ref.version == "v1" &&
+            operator_ref.id == G1_DIFFUSION_K_APPLY_OPERATOR_ID_V1 ||
+            throw(ArgumentError("interface flux ports must use the typed K_APPLY operator"))
+        left_outward_normal isa Tuple && length(left_outward_normal) == 3 &&
+            right_outward_normal isa Tuple && length(right_outward_normal) == 3 &&
+            all(x -> x isa Integer && !(x isa Bool) && x in (-1, 0, 1),
+                (left_outward_normal..., right_outward_normal...)) ||
+            throw(ArgumentError("interface flux outward normals must be typed signed axis vectors"))
+        left_normal = ntuple(i -> Int8(left_outward_normal[i]), 3)
+        right_normal = ntuple(i -> Int8(right_outward_normal[i]), 3)
+        left_normal == (Int8(1), Int8(0), Int8(0)) && right_normal == (Int8(-1), Int8(0), Int8(0)) ||
+            throw(ArgumentError("this x-half interface requires left +x and right -x outward normals"))
+        left_sign isa Integer && !(left_sign isa Bool) && right_sign isa Integer &&
+            !(right_sign isa Bool) && left_sign in (-1, 1) && right_sign == -left_sign ||
+            throw(ArgumentError("interface flux signs must be opposite signed orientations"))
+        law === :left_outward_flux_plus_right_outward_flux_equals_zero ||
+            throw(ArgumentError("unsupported authored interface flux law"))
+        new(interface_ref, String(left_region_id), String(right_region_id),
+            String(left_port_id), String(right_port_id), operator_ref,
+            _g1d_text(field_id, "interface flux field_id"), left_normal,
+            right_normal, Int8(left_sign), Int8(right_sign), law)
+    end
+end
+semantic_view(x::G1DiffusionInterfaceFluxPairV1) =
+    (interface_ref=x.interface_ref, left_region_id=x.left_region_id,
+     right_region_id=x.right_region_id, left_port_id=x.left_port_id,
+     right_port_id=x.right_port_id, operator_ref=x.operator_ref,
+     field_id=x.field_id, left_outward_normal=x.left_outward_normal,
+     right_outward_normal=x.right_outward_normal, left_sign=x.left_sign,
+     right_sign=x.right_sign, law=x.law)
+
+"""An explicitly authored source-bound transient volumetric capacity.
+
+For the SI thermal lane this is rho*cp in J/(m^3 K).  It is optional for a
+steady declaration, but no transient consumer may infer or default it.
+"""
+struct G1DiffusionTransientCapacityV1
+    coefficient::Float64
+    units::UnitSignature
+    source_ref::QualifiedRefV1
+    applicable_domain::Symbol
+    closed::Bool
+    function G1DiffusionTransientCapacityV1(coefficient, units, source_ref;
+                                            applicable_domain=:transient_thermal_diffusion,
+                                            closed=false)
+        value = Float64(coefficient)
+        isfinite(value) && value > 0.0 ||
+            throw(ArgumentError("transient volumetric capacity must be finite and positive"))
+        typed_units = _g1d_unit(units, "transient capacity units")
+        source = _g1d_ref(source_ref, "transient capacity source_ref")
+        domain = Symbol(applicable_domain)
+        domain === :transient_thermal_diffusion ||
+            throw(ArgumentError("transient capacity applicable_domain is unsupported"))
+        closed === true || throw(ArgumentError("transient capacity must be explicitly closed"))
+        new(value, typed_units, source, domain, true)
+    end
+end
+semantic_view(x::G1DiffusionTransientCapacityV1) =
+    (coefficient=x.coefficient, units=x.units, source_ref=x.source_ref,
+     applicable_domain=x.applicable_domain, closed=x.closed,
+     kind=:volumetric_heat_capacity)
 
 struct G1DiffusionSourcePayloadV1
     candidate_ref::QualifiedRefV1
@@ -263,16 +613,59 @@ struct G1DiffusionSourcePayloadV1
     u::G1DiffusionScalarFieldV1
     K::G1DiffusionCoefficientFieldV1
     f::G1DiffusionScalarFieldV1
+    unknown_state_binding::Union{Nothing,G1DiffusionUnknownStateBindingV1}
+    operator_temporal_support::Union{Nothing,G1DiffusionOperatorTemporalSupportV1}
+    interface_flux_pair::Union{Nothing,G1DiffusionInterfaceFluxPairV1}
+    transient_capacity::Union{Nothing,G1DiffusionTransientCapacityV1}
     function G1DiffusionSourcePayloadV1(candidate_ref::Any, source_ref::Any, source_version::Any,
                                         u::G1DiffusionScalarFieldV1,
                                         K::G1DiffusionCoefficientFieldV1,
-                                        f::G1DiffusionScalarFieldV1)
+                                        f::G1DiffusionScalarFieldV1;
+                                        unknown_state_binding=nothing,
+                                        operator_temporal_support=nothing,
+                                        interface_flux_pair=nothing,
+                                        transient_capacity=nothing)
         candidate = _g1d_ref(candidate_ref, "source payload candidate_ref")
         candidate.version == "v5" || throw(ArgumentError("source payload candidate_ref must use v5"))
         src = _g1d_ref(source_ref, "source payload source_ref")
         u.source_ref == src && K.source_ref == src && f.source_ref == src ||
             throw(ArgumentError("source payload field identities must match source_ref"))
-        new(candidate, src, _g1d_text(source_version, "source payload source_version"), u, K, f)
+        binding = if unknown_state_binding === nothing
+            nothing
+        else
+            unknown_state_binding isa G1DiffusionUnknownStateBindingV1 ||
+                throw(ArgumentError("unknown_state_binding must be G1DiffusionUnknownStateBindingV1 or nothing"))
+            unknown_state_binding.field_id == u.field_id ||
+                throw(ArgumentError("unknown-state binding field_id must identify u"))
+            unknown_state_binding.physical_type == u.physical_type ||
+                throw(ArgumentError("unknown-state binding physical_type must match u exactly"))
+            unknown_state_binding
+        end
+        temporal_support = if operator_temporal_support === nothing
+            nothing
+        else
+            operator_temporal_support isa G1DiffusionOperatorTemporalSupportV1 ||
+                throw(ArgumentError("operator_temporal_support must be G1DiffusionOperatorTemporalSupportV1 or nothing"))
+            operator_temporal_support
+        end
+        flux_pair = if interface_flux_pair === nothing
+            nothing
+        else
+            interface_flux_pair isa G1DiffusionInterfaceFluxPairV1 ||
+                throw(ArgumentError("interface_flux_pair must be G1DiffusionInterfaceFluxPairV1 or nothing"))
+            interface_flux_pair
+        end
+        capacity = if transient_capacity === nothing
+            nothing
+        else
+            transient_capacity isa G1DiffusionTransientCapacityV1 ||
+                throw(ArgumentError("transient_capacity must be G1DiffusionTransientCapacityV1 or nothing"))
+            transient_capacity.source_ref == src ||
+                throw(ArgumentError("transient capacity source_ref must match source payload source_ref"))
+            transient_capacity
+        end
+        new(candidate, src, _g1d_text(source_version, "source payload source_version"), u, K, f,
+            binding, temporal_support, flux_pair, capacity)
     end
 end
 
@@ -280,10 +673,22 @@ G1DiffusionSourcePayloadV1(::Any, ::Any, ::G1DiffusionScalarFieldV1,
                            ::G1DiffusionCoefficientFieldV1, ::G1DiffusionScalarFieldV1) =
     throw(ArgumentError("candidate_ref is required for a candidate-bound source payload"))
 
-semantic_view(x::G1DiffusionSourcePayloadV1) =
-    (schema_id="GenomeV5/G1/DiffusionSourcePayloadV1", version="v1",
-     candidate_ref=x.candidate_ref, source_ref=x.source_ref, source_version=x.source_version,
-     u=x.u, K=x.K, f=x.f)
+semantic_view(x::G1DiffusionSourcePayloadV1) = begin
+    body = (schema_id="GenomeV5/G1/DiffusionSourcePayloadV1", version="v1",
+            candidate_ref=x.candidate_ref, source_ref=x.source_ref, source_version=x.source_version,
+            u=x.u, K=x.K, f=x.f)
+    if x.unknown_state_binding !== nothing
+        body = merge(body, (unknown_state_binding=x.unknown_state_binding,))
+    end
+    if x.operator_temporal_support !== nothing
+        body = merge(body, (operator_temporal_support=x.operator_temporal_support,))
+    end
+    x.interface_flux_pair === nothing ||
+        (body = merge(body, (interface_flux_pair=x.interface_flux_pair,)))
+    x.transient_capacity === nothing ||
+        (body = merge(body, (transient_capacity=x.transient_capacity,)))
+    body
+end
 canonical_json(x::G1DiffusionSourcePayloadV1) = canonical_json(semantic_view(x))
 g1_diffusion_source_hash_v1(x::G1DiffusionSourcePayloadV1) = canonical_hash(x)
 
@@ -345,6 +750,16 @@ struct G1DiffusionDeclarationV1
             throw(ArgumentError("source_hash does not match candidate-owned source payload"))
         u.source_ref == src && K.source_ref == src && f.source_ref == src ||
             throw(ArgumentError("u/K/f source identities must match declaration source_ref"))
+        capacity = source_payload.transient_capacity
+        if capacity !== nothing
+            capacity.source_ref == src ||
+                throw(ArgumentError("transient capacity source identity must match declaration source_ref"))
+            capacity.applicable_domain === :transient_thermal_diffusion ||
+                throw(ArgumentError("transient capacity applicable domain is unsupported"))
+            _g1d_add(_g1d_sub(capacity.units, UnitSignature((0, 0, 1, 0, 0, 0, 0))),
+                u.physical_type.units) == f.physical_type.units ||
+                throw(ArgumentError("transient capacity, time, u and f units do not close"))
+        end
         operators.grad.input_field_id == u.field_id || throw(ArgumentError("GRAD must consume u"))
         operators.div.output_field_id == f.field_id || throw(ArgumentError("DIV must produce f"))
         u.physical_type.units == operators.grad.input_type.units || throw(ArgumentError("u/GRAD units disagree"))
@@ -370,6 +785,28 @@ struct G1DiffusionDeclarationV1
             throw(ArgumentError("K_APPLY output PhysicalType does not equal DIV input PhysicalType"))
         operators.div.output_type == f.physical_type ||
             throw(ArgumentError("DIV output PhysicalType does not equal f PhysicalType"))
+        temporal_support = source_payload.operator_temporal_support
+        if temporal_support !== nothing
+            _g1d_temporal_support_matches(temporal_support.grad, operators.grad.operator_ref,
+                operators.grad.input_type, operators.grad.output_type, "GRAD")
+            _g1d_temporal_support_matches(temporal_support.coefficient_apply,
+                operators.coefficient_apply.operator_ref, operators.coefficient_apply.input_type,
+                operators.coefficient_apply.output_type, "K_APPLY")
+            _g1d_temporal_support_matches(temporal_support.div, operators.div.operator_ref,
+                operators.div.input_type, operators.div.output_type, "DIV")
+        end
+        flux_pair = source_payload.interface_flux_pair
+        if flux_pair !== nothing
+            flux_pair.operator_ref == operators.coefficient_apply.operator_ref &&
+                flux_pair.field_id == operators.coefficient_apply.output_field_id &&
+                operators.coefficient_apply.output_type.value_kind === :vector_field &&
+                operators.coefficient_apply.output_type.tensor_rank == 1 &&
+                operators.coefficient_apply.output_type.spatial_dimension == 3 ||
+                throw(ArgumentError("interface flux pair is not bound to the typed K_APPLY vector output"))
+            flux_pair.left_sign == flux_pair.left_outward_normal[1] &&
+                flux_pair.right_sign == flux_pair.right_outward_normal[1] ||
+                throw(ArgumentError("interface flux signs do not match authored outward orientation"))
+        end
         closure = _g1d_ref(closure_ref, "closure_ref")
         closure.id == G1_DIFFUSION_CLOSURE_ID_V1 && closure.version == G1_DIFFUSION_PROFILE_VERSION_V1 ||
             throw(ArgumentError("closure_ref is not bound to the diffusion profile"))
@@ -407,6 +844,19 @@ semantic_view(x::G1TypedDivV1) =
 semantic_view(x::G1DiffusionOperatorChainV1) =
     (grad=x.grad, coefficient_apply=x.coefficient_apply, div=x.div,
      source_field_id=x.source_field_id, residual_sign=x.residual_sign)
+
+function _g1d_temporal_support_matches(support::G1DiffusionOperatorTemporalWhitelistV1,
+                                       operator_ref::QualifiedRefV1,
+                                       input_type::PhysicalType, output_type::PhysicalType,
+                                       label::AbstractString)
+    support.operator_ref == operator_ref ||
+        throw(ArgumentError("$label temporal whitelist operator identity does not match declaration"))
+    input_type.temporal_type.kind in support.temporal_kinds &&
+        output_type.temporal_type.kind in support.temporal_kinds ||
+        throw(ArgumentError("$label temporal whitelist does not contain actual input/output temporal kinds"))
+    nothing
+end
+
 function _g1d_declaration_body(x::G1DiffusionDeclarationV1)
     (schema_id=G1_DIFFUSION_SCHEMA_ID_V1, schema_version=G1_DIFFUSION_SCHEMA_VERSION_V1,
      candidate_ref=x.candidate_ref, source_ref=x.source_ref, source_version=x.source_version,
@@ -420,7 +870,8 @@ function _g1d_declaration_body(x::G1DiffusionDeclarationV1)
 end
 semantic_view(x::G1DiffusionDeclarationV1) =
     merge(_g1d_declaration_body(x), (declaration_hash=x.declaration_hash,))
-canonical_json(x::Union{G1DiffusionScalarFieldV1,G1DiffusionCoefficientFieldV1,G1TypedGradV1,
+canonical_json(x::Union{G1DiffusionSymmetricAffineTensorKFieldV2,
+                        G1DiffusionScalarFieldV1,G1DiffusionCoefficientFieldV1,G1TypedGradV1,
                         G1TypedKApplyV1,G1TypedDivV1,G1DiffusionOperatorChainV1,
                         G1DiffusionDeclarationV1}) = canonical_json(semantic_view(x))
 
@@ -490,8 +941,12 @@ end
 
 """Typed K profile admission with explicit bound and domain paths."""
 function g1_diffusion_admit_k_v1(expression::Any; lower_bound=nothing, upper_bound=nothing, probe_point=nothing)
-    expression isa G1DiffusionDiagonalAffineKFieldV1 ||
+    expression isa Union{G1DiffusionDiagonalAffineKFieldV1,
+        G1DiffusionSymmetricAffineTensorKFieldV2} ||
         return _g1d_admission_fail(:K_expression_type, "/K/expression")
+    expression isa G1DiffusionSymmetricAffineTensorKFieldV2 &&
+        !_g1d_tensor_k_admissible(expression) &&
+        return _g1d_admission_fail(:K_not_positive_definite, "/K/expression")
     enclosure = try
         g1_diffusion_k_enclosure(expression)
     catch error
@@ -555,8 +1010,12 @@ canonical_json(x::G1DiffusionReceiptV1) = canonical_json(semantic_view(x))
 g1_diffusion_receipt_hash_v1(x::G1DiffusionReceiptV1) = canonical_hash(x)
 
 function g1_diffusion_receipt_v1(x::G1DiffusionDeclarationV1)
-    G1DiffusionReceiptV1(x.declaration_hash, g1_diffusion_schema_hash_v1(),
-        g1_diffusion_canonicalization_hash_v1(), g1_diffusion_profile_hash_v1(),
+    present = x.source_payload.interface_flux_pair !== nothing
+    capacity_present = x.source_payload.transient_capacity !== nothing
+    G1DiffusionReceiptV1(x.declaration_hash,
+        g1_diffusion_schema_hash_v1(present, capacity_present),
+        g1_diffusion_canonicalization_hash_v1(),
+        g1_diffusion_profile_hash_v1(present, capacity_present),
         :proposal, false, :terminal_deferred, G1_DIFFUSION_CLAIM_CEILING_V1,
         G1_DIFFUSION_REQUIRED_GAPS_V1, 0, 0, 0, 0, false)
 end
@@ -566,7 +1025,15 @@ function g1_diffusion_validate(x::G1DiffusionDeclarationV1)
     x.candidate_ref.version == "v5" || push!(errors, "candidate_ref_version_not_v5")
     x.source_payload.candidate_ref == x.candidate_ref || push!(errors, "source_payload_candidate_binding_mismatch")
     x.source_payload.source_ref == x.source_ref || push!(errors, "source_payload_source_binding_mismatch")
+    x.source_payload.transient_capacity === nothing ||
+        (x.source_payload.transient_capacity.source_ref == x.source_ref &&
+         x.source_payload.transient_capacity.closed &&
+         x.source_payload.transient_capacity.applicable_domain === :transient_thermal_diffusion) ||
+        push!(errors, "transient_capacity_source_binding_mismatch")
     x.K.lower_bound > 0 && x.K.upper_bound >= x.K.lower_bound || push!(errors, "K_bounds_not_positive_ordered")
+    x.K.expression isa G1DiffusionSymmetricAffineTensorKFieldV2 &&
+        !_g1d_tensor_k_admissible(x.K.expression) &&
+        push!(errors, "K_affine_tensor_not_spd_on_declared_box")
     x.K.spatial_dependency === :spatial || push!(errors, "K_not_spatially_dependent")
     x.K.positive_definite || push!(errors, "K_not_positive_definite")
     x.ownership === :candidate_owned || push!(errors, "field_ownership_not_candidate_owned")
@@ -591,7 +1058,11 @@ end
 function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, value)
     field === :u && value isa G1DiffusionScalarFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, value, x.K, x.f)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, value, x.K, x.f;
+                unknown_state_binding=x.source_payload.unknown_state_binding,
+                operator_temporal_support=x.source_payload.operator_temporal_support,
+                interface_flux_pair=x.source_payload.interface_flux_pair,
+                transient_capacity=x.source_payload.transient_capacity)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), value, x.K, x.f, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;
@@ -599,7 +1070,11 @@ function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, va
         end
     field === :K && value isa G1DiffusionCoefficientFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, value, x.f)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, value, x.f;
+                unknown_state_binding=x.source_payload.unknown_state_binding,
+                operator_temporal_support=x.source_payload.operator_temporal_support,
+                interface_flux_pair=x.source_payload.interface_flux_pair,
+                transient_capacity=x.source_payload.transient_capacity)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), x.u, value, x.f, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;
@@ -607,7 +1082,11 @@ function g1_diffusion_edit_source(x::G1DiffusionDeclarationV1, field::Symbol, va
         end
     field === :f && value isa G1DiffusionScalarFieldV1 &&
         return begin
-            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, x.K, value)
+            payload = G1DiffusionSourcePayloadV1(x.candidate_ref, x.source_ref, x.source_version, x.u, x.K, value;
+                unknown_state_binding=x.source_payload.unknown_state_binding,
+                operator_temporal_support=x.source_payload.operator_temporal_support,
+                interface_flux_pair=x.source_payload.interface_flux_pair,
+                transient_capacity=x.source_payload.transient_capacity)
             g1_diffusion_declaration_v1(x.candidate_ref, x.source_ref, x.source_version,
                 g1_diffusion_source_hash_v1(payload), x.u, x.K, value, x.operators,
                 x.closure_ref, x.applicability_ref, x.applicability_domain, x.negative_controls;

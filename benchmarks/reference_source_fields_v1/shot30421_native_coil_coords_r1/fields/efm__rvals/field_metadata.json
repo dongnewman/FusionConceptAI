@@ -1,0 +1,149 @@
+{
+  "requested_path": "efm/rvals",
+  "resolved_path": "efm/rvals",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120,
+      129
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      129
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "profile_r"
+    ],
+    "description": "Radial co-ordinates used for radial profiles; f(nw)",
+    "dims": [
+      "time",
+      "profile_r"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "R-coords used for radial",
+    "mds_name": "\\TOP.ANALYSED.EFM:RVALS",
+    "name": "efm/rvals",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      108,
+      65
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_RVALS",
+    "units": "",
+    "uuid": "1e72020e-45d9-580c-81e1-3d19f707fd17",
+    "version": 0
+  },
+  "shape": [
+    120,
+    129
+  ],
+  "chunks": [
+    120,
+    129
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "profile_r"
+  ],
+  "decoded_bytes": 61920,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "profile_r",
+      "path": "efm/profile_r",
+      "available": true,
+      "shape": [
+        129
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-22T01:49:49.940436Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        120,
+        129
+      ],
+      "full_chunk_shape": [
+        120,
+        129
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/rvals/0.0",
+      "requested_utc": "2026-09-22T01:49:49.940597Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "30149",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"bb9e02799a8cff6c1c8ed43e408d460f\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 30149,
+      "compressed_sha256": "b0d45382ae41bf061136acd5c280487dfb9d91152ca86ad23ad2ac0e8e74ff25",
+      "decoded_bytes": 61920,
+      "decoded_sha256": "eab11a63e539c43e821a8f771e258338fcc9f111d88bbf0e27738ada1bd5eeff",
+      "decoded_shape": [
+        120,
+        129
+      ],
+      "written_shape": [
+        120,
+        129
+      ],
+      "expected_full_bytes": 61920,
+      "expected_edge_bytes": 61920,
+      "compressed_path": "chunks\\0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__rvals\\assembled.raw",
+  "assembled_raw_bytes": 61920,
+  "assembled_raw_sha256": "eab11a63e539c43e821a8f771e258338fcc9f111d88bbf0e27738ada1bd5eeff",
+  "finite_count": 7020,
+  "total_count": 15480,
+  "minimum": 0.19524440169334412,
+  "maximum": 1.470902681350708
+}

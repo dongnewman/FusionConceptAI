@@ -492,8 +492,8 @@ else
         test_file = joinpath(package_root, "test", "mechanism_phaseb_46_tests.jl")
         injected_script = "ENV[\"FUSION_PHASEB_CHILD\"] = \"1\"; " * script * "; include(" * repr(test_file) * "); rule = FusionConceptAI.SameTypeVariadicRuleV1(1, 1); FusionConceptAI._g1_layer_rule(rule); typed_node = FusionConceptAI.TypedNode(\"hit\", :state, FusionConceptAI.PhysicalType(:scalar_field, 0, 3, FusionConceptAI.TemporalTypeV1(FusionConceptAI.static_time), FusionConceptAI.UnitSignature()), \"\"); FusionConceptAI._canonical(typed_node); contract = FusionConceptAI.GenomeContractRef(\"urn:fusion:hit\", \"v1\", repeat(\"a\", 64), repeat(\"b\", 64), \"g1\"); FusionConceptAI._g1_migration_closed_value(contract); FusionConceptAI._g1_migration_deferred(nothing, nothing, FusionConceptAI.migration_lossless); isequal(rule, rule); hash(rule, UInt(0)); @assert HIT[] == 0x3f"
         normal_script = "ENV[\"FUSION_PHASEB_CHILD\"] = \"1\"; include(" * repr(test_file) * ")"
-        injected = read(setenv(`$julia --startup-file=no --project=$package_root -e $injected_script`, "FUSION_PHASEB_CHILD" => "1"), String)
-        normal = read(setenv(`$julia --startup-file=no --project=$package_root -e $normal_script`, "FUSION_PHASEB_CHILD" => "1"), String)
+        injected = read(setenv(Cmd(`$julia --startup-file=no --project=$package_root -e $injected_script`; windows_hide=true), "FUSION_PHASEB_CHILD" => "1"), String)
+        normal = read(setenv(Cmd(`$julia --startup-file=no --project=$package_root -e $normal_script`; windows_hide=true), "FUSION_PHASEB_CHILD" => "1"), String)
         @test injected == normal
         @test occursin("|", normal)
         hash_prefix = first(split(normal, '|'))

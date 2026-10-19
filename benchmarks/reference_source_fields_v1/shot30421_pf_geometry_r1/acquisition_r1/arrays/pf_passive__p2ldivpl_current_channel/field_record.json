@@ -1,0 +1,104 @@
+{
+  "assembled_bytes": 98,
+  "assembled_path": "arrays/pf_passive__p2ldivpl_current_channel/assembled.strings.json",
+  "assembled_sha256": "0db49d19892aea692018c3010a839bdf388ba30fd7626e06ed5da4f43868d1fd",
+  "chunks": [
+    2
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:27:26.125037Z",
+      "compressed_bytes": 33,
+      "compressed_path": "arrays/pf_passive__p2ldivpl_current_channel/chunks/c__0.zst",
+      "compressed_sha256": "4ddbcdae6e8a25b4e82bf0d45bbe17dd5fa0c09e59ae5050634320803d675732",
+      "decoded_bytes": 30,
+      "decoded_item_count": 2,
+      "decoded_path": "arrays/pf_passive__p2ldivpl_current_channel/chunks/c__0.raw",
+      "decoded_sha256": "a25eabf2402bca3c0971d10e7898fe1e2faffafff72f2f49380691ba140d1b84",
+      "decoded_shape": [
+        2
+      ],
+      "edge_shape": [
+        2
+      ],
+      "full_chunk_shape": [
+        2
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:25.630100Z",
+      "response_headers": {
+        "Content-Length": "33",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"2fdc22a6161f0728559637d79c816554\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:31 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2ldivpl_current_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:26.142776Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "p2ldivpl_current_channel"
+  ],
+  "node": {
+    "attributes": {
+      "name": "AMM_{channel}"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          2
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "p2ldivpl_current_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      2
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2ldivpl_current_channel",
+  "shape": [
+    2
+  ],
+  "started_utc": "2026-09-22T08:27:25.598199Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 2,
+  "unique_string_count": 2,
+  "units": null
+}

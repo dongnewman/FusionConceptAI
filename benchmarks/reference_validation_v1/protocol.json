@@ -1,0 +1,141 @@
+{
+  "schema_version": "reference_validation_protocol_v1",
+  "protocol_id": "UP4-03-reference-validation-prec-v1",
+  "source_evidence_file": "source_evidence.json",
+  "source_package": {
+    "path": "benchmarks/reference_data_v2",
+    "reference_manifest_sha256": "2e3d92f1f479cc614c7e1147b09cef8fcb04606202b3ae7049bc5be1639c8688",
+    "inverse_protocol_sha256": "688e35416d003fd13f9ae0d9cc247cc38e42a4b21d64137347ab478c320f3240",
+    "shot_ids": [30421, 30420],
+    "protected": true
+  },
+  "canonical_contract": {
+    "version": "mast_thomson_canonical_observation_v1",
+    "channels": ["n_e", "t_e"],
+    "dimensions": ["time", "major_radius"],
+    "units": {
+      "n_e": "m^-3",
+      "t_e": "eV",
+      "time": "s",
+      "major_radius": "m"
+    },
+    "raw_mapping": "canonical[t,r] = raw[r,t]",
+    "mapping_source": "raw Zarr dimension_names only",
+    "scale": 1.0,
+    "offset": 0.0,
+    "resampling": "none",
+    "imputation": "none",
+    "mask": "isfinite(raw)",
+    "catalog_reconciliation": "prohibited"
+  },
+  "diagnostic_operator": {
+    "id": "H_mast_thomson_exact_grid_sample_v1",
+    "status": "idealized_same_grid_sample_projection",
+    "input": "predicted n_e or t_e on exact acquired [time,major_radius] coordinates and canonical unit",
+    "output": "predicted and observed vectors at the acquired finite-value mask",
+    "interpolation": "prohibited",
+    "calibration": "typed_absent",
+    "spatial_response": "typed_absent",
+    "temporal_response": "typed_absent",
+    "diagnostic_response_complete": false,
+    "formal_H_status": "terminal_deferred"
+  },
+  "uncertainty": {
+    "status": "typed_absent",
+    "scope": "selected_fair_mast_level2_thomson_profiles",
+    "searched_schema_fields": [
+      "thomson_scattering/*error*",
+      "thomson_scattering/*uncertainty*",
+      "thomson_scattering/*sigma*",
+      "thomson_scattering/*covariance*",
+      "thomson_scattering/*quality*"
+    ],
+    "missing_required": [
+      "per-sample n_e uncertainty or covariance",
+      "per-sample t_e uncertainty or covariance",
+      "calibration provenance and uncertainty semantics",
+      "diagnostic spatial/temporal response"
+    ],
+    "candidate_level1_error_arrays": {
+      "status": "discovered_unbound_not_consumed",
+      "source_profile": "FAIR-MAST Level-1 ayc",
+      "observed_metadata_shot_ids": [30421, 30420],
+      "level1_profile_shapes": {
+        "30421": [284, 131],
+        "30420": [73, 131]
+      },
+      "level1_dimensions": ["time", "radial_index"],
+      "selected_level2_shapes": {
+        "30421": [121, 135],
+        "30420": [121, 77]
+      },
+      "selected_level2_dimensions": ["major_radius", "time"],
+      "names": [
+        "ne_error",
+        "te_error",
+        "r_error",
+        "covariance_ne_te",
+        "poisson_error",
+        "plasmalight_error"
+      ],
+      "unit_observation": "ne_error/te_error/r_error unit strings are blank; covariance_ne_te is eV/m^3; this does not establish sigma or covariance semantics for the selected Level-2 profiles",
+      "reason": "Level-1 is a different [time,radial_index] product with shot-specific shapes [284,131] and [73,131], different from the selected Level-2 products, and blank or incomplete error units. Level-1 bytes acquired elsewhere are not consumed here; calibration/statistical semantics and a provenance-preserving alignment to these Level-2 profiles are not frozen. Index attachment is prohibited."
+    },
+    "reason": "No uncertainty/error/covariance array is present in the acquired Level-2 thomson_scattering group for shots 30421/30420. This statement is scoped to the selected Level-2 profiles and does not assert that FAIR-MAST has no error products elsewhere.",
+    "likelihood_policy": "reject_weighted_likelihood_until_present_bound"
+  },
+  "split": {
+    "version": "mast_shot_split_v2_bound_by_reference_validation_v1",
+    "calibration": {
+      "shot_ids": [30421],
+      "observation_ids": [
+        "mast:30421:thomson_scattering:n_e",
+        "mast:30421:thomson_scattering:t_e"
+      ]
+    },
+    "validation": {
+      "shot_ids": [],
+      "observation_ids": [],
+      "status": "typed_absent"
+    },
+    "held_out": {
+      "shot_ids": [30420],
+      "observation_ids": [
+        "mast:30420:thomson_scattering:n_e",
+        "mast:30420:thomson_scattering:t_e"
+      ]
+    },
+    "enforce_disjoint": [
+      "shot_id",
+      "observation_id",
+      "response_artifact_hash",
+      "time_artifact_hash",
+      "catalog_row_uuid",
+      "canonical_payload_hash",
+      "sample_lineage_hash",
+      "derived_lineage_id"
+    ],
+    "shared_non_response_policy": "A shared coordinate grid is declared, hash-visible, and excluded from response fitting/basis/seed/cache lineage; the upstream strict any-artifact policy therefore remains terminal_deferred.",
+    "formal_minimum": {
+      "calibration_observations": 8,
+      "validation_observations": 1,
+      "held_out_observations": 4
+    },
+    "status": "response_lineage_disjoint_but_formal_split_insufficient"
+  },
+  "iter_design_separation": {
+    "reference_id": "iter_design_v1",
+    "evidence_class": "design_target",
+    "measurement_status": "typed_absent",
+    "included_in_mast_observations": false,
+    "rule": "ITER design fields cannot be interpreted as measured MAST observations or uncertainty."
+  },
+  "remaining_gaps": [
+    "Bound measurement uncertainty/covariance and calibration semantics for the selected observations",
+    "Provider-supported Thomson spatial and temporal response",
+    "Independent validation split and the frozen 8 calibration / 4 held-out minimum",
+    "Strict any-artifact split without the shared major-radius coordinate artifact, or a formally revised split policy",
+    "Formal UP4-03 G1/G2/G3 inversion, common forward, identifiability, held-out prediction, and independent replay"
+  ],
+  "claim_ceiling": "canonical_observation_adapter_only; formal likelihood, B03, B07B, R02, R06, physical validation, and parent UP4-03 remain not accepted"
+}

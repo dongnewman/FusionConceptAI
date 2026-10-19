@@ -1,0 +1,205 @@
+{
+  "requested_path": "ayc/aspectra",
+  "resolved_path": "ayc/aspectra",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      142,
+      131,
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131,
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Fitted spectra",
+    "mds_name": "\\TOP.ANALYSED.AYC:ASPECTRA",
+    "name": "ayc/aspectra",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      145,
+      130,
+      4
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_ASPECTRA",
+    "units": "V",
+    "uuid": "2cf4f793-9167-5ad9-97e9-3e48da8d049d",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131,
+    4
+  ],
+  "chunks": [
+    142,
+    131,
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index",
+    "spectral_index"
+  ],
+  "decoded_bytes": 595264,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    },
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/aspectra/0.0.0",
+      "requested_utc": "2026-09-22T08:10:05.837650+00:00",
+      "compressed_path": "fields/ayc__aspectra/chunks/0.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "128230",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"8e4bec1a232898368452d8cbd1379cf6\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 128230,
+      "compressed_sha256": "169a9e5f4a9b6a18424fde89994b2162b926eedf69dd2889c23a4a9dc8fa0c43",
+      "decoded_path": "fields/ayc__aspectra/chunks/0.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "7c313bf28833d69ab6bfbbc95b5618494f0c877eae50d7823e85bd2007508c0e",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:07.037706+00:00"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        142,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/aspectra/1.0.0",
+      "requested_utc": "2026-09-22T08:10:07.039552+00:00",
+      "compressed_path": "fields/ayc__aspectra/chunks/1.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "128223",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"4228741b8cceb2b4d98835a787cf2d57\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 128223,
+      "compressed_sha256": "add93e9a7402dc7a2f4b9900685864c50cc2e70671aabe02e9f4fe5e9cc14b58",
+      "decoded_path": "fields/ayc__aspectra/chunks/1.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "038aaee03994c8006dfde64ffb09649f3c95f20f48db04625bb42c8f4ec7e840",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:08.452861+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:05.837008+00:00",
+  "completed_utc": "2026-09-22T08:10:08.456188+00:00",
+  "assembled_path": "fields/ayc__aspectra/assembled.raw",
+  "assembled_bytes": 595264,
+  "assembled_sha256": "a585972c12c1b0dd65dc58c0d1dbe8217764342b18d9864b7fa31c248f1a758e",
+  "finite_count": 72500,
+  "total_count": 148816,
+  "minimum": -0.17048297822475433,
+  "maximum": 2.478696823120117
+}

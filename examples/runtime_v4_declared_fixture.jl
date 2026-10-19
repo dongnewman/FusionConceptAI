@@ -1,10 +1,10 @@
-"""Small declared three-Genome software fixture for the v4 CLI.
+#= Small declared three-Genome software fixture for the v4 CLI.
 
 This is a typed structural fixture only.  It carries no measured or
 high-fidelity evidence and is intentionally expected to stop at a capability
 gap unless a matching structural-screen provider is supplied by the caller.
 The file defines `candidate` and `registry` for scripts/run_v4_vertical_slice.jl.
-"""
+=#
 
 using FusionConceptAI
 

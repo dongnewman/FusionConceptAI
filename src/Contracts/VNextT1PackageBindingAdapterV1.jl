@@ -28,7 +28,10 @@ const _VNEXT_T1_PACKAGE_BINDING_ADAPTER_REASONS_V1 = (
         :package_acceptance_conflict, :package_claim_ceiling_conflict,
         :candidate_ref_conflict, :component_structure_conflict,
         :component_identity_mismatch, :semantic_identity_mismatch,
-        :package_hash_mismatch, :g3_absence_conflict),
+        :package_hash_mismatch, :zero_bytes_placeholder,
+        :zero_hash_placeholder, :wire_encoding_conflict,
+        :wire_hash_mismatch, :wire_zero_bytes_placeholder,
+        :wire_zero_hash_placeholder, :g3_absence_conflict),
 )
 
 """Closed adapter result; no result is accepted or physically authoritative."""
@@ -166,15 +169,123 @@ function _vnext_t1_package_binding_adapter_package_hash_v1(
         accepted=package.accepted, claim_ceiling=package.claim_ceiling))
 end
 
+"""Capture the exact adapter input identity before any validation branch."""
+function _vnext_t1_package_binding_adapter_input_hash_v1(
+        package::CandidateStatePackageV5Next,
+        wire::Union{Nothing,VNextT1CanonicalBytesV2})
+    canonical_hash((candidate_ref=package.candidate_ref,
+        candidate_digest=package.semantic_identity,
+        source_package_hash=package.package_hash,
+        wire_hash=wire === nothing ? nothing : wire.sha256))
+end
+
+function _vnext_t1_package_binding_adapter_digest_is_zero_v1(
+        digest::Digest256)
+    all(c -> c == '0', digest.value)
+end
+
+function _vnext_t1_package_binding_adapter_bytes_reason_v1(
+        bytes::VNextT1CanonicalBytesV1)
+    isempty(bytes.bytes) && return :zero_bytes_placeholder
+    _vnext_t1_package_binding_adapter_digest_is_zero_v1(bytes.sha256) &&
+        return :zero_hash_placeholder
+    nothing
+end
+
+function _vnext_t1_package_binding_adapter_wire_reason_v1(
+        wire::Union{Nothing,VNextT1CanonicalBytesV2})
+    wire === nothing && return nothing
+    wire.encoding === VNEXT_T1_CANONICAL_BYTES_V2_ENCODING ||
+        return :wire_encoding_conflict
+    isempty(copy_bytes(wire)) && return :wire_zero_bytes_placeholder
+    _vnext_t1_package_binding_adapter_digest_is_zero_v1(wire.sha256) &&
+        return :wire_zero_hash_placeholder
+    expected = VNextT1CanonicalBytesV2(copy_bytes(wire)).sha256
+    wire.sha256 == expected || return :wire_hash_mismatch
+    nothing
+end
+
+function _vnext_t1_package_binding_adapter_stage_v1(
+        reason::Union{Nothing,Symbol})
+    reason === nothing && return :package_closed
+    reason in (:package_status_conflict, :package_resolution_conflict,
+        :package_acceptance_conflict, :package_claim_ceiling_conflict) &&
+        return :package_state
+    reason === :candidate_ref_conflict && return :candidate_binding
+    reason in (:zero_bytes_placeholder, :zero_hash_placeholder,
+        :component_structure_conflict) && return :component_structure
+    reason === :component_identity_mismatch && return :component_identity
+    reason === :semantic_identity_mismatch && return :semantic_identity
+    reason === :package_hash_mismatch && return :package_hash
+    reason in (:wire_encoding_conflict, :wire_hash_mismatch,
+        :wire_zero_bytes_placeholder, :wire_zero_hash_placeholder) &&
+        return :wire
+    reason === :g3_typed_absent && return :g3_typed_absent
+    :adapter_check
+end
+
+function _vnext_t1_package_binding_adapter_diagnostic_v1(
+        package::CandidateStatePackageV5Next,
+        wire::Union{Nothing,VNextT1CanonicalBytesV2},
+        reason::Union{Nothing,Symbol},
+        stage::Symbol; exception=nothing, backtrace=nothing)
+    frames = backtrace === nothing ? () :
+        Tuple(string(frame) for frame in stacktrace(backtrace))
+    message = exception === nothing ? nothing : sprint(showerror, exception)
+    (reason=reason, stage=stage,
+        exception_type=exception === nothing ? nothing : nameof(typeof(exception)),
+        exception_message=message, backtrace=frames,
+        backtrace_hash=canonical_hash(frames),
+        exception_message_hash=message === nothing ? nothing : canonical_hash(message),
+        input_hash=_vnext_t1_package_binding_adapter_input_hash_v1(package, wire))
+end
+
+"""Return a diagnostic without hiding an exception or input identity."""
+function _vnext_t1_package_binding_adapter_diagnose_v1(
+        package::CandidateStatePackageV5Next;
+        wire::Union{Nothing,VNextT1CanonicalBytesV2}=nothing)
+    captured = Ref{Any}(nothing)
+    reason = _vnext_t1_package_binding_adapter_check_v1(package;
+        wire=wire, diagnostic=captured)
+    captured[] === nothing &&
+        return _vnext_t1_package_binding_adapter_diagnostic_v1(package, wire,
+            reason, _vnext_t1_package_binding_adapter_stage_v1(reason))
+    captured[]
+end
+
+"""Additive observation record; the historical result V1 remains unchanged."""
+struct VNextT1PackageBindingAdapterObservationV1
+    diagnostic::NamedTuple
+    result::VNextT1PackageBindingAdapterResultV1
+end
+
+"""Run the real adapter and retain the diagnostic beside its result."""
+function vnext_t1_package_binding_adapter_observe_v1(
+        package::CandidateStatePackageV5Next;
+        wire::Union{Nothing,VNextT1CanonicalBytesV2}=nothing)
+    diagnostic = _vnext_t1_package_binding_adapter_diagnose_v1(package;
+        wire=wire)
+    result = vnext_t1_package_binding_adapter_v1(package; wire=wire)
+    VNextT1PackageBindingAdapterObservationV1(diagnostic, result)
+end
+
 """Return the first closed conflict, or the typed G3 absence marker."""
 function _vnext_t1_package_binding_adapter_check_v1(
-        package::CandidateStatePackageV5Next)
+        package::CandidateStatePackageV5Next;
+        wire::Union{Nothing,VNextT1CanonicalBytesV2}=nothing,
+        diagnostic=nothing)
     package.status === :prepared_not_executed || return :package_status_conflict
     package.resolution === :terminal_deferred ||
         return :package_resolution_conflict
     package.accepted === false || return :package_acceptance_conflict
     package.claim_ceiling === :contract_only ||
         return :package_claim_ceiling_conflict
+    _vnext_t1_package_binding_adapter_digest_is_zero_v1(
+        package.semantic_identity) && return :zero_hash_placeholder
+    _vnext_t1_package_binding_adapter_digest_is_zero_v1(
+        package.package_hash) && return :zero_hash_placeholder
+    wire_reason = _vnext_t1_package_binding_adapter_wire_reason_v1(wire)
+    wire_reason === nothing || return wire_reason
     package.candidate_ref.version == "v5" || return :candidate_ref_conflict
     all(d -> d.candidate_ref == package.candidate_ref, package.declarations) ||
         return :candidate_ref_conflict
@@ -194,6 +305,13 @@ function _vnext_t1_package_binding_adapter_check_v1(
     package.t0_gate.output_identity.candidate_ref == package.candidate_ref ||
         return :candidate_ref_conflict
     for declaration in package.declarations
+        # The declaration payload is the adapter's required projection byte
+        # field.  Keep the zero-byte sentinel narrowly scoped here: source,
+        # semantic, and receipt envelopes retain the historical package
+        # semantics and may legitimately be empty for a typed local receipt.
+        byte_reason = _vnext_t1_package_binding_adapter_bytes_reason_v1(
+            declaration.declaration_bytes)
+        byte_reason === nothing || return byte_reason
         declaration.source_bytes.sha256 ==
             _vnext_t1_sha(declaration.source_bytes.bytes) ||
             return :component_structure_conflict
@@ -250,7 +368,11 @@ function _vnext_t1_package_binding_adapter_check_v1(
     try
         _vnext_t1_validate_no_legacy_receipt(package.no_legacy_receipt,
             package.candidate_ref)
-    catch
+    catch exception
+        diagnostic !== nothing && (diagnostic[] =
+            _vnext_t1_package_binding_adapter_diagnostic_v1(package, wire,
+                :component_structure_conflict, :no_legacy;
+                exception=exception, backtrace=catch_backtrace()))
         return :component_structure_conflict
     end
     package.axes == ntuple(i -> package.declarations[i].axes, 3) ||
@@ -334,7 +456,11 @@ function _vnext_t1_package_binding_adapter_check_v1(
             package.declarations, package.children, package.axes,
             package.feedback, package.source_hashes,
             package.declaration_hashes, package.component_count_receipt)
-    catch
+    catch exception
+        diagnostic !== nothing && (diagnostic[] =
+            _vnext_t1_package_binding_adapter_diagnostic_v1(package, wire,
+                :component_structure_conflict, :component_identity;
+                exception=exception, backtrace=catch_backtrace()))
         return :component_structure_conflict
     end
     package.component_identity == identity ||
@@ -355,7 +481,11 @@ function _vnext_t1_package_binding_adapter_check_v1(
             Tuple(d.layer for d in package.declarations),
             Tuple(c.kind for c in package.children),
             Tuple(f.target_id for f in package.feedback))
-    catch
+    catch exception
+        diagnostic !== nothing && (diagnostic[] =
+            _vnext_t1_package_binding_adapter_diagnostic_v1(package, wire,
+                :component_structure_conflict, :component_count;
+                exception=exception, backtrace=catch_backtrace()))
         return :component_structure_conflict
     end
     package.component_count_receipt == expected_count ||
@@ -364,7 +494,11 @@ function _vnext_t1_package_binding_adapter_check_v1(
         return :semantic_identity_mismatch
     expected_package_hash = try
         _vnext_t1_package_binding_adapter_package_hash_v1(package, identity)
-    catch
+    catch exception
+        diagnostic !== nothing && (diagnostic[] =
+            _vnext_t1_package_binding_adapter_diagnostic_v1(package, wire,
+                :component_structure_conflict, :package_hash;
+                exception=exception, backtrace=catch_backtrace()))
         return :component_structure_conflict
     end
     package.package_hash == expected_package_hash || return :package_hash_mismatch
@@ -379,11 +513,9 @@ end
 function vnext_t1_package_binding_adapter_v1(
         package::CandidateStatePackageV5Next;
         wire::Union{Nothing,VNextT1CanonicalBytesV2}=nothing)
-    reason = try
-        _vnext_t1_package_binding_adapter_check_v1(package)
-    catch
-        :component_structure_conflict
-    end
+    diagnostic = _vnext_t1_package_binding_adapter_diagnose_v1(package;
+        wire=wire)
+    reason = diagnostic.reason
     if reason === nothing
         input = VNextT1CandidateBindingInputV2(package.candidate_ref,
             package.semantic_identity, package.package_hash, wire)

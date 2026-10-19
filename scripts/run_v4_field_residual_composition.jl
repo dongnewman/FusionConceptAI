@@ -1,6 +1,5 @@
 # Run the D4.1 candidate-bound field residual composition fixture.
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_field_residual_composition_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_field_residual_composition_fixture.jl"))
 
 validate_manufactured_field_convergence_receipt(field_residual_convergence) ||
     error("D4.1 convergence receipt failed validation")

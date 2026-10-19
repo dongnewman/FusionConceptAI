@@ -1,0 +1,205 @@
+{
+  "requested_path": "ayc/plasmalight_error",
+  "resolved_path": "ayc/plasmalight_error",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      142,
+      131,
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131,
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Plasma light noise on sc",
+    "mds_name": "\\TOP.ANALYSED.AYC.PLASMALIGHT:ERROR",
+    "name": "ayc/plasmalight_error",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      145,
+      130,
+      4
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_PLASMALIGHT_ERROR",
+    "units": "V",
+    "uuid": "f60f7f8b-fe7f-51e4-a128-637acb8c8635",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131,
+    4
+  ],
+  "chunks": [
+    142,
+    131,
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index",
+    "spectral_index"
+  ],
+  "decoded_bytes": 595264,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    },
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/plasmalight_error/0.0.0",
+      "requested_utc": "2026-09-22T08:10:14.155360+00:00",
+      "compressed_path": "fields/ayc__plasmalight_error/chunks/0.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "124139",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"c80f188e1dd4c06cacb34e1c27565a51\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 124139,
+      "compressed_sha256": "0502cba7e675863ee121e6323554b47f3b87c18cf4c011641e1cc0b812383e09",
+      "decoded_path": "fields/ayc__plasmalight_error/chunks/0.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "2e2ce7ab6f3696f3f84cf6e252184bea62e527c3a6ac454804754ca9ad5b9e07",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:15.233699+00:00"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        142,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/plasmalight_error/1.0.0",
+      "requested_utc": "2026-09-22T08:10:15.234603+00:00",
+      "compressed_path": "fields/ayc__plasmalight_error/chunks/1.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "121200",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"8a5e2a817309ca73fba93e80253b5907\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 121200,
+      "compressed_sha256": "cd9ff554e76aec5b179af518ea1969a39b57e0c4798616176e3e0a7e9625aca7",
+      "decoded_path": "fields/ayc__plasmalight_error/chunks/1.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "5aec2956e5ae85991b63eb02cd393bbd908799dbaec42d0e6579767ad9a4a0d1",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:16.231956+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:14.154032+00:00",
+  "completed_utc": "2026-09-22T08:10:16.233572+00:00",
+  "assembled_path": "fields/ayc__plasmalight_error/assembled.raw",
+  "assembled_bytes": 595264,
+  "assembled_sha256": "223161f7afb2fce0916e6e26ed0de3700d1cf84b8a9d03b353bb5e88bd2d7662",
+  "finite_count": 72500,
+  "total_count": 148816,
+  "minimum": 0.002332001691684127,
+  "maximum": 22.954341888427734
+}

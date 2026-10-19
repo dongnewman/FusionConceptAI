@@ -332,3 +332,304 @@ end
         end
     end
 end
+
+
+@testset "UP6 candidate-bound station-cycle energy consumer" begin
+    candidate_identity = _fvlc_identity(_FVLC_HASH_A, "candidate.station.001")
+    station_boundary_ref = "station.boundary.v1"
+    cycle_id = "cycle.full.001"
+    times = (0.0, 5.0, 10.0)
+
+    function station_evidence(id, kind, term; identity=candidate_identity,
+            boundary=station_boundary_ref, cycle=cycle_id, measurement=id,
+            scopes=("scope.$id",), status=:pass, content_hash=_FVLC_HASH_A)
+        raw = FinalValidationLedgerEvidenceRefV1(id, kind;
+            content_hash=content_hash, candidate_ref=identity.candidate_ref,
+            scenario_ref=string(identity.scenario_manifest_hash),
+            physical_subject_hash=identity.physical_subject_hash,
+            solver_input_hash=identity.solver_input_hash,
+            independence_group="station-cycle-oracle", status=status)
+        StationCycleEvidenceV1(raw, boundary, cycle, term, measurement, scopes)
+    end
+    function station_trace(label, power, error_bound, scope, data_term, uncertainty_term;
+            meter="meter.$label", identity=candidate_identity, boundary=station_boundary_ref,
+            cycle=cycle_id, trace_times=times, uncertainty=true, data=true)
+        data = data ? station_evidence("$label.data", :net_output, data_term;
+            identity=identity, boundary=boundary, cycle=cycle, measurement=meter,
+            scopes=(scope,)) : nothing
+        uncertainty_evidence = uncertainty ? station_evidence(
+            "$label.uncertainty", :uncertainty, uncertainty_term;
+            identity=identity, boundary=boundary, cycle=cycle, measurement=meter,
+            scopes=(scope,)) : nothing
+        StationPowerTraceV1(trace_times, power, error_bound, meter, (scope,),
+            data, uncertainty_evidence)
+    end
+    function station_input(; identity=candidate_identity,
+            gross=station_trace("gross", (100.0, 100.0, 100.0), (1.0, 1.0, 1.0),
+                "gross_generation", :gross_generation, :gross_generation),
+            auxiliary=station_trace("aux", (20.0, 20.0, 20.0), (0.5, 0.5, 0.5),
+                "auxiliary_consumption", :auxiliary_consumption,
+                :auxiliary_consumption),
+            loss=station_trace("loss", (10.0, 10.0, 10.0), (0.2, 0.2, 0.2),
+                "conversion_loss", :loss, :loss),
+            storage_start=100.0, storage_end=150.0,
+            storage_start_error=2.0, storage_end_error=3.0,
+            storage_scope=("storage_battery",),
+            storage_start_measurement="meter.storage.start",
+            storage_end_measurement="meter.storage.end",
+            storage_start_evidence=station_evidence("storage.start.data",
+                :net_output, :storage_start; measurement=storage_start_measurement,
+                scopes=storage_scope),
+            storage_start_uncertainty=station_evidence("storage.start.uncertainty",
+                :uncertainty, :storage_start; measurement=storage_start_measurement,
+                scopes=storage_scope),
+            storage_end_evidence=station_evidence("storage.end.data",
+                :net_output, :storage_end; measurement=storage_end_measurement,
+                scopes=storage_scope),
+            storage_end_uncertainty=station_evidence("storage.end.uncertainty",
+                :uncertainty, :storage_end; measurement=storage_end_measurement,
+                scopes=storage_scope),
+            boundary=station_boundary_ref, cycle=cycle_id, cycle_end=10.0, maximum_gap=5.0)
+        StationCycleEnergyInputV1(identity; station_boundary_ref=boundary,
+            cycle_id=cycle, cycle_start_s=0.0, cycle_end_s=cycle_end,
+            maximum_gap_s=maximum_gap, gross=gross, auxiliary=auxiliary, loss=loss,
+            storage_start_j=storage_start, storage_end_j=storage_end,
+            storage_start_error_bound_j=storage_start_error,
+            storage_end_error_bound_j=storage_end_error,
+            storage_start_evidence=storage_start_evidence,
+            storage_start_uncertainty_evidence=storage_start_uncertainty,
+            storage_end_evidence=storage_end_evidence,
+            storage_end_uncertainty_evidence=storage_end_uncertainty)
+    end
+
+    positive = station_cycle_net_output_v1(station_input())
+    @test positive.status === :screen_only
+    @test positive.detail === :sampled_trapezoid_interval
+    @test positive.classification === :sampled_positive_lower_bound
+    # Trapezoidal integration gives 1000 - 200 - 100 - (150 - 100) = 650 J.
+    # Worst-case absolute bounds sum to 10 + 5 + 2 + 2 + 3 = 22 J.
+    @test positive.sampled_measurement_interval_j == (628.0, 672.0)
+    @test positive.propagated_sample_measurement_bound_j == 22.0
+    @test positive.limitations ==
+        (:between_sample_waveform_and_quadrature_error_unbounded,
+         :storage_endpoint_timestamps_unverified,
+         :component_scope_physical_provenance_unverified,
+         :statistical_coverage_and_distribution_model_missing)
+    @test positive.metrics isa FinalValidationLedgerMetricsV1
+    @test positive.metrics.net_output.units == (power=:W, time=:s, energy=:J)
+    @test positive.metrics.net_output.counted_terms ==
+        (:gross_generation, :auxiliary_consumption, :loss, :storage_delta)
+    @test positive.metrics.vvuq.status === :typed_absent
+    @test !positive.metrics.net_output.interval_crosses_zero
+    @test positive.metrics.net_output.integration_scope === :sampled_trapezoid_only
+    @test positive.metrics.net_output.sampled_measurement_interval_j ==
+        positive.sampled_measurement_interval_j
+    @test positive.metrics.net_output.limitations == positive.limitations
+    @test positive.metrics.vvuq.status === :typed_absent
+    @test positive.metrics.vvuq.reason == positive.limitations
+    @test station_cycle_net_output_v1(nothing).status === :typed_absent
+    discharged = station_cycle_net_output_v1(station_input(
+        storage_start=150.0, storage_end=100.0))
+    @test discharged.sampled_net_energy_estimate_j == 750.0
+    @test discharged.classification === :sampled_positive_lower_bound
+
+    crossing = station_cycle_net_output_v1(station_input(
+        gross=station_trace("cross.gross", (20.0, 20.0, 20.0), (2.0, 2.0, 2.0),
+            "gross_generation", :gross_generation, :gross_generation),
+        auxiliary=station_trace("cross.aux", (20.0, 20.0, 20.0), (1.0, 1.0, 1.0),
+            "auxiliary_consumption", :auxiliary_consumption,
+            :auxiliary_consumption),
+        loss=station_trace("cross.loss", (0.0, 0.0, 0.0), (0.0, 0.0, 0.0),
+            "conversion_loss", :loss, :loss),
+        storage_start=100.0, storage_end=100.0,
+        storage_start_error=0.0, storage_end_error=0.0))
+    @test crossing.status === :screen_only
+    @test crossing.classification === :sampled_interval_crosses_zero
+    @test crossing.sampled_measurement_interval_j[1] < 0 <
+        crossing.sampled_measurement_interval_j[2]
+    @test crossing.metrics.net_output.interval_crosses_zero
+    net_rows = _fvlc_rows(candidate_identity)
+    net_index = only(findall(row -> row.obligation_id == "ENG-NET-LEDGER", net_rows))
+    net_base = net_rows[net_index]
+    net_obligation = FinalValidationLedgerObligationV1(net_base.obligation_id,
+        net_base.family, net_base.requirement; required=net_base.required,
+        ledger_status=net_base.ledger_status, applicability=net_base.applicability,
+        provider_match=net_base.provider_match, resolution=net_base.resolution,
+        execution_classification=net_base.execution_classification,
+        numerical_status=net_base.numerical_status,
+        physical_status=net_base.physical_status, lifecycle=net_base.lifecycle,
+        identity=net_base.identity, evidence_refs=net_base.evidence_refs,
+        metrics=crossing.metrics, remaining_gaps=net_base.remaining_gaps)
+    crossing_rows = Tuple(i == net_index ? net_obligation : net_rows[i]
+        for i in eachindex(net_rows))
+    crossing_decision = validate_final_validation_ledger(_fvlc_ledger(
+        candidate_identity, crossing_rows))
+    @test crossing_decision.status === :unknown
+    @test any(occursin(":net_output_interval_crosses_zero", reason)
+        for reason in crossing_decision.reasons)
+
+    duplicate_meter = station_input(auxiliary=station_trace("duplicate", (20.0, 20.0, 20.0),
+        (0.5, 0.5, 0.5), "auxiliary_consumption", :auxiliary_consumption,
+        :auxiliary_consumption; meter="meter.gross"))
+    duplicate_meter_result = station_cycle_net_output_v1(duplicate_meter)
+    @test duplicate_meter_result.status === :fail_closed
+    @test duplicate_meter_result.detail === :duplicate_meter_ref
+
+    duplicate_scope = station_input(auxiliary=station_trace("overlap", (20.0, 20.0, 20.0),
+        (0.5, 0.5, 0.5), "gross_generation", :auxiliary_consumption,
+        :auxiliary_consumption))
+    duplicate_scope_result = station_cycle_net_output_v1(duplicate_scope)
+    @test duplicate_scope_result.status === :fail_closed
+    @test duplicate_scope_result.detail === :double_counted_component_scope
+
+    storage_scope_overlap = station_input(
+        storage_start_evidence=station_evidence("storage.overlap.start.data",
+            :net_output, :storage_start; measurement="meter.storage.start",
+            scopes=("gross_generation",)),
+        storage_start_uncertainty=station_evidence("storage.overlap.start.uq",
+            :uncertainty, :storage_start; measurement="meter.storage.start",
+            scopes=("gross_generation",)),
+        storage_end_evidence=station_evidence("storage.overlap.end.data",
+            :net_output, :storage_end; measurement="meter.storage.end",
+            scopes=("gross_generation",)),
+        storage_end_uncertainty=station_evidence("storage.overlap.end.uq",
+            :uncertainty, :storage_end; measurement="meter.storage.end",
+            scopes=("gross_generation",)))
+    storage_scope_overlap_result = station_cycle_net_output_v1(storage_scope_overlap)
+    @test storage_scope_overlap_result.status === :fail_closed
+    @test storage_scope_overlap_result.detail === :double_counted_component_scope
+
+    storage_scope_mismatch = station_input(
+        storage_end_evidence=station_evidence("storage.other.end.data",
+            :net_output, :storage_end; measurement="meter.storage.end",
+            scopes=("storage_other",)),
+        storage_end_uncertainty=station_evidence("storage.other.end.uq",
+            :uncertainty, :storage_end; measurement="meter.storage.end",
+            scopes=("storage_other",)))
+    storage_scope_mismatch_result = station_cycle_net_output_v1(storage_scope_mismatch)
+    @test storage_scope_mismatch_result.status === :fail_closed
+    @test storage_scope_mismatch_result.detail === :storage_scope_mismatch
+
+    storage_meter_overlap = station_input(
+        storage_start_evidence=station_evidence("storage.shared.start.data",
+            :net_output, :storage_start; measurement="meter.gross",
+            scopes=("storage_battery",)),
+        storage_start_uncertainty=station_evidence("storage.shared.start.uq",
+            :uncertainty, :storage_start; measurement="meter.gross",
+            scopes=("storage_battery",)))
+    storage_meter_overlap_result = station_cycle_net_output_v1(storage_meter_overlap)
+    @test storage_meter_overlap_result.status === :fail_closed
+    @test storage_meter_overlap_result.detail === :duplicate_meter_ref
+
+    mismatched_boundary_trace = station_trace("boundary", (100.0, 100.0, 100.0),
+        (1.0, 1.0, 1.0), "gross_generation", :gross_generation,
+        :gross_generation; boundary="station.boundary.foreign")
+    mismatched_boundary = station_cycle_net_output_v1(
+        station_input(gross=mismatched_boundary_trace))
+    @test mismatched_boundary.status === :fail_closed
+    @test mismatched_boundary.detail === :evidence_binding_mismatch
+    function replace_gross_data_evidence(trace, evidence)
+        StationPowerTraceV1(trace.time_s, trace.power_w,
+            trace.absolute_error_bound_w, trace.meter_ref,
+            trace.component_scope_refs, evidence, trace.uncertainty_evidence)
+    end
+    baseline_gross = station_trace("evidence-join", (100.0, 100.0, 100.0),
+        (1.0, 1.0, 1.0), "gross_generation", :gross_generation, :gross_generation)
+    wrong_term = replace_gross_data_evidence(baseline_gross,
+        StationCycleEvidenceV1(baseline_gross.data_evidence.evidence,
+            station_boundary_ref, cycle_id, :loss, baseline_gross.meter_ref,
+            baseline_gross.component_scope_refs))
+    wrong_term_result = station_cycle_net_output_v1(station_input(gross=wrong_term))
+    @test wrong_term_result.status === :fail_closed
+    @test wrong_term_result.detail === :evidence_binding_mismatch
+    wrong_measurement = replace_gross_data_evidence(baseline_gross,
+        station_evidence("wrong-meter.data", :net_output, :gross_generation;
+            measurement="meter.foreign", scopes=baseline_gross.component_scope_refs))
+    wrong_measurement_result = station_cycle_net_output_v1(
+        station_input(gross=wrong_measurement))
+    @test wrong_measurement_result.status === :fail_closed
+    @test wrong_measurement_result.detail === :evidence_binding_mismatch
+    wrong_scope = replace_gross_data_evidence(baseline_gross,
+        station_evidence("wrong-scope.data", :net_output, :gross_generation;
+            measurement=baseline_gross.meter_ref, scopes=("other_scope",)))
+    wrong_scope_result = station_cycle_net_output_v1(station_input(gross=wrong_scope))
+    @test wrong_scope_result.status === :fail_closed
+    @test wrong_scope_result.detail === :evidence_binding_mismatch
+    missing_hash = replace_gross_data_evidence(baseline_gross,
+        station_evidence("missing-hash.data", :net_output, :gross_generation;
+            content_hash=nothing, measurement=baseline_gross.meter_ref,
+            scopes=baseline_gross.component_scope_refs))
+    missing_hash_result = station_cycle_net_output_v1(station_input(gross=missing_hash))
+    @test missing_hash_result.status === :fail_closed
+    @test missing_hash_result.detail === :evidence_binding_mismatch
+    wrong_cycle = station_trace("wrong-cycle", (100.0, 100.0, 100.0),
+        (1.0, 1.0, 1.0), "gross_generation", :gross_generation, :gross_generation;
+        cycle="cycle.foreign")
+    wrong_cycle_result = station_cycle_net_output_v1(station_input(gross=wrong_cycle))
+    @test wrong_cycle_result.status === :fail_closed
+    @test wrong_cycle_result.detail === :evidence_binding_mismatch
+
+    incomplete_cycle = station_cycle_net_output_v1(station_input(
+        gross=station_trace("partial", (100.0, 100.0, 100.0), (1.0, 1.0, 1.0),
+            "gross_generation", :gross_generation, :gross_generation;
+            trace_times=(1.0, 5.0, 10.0)),
+        auxiliary=station_trace("partial.aux", (20.0, 20.0, 20.0),
+            (0.5, 0.5, 0.5), "auxiliary_consumption", :auxiliary_consumption,
+            :auxiliary_consumption; trace_times=(1.0, 5.0, 10.0)),
+        loss=station_trace("partial.loss", (10.0, 10.0, 10.0),
+            (0.2, 0.2, 0.2), "conversion_loss", :loss, :loss;
+            trace_times=(1.0, 5.0, 10.0))))
+    @test incomplete_cycle.status === :typed_absent
+    @test incomplete_cycle.detail === :cycle_boundary_not_fully_sampled
+    excessive_gap = station_cycle_net_output_v1(station_input(maximum_gap=4.0))
+    @test excessive_gap.status === :typed_absent
+    @test excessive_gap.detail === :cycle_gap_exceeds_declared_maximum
+
+    mismatched_grid = station_input(auxiliary=station_trace("grid", (20.0, 20.0, 20.0),
+        (0.5, 0.5, 0.5), "auxiliary_consumption", :auxiliary_consumption,
+        :auxiliary_consumption; trace_times=(0.0, 4.0, 10.0)))
+    @test station_cycle_net_output_v1(mismatched_grid).detail === :time_grid_mismatch
+
+    foreign_trace = station_trace("foreign", (100.0, 100.0, 100.0),
+        (1.0, 1.0, 1.0), "gross_generation", :gross_generation,
+        :gross_generation;
+        identity=_fvlc_identity(_FVLC_HASH_B, "candidate.foreign"))
+    foreign_result = station_cycle_net_output_v1(station_input(gross=foreign_trace))
+    @test foreign_result.status === :fail_closed
+    @test foreign_result.detail === :evidence_binding_mismatch
+
+    missing_uncertainty = station_input(auxiliary=station_trace("no-uq",
+        (20.0, 20.0, 20.0), (0.5, 0.5, 0.5), "auxiliary_consumption",
+        :auxiliary_consumption, :auxiliary_consumption;
+        uncertainty=false))
+    @test station_cycle_net_output_v1(missing_uncertainty).status === :typed_absent
+    missing_data = station_cycle_net_output_v1(station_input(gross=station_trace(
+        "no-data", (100.0, 100.0, 100.0), (1.0, 1.0, 1.0),
+        "gross_generation", :gross_generation, :gross_generation; data=false)))
+    @test missing_data.status === :typed_absent
+    # Evidence status and content hash are checked at the consumer boundary.
+    pending_data = station_trace("pending", (100.0, 100.0, 100.0),
+        (1.0, 1.0, 1.0), "gross_generation", :gross_generation, :gross_generation;
+        data=true)
+    pending_data = StationPowerTraceV1(pending_data.time_s, pending_data.power_w,
+        pending_data.absolute_error_bound_w, pending_data.meter_ref,
+        pending_data.component_scope_refs,
+        station_evidence("pending.data", :net_output, :gross_generation;
+            status=:pending, measurement=pending_data.meter_ref,
+            scopes=pending_data.component_scope_refs),
+        pending_data.uncertainty_evidence)
+    bad_evidence_status = station_cycle_net_output_v1(station_input(gross=pending_data))
+    @test bad_evidence_status.status === :fail_closed
+    @test bad_evidence_status.detail === :evidence_binding_mismatch
+    incomplete_identity = _fvlc_identity(_FVLC_HASH_A, "candidate.station.001";
+        missing=(:scenario_manifest_hash,))
+    @test station_cycle_net_output_v1(station_input(identity=incomplete_identity)).status === :typed_absent
+    println("UP6_STATION_SAMPLED_SUMMARY=" * JSON3.write((
+        evidence_scope="synthetic_fixture", authority="screen_only",
+        status=String(positive.status), detail=String(positive.detail),
+        sampled_energy_j=positive.sampled_net_energy_estimate_j,
+        sampled_measurement_interval_j=positive.sampled_measurement_interval_j,
+        measurement_bound_j=positive.propagated_sample_measurement_bound_j,
+        limitations=Tuple(String(x) for x in positive.limitations),
+        vvuq_typed_absent=positive.metrics.vvuq.status === :typed_absent)))
+end

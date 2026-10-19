@@ -1,0 +1,205 @@
+{
+  "requested_path": "ayc/spectra",
+  "resolved_path": "ayc/spectra",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      142,
+      131,
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131,
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Raw spectra",
+    "mds_name": "\\TOP.ANALYSED.AYC:SPECTRA",
+    "name": "ayc/spectra",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      145,
+      130,
+      4
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_SPECTRA",
+    "units": "V",
+    "uuid": "6b03323f-2ead-5e6a-90cc-7ccc1e75d3c9",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131,
+    4
+  ],
+  "chunks": [
+    142,
+    131,
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index",
+    "spectral_index"
+  ],
+  "decoded_bytes": 595264,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    },
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra/0.0.0",
+      "requested_utc": "2026-09-22T08:10:03.081144+00:00",
+      "compressed_path": "fields/ayc__spectra/chunks/0.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "120907",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"6499f6efac03afc998db86a2d64443af\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 120907,
+      "compressed_sha256": "d5f4699993fd73a4dcfc6b15c5d8372046334e77c303ecdb92772416cdff8cac",
+      "decoded_path": "fields/ayc__spectra/chunks/0.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "1b449d33f1a871b4128984543742bafc4968d6a8c7a7bbd10e1639f7bfb96fcc",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:04.596341+00:00"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        142,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra/1.0.0",
+      "requested_utc": "2026-09-22T08:10:04.596950+00:00",
+      "compressed_path": "fields/ayc__spectra/chunks/1.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "123900",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"d8e0fc6bb2592d5fbb98acc901a1f55a\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 123900,
+      "compressed_sha256": "f5966cc287fca2d7fa7941802db7e009f8c7cb5b37934de58c0f0799676f7bf4",
+      "decoded_path": "fields/ayc__spectra/chunks/1.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "0876d17ddfea6988f28268b37cd44e7eee319a6559708dc5aec5ab55d27cd736",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:05.833422+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:03.079123+00:00",
+  "completed_utc": "2026-09-22T08:10:05.835117+00:00",
+  "assembled_path": "fields/ayc__spectra/assembled.raw",
+  "assembled_bytes": 595264,
+  "assembled_sha256": "9256620c75de3492bdc585ccf5d837a4b1cea525812c4d0f3c848212a52fd2a5",
+  "finite_count": 72500,
+  "total_count": 148816,
+  "minimum": -0.17132353782653809,
+  "maximum": 13.534111976623535
+}

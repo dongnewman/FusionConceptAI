@@ -1,0 +1,120 @@
+{
+  "requested_path": "ayc/interferometer_corr",
+  "resolved_path": "ayc/interferometer_corr",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      284
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Interferometer Correctio",
+    "mds_name": "\\TOP.ANALYSED.AYC.TERFEROMETER:CORR",
+    "name": "ayc/interferometer_corr",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      145
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_INTERFEROMETER_CORR",
+    "units": " - ",
+    "uuid": "052b0c31-7d23-57d6-b07a-86359e76a6a3",
+    "version": 0
+  },
+  "shape": [
+    284
+  ],
+  "chunks": [
+    284
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 1136,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        284
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/interferometer_corr/0",
+      "requested_utc": "2026-09-22T08:10:21.914102+00:00",
+      "compressed_path": "fields/ayc__interferometer_corr/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "963",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"ca405b0b0de372078563c3df7904a809\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 963,
+      "compressed_sha256": "25e1fb39819265daa87ef1d6bcc89e5c48319dccce16a797bbd2822578eafc51",
+      "decoded_path": "fields/ayc__interferometer_corr/chunks/0.raw",
+      "decoded_bytes": 1136,
+      "decoded_sha256": "c5239759435d20a4b72f8d190a51e46a242f3560815d59b5f6116d662832374b",
+      "decoded_shape": [
+        284
+      ],
+      "full_bytes": 1136,
+      "edge_bytes": 1136,
+      "completed_utc": "2026-09-22T08:10:22.458083+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:21.913207+00:00",
+  "completed_utc": "2026-09-22T08:10:22.459407+00:00",
+  "assembled_path": "fields/ayc__interferometer_corr/assembled.raw",
+  "assembled_bytes": 1136,
+  "assembled_sha256": "c5239759435d20a4b72f8d190a51e46a242f3560815d59b5f6116d662832374b",
+  "finite_count": 145,
+  "total_count": 284,
+  "minimum": 0.693998396396637,
+  "maximum": 1.2075283527374268
+}

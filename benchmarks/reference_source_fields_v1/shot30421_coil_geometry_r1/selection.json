@@ -1,0 +1,1021 @@
+{
+  "schema": "mast-source-fields-selection-v1",
+  "shot": 30421,
+  "field_set": "coil_geometry13",
+  "metadata_path": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "selection_rule": "fixed requested paths from ownership_delta05; solenoid alias only when exact requested path is absent",
+  "requested_fields": [
+    {
+      "requested_path": "efm/fcoil_r",
+      "resolved_path": "efm/fcoil_r",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "R centroid of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Location Radius",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_R",
+        "name": "efm/fcoil_r",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_R",
+        "units": "m",
+        "uuid": "ab240bd7-52a1-5a7b-a409-a3cc311fc1ca",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_z",
+      "resolved_path": "efm/fcoil_z",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Z centroid of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Location Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_Z",
+        "name": "efm/fcoil_z",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_Z",
+        "units": "m",
+        "uuid": "6bdba7ed-4885-53b4-a447-287df37a06d7",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_width",
+      "resolved_path": "efm/fcoil_width",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "R extent of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Width",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_WIDTH",
+        "name": "efm/fcoil_width",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_WIDTH",
+        "units": "m",
+        "uuid": "747e7562-effd-573c-af60-b8c1e1106fbe",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_height",
+      "resolved_path": "efm/fcoil_height",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Z extent of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_HEIGHT",
+        "name": "efm/fcoil_height",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_HEIGHT",
+        "units": "m",
+        "uuid": "9c25db48-09f1-52c4-b17c-5c34187569d7",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_ang1",
+      "resolved_path": "efm/fcoil_ang1",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Defining angular skew of first type for each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Angle 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_ANG1",
+        "name": "efm/fcoil_ang1",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_ANG1",
+        "units": "deg",
+        "uuid": "b5e0e457-51a5-5aa5-938a-c75849f580d1",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_ang2",
+      "resolved_path": "efm/fcoil_ang2",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Defining angular skew of second type for each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil Angle 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_ANG2",
+        "name": "efm/fcoil_ang2",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_ANG2",
+        "units": "deg",
+        "uuid": "6f6fc0aa-e08d-5f7a-a87a-cb6662207598",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_circ",
+      "resolved_path": "efm/fcoil_circ",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f8",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Circuit number of each f-coil element; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil circuit",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_CIRC",
+        "name": "efm/fcoil_circ",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_CIRC",
+        "units": "",
+        "uuid": "496920c1-decf-5576-b4c7-83769ad4b9c4",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f8",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 7504,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_turns",
+      "resolved_path": "efm/fcoil_turns",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Number of turns represented by each f-coil elements; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil turns",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_TURNS",
+        "name": "efm/fcoil_turns",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_TURNS",
+        "units": "deg",
+        "uuid": "795d5485-9fb7-5f0b-9c08-63f1e72b12a4",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_xmult",
+      "resolved_path": "efm/fcoil_xmult",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          938
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          938
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "fcoil_seg_n"
+        ],
+        "description": "Multiplier for each f-coil element to weight current within coil, e.g. by area; f(fcoil_segs_n)",
+        "dims": [
+          "fcoil_seg_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "f-Coil turns multiplier",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_XMULT",
+        "name": "efm/fcoil_xmult",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          938
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_XMULT",
+        "units": "deg",
+        "uuid": "bf17f6d0-ebb3-54c2-8165-81263ce29712",
+        "version": 0
+      },
+      "shape": [
+        938
+      ],
+      "chunks": [
+        938
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "fcoil_seg_n"
+      ],
+      "decoded_bytes": 3752,
+      "coordinate_paths": [
+        {
+          "dimension": "fcoil_seg_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/fcoil_c",
+      "resolved_path": "efm/fcoil_c",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          101
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          101
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "fcoil_n"
+        ],
+        "description": "Output (computed) fitted toroidal currents; f(nfcoil, A)",
+        "dims": [
+          "time",
+          "fcoil_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Computed f-coil current",
+        "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_C",
+        "name": "efm/fcoil_c",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          120,
+          101
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_FCOIL_(C)",
+        "units": "A",
+        "uuid": "b11b7647-f109-554a-9117-be367fdeedf9",
+        "version": 0
+      },
+      "shape": [
+        120,
+        101
+      ],
+      "chunks": [
+        120,
+        101
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "fcoil_n"
+      ],
+      "decoded_bytes": 48480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "fcoil_n",
+          "path": "efm/fcoil_n",
+          "available": true,
+          "shape": [
+            101
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/limiterr",
+      "resolved_path": "efm/limiterr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          37
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          37
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "limiter_n"
+        ],
+        "description": "R co-ordinates of limiter; f(nlimiter)",
+        "dims": [
+          "limiter_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Limiter Radius",
+        "mds_name": "\\TOP.ANALYSED.EFM:LIMITER_R",
+        "name": "efm/limiterr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          37
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_LIMITER(R)",
+        "units": "m",
+        "uuid": "af7941be-e414-50ff-b798-ed5a8288b508",
+        "version": 0
+      },
+      "shape": [
+        37
+      ],
+      "chunks": [
+        37
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "limiter_n"
+      ],
+      "decoded_bytes": 148,
+      "coordinate_paths": [
+        {
+          "dimension": "limiter_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/limiterz",
+      "resolved_path": "efm/limiterz",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          37
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          37
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "limiter_n"
+        ],
+        "description": "Z co-ordinates of limiter; f(nlimiter)",
+        "dims": [
+          "limiter_n"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Limiter Height",
+        "mds_name": "\\TOP.ANALYSED.EFM:LIMITER_Z",
+        "name": "efm/limiterz",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          37
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_LIMITER(Z)",
+        "units": "m",
+        "uuid": "b9df63e9-af6d-58df-ad74-7abe9f6d4743",
+        "version": 0
+      },
+      "shape": [
+        37
+      ],
+      "chunks": [
+        37
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "limiter_n"
+      ],
+      "decoded_bytes": 148,
+      "coordinate_paths": [
+        {
+          "dimension": "limiter_n",
+          "path": null,
+          "available": false,
+          "shape": null,
+          "dtype": null,
+          "units": null
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/qpsi_c",
+      "resolved_path": "efm/qpsi_c",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "psi_norm"
+        ],
+        "description": "Safety factor as a function of magnetic flux; f(npsi, B)",
+        "dims": [
+          "time",
+          "psi_norm"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "q-profile (centre to edg",
+        "mds_name": "\\TOP.ANALYSED.EFM:Q_PSI_C",
+        "name": "efm/qpsi_c",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          108,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_Q(PSI)_(C)",
+        "units": "",
+        "uuid": "028f3486-3e95-542e-97cb-0f276766d7f4",
+        "version": 0
+      },
+      "shape": [
+        120,
+        65
+      ],
+      "chunks": [
+        120,
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "psi_norm"
+      ],
+      "decoded_bytes": 31200,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "psi_norm",
+          "path": "efm/psi_norm",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    }
+  ],
+  "total_decoded_bytes": 117496,
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "network_timeout_seconds": 30
+  },
+  "raw_values_only": true,
+  "uncertainty_interpretation": "not_performed",
+  "scientific_acceptance": false,
+  "frozen_utc": "2026-09-22T02:31:34.164014Z"
+}

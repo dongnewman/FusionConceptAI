@@ -1,5 +1,264 @@
 using Test
 using SHA
+
+const _CCBW_PREP_ROOT = normpath(joinpath(@__DIR__, ".."))
+const _CCBW_PREP_PHYSICAL_TYPES = joinpath(_CCBW_PREP_ROOT, "src", "IR", "PhysicalTypes.jl")
+const _CCBW_PREP_RUNS = joinpath(_CCBW_PREP_ROOT, "runs", "goal_execution_20260926", "canonical_hash_raw_foreigncall_r1")
+const _CCBW_PREP_BEFORE = joinpath(_CCBW_PREP_ROOT, "runs", "goal_execution_20260926", "canonical_hash_native_copy_r1", "ClosedCanonicalByteWriter.before.jl")
+const _CCBW_PREP_AFTER = joinpath(_CCBW_PREP_RUNS, "ClosedCanonicalByteWriter.after.jl")
+const _CCBW_PREP_PHYSICAL_SHA = "dc51af9c34fe95dc74b579f6901bef56eb6d4da81b89281ae2734c3c3ad3a8d4"
+const _CCBW_PREP_BEFORE_SHA = "5e7937855842f918b391bffb76f800648f382f38310751b8e0b7b6da8074269b"
+const _CCBW_PREP_AFTER_SHA = "927aab5b815fcb81b031a7525beb5cce8d260ab7e1d88b152b4656803e4b3f74"
+const _CCBW_PREP_TARGET_SOURCE = Ref{Ptr{UInt8}}(Ptr{UInt8}(0))
+const _CCBW_PREP_TARGET_COUNT = Ref{Int}(0)
+const _CCBW_PREP_TARGET_POINTER_CONVERTED = Ref(false)
+const _CCBW_PREP_POISON_HITS = Ref{UInt8}(0)
+
+function _ccbw_prep_pin(path::String, expected::String)
+    isfile(path) || error("closed hash prep input missing: $path")
+    observed = bytes2hex(SHA.sha256(read(path)))
+    observed == expected || error("closed hash prep input pin mismatch: $path ($observed)")
+    observed
+end
+
+function _ccbw_prep_writer_module(name::String, writer_path::String, writer_sha::String)
+    _ccbw_prep_pin(_CCBW_PREP_PHYSICAL_TYPES, _CCBW_PREP_PHYSICAL_SHA)
+    _ccbw_prep_pin(writer_path, writer_sha)
+    mod = Module(gensym(Symbol(name)))
+    Core.eval(mod, :(using SHA))
+    Base.include(mod, _CCBW_PREP_PHYSICAL_TYPES)
+    Base.include(mod, writer_path)
+    mod
+end
+
+function _ccbw_prep_pattern(count::Int)
+    bytes = Vector{UInt8}(undef, count)
+    for i in eachindex(bytes)
+        bytes[i] = UInt8(mod((i - 1) * 131 + 17, 256))
+    end
+    String(bytes)
+end
+
+function _ccbw_prep_python_cases()
+    cases = Tuple{String,String,String}[
+        ("empty", String(UInt8[]), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
+        ("nul", String(UInt8[0x00]), "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"),
+        ("embedded_nul", String(UInt8[0x6c, 0x65, 0x66, 0x74, 0x00, 0x72, 0x69, 0x67, 0x68, 0x74]), "a8bf3285e2c06883247ccc859fa41ad965f343ae6579b6b6b127c5d8280c9701"),
+        ("unicode_nul", "状态\0🚀", "feb66d773965ab8e2224e87ebb7d9bdb46919649703e9c9387e1191dd6c09bca"),
+        ("unicode_nfc", "é", "4a99557e4033c3539de2eb65472017cad5f9557f7a0625a09f1c3f6e2ba69c4c"),
+        ("unicode_nfd", "e\u0301", "bf12767b0f2a56b2190075bae8169f656e3ce8d6357d4aff184bc6c7ea48f9f6"),
+        ("all_256", String(collect(UInt8(0):UInt8(255))), "40aff2e9d2d8922e47afd4648e6967497158785fbd1da870e7110266bf944880"),
+    ]
+    for (count, digest) in (
+        (1, "4a64a107f0cb32536e5bce6c98c393db21cca7f4ea187ba8c4dca8b51d4ea80a"),
+        (63, "b8e655e9e7ad413b96f0a371eb1d6db71dcca27f4eee35892517cbe4bfaa6f9a"),
+        (64, "e5146be62accc56709594cb45c651b361df94f622cbb09b91ea3ca7a2060bd53"),
+        (65, "4b6c6774f0cbcd776a90e187b9494e04ca880c0afe3ea1c5cad51c8bbcb41f74"),
+        (4095, "d8d5daa4611f92aff29d032c9876a120ce7a4a7d19e2c4986b8c3c1af6e85c1a"),
+        (4096, "c741eee93580a334bae702208e5c0595d8e32eb07d562c52d56ca5f86e78f8a8"),
+        (4097, "6b828a41dabc57049f86a8a1b0ceac3e4112258b236a527395c8116c99424ffd"),
+        (65535, "c6a1a875a56160beba80d5233caaf8cc4532780b37715889df1add7fc47c8282"),
+        (65536, "d8f32a3b4c195f65444e342b0c61bdaf114802e84ab7821a1f88e3f66ea15100"),
+        (65537, "65d80b2b0f0120bda1628b3749982090e058d2d9f4a5fad1bc70250b49bc4e96"),
+        (1048576, "ea53eb498f9b7dc054aae73924bf25c569604d2c20aa9016f0b8714a1c180c7b"),
+    )
+        push!(cases, ("pattern_$count", _ccbw_prep_pattern(count), digest))
+    end
+    cases
+end
+
+function _ccbw_prep_source_pointer(value::String)
+    GC.@preserve value ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), value)
+end
+
+function _ccbw_prep_set_target!(value::String)
+    _CCBW_PREP_TARGET_SOURCE[] = _ccbw_prep_source_pointer(value)
+    _CCBW_PREP_TARGET_COUNT[] = Core.sizeof(value)
+    _CCBW_PREP_TARGET_POINTER_CONVERTED[] = false
+    nothing
+end
+
+function _ccbw_prep_run_copy_only()
+    old_writer = _ccbw_prep_writer_module("ClosedWriterBefore", _CCBW_PREP_BEFORE, _CCBW_PREP_BEFORE_SHA)
+    new_writer = _ccbw_prep_writer_module("ClosedWriterAfter", _CCBW_PREP_AFTER, _CCBW_PREP_AFTER_SHA)
+    cases = _ccbw_prep_python_cases()
+    old_hash = getfield(old_writer, :_ccbw_hash_bytes)
+    new_hash = getfield(new_writer, :_ccbw_hash_bytes)
+    @testset "closed byte hash old/new/Python SHA equivalence" begin
+        for (label, value, python_sha) in cases
+            @testset "$label" begin
+                expected = python_sha # Frozen independently from Python hashlib.sha256(raw_bytes).
+                old_digest = Base.invokelatest(old_hash, value).value
+                new_digest = Base.invokelatest(new_hash, value).value
+                @test old_digest == expected
+                @test new_digest == expected
+                @test old_digest == new_digest
+            end
+        end
+    end
+    by_name = Dict(label => (value, digest) for (label, value, digest) in cases)
+    @testset "GC-preserved source and destination under forced collections" begin
+        for pass in 1:3
+            churn = [Vector{UInt8}(undef, 8192) for _ in 1:8]
+            for label in ("empty", "pattern_1", "pattern_65", "pattern_4097", "pattern_65537")
+                value, expected = by_name[label]
+                GC.gc(true)
+                local_old = ""
+                local_new = ""
+                GC.@preserve value begin
+                    local_old = Base.invokelatest(old_hash, value).value
+                    GC.gc(true)
+                    local_new = Base.invokelatest(new_hash, value).value
+                    GC.gc(true)
+                end
+                @test local_old == expected
+                @test local_new == expected
+                @test local_old == local_new
+            end
+            @test sum(length, churn) == 65536
+        end
+    end
+    println("CLOSED_HASH_COPY_ONLY=PASS")
+end
+
+function _ccbw_prep_run_copy_poison(mode::String)
+    new_writer = _ccbw_prep_writer_module("ClosedWriterAfterCopyPoison", _CCBW_PREP_AFTER, _CCBW_PREP_AFTER_SHA)
+    hash_bytes = getfield(new_writer, :_ccbw_hash_bytes)
+    value = _ccbw_prep_pattern(65537)
+    expected = "65d80b2b0f0120bda1628b3749982090e058d2d9f4a5fad1bc70250b49bc4e96"
+    @testset "fresh-process copy and foreigncall pollution sentinels" begin
+        @test Base.invokelatest(hash_bytes, value).value == expected
+        if mode == "copy"
+            @eval Base begin
+                function memmove(destination::Ptr{UInt8}, source::Ptr{UInt8}, count::Integer)
+                    if source == Main._CCBW_PREP_TARGET_SOURCE[] && count == Main._CCBW_PREP_TARGET_COUNT[]
+                        Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x01)
+                        return destination
+                    end
+                    ccall(:memmove, Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), destination, source, count)
+                    destination
+                end
+                function unsafe_copyto!(destination::Ptr{UInt8}, source::Ptr{UInt8}, count::Integer)
+                    if source == Main._CCBW_PREP_TARGET_SOURCE[] && count == Main._CCBW_PREP_TARGET_COUNT[]
+                        Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x02)
+                        return destination
+                    end
+                    ccall(:memmove, Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), destination, source, count)
+                    destination
+                end
+            end
+            probe_source = UInt8[0x11, 0x22, 0x33]
+            probe_destination = UInt8[0x00, 0x00, 0x00]
+            GC.@preserve probe_source probe_destination begin
+                _CCBW_PREP_TARGET_SOURCE[] = pointer(probe_source)
+                _CCBW_PREP_TARGET_COUNT[] = length(probe_source)
+                Base.invokelatest(Base.memmove, pointer(probe_destination), pointer(probe_source), length(probe_source))
+                hit = _CCBW_PREP_POISON_HITS[]
+                _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x01
+                Base.invokelatest(Base.unsafe_copyto!, pointer(probe_destination), pointer(probe_source), length(probe_source))
+                hit = _CCBW_PREP_POISON_HITS[]
+                _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x02
+            end
+            _ccbw_prep_set_target!(value)
+            observed = Base.invokelatest(hash_bytes, value).value
+            hit = _CCBW_PREP_POISON_HITS[]
+            _CCBW_PREP_POISON_HITS[] = 0x00
+            @test hit == 0x00
+            @test observed == expected
+        else
+            @eval Base begin
+                function cconvert(::Type{Ptr{Cvoid}}, source::Ptr{UInt8})
+                    if source == Main._CCBW_PREP_TARGET_SOURCE[]
+                        Main._CCBW_PREP_TARGET_POINTER_CONVERTED[] = true
+                        Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x01)
+                    end
+                    source
+                end
+                function unsafe_convert(::Type{Ptr{Cvoid}}, source::Ptr{UInt8})
+                    if source == Main._CCBW_PREP_TARGET_SOURCE[]
+                        Main._CCBW_PREP_TARGET_POINTER_CONVERTED[] = true
+                        Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x02)
+                    end
+                    reinterpret(Ptr{Cvoid}, source)
+                end
+                function unsafe_convert(::Type{Ptr{Cvoid}}, source::Ptr{Cvoid})
+                    if source == reinterpret(Ptr{Cvoid}, Main._CCBW_PREP_TARGET_SOURCE[])
+                        Main._CCBW_PREP_TARGET_POINTER_CONVERTED[] = true
+                        Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x04)
+                    end
+                    source
+                end
+                function cconvert(::Type{Csize_t}, count::Int64)
+                    count == Main._CCBW_PREP_TARGET_COUNT[] && Main._CCBW_PREP_TARGET_POINTER_CONVERTED[] &&
+                        (Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x08))
+                    Csize_t(count)
+                end
+                function unsafe_convert(::Type{Csize_t}, count::Csize_t)
+                    count == Main._CCBW_PREP_TARGET_COUNT[] && Main._CCBW_PREP_TARGET_POINTER_CONVERTED[] &&
+                        (Main._CCBW_PREP_POISON_HITS[] |= UInt8(0x10))
+                    count
+                end
+            end
+            @testset "foreigncall conversion poison self-trigger" begin
+                pointer_probe = Ptr{UInt8}(UInt(0x1000))
+                count_probe = Int64(65537)
+                _CCBW_PREP_TARGET_SOURCE[] = pointer_probe
+                _CCBW_PREP_TARGET_COUNT[] = count_probe
+                Base.invokelatest(Base.cconvert, Ptr{Cvoid}, pointer_probe)
+                hit = _CCBW_PREP_POISON_HITS[]; _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x01
+                Base.invokelatest(Base.unsafe_convert, Ptr{Cvoid}, pointer_probe)
+                hit = _CCBW_PREP_POISON_HITS[]; _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x02
+                Base.invokelatest(Base.unsafe_convert, Ptr{Cvoid}, reinterpret(Ptr{Cvoid}, pointer_probe))
+                hit = _CCBW_PREP_POISON_HITS[]; _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x04
+                _CCBW_PREP_TARGET_POINTER_CONVERTED[] = true
+                Base.invokelatest(Base.cconvert, Csize_t, count_probe)
+                hit = _CCBW_PREP_POISON_HITS[]; _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x08
+                Base.invokelatest(Base.unsafe_convert, Csize_t, Csize_t(count_probe))
+                hit = _CCBW_PREP_POISON_HITS[]; _CCBW_PREP_POISON_HITS[] = 0x00
+                @test hit == 0x10
+                _CCBW_PREP_TARGET_POINTER_CONVERTED[] = false
+            end
+            _ccbw_prep_set_target!(value)
+            observed = Base.invokelatest(hash_bytes, value).value
+            hit = _CCBW_PREP_POISON_HITS[]
+            _CCBW_PREP_POISON_HITS[] = 0x00
+            @test hit == 0x00
+            @test observed == expected
+
+            empty_value = ""
+            _ccbw_prep_set_target!(empty_value)
+            empty_observed = Base.invokelatest(hash_bytes, empty_value).value
+            empty_hit = _CCBW_PREP_POISON_HITS[]
+            _CCBW_PREP_POISON_HITS[] = 0x00
+            @test empty_hit == 0x00
+            @test empty_observed == "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        end
+    end
+    println("CLOSED_HASH_COPY_POISON=$mode=PASS")
+end
+
+const _CCBW_COPY_ONLY_FLAG = "--closed-hash-copy-only"
+const _CCBW_POISON_PREFIX = "--closed-hash-copy-poison="
+const _CCBW_POISON_ARGS = filter(x -> startswith(x, _CCBW_POISON_PREFIX), ARGS)
+if _CCBW_COPY_ONLY_FLAG in ARGS || !isempty(_CCBW_POISON_ARGS)
+    length(_CCBW_POISON_ARGS) <= 1 || error("only one closed hash poison mode is allowed")
+    (_CCBW_COPY_ONLY_FLAG in ARGS && !isempty(_CCBW_POISON_ARGS)) && error("copy-only and poison modes are mutually exclusive")
+    if _CCBW_COPY_ONLY_FLAG in ARGS
+        _ccbw_prep_run_copy_only()
+    else
+        mode = String(split(first(_CCBW_POISON_ARGS), "=", limit=2)[2])
+        mode in ("copy", "foreigncall") || error("unsupported closed hash poison mode: $mode")
+        _ccbw_prep_run_copy_poison(mode)
+    end
+    exit(0)
+end
+
 using JSON3
 using FusionConceptAI
 
@@ -110,7 +369,7 @@ end
             exit(0)
             """
             script = replace(script, "__DEFINITION__" => definition, "__TRIGGER__" => trigger)
-            command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+            command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
             result = try
                 run(command); true
             catch err

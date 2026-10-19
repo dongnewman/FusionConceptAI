@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 16,
+  "assembled_path": "arrays/pf_passive__p2udivpl_z/assembled.raw",
+  "assembled_sha256": "9a89be821a148f3c8ec4a2d74e66deb0078dd00fd4bb3fe625fd3de3671eb28d",
+  "chunks": [
+    2
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:39.214773Z",
+      "compressed_bytes": 25,
+      "compressed_path": "arrays/pf_passive__p2udivpl_z/chunks/c__0.zst",
+      "compressed_sha256": "e275a12cf7a7044bd99438196b6615344c71076566458264365eaad3eba630ca",
+      "decoded_bytes": 16,
+      "decoded_path": "arrays/pf_passive__p2udivpl_z/chunks/c__0.raw",
+      "decoded_sha256": "9a89be821a148f3c8ec4a2d74e66deb0078dd00fd4bb3fe625fd3de3671eb28d",
+      "decoded_shape": [
+        2
+      ],
+      "edge_shape": [
+        2
+      ],
+      "full_chunk_shape": [
+        2
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:38.696631Z",
+      "response_headers": {
+        "Content-Length": "25",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"020bfcfd12b62308ea132e6e96b18e56\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:33 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2udivpl_z/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:39.234655Z",
+  "data_type": "float64",
+  "decoded_bytes": 16,
+  "dimensions": [
+    "p2udivpl_geometry_channel"
+  ],
+  "finite_count": 2,
+  "maximum": 1.6337181329727173,
+  "minimum": 1.5949164628982544,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "passive structure",
+      "comment": "mid sectors: {'outer upper': 'mid1, mid2, mid3', 'outer lower': 'mid4, mid5, mid6', 'inner upper': 'mid7, mid8, mid9', 'inner outer': 'mid10, mid11, mid12'}",
+      "configuration": "geometry",
+      "content": "geometry of the passive structures for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-11",
+      "creatorCode": "python create_netcdf_passive.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric centre Z values of the p2udivpl coils",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/pfcoils.dat_M4",
+      "status": "development",
+      "system": "passive structure",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          2
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "p2udivpl_geometry_channel"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      2
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2udivpl_z",
+  "shape": [
+    2
+  ],
+  "started_utc": "2026-09-22T08:26:38.672488Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 2,
+  "units": "SI, degrees, m"
+}

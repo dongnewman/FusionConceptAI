@@ -2,7 +2,7 @@ using Test
 push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_gridap_field_evidence_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_gridap_field_evidence_fixture.jl"))
 @testset "B3 exact bindings and replay" begin
     b = gridap_b3_bundle
     @test b.status === :pass

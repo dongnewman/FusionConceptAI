@@ -293,6 +293,18 @@ end
             G.QualifiedRefV1("receipt", "v2"))
     @test G.g3_contract_ref(:binding).version == "v2"
     @test G.g3_version_axes(:binding).payload_schema_version.version == "v2"
+    # Candidate-design URIs are admitted only through the source-verified route;
+    # the ordinary binding constructor remains strict.
+    actual_candidate_design = G.QualifiedRefV1(
+        "fusionconceptai://candidate-design/local-authored-up4-g123-20260928-r2", "v5")
+    @test_throws ArgumentError G.G3ContractBindingV2(G.g3_contract_ref(:bundle),
+        actual_candidate_design, G.g3_version_axes(:bundle))
+    for rejected_uri in ("fusionconceptai://foreign/candidate/g3-uri-test",
+            "fusionconceptai://scenario-design/scenario-local-authored-up4-g123-20260928-r2",
+            "fusionconceptai://source/local-authored-up4-g123-20260928-r2")
+        @test_throws ArgumentError G.G3ContractBindingV2(G.g3_contract_ref(:bundle),
+            G.QualifiedRefV1(rejected_uri, "v5"), G.g3_version_axes(:bundle))
+    end
     binding_ref = G.g3_contract_ref(:binding)
     @test_throws ArgumentError G.G3ContractBindingV2(
         G.GenomeContractRef(binding_ref.uri, "v5", binding_ref.schema_hash,

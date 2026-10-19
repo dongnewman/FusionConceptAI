@@ -1,0 +1,120 @@
+{
+  "requested_path": "ayc/laser_track",
+  "resolved_path": "ayc/laser_track",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      284
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "laser number",
+    "mds_name": "\\TOP.ANALYSED.AYC:LASER_TRACK",
+    "name": "ayc/laser_track",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      145
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_LASER_TRACK",
+    "units": "",
+    "uuid": "50103591-2f8e-58c1-9421-0fc5d60a0a24",
+    "version": 0
+  },
+  "shape": [
+    284
+  ],
+  "chunks": [
+    284
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 1136,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        284
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/laser_track/0",
+      "requested_utc": "2026-09-22T08:10:17.533735+00:00",
+      "compressed_path": "fields/ayc__laser_track/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "167",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"a6719c745f0c78beae0718baf4a7151f\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 167,
+      "compressed_sha256": "1a272adb9630be93fbe31b26356679f8567fdaebbd0319ea84ea2b1eafeb71e1",
+      "decoded_path": "fields/ayc__laser_track/chunks/0.raw",
+      "decoded_bytes": 1136,
+      "decoded_sha256": "e1eb60921f750958d7e79386620b7bfd82535d2f56c4395a057fc76a87ab6882",
+      "decoded_shape": [
+        284
+      ],
+      "full_bytes": 1136,
+      "edge_bytes": 1136,
+      "completed_utc": "2026-09-22T08:10:18.122193+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:17.531949+00:00",
+  "completed_utc": "2026-09-22T08:10:18.124766+00:00",
+  "assembled_path": "fields/ayc__laser_track/assembled.raw",
+  "assembled_bytes": 1136,
+  "assembled_sha256": "e1eb60921f750958d7e79386620b7bfd82535d2f56c4395a057fc76a87ab6882",
+  "finite_count": 145,
+  "total_count": 284,
+  "minimum": 1.0,
+  "maximum": 8.0
+}

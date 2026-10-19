@@ -1,0 +1,99 @@
+{
+  "requested_path": "ayc/spectral_index",
+  "resolved_path": "ayc/spectral_index",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "spectral_index"
+    ],
+    "units": ""
+  },
+  "shape": [
+    4
+  ],
+  "chunks": [
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "spectral_index"
+  ],
+  "decoded_bytes": 16,
+  "coordinate_paths": [
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectral_index/0",
+      "requested_utc": "2026-09-22T08:10:19.222060+00:00",
+      "compressed_path": "fields/ayc__spectral_index/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "32",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"2389ba84e9e4e08f611d1e9a3c20fe57\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 32,
+      "compressed_sha256": "61c805b9a43bcd28fbc26d7a382363b966007466363e436f1d7ecb38df8c7fef",
+      "decoded_path": "fields/ayc__spectral_index/chunks/0.raw",
+      "decoded_bytes": 16,
+      "decoded_sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1",
+      "decoded_shape": [
+        4
+      ],
+      "full_bytes": 16,
+      "edge_bytes": 16,
+      "completed_utc": "2026-09-22T08:10:19.785078+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:19.221246+00:00",
+  "completed_utc": "2026-09-22T08:10:19.786577+00:00",
+  "assembled_path": "fields/ayc__spectral_index/assembled.raw",
+  "assembled_bytes": 16,
+  "assembled_sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1",
+  "finite_count": 4,
+  "total_count": 4,
+  "minimum": 1.0,
+  "maximum": 4.0
+}

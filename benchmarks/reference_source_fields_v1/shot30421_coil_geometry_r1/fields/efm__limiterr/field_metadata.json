@@ -1,0 +1,124 @@
+{
+  "requested_path": "efm/limiterr",
+  "resolved_path": "efm/limiterr",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      37
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      37
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "limiter_n"
+    ],
+    "description": "R co-ordinates of limiter; f(nlimiter)",
+    "dims": [
+      "limiter_n"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Limiter Radius",
+    "mds_name": "\\TOP.ANALYSED.EFM:LIMITER_R",
+    "name": "efm/limiterr",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      1,
+      37
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_LIMITER(R)",
+    "units": "m",
+    "uuid": "af7941be-e414-50ff-b798-ed5a8288b508",
+    "version": 0
+  },
+  "shape": [
+    37
+  ],
+  "chunks": [
+    37
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "limiter_n"
+  ],
+  "decoded_bytes": 148,
+  "coordinate_paths": [
+    {
+      "dimension": "limiter_n",
+      "path": null,
+      "available": false,
+      "shape": null,
+      "dtype": null,
+      "units": null
+    }
+  ],
+  "utc_started": "2026-09-22T02:31:41.535330Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        37
+      ],
+      "full_chunk_shape": [
+        37
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/limiterr/0",
+      "requested_utc": "2026-09-22T02:31:41.535452Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "159",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"feb38b5e30fe35068f7beb3a276ddf41\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 159,
+      "compressed_sha256": "3a38a3372f02f27e88a9b9464add6a19c22b0d8d0ea12554cb9bab2568450b71",
+      "decoded_bytes": 148,
+      "decoded_sha256": "f20fc81533a07778b69d8a59bbc280fc91b5331b47a69f6f8cf0cbfb50209073",
+      "decoded_shape": [
+        37
+      ],
+      "written_shape": [
+        37
+      ],
+      "expected_full_bytes": 148,
+      "expected_edge_bytes": 148,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__limiterr\\assembled.raw",
+  "assembled_raw_bytes": 148,
+  "assembled_raw_sha256": "f20fc81533a07778b69d8a59bbc280fc91b5331b47a69f6f8cf0cbfb50209073",
+  "finite_count": 37,
+  "total_count": 37,
+  "minimum": 0.19524440169334412,
+  "maximum": 1.899999976158142
+}

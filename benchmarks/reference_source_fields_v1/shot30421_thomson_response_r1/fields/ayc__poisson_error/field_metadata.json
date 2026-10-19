@@ -1,0 +1,205 @@
+{
+  "requested_path": "ayc/poisson_error",
+  "resolved_path": "ayc/poisson_error",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      142,
+      131,
+      4
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      284,
+      131,
+      4
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "description": "",
+    "dims": [
+      "time",
+      "radial_index",
+      "spectral_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Poisson error on scatter",
+    "mds_name": "\\TOP.ANALYSED.AYC.POISSON:ERROR",
+    "name": "ayc/poisson_error",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      145,
+      130,
+      4
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_POISSON_ERROR",
+    "units": "V",
+    "uuid": "d98643dc-1437-5e32-a7e1-2d600f32671e",
+    "version": 0
+  },
+  "shape": [
+    284,
+    131,
+    4
+  ],
+  "chunks": [
+    142,
+    131,
+    4
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "radial_index",
+    "spectral_index"
+  ],
+  "decoded_bytes": 595264,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "ayc/time",
+      "available": true,
+      "shape": [
+        284
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    },
+    {
+      "dimension": "spectral_index",
+      "path": "ayc/spectral_index",
+      "available": true,
+      "shape": [
+        4
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/poisson_error/0.0.0",
+      "requested_utc": "2026-09-22T08:10:11.890660+00:00",
+      "compressed_path": "fields/ayc__poisson_error/chunks/0.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "117675",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"2f68af7633a0abba47a5f60b195a5fc0\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 117675,
+      "compressed_sha256": "3304136834fdea92b33e0e46cae42d4673640ba13e72bbf14fe2938886c7c4bc",
+      "decoded_path": "fields/ayc__poisson_error/chunks/0.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "e4090f4cadd7d3f83c02e07c0874444e6eb2808bf9b6554169c31f89c37bf432",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:13.145982+00:00"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        142,
+        0,
+        0
+      ],
+      "edge_shape": [
+        142,
+        131,
+        4
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/poisson_error/1.0.0",
+      "requested_utc": "2026-09-22T08:10:13.147485+00:00",
+      "compressed_path": "fields/ayc__poisson_error/chunks/1.0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "119986",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"c7d5a8c0229254e6fa12803da85fae1f\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 119986,
+      "compressed_sha256": "43137a4dead261fae8981853de2412101357d4be1ca6fb8ca6eef747775606b8",
+      "decoded_path": "fields/ayc__poisson_error/chunks/1.0.0.raw",
+      "decoded_bytes": 297632,
+      "decoded_sha256": "91ad6e052029a64637c44bb60d1812067a4730825b70b140a2fac03ba1fab122",
+      "decoded_shape": [
+        142,
+        131,
+        4
+      ],
+      "full_bytes": 297632,
+      "edge_bytes": 297632,
+      "completed_utc": "2026-09-22T08:10:14.147269+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:11.888854+00:00",
+  "completed_utc": "2026-09-22T08:10:14.150379+00:00",
+  "assembled_path": "fields/ayc__poisson_error/assembled.raw",
+  "assembled_bytes": 595264,
+  "assembled_sha256": "26912c81ea231b50741815b26f3643837777c2f004ed7bbdf58b21ef8624c7cb",
+  "finite_count": 72500,
+  "total_count": 148816,
+  "minimum": 0.0,
+  "maximum": 0.12415749579668045
+}

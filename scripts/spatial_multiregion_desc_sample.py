@@ -19,6 +19,7 @@ import numpy as np
 import desc
 import jax
 from desc.compute import data_index
+from desc.equilibrium import EquilibriaFamily, Equilibrium
 from desc.grid import Grid
 from desc.io import load
 
@@ -171,6 +172,36 @@ def write_set(eq, rows, kind, path):
                              *normal,*E.flatten(),*inverse.flatten(),*data["B"][i],float(data["p"][i])])
 
 
+def select_loaded_equilibrium(loaded, request):
+    """Select an explicitly indexed member while preserving legacy single-EQ input."""
+    has_index = "equilibrium_index" in request
+    index = None
+    count = None
+    if has_index:
+        raw_index = request["equilibrium_index"]
+        if not raw_index or not raw_index.isascii() or not raw_index.isdigit():
+            raise ValueError("equilibrium_index must be a nonnegative zero-based integer")
+        index = int(raw_index)
+
+    if isinstance(loaded, EquilibriaFamily):
+        if not has_index:
+            raise ValueError("equilibrium_index is required for an EquilibriaFamily")
+        count = len(loaded)
+        if index >= count:
+            raise ValueError("equilibrium_index is outside the loaded EquilibriaFamily")
+        selected = loaded[index]
+        if not isinstance(selected, Equilibrium):
+            raise TypeError("selected EquilibriaFamily member is not an Equilibrium")
+        return selected, (index, count)
+
+    if isinstance(loaded, Equilibrium):
+        if has_index and index != 0:
+            raise ValueError("equilibrium_index for a single Equilibrium must be zero")
+        return loaded, ((0, 1) if has_index else None)
+
+    raise TypeError("DESC load returned neither Equilibrium nor EquilibriaFamily")
+
+
 def main():
     h5,request_path,output_dir,expected_module=sys.argv[1:]
     req=dict(line.rstrip("\n").split("\t",1) for line in open(request_path,encoding="utf-8"))
@@ -179,7 +210,7 @@ def main():
     metadata=data_index["desc.equilibrium.equilibrium.Equilibrium"]
     for key,unit,dim in (("B","T",3),("p","Pa",1),("e_rho","m",3),("e_theta","m",3),("e_zeta","m",3)):
         if (metadata[key]["units"],metadata[key]["dim"])!=(unit,dim): raise ValueError("DESC units mismatch")
-    eq=load(h5);nfp=int(eq.NFP)
+    eq,selection=select_loaded_equilibrium(load(h5),req);nfp=int(eq.NFP)
     if nfp!=int(req["nfp"]): raise ValueError("Candidate NFP mismatch")
     directory=Path(output_dir);directory.mkdir(parents=True,exist_ok=True)
     bound_path=directory/"continuous_R_bound.csv"
@@ -205,6 +236,10 @@ def main():
               actual_axis="exact_nodes_no_metric_inverse",actual_faces="exact_no_offsets",solved_current_provider="none",
               continuous_R_upper_m=repr(R_upper),continuous_R_bound_method="exact_stored_float_Zernike_monomial_triangle",
               continuous_R_bound_basis="FourierZernikeBasis")
+    if selection is not None:
+        selected_index,equilibrium_count=selection
+        meta["selected_equilibrium_index"]=str(selected_index)
+        meta["equilibrium_count"]=str(equilibrium_count)
     for level,rhos,nt,nz in (("coarse",(0.,.5,1.),4,2*nfp),("fine",(0.,.25,.5,.75,1.),8,4*nfp)):
         meta[f"{level}_radial_bound_sha256"]=digest(bound_path);meta[f"{level}_radial_bound_count"]=str(bound_count)
         for kind,rows in sample_sets(rhos,nt,nz,int(req["quadrature_order"])).items():

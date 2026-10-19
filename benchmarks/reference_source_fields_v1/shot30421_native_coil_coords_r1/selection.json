@@ -1,0 +1,1424 @@
+{
+  "schema": "mast-source-fields-selection-v1",
+  "shot": 30421,
+  "field_set": "native_coil_coords19",
+  "metadata_path": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "selection_rule": "fixed requested paths from ownership_delta05; solenoid alias only when exact requested path is absent",
+  "requested_fields": [
+    {
+      "requested_path": "amc/p2u_current",
+      "resolved_path": "amc/p2u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P2U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P2U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P2U_CURRENT",
+        "name": "amc/p2u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P2U CURRENT",
+        "units": "kA * turn",
+        "uuid": "41d6ed1a-c1fd-559e-a5af-4fa06b017f63",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p2l_current",
+      "resolved_path": "amc/p2l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P2L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P2L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P2L_CURRENT",
+        "name": "amc/p2l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P2L CURRENT",
+        "units": "kA * turn",
+        "uuid": "6f614514-3dbf-5fdd-81f9-684b3be7b613",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p3u_current",
+      "resolved_path": "amc/p3u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P3U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P3U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P3U_CURRENT",
+        "name": "amc/p3u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P3U CURRENT",
+        "units": "kA * turn",
+        "uuid": "ec667935-471e-52db-8652-43b0fa6d006f",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p3l_current",
+      "resolved_path": "amc/p3l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P3L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P3L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P3L_CURRENT",
+        "name": "amc/p3l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P3L CURRENT",
+        "units": "kA * turn",
+        "uuid": "f259f1f8-c255-5858-aea6-42059e8705eb",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p4u_current",
+      "resolved_path": "amc/p4u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P4U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P4U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P4U_CURRENT",
+        "name": "amc/p4u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P4U CURRENT",
+        "units": "kA * turn",
+        "uuid": "cf1779fa-b6c3-5cb1-83d2-716ab804fc93",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p4l_current",
+      "resolved_path": "amc/p4l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P4L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P4L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P4L_CURRENT",
+        "name": "amc/p4l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P4L CURRENT",
+        "units": "kA * turn",
+        "uuid": "79f035fc-550e-5b64-ab5e-fe5125e4208f",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p5u_current",
+      "resolved_path": "amc/p5u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P5U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P5U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P5U_CURRENT",
+        "name": "amc/p5u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P5U CURRENT",
+        "units": "kA * turn",
+        "uuid": "f8a281e3-4bff-5dc6-aca4-7c3d8f81b383",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p5l_current",
+      "resolved_path": "amc/p5l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P5L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P5L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P5L_CURRENT",
+        "name": "amc/p5l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P5L CURRENT",
+        "units": "kA * turn",
+        "uuid": "256a5537-2aad-5448-84c8-f537b91e603a",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p6u_current",
+      "resolved_path": "amc/p6u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P6U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P6U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P6U_CURRENT",
+        "name": "amc/p6u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P6U CURRENT",
+        "units": "kA * turn",
+        "uuid": "04f9a209-0e1d-53ce-b6c3-3d3035b99c7b",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "amc/p6l_current",
+      "resolved_path": "amc/p6l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P6L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P6L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P6L_CURRENT",
+        "name": "amc/p6l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P6L CURRENT",
+        "units": "kA * turn",
+        "uuid": "931f2158-42ab-573b-a7f8-98c7392fb1ea",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/xpoint1_rc",
+      "resolved_path": "efm/xpoint1_rc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Radius of first X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Radius of X-point 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT1_R_C",
+        "name": "efm/xpoint1_rc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT1_R(C)",
+        "units": "m",
+        "uuid": "77f7e16b-6b44-597e-bde4-450fabfe9cd7",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/xpoint1_zc",
+      "resolved_path": "efm/xpoint1_zc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Height of first X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Height of X-point 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT1_Z_C",
+        "name": "efm/xpoint1_zc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT1_Z(C)",
+        "units": "m",
+        "uuid": "5a5ae517-d8a9-54cb-9734-14949e0ad9f7",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/xpoint2_rc",
+      "resolved_path": "efm/xpoint2_rc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Radius of second X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Radius of X-point 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT2_R_C",
+        "name": "efm/xpoint2_rc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT2_R(C)",
+        "units": "m",
+        "uuid": "4896be18-1a48-533e-a8a4-0f987d33bf9d",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/xpoint2_zc",
+      "resolved_path": "efm/xpoint2_zc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Height of second X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Height of X-point 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT2_Z_C",
+        "name": "efm/xpoint2_zc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT2_Z(C)",
+        "units": "m",
+        "uuid": "da127eed-d89a-5340-82d5-a7614265e525",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/r",
+      "resolved_path": "efm/r",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "r"
+        ],
+        "units": "m"
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "r"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "r",
+          "path": "efm/r",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/gridr",
+      "resolved_path": "efm/gridr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "r"
+        ],
+        "description": "R grid for 2D outputs; f(nr)",
+        "dims": [
+          "r"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "r-coordinates of computa",
+        "mds_name": "\\TOP.ANALYSED.EFM:GRID_R",
+        "name": "efm/gridr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_GRID(R)",
+        "units": "m",
+        "uuid": "34781f9a-77cf-5bdb-beaf-e4ecfb17abfb",
+        "version": 0
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "r"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "r",
+          "path": "efm/r",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/z",
+      "resolved_path": "efm/z",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "z"
+        ],
+        "units": "m"
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "z"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "z",
+          "path": "efm/z",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/gridz",
+      "resolved_path": "efm/gridz",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "z"
+        ],
+        "description": "Z grid for 2D outputs; f(nz)",
+        "dims": [
+          "z"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "z-coordinates of computa",
+        "mds_name": "\\TOP.ANALYSED.EFM:GRID_Z",
+        "name": "efm/gridz",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_GRID(Z)",
+        "units": "m",
+        "uuid": "2759e066-4fc8-5b78-adcb-1506ba57eb83",
+        "version": 0
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "z"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "z",
+          "path": "efm/z",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ]
+    },
+    {
+      "requested_path": "efm/rvals",
+      "resolved_path": "efm/rvals",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          129
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          129
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "profile_r"
+        ],
+        "description": "Radial co-ordinates used for radial profiles; f(nw)",
+        "dims": [
+          "time",
+          "profile_r"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "R-coords used for radial",
+        "mds_name": "\\TOP.ANALYSED.EFM:RVALS",
+        "name": "efm/rvals",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          108,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_RVALS",
+        "units": "",
+        "uuid": "1e72020e-45d9-580c-81e1-3d19f707fd17",
+        "version": 0
+      },
+      "shape": [
+        120,
+        129
+      ],
+      "chunks": [
+        120,
+        129
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "profile_r"
+      ],
+      "decoded_bytes": 61920,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "profile_r",
+          "path": "efm/profile_r",
+          "available": true,
+          "shape": [
+            129
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ]
+    }
+  ],
+  "total_decoded_bytes": 1264880,
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "network_timeout_seconds": 30
+  },
+  "raw_values_only": true,
+  "uncertainty_interpretation": "not_performed",
+  "scientific_acceptance": false,
+  "frozen_utc": "2026-09-22T01:49:36.799720Z"
+}

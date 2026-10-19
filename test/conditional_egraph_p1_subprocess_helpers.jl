@@ -5,7 +5,7 @@ if !isdefined(Main, :_p1_child_output)
         stdout_path = tempname()
         stderr_path = tempname()
         try
-            cmd = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+            cmd = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
             process = run(pipeline(ignorestatus(cmd), stdout=stdout_path, stderr=stderr_path))
             output = read(stdout_path, String)
             diagnostics = read(stderr_path, String)

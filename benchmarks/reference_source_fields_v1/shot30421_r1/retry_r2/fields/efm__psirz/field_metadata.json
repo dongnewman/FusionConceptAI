@@ -1,0 +1,523 @@
+{
+  "requested_path": "efm/psirz",
+  "resolved_path": "efm/psirz",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      60,
+      33,
+      65
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      65,
+      129
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "profile_z",
+      "profile_r"
+    ],
+    "description": "Poloidal magnetic flux per toroidal radian as a function of radius and height; f(nw, nh, B)",
+    "dims": [
+      "time",
+      "profile_z",
+      "profile_r"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "psi(r,z)",
+    "mds_name": "\\TOP.ANALYSED.EFM:PSI_R_Z",
+    "name": "efm/psirz",
+    "quality": "Not Checked",
+    "rank": 3,
+    "shape": [
+      120,
+      65,
+      65
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_PSI(R,Z)",
+    "units": "Wb / rad",
+    "uuid": "61aac2ef-845b-533e-948f-25f824fb52c1",
+    "version": 0
+  },
+  "shape": [
+    120,
+    65,
+    129
+  ],
+  "chunks": [
+    60,
+    33,
+    65
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "profile_z",
+    "profile_r"
+  ],
+  "decoded_bytes": 4024800,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "profile_z",
+      "path": "efm/profile_z",
+      "available": true,
+      "shape": [
+        65
+      ],
+      "dtype": "<f4",
+      "units": "m"
+    },
+    {
+      "dimension": "profile_r",
+      "path": "efm/profile_r",
+      "available": true,
+      "shape": [
+        129
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:24.156128Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0,
+        0
+      ],
+      "edge_shape": [
+        60,
+        33,
+        65
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/0.0.0",
+      "requested_utc": "2026-09-21T20:06:24.156285Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "295165",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"9c4acfb9f7adda4440ac37d52fa624d1\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 295165,
+      "compressed_sha256": "e520ac6d7623abeb39a3a49ffbff9866e84a5d64473c8de4a9133afbfebfe790",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "dc24f74e3ae2bf714996c4fc4087c61bcbc1cc99f3ac6ad19830bbcab92f796f",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        33,
+        65
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 514800,
+      "compressed_path": "chunks\\0.0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        0,
+        0,
+        1
+      ],
+      "chunk_start": [
+        0,
+        0,
+        65
+      ],
+      "edge_shape": [
+        60,
+        33,
+        64
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/0.0.1",
+      "requested_utc": "2026-09-21T20:06:25.197270Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "371028",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"a640c1ba8768c6669d6be524e51e6712\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 371028,
+      "compressed_sha256": "d634fd149f030a7cabaca8b19418e35d67b3d4d1d08611f73c97fbb4e8e69580",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "c8e59c6581b7a6e7a44c0ba49380f727b844dab010503a017371628153d5704a",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        33,
+        64
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 506880,
+      "compressed_path": "chunks\\0.0.1.blosc",
+      "decoded_chunk_path": "chunks\\0.0.1.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        0,
+        1,
+        0
+      ],
+      "chunk_start": [
+        0,
+        33,
+        0
+      ],
+      "edge_shape": [
+        60,
+        32,
+        65
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/0.1.0",
+      "requested_utc": "2026-09-21T20:06:25.877334Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "286512",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"47d530624002cf5ad73ef1ff9076fed0\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 286512,
+      "compressed_sha256": "d0140bf50925c8248313a484162327d9901e9eb7de65a527850053e6ec24f6c8",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "1f9bc4916381a60a3b885b31a95746e3c5911047e32f7420993b9a4b28c5342c",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        32,
+        65
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 499200,
+      "compressed_path": "chunks\\0.1.0.blosc",
+      "decoded_chunk_path": "chunks\\0.1.0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        0,
+        1,
+        1
+      ],
+      "chunk_start": [
+        0,
+        33,
+        65
+      ],
+      "edge_shape": [
+        60,
+        32,
+        64
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/0.1.1",
+      "requested_utc": "2026-09-21T20:06:26.509554Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "361196",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"40e58a7c9c1ecc12ceb91ab12c43b442\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 361196,
+      "compressed_sha256": "3aca61ec3f186bfd72bae24d6a9994eac2e5d62fec00f800bff010caa165f334",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "432fbc6c31b06251b3dd6d14ae4b341241be5871abca5a01e67b888adb041491",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        32,
+        64
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 491520,
+      "compressed_path": "chunks\\0.1.1.blosc",
+      "decoded_chunk_path": "chunks\\0.1.1.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        0
+      ],
+      "chunk_start": [
+        60,
+        0,
+        0
+      ],
+      "edge_shape": [
+        60,
+        33,
+        65
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/1.0.0",
+      "requested_utc": "2026-09-21T20:06:27.124189Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "286229",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"09eb8b01853ff237083bf6899656d71e\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 286229,
+      "compressed_sha256": "f3c5af9af27a5bf8116c9db7b2d5f8c0da45f9a5b36e74f21b67ea2f9e873e97",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "c3091d33f0dedee177abc5c5fb4dfd61a6fc6e96d4cdeeb80065c37acb977781",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        33,
+        65
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 514800,
+      "compressed_path": "chunks\\1.0.0.blosc",
+      "decoded_chunk_path": "chunks\\1.0.0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1,
+        0,
+        1
+      ],
+      "chunk_start": [
+        60,
+        0,
+        65
+      ],
+      "edge_shape": [
+        60,
+        33,
+        64
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/1.0.1",
+      "requested_utc": "2026-09-21T20:06:27.978346Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "368818",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"38fb4954691eb664198c8522e43248c1\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 368818,
+      "compressed_sha256": "15f8f160bac994045dd168a8c95ae964e20cf451178a3569e7dc9e14f2135272",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "9b506f5d81b9019d0ab1642ead2bf36318d4d6869b20b243a8d9c48173532990",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        33,
+        64
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 506880,
+      "compressed_path": "chunks\\1.0.1.blosc",
+      "decoded_chunk_path": "chunks\\1.0.1.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1,
+        1,
+        0
+      ],
+      "chunk_start": [
+        60,
+        33,
+        0
+      ],
+      "edge_shape": [
+        60,
+        32,
+        65
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/1.1.0",
+      "requested_utc": "2026-09-21T20:06:28.834919Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "266324",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"052306a5325cc874bbe9fc615e1b52d6\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 266324,
+      "compressed_sha256": "8584db9f16093981b3677919bc27a5ae0093f9b92a6b6c94d9bbec1b5948c9da",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "b0b6f197a19ee909b09779e1da560cbc290237bba154a57e93c4342e1cbca0bc",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        32,
+        65
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 499200,
+      "compressed_path": "chunks\\1.1.0.blosc",
+      "decoded_chunk_path": "chunks\\1.1.0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1,
+        1,
+        1
+      ],
+      "chunk_start": [
+        60,
+        33,
+        65
+      ],
+      "edge_shape": [
+        60,
+        32,
+        64
+      ],
+      "full_chunk_shape": [
+        60,
+        33,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psirz/1.1.1",
+      "requested_utc": "2026-09-21T20:06:29.648254Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "346333",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"88d2940ae1bf29f130934564282ff540\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 346333,
+      "compressed_sha256": "914cbc6baffee0547c358eafe002897db1791ad6490d894544ac7350c6ccf4c8",
+      "decoded_bytes": 514800,
+      "decoded_sha256": "37f927c8b6ac73f9a376127de3b460e9553f6b03fc77ca3ed61480665950d74e",
+      "decoded_shape": [
+        60,
+        33,
+        65
+      ],
+      "written_shape": [
+        60,
+        32,
+        64
+      ],
+      "expected_full_bytes": 514800,
+      "expected_edge_bytes": 491520,
+      "compressed_path": "chunks\\1.1.1.blosc",
+      "decoded_chunk_path": "chunks\\1.1.1.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__psirz\\assembled.raw",
+  "assembled_raw_bytes": 4024800,
+  "assembled_raw_sha256": "2e6b7c37b65ee9fb19e68a4c1038ff866574acd484be3f450315b3746d6dee00",
+  "finite_count": 507000,
+  "total_count": 1006200,
+  "minimum": -0.49844637513160706,
+  "maximum": 0.1492971032857895
+}

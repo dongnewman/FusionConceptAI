@@ -6,7 +6,7 @@ using .FusionRuntimeV4
 
 module GenerationRunFixture
 using FusionConceptAI
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_algebraic_constraint_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_algebraic_constraint_fixture.jl"))
 end
 const F = GenerationRunFixture
 
@@ -120,7 +120,7 @@ source_paths = (joinpath(@__DIR__, "..", "Project.toml"),
         ("FusionRuntimeV4.jl", "Contracts.jl", "Compiler.jl", "Search.jl",
          "Archives.jl", "AlgebraicResidual.jl", "AlgebraicScopedSearch.jl",
          "AlgebraicGenerationV4.jl"))...,
-    joinpath(@__DIR__, "..", "examples", "runtime_v4_algebraic_constraint_fixture.jl"),
+    joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_algebraic_constraint_fixture.jl"),
     abspath(@__FILE__))
 source_hashes = Tuple((path=replace(relpath(path, joinpath(@__DIR__, "..")), '\\' => '/'),
     sha256=bytes2hex(SHA.sha256(read(path))))

@@ -6,7 +6,15 @@
   "review_authority": "typed_candidate_identity_review_receipt_required",
   "version_domains": {
     "factory_version": "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/factory-v1",
-    "review_version": "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/review-v1"
+    "review_version": "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/review-v1",
+    "t0_successor_version": "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/t0-parent-baseline-successor-v1"
+  },
+  "t0_adapter": {
+    "producer_type": "VNextT0LocalPresentDeclarationV1",
+    "layers": ["G1", "G2"],
+    "retains": ["source_bytes", "declaration_bytes", "semantic_body_bytes", "source_locator", "factory_receipt", "declaration_receipt", "four_axes", "same_candidate_identity"],
+    "legacy_review_mapping": "forbidden",
+    "non_lossless_mapping": "fail_closed_capability_gap"
   },
   "present_requires": [
     "actual_local_source_bytes_and_sha256",

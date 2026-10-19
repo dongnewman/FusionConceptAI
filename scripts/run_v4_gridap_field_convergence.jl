@@ -1,7 +1,7 @@
 push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
-Base.include(Main, joinpath(@__DIR__, "..", "examples", "runtime_v4_gridap_field_convergence_fixture.jl"))
+Base.include(Main, joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_gridap_field_convergence_fixture.jl"))
 receipt = FusionRuntimeV4.run_gridap_field_convergence(gridap_b2_compilations)
 FusionRuntimeV4.validate_gridap_field_convergence_receipt(receipt) || error("B2 receipt validation failed")
 println("gridap_b2_status=", receipt.status)

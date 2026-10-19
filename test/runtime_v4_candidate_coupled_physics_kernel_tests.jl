@@ -43,4 +43,67 @@ Base.include(CCPP_KERNEL,joinpath(@__DIR__,"..","src","RuntimeV4","CandidateCoup
     @test !K._CCP_EXECUTION.boundary_term_executed
     @test !K._CCP_EXECUTION.coupled_solve_attempted
 end
+
+@testset "axisymmetric five-point MHD component equations and sampled-state Jacobian" begin
+    K = CCPP_KERNEL
+    coordinates = ((2.0,0.5),(1.75,0.5),(2.25,0.5),(2.0,0.375),(2.0,0.625))
+    mu0 = 4e-7pi
+    state_for = fields -> [v for (R,Z) in coordinates for v in fields(R,Z)]
+    # Uniform axial B has zero curl/div; a linear pressure has its exact gradient.
+    q = state_for((R,Z) -> (7R+11Z,0.0,0.0,2.0))
+    v = K._ccp_axisymmetric_mhd_stencil(q,coordinates,mu0)
+    @test v.residual ≈ [-7.0,0.0,-11.0,0.0]
+    @test v.current_cylindrical_A_m2 == zeros(3)
+    # Bphi=aR gives Jz=2a/mu0 and radial force=-2a^2 R/mu0.
+    # Both the curl metric term and cylindrical cross-product sign are necessary.
+    a = 0.75
+    q = state_for((R,Z) -> (3.0,0.0,a*R,0.0))
+    v = K._ccp_axisymmetric_mhd_stencil(q,coordinates,mu0)
+    @test v.current_cylindrical_A_m2 ≈ [0.0,0.0,2a/mu0]
+    @test v.residual ≈ [-2a*a*coordinates[1][1]/mu0,0.0,0.0,0.0]
+    # Br=aR detects the divergence metric term independently of the force rows.
+    q = state_for((R,Z) -> (0.0,a*R,0.0,0.0))
+    @test K._ccp_axisymmetric_mhd_stencil(q,coordinates,mu0).residual[4] ≈ 2a
+
+    a,b,c,d,e,f,g,h = 0.7,-0.2,0.3,0.4,-0.6,0.1,3e4,-2e4
+    q = state_for((R,Z) -> (g*R+h*Z,c*R+d*Z,a*R+b*Z,e*R+f*Z))
+    v = K._ccp_axisymmetric_mhd_stencil(q,coordinates,mu0)
+    R,Z = coordinates[1]
+    exact_current = [-b,d-e,2a+b*Z/R]/mu0
+    exact_B = [c*R+d*Z,a*R+b*Z,e*R+f*Z]
+    @test v.current_cylindrical_A_m2 ≈ exact_current
+    @test v.residual[1:3] ≈ cross(exact_current,exact_B)-[g,0.0,h]
+    @test v.residual[4] ≈ 2c+d*Z/R+f
+    @test size(v.jacobian) == (4,20)
+    @test norm(v.jacobian) > 0
+    @test v.row_units == ("N m^-3","N m^-3","N m^-3","T m^-1")
+    @test v.state_units == Tuple(mod1(i,4) == 1 ? "Pa" : "T" for i in 1:20)
+    # Residual is degree <=2 in the sampled state, so central FD has no
+    # truncation error. Pressure and magnetic columns use their own unit scales.
+    fd = zeros(4,20)
+    for j in 1:20
+        scale = mod1(j,4) == 1 ? maximum(abs,q[1:4:end]) : maximum(abs,q[2:4:end])+maximum(abs,q[3:4:end])+maximum(abs,q[4:4:end])
+        step = 1e-3*max(scale,1.0)
+        plus=copy(q); minus=copy(q); plus[j]+=step; minus[j]-=step
+        fd[:,j] = (K._ccp_axisymmetric_mhd_stencil(plus,coordinates,mu0).residual-
+            K._ccp_axisymmetric_mhd_stencil(minus,coordinates,mu0).residual)/(2step)
+    end
+    @test maximum(abs.(v.jacobian-fd)./max.(1.0,abs.(v.jacobian))) < 1e-6
+    changed=copy(q); changed[3]+=0.2
+    w=K._ccp_axisymmetric_mhd_stencil(changed,coordinates,mu0)
+    @test norm(w.residual-v.residual) > 0
+    @test norm(w.jacobian-v.jacobian) > 0
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q[1:19],coordinates,mu0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil([Inf;q[2:end]],coordinates,mu0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q,coordinates,0.0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q,
+        (coordinates[1],coordinates[3],coordinates[2],coordinates[4],coordinates[5]),mu0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q,
+        (coordinates[1],(1.5,0.5),coordinates[3],coordinates[4],coordinates[5]),mu0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q,
+        ((0.0,0.5),coordinates[2:end]...),mu0)
+    @test_throws ArgumentError K._ccp_axisymmetric_mhd_stencil(q,
+        (coordinates[1:3]...,coordinates[1],coordinates[1]),mu0)
+end
+
 println("CANDIDATE_COUPLED_PHYSICS_KERNEL_EXIT_CODE=0")

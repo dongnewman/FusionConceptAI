@@ -178,9 +178,9 @@ else
         project = dirname(@__DIR__)
         fixture = replace(joinpath(@__DIR__, "mechanism_hash_layers_adversarial.jl"), "\\" => "/")
         script = "using FusionConceptAI; FusionConceptAI._g1_layer_rule(::FusionConceptAI.SameTypeVariadicRuleV1)=\"injected\"; Base.isequal(::FusionConceptAI.SameTypeVariadicRuleV1,::FusionConceptAI.SameTypeVariadicRuleV1)=false; Base.hash(::FusionConceptAI.SameTypeVariadicRuleV1,h::UInt)=xor(h,UInt(0x1234)); Base.first(::Tuple{String,FusionConceptAI.Digest256})=\"poison\"; include(raw\"$fixture\")"
-        injected = read(setenv(`$julia --project=$project -e $script`, "FUSION_HASH_ADVERSARIAL_CHILD" => "1"), String)
+        injected = read(setenv(Cmd(`$julia --project=$project -e $script`; windows_hide=true), "FUSION_HASH_ADVERSARIAL_CHILD" => "1"), String)
         normal_script = "include(raw\"$fixture\")"
-        normal = read(setenv(`$julia --project=$project -e $normal_script`, "FUSION_HASH_ADVERSARIAL_CHILD" => "1"), String)
+        normal = read(setenv(Cmd(`$julia --project=$project -e $normal_script`; windows_hide=true), "FUSION_HASH_ADVERSARIAL_CHILD" => "1"), String)
         @test injected == normal
         @test length(split(normal, ',')) == 8
         @test all(length(x) == 64 for x in split(normal, ','))

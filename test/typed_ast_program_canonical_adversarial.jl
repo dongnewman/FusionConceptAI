@@ -1,6 +1,34 @@
 using Test
 using FusionConceptAI
 using SHA
+using JSON3
+using Serialization
+
+# Independent reference for the pre-pruning exhaustive search: every node
+# order builds and serializes its complete candidate before choosing the
+# lexicographic minimum.
+function _tac_test_legacy_exhaustive_text(program::TypedASTProgramV1)
+    node_count = length(program.nodes)
+    permutations = FusionConceptAI._tac_permutations(node_count)
+    best_text = nothing
+    for order in permutations
+        candidate, _ = FusionConceptAI._tac_candidate_for_order(program, order)
+        text = FusionConceptAI._tac_value_string(candidate)
+        if best_text === nothing || FusionConceptAI._tac_string_less(text, best_text)
+            best_text = text
+        end
+    end
+    best_text::String
+end
+
+function _tac_test_matches_legacy_exhaustive(program::TypedASTProgramV1)
+    expected_text = _tac_test_legacy_exhaustive_text(program)
+    expected_hash = Digest256(bytes2hex(SHA.sha256(
+        Vector{UInt8}(codeunits(expected_text)))))
+    @test canonical_json(program) == expected_text
+    @test canonical_hash(program) == expected_hash
+    nothing
+end
 
 @testset "TypedASTProgramV1 closed canonical identity" begin
     registry = default_operator_registry()
@@ -91,6 +119,11 @@ using SHA
         @test fixed_candidate.nodes[2].inputs == (3,)
         @test fixed_candidate.roots == (2, 1)
         @test fixed_candidate.input_ports[1].node == 3
+        fixed_helper_ports = FusionConceptAI._tac_input_ports_for_order(
+            fixed_program, (2, 3, 1))
+        @test Vector{UInt8}(codeunits(FusionConceptAI._tac_value_string(
+            fixed_helper_ports))) == Vector{UInt8}(codeunits(
+                FusionConceptAI._tac_value_string(fixed_candidate.input_ports)))
 
         input_c = ASTInputV1(1, scalar, (label="Ω\0",))
         parameter_c = ASTParameterV1(Symbol("gainΩ"), scalar, (note="组合", ratio=3//7))
@@ -161,10 +194,81 @@ using SHA
         eight = TypedASTProgramV1(Tuple(nodes), (8,), (1,); registry=registry)
         @test canonical_json(eight) isa String
         @test canonical_hash(eight) isa Digest256
+        # Exercise the 8! search boundary once against the complete old path.
+        _tac_test_matches_legacy_exhaustive(eight)
         push!(nodes, ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (8,), (;);
             registry=registry, input_types=(scalar,)))
         nine = TypedASTProgramV1(Tuple(nodes), (9,), (1,); registry=registry)
         @test_throws CanonicalizationDeferred canonical_json(nine)
+    end
+
+    @testset "input-port prefix pruning matches exhaustive canonical bytes" begin
+        # Two differently ordered declarations and node tuples must retain the
+        # same canonical result; ports are ordered by their declared numbers.
+        port_nine = ASTInputV1(9, scalar)
+        port_two = ASTInputV1(2, scalar)
+        sum_ports = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;);
+            registry=registry, input_types=(scalar, scalar))
+        ports_a = TypedASTProgramV1((port_nine, port_two, sum_ports), (3,), (1, 2);
+            registry=registry)
+        ports_b = TypedASTProgramV1((port_two, port_nine, sum_ports), (3,), (2, 1);
+            registry=registry)
+        _tac_test_matches_legacy_exhaustive(ports_a)
+        _tac_test_matches_legacy_exhaustive(ports_b)
+        for order in FusionConceptAI._tac_permutations(length(ports_a.nodes))
+            candidate, _ = FusionConceptAI._tac_candidate_for_order(ports_a, order)
+            helper_ports = FusionConceptAI._tac_input_ports_for_order(ports_a, order)
+            @test Vector{UInt8}(codeunits(FusionConceptAI._tac_value_string(
+                helper_ports))) == Vector{UInt8}(codeunits(
+                    FusionConceptAI._tac_value_string(candidate.input_ports)))
+        end
+        @test canonical_json(ports_a) == canonical_json(ports_b)
+        @test canonical_hash(ports_a) == canonical_hash(ports_b)
+
+        # Empty input-port prefixes still use the original whole-payload
+        # minimum, including ordered multiple roots.
+        constant_a = ASTConstantV1(:left, Int64(3), scalar)
+        constant_b = ASTConstantV1(:right, Int64(5), scalar)
+        no_ports = TypedASTProgramV1((constant_a, constant_b), (2, 1), ();
+            registry=registry)
+        @test no_ports.input_ports == ()
+        _tac_test_matches_legacy_exhaustive(no_ports)
+
+        # These two full candidates have identical input_ports and node
+        # payloads; only the mapped roots differ. The first must win by the
+        # original full-string comparison after an equal prefix.
+        repeated_a = ASTConstantV1(:same_a, Int64(1), scalar)
+        repeated_b = ASTConstantV1(:same_b, Int64(1), scalar)
+        root_apply = ASTApplyV1(OperatorRefV1("IDENTITY", "v1"), (1,), (;);
+            registry=registry, input_types=(scalar,))
+        root_tie = TypedASTProgramV1((input, repeated_a, repeated_b, root_apply),
+            (4, 2, 3), (1,); registry=registry)
+        order_a = (1, 4, 2, 3)
+        order_b = (1, 4, 3, 2)
+        candidate_a, _ = FusionConceptAI._tac_candidate_for_order(root_tie, order_a)
+        candidate_b, _ = FusionConceptAI._tac_candidate_for_order(root_tie, order_b)
+        @test candidate_a.input_ports == candidate_b.input_ports
+        @test candidate_a.nodes == candidate_b.nodes
+        @test candidate_a.roots != candidate_b.roots
+        text_a = FusionConceptAI._tac_value_string(candidate_a)
+        text_b = FusionConceptAI._tac_value_string(candidate_b)
+        @test FusionConceptAI._tac_string_less(text_a, text_b)
+        @test _tac_test_legacy_exhaustive_text(root_tie) == text_a
+        _tac_test_matches_legacy_exhaustive(root_tie)
+
+        # Malformed field declarations remain constructor errors; the
+        # optimization is only defined for valid TypedASTProgramV1 values.
+        @test_throws ArgumentError TypedASTProgramV1((input, apply), (3,), (1,);
+            registry=registry)
+        @test_throws ArgumentError TypedASTProgramV1((input, apply), (2,), (3,);
+            registry=registry)
+        duplicate_port_a = ASTInputV1(1, scalar)
+        duplicate_port_b = ASTInputV1(1, scalar)
+        duplicate_sum = ASTApplyV1(OperatorRefV1("ADD", "v1"), (1, 2), (;);
+            registry=registry, input_types=(scalar, scalar))
+        @test_throws ArgumentError TypedASTProgramV1(
+            (duplicate_port_a, duplicate_port_b, duplicate_sum), (3,), (1, 2);
+            registry=registry)
     end
 
     @testset "fresh process dispatch pollution" begin
@@ -203,7 +307,7 @@ using SHA
             @assert baseline[4] === canonical_hash(ip).value
             exit(0)
             """
-            result = success(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`)
+            result = success(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true))
             result || println(stderr, "FAILED AST poison probe: ", definition)
             result
         end
@@ -235,5 +339,102 @@ using SHA
             end
             @test _tac_probe(definition, trigger)
         end
+    end
+end
+
+struct _TACUntrustedSmallInteger <: Integer end
+Base.:<(::_TACUntrustedSmallInteger, other::Integer) = 7 < other
+Base.:<(other::Integer, ::_TACUntrustedSmallInteger) = other < 7
+Base.:(==)(::_TACUntrustedSmallInteger, other::Integer) = 7 == other
+Base.:(==)(other::Integer, ::_TACUntrustedSmallInteger) = other == 7
+Base.convert(::Type{Int}, ::_TACUntrustedSmallInteger) = 7
+
+const _TAC_N10_T1_A = get(ENV, "UP2_N10_STREAMING_T1_A", "")
+const _TAC_N10_T1_B = get(ENV, "UP2_N10_STREAMING_T1_B", "")
+
+@testset "UP2 N10 streaming canonical bytes match legacy normalizer" begin
+    G = FusionConceptAI
+    G.load_genome_v5_up2_components!()
+    G.load_vnext_t2_components_v2!()
+
+    function assert_n10_byte_parity(raw)
+        legacy = canonical_json(G._up2_n10_json_semantic(raw))
+        streamed = G._up2_n10_canonical_json(raw)
+        @test Vector{UInt8}(codeunits(streamed)) ==
+            Vector{UInt8}(codeunits(legacy))
+        streamed
+    end
+
+    # Compare any UInt8 fast method with the pre-fast-path generic fallback.
+    for byte in UInt8(0):typemax(UInt8)
+        @test G._canonical(byte) == invoke(G._canonical, Tuple{Any}, byte)
+    end
+
+    nested_a = JSON3.read("""{"z":[{"b":2,"a":1},null,true],"a":{"Ω":"line\\nquote\\\"slash\\\\","zero":-0.0}}""")
+    nested_b = JSON3.read("""{"a":{"zero":0.0,"Ω":"line\\nquote\\\"slash\\\\"},"z":[{"a":1,"b":2},null,true]}""")
+    nested_bytes = assert_n10_byte_parity(nested_a)
+    @test nested_a.a.zero isa Int64
+    @test nested_bytes == """{"a":{"zero":0,"Ω":"line\\nquote\\\"slash\\\\"},"z":[{"a":1,"b":2},null,true]}"""
+    @test assert_n10_byte_parity(nested_b) == nested_bytes
+
+    duplicate_keys = JSON3.read(raw"""{"same":1,"nested":{"same":3,"same":4},"same":2}""")
+    duplicate_result = assert_n10_byte_parity(duplicate_keys)
+    @test duplicate_result == raw"""{"nested":{"same":4},"same":2}"""
+
+    scalar_edges = JSON3.read(raw"""{"byte0":0,"byte1":1,"byte255":255,"byte_over":256,"negative":-1,"int_min":-9223372036854775808,"int_max":9223372036854775807,"large":18446744073709551616,"float":1.25,"exponent":1.25E+5,"negative_zero":-0.0,"null":null,"false":false,"true":true}""")
+    scalar_bytes = assert_n10_byte_parity(scalar_edges)
+    @test scalar_edges.negative_zero isa Int64
+    @test assert_n10_byte_parity(-0.0) == "0.0"
+    @test occursin("\"byte255\":255", scalar_bytes)
+    @test occursin("\"byte_over\":256", scalar_bytes)
+    @test occursin("\"negative_zero\":0", scalar_bytes)
+    @test occursin("\"null\":null", scalar_bytes)
+    @test occursin("\"false\":false", scalar_bytes)
+    @test occursin("\"true\":true", scalar_bytes)
+
+    rational_wire = JSON3.read(raw"""{"unit":{"exponents":[{"denominator":1,"numerator":0},{"denominator":7,"numerator":3}]},"ratio":{"denominator":7,"numerator":3}}""")
+    @test assert_n10_byte_parity(rational_wire) ==
+        raw"""{"ratio":{"denominator":7,"numerator":3},"unit":{"exponents":[{"denominator":1,"numerator":0},{"denominator":7,"numerator":3}]}}"""
+    @test assert_n10_byte_parity((ratio=3 // 7,)) ==
+        raw"""{"ratio":{"denominator":7,"numerator":3}}"""
+    @test_throws ArgumentError G._up2_n10_canonical_json((value=BigInt(2)^200,))
+    @test_throws ArgumentError canonical_json(_TACUntrustedSmallInteger())
+    @test_throws ArgumentError G._up2_n10_canonical_json(_TACUntrustedSmallInteger())
+
+    if !isempty(_TAC_N10_T1_A) || !isempty(_TAC_N10_T1_B)
+        @test !isempty(_TAC_N10_T1_A) && !isempty(_TAC_N10_T1_B)
+        function check_actual_t1(path)
+            artifact_bytes = read(path)
+            admission = Serialization.deserialize(IOBuffer(artifact_bytes))
+            @test admission isa G.VNextT1AdmissionResultV2
+            @test admission.package isa G.CandidateStatePackageV5NextV2
+            package = admission.package
+            @test package.status === :prepared_not_executed
+            @test package.accepted === false
+            t0_wire_bytes = G.copy_bytes(package.wire)
+            @test G.Digest256(bytes2hex(SHA.sha256(t0_wire_bytes))) ==
+                package.wire.sha256
+            t0_wire = JSON3.read(String(t0_wire_bytes))
+            for declaration in package.declarations
+                receipt_bytes = G.copy_bytes(declaration.factory_receipt_bytes)
+                @test G.Digest256(bytes2hex(SHA.sha256(receipt_bytes))) ==
+                    declaration.factory_receipt_bytes.sha256
+                rows = filter(row -> String(row.layer) == String(declaration.layer),
+                    t0_wire.declarations)
+                @test length(rows) == 1
+                wire_result = only(rows).factory_receipt.factory_result
+                @test wire_result !== nothing
+                legacy = canonical_json(G._up2_n10_json_semantic(wire_result))
+                streamed = G._up2_n10_canonical_json(wire_result)
+                @test Vector{UInt8}(codeunits(streamed)) ==
+                    Vector{UInt8}(codeunits(legacy))
+                @test Vector{UInt8}(codeunits(streamed)) == receipt_bytes
+            end
+            (; package_hash=package.package_hash, wire_sha256=package.wire.sha256)
+        end
+        actual_a = check_actual_t1(_TAC_N10_T1_A)
+        actual_b = check_actual_t1(_TAC_N10_T1_B)
+        @test actual_a.package_hash == actual_b.package_hash
+        @test actual_a.wire_sha256 == actual_b.wire_sha256
     end
 end

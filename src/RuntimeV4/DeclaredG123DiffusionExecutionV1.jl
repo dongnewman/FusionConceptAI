@@ -20,6 +20,9 @@ const DGD_STATUSES_V1 = (:ready, :fail_closed, :terminal_deferred, :numerical_fa
 const DGD_ALLOWED_U_EXPRESSIONS_V1 = (
     "u_candidate(x)=x1+x2+x3", "u(x)=x1+x2+x3")
 const DGD_ALLOWED_F_EXPRESSIONS_V1 = ("f_candidate(x)=1", "f(x)=1")
+const DGD_G1_TYPED_SOURCE_MARKER_V1 = "u_candidate_steady_planar_quadratic_diffusion_v1"
+const DGD_G1_TYPED_SOURCE_SCHEMA_V1 =
+    "fusionconceptai:genome-v5:g1-typed-source-field-program-v1"
 
 _dgd_text(x, field) = begin
     s = String(x); isempty(strip(s)) && throw(ArgumentError("$field cannot be empty")); s
@@ -30,8 +33,158 @@ _dgd_finite(x, field) = begin
 end
 _dgd_hash(x) = canonical_hash(x)
 
+"""Dispatch only JSON source pairs through the existing typed AST owner.
+
+The implementation lives in VNextCurrentSourceT0T1EntryV1 and delegates
+strict AST parsing to RuntimeV4. Plain legacy expression strings retain their
+existing path without loading the current-source entry point here.
+"""
+function _dgd_current_source_g1_typed_spec_v1(g1)
+    is_json_object(x) = x isa AbstractString && startswith(strip(String(x)), "{")
+    (!is_json_object(g1.u.source_expression) &&
+     !is_json_object(g1.f.source_expression)) && return nothing
+    isdefined(@__MODULE__, :_vnext_current_source_g1_typed_spec_v1) ||
+        throw(ArgumentError("current-source G1 typed AST dispatcher is not loaded"))
+    dispatcher = getfield(@__MODULE__, :_vnext_current_source_g1_typed_spec_v1)
+    Base.invokelatest(dispatcher, g1)
+end
+
 """Reconstruct semantic bodies from declaration fields, never from a hash field."""
 _dgd_g1_body(x::G1DiffusionDeclarationV1) = _g1d_declaration_body(x)
+
+function _dgd_current_source_authored_input_v1(record, input; expected_filename::String)
+    input isa NamedTuple && keys(input) == (:logical_path, :byte_count, :sha256, :bytes) ||
+        throw(ArgumentError("current-source authored input shape mismatch"))
+    path = String(input.logical_path)
+    path == replace(path, '\\' => '/') && !isabspath(path) &&
+        !any(part -> part in ("", ".", ".."), split(path, '/'; keepempty=true)) ||
+        throw(ArgumentError("current-source authored input path is not canonical"))
+    basename(path) == expected_filename ||
+        throw(ArgumentError("current-source authored input filename mismatch"))
+    input.bytes isa Vector{UInt8} ||
+        throw(ArgumentError("current-source authored input bytes must be UInt8"))
+    input.byte_count isa Integer && !(input.byte_count isa Bool) &&
+        Int(input.byte_count) == length(input.bytes) ||
+        throw(ArgumentError("current-source authored input byte count mismatch"))
+    input.sha256 isa Digest256 ||
+        throw(ArgumentError("current-source authored input digest must be Digest256"))
+
+    # The T0 source locator pins the factory/contract source, not the candidate
+    # builder file. Verify that locator independently from the authored inputs.
+    locator = record.source_locator
+    locator.provenance === :current_source && locator.source_ref == record.source_ref &&
+        locator.observed_head == "current-source" &&
+        (locator.head_path_status, locator.working_tree_path_status,
+         locator.working_tree_status) == (:not_observed, :not_observed, :not_observed) &&
+        locator.head_blob_sha256 === nothing ||
+        throw(ArgumentError("current-source record/locator source identity mismatch"))
+    factory_path = record.layer === :G1 ? G1_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 :
+        record.layer === :G2 ? G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 :
+        throw(ArgumentError("current-source authored input has unsupported layer"))
+    locator.source_path == factory_path ||
+        throw(ArgumentError("current-source factory locator path mismatch"))
+    root = locator.repository_root
+    observed_factory = NativeGitReadCompatibilityV1.current_source(root, locator.source_path)
+    observed_factory.byte_count == locator.source_size &&
+        observed_factory.sha256 == locator.source_sha256.value &&
+        observed_factory.bytes == record.source_bytes.bytes &&
+        _vnl_t0_sha(observed_factory.bytes) == record.source_bytes.sha256 ||
+        throw(ArgumentError("current-source factory locator differs from pinned live bytes"))
+
+    # Candidate builder inputs are separate manifest-pinned files under the
+    # candidate directory and are joined by their embedded logical path.
+    observed = NativeGitReadCompatibilityV1.current_source(root, path)
+    observed.byte_count == input.byte_count && observed.bytes == input.bytes &&
+        observed.sha256 == input.sha256.value ||
+        throw(ArgumentError("current-source authored input differs from live bytes"))
+    manifest_path = replace(joinpath(dirname(path), "manifest.json"), '\\' => '/')
+    manifest_entry = NativeGitReadCompatibilityV1.current_source(root, manifest_path)
+    manifest = JSON3.read(String(copy(manifest_entry.bytes)))
+    manifest.schema == "candidate-design-input-manifest-v1" &&
+        String(manifest.candidate_ref.id) == String(record.candidate_ref.id) &&
+        String(manifest.candidate_ref.version) == String(record.candidate_ref.version) ||
+        throw(ArgumentError("current-source authored input manifest identity mismatch"))
+    manifest_directory = dirname(joinpath(root, manifest_path))
+    manifest_relative_path = replace(relpath(joinpath(root, path), manifest_directory),
+        '\\' => '/')
+    manifest_relative_path == replace(basename(path), '\\' => '/') ||
+        throw(ArgumentError("current-source authored input escapes its manifest directory"))
+    matches = Tuple(row for row in manifest.files if String(row.path) == manifest_relative_path)
+    length(matches) == 1 ||
+        throw(ArgumentError("current-source authored input is not uniquely manifest-pinned"))
+    pin = only(matches)
+    Int(pin.bytes) == observed.byte_count && lowercase(String(pin.sha256)) == observed.sha256 ||
+        throw(ArgumentError("current-source authored input manifest pin mismatch"))
+    input
+end
+
+function _dgd_current_source_g1_inputs_v1(record)
+    body = record.semantic_body.body
+    hasproperty(body, :authored_builder_input) && hasproperty(body, :authored_expression_input) ||
+        throw(ArgumentError("current-source G1 authored input carrier is incomplete"))
+    builder = _dgd_current_source_authored_input_v1(record,
+        body.authored_builder_input; expected_filename="g1_source.jl")
+    expression = body.authored_expression_input
+    expression === nothing &&
+        throw(ArgumentError("current-source G1 expression input is missing"))
+    expression = _dgd_current_source_authored_input_v1(record, expression;
+        expected_filename="native_mms_source_expressions.json")
+    dirname(builder.logical_path) == dirname(expression.logical_path) ||
+        throw(ArgumentError("current-source G1 builder/expression inputs have different candidate roots"))
+    (builder=builder, expression=expression)
+end
+
+function _dgd_current_source_g2_builder_input_v1(record)
+    body = record.semantic_body.body
+    hasproperty(body, :authored_builder_input) ||
+        throw(ArgumentError("current-source G2 builder input is missing"))
+    _dgd_current_source_authored_input_v1(record, body.authored_builder_input;
+        expected_filename="g2_source.jl")
+end
+
+function _dgd_g1_body_from_t0_v1(candidate::QualifiedRefV1,
+        declaration::G1DiffusionDeclarationV1,
+        g1_record::VNextT0LocalPresentDeclarationV1,
+        g2_record::VNextT0LocalPresentDeclarationV1, authored_inputs=nothing)
+    actual = g1_record.semantic_body.body
+    marker = "u_candidate_steady_planar_quadratic_diffusion_v1"
+    marked = declaration.u.source_expression == marker
+    authored_spec = _dgd_current_source_g1_typed_spec_v1(declaration)
+    candidate_typed = authored_spec !== nothing
+    typed_carrier = hasproperty(actual, :value) &&
+        hasproperty(actual.value, :g1_typed_source_field_program)
+    typed_carrier == (marked || candidate_typed) ||
+        throw(ArgumentError("G1 thermal source marker/carrier mismatch"))
+    if !(marked || candidate_typed)
+        hasproperty(actual, :authored_builder_input) ||
+            return _dgd_g1_body(declaration)
+        hasproperty(actual, :authored_expression_input) ||
+            throw(ArgumentError("current-source G1 authored input carrier is incomplete"))
+        inputs = authored_inputs === nothing ?
+            _dgd_current_source_g1_inputs_v1(g1_record) : authored_inputs
+        expected = merge(_g1d_declaration_body(declaration),
+            (candidate_ref=candidate, authored_builder_input=inputs.builder,
+             authored_expression_input=inputs.expression))
+        canonical_json(actual) == canonical_json(expected) ||
+            throw(ArgumentError("current-source G1 semantic body differs from typed declaration"))
+        return expected
+    end
+    inputs = authored_inputs === nothing ?
+        _dgd_current_source_g1_inputs_v1(g1_record) : authored_inputs
+    rebuilt = _vnext_current_source_g1_thermal_program_v1(candidate,
+        declaration, g1_record.declaration_ref, g2_record)
+    stored = actual.value.g1_typed_source_field_program
+    canonical_json(stored) == canonical_json(rebuilt) ||
+        throw(ArgumentError("G1 thermal source program differs from deterministic source reconstruction"))
+    expected = merge(_g1d_declaration_body(declaration),
+        (candidate_ref=candidate,
+         authored_builder_input=inputs.builder,
+         authored_expression_input=inputs.expression,
+         value=(g1_typed_source_field_program=rebuilt,)))
+    canonical_json(actual) == canonical_json(expected) ||
+        throw(ArgumentError("G1 thermal T0 semantic body differs from deterministic source reconstruction"))
+    expected
+end
 _dgd_g2_body(candidate::QualifiedRefV1, x::G2MBDeclarationV1) =
     (candidate_ref=candidate,
      candidate_envelope=VNextT0LocalG2CandidateEnvelopeV1(candidate, x.contract_ref,
@@ -43,6 +196,31 @@ _dgd_g2_body(candidate::QualifiedRefV1, x::G2MBDeclarationV1) =
          profile_hash=x.profile_hash)))
 _dgd_g3_body(x::G3SFDeclarationV1, source_ref::QualifiedRefV1) =
     merge(_g3sf_body(x), (source_ref=source_ref,))
+
+function _dgd_g3_body_from_t0_v1(x::G3SFDeclarationV1,
+        record::VNextT0LocalPresentDeclarationV1,
+        bundle::VNextT0LocalTransportV1)
+    locator = record.source_locator
+    if locator.provenance === :current_source
+        isdefined(@__MODULE__, :_vnext_t2_v3_rebuild_authored_g3_semantic_body) ||
+            throw(ArgumentError("current-source G3 typed semantic rebuilder is not loaded"))
+        rebuilt = Base.invokelatest(getfield(@__MODULE__,
+            :_vnext_t2_v3_rebuild_authored_g3_semantic_body), record,
+            record.semantic_body.body, locator.repository_root, bundle.children)
+        canonical_json(rebuilt.declaration) == canonical_json(x) ||
+            throw(ArgumentError("current-source G3 declaration differs from typed-source reconstruction"))
+        source_body = record.semantic_body.body
+        expected_body = merge(rebuilt.semantic_body,
+            (authored_child_design=rebuilt.child_design_source,
+             authored_child_design_input=source_body.authored_child_design_input,
+             authored_builder_input=source_body.authored_builder_input,
+             authored_identity_input=source_body.authored_identity_input))
+        canonical_json(expected_body) == canonical_json(source_body) ||
+            throw(ArgumentError("current-source G3 body differs from typed-source reconstruction"))
+        return expected_body
+    end
+    _dgd_g3_body(x, record.source_ref)
+end
 
 function _dgd_body_from_bundle(bundle::VNextT0LocalTransportV1, layer::Symbol)
     matches = findall(x -> x isa VNextT0LocalPresentDeclarationV1 && x.layer === layer,
@@ -118,13 +296,36 @@ function _dgd_hashes_from_actual(candidate::QualifiedRefV1,
         declaration = layer === :G1 ? g1 : layer === :G2 ? g2 : g3
         _dgd_record_integrity(bundle.declarations[i], candidate, declaration)
     end
+    g1_record = bundle.declarations[findfirst(x -> x isa VNextT0LocalPresentDeclarationV1 && x.layer === :G1,
+        bundle.declarations)]
+    g2_record = bundle.declarations[findfirst(x -> x isa VNextT0LocalPresentDeclarationV1 && x.layer === :G2,
+        bundle.declarations)]
     g3_record = bundle.declarations[findfirst(x -> x isa VNextT0LocalPresentDeclarationV1 && x.layer === :G3,
         bundle.declarations)]
-    expected = (_dgd_g1_body(g1), _dgd_g2_body(candidate, g2),
-        _dgd_g3_body(g3, g3_record.source_ref))
+    g1_inputs = hasproperty(g1_record.semantic_body.body, :authored_builder_input) ?
+        _dgd_current_source_g1_inputs_v1(g1_record) : nothing
+    g2_input = hasproperty(g2_record.semantic_body.body, :authored_builder_input) ?
+        _dgd_current_source_g2_builder_input_v1(g2_record) : nothing
+    if g1_inputs !== nothing && g2_input !== nothing
+        dirname(g1_inputs.builder.logical_path) == dirname(g2_input.logical_path) ||
+            throw(ArgumentError("current-source G1/G2 authored inputs have different candidate roots"))
+    end
+    g2_body = _dgd_g2_body(candidate, g2)
+    g2_input === nothing || (g2_body = merge(g2_body, (authored_builder_input=g2_input,)))
+    expected = (_dgd_g1_body_from_t0_v1(candidate, g1, g1_record, g2_record, g1_inputs),
+        g2_body, _dgd_g3_body_from_t0_v1(g3, g3_record, bundle))
     actual = Tuple(_dgd_body_from_bundle(bundle, layer) for layer in (:G1, :G2, :G3))
-    all(canonical_json(actual[i]) == canonical_json(expected[i]) for i in 1:3) ||
-        throw(ArgumentError("bundle semantic body differs from reconstructed declaration"))
+    layers = (:G1, :G2, :G3)
+    for i in eachindex(layers)
+        canonical_json(actual[i]) == canonical_json(expected[i]) && continue
+        missing = Tuple(field for field in propertynames(expected[i]) if !hasproperty(actual[i], field))
+        extra = Tuple(field for field in propertynames(actual[i]) if !hasproperty(expected[i], field))
+        different = Tuple(field for field in propertynames(expected[i]) if
+            hasproperty(actual[i], field) &&
+            canonical_json(getproperty(actual[i], field)) != canonical_json(getproperty(expected[i], field)))
+        throw(ArgumentError("bundle semantic body differs from reconstructed declaration: " *
+            "layer=$(layers[i]) missing=$(missing) extra=$(extra) different=$(different)"))
+    end
     DeclaredG123HashSetV1(candidate, _dgd_hash(expected[1]), _dgd_hash(expected[2]),
         _dgd_hash(expected[3]), recomputed_bundle)
 end
@@ -378,7 +579,99 @@ function _dgd_expression_subset(input::DeclaredG123InputV1)
     u = input.g1.u.source_expression
     f = input.g1.f.source_expression
     input.g1.K.expression isa G1DiffusionDiagonalAffineKFieldV1 || return false
+    authored_spec = _dgd_current_source_g1_typed_spec_v1(input.g1)
+    (u == DGD_G1_TYPED_SOURCE_MARKER_V1 || authored_spec !== nothing) &&
+        return _dgd_g1_typed_source_capability_v1(input) !== nothing
     u in DGD_ALLOWED_U_EXPRESSIONS_V1 && f in DGD_ALLOWED_F_EXPRESSIONS_V1
+end
+
+"""Return only the typed G1 program reconstructed from the admitted T0 records.
+
+The current T0 capability is intentionally narrow (the authored steady
+thermal source law).  Legacy expression strings keep their original lane and
+are never promoted to source-program proof by this helper.
+"""
+function _dgd_g1_typed_source_capability_v1(input::DeclaredG123InputV1)
+    fixed_marker = input.g1.u.source_expression == DGD_G1_TYPED_SOURCE_MARKER_V1
+    authored_spec = _dgd_current_source_g1_typed_spec_v1(input.g1)
+    (fixed_marker || authored_spec !== nothing) || return nothing
+    fixed_marker && !(input.g1.f.source_expression in DGD_ALLOWED_F_EXPRESSIONS_V1) &&
+        return nothing
+    records = input.bundle.declarations
+    g1_matches = Tuple(record for record in records if
+        record isa VNextT0LocalPresentDeclarationV1 && record.layer === :G1)
+    g2_matches = Tuple(record for record in records if
+        record isa VNextT0LocalPresentDeclarationV1 && record.layer === :G2)
+    length(g1_matches) == 1 && length(g2_matches) == 1 ||
+        throw(ArgumentError("G1 typed source T0 record cardinality mismatch"))
+    g1_record, g2_record = only(g1_matches), only(g2_matches)
+    _dgd_record_integrity(g1_record, input.candidate_ref, input.g1)
+    _dgd_record_integrity(g2_record, input.candidate_ref, input.g2)
+    actual = g1_record.semantic_body.body
+    hasproperty(actual, :value) &&
+        hasproperty(actual.value, :g1_typed_source_field_program) ||
+        throw(ArgumentError("G1 typed source capability is absent from T0"))
+    expected = _dgd_g1_body_from_t0_v1(input.candidate_ref, input.g1,
+        g1_record, g2_record)
+    canonical_json(actual) == canonical_json(expected) ||
+        throw(ArgumentError("G1 typed source T0 body differs from reconstruction"))
+    capability = actual.value.g1_typed_source_field_program
+    capability.schema in (DGD_G1_TYPED_SOURCE_SCHEMA_V1,
+            "fusionconceptai:genome-v5:g1-authored-typed-source-field-program-v1") &&
+        capability.candidate_ref == input.candidate_ref &&
+        capability.g1_source_ref == g1_record.source_ref &&
+        capability.g1_declaration_ref == g1_record.declaration_ref &&
+        capability.g1_u_field_id == input.g1.u.field_id &&
+        capability.g1_f_field_id == input.g1.f.field_id &&
+        capability.g2_source_ref == g2_record.source_ref &&
+        capability.g2_declaration_ref == g2_record.declaration_ref ||
+        throw(ArgumentError("G1 typed source T0 binding differs from declarations"))
+    if authored_spec !== nothing
+        capability.schema == "fusionconceptai:genome-v5:g1-authored-typed-source-field-program-v1" &&
+            capability.spec_hash isa Digest256 ||
+            throw(ArgumentError("candidate-authored G1 spec differs from T0 carrier"))
+        runtime = isdefined(Main, :FusionRuntimeV4) ?
+            getfield(Main, :FusionRuntimeV4) : nothing
+        runtime !== nothing &&
+            isdefined(runtime, :_g1_authored_typed_source_semantics_v1) &&
+            isdefined(runtime, :_g1_authored_typed_source_program_body_v1) &&
+            isdefined(runtime, :_g1_authored_spec_normalize_v1) ||
+            throw(ArgumentError("candidate-authored G1 validator is not loaded"))
+        normalizer = getfield(runtime, :_g1_authored_spec_normalize_v1)
+        normalized_spec = Base.invokelatest(normalizer, authored_spec)
+        capability.spec_hash == canonical_hash(normalized_spec) ||
+            throw(ArgumentError("candidate-authored G1 spec differs from T0 carrier"))
+        validator = getfield(runtime, :_g1_authored_typed_source_semantics_v1)
+        Base.invokelatest(validator, capability)
+        body_fn = getfield(runtime, :_g1_authored_typed_source_program_body_v1)
+        canonical_hash(Base.invokelatest(body_fn, capability)) == capability.capability_hash ||
+            throw(ArgumentError("candidate-authored G1 capability hash mismatch"))
+    end
+    capability
+end
+
+function _dgd_evaluate_g1_typed_source_v1(input::DeclaredG123InputV1,
+        root_name::Symbol, chart_points)
+    capability = _dgd_g1_typed_source_capability_v1(input)
+    capability === nothing && return nothing
+    root_name in (:u, :f) || throw(ArgumentError("unsupported G1 typed source root"))
+    runtime = isdefined(Main, :FusionRuntimeV4) ? getfield(Main, :FusionRuntimeV4) : nothing
+    runtime !== nothing && isdefined(runtime, :evaluate_g1_typed_source_program_v1) ||
+        throw(ArgumentError("G1 typed source evaluator runtime is not loaded"))
+    root = getproperty(capability.roots, root_name)
+    evaluator = getfield(runtime, :evaluate_g1_typed_source_program_v1)
+    result = Base.invokelatest(evaluator, capability, root, Tuple(chart_points))
+    result.status === :ready && result.candidate_ref == input.candidate_ref &&
+        result.g1_source_ref == capability.g1_source_ref &&
+        result.g1_declaration_ref == capability.g1_declaration_ref &&
+        result.g2_source_ref == capability.g2_source_ref &&
+        result.g2_declaration_ref == capability.g2_declaration_ref &&
+        result.program_hash == capability.program_hash && result.root_ref == root &&
+        result.root_hash == canonical_hash(root) &&
+        result.root_type == root.declared_type &&
+        result.chart_points == Tuple(chart_points) ||
+        throw(ArgumentError("G1 typed source evaluation identity mismatch"))
+    Tuple(Float64(value) for value in result.values)
 end
 
 function dgd_compile_v1(input::DeclaredG123InputV1)
@@ -529,7 +822,13 @@ function dgd_composition_admit_v1(input::DeclaredG123InputV1)
     end
 end
 
-function _dgd_scalar_source_values(input::DeclaredG123InputV1)
+function _dgd_scalar_source_values(input::DeclaredG123InputV1,
+        mesh::DGDLocalMeshV1)
+    if input.g1.u.source_expression == DGD_G1_TYPED_SOURCE_MARKER_V1 ||
+        _dgd_current_source_g1_typed_spec_v1(input.g1) !== nothing
+        length(mesh.reference_nodes) == 2 || return nothing
+        return _dgd_evaluate_g1_typed_source_v1(input, :f, mesh.reference_nodes)
+    end
     expression = input.g1.f.source_expression
     expression in DGD_ALLOWED_F_EXPRESSIONS_V1 || return nothing
     (1.0, 1.0)
@@ -580,10 +879,14 @@ end
 function dgd_numerical_solve_v1(input::DeclaredG123InputV1, mesh::DGDLocalMeshV1,
         transfer::DGDTransferReceiptV1)
     transfer.status === :ready || return nothing
-    source_values = _dgd_scalar_source_values(input)
-    source_values === nothing && return DGDNumericalReceiptV1(:terminal_deferred,
-        :unsupported_expression_subset, ((0.0,0.0),(0.0,0.0)), (0.0,0.0), nothing,
-        Inf, 0, _dgd_hash((code=:unsupported_expression_subset,)))
+    source_values = _dgd_scalar_source_values(input, mesh)
+    if source_values === nothing
+        code = input.g1.u.source_expression == DGD_G1_TYPED_SOURCE_MARKER_V1 ?
+            :unsupported_typed_source_mesh : :unsupported_expression_subset
+        return DGDNumericalReceiptV1(:terminal_deferred, code,
+            ((0.0,0.0),(0.0,0.0)), (0.0,0.0), nothing, Inf, 0,
+            _dgd_hash((code=code,)))
+    end
     k = input.g1.K.expression
     p1 = (0 // 1, 1 // 2, 1 // 2); pm = (1 // 2, 1 // 2, 1 // 2); p2 = (1 // 1, 1 // 2, 1 // 2)
     kval = (g1_diffusion_k_eval(k, p1), g1_diffusion_k_eval(k, pm), g1_diffusion_k_eval(k, p2))

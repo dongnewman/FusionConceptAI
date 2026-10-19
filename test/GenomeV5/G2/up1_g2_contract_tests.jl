@@ -256,3 +256,145 @@ end
     @test deferred.admission.physical_status == :not_executed
     @test _FIXTURE.evidence_boundary.b04_compile_before_provider == "pending UP1-04; no provider invocation evidence in UP1-02"
 end
+
+G.load_vnext_t2_components_v2!()
+const _G2_SOURCE_ORDER_ROOT = normpath(joinpath(@__DIR__, "..", "..", ".."))
+const _G2_SOURCE_ORDER_BASE_DIR =
+    "benchmarks/candidate_designs/local-authored-up4-g123-20260928-r2"
+const _G2_SOURCE_ORDER_REVERSED_DIR =
+    "test/fixtures/g2_region_order/current-source-reversed-candidate"
+
+function _g2_current_source_order_case_v1(candidate_directory::AbstractString)
+    built = G._vnext_current_source_candidate_records_v1(
+        _G2_SOURCE_ORDER_ROOT, candidate_directory)
+    records = G._vnext_current_source_records_v1(built)
+    g2_record = only(filter(record -> record.layer === :G2, records.declarations))
+    source = g2_record.semantic_body.body.source
+    projection = G.g2_v5_source_projection_v1(records.g2)
+    (built=built, records=records, g2_record=g2_record,
+        source=source, projection=projection)
+end
+
+function _g2_projected_order_semantics_v1(genome)
+    plan = genome.plan
+    (regions=Tuple((region.region_id, region.lower, region.upper,
+            region.chart_ref, region.embedding_ref, region.field_space_ref,
+            region.boundary_kinds) for region in genome.region_interface.regions),
+        interfaces=Tuple((interface.interface_ref, interface.left_region_id,
+            interface.right_region_id, interface.axis, interface.coordinate,
+            interface.normal, interface.continuity, interface.transfer_kind)
+            for interface in genome.region_interface.interfaces),
+        plan=(chart=G.semantic_view(plan.chart),
+            embedding=G.semantic_view(plan.embedding),
+            field_space=G.semantic_view(plan.field_space),
+            mesh=(region_ids=plan.mesh.region_ids,
+                cells_per_region=plan.mesh.cells_per_region,
+                basis=plan.mesh.basis, quadrature=plan.mesh.quadrature,
+                execution_status=plan.mesh.execution_status),
+            exterior=(boundary_region_ids=plan.exterior.boundary_region_ids,
+                boundary_faces=plan.exterior.boundary_faces,
+                boundary_patches=Tuple(G.semantic_view(patch) for patch in
+                    plan.exterior.boundary_patches),
+                boundary_condition=plan.exterior.boundary_condition,
+                provider_match=plan.exterior.provider_match)),
+        profile=G.semantic_view(genome.grammar_profile),
+        admission=(structural_status=genome.admission.structural_status,
+            geometry_status=genome.admission.geometry_status,
+            mesh_status=genome.admission.mesh_status,
+            physical_status=genome.admission.physical_status,
+            provider_match=genome.admission.provider_match,
+            resolution=genome.admission.resolution,
+            errors=genome.admission.errors,
+            gaps=genome.admission.gaps))
+end
+
+@testset "G2 current-source projection is stable under authored region order" begin
+    authored = _g2_current_source_order_case_v1(_G2_SOURCE_ORDER_BASE_DIR)
+    reversed = _g2_current_source_order_case_v1(_G2_SOURCE_ORDER_REVERSED_DIR)
+
+    @test authored.records.candidate == reversed.records.candidate
+    @test authored.g2_record.source_bytes.sha256 ==
+        reversed.g2_record.source_bytes.sha256
+    @test authored.g2_record.semantic_body.body.authored_builder_input.sha256 !=
+        reversed.g2_record.semantic_body.body.authored_builder_input.sha256
+
+    authored_order = Tuple(region.region_id for region in
+        authored.source.region_interface.regions)
+    reversed_order = Tuple(region.region_id for region in
+        reversed.source.region_interface.regions)
+    @test authored_order == ("local_unit_cube_left", "local_unit_cube_right")
+    @test reversed_order == reverse(authored_order)
+
+    for case in (authored, reversed)
+        factory = case.records.g2
+        declaration = factory.source_declaration
+        receipt = factory.receipt
+        identity = factory.identity
+        @test G.g2mb_admit(case.source).structural_status === :valid
+        @test G.g2mb_admit(case.source).metric_status === :valid
+        @test receipt.status === :present
+        @test receipt.output_source_declaration === declaration
+        @test declaration.source_payload.source_hash == case.source.source_hash
+        @test identity.source_payload_hash == case.source.source_hash ==
+            receipt.source_payload_hash
+        @test declaration.source_content_hash == identity.source_content_hash ==
+            receipt.source_content_hash
+        @test declaration.local_declaration_hash == identity.declaration_hash ==
+            receipt.local_declaration_hash == declaration.declaration.declaration_hash
+        @test case.projection.source_declaration === declaration
+        @test case.projection.source_factory_identity === identity
+        @test case.projection.source_factory_receipt === receipt
+        @test case.projection.source_payload_hash == case.source.source_hash
+        @test case.projection.source_content_hash == identity.source_content_hash
+        @test case.projection.declaration_hash == declaration.declaration_hash
+        @test case.projection.source_map_retained
+        @test case.projection.resolution === :terminal_deferred
+        @test case.projection.claim_ceiling === :contract_only
+    end
+
+    @test authored.source.source_hash != reversed.source.source_hash
+    @test authored.projection.source_content_hash !=
+        reversed.projection.source_content_hash
+    @test authored.projection.declaration_hash != reversed.projection.declaration_hash
+
+    authored_genome = authored.projection.genome
+    reversed_genome = reversed.projection.genome
+    @test _g2_projected_order_semantics_v1(authored_genome) ==
+        _g2_projected_order_semantics_v1(reversed_genome)
+    expected_regions = ("local_unit_cube_left", "local_unit_cube_right")
+    @test Tuple(region.region_id for region in
+        authored_genome.region_interface.regions) == expected_regions
+    @test authored_genome.plan.mesh.region_ids == expected_regions
+    @test Tuple(region_id for region_id in
+        authored_genome.plan.exterior.boundary_region_ids) == expected_regions
+
+    authored_interface = only(authored_genome.region_interface.interfaces)
+    reversed_interface = only(reversed_genome.region_interface.interfaces)
+    @test (authored_interface.left_region_id, authored_interface.right_region_id,
+        authored_interface.axis, authored_interface.coordinate,
+        authored_interface.normal, authored_interface.continuity,
+        authored_interface.transfer_kind) ==
+        ("local_unit_cube_left", "local_unit_cube_right", 1, 3//2, 1,
+            :trace_flux, :conservative)
+    @test (reversed_interface.left_region_id, reversed_interface.right_region_id,
+        reversed_interface.axis, reversed_interface.coordinate,
+        reversed_interface.normal, reversed_interface.continuity,
+        reversed_interface.transfer_kind) ==
+        (authored_interface.left_region_id, authored_interface.right_region_id,
+            authored_interface.axis, authored_interface.coordinate,
+            authored_interface.normal, authored_interface.continuity,
+            authored_interface.transfer_kind)
+
+    patch_keys = Tuple((String(patch.face), patch.region_id) for patch in
+        authored_genome.plan.exterior.boundary_patches)
+    @test collect(patch_keys) == sort!(collect(patch_keys))
+    @test authored_genome.grammar_profile.provider_match === :no_match
+    @test authored_genome.plan.exterior.provider_match === :no_match
+    @test authored_genome.admission.structural_status === :valid
+    @test authored_genome.admission.geometry_status === :valid
+    @test authored_genome.admission.provider_match === :no_match
+    @test authored_genome.admission.resolution === :terminal_deferred
+    @test authored_genome.admission.mesh_status === :not_executed
+    @test authored_genome.admission.physical_status === :not_executed
+    @test isempty(authored_genome.admission.errors)
+end

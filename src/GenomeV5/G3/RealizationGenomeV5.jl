@@ -235,9 +235,13 @@ struct G3ContractBindingV2
             throw(ArgumentError("G3 contract binding requires GenomeContractRef"))
         layer = _g3_contract_layer(contract_ref)
         _g3_validate_authoritative_ref(contract_ref, layer)
-        candidate_ref isa QualifiedRefV1 ||
-            throw(ArgumentError("G3 candidate binding requires QualifiedRefV1"))
-        _g3_require_candidate(candidate_ref)
+        candidate_ref = if candidate_ref isa QualifiedRefV1
+            _g3_require_candidate(candidate_ref)
+        else
+            isdefined(@__MODULE__, :_g3_authored_candidate_from_binding_proof_v1) ||
+                throw(ArgumentError("G3 candidate binding requires QualifiedRefV1"))
+            getfield(@__MODULE__, :_g3_authored_candidate_from_binding_proof_v1)(candidate_ref)
+        end
         version_axes isa G3VersionAxesV2 ||
             throw(ArgumentError("G3 contract binding requires four version axes"))
         _g3_validate_authoritative_axes(version_axes, layer)
@@ -501,8 +505,15 @@ function _g3_expected_unit(kind::Symbol)
     throw(ArgumentError("no expected unit for resource kind $kind"))
 end
 
-function g3_validate_resource_network(network::G3ResourceNetworkV2)
+function g3_validate_resource_network(network::G3ResourceNetworkV2;
+        effort_ports_without_ledger::Tuple=())
     errors = String[]
+    waiver_ids = Tuple(String(id) for id in effort_ports_without_ledger
+        if id isa AbstractString)
+    length(waiver_ids) == length(effort_ports_without_ledger) ||
+        push!(errors, "effort_port_ledger_waiver_ids_must_be_strings")
+    length(unique(waiver_ids)) == length(waiver_ids) ||
+        push!(errors, "effort_port_ledger_waiver_ids_must_be_unique")
     component_map = Dict(x.component_id => x for x in network.components)
     port_map = Dict(x.port_id => x for x in network.resource_ports)
     account_map = Dict(x.account_id => x for x in network.accounts)
@@ -511,11 +522,26 @@ function g3_validate_resource_network(network::G3ResourceNetworkV2)
         push!(get!(entries_by_port, entry.port_id, G3LedgerEntryV2[]), entry)
     end
     closure_accounts = Set(String(id) for c in network.closures for id in c.account_ids)
+    for id in waiver_ids
+        rows = Tuple(port for port in network.resource_ports if port.port_id == id)
+        if length(rows) != 1
+            push!(errors, "effort_port_ledger_waiver_target_missing_or_ambiguous:" * id)
+        else
+            port = only(rows)
+            port.kind === :effort || push!(errors, "effort_port_ledger_waiver_target_not_effort:" * id)
+            haskey(account_map, port.account_id) || push!(errors, "effort_port_ledger_waiver_account_missing:" * id)
+            port.account_id in closure_accounts || push!(errors, "effort_port_ledger_waiver_closure_missing:" * id)
+        end
+    end
     for port in network.resource_ports
         haskey(account_map, port.account_id) || push!(errors, "port_account_missing:" * port.port_id)
         port.unit == _g3_expected_unit(port.kind) || push!(errors, "resource_unit_mismatch:" * port.port_id)
         entries = get(entries_by_port, port.port_id, G3LedgerEntryV2[])
-        isempty(entries) && push!(errors, "missing_consumable_entry:" * port.port_id)
+        if port.port_id in waiver_ids
+            isempty(entries) || push!(errors, "waived_effort_port_has_ledger_entry:" * port.port_id)
+        else
+            isempty(entries) && push!(errors, "missing_consumable_entry:" * port.port_id)
+        end
         port.account_id in closure_accounts || push!(errors, "missing_consumable_closure:" * port.port_id)
     end
     for component in network.components

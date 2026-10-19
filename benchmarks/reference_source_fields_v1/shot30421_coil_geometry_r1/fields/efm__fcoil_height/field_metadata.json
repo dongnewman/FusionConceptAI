@@ -1,0 +1,124 @@
+{
+  "requested_path": "efm/fcoil_height",
+  "resolved_path": "efm/fcoil_height",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      938
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      938
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "fcoil_seg_n"
+    ],
+    "description": "Z extent of each f-coil element; f(fcoil_segs_n)",
+    "dims": [
+      "fcoil_seg_n"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "f-Coil Height",
+    "mds_name": "\\TOP.ANALYSED.EFM:FCOIL_HEIGHT",
+    "name": "efm/fcoil_height",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      1,
+      938
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_FCOIL_HEIGHT",
+    "units": "m",
+    "uuid": "9c25db48-09f1-52c4-b17c-5c34187569d7",
+    "version": 0
+  },
+  "shape": [
+    938
+  ],
+  "chunks": [
+    938
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "fcoil_seg_n"
+  ],
+  "decoded_bytes": 3752,
+  "coordinate_paths": [
+    {
+      "dimension": "fcoil_seg_n",
+      "path": null,
+      "available": false,
+      "shape": null,
+      "dtype": null,
+      "units": null
+    }
+  ],
+  "utc_started": "2026-09-22T02:31:37.775433Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        938
+      ],
+      "full_chunk_shape": [
+        938
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fcoil_height/0",
+      "requested_utc": "2026-09-22T02:31:37.775961Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "594",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"99a6f5c5d425ab66a0fc8c5d7806fcf0\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 594,
+      "compressed_sha256": "46219a5959fa0ace13d185d61d4f897c299df349291b39894fceef41d3f95bc1",
+      "decoded_bytes": 3752,
+      "decoded_sha256": "2e4dbe69e51ab9b3563a1c1a78ad4d30d46aa7c51a8e985f9133c44ef7408c10",
+      "decoded_shape": [
+        938
+      ],
+      "written_shape": [
+        938
+      ],
+      "expected_full_bytes": 3752,
+      "expected_edge_bytes": 3752,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fcoil_height\\assembled.raw",
+  "assembled_raw_bytes": 3752,
+  "assembled_raw_sha256": "2e4dbe69e51ab9b3563a1c1a78ad4d30d46aa7c51a8e985f9133c44ef7408c10",
+  "finite_count": 938,
+  "total_count": 938,
+  "minimum": -0.2890002131462097,
+  "maximum": 0.5417500138282776
+}

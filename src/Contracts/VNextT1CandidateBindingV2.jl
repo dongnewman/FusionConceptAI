@@ -23,6 +23,8 @@ const _VNEXT_T1_BINDING_REASONS_V2 = (
         :candidate_digest_mismatch, :source_package_hash_mismatch,
         :wire_hash_mismatch),
 )
+const _VNEXT_T1_BINDING_WIRE_HASH_REQUIRED_REASONS_V2 = (
+    :exact_explicit_binding, :missing_observed_wire, :wire_hash_mismatch)
 
 """One explicit candidate binding; `wire` may be absent at this boundary."""
 struct VNextT1CandidateBindingInputV2
@@ -78,8 +80,9 @@ struct VNextT1CandidateBindingReceiptV2
             throw(ArgumentError("duplicate conflict count mismatch"))
         reason === :missing_expected_wire && wire_hash !== nothing &&
             throw(ArgumentError("missing expected wire cannot carry wire_hash"))
-        reason !== :missing_expected_wire && wire_hash === nothing &&
-            throw(ArgumentError("present expected wire requires wire_hash"))
+        reason in _VNEXT_T1_BINDING_WIRE_HASH_REQUIRED_REASONS_V2 &&
+            wire_hash === nothing &&
+            throw(ArgumentError("wire-dependent binding result requires wire_hash"))
         accepted === false || throw(ArgumentError("candidate-binding receipt cannot be accepted"))
         claim_ceiling === VNEXT_T1_CANDIDATE_BINDING_V2_CLAIM_CEILING ||
             throw(ArgumentError("candidate-binding claim ceiling must remain contract_only"))

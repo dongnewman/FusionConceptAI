@@ -1,0 +1,121 @@
+{
+  "requested_path": "ayc/angle",
+  "resolved_path": "ayc/angle",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      131
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      131
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "radial_index"
+    ],
+    "description": "",
+    "dims": [
+      "radial_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "scattering angle",
+    "mds_name": "\\TOP.ANALYSED.AYC:ANGLE",
+    "name": "ayc/angle",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      1,
+      130
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_ANGLE",
+    "units": "",
+    "uuid": "0de8b65f-96d9-5b70-9c9b-de39ab38d7b0",
+    "version": 0
+  },
+  "shape": [
+    131
+  ],
+  "chunks": [
+    131
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "radial_index"
+  ],
+  "decoded_bytes": 524,
+  "coordinate_paths": [
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        131
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/angle/0",
+      "requested_utc": "2026-09-22T08:09:59.251965+00:00",
+      "compressed_path": "fields/ayc__angle/chunks/0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "440",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"f81c1ba56aa3676596789f95f9d65344\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 440,
+      "compressed_sha256": "706f6b4dd5be5a70ebf9e9e306b9006a195d6c5f3bcd046848c0e3f5b33aafa1",
+      "decoded_path": "fields/ayc__angle/chunks/0.raw",
+      "decoded_bytes": 524,
+      "decoded_sha256": "92ab175f9b1375a3194a372a86bf761b4c07ffb57b66d8b5608d99eeef2cdfc0",
+      "decoded_shape": [
+        131
+      ],
+      "full_bytes": 524,
+      "edge_bytes": 524,
+      "completed_utc": "2026-09-22T08:10:00.837594+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:09:59.251166+00:00",
+  "completed_utc": "2026-09-22T08:10:00.840873+00:00",
+  "assembled_path": "fields/ayc__angle/assembled.raw",
+  "assembled_bytes": 524,
+  "assembled_sha256": "92ab175f9b1375a3194a372a86bf761b4c07ffb57b66d8b5608d99eeef2cdfc0",
+  "finite_count": 130,
+  "total_count": 131,
+  "minimum": 74.92140197753906,
+  "maximum": 120.85399627685547
+}

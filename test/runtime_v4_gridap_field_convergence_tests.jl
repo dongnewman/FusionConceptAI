@@ -2,7 +2,7 @@ using Test
 push!(LOAD_PATH, dirname(@__DIR__))
 using FusionConceptAI
 using Gridap
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_gridap_field_convergence_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_gridap_field_convergence_fixture.jl"))
 
 @testset "B2 real candidate-bound convergence" begin
     r = FusionRuntimeV4.run_gridap_field_convergence(gridap_b2_compilations)

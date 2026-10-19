@@ -45,6 +45,7 @@ include("Contracts/CandidateStatePackage.jl")
 include("Contracts/CandidateStatePackageV5.jl")
 include("GenomeV5/Integration/GenomeV5Integration.jl")
 include("GenomeV5/UP2/UP2ModuleEntryV1.jl")
+include("GenomeV5/Integration/VNextT2ModuleEntryV2.jl")
 include("IR/ConditionalEGraph.jl")
 include("IR/ConditionalEGraphTypes.jl")
 include("Canonical/ConditionalEGraphCanonical.jl")
@@ -122,7 +123,14 @@ export UnitSignature, Digest256, digest256_text, TimeKindV1, static_time, algebr
        v5_deferred_migration_receipt,
        CandidateStatePackageV5, load_genome_v5_components!, genome_v5_component_layer_order,
        load_genome_v5_up2_components!, up2_module_load_state, up2_module_dependency_order,
+       load_vnext_t2_components_v2!, vnext_t2_module_load_state_v2, vnext_t2_module_dependency_order_v2,
        integrate_genome_v5,
+       G3AuthoredPowerLawV1, G3ControlResourceLinkV2,
+       G3AuthoredRealizationPayloadV1, G3AuthoredSourceDesignBindingV1,
+       G3AuthoredSourceDesignAggregateV1, g3_authored_realization_payload_v1,
+       g3_authored_v5_children_v1, g3_authored_source_design_contract_ref_v1,
+       g3_authored_source_design_axes_v1, g3_authored_source_design_aggregate_v1,
+       g3_authored_source_design_payload_valid_v1,
        derive_conditional_egraph, canonical_json, canonical_hash, mechanism_hash, mechanism_subject_hash,
        field_geometry_hash, realization_control_hash, realization_hash, control_hash, coupled_realization_control_hash, genome_bundle_hash,
        AuthorityProtocolV4, IntermediateAuthorityProtocolV4, DerivedEGraphViewV4,

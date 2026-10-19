@@ -82,7 +82,7 @@ struct VNextT0LocalSourceLocatorV1
             throw(ArgumentError("locator path statuses must be Symbols"))
         head_blob_sha256 === nothing || head_blob_sha256 isa Digest256 ||
             throw(ArgumentError("head_blob_sha256 must be Digest256 or nothing"))
-        provenance in (:repository_head, :isolated_test_fixture) ||
+        provenance in (:repository_head, :isolated_test_fixture, :up1_frozen_snapshot, :current_source) ||
             throw(ArgumentError("locator provenance invalid"))
         new(r, p, u, source_ref, Int(size), sha256, h, head_path_status,
             working_tree_path_status, working_tree_status, head_blob_sha256, provenance)
@@ -170,7 +170,7 @@ struct VNextT0LocalFactoryResultV1
         locator.source_size == source_size || throw(ArgumentError("factory locator source size mismatch"))
         locator.source_sha256 == source_bytes.sha256 || throw(ArgumentError("factory locator source hash mismatch"))
         locator.provenance == locator_provenance || throw(ArgumentError("factory locator provenance mismatch"))
-        locator_provenance in (:repository_head, :isolated_test_fixture) ||
+        locator_provenance in (:repository_head, :isolated_test_fixture, :up1_frozen_snapshot, :current_source) ||
             throw(ArgumentError("locator_provenance invalid"))
         source_bytes.sha256 == _vnl_t0_sha(source_bytes.bytes) || throw(ArgumentError("source hash mismatch"))
         declaration_bytes.sha256 == _vnl_t0_sha(declaration_bytes.bytes) || throw(ArgumentError("declaration hash mismatch"))
@@ -232,11 +232,20 @@ function vnext_t0_local_normalize_factory_result_v1(raw_result::Any,
         source_locator::VNextT0LocalSourceLocatorV1,
         declaration_ref::QualifiedRefV1,
         declaration_bytes::VNextT0LocalBytesV1,
-        contract_ref::GenomeContractRef)
+        contract_ref::GenomeContractRef; frozen_context=nothing,
+        frozen_contexts=nothing)
     result_type_ok = (factory_api === :G1 && raw_result isa G1SourceFactoryConstructionResultV1) ||
         (factory_api === :G2 && raw_result isa G2SourceFactoryConstructionResultV1) ||
         (factory_api === :G3 && raw_result isa G3FactoryConstructionResultV1)
     result_type_ok || throw(ArgumentError("factory_result_type_invalid"))
+    context = _vnl_t0_frozen_context(source_locator; frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts)
+    if context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        NativeGitReadCompatibilityV1.up1_frozen_runtime_active() ||
+            throw(ArgumentError("UP1 frozen runtime Git guard is not active"))
+        _vnl_t0_snapshot_candidate_matches(context, candidate) ||
+            throw(ArgumentError("snapshot_candidate_mismatch"))
+    end
     receipt = raw_result.receipt
     receipt.status === :present || throw(ArgumentError("factory_result_status_mismatch"))
     raw_result.source_declaration !== nothing ||
@@ -327,7 +336,8 @@ function vnext_t0_local_normalize_factory_result_v1(raw_result::Any,
         throw(ArgumentError("factory_result_source_content_mismatch"))
     locator.source_bytes == length(source_bytes.bytes) ||
         throw(ArgumentError("factory_result_source_size_mismatch"))
-    _vnl_t0_locator_bytes(source_locator) == source_bytes.bytes ||
+    _vnl_t0_locator_bytes(source_locator; frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts) == source_bytes.bytes ||
         throw(ArgumentError("source_locator_bytes_mismatch"))
     actual_declaration_bytes = Vector{UInt8}(codeunits(canonical_json(declaration_bytes_actual)))
     declaration_bytes.bytes == actual_declaration_bytes ||
@@ -387,7 +397,8 @@ function vnext_t0_local_normalize_g3_feedback_declaration_v1(raw::G3SFDeclaratio
         source_bytes::VNextT0LocalBytesV1,
         source_locator::VNextT0LocalSourceLocatorV1,
         declaration_ref::QualifiedRefV1,
-        semantic_body::VNextT0LocalSemanticBodyV1)
+        semantic_body::VNextT0LocalSemanticBodyV1; frozen_context=nothing,
+        frozen_contexts=nothing)
     raw.candidate_ref == candidate || throw(ArgumentError("g3_feedback_candidate_mismatch"))
     body_candidate = getproperty(semantic_body.body, :candidate_ref)
     body_source = getproperty(semantic_body.body, :source_ref)
@@ -401,7 +412,8 @@ function vnext_t0_local_normalize_g3_feedback_declaration_v1(raw::G3SFDeclaratio
     # the two outer refs permits a stale or fabricated authority/target tuple
     # to be carried into a fresh candidate.
     _vnl_t0_validate_g3_feedback_projection_v1(raw, semantic_body.body, candidate)
-    _vnl_t0_locator_bytes(source_locator) == source_bytes.bytes ||
+    _vnl_t0_locator_bytes(source_locator; frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts) == source_bytes.bytes ||
         throw(ArgumentError("g3_feedback_source_locator_bytes_mismatch"))
     source_bytes.sha256 == _vnl_t0_sha(source_bytes.bytes) ||
         throw(ArgumentError("g3_feedback_source_hash_mismatch"))
@@ -695,6 +707,98 @@ struct VNextT0LocalAbsentDeclarationV1
     status::Symbol
 end
 const VNextT0LocalDeclarationV1 = Union{VNextT0LocalPresentDeclarationV1,VNextT0LocalAbsentDeclarationV1}
+
+"""Convert only a same-candidate, factory-reported G3 bundle absence to T0 absence.
+
+This bridge does not project the authored symbolic G3 declaration into T0 as
+present authority. It accepts only a structurally valid G3 design with missing
+upstream authority and typed-absent realization/control/binding children, plus
+the G3 source factory's typed-absent `:bundle` result. Frozen source bytes and
+their hashes remain the consumer's responsibility.
+"""
+function vnext_t0_g3_absent_from_factory_v1(candidate::QualifiedRefV1,
+        design::NamedTuple, result)
+    require(ok, code) = ok || throw(ArgumentError(
+        "vnext_t0_g3_absent_from_factory_v1:" * String(code)))
+
+    require(result isa G3FactoryConstructionResultV1, :factory_result_type_invalid)
+    require(candidate.version == "v5", :candidate_version_invalid)
+    for field in (:candidate_ref, :scenario_id, :declaration, :validation,
+            :source_ref, :realization_state, :control_state, :binding_key,
+            :binding_absent, :upstream_authority_status)
+        require(hasproperty(design, field), Symbol(:design_field_missing_, field))
+    end
+    require(design.candidate_ref == candidate, :design_candidate_mismatch)
+    require(design.declaration isa G3SFDeclarationV1, :design_declaration_type_invalid)
+    declaration = design.declaration
+    require(declaration.candidate_ref == candidate, :declaration_candidate_mismatch)
+    validation = g3_sf_validate_v1(declaration)
+    require(validation == (:valid, ()), :design_declaration_not_valid)
+    require(design.validation == validation, :design_validation_mismatch)
+    require(design.upstream_authority_status == (G1=:missing, G2=:missing),
+        :design_upstream_authority_not_absent)
+    require(length(declaration.upstream_authority) == 2 &&
+        all(a -> a.candidate_ref == candidate && a.status === :missing,
+            declaration.upstream_authority), :declaration_upstream_authority_not_absent)
+
+    realization = design.realization_state
+    require(realization isa G3RealizationSourceStateV1, :realization_state_type_invalid)
+    require(realization.key.candidate_ref == candidate &&
+        realization.key.parent_g3_declaration_hash == declaration.declaration_hash &&
+        realization.key.child_kind === :realization, :realization_state_identity_mismatch)
+    require(realization.state_status === :typed_absent && realization.payload === nothing &&
+        realization.source_content_hash === nothing && !isempty(realization.missing_slots) &&
+        realization.contract_admission === :terminal_deferred,
+        :realization_state_not_typed_absent)
+
+    control = design.control_state
+    require(control isa G3ControlStateV1, :control_state_type_invalid)
+    require(control.key.candidate_ref == candidate &&
+        control.key.parent_g3_declaration_hash == declaration.declaration_hash &&
+        control.key.child_kind === :control, :control_state_identity_mismatch)
+    require(control.state_status === :typed_absent && control.source_payload_ref === nothing &&
+        control.editable_body === nothing && !isempty(control.missing_slots) &&
+        control.contract_admission === :terminal_deferred,
+        :control_state_not_typed_absent)
+
+    binding_key = design.binding_key
+    require(binding_key isa G3BindingChildKeyV2 &&
+        binding_key.candidate_ref == candidate &&
+        binding_key.parent_g3_declaration_ref == design.source_ref &&
+        binding_key.parent_g3_declaration_hash == declaration.declaration_hash &&
+        binding_key.child_kind === :binding, :binding_key_identity_mismatch)
+    binding_absent = design.binding_absent
+    require(binding_absent isa Tuple && length(binding_absent) == 2 &&
+        all(x -> x isa G3BindingChildAbsentV2 && x.status === :typed_absent &&
+            x.reason in (:missing_child, :missing_provenance, :t0_typed_absent,
+                :t0_terminal_deferred), binding_absent) &&
+        Set(x.child_kind for x in binding_absent) == Set((:realization, :control)),
+        :binding_children_not_typed_absent)
+
+    identity = result.identity
+    receipt = result.receipt
+    require(g3_factory_result_status(result) === :typed_absent &&
+        identity isa AbsentG3FactoryIdentityV1 &&
+        receipt isa AbsentG3FactoryConstructionReceiptV1, :factory_result_not_typed_absent)
+    require(identity.scope === :bundle && receipt.scope === :bundle &&
+        result.binding === nothing && result.source_declaration === nothing,
+        :factory_result_scope_or_material_mismatch)
+    require(identity.reason === receipt.reason &&
+        identity.reason in (:locator_missing, :common_handle_missing, :contract_ref_missing,
+            :version_axes_missing, :source_declaration_ref_missing, :source_file_missing,
+            :source_authority_missing), :factory_absence_reason_invalid)
+    require(identity.terminal_deferred && receipt.status === :typed_absent &&
+        receipt.terminal_deferred, :factory_absence_status_invalid)
+    require(!identity.candidate_identity_created &&
+        !identity.g3_source_declaration_hash_created &&
+        !identity.final_candidate_or_package_declaration_hash_created &&
+        !receipt.candidate_identity_created && !receipt.g3_source_declaration_hash_created &&
+        !receipt.final_candidate_or_package_declaration_hash_created &&
+        !receipt.trusted_attestation_created, :factory_absence_created_identity)
+    VNextT0LocalAbsentDeclarationV1(:G3, candidate, :missing_material,
+        :terminal_deferred)
+end
+
 semantic_view(x::VNextT0LocalPresentDeclarationV1) =
     (layer=x.layer, candidate_ref=x.candidate_ref, source_ref=x.source_ref,
      declaration_ref=x.declaration_ref, axes=x.axes, source_bytes=x.source_bytes,
@@ -716,11 +820,22 @@ struct VNextT0LocalTransportV1
     status::Symbol
     errors::Tuple{Vararg{Symbol}}
     gaps::Tuple{Vararg{Symbol}}
+    frozen_source_authority::Any
 end
-semantic_view(x::VNextT0LocalTransportV1) =
-    (schema_id=VNEXT_T0_LOCAL_SCHEMA_ID_V1, schema_version=VNEXT_T0_LOCAL_SCHEMA_VERSION_V1,
-     candidate_ref=x.candidate_ref, declarations=x.declarations, children=x.children,
-     feedback=x.feedback, bundle_hash=x.bundle_hash, status=x.status, errors=x.errors, gaps=x.gaps)
+VNextT0LocalTransportV1(candidate_ref, declarations, children, feedback,
+        bundle_hash, status, errors, gaps) =
+    VNextT0LocalTransportV1(candidate_ref, declarations, children, feedback,
+        bundle_hash, status, errors, gaps, nothing)
+function _vnl_t0_transport_semantic_view(x::VNextT0LocalTransportV1)
+    body = (schema_id=VNEXT_T0_LOCAL_SCHEMA_ID_V1,
+        schema_version=VNEXT_T0_LOCAL_SCHEMA_VERSION_V1,
+        candidate_ref=x.candidate_ref, declarations=x.declarations, children=x.children,
+        feedback=x.feedback, bundle_hash=x.bundle_hash, status=x.status,
+        errors=x.errors, gaps=x.gaps)
+    x.frozen_source_authority === nothing ? body :
+        merge(body, (frozen_source_authority=x.frozen_source_authority,))
+end
+semantic_view(x::VNextT0LocalTransportV1) = _vnl_t0_transport_semantic_view(x)
 canonical_json(x::VNextT0LocalTransportV1) = canonical_json(semantic_view(x))
 
 struct VNextT0LocalAdmissionV1
@@ -773,7 +888,136 @@ function _vnl_t0_body_hash(body::VNextT0LocalSemanticBodyV1)
     _vnl_t0_finite(body.body) || throw(ArgumentError("semantic body contains NaN or Inf"))
     canonical_hash(body.body)
 end
-function _vnl_t0_locator_bytes(locator::VNextT0LocalSourceLocatorV1)
+function _vnl_t0_formal_frozen_mode()
+    any(key -> haskey(ENV, key), ("FUSION_T2_FROZEN_SNAPSHOT_ID",
+        "FUSION_T2_FROZEN_MANIFEST_SHA256", "FUSION_T2_FROZEN_PROTOCOL_SHA256",
+        "FUSION_T2_FROZEN_PROTOCOL_PATH", "FUSION_T2_FROZEN_QUERY_AUDIT_PATH"))
+end
+
+function _vnl_t0_frozen_context(locator::VNextT0LocalSourceLocatorV1;
+        frozen_context=nothing, frozen_contexts=nothing)
+    frozen_context !== nothing && return frozen_context
+    frozen_contexts === nothing && return nothing
+    frozen_contexts isa AbstractDict || throw(ArgumentError("frozen_contexts must be a map"))
+    key = (locator.source_path, locator.source_sha256.value)
+    get(frozen_contexts, key, nothing)
+end
+
+_vnl_t0_snapshot_candidate_matches(context, candidate::QualifiedRefV1) =
+    !(context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) ||
+    candidate.id == NativeGitReadCompatibilityV1.frozen_source_candidate_ref(context)
+
+function _vnl_t0_locator_bytes(locator::VNextT0LocalSourceLocatorV1;
+        frozen_context=nothing, frozen_contexts=nothing)
+    context = _vnl_t0_frozen_context(locator; frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts)
+    locator.provenance === :up1_frozen_snapshot &&
+        !(context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) &&
+        throw(ArgumentError("UP1 snapshot locator requires its frozen context"))
+    if context !== nothing
+        isdefined(@__MODULE__, :NativeGitReadCompatibilityV1) ||
+            throw(ArgumentError("frozen source authority module missing"))
+        if context isa AbstractString
+            locator.provenance === :current_source ||
+                throw(ArgumentError("current source locator provenance mismatch"))
+            realpath(locator.repository_root) == realpath(String(context)) ||
+                throw(ArgumentError("source locator root differs from current source root"))
+            locator.source_uri == locator.source_ref.id ||
+                throw(ArgumentError("source URI/ref mismatch"))
+            source = NativeGitReadCompatibilityV1.current_source(context, locator.source_path)
+            source.byte_count == locator.source_size ||
+                throw(ArgumentError("source locator size mismatch"))
+            Digest256(source.sha256) == locator.source_sha256 ||
+                throw(ArgumentError("source locator hash mismatch"))
+            return source.bytes
+        elseif context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+            NativeGitReadCompatibilityV1.up1_frozen_runtime_active() ||
+                throw(ArgumentError("UP1 frozen runtime Git guard is not active"))
+            if locator.provenance === :up1_frozen_snapshot
+                locator.observed_head == "up1:" * context.snapshot_id ||
+                    throw(ArgumentError("UP1 snapshot locator identity mismatch"))
+                (locator.head_path_status, locator.working_tree_path_status,
+                    locator.working_tree_status) ==
+                    (:not_observed, :not_observed, :not_observed) ||
+                    throw(ArgumentError("UP1 snapshot locator contains Git state claims"))
+                locator.head_blob_sha256 === nothing ||
+                    throw(ArgumentError("UP1 snapshot locator contains a Git blob claim"))
+            end
+            realpath(locator.repository_root) == context.source_root ||
+                throw(ArgumentError("source locator root differs from UP1 frozen root"))
+            locator.source_uri == locator.source_ref.id ||
+                throw(ArgumentError("source URI/ref mismatch"))
+            source = NativeGitReadCompatibilityV1.frozen_source(context,
+                locator.source_path)
+            source === nothing && throw(ArgumentError("UP1 frozen source bytes missing"))
+            source.role in ("fixture_data", "test_fixture", "synthetic_fixture") &&
+                throw(ArgumentError("UP1 frozen source role is not production input"))
+            length(source.bytes) == locator.source_size ||
+                throw(ArgumentError("source locator size mismatch"))
+            source.sha256 == locator.source_sha256.value ||
+                throw(ArgumentError("source locator hash mismatch"))
+            return source.bytes
+        end
+        context isa NativeGitReadCompatibilityV1.FrozenSourceContextV1 ||
+            throw(ArgumentError("frozen source context type invalid"))
+        observation = NativeGitReadCompatibilityV1.frozen_observation(context, locator.source_path)
+        observation === nothing && throw(ArgumentError("frozen source observation missing"))
+        observation.worktree_path_kind === :regular_file ||
+            throw(ArgumentError(observation.worktree_path_kind in (:missing, :directory, :other) ?
+                "source locator is not a file" : "source locator is unreadable or unsafe"))
+        source = NativeGitReadCompatibilityV1.frozen_source(context, locator.source_path)
+        source === nothing && throw(ArgumentError("frozen source bytes missing"))
+        source.role == "worktree_raw" || throw(ArgumentError("frozen source role invalid"))
+        locator.source_uri == locator.source_ref.id ||
+            throw(ArgumentError("source URI/ref mismatch"))
+        length(source.bytes) == locator.source_size ||
+            throw(ArgumentError("source locator size mismatch"))
+        _vnl_t0_sha(source.bytes) == locator.source_sha256 ||
+            throw(ArgumentError("source locator hash mismatch"))
+        NativeGitReadCompatibilityV1.frozen_root_matches(context, locator.repository_root) ||
+            throw(ArgumentError("source locator root differs from frozen root"))
+        observation.worktree_raw_bytes == source.byte_count ||
+            throw(ArgumentError("frozen worktree byte count differs from its observation"))
+        observation.worktree_raw_sha256 == source.sha256 ||
+            throw(ArgumentError("frozen worktree SHA differs from its observation"))
+        if observation.filter_input_key !== nothing
+            observation.filter_input_key == source.manifest_key ||
+                throw(ArgumentError("frozen clean-filter input differs from worktree bytes"))
+            observation.filter_input_sha256 == source.sha256 ||
+                throw(ArgumentError("frozen clean-filter input SHA differs from worktree bytes"))
+        end
+        if observation.filter_status === :matches
+            observation.filter_input_key == source.manifest_key ||
+                throw(ArgumentError("matched frozen clean-filter result lacks its raw input row"))
+            observation.filter_input_sha256 == source.sha256 ||
+                throw(ArgumentError("matched frozen clean-filter input SHA differs from raw bytes"))
+            observation.filter_output_key === nothing &&
+                throw(ArgumentError("matched frozen clean-filter output key is missing"))
+            observation.head_bytes_key === nothing &&
+                throw(ArgumentError("matched frozen HEAD key is missing"))
+            output = NativeGitReadCompatibilityV1.frozen_source(context,
+                observation.filter_output_key)
+            head = NativeGitReadCompatibilityV1.frozen_source(context,
+                observation.head_bytes_key)
+            output === nothing && throw(ArgumentError("matched frozen clean-filter output is missing"))
+            head === nothing && throw(ArgumentError("matched frozen HEAD bytes are missing"))
+            output.role == "clean_filter_output" && head.role == "head_canonical" ||
+                throw(ArgumentError("matched frozen clean-filter row roles are invalid"))
+            output.byte_count == observation.filter_output_bytes &&
+                output.sha256 == observation.filter_output_sha256 ||
+                throw(ArgumentError("matched frozen clean-filter output differs from its observation"))
+            head.byte_count == observation.head_bytes_bytes &&
+                head.sha256 == observation.head_bytes_sha256 ||
+                throw(ArgumentError("matched frozen HEAD row differs from its observation"))
+            output.bytes == head.bytes ||
+                throw(ArgumentError("matched frozen clean-filter output differs from HEAD bytes"))
+        end
+        return copy(source.bytes)
+    end
+    NativeGitReadCompatibilityV1.up1_frozen_runtime_active() &&
+        throw(ArgumentError("UP1 active runtime forbids source reads without a frozen context"))
+    _vnl_t0_formal_frozen_mode() &&
+        throw(ArgumentError("formal T0 source read requires an authorized frozen context"))
     root = realpath(locator.repository_root)
     path = normpath(joinpath(root, locator.source_path))
     real = realpath(path)
@@ -794,10 +1038,17 @@ function _vnl_t0_axes_ok(axes)
         all(x -> x.version == VNEXT_T0_LOCAL_AXIS_VERSION_V1, axes)
 end
 
-function _vnl_t0_errors(x::VNextT0LocalPresentDeclarationV1, candidate::QualifiedRefV1)
+function _vnl_t0_errors(x::VNextT0LocalPresentDeclarationV1, candidate::QualifiedRefV1;
+        frozen_context=nothing, frozen_contexts=nothing)
     e = Symbol[]
     x.layer in VNEXT_T0_LOCAL_LAYERS_V1 || push!(e, :foreign_layer)
     x.candidate_ref == candidate || push!(e, :foreign_candidate)
+    context = try _vnl_t0_frozen_context(x.source_locator;
+        frozen_context=frozen_context, frozen_contexts=frozen_contexts) catch; nothing end
+    if context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1 &&
+            !_vnl_t0_snapshot_candidate_matches(context, candidate)
+        push!(e, :snapshot_candidate_mismatch)
+    end
     _vnl_t0_axes_ok(x.axes) || push!(e, :axes_identity_or_order_invalid)
     length(unique(canonical_hash(a).value for a in x.axes)) == 4 || push!(e, :duplicate_axis)
     for (i, axis) in enumerate(x.axes)
@@ -810,7 +1061,8 @@ function _vnl_t0_errors(x::VNextT0LocalPresentDeclarationV1, candidate::Qualifie
     x.semantic_body.bytes.sha256 == _vnl_t0_sha(x.semantic_body.bytes.bytes) || push!(e, :semantic_body_bytes_hash_mismatch)
     isempty(x.semantic_body.bytes.bytes) && push!(e, :semantic_body_bytes_missing)
     try
-        _vnl_t0_locator_bytes(x.source_locator) == x.source_bytes.bytes || push!(e, :source_locator_bytes_mismatch)
+        _vnl_t0_locator_bytes(x.source_locator; frozen_context=frozen_context,
+            frozen_contexts=frozen_contexts) == x.source_bytes.bytes || push!(e, :source_locator_bytes_mismatch)
     catch
         push!(e, :source_locator_unreadable_or_escape)
     end
@@ -868,7 +1120,7 @@ function _vnl_t0_factory_result_binding_errors(fr, x, candidate)
     r.source_size == length(x.source_bytes.bytes) || push!(e, :factory_result_source_size_mismatch)
     r.source_bytes.bytes == x.source_bytes.bytes || push!(e, :factory_result_source_content_mismatch)
     r.source_bytes.sha256 == x.source_bytes.sha256 || push!(e, :factory_result_source_content_mismatch)
-    r.locator_provenance in (:repository_head, :isolated_test_fixture) ||
+    r.locator_provenance in (:repository_head, :isolated_test_fixture, :up1_frozen_snapshot, :current_source) ||
         push!(e, :factory_result_locator_provenance_mismatch)
     try
         r.locator.repository_root == x.source_locator.repository_root ||
@@ -1009,8 +1261,9 @@ function _vnl_t0_factory_result_binding_errors(fr, x, candidate)
         r.factory_api === :G3_FEEDBACK ? VNEXT_T0_G3_FEEDBACK_AXES_V1 : ()
     r.axes == expected_axes || push!(e, :factory_result_axes_mismatch)
     try
-        expected_contract = r.factory_api === :G1 ? _g1sf_expected_contract() :
-            r.factory_api === :G2 ? _g2sf_expected_contract() :
+        expected_contract = r.factory_api === :G1 ?
+            _g1sf_expected_contract(getproperty(x.semantic_body.body, :source_payload)) :
+            r.factory_api === :G2 ? _g2sf_expected_contract(getproperty(x.semantic_body.body, :source)) :
             r.factory_api === :G3_FEEDBACK ? vnext_t0_local_g3_feedback_contract_v1() :
             g3_contract_ref(:realization)
         r.contract_ref == expected_contract || push!(e, :factory_result_contract_mismatch)
@@ -1043,11 +1296,19 @@ function _vnl_t0_absent_errors(x::VNextT0LocalAbsentDeclarationV1, candidate)
     x.reason in (:missing_material, :source_unavailable, :declaration_unavailable) || push!(e, :absence_reason_invalid)
     e
 end
-function _vnl_t0_child_errors(child, candidate, kind)
+function _vnl_t0_child_errors(child, candidate, kind; frozen_context=nothing,
+        frozen_contexts=nothing)
     e = Symbol[]
     child.kind === kind || push!(e, :child_kind_mismatch)
+    context = child isa VNextT0LocalChildPresentV1 ?
+        (try _vnl_t0_frozen_context(child.source_locator; frozen_context=frozen_context,
+            frozen_contexts=frozen_contexts) catch; nothing end) : nothing
     if child isa VNextT0LocalChildPresentV1
         child.candidate_ref == candidate || push!(e, :child_candidate_mismatch)
+        if context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1 &&
+                !_vnl_t0_snapshot_candidate_matches(context, candidate)
+            push!(e, :snapshot_candidate_mismatch)
+        end
         child.layer === :G3 || push!(e, :child_layer_invalid)
         child.child_id == String(kind) || push!(e, :child_id_mismatch)
         isempty(child.child_id) && push!(e, :child_id_missing)
@@ -1055,7 +1316,8 @@ function _vnl_t0_child_errors(child, candidate, kind)
         child.source_ref.id == child.source_locator.source_uri || push!(e, :child_source_uri_mismatch)
         child.source_bytes.sha256 == _vnl_t0_sha(child.source_bytes.bytes) || push!(e, :child_source_hash_mismatch)
         try
-            _vnl_t0_locator_bytes(child.source_locator) == child.source_bytes.bytes || push!(e, :child_locator_bytes_mismatch)
+            _vnl_t0_locator_bytes(child.source_locator; frozen_context=frozen_context,
+                frozen_contexts=frozen_contexts) == child.source_bytes.bytes || push!(e, :child_locator_bytes_mismatch)
         catch
             push!(e, :child_locator_unreadable_or_escape)
         end
@@ -1224,7 +1486,7 @@ function _vnl_t0_semantic_rebind_candidate(body::VNextT0LocalSemanticBodyV1,
             throw(ArgumentError("G2 semantic body source must be typed"))
         contract_ref isa GenomeContractRef ||
             throw(ArgumentError("G2 semantic body contract_ref must be typed"))
-        contract_ref == _g2sf_expected_contract() ||
+        contract_ref == _g2sf_expected_contract(source) ||
             throw(ArgumentError("G2 semantic body contract_ref is not the expected G2 contract"))
         envelope.candidate_ref == original_candidate ||
             throw(ArgumentError("G2 semantic body envelope candidate binding is stale"))
@@ -1238,7 +1500,11 @@ function _vnl_t0_semantic_rebind_candidate(body::VNextT0LocalSemanticBodyV1,
             throw(ArgumentError("G2 semantic body envelope/source hash mismatch"))
         source.source_hash == canonical_hash(_g2mb_source_body(source.source_ref,
             source.source_version, source.candidate_ref, source.chart_map, source.mesh,
-            source.faces, source.profile, source.units, source.authority)) ||
+            source.faces, source.profile, source.units, source.authority;
+            field_space=source.field_space, q1_interpretation=source.q1_interpretation,
+            boundary_coverage=source.boundary_coverage,
+            region_interface=source.region_interface,
+            region_exterior_owners=source.region_exterior_owners)) ||
             throw(ArgumentError("G2 semantic body typed source hash is stale"))
         old_declaration = try
             g2mb_declaration_v1(contract_ref, source)
@@ -1256,7 +1522,11 @@ function _vnl_t0_semantic_rebind_candidate(body::VNextT0LocalSemanticBodyV1,
             throw(ArgumentError("G2 semantic body declaration hash is stale"))
         fresh_source = g2mb_source_v1(source_ref, source.source_version, contract_ref,
             source.chart_map, source.mesh, source.faces, source.profile, source.units,
-            source.authority)
+            source.authority; field_space=source.field_space,
+            q1_interpretation=source.q1_interpretation,
+            boundary_coverage=source.boundary_coverage,
+            region_interface=source.region_interface,
+            region_exterior_owners=source.region_exterior_owners)
         fresh_declaration = g2mb_declaration_v1(contract_ref, fresh_source)
         fresh_envelope = VNextT0LocalG2CandidateEnvelopeV1(candidate, contract_ref,
             fresh_source.source_ref, fresh_source.source_hash)
@@ -1346,8 +1616,20 @@ function _vnl_t0_semantic_rebind_candidate(body::VNextT0LocalSemanticBodyV1,
             expression=rebound.K.expression)
         fresh_f = G1DiffusionScalarFieldV1(rebound.f.field_id, rebound.f.physical_type,
             source_ref; source_expression=rebound.f.source_expression)
+        fresh_capacity = if rebound.source_payload.transient_capacity === nothing
+            nothing
+        else
+            capacity = rebound.source_payload.transient_capacity
+            G1DiffusionTransientCapacityV1(capacity.coefficient, capacity.units,
+                source_ref; applicable_domain=capacity.applicable_domain,
+                closed=capacity.closed)
+        end
         fresh_payload = G1DiffusionSourcePayloadV1(candidate, source_ref,
-            rebound.source_version, fresh_u, fresh_K, fresh_f)
+            rebound.source_version, fresh_u, fresh_K, fresh_f;
+            unknown_state_binding=rebound.source_payload.unknown_state_binding,
+            operator_temporal_support=rebound.source_payload.operator_temporal_support,
+            interface_flux_pair=rebound.source_payload.interface_flux_pair,
+            transient_capacity=fresh_capacity)
         fresh_source_hash = g1_diffusion_source_hash_v1(fresh_payload)
         fresh_declaration = g1_diffusion_declaration_v1(candidate, source_ref,
             rebound.source_version, fresh_source_hash, fresh_u, fresh_K, fresh_f,
@@ -1416,7 +1698,8 @@ fresh candidate and all three records through the same T0 builder again.
 """
 function vnext_t0_local_source_edit_v1(record::VNextT0LocalPresentDeclarationV1,
         new_source_bytes::VNextT0LocalBytesV1, new_semantic_body::VNextT0LocalSemanticBodyV1;
-        new_source_locator=nothing, factory_builder=nothing)
+        new_source_locator=nothing, factory_builder=nothing, frozen_context=nothing,
+        frozen_contexts=nothing)
     old_source = record.source_bytes.sha256
     old_decl = record.declaration_bytes.sha256
     new_source = _vnl_t0_sha(new_source_bytes.bytes)
@@ -1432,6 +1715,9 @@ function vnext_t0_local_source_edit_v1(record::VNextT0LocalPresentDeclarationV1,
         record.source_locator.working_tree_path_status, record.source_locator.working_tree_status,
         record.source_locator.head_blob_sha256, record.source_locator.provenance) : new_source_locator
     fresh_locator.source_ref == source_ref || throw(ArgumentError("source edit locator ref mismatch"))
+    _vnl_t0_locator_bytes(fresh_locator; frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts) == new_source_bytes.bytes ||
+        throw(ArgumentError("source edit locator bytes mismatch"))
     fresh_semantic_body = _vnl_t0_semantic_rebind_candidate(new_semantic_body, candidate, source_ref)
     factory_result, declaration_factory_result = _vnl_t0_factory_pair(factory_builder,
         candidate, record, source_ref, declaration_ref, new_source_bytes,
@@ -1451,10 +1737,13 @@ function vnext_t0_local_source_edit_v1(record::VNextT0LocalPresentDeclarationV1,
         record.declaration_identity_hash, edited.declaration_identity_hash, edited)
 end
 
-function _vnl_t0_bundle_body_v1(candidate, declarations, children, feedback)
-    (schema_id=VNEXT_T0_LOCAL_SCHEMA_ID_V1, schema_version=VNEXT_T0_LOCAL_SCHEMA_VERSION_V1,
+function _vnl_t0_bundle_body_v1(candidate, declarations, children, feedback,
+        frozen_source_authority=nothing)
+    body = (schema_id=VNEXT_T0_LOCAL_SCHEMA_ID_V1, schema_version=VNEXT_T0_LOCAL_SCHEMA_VERSION_V1,
         candidate_ref=candidate, declarations=Tuple(declarations), children=Tuple(children),
         feedback=Tuple(sort!(collect(feedback), by=x -> x.target_id)))
+    frozen_source_authority === nothing ? body :
+        merge(body, (frozen_source_authority=frozen_source_authority,))
 end
 
 function _vnl_t0_rebind_absent_child_v1(child::VNextT0LocalChildAbsentV1,
@@ -1519,14 +1808,16 @@ function _vnl_t0_rebind_feedback_item_v1(item::VNextT0LocalFeedbackV1,
         fresh_ref, body, canonical_hash(body))
 end
 function vnext_t0_local_bundle_hash_recompute_v1(x::VNextT0LocalTransportV1)
-    canonical_hash(_vnl_t0_bundle_body_v1(x.candidate_ref, x.declarations, x.children, x.feedback))
+    canonical_hash(_vnl_t0_bundle_body_v1(x.candidate_ref, x.declarations,
+        x.children, x.feedback, x.frozen_source_authority))
 end
 
 """Rebuild all three declarations, children and feedback after one source edit."""
 function _vnl_t0_rebuild_after_source_edit_impl_v1(candidate::QualifiedRefV1,
         declarations::Tuple, children::Tuple, feedback::Tuple, layer::Symbol,
         new_source_bytes::VNextT0LocalBytesV1, new_semantic_body::VNextT0LocalSemanticBodyV1;
-        new_source_locator=nothing, factory_builder=nothing)
+        new_source_locator=nothing, factory_builder=nothing, frozen_context=nothing,
+        frozen_contexts=nothing)
     factory_builder isa Function ||
         throw(ArgumentError("source edit rebuild requires fresh factory_builder"))
     target = findfirst(x -> x.layer === layer, declarations)
@@ -1535,7 +1826,8 @@ function _vnl_t0_rebuild_after_source_edit_impl_v1(candidate::QualifiedRefV1,
         throw(ArgumentError("source edit requires a present declaration"))
     edit = vnext_t0_local_source_edit_v1(declarations[target], new_source_bytes,
         new_semantic_body; new_source_locator=new_source_locator,
-        factory_builder=factory_builder)
+        factory_builder=factory_builder, frozen_context=frozen_context,
+        frozen_contexts=frozen_contexts)
     fresh_candidate = edit.new_candidate_ref
     fresh_declarations = ntuple(i -> begin
         x = declarations[i]
@@ -1572,7 +1864,8 @@ function _vnl_t0_rebuild_after_source_edit_impl_v1(candidate::QualifiedRefV1,
     fresh_feedback = Tuple(_vnl_t0_rebind_feedback_item_v1(item, candidate,
         fresh_candidate, declarations, fresh_declarations) for item in feedback)
     admission = vnext_declaration_transport_local_v1(fresh_candidate,
-        fresh_declarations, fresh_children, fresh_feedback)
+        fresh_declarations, fresh_children, fresh_feedback;
+        frozen_context=frozen_context, frozen_contexts=frozen_contexts)
     (edit=edit, admission=admission)
 end
 
@@ -1601,7 +1894,8 @@ end
 
 """Build a local T0 bundle; all errors are returned without partial output."""
 function vnext_declaration_transport_local_v1(candidate::QualifiedRefV1,
-        declarations::Tuple, children::Tuple, feedback::Tuple=())
+        declarations::Tuple, children::Tuple, feedback::Tuple=();
+        frozen_context=nothing, frozen_contexts=nothing)
     errors = Symbol[]; gaps = Symbol[]
     length(declarations) == 3 || push!(errors, :declaration_arity_invalid)
     length(children) == 3 || push!(errors, :child_arity_invalid)
@@ -1622,13 +1916,32 @@ function vnext_declaration_transport_local_v1(candidate::QualifiedRefV1,
     (!declarations_typed || !children_typed) &&
         return VNextT0LocalAdmissionV1(:fail_closed, :fail_closed, false, :contract_only, nothing,
             Tuple(unique(errors)), ())
+    if NativeGitReadCompatibilityV1.up1_frozen_runtime_active() &&
+            !(frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1)
+        push!(errors, :up1_singular_context_required)
+    elseif frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1 &&
+            !NativeGitReadCompatibilityV1.up1_frozen_runtime_active()
+        push!(errors, :up1_frozen_runtime_guard_inactive)
+    end
+    if :up1_singular_context_required in errors ||
+            :up1_frozen_runtime_guard_inactive in errors
+        return VNextT0LocalAdmissionV1(:fail_closed, :fail_closed, false,
+            :contract_only, nothing, Tuple(unique(errors)), ())
+    end
+    if frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        _vnl_t0_snapshot_candidate_matches(frozen_context, candidate) ||
+            push!(errors, :snapshot_candidate_mismatch)
+    end
     for x in declarations
-        append!(errors, x isa VNextT0LocalPresentDeclarationV1 ? _vnl_t0_errors(x, candidate) : _vnl_t0_absent_errors(x, candidate))
+        append!(errors, x isa VNextT0LocalPresentDeclarationV1 ?
+            _vnl_t0_errors(x, candidate; frozen_context=frozen_context,
+                frozen_contexts=frozen_contexts) : _vnl_t0_absent_errors(x, candidate))
     end
     for kind in VNEXT_T0_LOCAL_CHILD_KINDS_V1
         if children_typed
             index = findfirst(x -> x.kind === kind, children)
-            index === nothing || append!(errors, _vnl_t0_child_errors(children[index], candidate, kind))
+            index === nothing || append!(errors, _vnl_t0_child_errors(children[index], candidate, kind;
+                frozen_context=frozen_context, frozen_contexts=frozen_contexts))
         end
     end
     append!(errors, _vnl_t0_feedback_errors(feedback, candidate, declarations))
@@ -1640,10 +1953,17 @@ function vnext_declaration_transport_local_v1(candidate::QualifiedRefV1,
     if !isempty(errors)
         return VNextT0LocalAdmissionV1(:fail_closed, :fail_closed, false, :contract_only, nothing, Tuple(errors), Tuple(gaps))
     end
-    body = _vnl_t0_bundle_body_v1(candidate, declarations, children, feedback)
+    frozen_source_authority = if frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        identity = NativeGitReadCompatibilityV1.frozen_source_identity(frozen_context)
+        merge(identity, (source_root=frozen_context.source_root,))
+    else
+        nothing
+    end
+    body = _vnl_t0_bundle_body_v1(candidate, declarations, children, feedback,
+        frozen_source_authority)
     bundle_hash = canonical_hash(body)
     transport = VNextT0LocalTransportV1(candidate, Tuple(declarations), Tuple(children), Tuple(sort!(collect(feedback), by=x -> x.target_id)), bundle_hash,
-        :valid, (), Tuple(gaps))
+        :valid, (), Tuple(gaps), frozen_source_authority)
     resolution = isempty(gaps) ? :local_contract_ready : :terminal_deferred
     VNextT0LocalAdmissionV1(:valid, resolution, false, :contract_only, transport, (), Tuple(gaps))
 end

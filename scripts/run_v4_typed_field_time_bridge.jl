@@ -1,5 +1,4 @@
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_typed_field_time_bridge_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_typed_field_time_bridge_fixture.jl"))
 
 println("D3 typed field-time bridge: PASS")
 println("candidate = ", d3_candidate.identity_ref)

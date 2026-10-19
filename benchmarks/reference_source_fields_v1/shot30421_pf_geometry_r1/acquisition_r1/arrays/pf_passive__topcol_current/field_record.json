@@ -1,0 +1,126 @@
+{
+  "assembled_bytes": 30616,
+  "assembled_path": "arrays/pf_passive__topcol_current/assembled.raw",
+  "assembled_sha256": "1906023a719bd1edbb849f385c739097cdc5ce8cb95acaae019086301adc7760",
+  "chunks": [
+    1,
+    3827
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_key": "c/0/0",
+      "completed_utc": "2026-09-22T08:27:20.091367Z",
+      "compressed_bytes": 29308,
+      "compressed_path": "arrays/pf_passive__topcol_current/chunks/c__0__0.zst",
+      "compressed_sha256": "8a392e163b9865e17c88ecd33215185106703953aa9a628063850ad7cfad4be7",
+      "decoded_bytes": 30616,
+      "decoded_path": "arrays/pf_passive__topcol_current/chunks/c__0__0.raw",
+      "decoded_sha256": "1906023a719bd1edbb849f385c739097cdc5ce8cb95acaae019086301adc7760",
+      "decoded_shape": [
+        1,
+        3827
+      ],
+      "edge_shape": [
+        1,
+        3827
+      ],
+      "full_chunk_shape": [
+        1,
+        3827
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:27:19.535346Z",
+      "response_headers": {
+        "Content-Length": "29308",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"c9a04e3820768e9a434734f130748d7d\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:35 GMT"
+      },
+      "starts": [
+        0,
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/topcol_current/c/0/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:27:20.109645Z",
+  "data_type": "float64",
+  "decoded_bytes": 30616,
+  "dimensions": [
+    "topcol_current_channel",
+    "time"
+  ],
+  "finite_count": 3827,
+  "maximum": 72.02798793741167,
+  "minimum": -115.86511050664501,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "coordinates": "shot_id",
+      "data_block_size": 714428,
+      "description": "",
+      "imas": "pf_passive.loop[:].current",
+      "label": "Current",
+      "name": "topcol_current",
+      "uda_name": "AMM_TOPCOL",
+      "units": "A"
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          1,
+          3827
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "topcol_current_channel",
+      "time"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      1,
+      3827
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/topcol_current",
+  "shape": [
+    1,
+    3827
+  ],
+  "started_utc": "2026-09-22T08:27:19.489379Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 3827,
+  "units": "A"
+}

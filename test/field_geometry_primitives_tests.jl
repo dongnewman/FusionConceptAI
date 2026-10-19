@@ -304,5 +304,5 @@ end
     @assert all(h.value == old.value for (h, old) in zip(poisoned_hashes, before[2]))
     println("g2-primitive-dispatch-closed-ok")
     """
-    @test success(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`)
+    @test success(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true))
 end

@@ -51,8 +51,16 @@ vnext_t1_package_canonicalization_hash_v1() = digest256_text(
 vnext_t1_package_profile_hash_v1() = digest256_text(
     VNEXT_T1_PACKAGE_SCHEMA_ID_V1 * ":" * VNEXT_T1_PACKAGE_PROFILE_VERSION_V1)
 
-function _vnext_t1_sha(bytes::NTuple{N,UInt8}) where {N}
-    Digest256(bytes2hex(invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)))
+@noinline Base.@nospecializeinfer function _vnext_t1_sha(
+        @nospecialize(bytes::Tuple{Vararg{UInt8}}))
+    # Keep payload length out of SHA's inferred argument type. The immutable
+    # V1 tuple and its wire representation stay unchanged; only the hashing
+    # implementation receives a length-independent, byte-for-byte copy.
+    copied = Vector{UInt8}(undef, length(bytes))
+    for i in eachindex(copied)
+        copied[i] = bytes[i]
+    end
+    Digest256(bytes2hex(SHA.sha256(copied)))
 end
 _vnext_t1_sha(bytes::AbstractVector{UInt8}) = Digest256(bytes2hex(
     invoke(SHA.sha256, Tuple{SHA.AbstractBytes}, bytes)))
@@ -61,16 +69,37 @@ _vnext_t1_sha(bytes::AbstractVector{UInt8}) = Digest256(bytes2hex(
 struct VNextT1CanonicalBytesV1{N}
     bytes::NTuple{N,UInt8}
     sha256::Digest256
-    function VNextT1CanonicalBytesV1(bytes::NTuple{N,UInt8}) where {N}
-        new{N}(bytes, _vnext_t1_sha(bytes))
+    @noinline Base.@nospecializeinfer function VNextT1CanonicalBytesV1(
+            @nospecialize(bytes::Tuple{Vararg{UInt8}}))
+        new{length(bytes)}(bytes, _vnext_t1_sha(bytes))
     end
 end
-VNextT1CanonicalBytesV1(bytes::AbstractVector{UInt8}) =
+@noinline Base.@nospecializeinfer function VNextT1CanonicalBytesV1(
+        @nospecialize(bytes::AbstractVector{UInt8}))
     VNextT1CanonicalBytesV1(Tuple(UInt8.(bytes)))
+end
 _vnext_t1_owned_bytes(bytes::VNextT0LocalBytesV1) =
     VNextT1CanonicalBytesV1(bytes.bytes)
 semantic_view(x::VNextT1CanonicalBytesV1) =
     (bytes=x.bytes, sha256=x.sha256)
+
+# Preserve the exact legacy semantic projection without specializing the
+# generic tuple generator/join on every payload length.
+@noinline Base.@nospecializeinfer function _canonical(
+        @nospecialize(x::VNextT1CanonicalBytesV1))
+    tokens = String[_canonical(UInt8(i)) for i in 0:255]
+    io = IOBuffer()
+    write(io, "{\"bytes\":[")
+    bytes = x.bytes
+    for i in 1:length(bytes)
+        i == 1 || write(io, ',')
+        write(io, tokens[Int(bytes[i]) + 1])
+    end
+    write(io, "],\"sha256\":")
+    write(io, _canonical(x.sha256))
+    write(io, '}')
+    String(take!(io))
+end
 
 """Canonical T0 bundle snapshot bound into both the package and its hash."""
 struct VNextT1PriorBundleSnapshotV1{N}
@@ -367,6 +396,18 @@ semantic_view(x::VNextT1ComponentIdentityV1) = (
 const VNextT1ExpectedRecheckV1 =
     VNextAuthorityRecheckLocalResultV1{VNextAuthorityRecheckLocalCheckedPresentV1}
 
+"""Closed public-input boundary for all executable V1 recheck outcomes.
+
+`VNextT1ExpectedRecheckV1` remains the checked-present package input.  The two
+additional variants may cross the public admission boundary only so that the
+existing fail-closed policy can reject an honest typed absence or a concrete
+recheck failure without a constructor `MethodError`.
+"""
+const VNextT1AdmissionRecheckInputV1 = Union{
+    VNextT1ExpectedRecheckV1,
+    VNextAuthorityRecheckLocalResultV1{VNextAuthorityRecheckLocalTypedAbsentV1},
+    VNextAuthorityRecheckLocalResultV1{Nothing}}
+
 struct VNextT1T0OutputIdentityV1{N}
     candidate_ref::QualifiedRefV1
     bundle_hash::Digest256
@@ -404,13 +445,13 @@ struct VNextT1T0GateV1{B,O,F}
     output_bytes::VNextT1CanonicalBytesV1{O}
     output_identity::VNextT1T0OutputIdentityV1{F}
     output_hash::Digest256
-    function VNextT1T0GateV1(prior_bundle::VNextT1PriorBundleSnapshotV1{B},
+    @noinline Base.@nospecializeinfer function VNextT1T0GateV1(@nospecialize(prior_bundle::VNextT1PriorBundleSnapshotV1),
             candidate_ref::QualifiedRefV1, status::Symbol, resolution::Symbol,
             accepted::Bool, claim_ceiling::Symbol,
             output_projection::VNextT1T0OutputProjectionV1{F},
-            output_bytes::VNextT1CanonicalBytesV1{O},
+            @nospecialize(output_bytes::VNextT1CanonicalBytesV1),
             output_identity::VNextT1T0OutputIdentityV1{F},
-            output_hash::Digest256) where {B,O,F}
+            output_hash::Digest256) where {F}
         candidate_ref.version == "v5" ||
             throw(ArgumentError("T1 gate candidate must carry v5 version"))
         status === :local_checked_present ||
@@ -430,7 +471,7 @@ struct VNextT1T0GateV1{B,O,F}
             throw(ArgumentError("T0 output bytes/hash mismatch"))
         output_hash == canonical_hash(output_projection) ||
             throw(ArgumentError("T0 output projection hash mismatch"))
-        new{B,O,F}(prior_bundle, candidate_ref, status, resolution, accepted,
+        new{length(prior_bundle.canonical_bytes.bytes),length(output_bytes.bytes),F}(prior_bundle, candidate_ref, status, resolution, accepted,
             claim_ceiling, output_projection, output_bytes, output_identity,
             output_hash)
     end
@@ -472,6 +513,15 @@ struct CandidateStatePackageV5Next{N,M,K}
     package_profile_hash::Digest256
     package_hash::Digest256
 end
+
+# This closed V1 family contains only recursively immutable value fields.
+# Sharing preserves deepcopy value semantics; no mutable payload can alias.
+# See the generic closure/native-copy/canonical parity evidence in R22/R22b.
+@noinline Base.@nospecializeinfer function Base.deepcopy_internal(
+        @nospecialize(x::CandidateStatePackageV5Next), stackdict::IdDict)
+    x
+end
+
 semantic_view(x::CandidateStatePackageV5Next) = (
     schema=VNEXT_T1_PACKAGE_SCHEMA_ID_V1,
     schema_version=VNEXT_T1_PACKAGE_SCHEMA_VERSION_V1,
@@ -524,9 +574,56 @@ function _vnext_t1_expected_factory_identity(api::Symbol)
     throw(ArgumentError("unknown factory API"))
 end
 
-function _vnext_t1_expected_contract_ref(layer::Symbol, api::Symbol)
-    layer === :G1 && api === :G1 && return VNEXT_T1_FROZEN_G1_CONTRACT_REF_V1
-    layer === :G2 && api === :G2 && return VNEXT_T1_FROZEN_G2_CONTRACT_REF_V1
+function _vnext_t1_g2_source(declaration::VNextT0LocalPresentDeclarationV1)
+    declaration.layer === :G2 || return nothing
+    body = declaration.semantic_body.body
+    body isa NamedTuple && hasproperty(body, :source) &&
+        hasproperty(body, :contract_ref) ||
+        throw(ArgumentError("G2 semantic body lacks typed source contract"))
+    source = body.source
+    source isa G2MBSourceV1 ||
+        throw(ArgumentError("G2 semantic body source is not G2MBSourceV1"))
+    source.candidate_ref == body.contract_ref ||
+        throw(ArgumentError("G2 source candidate contract mismatch"))
+    rebuilt = g2mb_declaration_v1(body.contract_ref, source)
+    rebuilt.schema_hash == body.schema_hash &&
+        rebuilt.canonicalization_hash == body.canonicalization_hash &&
+        rebuilt.profile_hash == body.profile_hash &&
+        rebuilt.declaration_hash == body.declaration_hash ||
+        throw(ArgumentError("G2 typed source declaration metadata mismatch"))
+    source
+end
+
+function _vnext_t1_expected_contract_ref(layer::Symbol, api::Symbol,
+        g2_source::Union{Nothing,G2MBSourceV1}=nothing,
+        g1_declaration::Union{Nothing,VNextT0LocalPresentDeclarationV1}=nothing)
+    if layer === :G1 && api === :G1
+        if g1_declaration !== nothing &&
+                g1_declaration.layer === :G1 &&
+                hasproperty(g1_declaration.semantic_body.body, :source_payload)
+            body = g1_declaration.semantic_body.body
+            payload = body.source_payload
+            if payload isa G1DiffusionSourcePayloadV1 &&
+                    payload.interface_flux_pair !== nothing
+                hasproperty(body, :source_hash) &&
+                    payload.candidate_ref == g1_declaration.candidate_ref &&
+                    payload.source_ref == g1_declaration.source_ref &&
+                    payload.source_version == body.source_version ||
+                    throw(ArgumentError("G1 source payload identity differs from its declaration"))
+                g1_diffusion_source_hash_v1(payload) == body.source_hash ||
+                    throw(ArgumentError("G1 semantic body source payload hash mismatch"))
+                return _g1sf_expected_contract(payload)
+            end
+        end
+        return VNEXT_T1_FROZEN_G1_CONTRACT_REF_V1
+    end
+    if layer === :G2 && api === :G2
+        g2_source === nothing && return VNEXT_T1_FROZEN_G2_CONTRACT_REF_V1
+        expected = _g2sf_expected_contract(g2_source)
+        g2_source.candidate_ref == expected ||
+            throw(ArgumentError("G2 source contract is not source-shape bound"))
+        return expected
+    end
     layer === :G3 && api === :G3 && return VNEXT_T1_FROZEN_G3_CONTRACT_REF_V1
     layer === :G3 && api === :G3_FEEDBACK &&
         return VNEXT_T1_FROZEN_G3_FEEDBACK_CONTRACT_REF_V1
@@ -586,12 +683,14 @@ function _vnext_t1_validate_factory_result(result::VNextT0LocalFactoryResultV1,
         throw(ArgumentError("factory result locator mismatch"))
     result.locator_provenance == declaration.source_locator.provenance ||
         throw(ArgumentError("factory result locator provenance mismatch"))
-    result.declaration_bytes == declaration.declaration_bytes ||
+    (result.declaration_bytes.bytes == declaration.declaration_bytes.bytes &&
+        result.declaration_bytes.sha256 == declaration.declaration_bytes.sha256) ||
         throw(ArgumentError("factory result declaration bytes mismatch"))
     result.declaration_hash == declaration.declaration_bytes.sha256 ||
         throw(ArgumentError("factory result declaration hash mismatch"))
+    g2_source = _vnext_t1_g2_source(declaration)
     result.contract_ref == _vnext_t1_expected_contract_ref(
-        declaration.layer, result.factory_api) ||
+        declaration.layer, result.factory_api, g2_source, declaration) ||
         throw(ArgumentError("factory result contract is not frozen"))
     result.contract_ref == declaration.factory_receipt.factory_result.contract_ref ||
         throw(ArgumentError("factory result contract mismatch"))
@@ -637,7 +736,7 @@ end
 
 function _vnext_t1_validate_receipt_envelope(receipt_bytes::VNextT0LocalBytesV1,
         result::VNextT0LocalFactoryResultV1)
-    envelope_bytes = Tuple(Vector{UInt8}(codeunits(canonical_json(result))))
+    envelope_bytes = Vector{UInt8}(codeunits(canonical_json(result)))
     receipt_bytes.bytes == envelope_bytes ||
         throw(ArgumentError("receipt bytes do not equal canonical result envelope"))
     receipt_bytes.sha256 == _vnext_t1_sha(envelope_bytes) ||
@@ -710,7 +809,7 @@ function _vnext_t1_declaration_record(d::VNextT0LocalPresentDeclarationV1,
     _vnext_t1_validate_bytes(d.source_bytes)
     _vnext_t1_validate_bytes(d.declaration_bytes)
     _vnext_t1_validate_bytes(d.semantic_body.bytes)
-    semantic_body_bytes = Tuple(Vector{UInt8}(codeunits(canonical_json(d.semantic_body.body))))
+    semantic_body_bytes = Vector{UInt8}(codeunits(canonical_json(d.semantic_body.body)))
     semantic_body_bytes == d.semantic_body.bytes.bytes ||
         throw(ArgumentError("semantic body bytes mismatch"))
     _vnext_t1_validate_locator(d.source_locator, d.source_ref, d.source_bytes)
@@ -727,8 +826,9 @@ function _vnext_t1_declaration_record(d::VNextT0LocalPresentDeclarationV1,
     _vnext_t1_validate_receipt(d.factory_receipt, d, candidate, d.axes)
     _vnext_t1_validate_receipt(d.declaration_receipt, d, candidate, d.axes)
     contract_ref = d.factory_receipt.factory_result.contract_ref
+    g2_source = _vnext_t1_g2_source(d)
     contract_ref == _vnext_t1_expected_contract_ref(
-        d.layer, d.factory_receipt.factory_result.factory_api) ||
+        d.layer, d.factory_receipt.factory_result.factory_api, g2_source, d) ||
         throw(ArgumentError("declaration contract is not frozen"))
     d.declaration_receipt.factory_result.contract_ref == contract_ref ||
         throw(ArgumentError("declaration/factory contract ref mismatch"))

@@ -15,6 +15,8 @@ end
 const PROBE_ROOT = normpath(joinpath(@__DIR__, "../../../.."))
 const CEG_SOURCE = joinpath(PROBE_ROOT, "src", "RuntimeV4", "M4Isolated",
     "ManufacturedConditionalEGraphV1.jl")
+const EXPECTED_CEG_SOURCE_SHA256 =
+    "0041e9041b7376b3127d80454f8ffa1f455ae488b667f326719d3a0f5adf3773"
 
 function _json_quote(x)
     s = String(x)
@@ -61,6 +63,13 @@ function _upstream_fixture()
         b=i_result.inverse::ManufacturedInverseFeedbackV1)
 end
 
+function _assert_frozen_source()
+    actual = bytes2hex(SHA.sha256(read(CEG_SOURCE)))
+    actual == EXPECTED_CEG_SOURCE_SHA256 ||
+        error("M5C adapter source hash drift: expected $(EXPECTED_CEG_SOURCE_SHA256), got $(actual)")
+    actual
+end
+
 function _prepare(a, b, registry)
     source = a.canonical_program
     source_hash = invoke(_ceg_program_hash, Tuple{TypedASTProgramV1}, source)
@@ -73,12 +82,26 @@ function _assemble(prep, a, b, registry, budget, profile, deriv)
     graph = deriv.artifact
     status = graph === nothing ? :terminal_deferred :
         (graph.complete ? :valid : :terminal_deferred)
+    candidate = _m5ceg_candidate_id(a, b)
+    preflight = m5c_preflight(a, b; budget=budget, profile=profile,
+        candidate_id=candidate)
+    envelope = m5c_condition_envelope(a, b, prep.catalog;
+        candidate_id=candidate)
+    binding = m5c_binding_receipt(a, b, prep.catalog, prep.rules, deriv, graph;
+        candidate_id=candidate, adapter_status=status)
+    budget_receipt = m5c_budget_receipt(
+        requested_budget=budget.max_rewrite_attempts,
+        sealed_budget=budget.max_rewrite_attempts,
+        effective_budget=budget.max_rewrite_attempts)
+    cache = m5c_cache_receipt(a, b, prep.catalog, prep.rules, deriv, graph;
+        candidate_id=candidate, binding_receipt=binding)
     ManufacturedConditionalEGraphV1(M5CEG_SCHEMA_V1, prep.source,
         prep.source_hash, M5CEG_M5A_SOURCE_SHA256_V1,
         M5CEG_M5A_COMPOSITION_SHA256_V1, M5CEG_M5B_SOURCE_SHA256_V1,
         manufactured_inverse_feedback_hash(b), b.owner_bindings,
         b.provenance_bindings, prep.catalog, prep.rules, registry, budget,
-        profile, deriv, graph, status, M5CEG_CLAIM_CEILING_V1,
+        profile, preflight, envelope, binding, budget_receipt, cache,
+        deriv, graph, status, M5CEG_CLAIM_CEILING_V1,
         M5CEG_EVIDENCE_SCOPE_V1)
 end
 
@@ -102,6 +125,8 @@ _emit(s) = (println(s); flush(stdout))
 _emit("M5C_PERF_PROBE_START schema=M5-C-PERFORMANCE-R2 scope=screen_only")
 _emit("julia_version=" * string(VERSION) * " pid=" * string(getpid()) *
     " started_ns=" * string(time_ns()))
+_emit("source_sha256=" * _assert_frozen_source() *
+    " claim_ceiling=synthetic_egraph_equality/screen_only baseline=typed_absent formal_credit=none")
 const FOCUS = lowercase(get(ARGS, 1, "all"))
 
 inc = _timed(() -> include(CEG_SOURCE))

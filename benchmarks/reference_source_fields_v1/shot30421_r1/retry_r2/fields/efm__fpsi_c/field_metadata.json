@@ -1,0 +1,149 @@
+{
+  "requested_path": "efm/fpsi_c",
+  "resolved_path": "efm/fpsi_c",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120,
+      65
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120,
+      65
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time",
+      "psi_norm"
+    ],
+    "description": "Poloidal current flux function, f=R*Bphi; f(psin, B)",
+    "dims": [
+      "time",
+      "psi_norm"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "computed f=R*B (centre t",
+    "mds_name": "\\TOP.ANALYSED.EFM:F_PSI_C",
+    "name": "efm/fpsi_c",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      108,
+      65
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_F(PSI)_(C)",
+    "units": "T-m",
+    "uuid": "9161e283-b5de-577a-8b43-12fe32c27a9a",
+    "version": 0
+  },
+  "shape": [
+    120,
+    65
+  ],
+  "chunks": [
+    120,
+    65
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time",
+    "psi_norm"
+  ],
+  "decoded_bytes": 31200,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    },
+    {
+      "dimension": "psi_norm",
+      "path": "efm/psi_norm",
+      "available": true,
+      "shape": [
+        65
+      ],
+      "dtype": "<f4",
+      "units": ""
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:33.065558Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        120,
+        65
+      ],
+      "full_chunk_shape": [
+        120,
+        65
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/fpsi_c/0.0",
+      "requested_utc": "2026-09-21T20:06:33.066018Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "17122",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"2f80146b21e1eba9b708ebce78ca06de\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 17122,
+      "compressed_sha256": "ba73af555ad27392a9b686c6dfdc035789099cd12f3c8d50ec3f334f815b5bcb",
+      "decoded_bytes": 31200,
+      "decoded_sha256": "6ef8371766fadae084fee5a370308c4662a727403258eab7e6a460bbb094cf11",
+      "decoded_shape": [
+        120,
+        65
+      ],
+      "written_shape": [
+        120,
+        65
+      ],
+      "expected_full_bytes": 31200,
+      "expected_edge_bytes": 31200,
+      "compressed_path": "chunks\\0.0.blosc",
+      "decoded_chunk_path": "chunks\\0.0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__fpsi_c\\assembled.raw",
+  "assembled_raw_bytes": 31200,
+  "assembled_raw_sha256": "6ef8371766fadae084fee5a370308c4662a727403258eab7e6a460bbb094cf11",
+  "finite_count": 7020,
+  "total_count": 7800,
+  "minimum": -0.9256572723388672,
+  "maximum": -0.39117980003356934
+}

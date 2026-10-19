@@ -2,9 +2,16 @@ using Test
 using JSON3
 using FusionConceptAI
 
-const _UP2_ROOT = joinpath(@__DIR__, "..", "..", "..", "src", "GenomeV5", "UP2")
-FusionConceptAI.load_genome_v5_components!()
-Base.include(FusionConceptAI, joinpath(_UP2_ROOT, "TypedPrecompilerContractV1.jl"))
-Base.include(FusionConceptAI, joinpath(_UP2_ROOT, "PrecompilerInvocationCounterV1.jl"))
-Base.include(FusionConceptAI, joinpath(_UP2_ROOT, "TypedPrecompilerValidatorV1.jl"))
-include(joinpath(@__DIR__, "up2_00_contract_tests.jl"))
+FusionConceptAI.load_genome_v5_up2_components!()
+FusionConceptAI.load_vnext_t2_components_v2!()
+# The Windows default task stack is too small for nested native semantic views
+# at -O0. Keep the complete consumer on one task within the existing memory cap.
+if Sys.iswindows()
+    let testfile = joinpath(@__DIR__, "up2_00_contract_tests.jl")
+        task = Task(() -> Base.include(Main, testfile), 16 * 1024 * 1024)
+        schedule(task)
+        fetch(task)
+    end
+else
+    include(joinpath(@__DIR__, "up2_00_contract_tests.jl"))
+end

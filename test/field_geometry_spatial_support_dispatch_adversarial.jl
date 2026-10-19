@@ -29,7 +29,7 @@ end
     @eval Base.ncodeunits(value::String) = Core.sizeof(value)
     println("g2-spatial-ref-size-closed-ok")
     """
-    command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     output = read(pipeline(ignorestatus(command), stderr=stdout), String)
     occursin("g2-spatial-ref-size-closed-ok", output) || println(output)
     @test occursin("g2-spatial-ref-size-closed-ok", output)
@@ -142,7 +142,7 @@ end
     @eval Base.ncodeunits(value::String) = Core.sizeof(value)
     println("g2-spatial-writer-closed-ok")
     """
-    command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     output = read(pipeline(ignorestatus(command), stderr=stdout), String)
     occursin("g2-spatial-writer-closed-ok", output) || println(output)
     @test occursin("g2-spatial-writer-closed-ok", output)
@@ -162,7 +162,7 @@ end
         @assert rejected
         println("g2-spatial-iterate-axis-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-iterate-axis-ok", output) || println(output)
         @test occursin("g2-spatial-iterate-axis-ok", output)
@@ -187,7 +187,7 @@ end
         @assert rejected
         println("g2-spatial-iterate-roots-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-iterate-roots-ok", output) || println(output)
         @test occursin("g2-spatial-iterate-roots-ok", output)
@@ -213,7 +213,7 @@ end
         @assert canonical_hash(support) == before_hash
         println("g2-spatial-iterate-frames-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-iterate-frames-ok", output) || println(output)
         @test occursin("g2-spatial-iterate-frames-ok", output)
@@ -238,7 +238,7 @@ end
         @assert rejected
         println("g2-spatial-getindex-roots-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-getindex-roots-ok", output) || println(output)
         @test occursin("g2-spatial-getindex-roots-ok", output)
@@ -276,7 +276,7 @@ end
         @assert periodic_chart.periodic_axes[2].axis_position === 2
         println("g2-spatial-getindex-sorting-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-getindex-sorting-ok", output) || println(output)
         @test occursin("g2-spatial-getindex-sorting-ok", output)
@@ -309,7 +309,7 @@ end
     @assert all(a.value != repeat("0",64) for a in after_hash)
     println("g2-spatial-sha-closed-ok")
     """
-    command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     output = read(pipeline(ignorestatus(command), stderr=stdout), String)
     occursin("g2-spatial-sha-closed-ok", output) || println(output)
     @test occursin("g2-spatial-sha-closed-ok", output)
@@ -347,7 +347,7 @@ end
         @assert all(a.value == b.value for (a,b) in zip(after_hash,before_hash))
         println("g2-spatial-string-index-closed-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-string-index-closed-ok", output) || println(output)
         @test occursin("g2-spatial-string-index-closed-ok", output)
@@ -383,7 +383,7 @@ end
         @assert all(a.value == b.value for (a,b) in zip(after_hash,before_hash))
         println("g2-spatial-codeunits-closed-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-codeunits-closed-ok", output) || println(output)
         @test occursin("g2-spatial-codeunits-closed-ok", output)
@@ -418,7 +418,7 @@ end
         @assert all(a.value != repeat("0",64) for a in after_hash)
         println("g2-spatial-bytes2hex-closed-ok")
         """
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("g2-spatial-bytes2hex-closed-ok", output) || println(output)
         @test occursin("g2-spatial-bytes2hex-closed-ok", output)
@@ -503,7 +503,7 @@ end
     @assert bad_support
     println("g2-spatial-dispatch-closed-ok")
     """
-    command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+    command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
     output = read(pipeline(ignorestatus(command), stderr=stdout), String)
     occursin("g2-spatial-dispatch-closed-ok", output) || println(output)
     @test occursin("g2-spatial-dispatch-closed-ok", output)

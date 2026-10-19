@@ -1,7 +1,7 @@
 using Test
 using Pkg
 Pkg.activate(joinpath(@__DIR__, ".."))
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_time_refinement_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_time_refinement_fixture.jl"))
 
 @testset "typed time refinement D1.2a" begin
     @test tref_protocol.ratio == 2

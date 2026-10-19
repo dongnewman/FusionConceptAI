@@ -68,7 +68,7 @@ end
 @assert FusionConceptAI._ledger_identity_wire(x) != FusionConceptAI._ledger_identity_wire(y)
 println("LEDGER_CLOSED_PASS")
 """
-    command = setenv(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`, "FUSION_LEDGER_CHILD" => "1")
+    command = setenv(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true), "FUSION_LEDGER_CHILD" => "1")
     output = read(pipeline(command, stderr=stdout), String)
     @test occursin("LEDGER_CLOSED_PASS", output)
 end

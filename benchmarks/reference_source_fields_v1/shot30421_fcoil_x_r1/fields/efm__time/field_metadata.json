@@ -1,0 +1,104 @@
+{
+  "requested_path": "efm/time",
+  "resolved_path": "efm/time",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "units": "S"
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-10-18T02:25:36.828738Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/time/0",
+      "requested_utc": "2026-10-18T02:25:36.828944Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "395",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"ed0f75752463cca45b87eb58ebcd8c08\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 395,
+      "compressed_sha256": "2831fe67d19b63afd57b883d7376524a0a25185f86dbee4b06cd93a4844d1d13",
+      "decoded_bytes": 480,
+      "decoded_sha256": "8fb00a14b7d6d92d044a04c2240574674acfbec804ed1dab55eb6c8755ee8777",
+      "decoded_shape": [
+        120
+      ],
+      "written_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__time\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "8fb00a14b7d6d92d044a04c2240574674acfbec804ed1dab55eb6c8755ee8777",
+  "finite_count": 120,
+  "total_count": 120,
+  "minimum": -0.04999999701976776,
+  "maximum": 0.5999999642372131
+}

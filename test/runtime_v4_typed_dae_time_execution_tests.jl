@@ -1,8 +1,7 @@
 using Test
 using Pkg
 Pkg.activate(joinpath(@__DIR__, ".."))
-include(joinpath(@__DIR__, "..", "examples",
-    "runtime_v4_typed_dae_time_execution_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_dae_time_execution_fixture.jl"))
 
 const DAETimePoint = FusionRuntimeV4.TypedDAETimePointV4
 const DAETimePlan = FusionRuntimeV4.TypedDAETimePlanV4

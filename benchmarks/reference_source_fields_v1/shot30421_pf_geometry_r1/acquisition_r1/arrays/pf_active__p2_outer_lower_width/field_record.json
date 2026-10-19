@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 32,
+  "assembled_path": "arrays/pf_active__p2_outer_lower_width/assembled.raw",
+  "assembled_sha256": "401c3a11c48f01d045a7371537d2d7d2787ee051cd44700247fb3b227b08d588",
+  "chunks": [
+    8
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:26.453444Z",
+      "compressed_bytes": 19,
+      "compressed_path": "arrays/pf_active__p2_outer_lower_width/chunks/c__0.zst",
+      "compressed_sha256": "871df451ddda27631f6799450763ac833b5444a06a0087ceedef9ab07f633051",
+      "decoded_bytes": 32,
+      "decoded_path": "arrays/pf_active__p2_outer_lower_width/chunks/c__0.raw",
+      "decoded_sha256": "401c3a11c48f01d045a7371537d2d7d2787ee051cd44700247fb3b227b08d588",
+      "decoded_shape": [
+        8
+      ],
+      "edge_shape": [
+        8
+      ],
+      "full_chunk_shape": [
+        8
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:25.789099Z",
+      "response_headers": {
+        "Content-Length": "19",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"1cc3fea1b1ea7bb5692f550e77adb88d\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:22 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/p2_outer_lower_width/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:26.459934Z",
+  "data_type": "float32",
+  "decoded_bytes": 32,
+  "dimensions": [
+    "p2_outer_lower_coordinate_element"
+  ],
+  "finite_count": 8,
+  "maximum": 0.024000000208616257,
+  "minimum": 0.024000000208616257,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "magnetics",
+      "comment": "Data sourced from EFIT file",
+      "configuration": "geometry",
+      "content": "geometry of the pfcoils for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-24",
+      "creatorCode": "python create_netcdf_pf.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric width values of the P2 outer lower coil elements",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/EFIT_efit_data_pfcoils-3.dat_M4",
+      "status": "development",
+      "system": "pfcoils",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          8
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float32",
+    "dimension_names": [
+      "p2_outer_lower_coordinate_element"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      8
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/p2_outer_lower_width",
+  "shape": [
+    8
+  ],
+  "started_utc": "2026-09-22T08:25:25.783012Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 8,
+  "units": "SI, degrees, m"
+}

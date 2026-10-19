@@ -6,7 +6,7 @@ using FusionConceptAI
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 Base.include(FusionRuntimeV4, joinpath(@__DIR__, "..", "src", "RuntimeV4", "TypedTimeResidual.jl"))
 using .FusionRuntimeV4
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_time_fixture.jl"))
+include(joinpath(@__DIR__, "fixtures", "RuntimeV4", "runtime_v4_typed_time_fixture.jl"))
 
 @testset "typed time residual D1.1 compiler" begin
     @test ttr_compiled isa CompiledCandidatePrefixV4
@@ -63,6 +63,73 @@ include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_time_fixture.jl")
     @test all(r.rhs_evaluations == 8 * (length(r.times) - 1) for r in runs)
     @test all(abs(sum(r.states[end]) - sum(r.states[1])) <= 1e-12 for r in runs)
     @test all(r.residual_norm <= 1e-10 for r in runs)
+    @test_throws ArgumentError compile_typed_time_residual_plan(ttr_parameter_compiled,
+        ttr_registry; row_bindings=ttr_parameter_bindings)
+    @test_throws ArgumentError ttr_parameter_plan(1.0; unit=ttr_unit)
+    @test_throws ArgumentError ttr_parameter_plan(0.0)
+    @test_throws ArgumentError ttr_parameter_plan(3.1)
+    parameter_plan = ttr_parameter_plan(0.5)
+    parameter_result = integrate_typed_time_residual(parameter_plan, ttr_scenario)
+    @test parameter_result.status === :integrated
+    @test parameter_result.residual_norm <= 1e-10
+    parameter_exact = ((1 + exp(-1)) / 2, (1 - exp(-1)) / 2)
+    @test maximum(abs.(Float64[parameter_result.states[end]...] .- parameter_exact)) <= 1e-8
+    @test replay_typed_time_trajectory(parameter_plan.form,
+        parameter_result.times, parameter_result.states).defect <= 1e-10
+    parameter_holdout = integrate_typed_time_residual(ttr_parameter_plan(1.5), ttr_scenario)
+    @test parameter_holdout.status === :integrated
+    @test parameter_holdout.residual_norm <= 1e-10
+    parameter_holdout_exact = ((1 + exp(-3)) / 2, (1 - exp(-3)) / 2)
+    @test maximum(abs.(Float64[parameter_holdout.states[end]...] .-
+        parameter_holdout_exact)) <= 1e-6
+    @test replay_typed_time_trajectory(ttr_parameter_plan(1.5).form,
+        parameter_holdout.times, parameter_holdout.states).defect <= 1e-10
+    @test maximum(abs.(Float64[parameter_holdout.states[end]...] .-
+        Float64[parameter_result.states[end]...])) > 1e-2
+    @test parameter_plan.form.form_hash != ttr_parameter_plan(1.5).form.form_hash
+    @test !hasproperty(semantic_view(plan.form), :parameter_values)
+    @test semantic_view(parameter_plan.form).parameter_values ==
+        (TimeParameterValueV4(:rate, 0.5, ttr_rate_unit),)
+    parameter_replay_plan = ttr_parameter_plan(0.5)
+    parameter_replay_result = integrate_typed_time_residual(parameter_replay_plan, ttr_scenario)
+    parameter_replay_audit = replay_typed_time_trajectory(parameter_replay_plan.form,
+        parameter_replay_result.times, parameter_replay_result.states)
+    holdout_plan = ttr_parameter_plan(1.5)
+    holdout_replay_result = integrate_typed_time_residual(holdout_plan, ttr_scenario)
+    holdout_replay_audit = replay_typed_time_trajectory(holdout_plan.form,
+        holdout_replay_result.times, holdout_replay_result.states)
+    @test parameter_replay_result.result_hash == parameter_result.result_hash
+    @test parameter_replay_result.trajectory_hash == parameter_result.trajectory_hash
+    @test holdout_replay_result.result_hash == parameter_holdout.result_hash
+    @test holdout_replay_result.trajectory_hash == parameter_holdout.trajectory_hash
+    @test parameter_replay_audit.defect == parameter_result.trajectory_defect_norm
+    @test holdout_replay_audit.defect == parameter_holdout.trajectory_defect_norm
+    println("UP2_TYPED_TIME_PARAMETER_RAW_RESULT=", canonical_json((classification="preparation",
+        test_only=true, physical=false, rates=(
+            (rate=0.5, final_state=Tuple(Float64[parameter_result.states[end]...]),
+                form_hash=string(parameter_plan.form.form_hash), plan_hash=string(parameter_plan.plan_hash),
+                result_hash=string(parameter_result.result_hash), trajectory_hash=string(parameter_result.trajectory_hash),
+                mass_solve_residual_norm=parameter_result.mass_solve_residual_norm,
+                trajectory_defect_norm=parameter_result.trajectory_defect_norm,
+                residual_norm=parameter_result.residual_norm,
+                replay_defect=parameter_replay_audit.defect,
+                max_abs_exact_error=maximum(abs.(Float64[parameter_result.states[end]...] .- parameter_exact)),
+                same_process_replay=(result_hash=string(parameter_replay_result.result_hash),
+                    trajectory_hash=string(parameter_replay_result.trajectory_hash),
+                    replay_defect=parameter_replay_audit.defect)),
+            (rate=1.5, final_state=Tuple(Float64[parameter_holdout.states[end]...]),
+                form_hash=string(holdout_plan.form.form_hash), plan_hash=string(holdout_plan.plan_hash),
+                result_hash=string(parameter_holdout.result_hash), trajectory_hash=string(parameter_holdout.trajectory_hash),
+                mass_solve_residual_norm=parameter_holdout.mass_solve_residual_norm,
+                trajectory_defect_norm=parameter_holdout.trajectory_defect_norm,
+                residual_norm=parameter_holdout.residual_norm,
+                replay_defect=holdout_replay_audit.defect,
+                max_abs_exact_error=maximum(abs.(Float64[parameter_holdout.states[end]...] .- parameter_holdout_exact)),
+                same_process_replay=(result_hash=string(holdout_replay_result.result_hash),
+                    trajectory_hash=string(holdout_replay_result.trajectory_hash),
+                    replay_defect=holdout_replay_audit.defect))))))
+    @test_throws ArgumentError FusionRuntimeV4._ttr_mass(ttr_parameter_rhs_1,
+        Dict(1 => 1, 2 => 2), 2, 1, default_operator_registry())
     @test_throws ArgumentError TimeIntegrationScenarioV4("bad", 1, 0, ttr_time_unit, ())
     @test_throws ArgumentError TimeIntegrationScenarioV4("bad", 0, 1, ttr_unit, ())
     @test_throws ArgumentError TimeIntegrationProtocolV4(:fixed_rk4, 0.1, 1.5)

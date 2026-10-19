@@ -23,7 +23,9 @@ const VNEXT_AR_LOCAL_G3_CHILD_KINDS_V1 = (:realization, :control, :binding)
 const VNEXT_AR_LOCAL_ALLOWED_CHILD_STATUS_V1 = (:terminal_deferred, :typed_absent)
 const VNEXT_AR_LOCAL_ERROR_CODES_V1 = (
     :bundle_hash_mismatch, :bundle_status_invalid, :bundle_errors_present,
-    :candidate_mismatch, :unknown_layer, :duplicate_layer, :missing_layer,
+    :candidate_mismatch, :snapshot_candidate_mismatch,
+    :frozen_source_authority_mismatch, :frozen_source_context_missing,
+    :unknown_layer, :duplicate_layer, :missing_layer,
     :record_type_invalid, :record_bundle_canonical_mismatch,
     :source_ref_mismatch, :declaration_ref_mismatch, :source_hash_mismatch,
     :declaration_hash_mismatch, :source_bytes_mismatch, :declaration_bytes_mismatch,
@@ -41,9 +43,11 @@ struct VNextAuthorityRecheckLocalInputV1
     candidate_ref::QualifiedRefV1
     bundle::VNextT0LocalTransportV1
     local_records::Tuple{Vararg{VNEXT_AR_LOCAL_RECORD_V1}}
+    frozen_context::Any
     function VNextAuthorityRecheckLocalInputV1(candidate_ref::QualifiedRefV1,
-            bundle::VNextT0LocalTransportV1, local_records::Tuple)
-        new(candidate_ref, bundle, local_records)
+            bundle::VNextT0LocalTransportV1, local_records::Tuple;
+            frozen_context=nothing)
+        new(candidate_ref, bundle, local_records, frozen_context)
     end
 end
 
@@ -125,6 +129,20 @@ function _ar_local_validate_bundle_and_records(input,
         prior_bytes::Tuple, errors::Vector{Symbol}, reasons::Vector{Symbol})
     bundle = input.bundle
     bundle.candidate_ref == input.candidate_ref || push!(errors, :candidate_mismatch)
+    if input.frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        NativeGitReadCompatibilityV1.up1_frozen_runtime_active() ||
+            push!(errors, :frozen_runtime_guard_inactive)
+        input.candidate_ref.id ==
+            NativeGitReadCompatibilityV1.frozen_source_candidate_ref(input.frozen_context) ||
+            push!(errors, :snapshot_candidate_mismatch)
+        expected_authority = merge(
+            NativeGitReadCompatibilityV1.frozen_source_identity(input.frozen_context),
+            (source_root=input.frozen_context.source_root,))
+        bundle.frozen_source_authority == expected_authority ||
+            push!(errors, :frozen_source_authority_mismatch)
+    elseif bundle.frozen_source_authority !== nothing
+        push!(errors, :frozen_source_context_missing)
+    end
     recomputed = try
         vnext_t0_local_bundle_hash_recompute_v1(bundle)
     catch
@@ -153,7 +171,8 @@ function _ar_local_validate_bundle_and_records(input,
             local_record isa VNextT0LocalPresentDeclarationV1 ||
                 push!(errors, :record_bundle_canonical_mismatch)
             if local_record isa VNextT0LocalPresentDeclarationV1
-                append!(errors, _vnl_t0_errors(local_record, input.candidate_ref))
+                append!(errors, _vnl_t0_errors(local_record, input.candidate_ref;
+                    frozen_context=input.frozen_context))
             end
         else
             local_record isa VNextT0LocalAbsentDeclarationV1 ||
@@ -172,7 +191,8 @@ function _ar_local_validate_bundle_and_records(input,
         length(indices) > 1 && push!(errors, :g3_child_duplicate)
         isempty(indices) && continue
         child = bundle.children[first(indices)]
-        append!(errors, _vnl_t0_child_errors(child, input.candidate_ref, kind))
+        append!(errors, _vnl_t0_child_errors(child, input.candidate_ref, kind;
+            frozen_context=input.frozen_context))
         child isa VNextT0LocalChildAbsentV1 || push!(errors, :g3_child_present_forbidden)
         if child isa VNextT0LocalChildAbsentV1
             child.status in VNEXT_AR_LOCAL_ALLOWED_CHILD_STATUS_V1 ||

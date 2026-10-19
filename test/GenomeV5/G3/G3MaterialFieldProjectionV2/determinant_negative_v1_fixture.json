@@ -1,0 +1,33 @@
+{
+  "schema_id": "GenomeV5/G3/G3MaterialFieldProjectionV2/DeterminantNegativeFixture",
+  "version": "v1",
+  "case_id": "symmetric_diag_1_1_minus_1",
+  "material_law": "symmetric_positive_definite_tensor",
+  "tensor_encoding": "row_major_3x3_integer_entries",
+  "conductivity_tensor_w_m_k": [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, -1
+  ],
+  "declared_domain_lower_w_m_k": [
+    -2, -2, -2,
+    -2, -2, -2,
+    -2, -2, -2
+  ],
+  "declared_domain_upper_w_m_k": [
+    2, 2, 2,
+    2, 2, 2,
+    2, 2, 2
+  ],
+  "expected_gate": {
+    "symmetric": true,
+    "first_leading_principal_minor": 1,
+    "second_leading_principal_minor": 1,
+    "determinant": -1,
+    "spd": false,
+    "reject_reason_contains": "symmetric positive definite"
+  },
+  "claim_ceiling": "constructor_gate_regression_only",
+  "physical_status": "unknown",
+  "solver_credit": false
+}

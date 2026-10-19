@@ -1,0 +1,134 @@
+{
+  "schema_version": "reference_validation_source_evidence_v1",
+  "accessed_at_utc": "2026-09-21T17:58:47.548Z",
+  "first_party_sources": [
+    {
+      "provider": "UKAEA FAIR-MAST public catalog",
+      "url": "https://mastapp.site",
+      "use": "public data catalog and source endpoints"
+    },
+    {
+      "provider": "UKAEA FAIR-MAST ingestion mapping",
+      "url": "https://raw.githubusercontent.com/ukaea/fair-mast-ingestion/608419fde2969ae05ef6f095c323589c24047a2e/mappings/level2/mast.yml",
+      "commit": "608419fde2969ae05ef6f095c323589c24047a2e",
+      "retrieved_content_sha256": "70bb5fedfea1c9c2ac3ca5fe5980a5932233d40f7572d50f1f1fc9f6a229a295",
+      "verified_fields": {
+        "dataset": "thomson_scattering",
+        "diagnostic_description": "Thomson scattering diagnostic",
+        "n_e_source_for_shots_22832_to_30471": "AYC_NE",
+        "t_e_source_for_shots_22832_to_30471": "AYC_TE",
+        "major_radius_source_for_shots_22832_to_30471": "AYC_R",
+        "n_e_dimension_order": ["major_radius", "time"],
+        "t_e_dimension_order": ["major_radius", "time"],
+        "n_e_profile_unit_in_mapping": "not_declared",
+        "major_radius_interpolation": {
+          "start": 0.3,
+          "end": 1.49,
+          "step": 0.01,
+          "fill": "none",
+          "method": "linear"
+        }
+      }
+    },
+    {
+      "provider": "UKAEA FAIR-MAST Level-1 documentation",
+      "url": "https://mastapp.site/level1-data.html",
+      "use": "documents the Level-1 diagnostic-product access route and ayc group example; Level-1 is not silently joined to Level-2 profiles"
+    },
+    {
+      "provider": "UKAEA Open Data",
+      "url": "https://opendata.ukaea.uk/mast-data/?ccfe-ta=165&ccfe-tb=8928&ccfe-tc=1166172",
+      "use": "shows that AYC error/covariance concepts may exist for other Level-1 data; it is not uncertainty evidence for these acquired Level-2 records"
+    }
+  ],
+  "catalog_snapshots": {
+    "30421": {
+      "path": "raw/shot30421/api/signals_shot_30421.parquet",
+      "sha256": "9acf41968cac2f3fa84d0a1b05342d60140e5878985fb8bec2f25a6c8867cadd",
+      "decoder": "duckdb",
+      "rows": [
+        {
+          "shot_id": 30421,
+          "name": "n_e",
+          "description": "",
+          "rank": 2,
+          "dimensions": ["time", "major_radius"],
+          "shape": [146, 120],
+          "units": "eV",
+          "quality": "Not Checked",
+          "source": "thomson_scattering",
+          "url": "s3://mast/level2/shots/30421.zarr",
+          "endpoint_url": "https://s3.echo.stfc.ac.uk",
+          "uuid": "f0b586cd-11ea-5208-927b-4e4f057a6c44",
+          "imas": "thomson_scattering",
+          "version": 0
+        },
+        {
+          "shot_id": 30421,
+          "name": "t_e",
+          "description": "",
+          "rank": 2,
+          "dimensions": ["time", "major_radius"],
+          "shape": [146, 120],
+          "units": "eV",
+          "quality": "Not Checked",
+          "source": "thomson_scattering",
+          "url": "s3://mast/level2/shots/30421.zarr",
+          "endpoint_url": "https://s3.echo.stfc.ac.uk",
+          "uuid": "6e2f4faf-7eb6-5f9e-a8a3-f0869af4abbf",
+          "imas": "thomson_scattering",
+          "version": 0
+        }
+      ]
+    },
+    "30420": {
+      "path": "raw/shot30420/api/signals_shot_30420.parquet",
+      "sha256": "cded31bbb75166fa90a789e1590952892d6281717dac894843025b018d1a2cb7",
+      "decoder": "duckdb",
+      "rows": [
+        {
+          "shot_id": 30420,
+          "name": "n_e",
+          "description": "",
+          "rank": 2,
+          "dimensions": ["time", "major_radius"],
+          "shape": [88, 120],
+          "units": "eV",
+          "quality": "Not Checked",
+          "source": "thomson_scattering",
+          "url": "s3://mast/level2/shots/30420.zarr",
+          "endpoint_url": "https://s3.echo.stfc.ac.uk",
+          "uuid": "840b0b88-f61e-5cff-be2f-a1efd94a608b",
+          "imas": "thomson_scattering",
+          "version": 0
+        },
+        {
+          "shot_id": 30420,
+          "name": "t_e",
+          "description": "",
+          "rank": 2,
+          "dimensions": ["time", "major_radius"],
+          "shape": [88, 120],
+          "units": "eV",
+          "quality": "Not Checked",
+          "source": "thomson_scattering",
+          "url": "s3://mast/level2/shots/30420.zarr",
+          "endpoint_url": "https://s3.echo.stfc.ac.uk",
+          "uuid": "c7262bd0-cba4-5bf4-b0bf-4dfb16c0c207",
+          "imas": "thomson_scattering",
+          "version": 0
+        }
+      ]
+    }
+  },
+  "evidence_boundary": {
+    "raw_zarr_metadata_is_direct_source_for_raw_byte_decode": true,
+    "catalog_is_discovery_metadata_not_used_to_reshape_or_convert": true,
+    "selected_n_e_unit_authority": "acquired Level-2 Zarr array attributes (1 / m ** 3); the pinned ingestion mapping does not declare a unit on the n_e profile block",
+    "level2_processing_boundary": "the pinned ingestion mapping declares linear major-radius interpolation; these acquired Level-2 arrays are consumed as stored and are not described as direct instrument samples",
+    "catalog_raw_root_cause": "unproven",
+    "level2_uncertainty_status": "typed_absent_for_selected_profiles",
+    "level1_error_array_binding_status": "discovered_unbound_not_consumed for shots 30421/30420; Level-1 shapes [284,131]/[73,131] with [time,radial_index] differ from selected Level-2 grids; error units/statistical semantics do not support an index join",
+    "iter_status": "design_only_separate"
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema": "candidate-design-input-manifest-v1",
+  "candidate_id": "native-g1g2-diffusion-foreign-v1",
+  "candidate_ref": {
+    "id": "fusionconceptai://candidate/native-g1g2-diffusion-foreign-v1",
+    "version": "v5"
+  },
+  "scenario_id": "scenario-native-g1g2-diffusion-foreign-v1",
+  "scenario_ref": {
+    "id": "fusionconceptai://scenario-design/scenario-native-g1g2-diffusion-foreign-v1",
+    "version": "v1"
+  },
+  "design_status": "unvalidated_design_input",
+  "source_origin": "test-only authored native G1/G2 MMS source fixture; no measured or production candidate inputs",
+  "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+  "next_gate": {
+    "kind": "software source admission",
+    "max_seconds": 240,
+    "max_memory_GiB": 4,
+    "solver": "not authorized",
+    "required": "freeze these exact candidate source bytes including native_mms_source_expressions.json and g3_child_design_source.jl; verify their file pins, candidate/scenario identity and source labels; invoke the unique G1/G2/G3 builders from the same snapshot; run the source chain through T0/recheck, V1/V2 and T1 V2 without loading RuntimeV4/compiler; preserve typed absence for unprovided authorities and no physical credit"
+  },
+  "native_g1g2_mms_alignment": {
+    "status": "candidate_inputs_prepared_not_executed",
+    "consumer_chain": "NativeG1G2DiffusionCompilerV1 -> GridapNativeG1G2DiffusionAdapterV1",
+    "g1_builder": "The only G1 constructor is up4_r2_build_g1_design(source_expressions); it consumes the already-decoded same-candidate candidate-design projection record, checks its schema/identity/frozen MMS parameter labels and required provenance pins, then projects its exact unknown_source_expression and source_expression strings. This builder does not certify expression hashes, compiler provenance, bundle exactness or native compilation.",
+    "g2_builder": "The only G2 constructor is up4_r2_build_g2_design(source_expressions); it consumes the same decoded record as G1 and checks its candidate/scenario identity, design-only scope and exact MMS chart/coefficient/boundary labels before constructing the matching authored chart and mesh. It does not verify provenance hashes or claim geometry authority.",
+    "bundle_construction_and_validation": "The projection record does not itself certify an exact NativeG1G2ProgramBundleV1. The current UP1 gate verifies the frozen record and expression hashes, candidate/scenario identity and exact MMS parameter labels; it compares compiler_sha256 with the frozen compiler source from the same snapshot and checks the remaining producer/profile/registry/bundle/snapshot digest fields for required format and recorded consistency. Full producer lineage is supported by independent review of the r4 receipts, not by UP1's field checks. UP1 then runs the source-only G1/G2/G3-to-T0/T1 chain without loading RuntimeV4/compiler. A separate later native consumer must set compiler_rebuild_required=true, reconstruct expected= native_g1g2_program_bundle_v1(profile; physical_lower=(1/2,1/3,1/4), physical_upper=(5/2,10/3,17/4), k_base=(2,3,4), k_slope=(1/10,1/20,1/30)) from the same frozen NativeG1G2DiffusionCompilerV1/profile, canonical-compare exact u/f expressions and bundle hash to the record, then require compile_native_g1g2_diffusion_v1 acceptance for the same T1/G1/G2/programs/profile tuple before Gridap; only that path checks bundle hashes, profile, AST structure, exact canonical MMS projection and G1/G2 binding.",
+    "source_expression_record": {
+      "path": "native_mms_source_expressions.json",
+      "schema": "up4-r2-native-mms-source-expressions-v1",
+      "status": "materialized_from_root_frozen_compiler_producer_r4_and_pinned_below",
+      "required_fields": [
+        "design_scope",
+        "candidate_id",
+        "candidate_ref",
+        "scenario_id",
+        "scenario_ref",
+        "formula",
+        "physical_lower_metres",
+        "physical_upper_metres",
+        "k_base",
+        "k_slope",
+        "boundary_semantics",
+        "source_sign",
+        "length_scale_metres",
+        "profile_source_basis",
+        "profile_target_basis",
+        "profile_source_length_axis",
+        "profile_target_length_axis",
+        "profile_hash",
+        "registry_hash",
+        "bundle_hash",
+        "bundle_canonical_sha256",
+        "compiler_sha256",
+        "producer_input_snapshot_id",
+        "producer_input_manifest_sha256",
+        "unknown_source_expression",
+        "unknown_source_expression_sha256",
+        "source_expression",
+        "source_expression_sha256",
+        "compiler_rebuild_required",
+        "mesh_cells"
+      ],
+      "pin_policy": "The JSON is pinned below by exact byte length and SHA-256. Its expression bytes came from the frozen compiler producer; only design_scope and compiler_rebuild_required are added metadata."
+    },
+    "frozen_contract": {
+      "reference": "product bubble over physical Cartesian metres; zero on all six faces",
+      "physical_lower_metres": [
+        "1/2",
+        "1/3",
+        "1/4"
+      ],
+      "physical_upper_metres": [
+        "5/2",
+        "10/3",
+        "17/4"
+      ],
+      "k_base": [
+        "2/1",
+        "3/1",
+        "4/1"
+      ],
+      "k_slope": [
+        "1/10",
+        "1/20",
+        "1/30"
+      ],
+      "mesh_cells_by_level": [
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          4,
+          6,
+          8
+        ],
+        [
+          8,
+          12,
+          16
+        ]
+      ],
+      "quadrature_degree": 8,
+      "thresholds_changed": false
+    },
+    "authority_and_execution": {
+      "g1_authority": "typed_absent",
+      "g2_metric_mesh_boundary_authority": "typed_absent",
+      "gridap_execution": "not_executed",
+      "numerical_credit": "none",
+      "physical_credit": "none"
+    },
+    "next_run_gate": "The UP1 consumer verifies the frozen native_mms_source_expressions.json record pins, expression hashes, identity and parameter labels, invokes the unique up4_r2_build_g1_design(source_expressions) and up4_r2_build_g2_design(source_expressions) with that same record, and completes the source-only T0/recheck/T1 chain without RuntimeV4/compiler. The record must state compiler_rebuild_required=true; exact bundle reconstruction/canonical comparison, native compiler acceptance, fresh T1 package binding, source-authority recheck and any solver work belong to a separate later native gate. No numerical or physical credit is granted here."
+  },
+  "typed_absent": {
+    "G1_authority": "external source/provider receipt unavailable; g1 authority remains terminal_deferred",
+    "G2_authority": "metric, mesh and boundary all :missing",
+    "G3_upstream_authority": "G1/G2 both :missing",
+    "G3_children": "locally authored candidate-only realization/control/binding source is present when the frozen child file is supplied; the no-source control remains typed_absent; physical authority remains absent",
+    "T1_V3": "not built in this task"
+  },
+  "claims": {
+    "physical": "none",
+    "engineering": "none",
+    "originality": "none",
+    "terminal": "none"
+  },
+  "factory_schema_source_paths": [
+    "src/GenomeV5/G1/DiffusionDeclarationV1.jl",
+    "src/GenomeV5/G2/MetricBoundaryDeclarationV1.jl",
+    "src/GenomeV5/G3/RealizationGenomeV5.jl",
+    "src/GenomeV5/G3/ControlGenomeV5.jl",
+    "src/GenomeV5/G3/CoupledRealizationControlBindingV2.jl",
+    "src/GenomeV5/G3/RealizationControlGenomeV5.jl"
+  ],
+  "files": [
+    {
+      "path": "design_identity.json",
+      "bytes": 778,
+      "sha256": "66f2c9094aae3f70643a1de52232a0845a78f240acf6b68d3929cd5506b63b2a",
+      "field_source": "Fixed candidate/scenario IDs and status; no source authority claim.",
+      "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only"
+    },
+    {
+      "path": "scenario.json",
+      "bytes": 927,
+      "sha256": "e4e7095adcca3779b22145951abd03354c2ed9e54d960cfcc0845a25d7ae1482",
+      "field_source": "Fixed source-admission scenario only; operating point typed_absent.",
+      "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only"
+    },
+    {
+      "path": "identity.jl",
+      "bytes": 672,
+      "sha256": "7b5407d85b19d6d3d6f5b372beeb00876d85463e1d6c6f00c6c3f384d52a6b1b",
+      "field_source": "Shared native v5 candidate and v1 scenario QualifiedRefs.",
+      "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only"
+    },
+    {
+      "path": "g1_source.jl",
+      "bytes": 5815,
+      "sha256": "f9f7b39ef5738368ebf6af0ee88b6c6a8e669ae5bb0e9d9c3e0506be42220dc2",
+      "field_source": "The unique G1 builder projects the exact u/f strings from the pinned same-candidate compiler projection record; current UP1 checks record pins, schema, identity, MMS contract labels and expression hashes only. Exact bundle reconstruction and compiler acceptance are reserved for a separate later native gate; external authority remains deferred.",
+      "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only"
+    },
+    {
+      "path": "native_mms_source_expressions.json",
+      "bytes": 10345,
+      "sha256": "b7d8abbab2b46add2e25e294173fe2c0be42a99b3ba0737de1448a35dcbdb43e",
+      "field_source": "Exact u/f source expressions and compiler/profile/registry/bundle/snapshot pins from the bounded frozen compiler producer r4 receipt; only design_scope=candidate_design_only and compiler_rebuild_required=true metadata were added by the recorded deterministic conversion.",
+      "target_consumer": "UP1 source-only G1/G2 candidate projection builders consuming the same record -> G1/G2/G3 -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3; no Runtime/compiler include in this consumer gate",
+      "next_gate": "Verify JSON and embedded expression hashes/pins, identity and exact MMS parameter labels during 240s / 2GiB source admission; exact bundle reconstruction/compiler acceptance is a separate later native gate"
+    },
+    {
+      "path": "g2_source.jl",
+      "bytes": 3920,
+      "sha256": "50463fbc3ce35d881d3d0b6dac54ae0c3b6a7b4efcb330772bfbed83617b8652",
+      "field_source": "Candidate G2 builder consumes and validates the same frozen native MMS record as G1, then constructs the matching physical chart, mesh base and six zero faces; geometry authority remains missing.",
+      "target_consumer": "G1/G2/G3 factories; G2 receives the same frozen native MMS expression record as G1 -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only; no mesh execution or authority credit"
+    },
+    {
+      "path": "g3_source.jl",
+      "bytes": 29547,
+      "sha256": "3254485feed3665700c6d13a25cfb5ffd2392ffa1f7321e2e11fb40e88a94c5b",
+      "field_source": "G3 builder consumes the same-snapshot locally authored child source and keeps a no-source typed-absent control. It does not claim coupled physics authority.",
+      "target_consumer": "G1/G2/G3 factories -> T0 transport/recheck -> V1/V2 -> T1 V2 -> V3",
+      "next_gate": "240s / 2GiB local software source admission only"
+    },
+    {
+      "path": "g3_child_design_source.jl",
+      "bytes": 19391,
+      "sha256": "97ceb687449e62bd7d84006be7e9ec8f783e5b83c23576d9b9210850eee69942",
+      "field_source": "Locally authored SI-labelled candidate-only geometry, material, thermal ledger and controls; no physical or engineering validation.",
+      "target_consumer": "G3 builder -> frozen G3 factory and T0/T1 source admission",
+      "next_gate": "240s / 2GiB local software source admission only"
+    }
+  ]
+}

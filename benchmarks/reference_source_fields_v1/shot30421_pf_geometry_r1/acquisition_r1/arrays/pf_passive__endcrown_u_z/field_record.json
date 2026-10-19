@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 8,
+  "assembled_path": "arrays/pf_passive__endcrown_u_z/assembled.raw",
+  "assembled_sha256": "72ca53f3cc3d401499eff1f51b9368dcecd414dca0febd4b3a4b7b8f9b557212",
+  "chunks": [
+    1
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:10.085930Z",
+      "compressed_bytes": 17,
+      "compressed_path": "arrays/pf_passive__endcrown_u_z/chunks/c__0.zst",
+      "compressed_sha256": "42eba22301ab5a0dc5789648f6cfe3bb30563ee3d790eba7d687e11f4baac21b",
+      "decoded_bytes": 8,
+      "decoded_path": "arrays/pf_passive__endcrown_u_z/chunks/c__0.raw",
+      "decoded_sha256": "72ca53f3cc3d401499eff1f51b9368dcecd414dca0febd4b3a4b7b8f9b557212",
+      "decoded_shape": [
+        1
+      ],
+      "edge_shape": [
+        1
+      ],
+      "full_chunk_shape": [
+        1
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:09.480931Z",
+      "response_headers": {
+        "Content-Length": "17",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"c7ecdc2a0db893d24a52f81f0ef4b659\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:28 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/endcrown_u_z/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:10.095168Z",
+  "data_type": "float64",
+  "decoded_bytes": 8,
+  "dimensions": [
+    "endcrown_u_geometry_channel"
+  ],
+  "finite_count": 1,
+  "maximum": 2.458250045776367,
+  "minimum": 2.458250045776367,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "passive structure",
+      "comment": "mid sectors: {'outer upper': 'mid1, mid2, mid3', 'outer lower': 'mid4, mid5, mid6', 'inner upper': 'mid7, mid8, mid9', 'inner outer': 'mid10, mid11, mid12'}",
+      "configuration": "geometry",
+      "content": "geometry of the passive structures for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-11",
+      "creatorCode": "python create_netcdf_passive.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric centre Z values of the endcrown_u coils",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/pfcoils.dat_M4",
+      "status": "development",
+      "system": "passive structure",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          1
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "endcrown_u_geometry_channel"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      1
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/endcrown_u_z",
+  "shape": [
+    1
+  ],
+  "started_utc": "2026-09-22T08:26:09.466175Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 1,
+  "units": "SI, degrees, m"
+}

@@ -1,0 +1,122 @@
+{
+  "requested_path": "efm/psi_boundary",
+  "resolved_path": "efm/psi_boundary",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Poloidal magnetic flux per toroidal radian at the plasma boundary; f(B)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Poloidal flux at boundar",
+    "mds_name": "\\TOP.ANALYSED.EFM:PSI_BOUNDARY",
+    "name": "efm/psi_boundary",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      108
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_PSI_BOUNDARY",
+    "units": "Wb / rad",
+    "uuid": "52e56be0-f38a-51af-9e36-3c8e7bd5011f",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-21T20:02:08.885970Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/psi_boundary/0",
+      "requested_utc": "2026-09-21T20:02:08.886040Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "427",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"987ae3bc900c77b7ea2c9988480f5681\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 427,
+      "compressed_sha256": "89261ac54a4b1996f2eeb1abad4dc7af7b5a90931660b2921489d2802ec3d538",
+      "decoded_bytes": 480,
+      "decoded_sha256": "9d98032bd3ae3a0d3f1a4b8345da81bb80338436b41c7775d7c3934bbe6af232",
+      "decoded_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__psi_boundary\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "9d98032bd3ae3a0d3f1a4b8345da81bb80338436b41c7775d7c3934bbe6af232",
+  "finite_count": 108,
+  "total_count": 120,
+  "minimum": -0.042693860828876495,
+  "maximum": 0.048594310879707336
+}

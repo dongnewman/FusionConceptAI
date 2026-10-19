@@ -14,6 +14,19 @@ function _ccbw_byte!(io::Base.GenericIOBuffer, byte::UInt8)
     io
 end
 
+function _ccbw_uint8!(io::Base.GenericIOBuffer, value::UInt8)
+    if value < 0x0a
+        return _ccbw_byte!(io, UInt8('0') + value)
+    elseif value < 0x64
+        _ccbw_byte!(io, UInt8('0') + div(value, UInt8(10)))
+        return _ccbw_byte!(io, UInt8('0') + value % UInt8(10))
+    end
+    _ccbw_byte!(io, UInt8('0') + div(value, UInt8(100)))
+    remainder = value % UInt8(100)
+    _ccbw_byte!(io, UInt8('0') + div(remainder, UInt8(10)))
+    _ccbw_byte!(io, UInt8('0') + remainder % UInt8(10))
+end
+
 function _ccbw_ascii!(io::Base.GenericIOBuffer, value::String)
     n = Core.sizeof(value)
     GC.@preserve value begin
@@ -32,12 +45,19 @@ end
 function _ccbw_utf8!(io::Base.GenericIOBuffer, value::AbstractString)
     text = typeof(value) === String ? value : invoke(String, Tuple{AbstractString}, value)
     n = Core.sizeof(text)
-    GC.@preserve text begin
-        ptr = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), text)
-        i = 1
-        while i <= n
-            _ccbw_byte!(io, invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, ptr, i))
-            i += 1
+    if n > 0 && typeof(io) === IOBuffer && getfield(io, :maxsize) == typemax(Int)
+        GC.@preserve text begin
+            ptr = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), text)
+            invoke(unsafe_write, Tuple{Base.GenericIOBuffer,Ptr{UInt8},UInt}, io, ptr, UInt(n))
+        end
+    else
+        GC.@preserve text begin
+            ptr = ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), text)
+            i = 1
+            while i <= n
+                _ccbw_byte!(io, invoke(unsafe_load, Tuple{Ptr{UInt8},Integer}, ptr, i))
+                i += 1
+            end
         end
     end
     io

@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 24,
+  "assembled_path": "arrays/pf_passive__p2larm_width/assembled.raw",
+  "assembled_sha256": "177e2f5a5d98f4990b23160b0d9bbeec644c4fdb102bb1e2a266c30e02fb3261",
+  "chunks": [
+    3
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:26.081825Z",
+      "compressed_bytes": 33,
+      "compressed_path": "arrays/pf_passive__p2larm_width/chunks/c__0.zst",
+      "compressed_sha256": "9964b4f9f5f3366bcb2501dedd383a9aa44340d3ea84c8c6a39617603ec7694a",
+      "decoded_bytes": 24,
+      "decoded_path": "arrays/pf_passive__p2larm_width/chunks/c__0.raw",
+      "decoded_sha256": "177e2f5a5d98f4990b23160b0d9bbeec644c4fdb102bb1e2a266c30e02fb3261",
+      "decoded_shape": [
+        3
+      ],
+      "edge_shape": [
+        3
+      ],
+      "full_chunk_shape": [
+        3
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:25.560111Z",
+      "response_headers": {
+        "Content-Length": "33",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"3205d8d143e55b1feacdf93fcb327adb\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:31 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/p2larm_width/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:26.090749Z",
+  "data_type": "float64",
+  "decoded_bytes": 24,
+  "dimensions": [
+    "p2larm_geometry_channel"
+  ],
+  "finite_count": 3,
+  "maximum": 0.1865403950214386,
+  "minimum": 0.046670101583004,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "passive structure",
+      "comment": "mid sectors: {'outer upper': 'mid1, mid2, mid3', 'outer lower': 'mid4, mid5, mid6', 'inner upper': 'mid7, mid8, mid9', 'inner outer': 'mid10, mid11, mid12'}",
+      "configuration": "geometry",
+      "content": "geometry of the passive structures for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-11",
+      "creatorCode": "python create_netcdf_passive.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric width of the p2larm coils",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/pfcoils.dat_M4",
+      "status": "development",
+      "system": "passive structure",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          3
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "p2larm_geometry_channel"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      3
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/p2larm_width",
+  "shape": [
+    3
+  ],
+  "started_utc": "2026-09-22T08:26:25.542886Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 3,
+  "units": "SI, degrees, m"
+}

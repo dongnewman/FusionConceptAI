@@ -4,7 +4,7 @@ using FusionConceptAI
 include(joinpath(@__DIR__, "..", "src", "RuntimeV4", "FusionRuntimeV4.jl"))
 Base.include(FusionRuntimeV4, joinpath(@__DIR__, "..", "src", "RuntimeV4", "TypedTimeResidual.jl"))
 using .FusionRuntimeV4
-include(joinpath(@__DIR__, "..", "examples", "runtime_v4_typed_time_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_typed_time_fixture.jl"))
 
 exact = ((1 + exp(-2)) / 2, (1 - exp(-2)) / 2)
 results = NamedTuple[]

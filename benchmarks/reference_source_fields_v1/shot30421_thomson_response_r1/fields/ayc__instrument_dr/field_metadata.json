@@ -1,0 +1,142 @@
+{
+  "requested_path": "ayc/instrument_dr",
+  "resolved_path": "ayc/instrument_dr",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      20,
+      131
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      20,
+      131
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "instrument_time",
+      "radial_index"
+    ],
+    "description": "",
+    "dims": [
+      "instrument_time",
+      "radial_index"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "instrument_dr",
+    "mds_name": "\\TOP.ANALYSED.AYC.INSTRUMENT:DR",
+    "name": "ayc/instrument_dr",
+    "quality": "Not Checked",
+    "rank": 2,
+    "shape": [
+      20,
+      130
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "ayc",
+    "time_index": 0,
+    "uda_name": "AYC_INSTRUMENT_DR",
+    "units": "m",
+    "uuid": "f26b6e25-881b-511e-8bcc-faf6851ece7f",
+    "version": 0
+  },
+  "shape": [
+    20,
+    131
+  ],
+  "chunks": [
+    20,
+    131
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "instrument_time",
+    "radial_index"
+  ],
+  "decoded_bytes": 10480,
+  "coordinate_paths": [
+    {
+      "dimension": "instrument_time",
+      "path": "ayc/instrument_time",
+      "available": true,
+      "shape": [
+        20
+      ],
+      "dtype": "<f4",
+      "units": "s"
+    },
+    {
+      "dimension": "radial_index",
+      "path": "ayc/radial_index",
+      "available": true,
+      "shape": [
+        131
+      ],
+      "dtype": "<f4",
+      "units": " arb "
+    }
+  ],
+  "status": "acquired_raw_values_semantics_unverified",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0,
+        0
+      ],
+      "chunk_start": [
+        0,
+        0
+      ],
+      "edge_shape": [
+        20,
+        131
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/instrument_dr/0.0",
+      "requested_utc": "2026-09-22T08:10:00.846409+00:00",
+      "compressed_path": "fields/ayc__instrument_dr/chunks/0.0.blosc",
+      "http_status": 200,
+      "headers": {
+        "Content-Length": "7859",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+        "ETag": "\"b67dcbddb4932bcb9522f6848807e71c\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "status": "decoded",
+      "compressed_bytes": 7859,
+      "compressed_sha256": "83cbbc42dc790c614010777ad9e71afcbc609a932bbfc9c469a90510daca8695",
+      "decoded_path": "fields/ayc__instrument_dr/chunks/0.0.raw",
+      "decoded_bytes": 10480,
+      "decoded_sha256": "6039a11a9555decc47f6bd38716f43439e81aed8e306a454a385b376a9cb4286",
+      "decoded_shape": [
+        20,
+        131
+      ],
+      "full_bytes": 10480,
+      "edge_bytes": 10480,
+      "completed_utc": "2026-09-22T08:10:01.422279+00:00"
+    }
+  ],
+  "started_utc": "2026-09-22T08:10:00.844873+00:00",
+  "completed_utc": "2026-09-22T08:10:01.424449+00:00",
+  "assembled_path": "fields/ayc__instrument_dr/assembled.raw",
+  "assembled_bytes": 10480,
+  "assembled_sha256": "6039a11a9555decc47f6bd38716f43439e81aed8e306a454a385b376a9cb4286",
+  "finite_count": 2600,
+  "total_count": 2620,
+  "minimum": -0.007203750312328339,
+  "maximum": 0.007211179472506046
+}

@@ -1,0 +1,2407 @@
+{
+  "schema": "mast-source-fields-acquisition-receipt-v1",
+  "shot": 30421,
+  "field_set": "native_coil_coords19",
+  "utc_started": "2026-09-22T01:49:36.802329Z",
+  "command": [
+    "tools/fetch_mast_source_fields_v1.py",
+    "--shot",
+    "30421",
+    "--metadata",
+    "benchmarks/reference_data_level1_v1/shot30421_r1/zmetadata.json",
+    "--output",
+    "benchmarks/reference_source_fields_v1/shot30421_native_coil_coords_r1",
+    "--field-set",
+    "native_coil_coords19"
+  ],
+  "pid": 111524,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "metadata_source": "benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+  "metadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+  "metadata_bytes": 1714135,
+  "metadata_copy": "zmetadata.json",
+  "selection_sha256": "af2defd582acdb0e5d68fb6b850f094296579e827f915b3b84836fb01a892e00",
+  "script_sha256": "5bae596dba515598bb3795b839fd1b3afb420f831b498d72a8411ae1be679ff7",
+  "script_copy": "fetch_mast_source_fields_v1.py.copy",
+  "blosc_dll": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+  "blosc_dll_sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11",
+  "limits": {
+    "max_array_decoded_bytes": 8000000,
+    "max_total_decoded_bytes": 24000000,
+    "process_memory_bytes": 536870912,
+    "max_compressed_chunk_bytes": 8000000,
+    "request_timeout_seconds": 30
+  },
+  "error_semantics": "unverified_not_assumed_standard_deviation",
+  "raw_values_only": true,
+  "likelihood_ready": false,
+  "scientific_acceptance": false,
+  "arrays": [
+    {
+      "requested_path": "amc/p2u_current",
+      "resolved_path": "amc/p2u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P2U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P2U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P2U_CURRENT",
+        "name": "amc/p2u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P2U CURRENT",
+        "units": "kA * turn",
+        "uuid": "41d6ed1a-c1fd-559e-a5af-4fa06b017f63",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:36.805801Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p2u_current/0",
+          "requested_utc": "2026-09-22T01:49:36.805907Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "104297",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"301efd2ed820ffa82d1a45dd58b2ee5c\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 104297,
+          "compressed_sha256": "7eac01bf8c21ddb0ad39352569ea456f1060f214a26f412e401ce6720ed6e4e8",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "65068b5112b3153f6c0f70f163b3dfa0af7a35c6bce128f9651a29517bf9e864",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p2u_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "65068b5112b3153f6c0f70f163b3dfa0af7a35c6bce128f9651a29517bf9e864",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -2.75518536567688,
+      "maximum": 245.20553588867188
+    },
+    {
+      "requested_path": "amc/p2l_current",
+      "resolved_path": "amc/p2l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P2L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P2L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P2L_CURRENT",
+        "name": "amc/p2l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P2L CURRENT",
+        "units": "kA * turn",
+        "uuid": "6f614514-3dbf-5fdd-81f9-684b3be7b613",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:40.374095Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p2l_current/0",
+          "requested_utc": "2026-09-22T01:49:40.374485Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "104088",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"f667a82ec7a40dd10cf585c565af62c4\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 104088,
+          "compressed_sha256": "1041ac0620a3f0fb754b8322391b6e217ab38db8b43a047dd45da5a6d67aa04e",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "d36b600a4b25f7bd5c69bfa56a89860cd7cd0059829911aaab83476eb040f565",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p2l_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "d36b600a4b25f7bd5c69bfa56a89860cd7cd0059829911aaab83476eb040f565",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -19.147216796875,
+      "maximum": 240.49319458007812
+    },
+    {
+      "requested_path": "amc/p3u_current",
+      "resolved_path": "amc/p3u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P3U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P3U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P3U_CURRENT",
+        "name": "amc/p3u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P3U CURRENT",
+        "units": "kA * turn",
+        "uuid": "ec667935-471e-52db-8652-43b0fa6d006f",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:41.225854Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p3u_current/0",
+          "requested_utc": "2026-09-22T01:49:41.226001Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "106388",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"49be58a119f6e8026b0551af258f474a\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 106388,
+          "compressed_sha256": "c1db086a7f8b8ae5db4f3794b335e3510ebc6c6b7f81b87c07fc61e7ab218f93",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "586fa9f713c6b4596889c886f6e2efd0be2cf58ae08d6307ba1184f2bb5886c0",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p3u_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "586fa9f713c6b4596889c886f6e2efd0be2cf58ae08d6307ba1184f2bb5886c0",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -2.1375370025634766,
+      "maximum": 140.2540740966797
+    },
+    {
+      "requested_path": "amc/p3l_current",
+      "resolved_path": "amc/p3l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P3L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P3L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P3L_CURRENT",
+        "name": "amc/p3l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P3L CURRENT",
+        "units": "kA * turn",
+        "uuid": "f259f1f8-c255-5858-aea6-42059e8705eb",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:41.803926Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p3l_current/0",
+          "requested_utc": "2026-09-22T01:49:41.804066Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "108998",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"f12360bb80a67f7f677f184408247e7b\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 108998,
+          "compressed_sha256": "c533fc0e0977a5e10de110f5a7bd75205cc64e6ebc42248ce199a6810e3a2a99",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "93f8f94c670f6e515b87fabe0a5379726f8b3e6fdde15b605514703e24d5f140",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p3l_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "93f8f94c670f6e515b87fabe0a5379726f8b3e6fdde15b605514703e24d5f140",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -13.207658767700195,
+      "maximum": 139.83834838867188
+    },
+    {
+      "requested_path": "amc/p4u_current",
+      "resolved_path": "amc/p4u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P4U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P4U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P4U_CURRENT",
+        "name": "amc/p4u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P4U CURRENT",
+        "units": "kA * turn",
+        "uuid": "cf1779fa-b6c3-5cb1-83d2-716ab804fc93",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:42.371744Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p4u_current/0",
+          "requested_utc": "2026-09-22T01:49:42.371905Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "96741",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"8cb12cf3b134aa04c338c90ac085231b\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 96741,
+          "compressed_sha256": "93b546e09432fc6f0bfd286fe9b4604f4b0672fe2083bb222aebb368bac14779",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "0136481683fd62c729d66145d9275710b4329f5699abc4868cffb7ad069b2ca2",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p4u_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "0136481683fd62c729d66145d9275710b4329f5699abc4868cffb7ad069b2ca2",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -165.49684143066406,
+      "maximum": 0.1979222148656845
+    },
+    {
+      "requested_path": "amc/p4l_current",
+      "resolved_path": "amc/p4l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P4L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P4L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P4L_CURRENT",
+        "name": "amc/p4l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P4L CURRENT",
+        "units": "kA * turn",
+        "uuid": "79f035fc-550e-5b64-ab5e-fe5125e4208f",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:42.901036Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p4l_current/0",
+          "requested_utc": "2026-09-22T01:49:42.901203Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "104112",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"f5556e99aecd5d2f3609670f48a1aa29\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 104112,
+          "compressed_sha256": "5b9a256ad90a8c95fe620fa956400bdf7e90c42add61eeffdff9bf2b380b7afa",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "622e54d212bad9bfa0e65d0cac920e99e2e6a5b40cbeff88f3b4c8d285984279",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p4l_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "622e54d212bad9bfa0e65d0cac920e99e2e6a5b40cbeff88f3b4c8d285984279",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -164.487548828125,
+      "maximum": 0.07081778347492218
+    },
+    {
+      "requested_path": "amc/p5u_current",
+      "resolved_path": "amc/p5u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P5U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P5U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P5U_CURRENT",
+        "name": "amc/p5u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P5U CURRENT",
+        "units": "kA * turn",
+        "uuid": "f8a281e3-4bff-5dc6-aca4-7c3d8f81b383",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:43.453961Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p5u_current/0",
+          "requested_utc": "2026-09-22T01:49:43.454239Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "96707",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"ba8e2f6db80e1da5747f342321d188b7\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 96707,
+          "compressed_sha256": "c76716e551801bd3f682fff6a2b89617bb92739478e86bdbe5a3979d21605dc2",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "cddcda4dc65a71981ee4253b8aaa11693571a040f20b4e8259d60a1cc9805dc1",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p5u_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "cddcda4dc65a71981ee4253b8aaa11693571a040f20b4e8259d60a1cc9805dc1",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -111.03095245361328,
+      "maximum": 0.17021004855632782
+    },
+    {
+      "requested_path": "amc/p5l_current",
+      "resolved_path": "amc/p5l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P5L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P5L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P5L_CURRENT",
+        "name": "amc/p5l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P5L CURRENT",
+        "units": "kA * turn",
+        "uuid": "256a5537-2aad-5448-84c8-f537b91e603a",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:44.108001Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p5l_current/0",
+          "requested_utc": "2026-09-22T01:49:44.108103Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "105535",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"96be79e3be0911bf9928e26fa394e3f6\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 105535,
+          "compressed_sha256": "f718cad3680c09872553df6d4f1356c6d64c811e70b24bd723b03cdf430db167",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "05ba4f3494130e21b291b4463df1fea5bdce3895506d5f673fcad6935c9e5c9f",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p5l_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "05ba4f3494130e21b291b4463df1fea5bdce3895506d5f673fcad6935c9e5c9f",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -111.27323913574219,
+      "maximum": 0.1097220703959465
+    },
+    {
+      "requested_path": "amc/p6u_current",
+      "resolved_path": "amc/p6u_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P6U current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P6U Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P6U_CURRENT",
+        "name": "amc/p6u_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P6U CURRENT",
+        "units": "kA * turn",
+        "uuid": "04f9a209-0e1d-53ce-b6c3-3d3035b99c7b",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:44.616610Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p6u_current/0",
+          "requested_utc": "2026-09-22T01:49:44.616716Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "102289",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"2f169f8e05c8da08b7c1417381cb9aeb\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 102289,
+          "compressed_sha256": "3b5fdc25e3fa1d664d1c2de40d0dea748017c0231003e053b4dcaad75d1a86aa",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "920f3182c8a8c5439486e0038c55e8b0d18f9a02f2f8bfca25bd0955e0119578",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p6u_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "920f3182c8a8c5439486e0038c55e8b0d18f9a02f2f8bfca25bd0955e0119578",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -14.948114395141602,
+      "maximum": 8.801657676696777
+    },
+    {
+      "requested_path": "amc/p6l_current",
+      "resolved_path": "amc/p6l_current",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          30000
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          30000
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Internal P6L current",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "P6L Current",
+        "mds_name": "\\TOP.ANALYSED.AMC:P6L_CURRENT",
+        "name": "amc/p6l_current",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          30000
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "amc",
+        "time_index": 0,
+        "uda_name": "AMC_P6L CURRENT",
+        "units": "kA * turn",
+        "uuid": "931f2158-42ab-573b-a7f8-98c7392fb1ea",
+        "version": 0
+      },
+      "shape": [
+        30000
+      ],
+      "chunks": [
+        30000
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 120000,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "amc/time",
+          "available": true,
+          "shape": [
+            30000
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:45.143594Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            30000
+          ],
+          "full_chunk_shape": [
+            30000
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/amc/p6l_current/0",
+          "requested_utc": "2026-09-22T01:49:45.143706Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "106916",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:18 GMT",
+            "ETag": "\"d218ece5141ebd99a9e744a970bd0873\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 106916,
+          "compressed_sha256": "1b40ffd040d773f389e7069a38aad6d73ace065534a338f629900c12f2db5195",
+          "decoded_bytes": 120000,
+          "decoded_sha256": "c4d9113173415870ed036f9490f9e607509d92ad8ca9fbb51df1b01c50377c3c",
+          "decoded_shape": [
+            30000
+          ],
+          "written_shape": [
+            30000
+          ],
+          "expected_full_bytes": 120000,
+          "expected_edge_bytes": 120000,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\amc__p6l_current\\assembled.raw",
+      "assembled_raw_bytes": 120000,
+      "assembled_raw_sha256": "c4d9113173415870ed036f9490f9e607509d92ad8ca9fbb51df1b01c50377c3c",
+      "finite_count": 30000,
+      "total_count": 30000,
+      "minimum": -9.689618110656738,
+      "maximum": 10.885404586791992
+    },
+    {
+      "requested_path": "efm/xpoint1_rc",
+      "resolved_path": "efm/xpoint1_rc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Radius of first X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Radius of X-point 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT1_R_C",
+        "name": "efm/xpoint1_rc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT1_R(C)",
+        "units": "m",
+        "uuid": "77f7e16b-6b44-597e-bde4-450fabfe9cd7",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:45.644499Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            120
+          ],
+          "full_chunk_shape": [
+            120
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/xpoint1_rc/0",
+          "requested_utc": "2026-09-22T01:49:45.644645Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "346",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"a5f9e05333622feaff93e9815cf90ba1\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 346,
+          "compressed_sha256": "5a4603edcfdfb90e44cba4cac5fb0786f86e0400d911cc4b7c66c714385a4b15",
+          "decoded_bytes": 480,
+          "decoded_sha256": "e93d45915fe2a11a4473730a01156fef02f273999c47bfe43675b1b76c57ec43",
+          "decoded_shape": [
+            120
+          ],
+          "written_shape": [
+            120
+          ],
+          "expected_full_bytes": 480,
+          "expected_edge_bytes": 480,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__xpoint1_rc\\assembled.raw",
+      "assembled_raw_bytes": 480,
+      "assembled_raw_sha256": "e93d45915fe2a11a4473730a01156fef02f273999c47bfe43675b1b76c57ec43",
+      "finite_count": 82,
+      "total_count": 120,
+      "minimum": 0.3523002862930298,
+      "maximum": 0.6745796203613281
+    },
+    {
+      "requested_path": "efm/xpoint1_zc",
+      "resolved_path": "efm/xpoint1_zc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Height of first X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Height of X-point 1",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT1_Z_C",
+        "name": "efm/xpoint1_zc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT1_Z(C)",
+        "units": "m",
+        "uuid": "5a5ae517-d8a9-54cb-9734-14949e0ad9f7",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:46.172423Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            120
+          ],
+          "full_chunk_shape": [
+            120
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/xpoint1_zc/0",
+          "requested_utc": "2026-09-22T01:49:46.172533Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "344",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"fbf3764746c4f9629d8a8f0177287529\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 344,
+          "compressed_sha256": "0a5804440211329facf79534c151470df9b18b6eac5cecfdce32866684027371",
+          "decoded_bytes": 480,
+          "decoded_sha256": "702bca100fae53d55d49ff3a53a51f99f2d5bdc0345ef59343c0dd82744b6866",
+          "decoded_shape": [
+            120
+          ],
+          "written_shape": [
+            120
+          ],
+          "expected_full_bytes": 480,
+          "expected_edge_bytes": 480,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__xpoint1_zc\\assembled.raw",
+      "assembled_raw_bytes": 480,
+      "assembled_raw_sha256": "702bca100fae53d55d49ff3a53a51f99f2d5bdc0345ef59343c0dd82744b6866",
+      "finite_count": 82,
+      "total_count": 120,
+      "minimum": -1.2850290536880493,
+      "maximum": -1.1159389019012451
+    },
+    {
+      "requested_path": "efm/xpoint2_rc",
+      "resolved_path": "efm/xpoint2_rc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Radius of second X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Radius of X-point 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT2_R_C",
+        "name": "efm/xpoint2_rc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT2_R(C)",
+        "units": "m",
+        "uuid": "4896be18-1a48-533e-a8a4-0f987d33bf9d",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:46.679933Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            120
+          ],
+          "full_chunk_shape": [
+            120
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/xpoint2_rc/0",
+          "requested_utc": "2026-09-22T01:49:46.680021Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "324",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"c0c25f90fbe243509b02d20d02ee7965\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 324,
+          "compressed_sha256": "a811dbebe79ea49d74241c756c0628694929865e3e179631501a0e9ba8d9dece",
+          "decoded_bytes": 480,
+          "decoded_sha256": "e744b6bceefdf9efc5a47213645c4e0238ee608817647fc54135fba690aad4b2",
+          "decoded_shape": [
+            120
+          ],
+          "written_shape": [
+            120
+          ],
+          "expected_full_bytes": 480,
+          "expected_edge_bytes": 480,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__xpoint2_rc\\assembled.raw",
+      "assembled_raw_bytes": 480,
+      "assembled_raw_sha256": "e744b6bceefdf9efc5a47213645c4e0238ee608817647fc54135fba690aad4b2",
+      "finite_count": 79,
+      "total_count": 120,
+      "minimum": 0.21538898348808289,
+      "maximum": 0.5065852999687195
+    },
+    {
+      "requested_path": "efm/xpoint2_zc",
+      "resolved_path": "efm/xpoint2_zc",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "Height of second X-point; f(B)",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Height of X-point 2",
+        "mds_name": "\\TOP.ANALYSED.EFM:XPOINT2_Z_C",
+        "name": "efm/xpoint2_zc",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          108
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_XPOINT2_Z(C)",
+        "units": "m",
+        "uuid": "da127eed-d89a-5340-82d5-a7614265e525",
+        "version": 0
+      },
+      "shape": [
+        120
+      ],
+      "chunks": [
+        120
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 480,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:47.199018Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            120
+          ],
+          "full_chunk_shape": [
+            120
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/xpoint2_zc/0",
+          "requested_utc": "2026-09-22T01:49:47.199096Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "314",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"c5d34775f75bdc897a1f1c5578108a3c\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 314,
+          "compressed_sha256": "ed7c5105202e4875879d00e5b71fe6d0173c4410abf140735591c2632e3f4978",
+          "decoded_bytes": 480,
+          "decoded_sha256": "0a0939a3a265f051f96b32d44bd3a59e44b0b510650f8615c147d284cf7e261a",
+          "decoded_shape": [
+            120
+          ],
+          "written_shape": [
+            120
+          ],
+          "expected_full_bytes": 480,
+          "expected_edge_bytes": 480,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__xpoint2_zc\\assembled.raw",
+      "assembled_raw_bytes": 480,
+      "assembled_raw_sha256": "0a0939a3a265f051f96b32d44bd3a59e44b0b510650f8615c147d284cf7e261a",
+      "finite_count": 79,
+      "total_count": 120,
+      "minimum": 0.843630850315094,
+      "maximum": 0.9881143569946289
+    },
+    {
+      "requested_path": "efm/r",
+      "resolved_path": "efm/r",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "r"
+        ],
+        "units": "m"
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "r"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "r",
+          "path": "efm/r",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:47.731036Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            65
+          ],
+          "full_chunk_shape": [
+            65
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/r/0",
+          "requested_utc": "2026-09-22T01:49:47.731193Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "246",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"aa022453f903add697097a0561c74d86\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 246,
+          "compressed_sha256": "176d82b08b67a16a7ac184414257f1ff56c8ad66e26041514d842dcd390ad5dc",
+          "decoded_bytes": 260,
+          "decoded_sha256": "b21befacd4257f1158620c12b134a4e038a6d9aac61c9c0f49cc9e3b08e9e90d",
+          "decoded_shape": [
+            65
+          ],
+          "written_shape": [
+            65
+          ],
+          "expected_full_bytes": 260,
+          "expected_edge_bytes": 260,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__r\\assembled.raw",
+      "assembled_raw_bytes": 260,
+      "assembled_raw_sha256": "b21befacd4257f1158620c12b134a4e038a6d9aac61c9c0f49cc9e3b08e9e90d",
+      "finite_count": 65,
+      "total_count": 65,
+      "minimum": 0.05999999865889549,
+      "maximum": 2.0
+    },
+    {
+      "requested_path": "efm/gridr",
+      "resolved_path": "efm/gridr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "r"
+        ],
+        "description": "R grid for 2D outputs; f(nr)",
+        "dims": [
+          "r"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "r-coordinates of computa",
+        "mds_name": "\\TOP.ANALYSED.EFM:GRID_R",
+        "name": "efm/gridr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_GRID(R)",
+        "units": "m",
+        "uuid": "34781f9a-77cf-5bdb-beaf-e4ecfb17abfb",
+        "version": 0
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "r"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "r",
+          "path": "efm/r",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:48.264331Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            65
+          ],
+          "full_chunk_shape": [
+            65
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/gridr/0",
+          "requested_utc": "2026-09-22T01:49:48.264641Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "242",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"29850ae5f00d1263bc3ef2e0bbee2e10\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 242,
+          "compressed_sha256": "e4423232f0eed332435660a88fe518921b0448ae4291110cd6e606d05e2e1187",
+          "decoded_bytes": 260,
+          "decoded_sha256": "8324866a268620e14f0391dea4eca34e32511265f0546b2f7314e8fc9ea60037",
+          "decoded_shape": [
+            65
+          ],
+          "written_shape": [
+            65
+          ],
+          "expected_full_bytes": 260,
+          "expected_edge_bytes": 260,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__gridr\\assembled.raw",
+      "assembled_raw_bytes": 260,
+      "assembled_raw_sha256": "8324866a268620e14f0391dea4eca34e32511265f0546b2f7314e8fc9ea60037",
+      "finite_count": 65,
+      "total_count": 65,
+      "minimum": 0.05999999865889549,
+      "maximum": 2.0
+    },
+    {
+      "requested_path": "efm/z",
+      "resolved_path": "efm/z",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "z"
+        ],
+        "units": "m"
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "z"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "z",
+          "path": "efm/z",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:48.855223Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            65
+          ],
+          "full_chunk_shape": [
+            65
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/z/0",
+          "requested_utc": "2026-09-22T01:49:48.855376Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "131",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"7c3b99e666edd232f998e2031878f28e\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 131,
+          "compressed_sha256": "61420c239768b23b25208a7e99e84800923026633a4b2ede076768e920a5866d",
+          "decoded_bytes": 260,
+          "decoded_sha256": "1a5668cd09e44d40c230ee5fd09e153f2c64f6332ace09efc053da3ec0c286fa",
+          "decoded_shape": [
+            65
+          ],
+          "written_shape": [
+            65
+          ],
+          "expected_full_bytes": 260,
+          "expected_edge_bytes": 260,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__z\\assembled.raw",
+      "assembled_raw_bytes": 260,
+      "assembled_raw_sha256": "1a5668cd09e44d40c230ee5fd09e153f2c64f6332ace09efc053da3ec0c286fa",
+      "finite_count": 65,
+      "total_count": 65,
+      "minimum": -2.0,
+      "maximum": 2.0
+    },
+    {
+      "requested_path": "efm/gridz",
+      "resolved_path": "efm/gridz",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          65
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          65
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "z"
+        ],
+        "description": "Z grid for 2D outputs; f(nz)",
+        "dims": [
+          "z"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "z-coordinates of computa",
+        "mds_name": "\\TOP.ANALYSED.EFM:GRID_Z",
+        "name": "efm/gridz",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_GRID(Z)",
+        "units": "m",
+        "uuid": "2759e066-4fc8-5b78-adcb-1506ba57eb83",
+        "version": 0
+      },
+      "shape": [
+        65
+      ],
+      "chunks": [
+        65
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "z"
+      ],
+      "decoded_bytes": 260,
+      "coordinate_paths": [
+        {
+          "dimension": "z",
+          "path": "efm/z",
+          "available": true,
+          "shape": [
+            65
+          ],
+          "dtype": "<f4",
+          "units": "m"
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:49.369350Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            65
+          ],
+          "full_chunk_shape": [
+            65
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/gridz/0",
+          "requested_utc": "2026-09-22T01:49:49.369589Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "131",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"7c3b99e666edd232f998e2031878f28e\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 131,
+          "compressed_sha256": "61420c239768b23b25208a7e99e84800923026633a4b2ede076768e920a5866d",
+          "decoded_bytes": 260,
+          "decoded_sha256": "1a5668cd09e44d40c230ee5fd09e153f2c64f6332ace09efc053da3ec0c286fa",
+          "decoded_shape": [
+            65
+          ],
+          "written_shape": [
+            65
+          ],
+          "expected_full_bytes": 260,
+          "expected_edge_bytes": 260,
+          "compressed_path": "chunks\\0.blosc",
+          "decoded_chunk_path": "chunks\\0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__gridz\\assembled.raw",
+      "assembled_raw_bytes": 260,
+      "assembled_raw_sha256": "1a5668cd09e44d40c230ee5fd09e153f2c64f6332ace09efc053da3ec0c286fa",
+      "finite_count": 65,
+      "total_count": 65,
+      "minimum": -2.0,
+      "maximum": 2.0
+    },
+    {
+      "requested_path": "efm/rvals",
+      "resolved_path": "efm/rvals",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          120,
+          129
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          120,
+          129
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "profile_r"
+        ],
+        "description": "Radial co-ordinates used for radial profiles; f(nw)",
+        "dims": [
+          "time",
+          "profile_r"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "R-coords used for radial",
+        "mds_name": "\\TOP.ANALYSED.EFM:RVALS",
+        "name": "efm/rvals",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          108,
+          65
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "efm",
+        "time_index": 0,
+        "uda_name": "EFM_RVALS",
+        "units": "",
+        "uuid": "1e72020e-45d9-580c-81e1-3d19f707fd17",
+        "version": 0
+      },
+      "shape": [
+        120,
+        129
+      ],
+      "chunks": [
+        120,
+        129
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "profile_r"
+      ],
+      "decoded_bytes": 61920,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "efm/time",
+          "available": true,
+          "shape": [
+            120
+          ],
+          "dtype": "<f4",
+          "units": "S"
+        },
+        {
+          "dimension": "profile_r",
+          "path": "efm/profile_r",
+          "available": true,
+          "shape": [
+            129
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "utc_started": "2026-09-22T01:49:49.940436Z",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            120,
+            129
+          ],
+          "full_chunk_shape": [
+            120,
+            129
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/rvals/0.0",
+          "requested_utc": "2026-09-22T01:49:49.940597Z",
+          "http_status": 200,
+          "response_headers": {
+            "Content-Length": "30149",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+            "ETag": "\"bb9e02799a8cff6c1c8ed43e408d460f\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "compressed_bytes": 30149,
+          "compressed_sha256": "b0d45382ae41bf061136acd5c280487dfb9d91152ca86ad23ad2ac0e8e74ff25",
+          "decoded_bytes": 61920,
+          "decoded_sha256": "eab11a63e539c43e821a8f771e258338fcc9f111d88bbf0e27738ada1bd5eeff",
+          "decoded_shape": [
+            120,
+            129
+          ],
+          "written_shape": [
+            120,
+            129
+          ],
+          "expected_full_bytes": 61920,
+          "expected_edge_bytes": 61920,
+          "compressed_path": "chunks\\0.0.blosc",
+          "decoded_chunk_path": "chunks\\0.0.raw",
+          "status": "decoded"
+        }
+      ],
+      "failures": [],
+      "status": "acquired_raw_values_no_uncertainty_interpretation",
+      "assembled_raw_path": "fields\\efm__rvals\\assembled.raw",
+      "assembled_raw_bytes": 61920,
+      "assembled_raw_sha256": "eab11a63e539c43e821a8f771e258338fcc9f111d88bbf0e27738ada1bd5eeff",
+      "finite_count": 7020,
+      "total_count": 15480,
+      "minimum": 0.19524440169334412,
+      "maximum": 1.470902681350708
+    }
+  ],
+  "failures": [],
+  "status": "success",
+  "total_decoded_bytes": 1264880,
+  "utc_progress": "2026-09-22T01:49:50.503080Z",
+  "utc_finished": "2026-09-22T01:49:50.504843Z",
+  "exit_code": 0
+}

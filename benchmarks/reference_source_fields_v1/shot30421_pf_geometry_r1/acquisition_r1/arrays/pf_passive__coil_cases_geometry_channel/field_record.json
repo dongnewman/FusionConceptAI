@@ -1,0 +1,102 @@
+{
+  "assembled_bytes": 1083,
+  "assembled_path": "arrays/pf_passive__coil_cases_geometry_channel/assembled.strings.json",
+  "assembled_sha256": "f7a60f63bcbb635fd922f928fd33550a57da881f400c7f4266b486571ffaa96f",
+  "chunks": [
+    48
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:00.683593Z",
+      "compressed_bytes": 155,
+      "compressed_path": "arrays/pf_passive__coil_cases_geometry_channel/chunks/c__0.zst",
+      "compressed_sha256": "7b825ae9f10dd88977082faf15c087d292e882edab5636ee30d94d9da8a834c0",
+      "decoded_bytes": 1060,
+      "decoded_item_count": 48,
+      "decoded_path": "arrays/pf_passive__coil_cases_geometry_channel/chunks/c__0.raw",
+      "decoded_sha256": "632b8a51b2530527d3c834d8625f6e9ddfdc3a677bdc7af0c0031b194fb7c4c3",
+      "decoded_shape": [
+        48
+      ],
+      "edge_shape": [
+        48
+      ],
+      "full_chunk_shape": [
+        48
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:00.051285Z",
+      "response_headers": {
+        "Content-Length": "155",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"6772128f687e5b0b7eca29a8f2d17753\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:27 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/coil_cases_geometry_channel/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:00.694681Z",
+  "data_type": "string",
+  "decoded_bytes": null,
+  "dimensions": [
+    "coil_cases_geometry_channel"
+  ],
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          48
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {},
+        "name": "vlen-utf8"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "string",
+    "dimension_names": [
+      "coil_cases_geometry_channel"
+    ],
+    "fill_value": "",
+    "node_type": "array",
+    "shape": [
+      48
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/coil_cases_geometry_channel",
+  "shape": [
+    48
+  ],
+  "started_utc": "2026-09-22T08:26:00.039293Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "string_count": 48,
+  "unique_string_count": 48,
+  "units": null
+}

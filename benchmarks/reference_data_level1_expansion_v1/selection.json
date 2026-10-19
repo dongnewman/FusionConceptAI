@@ -1,0 +1,135 @@
+{
+  "schema": "mast-level1-expansion-acquisition-selection-v1",
+  "selection_id": "mast-ayc-m9-expansion-r1",
+  "frozen_utc": "2026-09-21T18:41:12.4657106Z",
+  "status": "frozen_acquisition_only_not_formal_b03",
+  "source_candidate_receipt": {
+    "path": "docs/implementation/GOAL-EXECUTION-20260922/reference_expansion_metadata_r1/expansion_receipt.json",
+    "bytes": 14177,
+    "sha256": "c1c4cdbddeae592b03a1fe25225f107eedf530d46a64a390f3991795b89e8c53"
+  },
+  "source_query_receipt": {
+    "path": "docs/implementation/GOAL-EXECUTION-20260922/reference_expansion_metadata_r1/source_queries.txt",
+    "bytes": 1844,
+    "sha256": "ad9cb2fe73de629344cf47d1ac4b79fed5587168bfedf969520f3132c147ba8d"
+  },
+  "discovery_metadata": {
+    "shot_catalog_url": "https://mastapp.site/json/shots?filters=campaign%24eq:M9&size=20&sort=-shot_id",
+    "shot_catalog_retrieved_utc": "2026-09-21T18:29:56.2083936Z",
+    "shot_catalog_http_status": 200,
+    "shot_catalog_bytes": 201454,
+    "shot_catalog_sha256": "dff5ec1837edab722d622b55a65a46e0f9c2c3ec4252ca5ef8ae1a38f463b264",
+    "ayc_ne_inventory_url": "https://mastapp.site/json/signals?filters=source%24eq:ayc,name%24contains:ne&size=100&sort=-shot_id",
+    "ayc_ne_inventory_retrieved_utc": "2026-09-21T18:30:11.7140843Z",
+    "ayc_ne_inventory_bytes": 42210,
+    "ayc_ne_inventory_sha256": "216149516f01d61e364bbfa333424061e8d0d1f046ca7e31a96e4933c5b1e6f4",
+    "ayc_te_inventory_url": "https://mastapp.site/json/signals?filters=source%24eq:ayc,name%24contains:te&size=100&sort=-shot_id",
+    "ayc_te_inventory_retrieved_utc": "2026-09-21T18:30:17.0344445Z",
+    "ayc_te_inventory_bytes": 42553,
+    "ayc_te_inventory_sha256": "3673dd44439a3dc53d9764e0d865c1a02fab790673cf9195a4beb4f042ec313e",
+    "metadata_only": true,
+    "observation_values_requested": false
+  },
+  "selection_algorithm": {
+    "canonical_key": "UTF-8 string M9|<shot_id>|<catalog_uuid>|ayc|v1",
+    "digest": "SHA256(canonical_key)",
+    "ordering": "ascending hexadecimal digest",
+    "unit": "one complete shot-level AYC core profile bundle; ne and te are paired channels, not two independent combinations",
+    "selection_was_frozen_before_acquisition": true,
+    "response_value_filtering": "prohibited",
+    "time_filtering": "prohibited; acquire all metadata-declared time samples",
+    "radial_filtering": "prohibited; acquire all metadata-declared radial samples",
+    "raw_missingness": "retain provider fill/missing values and masks; do not impute",
+    "error_semantics": "unknown; do not reinterpret ne_error/te_error/covariance_ne_te as sigma/covariance-ready weights"
+  },
+  "groups": {
+    "calibration": {
+      "shot_ids": [30463, 30468, 30459, 30462, 30464, 30460, 30456, 30466],
+      "count": 8,
+      "acquire_metadata": true,
+      "acquire_arrays": true
+    },
+    "validation": {
+      "shot_ids": [30469],
+      "count": 1,
+      "acquire_metadata": true,
+      "acquire_arrays": true
+    },
+    "held_out": {
+      "shot_ids": [30471, 30467, 30457, 30458],
+      "count": 4,
+      "acquire_metadata": false,
+      "acquire_arrays": false,
+      "reason": "Do not download or inspect held-out values in this acquisition task."
+    },
+    "reserve": {
+      "shot_ids": [30461, 30470, 30465],
+      "count": 3,
+      "acquire_metadata": false,
+      "acquire_arrays": false,
+      "reason": "Do not download or inspect reserve values in this acquisition task."
+    }
+  },
+  "candidate_metadata": [
+    {"shot_id": 30456, "catalog_uuid": "86bd45f7-fc5e-5655-b7a4-fa675d03def0", "selection_key_sha256": "4a2a3b0a94124f93dbab233b22d24eb8e72c64a4a4c932f1c835469bc39c096e"},
+    {"shot_id": 30457, "catalog_uuid": "d86da291-80c8-5370-9085-c82169e1b8f2", "selection_key_sha256": "c26cea09e9a40b589583279136fb2a67b10a629538dfb1730075ea59a713f5a2"},
+    {"shot_id": 30458, "catalog_uuid": "00f305e0-c919-569b-9c77-acae4c99ddde", "selection_key_sha256": "c6bdc5f4f3dd6a38217c6c8569082bc0fb94b230bb679caa88a984290a663952"},
+    {"shot_id": 30459, "catalog_uuid": "9f166077-1fe0-52af-a308-86f010fcda40", "selection_key_sha256": "299ccf1ab0589f091bce9bddf0dc7422a4966b9273511de7e76c76936f0ce1af"},
+    {"shot_id": 30460, "catalog_uuid": "2f8bd3a7-3cc1-5829-a70f-182f99587f11", "selection_key_sha256": "46bf8bf754d804aa53cbe4f0d50db4932e408f158fb467cf2b87d16c36d67c7d"},
+    {"shot_id": 30461, "catalog_uuid": "a5c9e513-5159-510c-927b-bff04416e7aa", "selection_key_sha256": "ca7a8bf6ed15d81e7e263b4b898940d6264b79e4254a4b1ddce3ac71fddf7ba2"},
+    {"shot_id": 30462, "catalog_uuid": "df241f47-3134-574f-a2cb-38648fb3d059", "selection_key_sha256": "3085831e158594145b00eae0693a70d5f2018b5f7b84cc5587f60a5fee6c1232"},
+    {"shot_id": 30463, "catalog_uuid": "b16a52b4-39f0-54ed-9395-68abd00bd72d", "selection_key_sha256": "155b93dbf4bde9ec9a7a466e25d3ecc3eef8319b3864b4c4fcb2a6e144f30206"},
+    {"shot_id": 30464, "catalog_uuid": "1516b323-869e-534b-a8a9-452233ba99b8", "selection_key_sha256": "3d5b7e261f4fb659fb931a737977a9839284abe1e4b860cf205e5c1a06b6d347"},
+    {"shot_id": 30465, "catalog_uuid": "d8a38aef-dd51-5abb-8d4e-0b2c3023d98e", "selection_key_sha256": "e8e3b170e1eac3110bbbce91cd3e27f6e7b09adac2b456dfd01ea17410fc7f57"},
+    {"shot_id": 30466, "catalog_uuid": "eb40fdb7-f4fb-5822-bd7d-635192c24b66", "selection_key_sha256": "657bb11770477d4b838c7dc37549e93b6524acbc18e8e053b46569bd8686223c"},
+    {"shot_id": 30467, "catalog_uuid": "db7bc878-869c-59c6-bcc6-cb28cba69cf9", "selection_key_sha256": "be14274d12af28a91add2cce7fafb66a7f016661e8cc91ef0d7cecc8a2b991e2"},
+    {"shot_id": 30468, "catalog_uuid": "696b1a86-1986-59a4-8cd8-f968dba4ece4", "selection_key_sha256": "1b240ef67bd80814d6373663bfd1485926ed219d8a657a9abd8e634a3a3599df"},
+    {"shot_id": 30469, "catalog_uuid": "dcc5091c-ba43-599e-9c63-f8cb41494a60", "selection_key_sha256": "8c13b7d9ab61a5cd402fc113da7e403f1043324c6e028cd01e6368904be3dcdc"},
+    {"shot_id": 30470, "catalog_uuid": "63ccd361-c339-5403-abf3-dec0ad9d4811", "selection_key_sha256": "e363d57fa5ee74f59d02947b2d6977c1dcb2dbdd8e1912c636eb34409aaba8b2"},
+    {"shot_id": 30471, "catalog_uuid": "0916ffb1-fece-5d3d-81a9-b0504f49929f", "selection_key_sha256": "af6d39675233c6c6086d9aa0756002de759d309435075b746f076d3568dd1cc8"}
+  ],
+  "acquisition_contract": {
+    "metadata_url_template": "https://s3.echo.stfc.ac.uk/mast/level1/shots/<shot_id>.zarr/.zmetadata",
+    "metadata_format": "consolidated Zarr v2 JSON; fetcher requires metadata root key",
+    "array_names_per_selected_shot": [
+      "ne",
+      "te",
+      "ne_error",
+      "te_error",
+      "covariance_ne_te",
+      "time",
+      "radial_index",
+      "radius",
+      "instrument_dr",
+      "instrument_time"
+    ],
+    "array_count_per_selected_shot": 10,
+    "output_root": "benchmarks/reference_data_level1_expansion_v1",
+    "receipt_root": "docs/implementation/GOAL-EXECUTION-20260922/reference_expansion_acquisition_r1",
+    "fetcher": {
+      "path": "tools/fetch_mast_level1_uncertainty_v1.py",
+      "mode": "python -B",
+      "one_shot_per_process": true,
+      "source_edit": false,
+      "chunk_policy": "one complete C-order unfiltered Blosc chunk only; preserve acquisition failure if unsupported",
+      "network_scope": "selected calibration and validation shots only"
+    }
+  },
+  "protected_old_split": {
+    "calibration_shot_ids": [30421],
+    "held_out_shot_ids": [30420],
+    "validation_shot_ids": [],
+    "rule": "Do not alter old split or merge its artifacts into this expansion root."
+  },
+  "not_executed": [
+    "inverse",
+    "basis_construction",
+    "initializer_generation",
+    "cache_population",
+    "response_value_filtering",
+    "likelihood_weighting",
+    "formal_B03_acceptance",
+    "physical_independence_acceptance"
+  ],
+  "claim_ceiling": "acquisition_only_metadata_and_raw_arrays; single-M9-campaign correlation remains unknown; source authenticity, diagnostic calibration, uncertainty semantics, and physical independence are unverified; no 8+4 scientific credit."
+}

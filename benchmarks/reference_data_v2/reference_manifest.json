@@ -1,0 +1,185 @@
+{
+  "schema_version": "reference_manifest_v2",
+  "task_id": "UP4-03-REFERENCE-DATA",
+  "manifest_kind": "preparation_input_only",
+  "created_at_utc": "2026-09-19T19:14:39Z",
+  "source_policy": "Only first-party FAIR-MAST/UKAEA responses and frozen repository design/simulation references are included. Raw bytes are immutable inputs; this manifest does not claim an inverse result.",
+  "claim_ceiling": "prepared_not_executed; no formal inverse, B07B, physical validation, or parent UP4-03 acceptance",
+  "references": [
+    {
+      "reference_id": "fair_mast_shot_30421_v2",
+      "device_name": "MAST",
+      "shot_id": 30421,
+      "evidence_class": "measurement",
+      "mission": "measured_plasma_diagnostic_reference",
+      "status": "raw_observation_acquired_but_inverse_deferred",
+      "source": {
+        "provider": "FAIR MAST / UKAEA first-party service",
+        "catalog_url": "https://mastapp.site/quickstart.html",
+        "metadata_url": "https://mastapp.site/json/shots/30421",
+        "signal_catalog_url": "https://mastapp.site/parquet/level2/signals?shot_id=30421",
+        "zarr_url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/zarr.json",
+        "array_prefix": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/",
+        "accessed_at_utc": "2026-09-19T19:14:39Z",
+        "license_or_access": "FAIR MAST archive; catalog documents CC BY-SA 4.0 for archived data"
+      },
+      "raw_data_obtained": true,
+      "raw_files": [
+        {"path": "raw/shot30421/api/shots_30421.json", "original_name": "json/shots/30421", "kind": "shot_metadata_json", "sha256": "ebe4782bb158f8a4490fb317a4fa4b02004bfd32b3d2e4b47096aa0eb6f5f73d", "bytes": 11109, "url": "https://mastapp.site/json/shots/30421"},
+        {"path": "raw/shot30421/api/signals_shot_30421.parquet", "original_name": "parquet/level2/signals?shot_id=30421", "kind": "catalog_signal_metadata", "sha256": "9acf41968cac2f3fa84d0a1b05342d60140e5878985fb8bec2f25a6c8867cadd", "bytes": 19913, "url": "https://mastapp.site/parquet/level2/signals?shot_id=30421"},
+        {"path": "raw/shot30421/level2/shots/30421.zarr/zarr.json", "original_name": "zarr.json", "kind": "zarr_v3_consolidated_schema", "sha256": "f11cb13cba43cf6e49f3fcd085fd2806c7217e8f480c8761fad89b2b8ee0d39a", "bytes": 788555, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/zarr.json"},
+        {"path": "raw/shot30421/level2/shots/30421.zarr/thomson_scattering/n_e/c/0/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_n_e", "sha256": "eea641a95c1a9ec13dee5494c0816786b51e019d616acb528c4bc607818dc55c", "bytes": 90787, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/thomson_scattering/n_e/c/0/0"},
+        {"path": "raw/shot30421/level2/shots/30421.zarr/thomson_scattering/t_e/c/0/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_t_e", "sha256": "1c0f842fd550b22a4bbbf5d9cf499a64e276c2f37be32290c50e8b1bf5e34105", "bytes": 90830, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/thomson_scattering/t_e/c/0/0"},
+        {"path": "raw/shot30421/level2/shots/30421.zarr/thomson_scattering/major_radius/c/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_major_radius", "sha256": "b65cce6e850a3d88a1a5409f94bb91d138a898bfb455ad4d306508ec68fc7328", "bytes": 399, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/thomson_scattering/major_radius/c/0"},
+        {"path": "raw/shot30421/level2/shots/30421.zarr/thomson_scattering/time/c/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_time", "sha256": "e571793361fa39070beb19eb6a20c468eb08501128f9a483aa68481492e388af", "bytes": 419, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/thomson_scattering/time/c/0"}
+      ],
+      "raw_schema": {
+        "format": "zarr_v3",
+        "arrays": {
+          "thomson_scattering/n_e": {"shape": [121, 135], "dimension_names": ["major_radius", "time"], "units": "1 / m ** 3", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/t_e": {"shape": [121, 135], "dimension_names": ["major_radius", "time"], "units": "eV", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/major_radius": {"shape": [121], "dimension_names": ["major_radius"], "units": "m", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/time": {"shape": [135], "dimension_names": ["time"], "units": "s", "data_type": "float64", "has_raw_chunk": true}
+        },
+        "measurement_uncertainty": {"status": "typed_absent", "reason": "No uncertainty/error array or per-sample uncertainty field is present in the acquired Zarr schema; do not infer one."}
+      },
+      "catalog_unit_conflict": {
+        "catalog_signal": "n_e",
+        "catalog_reported_unit": "eV",
+        "raw_zarr_reported_unit": "1 / m ** 3",
+        "resolution": "raw_array_schema_resolved_catalog_conflict",
+        "classification": "catalog_metadata_inconsistency_root_cause_unproven",
+        "normalization_or_scale": "none_declared_in_raw_zarr_schema",
+        "decision": "The acquired raw array may be interpreted only with the raw Zarr unit 1/m^3. The catalog eV value is retained as a conflict and is not silently rewritten as a proven catalog bug; formal inverse remains deferred until FAIR-MAST provider confirms provenance and uncertainty semantics."
+      },
+      "catalog_vs_raw_identity_mismatch": {
+        "root_cause_status": "unproven",
+        "catalog_shape": [146, 120],
+        "catalog_dimensions": ["time", "major_radius"],
+        "raw_zarr_shape": [121, 135],
+        "raw_zarr_dimensions": ["major_radius", "time"],
+        "catalog_source": "FAIR-MAST quickstart/signal catalog listing for shot 30421",
+        "raw_source": "FAIR-MAST Level-2 Zarr-v3 zarr.json for shot 30421",
+        "normalization": "none_declared; no reshape, transpose, resampling, or scale is applied by this package",
+        "decision": "Treat catalog and raw schema as distinct identities until the provider explains the revision/ingestion difference; do not infer that the mismatch is normalization, a stale catalog, or a raw-data error."
+      },
+      "known_inputs": [
+        {"name": "shot_id", "value": 30421, "unit": "1", "source": "shot metadata response"},
+        {"name": "major_radius", "value_source": "thomson_scattering/major_radius", "unit": "m", "source": "raw Zarr array"},
+        {"name": "time", "value_source": "thomson_scattering/time", "unit": "s", "source": "raw Zarr array"},
+        {"name": "plasma_max_current", "value_source": "shot_metadata.plasma_max_current", "unit": "catalog metadata unit unresolved", "source": "raw shot metadata JSON key; value intentionally not copied"},
+        {"name": "plasma_time_avg_current", "value_source": "shot_metadata.plasma_time_avg_current", "unit": "catalog metadata unit unresolved", "source": "raw shot metadata JSON key; value intentionally not copied"}
+      ],
+      "unknown_theta": [
+        {"theta_id": "g1.profile_coefficients", "layer": "G1", "unit": "mixed SI", "prior": "declared_bounded_profile_basis_prior_v1", "bounds": "must be frozen by formal UP4-03 after uncertainty provider is available", "status": "typed_absent", "reason": "No inverse was run in this preparation task."},
+        {"theta_id": "g2.boundary_and_geometry", "layer": "G2", "unit": "m", "prior": "declared_geometry_prior_v1", "bounds": "must be frozen by formal UP4-03", "status": "typed_absent", "reason": "Boundary/geometry observations and observation operator are not yet bound."},
+        {"theta_id": "g3.source_and_control", "layer": "G3", "unit": "A/W/command units", "prior": "declared_source_control_prior_v1", "bounds": "must be frozen by formal UP4-03", "status": "typed_absent", "reason": "No source/control inverse is part of this preparation task."}
+      ],
+      "theta_to_genome_mapping": [
+        {"theta_id": "g1.profile_coefficients", "genome_layer": "G1", "field_paths": ["mechanism.profile_closure.coefficients"], "observables": ["thomson_scattering/t_e", "thomson_scattering/n_e"], "operator": "H_thomson_profile", "status": "typed_absent"},
+        {"theta_id": "g2.boundary_and_geometry", "genome_layer": "G2", "field_paths": ["field_geometry.geometry.boundary", "field_geometry.coordinate.major_radius"], "observables": ["thomson_scattering/major_radius"], "operator": "H_geometry_profile", "status": "typed_absent"},
+        {"theta_id": "g3.source_and_control", "genome_layer": "G3", "field_paths": ["realization_control.source", "realization_control.control"], "source_paths": ["shot_metadata.plasma_max_current", "shot_metadata.plasma_time_avg_current"], "observables": ["shot_metadata.plasma_max_current", "shot_metadata.plasma_time_avg_current"], "operator": "H_source_control_metadata", "status": "typed_absent", "reason": "These are actual keys in the acquired shot metadata JSON; no values are copied into theta or Genome."}
+      ]
+    },
+    {
+      "reference_id": "fair_mast_shot_30420_v2_heldout",
+      "device_name": "MAST",
+      "shot_id": 30420,
+      "evidence_class": "measurement",
+      "mission": "independent_heldout_observation_for_mast_profile_protocol",
+      "status": "raw_observation_acquired_heldout_only",
+      "source": {
+        "provider": "FAIR MAST / UKAEA first-party service",
+        "metadata_url": "https://mastapp.site/json/shots/30420",
+        "signal_catalog_url": "https://mastapp.site/parquet/level2/signals?shot_id=30420",
+        "zarr_url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/zarr.json",
+        "accessed_at_utc": "2026-09-19T19:14:39Z",
+        "license_or_access": "FAIR MAST archive; catalog documents CC BY-SA 4.0 for archived data"
+      },
+      "raw_data_obtained": true,
+      "raw_files": [
+        {"path": "raw/shot30420/api/shots_30420.json", "original_name": "json/shots/30420", "kind": "shot_metadata_json", "sha256": "86dd57a5ca4e926da4c1d16bcab276669e679459dd026d11896e33fdbf894988", "bytes": 11147, "url": "https://mastapp.site/json/shots/30420"},
+        {"path": "raw/shot30420/api/signals_shot_30420.parquet", "original_name": "parquet/level2/signals?shot_id=30420", "kind": "catalog_signal_metadata", "sha256": "cded31bbb75166fa90a789e1590952892d6281717dac894843025b018d1a2cb7", "bytes": 19599, "url": "https://mastapp.site/parquet/level2/signals?shot_id=30420"},
+        {"path": "raw/shot30420/level2/shots/30420.zarr/zarr.json", "original_name": "zarr.json", "kind": "zarr_v3_consolidated_schema", "sha256": "0c4668419188806f30d2470a282e3ae3bb86d1b2d89942ebce7c12ad9e24fe6b", "bytes": 780810, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/zarr.json"},
+        {"path": "raw/shot30420/level2/shots/30420.zarr/thomson_scattering/n_e/c/0/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_n_e", "sha256": "738cd7c673d3baa9cdeba4264d5f73f45235c8f7965dc68627b44b763a55b98d", "bytes": 46057, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/thomson_scattering/n_e/c/0/0"},
+        {"path": "raw/shot30420/level2/shots/30420.zarr/thomson_scattering/t_e/c/0/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_t_e", "sha256": "c948367c3877cf4bde635fbf404326c7881890fc0d99697f4347ce306a7f0318", "bytes": 45843, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/thomson_scattering/t_e/c/0/0"},
+        {"path": "raw/shot30420/level2/shots/30420.zarr/thomson_scattering/major_radius/c/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_major_radius", "sha256": "b65cce6e850a3d88a1a5409f94bb91d138a898bfb455ad4d306508ec68fc7328", "bytes": 399, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/thomson_scattering/major_radius/c/0"},
+        {"path": "raw/shot30420/level2/shots/30420.zarr/thomson_scattering/time/c/0", "original_name": "0", "kind": "zarr_v3_chunk_thomson_scattering_time", "sha256": "4242e2f8679ccf0769bd5e41832930295ea3397cf618afba4f2ae6a17abf94bb", "bytes": 307, "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30420.zarr/thomson_scattering/time/c/0"}
+      ],
+      "raw_schema": {
+        "format": "zarr_v3",
+        "arrays": {
+          "thomson_scattering/n_e": {"shape": [121, 77], "dimension_names": ["major_radius", "time"], "units": "1 / m ** 3", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/t_e": {"shape": [121, 77], "dimension_names": ["major_radius", "time"], "units": "eV", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/major_radius": {"shape": [121], "dimension_names": ["major_radius"], "units": "m", "data_type": "float64", "has_raw_chunk": true},
+          "thomson_scattering/time": {"shape": [77], "dimension_names": ["time"], "units": "s", "data_type": "float64", "has_raw_chunk": true}
+        },
+        "measurement_uncertainty": {"status": "typed_absent", "reason": "No uncertainty/error array or per-sample uncertainty field is present in the acquired Zarr schema."}
+      },
+      "catalog_vs_raw_identity_mismatch": {
+        "root_cause_status": "unproven",
+        "catalog_shape": null,
+        "catalog_dimensions": null,
+        "catalog_status": "typed_absent_local_parquet_decode_failed",
+        "raw_zarr_shape": [121, 77],
+        "raw_zarr_dimensions": ["major_radius", "time"],
+        "catalog_source": "FAIR-MAST signal catalog listing for shot 30420",
+        "raw_source": "FAIR-MAST Level-2 Zarr-v3 zarr.json for shot 30420",
+        "normalization": "none_declared; no reshape, transpose, resampling, or scale is applied by this package",
+        "decision": "The catalog bytes were acquired but did not decode with the local parquet reader (error retained in the receipt), so catalog shape/dimensions for shot 30420 remain unknown; no normalization or root cause is inferred."
+      },
+      "heldout_role": "independent_shot_for_protocol_only",
+      "inverse_status": "not_executed"
+    },
+    {
+      "reference_id": "iter_design_v1",
+      "device_name": "ITER",
+      "evidence_class": "design_target",
+      "mission": "non_electricity_producing_public_design_reference",
+      "status": "design_fields_only",
+      "source": {"provider": "ITER first-party public FAQ", "url": "https://www.iter.org/faqs", "accessed_at_utc": "2026-09-13T00:00:00Z"},
+      "electrical_generation": false,
+      "raw_data_obtained": false,
+      "design_fields": {"fusion_power": {"value": 500.0, "unit": "MW"}, "auxiliary_heating_power": {"value": 50.0, "unit": "MW"}, "target_Q_plasma": {"value": 10.0, "unit": "1"}, "toroidal_field": {"value": 5.3, "unit": "T"}, "plasma_current": {"value": 15.0, "unit": "MA"}, "plasma_volume": {"value": 830.0, "unit": "m^3"}},
+      "measurement_status": "typed_absent",
+      "reason": "ITER is a design reference; no cited discharge measurement is inferred. electrical_generation=false is retained."
+    },
+    {
+      "reference_id": "desc_heliotron_v0173",
+      "device_name": "DESC HELIOTRON packaged equilibrium",
+      "evidence_class": "simulation",
+      "mission": "external_simulation_fixed_boundary_equilibrium_reference",
+      "status": "simulation_only",
+      "source": {"provider": "official DESC v0.17.3 release artifact", "url": "https://raw.githubusercontent.com/PlasmaControl/DESC/v0.17.3/desc/examples/HELIOTRON_output.h5", "local_artifact": "benchmarks/desc_heliotron_v0173/HELIOTRON_output.h5", "sha256": "305cbba9c82c32dff7cb4954367c20f0428f6ff216f5d1f53c3038870ca06dfe", "accessed_at_utc": "2026-09-13T00:00:00Z"},
+      "raw_data_obtained": true,
+      "measurement_status": "not_applicable",
+      "inverse_status": "typed_absent",
+      "reason": "Numerical reference only; no experimental uncertainty, independent solver, or measured held-out data."
+    },
+    {
+      "reference_id": "c2w_frc_public_reference_v1",
+      "device_name": "C-2W",
+      "evidence_class": "published_experimental_range",
+      "mission": "open_field_reversed_field_configuration_reference",
+      "status": "pending_data",
+      "source": {"provider": "TAE first-party public description", "url": "https://tae.com/categories/experiment/page/47/", "accessed_at_utc": "2026-09-13T00:00:00Z"},
+      "raw_data_obtained": false,
+      "measurement_status": "typed_absent",
+      "reason": "No machine-readable shot, channel schema, timebase, uncertainty, or observation operator was obtained; no arrays are fabricated."
+    }
+  ],
+  "split_protocol": {
+    "split_version": "mast_shot_split_v2",
+    "calibration_shot_ids": [30421],
+    "validation_shot_ids": [],
+    "held_out_shot_ids": [30420],
+    "calibration_observation_ids": ["mast:30421:thomson_scattering:n_e", "mast:30421:thomson_scattering:t_e"],
+    "held_out_observation_ids": ["mast:30420:thomson_scattering:n_e", "mast:30420:thomson_scattering:t_e"],
+    "validation_observation_ids": [],
+    "intersection_check": "zero",
+    "minimum_formal_protocol": {"calibration_combinations": 8, "held_out_combinations": 4, "independent_shot_required": true},
+    "available_now": {"calibration_combinations": 2, "held_out_combinations": 2, "validation_combinations": 0},
+    "status": "prepared_insufficient_for_formal_B03_B07B",
+    "reason": "A distinct held-out shot is acquired, but the current two-shot package does not meet the formal minimum or provide a validation split."
+  }
+}

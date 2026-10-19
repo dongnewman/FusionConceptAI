@@ -7,6 +7,10 @@ GenomeContractRef throughout the G2 source/declaration path and never creates
 a QualifiedRef mapping or final package identity.
 """
 
+if !isdefined(@__MODULE__, :NativeGitReadCompatibilityV1)
+    Base.include(@__MODULE__, joinpath(@__DIR__, "..", "Integration", "NativeGitReadCompatibilityV1.jl"))
+end
+
 const G2_SOURCE_AUTHORITY_FACTORY_VERSION_V1 = "v1"
 const G2_SOURCE_AUTHORITY_FACTORY_REF_V1 = QualifiedRefV1(
     "fusionconceptai://GenomeV5/G2/source-authority-factory", "v1")
@@ -54,7 +58,8 @@ struct G2IndependentSourceLocatorV1
             throw(ArgumentError("G2 locator statuses must be Symbols"))
         head_blob_sha256 === nothing || head_blob_sha256 isa Digest256 ||
             throw(ArgumentError("G2 head_blob_sha256 must be Digest256 or nothing"))
-        provenance isa Symbol && provenance in (:repository_head, :isolated_test_fixture) ||
+        provenance isa Symbol && provenance in (:repository_head, :isolated_test_fixture,
+            :up1_frozen_snapshot, :current_source) ||
             throw(ArgumentError("G2 locator provenance must be explicit"))
         new(root, head, replace(path, '\\' => '/'), Int(source_bytes), source_sha256,
             head_path_status, working_tree_path_status, working_tree_status, head_blob_sha256, provenance)
@@ -245,15 +250,21 @@ end
 
 function _g2sf_git(root, args...)
     try
-        String(readchomp(Cmd(String["git", "-C", root, String.(args)...])))
-    catch
+        output = NativeGitReadCompatibilityV1.git_text(root, args...)
+        output isa AbstractString || return nothing
+        chomp(String(output))
+    catch err
+        err isa ManagedExternalProcessV1.ManagedProcessError && rethrow()
         nothing
     end
 end
 function _g2sf_git_bytes(root, args...)
     try
-        read(Cmd(String["git", "-C", root, String.(args)...]))
-    catch
+        output = NativeGitReadCompatibilityV1.git_bytes(root, args...)
+        output isa Vector{UInt8} || return nothing
+        output
+    catch err
+        err isa ManagedExternalProcessV1.ManagedProcessError && rethrow()
         nothing
     end
 end
@@ -331,8 +342,21 @@ function _g2sf_repository_anchor(module_dir=G2_FACTORY_MODULE_DIR_V1)
     top isa String || return nothing
     try realpath(top) == module_anchor ? module_anchor : nothing catch; nothing end
 end
-function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1)
+function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1, frozen_context=nothing)
+    if frozen_context isa AbstractString
+        locator.source_path == G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 ||
+            return :source_path_mismatch
+        locator.provenance === :current_source || return :locator_provenance_mismatch
+        return NativeGitReadCompatibilityV1.current_source_validation(frozen_context, locator; family=:g2)
+    end
     locator.source_path == G2_SOURCE_AUTHORITY_FACTORY_SOURCE_PATH_V1 || return :source_path_mismatch
+    locator.provenance === :up1_frozen_snapshot &&
+        !(frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) &&
+        return :up1_frozen_context_missing
+    if frozen_context !== nothing
+        return NativeGitReadCompatibilityV1.frozen_source_validation(frozen_context, locator; family=:g2)
+    end
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("_g2sf_validate_locator")
     path = joinpath(locator.repository_root, split(locator.source_path, '/')...)
     isfile(path) || return :source_file_missing
     try read(path) catch; return :source_read_failed end
@@ -347,10 +371,23 @@ function _g2sf_validate_locator(locator::G2IndependentSourceLocatorV1)
     head isa String && head == locator.observed_head || return :locator_head_mismatch
     _g2sf_validate_git(locator)
 end
-function _g2sf_validate_handle(root, handle)
+function _g2sf_validate_handle(root, handle, frozen_context=nothing)
     handle isa QualifiedRefV1 || return :common_handle_type_mismatch
     handle.version == G2_AD45_COMMON_BINDING_HANDLE_VERSION_V1 || return :common_handle_version_mismatch
     handle.id == G2_AD45_COMMON_BINDING_HANDLE_ID_V1 || return :foreign_common_handle
+    if frozen_context isa AbstractString
+        envelope = NativeGitReadCompatibilityV1.current_source(frozen_context,
+            G2_AD45_ENVELOPE_RELATIVE_PATH_V1)
+        return Digest256(envelope.sha256) == G2_AD45_ENVELOPE_SHA256_V1 ? nothing : :ad45_envelope_hash_mismatch
+    elseif frozen_context !== nothing
+        envelope = NativeGitReadCompatibilityV1.frozen_source(frozen_context,
+            G2_AD45_ENVELOPE_RELATIVE_PATH_V1)
+        envelope === nothing && return :ad45_envelope_missing
+        envelope.role == "binding_envelope" || throw(ArgumentError("frozen AD45 envelope role mismatch"))
+        return Digest256(bytes2hex(SHA.sha256(envelope.bytes))) == G2_AD45_ENVELOPE_SHA256_V1 ?
+            nothing : :ad45_envelope_hash_mismatch
+    end
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("_g2sf_validate_handle")
     path = joinpath(root, split(G2_AD45_ENVELOPE_RELATIVE_PATH_V1, '/')...)
     isfile(path) || return :ad45_envelope_missing
     try
@@ -359,11 +396,13 @@ function _g2sf_validate_handle(root, handle)
         :ad45_envelope_read_failed
     end
 end
-function _g2sf_expected_contract()
+function _g2sf_expected_contract(region_interface_present::Bool=false)
     profile = G2MBProfileV1("fusion.g2.metric-boundary.profile")
     GenomeContractRef("fusionconceptai://GenomeV5/G2/metric-boundary/public-contract/v1", "v5",
-        g2mb_schema_hash_v1(), g2mb_canonicalization_hash_v1(), g2mb_profile_token_v1(profile))
+        g2mb_schema_hash_v1(region_interface_present), g2mb_canonicalization_hash_v1(), g2mb_profile_token_v1(profile))
 end
+_g2sf_expected_contract(source::G2MBSourceV1) =
+    _g2sf_expected_contract(source.region_interface !== nothing)
 function _g2sf_axes_ok(axes)
     axes isa G2VersionAxesV2 || return false
     refs = (axes.payload_schema_version, axes.canonicalization_profile_version,
@@ -380,9 +419,10 @@ _g2sf_failed(reason) = (FailedG2SourceFactoryIdentityV1(reason, true, false, fal
     FailedG2SourceConstructionReceiptV1(:fail_closed, reason, true, false, false, false))
 
 """Build a source-stage G2 declaration using the real declaration constructor."""
-function g2_source_authority_factory_v1(locator::Any, common_binding_handle::Any,
+function _g2_source_authority_factory_core_v1(locator::Any, common_binding_handle::Any,
         contract_ref::Any, source_payload::Any, version_axes::Any,
-        declaration_constructor::Any)
+        declaration_constructor::Any, frozen_context::Union{Nothing,NativeGitReadCompatibilityV1.FrozenSourceContextV1,NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1,AbstractString};
+        allow_legacy::Bool=false)
     for (value, reason) in ((locator, :locator_missing), (common_binding_handle, :common_handle_missing),
             (contract_ref, :contract_ref_missing), (source_payload, :source_payload_missing),
             (version_axes, :version_axes_missing), (declaration_constructor, :declaration_constructor_missing))
@@ -394,11 +434,12 @@ function g2_source_authority_factory_v1(locator::Any, common_binding_handle::Any
     source_payload isa G2MBSourceV1 || begin; b=_g2sf_failed(:source_payload_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
     version_axes isa G2VersionAxesV2 || begin; b=_g2sf_failed(:version_axes_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
     declaration_constructor isa G2SourceDeclarationConstructorV1 || begin; b=_g2sf_failed(:declaration_constructor_type_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
-    contract_ref == _g2sf_expected_contract() || begin; b=_g2sf_failed(:public_contract_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
+    contract_ref == _g2sf_expected_contract(source_payload isa G2MBSourceV1 && source_payload.region_interface !== nothing) || begin; b=_g2sf_failed(:public_contract_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
     _g2sf_axes_ok(version_axes) || begin; b=_g2sf_failed(:version_axes_mismatch); return G2SourceFactoryConstructionResultV1(b...); end
-    handle_error = _g2sf_validate_handle(locator.repository_root, common_binding_handle)
+    frozen_context === nothing && !allow_legacy && begin; b=_g2sf_failed(:frozen_source_context_missing); return G2SourceFactoryConstructionResultV1(b...); end
+    handle_error = _g2sf_validate_handle(locator.repository_root, common_binding_handle, frozen_context)
     handle_error === nothing || begin; b=_g2sf_failed(handle_error); return G2SourceFactoryConstructionResultV1(b...); end
-    locator_error = _g2sf_validate_locator(locator)
+    locator_error = _g2sf_validate_locator(locator, frozen_context)
     if locator_error !== nothing
         b = locator_error === :source_authority_missing || locator_error === :source_file_missing ? _g2sf_absent(locator_error) : _g2sf_failed(locator_error)
         return G2SourceFactoryConstructionResultV1(b...)
@@ -416,11 +457,23 @@ function g2_source_authority_factory_v1(locator::Any, common_binding_handle::Any
     binding = G2SourceContractBindingV1(common_binding_handle, G2_AD45_ENVELOPE_SHA256_V1, contract_ref, version_axes,
         :temporary_common_candidate_binding_handle_only, false, canonical_hash(binding_body))
     synthetic_test_only = locator.provenance === :isolated_test_fixture
-    source_content_hash = canonical_hash((factory_ref=G2_SOURCE_AUTHORITY_FACTORY_REF_V1,
+    source_content_body = (factory_ref=G2_SOURCE_AUTHORITY_FACTORY_REF_V1,
         locator=locator, common_binding_handle=common_binding_handle, contract_ref=contract_ref,
         version_axes=version_axes, source_payload=source_payload, source_payload_hash=payload_hash,
         binding=binding, binding_hash=binding.binding_hash, declaration_hash=declaration_hash,
-        synthetic_test_only=synthetic_test_only))
+        synthetic_test_only=synthetic_test_only)
+    if frozen_context isa NativeGitReadCompatibilityV1.FrozenSourceContextV1 ||
+            frozen_context isa NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1
+        auth = NativeGitReadCompatibilityV1.frozen_source_identity(frozen_context)
+        source_entry = NativeGitReadCompatibilityV1.frozen_source(frozen_context, locator.source_path)
+        source_entry === nothing && throw(ArgumentError("verified frozen source input disappeared"))
+        source_content_body = merge(source_content_body, (frozen_source_authority=merge(auth, (
+            source_logical_path=source_entry.logical_path,
+            source_manifest_key=source_entry.manifest_key,
+            ad45_envelope_manifest_key=NativeGitReadCompatibilityV1.frozen_source_manifest_key(
+                frozen_context, G2_AD45_ENVELOPE_RELATIVE_PATH_V1))),))
+    end
+    source_content_hash = canonical_hash(source_content_body)
     body = (public_contract_ref=contract_ref, common_binding_handle=common_binding_handle,
         version_axes=version_axes, locator=locator, source_payload=source_payload,
         declaration=declaration, binding=binding, source_content_hash=source_content_hash,
@@ -447,6 +500,37 @@ function g2_source_authority_factory_v1(locator::Any, common_binding_handle::Any
     receipt = PresentG2SourceConstructionReceiptV1(rbody..., canonical_hash(rbody))
     G2SourceFactoryConstructionResultV1(identity, source_decl, receipt)
 end
+
+g2_source_authority_factory_v1(locator, common_binding_handle, contract_ref, source_payload,
+    version_axes, declaration_constructor, frozen_context::NativeGitReadCompatibilityV1.FrozenSourceContextV1) =
+        _g2_source_authority_factory_core_v1(locator, common_binding_handle, contract_ref,
+            source_payload, version_axes, declaration_constructor, frozen_context)
+
+g2_source_authority_factory_v1(locator, common_binding_handle, contract_ref, source_payload,
+    version_axes, declaration_constructor, frozen_context::NativeGitReadCompatibilityV1.UP1FrozenSourceContextV1) =
+        _g2_source_authority_factory_core_v1(locator, common_binding_handle, contract_ref,
+            source_payload, version_axes, declaration_constructor, frozen_context)
+
+g2_source_authority_factory_v1(locator, common_binding_handle, contract_ref, source_payload,
+    version_axes, declaration_constructor) =
+        _g2_source_authority_factory_core_v1(locator, common_binding_handle, contract_ref,
+            source_payload, version_axes, declaration_constructor, nothing)
+
+g2_source_authority_factory_v1(locator, common_binding_handle, contract_ref, source_payload,
+    version_axes, declaration_constructor, ::Nothing) =
+        _g2_source_authority_factory_core_v1(locator, common_binding_handle, contract_ref,
+            source_payload, version_axes, declaration_constructor, nothing)
+
+function g2_source_authority_factory_legacy_v1(locator, common_binding_handle, contract_ref,
+        source_payload, version_axes, declaration_constructor)
+    NativeGitReadCompatibilityV1._guard_legacy_git_access("g2_source_authority_factory_legacy_v1")
+    _g2_source_authority_factory_core_v1(locator, common_binding_handle, contract_ref,
+        source_payload, version_axes, declaration_constructor, nothing; allow_legacy=true)
+end
+
+g2_source_authority_factory_v1(locator, handle, contract_ref, payload, axes, constructor,
+    context::AbstractString) =
+        _g2_source_authority_factory_core_v1(locator, handle, contract_ref, payload, axes, constructor, context)
 
 g2_source_factory_result_status(x::G2SourceFactoryConstructionResultV1) =
     x.identity isa PresentG2SourceFactoryIdentityV1 ? :present :

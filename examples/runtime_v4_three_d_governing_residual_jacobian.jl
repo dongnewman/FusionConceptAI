@@ -13,7 +13,7 @@ end
 
 module ThreeDGoverningResidualJacobianGenericFixture
 using FusionConceptAI
-include(joinpath(@__DIR__, "runtime_v4_g2_field_fixture.jl"))
+include(joinpath(@__DIR__, "..", "test", "fixtures", "RuntimeV4", "runtime_v4_g2_field_fixture.jl"))
 end
 
 const TDRJ = ThreeDGoverningResidualJacobianRuntime

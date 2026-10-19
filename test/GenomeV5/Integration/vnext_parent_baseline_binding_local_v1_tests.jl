@@ -3,6 +3,7 @@ using SHA
 using FusionConceptAI
 
 const G = FusionConceptAI
+Base.include(G, joinpath(@__DIR__, "vnext_declaration_transport_local_v1_tests.jl"))
 Base.include(G, joinpath(@__DIR__, "..", "..", "..", "src", "GenomeV5",
     "Integration", "VNextParentBaselineBindingLocalV1.jl"))
 
@@ -374,6 +375,204 @@ end
     @test published.published && published.history_advanced
     @test published.state_after !== nothing
     @test G.verify_local_state_v1(published.state_after)
+end
+
+@testset "T0 source-backed G1/G2 successor adapter" begin
+    t0_g1 = G._t0l_present(:G1, G._t0l_g1())
+    t0_g2 = G._t0l_present(:G2, G._t0l_g2())
+    t0_input = G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (t0_g1, t0_g2))
+    t0_present = G.bind_local_parent_baseline_from_t0_v1(t0_input)
+    @test t0_present.status === :present
+    @test t0_present.resolution === :resolved
+    @test t0_present.output isa G.PresentT0LocalParentBaselineBundleV1
+    @test G.verify_present_t0_local_binding_self_consistency_v1(t0_present.output.g1)
+    @test G.verify_present_t0_local_binding_self_consistency_v1(t0_present.output.g2)
+    @test G.verify_present_t0_local_binding_v1(t0_present.output.g1,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    @test G.verify_present_t0_local_binding_v1(t0_present.output.g2,
+        G.t0_parent_authority_commitment_v1(t0_g2))
+    @test G.verify_present_t0_local_parent_bundle_v1(t0_present.output,
+        G.t0_parent_authority_commitment_v1(t0_g1),
+        G.t0_parent_authority_commitment_v1(t0_g2))
+    @test t0_present.output.g1.source_bytes == t0_g1.source_bytes.bytes
+    @test t0_present.output.g1.declaration_bytes == t0_g1.declaration_bytes.bytes
+    @test t0_present.output.g1.semantic_body_bytes == t0_g1.semantic_body.bytes.bytes
+    @test t0_present.output.g1.factory_receipt_bytes ==
+        Vector{UInt8}(codeunits(G.canonical_json(t0_g1.factory_receipt)))
+    @test t0_present.output.g1.declaration_receipt_bytes ==
+        Vector{UInt8}(codeunits(G.canonical_json(t0_g1.declaration_receipt)))
+    @test t0_present.output.g1.source_ref == t0_g1.source_ref
+    @test t0_present.output.g1.declaration_ref == t0_g1.declaration_ref
+    @test t0_present.output.g1.source_bytes_sha256 == G._vnl_sha256(t0_g1.source_bytes.bytes)
+    @test t0_present.output.g1.declaration_bytes_sha256 == G._vnl_sha256(t0_g1.declaration_bytes.bytes)
+    @test t0_present.output.g1.candidate_ref == t0_present.output.g2.candidate_ref ==
+        G._T0L_CANDIDATE
+    @test t0_present.output.bundle_hash ==
+        G.canonical_hash((candidate_ref=G._T0L_CANDIDATE,
+            g1=t0_present.output.g1, g2=t0_present.output.g2))
+
+    reversed_present = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (t0_g2, t0_g1)))
+    @test reversed_present.status === :present
+    @test reversed_present.output.bundle_hash == t0_present.output.bundle_hash
+    extra_layer = G._t0l_present(:G3, G._t0l_g3())
+    @test G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE,
+            (t0_g1, t0_g2, extra_layer))).status === :fail_closed
+    @test G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE,
+            (t0_g1, t0_g2, t0_g2))).status === :fail_closed
+
+    foreign_candidate = G.QualifiedRefV1("local://candidate/foreign", "v5")
+    foreign = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(foreign_candidate, (t0_g1, t0_g2)))
+    @test foreign.status === :fail_closed
+    @test :t0_declaration_invalid in foreign.errors || :t0_candidate_mismatch in foreign.errors
+    @test G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (t0_g1, t0_g1))).status === :fail_closed
+    missing_g1 = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (t0_g2,)))
+    @test missing_g1.status === :typed_absent
+    absent_g1 = G.VNextT0LocalAbsentDeclarationV1(:G1, G._T0L_CANDIDATE,
+        :source_unavailable, :typed_absent)
+    absent = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (absent_g1, t0_g2)))
+    @test absent.status === :typed_absent
+    @test G.verify_absent_t0_local_bundle_v1(absent.output)
+    foreign_absent = G.VNextT0LocalAbsentDeclarationV1(:G1,
+        G.QualifiedRefV1("local://candidate/foreign", "v5"),
+        :source_unavailable, :typed_absent)
+    @test G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE,
+            (foreign_absent, t0_g2))).status === :fail_closed
+    invalid_absent = G.VNextT0LocalAbsentDeclarationV1(:G1,
+        G._T0L_CANDIDATE, :source_material_missing, :typed_absent)
+    invalid_absent_result = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE,
+            (invalid_absent, t0_g2)))
+    @test invalid_absent_result.status === :fail_closed
+    @test :t0_absence_invalid in invalid_absent_result.errors
+
+    stale_identity = G.VNextT0LocalPresentDeclarationV1(t0_g1.layer,
+        t0_g1.candidate_ref, t0_g1.source_ref, t0_g1.declaration_ref,
+        G.canonical_hash((tampered=:source_identity,)), t0_g1.declaration_identity_hash,
+        t0_g1.axes, t0_g1.source_bytes, t0_g1.declaration_bytes, t0_g1.semantic_body,
+        t0_g1.source_locator, t0_g1.factory_receipt, t0_g1.declaration_receipt)
+    stale = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (stale_identity, t0_g2)))
+    @test stale.status === :fail_closed
+
+    tampered_source = G.VNextT0LocalBytesV1(copy(t0_g1.source_bytes.bytes),
+        G._t0l_sha(Vector{UInt8}(codeunits("wrong-source"))))
+    tampered = G.VNextT0LocalPresentDeclarationV1(t0_g1.layer, t0_g1.candidate_ref,
+        t0_g1.source_ref, t0_g1.declaration_ref, t0_g1.source_identity_hash,
+        t0_g1.declaration_identity_hash, t0_g1.axes, tampered_source,
+        t0_g1.declaration_bytes, t0_g1.semantic_body, t0_g1.source_locator,
+        t0_g1.factory_receipt, t0_g1.declaration_receipt)
+    tampered_result = G.bind_local_parent_baseline_from_t0_v1(
+        G.T0LocalParentBaselineInputV1(G._T0L_CANDIDATE, (tampered, t0_g2)))
+    @test tampered_result.status === :fail_closed
+    @test tampered_result.output === nothing
+
+    # A complete rewrite is self-consistent, but cannot match the immutable
+    # producer commitment supplied to the two-input consumer verifier.
+    function _fully_rebound(x; source_bytes=x.source_bytes,
+            declaration_bytes=x.declaration_bytes, semantic_body_bytes=x.semantic_body_bytes,
+            source_locator_bytes=x.source_locator_bytes,
+            factory_receipt_bytes=x.factory_receipt_bytes,
+            declaration_receipt_bytes=x.declaration_receipt_bytes,
+            source_bytes_sha256=x.source_bytes_sha256,
+            declaration_bytes_sha256=x.declaration_bytes_sha256,
+            semantic_body_sha256=x.semantic_body_sha256,
+            source_locator_sha256=x.source_locator_sha256,
+            factory_receipt_sha256=x.factory_receipt_sha256,
+            declaration_receipt_sha256=x.declaration_receipt_sha256)
+        source_identity_hash = G.canonical_hash((kind=:source, ref=x.source_ref,
+            bytes_sha256=source_bytes_sha256))
+        declaration_identity_hash = G.canonical_hash((kind=:declaration,
+            ref=x.declaration_ref, bytes_sha256=declaration_bytes_sha256))
+        semantic_identity_hash = G.canonical_hash((kind=:semantic_body,
+            bytes_sha256=semantic_body_sha256))
+        locator_identity_hash = G.canonical_hash((kind=:source_locator,
+            bytes_sha256=source_locator_sha256))
+        factory_identity_hash = G.canonical_hash((kind=:factory_receipt,
+            bytes_sha256=factory_receipt_sha256))
+        declaration_receipt_identity_hash = G.canonical_hash((kind=:declaration_receipt,
+            bytes_sha256=declaration_receipt_sha256))
+        same_candidate = G.canonical_hash((candidate_ref=x.candidate_ref,
+            source_ref=x.source_ref, declaration_ref=x.declaration_ref,
+            source_identity_hash=source_identity_hash,
+            declaration_identity_hash=declaration_identity_hash))
+        authority = G.canonical_hash((layer=x.layer, candidate_ref=x.candidate_ref,
+            source_ref=x.source_ref, declaration_ref=x.declaration_ref, axes=x.axes,
+            source_identity_hash=source_identity_hash,
+            declaration_identity_hash=declaration_identity_hash,
+            source_bytes_sha256=source_bytes_sha256,
+            declaration_bytes_sha256=declaration_bytes_sha256,
+            semantic_body_sha256=semantic_body_sha256,
+            source_locator_sha256=source_locator_sha256,
+            factory_receipt_sha256=factory_receipt_sha256,
+            declaration_receipt_sha256=declaration_receipt_sha256))
+        parent = G._vnl_t0_parent_hash(x.layer, x.candidate_ref, x.source_ref,
+            x.declaration_ref, source_bytes, declaration_bytes, semantic_body_bytes,
+            source_locator_bytes, factory_receipt_bytes, declaration_receipt_bytes,
+            x.axes, source_bytes_sha256, declaration_bytes_sha256, semantic_body_sha256,
+            source_locator_sha256, factory_receipt_sha256, declaration_receipt_sha256,
+            semantic_identity_hash, locator_identity_hash, factory_identity_hash,
+            declaration_receipt_identity_hash, authority, same_candidate)
+        G.PresentT0LocalParentBaselineBindingV1(x.layer, x.candidate_ref, x.source_ref,
+            x.declaration_ref, source_identity_hash, declaration_identity_hash,
+            x.axes, source_bytes, declaration_bytes, semantic_body_bytes,
+            source_locator_bytes, factory_receipt_bytes, declaration_receipt_bytes,
+            source_bytes_sha256, declaration_bytes_sha256, semantic_body_sha256,
+            source_locator_sha256, factory_receipt_sha256, declaration_receipt_sha256,
+            semantic_identity_hash, locator_identity_hash, factory_identity_hash,
+            declaration_receipt_identity_hash, authority, same_candidate, parent)
+    end
+    g1_binding = t0_present.output.g1
+    changed_source = copy(g1_binding.source_bytes); changed_source[1] ⊻= 0x01
+    changed_source_digest = G._vnl_sha256(changed_source)
+    rewritten_source = _fully_rebound(g1_binding,
+        source_bytes=changed_source, source_bytes_sha256=changed_source_digest)
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_source)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_source,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    changed_declaration = copy(g1_binding.declaration_bytes); changed_declaration[1] ⊻= 0x01
+    rewritten_declaration = _fully_rebound(g1_binding,
+        declaration_bytes=changed_declaration,
+        declaration_bytes_sha256=G._vnl_sha256(changed_declaration))
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_declaration)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_declaration,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    changed_semantic = copy(g1_binding.semantic_body_bytes); changed_semantic[1] ⊻= 0x01
+    rewritten_semantic = _fully_rebound(g1_binding,
+        semantic_body_bytes=changed_semantic,
+        semantic_body_sha256=G._vnl_sha256(changed_semantic))
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_semantic)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_semantic,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    changed_locator = copy(g1_binding.source_locator_bytes); changed_locator[1] ⊻= 0x01
+    rewritten_locator = _fully_rebound(g1_binding,
+        source_locator_bytes=changed_locator,
+        source_locator_sha256=G._vnl_sha256(changed_locator))
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_locator)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_locator,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    changed_factory = copy(g1_binding.factory_receipt_bytes); changed_factory[1] ⊻= 0x01
+    rewritten_factory = _fully_rebound(g1_binding,
+        factory_receipt_bytes=changed_factory,
+        factory_receipt_sha256=G._vnl_sha256(changed_factory))
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_factory)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_factory,
+        G.t0_parent_authority_commitment_v1(t0_g1))
+    changed_declaration_receipt = copy(g1_binding.declaration_receipt_bytes)
+    changed_declaration_receipt[1] ⊻= 0x01
+    rewritten_declaration_receipt = _fully_rebound(g1_binding,
+        declaration_receipt_bytes=changed_declaration_receipt,
+        declaration_receipt_sha256=G._vnl_sha256(changed_declaration_receipt))
+    @test G.verify_present_t0_local_binding_self_consistency_v1(rewritten_declaration_receipt)
+    @test !G.verify_present_t0_local_binding_v1(rewritten_declaration_receipt,
+        G.t0_parent_authority_commitment_v1(t0_g1))
 end
 
 println("VNEXT_LOCAL_PBB_R3_STATUS=contract_tests_defined")

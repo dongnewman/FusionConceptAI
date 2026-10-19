@@ -1,6 +1,6 @@
 {
   "schema": "fusionconceptai:runtime-v4:declared-diffusion-compile-execute-v1",
-  "revision": "up2-declared-diffusion-compile-execute-v1-r1",
+  "revision": "up2-declared-diffusion-compile-execute-v1-r2",
   "expression_subset": "diagonal_affine_static",
   "dimension": 1,
   "field_count": 1,
@@ -21,20 +21,78 @@
     "composition_status": "terminal_deferred",
     "numerical_status": "ready",
     "aggregate_status": "terminal_deferred",
-    "matrix": [[9.1125, -4.6125], [-4.6125, 9.3375]],
-    "rhs": [1.1666666666666667, 2.666666666666667],
-    "solution": [0.36346540908222763, 0.4651299454948799],
+    "matrix": [
+      [
+        9.1125,
+        -4.6125
+      ],
+      [
+        -4.6125,
+        9.3375
+      ]
+    ],
+    "rhs": [
+      1.1666666666666667,
+      2.666666666666667
+    ],
+    "solution": [
+      0.36346540908222763,
+      0.4651299454948799
+    ],
     "spatial_holdout": {
-      "matrix": [[13.333333333333332, -5.333333333333333, 0.0, 0.0], [-5.333333333333333, 12.19047619047619, -6.857142857142858, 0.0], [0.0, -6.857142857142858, 11.03105590062112, -4.173913043478261], [0.0, 0.0, -4.173913043478261, 10.57391304347826]],
-      "rhs": [0.25, 0.0, -0.125, 6.5875],
-      "solution": [0.17006478658536586, 0.3782869664634147, 0.5402375508130082, 0.8362471417682927],
+      "matrix": [
+        [
+          13.333333333333332,
+          -5.333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          -5.333333333333333,
+          12.19047619047619,
+          -6.857142857142858,
+          0.0
+        ],
+        [
+          0.0,
+          -6.857142857142858,
+          11.03105590062112,
+          -4.173913043478261
+        ],
+        [
+          0.0,
+          0.0,
+          -4.173913043478261,
+          10.57391304347826
+        ]
+      ],
+      "rhs": [
+        0.25,
+        0.0,
+        -0.125,
+        6.5875
+      ],
+      "solution": [
+        0.17006478658536586,
+        0.3782869664634147,
+        0.5402375508130082,
+        0.8362471417682927
+      ],
       "residual_norm": 0.0,
-      "transfer_old_state": [0.25, 0.75],
-      "transfer_new_state": [0.25, 0.25, 0.75, 0.75],
+      "transfer_old_state": [
+        0.25,
+        0.75
+      ],
+      "transfer_new_state": [
+        0.25,
+        0.25,
+        0.75,
+        0.75
+      ],
       "transfer_conservation_residual": 0.0,
       "semantic_plan_hash_invariant": true
     },
-    "residual_tolerance": 1e-12
+    "residual_tolerance": 1E-12
   },
   "semantic_invariance": {
     "component_order": true,
@@ -44,17 +102,71 @@
     "expected": "same semantic plan/result hashes"
   },
   "negative_gates": {
-    "candidate_mismatch": ["fail_closed", "candidate_mismatch"],
-    "missing_boundary": ["fail_closed", "missing_boundary"],
-    "pure_neumann": ["numerical_fail", "pure_neumann_singular"]
+    "candidate_mismatch": [
+      "fail_closed",
+      "candidate_mismatch"
+    ],
+    "missing_boundary": [
+      "fail_closed",
+      "missing_boundary"
+    ],
+    "pure_neumann": [
+      "numerical_fail",
+      "pure_neumann_singular"
+    ]
   },
   "negative_dispatched": 3,
   "negative_pending": [
-    "source_hash_mismatch", "declaration_hash_mismatch", "body_hash_mismatch",
-    "bundle_hash_mismatch", "units_dimension_mismatch", "duplicate_edge",
-    "ambiguous_edge", "missing_return", "ledger_contradiction",
-    "unsupported_nonlinear", "unsupported_time", "unsupported_multifield",
-    "unsupported_anisotropic", "singular_matrix", "nonfinite_derived",
+    "source_hash_mismatch",
+    "declaration_hash_mismatch",
+    "body_hash_mismatch",
+    "bundle_hash_mismatch",
+    "units_dimension_mismatch",
+    "duplicate_edge",
+    "ambiguous_edge",
+    "missing_return",
+    "ledger_contradiction",
+    "unsupported_nonlinear",
+    "unsupported_time",
+    "multifield_cross_mesh_transfer_untyped",
+    "unsupported_anisotropic",
+    "singular_matrix",
+    "nonfinite_derived",
     "residual_failure"
-  ]
+  ],
+  "time_scalar": {
+    "status": "implemented_unexecuted",
+    "scheme": "single backward Euler step",
+    "interval_source": "DeclaredSpatialCaseV1.time_interval=(t_old,t_new)",
+    "formula": "(K_FV + M/dt) u_new = rhs_source + M u_old/dt",
+    "mass": "M_i = capacity * cell_width * field coupling gain; capacity is explicitly closed and source_ref-bound",
+    "source_units_note": "FV assembler already forms source density times cell width once; transient lowering adds only the history load and mass matrix",
+    "verification": "true runtime positive and negative cases are recorded in focused_tests.jl, not run here",
+    "mms": "time-step discrete MMS refinement remains runtime verification pending",
+    "time_units": "normalized L^2; this only matches this fixture G1 signature (u and K dimensionless, f has L^-2 units)",
+    "thermal_boundary": "no rho*cp exists in G1 schema; W/(m K), W/m^3 and K declarations are terminal_deferred pending a typed capacity"
+  },
+  "multifield_boundary": {
+    "status": "implemented_unexecuted",
+    "code": "diagonal_affine_multifield_backward_euler",
+    "schema": "DeclaredSpatialCaseV1.component_fields/component_boundaries/component_old_states/couplings",
+    "residual": "field-major FV diffusion blocks plus symmetric exchange c*cell_width*(u_i-u_j)",
+    "jacobian": "same assembled block matrix, including off-diagonal -c*cell_width entries and per-field time mass",
+    "coupling_units": "L^-2 for dimensionless field/K and L^-2 source",
+    "binding": "positive closed coupling is source_ref-bound to the candidate G1 declaration; component identity is positional, never inferred from names",
+    "independent_oracle_input": {
+      "edges": [0.0, 0.25, 0.5, 0.75, 1.0],
+      "old_edges": [0.0, 0.5, 1.0],
+      "dt": 0.25,
+      "capacity": 1.0,
+      "coupling_coefficient": 0.5,
+      "components": [
+        {"k": [1.0, 2.0, 1.5, 0.8], "source": [1.0, 0.0, -0.5, 0.75], "boundary": [0.0, 1.0], "old_state": [0.1, 0.3]},
+        {"k": [2.0, 2.0, 2.0, 2.0], "source": [-1.0, 0.5, 0.0, 1.0], "boundary": [1.0, -1.0], "old_state": [0.6, 0.8]}
+      ]
+    },
+    "verification": "focused two-field transient solve with independent 8x8 block matrix/RHS oracle, changed held-out coupling and arbitrary component labels",
+    "execution": "not run; Julia prohibited in this lane"
+  },
+  "review_state": "review_pending"
 }

@@ -1,0 +1,12 @@
+{
+  "task_id": "UP1-04A-VNEXT-G3-BINDING-EDIT-PREC",
+  "producer_chain": ["vnext_declaration_transport_local_v1", "vnext_declaration_authority_recheck_local_v1"],
+  "consumer": "vnext_g3_binding_authority_bridge_local_v1",
+  "fixture_class": "current-source-backed_local_software",
+  "authority": "independent_expected_bundle_and_G3_commitment",
+  "authority_child_commitments": ["realization", "control"],
+  "commitment_hash": "canonical hash of T0 bundle/G3 declaration plus both typed child commitments",
+  "full_recompute_attack": "old commitment rejects recomputed child; replacement commitment creates new identity",
+  "formal_shared_entry_connected": false,
+  "physical_state": "unknown"
+}

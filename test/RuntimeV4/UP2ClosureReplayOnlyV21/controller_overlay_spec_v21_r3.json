@@ -1,0 +1,36 @@
+{
+  "schema": "mms-v21-r3-controller-overlay-spec-v1",
+  "original_controller_path": "test/RuntimeV4/UP2ClosureReplayOnlyV21/run_replay_staged_v21.py",
+  "original_controller_sha256": "8fdbf6b38e53ac3ab4ea65310587587707a643f16e76d2623b23601239f05579",
+  "replacement_count": 7,
+  "replacements": [
+    {
+      "old_line": "SCRIPT = pathlib.Path(__file__).resolve().with_name(\"replay_staged_v21.jl\")",
+      "new_line": "SCRIPT = pathlib.Path(__file__).resolve().with_name(\"replay_staged_v21_r3.jl\")"
+    },
+    {
+      "old_line": "DEFAULT_PROTOCOL = BASE / \"replay_protocol_v21.json\"",
+      "new_line": "DEFAULT_PROTOCOL = BASE / \"replay_protocol_v21_r3.json\""
+    },
+    {
+      "old_line": "    external_root = (root.parent / \"FusionConceptAI_cleanup_20260926\" / \"up2_replay_v21\").resolve()",
+      "new_line": "    external_root = (root.parent / \"FusionConceptAI_cleanup_20260926\" / \"up2_replay_v21_r3\").resolve()"
+    },
+    {
+      "old_line": "        raise ValueError(\"V21 output_leaf must remain under the external up2_replay_v21 evidence root\")",
+      "new_line": "        raise ValueError(\"V21 R3 output_leaf must remain under the external up2_replay_v21_r3 evidence root\")"
+    },
+    {
+      "old_line": "    julia_source_path = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21.jl\"",
+      "new_line": "    julia_source_path = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21_r3.jl\""
+    },
+    {
+      "old_line": "    julia_script = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21.jl\"",
+      "new_line": "    julia_script = ROOT / \"test/RuntimeV4/UP2ClosureReplayOnlyV21/replay_staged_v21_r3.jl\""
+    },
+    {
+      "old_line": "    verify_process_exit_race_contract_text(SCRIPT.read_text(encoding=\"utf-8\"))",
+      "new_line": "    verify_process_exit_race_contract_text(R3_TRANSFORMED_CONTROLLER_SOURCE)"
+    }
+  ]
+}

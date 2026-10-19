@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 384,
+  "assembled_path": "arrays/pf_passive__coil_cases_height/assembled.raw",
+  "assembled_sha256": "c393089facbad885f199547c911d3c6b90c5d5fcf73bf91c38fcc2c80881df2f",
+  "chunks": [
+    48
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:26:01.307495Z",
+      "compressed_bytes": 94,
+      "compressed_path": "arrays/pf_passive__coil_cases_height/chunks/c__0.zst",
+      "compressed_sha256": "f845d66e2b7def9201ae1e7fb6c78f60bab6914b9e9eb17418052bda77b73a2c",
+      "decoded_bytes": 384,
+      "decoded_path": "arrays/pf_passive__coil_cases_height/chunks/c__0.raw",
+      "decoded_sha256": "c393089facbad885f199547c911d3c6b90c5d5fcf73bf91c38fcc2c80881df2f",
+      "decoded_shape": [
+        48
+      ],
+      "edge_shape": [
+        48
+      ],
+      "full_chunk_shape": [
+        48
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:26:00.725449Z",
+      "response_headers": {
+        "Content-Length": "94",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"7d3fa5645aed0ea692463e39e83aaa08\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:27 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_passive/coil_cases_height/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:26:01.321709Z",
+  "data_type": "float64",
+  "decoded_bytes": 384,
+  "dimensions": [
+    "coil_cases_geometry_channel"
+  ],
+  "finite_count": 48,
+  "maximum": 0.18783630430698395,
+  "minimum": 0.003000000026077032,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "passive structure",
+      "comment": "mid sectors: {'outer upper': 'mid1, mid2, mid3', 'outer lower': 'mid4, mid5, mid6', 'inner upper': 'mid7, mid8, mid9', 'inner outer': 'mid10, mid11, mid12'}",
+      "configuration": "geometry",
+      "content": "geometry of the passive structures for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-11",
+      "creatorCode": "python create_netcdf_passive.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric height of the coil cases",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/pfcoils.dat_M4",
+      "status": "development",
+      "system": "passive structure",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          48
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float64",
+    "dimension_names": [
+      "coil_cases_geometry_channel"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      48
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_passive/coil_cases_height",
+  "shape": [
+    48
+  ],
+  "started_utc": "2026-09-22T08:26:00.708332Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 48,
+  "units": "SI, degrees, m"
+}

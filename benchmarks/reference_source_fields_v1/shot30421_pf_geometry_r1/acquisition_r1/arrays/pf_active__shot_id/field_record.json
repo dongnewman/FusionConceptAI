@@ -1,0 +1,82 @@
+{
+  "assembled_bytes": 8,
+  "assembled_path": "arrays/pf_active__shot_id/assembled.raw",
+  "assembled_sha256": "0e3dab8c8f4e86b2889cc070e006cdbcef8467adbf11101e1786b90e12adb9c8",
+  "chunks": [],
+  "chunks_acquired": [
+    {
+      "chunk_index": [],
+      "chunk_key": "c",
+      "completed_utc": "2026-09-22T08:25:18.230977Z",
+      "compressed_bytes": 17,
+      "compressed_path": "arrays/pf_active__shot_id/chunks/c.zst",
+      "compressed_sha256": "bd6e1762bf246dc9d8d68243a4de74659e7d4ff3d97667bab79eb1432715595f",
+      "decoded_bytes": 8,
+      "decoded_path": "arrays/pf_active__shot_id/chunks/c.raw",
+      "decoded_sha256": "0e3dab8c8f4e86b2889cc070e006cdbcef8467adbf11101e1786b90e12adb9c8",
+      "decoded_shape": [],
+      "edge_shape": [],
+      "full_chunk_shape": [],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:17.676320Z",
+      "response_headers": {
+        "Content-Length": "17",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"0fdcbe93e3694e5f61dfdd37de50b6b3\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:25 GMT"
+      },
+      "starts": [],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/shot_id/c"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:18.232789Z",
+  "data_type": "int64",
+  "decoded_bytes": 8,
+  "dimensions": [],
+  "finite_count": 1,
+  "maximum": 30421,
+  "minimum": 30421,
+  "node": {
+    "attributes": {},
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": []
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "int64",
+    "fill_value": 0,
+    "node_type": "array",
+    "shape": [],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/shot_id",
+  "shape": [],
+  "started_utc": "2026-09-22T08:25:17.673846Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 1,
+  "units": null
+}

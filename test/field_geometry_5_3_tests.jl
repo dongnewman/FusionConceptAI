@@ -1238,7 +1238,7 @@ end
             "nothing"
         script = replace(script, "__DEFINITION__" => definition,
             "__TRIGGER__" => trigger, "__PUBLIC_ASSERT__" => public_assert)
-        command = `$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`
+        command = Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script`; windows_hide=true)
         output = read(pipeline(ignorestatus(command), stderr=stdout), String)
         occursin("G53_PROBE_OK", output) || println(stderr, "G53 probe failed: ", definition, "\\n", output)
         @test occursin("G53_PROBE_OK", output)

@@ -76,6 +76,21 @@ required_source = (
     "LocalParentBaselineBindingUnionV1",
     "PresentLocalParentBaselineBundleV1", "AbsentLocalParentBaselineBundleV1",
     "LocalParentBaselineBindResultV1", "bind_local_parent_baseline_v1",
+    "PresentT0LocalParentBaselineBindingV1", "PresentT0LocalParentBaselineBundleV1",
+    "AbsentT0LocalParentBaselineBundleV1", "T0LocalParentBaselineInputV1",
+    "T0LocalParentBaselineBindResultV1", "bind_local_parent_baseline_from_t0_v1",
+    "verify_present_t0_local_binding_v1",
+    "verify_present_t0_local_binding_self_consistency_v1",
+    "verify_present_t0_local_parent_bundle_v1", "verify_absent_t0_local_bundle_v1",
+    "t0_parent_authority_commitment_v1", "authority_commitment",
+    "VNEXT_LOCAL_PBB_T0_SUCCESSOR_VERSION_V1",
+    "source_ref", "declaration_ref", "source_bytes_sha256",
+    "declaration_bytes_sha256", "semantic_body_sha256", "source_locator_sha256",
+    "factory_receipt_sha256", "declaration_receipt_sha256",
+    "semantic_body_identity_hash", "source_locator_identity_hash",
+    "factory_receipt_identity_hash", "declaration_receipt_identity_hash",
+    "diagnostic_type_hash", "diagnostic_message_hash", "program_exception",
+    "same_candidate_identity_hash", "source_locator_bytes",
     "source_bytes", "semantic_body_bytes", "factory_receipt", "candidate_identity_review",
     "review_bytes", "review_sha256", "review_version", "reviewer_ref",
     "VNEXT_LOCAL_PBB_AXES_COUNT_V1", "terminal_deferred", "fail_closed",
@@ -112,6 +127,14 @@ required_test = (
     "published", "terminal_deferred",
     "empty_factory_identity", "empty_factory_version",
     "tampered_snapshot", "prior_canonical_bytes == tampered_snapshot",
+    "_t0l_present", "_t0l_g1", "_t0l_g2", "T0 source-backed G1/G2 successor adapter",
+    "t0_declaration_invalid", "t0_candidate_mismatch", "t0_absence_invalid",
+    "source_locator_bytes", "factory_receipt_bytes", "declaration_receipt_bytes",
+    "changed_source", "changed_declaration", "changed_semantic", "changed_locator",
+    "changed_factory", "changed_declaration_receipt", "_fully_rebound",
+    "rewritten_source", "rewritten_declaration", "rewritten_semantic",
+    "rewritten_locator", "rewritten_factory", "rewritten_declaration_receipt",
+    "self_consistency",
 )
 for token in required_test:
     require(f"test_token:{token}", token in test, token)
@@ -141,6 +164,12 @@ try:
     require("fixture_review_version_domain", fixture.get("version_domains", {}).get("review_version") ==
             "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/review-v1",
             "review version domain missing")
+    require("fixture_t0_successor_domain", fixture.get("version_domains", {}).get("t0_successor_version") ==
+            "GenomeV5/Integration/VNextParentBaselineBindingLocalV1/t0-parent-baseline-successor-v1",
+            "T0 successor version domain missing")
+    require("fixture_t0_adapter", fixture.get("t0_adapter", {}).get("legacy_review_mapping") ==
+            "forbidden" and fixture.get("t0_adapter", {}).get("non_lossless_mapping") ==
+            "fail_closed_capability_gap", "T0 adapter lossless/fail-closed contract missing")
     negative_controls = set(fixture.get("negative_controls", []))
     require("fixture_factory_constructor_negatives",
             {"empty_factory_identity", "empty_factory_version"} <= negative_controls,

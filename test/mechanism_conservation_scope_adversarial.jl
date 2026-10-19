@@ -82,7 +82,7 @@ end
 println("SCOPE_CLOSED_PASS")
 """
     helper_path = joinpath(@__DIR__, "mechanism_hash_layers_tests.jl")
-    command = setenv(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script $helper_path`, "FUSION_SCOPE_CHILD" => "1")
+    command = setenv(Cmd(`$(Base.julia_cmd()) --startup-file=no --project=$(Base.active_project()) -e $script $helper_path`; windows_hide=true), "FUSION_SCOPE_CHILD" => "1")
     output = read(pipeline(command, stderr=stdout), String)
     @test occursin("SCOPE_CLOSED_PASS", output)
 end

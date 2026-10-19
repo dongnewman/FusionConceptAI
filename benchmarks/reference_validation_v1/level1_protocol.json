@@ -1,0 +1,80 @@
+{
+  "schema_version": "mast_level1_error_protocol_v1",
+  "protocol_id": "UP4-03-reference-validation-level1-error-data-v1",
+  "source_root": "benchmarks/reference_data_level1_v1",
+  "shots": [
+    {
+      "shot_id": 30421,
+      "split": "calibration",
+      "directory": "shot30421_r1",
+      "shape": [284, 131],
+      "acquisition_sha256": "b517dcd2929f46968d78970f8107645d5082a128b5e9b5267e525803032742b7",
+      "zmetadata_sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1",
+      "source_records_sha256": "2593d0182fa55222351b26a90bc3b0b7d9447c61d15aa02bc40a0c1be049db96"
+    },
+    {
+      "shot_id": 30420,
+      "split": "held_out",
+      "directory": "shot30420_r1",
+      "shape": [73, 131],
+      "acquisition_sha256": "b5bb5d906f701af2bd1ee84f8132558c6e17f7c6d469480c86f5cf3d963e9978",
+      "zmetadata_sha256": "be43c2dca2e772d413fa5151590c904d5ce18bb6e5d4946c852c0f537f14819c",
+      "source_records_sha256": "80df2e3e228e067c57316f318d94bab382a23db51d008d5e20fe88f995d19188"
+    }
+  ],
+  "canonical_contract": {
+    "version": "mast_ayc_level1_error_observation_v1",
+    "dimensions": ["time", "radial_index"],
+    "dtype": "float32_little_endian",
+    "mapping": "identity: canonical[time,radial_index] = raw[time,radial_index]",
+    "scale": 1.0,
+    "offset": 0.0,
+    "resampling": "none",
+    "imputation": "none",
+    "dynamic_radius": "radius_m[time,radial_index] retained per cell",
+    "arrays": {
+      "ne": {"unit": "1 / m ** 3", "role": "reported_measurement"},
+      "te": {"unit": "eV", "role": "reported_measurement"},
+      "ne_error": {"unit": "", "role": "reported_error_data_unknown_semantics"},
+      "te_error": {"unit": "", "role": "reported_error_data_unknown_semantics"},
+      "covariance_ne_te": {"unit": "eV / m ** 3", "role": "reported_covariance_candidate_unknown_semantics"},
+      "radius": {"unit": "m", "role": "dynamic_coordinate"},
+      "time": {"unit": "s", "role": "coordinate"},
+      "radial_index": {"unit": " arb ", "role": "index_coordinate"}
+    }
+  },
+  "error_semantics": {
+    "status": "present_values_unknown_statistical_semantics",
+    "provider_field_names": ["ne_error", "te_error", "covariance_ne_te"],
+    "ne_error_unit_status": "blank",
+    "te_error_unit_status": "blank",
+    "acquisition_semantics": "unverified_not_assumed_standard_deviation",
+    "standard_deviation_interpretation": "prohibited",
+    "inverse_variance_weighting": "prohibited",
+    "likelihood_ready": false,
+    "calibration_semantics": "typed_absent"
+  },
+  "conditional_consistency_diagnostic": {
+    "status": "conditional_assumption_check_only",
+    "formula": "rho_star = covariance_ne_te / (ne_error * te_error)",
+    "assumption": "only if ne_error and te_error are positive one-standard-deviation scales in the corresponding signal units and covariance_ne_te is their covariance",
+    "check": "count finite cells with abs(rho_star) > 1 and the equivalent 2x2 PSD failure",
+    "claim_rule": "results may reject that complete assumption set at cells; they cannot establish the actual error semantics, calibration, or a likelihood"
+  },
+  "level2_binding": {
+    "status": "prohibited_unbound_products",
+    "rule": "Do not align or attach Level-1 cells to Level-2 profiles by index, shape, time, or radius without a separately versioned provider-supported provenance mapping."
+  },
+  "split": {
+    "calibration_shot_ids": [30421],
+    "validation_shot_ids": [],
+    "held_out_shot_ids": [30420],
+    "validation_status": "typed_absent",
+    "formal_minimum_met": false
+  },
+  "iter_design_separation": {
+    "included": false,
+    "measurement_status": "typed_absent"
+  },
+  "claim_ceiling": "Level-1 error-data observation adapter only; error values are present but statistical semantics, likelihood, calibrated diagnostic response, B03, B07B, R02, R06, and parent UP4-03 acceptance remain deferred"
+}

@@ -1,0 +1,2925 @@
+{
+  "schema": "mast-thomson-response-acquisition-v1",
+  "shot": 30421,
+  "started_utc": "2026-09-22T08:09:59.232040+00:00",
+  "command": [
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\fetch_mast_thomson_response_v1.py",
+    "--output",
+    "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\reference_source_fields_v1\\shot30421_thomson_response_r1"
+  ],
+  "pid": 42176,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Users\\Newman\\anaconda3\\python.exe",
+  "status": "acquired_requires_independent_decode_review",
+  "raw_values_only": true,
+  "arrays": [
+    {
+      "requested_path": "ayc/angle",
+      "resolved_path": "ayc/angle",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "scattering angle",
+        "mds_name": "\\TOP.ANALYSED.AYC:ANGLE",
+        "name": "ayc/angle",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_ANGLE",
+        "units": "",
+        "uuid": "0de8b65f-96d9-5b70-9c9b-de39ab38d7b0",
+        "version": 0
+      },
+      "shape": [
+        131
+      ],
+      "chunks": [
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "radial_index"
+      ],
+      "decoded_bytes": 524,
+      "coordinate_paths": [
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/angle/0",
+          "requested_utc": "2026-09-22T08:09:59.251965+00:00",
+          "compressed_path": "fields/ayc__angle/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "440",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+            "ETag": "\"f81c1ba56aa3676596789f95f9d65344\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 440,
+          "compressed_sha256": "706f6b4dd5be5a70ebf9e9e306b9006a195d6c5f3bcd046848c0e3f5b33aafa1",
+          "decoded_path": "fields/ayc__angle/chunks/0.raw",
+          "decoded_bytes": 524,
+          "decoded_sha256": "92ab175f9b1375a3194a372a86bf761b4c07ffb57b66d8b5608d99eeef2cdfc0",
+          "decoded_shape": [
+            131
+          ],
+          "full_bytes": 524,
+          "edge_bytes": 524,
+          "completed_utc": "2026-09-22T08:10:00.837594+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:09:59.251166+00:00",
+      "completed_utc": "2026-09-22T08:10:00.840873+00:00",
+      "assembled_path": "fields/ayc__angle/assembled.raw",
+      "assembled_bytes": 524,
+      "assembled_sha256": "92ab175f9b1375a3194a372a86bf761b4c07ffb57b66d8b5608d99eeef2cdfc0",
+      "finite_count": 130,
+      "total_count": 131,
+      "minimum": 74.92140197753906,
+      "maximum": 120.85399627685547
+    },
+    {
+      "requested_path": "ayc/instrument_dr",
+      "resolved_path": "ayc/instrument_dr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          20,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "instrument_time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "instrument_dr",
+        "mds_name": "\\TOP.ANALYSED.AYC.INSTRUMENT:DR",
+        "name": "ayc/instrument_dr",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          20,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_INSTRUMENT_DR",
+        "units": "m",
+        "uuid": "f26b6e25-881b-511e-8bcc-faf6851ece7f",
+        "version": 0
+      },
+      "shape": [
+        20,
+        131
+      ],
+      "chunks": [
+        20,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "instrument_time",
+        "radial_index"
+      ],
+      "decoded_bytes": 10480,
+      "coordinate_paths": [
+        {
+          "dimension": "instrument_time",
+          "path": "ayc/instrument_time",
+          "available": true,
+          "shape": [
+            20
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            20,
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/instrument_dr/0.0",
+          "requested_utc": "2026-09-22T08:10:00.846409+00:00",
+          "compressed_path": "fields/ayc__instrument_dr/chunks/0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "7859",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"b67dcbddb4932bcb9522f6848807e71c\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 7859,
+          "compressed_sha256": "83cbbc42dc790c614010777ad9e71afcbc609a932bbfc9c469a90510daca8695",
+          "decoded_path": "fields/ayc__instrument_dr/chunks/0.0.raw",
+          "decoded_bytes": 10480,
+          "decoded_sha256": "6039a11a9555decc47f6bd38716f43439e81aed8e306a454a385b376a9cb4286",
+          "decoded_shape": [
+            20,
+            131
+          ],
+          "full_bytes": 10480,
+          "edge_bytes": 10480,
+          "completed_utc": "2026-09-22T08:10:01.422279+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:00.844873+00:00",
+      "completed_utc": "2026-09-22T08:10:01.424449+00:00",
+      "assembled_path": "fields/ayc__instrument_dr/assembled.raw",
+      "assembled_bytes": 10480,
+      "assembled_sha256": "6039a11a9555decc47f6bd38716f43439e81aed8e306a454a385b376a9cb4286",
+      "finite_count": 2600,
+      "total_count": 2620,
+      "minimum": -0.007203750312328339,
+      "maximum": 0.007211179472506046
+    },
+    {
+      "requested_path": "ayc/instrument_time",
+      "resolved_path": "ayc/instrument_time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          20
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          20
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "instrument_time"
+        ],
+        "units": "s"
+      },
+      "shape": [
+        20
+      ],
+      "chunks": [
+        20
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "instrument_time"
+      ],
+      "decoded_bytes": 80,
+      "coordinate_paths": [
+        {
+          "dimension": "instrument_time",
+          "path": "ayc/instrument_time",
+          "available": true,
+          "shape": [
+            20
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            20
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/instrument_time/0",
+          "requested_utc": "2026-09-22T08:10:01.429739+00:00",
+          "compressed_path": "fields/ayc__instrument_time/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "96",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"4b76607d7ff3c3436f858cd4e088aba0\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 96,
+          "compressed_sha256": "4c0890d848af7a0366c553dca795b1f44749f7de5539e9e19bcb2ab0fc029cda",
+          "decoded_path": "fields/ayc__instrument_time/chunks/0.raw",
+          "decoded_bytes": 80,
+          "decoded_sha256": "53ea0f80fbb5f1506f57f86e41a6ce264eae257365515b654a8fa718261342ca",
+          "decoded_shape": [
+            20
+          ],
+          "full_bytes": 80,
+          "edge_bytes": 80,
+          "completed_utc": "2026-09-22T08:10:01.964662+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:01.428467+00:00",
+      "completed_utc": "2026-09-22T08:10:01.968816+00:00",
+      "assembled_path": "fields/ayc__instrument_time/assembled.raw",
+      "assembled_bytes": 80,
+      "assembled_sha256": "53ea0f80fbb5f1506f57f86e41a6ce264eae257365515b654a8fa718261342ca",
+      "finite_count": 20,
+      "total_count": 20,
+      "minimum": 1.0,
+      "maximum": 20.0
+    },
+    {
+      "requested_path": "ayc/scat_length",
+      "resolved_path": "ayc/scat_length",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          130
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          130
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "arb"
+        ],
+        "description": "",
+        "dims": [
+          "arb"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "scattering length",
+        "mds_name": "\\TOP.ANALYSED.AYC:SCAT_LENGTH",
+        "name": "ayc/scat_length",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          1,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SCAT_LENGTH",
+        "units": "m",
+        "uuid": "13ab0aef-2be6-50e9-b12d-4ad4cc9b5876",
+        "version": 0
+      },
+      "shape": [
+        130
+      ],
+      "chunks": [
+        130
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "arb"
+      ],
+      "decoded_bytes": 520,
+      "coordinate_paths": [
+        {
+          "dimension": "arb",
+          "path": "ayc/arb",
+          "available": true,
+          "shape": [
+            130
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            130
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/scat_length/0",
+          "requested_utc": "2026-09-22T08:10:01.974453+00:00",
+          "compressed_path": "fields/ayc__scat_length/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "80",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"30d68e28d8bbd6e725419419fa3dfcff\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 80,
+          "compressed_sha256": "75344f6fcae785157c061f044115a22ff98725f82f34c89b6e2faca36b8691d1",
+          "decoded_path": "fields/ayc__scat_length/chunks/0.raw",
+          "decoded_bytes": 520,
+          "decoded_sha256": "706b09aa6eb509602ad259357376ffb6c8c9ad596465904c30f66fb51a103eea",
+          "decoded_shape": [
+            130
+          ],
+          "full_bytes": 520,
+          "edge_bytes": 520,
+          "completed_utc": "2026-09-22T08:10:02.511438+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:01.972948+00:00",
+      "completed_utc": "2026-09-22T08:10:02.513782+00:00",
+      "assembled_path": "fields/ayc__scat_length/assembled.raw",
+      "assembled_bytes": 520,
+      "assembled_sha256": "706b09aa6eb509602ad259357376ffb6c8c9ad596465904c30f66fb51a103eea",
+      "finite_count": 130,
+      "total_count": 130,
+      "minimum": 0.009999999776482582,
+      "maximum": 0.009999999776482582
+    },
+    {
+      "requested_path": "ayc/arb",
+      "resolved_path": "ayc/arb",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          130
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          130
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "arb"
+        ],
+        "units": " arb "
+      },
+      "shape": [
+        130
+      ],
+      "chunks": [
+        130
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "arb"
+      ],
+      "decoded_bytes": 520,
+      "coordinate_paths": [
+        {
+          "dimension": "arb",
+          "path": "ayc/arb",
+          "available": true,
+          "shape": [
+            130
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            130
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/arb/0",
+          "requested_utc": "2026-09-22T08:10:02.520807+00:00",
+          "compressed_path": "fields/ayc__arb/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "216",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+            "ETag": "\"0fb2744587b41888e20dd25b75cc95a6\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 216,
+          "compressed_sha256": "632ede2dc2daf283c4d6e0c630096bf2592126b930c709d3d8db496713a1a281",
+          "decoded_path": "fields/ayc__arb/chunks/0.raw",
+          "decoded_bytes": 520,
+          "decoded_sha256": "3944a0934a96146c21b62ea0b5911a752cef11b36a1da0b233d79ec7daa862ff",
+          "decoded_shape": [
+            130
+          ],
+          "full_bytes": 520,
+          "edge_bytes": 520,
+          "completed_utc": "2026-09-22T08:10:03.072783+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:02.518967+00:00",
+      "completed_utc": "2026-09-22T08:10:03.075187+00:00",
+      "assembled_path": "fields/ayc__arb/assembled.raw",
+      "assembled_bytes": 520,
+      "assembled_sha256": "3944a0934a96146c21b62ea0b5911a752cef11b36a1da0b233d79ec7daa862ff",
+      "finite_count": 130,
+      "total_count": 130,
+      "minimum": 0.0,
+      "maximum": 129.0
+    },
+    {
+      "requested_path": "ayc/spectra",
+      "resolved_path": "ayc/spectra",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Raw spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC:SPECTRA",
+        "name": "ayc/spectra",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SPECTRA",
+        "units": "V",
+        "uuid": "6b03323f-2ead-5e6a-90cc-7ccc1e75d3c9",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra/0.0.0",
+          "requested_utc": "2026-09-22T08:10:03.081144+00:00",
+          "compressed_path": "fields/ayc__spectra/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "120907",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"6499f6efac03afc998db86a2d64443af\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 120907,
+          "compressed_sha256": "d5f4699993fd73a4dcfc6b15c5d8372046334e77c303ecdb92772416cdff8cac",
+          "decoded_path": "fields/ayc__spectra/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "1b449d33f1a871b4128984543742bafc4968d6a8c7a7bbd10e1639f7bfb96fcc",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:04.596341+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra/1.0.0",
+          "requested_utc": "2026-09-22T08:10:04.596950+00:00",
+          "compressed_path": "fields/ayc__spectra/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "123900",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"d8e0fc6bb2592d5fbb98acc901a1f55a\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 123900,
+          "compressed_sha256": "f5966cc287fca2d7fa7941802db7e009f8c7cb5b37934de58c0f0799676f7bf4",
+          "decoded_path": "fields/ayc__spectra/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "0876d17ddfea6988f28268b37cd44e7eee319a6559708dc5aec5ab55d27cd736",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:05.833422+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:03.079123+00:00",
+      "completed_utc": "2026-09-22T08:10:05.835117+00:00",
+      "assembled_path": "fields/ayc__spectra/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "9256620c75de3492bdc585ccf5d837a4b1cea525812c4d0f3c848212a52fd2a5",
+      "finite_count": 72500,
+      "total_count": 148816,
+      "minimum": -0.17132353782653809,
+      "maximum": 13.534111976623535
+    },
+    {
+      "requested_path": "ayc/aspectra",
+      "resolved_path": "ayc/aspectra",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Fitted spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC:ASPECTRA",
+        "name": "ayc/aspectra",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_ASPECTRA",
+        "units": "V",
+        "uuid": "2cf4f793-9167-5ad9-97e9-3e48da8d049d",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/aspectra/0.0.0",
+          "requested_utc": "2026-09-22T08:10:05.837650+00:00",
+          "compressed_path": "fields/ayc__aspectra/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "128230",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"8e4bec1a232898368452d8cbd1379cf6\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 128230,
+          "compressed_sha256": "169a9e5f4a9b6a18424fde89994b2162b926eedf69dd2889c23a4a9dc8fa0c43",
+          "decoded_path": "fields/ayc__aspectra/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "7c313bf28833d69ab6bfbbc95b5618494f0c877eae50d7823e85bd2007508c0e",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:07.037706+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/aspectra/1.0.0",
+          "requested_utc": "2026-09-22T08:10:07.039552+00:00",
+          "compressed_path": "fields/ayc__aspectra/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "128223",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"4228741b8cceb2b4d98835a787cf2d57\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 128223,
+          "compressed_sha256": "add93e9a7402dc7a2f4b9900685864c50cc2e70671aabe02e9f4fe5e9cc14b58",
+          "decoded_path": "fields/ayc__aspectra/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "038aaee03994c8006dfde64ffb09649f3c95f20f48db04625bb42c8f4ec7e840",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:08.452861+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:05.837008+00:00",
+      "completed_utc": "2026-09-22T08:10:08.456188+00:00",
+      "assembled_path": "fields/ayc__aspectra/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "a585972c12c1b0dd65dc58c0d1dbe8217764342b18d9864b7fa31c248f1a758e",
+      "finite_count": 72500,
+      "total_count": 148816,
+      "minimum": -0.17048297822475433,
+      "maximum": 2.478696823120117
+    },
+    {
+      "requested_path": "ayc/spectra_error",
+      "resolved_path": "ayc/spectra_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_error/0.0.0",
+          "requested_utc": "2026-09-22T08:10:08.461791+00:00",
+          "compressed_path": "fields/ayc__spectra_error/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "124074",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"f59026717186c4db1266b0256624e2ee\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 124074,
+          "compressed_sha256": "f2316e144fc4695021efc0c35942ef6f4df33a15011c1ee12608217ab5412b2b",
+          "decoded_path": "fields/ayc__spectra_error/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "d2215e00f192798e0eacdfd2d54418c928e6fd20d1cbbcd699e355f48f2aa763",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:09.650838+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_error/1.0.0",
+          "requested_utc": "2026-09-22T08:10:09.652572+00:00",
+          "compressed_path": "fields/ayc__spectra_error/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "121317",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"9d5e23b75030893d971c02ba9642b946\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 121317,
+          "compressed_sha256": "315dabd84170ab7f4c9a560464ba196d381d2db1d2f3166916eb9faba7ec6d34",
+          "decoded_path": "fields/ayc__spectra_error/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "b659bafde14a474d90e54bdfaa4a672ac8b0e419d8d6ddb41141d1d7021ebea7",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:10.782479+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:08.460400+00:00",
+      "completed_utc": "2026-09-22T08:10:10.786116+00:00",
+      "assembled_path": "fields/ayc__spectra_error/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "8cce5ce016d3f7f34f21aadf8dba0fd25cefa1e13c62444f96de6cc164cd9f2a",
+      "finite_count": 72500,
+      "total_count": 148816,
+      "minimum": 0.002332001691684127,
+      "maximum": 22.95467758178711
+    },
+    {
+      "requested_path": "ayc/spectra_stray_light",
+      "resolved_path": "ayc/spectra_stray_light",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Raw spectra",
+        "mds_name": "\\TOP.ANALYSED.AYC.SPECTRA_:STRAY_LIGHT",
+        "name": "ayc/spectra_stray_light",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_SPECTRA_STRAY_LIGHT",
+        "units": "V",
+        "uuid": "0bfdfc6e-9537-5303-bce5-2df7377eb350",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_stray_light/0.0.0",
+          "requested_utc": "2026-09-22T08:10:10.791597+00:00",
+          "compressed_path": "fields/ayc__spectra_stray_light/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "3472",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"8899c202f30266dcf6e4627af5699778\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 3472,
+          "compressed_sha256": "7a2924665a2d50a9524ce265de48c539f282274144d5f66ff962e0528ad8aeff",
+          "decoded_path": "fields/ayc__spectra_stray_light/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "3d94778ddd0dcc6f05830e9696f13a31638d73efd3570a68cc81a83d0bc9abb3",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:11.331666+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectra_stray_light/1.0.0",
+          "requested_utc": "2026-09-22T08:10:11.333640+00:00",
+          "compressed_path": "fields/ayc__spectra_stray_light/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "3428",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"a6891a2036a5674167a98d2395c5ee1e\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 3428,
+          "compressed_sha256": "cdc6062abbad91465c28cba55bb70f0af239d4fc4dc2b4d8369b9219389a75bd",
+          "decoded_path": "fields/ayc__spectra_stray_light/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "b5874b52a7adac047ae078865e500739470d8ba5cc69831b23b4590cdec25729",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:11.879837+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:10.790191+00:00",
+      "completed_utc": "2026-09-22T08:10:11.883982+00:00",
+      "assembled_path": "fields/ayc__spectra_stray_light/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "7c6d22aab7a6ba7916a66d56af91bab052ce62431052eaec25d7c136e6eb16b7",
+      "finite_count": 75400,
+      "total_count": 148816,
+      "minimum": 0.0,
+      "maximum": 0.7499606013298035
+    },
+    {
+      "requested_path": "ayc/poisson_error",
+      "resolved_path": "ayc/poisson_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Poisson error on scatter",
+        "mds_name": "\\TOP.ANALYSED.AYC.POISSON:ERROR",
+        "name": "ayc/poisson_error",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_POISSON_ERROR",
+        "units": "V",
+        "uuid": "d98643dc-1437-5e32-a7e1-2d600f32671e",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/poisson_error/0.0.0",
+          "requested_utc": "2026-09-22T08:10:11.890660+00:00",
+          "compressed_path": "fields/ayc__poisson_error/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "117675",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"2f68af7633a0abba47a5f60b195a5fc0\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 117675,
+          "compressed_sha256": "3304136834fdea92b33e0e46cae42d4673640ba13e72bbf14fe2938886c7c4bc",
+          "decoded_path": "fields/ayc__poisson_error/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "e4090f4cadd7d3f83c02e07c0874444e6eb2808bf9b6554169c31f89c37bf432",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:13.145982+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/poisson_error/1.0.0",
+          "requested_utc": "2026-09-22T08:10:13.147485+00:00",
+          "compressed_path": "fields/ayc__poisson_error/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "119986",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"c7d5a8c0229254e6fa12803da85fae1f\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 119986,
+          "compressed_sha256": "43137a4dead261fae8981853de2412101357d4be1ca6fb8ca6eef747775606b8",
+          "decoded_path": "fields/ayc__poisson_error/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "91ad6e052029a64637c44bb60d1812067a4730825b70b140a2fac03ba1fab122",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:14.147269+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:11.888854+00:00",
+      "completed_utc": "2026-09-22T08:10:14.150379+00:00",
+      "assembled_path": "fields/ayc__poisson_error/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "26912c81ea231b50741815b26f3643837777c2f004ed7bbdf58b21ef8624c7cb",
+      "finite_count": 72500,
+      "total_count": 148816,
+      "minimum": 0.0,
+      "maximum": 0.12415749579668045
+    },
+    {
+      "requested_path": "ayc/plasmalight_error",
+      "resolved_path": "ayc/plasmalight_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          142,
+          131,
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131,
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index",
+          "spectral_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Plasma light noise on sc",
+        "mds_name": "\\TOP.ANALYSED.AYC.PLASMALIGHT:ERROR",
+        "name": "ayc/plasmalight_error",
+        "quality": "Not Checked",
+        "rank": 3,
+        "shape": [
+          145,
+          130,
+          4
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_PLASMALIGHT_ERROR",
+        "units": "V",
+        "uuid": "f60f7f8b-fe7f-51e4-a128-637acb8c8635",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131,
+        4
+      ],
+      "chunks": [
+        142,
+        131,
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index",
+        "spectral_index"
+      ],
+      "decoded_bytes": 595264,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        },
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/plasmalight_error/0.0.0",
+          "requested_utc": "2026-09-22T08:10:14.155360+00:00",
+          "compressed_path": "fields/ayc__plasmalight_error/chunks/0.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "124139",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"c80f188e1dd4c06cacb34e1c27565a51\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 124139,
+          "compressed_sha256": "0502cba7e675863ee121e6323554b47f3b87c18cf4c011641e1cc0b812383e09",
+          "decoded_path": "fields/ayc__plasmalight_error/chunks/0.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "2e2ce7ab6f3696f3f84cf6e252184bea62e527c3a6ac454804754ca9ad5b9e07",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:15.233699+00:00"
+        },
+        {
+          "chunk_index": [
+            1,
+            0,
+            0
+          ],
+          "chunk_start": [
+            142,
+            0,
+            0
+          ],
+          "edge_shape": [
+            142,
+            131,
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/plasmalight_error/1.0.0",
+          "requested_utc": "2026-09-22T08:10:15.234603+00:00",
+          "compressed_path": "fields/ayc__plasmalight_error/chunks/1.0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "121200",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"8a5e2a817309ca73fba93e80253b5907\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 121200,
+          "compressed_sha256": "cd9ff554e76aec5b179af518ea1969a39b57e0c4798616176e3e0a7e9625aca7",
+          "decoded_path": "fields/ayc__plasmalight_error/chunks/1.0.0.raw",
+          "decoded_bytes": 297632,
+          "decoded_sha256": "5aec2956e5ae85991b63eb02cd393bbd908799dbaec42d0e6579767ad9a4a0d1",
+          "decoded_shape": [
+            142,
+            131,
+            4
+          ],
+          "full_bytes": 297632,
+          "edge_bytes": 297632,
+          "completed_utc": "2026-09-22T08:10:16.231956+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:14.154032+00:00",
+      "completed_utc": "2026-09-22T08:10:16.233572+00:00",
+      "assembled_path": "fields/ayc__plasmalight_error/assembled.raw",
+      "assembled_bytes": 595264,
+      "assembled_sha256": "223161f7afb2fce0916e6e26ed0de3700d1cf84b8a9d03b353bb5e88bd2d7662",
+      "finite_count": 72500,
+      "total_count": 148816,
+      "minimum": 0.002332001691684127,
+      "maximum": 22.954341888427734
+    },
+    {
+      "requested_path": "ayc/chi2",
+      "resolved_path": "ayc/chi2",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "fit chi^2 error",
+        "mds_name": "\\TOP.ANALYSED.AYC:CHI2",
+        "name": "ayc/chi2",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          145,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_CHI2",
+        "units": "",
+        "uuid": "7d22cbd5-3d7c-56b0-9db6-a8d524f24f23",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            284,
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/chi2/0.0",
+          "requested_utc": "2026-09-22T08:10:16.236351+00:00",
+          "compressed_path": "fields/ayc__chi2/chunks/0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "70124",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"19c2064596899e1f0f0de4579376bb0f\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 70124,
+          "compressed_sha256": "945e67edfe8672c582f825a421eb2e7650453f43bd6d226ff11ddb4305a29eb9",
+          "decoded_path": "fields/ayc__chi2/chunks/0.0.raw",
+          "decoded_bytes": 148816,
+          "decoded_sha256": "c6df2426f4f092b37f779dad5f35ac264ec975beef6d405f7ca065503af09c66",
+          "decoded_shape": [
+            284,
+            131
+          ],
+          "full_bytes": 148816,
+          "edge_bytes": 148816,
+          "completed_utc": "2026-09-22T08:10:16.967984+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:16.235423+00:00",
+      "completed_utc": "2026-09-22T08:10:16.971203+00:00",
+      "assembled_path": "fields/ayc__chi2/assembled.raw",
+      "assembled_bytes": 148816,
+      "assembled_sha256": "c6df2426f4f092b37f779dad5f35ac264ec975beef6d405f7ca065503af09c66",
+      "finite_count": 15863,
+      "total_count": 37204,
+      "minimum": 1.1912353370937742e-19,
+      "maximum": 19.570556640625
+    },
+    {
+      "requested_path": "ayc/laser_energy",
+      "resolved_path": "ayc/laser_energy",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "laser energy",
+        "mds_name": "\\TOP.ANALYSED.AYC:LASER_ENERGY",
+        "name": "ayc/laser_energy",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_LASER_ENERGY",
+        "units": "J",
+        "uuid": "9cf0055e-9b8a-571d-b3c6-e092e978cadd",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            284
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/laser_energy/0",
+          "requested_utc": "2026-09-22T08:10:16.978813+00:00",
+          "compressed_path": "fields/ayc__laser_energy/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "961",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"38e0e187ef26219b5d301828f6642110\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 961,
+          "compressed_sha256": "f7bac627ec35c2c97b39481eda2e912f5db80daaff7abe872a00200923bd6378",
+          "decoded_path": "fields/ayc__laser_energy/chunks/0.raw",
+          "decoded_bytes": 1136,
+          "decoded_sha256": "22c91943f1ffbd55cf8269a59b3e97b50f571a1f18397fe64c7fdb2ce79f307f",
+          "decoded_shape": [
+            284
+          ],
+          "full_bytes": 1136,
+          "edge_bytes": 1136,
+          "completed_utc": "2026-09-22T08:10:17.524336+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:16.976765+00:00",
+      "completed_utc": "2026-09-22T08:10:17.527400+00:00",
+      "assembled_path": "fields/ayc__laser_energy/assembled.raw",
+      "assembled_bytes": 1136,
+      "assembled_sha256": "22c91943f1ffbd55cf8269a59b3e97b50f571a1f18397fe64c7fdb2ce79f307f",
+      "finite_count": 145,
+      "total_count": 284,
+      "minimum": 0.5263875722885132,
+      "maximum": 1.1831717491149902
+    },
+    {
+      "requested_path": "ayc/laser_track",
+      "resolved_path": "ayc/laser_track",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "laser number",
+        "mds_name": "\\TOP.ANALYSED.AYC:LASER_TRACK",
+        "name": "ayc/laser_track",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_LASER_TRACK",
+        "units": "",
+        "uuid": "50103591-2f8e-58c1-9421-0fc5d60a0a24",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            284
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/laser_track/0",
+          "requested_utc": "2026-09-22T08:10:17.533735+00:00",
+          "compressed_path": "fields/ayc__laser_track/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "167",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"a6719c745f0c78beae0718baf4a7151f\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 167,
+          "compressed_sha256": "1a272adb9630be93fbe31b26356679f8567fdaebbd0319ea84ea2b1eafeb71e1",
+          "decoded_path": "fields/ayc__laser_track/chunks/0.raw",
+          "decoded_bytes": 1136,
+          "decoded_sha256": "e1eb60921f750958d7e79386620b7bfd82535d2f56c4395a057fc76a87ab6882",
+          "decoded_shape": [
+            284
+          ],
+          "full_bytes": 1136,
+          "edge_bytes": 1136,
+          "completed_utc": "2026-09-22T08:10:18.122193+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:17.531949+00:00",
+      "completed_utc": "2026-09-22T08:10:18.124766+00:00",
+      "assembled_path": "fields/ayc__laser_track/assembled.raw",
+      "assembled_bytes": 1136,
+      "assembled_sha256": "e1eb60921f750958d7e79386620b7bfd82535d2f56c4395a057fc76a87ab6882",
+      "finite_count": 145,
+      "total_count": 284,
+      "minimum": 1.0,
+      "maximum": 8.0
+    },
+    {
+      "requested_path": "ayc/time",
+      "resolved_path": "ayc/time",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "units": "s"
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            284
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/time/0",
+          "requested_utc": "2026-09-22T08:10:18.130224+00:00",
+          "compressed_path": "fields/ayc__time/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "891",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"2c36f920316e71a26e78f026d5c6da5b\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 891,
+          "compressed_sha256": "a4fa7a810f461c34a6e657a5b7bbf32f4be3499fd84d292cbd203ba46991200a",
+          "decoded_path": "fields/ayc__time/chunks/0.raw",
+          "decoded_bytes": 1136,
+          "decoded_sha256": "a83829471800d7662724bf47356061ed8ff7cc3277a252b9a8ad850cfe208e16",
+          "decoded_shape": [
+            284
+          ],
+          "full_bytes": 1136,
+          "edge_bytes": 1136,
+          "completed_utc": "2026-09-22T08:10:18.665069+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:18.128661+00:00",
+      "completed_utc": "2026-09-22T08:10:18.667559+00:00",
+      "assembled_path": "fields/ayc__time/assembled.raw",
+      "assembled_bytes": 1136,
+      "assembled_sha256": "a83829471800d7662724bf47356061ed8ff7cc3277a252b9a8ad850cfe208e16",
+      "finite_count": 284,
+      "total_count": 284,
+      "minimum": 0.004166000057011843,
+      "maximum": 0.6041658520698547
+    },
+    {
+      "requested_path": "ayc/radial_index",
+      "resolved_path": "ayc/radial_index",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "radial_index"
+        ],
+        "units": " arb "
+      },
+      "shape": [
+        131
+      ],
+      "chunks": [
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "radial_index"
+      ],
+      "decoded_bytes": 524,
+      "coordinate_paths": [
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/radial_index/0",
+          "requested_utc": "2026-09-22T08:10:18.672485+00:00",
+          "compressed_path": "fields/ayc__radial_index/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "217",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"d0b73777123e1b192aaeac39d7905905\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 217,
+          "compressed_sha256": "b1dd2a241c83c09dba7873e64232f6a2f4f233eeec5ba851cc85ba707ed6e947",
+          "decoded_path": "fields/ayc__radial_index/chunks/0.raw",
+          "decoded_bytes": 524,
+          "decoded_sha256": "d67638241fab12fef50019e6abdf8902fb939791f601835a5ba824a9916219de",
+          "decoded_shape": [
+            131
+          ],
+          "full_bytes": 524,
+          "edge_bytes": 524,
+          "completed_utc": "2026-09-22T08:10:19.217685+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:18.670736+00:00",
+      "completed_utc": "2026-09-22T08:10:19.218838+00:00",
+      "assembled_path": "fields/ayc__radial_index/assembled.raw",
+      "assembled_bytes": 524,
+      "assembled_sha256": "d67638241fab12fef50019e6abdf8902fb939791f601835a5ba824a9916219de",
+      "finite_count": 131,
+      "total_count": 131,
+      "minimum": 0.0,
+      "maximum": 130.0
+    },
+    {
+      "requested_path": "ayc/spectral_index",
+      "resolved_path": "ayc/spectral_index",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          4
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          4
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "spectral_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        4
+      ],
+      "chunks": [
+        4
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "spectral_index"
+      ],
+      "decoded_bytes": 16,
+      "coordinate_paths": [
+        {
+          "dimension": "spectral_index",
+          "path": "ayc/spectral_index",
+          "available": true,
+          "shape": [
+            4
+          ],
+          "dtype": "<f4",
+          "units": ""
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            4
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/spectral_index/0",
+          "requested_utc": "2026-09-22T08:10:19.222060+00:00",
+          "compressed_path": "fields/ayc__spectral_index/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "32",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"2389ba84e9e4e08f611d1e9a3c20fe57\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 32,
+          "compressed_sha256": "61c805b9a43bcd28fbc26d7a382363b966007466363e436f1d7ecb38df8c7fef",
+          "decoded_path": "fields/ayc__spectral_index/chunks/0.raw",
+          "decoded_bytes": 16,
+          "decoded_sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1",
+          "decoded_shape": [
+            4
+          ],
+          "full_bytes": 16,
+          "edge_bytes": 16,
+          "completed_utc": "2026-09-22T08:10:19.785078+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:19.221246+00:00",
+      "completed_utc": "2026-09-22T08:10:19.786577+00:00",
+      "assembled_path": "fields/ayc__spectral_index/assembled.raw",
+      "assembled_bytes": 16,
+      "assembled_sha256": "ad73b9acd6e4a74b2f5bb5386658ce3bb146cd040a1867646ab3b973fb6632b1",
+      "finite_count": 4,
+      "total_count": 4,
+      "minimum": 1.0,
+      "maximum": 4.0
+    },
+    {
+      "requested_path": "ayc/pe",
+      "resolved_path": "ayc/pe",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "description": "Electron Pressure",
+        "dims": [
+          "time",
+          "radial_index"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "electron pressure",
+        "mds_name": "\\TOP.ANALYSED.AYC:PE",
+        "name": "ayc/pe",
+        "quality": "Not Checked",
+        "rank": 2,
+        "shape": [
+          145,
+          130
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_PE",
+        "units": "",
+        "uuid": "11e793ce-11e3-5a99-bf15-38e0f9a2eebf",
+        "version": 0
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            284,
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/pe/0.0",
+          "requested_utc": "2026-09-22T08:10:19.789268+00:00",
+          "compressed_path": "fields/ayc__pe/chunks/0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "63751",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"17dc0aeb059668ec9fccdd0a2ae9da86\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 63751,
+          "compressed_sha256": "bde9ebd6fab20ba10bbc156b78fe87fc19393a7cdf272fb673a22b178e5a3e09",
+          "decoded_path": "fields/ayc__pe/chunks/0.0.raw",
+          "decoded_bytes": 148816,
+          "decoded_sha256": "1507afaf6ca9d4d1cda41548e2eb281ad13104d03b7170f8dd69c89a07e91595",
+          "decoded_shape": [
+            284,
+            131
+          ],
+          "full_bytes": 148816,
+          "edge_bytes": 148816,
+          "completed_utc": "2026-09-22T08:10:21.058409+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:19.788428+00:00",
+      "completed_utc": "2026-09-22T08:10:21.063074+00:00",
+      "assembled_path": "fields/ayc__pe/assembled.raw",
+      "assembled_bytes": 148816,
+      "assembled_sha256": "1507afaf6ca9d4d1cda41548e2eb281ad13104d03b7170f8dd69c89a07e91595",
+      "finite_count": 15863,
+      "total_count": 37204,
+      "minimum": 0.3700641691684723,
+      "maximum": 7643.8232421875
+    },
+    {
+      "requested_path": "ayc/pe_error",
+      "resolved_path": "ayc/pe_error",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284,
+          131
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284,
+          131
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time",
+          "radial_index"
+        ],
+        "units": ""
+      },
+      "shape": [
+        284,
+        131
+      ],
+      "chunks": [
+        284,
+        131
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time",
+        "radial_index"
+      ],
+      "decoded_bytes": 148816,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        },
+        {
+          "dimension": "radial_index",
+          "path": "ayc/radial_index",
+          "available": true,
+          "shape": [
+            131
+          ],
+          "dtype": "<f4",
+          "units": " arb "
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0,
+            0
+          ],
+          "chunk_start": [
+            0,
+            0
+          ],
+          "edge_shape": [
+            284,
+            131
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/pe_error/0.0",
+          "requested_utc": "2026-09-22T08:10:21.067713+00:00",
+          "compressed_path": "fields/ayc__pe_error/chunks/0.0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "64699",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"ea48ad0ac0c3321b4c906b25ed65ba6f\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 64699,
+          "compressed_sha256": "78bd975200679c478155387de55e0ce0394fcd7ef7f55b7d6cd6e4122df23616",
+          "decoded_path": "fields/ayc__pe_error/chunks/0.0.raw",
+          "decoded_bytes": 148816,
+          "decoded_sha256": "a9c093d9f46f2f3fa24cf6fb6037e25a00c6c0d423170ea20df944b23c66b507",
+          "decoded_shape": [
+            284,
+            131
+          ],
+          "full_bytes": 148816,
+          "edge_bytes": 148816,
+          "completed_utc": "2026-09-22T08:10:21.909611+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:21.066814+00:00",
+      "completed_utc": "2026-09-22T08:10:21.911080+00:00",
+      "assembled_path": "fields/ayc__pe_error/assembled.raw",
+      "assembled_bytes": 148816,
+      "assembled_sha256": "a9c093d9f46f2f3fa24cf6fb6037e25a00c6c0d423170ea20df944b23c66b507",
+      "finite_count": 15863,
+      "total_count": 37204,
+      "minimum": 0.4030275344848633,
+      "maximum": 144979.25
+    },
+    {
+      "requested_path": "ayc/interferometer_corr",
+      "resolved_path": "ayc/interferometer_corr",
+      "metadata_resolution": "exact_path",
+      "zarray": {
+        "chunks": [
+          284
+        ],
+        "compressor": {
+          "blocksize": 0,
+          "clevel": 5,
+          "cname": "lz4",
+          "id": "blosc",
+          "shuffle": 1
+        },
+        "dtype": "<f4",
+        "fill_value": "NaN",
+        "filters": null,
+        "order": "C",
+        "shape": [
+          284
+        ],
+        "zarr_format": 2
+      },
+      "attributes": {
+        "_ARRAY_DIMENSIONS": [
+          "time"
+        ],
+        "description": "",
+        "dims": [
+          "time"
+        ],
+        "file_name": null,
+        "format": null,
+        "label": "Interferometer Correctio",
+        "mds_name": "\\TOP.ANALYSED.AYC.TERFEROMETER:CORR",
+        "name": "ayc/interferometer_corr",
+        "quality": "Not Checked",
+        "rank": 1,
+        "shape": [
+          145
+        ],
+        "shot_id": 30421,
+        "signal_type": "Analysed",
+        "source": "ayc",
+        "time_index": 0,
+        "uda_name": "AYC_INTERFEROMETER_CORR",
+        "units": " - ",
+        "uuid": "052b0c31-7d23-57d6-b07a-86359e76a6a3",
+        "version": 0
+      },
+      "shape": [
+        284
+      ],
+      "chunks": [
+        284
+      ],
+      "dtype": "<f4",
+      "dimensions": [
+        "time"
+      ],
+      "decoded_bytes": 1136,
+      "coordinate_paths": [
+        {
+          "dimension": "time",
+          "path": "ayc/time",
+          "available": true,
+          "shape": [
+            284
+          ],
+          "dtype": "<f4",
+          "units": "s"
+        }
+      ],
+      "status": "acquired_raw_values_semantics_unverified",
+      "chunks_acquired": [
+        {
+          "chunk_index": [
+            0
+          ],
+          "chunk_start": [
+            0
+          ],
+          "edge_shape": [
+            284
+          ],
+          "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/ayc/interferometer_corr/0",
+          "requested_utc": "2026-09-22T08:10:21.914102+00:00",
+          "compressed_path": "fields/ayc__interferometer_corr/chunks/0.blosc",
+          "http_status": 200,
+          "headers": {
+            "Content-Length": "963",
+            "Last-Modified": "Wed, 29 Jan 2025 18:27:22 GMT",
+            "ETag": "\"ca405b0b0de372078563c3df7904a809\"",
+            "Content-Type": "application/octet-stream"
+          },
+          "status": "decoded",
+          "compressed_bytes": 963,
+          "compressed_sha256": "25e1fb39819265daa87ef1d6bcc89e5c48319dccce16a797bbd2822578eafc51",
+          "decoded_path": "fields/ayc__interferometer_corr/chunks/0.raw",
+          "decoded_bytes": 1136,
+          "decoded_sha256": "c5239759435d20a4b72f8d190a51e46a242f3560815d59b5f6116d662832374b",
+          "decoded_shape": [
+            284
+          ],
+          "full_bytes": 1136,
+          "edge_bytes": 1136,
+          "completed_utc": "2026-09-22T08:10:22.458083+00:00"
+        }
+      ],
+      "started_utc": "2026-09-22T08:10:21.913207+00:00",
+      "completed_utc": "2026-09-22T08:10:22.459407+00:00",
+      "assembled_path": "fields/ayc__interferometer_corr/assembled.raw",
+      "assembled_bytes": 1136,
+      "assembled_sha256": "c5239759435d20a4b72f8d190a51e46a242f3560815d59b5f6116d662832374b",
+      "finite_count": 145,
+      "total_count": 284,
+      "minimum": 0.693998396396637,
+      "maximum": 1.2075283527374268
+    }
+  ],
+  "error_semantics": "unknown_not_assumed_sigma",
+  "likelihood_ready": false,
+  "scientific_acceptance": false,
+  "limits": {
+    "compressed_chunk_bytes": 8000000,
+    "array_bytes": 8000000,
+    "total_decoded_bytes": 24000000,
+    "process_rss_bytes": 536870912,
+    "connect_seconds": 10,
+    "read_seconds": 30
+  },
+  "input_pins": {
+    "metadata": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+      "bytes": 1714135,
+      "sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1"
+    },
+    "decoder": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\fetch_mast_source_fields_v1.py",
+      "bytes": 22700,
+      "sha256": "b5b2fb24dcbb189b9425b811aca2390c7027dac177486bf9b795c9fb0a6a259c"
+    },
+    "blosc": {
+      "path": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+      "bytes": 54272,
+      "sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11"
+    },
+    "entry": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\fetch_mast_thomson_response_v1.py",
+      "bytes": 11106,
+      "sha256": "17569dd5ce313c5dfda506c90e1e4d17984eb6c819cb6ae4ce5c9bca108e8745"
+    }
+  },
+  "selection_sha256": "afdd60d4f232b0cb0346c8f841e02a584ae39626843af3d2cc377f34476f85d3",
+  "total_decoded_bytes": 4035240,
+  "peak_observed_rss_bytes": 60108800,
+  "input_pins_after": {
+    "metadata": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\benchmarks\\reference_data_level1_v1\\shot30421_r1\\zmetadata.json",
+      "bytes": 1714135,
+      "sha256": "362932d6cfeb62f01109a56b825b235b7daaedc928c17340be59c7a1398e7db1"
+    },
+    "decoder": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\fetch_mast_source_fields_v1.py",
+      "bytes": 22700,
+      "sha256": "b5b2fb24dcbb189b9425b811aca2390c7027dac177486bf9b795c9fb0a6a259c"
+    },
+    "blosc": {
+      "path": "D:\\Users\\Newman\\anaconda3\\Library\\bin\\blosc.dll",
+      "bytes": 54272,
+      "sha256": "a21580c0c6eb967a9442f4e0559203c99781a530679bd8c7c6c408c4f27c7b11"
+    },
+    "entry": {
+      "path": "D:\\006-Programing\\LMC\\FusionConceptAI\\tools\\fetch_mast_thomson_response_v1.py",
+      "bytes": 11106,
+      "sha256": "17569dd5ce313c5dfda506c90e1e4d17984eb6c819cb6ae4ce5c9bca108e8745"
+    }
+  },
+  "inputs_unchanged": true,
+  "ended_utc": "2026-09-22T08:10:22.462285+00:00",
+  "exit_code": 0
+}

@@ -1,0 +1,125 @@
+{
+  "requested_path": "efm/xpoint1_zc",
+  "resolved_path": "efm/xpoint1_zc",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      120
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      120
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Height of first X-point; f(B)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "Height of X-point 1",
+    "mds_name": "\\TOP.ANALYSED.EFM:XPOINT1_Z_C",
+    "name": "efm/xpoint1_zc",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      108
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "efm",
+    "time_index": 0,
+    "uda_name": "EFM_XPOINT1_Z(C)",
+    "units": "m",
+    "uuid": "5a5ae517-d8a9-54cb-9734-14949e0ad9f7",
+    "version": 0
+  },
+  "shape": [
+    120
+  ],
+  "chunks": [
+    120
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 480,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "efm/time",
+      "available": true,
+      "shape": [
+        120
+      ],
+      "dtype": "<f4",
+      "units": "S"
+    }
+  ],
+  "utc_started": "2026-09-22T01:49:46.172423Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        120
+      ],
+      "full_chunk_shape": [
+        120
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/efm/xpoint1_zc/0",
+      "requested_utc": "2026-09-22T01:49:46.172533Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "344",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:23 GMT",
+        "ETag": "\"fbf3764746c4f9629d8a8f0177287529\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 344,
+      "compressed_sha256": "0a5804440211329facf79534c151470df9b18b6eac5cecfdce32866684027371",
+      "decoded_bytes": 480,
+      "decoded_sha256": "702bca100fae53d55d49ff3a53a51f99f2d5bdc0345ef59343c0dd82744b6866",
+      "decoded_shape": [
+        120
+      ],
+      "written_shape": [
+        120
+      ],
+      "expected_full_bytes": 480,
+      "expected_edge_bytes": 480,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\efm__xpoint1_zc\\assembled.raw",
+  "assembled_raw_bytes": 480,
+  "assembled_raw_sha256": "702bca100fae53d55d49ff3a53a51f99f2d5bdc0345ef59343c0dd82744b6866",
+  "finite_count": 82,
+  "total_count": 120,
+  "minimum": -1.2850290536880493,
+  "maximum": -1.1159389019012451
+}

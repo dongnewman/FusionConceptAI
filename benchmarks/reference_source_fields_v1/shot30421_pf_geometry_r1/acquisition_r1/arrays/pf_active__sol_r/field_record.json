@@ -1,0 +1,132 @@
+{
+  "assembled_bytes": 2624,
+  "assembled_path": "arrays/pf_active__sol_r/assembled.raw",
+  "assembled_sha256": "0364373f76392ccfa41bb9c9887e6dd043171b7eaf7fd03ea9ab24fe73ef9464",
+  "chunks": [
+    656
+  ],
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_key": "c/0",
+      "completed_utc": "2026-09-22T08:25:53.583887Z",
+      "compressed_bytes": 34,
+      "compressed_path": "arrays/pf_active__sol_r/chunks/c__0.zst",
+      "compressed_sha256": "6945fa98e7cebd90c6d377fddeacee0593180fcec362821d2e0378f9e86951e4",
+      "decoded_bytes": 2624,
+      "decoded_path": "arrays/pf_active__sol_r/chunks/c__0.raw",
+      "decoded_sha256": "0364373f76392ccfa41bb9c9887e6dd043171b7eaf7fd03ea9ab24fe73ef9464",
+      "decoded_shape": [
+        656
+      ],
+      "edge_shape": [
+        656
+      ],
+      "full_chunk_shape": [
+        656
+      ],
+      "http_status": 200,
+      "requested_utc": "2026-09-22T08:25:53.063535Z",
+      "response_headers": {
+        "Content-Length": "34",
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"9e7e6a5331d8be93c7974260b028cdd0\"",
+        "Last-Modified": "Fri, 07 Aug 2026 03:25:25 GMT"
+      },
+      "starts": [
+        0
+      ],
+      "status": "decoded",
+      "url": "https://s3.echo.stfc.ac.uk/mast/level2/shots/30421.zarr/pf_active/sol_r/c/0"
+    }
+  ],
+  "completed_utc": "2026-09-22T08:25:53.588045Z",
+  "data_type": "float32",
+  "decoded_bytes": 2624,
+  "dimensions": [
+    "sol_coordinate_element"
+  ],
+  "finite_count": 656,
+  "maximum": 0.15743780136108398,
+  "minimum": 0.11900000274181366,
+  "node": {
+    "attributes": {
+      "_FillValue": "AAAAAAAA+H8=",
+      "calibration": "None",
+      "class_": "magnetics",
+      "comment": "Data sourced from EFIT file",
+      "configuration": "geometry",
+      "content": "geometry of the pfcoils for MAST",
+      "coordinateSystem": "Cylindrical",
+      "coordinates": "shot_id",
+      "createdBy": "James Hodson (xq0472)",
+      "creationDate": "2025-07-24",
+      "creatorCode": "python create_netcdf_pf.py",
+      "creatorCommitId": "",
+      "creatorRepo": "https://git.ccfe.ac.uk/MAST-U/mast-geometry",
+      "description": "Geometric centre R values of the solenoid coil elements",
+      "device": "MAST",
+      "imas": "",
+      "owner": "MAST Data Systems Team",
+      "revision": 0,
+      "shotRangeStart": 0,
+      "shotRangeStop": 40000,
+      "signedOffBy": "lkogan",
+      "source": "https://git.ccfe.ac.uk/MAST-U/mast-geometry/sources/EFIT_efit_data_pfcoils-3.dat_M4",
+      "status": "development",
+      "system": "pfcoils",
+      "units": "SI, degrees, m",
+      "version": 0
+    },
+    "chunk_grid": {
+      "configuration": {
+        "chunk_shape": [
+          656
+        ]
+      },
+      "name": "regular"
+    },
+    "chunk_key_encoding": {
+      "configuration": {
+        "separator": "/"
+      },
+      "name": "default"
+    },
+    "codecs": [
+      {
+        "configuration": {
+          "endian": "little"
+        },
+        "name": "bytes"
+      },
+      {
+        "configuration": {
+          "checksum": false,
+          "level": 0
+        },
+        "name": "zstd"
+      }
+    ],
+    "data_type": "float32",
+    "dimension_names": [
+      "sol_coordinate_element"
+    ],
+    "fill_value": "NaN",
+    "node_type": "array",
+    "shape": [
+      656
+    ],
+    "storage_transformers": [],
+    "zarr_format": 3
+  },
+  "path": "pf_active/sol_r",
+  "shape": [
+    656
+  ],
+  "started_utc": "2026-09-22T08:25:53.055631Z",
+  "status": "acquired_raw_values_semantics_unverified",
+  "total_count": 656,
+  "units": "SI, degrees, m"
+}

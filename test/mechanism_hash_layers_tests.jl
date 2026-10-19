@@ -241,6 +241,6 @@ end
 @testset "G1 cross-process constructor injection" begin
     julia = Base.julia_cmd()
     code = "using FusionConceptAI; d=Digest256(repeat(\"a\",64)); try FusionConceptAI.MechanismHashLayersV1(d,d,d,d,d,d,d,d); print(\"forged\") catch e; print(typeof(e)) end"
-    output = read(`$julia --project=. -e $code`, String)
+    output = read(Cmd(`$julia --project=. -e $code`; windows_hide=true), String)
     @test occursin("MethodError", output)
 end

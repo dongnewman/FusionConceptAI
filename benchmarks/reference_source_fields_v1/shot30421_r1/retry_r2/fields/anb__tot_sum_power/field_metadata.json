@@ -1,0 +1,163 @@
+{
+  "requested_path": "anb/tot_sum_power",
+  "resolved_path": "anb/tot_sum_power",
+  "metadata_resolution": "exact_path",
+  "zarray": {
+    "chunks": [
+      49961
+    ],
+    "compressor": {
+      "blocksize": 0,
+      "clevel": 5,
+      "cname": "lz4",
+      "id": "blosc",
+      "shuffle": 1
+    },
+    "dtype": "<f4",
+    "fill_value": "NaN",
+    "filters": null,
+    "order": "C",
+    "shape": [
+      99921
+    ],
+    "zarr_format": 2
+  },
+  "attributes": {
+    "_ARRAY_DIMENSIONS": [
+      "time"
+    ],
+    "description": "Summation of the power from both beams (XNB_SW_BEAM_CURRENT)",
+    "dims": [
+      "time"
+    ],
+    "file_name": null,
+    "format": null,
+    "label": "P(SS+SW)",
+    "mds_name": "\\TOP.ANALYSED.ANB.TOT_SUM:POWER",
+    "name": "amb/tot_sum_power",
+    "quality": "Not Checked",
+    "rank": 1,
+    "shape": [
+      50001
+    ],
+    "shot_id": 30421,
+    "signal_type": "Analysed",
+    "source": "anb",
+    "time_index": 0,
+    "uda_name": "ANB_TOT_SUM_POWER",
+    "units": "MW",
+    "uuid": "9deec683-8fdc-57ee-8a67-cbbbe3e749d3",
+    "version": 0
+  },
+  "shape": [
+    99921
+  ],
+  "chunks": [
+    49961
+  ],
+  "dtype": "<f4",
+  "dimensions": [
+    "time"
+  ],
+  "decoded_bytes": 399684,
+  "coordinate_paths": [
+    {
+      "dimension": "time",
+      "path": "anb/time",
+      "available": true,
+      "shape": [
+        99921
+      ],
+      "dtype": "<f8",
+      "units": "s"
+    }
+  ],
+  "utc_started": "2026-09-21T20:06:48.173755Z",
+  "chunks_acquired": [
+    {
+      "chunk_index": [
+        0
+      ],
+      "chunk_start": [
+        0
+      ],
+      "edge_shape": [
+        49961
+      ],
+      "full_chunk_shape": [
+        49961
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/tot_sum_power/0",
+      "requested_utc": "2026-09-21T20:06:48.173888Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "163071",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"951f47c8424e15c8faca7dc580edf9a5\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 163071,
+      "compressed_sha256": "26010b808b8cd911e1146607120bf6cca420a8f2df67063e947fa48a0b245b84",
+      "decoded_bytes": 199844,
+      "decoded_sha256": "8da0c1ceabf311af151dbdc966d6399c5065036833db6a1cba2ab132ff995a70",
+      "decoded_shape": [
+        49961
+      ],
+      "written_shape": [
+        49961
+      ],
+      "expected_full_bytes": 199844,
+      "expected_edge_bytes": 199844,
+      "compressed_path": "chunks\\0.blosc",
+      "decoded_chunk_path": "chunks\\0.raw",
+      "status": "decoded"
+    },
+    {
+      "chunk_index": [
+        1
+      ],
+      "chunk_start": [
+        49961
+      ],
+      "edge_shape": [
+        49960
+      ],
+      "full_chunk_shape": [
+        49961
+      ],
+      "url": "https://s3.echo.stfc.ac.uk/mast/level1/shots/30421.zarr/anb/tot_sum_power/1",
+      "requested_utc": "2026-09-21T20:06:48.825075Z",
+      "http_status": 200,
+      "response_headers": {
+        "Content-Length": "178260",
+        "Last-Modified": "Wed, 29 Jan 2025 18:27:21 GMT",
+        "ETag": "\"4a7d244e7d9c5829157e9ec1813ed850\"",
+        "Content-Type": "application/octet-stream"
+      },
+      "compressed_bytes": 178260,
+      "compressed_sha256": "fcfcd0c3e74023a13ca559973466e0ed25bd3f27942a740ce10bc9466ef29370",
+      "decoded_bytes": 199844,
+      "decoded_sha256": "9f46fd0080c4abf71a35b835970acf392ed151d724ef6e9a0162ade28f69facb",
+      "decoded_shape": [
+        49961
+      ],
+      "written_shape": [
+        49960
+      ],
+      "expected_full_bytes": 199844,
+      "expected_edge_bytes": 199840,
+      "compressed_path": "chunks\\1.blosc",
+      "decoded_chunk_path": "chunks\\1.raw",
+      "status": "decoded"
+    }
+  ],
+  "failures": [],
+  "status": "acquired_raw_values_no_uncertainty_interpretation",
+  "assembled_raw_path": "fields\\anb__tot_sum_power\\assembled.raw",
+  "assembled_raw_bytes": 399684,
+  "assembled_raw_sha256": "ab2d6a625315550902908e1a87a752a81197e2e0ae2d258d17c54056c8f7aec7",
+  "finite_count": 50001,
+  "total_count": 99921,
+  "minimum": -0.002891100011765957,
+  "maximum": 3.683805465698242
+}

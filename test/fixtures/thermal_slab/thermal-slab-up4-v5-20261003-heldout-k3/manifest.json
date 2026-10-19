@@ -1,0 +1,79 @@
+{
+  "claims": {
+    "terminal": "none",
+    "engineering": "none",
+    "numerical": "none",
+    "physical": "none"
+  },
+  "scenario_ref": {
+    "version": "v1",
+    "id": "fusionconceptai://scenario-design/thermal-slab-up4-v5-20261003-heldout-k3"
+  },
+  "schema": "candidate-design-input-manifest-v1",
+  "target_consumer": "current-source G1/G2/G3 factories -> T0 -> DGD -> focused DCCE; no solver authority",
+  "files": [
+    {
+      "path": "identity.jl",
+      "bytes": 538,
+      "sha256": "d12246ba22643f4b7aa8d2c27badf20b112011d95e591468a394000dcebece96"
+    },
+    {
+      "path": "design_identity.json",
+      "bytes": 546,
+      "sha256": "e5b8d588a8aa2d2c421a109ac87c8a37bd46df98bf9a6ac49ceb648686f026f6"
+    },
+    {
+      "path": "scenario.json",
+      "bytes": 653,
+      "sha256": "965903928feeb3cc4e7d2ef12a06d03b37d9d76a2afc2fa30c54aff2c84c863a"
+    },
+    {
+      "path": "g1_source.jl",
+      "bytes": 4741,
+      "sha256": "21540462ecae07896b8f17729b4b5481036adbb60084381910672de30458eba2"
+    },
+    {
+      "path": "g2_source.jl",
+      "bytes": 3718,
+      "sha256": "df766fc36d0edb9f4e8b5724e7a59e698192479057157706665daf90121494f3"
+    },
+    {
+      "path": "g3_source.jl",
+      "bytes": 30090,
+      "sha256": "03e7482cc6e2de11707e842bd9bffe7ddefce5fab4c88ab90f8bfd4b3ba0f711"
+    },
+    {
+      "path": "g3_child_design_source.jl",
+      "bytes": 15318,
+      "sha256": "58caa0118a7e44fcd325fded6447c976c1e33631bbfb97806360d6dd38dcb75d"
+    },
+    {
+      "path": "native_mms_source_expressions.json",
+      "bytes": 688,
+      "sha256": "8a2d377fa3602859ce525d782cfd8326ff945832ba623bb44bed27d05411e948"
+    }
+  ],
+  "candidate_ref": {
+    "version": "v5",
+    "id": "fusionconceptai://candidate-design/thermal-slab-up4-v5-20261003-heldout-k3"
+  },
+  "source_origin": "locally authored held-out scalar DCCE test input; no external source or authority",
+  "candidate_id": "thermal-slab-up4-v5-20261003-heldout-k3",
+  "design_status": "unvalidated_design_input",
+  "scenario_id": "scenario-thermal-slab-up4-v5-20261003-heldout-k3",
+  "native_g1g2_mms_alignment": {
+    "source_expression_record": {
+      "required_fields": [
+        "design_scope",
+        "candidate_id",
+        "candidate_ref",
+        "scenario_id",
+        "scenario_ref",
+        "formula",
+        "unknown_source_expression",
+        "source_expression",
+        "compiler_rebuild_required"
+      ]
+    }
+  }
+}

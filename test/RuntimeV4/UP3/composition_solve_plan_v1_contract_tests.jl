@@ -264,6 +264,89 @@ _record_negative!(coverage, name, outcome, code) =
     @test any(f -> f.code === :cycle, cycle.plan.failures)
     _record_negative!(negative_coverage, :cycle, cycle.outcome, :cycle)
 
+    # State edges remain part of the ordinary DAG: a one-way state dependency
+    # must place its producer before a lexically earlier consumer.
+    ordered_state_space = _space("ordered-state-space")
+    state_producer = _component("z-state-producer", (),
+        (_port("state-out", 7, :output; space=ordered_state_space,
+            role=:state, sign=0),))
+    state_consumer = _component("a-state-consumer",
+        (_port("state-in", 3, :input; space=ordered_state_space,
+            role=:state, sign=0),), ())
+    state_dependency = _admit((state_consumer, state_producer))
+    @test state_dependency.outcome.status === :ready
+    @test length(state_dependency.plan.edges) == 1
+    @test state_dependency.plan.topological_order ==
+        (state_producer.component_ref, state_consumer.component_ref)
+
+    # A state cycle is still rejected unless the caller explicitly declares
+    # the one feedback edge handled by the thermal execution adapter.
+    state_cycle_space_ab = _space("state-cycle-ab")
+    state_cycle_space_ba = _space("state-cycle-ba")
+    state_cycle_a = _component("state-cycle-a",
+        (_port("a-in", 4, :input; space=state_cycle_space_ba,
+            role=:state, sign=0),),
+        (_port("a-out", 5, :output; space=state_cycle_space_ab,
+            role=:state, sign=0),))
+    state_cycle_b = _component("state-cycle-b",
+        (_port("b-in", 6, :input; space=state_cycle_space_ab,
+            role=:state, sign=0),),
+        (_port("b-out", 8, :output; space=state_cycle_space_ba,
+            role=:state, sign=0),))
+    undeclared_state_cycle = _admit((state_cycle_a, state_cycle_b))
+    @test undeclared_state_cycle.outcome.status === :fail_closed
+    @test any(f -> f.code === :cycle, undeclared_state_cycle.plan.failures)
+    _record_negative!(negative_coverage, :undeclared_state_cycle,
+        undeclared_state_cycle.outcome, :cycle)
+
+    # Declaring one edge must not hide the rest of an unsupported three-node
+    # state cycle from admission; runtime rejection alone is too late.
+    state_cycle3_ab = _space("state-cycle3-ab")
+    state_cycle3_bc = _space("state-cycle3-bc")
+    state_cycle3_ca = _space("state-cycle3-ca")
+    state_cycle3_a = _component("state-cycle3-a",
+        (_port("a-in", 11, :input; space=state_cycle3_ca, role=:state, sign=0),),
+        (_port("a-out", 12, :output; space=state_cycle3_ab, role=:state, sign=0),))
+    state_cycle3_b = _component("state-cycle3-b",
+        (_port("b-in", 21, :input; space=state_cycle3_ab, role=:state, sign=0),),
+        (_port("b-out", 22, :output; space=state_cycle3_bc, role=:state, sign=0),))
+    state_cycle3_c = _component("state-cycle3-c",
+        (_port("c-in", 31, :input; space=state_cycle3_bc, role=:state, sign=0),),
+        (_port("c-out", 32, :output; space=state_cycle3_ca, role=:state, sign=0),))
+    state_cycle3_input = C.CompositionSolveInputV1(_binding(),
+        (state_cycle3_a, state_cycle3_b, state_cycle3_c), _protocol();
+        feedback_edge_keys=((_d("state-cycle3-a"), 12,
+            _d("state-cycle3-b"), 21),))
+    declared_unsupported_state_cycle = C.admit_composition_solve(state_cycle3_input)
+    @test declared_unsupported_state_cycle.outcome.status === :fail_closed
+    @test any(f -> f.code === :cycle, declared_unsupported_state_cycle.plan.failures)
+
+    # Execution currently supports one feedback SCC per composition; two
+    # disjoint, individually legal state loops must not pass admission.
+    state_pair1_ab = _space("state-pair1-ab")
+    state_pair1_ba = _space("state-pair1-ba")
+    state_pair2_cd = _space("state-pair2-cd")
+    state_pair2_dc = _space("state-pair2-dc")
+    state_pair_a = _component("state-pair-a",
+        (_port("a-in", 41, :input; space=state_pair1_ba, role=:state, sign=0),),
+        (_port("a-out", 42, :output; space=state_pair1_ab, role=:state, sign=0),))
+    state_pair_b = _component("state-pair-b",
+        (_port("b-in", 51, :input; space=state_pair1_ab, role=:state, sign=0),),
+        (_port("b-out", 52, :output; space=state_pair1_ba, role=:state, sign=0),))
+    state_pair_c = _component("state-pair-c",
+        (_port("c-in", 61, :input; space=state_pair2_dc, role=:state, sign=0),),
+        (_port("c-out", 62, :output; space=state_pair2_cd, role=:state, sign=0),))
+    state_pair_d = _component("state-pair-d",
+        (_port("d-in", 71, :input; space=state_pair2_cd, role=:state, sign=0),),
+        (_port("d-out", 72, :output; space=state_pair2_dc, role=:state, sign=0),))
+    two_declared_state_sccs_input = C.CompositionSolveInputV1(_binding(),
+        (state_pair_a, state_pair_b, state_pair_c, state_pair_d), _protocol();
+        feedback_edge_keys=((_d("state-pair-a"), 42, _d("state-pair-b"), 51),
+            (_d("state-pair-c"), 62, _d("state-pair-d"), 71)))
+    two_declared_state_sccs = C.admit_composition_solve(two_declared_state_sccs_input)
+    @test two_declared_state_sccs.outcome.status === :fail_closed
+    @test any(f -> f.code === :cycle, two_declared_state_sccs.plan.failures)
+
     duplicate = _admit((_chain()[1], _chain()[1]))
     @test duplicate.outcome.status === :fail_closed
     @test any(f -> f.code === :duplicate_component, duplicate.plan.failures)
